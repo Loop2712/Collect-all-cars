@@ -2,158 +2,96 @@
     "type": "flex",
     "altText": "โปรโมชั่น",
     "contents": {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "md",
-    "contents": [
-      {
+      "type": "bubble",
+      "size": "giga",
+      "body": {
         "type": "box",
         "layout": "vertical",
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/img/logo/VII-check-LOGO-W-v3.png",
-            "size": "4xl",
-            "aspectRatio": "16:9",
-            "aspectMode": "fit",
-            "action": {
-              "type": "uri",
-              "label": "action",
-              "uri": "https://www.viicheck.com/"
-            }
-          },
-          {
-            "type": "image",
-            "url": "https://www.viicheck.com/img/stickerline/Flex/5.png",
+            "url": "https://www.viicheck.com/img/flex/flex_promotion.png",
             "size": "full",
-            "aspectRatio": "16:9",
-            "align": "center",
-            "aspectMode": "fit",
-            "offsetBottom": "md"
-          }
-        ]
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "spacing": "sm",
-        "contents": [
-          {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
+            "aspectRatio": "1393:1182",
+            "aspectMode": "cover"
           },
           {
             "type": "box",
-            "layout": "baseline",
+            "layout": "vertical",
             "contents": [
               {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/car.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "md"
-              },
-              {
-                "type": "text",
-                "text": "โปรโมชั่นรถยนต์",
-                "margin": "xl",
-                "action": {
-                  "type": "message",
-                  "label": "โปรโมชั่นรถยนต์",
-                  "text": "โปรโมชั่นรถยนต์"
-                },
-                "weight": "bold",
-                "flex": 4
-              },
-              {
-                "type": "text",
-                "text": ">>>",
-                "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "message",
-                  "label": "โปรโมชั่นรถยนต์",
-                  "text": "โปรโมชั่นรถยนต์"
-                }
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "รถยนต์",
+                    "size": "md",
+                    "wrap": false,
+                    "weight": "bold",
+                    "color": "#ffffff"
+                  }
+                ],
+                "position": "absolute",
+                "width": "70%",
+                "offsetTop": "78%",
+                "offsetStart": "12%",
+                "alignItems": "center",
+                "height": "15.5%",
+                "justifyContent": "center"
               }
             ],
-            "height": "50px",
+            "width": "43%",
+            "position": "absolute",
+            "height": "58%",
             "action": {
               "type": "message",
-              "label": "โปรโมชั่นรถยนต์",
+              "label": "action",
               "text": "โปรโมชั่นรถยนต์"
             },
-            "margin": "md"
-          },
-          {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
+            "offsetStart": "6%",
+            "offsetTop": "33%"
           },
           {
             "type": "box",
-            "layout": "baseline",
+            "layout": "vertical",
             "contents": [
               {
-                "type": "icon",
-                "url": "https://www.viicheck.com/img/icon/motorcycle.png",
-                "size": "3xl",
-                "margin": "none",
-                "offsetTop": "md"
-              },
-              {
-                "type": "text",
-                "text": "โปรโมชั่นรถจักรยานยนต์",
-                "weight": "bold",
-                "margin": "xl",
-                "action": {
-                  "type": "message",
-                  "label": "โปรโมชั่นรถจักรยานยนต์",
-                  "text": "โปรโมชั่นรถจักรยานยนต์"
-                },
-                "flex": 4
-              },
-              {
-                "type": "text",
-                "text": ">>>",
-                "size": "sm",
-                "align": "end",
-                "color": "#ff0101",
-                "action": {
-                  "type": "message",
-                  "label": "โปรโมชั่นรถจักรยานยนต์",
-                  "text": "โปรโมชั่นรถจักรยานยนต์"
-                }
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "รถจักรยานยนต์",
+                    "size": "md",
+                    "wrap": false,
+                    "weight": "bold",
+                    "color": "#ffffff"
+                  }
+                ],
+                "position": "absolute",
+                "width": "90%",
+                "offsetTop": "77.5%",
+                "offsetStart": "5%",
+                "alignItems": "center",
+                "height": "15.5%",
+                "justifyContent": "center"
               }
             ],
-            "height": "50px",
+            "width": "43%",
+            "position": "absolute",
+            "height": "58%",
             "action": {
               "type": "message",
               "label": "โปรโมชั่นรถจักรยานยนต์",
               "text": "โปรโมชั่นรถจักรยานยนต์"
-            }
-          },
-          {
-            "type": "separator",
-            "margin": "xl",
-            "color": "#ff0101"
+            },
+            "offsetStart": "51%",
+            "offsetTop": "33%"
           }
         ],
-        "offsetBottom": "md"
+        "position": "relative",
+        "paddingAll": "0px"
       }
-    ],
-    "borderWidth": "bold",
-    "cornerRadius": "xl",
-    "borderColor": "#ff0101"
-  },
-  "styles": {
-    "hero": {
-      "backgroundColor": "#ff0101"
     }
-  }
-}
 }
