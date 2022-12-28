@@ -1,0 +1,137 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+        "type": "bubble",
+        "size": "giga",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://www.viicheck.com/img/flex/move/nocall/flex_not_comfor_motocycle.png",
+              "size": "full",
+              "aspectRatio": "2500:2648",
+              "aspectMode": "cover"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "ฉันไม่สะดวก",
+                  "weight": "bold",
+                  "size": "lg",
+                  "color": "#ffffff",
+                  "maxLines": 2,
+                  "wrap": true
+                }
+              ],
+              "position": "absolute",
+              "width": "58%",
+              "offsetTop": "22.2%",
+              "offsetStart": "30%",
+              "alignItems": "center",
+              "height": "14%",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "- เนื่องจาก -",
+                  "weight": "bold",
+                  "size": "lg",
+                  "color": "#ffffff"
+                }
+              ],
+              "position": "absolute",
+              "width": "77%",
+              "offsetTop": "45%",
+              "offsetStart": "11%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "CONTENT",
+                  "weight": "bold",
+                  "size": "xxl",
+                  "color": "#ffffff"
+                }
+              ],
+              "position": "absolute",
+              "width": "77%",
+              "offsetTop": "52%",
+              "offsetStart": "11%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "TEXT_REG_MOR_1",
+                  "weight": "bold",
+                  "size": "29px",
+                  "color": "#000000"
+                }
+              ],
+              "position": "absolute",
+              "width": "30%",
+              "offsetTop": "71%",
+              "offsetStart": "35%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "TEXT_REG_PRO",
+                  "weight": "bold",
+                  "size": "sm",
+                  "color": "#000000"
+                }
+              ],
+              "position": "absolute",
+              "width": "30%",
+              "offsetTop": "81%",
+              "offsetStart": "35%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "TEXT_REG_MOR_2",
+                  "weight": "bold",
+                  "size": "29px",
+                  "color": "#000000"
+                }
+              ],
+              "position": "absolute",
+              "width": "30%",
+              "offsetTop": "85%",
+              "offsetStart": "35%",
+              "alignItems": "center"
+            }
+          ],
+          "position": "relative",
+          "paddingAll": "0px"
+        }
+      }
+
+
+}

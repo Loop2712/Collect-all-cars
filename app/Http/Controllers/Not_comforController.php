@@ -241,16 +241,29 @@ class Not_comforController extends Controller
                         ->select('type' , 'email' , 'name')
                         ->where('provider_id', $reply_provider_id)
                         ->get();
-                            
+
+            $register_car = DB::select("SELECT * FROM register_cars WHERE registration_number = '$registration_number' AND province = '$province' AND active = 'Yes'");
+            
+            $reg = $registration_number ;
+            $reg_text = preg_replace('/[0-9]+/', '', $reg);
+            $reg_num = preg_replace('/[^A-Za-z0-9\-]/', ' ', $reg); 
+            $reg_num_sp = explode(" ", $reg_num);
+            $last_list_num = count($reg_num_sp) - 1 ;
+
+            $reg_1 = $reg_num_sp[0] . $reg_text ;
+            $reg_2 = $reg_num_sp[$last_list_num] ;
+
+            foreach ($register_car as $car) {
+                $car_type = $car->car_type;
+
+            }  
+            
             $google_registration_number = $registration_number ;
             $google_province = $province ;
 
             $data_Text_topic = [
-                "ผู้ใช้แจ้งว่า",
                 "ฉันไม่สะดวก",
                 "เนื่องจาก",
-                "หมายเลขทะเบียน",
-                "โทร",
                 $content,
             ];
 
@@ -261,20 +274,27 @@ class Not_comforController extends Controller
                     case 'line':
                         switch($want_phone){
                             case "Yes":  
-                                $template_path = storage_path('../public/json/not_comfor_p.json');   
+                                switch($car_type){
+                                    case "car": 
+                                        $template_path = storage_path('../public/json/viimove/photo/call/flex-not-comfor-car.json');   
+                                        $string_json = str_replace("TEXT_REG_NUM",$registration_number,$string_json);
+
+                                    break;
+                                    case "motorcycle": 
+                                        $template_path = storage_path('../public/json/viimove/photo/call/flex-not-comfor-motocycle.json');  
+
+                                        $string_json = str_replace("TEXT_REG_MOR_1",$reg_1,$string_json);
+                                        $string_json = str_replace("TEXT_REG_MOR_2",$reg_2,$string_json);
+                                    break;
+                                }
                                 $string_json = file_get_contents($template_path);
                                 $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-                                $string_json = str_replace("9กก9999",$registration_number,$string_json);
-                                $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
-                                $string_json = str_replace("ขอบคุณ",$data_topic[1],$string_json);
-                                $string_json = str_replace("ประชุม",$data_topic[5],$string_json);
+                                $string_json = str_replace("TEXT_REG_PRO",$province,$string_json);
+                                $string_json = str_replace("CONTENT",$data_topic[2],$string_json);
                                 if (!empty($phone)) {
-                                    $string_json = str_replace("0999999999",$phone,$string_json);
+                                    $string_json = str_replace("PHONE_NUMBER",$phone,$string_json);
                                 }
-
-                                $string_json = str_replace("เนื่องจาก",$data_topic[2],$string_json);
-                                $string_json = str_replace("หมายเลขทะเบียน",$data_topic[3],$string_json);
-                                $string_json = str_replace("โทร",$data_topic[4],$string_json);
+                                $string_json = str_replace("เนื่องจาก",$data_topic[1],$string_json);
 
                                 $messages = [ json_decode($string_json, true) ];
                                 break;

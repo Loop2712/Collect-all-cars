@@ -1,0 +1,147 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+        "type": "bubble",
+        "size": "giga",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://www.viicheck.com/img/flex/move/call/flex_not_comfor_car.png",
+              "size": "full",
+              "aspectRatio": "2500:3100",
+              "aspectMode": "cover"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "ฉันไม่สะดวก",
+                  "weight": "bold",
+                  "size": "lg",
+                  "color": "#ffffff",
+                  "maxLines": 2,
+                  "wrap": true
+                }
+              ],
+              "position": "absolute",
+              "width": "62%",
+              "offsetTop": "19%",
+              "offsetStart": "27%",
+              "alignItems": "center",
+              "height": "12%",
+              "justifyContent": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "- เนื่องจาก -",
+                  "weight": "bold",
+                  "size": "lg",
+                  "color": "#ffffff"
+                }
+              ],
+              "position": "absolute",
+              "width": "77%",
+              "offsetTop": "39%",
+              "offsetStart": "11.5%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "CONTENT",
+                  "weight": "bold",
+                  "size": "xxl",
+                  "color": "#ffffff"
+                }
+              ],
+              "position": "absolute",
+              "width": "78%",
+              "offsetTop": "46%",
+              "offsetStart": "11%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "TEXT_REG_NUM",
+                  "weight": "bold",
+                  "size": "37px",
+                  "color": "#000000"
+                }
+              ],
+              "position": "absolute",
+              "width": "55%",
+              "offsetTop": "64.5%",
+              "offsetStart": "21%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "TEXT_REG_PRO",
+                  "weight": "bold",
+                  "size": "md",
+                  "color": "#000000"
+                }
+              ],
+              "position": "absolute",
+              "width": "55%",
+              "offsetTop": "73.5%",
+              "offsetStart": "21%",
+              "alignItems": "center"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "PHONE_NUMBER",
+                      "weight": "bold",
+                      "color": "#00b900",
+                      "size": "xl"
+                    }
+                  ],
+                  "width": "65%",
+                  "height": "100%",
+                  "justifyContent": "center"
+                }
+              ],
+              "position": "absolute",
+              "width": "66%",
+              "offsetTop": "85.2%",
+              "offsetStart": "17%",
+              "alignItems": "center",
+              "height": "9.5%"
+            }
+          ],
+          "position": "relative",
+          "paddingAll": "0px"
+        }
+      }
+
+
+}
