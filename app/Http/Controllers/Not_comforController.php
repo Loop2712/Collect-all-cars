@@ -277,17 +277,18 @@ class Not_comforController extends Controller
                                 switch($car_type){
                                     case "car": 
                                         $template_path = storage_path('../public/json/viimove/photo/call/flex-not-comfor-car.json');   
+                                        $string_json = file_get_contents($template_path);
                                         $string_json = str_replace("TEXT_REG_NUM",$registration_number,$string_json);
 
                                     break;
                                     case "motorcycle": 
                                         $template_path = storage_path('../public/json/viimove/photo/call/flex-not-comfor-motocycle.json');  
-
+                                        $string_json = file_get_contents($template_path);
                                         $string_json = str_replace("TEXT_REG_MOR_1",$reg_1,$string_json);
                                         $string_json = str_replace("TEXT_REG_MOR_2",$reg_2,$string_json);
                                     break;
                                 }
-                                $string_json = file_get_contents($template_path);
+                                
                                 $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
                                 $string_json = str_replace("TEXT_REG_PRO",$province,$string_json);
                                 $string_json = str_replace("CONTENT",$data_topic[2],$string_json);
