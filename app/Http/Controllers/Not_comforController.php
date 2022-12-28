@@ -287,9 +287,16 @@ class Not_comforController extends Controller
                                         $string_json = str_replace("TEXT_REG_MOR_1",$reg_1,$string_json);
                                         $string_json = str_replace("TEXT_REG_MOR_2",$reg_2,$string_json);
                                     break;
+                                    case "other": 
+                                        $template_path = storage_path('../public/json/viimove/call/flex-not-comfor-car.json');   
+                                        $string_json = file_get_contents($template_path);
+                                        $string_json = str_replace("TEXT_REG_NUM",$registration_number,$string_json);
+
+                                    break;
                                 }
                                 
                                 $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+                                $string_json = str_replace("ฉันไม่สะดวก",$data_topic[0],$string_json);
                                 $string_json = str_replace("TEXT_REG_PRO",$province,$string_json);
                                 $string_json = str_replace("CONTENT",$data_topic[2],$string_json);
                                 if (!empty($phone)) {
@@ -300,16 +307,28 @@ class Not_comforController extends Controller
                                 $messages = [ json_decode($string_json, true) ];
                                 break;
                             case "No":  
-                                $template_path = storage_path('../public/json/not_comfor_not_p.json');   
-                                $string_json = file_get_contents($template_path);
+                                switch($car_type){
+                                    case "car": 
+                                        $template_path = storage_path('../public/json/viimove/nocall/flex-not-comfor-car.json');   
+                                        $string_json = file_get_contents($template_path);
+                                        $string_json = str_replace("TEXT_REG_NUM",$registration_number,$string_json);
+                                    break;
+                                    case "motorcycle": 
+                                        $template_path = storage_path('../public/json/viimove/nocall/flex-not-comfor-motocycle.json');  
+                                        $string_json = file_get_contents($template_path);
+                                        $string_json = str_replace("TEXT_REG_MOR_1",$reg_1,$string_json);
+                                        $string_json = str_replace("TEXT_REG_MOR_2",$reg_2,$string_json);
+                                    break;
+                                    case "other": 
+                                        $template_path = storage_path('../public/json/viimove/nocall/flex-not-comfor-car.json');   
+                                        $string_json = file_get_contents($template_path);
+                                        $string_json = str_replace("TEXT_REG_NUM",$registration_number,$string_json);
+                                    break;
+                                }
                                 $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-                                $string_json = str_replace("9กก9999",$registration_number,$string_json);
-                                $string_json = str_replace("กรุงเทพมหานคร",$province,$string_json);
-                                $string_json = str_replace("ขอบคุณ",$data_topic[1],$string_json);
-                                $string_json = str_replace("ประชุม",$data_topic[5],$string_json);
-
-                                $string_json = str_replace("เนื่องจาก",$data_topic[2],$string_json);
-                                $string_json = str_replace("หมายเลขทะเบียน",$data_topic[3],$string_json);
+                                $string_json = str_replace("TEXT_REG_PRO",$province,$string_json);
+                                $string_json = str_replace("CONTENT",$data_topic[2],$string_json);
+                                $string_json = str_replace("เนื่องจาก",$data_topic[1],$string_json);
 
                                 $messages = [ json_decode($string_json, true) ];
                                 break;
