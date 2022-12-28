@@ -2,59 +2,43 @@
     "type": "flex",
     "altText": "ไม่สามารถทำการตอบกลับได้ค่ะ",
     "contents": {
-  "type": "bubble",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "spacing": "md",
-    "contents": [
-      {
+      "type": "bubble",
+      "size": "mega",
+      "body": {
         "type": "box",
         "layout": "vertical",
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/img/stickerline/PNG/17.png",
+            "url": "https://www.viicheck.com/img/flex/not_sent.png",
             "size": "full",
-            "aspectRatio": "16:9",
-            "align": "center",
-            "aspectMode": "fit",
-            "margin": "xxl",
-            "offsetBottom": "md"
+            "aspectMode": "cover",
+            "aspectRatio": "2091:815",
+            "gravity": "center"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "คุณได้ตอบกลับเรียบร้อยแล้ว",
+                "weight": "bold",
+                "wrap": true,
+                "align": "center",
+                "size": "md"
+              }
+            ],
+            "position": "absolute",
+            "width": "56.5%",
+            "height": "70%",
+            "offsetTop": "18.5%",
+            "offsetEnd": "7.5%",
+            "justifyContent": "center",
+            "alignItems": "center"
           }
         ],
-        "borderColor": "#ff0101",
-        "backgroundColor": "#FAEBD7",
-        "borderWidth": "bold",
-        "cornerRadius": "xxl"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "คุณได้ตอบกลับเรียบร้อยแล้ว",
-            "margin": "lg",
-            "size": "lg",
-            "weight": "bold",
-            "wrap": true,
-            "align": "center",
-            "gravity": "center",
-            "color": "#ffffff"
-          }
-        ]
+        "paddingAll": "0px"
       }
-    ],
-    "borderWidth": "bold",
-    "cornerRadius": "xl",
-    "borderColor": "#ff0101",
-    "backgroundColor": "#07375D"
-  },
-  "styles": {
-    "hero": {
-      "backgroundColor": "#ff0101"
     }
-  }
-}
 }
