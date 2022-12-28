@@ -326,6 +326,7 @@ class Not_comforController extends Controller
                                     break;
                                 }
                                 $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+                                $string_json = str_replace("ฉันไม่สะดวก",$data_topic[0],$string_json);
                                 $string_json = str_replace("TEXT_REG_PRO",$province,$string_json);
                                 $string_json = str_replace("CONTENT",$data_topic[2],$string_json);
                                 $string_json = str_replace("เนื่องจาก",$data_topic[1],$string_json);
