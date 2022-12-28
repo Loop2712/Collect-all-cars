@@ -276,13 +276,13 @@ class Not_comforController extends Controller
                             case "Yes":  
                                 switch($car_type){
                                     case "car": 
-                                        $template_path = storage_path('../public/json/viimove/photo/call/flex-not-comfor-car.json');   
+                                        $template_path = storage_path('../public/json/viimove/call/flex-not-comfor-car.json');   
                                         $string_json = file_get_contents($template_path);
                                         $string_json = str_replace("TEXT_REG_NUM",$registration_number,$string_json);
 
                                     break;
                                     case "motorcycle": 
-                                        $template_path = storage_path('../public/json/viimove/photo/call/flex-not-comfor-motocycle.json');  
+                                        $template_path = storage_path('../public/json/viimove/call/flex-not-comfor-motocycle.json');  
                                         $string_json = file_get_contents($template_path);
                                         $string_json = str_replace("TEXT_REG_MOR_1",$reg_1,$string_json);
                                         $string_json = str_replace("TEXT_REG_MOR_2",$reg_2,$string_json);
