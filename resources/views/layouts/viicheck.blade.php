@@ -1246,7 +1246,8 @@
   <!-- Template Main JS File -->
   <script src="{{ asset('Medilab/js/main.js') }}"></script>
 
-  <script id="dbd-init" src="https://www.trustmarkthai.com/callbackData/initialize.js?t=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149"></script>
+  <!-- DBD -->
+  <!-- <script id="dbd-init" src="https://www.trustmarkthai.com/callbackData/initialize.js?t=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149"></script> -->
 
   <!-- Js Plugins -->
 
