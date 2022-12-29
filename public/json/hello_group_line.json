@@ -2,138 +2,76 @@
     "type": "flex",
     "altText": "ตัวอย่าง",
     "contents": {
-  "type": "bubble",
-  "size": "mega",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "image",
-        "url": "https://www.viicheck.com/img/logo/logo-flex-line.png",
-        "size": "xxl",
-        "aspectRatio": "16:9",
-        "aspectMode": "cover"
-      },
-      {
+      "type": "bubble",
+      "size": "giga",
+      "body": {
         "type": "box",
         "layout": "vertical",
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/img/stickerline/PNG/42.png",
-            "size": "xxl",
-            "aspectRatio": "1:1",
-            "aspectMode": "fit",
-            "margin": "xs",
-            "animated": true,
-            "align": "center",
-            "gravity": "center"
+            "url": "https://www.viicheck.com/img/flex/hello_group_line.png",
+            "size": "full",
+            "aspectRatio": "2090:2213",
+            "aspectMode": "cover"
           },
           {
-            "type": "text",
-            "text": "GROUP",
-            "weight": "bold",
-            "align": "center",
-            "margin": "xl",
-            "size": "lg",
-            "offsetBottom": "lg"
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "GROUP",
+                "weight": "bold",
+                "size": "md",
+                "color": "#244250",
+                "maxLines": 2,
+                "wrap": true
+              }
+            ],
+            "position": "absolute",
+            "width": "50%",
+            "offsetTop": "20.5%",
+            "offsetStart": "20%",
+            "alignItems": "flex-start",
+            "height": "13%",
+            "justifyContent": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [],
+            "position": "absolute",
+            "width": "82%",
+            "offsetTop": "66.5%",
+            "offsetStart": "7%",
+            "alignItems": "center",
+            "height": "11%",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "mailto:contact.viicheck@gmail.com"
+            }
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [],
+            "position": "absolute",
+            "width": "82%",
+            "offsetTop": "80.8%",
+            "offsetStart": "7%",
+            "alignItems": "center",
+            "height": "11%",
+            "action": {
+              "type": "uri",
+              "label": "action",
+              "uri": "tel:020277856"
+            }
           }
         ],
-        "backgroundColor": "#FAEBD7",
-        "borderWidth": "bold",
-        "borderColor": "#ff0101",
-        "cornerRadius": "xxl"
-      },
-      {
-        "type": "text",
-        "text": "Thank you very much",
-        "weight": "bold",
-        "size": "xl",
-        "margin": "xxl",
-        "color": "#FFFFFF",
-        "wrap": true,
-        "align": "center",
-        "gravity": "center"
-      },
-      {
-        "type": "text",
-        "text": "for using ViiCHECK services.",
-        "weight": "bold",
-        "size": "md",
-        "margin": "xl",
-        "color": "#FFFFFF",
-        "wrap": true,
-        "align": "center",
-        "gravity": "center"
-      },
-      {
-        "type": "separator",
-        "margin": "xxl",
-        "color": "#07375D"
-      },
-      {
-        "type": "text",
-        "text": "Vii will do our best to assist you.",
-        "weight": "bold",
-        "size": "md",
-        "margin": "lg",
-        "color": "#FFFFFF",
-        "wrap": true,
-        "align": "center",
-        "gravity": "center"
-      },
-      {
-        "type": "separator",
-        "margin": "xxl"
-      },
-      {
-        "type": "text",
-        "text": "contact",
-        "weight": "bold",
-        "size": "md",
-        "margin": "xxl",
-        "color": "#FFFFFF",
-        "wrap": true
-      },
-      {
-        "type": "text",
-        "text": "📩 contact.viicheck@gmail.com",
-        "weight": "bold",
-        "size": "md",
-        "margin": "xxl",
-        "color": "#FFFFFF",
-        "wrap": true,
-        "action": {
-          "type": "uri",
-          "label": "action",
-          "uri": "mailto:contact.viicheck@gmail.com"
-        }
-      },
-      {
-        "type": "text",
-        "text": "📞 02-0277856",
-        "weight": "bold",
-        "size": "md",
-        "margin": "xxl",
-        "color": "#FFFFFF",
-        "wrap": true,
-        "action": {
-          "type": "uri",
-          "label": "action",
-          "uri": "tel:020277856"
-        }
+        "position": "relative",
+        "paddingAll": "0px"
       }
-    ],
-    "backgroundColor": "#07375D",
-    "borderColor": "#ff0101",
-    "borderWidth": "bold",
-    "cornerRadius": "xl"
-  },
-  "styles": {
-    "footer": {
-      "separator": false
     }
-  }
-}
 }
