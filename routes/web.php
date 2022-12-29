@@ -229,7 +229,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('motercycles', 'MotorcyclesellController');
 	Route::resource('profile', 'ProfileController');
 	Route::get('/news/create', 'NewsController@create');
-	Route::resource('sos_map', 'Sos_mapController')->except(['index','show','edit']);
+	Route::resource('sos_map', 'Sos_mapController')->except(['index','edit']);
 	Route::get('sos_insurance_blade', 'Sos_mapController@sos_insurance_blade');
 	// Route::get('/sosmap', 'SosController@sosmap');
 	
