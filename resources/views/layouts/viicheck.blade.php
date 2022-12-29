@@ -1170,9 +1170,9 @@
       <div class="row">
         <div class="col-lg-1 col-md-1 col-2" style="padding-right:0px;">
           <div class="text-center">
-            <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
+            <!-- <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank"> -->
               <img class="pt-4" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo/bns_registered.png') }}">
-            </a>
+            <!-- </a> -->
           </div>
         </div>
         <div class="col-10">
