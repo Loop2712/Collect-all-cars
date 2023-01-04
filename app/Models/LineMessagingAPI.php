@@ -441,7 +441,11 @@ class LineMessagingAPI extends Model
                     ->where('active' , "Yes")
                     ->limit(3)
                     ->get();
-
+                    $test = DB::table('register_cars')
+                    ->where('provider_id' , $provider_id)
+                    ->where('car_type' , "car")
+                    ->where('active' , "Yes")
+                    ->get();
                 for ($i=0; $i < count($randomCar);) { 
                     foreach($randomCar as $item ){
                         $id[$i] = $item->id;
@@ -463,8 +467,160 @@ class LineMessagingAPI extends Model
                 
                 switch(count($car_row))
                 {
-                    case "1": 
-                        $template_path = storage_path('../public/json/flex-mycar-1.json');   
+                    case "4": 
+                        $template_path = $datas = [];
+                        $datas["type"] = "flex";
+                        $datas["altText"] = "This is a Flex Message";
+                        $datas["contents"]["type"] = "flex";
+                        $datas["contents"]["altText"] = "รถของคุณ";
+                        $datas["contents"]["contents"]["type"] = "carousel";
+                        $datas["contents"]["contents"]["contents"][0]["type"] = "bubble";
+                        for ($i=0; $i = count($test);) { 
+                            $datas["contents"]["contents"]["contents"][0]["size"] = "mega";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["type"] = "box";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["layout"] = "vertical";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][0]["type"] = "image";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][0]["url"] = "https://www.viicheck.com/img/flex/car/flex_my_car.png";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][0]["size"] = "full";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][0]["aspectMode"] = "cover";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][0]["aspectRatio"] = "1:1";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][1]["type"] = "box";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][1]["layout"] = "vertical";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][1]["contents"][0]["type"] = "image";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][1]["contents"][0]["url"] = "https://www.viicheck.com/img/logo_brand/logo-รูป-แบนด์1.png";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][1]["contents"][0]["size"] = "xs";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][1]["position"] = "absolute";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][1]["offsetStart"] = "5%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][1]["offsetTop"] = "5%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][2]["type"] = "box";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][2]["layout"] = "vertical";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][2]["contents"][0]["type"] = "text";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][2]["contents"][0]["text"] = "แบนด์1";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][2]["contents"][0]["wrap"] = ;
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][2]["contents"][0]["size"] = "xxl";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][2]["contents"][1]["type"] = "text";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][2]["contents"][1]["text"] = "รุ่น1";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][2]["contents"][1]["wrap"] = ;
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][2]["position"] = "absolute";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][2]["offsetStart"] = "30%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][2]["offsetTop"] = "3%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][2]["width"] = "68%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][3]["type"] = "box";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][3]["layout"] = "vertical";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][3]["contents"][0]["type"] = "text";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][3]["contents"][0]["text"] = "ป้ายทะเบียน1";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][3]["contents"][0]["size"] = "45px";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][3]["contents"][0]["wrap"] = ;
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][3]["contents"][0]["weight"] = "bold";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][3]["position"] = "absolute";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][3]["offsetTop"] = "30.5%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][3]["offsetStart"] = "11%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][3]["alignItems"] = "center";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][3]["width"] = "78%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][4]["type"] = "box";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][4]["layout"] = "baseline";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][4]["contents"][0]["type"] = "text";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][4]["contents"][0]["text"] = "จังหวัด1";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][4]["contents"][0]["size"] = "18px";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][4]["contents"][0]["align"] = "center";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][4]["contents"][0]["wrap"] = ;
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][4]["position"] = "absolute";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][4]["offsetTop"] = "49%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][4]["offsetStart"] = "11%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][4]["width"] = "78%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][4]["alignItems"] = "flex-start";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][4]["justifyContent"] = "center";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][5]["type"] = "box";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][5]["layout"] = "vertical";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][5]["contents"][0]["type"] = "image";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][5]["contents"][0]["url"] = "https://www.viicheck.com/img/stickerline/PNG/พรบ1.png";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][5]["contents"][0]["size"] = "81px";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][5]["contents"][0]["aspectRatio"] = "37:32";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][5]["contents"][0]["align"] = "center";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][5]["position"] = "absolute";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][5]["offsetTop"] = "65.5%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][5]["offsetStart"] = "13%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][6]["type"] = "box";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][6]["layout"] = "vertical";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][6]["contents"][0]["type"] = "text";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][6]["contents"][0]["text"] = "พรบ";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][6]["contents"][0]["color"] = "#FFFFFF";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][6]["contents"][0]["size"] = "lg";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][6]["position"] = "absolute";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][6]["offsetTop"] = "88%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][6]["offsetStart"] = "3.5%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][6]["width"] = "47%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][6]["alignItems"] = "center";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][7]["type"] = "box";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][7]["layout"] = "vertical";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][7]["position"] = "absolute";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][7]["offsetTop"] = "64%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][7]["offsetStart"] = "3.5%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][7]["width"] = "47%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][7]["paddingTop"] = "2%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][7]["height"] = "33%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][7]["action"]["type"] = "uri";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][7]["action"]["label"] = "action";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][7]["action"]["uri"] = "https://www.viicheck.com/edit_act_login/act1";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][8]["type"] = "box";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][8]["layout"] = "vertical";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][8]["contents"][0]["type"] = "image";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][8]["contents"][0]["url"] = "https://www.viicheck.com/img/stickerline/PNG/ประกัน1.png";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][8]["contents"][0]["size"] = "81px";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][8]["contents"][0]["aspectRatio"] = "37:32";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][8]["contents"][0]["align"] = "center";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][8]["position"] = "absolute";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][8]["offsetTop"] = "66%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][8]["offsetStart"] = "62.5%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][9]["type"] = "box";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][9]["layout"] = "vertical";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][9]["contents"][0]["type"] = "text";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][9]["contents"][0]["text"] = "ประกัน";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][9]["contents"][0]["color"] = "#FFFFFF";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][9]["contents"][0]["size"] = "lg";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][9]["position"] = "absolute";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][9]["offsetTop"] = "88.5%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][9]["offsetStart"] = "51%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][9]["width"] = "47%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][9]["alignItems"] = "center";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][10]["type"] = "box";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][10]["layout"] = "vertical";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][10]["position"] = "absolute";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][10]["offsetTop"] = "64%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][10]["offsetStart"] = "51%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][10]["width"] = "47%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][10]["paddingTop"] = "2%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][10]["height"] = "33%";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][10]["action"]["type"] = "uri";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][10]["action"]["label"] = "action";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["contents"][10]["action"]["uri"] = "https://www.viicheck.com/edit_act_login/act1";
+                            $datas["contents"]["contents"]["contents"][0]["body"]["paddingAll"] = "none";
+                        };
+                        $datas["contents"]["contents"]["contents"][1]["type"] = "bubble";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["type"] = "box";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["layout"] = "vertical";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][0]["type"] = "image";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][0]["url"] = "https://i.ibb.co/31c5kyw/image.png";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][0]["aspectRatio"] = "1:1";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][0]["size"] = "full";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][0]["aspectMode"] = "cover";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][1]["type"] = "box";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][1]["layout"] = "vertical";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][1]["contents"][0]["type"] = "text";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][1]["contents"][0]["text"] = "ดูเพิ่มเติม";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][1]["contents"][0]["color"] = "#FFFFFF";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][1]["contents"][0]["size"] = "xxl";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][1]["position"] = "absolute";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][1]["width"] = "55%";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][1]["alignItems"] = "center";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][1]["offsetTop"] = "41%";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["contents"][1]["offsetStart"] = "10%";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["backgroundColor"] = "#000000";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["paddingAll"] = "none";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["action"]["type"] = "uri";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["action"]["label"] = "action";
+                        $datas["contents"]["contents"]["contents"][1]["body"]["action"]["uri"] = "https://www.viicheck.com/line_mycar";
+                          
                         $string_json = file_get_contents($template_path);
 
                         $string_json = str_replace("รูป-แบนด์1", strtolower($brand[0]),$string_json);
