@@ -24,6 +24,15 @@ class test_for_devController extends Controller
 
     public function main_test()
     {
+        DB::table('users')
+            ->where('role', '!=' , null)
+            ->where('organization', '!=' , null)
+            ->update([
+                'sub_organization' => "support_center",
+        ]);
+        
+        exit();
+
         $url = "www.peddyhub.com" ;
 
         $to_url_ep = explode("//" , $url);
