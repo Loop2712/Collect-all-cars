@@ -405,3 +405,5 @@ Route::get('/modal_loading', function () {
 });
 
 Route::resource('partner_premium', 'Partner_premiumController');
+
+Route::resource('sub_organization', 'Sub_organizationController');

@@ -1,0 +1,20 @@
+{
+    "fields": [
+        {
+            "name": "name_sub_organization",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        },
+        {
+            "name": "name_partner",
+            "type": "string"
+        },
+        {
+            "name": "id_partner",
+            "type": "string"
+        }
+    ]
+}
