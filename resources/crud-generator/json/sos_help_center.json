@@ -1,0 +1,88 @@
+{
+    "fields": [
+        {
+            "name": "lat",
+            "type": "string"
+        },
+        {
+            "name": "lng",
+            "type": "string"
+        },
+        {
+            "name": "photo_sos",
+            "type": "file"
+        },
+        {
+            "name": "name_user",
+            "type": "string"
+        },
+        {
+            "name": "phone_user",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        },
+        {
+            "name": "organization_helper",
+            "type": "string"
+        },
+        {
+            "name": "name_helper",
+            "type": "string"
+        },
+        {
+            "name": "partner_id",
+            "type": "integer"
+        },
+        {
+            "name": "helper_id",
+            "type": "integer"
+        },
+        {
+            "name": "score_impression",
+            "type": "integer"
+        },
+        {
+            "name": "score_period",
+            "type": "integer"
+        },
+        {
+            "name": "score_total",
+            "type": "float"
+        },
+        {
+            "name": "commemt_help",
+            "type": "string"
+        },
+        {
+            "name": "photo_succeed",
+            "type": "file"
+        },
+        {
+            "name": "photo_succeed_by",
+            "type": "file"
+        },
+        {
+            "name": "remark_helper",
+            "type": "string"
+        },
+        {
+            "name": "notify",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "help_complete_time",
+            "type": "datetime"
+        },
+        {
+            "name": "time_go_to_help",
+            "type": "datetime"
+        }
+    ]
+}

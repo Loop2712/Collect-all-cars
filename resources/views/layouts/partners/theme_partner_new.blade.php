@@ -427,6 +427,26 @@
 				</li>
 				<!-- Other -->
 
+				@if(Auth::check())
+					@if(Auth::user()->id == "1" or Auth::user()->id == "64")
+						<!-- SOS HELP CENTER -->
+						<li>
+							<a href="#" class="has-arrow">
+								<div class="parent-icon">
+									<i class="fa-solid fa-truck-medical"></i>
+								</div>
+								<div class="menu-title">SOS HELP CENTER</div>
+							</a>
+							<ul>
+								<li> 
+									<a href="{{ url('/help_center_admin') }}"><i class="fa-regular fa-table-columns"></i> Index Admin</a>
+								</li>
+							</ul>
+						</li>
+						<!-- SOS HELP CENTER -->
+					@endif
+				@endif
+
 				<br>
 
 				<!------------------------------------------------------------------- menu เก่า ------------------------------------------------------------------->
