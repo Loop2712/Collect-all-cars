@@ -201,7 +201,9 @@ Route::get('/notify_repair_annotation/{id}/{annotation}', 'Notify_repairControll
 // API User login line
 Route::get('/register_api', 'Auth\LoginController@register_api');
 
+// SOS HELP CENTER
 
+Route::get('/create_new_sos_help_center/{user_id}', 'Sos_help_centerController@create_new_sos_help_center');
 
 
 

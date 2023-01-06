@@ -1,11 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.partners.theme_partner_new')
 
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Sos_help_center {{ $sos_help_center->id }}</div>
                     <div class="card-body">
@@ -25,9 +24,25 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th>ID</th><td>{{ $sos_help_center->id }}</td>
+                                        <th>ID</th>
+                                        <td>{{ $sos_help_center->id }}</td>
                                     </tr>
-                                    <tr><th> Lat </th><td> {{ $sos_help_center->lat }} </td></tr><tr><th> Lng </th><td> {{ $sos_help_center->lng }} </td></tr><tr><th> Photo Sos </th><td> {{ $sos_help_center->photo_sos }} </td></tr>
+                                    <tr>
+                                        <th> Lat </th>
+                                        <td> {{ $sos_help_center->lat }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Lng </th>
+                                        <td> {{ $sos_help_center->lng }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Photo Sos </th>
+                                        <td> {{ $sos_help_center->photo_sos }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> สร้างโดย </th>
+                                        <td> USER_ID : {{ $sos_help_center->create_by }} </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -192,6 +192,10 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 		Route::get('/check_in/gallery', 'PartnerController@gallery');
 		Route::get('/partner_media', 'PartnerController@partner_media');
 
+	// -------- HELP CENTER ---------
+	Route::resource('sos_help_center', 'Sos_help_centerController')->except(['create','index']);
+	Route::get('help_center_admin', 'Sos_help_centerController@help_center_admin');
+
 	// ------- CONDO -------
 	Route::resource('parcel', 'ParcelController');
 	Route::resource('notify_repair', 'Notify_repairController');
@@ -407,5 +411,3 @@ Route::get('/modal_loading', function () {
 Route::resource('partner_premium', 'Partner_premiumController');
 
 Route::resource('sub_organization', 'Sub_organizationController');
-Route::resource('sos_help_center', 'Sos_help_centerController');
-Route::get('help_center_admin', 'Sos_help_centerController@help_center_admin');

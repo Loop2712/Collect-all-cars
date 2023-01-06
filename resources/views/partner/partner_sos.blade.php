@@ -527,7 +527,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
   <!------------------------------------------- Modal ให้ความช่วยเหลือ------------------------------------------->
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus"></script>

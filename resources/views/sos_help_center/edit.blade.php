@@ -1,17 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.partners.theme_partner_new')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Edit Sos_help_center #{{ $sos_help_center->id }}</div>
                     <div class="card-body">
-                        <a href="{{ url('/sos_help_center') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
 
                         @if ($errors->any())
                             <ul class="alert alert-danger">
@@ -25,8 +19,9 @@
                             {{ method_field('PATCH') }}
                             {{ csrf_field() }}
 
-                            @include ('sos_help_center.form', ['formMode' => 'edit'])
-
+                            <div class="row">
+                                @include ('sos_help_center.form', ['formMode' => 'edit'])
+                            </div>
                         </form>
 
                     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Auth;
 
 use App\Models\Sos_help_center;
 use Illuminate\Http\Request;
@@ -163,10 +164,24 @@ class Sos_help_centerController extends Controller
     }
 
     public function help_center_admin()
-    {
-        $sos_help_center = "Hello" ; 
-        $view_maps = Sos_help_center::latest()->paginate(25);
-        return view('sos_help_center.help_center_admin', compact('sos_help_center' , 'view_maps'));
+    {   
+        $data_user = Auth::user();
+
+        $data_sos = Sos_help_center::latest()->get();
+        return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos'));
 
     }
+
+    public function create_new_sos_help_center($user_id)
+    {
+        $requestData = [] ;
+        $requestData['create_by'] = $user_id;
+
+        Sos_help_center::create($requestData);
+
+        $sos_help_center_last = Sos_help_center::latest()->first();
+
+        return $sos_help_center_last->id;
+    }
+
 }
