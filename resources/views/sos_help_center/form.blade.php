@@ -28,13 +28,39 @@
                 <div class="col-12">
                     <div class="row">
                         <div class="col-9">
-                            
+                            <div class="row">
+                                <div class="col-4">
+                                    <select name="location_P" id="location_P" class="form-control" >
+                                        <option value="" selected > - เลือกจังหวัด - </option> 
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <select name="location_A" id="location_P" class="form-control" >
+                                        <option value="" selected > - เลือกอำเภอ - </option> 
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <select name="location_T" id="location_P" class="form-control" >
+                                        <option value="" selected > - เลือกตำบล - </option> 
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-3">
                             <button  type="button" class="btn btn-info text-white" style="float: right;width: 80%;">
                                 <i class="fa-solid fa-circle-check"></i> ยืนยัน
                             </button>
                         </div>
+
+                        <div class="col-3">
+                            <br>
+                            lat
+                        </div>
+                        <div class="col-3">
+                            <br>
+                            lng
+                        </div>
+                        <div class="col-6"><br></div>
                     </div>
                 </div>
                 <hr>
@@ -55,11 +81,11 @@
             <div class="row">
                 <!-- ชื่อ -->
                 <div class="col-12" style="margin-top: 10px;">
-                    <input type="text" class="form-control" name="name_user" id="name_user" placeholder="ระบุชื่อ.." value="" >
+                    <input type="text" class="form-control" name="name_user" id="name_user" placeholder="ระบุชื่อ.." value="{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}" >
                 </div>
                 <!-- เบอร์ -->
                 <div class="col-12" style="margin-top: 10px;">
-                    <input type="text" class="form-control" name="phone_user" id="phone_user" placeholder="ระบุเบอร์.." value="" >
+                    <input type="text" class="form-control" name="phone_user" id="phone_user" placeholder="ระบุเบอร์.." value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}" >
                 </div>
                 <!-- สัญชาติ -->
                 <div class="col-12 d-none" style="margin-top: 10px;">
@@ -81,11 +107,6 @@
         </center>
 
         <div class="col-12">
-            @if(!empty($sos_help_center->lat))
-                <center>
-                    <h5><b>จุดเกิดเหตุ</b></h5>
-                </center>
-            @else
             <div class="row text-center">
                 <div class="col-6">
                     <h5><b>จุดเกิดเหตุ</b></h5>
@@ -96,8 +117,6 @@
                     </span>
                 </div>
             </div>
-                
-            @endif
             
             <div style="padding-right:15px;margin-top: 5px;">
                 <div class="card">
@@ -165,16 +184,6 @@
         <label for="photo_sos" class="control-label">{{ 'Photo Sos' }}</label>
         <input class="form-control" name="photo_sos" type="file" id="photo_sos" value="{{ isset($sos_help_center->photo_sos) ? $sos_help_center->photo_sos : ''}}" >
         {!! $errors->first('photo_sos', '<p class="help-block">:message</p>') !!}
-    </div>
-    <div class="form-group {{ $errors->has('name_user') ? 'has-error' : ''}}">
-        <label for="name_user" class="control-label">{{ 'Name User' }}</label>
-        <input class="form-control" name="name_user" type="text" id="name_user" value="{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}" >
-        {!! $errors->first('name_user', '<p class="help-block">:message</p>') !!}
-    </div>
-    <div class="form-group {{ $errors->has('phone_user') ? 'has-error' : ''}}">
-        <label for="phone_user" class="control-label">{{ 'Phone User' }}</label>
-        <input class="form-control" name="phone_user" type="text" id="phone_user" value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}" >
-        {!! $errors->first('phone_user', '<p class="help-block">:message</p>') !!}
     </div>
     <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
         <label for="user_id" class="control-label">{{ 'User Id' }}</label>

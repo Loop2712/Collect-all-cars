@@ -145,8 +145,8 @@ class Sos_help_centerController extends Controller
 
         $sos_help_center = Sos_help_center::findOrFail($id);
         $sos_help_center->update($requestData);
-
-        return redirect('sos_help_center')->with('flash_message', 'Sos_help_center updated!');
+        
+        return redirect('sos_help_center/' . $id . '/edit')->with('flash_message', 'Sos_help_center updated!');
     }
 
     /**
