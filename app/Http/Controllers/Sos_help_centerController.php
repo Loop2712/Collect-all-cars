@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Sos_help_center;
 use Illuminate\Http\Request;
@@ -115,7 +116,13 @@ class Sos_help_centerController extends Controller
     {
         $sos_help_center = Sos_help_center::findOrFail($id);
 
-        return view('sos_help_center.edit', compact('sos_help_center'));
+        $all_provinces = DB::table('districts')
+            ->where('province' , '!=' , null)
+            ->groupBy('province')
+            ->orderBy('province' , 'ASC')
+            ->get();
+
+        return view('sos_help_center.edit', compact('sos_help_center','all_provinces'));
     }
 
     /**

@@ -20,47 +20,49 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="staticBackdropLabel">เลือกจุดเกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i></h4>
-                <span class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
+                <span id="btn_close_modal_mapMarkLocation" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
                     <i class="fa-solid fa-circle-xmark"></i>
                 </span>
             </div>
             <div class="modal-body">
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-9">
+                        <div class="col-8">
                             <div class="row">
                                 <div class="col-4">
-                                    <select name="location_P" id="location_P" class="form-control" >
-                                        <option value="" selected > - เลือกจังหวัด - </option> 
+                                    <select name="location_P" id="location_P" class="form-control" onchange="show_amphoe();">
+                                        <option class="location_P_start" value="" selected > - เลือกจังหวัด - </option>
+                                        @foreach($all_provinces as $item)
+                                            <option value="{{ $item->province }}">{{ $item->province }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-4">
-                                    <select name="location_A" id="location_P" class="form-control" >
+                                    <select name="location_A" id="location_A" class="form-control" onchange="show_tambon();">
                                         <option value="" selected > - เลือกอำเภอ - </option> 
                                     </select>
                                 </div>
                                 <div class="col-4">
-                                    <select name="location_T" id="location_P" class="form-control" >
+                                    <select name="location_T" id="location_T" class="form-control" onchange="select_T();">
                                         <option value="" selected > - เลือกตำบล - </option> 
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3">
-                            <button  type="button" class="btn btn-info text-white" style="float: right;width: 80%;">
-                                <i class="fa-solid fa-circle-check"></i> ยืนยัน
-                            </button>
+                        <div class="col-2">
+                            <center>
+                                <button  type="button" class="btn btn-warning text-white" style="width: 80%;" onclick="re_mapMarkLocation();">
+                                    <i class="fa-solid fa-repeat"></i> คืนค่า
+                                </button>
+                            </center>
                         </div>
-
-                        <div class="col-3">
-                            <br>
-                            lat
+                        <div class="col-2">
+                            <center>
+                                <button  type="button" class="btn btn-info text-white" style="width: 100%;" onclick="submit_locations_sos();">
+                                    <i class="fa-solid fa-circle-check"></i> ยืนยัน
+                                </button>
+                            </center>
                         </div>
-                        <div class="col-3">
-                            <br>
-                            lng
-                        </div>
-                        <div class="col-6"><br></div>
                     </div>
                 </div>
                 <hr>
@@ -74,26 +76,31 @@
     </div>
 </div>
 
-<div class="item sos-map col-12 col-md-3 bg-white">
+<div class="item sos-map col-12 col-md-4 bg-white">
     <div class="row">
         <div class="col-12 text-center">
             <h5><b>ข้อมูลผู้ใช้</b> <span style="font-size:14px;color: grey;">(ขอความช่วยเหลือ)</span></h5>
             <div class="row">
                 <!-- ชื่อ -->
                 <div class="col-12" style="margin-top: 10px;">
-                    <input type="text" class="form-control" name="name_user" id="name_user" placeholder="ระบุชื่อ.." value="{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}" >
+                    @php
+                        if(!empty($sos_help_center->name_user)){
+                            $read_name_user = true ;
+                        }else{
+                            $read_name_user = false ;
+                        }
+
+                        if(!empty($sos_help_center->phone_user)){
+                            $read_phone_user = true ;
+                        }else{
+                            $read_phone_user = false ;
+                        }
+                    @endphp
+                    <input type="text" class="form-control" name="name_user" id="name_user" placeholder="ระบุชื่อ.." value="{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}" readonly="{{ $read_name_user }}">
                 </div>
                 <!-- เบอร์ -->
                 <div class="col-12" style="margin-top: 10px;">
-                    <input type="text" class="form-control" name="phone_user" id="phone_user" placeholder="ระบุเบอร์.." value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}" >
-                </div>
-                <!-- สัญชาติ -->
-                <div class="col-12 d-none" style="margin-top: 10px;">
-                    <input type="text" class="form-control" name="nationality_user" id="nationality_user" placeholder="ระบุสัญชาติ.." value="" >
-                </div>
-                <!-- ภาษา -->
-                <div class="col-12 d-none" style="margin-top: 10px;">
-                    <input type="text" class="form-control" name="language_user" id="language_user" placeholder="ระบุภาษา.." value="" >
+                    <input type="text" class="form-control" name="phone_user" id="phone_user" placeholder="ระบุเบอร์.." value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}" readonly="{{ $read_phone_user }}">
                 </div>
                 <!-- BTN -->
                 <div class="col-12" style="margin-top: 25px;">
@@ -103,16 +110,18 @@
         </div>
 
         <center>
+            <br>
             <hr style="width:75%;">
+            <br>
         </center>
 
         <div class="col-12">
             <div class="row text-center">
                 <div class="col-6">
-                    <h5><b>จุดเกิดเหตุ</b></h5>
+                    <h5 class="float-start"><b>#จุดเกิดเหตุ</b></h5>
                 </div>
                 <div class="col-6">
-                    <span class="btn btn-sm btn-danger" style="font-size:15px;" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation();">
+                    <span class="btn btn-sm btn-danger" style="font-size:15px;width: 80%;" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
                         เลือกจุด <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
                     </span>
                 </div>
@@ -121,7 +130,30 @@
             <div style="padding-right:15px;margin-top: 5px;">
                 <div class="card">
                     <div id="map"></div>
-                    <span class="btn btn-sm btn-warning text-white main-shadow main-radius">นำทาง</span>
+                    <div class="row">
+                        <div class="col-5 d-none">
+                            <div class="form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
+                                <label for="lat" class="control-label">{{ 'Lat' }}</label>
+                                <input class="form-control" name="lat" type="text" id="lat" value="{{ isset($sos_help_center->lat) ? $sos_help_center->lat : ''}}" readonly>
+                                {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
+                            </div>
+                        </div>
+                        <div class="col-5 d-none">
+                            <div class="form-group {{ $errors->has('lng') ? 'has-error' : ''}}">
+                                <label for="lng" class="control-label">{{ 'Lng' }}</label>
+                                <input class="form-control" name="lng" type="text" id="lng" value="{{ isset($sos_help_center->lng) ? $sos_help_center->lng : ''}}" readonly>
+                                {!! $errors->first('lng', '<p class="help-block">:message</p>') !!}
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="text-center mb-3">
+                                <span style="margin-top:20px;width: 75%;" class="btn btn-warning text-white main-shadow main-radius" onclick="go_to_maps();">
+                                    นำทาง <i class="fa-solid fa-location-arrow"></i>
+                                </span>
+                                <a id="go_to_maps" href="" target="bank"></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -129,7 +161,7 @@
     </div>
 </div>
 
-<div class="item sos-map col-12 col-md-9 bg-white">
+<div class="item sos-map col-12 col-md-8 bg-white">
     <div class="row">
         <div class="col-3">
             <h4 style="color:blue;">
@@ -158,6 +190,21 @@
 
         <div class="col-12">
             <div style="background-color:#FAE693;height: 100%;border: 0px solid black;padding: 25px;border-radius: 25px;">
+                <div class="row">
+                    <div class="col-4">
+                        @php
+                            $date = $sos_help_center->created_at ;
+                            $result = $date->format('d/m/Y');
+                        @endphp
+                        <h6><b>วันที่ :</b> {{ $result }}</h6>
+                    </div>
+                    <div class="col-4">
+                        <h6><b>เลขที่ปฏิบัติการ(ON) :</b> {{ $sos_help_center->operating_code }}</h6>
+                    </div>
+                    <div class="col-4">
+                        <h6><b>ลำดับผู้ป่วย(CN) :</b> .....................</h6>
+                    </div>
+                </div>
                 @include ('sos_help_center.form_sos_yellow')
             </div>
         </div>
@@ -168,18 +215,10 @@
 
 
 
-<div class="item sos-map bg-white">
+
+<div class="item sos-map bg-white d-none">
+<br><br><br><br>
     
-    <div class="form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
-        <label for="lat" class="control-label">{{ 'Lat' }}</label>
-        <input class="form-control" name="lat" type="text" id="lat" value="{{ isset($sos_help_center->lat) ? $sos_help_center->lat : ''}}">
-        {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
-    </div>
-    <div class="form-group {{ $errors->has('lng') ? 'has-error' : ''}}">
-        <label for="lng" class="control-label">{{ 'Lng' }}</label>
-        <input class="form-control" name="lng" type="text" id="lng" value="{{ isset($sos_help_center->lng) ? $sos_help_center->lng : ''}}" >
-        {!! $errors->first('lng', '<p class="help-block">:message</p>') !!}
-    </div>
     <div class="form-group {{ $errors->has('photo_sos') ? 'has-error' : ''}}">
         <label for="photo_sos" class="control-label">{{ 'Photo Sos' }}</label>
         <input class="form-control" name="photo_sos" type="file" id="photo_sos" value="{{ isset($sos_help_center->photo_sos) ? $sos_help_center->photo_sos : ''}}" >
@@ -285,10 +324,16 @@
     }
 </style>
 <script>
+
+    const image = "https://www.viicheck.com/img/icon/flag_2.png";
+    var markers = [] ;
+    let marker  ;
+    var sos_markers = [] ;
+    let sos_marker  ;
+
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         initMap();
-
     });
 
     function initMap() {
@@ -301,19 +346,331 @@
             center: {lat: m_lat, lng: m_lng },
             zoom: m_numZoom,
         });
-
     }
 
-    function mapMarkLocation() {
+    function mapMarkLocation(lat , lng , numZoom) {
 
-        let m_lat = parseFloat('12.870032');
-        let m_lng = parseFloat('100.992541');
-        let m_numZoom = parseFloat('6');
+        let m_lat = parseFloat(lat);
+        let m_lng = parseFloat(lng);
+        let m_numZoom = parseFloat(numZoom);
 
         mapMarkLocation = new google.maps.Map(document.getElementById("mapMarkLocation"), {
             center: {lat: m_lat, lng: m_lng },
             zoom: m_numZoom,
         });
 
+        // Create the initial InfoWindow.
+        let infoWindow = new google.maps.InfoWindow({
+            // content: "คลิกที่แผนที่เพื่อรับโลเคชั่น",
+            // position: myLatlng,
+        });
+
+        infoWindow.open(mapMarkLocation);
+        // Configure the click listener.
+        mapMarkLocation.addListener("click", (mapsMouseEvent) => {
+            // Close the current InfoWindow.
+            infoWindow.close();
+            // Create a new InfoWindow.
+            infoWindow = new google.maps.InfoWindow({
+                // position: mapsMouseEvent.latLng,
+            });
+
+            infoWindow.setContent(
+                JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+            );
+
+            let text_content = infoWindow.content ;
+                // console.log(text_content)
+
+            const contentArr = text_content.split(",");
+            const lat_Arr = contentArr[0].split(":");
+                let marker_lat = lat_Arr[1];
+            const lng_Arr = contentArr[1].split(":");
+                let marker_lng = lng_Arr[1].replace("\n}", "");
+
+            // console.log(marker_lat)
+            // console.log(marker_lng)
+            add_marker(marker_lat , marker_lng);
+            
+            infoWindow.open(mapMarkLocation);
+
+        });
+
     }
+
+    function add_marker(marker_lat , marker_lng){
+        if (marker) {
+            marker.setMap(null);
+        }
+
+        marker = new google.maps.Marker({
+            position: {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) },
+            map: mapMarkLocation,
+            icon: image,
+        });
+        markers.push(marker);
+
+        document.querySelector('#lat').value = marker_lat ;
+        document.querySelector('#lng').value = marker_lng ;
+    }
+
+    function show_amphoe(){
+
+        let location_P = document.querySelector("#location_P");
+
+        fetch("{{ url('/') }}/api/location/"+location_P.value+"/show_location_A")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                //UPDATE SELECT OPTION
+                let location_A = document.querySelector("#location_A");
+                    location_A.innerHTML = "";
+                let location_T = document.querySelector("#location_T");
+                    location_T.innerHTML = "";
+
+                let option_start_A = document.createElement("option");
+                    option_start_A.text = " - เลือกอำเภอ - ";
+                    option_start_A.value = "";
+                    location_A.add(option_start_A);
+
+                let option_start_T = document.createElement("option");
+                    option_start_T.text = " - เลือกตำบล - ";
+                    option_start_T.value = "";
+                    location_T.add(option_start_T);
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.amphoe;
+                    option.value = item.amphoe;
+                    location_A.add(option);
+                }
+            });
+
+            zoom_map(location_P.value , location_A.value , location_T.value) ;
+            return location_A.value;
+    }
+
+    function show_tambon(){
+
+        let location_P = document.querySelector("#location_P");
+        let location_A = document.querySelector("#location_A");
+
+        fetch("{{ url('/') }}/api/location/"+location_P.value+"/"+location_A.value+"/show_location_T")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                //UPDATE SELECT OPTION
+                let location_T = document.querySelector("#location_T");
+                    location_T.innerHTML = "";
+
+                let option_start = document.createElement("option");
+                    option_start.text = " - เลือกตำบล - ";
+                    option_start.value = "";
+                    location_T.add(option_start);
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.district;
+                    option.value = item.district;
+                    location_T.add(option);
+                }
+            });
+
+            zoom_map(location_P.value , location_A.value , location_T.value) ;
+            return location_T.value;
+    }
+
+    function select_T(){
+        let location_P = document.querySelector("#location_P");
+        let location_A = document.querySelector("#location_A");
+        let location_T = document.querySelector("#location_T");
+        zoom_map(location_P.value , location_A.value , location_T.value) ;
+    }
+
+    function zoom_map(province , amphoe , district){
+
+        if (!province) {
+            province = "null" ;
+        }
+        if (!amphoe) {
+            amphoe = "null" ;
+        }
+        if (!district) {
+            district = "null" ;
+        }
+
+        let all_lat_lng = [];
+
+        // console.log(province);
+        // console.log(amphoe);
+        // console.log(district);
+
+        fetch("{{ url('/') }}/api/zoom_map/" + province + "/" + amphoe + "/" + district)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                for(let item of result){
+                    all_lat_lng.push( JSON.parse('{"lat":'+parseFloat(item.lat)+',"lng":'+parseFloat(item.lng)+'}') ) ;
+                }
+
+                let bounds = new google.maps.LatLngBounds();
+
+                for (let vc = 0; vc < all_lat_lng.length; vc++) {
+                    bounds.extend(all_lat_lng[vc]);
+                }
+
+                if (district != "null" || result.length === 1) {
+                    mapMarkLocation = new google.maps.Map(document.getElementById("mapMarkLocation"), {
+                        center: all_lat_lng[0],
+                        zoom: 13,
+                    });
+                }else{
+                    mapMarkLocation = new google.maps.Map(document.getElementById("mapMarkLocation"), {
+                        // zoom: num_zoom,
+                        center: bounds.getCenter(),
+                    });
+                    mapMarkLocation.fitBounds(bounds);
+                }
+
+                // Create the initial InfoWindow.
+                let infoWindow = new google.maps.InfoWindow({
+                    // content: "คลิกที่แผนที่เพื่อรับโลเคชั่น",
+                    // position: myLatlng,
+                });
+
+                infoWindow.open(mapMarkLocation);
+                // Configure the click listener.
+                mapMarkLocation.addListener("click", (mapsMouseEvent) => {
+                    // Close the current InfoWindow.
+                    infoWindow.close();
+                    // Create a new InfoWindow.
+                    infoWindow = new google.maps.InfoWindow({
+                        // position: mapsMouseEvent.latLng,
+                    });
+
+                    infoWindow.setContent(
+                        JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                    );
+
+                    let text_content = infoWindow.content ;
+                        // console.log(text_content)
+
+                    const contentArr = text_content.split(",");
+                    const lat_Arr = contentArr[0].split(":");
+                        let marker_lat = lat_Arr[1];
+                    const lng_Arr = contentArr[1].split(":");
+                        let marker_lng = lng_Arr[1].replace("\n}", "");
+
+                    // console.log(marker_lat)
+                    // console.log(marker_lng)
+                    add_marker(marker_lat , marker_lng);
+                    
+                    infoWindow.open(mapMarkLocation);
+
+                });
+                    
+            });
+        
+    }
+
+    function re_mapMarkLocation(){
+
+        let location_P = document.querySelector("#location_P");
+        let location_P_start = document.querySelector(".location_P_start");
+            // console.log(location_P_start);
+            location_P_start.selected =  true;
+
+        let location_A = document.querySelector("#location_A");
+            location_A.innerHTML = "" ;
+        let location_T = document.querySelector("#location_T");
+            location_T.innerHTML = "" ;
+
+        let option_start_A = document.createElement("option");
+            option_start_A.text = " - เลือกอำเภอ - ";
+            option_start_A.value = "";
+            location_A.add(option_start_A);
+
+        let option_start_T = document.createElement("option");
+            option_start_T.text = " - เลือกตำบล - ";
+            option_start_T.value = "";
+            location_T.add(option_start_T);
+
+        mapMarkLocation = new google.maps.Map(document.getElementById("mapMarkLocation"), {
+            center: {lat: 12.870032, lng: 100.992541 },
+            zoom: 6,
+        });
+
+        // Create the initial InfoWindow.
+        let infoWindow = new google.maps.InfoWindow({
+            // content: "คลิกที่แผนที่เพื่อรับโลเคชั่น",
+            // position: myLatlng,
+        });
+
+        infoWindow.open(mapMarkLocation);
+        // Configure the click listener.
+        mapMarkLocation.addListener("click", (mapsMouseEvent) => {
+            // Close the current InfoWindow.
+            infoWindow.close();
+            // Create a new InfoWindow.
+            infoWindow = new google.maps.InfoWindow({
+                // position: mapsMouseEvent.latLng,
+            });
+
+            infoWindow.setContent(
+                JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+            );
+
+            let text_content = infoWindow.content ;
+                // console.log(text_content)
+
+            const contentArr = text_content.split(",");
+            const lat_Arr = contentArr[0].split(":");
+                let marker_lat = lat_Arr[1];
+            const lng_Arr = contentArr[1].split(":");
+                let marker_lng = lng_Arr[1].replace("\n}", "");
+
+            // console.log(marker_lat)
+            // console.log(marker_lng)
+            add_marker(marker_lat , marker_lng);
+            
+            infoWindow.open(mapMarkLocation);
+
+        });
+    }
+
+    function submit_locations_sos(){
+        let input_lat = document.querySelector('#lat');
+        let input_lng = document.querySelector('#lng');
+
+        if (sos_marker) {
+            sos_marker.setMap(null);
+        }
+
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: {lat: parseFloat(input_lat.value), lng:  parseFloat(input_lng.value) },
+            zoom: 14,
+        });
+
+        sos_marker = new google.maps.Marker({
+            position: {lat: parseFloat(input_lat.value) , lng: parseFloat(input_lng.value) },
+            map: map,
+            icon: image,
+        });
+        sos_markers.push(sos_marker);
+
+        document.querySelector('#location_sos').value = input_lat.value + "," + input_lng.value ;
+
+        document.querySelector('#btn_close_modal_mapMarkLocation').click();
+    }
+
+    function go_to_maps(){
+        let tag_a = document.querySelector('#go_to_maps');
+        let input_lat = document.querySelector('#lat');
+        let input_lng = document.querySelector('#lng');
+
+        tag_a.href = "https://www.google.co.th/maps/dir//"+input_lat.value+ ","+input_lng.value+"/@"+input_lat.value+","+input_lng.value+",17z";
+        document.querySelector('#go_to_maps').click();
+    }
+
 </script>

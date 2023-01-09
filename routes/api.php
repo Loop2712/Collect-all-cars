@@ -54,6 +54,8 @@ Route::get('/location/{lat}/{lng}/check_news','API\LocationController@check_news
 
 Route::get('/location/show_location_P','API\LocationController@show_location_P');
 Route::get('/location/{location_P}/show_location_A','API\LocationController@show_location_A');
+Route::get('/location/{location_P}/{location_A}/show_location_T','API\LocationController@show_location_T');
+Route::get('/zoom_map/{province}/{amphoe}/{district}','API\LocationController@zoom_map');
 
 Route::get('/change_country/{user_id}','API\LocationController@change_country');
 Route::get('/user_language/{language}/{user_id}','API\LocationController@user_language');

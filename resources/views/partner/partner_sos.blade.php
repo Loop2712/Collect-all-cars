@@ -586,7 +586,8 @@
                 for (let ii = 0; ii < result.length; ii++) {
 
                     for (let xx = 0; xx < JSON.parse(result[ii]['sos_area']).length; xx++) {
-
+                        // console.log(JSON.parse(result[ii]['sos_area'])[xx]);
+                        
                         all_lat_lng.push(JSON.parse(result[ii]['sos_area'])[xx]);
 
                         // all_lat.push(JSON.parse(result[ii]['sos_area'])[xx]['lat']);

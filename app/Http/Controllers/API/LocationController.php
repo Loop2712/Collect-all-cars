@@ -54,6 +54,20 @@ class LocationController extends Controller
                         ->get();
         return $location_A;
     }
+
+    public function show_location_T($location_P , $location_A)
+    {
+
+        $location_T = DB::table('districts')
+                        ->select('district')
+                        ->where('province', $location_P)
+                        ->where('amphoe', $location_A)
+                        ->groupBy('district')
+                        ->orderBy('district', 'asc')
+                        ->get();
+
+        return $location_T;
+    }
     
 
     public function change_country($user_id)
@@ -145,6 +159,36 @@ class LocationController extends Controller
                     ->get();
 
         return $district;
+    }
+
+    public function zoom_map($province , $amphoe , $district)
+    {
+        if ($province == "null") {
+            $province = "" ;
+        }
+        if ($amphoe == "null") {
+            $amphoe = "" ;
+        }
+        if ($district == "null") {
+            $district = "" ;
+        }
+
+        $location = DB::table('lat_longs')
+                    ->select('lat' , 'lng')
+                    ->where('changwat_th', 'LIKE', "%$province%")
+                    ->where('amphoe_th', 'LIKE', "%$amphoe%")
+                    ->where('tambon_th', 'LIKE', "%$district%")
+                    ->get();
+
+        if (count($location) == 0) {
+            $location = DB::table('lat_longs')
+                    ->select('lat' , 'lng')
+                    ->where('changwat_th', 'LIKE', "%$province%")
+                    ->where('amphoe_th', 'LIKE', "%$amphoe%")
+                    ->get();
+        }
+
+        return $location;
     }
 
     public function check_sos_country($user_id)
