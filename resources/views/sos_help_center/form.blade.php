@@ -76,95 +76,10 @@
     </div>
 </div>
 
-<div class="item sos-map col-12 col-md-4 bg-white">
-    <div class="row">
-        <div class="col-12 text-center">
-            <h5><b>ข้อมูลผู้ใช้</b> <span style="font-size:14px;color: grey;">(ขอความช่วยเหลือ)</span></h5>
-            <div class="row">
-                <!-- ชื่อ -->
-                <div class="col-12" style="margin-top: 10px;">
-                    @php
-                        if(!empty($sos_help_center->name_user)){
-                            $read_name_user = true ;
-                        }else{
-                            $read_name_user = false ;
-                        }
-
-                        if(!empty($sos_help_center->phone_user)){
-                            $read_phone_user = true ;
-                        }else{
-                            $read_phone_user = false ;
-                        }
-                    @endphp
-                    <input type="text" class="form-control" name="name_user" id="name_user" placeholder="ระบุชื่อ.." value="{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}" readonly="{{ $read_name_user }}">
-                </div>
-                <!-- เบอร์ -->
-                <div class="col-12" style="margin-top: 10px;">
-                    <input type="text" class="form-control" name="phone_user" id="phone_user" placeholder="ระบุเบอร์.." value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}" readonly="{{ $read_phone_user }}">
-                </div>
-                <!-- BTN -->
-                <div class="col-12" style="margin-top: 25px;">
-                    <span class="btn btn-sm btn-success main-shadow main-radius" style="width:65%;">ยืนยัน</span>
-                </div>
-            </div>
-        </div>
-
-        <center>
-            <br>
-            <hr style="width:75%;">
-            <br>
-        </center>
-
-        <div class="col-12">
-            <div class="row text-center">
-                <div class="col-6">
-                    <h5 class="float-start"><b>#จุดเกิดเหตุ</b></h5>
-                </div>
-                <div class="col-6">
-                    <span class="btn btn-sm btn-danger" style="font-size:15px;width: 80%;" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
-                        เลือกจุด <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
-                    </span>
-                </div>
-            </div>
-            
-            <div style="padding-right:15px;margin-top: 5px;">
-                <div class="card">
-                    <div id="map"></div>
-                    <div class="row">
-                        <div class="col-5 d-none">
-                            <div class="form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
-                                <label for="lat" class="control-label">{{ 'Lat' }}</label>
-                                <input class="form-control" name="lat" type="text" id="lat" value="{{ isset($sos_help_center->lat) ? $sos_help_center->lat : ''}}" readonly>
-                                {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
-                            </div>
-                        </div>
-                        <div class="col-5 d-none">
-                            <div class="form-group {{ $errors->has('lng') ? 'has-error' : ''}}">
-                                <label for="lng" class="control-label">{{ 'Lng' }}</label>
-                                <input class="form-control" name="lng" type="text" id="lng" value="{{ isset($sos_help_center->lng) ? $sos_help_center->lng : ''}}" readonly>
-                                {!! $errors->first('lng', '<p class="help-block">:message</p>') !!}
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="text-center mb-3">
-                                <span style="margin-top:20px;width: 75%;" class="btn btn-warning text-white main-shadow main-radius" onclick="go_to_maps();">
-                                    นำทาง <i class="fa-solid fa-location-arrow"></i>
-                                </span>
-                                <a id="go_to_maps" href="" target="bank"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="item sos-map col-12 col-md-8 bg-white">
+<div class="item sos-map col-12 col-md-12 bg-white">
     <div class="row">
         <div class="col-3">
-            <h4 style="color:blue;">
+            <h4 style="color:black;">
                 รหัสปฏิบัติการ 
                 <br>
                 <b><u>{{ $sos_help_center->id }}</u></b>
@@ -183,35 +98,117 @@
                 </button>
             </div>
         </div>
-
         <center>
             <hr><br>
         </center>
+    </div>
+</div>
 
-        <div class="col-12">
-            <div style="background-color:#FAE693;height: 100%;border: 0px solid black;padding: 25px;border-radius: 25px;">
-                <div class="row">
-                    <div class="col-4">
-                        @php
-                            $date = $sos_help_center->created_at ;
-                            $result = $date->format('d/m/Y');
-                        @endphp
-                        <h6><b>วันที่ :</b> {{ $result }}</h6>
-                    </div>
-                    <div class="col-4">
-                        <h6><b>เลขที่ปฏิบัติการ(ON) :</b> {{ $sos_help_center->operating_code }}</h6>
-                    </div>
-                    <div class="col-4">
-                        <h6><b>ลำดับผู้ป่วย(CN) :</b> .....................</h6>
+<div class="item sos-map col-12 col-md-12" style="background-color: #F8F8FF; padding-top: 20px;">
+    <div class="row">
+
+        <div class="col-12 col-md-3">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="row">
+                        <!-- ชื่อ -->
+                        <div class="col-12" style="margin-top: 10px;">
+                            <h5>
+                                <b>ชื่อ/รหัสผู้แจ้งเหตุ</b>
+                            </h5>
+                            <span style="font-size:18px;">{{ $sos_help_center->name_user }}</span>
+                        </div>
+                        <!-- เบอร์ -->
+                        <div class="col-12" style="margin-top: 10px;">
+                            <h5>
+                                <b>โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ</b>
+                            </h5>
+                            <span style="font-size:18px;">{{ $sos_help_center->phone_user }}</span>
+                        </div>
                     </div>
                 </div>
-                @include ('sos_help_center.form_sos_yellow')
+
+                <center>
+                    <br>
+                    <hr style="width:75%;">
+                    <br>
+                </center>
+
+                <div class="col-12">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <h5 class="float-start"><b>#จุดเกิดเหตุ</b></h5>
+                        </div>
+                        <div class="col-6">
+                            <span class="btn btn-sm btn-danger" style="font-size:15px;width: 80%;" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
+                                เลือกจุด <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div style="padding-right:15px;margin-top: 5px;">
+                        <div class="card">
+                            <div id="map"></div>
+                            <div class="row">
+                                <div class="col-5 d-none">
+                                    <div class="form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
+                                        <label for="lat" class="control-label">{{ 'Lat' }}</label>
+                                        <input class="form-control" name="lat" type="text" id="lat" value="{{ isset($sos_help_center->lat) ? $sos_help_center->lat : ''}}" readonly>
+                                        {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
+                                    </div>
+                                </div>
+                                <div class="col-5 d-none">
+                                    <div class="form-group {{ $errors->has('lng') ? 'has-error' : ''}}">
+                                        <label for="lng" class="control-label">{{ 'Lng' }}</label>
+                                        <input class="form-control" name="lng" type="text" id="lng" value="{{ isset($sos_help_center->lng) ? $sos_help_center->lng : ''}}" readonly>
+                                        {!! $errors->first('lng', '<p class="help-block">:message</p>') !!}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="text-center mb-3">
+                                        <span style="margin-top:20px;width: 75%;" class="btn btn-warning text-white main-shadow main-radius" onclick="go_to_maps();">
+                                            นำทาง <i class="fa-solid fa-location-arrow"></i>
+                                        </span>
+                                        <a id="go_to_maps" href="" target="bank"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-9" style="background-color:#FAE693;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
+            <div class="row">
+                <div class="col-12">
+                    <div>
+                        <div class="row">
+                            <div class="col-4">
+                                @php
+                                    $date = $sos_help_center->created_at ;
+                                    $result = $date->format('d/m/Y');
+                                @endphp
+                                <h6><b>วันที่ :</b> {{ $result }}</h6>
+                            </div>
+                            <div class="col-4">
+                                <h6><b>เลขที่ปฏิบัติการ(ON) :</b> {{ $sos_help_center->operating_code }}</h6>
+                            </div>
+                            <div class="col-4">
+                                <h6><b>ลำดับผู้ป่วย(CN) :</b> .....................</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @include ('sos_help_center.form_sos_yellow')
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
     </div>
 </div>
-
 
 
 
@@ -294,16 +291,6 @@
         <input class="form-control" name="status" type="text" id="status" value="{{ isset($sos_help_center->status) ? $sos_help_center->status : ''}}" >
         {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('help_complete_time') ? 'has-error' : ''}}">
-        <label for="help_complete_time" class="control-label">{{ 'Help Complete Time' }}</label>
-        <input class="form-control" name="help_complete_time" type="datetime-local" id="help_complete_time" value="{{ isset($sos_help_center->help_complete_time) ? $sos_help_center->help_complete_time : ''}}" >
-        {!! $errors->first('help_complete_time', '<p class="help-block">:message</p>') !!}
-    </div>
-    <div class="form-group {{ $errors->has('time_go_to_help') ? 'has-error' : ''}}">
-        <label for="time_go_to_help" class="control-label">{{ 'Time Go To Help' }}</label>
-        <input class="form-control" name="time_go_to_help" type="datetime-local" id="time_go_to_help" value="{{ isset($sos_help_center->time_go_to_help) ? $sos_help_center->time_go_to_help : ''}}" >
-        {!! $errors->first('time_go_to_help', '<p class="help-block">:message</p>') !!}
-    </div>
 
 
     <div class="form-group">
@@ -338,14 +325,44 @@
 
     function initMap() {
 
-        let m_lat = parseFloat('12.870032');
-        let m_lng = parseFloat('100.992541');
-        let m_numZoom = parseFloat('6');
+        let lat = document.querySelector('#lat'); 
+        let lng = document.querySelector('#lng'); 
+            // console.log(parseFloat(lat.value));
+            // console.log(parseFloat(lng.value));
 
+        let m_lat = "";
+        let m_lng = "";
+        let m_numZoom = "";
+
+        if (lat.value && lng.value) {
+            m_lat = parseFloat(lat.value);
+            m_lng = parseFloat(lng.value);
+            m_numZoom = parseFloat('13');
+
+            document.querySelector('#location_user').innerHTML = "(Lat: "+ parseFloat(lat.value).toFixed(5) + " , Long: " + parseFloat(lng.value).toFixed(5) + ")";
+        }else{
+            m_lat = parseFloat('12.870032');
+            m_lng = parseFloat('100.992541');
+            m_numZoom = parseFloat('6');
+        }
+        
         map = new google.maps.Map(document.getElementById("map"), {
             center: {lat: m_lat, lng: m_lng },
             zoom: m_numZoom,
         });
+
+        if (lat.value && lng.value) {
+            if (marker) {
+                marker.setMap(null);
+            }
+
+            marker = new google.maps.Marker({
+                position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
+                map: map,
+                icon: image,
+            });
+            markers.push(marker);
+        }
     }
 
     function mapMarkLocation(lat , lng , numZoom) {
@@ -659,7 +676,7 @@
         });
         sos_markers.push(sos_marker);
 
-        document.querySelector('#location_sos').value = input_lat.value + "," + input_lng.value ;
+        document.querySelector('#location_user').innerHTML = "(Lat: "+ parseFloat(input_lat.value).toFixed(5) + " , Long: " + parseFloat(input_lng.value).toFixed(5) + ")";
 
         document.querySelector('#btn_close_modal_mapMarkLocation').click();
     }
