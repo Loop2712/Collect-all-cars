@@ -363,6 +363,14 @@
             });
             markers.push(marker);
         }
+
+        const geocoder = new google.maps.Geocoder();
+        const infowindow = new google.maps.InfoWindow();
+
+        document.getElementById("btn_get_location_user").addEventListener("click", () => {
+            
+            geocodeLatLng(geocoder, map, infowindow);
+        });
     }
 
     function mapMarkLocation(lat , lng , numZoom) {
@@ -678,6 +686,9 @@
 
         document.querySelector('#location_user').innerHTML = "(Lat: "+ parseFloat(input_lat.value).toFixed(5) + " , Long: " + parseFloat(input_lng.value).toFixed(5) + ")";
 
+        let detail_location_sos = document.querySelector("#detail_location_sos");
+            detail_location_sos.innerHTML = "";
+
         document.querySelector('#btn_close_modal_mapMarkLocation').click();
     }
 
@@ -689,5 +700,36 @@
         tag_a.href = "https://www.google.co.th/maps/dir//"+input_lat.value+ ","+input_lng.value+"/@"+input_lat.value+","+input_lng.value+",17z";
         document.querySelector('#go_to_maps').click();
     }
+
+    function geocodeLatLng(geocoder, map, infowindow) {
+
+        let input_lat = document.querySelector('#lat');
+        let input_lng = document.querySelector('#lng');
+
+        const latlng = {
+            lat: parseFloat(input_lat.value),
+            lng: parseFloat(input_lng.value),
+        };
+        geocoder
+            .geocode({ location: latlng })
+            .then((response) => {
+                if (response.results[0]) {
+                    map.setZoom(15);
+                    const marker = new google.maps.Marker({
+                      position: latlng,
+                      map: map,
+                    });
+                    infowindow.setContent(response.results[0].formatted_address);
+                    infowindow.open(map, marker);
+
+                    let detail_location_sos = document.querySelector("#detail_location_sos");
+                        detail_location_sos.innerHTML = response.results[0].formatted_address;
+                } else {
+                    window.alert("No results found");
+                }
+            })
+            .catch((e) => window.alert("Geocoder failed due to: " + e));
+    }
+
 
 </script>
