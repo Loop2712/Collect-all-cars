@@ -49,8 +49,30 @@
 							<input type="text" class="form-control" name="phone_user" value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}">
 							<br>
 							<b>สถานที่เกิดเหตุ</b>
-							<span id="location_user"></span>
-							<span id="btn_get_location_user" style="float:right;" class="btn btn-sm btn-info text-white main-shadow main-radius">รับรายละเอียดที่อยู่ (<span>100</span>)</span>
+							<span id="location_user" class="d-none"></span>
+							<div class="row">
+								<div class="form-group col-4 {{ $errors->has('lat') ? 'has-error' : ''}}">
+	                                <label for="lat" class="control-label">{{ 'Lat' }}</label>
+	                                <input class="form-control" name="lat" type="text" id="lat" value="{{ isset($sos_help_center->lat) ? $sos_help_center->lat : ''}}" readonly>
+	                                {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
+	                            </div>
+	                            <div class="form-group col-4 {{ $errors->has('lng') ? 'has-error' : ''}}">
+	                                <label for="lng" class="control-label">{{ 'Lng' }}</label>
+	                                <input class="form-control" name="lng" type="text" id="lng" value="{{ isset($sos_help_center->lng) ? $sos_help_center->lng : ''}}" readonly>
+	                                {!! $errors->first('lng', '<p class="help-block">:message</p>') !!}
+	                            </div>
+	                            <div class="col-4">
+	                            	<div style="float:right;margin-top: 25px;">
+			                            <span class="btn btn-sm btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
+		                                	เลือกจุดเกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
+		                            	</span>
+		                            	<span id="btn_get_location_user" class="btn btn-sm btn-info text-white main-shadow main-radius">
+		                            		รับรายละเอียดที่อยู่ (<span>100</span>)
+		                            	</span>
+	                            	</div>
+	                            </div>
+							</div>
+                            <br>
 							<textarea class="form-control" name="location_sos" id="detail_location_sos" rows="4" >{{ isset($sos_help_center->form_yellow->location_sos) ? $sos_help_center->form_yellow->location_sos : ''}}</textarea>
 
 						</p>

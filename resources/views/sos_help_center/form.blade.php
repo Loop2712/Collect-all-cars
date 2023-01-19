@@ -150,20 +150,6 @@
                         <div class="card">
                             <div id="map"></div>
                             <div class="row">
-                                <div class="col-5 d-none">
-                                    <div class="form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
-                                        <label for="lat" class="control-label">{{ 'Lat' }}</label>
-                                        <input class="form-control" name="lat" type="text" id="lat" value="{{ isset($sos_help_center->lat) ? $sos_help_center->lat : ''}}" readonly>
-                                        {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
-                                    </div>
-                                </div>
-                                <div class="col-5 d-none">
-                                    <div class="form-group {{ $errors->has('lng') ? 'has-error' : ''}}">
-                                        <label for="lng" class="control-label">{{ 'Lng' }}</label>
-                                        <input class="form-control" name="lng" type="text" id="lng" value="{{ isset($sos_help_center->lng) ? $sos_help_center->lng : ''}}" readonly>
-                                        {!! $errors->first('lng', '<p class="help-block">:message</p>') !!}
-                                    </div>
-                                </div>
                                 <div class="col-12">
                                     <div class="text-center mb-3">
                                         <span style="margin-top:20px;width: 75%;" class="btn btn-warning text-white main-shadow main-radius" onclick="go_to_maps();">
@@ -300,7 +286,7 @@
 </div>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 <style type="text/css">
     #map {
       height: calc(40vh);
