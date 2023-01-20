@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
-use App\Models\Sos_help_center;
 use App\Models\Sos_1669_form_yellow;
+use App\Models\Sos_help_center;
+use Google\Service\AlertCenter\Resource\Alerts;
 use Illuminate\Http\Request;
+use SebastianBergmann\Environment\Console;
 
 class Sos_help_centerController extends Controller
 {
@@ -171,12 +172,86 @@ class Sos_help_centerController extends Controller
         return redirect('sos_help_center')->with('flash_message', 'Sos_help_center deleted!');
     }
 
-    public function help_center_admin()
+    public function help_center_admin(Request $request)
     {   
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        
         $data_user = Auth::user();
 
-        $data_sos = Sos_help_center::latest()->get();
-        return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos'));
+        $id     = $request->get('id');
+        $name     = $request->get('name');
+        $organization     = $request->get('organization');
+        $helper     = $request->get('helper');
+        $date     = $request->get('date');
+        $time1 = date($request->get('time1'));
+        $time2 = date($request->get('time2'));
+
+        $data = DB::table('sos_help_centers');
+        
+        $requestData = $request->all();
+
+        $count_data = Sos_help_center::count();
+        // echo "<pre>";
+        // print_r($name);
+        // print_r($id);
+
+        // echo "<pre>";
+        // exit();
+     
+         if ($id) {
+            $data->where('id', $id);
+            $keyword = null;
+        }if ($name) {
+            $data->where('name_user', $name);
+            $keyword = null;
+        } if ($helper) {
+            $data->where('name_helper', $helper);
+            $keyword = null;
+        }if ($organization) {
+            $data->where('organization_helper', $organization);
+            $keyword = null;
+        }if ($date) {
+            $data->whereDate('created_at', $date);
+            $keyword = null;
+        }if ($time1) {
+            $keyword = null;
+            $data->whereDate('created_at', '>=', $time1)                                 
+                ->whereDate('created_at', '<=', $time2);           
+        }   
+
+        if (!empty($keyword)) {
+            $data_sos = Sos_help_center::where('id', 'LIKE', "%$keyword%")
+                ->orWhere('name_user', 'LIKE', "%$keyword%")
+                ->orWhere('photo_sos', 'LIKE', "%$keyword%")
+                ->orWhere('organization_helper', 'LIKE', "%$keyword%")
+                ->orWhere('name_helper', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $data_sos = $data->latest()->paginate($perPage);
+        }
+        
+        // elseif($needFilter){
+        //     $data_sos = Sos_help_center::Where('id' , $id)
+        //         ->Where('name_user',    'LIKE', '%' .$name.  '%')
+        //     // ->where('name_helper',    'LIKE', '%' .$helper.  '%')
+
+        //         ->where('organization_helper',    'LIKE', '%' .$organization.'%')
+        //     // ->where('name_helper',    'LIKE', '%' .$helper.  '%')
+        //     // ->where('created_at',    'LIKE', '%' .$date. '%')
+        //     // ->whereBetween('created_at', [$time1,$time2])
+
+        //     ->latest()->paginate($perPage);
+        // }
+     
+        
+        
+
+
+
+
+        return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos' ,'count_data'));
 
     }
 
@@ -208,6 +283,61 @@ class Sos_help_centerController extends Controller
         }
 
         return "OK" ;
+    }
+
+    function search_data_help_center(Request $request)
+    {
+        
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        $id     = $request->get('id');
+        $name     = $request->get('name');
+        $helper     = $request->get('helper');
+        $organization     = $request->get('organization');
+        $date     = $request->get('date');
+        $time1 = date($request->get('time1'));
+        $time2 = date($request->get('time2'));
+
+        $data = DB::table('sos_help_centers');
+        
+
+        if ($id) {
+            $data->where('id', $id);
+            $keyword = null;
+        }if ($name) {
+            $data->where('name_user', $name);
+            $keyword = null;
+        }  
+        if ($helper) {
+            $data->where('name_helper', $helper);
+            $keyword = null;
+        }if ($organization) {
+            $data->where('organization_helper', $organization);
+            $keyword = null;
+        }if ($date) {
+            $data->whereDate('created_at', $date);
+            $keyword = null;
+        }
+        if ($time1) {
+            $data->where('created_at', '>=', $time1)
+            ->where('reservation_from', '<=', $time2);
+            $keyword = null;
+        }
+
+        if (!empty($keyword)) {
+            $data_sos = Sos_help_center::where('id', 'LIKE', "%$keyword%")
+                ->orWhere('name_user', 'LIKE', "%$keyword%")
+                ->orWhere('photo_sos', 'LIKE', "%$keyword%")
+                ->orWhere('organization_helper', 'LIKE', "%$keyword%")
+                ->orWhere('name_helper', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $data_sos = $data->latest()->paginate($perPage);
+        }
+
+
+        return $data_sos ;
     }
 
 }

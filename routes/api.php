@@ -204,6 +204,7 @@ Route::get('/notify_repair_annotation/{id}/{annotation}', 'Notify_repairControll
 Route::get('/register_api', 'Auth\LoginController@register_api');
 
 // SOS HELP CENTER
+Route::get('/data_help_center/','Sos_help_centerController@search_data_help_center');
 Route::get('/create_new_sos_help_center/{user_id}', 'Sos_help_centerController@create_new_sos_help_center');
 Route::post('/send_save_data/form_yellow', 'Sos_help_centerController@save_form_yellow');
 
