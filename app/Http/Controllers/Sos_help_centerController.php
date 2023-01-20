@@ -308,9 +308,16 @@ class Sos_help_centerController extends Controller
         $time1 = date($request->get('time1'));
         $time2 = date($request->get('time2'));
 
+        if ( empty($time1) ) {
+            $time1 = date('00:00');
+        }
+
+        if ( empty($time2) ) {
+            $time2 = date('23:59');
+        }
+
         $data = DB::table('sos_help_centers');
         
-
         if ($id) {
             $data->where('id', $id);
             $keyword = null;
@@ -328,9 +335,9 @@ class Sos_help_centerController extends Controller
             $data->whereDate('created_at', $date);
             $keyword = null;
         }
-        if ($time1) {
-            $data->where('created_at', '>=', $time1)
-            ->where('reservation_from', '<=', $time2);
+
+        if ($time1 or $time2) {
+            $data->whereTime('created_at', '>=', $time1)->whereTime('created_at', '<=', $time2);
             $keyword = null;
         }
 

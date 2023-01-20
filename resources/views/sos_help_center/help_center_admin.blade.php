@@ -696,7 +696,7 @@
             document.querySelector('#data_help').classList.remove('d-none');
 
         }else{
-            data_help_center(data_id , data_name ,data_helper , data_organization , data_date , data_time1,data_time2 , data_search); 
+            data_help_center(data_id , data_name ,data_helper , data_organization , data_date , data_time1 , data_time2 , data_search); 
         }
     }
 
@@ -756,137 +756,140 @@
         fetch("{{ url('/') }}/api/data_help_center/?id=" + search_by_id + "&name=" + search_by_name + "&helper=" + search_by_helper + "&organization=" + search_by_organization + "&date=" + search_by_date + "&time1=" + search_by_time1 + "&time2=" + search_by_time2 + "&search=" + search_data)
             .then(response => response.json())
             .then(result => {
-                console.log(result.data);
-            
-                for (var i = 0; i < result['data']['length']; i++) {
+                // console.log(result.data);
+                
+                if (result.data) {
+                    for (var i = 0; i < result['data']['length']; i++) {
 
-                    let div_data_add = document.createElement("div");
-                    let id_div_data_add = document.createAttribute("id");
-                        id_div_data_add.value = "data_id_" + result['data'][i]['id'];
-                        div_data_add.setAttributeNode(id_div_data_add);
-                    let class_div_data_add = document.createAttribute("class");
-                        class_div_data_add.value = "col-6";
-                        div_data_add.setAttributeNode(class_div_data_add);
-                    div_body_help.appendChild(div_data_add);
+                        let div_data_add = document.createElement("div");
+                        let id_div_data_add = document.createAttribute("id");
+                            id_div_data_add.value = "data_id_" + result['data'][i]['id'];
+                            div_data_add.setAttributeNode(id_div_data_add);
+                        let class_div_data_add = document.createAttribute("class");
+                            class_div_data_add.value = "col-6";
+                            div_data_add.setAttributeNode(class_div_data_add);
+                        div_body_help.appendChild(div_data_add);
 
-                    let name = result['data'][i]['name_user'];
-                    let organization_helper = result['data'][i]['organization_helper'];
-                    let name_helper = result['data'][i]['name_helper'];
-                    let url_edit = "/sos_help_center/" + result['data'][i]['id'] + "/edit" ;
+                        let name = result['data'][i]['name_user'];
+                        let organization_helper = result['data'][i]['organization_helper'];
+                        let name_helper = result['data'][i]['name_helper'];
+                        let url_edit = "/sos_help_center/" + result['data'][i]['id'] + "/edit" ;
 
-                    
-                    
-                    // วันที่
-                    
-                    const date = new Date(result['data'][i]['created_at'])
+                        
+                        
+                        // วันที่
+                        
+                        const date = new Date(result['data'][i]['created_at'])
 
-                    
-                    const date_created = date.toLocaleDateString('th-TH', {
-                        weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' 
-                    });
+                        
+                        const date_created = date.toLocaleDateString('th-TH', {
+                            weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' 
+                        });
 
-                    // เวลา
-                    const time_created = date.toLocaleTimeString('th-TH', {
-                        hour: '2-digit', minute: '2-digit' 
-                    });
+                        // เวลา
+                        const time_created = date.toLocaleTimeString('th-TH', {
+                            hour: '2-digit', minute: '2-digit' 
+                        });
 
-                    if(!name){
-                        name = "ไม่ทราบชื่อ";
-                    }
+                        if(!name){
+                            name = "ไม่ทราบชื่อ";
+                        }
 
-                    if(!organization_helper){
-                        organization_helper = "ไม่ทราบหน่วยงาน";
-                    }
+                        if(!organization_helper){
+                            organization_helper = "ไม่ทราบหน่วยงาน";
+                        }
 
-                    if(!name_helper){
-                        name_helper = "ไม่ทราบชื่อ";
-                    }
+                        if(!name_helper){
+                            name_helper = "ไม่ทราบชื่อ";
+                        }
 
-                    //--------------------สถานะของแต่ละเคสยังไม่ได้ทำนะจ๊ะ--------------------//
+                        //--------------------สถานะของแต่ละเคสยังไม่ได้ทำนะจ๊ะ--------------------//
 
-                    let div_data_help_center = 
-                    
-                    `
-                    <a class="col-lg-6 col-md-6 col-12 a_data_user show"  href="{{url('/') }}` + url_edit + ` ">
-                        <div >
-                            <div class="card card-sos shadow">
-                                <div class="sos-header">
-                                    <div>
-                                        <h6 class="m-0 p-0 data-overflow">รหัส`+ result['data'][i]['id'] + `</h6>
-                                        <p class="m-0 data-overflow">`+ date_created +`</p>
-                                        <p class="m-0 data-overflow">เวลา `+ time_created +`</p>
+                        let div_data_help_center = 
+                        
+                        `
+                        <a class="col-lg-6 col-md-6 col-12 a_data_user show"  href="{{url('/') }}` + url_edit + ` ">
+                            <div >
+                                <div class="card card-sos shadow">
+                                    <div class="sos-header">
+                                        <div>
+                                            <h6 class="m-0 p-0 data-overflow">รหัส`+ result['data'][i]['id'] + `</h6>
+                                            <p class="m-0 data-overflow">`+ date_created +`</p>
+                                            <p class="m-0 data-overflow">เวลา `+ time_created +`</p>
 
-                                    </div>
-                                    <div>
-                                    <button class=" btn-request btn-status">
-                                        รับแจ้งเหตุ
-                                    </button>
-                                    </div>
-                                </div> 
-                                
-                                <hr>
-
-                                <div class="sos-username">
-                                    <div class="row">
-                                        <div class="col-2 m-0 text-center d-flex align-items-center">
-                                            <i class="fa-duotone fa-user"></i>
                                         </div>
-                                        <div class="col-10 m-0 p-0">
-                                            <p class="p-0 m-0 color-darkgrey data-overflow topic">ผู้ขอความช่วยเหลือ</p>
-                                            <h6 class="p-0 m-0 color-dark data-overflow">
-                                            `+
-                                           name
-                                            + `
-                                            </h6>
+                                        <div>
+                                        <button class=" btn-request btn-status">
+                                            รับแจ้งเหตุ
+                                        </button>
                                         </div>
-                                    </div>
-                                </div>
+                                    </div> 
+                                    
+                                    <hr>
 
-                                <hr class="p-0 m-0" style="margin-bottom:0 ;">
-
-                                <div class="sos-helper">
-                                    <div class="row">
-                                        <div class="col-6 p-0 helper helper-border">
-                                            <div class="row">
-                                                <div class="col-4 text-center d-flex align-items-center icon-organization">
-                                                    <i class="fa-duotone fa-sitemap"></i>
-                                                </div>
-                                                <div class="col-8 m-0  pt-2 "style="padding-left:5px">
-                                                    <p class="p-0 m-0 color-darkgrey data-overflow topic">หน่วยงาน</p>
-                                                    <h6 class="p-0 m-0 color-dark data-overflow">
-                                                        `+
-                                                        organization_helper
-                                                        + `
-                                                    </h6>
-                                                </div>
+                                    <div class="sos-username">
+                                        <div class="row">
+                                            <div class="col-2 m-0 text-center d-flex align-items-center">
+                                                <i class="fa-duotone fa-user"></i>
+                                            </div>
+                                            <div class="col-10 m-0 p-0">
+                                                <p class="p-0 m-0 color-darkgrey data-overflow topic">ผู้ขอความช่วยเหลือ</p>
+                                                <h6 class="p-0 m-0 color-dark data-overflow">
+                                                `+
+                                               name
+                                                + `
+                                                </h6>
                                             </div>
                                         </div>
-                                        <div class="col-6 p-0 helper">
-                                            <div class="row">
-                                                <div class="col-4 text-center d-flex align-items-center icon-organization">
-                                                    <i class="fa-duotone fa-user-police"></i>
+                                    </div>
+
+                                    <hr class="p-0 m-0" style="margin-bottom:0 ;">
+
+                                    <div class="sos-helper">
+                                        <div class="row">
+                                            <div class="col-6 p-0 helper helper-border">
+                                                <div class="row">
+                                                    <div class="col-4 text-center d-flex align-items-center icon-organization">
+                                                        <i class="fa-duotone fa-sitemap"></i>
+                                                    </div>
+                                                    <div class="col-8 m-0  pt-2 "style="padding-left:5px">
+                                                        <p class="p-0 m-0 color-darkgrey data-overflow topic">หน่วยงาน</p>
+                                                        <h6 class="p-0 m-0 color-dark data-overflow">
+                                                            `+
+                                                            organization_helper
+                                                            + `
+                                                        </h6>
+                                                    </div>
                                                 </div>
-                                                <div class="col-8 m-0 p-0 pt-2" >
-                                                    <p class="p-0 m-0 color-darkgrey data-overflow topic">เจ้าหน้าที่</p>
-                                                    <h6 class="p-0 m-0 color-dark data-overflow">
-                                                        `+
-                                                        name_helper
-                                                        + `
-                                                    </h6>
+                                            </div>
+                                            <div class="col-6 p-0 helper">
+                                                <div class="row">
+                                                    <div class="col-4 text-center d-flex align-items-center icon-organization">
+                                                        <i class="fa-duotone fa-user-police"></i>
+                                                    </div>
+                                                    <div class="col-8 m-0 p-0 pt-2" >
+                                                        <p class="p-0 m-0 color-darkgrey data-overflow topic">เจ้าหน้าที่</p>
+                                                        <h6 class="p-0 m-0 color-dark data-overflow">
+                                                            `+
+                                                            name_helper
+                                                            + `
+                                                        </h6>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
 
-                    `;
+                        `;
 
-                    document.querySelector('#data_id_' + result['data'][i]['id']).innerHTML = div_data_help_center ;
+                        document.querySelector('#data_id_' + result['data'][i]['id']).innerHTML = div_data_help_center ;
 
+                    }
                 }
+                
 
                 
         });
