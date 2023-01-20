@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-2">
                             <center>
-                                <button  type="button" class="btn btn-info text-white" style="width: 100%;" onclick="submit_locations_sos();map_operating_unit();">
+                                <button  type="button" class="btn btn-info text-white" style="width: 100%;" onclick="submit_locations_sos();">
                                     <i class="fa-solid fa-circle-check"></i> ยืนยัน
                                 </button>
                             </center>
@@ -78,22 +78,26 @@
 
 <div class="item sos-map col-12 col-md-12 bg-white">
     <div class="row">
-        <div class="col-3">
+        <div class="col-12">
             <h4 style="color:black;">
-                รหัสปฏิบัติการ 
-                <br>
-                <b><u>{{ $sos_help_center->id }}</u></b>
+                รหัสปฏิบัติการ : <b><u>{{ $sos_help_center->id }}</u></b>
             </h4>
         </div>
-        <div class="col-9">
+        <div class="col-12">
             <div style="float:right;">
-                <button  type="button" class="btn btn-warning text-white btn-center-block">
-                   <i class="fa-solid fa-files-medical"></i> แบบฟอร์ม 1 (เหลือง)
+                <button  type="button" class="btn btn-warning text-white btn-center-block" onclick="click_select_btn('form_yellow');">
+                   <i class="fa-solid fa-files-medical"></i> แบบฟอร์มเริ่มต้น (yellow)
                 </button>
-                <button  type="button" class="btn btn-info text-white btn-center-block">
-                    <i class="fa-solid fa-hospital-user"></i> แบบฟอร์ม 2 (<span id="form_sos_2">ตย.สีฟ้า</span>)
+                <button  type="button" class="btn btn-info text-white btn-center-block" onclick="click_select_btn('form_blue');">
+                    <i class="fa-solid fa-hospital-user"></i> แบบฟอร์ม (blue)
                 </button>
-                <button  type="button" class="btn btn-danger btn-center-block">
+                <button  type="button" class="btn btn-success text-white btn-center-block" onclick="click_select_btn('form_green');">
+                    <i class="fa-solid fa-hospital-user"></i> แบบฟอร์ม (green)
+                </button>
+                <button  type="button" class="btn text-white btn-center-block" style="background-color:#fa93f0;" onclick="click_select_btn('form_pink');">
+                    <i class="fa-solid fa-hospital-user"></i> แบบฟอร์ม (pink)
+                </button>
+                <button id="btn_select_operating_unit" disabled  type="button" class="btn-center-block btn btn-secondary" onclick="click_select_btn('operating_unit');">
                     <i class="fa-solid fa-truck-medical"></i> เลือกหน่วยแพทย์
                 </button>
             </div>
@@ -167,7 +171,7 @@
         </div>
 
         <!-- form yellow -->
-        <div id="div_form_yellow" class="col-12 col-md-9 d-none" style="background-color:#FAE693;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
+        <div id="div_form_yellow" class="col-12 col-md-9" style="background-color:#FAE693;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
             <div class="row">
                 <div class="col-12">
                     <div>
@@ -228,7 +232,7 @@
         </div>
 
         <!-- form operating unit map -->
-        <div id="div_form_operating_unit_map" class="col-12 col-md-9 " style="height: auto;border: 3px solid red;padding: 25px;border-radius: 25px;">
+        <div id="div_form_operating_unit_map" class="col-12 col-md-9 d-none" style="height: auto;border: 3px solid red;padding: 25px;border-radius: 25px;">
             <div class="row">
                 <div class="col-12">
                     <div class="row">
@@ -358,7 +362,6 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         initMap();
-        map_operating_unit();
     });
 
     function initMap() {
@@ -769,6 +772,56 @@
                 }
             })
             .catch((e) => window.alert("Geocoder failed due to: " + e));
+    }
+
+    function click_select_btn(btn){
+
+        switch(btn) {
+            case "operating_unit":
+                document.querySelector('#div_form_operating_unit_map').classList.remove('d-none');
+
+                document.querySelector('#div_form_yellow').classList.add('d-none');
+                document.querySelector('#div_form_blue').classList.add('d-none');
+                document.querySelector('#div_form_green').classList.add('d-none');
+                document.querySelector('#div_form_pink').classList.add('d-none');
+          
+                map_operating_unit();
+            break;
+            case "form_yellow":
+                document.querySelector('#div_form_yellow').classList.remove('d-none');
+
+                document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
+                document.querySelector('#div_form_blue').classList.add('d-none');
+                document.querySelector('#div_form_green').classList.add('d-none');
+                document.querySelector('#div_form_pink').classList.add('d-none');
+            break;
+            case "form_blue":
+                document.querySelector('#div_form_blue').classList.remove('d-none');
+
+                document.querySelector('#div_form_yellow').classList.add('d-none');
+                document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
+                document.querySelector('#div_form_green').classList.add('d-none');
+                document.querySelector('#div_form_pink').classList.add('d-none');
+            break;
+            break;
+            case "form_green":
+                document.querySelector('#div_form_green').classList.remove('d-none');
+
+                document.querySelector('#div_form_blue').classList.add('d-none');
+                document.querySelector('#div_form_yellow').classList.add('d-none');
+                document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
+                document.querySelector('#div_form_pink').classList.add('d-none');
+            break;
+            case "form_pink":
+                document.querySelector('#div_form_pink').classList.remove('d-none');
+
+                document.querySelector('#div_form_green').classList.add('d-none');
+                document.querySelector('#div_form_blue').classList.add('d-none');
+                document.querySelector('#div_form_yellow').classList.add('d-none');
+                document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
+            break;
+        }
+        
     }
 
 

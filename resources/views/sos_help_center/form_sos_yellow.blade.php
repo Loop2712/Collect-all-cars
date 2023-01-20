@@ -888,8 +888,14 @@
 
 		if (input_lat.value && input_lng.value) {
 			document.querySelector('#btn_get_location_user').disabled = false ;
+			document.querySelector('#btn_select_operating_unit').disabled = false ;
+			document.querySelector('#btn_select_operating_unit').classList.add('btn-danger');
+			document.querySelector('#btn_select_operating_unit').classList.remove('btn-secondary');
 		}else{
 			document.querySelector('#btn_get_location_user').disabled = true ;
+			document.querySelector('#btn_select_operating_unit').disabled = true ;
+			document.querySelector('#btn_select_operating_unit').classList.remove('btn-danger');
+			document.querySelector('#btn_select_operating_unit').classList.add('btn-secondary');
 		}
     }
 

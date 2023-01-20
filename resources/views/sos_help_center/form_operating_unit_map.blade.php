@@ -7,8 +7,8 @@
 <script>
 
 function map_operating_unit() {
-    let lat = document.querySelector('#lat'); 
-    let lng = document.querySelector('#lng'); 
+    let sos_lat = document.querySelector('#lat'); 
+    let sos_lng = document.querySelector('#lng'); 
         // console.log(parseFloat(lat.value));
         // console.log(parseFloat(lng.value));
 
@@ -16,9 +16,9 @@ function map_operating_unit() {
     let m_lng = "";
     let m_numZoom = "";
 
-    if (lat.value && lng.value) {
-        m_lat = parseFloat(lat.value);
-        m_lng = parseFloat(lng.value);
+    if (sos_lat.value && sos_lng.value) {
+        m_lat = parseFloat(sos_lat.value);
+        m_lng = parseFloat(sos_lng.value);
         m_numZoom = parseFloat('14');
     }else{
         m_lat = parseFloat('12.870032');
@@ -31,7 +31,7 @@ function map_operating_unit() {
         zoom: m_numZoom,
     });
 
-    if (lat.value && lng.value) {
+    if (sos_lat.value && sos_lng.value) {
         if (operating_marker) {
             operating_marker.setMap(null);
         }
