@@ -70,9 +70,9 @@
 			                            <span class="btn btn-sm btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
 		                                	เลือกจุดเกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
 		                            	</span>
-		                            	<span id="btn_get_location_user" class="btn btn-sm btn-info text-white main-shadow main-radius">
+		                            	<button id="btn_get_location_user" disabled class="btn btn-sm btn-info text-white main-shadow main-radius">
 		                            		รับรายละเอียดที่อยู่ (<span>100</span>)
-		                            	</span>
+		                            	</button>
 	                            	</div>
 	                            </div>
 							</div>

@@ -306,7 +306,7 @@ class Sos_help_centerController extends Controller
             $data->where('id', $id);
             $keyword = null;
         }if ($name) {
-            $data->where('name_user', $name);
+            $data->where('name_user','LIKE', "%$name%");
             $keyword = null;
         }  
         if ($helper) {

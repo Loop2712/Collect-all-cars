@@ -114,6 +114,7 @@
                     <div class="d-flex justify-content-between">
                         <div>
                             <button class="btn btn-new-help" onclick="create_new_sos_help_center();">การช่วยเหลือใหม่</button>
+                            <button class="btn btn-new-help" onclick="tteesstt();">ทดสอบ</button>
                         </div>  
                         <div>
                             <div class="btn-group ">
@@ -698,6 +699,50 @@
         }else{
             data_help_center(data_id , data_name ,data_helper , data_organization , data_date , data_time1,data_time2 , data_search); 
         }
+    }
+
+    function tteesstt(){
+
+        let div_body_help = document.querySelector('#div_body_help');
+            div_body_help.innerHTML = "" ;
+
+        fetch("{{ url('/') }}/api/data_help_center/?&name=ฐ" )
+            .then(response => response.json())
+            .then(result => {
+                console.log(result['data']);
+                console.log(result['data']['length']);
+            
+                for (var i = 0; i < result['data']['length']; i++) {
+
+                    let div_data_add = document.createElement("div");
+                    let id_div_data_add = document.createAttribute("id");
+                        id_div_data_add.value = "data_id_" + result['data'][i]['id'];
+                        div_data_add.setAttributeNode(id_div_data_add);
+                    let class_div_data_add = document.createAttribute("class");
+                        class_div_data_add.value = "col-6";
+                        div_data_add.setAttributeNode(class_div_data_add);
+                    div_body_help.appendChild(div_data_add);
+
+                    let div_data_help_center = 
+                    
+                    `
+                    <div id='box'>
+                        <button id='button-1'>`+ result['data'][i]['id'] + `</button>
+                        <button id='button-1'>` + result['data'][i]['name_user'] +  `</button>
+                        
+                    </div>
+                    
+                    `;
+
+                    document.querySelector('#data_id_' + result['data'][i]['id']).innerHTML = div_data_help_center ;
+
+                }
+
+                
+        });
+            
+        
+                 
     }
 
     function data_help_center(search_by_id , search_by_name , search_by_helper , search_by_organization , search_by_date ,search_by_time1 ,search_by_time2 ,search_data){
