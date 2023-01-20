@@ -917,6 +917,7 @@
 				let active_next = parseInt(active_sp[2]) + 1 ;
 				next_page = active_next ;
 			}
+			check_color_btn(active_sp[2],next_page);
 
 		}else if (type === "remove"){
 
@@ -927,10 +928,10 @@
 				let active_prev = parseInt(active_sp[2]) - 1 ;
 				next_page = active_prev ;
 			}
+			check_color_btn(active_sp[2],next_page);
 		}
 
 		send_save_data(active_sp[2]);
-		check_color_btn(active_sp[2],next_page);
 	}
 
 	function go_to_form_data(click_to){

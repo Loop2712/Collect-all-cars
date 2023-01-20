@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-2">
                             <center>
-                                <button  type="button" class="btn btn-info text-white" style="width: 100%;" onclick="submit_locations_sos();">
+                                <button  type="button" class="btn btn-info text-white" style="width: 100%;" onclick="submit_locations_sos();map_operating_unit();">
                                     <i class="fa-solid fa-circle-check"></i> ยืนยัน
                                 </button>
                             </center>
@@ -166,7 +166,8 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-9" style="background-color:#FAE693;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
+        <!-- form yellow -->
+        <div id="div_form_yellow" class="col-12 col-md-9 d-none" style="background-color:#FAE693;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
             <div class="row">
                 <div class="col-12">
                     <div>
@@ -188,6 +189,50 @@
                         <div class="row">
                             @include ('sos_help_center.form_sos_yellow')
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- form blue -->
+        <div id="div_form_blue" class="col-12 col-md-9 d-none" style="background-color: #93f0fa;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        @include ('sos_help_center.form_sos_blue')
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- form green -->
+        <div id="div_form_green" class="col-12 col-md-9 d-none" style="background-color: #93faa6;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        @include ('sos_help_center.form_sos_green')
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- form pink -->
+        <div id="div_form_pink" class="col-12 col-md-9 d-none" style="background-color: #fa93f0;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        @include ('sos_help_center.form_sos_pink')
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- form operating unit map -->
+        <div id="div_form_operating_unit_map" class="col-12 col-md-9 " style="height: auto;border: 3px solid red;padding: 25px;border-radius: 25px;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        @include ('sos_help_center.form_operating_unit_map')
                     </div>
                 </div>
             </div>
@@ -295,6 +340,10 @@
     #mapMarkLocation {
       height: calc(65vh);
     }
+
+    #map_operating_unit {
+      height: calc(80vh);
+    }
 </style>
 <script>
 
@@ -303,10 +352,13 @@
     let marker  ;
     var sos_markers = [] ;
     let sos_marker  ;
+    var operating_markers = [] ;
+    let operating_marker  ;
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         initMap();
+        map_operating_unit();
     });
 
     function initMap() {
@@ -677,6 +729,7 @@
 
         document.querySelector('#btn_close_modal_mapMarkLocation').click();
         check_lat_lng();
+        check_go_to(null);
     }
 
     function go_to_maps(){
