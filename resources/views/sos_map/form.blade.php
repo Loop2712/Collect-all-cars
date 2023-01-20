@@ -105,9 +105,70 @@
                             <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp;Call Emergency  JS 100</b>
                         </button> -->
 
-                        <span class="shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
+                        <!-- <span class="shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
                             <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp; ขอความช่วยเหลือ ชาลีกรุงเทพ</b>
+                        </span> -->
+
+                        <!-- <span class="shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
+                            <img src="https://www.viicheck.com/Medilab/img/icon.png" width="40%"> 
+                            <b class="text-center">ช่วยเหลือทั่วไป<br>ชาลีกรุงเทพ</b>
+                        </span> -->
+<!-- 
+                        <span class="shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
+                            <div class="flex">
+                                <div class="col-3">
+                                    <img src="{{ asset('/img/logo-partner/logo 250x250/chalie-2.2.png') }}" width="100%"> 
+                                </div>
+                                <div class="col-9 d-flex align-items-center">
+                                    <div>
+                                        asd
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </span> -->
+                        @if(Auth::user()->id == '1')
+                            <span  class="mail-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" >
+                                <div class="d-flex">
+                                    <div class="col-3 p-0 d-flex align-items-center">
+                                        <div class="justify-content-center col-12 p-0">
+                                            <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center col-9 text-center">
+                                        <div class="justify-content-center col-12">
+                                            <b>
+                                                <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน</span>
+                                                <span class="d-block" style="color: #ffffff;">(1669)</span>
+                                            </b>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </span>
+                        @endif
+                        <span  class="mail-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
+                            <div class="d-flex">
+                                <div class="col-3 p-0 d-flex align-items-center">
+                                    <div class="justify-content-center col-12 p-0">
+                                        <img src="{{ asset('/img/logo-partner/logo 250x250/chalie-2.2.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center col-9 text-center">
+                                    <div class="justify-content-center col-12">
+                                        <b>
+                                            <span class="d-block">ช่วยเหลือทั่วไป</span>
+                                            <span class="d-block">(ชาลีกรุงเทพ)</span>
+                                        </b>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </span>
+
+                        
                     </div>
                 </div>
             </div>
