@@ -772,6 +772,8 @@
                     let name = result['data'][i]['name_user'];
                     let organization_helper = result['data'][i]['organization_helper'];
                     let name_helper = result['data'][i]['name_helper'];
+                    let url_edit = "/sos_help_center/" + result['data'][i]['id'] + "/edit" ;
+
                     
                     
                     // วันที่
@@ -805,7 +807,7 @@
                     let div_data_help_center = 
                     
                     `
-                    <a class="col-lg-6 col-md-6 col-12 a_data_user show" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}">
+                    <a class="col-lg-6 col-md-6 col-12 a_data_user show"  href="{{url('/') }}` + url_edit + ` ">
                         <div >
                             <div class="card card-sos shadow">
                                 <div class="sos-header">
