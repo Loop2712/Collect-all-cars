@@ -676,6 +676,7 @@
             detail_location_sos.innerHTML = "";
 
         document.querySelector('#btn_close_modal_mapMarkLocation').click();
+        check_lat_lng();
     }
 
     function go_to_maps(){

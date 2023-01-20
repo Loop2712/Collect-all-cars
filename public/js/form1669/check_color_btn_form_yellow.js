@@ -1,4 +1,13 @@
 function check_color_btn(active,next_page){
+	// Check lat lng empty
+    let input_lat = document.querySelector('#lat') ;
+    let input_lng = document.querySelector('#lng') ;
+
+	if (input_lat.value && input_lng.value) {
+		document.querySelector('#btn_get_location_user').disabled = false ;
+	}else{
+		document.querySelector('#btn_get_location_user').disabled = true ;
+	}
 
 	// ---------------------------- ข้อใน form ----------------------------
     // ==>> 1

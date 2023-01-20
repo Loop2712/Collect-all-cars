@@ -70,7 +70,7 @@
 			                            <span class="btn btn-sm btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
 		                                	เลือกจุดเกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
 		                            	</span>
-		                            	<button id="btn_get_location_user" disabled class="btn btn-sm btn-info text-white main-shadow main-radius">
+		                            	<button id="btn_get_location_user"  class="btn btn-sm btn-info text-white main-shadow main-radius">
 		                            		รับรายละเอียดที่อยู่ (<span>100</span>)
 		                            	</button>
 	                            	</div>
@@ -868,6 +868,8 @@
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         check_color_btn(null,null);
+        check_lat_lng();
+        
         let rc_black = document.querySelector('#rc_black').checked ;
 		let rc_black_text = document.querySelector('#rc_black_text') ;
 		if (rc_black) {
@@ -876,7 +878,20 @@
 			rc_black_text.readOnly = true ;
 			rc_black_text.value = null ;
 		}
+
     });
+
+    function check_lat_lng(){
+    	// Check lat lng empty
+	    let input_lat = document.querySelector('#lat') ;
+	    let input_lng = document.querySelector('#lng') ;
+
+		if (input_lat.value && input_lng.value) {
+			document.querySelector('#btn_get_location_user').disabled = false ;
+		}else{
+			document.querySelector('#btn_get_location_user').disabled = true ;
+		}
+    }
 
 	function check_go_to(type){
 		// console.log(type);
