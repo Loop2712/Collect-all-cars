@@ -411,3 +411,4 @@ Route::get('/modal_loading', function () {
 Route::resource('partner_premium', 'Partner_premiumController');
 
 Route::resource('sub_organization', 'Sub_organizationController');
+Route::resource('sos_1669_form_yellow', 'Sos_1669_form_yellowController');

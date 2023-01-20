@@ -1,0 +1,188 @@
+{
+    "fields": [
+        {
+            "name": "be_notified",
+            "type": "string"
+        },
+        {
+            "name": "name_user",
+            "type": "string"
+        },
+        {
+            "name": "phone_user",
+            "type": "string"
+        },
+        {
+            "name": "lat",
+            "type": "string"
+        },
+        {
+            "name": "lng",
+            "type": "string"
+        },
+        {
+            "name": "location_sos",
+            "type": "string"
+        },
+        {
+            "name": "symptom",
+            "type": "string"
+        },
+        {
+            "name": "symptom_other",
+            "type": "string"
+        },
+        {
+            "name": "idc",
+            "type": "string"
+        },
+        {
+            "name": "vehicle_type",
+            "type": "string"
+        },
+        {
+            "name": "operation_unit_name",
+            "type": "string"
+        },
+        {
+            "name": "action_set_name",
+            "type": "string"
+        },
+        {
+            "name": "operating_suit_type",
+            "type": "string"
+        },
+        {
+            "name": "time_create_sos",
+            "type": "time"
+        },
+        {
+            "name": "time_command",
+            "type": "time"
+        },
+        {
+            "name": "time_go_to_help",
+            "type": "time"
+        },
+        {
+            "name": "time_to_the_scene",
+            "type": "time"
+        },
+        {
+            "name": "time_leave_the_scene",
+            "type": "time"
+        },
+        {
+            "name": "time_hospital",
+            "type": "time"
+        },
+        {
+            "name": "time_to_the_operating_base",
+            "type": "time"
+        },
+        {
+            "name": "km_create_sos_to_go_to_help",
+            "type": "integer"
+        },
+        {
+            "name": "km_to_the_scene_to_leave_the_scene",
+            "type": "integer"
+        },
+        {
+            "name": "km_hospital",
+            "type": "integer"
+        },
+        {
+            "name": "km_operating_base",
+            "type": "integer"
+        },
+        {
+            "name": "rc",
+            "type": "string"
+        },
+        {
+            "name": "rc_black_text",
+            "type": "string"
+        },
+        {
+            "name": "treatment",
+            "type": "string"
+        },
+        {
+            "name": "sub_treatment",
+            "type": "string"
+        },
+        {
+            "name": "patient_name_1",
+            "type": "string"
+        },
+        {
+            "name": "patient_age_1",
+            "type": "string"
+        },
+        {
+            "name": "patient_hn_1",
+            "type": "string"
+        },
+        {
+            "name": "patient_vn_1",
+            "type": "string"
+        },
+        {
+            "name": "delivered_province_1",
+            "type": "string"
+        },
+        {
+            "name": "delivered_hospital_1",
+            "type": "string"
+        },
+        {
+            "name": "patient_name_2",
+            "type": "string"
+        },
+        {
+            "name": "patient_age_2",
+            "type": "string"
+        },
+        {
+            "name": "patient_hn_2",
+            "type": "string"
+        },
+        {
+            "name": "patient_vn_2",
+            "type": "string"
+        },
+        {
+            "name": "delivered_province_2",
+            "type": "string"
+        },
+        {
+            "name": "delivered_hospital_2",
+            "type": "string"
+        },
+        {
+            "name": "submission_criteria",
+            "type": "string"
+        },
+        {
+            "name": "communication_hospital",
+            "type": "string"
+        },
+        {
+            "name": "registration_category",
+            "type": "string"
+        },
+        {
+            "name": "registration_number",
+            "type": "string"
+        },
+        {
+            "name": "registration_province",
+            "type": "string"
+        },
+        {
+            "name": "owner_registration",
+            "type": "string"
+        }
+    ]
+}

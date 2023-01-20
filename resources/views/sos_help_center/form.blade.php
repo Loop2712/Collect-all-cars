@@ -150,20 +150,6 @@
                         <div class="card">
                             <div id="map"></div>
                             <div class="row">
-                                <div class="col-5 d-none">
-                                    <div class="form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
-                                        <label for="lat" class="control-label">{{ 'Lat' }}</label>
-                                        <input class="form-control" name="lat" type="text" id="lat" value="{{ isset($sos_help_center->lat) ? $sos_help_center->lat : ''}}" readonly>
-                                        {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
-                                    </div>
-                                </div>
-                                <div class="col-5 d-none">
-                                    <div class="form-group {{ $errors->has('lng') ? 'has-error' : ''}}">
-                                        <label for="lng" class="control-label">{{ 'Lng' }}</label>
-                                        <input class="form-control" name="lng" type="text" id="lng" value="{{ isset($sos_help_center->lng) ? $sos_help_center->lng : ''}}" readonly>
-                                        {!! $errors->first('lng', '<p class="help-block">:message</p>') !!}
-                                    </div>
-                                </div>
                                 <div class="col-12">
                                     <div class="text-center mb-3">
                                         <span style="margin-top:20px;width: 75%;" class="btn btn-warning text-white main-shadow main-radius" onclick="go_to_maps();">
@@ -300,7 +286,7 @@
 </div>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 <style type="text/css">
     #map {
       height: calc(40vh);
@@ -363,6 +349,14 @@
             });
             markers.push(marker);
         }
+
+        const geocoder = new google.maps.Geocoder();
+        const infowindow = new google.maps.InfoWindow();
+
+        document.getElementById("btn_get_location_user").addEventListener("click", () => {
+            
+            geocodeLatLng(geocoder, map, infowindow);
+        });
     }
 
     function mapMarkLocation(lat , lng , numZoom) {
@@ -678,6 +672,9 @@
 
         document.querySelector('#location_user').innerHTML = "(Lat: "+ parseFloat(input_lat.value).toFixed(5) + " , Long: " + parseFloat(input_lng.value).toFixed(5) + ")";
 
+        let detail_location_sos = document.querySelector("#detail_location_sos");
+            detail_location_sos.innerHTML = "";
+
         document.querySelector('#btn_close_modal_mapMarkLocation').click();
     }
 
@@ -689,5 +686,36 @@
         tag_a.href = "https://www.google.co.th/maps/dir//"+input_lat.value+ ","+input_lng.value+"/@"+input_lat.value+","+input_lng.value+",17z";
         document.querySelector('#go_to_maps').click();
     }
+
+    function geocodeLatLng(geocoder, map, infowindow) {
+
+        let input_lat = document.querySelector('#lat');
+        let input_lng = document.querySelector('#lng');
+
+        const latlng = {
+            lat: parseFloat(input_lat.value),
+            lng: parseFloat(input_lng.value),
+        };
+        geocoder
+            .geocode({ location: latlng })
+            .then((response) => {
+                if (response.results[0]) {
+                    map.setZoom(15);
+                    const marker = new google.maps.Marker({
+                      position: latlng,
+                      map: map,
+                    });
+                    infowindow.setContent(response.results[0].formatted_address);
+                    infowindow.open(map, marker);
+
+                    let detail_location_sos = document.querySelector("#detail_location_sos");
+                        detail_location_sos.innerHTML = response.results[0].formatted_address;
+                } else {
+                    window.alert("No results found");
+                }
+            })
+            .catch((e) => window.alert("Geocoder failed due to: " + e));
+    }
+
 
 </script>

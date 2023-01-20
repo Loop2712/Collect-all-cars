@@ -8,6 +8,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Sos_help_center;
+use App\Models\Sos_1669_form_yellow;
 use Illuminate\Http\Request;
 
 class Sos_help_centerController extends Controller
@@ -189,6 +190,24 @@ class Sos_help_centerController extends Controller
         $sos_help_center_last = Sos_help_center::latest()->first();
 
         return $sos_help_center_last->id;
+    }
+
+    function save_form_yellow(Request $request)
+    {
+        $requestData = $request->all();
+
+        $data_sos_help_center = Sos_help_center::where('id',$requestData['sos_help_center_id'])->first();
+        $data_sos_help_center->update($requestData);
+
+        $data_Sos_1669 = Sos_1669_form_yellow::where('sos_help_center_id',$requestData['sos_help_center_id'])->first();
+
+        if ($data_Sos_1669) {
+            $data_Sos_1669->update($requestData);
+        }else{
+            Sos_1669_form_yellow::create($requestData);
+        }
+
+        return "OK" ;
     }
 
 }
