@@ -17,29 +17,33 @@
 								$check_be_notified_3 = "" ;
 								$check_be_notified_4 = "" ;
 								$check_be_notified_5 = "" ;
+								$check_be_notified_6 = "" ;
 								if( !empty($sos_help_center->form_yellow->be_notified) ){
 
-									if( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙' ){
+									if( $sos_help_center->form_yellow->be_notified == 'แพลตฟอร์มวีเช็ค' ){
 										$check_be_notified_1 = "checked";
-									}else if ( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)' ){
+									}else if( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙' ){
 										$check_be_notified_2 = "checked";
-									}else if ( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลขอื่นๆ' ){
+									}else if ( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)' ){
 										$check_be_notified_3 = "checked";
-									}else if ( $sos_help_center->form_yellow->be_notified == 'วิทยุสื่อสาร' ){
+									}else if ( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลขอื่นๆ' ){
 										$check_be_notified_4 = "checked";
-									}else if ( $sos_help_center->form_yellow->be_notified == 'วิธีอื่นๆ' ){
+									}else if ( $sos_help_center->form_yellow->be_notified == 'วิทยุสื่อสาร' ){
 										$check_be_notified_5 = "checked";
+									}else if ( $sos_help_center->form_yellow->be_notified == 'วิธีอื่นๆ' ){
+										$check_be_notified_6 = "checked";
 									}
 
 								}
 							@endphp
 
-							<input type="radio" {{ $check_be_notified_1 }} name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙">&nbsp;&nbsp;โทรศัพท์หมายเลข ๑๖๖๙<sup>(๑)</sup>&nbsp;&nbsp;
-							<input type="radio" {{ $check_be_notified_2 }} name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙ (second call)">&nbsp;&nbsp;โทรศัพท์หมายเลข ๑๖๖๙ (second call)<sup>(๒)</sup>&nbsp;&nbsp;
-							<input type="radio" {{ $check_be_notified_3 }} name="be_notified" value="โทรศัพท์หมายเลขอื่นๆ">&nbsp;&nbsp;โทรศัพท์หมายเลขอื่นๆ<sup>(๓)</sup>&nbsp;&nbsp;
+							<input type="radio" {{ $check_be_notified_1 }} name="be_notified" value="แพลตฟอร์มวีเช็ค">&nbsp;&nbsp;แพลตฟอร์มวีเช็ค&nbsp;&nbsp;
+							<input type="radio" {{ $check_be_notified_2 }} name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙">&nbsp;&nbsp;โทรศัพท์หมายเลข ๑๖๖๙<sup>(๑)</sup>&nbsp;&nbsp;
+							<input type="radio" {{ $check_be_notified_3 }} name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙ (second call)">&nbsp;&nbsp;โทรศัพท์หมายเลข ๑๖๖๙ (second call)<sup>(๒)</sup>&nbsp;&nbsp;
 							<br>
-							<input type="radio" {{ $check_be_notified_4 }} name="be_notified" value="วิทยุสื่อสาร">&nbsp;&nbsp;วิทยุสื่อสาร&nbsp;&nbsp;
-							<input type="radio" {{ $check_be_notified_5 }} name="be_notified" value="วิธีอื่นๆ">&nbsp;&nbsp;วิธีอื่นๆ&nbsp;&nbsp;
+							<input type="radio" {{ $check_be_notified_4 }} name="be_notified" value="โทรศัพท์หมายเลขอื่นๆ">&nbsp;&nbsp;โทรศัพท์หมายเลขอื่นๆ<sup>(๓)</sup>&nbsp;&nbsp;
+							<input type="radio" {{ $check_be_notified_5 }} name="be_notified" value="วิทยุสื่อสาร">&nbsp;&nbsp;วิทยุสื่อสาร&nbsp;&nbsp;
+							<input type="radio" {{ $check_be_notified_6 }} name="be_notified" value="วิธีอื่นๆ">&nbsp;&nbsp;วิธีอื่นๆ&nbsp;&nbsp;
 						</p>
 						<p style="font-size:20px;">
 							<b>ชื่อ/รหัสผู้แจ้งเหตุ</b>
