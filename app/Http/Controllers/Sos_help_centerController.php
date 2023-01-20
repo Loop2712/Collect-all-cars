@@ -217,9 +217,18 @@ class Sos_help_centerController extends Controller
             $keyword = null;
         }if ($time1) {
             $keyword = null;
-            $data->whereDate('created_at', '>=', $time1)                                 
-                ->whereDate('created_at', '<=', $time2);           
+            $data->whereDate('created_at', '>=', $time1);             
         }   
+        if ($time2) {
+            $keyword = null;                               
+            $data->whereDate('created_at', '<=', $time2);           
+        }  
+
+        if ($time2 && $time2) {
+            $keyword = null;         
+            $data->whereDate('created_at', '>=', $time1)    
+                ->whereDate('created_at', '<=', $time2);           
+        } 
 
         if (!empty($keyword)) {
             $data_sos = Sos_help_center::where('id', 'LIKE', "%$keyword%")
