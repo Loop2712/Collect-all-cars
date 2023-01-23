@@ -348,6 +348,10 @@
     #map_operating_unit {
       height: calc(80vh);
     }
+
+    #mapTest {
+      height: calc(80vh);
+    }
 </style>
 <script>
 
@@ -362,7 +366,8 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         initMap();
-        click_select_btn('operating_unit');
+        // click_select_btn('operating_unit');
+        initMapTest();
     });
 
     function initMap() {

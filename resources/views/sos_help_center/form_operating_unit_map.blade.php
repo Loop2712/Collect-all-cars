@@ -1,8 +1,66 @@
+
 <div class="container">
 	<div class="row">
-        <div id="map_operating_unit"></div>
+        <!-- <div id="map_operating_unit"></div> -->
+        <div id="mapTest"></div>
 	</div>
 </div>
+
+<script>
+	
+	var map;
+	var service;
+	var directionsDisplay;
+
+	var latitudeA = 14.326791260931913 ;
+	var longitudeA = 100.6368968684157 ;
+
+	var latitudeB = 14.319791260931913 ;
+	var longitudeB = 100.6098968684157 ;
+
+function initMapTest() {
+    mapTest = new google.maps.Map(document.getElementById('mapTest'), {
+        zoom: 14,
+        center: {lat: latitudeA, lng: longitudeA}
+    });
+
+    var markerA = new google.maps.Marker({
+        position: {lat: latitudeA, lng: longitudeA},
+        map: mapTest
+    });
+
+    var markerB = new google.maps.Marker({
+        position: {lat: latitudeB, lng: longitudeB},
+        map: mapTest
+    });
+
+    service = new google.maps.DirectionsService();
+    directionsDisplay = new google.maps.DirectionsRenderer({
+        draggable: true,
+        map: mapTest
+    });
+
+    calculateAndDisplayRoute(markerA, markerB);
+}
+
+function calculateAndDisplayRoute(markerA, markerB) {
+    service.route({
+        origin: markerA.getPosition(),
+        destination: markerB.getPosition(),
+        travelMode: 'DRIVING'
+    }, function(response, status) {
+        if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+            let xxaa = response.routes[0].legs[0].distance.text ;
+            	console.log(xxaa);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
+}
+
+
+</script>
 
 <script>
 
@@ -101,8 +159,8 @@ function location_operating_unit(m_lat , m_lng){
 	        "</div>" +
 	        '<h5 id="firstHeading" class="firstHeading">'+ data_arr[i]['name'] +'</h5>' +
 	        '<div id="bodyContent">' +
-	        "<p>lat : "+ data_arr[i]['lat'] + "<br>" +
-	        "lng : "+ data_arr[i]['lng'] + "</p>" +
+	        "<p>ระดับปฏิบัติการ : "+ "FR" + "<br>" +
+	        "<b>ระยะทาง : "+ "1.3 กม." + "</b></p><br>" +
 	        "</div>" +
 	        "</div>";
 
@@ -117,5 +175,6 @@ function location_operating_unit(m_lat , m_lng){
 
     }
 }
+
 
 </script>
