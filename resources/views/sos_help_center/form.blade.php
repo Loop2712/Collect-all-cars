@@ -171,7 +171,7 @@
         </div>
 
         <!-- form yellow -->
-        <div id="div_form_yellow" class="col-12 col-md-9" style="background-color:#FAE693;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
+        <div id="div_form_yellow" class="col-12 col-md-9 d-none" style="background-color:#FAE693;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
             <div class="row">
                 <div class="col-12">
                     <div>
@@ -232,7 +232,7 @@
         </div>
 
         <!-- form operating unit map -->
-        <div id="div_form_operating_unit_map" class="col-12 col-md-9 d-none" style="height: auto;border: 3px solid red;padding: 25px;border-radius: 25px;">
+        <div id="div_form_operating_unit_map" class="col-12 col-md-9 d-" style="height: auto;border: 3px solid red;padding: 25px;border-radius: 25px;">
             <div class="row">
                 <div class="col-12">
                     <div class="row">
@@ -356,12 +356,13 @@
     let marker  ;
     var sos_markers = [] ;
     let sos_marker  ;
-    var operating_markers = [] ;
-    let operating_marker  ;
+    var sos_operating_markers = [] ;
+    let sos_operating_marker  ;
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         initMap();
+        click_select_btn('operating_unit');
     });
 
     function initMap() {
