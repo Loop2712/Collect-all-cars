@@ -335,7 +335,7 @@
 </div>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=&language=th"></script>
 <style type="text/css">
     #map {
       height: calc(40vh);
@@ -366,8 +366,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         initMap();
-        // click_select_btn('operating_unit');
-        initMapTest();
+        click_select_btn('operating_unit');
     });
 
     function initMap() {
