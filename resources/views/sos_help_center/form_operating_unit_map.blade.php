@@ -172,46 +172,46 @@ function location_operating_unit(m_lat , m_lng){
 
     	if (i < 3) {
 
-    		service = new google.maps.DirectionsService();
-		    directionsDisplay = new google.maps.DirectionsRenderer({
-		        draggable: true,
-		        map: map_operating_unit
-		    });
+    		// service = new google.maps.DirectionsService();
+		    // directionsDisplay = new google.maps.DirectionsRenderer({
+		    //     draggable: true,
+		    //     map: map_operating_unit
+		    // });
 
-		    // calculateAndDisplayRoute(sos_operating_marker, location_unit_marker);
-		    service.route({
-		        origin: sos_operating_marker.getPosition(),
-		        destination: location_unit_marker.getPosition(),
-		        travelMode: 'DRIVING'
-		    }, function(response, status) {
-		        if (status === 'OK') {
-		            // directionsDisplay.setDirections(response);
-		            text_Directions[i] = response.routes[0].legs[0].distance.text ;
-		            	console.log(text_Directions[i]);
-		        } else {
-		            window.alert('Directions request failed due to ' + status);
-		        }
+		    // // calculateAndDisplayRoute(sos_operating_marker, location_unit_marker);
+		    // service.route({
+		    //     origin: sos_operating_marker.getPosition(),
+		    //     destination: location_unit_marker.getPosition(),
+		    //     travelMode: 'DRIVING'
+		    // }, function(response, status) {
+		    //     if (status === 'OK') {
+		    //         // directionsDisplay.setDirections(response);
+		    //         text_Directions[i] = response.routes[0].legs[0].distance.text ;
+		    //         	console.log(text_Directions[i]);
+		    //     } else {
+		    //         window.alert('Directions request failed due to ' + status);
+		    //     }
 
-			    let contentString =
-			        '<div style="height: auto;border: 3px solid red;padding: 25px;border-radius: 25px;" id="content">' +
-			        '<div id="siteNotice">' +
-			        "</div>" +
-			        '<h5 id="firstHeading" class="firstHeading">'+ name +'</h5>' +
-			        '<div id="bodyContent">' +
-			        "<p>ระดับปฏิบัติการ : "+ level + "<br>" +
-			        "<b>ระยะทาง : "+ text_Directions[i] + "</b></p><br>" +
-			        "</div>" +
-			        "</div>";
+			//     let contentString =
+			//         '<div style="height: auto;border: 3px solid red;padding: 25px;border-radius: 25px;" id="content">' +
+			//         '<div id="siteNotice">' +
+			//         "</div>" +
+			//         '<h5 id="firstHeading" class="firstHeading">'+ name +'</h5>' +
+			//         '<div id="bodyContent">' +
+			//         "<p>ระดับปฏิบัติการ : "+ level + "<br>" +
+			//         "<b>ระยะทาง : "+ text_Directions[i] + "</b></p><br>" +
+			//         "</div>" +
+			//         "</div>";
 
-			    let infoWindow = [] ;
+			//     let infoWindow = [] ;
 
-			    infoWindow[i] = new google.maps.InfoWindow({
-			        content: contentString,
-			        position: myLatlng,
-			    });
+			//     infoWindow[i] = new google.maps.InfoWindow({
+			//         content: contentString,
+			//         position: myLatlng,
+			//     });
 
-			    infoWindow[i].open(map_operating_unit);
-		    });
+			//     infoWindow[i].open(map_operating_unit);
+		    // });
 
     		
 
@@ -220,22 +220,22 @@ function location_operating_unit(m_lat , m_lng){
     }
 }
 
-function calculateAndDisplayRoute(markerA, markerB) {
-    service.route({
-        origin: markerA.getPosition(),
-        destination: markerB.getPosition(),
-        travelMode: 'DRIVING'
-    }, function(response, status) {
-        if (status === 'OK') {
-            // directionsDisplay.setDirections(response);
-            let xxaa = response.routes[0].legs[0].distance.text ;
-            	console.log(xxaa);
-        } else {
-            window.alert('Directions request failed due to ' + status);
-        }
-    });
+// function calculateAndDisplayRoute(markerA, markerB) {
+//     service.route({
+//         origin: markerA.getPosition(),
+//         destination: markerB.getPosition(),
+//         travelMode: 'DRIVING'
+//     }, function(response, status) {
+//         if (status === 'OK') {
+//             // directionsDisplay.setDirections(response);
+//             let xxaa = response.routes[0].legs[0].distance.text ;
+//             	console.log(xxaa);
+//         } else {
+//             window.alert('Directions request failed due to ' + status);
+//         }
+//     });
 
-}
+// }
 
 
 </script>
