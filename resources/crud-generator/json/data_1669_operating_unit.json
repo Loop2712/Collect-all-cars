@@ -1,0 +1,16 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "area",
+            "type": "string"
+        },
+        {
+            "name": "level",
+            "type": "string"
+        }
+    ]
+}

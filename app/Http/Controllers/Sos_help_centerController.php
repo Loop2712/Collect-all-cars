@@ -11,6 +11,7 @@ use App\Models\Sos_help_center;
 use Google\Service\AlertCenter\Resource\Alerts;
 use Illuminate\Http\Request;
 use SebastianBergmann\Environment\Console;
+use App\Models\Data_1669_operating_officer;
 
 class Sos_help_centerController extends Controller
 {
@@ -354,6 +355,22 @@ class Sos_help_centerController extends Controller
 
 
         return $data_sos ;
+    }
+
+    function get_location_operating_unit($m_lat , $m_lng){
+
+        $latitude = (float)$m_lat ;
+        $longitude = (float)$m_lng;
+
+        $locations = DB::table('data_1669_operating_units')
+            ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
+            ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
+            ->having("distance", "<", 10)
+            ->orderBy("distance")
+            ->limit(20)
+            ->get();
+
+        return $locations ;
     }
 
 }

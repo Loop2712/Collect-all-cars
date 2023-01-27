@@ -412,3 +412,5 @@ Route::resource('partner_premium', 'Partner_premiumController');
 
 Route::resource('sub_organization', 'Sub_organizationController');
 Route::resource('sos_1669_form_yellow', 'Sos_1669_form_yellowController');
+Route::resource('data_1669_operating_unit', 'Data_1669_operating_unitController');
+Route::resource('data_1669_operating_officer', 'Data_1669_operating_officerController');

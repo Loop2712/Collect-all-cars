@@ -1213,7 +1213,7 @@
 			        "submission_criteria" : submission_criteria_value,
 			        "communication_hospital" : communication_hospital_value,
 			    };
-			    console.log(data_arr);
+			    // console.log(data_arr);
 		    break;
 		    case '9':
 		    	data_arr = {

@@ -12,30 +12,37 @@ use App\Models\Register_car;
 use App\Models\LineMessagingAPI;
 use App\Models\Mylog;
 
+use App\Models\Data_1669_operating_officer;
+
 use Illuminate\Http\Request;
 
 class test_for_devController extends Controller
 {
+    public function main_test()
+    {
+
+        $latitude = 14.316791260931913;
+        $longitude = 100.6068968684157;
+
+        $locations = DB::table('data_1669_operating_units')
+            ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
+            ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
+            ->having("distance", "<", 10)
+            ->orderBy("distance")
+            ->limit(20)
+            ->get();
+            
+        echo "<pre>";
+        print_r($locations);
+        echo "<pre>";
+        exit();
+    }
+
     public function test_table()
     {
         return view('test_for_dev.test_table'); 
     }
 
-
-    public function main_test()
-    {
-        $url = "www.peddyhub.com" ;
-
-        $to_url_ep = explode("//" , $url);
-
-        if (count($to_url_ep) > 1) {
-            $to_url = $url ;
-        }else{
-            $to_url = 'http://' . $url ;
-        }
-
-        exit();
-    }
 
     // นับตัวอักษร
     function utf8_strlen($s) {

@@ -335,7 +335,13 @@
 </div>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=&language=th"></script>
+
+<!-- VIICHECK ใช้จริงใช้อันนี้ -->
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script> -->
+
+<!-- KEY BENZE for test -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHrdKXlaset7m3Na7pMCEj8efChb6qJio&language=th"></script>
+
 <style type="text/css">
     #map {
       height: calc(40vh);
