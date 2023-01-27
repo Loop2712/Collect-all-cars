@@ -82,7 +82,21 @@
         color: none;
         border: none;
         background-color: white;
+    } 
+    .data-show{
+        animation: data-open 1s ease 0s 1 normal forwards;
     }
+
+    @keyframes data-open {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
 </style>
 <div class="">
     <div class="item col-12">
@@ -114,7 +128,6 @@
                     <div class="d-flex justify-content-between">
                         <div>
                             <button class="btn btn-new-help" onclick="create_new_sos_help_center();">การช่วยเหลือใหม่</button>
-                            <button class="btn btn-new-help" onclick="tteesstt();">ทดสอบ</button>
                         </div>  
                         <div>
                             <div class="btn-group ">
@@ -122,9 +135,6 @@
                                     <form method="GET" action="{{ url('/help_center_admin') }}" accept-charset="UTF-8" role="search">
                                         <div class="input-group">	
                                             <input type="text" class="form-control" id="search" name="search" placeholder="ค้นหา รหัสเคส,ผู้ขอความช่วยเหลือ,หน่วยงาน" value="" oninput="search_data_help();">
-                                            <button class="input-group-text bg-transparent"type="submit">
-                                                <i class="bx bx-search"></i>
-                                            </button>
                                             <button type="button" class="btn btn-primary" style="border-radius: 0 5px 5px 0;"data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 ค้นหาขั้นสูง
                                             </button>
@@ -293,13 +303,13 @@
             </div>
             <div class="col-12">
                  <!-- div_data_help -->
-                 <div id="div_body_help" class="card-body row m-2">
+                 <div id="div_body_help" class="row">
                 </div>
 
 
-                <div class="row m-2" id="data_help">
+                <div class="row" id="data_help">
                         @foreach($data_sos as $item)
-                            <a class="col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}"">
+                            <a class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/' . $item->id . '/edit#step-1') }}"">
                                 <div >
                                     <div class="card card-sos shadow">
                                         <div class="sos-header">
@@ -459,22 +469,14 @@
                         ถึง รพ.
                     </button>
                 </div>
-
-
-               
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><b></b>
 
-<div class="container-partner-sos">
+<!-- <div class="container-partner-sos">
     <div class="item sos-map col-md-12 col-12 col-lg-4">
         <div class="row">
             <div class="col-6">
@@ -484,7 +486,6 @@
                 <br><br>
             </div>
             <div class="col-6">
-                <!-- COL-6 -->
             </div>
             <div class="col-12">
                 <div style="padding-right:15px ;">
@@ -602,14 +603,13 @@
                             <br>
                         </div>
                         <div style="float: right;">
-                            <!--  -->
                         </div>
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -650,7 +650,7 @@
             .then(result => {
                 // console.log(result);
                 if (result) {
-                    window.location.replace("{{ url('/') }}/sos_help_center/" + result + "/edit");
+                    window.location.replace("{{ url('/') }}/sos_help_center/" + result + "/edit#step-1");
                 }
         });
 
@@ -688,7 +688,7 @@
         let data_time1 = document.querySelector('#time1').value;
         let data_time2 = document.querySelector('#time2').value;
         let data_search = document.querySelector('#search').value;
-
+       
 
 
         if (!data_id && !data_name &&! data_helper && !data_organization && !data_date && !data_time1 && !data_time2 && !data_search) {
@@ -700,49 +700,6 @@
         }
     }
 
-    function tteesstt(){
-
-        let div_body_help = document.querySelector('#div_body_help');
-            div_body_help.innerHTML = "" ;
-
-        fetch("{{ url('/') }}/api/data_help_center/?&name=ฐ" )
-            .then(response => response.json())
-            .then(result => {
-                console.log(result['data']);
-                console.log(result['data']['length']);
-            
-                for (var i = 0; i < result['data']['length']; i++) {
-
-                    let div_data_add = document.createElement("div");
-                    let id_div_data_add = document.createAttribute("id");
-                        id_div_data_add.value = "data_id_" + result['data'][i]['id'];
-                        div_data_add.setAttributeNode(id_div_data_add);
-                    let class_div_data_add = document.createAttribute("class");
-                        class_div_data_add.value = "col-6";
-                        div_data_add.setAttributeNode(class_div_data_add);
-                    div_body_help.appendChild(div_data_add);
-
-                    let div_data_help_center = 
-                    
-                    `
-                    <div id='box'>
-                        <button id='button-1'>`+ result['data'][i]['id'] + `</button>
-                        <button id='button-1'>` + result['data'][i]['name_user'] +  `</button>
-                        
-                    </div>
-                    
-                    `;
-
-                    document.querySelector('#data_id_' + result['data'][i]['id']).innerHTML = div_data_help_center ;
-
-                }
-
-                
-        });
-            
-        
-                 
-    }
 
     function data_help_center(search_by_id , search_by_name , search_by_helper , search_by_organization , search_by_date ,search_by_time1 ,search_by_time2 ,search_data){
 
@@ -773,7 +730,7 @@
                         let name = result['data'][i]['name_user'];
                         let organization_helper = result['data'][i]['organization_helper'];
                         let name_helper = result['data'][i]['name_helper'];
-                        let url_edit = "/sos_help_center/" + result['data'][i]['id'] + "/edit" ;
+                        let url_edit = "/sos_help_center/" + result['data'][i]['id'] + "/edit#step-1" ;
 
                         
                         
@@ -810,7 +767,7 @@
                         `
                         <a class="col-lg-6 col-md-6 col-12 a_data_user show"  href="{{url('/') }}` + url_edit + ` ">
                             <div >
-                                <div class="card card-sos shadow">
+                                <div class="card card-sos shadow data-show">
                                     <div class="sos-header">
                                         <div>
                                             <h6 class="m-0 p-0 data-overflow">รหัส`+ result['data'][i]['id'] + `</h6>

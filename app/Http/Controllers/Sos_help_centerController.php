@@ -181,55 +181,9 @@ class Sos_help_centerController extends Controller
         
         $data_user = Auth::user();
 
-        $id     = $request->get('id');
-        $name     = $request->get('name');
-        $organization     = $request->get('organization');
-        $helper     = $request->get('helper');
-        $date     = $request->get('date');
-        $time1 = date($request->get('time1'));
-        $time2 = date($request->get('time2'));
-
-        $data = DB::table('sos_help_centers');
-        
-        $requestData = $request->all();
-
         $count_data = Sos_help_center::count();
-        // echo "<pre>";
-        // print_r($name);
-        // print_r($id);
-
-        // echo "<pre>";
-        // exit();
      
-         if ($id) {
-            $data->where('id', $id);
-            $keyword = null;
-        }if ($name) {
-            $data->where('name_user', $name);
-            $keyword = null;
-        } if ($helper) {
-            $data->where('name_helper', $helper);
-            $keyword = null;
-        }if ($organization) {
-            $data->where('organization_helper', $organization);
-            $keyword = null;
-        }if ($date) {
-            $data->whereDate('created_at', $date);
-            $keyword = null;
-        }if ($time1) {
-            $keyword = null;
-            $data->whereDate('created_at', '>=', $time1);             
-        }   
-        if ($time2) {
-            $keyword = null;                               
-            $data->whereDate('created_at', '<=', $time2);           
-        }  
-
-        if ($time2 && $time2) {
-            $keyword = null;         
-            $data->whereDate('created_at', '>=', $time1)    
-                ->whereDate('created_at', '<=', $time2);           
-        } 
+      
 
         if (!empty($keyword)) {
             $data_sos = Sos_help_center::where('id', 'LIKE', "%$keyword%")
@@ -239,7 +193,7 @@ class Sos_help_centerController extends Controller
                 ->orWhere('name_helper', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $data_sos = $data->latest()->paginate($perPage);
+            $data_sos = Sos_help_center::latest()->paginate($perPage);
         }
         
         // elseif($needFilter){
@@ -309,14 +263,20 @@ class Sos_help_centerController extends Controller
         $time1 = date($request->get('time1'));
         $time2 = date($request->get('time2'));
 
-        if ( empty($time1) ) {
-            $time1 = date('00:00');
+        if (empty($time1) ) {
+            $time_search_1 = date('00:00');
+        }else{
+            $time_search_1 = $time1;
         }
 
-        if ( empty($time2) ) {
-            $time2 = date('23:59');
+        if (empty($time2) ) {
+            $time_search_2 = date('23:59');
+        }else{
+            $time_search_2 = $time2;
         }
 
+
+        
         $data = DB::table('sos_help_centers');
         
         if ($id) {
@@ -336,9 +296,9 @@ class Sos_help_centerController extends Controller
             $data->whereDate('created_at', $date);
             $keyword = null;
         }
-
-        if ($time1 or $time2) {
-            $data->whereTime('created_at', '>=', $time1)->whereTime('created_at', '<=', $time2);
+        
+        if ($time1 || $time2) {
+            $data->whereTime('created_at', '>=', $time_search_1)->whereTime('created_at', '<=', $time_search_2);
             $keyword = null;
         }
 
@@ -349,10 +309,11 @@ class Sos_help_centerController extends Controller
                 ->orWhere('organization_helper', 'LIKE', "%$keyword%")
                 ->orWhere('name_helper', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
-        } else {
+        }
+        else {
             $data_sos = $data->latest()->paginate($perPage);
         }
-
+        
 
         return $data_sos ;
     }

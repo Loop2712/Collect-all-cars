@@ -410,8 +410,18 @@
 	cursor: pointer
 }
 .sw-theme-dots>.nav .nav-link.danger::after {
-	background-color: #d9534f
+	background-color: #d9534f;
 }
+
+.sw-theme-dots>.nav .nav-link.success {
+	color: #32ab13;
+	cursor: pointer
+}
+.sw-theme-dots>.nav .nav-link.success::after {
+	background-color: #32ab13
+}
+
+
 .sw-theme-dark {
 	border: 1px solid #eee;
 	box-shadow: 0 1px 10px rgba(130, 130, 134, .1);

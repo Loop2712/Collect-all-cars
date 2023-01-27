@@ -1,11 +1,11 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
-    <div class="container-fluid">
+    <!-- <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body"> -->
 
                         @if ($errors->any())
                             <ul class="alert alert-danger">
@@ -25,9 +25,9 @@
                             
                         </form> -->
 
-                    </div>
+                    <!-- </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 @endsection

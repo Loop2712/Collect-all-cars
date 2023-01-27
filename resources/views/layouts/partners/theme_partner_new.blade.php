@@ -4,7 +4,14 @@
 
 
 <head>
+
+	<link href="{{ asset('partner_new/plugins/smart-wizard/css/smart_wizard_all.min.css') }}" rel="stylesheet" type="text/css" />
+	<!-- loader-->
+	<link href="{{ asset('partner_new/css/pace.min.css') }}" rel="stylesheet" />
+	<script src="{{ asset('partner_new/js/pace.min.js') }}"></script>
 	
+
+
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +23,8 @@
 	<link href="{{ asset('partner_new/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('/partner_new/plugins/highcharts/css/highcharts.css') }}" rel="stylesheet" />
 	<link href="{{ asset('/partner_new/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
+	<link href="{{ asset('partner_new/plugins/smart-wizard/css/smart_wizard_all.min.css') }}" rel="stylesheet" type="text/css" />
+
 	<!-- loader-->
 	<link href="{{ asset('/css/pace.min.css') }}" rel="stylesheet" />
 	<script src="{{ asset('/js/pace.min.js') }}"></script>
@@ -30,7 +39,7 @@
 	<link rel="stylesheet" href="{{ asset('partner_new/css/header-colors.css') }}" />
 	<!-- fontawesome icon -->
     <link rel="stylesheet" href="{{ asset('/partner/fonts/fontawesome/css/fontawesome-all.min.css') }}">
- 	<link href="https://kit-pro.fontawesome.com/releases/v6.0.0/css/pro.min.css" rel="stylesheet">
+ 	<link href="https://kit-pro.fontawesome.com/releases/v6.2.0/css/pro.min.css" rel="stylesheet">
     
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1163,22 +1172,24 @@
 <input id="class_color_menu" type="text" class="d-none" name="" value="">
 <input id="check_name_partner" type="hidden" name="" value="">
 
-
 <!-- Bootstrap JS -->
 <script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
 <!--plugins-->
 <script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/simplebar/js/simplebar.min.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/metismenu/js/metisMenu.min.js') }}"></script>
+
 <script src="{{ asset('partner_new/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/highcharts/js/highcharts.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/smart-wizard/js/jquery.smartWizard.min.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/highcharts/js/exporting.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/highcharts/js/variable-pie.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/highcharts/js/export-data.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/highcharts/js/accessibility.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <script>
@@ -1191,13 +1202,11 @@
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
 
- <!-- src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
- src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"> -->
 
 
 
 
-
+	
 <script>
 
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -1746,6 +1755,7 @@
 		}
 	}
 </script>
+
 
 </body>
 

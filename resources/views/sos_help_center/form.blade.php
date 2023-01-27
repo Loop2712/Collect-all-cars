@@ -76,6 +76,344 @@
     </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    div{
+        font-family: 'Kanit', sans-serif;
+    }
+    .menu-header{
+        background-color: transparent;
+        padding: 20px 25px;
+        position: relative;
+    }#map{
+        border-radius: 10px;
+    } .div-map{
+        position: relative;
+    }.btn_go_to_map{
+        position: absolute;
+        bottom: 5%;
+        left: 5%;
+    }.sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 4rem;
+    }.yellow-form{
+        background-color:#FAE693;
+        height: auto;
+        border: 0px solid black;
+        padding: 25px;
+    }
+</style>
+<div>
+    <div class="card radius-10">
+        <div class="row d-flex justify-content-between">
+            <div class="col-md-2 col-lg-2 col-12 menu-header bg-transparent d-inline">
+                <h6 class=" font-weight-bold m-0 p-0">รหัสปฏิบัติการ</h6>
+                <h1><b><u>{{ $sos_help_center->id }}</u></b></h1>
+            </div>
+            <div class="col-10 d-flex justify-content-end">
+                <div class="d-flex align-items-center">
+                    <!-- <button type="button" class="btn btn-warning m-2" onclick="click_select_btn('form_yellow');">
+                        <i class="fa-solid fa-files-medical"></i> <br> แบบฟอร์มเหลือง
+                    </button>
+                    <button type="button" class="btn btn-info m-2" onclick="click_select_btn('operating_unit');">
+                        <i class="fa-solid fa-hospital-user"></i> <br> แบบฟอร์มฟ้า
+                    </button>
+                    <button type="button" class="btn btn-success m-2" onclick="click_select_btn('operating_unit');">
+                    <i class="fa-solid fa-hospital-user"></i> <br> แบบฟอร์มเขียว
+                    </button>
+                    <button type="button" class="btn m-2 " style="background-color:#fa93f0;" onclick="click_select_btn('operating_unit');">
+                    <i class="fa-solid fa-hospital-user"></i> <br> แบบฟอร์มชมพู
+                    </button>
+                    <button id="btn_select_operating_unit" disabled  type="button" class="btn btn-secondary m-2" onclick="click_select_btn('operating_unit');">
+                        <i class="fa-solid fa-truck-medical"></i> <br> เลือกหน่วยแพทย์
+                    </button> -->
+                    <style>
+                        .nav-pills-success.nav-pills .nav-link{
+                        color: #29cc39;
+                        }
+                        .nav-pills-success.nav-pills .nav-link:hover{
+                        color: #fff;
+                        }
+
+                        .nav-pills-warning.nav-pills .nav-link{
+                        color: #ffc107;
+                        }
+                        .nav-pills-warning.nav-pills .nav-link:hover{
+                        color: #000;
+                        }
+
+                        .nav-pills-info.nav-pills .nav-link{
+                        color: #0dcaf0;
+                        }
+                        .nav-pills-info.nav-pills .nav-link:hover{
+                        color: #fff;
+                        }
+
+                        .nav-pills-pink.nav-pills .nav-link{
+                        color: #fa93f0;
+                        }
+                        .nav-pills-pink.nav-pills .nav-link:hover{
+                        color: #fff;
+                        }
+
+                        .nav-pills-secondary.nav-pills .nav-link{
+                        color: #6c757d;
+                        }
+                        .nav-pills-secondary.nav-pills .nav-link:hover{
+                        color: #fff;
+                        }
+
+                    </style>
+                    <ul class="nav nav-pills m-3" role="tablist">
+                        <li class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
+                            <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
+                                    </div>
+                                    <div class="tab-title">แบบฟอร์มเหลือง</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-pills nav-pills-info m-2" role="presentation">
+                            <a class="nav-link  btn-outline-info btn" data-bs-toggle="pill" href="#form-blue" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-icon">
+                                        <i class="fa-solid fa-hospital-user"></i>
+                                    </div>
+                                    <div class="tab-title">แบบฟอร์มฟ้า</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item  nav-pills nav-pills-success m-2" role="presentation">
+                            <a class="nav-link btn-outline-success btn" data-bs-toggle="pill" href="#form-green" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-icon">
+                                        <i class="fa-solid fa-hospital-user"></i>
+                                    </div>
+                                    <div class="tab-title">แบบฟอร์มเขียว</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-pills nav-pills-pink m-2" role="presentation">
+                            <a class="nav-link btn-outline-pink btn" data-bs-toggle="pill" href="#form-pink" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-icon">
+                                        <i class="fa-solid fa-hospital-user"></i>
+                                    </div>
+                                    <div class="tab-title">แบบฟอร์มชมพู</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item nav-pills nav-pills-secondary m-2" role="presentation">
+                            <a class="nav-link  btn-outline-secondary btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-icon">
+                                        <i class="fa-solid fa-hospital-user"></i>
+                                    </div>
+                                    <div class="tab-title">เลือกหน่วยแพทย์</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-3 col-lg-3">
+        <div class="sticky">
+            <div class="card radius-10 p-3">
+                <span>
+                    ชื่อ/รหัสผู้แจ้งเหตุ
+                </span>
+                <h4>
+                    <u>Teerasak Senarak</u>
+                </h4>
+                <hr>
+                <span class="mt-2">
+                    โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ
+                </span>
+                <h4>
+                    <u>081-234-5678</u>
+                </h4>
+            </div>
+            <div class="card radius-10 p-3">
+                <div class="row d-flex justify-content-between">
+                    <div class="col h6 d-flex align-items-center">
+                        <b>จุดเกิดเหตุ</b>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <span class="btn btn-sm btn-danger" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
+                            เลือกจุด <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="div-map">
+                    <div id="map" class="mt-2"></div>
+                    <span class="btn btn-warning btn_go_to_map" onclick="go_to_maps();">
+                        นำทาง <i class="fa-solid fa-location-arrow"></i>
+                    </span>
+                    <a id="go_to_maps" href="" target="bank"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .box-status{
+            background: rgba(255, 255, 255, .5);
+            padding: 5px 15px 5px 15px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            /* border: #000000 solid 1px; */
+        }
+    </style>
+    
+    <div class="col-12 col-md-9 col-lg-9  "  >
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="form_yellow" role="tabpanel">
+                <div class="card radius-10 p-3 yellow-form">
+                    <div class="row">
+                        <div class="col">
+                            <div class="box-status">
+                                @php
+                                    $date = $sos_help_center->created_at ;
+                                    $result = $date->format('d/m/Y');
+                                @endphp
+                                <span class="m-0">วันที่ </span>
+                                <h5 class="m-0 h5">
+                                    <b> {{ $result }}</b>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box-status">
+                                <span class="m-0">เลขที่ปฏิบัติการ(ON)</span>
+                                <h5 class="m-0 h5">
+                                    <b>{{ $sos_help_center->operating_code }}
+                                        000000000000000
+                                    </b>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box-status">
+                                <span class="m-0">ลำดับผู้ป่วย(CN)</span>
+                                <h5 class="m-0 h5">
+                                    <b>
+                                        .............
+                                    </b>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                        @include ('test_test')
+                        
+				
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="form-blue" role="tabpanel">
+                <p>@include ('sos_help_center.form_sos_blue')</p>
+            </div>
+
+            <div class="tab-pane fade" id="form-green" role="tabpanel">
+                <p>@include ('sos_help_center.form_sos_green')</p>div_form_pink
+            </div>
+
+            <div class="tab-pane fade" id="form-pink" role="tabpanel">
+                <p>@include ('sos_help_center.form_sos_pink')</p>
+            </div>
+
+            <div class="tab-pane fade" id="operating_unit" role="tabpanel">
+                <p>@include ('sos_help_center.form_operating_unit_map')</p>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="item sos-map col-12 col-md-12 bg-white">
     <div class="row">
         <div class="col-12">
@@ -341,6 +679,7 @@
 
 <!-- KEY BENZE for test -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHrdKXlaset7m3Na7pMCEj8efChb6qJio&language=th"></script>
+
 
 <style type="text/css">
     #map {

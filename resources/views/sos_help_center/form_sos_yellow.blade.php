@@ -1125,7 +1125,7 @@
 		switch(active) {
 		  	case '1':
 		    	data_arr = {
-			        "sos_help_center_id" : {{ $sos_help_center->id }},
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "be_notified" : be_notified_value,
 			        "name_user" : name_user.value,
 			        "phone_user" : phone_user.value,
@@ -1136,25 +1136,25 @@
 		    break;
 		  	case '2':
 		    	data_arr = {
-			        "sos_help_center_id" : {{ $sos_help_center->id }},
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "symptom" : symptom_value,
 			    };
 		    break;
 			case '3':
 		    	data_arr = {
-			        "sos_help_center_id" : {{ $sos_help_center->id }},
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "symptom_other" : symptom_other.value,
 			    };
 		    break;
 		    case '4':
 		    	data_arr = {
-			        "sos_help_center_id" : {{ $sos_help_center->id }},
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "idc" : idc_value,
 			    };
 		    break;
 		    case '5':
 		    	data_arr = {
-			        "sos_help_center_id" : {{ $sos_help_center->id }},
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "vehicle_type" : vehicle_type_value,
 			        "operating_suit_type" : operating_suit_type_value,
 			        "operation_unit_name" : operation_unit_name.value,
@@ -1176,13 +1176,13 @@
 
 		    	if ( rc_value && rc_value === "ดำ" ) {
 		    		data_arr = {
-				        "sos_help_center_id" : {{ $sos_help_center->id }},
+				        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 				        "rc" : rc_value,
 				        "rc_black_text" : rc_black_text.value,
 				    };
 		    	}else{
 		    		data_arr = {
-				        "sos_help_center_id" : {{ $sos_help_center->id }},
+				        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 				        "rc" : rc_value,
 				    };
 		    	}
@@ -1190,14 +1190,14 @@
 		    break;
 		    case '7':
 		    	data_arr = {
-			        "sos_help_center_id" : {{ $sos_help_center->id }},
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "treatment" : treatment_value,
 			        "sub_treatment" : sub_treatment_value,
 			    };
 		    break;
 		    case '8':
 		    	data_arr = {
-			        "sos_help_center_id" : {{ $sos_help_center->id }},
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "patient_name_1" : patient_name_1.value,
 			        "patient_age_1" : patient_age_1.value,
 			        "patient_hn_1" : patient_hn_1.value,
@@ -1217,7 +1217,7 @@
 		    break;
 		    case '9':
 		    	data_arr = {
-			        "sos_help_center_id" : {{ $sos_help_center->id }},
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "registration_category" : registration_category.value,
 			        "registration_number" : registration_number.value,
 			        "registration_province" : registration_province.value,

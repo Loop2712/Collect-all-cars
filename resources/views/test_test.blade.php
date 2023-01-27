@@ -1,802 +1,2248 @@
-@extends('layouts.partners.theme_partner_new')
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="row">
+	<div class="col-xl-12 mx-auto">
+		<div class="card-body">
+			<!-- <br />
+			<p>
+				<label>Theme:</label>
+				<select id="theme_selector">
+					<option value="default">Default</option>
+					<option value="arrows">Arrows</option>
+					<option value="dots" selected>Dots</option>
+					<option value="dark">Dark</option>
+				</select>&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" id="is_justified" value="1" checked />
+				<label for="is_justified">Justified</label>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label>Animation:</label>
+				<select id="animation">
+					<option value="none">None</option>
+					<option value="fade">Fade</option>
+					<option value="slide-horizontal" selected>Slide Horizontal</option>
+					<option value="slide-vertical">Slide Vertical</option>
+					<option value="cssBounceSlideH">Slide Swing</option>
+				</select>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label>Go To:</label>
+				<select id="got_to_step">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label>External Buttons:</label>
 
-@section('content')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 col-12 col-lg-4">
-            <div class="row">
-                <div class="col-6">
-                    <a href="{{ url('/sos_partner') }}" style="float: left; background-color: green;" type="button" class="btn text-white" > <!-- onclick="initMap();" -->
-                        <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
-                    </a>
-                    <br><br>
-                </div>
-                <div class="col-6">
-                    <h4 style="float: right;color: #007bff;"><b>{{ $name_area }}</b></h4>
-                </div>
-                <div class="col-12">
-                    <input class="d-none" type="text" id="va_zoom" name="" value="6">
-                    <input class="d-none" type="text" id="center_lat" name="" value="13.7248936">
-                    <input class="d-none" type="text" id="center_lng" name="" value="100.4930264">
-                    <input class="d-none" type="text" id="name_area" name="" value="{{ $name_area }}">
-                    @foreach($data_partners as $data_partner)
-                        <input class="d-none" type="text" id="name_partner" name="" value="{{ $data_partner->name }}">
-                    @endforeach
-                    <div class="card">
-                        <div id="map"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-------------------------------------------------- pc -------------------------------------------------->
-        <div class="col-8 d-none d-lg-block" >
-            <div class="row">
-                <div class="col-3">
-                    <div class="dropdown">
-                        <button class="btn btn-info dropdown-toggle text-white" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            เลือกพื้นที่
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{{ url('/sos_partner') }}">ทั้งหมด</a>
-                            @foreach($select_name_areas as $select_name_area)
-                                <a id="select_name_area_{{ $select_name_area->name_area }}" class="dropdown-item" href="{{ url('/sos_partner?name_area=') . $select_name_area->name_area }}">
-                                    {{ $select_name_area->name_area }}
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div style="float: right;">
-                        <a href="{{ url('/sos_detail_partner') }}" type="button" class="btn btn-primary text-white">ดูช่วงเวลา <i class="fas fa-chart-line"></i></a>
-                        @if(Auth::check())
-                            @if(Auth::user()->role == 'admin-partner')
-                        <a href="#" type="button" class="btn btn-primary text-white d-">คะแนนการช่วยเหลือ (soon) </a>
-                        <!--  href="{{ url('/sos_score_helper') }}" -->
-                            @endif
-                        @endif
-                        <a type="button" data-toggle="modal" data-target="#Partner_gsos">
-                            <button class="btn btn-success">
-                                <i class="fas fa-info-circle"></i>วิธีใช้
-                            </button>
-                        </a>
-                    </div>
-                </div>
-                <br><br>
-                <div class="card radius-10 d-none d-lg-block col-12" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
-                    <div class="card-header border-bottom-0 bg-transparent" style="margin-top: 10px;">
-                        <div class="d-flex align-items-center">
-                            <div class="col-12">
-                                <h5 class="font-weight-bold mb-0" style="margin-top:10px;">
-                                    การขอความช่วยเหลือ
-                                    <span style="font-size: 15px; float: right; margin-top:-5px;">
-                                      จำนวนทั้งหมด <b>{{ $count_data }}</b> ครั้ง
-                                      &nbsp;&nbsp; | &nbsp;&nbsp;
-                                      @if($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
-                                      @endif
+			</p>
+			<br /> -->
+			<!-- SmartWizard html -->
+			
+			<div id="smartwizard">
+				<ul class="nav">
+					<!-- <li class="nav-item">
+						<button style="position: relative;z-index: 999999;border-radius: 50px;" class="btn btn-info shadow" id="prev-btn" type="button"><i class="fa-solid fa-chevron-left"></i></button>
+					</li> -->
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail" href="#step-1" onclick="go_to_form_data('1');"  id="form_data_1"> 
+							<strong>1</strong>
+							<span class="tooltip text-center">ข้อมูลทั่วไป</span>
+						</a>
+					</li> 
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail" href="#step-2" onclick="go_to_form_data('2');"  id="form_data_2"> 
+							<strong>2</strong>
+							<span class="tooltip">อาการนำสำคัญ</span>
+						</a>
+					</li>
+					<li class="nav-item danger">
+						<a class="nav-link danger position div_detail" href="#step-3" onclick="go_to_form_data('3');"  id="form_data_3"> 
+							<strong>3</strong>
+							<span class="tooltip">รายละเอียด</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail" href="#step-4" onclick="go_to_form_data('4');"  id="form_data_4"> 
+							<strong>4</strong>
+							<span class="tooltip">รหัสความรุนแรง</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail" href="#step-5" onclick="go_to_form_data('5');"  id="form_data_5"> 
+							<strong>5</strong>
+							<span class="tooltip">การสั่งการ(หัวหน้าศูนย์ฯ)</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail" href="#step-6" onclick="go_to_form_data('6');"  id="form_data_6"> 
+							<strong>6</strong>
+							<span class="tooltip">รหัสความรุนแรง ณ จุดเกิดเหตุ</span>
+						</a>
+					</li>
+					<li class="nav-item inactive">
+						<a class="nav-link danger position div_detail" href="#step-7" onclick="go_to_form_data('7');"  id="form_data_7"> 
+							<strong>7</strong>
+							<span class="tooltip">การปฏิบัติการ</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail" href="#step-8" onclick="go_to_form_data('8');"  id="form_data_8"> 
+							<strong>8</strong>
+							<span class="tooltip">ชื่อผู้ป่วย</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail" href="#step-9" onclick="go_to_form_data('9');"  id="form_data_9"> 
+							<strong>9</strong>
+							<span class="tooltip">เพิ่มเติม</span>
+						</a>
+					</li>
+					<!-- <li class="nav-item">
+						<button class="btn btn-info text-white"style="position: relative;z-index: 999999;border-radius: 50px;" id="next-btn" type="button"><i class="fa-solid fa-chevron-right"></i></button>
 
-                                      @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
-                                      @endif
+					</li> -->
+				</ul>
+				<style>
+					label {
+					width: 100%;
+					font-size: 1rem;
+					}
+					.position{
+					position: relative;
+					}
+					.tooltip{
+						text-align: center;
+					background-color: #333;
+					color: white;
+					position: absolute;
+					left: 50%;
+					transform: translateX(-50%);
+					-webkit-transform: translateX(-50%);
+					-moz-transform: translateX(-50%);
+					-ms-transform: translateX(-50%);
+					-o-transform: translateX(-50%);
+					font-size: 12px;
+					width: 190px;
+					padding: 10px 15px;
+					top: -210%;
+					transition: 0.5s;
+					-webkit-transition: 0.5s;
+					-moz-transition: 0.5s;
+					-ms-transition: 0.5s;
+					-o-transition: 0.5s;
+					opacity: 0; /* to hide it but still there*/
+					border-radius:10px;
+					font-family: 'Kanit', sans-serif;
+					}
+					.tooltip::before{
+					content: "";
+					position: absolute;
+					bottom: -15px ;
+					left: 50%;
+					transform: translateX(-50%);
+					-webkit-transform: translateX(-50%);
+					-moz-transform: translateX(-50%);
+					-ms-transform: translateX(-50%);
+					-o-transform: translateX(-50%);
+					border:10px solid;
+					border-color: #333 transparent transparent transparent;
 
-                                      @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b>{{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
-                                      @endif
-                                  </span>
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                    <hr style="color:black;background-color:black;height:2px;">
-                    <div class="card-body">
-                      <div class="row text-center">
-                          <div class="col-3">
-                              <b>ผู้ขอความช่วยเหลือ</b>
-                          </div>
-                          <div class="col-3">
-                              <b>เวลาแจ้งเหตุ</b>
-                          </div>
-                          <div class="col-3">
-                              <b>สถานะ</b>
-                          </div>
-                          <div class="col-2">
-                              <b>ระยะเวลา</b>
-                          </div>
-                          <div class="col-1">
-                              <b>ตำแหน่ง</b>
-                          </div>
+					}.div_detail:hover{
+					overflow: visible;
+					}
+					.div_detail:hover .tooltip{
+					display: inline;
+					opacity: 80%;
+					}
+					.card-input-element+.card {
+					height: calc(36px + 2*1rem);
+					color: #0d6efd;
+					-webkit-box-shadow: none;
+					box-shadow: none;
+					border: 2px solid transparent;
+					border-radius: 10px;
+					}
 
-                          <br><br>
-                          <hr style="color:black;background-color:black;height:2px;">
-                      </div>
-                    </div>
-                    <div class="card-body">
-                        @php
-                          $Number = 1 ;
-                        @endphp
+					.card-input-element+.card:hover {
+					cursor: pointer;
+					}
 
-                        @foreach($view_maps as $item)
+					.card-input-element:checked+.card {
+					border: 2px solid #0d6efd;
+					-webkit-transition: border .3s;
+					-o-transition: border .3s;
+					transition: border .3s;
+					}
 
-                        @php
-                          $color_row = "" ;
+					.card-input-element:checked+.card::after {
+					content: '\e5ca';
+					color: #AFB8EA;
+					font-family: 'Material Icons';
+					font-size: 24px;
+					-webkit-animation-name: fadeInCheckbox;
+					animation-name: fadeInCheckbox;
+					-webkit-animation-duration: .5s;
+					animation-duration: .5s;
+					-webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+					animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+					}
 
-                          if( $Number%2 == 0 ){
-                            $color_row = "#FFEFD5" ;
-                          }
-                        @endphp
-                          <div class="row text-center"> 
-                            <div class="col-3">
-                              <div style="margin-top: -10px;" >
-                                <h5 class="text-success float-left">
-                                    <span style="font-size: 15px;">
-                                        <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
-                                        <i class="far fa-eye text-primary"></i>
-                                        </a>
-                                    </span>&nbsp;{{ $item->name }}<br> 
-                                </h5>
-                                {{ $item->phone }}
-                              </div>
-                            </div>
-                            <div class="col-3">
-                              <div style="margin-top: -10px;">
-                                <p><b>
-                                  {{ date("d/m/Y" , strtotime($item->created_at)) }} <br>
-                                  {{ date("H:i" , strtotime($item->created_at)) }}
-                                </b></p>
-                                @if(!empty($item->photo))
-                                  <br>
-                                  <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
-                                    <img class="main-shadow" style="border-radius: 50%; object-fit:cover;" width="150px" height="150px" src="{{ url('storage')}}/{{ $item->photo }}">
-                                  </a>
-                                  <br><br>
-                                @endif
-                              </div>
-                            </div>
-                            <div class="col-3">
-                              <div style="margin-top: -10px;">
-                                @if( !empty($item->helper) and empty($item->help_complete) )
-                                    <a href="#" class="btn btn-sm btn-warning radius-30" ><i class="fadeIn animated bx bx-message-rounded-error"></i>ระหว่างดำเนินการ</a>
-                                @elseif($item->helper == null)
-                                    <a href="#" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>ยังไม่ได้ดำเนินการ</a>
-                                @elseif($item->help_complete == "Yes" && $item->helper != null)
-                                    <a href="#" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>ช่วยเหลือเสร็จสิ้น</a>
-                                    @if(!empty($item->help_complete_time))
-                                        <p style="margin-top:8px;"><b>
-                                          {{ date("d/m/Y" , strtotime($item->help_complete_time)) }} {{ date("H:i" , strtotime($item->help_complete_time)) }}
-                                        </b></p> 
-                                    @endif 
-                                    @if(!empty($item->photo_succeed))
-                                      <a href="{{ url('storage')}}/{{ $item->photo_succeed }}" target="bank">
-                                        <img class="main-shadow" style="border-radius: 50%; object-fit:cover;" width="150px" height="150px" src="{{ url('storage')}}/{{ $item->photo_succeed }}">
-                                      </a>
-                                      <br><br>
-                                    @endif
-                                @endif              
-                              </div>
-                            </div>
-                            <div class="col-2">
-                              @if( !empty($item->created_at) && !empty($item->help_complete_time) )
-                                <!-- ปี -->
-                                @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y') != 0 )
-                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y')}} ปี <br>
-                                @endif
-                                <!-- เดือน -->
-                                @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m') != 0 )
-                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m')}} เดือน <br>
-                                @endif
-                                <!-- วัน -->
-                                @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d') != 0 )
-                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d')}} วัน <br>
-                                @endif
-                                <!-- ชัวโมง -->
-                                @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h') != 0 )
-                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h')}} ชั่วโมง <br>
-                                @endif
-                                <!-- นาที -->
-                                @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i') != 0 )
-                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i')}} นาที <br>
-                                @endif
-                                <!-- วินาที -->
-                                @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s') != 0 )
-                                    {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s')}} วินาที <br>
-                                @endif
-                                
-                              @else
-                                <span>-</span>
-                              @endif
-                            </div>
-                            <div class="col-1">
-                              <div style="margin-top: -10px;">
-                                <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}', '{{ $item->name_area }}');">
-                                    <i class="fas fa-map-marker-alt"></i> 
-                                    <br>
-                                    ดูหมุด
-                                </a>
-                              </div>
-                            </div>
-                            <br>
-                            <div class="col-12">
-                              @if(Auth::check())
-                                  @if(Auth::user()->role == 'admin-partner' or Auth::user()->id == $item->helper_id)
-                                      @if($item->help_complete == "Yes" and $item->score_total != null)
-                                          <div class="col-12 text-left" style="margin-top:5px;">
-                                            <h5>คะแนนการช่วยเหลือ</h5>
-                                            <div class="row">
-                                                <div class="col-2" style="padding:0px">
-                                                    เจ้าหน้าที่ : <br>{{$item->helper}}
-                                                </div> 
-                                                <div class="col-2" style="padding:0px">
-                                                    @if($item->score_impression < 3)
-                                                        ความประทับใจ : <br>
-                                                        <span class="text-danger">{{$item->score_impression}}</span>
-                                                    @elseif($item->score_impression == 3)
-                                                        ความประทับใจ : <br>
-                                                        <span class="text-warning">{{$item->score_impression}}</span>
-                                                    @elseif($item->score_impression > 3)
-                                                        ความประทับใจ : <br>
-                                                        <span class="text-success">{{$item->score_impression}}</span>
-                                                    @endif
-                                                </div>
-                                                <div class="col-2" style="padding:0px">
-                                                    @if($item->score_period < 3)
-                                                        ระยะเวลา : <br>
-                                                        <span class="text-danger">{{$item->score_period}}</span>
-                                                    @elseif($item->score_period == 3)
-                                                        ระยะเวลา : <br>
-                                                        <span class="text-warning">{{$item->score_period}}</span>
-                                                    @elseif($item->score_period > 3)
-                                                        ระยะเวลา : <br>
-                                                        <span class="text-success">{{$item->score_period}}</span>
-                                                    @endif
-                                                </div>
-                                                <div class="col-2" style="padding:0px">
-                                                    @if($item->score_total < 3)
-                                                        ภาพรวม : <br>
-                                                        <span class="text-danger">{{$item->score_total}}</span>
-                                                    @elseif($item->score_total == 3)
-                                                        ภาพรวม : <br>
-                                                        <span class="text-warning">{{$item->score_total}}</span>
-                                                    @elseif($item->score_total > 3)
-                                                        ภาพรวม : <br>
-                                                        <span class="text-success">{{$item->score_total}}</span>
-                                                    @endif
-                                                </div>
-                                                <div class="col-4" style="padding:0px">
-                                                    คำแนะนำ/ติชม : <br>{{$item->comment_help}}
-                                                </div> 
-                                            </div>
-                                          </div>
-                                      @elseif($item->help_complete == "Yes" and $item->score_total == null)
-                                          <h5>คะแนนการช่วยเหลือ</h5>
-                                          <div class="row">
-                                              <div class="col-6" style="padding:0px">
-                                                  เจ้าหน้าที่ : {{$item->helper}}
-                                              </div> 
-                                              <div class="col-6" style="padding:0px">
-                                                  ไม่ได้ทำแบบประเมิน
-                                              </div> 
-                                          </div>
-                                      @elseif(!empty($item->helper) and empty($item->help_complete))
-                                          <h5>คะแนนการช่วยเหลือ</h5>
-                                          <div class="row">
-                                              <div class="col-12" style="padding:0px">
-                                                  เจ้าหน้าที่ : {{$item->helper}}
-                                              </div> 
-                                          </div>
-                                      @endif      
-                                  @endif
-                                @endif
-                                <br>
-                            </div>
-                            <hr>
-                            <br><br>
-                          </div>
-                          @php
-                            $Number = $Number + 1  ;
-                          @endphp
-                        @endforeach
-                        <div style="float: right;">
-                        </div>
-                        <div class="table-responsive">
-                            <div class="pagination round-pagination " style="margin-top:10px;"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!----------------------------------------------------- end pc ----------------------------------------------------->
-    </div>
+					@-webkit-keyframes fadeInCheckbox {
+						from {
+							opacity: 0;
+							-webkit-transform: rotateZ(-20deg);
+						}
+						to {
+							opacity: 1;
+							-webkit-transform: rotateZ(0deg);
+						}
+					}
+
+					@keyframes fadeInCheckbox {
+						from {
+							opacity: 0;
+							transform: rotateZ(-20deg);
+						}
+						to {
+							opacity: 1;
+							transform: rotateZ(0deg);
+						}
+					}
+					.radius{
+						border-radius: 10px;
+					}
+					.radius-1{
+						border-radius: 10px 0 0 10px ;
+					}
+					.radius-2{
+						border-radius: 0 10px 10px 0 ;
+					}.input-name{
+						width: auto;
+						max-width: 20em;
+						border: none;
+						border-bottom: 1px dashed #000000;
+					}.input-wrapper {
+							position: relative;
+							box-sizing: border-box;
+							font-size: 14px;
+							display: inline-block;
+							max-width: 20em;
+							text-overflow: ellipsis;
+							overflow: hidden;
+					}.size-span {
+							font-family: inherit;
+							white-space: pre;
+							height: 1em;
+							font-size: 16px;
+							display: inline-block;
+							box-sizing: border-box;
+							position: relative;
+							min-width: 60px;
+							user-select: none;
+							vertical-align: bottom;
+							opacity: 0;
+					}.tab-content{
+						height: 100%;
+					}.input_code_black::placeholder{
+						text-align: center; 
+					}
+					.show-data{
+						animation: myAnim 1s ease 0s 1 normal forwards;
+					}
+					@keyframes myAnim {
+						0% {
+							opacity: 0;
+						}
+
+						100% {
+							opacity: 1;
+						}
+					}.card-input-red:checked+.card {
+					border: 2px solid #db2d2e;
+					-webkit-transition: border .3s;
+					-o-transition: border .3s;
+					transition: border .3s;
+					}.field-user{
+						border: #000 1px solid;
+					}.field-user legend{
+						font-size: 18px;
+						font-weight: bold;
+					}
+				</style>
+			
+
+				<div class="tab-content">
+					<!---------------------------------- ข้อ 1  ---------------------------------->
+					<div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="bx bxs-user me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary">ข้อมูลทั่วไป</h5>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-md-12">
+								<label  class="form-label m-0">รับแจ้งเหตุทาง</label>
+								@php
+									$check_be_notified_1 = "" ;
+									$check_be_notified_2 = "" ;
+									$check_be_notified_3 = "" ;
+									$check_be_notified_4 = "" ;
+									$check_be_notified_5 = "" ;
+									$check_be_notified_6 = "" ;
+									if( !empty($sos_help_center->form_yellow->be_notified) ){
+
+										if( $sos_help_center->form_yellow->be_notified == 'แพลตฟอร์มวีเช็ค' ){
+											$check_be_notified_1 = "checked";
+										}else if( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙' ){
+											$check_be_notified_2 = "checked";
+										}else if ( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)' ){
+											$check_be_notified_3 = "checked";
+										}else if ( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลขอื่นๆ' ){
+											$check_be_notified_4 = "checked";
+										}else if ( $sos_help_center->form_yellow->be_notified == 'วิทยุสื่อสาร' ){
+											$check_be_notified_5 = "checked";
+										}else if ( $sos_help_center->form_yellow->be_notified == 'วิธีอื่นๆ' ){
+											$check_be_notified_6 = "checked";
+										}
+
+									}
+								@endphp
+
+								<div class="row mt-3">
+									<div class="col-12	col-md-3 col-lg-3">
+										<label>
+											<input type="radio" {{ $check_be_notified_1 }} name="be_notified" value="แพลตฟอร์มวีเช็ค"  class="card-input-element d-none" >
+											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+												แพลตฟอร์มวีเช็ค 
+											</div>
+										</label>
+									</div>
+									<div class="col-12	col-md-3 col-lg-3">
+										<label>
+											<input type="radio" {{ $check_be_notified_1 }} name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙" class="card-input-element d-none" >
+											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+												<span>
+													โทรศัพท์หมายเลข ๑๖๖๙<sup>(๑)</sup>
+												</span>
+											</div>
+										</label>
+									</div>
+									<div class="col-12	col-md-3 col-lg-3">
+										<label>
+											<input type="radio" {{ $check_be_notified_1 }} name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙ (second call)" class="card-input-element d-none" >
+											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+												<span>
+													โทรศัพท์หมายเลข ๑๖๖๙ (second call)<sup>(๒)</sup>
+												</span>
+											</div>
+										</label>
+									</div>
+									<div class="col-12	col-md-3 col-lg-3">
+										<label>
+											<input type="radio" {{ $check_be_notified_1 }} name="be_notified" value="โทรศัพท์หมายเลขอื่นๆ" class="card-input-element d-none" >
+											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+												<span>
+													โทรศัพท์หมายเลขอื่นๆ<sup>(๓)</sup>
+												</span>
+											</div>
+										</label>
+									</div>
+									<div class="col-12	col-md-3 col-lg-3">
+										<label>
+											<input type="radio" {{ $check_be_notified_1 }} name="be_notified" value="วิทยุสื่อสาร" class="card-input-element d-none" >
+											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+												<span>
+													วิทยุสื่อสาร
+												</span>
+											</div>
+										</label>
+									</div>
+									<div class="col-12	col-md-3 col-lg-3">
+										<label>
+											<input type="radio" {{ $check_be_notified_1 }} name="be_notified" value="วิธีอื่นๆ" class="card-input-element d-none" >
+											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+												<span>
+													วิธีอื่นๆ  
+												</span>
+											</div>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<label for="name_user" class="form-label">ชื่อ/รหัสผู้แจ้งเหตุ</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="bx bxs-user"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="name_user" value="{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}" placeholder="ชื่อ/รหัสผู้แจ้งเหตุ">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<label for="phone_user" class="form-label">โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-phone"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="phone_user" value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}" placeholder="โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ">
+								</div>
+							</div>
+
+							<div class="col-12 mt-3">
+								<label for="inputAddress3" class="form-label">สถานที่เกิดเหตุ
+									<span id="location_user" class="d-none"></span>
+								</label>
+								<div class="row">
+									<div class="col-6 col-md-4 col-lg-4">
+										<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-location-dot"></i></span>
+											<input type="text" class="form-control border-start-0 radius-2" name="lat" id="lat" value="{{ isset($sos_help_center->lat) ? $sos_help_center->lat : ''}}" readonly placeholder="ละติจูด">
+										</div>
+									</div>
+									<div class="col-6 col-md-4 col-lg-4">
+										<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-location-dot"></i></span>
+											<input type="text" class="form-control border-start-0 radius-2" name="lng" id="lng" value="{{ isset($sos_help_center->lng) ? $sos_help_center->lng : ''}}" readonly placeholder="ลองติจูด">
+										</div>
+									</div>
+									<div class="col-6 col-md-2 col-lg-2">
+										<span class="btn btn-sm btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
+											เลือกจุดเกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
+										</span>
+									</div>
+									<div class="col-6 col-md-2 col-lg-2">
+										<button id="btn_get_location_user"  class="btn btn-sm btn-info text-white main-shadow main-radius">
+											รับรายละเอียดที่อยู่ (<span>100</span>)
+										</button>
+									</div>
+								</div>
+								<br>
+								<textarea class="form-control radius" name="location_sos" id="detail_location_sos" rows="4" placeholder="รายละเอียดสถานที่เกิดเหตุ" rows="3">{{ isset($sos_help_center->form_yellow->location_sos) ? $sos_help_center->form_yellow->location_sos : ''}}</textarea>
+							</div>
+						</div>
+					</div>
+
+					<!---------------------------------- ข้อ 2  ---------------------------------->
+					<div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="fa-regular fa-bone-break me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary">อาการนำสำคัญของผู้ป่วยฉุกเฉินที่ได้จากการรับแจ้ง</h5>
+						</div>
+						<hr>
+						@php
+							$check_symptom_1 ="";$check_symptom_2 ="";$check_symptom_3 ="";$check_symptom_4 ="";$check_symptom_5 ="";$check_symptom_6 ="";$check_symptom_7 ="";$check_symptom_8 ="";$check_symptom_9 ="";$check_symptom_10 ="";$check_symptom_11 ="";$check_symptom_12 ="";$check_symptom_13 ="";$check_symptom_14 ="";$check_symptom_15 ="";$check_symptom_16 ="";$check_symptom_17 ="";$check_symptom_18 ="";$check_symptom_19 ="";$check_symptom_20 ="";$check_symptom_21 ="";$check_symptom_22 ="";$check_symptom_23 ="";$check_symptom_24 ="";$check_symptom_25 ="";
+
+							if( !empty($sos_help_center->form_yellow->symptom) ){
+								$symptom_explode = explode(",", $sos_help_center->form_yellow->symptom);
+
+								for ($i=0; $i < count($symptom_explode); $i++){
+									switch ($symptom_explode[$i]) {
+										case 'ปวดท้อง หลัง เชิงกราน และขาหนีบ':
+											$check_symptom_1 = "checked";
+											break;
+										case 'แอนนาฟิแลกซิส ปฏิกิริยาภูมิแพ้/แมลงกัด':
+											$check_symptom_2 = "checked";
+											break;
+										case 'สัตว์กัด':
+											$check_symptom_3 = "checked";
+											break;
+										case 'เลือดออกไม่ใช่จากการบาดเจ็บ':
+											$check_symptom_4 = "checked";
+											break;
+										case 'หายใจลำบาก':
+											$check_symptom_5 = "checked";
+											break;
+										case 'หัวใจหยุดเต้น':
+											$check_symptom_6 = "checked";
+											break;
+										case 'เจ็บแน่นทรางออก หัวใจ':
+											$check_symptom_7 = "checked";
+											break;
+										case 'สำลักอุดทางเดินหายใจ':
+											$check_symptom_8 = "checked";
+											break;
+										case 'เบาหวาน':
+											$check_symptom_9 = "checked";
+											break;
+										case 'อันตรายจากสภาพแวดล้อม':
+											$check_symptom_10 = "checked";
+											break;
+										case 'อื่นๆ(เว้นว่าง)':
+											$check_symptom_11 = "checked";
+											break;
+										case 'ปวดศรีษะ ลำคอ':
+											$check_symptom_12 = "checked";
+											break;
+										case 'คลุ้มคลั่ง จิตประสาท อารมณ์':
+											$check_symptom_13 = "checked";
+											break;
+										case 'ยาเกิดขนาด ได้รับพิษ':
+											$check_symptom_14 = "checked";
+											break;
+										case 'ยาเกิดขนาด ได้รับพิษ':
+											$check_symptom_15 = "checked";
+											break;
+										case 'ชัก':
+											$check_symptom_16 = "checked";
+											break;
+										case 'ป่วย อ่อนเพลีย':
+											$check_symptom_17 = "checked";
+											break;
+										case 'อัมพาต (หลอดเลือดสมองตีบ แตก)':
+											$check_symptom_18 = "checked";
+											break;
+										case 'หมดสติ ไม่ตอบสนอง หมดสติชั่ววูบ':
+											$check_symptom_19 = "checked";
+											break;
+										case 'เด็ก ทารก (กุมารเวชกรรม)':
+											$check_symptom_20 = "checked";
+											break;
+										case 'ถูกทำร้าย บาดเจ็บ':
+											$check_symptom_21 = "checked";
+											break;
+										case 'ไฟไหม้ ลวก ความร้อน กระแสไฟฟ้า สารเคมี':
+											$check_symptom_22 = "checked";
+											break;
+										case 'จมน้ำ หน้าคว่ำจมน้ำ บาดเจ็บเหตุดำน้ำ บาดเจ็บทางน้ำ':
+											$check_symptom_23 = "checked";
+											break;
+										case 'พลัดตกหลุม อุบัติเหตุ':
+											$check_symptom_24 = "checked";
+											break;
+										case 'อุบัติเหตุยานยนต์':
+											$check_symptom_25 = "checked";
+											break;
+										
+									}
+								}
+							}
+						@endphp
+
+						<div class="row">
+							<div class="col-12 col-md-3 col-lg-3 ">
+								<label>
+									<input type="checkbox" {{ $check_symptom_1 }} name="symptom" value="ปวดท้อง หลัง เชิงกราน และขาหนีบ" class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑.ปวดท้อง หลัง เชิงกราน และขาหนีบ
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_2 }} name="symptom" value="แอนนาฟิแลกซิส ปฏิกิริยาภูมิแพ้/แมลงกัด"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒.แอนนาฟิแลกซิส ปฏิกิริยาภูมิแพ้/แมลงกัด
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_3 }} name="symptom" value="สัตว์กัด"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๓.สัตว์กัด
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_4 }} name="symptom" value="เลือดออกไม่ใช่จากการบาดเจ็บ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๔.เลือดออกไม่ใช่จากการบาดเจ็บ
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_5 }} name="symptom" value="หายใจลำบาก"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๕.หายใจลำบาก 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_6 }} name="symptom" value="หัวใจหยุดเต้น"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๖.หัวใจหยุดเต้น
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_7 }} name="symptom" value="เจ็บแน่นทรางออก หัวใจ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๗.เจ็บแน่นทรางออก หัวใจ
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_8 }} name="symptom" value="สำลักอุดทางเดินหายใจ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๘.สำลักอุดทางเดินหายใจ
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_9 }} name="symptom" value="เบาหวาน"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๙.เบาหวาน
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_10 }} name="symptom" value="อันตรายจากสภาพแวดล้อม"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๐.อันตรายจากสภาพแวดล้อม
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_11 }} name="symptom" value="อื่นๆ(เว้นว่าง)"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<div>
+											๑๑.<s>อื่นๆ(เว้นว่าง)</s><sup>(๔)</sup>
+										</div>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_12 }} name="symptom" value="ปวดศรีษะ ลำคอ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๒.ปวดศรีษะ ลำคอ 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_13 }} name="symptom" value="คลุ้มคลั่ง จิตประสาท อารมณ์"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๓.คลุ้มคลั่ง จิตประสาท อารมณ์ 
+									</div>
+								</label>
+							</div>
+
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_14 }} name="symptom" value="ยาเกิดขนาด ได้รับพิษ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๔.ยาเกิดขนาด ได้รับพิษ 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_15 }} name="symptom" value="มีครรภ คลอด นรี"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๕.มีครรภ คลอด นรี 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_16 }} name="symptom" value="ชัก"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๖.ชัก 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_17 }} name="symptom" value="ป่วย อ่อนเพลีย"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๗.ป่วย อ่อนเพลีย 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_18 }} name="symptom" value="อัมพาต (หลอดเลือดสมองตีบ แตก)"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๘.อัมพาต (หลอดเลือดสมองตีบ แตก) 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_19 }} name="symptom" value="หมดสติ ไม่ตอบสนอง หมดสติชั่ววูบ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๙.หมดสติ ไม่ตอบสนอง หมดสติชั่ววูบ 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_20 }} name="symptom" value="เด็ก ทารก (กุมารเวชกรรม)"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒๐.เด็ก ทารก (กุมารเวชกรรม) 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_21 }} name="symptom" value="ถูกทำร้าย บาดเจ็บ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒๑.ถูกทำร้าย บาดเจ็บ 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_22 }} name="symptom" value="ไฟไหม้ ลวก ความร้อน กระแสไฟฟ้า สารเคมี"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒๒.ไฟไหม้ ลวก ความร้อน กระแสไฟฟ้า สารเคมี 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_23 }} name="symptom" value="จมน้ำ หน้าคว่ำจมน้ำ บาดเจ็บเหตุดำน้ำ บาดเจ็บทางน้ำ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒๓.จมน้ำ หน้าคว่ำจมน้ำ บาดเจ็บเหตุดำน้ำ บาดเจ็บทางน้ำ 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_24 }} name="symptom" value="พลัดตกหลุม อุบัติเหตุ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒๔.พลัดตกหลุม อุบัติเหตุ 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_25 }} name="symptom" value="อุบัติเหตุยานยนต์"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒๕.อุบัติเหตุยานยนต์ 
+									</div>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!---------------------------------- ข้อ 3  ---------------------------------->
+					<div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="fa-solid fa-square-info me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary">อาการ/เหตุการณ์/รายละเอียดอื่นๆ</h5>
+						</div>
+						<hr>
+						<textarea class="form-control" name="symptom_other" rows="15" placeholder="อธิบายถึง อาการ เหตุการณ์หรือรายละเอียดอื่นๆ">{{ isset($sos_help_center->form_yellow->symptom_other) ? $sos_help_center->form_yellow->symptom_other : ''}}</textarea>
+					</div>
+
+					<!---------------------------------- ข้อ 4  ---------------------------------->
+					<div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="fa-solid fa-person-falling-burst me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary"><b>การให้รหัสความรุนแรง <span style="font-size:15px;">IDC (Incident Dispatch Code)<sup>(๕)</sup></span></b></h5>
+						</div>
+						<hr>
+						@php
+							$check_idc_1 = "" ;
+							$check_idc_2 = "" ;
+							$check_idc_3 = "" ;
+							$check_idc_4 = "" ;
+							$check_idc_5 = "" ;
+							if( !empty($sos_help_center->form_yellow->idc) ){
+								if( $sos_help_center->form_yellow->idc == 'แดง(วิกฤติ)' ){
+									$check_idc_1 = "checked";
+								}else if ( $sos_help_center->form_yellow->idc == 'เหลือง(เร่งด่วน)' ){
+									$check_idc_2 = "checked";
+								}else if ( $sos_help_center->form_yellow->idc == 'เขียว(ไม่รุนแรง)' ){
+									$check_idc_3 = "checked";
+								}else if ( $sos_help_center->form_yellow->idc == 'ขาว(ทั่วไป)' ){
+									$check_idc_4 = "checked";
+								}else if ( $sos_help_center->form_yellow->idc == 'ดำ(รับบริการสาธารณสุขอื่น)' ){
+									$check_idc_5 = "checked";
+								}
+							}
+						@endphp
+						<div class="row">
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_idc_1 }} name="idc" value="แดง(วิกฤติ)  "  class="card-input-element d-none" >
+									<div class="card card-body bg-danger text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											แดง(วิกฤติ)  
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_idc_2 }} name="idc" value="ขาว(ทั่วไป)    "  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>
+											ขาว(ทั่วไป)    
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_idc_3 }} name="idc" value="เหลือง(เร่งด่วน)"  class="card-input-element d-none" >
+									<div class="card card-body  bg-warning text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											เหลือง(เร่งด่วน)  
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_idc_4 }} name="idc" value="ดำ(รับบริการสาธารณสุขอื่น)  "  class="card-input-element d-none" >
+									<div class="card card-body  bg-dark text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											ดำ(รับบริการสาธารณสุขอื่น)  
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_idc_5 }} name="idc" value="แดง(วิกฤติ)  "  class="card-input-element d-none" >
+									<div class="card card-body  bg-success text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											เขียว(ไม่รุนแรง)
+										</b>
+									</div>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!---------------------------------- ข้อ 5  ---------------------------------->
+					<div id="step-5" class="tab-pane" role="tabpanel" aria-labelledby="step-5">
+						<div class="card-title d-flex align-items-center">
+							<div>
+								<i class="fa-duotone fa-chalkboard-user me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary">การสั่งการ (โดยการเห็นชอบของหัวหน้าศูนย์ฯ)</h5>
+						</div>
+						<hr>
+						@php
+							$check_vehicle_type_1 = "" ;
+							$check_vehicle_type_2 = "" ;
+							$check_vehicle_type_3 = "" ;
+							$check_vehicle_type_4 = "" ;
+							$check_vehicle_type_5 = "" ;
+							$check_vehicle_type_6 = "" ;
+							if( !empty($sos_help_center->form_yellow->vehicle_type) ){
+								if( $sos_help_center->form_yellow->vehicle_type == 'รถ' ){
+									$check_vehicle_type_1 = "checked";
+								}else if ( $sos_help_center->form_yellow->vehicle_type == 'อากาศยาน' ){
+									$check_vehicle_type_2 = "checked";
+								}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือ ป.๑' ){
+									$check_vehicle_type_3 = "checked";
+								}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือ ป.๒' ){
+									$check_vehicle_type_4 = "checked";
+								}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือ ป.๓' ){
+									$check_vehicle_type_5 = "checked";
+								}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือประเภทอื่นๆ' ){
+									$check_vehicle_type_6 = "checked";
+								}
+							}
+						@endphp
+						
+						<div class="row">
+							<div class="col-md-12 mb-2">
+								<label  class="form-label m-0">
+									<b>
+										ชนิดยานพาหนะ<sup>(๗)</sup>
+									</b>
+								</label>
+							</div>	
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_vehicle_type_1 }} name="vehicle_type" value="รถ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>รถ</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_vehicle_type_2 }} name="vehicle_type" value="อากาศยาน"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>อากาศยาน</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_vehicle_type_3 }} name="vehicle_type" value="เรือ ป.๑"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>เรือ ป.๑</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_vehicle_type_4 }} name="vehicle_type" value="เรือ ป.๒"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>เรือ ป.๒</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_vehicle_type_5 }} name="vehicle_type" value="เรือ ป.๓"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>เรือ ป.๓</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_vehicle_type_6 }} name="vehicle_type" value="เรือประเภทอื่นๆ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>เรือประเภทอื่นๆ</b>
+									</div>
+								</label>
+							</div>
+							
+							<div class="col-12"></div>
+							
+							<div class="col-md-6">
+								<label for="name_user" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="operation_unit_name" value="{{ isset($sos_help_center->form_yellow->operation_unit_name) ? $sos_help_center->form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<label for="phone_user" class="form-label"><b>ชื่อชุดปฏิบัติการ</b></label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-users-medical"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="action_set_name" value="{{ isset($sos_help_center->form_yellow->action_set_name) ? $sos_help_center->form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ">
+								</div>
+							</div>
+							
+							<div class="col-md-12 mb-2 mt-2">
+								<label  class="form-label mt-2">
+									<b>
+										ประเภทชุดปฏิบัติการ
+									</b>
+								</label>
+							</div>	
+							@php
+								$check_operating_suit_type_1 = "" ;
+								$check_operating_suit_type_2 = "" ;
+								$check_operating_suit_type_3 = "" ;
+								$check_operating_suit_type_4 = "" ;
+								if( !empty($sos_help_center->form_yellow->operating_suit_type) ){
+									if( $sos_help_center->form_yellow->operating_suit_type == 'FR' ){
+										$check_operating_suit_type_1 = "checked";
+									}else if ( $sos_help_center->form_yellow->operating_suit_type == 'BLS' ){
+										$check_operating_suit_type_2 = "checked";
+									}else if ( $sos_help_center->form_yellow->operating_suit_type == 'ILS' ){
+										$check_operating_suit_type_3 = "checked";
+									}else if ( $sos_help_center->form_yellow->operating_suit_type == 'ALS' ){
+										$check_operating_suit_type_4 = "checked";
+									}
+								}
+							@endphp
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_operating_suit_type_1 }} name="operating_suit_type" value="FR"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>FR</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_operating_suit_type_2 }} name="operating_suit_type" value="BLS"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>BLS</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_operating_suit_type_3 }} name="operating_suit_type" value="ILS"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ILS</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_operating_suit_type_4 }} name="operating_suit_type" value="ALS"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ALS</b>
+									</div>
+								</label>
+							</div>
+							<hr>
+							<div class="col-12">
+								<div class="table-responsive">
+									<!--Table-->
+									<table class="table  table-bordered border-secondary ">
+										<thead>
+											<tr>
+											<th scope="col"></th>
+											<th scope="col">รับแจ้ง</th>
+											<th scope="col">สั่งการ</th>
+											<th scope="col">ออกจากฐาน</th>
+											<th scope="col">ถึงที่เกิดเหตุ</th>
+											<th scope="col">ออกจากที่เกิดเหตุ</th>
+											<th scope="col">ถึง รพ.</th>
+											<th scope="col">ถึงฐาน</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row" style="vertical-align: middle;">
+													เวลา (น.)
+												</th>
+												<td>
+													<input class="form-control" type="time" name="time_create_sos" id="time_create_sos" value="{{ isset($sos_help_center->form_yellow->time_create_sos) ? $sos_help_center->form_yellow->time_create_sos : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="time" name="time_command" id="time_command" value="{{ isset($sos_help_center->form_yellow->time_command) ? $sos_help_center->form_yellow->time_command : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="time" name="time_go_to_help" id="time_go_to_help" value="{{ isset($sos_help_center->form_yellow->time_go_to_help) ? $sos_help_center->form_yellow->time_go_to_help : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="time" name="time_to_the_scene" id="time_to_the_scene" value="{{ isset($sos_help_center->form_yellow->time_to_the_scene) ? $sos_help_center->form_yellow->time_to_the_scene : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="time" name="time_leave_the_scene" id="time_leave_the_scene" value="{{ isset($sos_help_center->form_yellow->time_leave_the_scene) ? $sos_help_center->form_yellow->time_leave_the_scene : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="time" name="time_hospital" id="time_hospital" value="{{ isset($sos_help_center->form_yellow->time_hospital) ? $sos_help_center->form_yellow->time_hospital : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" value="{{ isset($sos_help_center->form_yellow->time_to_the_operating_base) ? $sos_help_center->form_yellow->time_to_the_operating_base : ''}}">
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">
+													รวมเวลา (นาที)
+												</th>
+												<td colspan="4" style="text-align: center;">
+													Response time = { $response_time } นาที
+												</td>
+												<td style="background-color:#D3D3D3;">
+													<!--  -->
+												</td>
+												<td colspan="2" style="text-align: center;">
+													........ นาที
+												</td>
+											</tr>
+											<tr>
+												<th scope="row" style="vertical-align: middle;">
+													เลข กม.
+												</th>
+												<td colspan="3">
+													<input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($sos_help_center->form_yellow->km_create_sos_to_go_to_help) ? $sos_help_center->form_yellow->km_create_sos_to_go_to_help : ''}}">
+												</td>
+												<td colspan="2">
+													<input class="form-control" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($sos_help_center->form_yellow->km_to_the_scene_to_leave_the_scene) ? $sos_help_center->form_yellow->km_to_the_scene_to_leave_the_scene : ''}}">
+												</td>
+												<td>
+													<input class="form-control"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($sos_help_center->form_yellow->km_hospital) ? $sos_help_center->form_yellow->km_hospital : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($sos_help_center->form_yellow->km_operating_base) ? $sos_help_center->form_yellow->km_operating_base : ''}}">
+												</td>
+											</tr>
+											<tr>
+												<th rowspan="2" style="vertical-align: middle;">
+													ระยะทาง (กม.)
+												</th>
+												<td  style="vertical-align: middle;text-align: center;" rowspan="2" colspan="4">
+													รวมระยะทางไป ................ กม.
+												</td>
+												<td style="background-color:#D3D3D3;">
+													<!--  -->
+												</td>
+												<td colspan="2" style="text-align: center;">
+													ระยะทางกลับ ....... กม.
+												</td>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" style="text-align: center;">
+													ระยะไป รพ. ....... กม.
+												</td>
+												<td style="background-color:#D3D3D3;">
+													<!--  -->
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<!--Table-->
+									</div>
+								</div>
+						</div>
+					</div>
+					
+					<!---------------------------------- ข้อ 6  ---------------------------------->
+					<div id="step-6" class="tab-pane" role="tabpanel" aria-labelledby="step-6">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="fa-duotone fa-burst me-1 font-22 text-primary"></i>
+							</div>
+							
+							<h5 class="mb-0 text-primary"><b>6.การให้รหัสความรุนแรง ณ จุดเกิดเหตุ  <span style="font-size:15px;">RC(Response Code)<sup>(๕)</sup></span></b></h5>
+						</div>
+						<hr>
+						@php
+							$check_rc_1 = "" ;
+							$check_rc_2 = "" ;
+							$check_rc_3 = "" ;
+							$check_rc_4 = "" ;
+							$check_rc_5 = "" ;
+							if( !empty($sos_help_center->form_yellow->rc) ){
+								if( $sos_help_center->form_yellow->rc == 'แดง(วิกฤติ)' ){
+									$check_rc_1 = "checked";
+								}else if ( $sos_help_center->form_yellow->rc == 'เหลือง(เร่งด่วน)' ){
+									$check_rc_2 = "checked";
+								}else if ( $sos_help_center->form_yellow->rc == 'เขียว(ไม่รุนแรง)' ){
+									$check_rc_3 = "checked";
+								}else if ( $sos_help_center->form_yellow->rc == 'ขาว(ทั่วไป)' ){
+									$check_rc_4 = "checked";
+								}else if ( $sos_help_center->form_yellow->rc == 'ดำ' ){
+									$check_rc_5 = "checked";
+								}
+							}
+						@endphp
+						<div class="row">
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_rc_1 }} name="rc" value="แดง(วิกฤติ)"  class="card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body bg-danger text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											แดง(วิกฤติ)  
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_rc_4 }} name="rc" value="ขาว(ทั่วไป)"  class="card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>
+											ขาว(ทั่วไป)    
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_rc_2 }} name="rc" value="เหลือง(เร่งด่วน)"  class="card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body  bg-warning text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											เหลือง(เร่งด่วน)  
+										</b>
+									</div>
+								</label>
+							</div>
+							
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_rc_3 }} name="rc" value="แดง(วิกฤติ)"  class="card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body  bg-success text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											เขียว(ไม่รุนแรง)
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_rc_5 }} name="rc" id="rc_black"  value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body  bg-dark text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											<div class="input-wrapper-b-code inline">
+												<span>
+													ดำ ( <input name="rc_black_text" id="rc_black_text" size="5" style="border-radius: 5px;border: none; border-bottom: 1px dashed #ffffff;color:#000" class="input_code_black  p-0 m-0" placeholder="ใส่รหัส" type="text" value="{{ isset($sos_help_center->form_yellow->rc_black_text) ? $sos_help_center->form_yellow->rc_black_text : ''}}" readonly> )
+												</span>
+											</div>
+										</b>
+										
+									</div>
+								</label>
+							</div>
+						</div>
+					</div>
+					
+					<!---------------------------------- ข้อ 7  ---------------------------------->
+					<div id="step-7" class="tab-pane" role="tabpanel" aria-labelledby="step-7">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="fa-solid fa-truck-medical me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary"><b>การปฏิบัติการ</b></h5>
+						</div>
+						<hr>
+						<style>
+							.select-case{
+								background: rgba(255, 255, 255, 0.8);
+								padding: 10px;
+								margin: 5px;
+								border-radius: 15px;
+							}
+						</style>
+						@php
+							$check_treatment_1 = "" ;
+							$check_treatment_2 = "" ;
+							if( !empty($sos_help_center->form_yellow->treatment) ){
+								if( $sos_help_center->form_yellow->treatment == 'มีการรักษา' ){
+									$check_treatment_1 = "checked";
+								}else if ( $sos_help_center->form_yellow->treatment == 'ไม่มีการรักษา' ){
+									$check_treatment_2 = "checked";
+								}
+							}
+
+							$check_sub_treatment_1 ="";$check_sub_treatment_2 ="";$check_sub_treatment_3 ="";$check_sub_treatment_4 ="";$check_sub_treatment_5 ="";$check_sub_treatment_6 ="";$check_sub_treatment_7 ="";$check_sub_treatment_8 ="";$check_sub_treatment_9 ="";
+							if( !empty($sos_help_center->form_yellow->sub_treatment) ){
+								$sub_treatment_explode = explode(",", $sos_help_center->form_yellow->sub_treatment);
+
+								for ($i=0; $i < count($sub_treatment_explode); $i++){
+									switch ($sub_treatment_explode[$i]) {
+										case 'นำส่ง':
+											$check_sub_treatment_1 = "checked";
+											break;
+										case 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า':
+											$check_sub_treatment_2 = "checked";
+											break;
+										case 'ไม่นำส่ง':
+											$check_sub_treatment_3 = "checked";
+											break;
+										case 'เสียชีวิตระหว่างนำส่ง':
+											$check_sub_treatment_4 = "checked";
+											break;
+										case 'เสียชีวิต ณ จุดเกิดเหตุ':
+											$check_sub_treatment_5 = "checked";
+											break;
+										case 'ผู้ป่วยปฏิเสธการรักษา / ไม่ประสงค์จะไป รพ.':
+											$check_sub_treatment_6 = "checked";
+											break;
+										case 'ยกเลิก':
+											$check_sub_treatment_7 = "checked";
+											break;
+										case 'ไม่พบเหตุ':
+											$check_sub_treatment_8 = "checked";
+											break;
+										case 'เสียชีวิตก่อนชุดปฏิบัติการไปถึง':
+											$check_sub_treatment_9 = "checked";
+											break;
+									}
+								}
+							}
+						@endphp
+						<div class="row">
+							<div class="col-12 col-md-6 col-lg-6">
+								<div class=" col-12">
+									<label>
+										<input type="radio" {{ $check_treatment_1 }} name="treatment" value="มีการรักษา"  class="card-input-red card-input-element d-none" onchange="check_treatment(); reset_sub_treatment();">
+										<div class="card card-body d-flex flex-row justify-content-between align-items-center text-danger" >
+											<b>
+												มีการรักษา
+											</b>
+										</div>
+									</label>
+								</div>
+							</div>
+
+							<div class="col-12 col-md-6 col-lg-6">
+								<div class="">
+									<label>
+										<input type="radio"{{ $check_treatment_2 }} name="treatment" value="ไม่มีการรักษา"  class="card-input-element d-none" onchange="check_treatment(); reset_sub_treatment();">
+										<div class="card card-body d-flex flex-row-reverse  justify-content-between align-items-center">
+											<b>
+												ไม่มีการรักษา
+											</b>
+										</div>
+									</label>
+								</div>
+							</div>
+
+							<div class="col-12" style="margin-bottom: 20%;">
+								<!-- -------------------------------------------   เคสมีการรักษา  ----------------------------------------------------- -->
+								<div class="row d-none" id="treatment_yes">
+									<br><br><br>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_1 }} name="sub_treatment" value="นำส่ง"  class="card-input-red card-input-element d-none">
+											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													นำส่ง
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_2 }} name="sub_treatment" value="ส่งต่อชุดปฏิบัติการระดับสูงกว่า"  class="card-input-red card-input-element d-none">
+											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													ส่งต่อชุดปฏิบัติการระดับสูงกว่า  
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_3}} name="sub_treatment" value="ไม่นำส่ง"  class="card-input-red card-input-element d-none">
+											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													ไม่นำส่ง 
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_4 }} name="sub_treatment" value="เสียชีวิตระหว่างนำส่ง"  class="card-input-red card-input-element d-none">
+											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													เสียชีวิตระหว่างนำส่ง  
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_5 }} name="sub_treatment" value="เสียชีวิต ณ จุดเกิดเหตุ"  class="card-input-red card-input-element d-none">
+											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													เสียชีวิต ณ จุดเกิดเหตุ
+												</b>
+											</div>
+										</label>
+									</div>
+								</div>
+
+								<!-- -------------------------------------------   เคส ไม่มี การรักษา  ----------------------------------------------------- -->
+								<div class="row d-none" id="treatment_no">
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_6 }} name="sub_treatment" value="ผู้ป่วยปฏิเสธการรักษา"  class="card-input-element d-none">
+											<div class="card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													ผู้ป่วยปฏิเสธการรักษา
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_7 }} name="sub_treatment" value="ยกเลิก"  class="card-input-element d-none">
+											<div class="card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													ยกเลิก  
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_8 }} name="sub_treatment" value="ไม่พบเหตุ"  class="card-input-element d-none">
+											<div class="card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													ไม่พบเหตุ 
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_9 }} name="sub_treatment" value="เสียชีวิตก่อนชุดปฏิบัติการไปถึง"  class="card-input-element d-none">
+											<div class="card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													เสียชีวิตก่อนชุดปฏิบัติการไปถึง
+												</b>
+											</div>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!---------------------------------- ข้อ 8  ---------------------------------->
+					<div id="step-8" class="tab-pane" role="tabpanel" aria-labelledby="step-8">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="fa-duotone fa-user-group me-1 font-22 text-primary"></i>
+							</div>
+							
+							<h5 class="mb-0 text-primary"><b> ชื่อผู้ป่วย</b></h5>
+						</div>
+						<hr>
+						<!-- ----------------------------------------------- ผู้ป่วย 1 ------------------------------------------------------------- -->
+						<fieldset class="rounded-3 p-3 field-user">
+							<legend class="float-none w-auto px-3">ผู้ป่วย ๑</legend>
+							<div class="row">
+								<div class="col-12 col-md-4 col-lg-4">
+									<label for="name_user" class="form-label">ผู้ป่วย ๑. ชื่อ-สกุล</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="patient_name_1" id="patient_name_1" value="{{ isset($sos_help_center->form_yellow->patient_name_1) ? $sos_help_center->form_yellow->patient_name_1 : ''}}" placeholder="ชื่อ-สกุล">
+									</div>
+								</div>
+								<div class="col-12 col-md-2 col-lg-2">
+									<label for="phone_user" class="form-label">อายุ (ปี)</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-input-numeric"></i></span>
+										<input  type="number" min="1" class="form-control border-start-0 radius-2" name="patient_age_1" id="patient_age_1" value="{{ isset($sos_help_center->form_yellow->patient_age_1) ? $sos_help_center->form_yellow->patient_age_1 : ''}}" placeholder="อายุ">
+									</div>
+								</div>
+								<div class="col-12 col-md-3 col-lg-3">
+									<label for="phone_user" class="form-label">HN</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card-clip"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2"  name="patient_hn_1" id="patient_hn_1" value="{{ isset($sos_help_center->form_yellow->patient_hn_1) ? $sos_help_center->form_yellow->patient_hn_1 : ''}}" placeholder="รหัสผู้ป่วย">
+									</div>
+								</div>
+								<div class="col-12 col-md-3 col-lg-3">
+									<label for="phone_user" class="form-label">เลขประจำตัวประชาชน</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2"name="patient_vn_1" id="patient_vn_1" value="{{ isset($sos_help_center->form_yellow->patient_vn_1) ? $sos_help_center->form_yellow->patient_vn_1 : ''}}" placeholder="เลขประจำตัวประชาชน">
+									</div>
+								</div>
+								<div class="col-12 mt-3"></div>
+								
+								<div class="col-12 col-md-6 col-lg-6">
+									<label for="phone_user" class="form-label">นำส่งที่จังหวัด</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-map-location-dot"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_province_1" id="delivered_province_1" value="{{ isset($sos_help_center->form_yellow->delivered_province_1) ? $sos_help_center->form_yellow->delivered_province_1 : ''}}" placeholder="จังหวัดที่นำส่ง">
+									</div>
+								</div>
+								<div class="ccol-12 col-md-6 col-lg-6">
+									<label for="phone_user" class="form-label">นำส่ง รพ.</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-hospital"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_hospital_1" id="delivered_hospital_1" value="{{ isset($sos_help_center->form_yellow->delivered_hospital_1) ? $sos_help_center->form_yellow->delivered_hospital_1 : ''}}" placeholder="โรงพยาบาลที่นำส่ง">
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						
+
+						<fieldset class="rounded-3 p-3 field-user mt-4">
+							<legend class="float-none w-auto px-3">ผู้ป่วย ๒</legend>
+							<div class="row">
+								<div class="col-12 col-md-4 col-lg-4">
+									<label for="name_user" class="form-label">ผู้ป่วย ๑. ชื่อ-สกุล</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="patient_name_2" id="patient_name_2" value="{{ isset($sos_help_center->form_yellow->patient_name_2) ? $sos_help_center->form_yellow->patient_name_2 : ''}}" placeholder="ชื่อ-สกุล">
+									</div>
+								</div>
+								<div class="col-12 col-md-2 col-lg-2">
+									<label for="phone_user" class="form-label">อายุ (ปี)</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-input-numeric"></i></span>
+										<input  type="number" min="1" class="form-control border-start-0 radius-2" name="patient_age_2" id="patient_age_2" value="{{ isset($sos_help_center->form_yellow->patient_age_2) ? $sos_help_center->form_yellow->patient_age_2 : ''}}" placeholder="อายุ">
+									</div>
+								</div>
+								<div class="col-12 col-md-3 col-lg-3">
+									<label for="phone_user" class="form-label">HN</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card-clip"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2"  name="patient_hn_2" id="patient_hn_2" value="{{ isset($sos_help_center->form_yellow->patient_hn_2) ? $sos_help_center->form_yellow->patient_hn_2 : ''}}" placeholder="รหัสผู้ป่วย">
+									</div>
+								</div>
+								<div class="col-12 col-md-3 col-lg-3">
+									<label for="phone_user" class="form-label">เลขประจำตัวประชาชน</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2"name="patient_vn_2" id="patient_vn_2" value="{{ isset($sos_help_center->form_yellow->patient_vn_2) ? $sos_help_center->form_yellow->patient_vn_2 : ''}}" placeholder="เลขประจำตัวประชาชน">
+									</div>
+								</div>
+								<div class="col-12 mt-3"></div>
+								
+								<div class="col-12 col-md-6 col-lg-6">
+									<label for="phone_user" class="form-label">นำส่งที่จังหวัด</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-map-location-dot"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_province_2" id="delivered_province_2" value="{{ isset($sos_help_center->form_yellow->delivered_province_2) ? $sos_help_center->form_yellow->delivered_province_2 : ''}}" placeholder="จังหวัดที่นำส่ง">
+									</div>
+								</div>
+								<div class="col-12 col-md-6 col-lg-6">
+									<label for="phone_user" class="form-label">นำส่ง รพ.</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-hospital"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_hospital_2" id="delivered_hospital_2" value="{{ isset($sos_help_center->form_yellow->delivered_hospital_2) ? $sos_help_center->form_yellow->delivered_hospital_2 : ''}}" placeholder="โรงพยาบาลที่นำส่ง">
+									</div>
+								</div>
+							</div>
+						</fieldset>
+
+						@php
+
+							$check_submission_criteria_1 ="";$check_submission_criteria_2 ="";$check_submission_criteria_3 ="";$check_submission_criteria_4 ="";$check_submission_criteria_5 ="";
+
+							if( !empty($sos_help_center->form_yellow->submission_criteria) ){
+								$submission_criteria_explode = explode(",", $sos_help_center->form_yellow->submission_criteria);
+
+								for ($i=0; $i < count($submission_criteria_explode); $i++){
+									switch ($submission_criteria_explode[$i]) {
+						                case 'สามารถรักษาได้':
+						                    $check_submission_criteria_1 = "checked";
+						                    break;
+						                case 'อยู่ใกล้':
+						                    $check_submission_criteria_2 = "checked";
+						                    break;
+						                case 'มีหลักประกัน':
+						                    $check_submission_criteria_3 = "checked";
+						                    break;
+						                case 'ผู้ป่วยเก่า':
+						                    $check_submission_criteria_4 = "checked";
+						                    break;
+						                case 'เป็นความประสงค์':
+						                    $check_submission_criteria_5 = "checked";
+						                    break;
+						            }
+						        }
+						    }
+
+					        $check_communication_hospital_1 ="";$check_communication_hospital_2 ="";$check_communication_hospital_3 ="";
+
+					        if( !empty($sos_help_center->form_yellow->communication_hospital) ){
+								$communication_hospital_explode = explode(",", $sos_help_center->form_yellow->communication_hospital);
+
+								for ($i=0; $i < count($communication_hospital_explode); $i++){
+									switch ($communication_hospital_explode[$i]) {
+						                case 'แจ้งวิทยุ':
+						                    $check_communication_hospital_1 = "checked";
+						                    break;
+						                case 'แจ้งทางโทรศัพท์':
+						                    $check_communication_hospital_2 = "checked";
+						                    break;
+						                case 'ไม่ได้แจ้ง':
+						                    $check_communication_hospital_3 = "checked";
+						                    break;
+						            }
+						        }
+						    }
+						@endphp
+
+						<div class="row mt-4">
+							<div class="col-md-12 mb-2">
+								<label  class="form-label m-0 h-3">
+									<b>
+										เกณฑ์การนำส่ง (เลือกได้มากกว่า ๑ ข้อ)
+									</b>
+								</label>
+							</div>	
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_submission_criteria_1 }} name="submission_criteria" value="สามารถรักษาได้"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>สามารถรักษาได้</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_submission_criteria_2 }} name="submission_criteria" value="อยู่ใกล้"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>อยู่ใกล้</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_submission_criteria_3 }} name="submission_criteria" value="มีหลักประกัน"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>มีหลักประกัน</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_submission_criteria_4 }} name="submission_criteria" value="ผู้ป่วยเก่า"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ผู้ป่วยเก่า</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_submission_criteria_5 }} name="submission_criteria" value="เป็นความประสงค์"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>เป็นความประสงค์</b>
+									</div>
+								</label>
+							</div>
+						</div>
+
+
+						<div class="row mt-2">
+							<div class="col-md-12 mb-2">
+								<label  class="form-label m-0 h-3">
+									<b>
+										การติดต่อสื่อสารกับ รพ.ที่นำส่ง
+									</b>
+								</label>
+							</div>	
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_communication_hospital_1 }} name="communication_hospital" value="แจ้งวิทยุ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>แจ้งวิทยุ</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_communication_hospital_2 }} name="communication_hospital" value="แจ้งทางโทรศัพท์"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>แจ้งทางโทรศัพท์</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_communication_hospital_3 }} name="communication_hospital" value="ไม่ได้แจ้ง"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ไม่ได้แจ้ง</b>
+									</div>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!---------------------------------- ข้อ 9  ---------------------------------->
+					<div id="step-9" class="tab-pane" role="tabpanel" aria-labelledby="step-9">
+						<div class="card-title d-flex align-items-center">
+							<div>
+								<i class="fa-regular fa-circle-info me-3 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary"><b> เพิ่มเติม เฉพาะ อาการนำสำคัญของผู้ป่วยฉุกเฉินที่ได้จากการรับแจ้ง เป็นรหัส ๒๕ อุบัติเหตุยานยนต์ รายละเอียดการกรอกข้อมูลโปรดดูในโปรแกรม</b></h5>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-12 col-md-4 col-lg-4">
+								<label for="registration_category" class="form-label">ทะเบียนรถหมวด</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-duotone fa-cars"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2"  name="registration_category" value="{{ isset($sos_help_center->form_yellow->registration_category) ? $sos_help_center->form_yellow->registration_category : ''}}" placeholder="ทะเบียนรถหมวด">
+								</div>
+							</div>
+							<div class="col-12 col-md-4 col-lg-4">
+								<label for="registration_number" class="form-label">เลขทะเบียน</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-duotone fa-input-numeric"></i></span>
+									<input  type="text" min="1" class="form-control border-start-0 radius-2" name="registration_number" value="{{ isset($sos_help_center->form_yellow->registration_number) ? $sos_help_center->form_yellow->registration_number : ''}}" placeholder="เลขทะเบียน">
+								</div>
+							</div>
+							<div class="col-12 col-md-4 col-lg-4">
+								<label for="registration_province" class="form-label">จังหวัด</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-duotone fa-map-location"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="registration_province" value="{{ isset($sos_help_center->form_yellow->registration_province) ? $sos_help_center->form_yellow->registration_province : ''}}" placeholder="จังหวัด">
+								</div>
+							</div>
+						</div>
+
+						@php
+							$check_owner_registration_1 = "" ;
+							$check_owner_registration_2 = "" ;
+							$check_owner_registration_3 = "" ;
+							if( !empty($sos_help_center->form_yellow->owner_registration) ){
+								if( $sos_help_center->form_yellow->owner_registration == 'ของผู้ประสบเหตุ' ){
+									$check_owner_registration_1 = "checked";
+								}else if ( $sos_help_center->form_yellow->owner_registration == 'ของคู่กรณี' ){
+									$check_owner_registration_2 = "checked";
+								}else if ( $sos_help_center->form_yellow->owner_registration == 'ไม่สามารถระบุได้้' ){
+									$check_owner_registration_3 = "checked";
+								}
+							}
+
+						@endphp
+						<div class="row mt-3">
+							<div class="col-md-12">
+								<label class="form-label m-0 h-3">
+									เจ้าของ
+								</label>
+							</div>	
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_owner_registration_1 }} name="owner_registration" value="ของผู้ประสบเหตุ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ของผู้ประสบเหตุ</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_owner_registration_2 }} name="owner_registration" value="ของคู่กรณี"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ของคู่กรณี</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_owner_registration_3 }} name="owner_registration" value="ไม่สามารถระบุได้"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ไม่สามารถระบุได้</b>
+									</div>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row  m-0 p-0">
+					<div class="d-flex justify-content-end my-3 float-end">
+						<div class="d-flex align-items-end">
+						
+							<span>
+								ลงนาม 
+								<div class="input-wrapper">
+									<span class="size-span" id="span_name_officer_1"></span>
+									<input id="name_officer_1" oninput="updateChange(event)" size="5" style="border-radius:0;font-family: inherit;border: none; border-bottom: 1px dashed #000000;" class="form-control bg-transparent p-0 m-0"  type="text" >
+								</div>
+								(เจ้าหน้าที่ผู้บันทึก) 
+							</span>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<span>
+								ลงนาม 
+								<div class="input-wrapper">
+									<span class="size-span" id="span_name_officer_2"></span>
+									<input id="name_officer_2" oninput="updateChange(event)" size="5" style="border-radius:0;border: none; border-bottom: 1px dashed #000000;" class="form-control bg-transparent p-0 m-0"  type="text" >
+								</div>
+								 (แพทย์หรือพยาบาล) 
+							</span>
+						</div>
+					</div>
+					<div class="d-flex justify-content-between">
+						<button class="btn btn-primary " id="prev-btn" type="button" onclick="check_go_to('remove');">ย้อนกลับ</button>
+						&nbsp;&nbsp;
+						<button class="btn btn-primary" id="next-btn" type="button" onclick="check_go_to('add');">ต่อไป</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-<!------------------------------------------------ mobile---------------------------------------------------------------------- -->
-<div class="container-fluid card radius-10 d-block d-lg-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
-                        <div class="row">
-                            <div class="card-header border-bottom-0 bg-transparent">
-                                <div class="col-12"  style="margin-top:10px">
-                                    <div>
-                                        <h5 class="font-weight-bold mb-0">รถที่ถูกรายงานล่าสุด</h5> 
-                                    </div>
-                                    <span style="font-size: 15px; float: right; margin-top:-40px;">จำนวนทั้งหมด {{ $count_data }}</span>
-                                    <div class="d-flex justify-content-end" style="margin-top:10px">
-                                        <a href="{{ url('/sos_score_helper') }}" type="button" class="btn btn-white radius-10" ><i class="fas fa-chart-line"></i>ดูช่วงเวลา</a>
-                                    </div>
-                                    <br>
-                                </div>
-                            </div>
-                            <div class="card-body" style="padding: 0px 10px 0px 10px;">
-                           
-                            @foreach($view_maps as $item)
-                                    @foreach($data_partners as $data_partner)
-                                    @endforeach
-                                    <div class="card col-12 d-block d-lg-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
-                                        <center>
-                                        <div class="row col-12 card-body border border-bottom-0" style="padding:15px 0px 15px 0px ;border-radius: 25px;margin-bottom: -2px;">
-                                                    <div class="col-2 align-self-center" style="vertical-align: middle;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                                        <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}' , '{{ $item->id }}');">
-                                                            <i class="fas fa-map-marker-alt"></i> 
-                                                            <br>
-                                                            ดูหมุด
-                                                        </a> 
-                                                        <br>
-                                                        <a class="link text-info" href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
-                                                            <i class="fas fa-location-arrow"></i> 
-                                                            <br>
-                                                            นำทาง
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-8 d-flex align-items-center" style="margin-bottom:0px;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                                        <center class="col-12">
-                                                            <h5 style="margin-bottom:0px; margin-top:0px; ">
-                                                            <a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span>
-                                                                {{ $item->name }}
-                                                            </h5>
-                                                        </center>
-                                                    </div> 
-                                                    <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#sos_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                                        <i class="fas fa-angle-down" ></i>
-                                                    </div>
-                                                    <div class="col-12 collapse" id="sos_{{ $item->id }}"> 
-                                                        <hr>
-                                                        <p style="font-size:18px;padding:0px"> เบอร์ :  {{ $item->phone }}  </p> <hr>
-                                                        <p style="font-size:18px;padding:0px">วันที่แจ้ง <br> 
-                                                            
-                                                            {{ date("l d F Y" , strtotime($item->created_at)) }}
-                                                            <br>
-                                                        </p>  <hr>
-                                                        <p style="font-size:18px;padding:0px"> เวลา:  {{ date("H:i" , strtotime($item->created_at)) }}
-                                                            
-                                                        </p>
-                                                         <hr>
-                                                        <p style="font-size:18px;padding:0px">รูปภาพ <br> 
-                                                            <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
-                                                                <img width="100%" src="{{ url('storage')}}/{{ $item->photo }}">
-                                                            </a>
-                                                        </p>  
-                                                    </div>
-                                                </div>
-                                            </center>   
-                                        </div>  
-                                    @endforeach
-                                    <div class="pagination-wrapper"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
-                            </div>
-                        </div>
-                    </div>
-                <!-------------------------------- end mobile--------------------------------------------- -->
-<!------------------------------------------- Modal ให้ความช่วยเหลือ ------------------------------------------->
-<div class="modal fade"  id="Partner_gsos" tabindex="-1" role="dialog" aria-labelledby="Partner_gsosTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document" >
-      <div class="modal-content" >
-        <div class="modal-header" >
-          <h5 class="modal-title" style="font-family: 'Prompt', sans-serif;" id="Partner_gsosTitle">ให้ความช่วยเหลือ</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <!-- <br>
-          <section id="about2" class="about2" style="padding:0px;">
-              <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
-                  <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-12"></a>
-              </div>
-          </section>
-          <br>
-          <hr>
-          <br> -->
-          <center><img src="{{ asset('/img/วิธีใช้งาน_p/7.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center><br>
-          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;" >
-              <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
-                  <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login">
-                      <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">1.แผนที่</h5>
-                  </div> 
-                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;"  data-toggle="collapse" data-target="#login" aria-expanded="false" aria-controls="login" >
-                      <i class="fas fa-angle-down"></i>
-                  </div>
-                  <div class="col-12 collapse" id="login">
-                      <br>
-                      <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">สำหรับแสดงตำแหน่งของผู้ขอความช่วยเหลือ</h5>
-                  </div>
-              </div>
-          </div>
-          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
-              <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;" >
-                  <div class="col-10" style="margin-bottom:0px"data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login">
-                          <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">2.ตารางขอความช่วยเหลือ</h5>
-                  </div> 
-                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Social_login" aria-expanded="false" aria-controls="Social_login" >
-                      <i class="fas fa-angle-down" ></i>
-                      </div>
-                  <div class="col-12 collapse" id="Social_login">
-                    <br>
-                    <center><img src="{{ asset('/img/วิธีใช้งาน_p/8.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
-                    <br>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.ชื่อ : แสดงชื่อและเบอร์ผู้ขอความช่วยเหลือ</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.เวลา : แสดงแวลาที่ขอความช่วยเหลือ</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.สถานะ : แสดงสถานะการช่วยเหลือ</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.รูปภาพ : แสดงรูปภาพ</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.ตำแหน่ง : แสดงตำแหน่งผู้ขอความช่วยเหลือบนแผนที่ด้านข้าง</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">6.คะแนนความช่วยเหลือ : แสดงคะแนนที่ผู้ขอความช่วยเหลือประเมิน ผู้ให้ความช่วยเหลือ</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">7.จำนวนทั้งหมด : แสดงจำนวนผู้ขอความช่วยเหลือบนพื้นที่บริการของท่านทั้งหมด</h5>
 
-                  </div>
-              </div>
-          </div>
-          <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
-              <div class="row col-12 card-body" style="padding:15px 0px 15px 0px ;" >
-                  <div class="col-10" style="margin-bottom:0px"data-toggle="collapse" data-target="#sos_detail" aria-expanded="false" aria-controls="sos_detail">
-                          <h5 style="margin-bottom:0px;font-family: 'Prompt', sans-serif;">3.ดูช่วงเวลา</h5>
-                  </div> 
-                  <div class="col-2 align-self-center text-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#sos_detail" aria-expanded="false" aria-controls="sos_detail" >
-                      <i class="fas fa-angle-down" ></i>
-                      </div>
-                  <div class="col-12 collapse" id="sos_detail">
-                    <br>
-                    <center><img src="{{ asset('/img/วิธีใช้งาน_p/9.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center>
-                    <br>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">1.การค้นหา
-                      <h5 style="font-family: 'Prompt', sans-serif;text-indent:40px;"> 1.1.เลือกปี : เลือกปีที่ต้องการค้นหารายการขอความช่วยเหลือ</h5> 
-                      <h5 style="font-family: 'Prompt', sans-serif;text-indent:40px;"> 1.2.เลือกเดือน : เลือกเดือนที่ต้องการค้นหารายการขอความช่วยเหลือ</h5>
-                      <h5 style="font-family: 'Prompt', sans-serif;text-indent:40px;"> 1.3.ค้นหา : เมื่อกรอกข้อมูลครบถ้วนและถูกต้องให้คลิกที่ปุ่มค้นหา</h5> 
-                      <h5 style="font-family: 'Prompt', sans-serif;text-indent:40px;"> 1.4.ล้างการค้นหา : เมื่อต้องการยกเลิกการค้นหาให้คลิกที่ปุ่มล้างการค้นหา</h5>
-                    </h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">2.ตารางขอความช่วยเหลือสำหรับกลางวัน : แสดงจำนวนจำนวนที่ถูกขอความช่วยเหลือ ตั้งแต่เวลา 1 A.M. - 12 A.M.</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">3.ตารางขอความช่วยเหลือสำหรับกลางคืน : แสดงจำนวนจำนวนที่ถูกขอความช่วยเหลือ ตั้งแต่เวลา 1 P.M. - 12 P.M.</h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">4.ขอความช่วยเหลือที่ค้นหาทั้งหมด : แสดงจำนวนการขอความช่วยเหลือตามช่วงเวลาที่ค้นหา </h5>
-                    <h5 style="text-indent:20px;font-family: 'Prompt', sans-serif; margin-bottom: 10px;">5.ขอความช่วยเหลือทั้งหมด : แสดงจำนวนการขอความช่วยเหลือทั้งหมด</h5>
-                  </div>
-              </div>
-          </div>
+
+<div class="container">
+	
+	<!-- <div class="row" style="position: absolute;bottom: 5%;right:3%;">
+		<div class="col-12">
+			<p>
+        		ลงนาม ..................... (เจ้าหน้าที่ผู้บันทึก) &nbsp;&nbsp;&nbsp; ลงนาม ..................... ผู้รับรอง(แพทย์หรือพยาบาล)
+   			</p>
+		</div>
+	</div> -->
+	<!-- <i id="btn_next" class="fa-solid fa-caret-right text-secondary" href="#carousel_form_yellow" role="button" data-slide="next" onclick="check_go_to('add');"></i> -->
+
+	<!-- <div class="row" style="position: absolute;bottom: 1%;right:3%;"> -->
+        <!-- -----------------BTN prev next------------------- -->
+        <!-- <div class="col-12 d-flex align-items-end">
+            <h4 class="text-primary text-end">
+                <i id="btn_prev" class="fa-solid fa-caret-left text-secondary" href="#carousel_form_yellow" role="button" data-slide="prev" onclick="check_go_to('remove');"></i>
+                &nbsp;&nbsp;
+
+                <i id="btn_circle_1" class="fa-solid fa-circle-1 text-secondary" role="button" onclick="go_to_form_data('1');"></i>
+                &nbsp;&nbsp;
+                <i id="btn_circle_2" class="fa-solid fa-circle-2 text-secondary" role="button" onclick="go_to_form_data('2');"></i>
+                &nbsp;&nbsp;
+                <i id="btn_circle_3" class="fa-solid fa-circle-3 text-secondary" role="button" onclick="go_to_form_data('3');"></i>
+                &nbsp;&nbsp;
+                <i id="btn_circle_4" class="fa-solid fa-circle-4 text-secondary" role="button" onclick="go_to_form_data('4');"></i>
+                &nbsp;&nbsp;
+                <i id="btn_circle_5" class="fa-solid fa-circle-5 text-secondary" role="button" onclick="go_to_form_data('5');"></i>
+                &nbsp;&nbsp;
+                <i id="btn_circle_6" class="fa-solid fa-circle-6 text-secondary" role="button" onclick="go_to_form_data('6');"></i>
+                &nbsp;&nbsp;
+                <i id="btn_circle_7" class="fa-solid fa-circle-7 text-secondary" role="button" onclick="go_to_form_data('7');"></i>
+                &nbsp;&nbsp;
+                <i id="btn_circle_8" class="fa-solid fa-circle-8 text-secondary" role="button" onclick="go_to_form_data('8');"></i>
+                &nbsp;&nbsp;
+                <i id="btn_circle_9" class="fa-solid fa-circle-9 text-secondary" role="button" onclick="go_to_form_data('9');"></i>
+                &nbsp;&nbsp;
+
+                <i id="btn_next" class="fa-solid fa-caret-right text-secondary" href="#carousel_form_yellow" role="button" data-slide="next" onclick="check_go_to('add');"></i>
+            </h4>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!------------------------------------------- Modal ให้ความช่วยเหลือ------------------------------------------->
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus"></script>
-<style type="text/css">
-    #map {
-      height: calc(80vh);
-    }
-    
-</style>
+    </div> -->
+
+</div>
+
 <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START");
-        let name_area = document.querySelector('#name_area').value;
 
-        if (name_area) {
-            select_name_area(name_area);
-        }else{
-            initMap();
-        }
+	document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        check_color_btn(null,null);
+        check_lat_lng();
+        check_treatment();
+        let rc_black = document.querySelector('#rc_black').checked ;
+		let rc_black_text = document.querySelector('#rc_black_text') ;
+		if (rc_black) {
+			rc_black_text.readOnly = false ;
+		}else{
+			rc_black_text.readOnly = true ;
+			rc_black_text.value = null ;
+		}
 
     });
 
-    var draw_area ;
-    var map ;
-    var marker ;
+    function check_lat_lng(){
+    	// Check lat lng empty
+	    let input_lat = document.querySelector('#lat') ;
+	    let input_lng = document.querySelector('#lng') ;
 
-    function initMap() {
-        // 13.7248936,100.4930264 lat lng ประเทศไทย
-        map = new google.maps.Map(document.getElementById("map"), {
-            center: {lat: 13.7248936, lng: 100.4930264 },
-            zoom: 14,
-        });
-
-        let all_lat = [];
-        let all_lng = [];
-        let all_lat_lng = [];
-
-        let lat_average ;
-        let lng_average ;
-
-        let lat_sum = 0 ;
-        let lng_sum = 0 ;
-
-        let name_partner = document.querySelector('#name_partner');
-
-        fetch("{{ url('/') }}/api/all_area_partner/" + name_partner.value)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-
-                for (let ii = 0; ii < result.length; ii++) {
-
-                    for (let xx = 0; xx < JSON.parse(result[ii]['sos_area']).length; xx++) {
-
-                        all_lat_lng.push(JSON.parse(result[ii]['sos_area'])[xx]);
-
-                        // all_lat.push(JSON.parse(result[ii]['sos_area'])[xx]['lat']);
-                        // all_lng.push(JSON.parse(result[ii]['sos_area'])[xx]['lng']);
-                        
-                    }
-
-                }
-
-                // หาจุดกลาง polygons ทั้งหมด
-                // for (let zz = 0; zz < all_lat.length; zz++) {
-
-                //     lat_sum = lat_sum + all_lat[zz] ; 
-                //     lng_sum = lng_sum + all_lng[zz] ; 
-
-                //     lat_average = lat_sum / all_lat.length ;
-                //     lng_average = lng_sum / all_lng.length ;
-                // }
-
-                // map = new google.maps.Map(document.getElementById("map"), {
-                //     center: {lat: lat_average, lng: lng_average },
-                //     zoom: 14,
-                // });
-
-                let bounds = new google.maps.LatLngBounds();
-
-                    for (let vc = 0; vc < all_lat_lng.length; vc++) {
-                        bounds.extend(all_lat_lng[vc]);
-                    }
-
-                    map = new google.maps.Map(document.getElementById("map"), {
-                        // zoom: num_zoom,
-                        // center: bounds.getCenter(),
-                    });
-                    map.fitBounds(bounds);
-
-                for (let xi = 0; xi < result.length; xi++) {
-
-                    // วาดพื้นที่รวมทั้งหมด
-                    let draw_sum_area = new google.maps.Polygon({
-                        paths: all_lat_lng,
-                        strokeColor: "red",
-                        strokeOpacity: 0,
-                        strokeWeight: 0,
-                        fillColor: "red",
-                        fillOpacity: 0,
-                    });
-                    draw_sum_area.setMap(map);
-
-                    // วาดแยกแต่ละพื้นที่
-                    let draw_area_other = new google.maps.Polygon({
-                        paths: JSON.parse(result[xi]['sos_area']),
-                        strokeColor: "#008450",
-                        strokeOpacity: 0.8,
-                        strokeWeight: 1,
-                        fillColor: "#008450",
-                        fillOpacity: 0.25,
-                        zIndex:10,
-                    });
-                    draw_area_other.setMap(map);
-
-                    // mouseover on polygon
-                    google.maps.event.addListener(draw_area_other, 'mouseover', function (event) {
-                        this.setOptions({
-                            strokeColor: '#00ff00',
-                            fillColor: '#00ff00'
-                        });
-
-                        let image_empty = "https://www.viicheck.com/img/icon/flag_empty.png";
-
-                        for (let mm = 0; mm < JSON.parse(result[xi]['sos_area']).length; mm++) {
-
-                            all_lat.push(JSON.parse(result[xi]['sos_area'])[mm]['lat']);
-                            all_lng.push(JSON.parse(result[xi]['sos_area'])[mm]['lng']);
-                            
-                        }
-
-                        for (let zz = 0; zz < all_lat.length; zz++) {
-
-                            lat_sum = lat_sum + all_lat[zz] ; 
-                            lng_sum = lng_sum + all_lng[zz] ; 
-
-                            lat_average = lat_sum / all_lat.length ;
-                            lng_average = lng_sum / all_lng.length ;
-                        }
-
-                        marker_mouseover = new google.maps.Marker({
-                            // position: JSON.parse(result[xi]['sos_area'])[0],
-                            position: {lat: lat_average, lng: lng_average },
-                            map: map,
-                            icon: image_empty,
-                            label: {
-                                text: result[xi]['name_area'],
-                                color: 'black',
-                                fontSize: "18px",
-                                fontWeight: 'bold',
-                            },
-                            zIndex:10,
-                        }); 
-
-                    });
-
-                    // mouseout polygon
-                    google.maps.event.addListener(draw_area_other, 'mouseout', function (event) {
-                        this.setOptions({
-                            strokeColor: '#008450',
-                            fillColor: '#008450'
-                        });
-                        marker_mouseover.setMap(null);
-
-                        lat_sum = 0 ;
-                        lng_sum = 0 ;
-                        lat_average = 0 ;
-                        lng_average = 0 ;
-                        all_lat = [] ;
-                        all_lng = [] ;
-                    });
-
-                    draw_area_other.addListener("click", () => {
-                        // select_name_area(result[xi]['name_area']);
-                        try {
-                            document.querySelector('#select_name_area_' + result[xi]['name_area']).click();
-                        }
-                        catch(err) {
-                            alert('ไม่มีข้อมูลการขอความช่วยเหลือ');
-                        }
-                        
-                    });
-                }
-
-
-                //ปักหมุด
-                let image = "https://www.viicheck.com/img/icon/flag_2.png";
-                @foreach($view_maps_all as $view_map)
-                @if(!empty($item->lat))
-                    marker = new google.maps.Marker({
-                        position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
-                        map: map,
-                        icon: image,
-                        zIndex:5,
-                    });  
-                @endif   
-                @endforeach
-
-
-            });
-
+		if (input_lat.value && input_lng.value) {
+			document.querySelector('#btn_get_location_user').disabled = false ;
+			document.querySelector('#btn_select_operating_unit').disabled = false ;
+			document.querySelector('#btn_select_operating_unit').classList.add('btn-danger');
+			document.querySelector('#btn_select_operating_unit').classList.remove('btn-secondary');
+		}else{
+			document.querySelector('#btn_get_location_user').disabled = true ;
+			document.querySelector('#btn_select_operating_unit').disabled = true ;
+			document.querySelector('#btn_select_operating_unit').classList.remove('btn-danger');
+			document.querySelector('#btn_select_operating_unit').classList.add('btn-secondary');
+		}
     }
 
-    function select_name_area(name_area){
+	function check_go_to(type){
+		// console.log(type);
+		let next_page ;
 
-        let name_partner = document.querySelector('#name_partner').value;
+		let btn_prev = document.querySelector('#btn_prev');
+		let btn_next = document.querySelector('#btn_next');
 
-        fetch("{{ url('/') }}/api/area_current/"+name_partner  + '/' + name_area)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
+		let min = 1 ;
+		let max = document.querySelectorAll('.form_yellow').length ;
+			// console.log("max >> " + max);
+		
+		let active = document.querySelector('.active').id;
+		let active_sp = active.split("_");
+			// console.log(active_sp[2]);
 
-                var bounds = new google.maps.LatLngBounds();
+		if (type === "add") {
 
-                for (let ix = 0; ix < result.length; ix++) {
-                    bounds.extend(result[ix]);
-                }
+			if (parseInt(active_sp[2]) === max) {
+				next_page = 1 ;
+			}else{
+				// document.querySelector('#span_form_data').innerHTML = parseInt(active_sp[2]) + 1 ;
+				let active_next = parseInt(active_sp[2]) + 1 ;
+				next_page = active_next ;
+			}
+			check_color_btn(active_sp[2],next_page);
 
-            map = new google.maps.Map(document.getElementById("map"), {
-                // zoom: 18,
-            });
-            map.fitBounds(bounds);
+		}else if (type === "remove"){
 
-            // Construct the polygon.
-            draw_area = new google.maps.Polygon({
-                paths: result,
-                strokeColor: "#008450",
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: "#008450",
-                fillOpacity: 0.25,
-            });
-            draw_area.setMap(map);
+			if (parseInt(active_sp[2]) === min) {
+				next_page = max ;
+			}else{
+				// document.querySelector('#span_form_data').innerHTML = parseInt(active_sp[2]) + 1 ;
+				let active_prev = parseInt(active_sp[2]) - 1 ;
+				next_page = active_prev ;
+			}
+			check_color_btn(active_sp[2],next_page);
+		}
 
-            //ปักหมุด
-            let image = "https://www.viicheck.com/img/icon/flag_2.png";
-            @foreach($view_maps_all as $view_map)
-            @if(!empty($item->lat))
-                marker = new google.maps.Marker({
-                    position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
-                    map: map,
-                    icon: image,
-                    zIndex:5,
-                });  
-            @endif   
-            @endforeach
+		send_save_data(active_sp[2]);
+	}
+
+	function go_to_form_data(click_to){
+		console.log(click_to);
+
+		let active = document.querySelector('.active').id;
+		let active_sp = active.split("_");
+			// console.log("active >> " + active_sp[2]);
+
+		// document.querySelector('#form_data_' + active_sp[2]).classList.remove('active');
+		// document.querySelector('#form_data_' + click_to).classList.add('active');
+
+		send_save_data(active_sp[2]);
+		check_color_btn(active_sp[2],click_to);
+	}
+
+	function check_click_rc(){
+		let rc_black = document.querySelector('#rc_black').checked ;
+		let rc_black_text = document.querySelector('#rc_black_text') ;
+		if (rc_black) {
+			rc_black_text.readOnly = false ;
+		}else{
+			rc_black_text.readOnly = true ;
+			rc_black_text.value = null ;
+		}
+	}
+
+	function send_save_data(active){
+
+		// ---------------------------- ข้อใน form ----------------------------
+	    // ==>> 1
+		let be_notified = document.querySelectorAll('input[name="be_notified"]');
+		let be_notified_value = "" ;
+			be_notified.forEach(be_notified => {
+			    if(be_notified.checked){
+			        be_notified_value = be_notified.value;
+			    }
+			})
+		let name_user = document.querySelector('[name="name_user"]');
+		let phone_user = document.querySelector('[name="phone_user"]');
+		let lat = document.querySelector('[name="lat"]');
+		let lng = document.querySelector('[name="lng"]');
+		let location_sos = document.querySelector('[name="location_sos"]');
+
+		// ==>> 2
+		let symptom = document.getElementsByClassName('symptom');
+		let symptom_value = "" ;
+
+			for (let i = 0; i < symptom.length; i++) {
+		        if (symptom[i].checked) {
+		        	if (symptom_value === "") {
+		        		symptom_value = symptom[i].value ;
+		        	}else{
+		        		symptom_value = symptom_value + "," +  symptom[i].value ;
+		        	}
+		    	}
+		    }
+
+		// ==>> 3
+		let symptom_other = document.querySelector('[name="symptom_other"]');
+
+		// ==>> 4
+		let idc = document.querySelectorAll('input[name="idc"]');
+		let idc_value = "" ;
+			idc.forEach(idc => {
+			    if(idc.checked){
+			        idc_value = idc.value;
+			    }
+			})
+				
+		// ==>> 5
+		let vehicle_type = document.querySelectorAll('input[name="vehicle_type"]');
+		let vehicle_type_value = "" ;
+			vehicle_type.forEach(vehicle_type => {
+			    if(vehicle_type.checked){
+			        vehicle_type_value = vehicle_type.value;
+			    }
+			})
+		let operating_suit_type = document.querySelectorAll('input[name="operating_suit_type"]');
+		let operating_suit_type_value = "" ;
+			operating_suit_type.forEach(operating_suit_type => {
+			    if(operating_suit_type.checked){
+			        operating_suit_type_value = operating_suit_type.value;
+			    }
+			}) 
+		let operation_unit_name = document.querySelector('[name="operation_unit_name"]'); 
+		let action_set_name = document.querySelector('[name="action_set_name"]'); 
+		// <!-- ตารางเวลาปฏิบัติการ -->
+		let time_create_sos = document.querySelector('[name="time_create_sos"]'); 
+		let time_command = document.querySelector('[name="time_command"]'); 
+		let time_go_to_help = document.querySelector('[name="time_go_to_help"]'); 
+		let time_to_the_scene = document.querySelector('[name="time_to_the_scene"]'); 
+		let time_leave_the_scene = document.querySelector('[name="time_leave_the_scene"]'); 
+		let time_hospital = document.querySelector('[name="time_hospital"]'); 
+		let time_to_the_operating_base = document.querySelector('[name="time_to_the_operating_base"]'); 
+		let km_create_sos_to_go_to_help = document.querySelector('[name="km_create_sos_to_go_to_help"]'); 
+		let km_to_the_scene_to_leave_the_scene = document.querySelector('[name="km_to_the_scene_to_leave_the_scene"]'); 
+		let km_hospital = document.querySelector('[name="km_hospital"]'); 
+		let km_operating_base = document.querySelector('[name="km_operating_base"]'); 
+		
+		// ==>> 6
+		let rc = document.querySelectorAll('input[name="rc"]');
+		let rc_value = "" ;
+			rc.forEach(rc => {
+			    if(rc.checked){
+			        rc_value = rc.value;
+			    }
+			})
+		let rc_black_text = document.querySelector('[name="rc_black_text"]'); 
+
+		// ==>> 7
+		let treatment = document.querySelectorAll('input[name="treatment"]');
+		let treatment_value = "" ;
+			treatment.forEach(treatment => {
+			    if(treatment.checked){
+			        treatment_value = treatment.value;
+			    }
+			})
+		let sub_treatment = document.getElementsByClassName('sub_treatment');
+		let sub_treatment_value = "" ;
+			for (let i = 0; i < sub_treatment.length; i++) {
+		        if (sub_treatment[i].checked) {
+		        	if (sub_treatment_value === "") {
+		        		sub_treatment_value = sub_treatment[i].value ;
+		        	}else{
+		        		sub_treatment_value = sub_treatment_value + "," +  sub_treatment[i].value ;
+		        	}
+		        }
+		    }
+
+		// ==>> 8
+		let patient_name_1 = document.querySelector('[name="patient_name_1"]');
+		let patient_age_1 = document.querySelector('[name="patient_age_1"]'); 
+		let patient_hn_1 = document.querySelector('[name="patient_hn_1"]'); 
+		let patient_vn_1 = document.querySelector('[name="patient_vn_1"]'); 
+		let delivered_province_1 = document.querySelector('[name="delivered_province_1"]'); 
+		let delivered_hospital_1 = document.querySelector('[name="delivered_hospital_1"]'); 
+		let patient_name_2 = document.querySelector('[name="patient_name_2"]'); 
+		let patient_age_2 = document.querySelector('[name="patient_age_2"]'); 
+		let patient_hn_2 = document.querySelector('[name="patient_hn_2"]'); 
+		let patient_vn_2 = document.querySelector('[name="patient_vn_2"]'); 
+		let delivered_province_2 = document.querySelector('[name="delivered_province_2"]'); 
+		let delivered_hospital_2 = document.querySelector('[name="delivered_hospital_2"]'); 
+
+		let submission_criteria = document.getElementsByClassName('submission_criteria');
+		let submission_criteria_value = "" ;
+			for (let i = 0; i < submission_criteria.length; i++) {
+		        if (submission_criteria[i].checked) {
+		        	if (submission_criteria_value === "") {
+		        		submission_criteria_value = submission_criteria[i].value ;
+		        	}else{
+		        		submission_criteria_value = submission_criteria_value + "," +  submission_criteria[i].value ;
+		        	}
+		        }
+		    }
+
+		let communication_hospital = document.getElementsByClassName('communication_hospital');
+		let communication_hospital_value = "" ;
+			for (let i = 0; i < communication_hospital.length; i++) {
+		        if (communication_hospital[i].checked) {
+		        	if (communication_hospital_value === "") {
+		        		communication_hospital_value = communication_hospital[i].value ;
+		        	}else{
+		        		communication_hospital_value = communication_hospital_value + "," +  communication_hospital[i].value ;
+		        	}
+		        }
+		    }
+
+		// ==>> 9
+		let registration_category = document.querySelector('[name="registration_category"]'); 
+		let registration_number = document.querySelector('[name="registration_number"]'); 
+		let registration_province = document.querySelector('[name="registration_province"]'); 
+		let owner_registration = document.querySelectorAll('input[name="owner_registration"]');
+		let owner_registration_value = "" ;
+			owner_registration.forEach(owner_registration => {
+			    if(owner_registration.checked){
+			        owner_registration_value = owner_registration.value;
+			    }
+			})
+
+		// ------------------------------------------------------------------------------------------------------------
+
+		let data_arr = [] ;
+
+		switch(active) {
+		  	case '1':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "be_notified" : be_notified_value,
+			        "name_user" : name_user.value,
+			        "phone_user" : phone_user.value,
+			        "lat" : lat.value,
+			        "lng" : lng.value,
+			        "location_sos" : location_sos.value,
+			    };
+		    break;
+		  	case '2':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "symptom" : symptom_value,
+			    };
+		    break;
+			case '3':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "symptom_other" : symptom_other.value,
+			    };
+		    break;
+		    case '4':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "idc" : idc_value,
+			    };
+		    break;
+		    case '5':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "vehicle_type" : vehicle_type_value,
+			        "operating_suit_type" : operating_suit_type_value,
+			        "operation_unit_name" : operation_unit_name.value,
+			        "action_set_name" : action_set_name.value,
+			        "time_create_sos" : time_create_sos.value,
+			        "time_command" : time_command.value,
+			        "time_go_to_help" : time_go_to_help.value,
+			        "time_to_the_scene" : time_to_the_scene.value,
+			        "time_leave_the_scene" : time_leave_the_scene.value,
+			        "time_hospital" : time_hospital.value,
+			        "time_to_the_operating_base" : time_to_the_operating_base.value,
+			        "km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
+			        "km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
+			        "km_hospital" : km_hospital.value,
+			        "km_operating_base" : km_operating_base.value,
+			    };
+		    break;
+		    case '6':
+
+		    	if ( rc_value && rc_value === "ดำ" ) {
+		    		data_arr = {
+				        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+				        "rc" : rc_value,
+				        "rc_black_text" : rc_black_text.value,
+				    };
+		    	}else{
+		    		data_arr = {
+				        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+				        "rc" : rc_value,
+				    };
+		    	}
+		    	
+		    break;
+		    case '7':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "treatment" : treatment_value,
+			        "sub_treatment" : sub_treatment_value,
+			    };
+		    break;
+		    case '8':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "patient_name_1" : patient_name_1.value,
+			        "patient_age_1" : patient_age_1.value,
+			        "patient_hn_1" : patient_hn_1.value,
+			        "patient_vn_1" : patient_vn_1.value,
+			        "delivered_province_1" : delivered_province_1.value,
+			        "delivered_hospital_1" : delivered_hospital_1.value,
+			        "patient_name_2" : patient_name_2.value,
+			        "patient_age_2" : patient_age_2.value,
+			        "patient_hn_2" : patient_hn_2.value,
+			        "patient_vn_2" : patient_vn_2.value,
+			        "delivered_province_2" : delivered_province_2.value,
+			        "delivered_hospital_2" : delivered_hospital_2.value,
+			        "submission_criteria" : submission_criteria_value,
+			        "communication_hospital" : communication_hospital_value,
+			    };
+			    console.log(data_arr);
+		    break;
+		    case '9':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "registration_category" : registration_category.value,
+			        "registration_number" : registration_number.value,
+			        "registration_province" : registration_province.value,
+			        "owner_registration" : owner_registration_value,
+			    }; 
+		    break;
+		}
+
+
+		// console.log(data_arr);
+
+		fetch("{{ url('/') }}/api/send_save_data/form_yellow", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            // return response.text();
+        }).then(function(data){
+            // console.log(data);
+        }).catch(function(error){
+            // console.error(error);
         });
-        
-    }
 
-
-    function view_marker(lat , lng , sos_id , name_area){
-
-        let name_partner = document.querySelector('#name_partner').value;
-        // let name_area = 'คอนโด' ;
-
-        fetch("{{ url('/') }}/api/area_current/"+name_partner  + '/' + name_area)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-
-                var bounds = new google.maps.LatLngBounds();
-
-                for (let ix = 0; ix < result.length; ix++) {
-                    bounds.extend(result[ix]);
-                }
-
-            map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 18,
-                center: { lat: parseFloat(lat), lng: parseFloat(lng) },
-            });
-
-            // Construct the polygon.
-            draw_area = new google.maps.Polygon({
-                paths: result,
-                strokeColor: "#008450",
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: "#008450",
-                fillOpacity: 0.25,
-            });
-            draw_area.setMap(map);
-
-            let image = "https://www.viicheck.com/img/icon/flag_2.png";
-            let image2 = "https://www.viicheck.com/img/icon/flag_3.png";
-            marker = new google.maps.Marker({
-                position: {lat: parseFloat(lat) , lng: parseFloat(lng) },
-                map: map,
-                icon: image,
-            });  
-
-            @foreach($view_maps as $view_map)
-                if ( {{ $view_map->id }} !== parseFloat(sos_id) ) {
-                    marker = new google.maps.Marker({
-                        position: {lat: {{ $view_map->lat }} , lng: {{ $view_map->lng }} },
-                        map: map,
-                        icon: image2,
-                    });
-                }
-            @endforeach
-
-            const myLatlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
-
-            const contentString =
-                '<div id="content">' +
-                '<div id="siteNotice">' +
-                "</div>" +
-                '<h4 id="firstHeading" class="firstHeading">'+name_area +'</h4>' +
-                '<div id="bodyContent">' +
-                "<p>lat : "+ lat + "<br>" +
-                "lng : "+ lng + "</p>" +
-                "</div>" +
-                "</div>";
-
-            let infoWindow = new google.maps.InfoWindow({
-                // content: "<p>ชื่อพื้นที่ : <b>" + name_area  + "</b></p>" + "Lat :" + lat + "<br>" + "Lat :" + lng,
-                content: contentString,
-                position: myLatlng,
-            });
-
-            infoWindow.open(map);
-        });
-
-    }
+	}
 
 </script>
 
-@endsection
+<!-- check_color_btn() อยู่ในนี้ -->
+<script src="{{ asset('js/form1669/check_color_btn_form_yellow.js')}}"></script>
+<!--end row-->
+
+<!--end wrapper-->
+<!--start switcher-->
+</body>
+<script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
+<script>
+	$(document).ready(function() {
+		// Step show event
+		$("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
+			$("#prev-btn").removeClass('disabled');
+			$("#next-btn").removeClass('disabled');
+			if (stepPosition === 'first') {
+				$("#prev-btn").addClass('disabled');
+			} else if (stepPosition === 'last') {
+				$("#next-btn").addClass('disabled');
+			} else {
+				$("#prev-btn").removeClass('disabled');
+				$("#next-btn").removeClass('disabled');
+			}
+		});
+		// Smart Wizard
+		$('#smartwizard').smartWizard({
+			selected: 9,
+			theme: 'dots',
+			transition: {
+				animation: 'fade', // Effect on navigation, none/fade/slide-horizontal/slide-vertical/slide-swing
+			},
+			anchorSettings: {
+				anchorClickable: true, // Enable/Disable anchor navigation
+				enableAllAnchors: true, // Activates all anchors clickable all times
+				markDoneStep: true, // add done css
+				enableAnchorOnDoneStep: true // Enable/Disable the done steps navigation
+        	},
+			toolbarSettings: {
+				toolbarPosition: 'none', // both bottom
+			},
+		});
+		// External Button Events
+		$("#reset-btn").on("click", function() {
+			// Reset wizard
+			$('#smartwizard').smartWizard("reset");
+			return true;
+		});
+		$("#prev-btn").on("click", function() {
+			// Navigate previous
+			$('#smartwizard').smartWizard("prev");
+			return true;
+		});
+		$("#next-btn").on("click", function() {
+			// Navigate next
+			$('#smartwizard').smartWizard("next");
+			return true;
+		});
+	});
+</script>
+<script>
+	// ช่อง input ขยายตามตัวหนังสือ
+	function updateChange(event) {
+		if(event.target.id === "name_officer_1"){
+			const spanElement = document.querySelector('#span_name_officer_1');
+			const value = event.target.value;	
+			spanElement.innerText = value;
+		}if(event.target.id === "name_officer_2"){
+			const spanElement = document.querySelector('#span_name_officer_2');
+			const value = event.target.value;	
+			spanElement.innerText = value;
+		}
+	}
+</script>
+
+<script>
+	
+	function check_treatment() {
+		var check_treatment = document.getElementsByName('treatment');
+		// เช็คช่อง input ว่าเลือกมีการรักษาหรือไม่
+		for (var i = 0, length = check_treatment.length; i < length; i++) {
+			if (check_treatment[i].checked) {
+				if(check_treatment[i].value == "มีการรักษา"){
+					document.querySelector('#treatment_no').classList.add('d-none');
+					document.querySelector('#treatment_yes').classList.remove('d-none');
+					document.querySelector('#treatment_yes').classList.add('show-data');
+				}else{
+					document.querySelector('#treatment_yes').classList.add('d-none');
+					document.querySelector('#treatment_no').classList.remove('d-none');
+					document.querySelector('#treatment_no').classList.add('show-data');
+				}
+				
+				break;
+			} 
+		}
+
+        
+	}
+	function reset_sub_treatment(){
+		
+		var clist = document.getElementsByName('sub_treatment');
+
+		for (var i = 0, length = clist.length; i < length; i++) { 
+			if (clist[i].checked) {
+				
+				clist[i].checked = false; 
+			
+			}
+		}
+
+	}
+
+</script>
