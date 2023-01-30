@@ -13,6 +13,78 @@
 }
 
 </style>
+<!-- Modal cf_select_operating_unit -->
+<button id="cf_select_operating_unit" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#cf_select_operating_unit">
+    modal cf_select_operating_unit
+</button>
+<div class="modal fade" id="cf_select_operating_unit" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color:lightblue;">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-8">
+                            <br>
+                            <h2>ยืนยันการเลือก<br>หน่วยแพทย์</h2>
+                        </div>
+                        <div class="col-4">
+                            <br>
+                            <img style="width:100%;" src="{{ url('/') }}/img/stickerline/PNG/7.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-body">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-5">
+                            <h5>ชื่อหน่วย : </h5>
+                        </div>
+                        <div class="col-7">
+                            <span id="cf_select_name">cf_select_name</span>
+                        </div>
+                        <div class="col-5">
+                            <h5>พื้นที่ (สังกัด) : </h5>
+                        </div>
+                        <div class="col-7">
+                            <span id="cf_select_area">cf_select_area</span>
+                        </div>
+                        <div class="col-5">
+                            <h5>ระยะทาง : </h5>
+                        </div>
+                        <div class="col-7">
+                            <span id="cf_select_distance">cf_select_distance</span>
+                        </div>
+                        <div class="col-5">
+                            <h5>ระดับปฏิบัติการ : </h5>
+                        </div>
+                        <div class="col-7">
+                            <span id="cf_select_level">cf_select_level</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-body text-center">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-6">
+                            <span style="width:80%;" class="btn btn-sm btn-warning text-white main-shadow main-radius">
+                                เปลี่ยน <i class="fa-duotone fa-right-left"></i>
+                            </span>
+                        </div>
+                        <div class="col-6">
+                            <span style="width:80%;" class="btn btn-sm btn-success main-shadow main-radius">
+                                ยืนยัน <i class="fa-solid fa-circle-check"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="modal_mapMarkLocation" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -333,7 +405,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                        @include ('test_test')
+                        @include ('sos_help_center.form_sos_yellow')
                         
 				
                         </div>
@@ -413,7 +485,7 @@
 
 
 
-
+<!-- 
 <div class="item sos-map col-12 col-md-12 bg-white">
     <div class="row">
         <div class="col-12">
@@ -453,14 +525,12 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="row">
-                        <!-- ชื่อ -->
                         <div class="col-12" style="margin-top: 10px;">
                             <h5>
                                 <b>ชื่อ/รหัสผู้แจ้งเหตุ</b>
                             </h5>
                             <span style="font-size:18px;">{{ $sos_help_center->name_user }}</span>
                         </div>
-                        <!-- เบอร์ -->
                         <div class="col-12" style="margin-top: 10px;">
                             <h5>
                                 <b>โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ</b>
@@ -508,7 +578,6 @@
             </div>
         </div>
 
-        <!-- form yellow -->
         <div id="div_form_yellow" class="col-12 col-md-9 d-none" style="background-color:#FAE693;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
             <div class="row">
                 <div class="col-12">
@@ -529,59 +598,50 @@
                             </div>
                         </div>
                         <div class="row">
-                            @include ('sos_help_center.form_sos_yellow')
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- form blue -->
         <div id="div_form_blue" class="col-12 col-md-9 d-none" style="background-color: #93f0fa;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
             <div class="row">
                 <div class="col-12">
                     <div class="row">
-                        @include ('sos_help_center.form_sos_blue')
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- form green -->
         <div id="div_form_green" class="col-12 col-md-9 d-none" style="background-color: #93faa6;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
             <div class="row">
                 <div class="col-12">
                     <div class="row">
-                        @include ('sos_help_center.form_sos_green')
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- form pink -->
         <div id="div_form_pink" class="col-12 col-md-9 d-none" style="background-color: #fa93f0;height: auto;border: 0px solid black;padding: 25px;border-radius: 25px;">
             <div class="row">
                 <div class="col-12">
                     <div class="row">
-                        @include ('sos_help_center.form_sos_pink')
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- form operating unit map -->
         <div id="div_form_operating_unit_map" class="col-12 col-md-9 d-" style="height: auto;border: 3px solid red;padding: 25px;border-radius: 25px;">
             <div class="row">
                 <div class="col-12">
                     <div class="row">
-                        @include ('sos_help_center.form_operating_unit_map')
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
-</div>
+</div> -->
 
 
 

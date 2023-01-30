@@ -1,4 +1,4 @@
-function check_color_btn(active,next_page){
+function check_color_btn(active){
 	// Check lat lng empty
     let input_lat = document.querySelector('#lat') ;
     let input_lng = document.querySelector('#lng') ;
@@ -145,285 +145,247 @@ function check_color_btn(active,next_page){
 
 	// ------------------------------------------------------------------------------------------------------------
 
-	if (!next_page) {
-		next_page = 1 ;
-		document.querySelector('#btn_circle_' + next_page).classList.add('text-info') ;
+	// if (!next_page) {
+	// 	next_page = 1 ;
+	// 	document.querySelector('#btn_circle_' + next_page).classList.add('text-info') ;
 
-	}else{
-		let start_btn_circle = document.querySelector("#btn_circle_" + next_page);
-		let start_text_color_old = start_btn_circle.classList[2];
-			// console.log(start_text_color_old);
-		start_btn_circle.classList.remove(start_text_color_old);
-		document.querySelector('#btn_circle_' + next_page).classList.add('text-info') ;
+	// }else{
+	// 	let start_btn_circle = document.querySelector("#btn_circle_" + next_page);
+	// 	let start_text_color_old = start_btn_circle.classList[2];
+	// 		// console.log(start_text_color_old);
+	// 	start_btn_circle.classList.remove(start_text_color_old);
+	// 	document.querySelector('#btn_circle_' + next_page).classList.add('text-info') ;
 
-	}
+	// }
 
-	if (active) {
-		document.querySelector('#btn_circle_' + active).classList.remove('text-info') ;
-	}
-
-	switch(active) {
+	// if (active) {
+	// 	document.querySelector('#btn_circle_' + active).classList.remove('text-info') ;
+	// }
+	var nav = $('.page_number');
+	for (i = 0; i < nav.length; i++) {
+		switch(active) {
 			case '1':
-			if (be_notified_value && name_user.value && phone_user.value && lat.value && lng.value && location_sos.value) {
-				// console.log('ครบ');
-				let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-			}else{
-				// console.log('ไม่ครบ');
-				let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-			}
-	    break;
-	    case '2':
-	    	if (symptom_value) {
-	    		let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-	    	}else{
-	    		let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-	    	}
-	    break;
-	    case '3':
-			if (symptom_other.value) {
-				let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-	    	}else{
-	    		let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-	    	}
+				if(nav[i].getAttribute("page") == "number_1"){
+					if (be_notified_value && name_user.value && phone_user.value && lat.value && lng.value && location_sos.value) {
+						nav[i].closest(".page_number").classList.remove("danger");
+						nav[i].closest(".page_number").classList.add("success");
+					
+					}else{
+						nav[i].closest(".page_number").classList.add("danger");
+						nav[i].closest(".page_number").classList.remove("success");
+					}
+				}
+			break;
+			
 
-	    break;
-	    case '4':
-			if (idc_value) {
-				let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-			}else{
-				let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-			}
-	    break;
-	    case '5':
-	    	if (vehicle_type_value && operating_suit_type_value && operation_unit_name.value && action_set_name.value && time_create_sos.value && time_command.value && time_go_to_help.value && time_to_the_scene.value && time_leave_the_scene.value && time_hospital.value && time_to_the_operating_base.value && km_create_sos_to_go_to_help.value && km_to_the_scene_to_leave_the_scene.value && km_hospital.value && km_operating_base.value) {
-				let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-			}else{
-				let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-			}
-	    break;
-	    case '6':
-			if (rc_value) {
-	    		let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-			}else{
-				let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-			}
-	    break;
-	    case '7':
-			if (treatment_value && sub_treatment_value) {
-	    		let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-			}else{
-				let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-			}
-	    break;
-	    case '8':
-	    	if (patient_name_1.value && patient_age_1.value && patient_hn_1.value && patient_vn_1.value && delivered_province_1.value && delivered_hospital_1.value && patient_name_2.value && patient_age_2.value && patient_hn_2.value && patient_vn_2.value && delivered_province_2.value && delivered_hospital_2.value && submission_criteria_value && communication_hospital_value) {
-	    		let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-			}else{
-				let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-			}
-	    break;
-	    case '9':
-	    	if (registration_category.value && registration_number.value && registration_province.value && owner_registration_value) {
-	    		let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-			}else{
-				let btn_circle = document.querySelector("#btn_circle_" + active);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-			}
-	    break;
-	    
+			case '2':
+				if(nav[i].getAttribute("page") == "number_2"){
+					if (symptom_value) {
+						nav[i].closest(".page_number").classList.remove("danger");
+						nav[i].closest(".page_number").classList.add("success");
+					}else{
+						nav[i].closest(".page_number").classList.add("danger");
+						nav[i].closest(".page_number").classList.remove("success");
+					}
+				}
+			break;
 
-	    default:
-			// if (be_notified_value && name_user.value && phone_user.value && lat.value && lng.value && location_sos.value) {
-			// 	// console.log('ครบ');
-			// 	let btn_circle = document.querySelector("#btn_circle_" + 1);
-			// 	let text_color_old = btn_circle.classList[2];
-			// 	btn_circle.classList.remove('text-info');
-			// 	btn_circle.classList.remove(text_color_old);
-			// 	btn_circle.classList.add("text-success");
-			// }else{
-			// 	// console.log('ไม่ครบ');
-			// 	let btn_circle = document.querySelector("#btn_circle_" + 1);
-			// 	let text_color_old = btn_circle.classList[2];
-			// 	btn_circle.classList.remove('text-info');
-			// 	btn_circle.classList.remove(text_color_old);
-			// 	btn_circle.classList.add("text-danger");
-			// }
-			if (symptom_value) {
-	    		let btn_circle = document.querySelector("#btn_circle_" + 2);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-	    	}else{
-	    		let btn_circle = document.querySelector("#btn_circle_" + 2);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-	    	}
-	    	if (symptom_other.value) {
-				let btn_circle = document.querySelector("#btn_circle_" + 3);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-	    	}else{
-	    		let btn_circle = document.querySelector("#btn_circle_" + 3);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-	    	}
-	    	if (idc_value) {
-				let btn_circle = document.querySelector("#btn_circle_" + 4);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-			}else{
-				let btn_circle = document.querySelector("#btn_circle_" + 4);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-			}
-			if (vehicle_type_value && operating_suit_type_value && operation_unit_name.value && action_set_name.value && time_create_sos.value && time_command.value && time_go_to_help.value && time_to_the_scene.value && time_leave_the_scene.value && time_hospital.value && time_to_the_operating_base.value && km_create_sos_to_go_to_help.value && km_to_the_scene_to_leave_the_scene.value && km_hospital.value && km_operating_base.value) {
-				let btn_circle = document.querySelector("#btn_circle_" + 5);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-			}else{
-				let btn_circle = document.querySelector("#btn_circle_" + 5);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-			}
-			if (rc_value) {
-	    		let btn_circle = document.querySelector("#btn_circle_" + 6);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-			}else{
-				let btn_circle = document.querySelector("#btn_circle_" + 6);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-			}
-			if (treatment_value && sub_treatment_value) {
-	    		let btn_circle = document.querySelector("#btn_circle_" + 7);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-			}else{
-				let btn_circle = document.querySelector("#btn_circle_" + 7);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-			}
-			if (patient_name_1.value && patient_age_1.value && patient_hn_1.value && patient_vn_1.value && delivered_province_1.value && delivered_hospital_1.value && patient_name_2.value && patient_age_2.value && patient_hn_2.value && patient_vn_2.value && delivered_province_2.value && delivered_hospital_2.value && submission_criteria_value && communication_hospital_value) {
-	    		let btn_circle = document.querySelector("#btn_circle_" + 8);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-			}else{
-				let btn_circle = document.querySelector("#btn_circle_" + 8);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
-			}
-			if (registration_category.value && registration_number.value && registration_province.value && owner_registration_value) {
-	    		let btn_circle = document.querySelector("#btn_circle_" + 9);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-success");
-			}else{
-				let btn_circle = document.querySelector("#btn_circle_" + 9);
-				let text_color_old = btn_circle.classList[2];
-				btn_circle.classList.remove('text-info');
-				btn_circle.classList.remove(text_color_old);
-				btn_circle.classList.add("text-danger");
+			case '3':
+				if(nav[i].getAttribute("page") == "number_3"){
+					if (symptom_other.value) {
+						nav[i].closest(".page_number").classList.remove("danger");
+						nav[i].closest(".page_number").classList.add("success");
+					
+					}else{
+						nav[i].closest(".page_number").classList.add("danger");
+						nav[i].closest(".page_number").classList.remove("success");
+					}
+				}
+			break;
+
+			case '4':
+				if(nav[i].getAttribute("page") == "number_4"){
+					if (idc_value) {
+						nav[i].closest(".page_number").classList.remove("danger");
+						nav[i].closest(".page_number").classList.add("success");
+					
+					}else{
+						nav[i].closest(".page_number").classList.add("danger");
+						nav[i].closest(".page_number").classList.remove("success");
+					}
+				}
+			break;
+
+			case '5':
+				if(nav[i].getAttribute("page") == "number_5"){
+					if (vehicle_type_value && operating_suit_type_value && operation_unit_name.value && action_set_name.value && time_create_sos.value && time_command.value && time_go_to_help.value && time_to_the_scene.value && time_leave_the_scene.value && time_hospital.value && time_to_the_operating_base.value && km_create_sos_to_go_to_help.value && km_to_the_scene_to_leave_the_scene.value && km_hospital.value && km_operating_base.value) {
+						nav[i].closest(".page_number").classList.remove("danger");
+						nav[i].closest(".page_number").classList.add("success");
+					
+					}else{
+						nav[i].closest(".page_number").classList.add("danger");
+						nav[i].closest(".page_number").classList.remove("success");
+					}
+				}
+			break;
+
+			case '6':
+				if(nav[i].getAttribute("page") == "number_6"){
+					if (rc_value) {
+						nav[i].closest(".page_number").classList.remove("danger");
+						nav[i].closest(".page_number").classList.add("success");
+					
+					}else{
+						nav[i].closest(".page_number").classList.add("danger");
+						nav[i].closest(".page_number").classList.remove("success");
+					}
+				}
+			break;
+
+			case '7':
+				if(nav[i].getAttribute("page") == "number_7"){
+					if (treatment_value && sub_treatment_value) {
+						nav[i].closest(".page_number").classList.remove("danger");
+						nav[i].closest(".page_number").classList.add("success");
+					
+					}else{
+						nav[i].closest(".page_number").classList.add("danger");
+						nav[i].closest(".page_number").classList.remove("success");
+					}
+				}
+			break;
+
+			case '8':
+				if(nav[i].getAttribute("page") == "number_8"){
+					if (patient_name_1.value && patient_age_1.value && patient_hn_1.value && patient_vn_1.value && delivered_province_1.value && delivered_hospital_1.value && patient_name_2.value && patient_age_2.value && patient_hn_2.value && patient_vn_2.value && delivered_province_2.value && delivered_hospital_2.value && submission_criteria_value && communication_hospital_value) {
+						nav[i].closest(".page_number").classList.remove("danger");
+						nav[i].closest(".page_number").classList.add("success");
+					
+					}else{
+						nav[i].closest(".page_number").classList.add("danger");
+						nav[i].closest(".page_number").classList.remove("success");
+					}
+				}
+			break;
+
+			case '9':
+				if(nav[i].getAttribute("page") == "number_9"){
+					if (registration_category.value && registration_number.value && registration_province.value && owner_registration_value) {
+						nav[i].closest(".page_number").classList.remove("danger");
+						nav[i].closest(".page_number").classList.add("success");
+					
+					}else{
+						nav[i].closest(".page_number").classList.add("danger");
+						nav[i].closest(".page_number").classList.remove("success");
+					}
+				}
+			break;
+
+			default:
+			console.log(nav.length)
+
+			
+			// 1
+			if(nav[i].getAttribute("page") == "number_1"){
+				if (be_notified_value && name_user.value && phone_user.value && lat.value && lng.value && location_sos.value) {
+					nav[i].closest(".page_number").classList.remove("danger");
+					nav[i].closest(".page_number").classList.add("success");
+				
+				}else{
+					nav[i].closest(".page_number").classList.add("danger");
+					nav[i].closest(".page_number").classList.remove("success");
+				}
 			}
 
+			// 2
+			if(nav[i].getAttribute("page") == "number_2"){
+				if (symptom_value) {
+					nav[i].closest(".page_number").classList.remove("danger");
+					nav[i].closest(".page_number").classList.add("success");
+				}else{
+					nav[i].closest(".page_number").classList.add("danger");
+					nav[i].closest(".page_number").classList.remove("success");
+				}
+			}
+
+			// 3
+			if(nav[i].getAttribute("page") == "number_3"){
+				if (symptom_other.value) {
+					nav[i].closest(".page_number").classList.remove("danger");
+					nav[i].closest(".page_number").classList.add("success");
+				
+				}else{
+					nav[i].closest(".page_number").classList.add("danger");
+					nav[i].closest(".page_number").classList.remove("success");
+				}
+			}
+			// 4
+			if(nav[i].getAttribute("page") == "number_4"){
+				if (idc_value) {
+					nav[i].closest(".page_number").classList.remove("danger");
+					nav[i].closest(".page_number").classList.add("success");
+				
+				}else{
+					nav[i].closest(".page_number").classList.add("danger");
+					nav[i].closest(".page_number").classList.remove("success");
+				}
+			}
+			// 5
+			if(nav[i].getAttribute("page") == "number_5"){
+				if (vehicle_type_value && operating_suit_type_value && operation_unit_name.value && action_set_name.value && time_create_sos.value && time_command.value && time_go_to_help.value && time_to_the_scene.value && time_leave_the_scene.value && time_hospital.value && time_to_the_operating_base.value && km_create_sos_to_go_to_help.value && km_to_the_scene_to_leave_the_scene.value && km_hospital.value && km_operating_base.value) {
+					nav[i].closest(".page_number").classList.remove("danger");
+					nav[i].closest(".page_number").classList.add("success");
+				
+				}else{
+					nav[i].closest(".page_number").classList.add("danger");
+					nav[i].closest(".page_number").classList.remove("success");
+				}
+			}
+			// 6
+			if(nav[i].getAttribute("page") == "number_6"){
+				if (rc_value) {
+					nav[i].closest(".page_number").classList.remove("danger");
+					nav[i].closest(".page_number").classList.add("success");
+				
+				}else{
+					nav[i].closest(".page_number").classList.add("danger");
+					nav[i].closest(".page_number").classList.remove("success");
+				}
+			}
+			// 7
+			if(nav[i].getAttribute("page") == "number_7"){
+				if (treatment_value && sub_treatment_value) {
+					nav[i].closest(".page_number").classList.remove("danger");
+					nav[i].closest(".page_number").classList.add("success");
+				
+				}else{
+					nav[i].closest(".page_number").classList.add("danger");
+					nav[i].closest(".page_number").classList.remove("success");
+				}
+			}
+			// 8
+			if(nav[i].getAttribute("page") == "number_8"){
+				if (patient_name_1.value && patient_age_1.value && patient_hn_1.value && patient_vn_1.value && delivered_province_1.value && delivered_hospital_1.value && patient_name_2.value && patient_age_2.value && patient_hn_2.value && patient_vn_2.value && delivered_province_2.value && delivered_hospital_2.value && submission_criteria_value && communication_hospital_value) {
+					nav[i].closest(".page_number").classList.remove("danger");
+					nav[i].closest(".page_number").classList.add("success");
+				
+				}else{
+					nav[i].closest(".page_number").classList.add("danger");
+					nav[i].closest(".page_number").classList.remove("success");
+				}
+			}
+			// 9
+			if(nav[i].getAttribute("page") == "number_9"){
+				if (registration_category.value && registration_number.value && registration_province.value && owner_registration_value) {
+					nav[i].closest(".page_number").classList.remove("danger");
+					nav[i].closest(".page_number").classList.add("success");
+				
+				}else{
+					nav[i].closest(".page_number").classList.add("danger");
+					nav[i].closest(".page_number").classList.remove("success");
+				}
+			}
+		}
 	}
 
 }

@@ -1,702 +1,1464 @@
-<div class="container">
-	<div class="row">
-		<div id="carousel_form_yellow" class="carousel slide m-0 p-0" data-interval="false" data-ride="carousel"  style="height: 100%;padding: 25px;border-radius: 25px;">
-		  	<div class="carousel-inner">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="row">
+	<div class="col-xl-12 mx-auto">
+		<div class="card-body">
+			<!-- <br />
+			<p>
+				<label>Theme:</label>
+				<select id="theme_selector">
+					<option value="default">Default</option>
+					<option value="arrows">Arrows</option>
+					<option value="dots" selected>Dots</option>
+					<option value="dark">Dark</option>
+				</select>&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" id="is_justified" value="1" checked />
+				<label for="is_justified">Justified</label>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label>Animation:</label>
+				<select id="animation">
+					<option value="none">None</option>
+					<option value="fade">Fade</option>
+					<option value="slide-horizontal" selected>Slide Horizontal</option>
+					<option value="slide-vertical">Slide Vertical</option>
+					<option value="cssBounceSlideH">Slide Swing</option>
+				</select>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label>Go To:</label>
+				<select id="got_to_step">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>&nbsp;&nbsp;&nbsp;&nbsp;
+				<label>External Buttons:</label>
 
-		    	<div id="form_data_1" class="form_yellow carousel-item active">
-		      		<div class="col-12">
-						<h3><b>1.ข้อมูลทั่วไป</b></h3>
-					</div>
-					<hr>
-					<div class="col-12">
-						<p style="font-size:20px;">
-							<b>รับแจ้งเหตุทาง</b><br>
-							@php
-								$check_be_notified_1 = "" ;
-								$check_be_notified_2 = "" ;
-								$check_be_notified_3 = "" ;
-								$check_be_notified_4 = "" ;
-								$check_be_notified_5 = "" ;
-								$check_be_notified_6 = "" ;
-								if( !empty($sos_help_center->form_yellow->be_notified) ){
+			</p>
+			<br /> -->
+			<!-- SmartWizard html -->
+			
+			<div id="smartwizard">
+				<ul class="nav">
+					<!-- <li class="nav-item">
+						<button style="position: relative;z-index: 999999;border-radius: 50px;" class="btn btn-info shadow" id="prev-btn" type="button"><i class="fa-solid fa-chevron-left"></i></button>
+					</li> -->
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail page_number" href="#step-1" onclick="go_to_form_data('1');"  id="form_data_1" page="number_1"> 
+							<strong>1</strong>
+							<span class="tooltip text-center">ข้อมูลทั่วไป</span>
+						</a>
+					</li> 
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail page_number" href="#step-2" onclick="go_to_form_data('2');"  id="form_data_2" page="number_2"> 
+							<strong>2</strong>
+							<span class="tooltip">อาการนำสำคัญ</span>
+						</a>
+					</li>
+					<li class="nav-item danger">
+						<a class="nav-link danger position div_detail page_number" href="#step-3" onclick="go_to_form_data('3');"  id="form_data_3" page="number_3"> 
+							<strong>3</strong>
+							<span class="tooltip">รายละเอียด</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail page_number" href="#step-4" onclick="go_to_form_data('4');"  id="form_data_4" page="number_4"> 
+							<strong>4</strong>
+							<span class="tooltip">รหัสความรุนแรง</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail page_number" href="#step-5" onclick="go_to_form_data('5');"  id="form_data_5" page="number_5"> 
+							<strong>5</strong>
+							<span class="tooltip">การสั่งการ(หัวหน้าศูนย์ฯ)</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail page_number" href="#step-6" onclick="go_to_form_data('6');"  id="form_data_6" page="number_6"> 
+							<strong>6</strong>
+							<span class="tooltip">รหัสความรุนแรง ณ จุดเกิดเหตุ</span>
+						</a>
+					</li>
+					<li class="nav-item inactive">
+						<a class="nav-link danger position div_detail page_number" href="#step-7" onclick="go_to_form_data('7');"  id="form_data_7" page="number_7"> 
+							<strong>7</strong>
+							<span class="tooltip">การปฏิบัติการ</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail page_number" href="#step-8" onclick="go_to_form_data('8');"  id="form_data_8" page="number_8"> 
+							<strong>8</strong>
+							<span class="tooltip">ชื่อผู้ป่วย</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail page_number" href="#step-9" onclick="go_to_form_data('9');"  id="form_data_9" page="number_9"> 
+							<strong>9</strong>
+							<span class="tooltip">เพิ่มเติม</span>
+						</a>
+					</li>
+					<!-- <li class="nav-item">
+						<button class="btn btn-info text-white"style="position: relative;z-index: 999999;border-radius: 50px;" id="next-btn" type="button"><i class="fa-solid fa-chevron-right"></i></button>
 
-									if( $sos_help_center->form_yellow->be_notified == 'แพลตฟอร์มวีเช็ค' ){
-										$check_be_notified_1 = "checked";
-									}else if( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙' ){
-										$check_be_notified_2 = "checked";
-									}else if ( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)' ){
-										$check_be_notified_3 = "checked";
-									}else if ( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลขอื่นๆ' ){
-										$check_be_notified_4 = "checked";
-									}else if ( $sos_help_center->form_yellow->be_notified == 'วิทยุสื่อสาร' ){
-										$check_be_notified_5 = "checked";
-									}else if ( $sos_help_center->form_yellow->be_notified == 'วิธีอื่นๆ' ){
-										$check_be_notified_6 = "checked";
-									}
+					</li> -->
+				</ul>
+				<style>
+					label {
+					width: 100%;
+					font-size: 1rem;
+					}
+					.position{
+					position: relative;
+					}
+					.tooltip{
+						text-align: center;
+					background-color: #333;
+					color: white;
+					position: absolute;
+					left: 50%;
+					transform: translateX(-50%);
+					-webkit-transform: translateX(-50%);
+					-moz-transform: translateX(-50%);
+					-ms-transform: translateX(-50%);
+					-o-transform: translateX(-50%);
+					font-size: 12px;
+					width: 190px;
+					padding: 10px 15px;
+					top: -210%;
+					transition: 0.5s;
+					-webkit-transition: 0.5s;
+					-moz-transition: 0.5s;
+					-ms-transition: 0.5s;
+					-o-transition: 0.5s;
+					opacity: 0; /* to hide it but still there*/
+					border-radius:10px;
+					font-family: 'Kanit', sans-serif;
+					}
+					.tooltip::before{
+					content: "";
+					position: absolute;
+					bottom: -15px ;
+					left: 50%;
+					transform: translateX(-50%);
+					-webkit-transform: translateX(-50%);
+					-moz-transform: translateX(-50%);
+					-ms-transform: translateX(-50%);
+					-o-transform: translateX(-50%);
+					border:10px solid;
+					border-color: #333 transparent transparent transparent;
 
-								}
-							@endphp
+					}.div_detail:hover{
+					overflow: visible;
+					}
+					.div_detail:hover .tooltip{
+					display: inline;
+					opacity: 80%;
+					}
+					.card-input-element+.card {
+					height: calc(36px + 2*1rem);
+					color: #0d6efd;
+					-webkit-box-shadow: none;
+					box-shadow: none;
+					border: 2px solid transparent;
+					border-radius: 10px;
+					}
 
-							<input type="radio" {{ $check_be_notified_1 }} name="be_notified" value="แพลตฟอร์มวีเช็ค">&nbsp;&nbsp;แพลตฟอร์มวีเช็ค&nbsp;&nbsp;
-							<input type="radio" {{ $check_be_notified_2 }} name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙">&nbsp;&nbsp;โทรศัพท์หมายเลข ๑๖๖๙<sup>(๑)</sup>&nbsp;&nbsp;
-							<input type="radio" {{ $check_be_notified_3 }} name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙ (second call)">&nbsp;&nbsp;โทรศัพท์หมายเลข ๑๖๖๙ (second call)<sup>(๒)</sup>&nbsp;&nbsp;
-							<br>
-							<input type="radio" {{ $check_be_notified_4 }} name="be_notified" value="โทรศัพท์หมายเลขอื่นๆ">&nbsp;&nbsp;โทรศัพท์หมายเลขอื่นๆ<sup>(๓)</sup>&nbsp;&nbsp;
-							<input type="radio" {{ $check_be_notified_5 }} name="be_notified" value="วิทยุสื่อสาร">&nbsp;&nbsp;วิทยุสื่อสาร&nbsp;&nbsp;
-							<input type="radio" {{ $check_be_notified_6 }} name="be_notified" value="วิธีอื่นๆ">&nbsp;&nbsp;วิธีอื่นๆ&nbsp;&nbsp;
-						</p>
-						<p style="font-size:20px;">
-							<b>ชื่อ/รหัสผู้แจ้งเหตุ</b>
-							<input type="text" class="form-control" name="name_user" value="{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}">
-							<br>
-							<b>โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ</b>
-							<input type="text" class="form-control" name="phone_user" value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}">
-							<br>
-							<b>สถานที่เกิดเหตุ</b>
-							<span id="location_user" class="d-none"></span>
-							<div class="row">
-								<div class="form-group col-4 {{ $errors->has('lat') ? 'has-error' : ''}}">
-	                                <label for="lat" class="control-label">{{ 'Lat' }}</label>
-	                                <input class="form-control" name="lat" type="text" id="lat" value="{{ isset($sos_help_center->lat) ? $sos_help_center->lat : ''}}" readonly>
-	                                {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
-	                            </div>
-	                            <div class="form-group col-4 {{ $errors->has('lng') ? 'has-error' : ''}}">
-	                                <label for="lng" class="control-label">{{ 'Lng' }}</label>
-	                                <input class="form-control" name="lng" type="text" id="lng" value="{{ isset($sos_help_center->lng) ? $sos_help_center->lng : ''}}" readonly>
-	                                {!! $errors->first('lng', '<p class="help-block">:message</p>') !!}
-	                            </div>
-	                            <div class="col-4">
-	                            	<div style="float:right;margin-top: 25px;">
-			                            <span class="btn btn-sm btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
-		                                	เลือกจุดเกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
-		                            	</span>
-		                            	<button id="btn_get_location_user"  class="btn btn-sm btn-info text-white main-shadow main-radius">
-		                            		รับรายละเอียดที่อยู่ (<span>100</span>)
-		                            	</button>
-	                            	</div>
-	                            </div>
+					.card-input-element+.card:hover {
+					cursor: pointer;
+					}
+
+					.card-input-element:checked+.card {
+					border: 2px solid #0d6efd;
+					-webkit-transition: border .3s;
+					-o-transition: border .3s;
+					transition: border .3s;
+					}
+
+					.card-input-element:checked+.card::after {
+					content: '\e5ca';
+					color: #AFB8EA;
+					font-family: 'Material Icons';
+					font-size: 24px;
+					-webkit-animation-name: fadeInCheckbox;
+					animation-name: fadeInCheckbox;
+					-webkit-animation-duration: .5s;
+					animation-duration: .5s;
+					-webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+					animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+					}
+
+					@-webkit-keyframes fadeInCheckbox {
+						from {
+							opacity: 0;
+							-webkit-transform: rotateZ(-20deg);
+						}
+						to {
+							opacity: 1;
+							-webkit-transform: rotateZ(0deg);
+						}
+					}
+
+					@keyframes fadeInCheckbox {
+						from {
+							opacity: 0;
+							transform: rotateZ(-20deg);
+						}
+						to {
+							opacity: 1;
+							transform: rotateZ(0deg);
+						}
+					}
+					.radius{
+						border-radius: 10px;
+					}
+					.radius-1{
+						border-radius: 10px 0 0 10px ;
+					}
+					.radius-2{
+						border-radius: 0 10px 10px 0 ;
+					}.input-name{
+						width: auto;
+						max-width: 20em;
+						border: none;
+						border-bottom: 1px dashed #000000;
+					}.input-wrapper {
+							position: relative;
+							box-sizing: border-box;
+							font-size: 14px;
+							display: inline-block;
+							max-width: 20em;
+							text-overflow: ellipsis;
+							overflow: hidden;
+					}.size-span {
+							font-family: inherit;
+							white-space: pre;
+							height: 1em;
+							font-size: 16px;
+							display: inline-block;
+							box-sizing: border-box;
+							position: relative;
+							min-width: 60px;
+							user-select: none;
+							vertical-align: bottom;
+							opacity: 0;
+					}.tab-content{
+						height: 100%;
+					}.input_code_black::placeholder{
+						text-align: center; 
+					}
+					.show-data{
+						animation: myAnim 1s ease 0s 1 normal forwards;
+					}
+					@keyframes myAnim {
+						0% {
+							opacity: 0;
+						}
+
+						100% {
+							opacity: 1;
+						}
+					}.card-input-red:checked+.card {
+					border: 2px solid #db2d2e;
+					-webkit-transition: border .3s;
+					-o-transition: border .3s;
+					transition: border .3s;
+					}.field-user{
+						border: #000 1px solid;
+					}.field-user legend{
+						font-size: 18px;
+						font-weight: bold;
+					}
+				</style>
+			
+
+				<div class="tab-content">
+					<!---------------------------------- ข้อ 1  ---------------------------------->
+					<div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="bx bxs-user me-1 font-22 text-primary"></i>
 							</div>
-                            <br>
-							<textarea class="form-control" name="location_sos" id="detail_location_sos" rows="4" >{{ isset($sos_help_center->form_yellow->location_sos) ? $sos_help_center->form_yellow->location_sos : ''}}</textarea>
-
-						</p>
-					</div>
-		    	</div>
-		    	<div id="form_data_2" class="form_yellow carousel-item">
-		      		<div class="col-12">
-						<h3><b>2.อาการนำสำคัญของผู้ป่วยฉุกเฉินที่ได้จากการรับแข้ง</b></h3>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-6">
-							@php
-								$check_symptom_1 ="";$check_symptom_2 ="";$check_symptom_3 ="";$check_symptom_4 ="";$check_symptom_5 ="";$check_symptom_6 ="";$check_symptom_7 ="";$check_symptom_8 ="";$check_symptom_9 ="";$check_symptom_10 ="";$check_symptom_11 ="";$check_symptom_12 ="";$check_symptom_13 ="";$check_symptom_14 ="";$check_symptom_15 ="";$check_symptom_16 ="";$check_symptom_17 ="";$check_symptom_18 ="";$check_symptom_19 ="";$check_symptom_20 ="";$check_symptom_21 ="";$check_symptom_22 ="";$check_symptom_23 ="";$check_symptom_24 ="";$check_symptom_25 ="";
-
-								if( !empty($sos_help_center->form_yellow->symptom) ){
-									$symptom_explode = explode(",", $sos_help_center->form_yellow->symptom);
-
-									for ($i=0; $i < count($symptom_explode); $i++){
-										switch ($symptom_explode[$i]) {
-							                case 'ปวดท้อง หลัง เชิงกราน และขาหนีบ':
-							                    $check_symptom_1 = "checked";
-							                    break;
-							                case 'แอนนาฟิแลกซิส ปฏิกิริยาภูมิแพ้/แมลงกัด':
-							                    $check_symptom_2 = "checked";
-							                    break;
-							                case 'สัตว์กัด':
-							                    $check_symptom_3 = "checked";
-							                    break;
-							                case 'เลือดออกไม่ใช่จากการบาดเจ็บ':
-							                    $check_symptom_4 = "checked";
-							                    break;
-							                case 'หายใจลำบาก':
-							                    $check_symptom_5 = "checked";
-							                    break;
-							                case 'หัวใจหยุดเต้น':
-							                    $check_symptom_6 = "checked";
-							                    break;
-							                case 'เจ็บแน่นทรางออก หัวใจ':
-							                    $check_symptom_7 = "checked";
-							                    break;
-							                case 'สำลักอุดทางเดินหายใจ':
-							                    $check_symptom_8 = "checked";
-							                    break;
-							                case 'เบาหวาน':
-							                    $check_symptom_9 = "checked";
-							                    break;
-							                case 'อันตรายจากสภาพแวดล้อม':
-							                    $check_symptom_10 = "checked";
-							                    break;
-							                case 'อื่นๆ(เว้นว่าง)':
-							                    $check_symptom_11 = "checked";
-							                    break;
-							                case 'ปวดศรีษะ ลำคอ':
-							                    $check_symptom_12 = "checked";
-							                    break;
-							                case 'คลุ้มคลั่ง จิตประสาท อารมณ์':
-							                    $check_symptom_13 = "checked";
-							                    break;
-							                case 'ยาเกิดขนาด ได้รับพิษ':
-							                    $check_symptom_14 = "checked";
-							                    break;
-							                case 'ยาเกิดขนาด ได้รับพิษ':
-							                    $check_symptom_15 = "checked";
-							                    break;
-							                case 'ชัก':
-							                    $check_symptom_16 = "checked";
-							                    break;
-							                case 'ป่วย อ่อนเพลีย':
-							                    $check_symptom_17 = "checked";
-							                    break;
-							                case 'อัมพาต (หลอดเลือดสมองตีบ แตก)':
-							                    $check_symptom_18 = "checked";
-							                    break;
-							                case 'หมดสติ ไม่ตอบสนอง หมดสติชั่ววูบ':
-							                    $check_symptom_19 = "checked";
-							                    break;
-							                case 'เด็ก ทารก (กุมารเวชกรรม)':
-							                    $check_symptom_20 = "checked";
-							                    break;
-							                case 'ถูกทำร้าย บาดเจ็บ':
-							                    $check_symptom_21 = "checked";
-							                    break;
-							                case 'ไฟไหม้ ลวก ความร้อน กระแสไฟฟ้า สารเคมี':
-							                    $check_symptom_22 = "checked";
-							                    break;
-							                case 'จมน้ำ หน้าคว่ำจมน้ำ บาดเจ็บเหตุดำน้ำ บาดเจ็บทางน้ำ':
-							                    $check_symptom_23 = "checked";
-							                    break;
-							                case 'พลัดตกหลุม อุบัติเหตุ':
-							                    $check_symptom_24 = "checked";
-							                    break;
-							                case 'อุบัติเหตุยานยนต์':
-							                    $check_symptom_25 = "checked";
-							                    break;
-							                
-							            }
-							        }
-							    }
-							@endphp
-							<p style="font-size:20px;">
-								<input type="checkbox" {{ $check_symptom_1 }} class="symptom" name="symptom" value="ปวดท้อง หลัง เชิงกราน และขาหนีบ">&nbsp;&nbsp;๑.ปวดท้อง หลัง เชิงกราน และขาหนีบ&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_2 }} class="symptom" name="symptom" value="แอนนาฟิแลกซิส ปฏิกิริยาภูมิแพ้/แมลงกัด">&nbsp;&nbsp;๒.แอนนาฟิแลกซิส ปฏิกิริยาภูมิแพ้/แมลงกัด&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_3 }} class="symptom" name="symptom" value="สัตว์กัด">&nbsp;&nbsp;๓.สัตว์กัด&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_4 }} class="symptom" name="symptom" value="เลือดออกไม่ใช่จากการบาดเจ็บ">&nbsp;&nbsp;๔.เลือดออกไม่ใช่จากการบาดเจ็บ&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_5 }} class="symptom" name="symptom" value="หายใจลำบาก">&nbsp;&nbsp;๕.หายใจลำบาก&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_6 }} class="symptom" name="symptom" value="หัวใจหยุดเต้น">&nbsp;&nbsp;๖.หัวใจหยุดเต้น&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_7 }} class="symptom" name="symptom" value="เจ็บแน่นทรางออก หัวใจ">&nbsp;&nbsp;๗.เจ็บแน่นทรางออก หัวใจ&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_8 }} class="symptom" name="symptom" value="สำลักอุดทางเดินหายใจ">&nbsp;&nbsp;๘.สำลักอุดทางเดินหายใจ&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_9 }} class="symptom" name="symptom" value="เบาหวาน">&nbsp;&nbsp;๙.เบาหวาน&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_10 }} class="symptom" name="symptom" value="อันตรายจากสภาพแวดล้อม">&nbsp;&nbsp;๑๐.อันตรายจากสภาพแวดล้อม&nbsp;&nbsp;
-								<br>
-								<input class="d-none" type="checkbox" {{ $check_symptom_11 }} class="symptom" name="symptom" value="อื่นๆ(เว้นว่าง)">&nbsp;&nbsp;&nbsp;&nbsp;๑๑.<span style="text-decoration: line-through;">อื่นๆ(เว้นว่าง)</span><sup>(๔)</sup>&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_12 }} class="symptom" name="symptom" value="ปวดศรีษะ ลำคอ">&nbsp;&nbsp;๑๒.ปวดศรีษะ ลำคอ&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_13 }} class="symptom" name="symptom" value="คลุ้มคลั่ง จิตประสาท อารมณ์">&nbsp;&nbsp;๑๓.คลุ้มคลั่ง จิตประสาท อารมณ์&nbsp;&nbsp;
-								<br>
-							</p>
+							<h5 class="mb-0 text-primary">ข้อมูลทั่วไป</h5>
 						</div>
-						<div class="col-6">
-							<p style="font-size:20px;">
-								
-								<input type="checkbox" {{ $check_symptom_14 }} class="symptom" name="symptom" value="ยาเกิดขนาด ได้รับพิษ">&nbsp;&nbsp;๑๔.ยาเกิดขนาด ได้รับพิษ&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_15 }} class="symptom" name="symptom" value="มีครรภ คลอด นรี">&nbsp;&nbsp;๑๕.มีครรภ คลอด นรี&nbsp;&nbsp;
-								<br>
-
-								<input type="checkbox" {{ $check_symptom_16 }} class="symptom" name="symptom" value="ชัก">&nbsp;&nbsp;๑๖.ชัก&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_17 }} class="symptom" name="symptom" value="ป่วย อ่อนเพลีย">&nbsp;&nbsp;๑๗.ป่วย อ่อนเพลีย&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_18 }} class="symptom" name="symptom" value="อัมพาต (หลอดเลือดสมองตีบ แตก)">&nbsp;&nbsp;๑๘.อัมพาต (หลอดเลือดสมองตีบ แตก)&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_19 }} class="symptom" name="symptom" value="หมดสติ ไม่ตอบสนอง หมดสติชั่ววูบ">&nbsp;&nbsp;๑๙.หมดสติ ไม่ตอบสนอง หมดสติชั่ววูบ&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_20 }} class="symptom" name="symptom" value="เด็ก ทารก (กุมารเวชกรรม)">&nbsp;&nbsp;๒๐.เด็ก ทารก (กุมารเวชกรรม)&nbsp;&nbsp;
-								<br>
-
-								<input type="checkbox" {{ $check_symptom_21 }} class="symptom" name="symptom" value="ถูกทำร้าย บาดเจ็บ">&nbsp;&nbsp;๒๑.ถูกทำร้าย บาดเจ็บ&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_22 }} class="symptom" name="symptom" value="ไฟไหม้ ลวก ความร้อน กระแสไฟฟ้า สารเคมี">&nbsp;&nbsp;๒๒.ไฟไหม้ ลวก ความร้อน กระแสไฟฟ้า สารเคมี&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_23 }} class="symptom" name="symptom" value="จมน้ำ หน้าคว่ำจมน้ำ บาดเจ็บเหตุดำน้ำ บาดเจ็บทางน้ำ">&nbsp;&nbsp;๒๓.จมน้ำ หน้าคว่ำจมน้ำ บาดเจ็บเหตุดำน้ำ บาดเจ็บทางน้ำ&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_24 }} class="symptom" name="symptom" value="พลัดตกหลุม อุบัติเหตุ">&nbsp;&nbsp;๒๔.พลัดตกหลุม อุบัติเหตุ&nbsp;&nbsp;
-								<br>
-								<input type="checkbox" {{ $check_symptom_25 }} class="symptom" name="symptom" value="อุบัติเหตุยานยนต์">&nbsp;&nbsp;๒๕.อุบัติเหตุยานยนต์&nbsp;&nbsp;
-								<br>
-							</p>
-						</div>
-					</div>
-		    	</div>
-		    	<div id="form_data_3" class="form_yellow carousel-item">
-		      		<div class="col-12">
-						<h3><b>3.อาการ/เหตุการณ์/รายละเอียดอื่นๆ</b></h3>
-					</div>
-					<hr>
-					<textarea class="form-control" name="symptom_other" rows="15" placeholder="อธิบายถึง อาการ เหตุการณ์หรือรายละเอียดอื่นๆ">{{ isset($sos_help_center->form_yellow->symptom_other) ? $sos_help_center->form_yellow->symptom_other : ''}}</textarea>
-		    	</div>
-		    	<div id="form_data_4" class="form_yellow carousel-item">
-		      		<div class="col-12">
-						<h3><b>4.การให้รหัสความรุนแรง <span style="font-size:15px;">IDC (Incident Dispatch Code)<sup>(๕)</sup></span></b></h3>
-					</div>
-					<hr>
-					@php
-						$check_idc_1 = "" ;
-						$check_idc_2 = "" ;
-						$check_idc_3 = "" ;
-						$check_idc_4 = "" ;
-						$check_idc_5 = "" ;
-						if( !empty($sos_help_center->form_yellow->idc) ){
-							if( $sos_help_center->form_yellow->idc == 'แดง(วิกฤติ)' ){
-								$check_idc_1 = "checked";
-							}else if ( $sos_help_center->form_yellow->idc == 'เหลือง(เร่งด่วน)' ){
-								$check_idc_2 = "checked";
-							}else if ( $sos_help_center->form_yellow->idc == 'เขียว(ไม่รุนแรง)' ){
-								$check_idc_3 = "checked";
-							}else if ( $sos_help_center->form_yellow->idc == 'ขาว(ทั่วไป)' ){
-								$check_idc_4 = "checked";
-							}else if ( $sos_help_center->form_yellow->idc == 'ดำ(รับบริการสาธารณสุขอื่น)' ){
-								$check_idc_5 = "checked";
-							}
-						}
-					@endphp
-					<div class="row">
-						<div class="col-6">
-							<p style="font-size:20px;">
-								<input type="radio" {{ $check_idc_1 }} name="idc" value="แดง(วิกฤติ)">&nbsp;&nbsp;แดง(วิกฤติ)&nbsp;&nbsp;
-								<br>
-								<input type="radio" {{ $check_idc_2 }} name="idc" value="เหลือง(เร่งด่วน)">&nbsp;&nbsp;เหลือง(เร่งด่วน)&nbsp;&nbsp;
-								<br>
-								<input type="radio" {{ $check_idc_3 }} name="idc" value="เขียว(ไม่รุนแรง)">&nbsp;&nbsp;เขียว(ไม่รุนแรง)&nbsp;&nbsp;
-								<br>
-							</p>
-						</div>
-						<div class="col-6">
-							<p style="font-size:20px;">
-								<input type="radio" {{ $check_idc_4 }} name="idc" value="ขาว(ทั่วไป)">&nbsp;&nbsp;ขาว(ทั่วไป)&nbsp;&nbsp;
-								<br>
-								<input type="radio" {{ $check_idc_5 }} name="idc" value="ดำ(รับบริการสาธารณสุขอื่น)">&nbsp;&nbsp;ดำ(รับบริการสาธารณสุขอื่น)&nbsp;&nbsp;
-								<br>
-							</p>
-						</div>
-					</div>
-		    	</div>
-		    	<div id="form_data_5" class="form_yellow carousel-item">
-		      		<div class="col-12">
-						<h3><b>5.การสั่งการ (โดยการเห็นชอบของหัวหน้าศูนย์ฯ)</b></h3>
-					</div>
-					<hr>
-					@php
-						$check_vehicle_type_1 = "" ;
-						$check_vehicle_type_2 = "" ;
-						$check_vehicle_type_3 = "" ;
-						$check_vehicle_type_4 = "" ;
-						$check_vehicle_type_5 = "" ;
-						$check_vehicle_type_6 = "" ;
-						if( !empty($sos_help_center->form_yellow->vehicle_type) ){
-							if( $sos_help_center->form_yellow->vehicle_type == 'รถ' ){
-								$check_vehicle_type_1 = "checked";
-							}else if ( $sos_help_center->form_yellow->vehicle_type == 'อากาศยาน' ){
-								$check_vehicle_type_2 = "checked";
-							}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือ ป.๑' ){
-								$check_vehicle_type_3 = "checked";
-							}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือ ป.๒' ){
-								$check_vehicle_type_4 = "checked";
-							}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือ ป.๓' ){
-								$check_vehicle_type_5 = "checked";
-							}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือประเภทอื่นๆ' ){
-								$check_vehicle_type_6 = "checked";
-							}
-						}
-					@endphp
-					<div class="row">
-						<div class="col-12">
-							<p style="font-size:20px;">
-								<b>ชนิดยานพาหนะ<sup>(๗)</sup></b>&nbsp;&nbsp;
-								<input type="radio" {{ $check_vehicle_type_1 }} name="vehicle_type" value="รถ">&nbsp;&nbsp; รถ &nbsp;&nbsp;
-								<input type="radio" {{ $check_vehicle_type_2 }} name="vehicle_type" value="อากาศยาน">&nbsp;&nbsp; อากาศยาน &nbsp;&nbsp;
-								<input type="radio" {{ $check_vehicle_type_3 }} name="vehicle_type" value="เรือ ป.๑">&nbsp;&nbsp; เรือ ป.๑ &nbsp;&nbsp;
-								<input type="radio" {{ $check_vehicle_type_4 }} name="vehicle_type" value="เรือ ป.๒">&nbsp;&nbsp; เรือ ป.๒ &nbsp;&nbsp;
-								<input type="radio" {{ $check_vehicle_type_5 }} name="vehicle_type" value="เรือ ป.๓">&nbsp;&nbsp; เรือ ป.๓ &nbsp;&nbsp;
-								<input type="radio" {{ $check_vehicle_type_6 }} name="vehicle_type" value="เรือประเภทอื่นๆ">&nbsp;&nbsp; เรือประเภทอื่นๆ &nbsp;&nbsp;
-							</p>
-						</div>
-						<div class="col-12">
-							<div class="row">
-								<div class="col-4">
-									<p style="font-size:20px;"><b>ชื่อหน่วยปฏิบัติการ</b></p>
-									<input type="text" class="form-control" name="operation_unit_name" value="{{ isset($sos_help_center->form_yellow->operation_unit_name) ? $sos_help_center->form_yellow->operation_unit_name : ''}}">
-								</div>
-								<div class="col-4">
-									<p style="font-size:20px;"><b>ชื่อชุดปฏิบัติการ</b></p>
-									<input type="text" class="form-control" name="action_set_name" value="{{ isset($sos_help_center->form_yellow->action_set_name) ? $sos_help_center->form_yellow->action_set_name : ''}}">
-								</div>
+						<hr>
+						<div class="row">
+							<div class="col-md-12">
+								<label  class="form-label m-0">รับแจ้งเหตุทาง</label>
 								@php
-									$check_operating_suit_type_1 = "" ;
-									$check_operating_suit_type_2 = "" ;
-									$check_operating_suit_type_3 = "" ;
-									$check_operating_suit_type_4 = "" ;
-									if( !empty($sos_help_center->form_yellow->operating_suit_type) ){
-										if( $sos_help_center->form_yellow->operating_suit_type == 'FR' ){
-											$check_operating_suit_type_1 = "checked";
-										}else if ( $sos_help_center->form_yellow->operating_suit_type == 'BLS' ){
-											$check_operating_suit_type_2 = "checked";
-										}else if ( $sos_help_center->form_yellow->operating_suit_type == 'ILS' ){
-											$check_operating_suit_type_3 = "checked";
-										}else if ( $sos_help_center->form_yellow->operating_suit_type == 'ALS' ){
-											$check_operating_suit_type_4 = "checked";
+									$check_be_notified_1 = "" ;
+									$check_be_notified_2 = "" ;
+									$check_be_notified_3 = "" ;
+									$check_be_notified_4 = "" ;
+									$check_be_notified_5 = "" ;
+									$check_be_notified_6 = "" ;
+									if( !empty($sos_help_center->form_yellow->be_notified) ){
+
+										if( $sos_help_center->form_yellow->be_notified == 'แพลตฟอร์มวีเช็ค' ){
+											$check_be_notified_1 = "checked";
+										}else if( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙' ){
+											$check_be_notified_2 = "checked";
+										}else if ( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)' ){
+											$check_be_notified_3 = "checked";
+										}else if ( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลขอื่นๆ' ){
+											$check_be_notified_4 = "checked";
+										}else if ( $sos_help_center->form_yellow->be_notified == 'วิทยุสื่อสาร' ){
+											$check_be_notified_5 = "checked";
+										}else if ( $sos_help_center->form_yellow->be_notified == 'วิธีอื่นๆ' ){
+											$check_be_notified_6 = "checked";
 										}
+
 									}
 								@endphp
-								<div class="col-4">
-									<p style="font-size:20px;"><b>ประเภทชุดปฏิบัติการ</b></p>
-									<p style="font-size:20px;">
-										<input type="radio" {{ $check_operating_suit_type_1 }} name="operating_suit_type" value="FR">&nbsp; FR &nbsp;
-										<input type="radio" {{ $check_operating_suit_type_2 }} name="operating_suit_type" value="BLS">&nbsp; BLS &nbsp;
-										<input type="radio" {{ $check_operating_suit_type_3 }} name="operating_suit_type" value="ILS">&nbsp; ILS &nbsp;
-										<input type="radio" {{ $check_operating_suit_type_4 }} name="operating_suit_type" value="ALS">&nbsp; ALS &nbsp;
-									</p>
+
+								<div class="row mt-3">
+									<div class="col-12	col-md-3 col-lg-3">
+										<label>
+											<input type="radio" {{ $check_be_notified_1 }} name="be_notified" value="แพลตฟอร์มวีเช็ค"  class="card-input-element d-none" >
+											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+												แพลตฟอร์มวีเช็ค 
+											</div>
+										</label>
+									</div>
+									<div class="col-12	col-md-3 col-lg-3">
+										<label>
+											<input type="radio" {{ $check_be_notified_2 }} name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙" class="card-input-element d-none" >
+											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+												<span>
+													โทรศัพท์หมายเลข ๑๖๖๙<sup>(๑)</sup>
+												</span>
+											</div>
+										</label>
+									</div>
+									<div class="col-12	col-md-3 col-lg-3">
+										<label>
+											<input type="radio" {{ $check_be_notified_3 }} name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙ (second call)" class="card-input-element d-none" >
+											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+												<span>
+													โทรศัพท์หมายเลข ๑๖๖๙ (second call)<sup>(๒)</sup>
+												</span>
+											</div>
+										</label>
+									</div>
+									<div class="col-12	col-md-3 col-lg-3">
+										<label>
+											<input type="radio" {{ $check_be_notified_4 }} name="be_notified" value="โทรศัพท์หมายเลขอื่นๆ" class="card-input-element d-none" >
+											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+												<span>
+													โทรศัพท์หมายเลขอื่นๆ<sup>(๓)</sup>
+												</span>
+											</div>
+										</label>
+									</div>
+									<div class="col-12	col-md-3 col-lg-3">
+										<label>
+											<input type="radio" {{ $check_be_notified_5 }} name="be_notified" value="วิทยุสื่อสาร" class="card-input-element d-none" >
+											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+												<span>
+													วิทยุสื่อสาร
+												</span>
+											</div>
+										</label>
+									</div>
+									<div class="col-12	col-md-3 col-lg-3">
+										<label>
+											<input type="radio" {{ $check_be_notified_6 }} name="be_notified" value="วิธีอื่นๆ" class="card-input-element d-none" >
+											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+												<span>
+													วิธีอื่นๆ  
+												</span>
+											</div>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<label for="name_user" class="form-label">ชื่อ/รหัสผู้แจ้งเหตุ</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="bx bxs-user"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="name_user" value="{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}" placeholder="ชื่อ/รหัสผู้แจ้งเหตุ">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<label for="phone_user" class="form-label">โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-phone"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="phone_user" value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}" placeholder="โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ">
+								</div>
+							</div>
+
+							<div class="col-12 mt-3">
+								<label for="inputAddress3" class="form-label">สถานที่เกิดเหตุ
+									<span id="location_user" class="d-none"></span>
+								</label>
+								<div class="row">
+									<div class="col-6 col-md-4 col-lg-4">
+										<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-location-dot"></i></span>
+											<input type="text" class="form-control border-start-0 radius-2" name="lat" id="lat" value="{{ isset($sos_help_center->lat) ? $sos_help_center->lat : ''}}" readonly placeholder="ละติจูด">
+										</div>
+									</div>
+									<div class="col-6 col-md-4 col-lg-4">
+										<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-location-dot"></i></span>
+											<input type="text" class="form-control border-start-0 radius-2" name="lng" id="lng" value="{{ isset($sos_help_center->lng) ? $sos_help_center->lng : ''}}" readonly placeholder="ลองติจูด">
+										</div>
+									</div>
+									<div class="col-6 col-md-2 col-lg-2">
+										<span class="btn btn-sm btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
+											เลือกจุดเกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
+										</span>
+									</div>
+									<div class="col-6 col-md-2 col-lg-2">
+										<button id="btn_get_location_user"  class="btn btn-sm btn-info text-white main-shadow main-radius">
+											รับรายละเอียดที่อยู่ (<span>100</span>)
+										</button>
+									</div>
+								</div>
+								<br>
+								<textarea class="form-control radius" name="location_sos" id="detail_location_sos" rows="4" placeholder="รายละเอียดสถานที่เกิดเหตุ" rows="3">{{ isset($sos_help_center->form_yellow->location_sos) ? $sos_help_center->form_yellow->location_sos : ''}}</textarea>
+							</div>
+						</div>
+					</div>
+
+					<!---------------------------------- ข้อ 2  ---------------------------------->
+					<div id="step-2" class="tab-pane" role="tabpanel" aria-labelledby="step-2">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="fa-regular fa-bone-break me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary">อาการนำสำคัญของผู้ป่วยฉุกเฉินที่ได้จากการรับแจ้ง</h5>
+						</div>
+						<hr>
+						@php
+							$check_symptom_1 ="";$check_symptom_2 ="";$check_symptom_3 ="";$check_symptom_4 ="";$check_symptom_5 ="";$check_symptom_6 ="";$check_symptom_7 ="";$check_symptom_8 ="";$check_symptom_9 ="";$check_symptom_10 ="";$check_symptom_11 ="";$check_symptom_12 ="";$check_symptom_13 ="";$check_symptom_14 ="";$check_symptom_15 ="";$check_symptom_16 ="";$check_symptom_17 ="";$check_symptom_18 ="";$check_symptom_19 ="";$check_symptom_20 ="";$check_symptom_21 ="";$check_symptom_22 ="";$check_symptom_23 ="";$check_symptom_24 ="";$check_symptom_25 ="";
+
+							if( !empty($sos_help_center->form_yellow->symptom) ){
+								$symptom_explode = explode(",", $sos_help_center->form_yellow->symptom);
+
+								for ($i=0; $i < count($symptom_explode); $i++){
+									switch ($symptom_explode[$i]) {
+										case 'ปวดท้อง หลัง เชิงกราน และขาหนีบ':
+											$check_symptom_1 = "checked";
+											break;
+										case 'แอนนาฟิแลกซิส ปฏิกิริยาภูมิแพ้/แมลงกัด':
+											$check_symptom_2 = "checked";
+											break;
+										case 'สัตว์กัด':
+											$check_symptom_3 = "checked";
+											break;
+										case 'เลือดออกไม่ใช่จากการบาดเจ็บ':
+											$check_symptom_4 = "checked";
+											break;
+										case 'หายใจลำบาก':
+											$check_symptom_5 = "checked";
+											break;
+										case 'หัวใจหยุดเต้น':
+											$check_symptom_6 = "checked";
+											break;
+										case 'เจ็บแน่นทรางออก หัวใจ':
+											$check_symptom_7 = "checked";
+											break;
+										case 'สำลักอุดทางเดินหายใจ':
+											$check_symptom_8 = "checked";
+											break;
+										case 'เบาหวาน':
+											$check_symptom_9 = "checked";
+											break;
+										case 'อันตรายจากสภาพแวดล้อม':
+											$check_symptom_10 = "checked";
+											break;
+										case 'อื่นๆ(เว้นว่าง)':
+											$check_symptom_11 = "checked";
+											break;
+										case 'ปวดศรีษะ ลำคอ':
+											$check_symptom_12 = "checked";
+											break;
+										case 'คลุ้มคลั่ง จิตประสาท อารมณ์':
+											$check_symptom_13 = "checked";
+											break;
+										case 'ยาเกิดขนาด ได้รับพิษ':
+											$check_symptom_14 = "checked";
+											break;
+										case 'ยาเกิดขนาด ได้รับพิษ':
+											$check_symptom_15 = "checked";
+											break;
+										case 'ชัก':
+											$check_symptom_16 = "checked";
+											break;
+										case 'ป่วย อ่อนเพลีย':
+											$check_symptom_17 = "checked";
+											break;
+										case 'อัมพาต (หลอดเลือดสมองตีบ แตก)':
+											$check_symptom_18 = "checked";
+											break;
+										case 'หมดสติ ไม่ตอบสนอง หมดสติชั่ววูบ':
+											$check_symptom_19 = "checked";
+											break;
+										case 'เด็ก ทารก (กุมารเวชกรรม)':
+											$check_symptom_20 = "checked";
+											break;
+										case 'ถูกทำร้าย บาดเจ็บ':
+											$check_symptom_21 = "checked";
+											break;
+										case 'ไฟไหม้ ลวก ความร้อน กระแสไฟฟ้า สารเคมี':
+											$check_symptom_22 = "checked";
+											break;
+										case 'จมน้ำ หน้าคว่ำจมน้ำ บาดเจ็บเหตุดำน้ำ บาดเจ็บทางน้ำ':
+											$check_symptom_23 = "checked";
+											break;
+										case 'พลัดตกหลุม อุบัติเหตุ':
+											$check_symptom_24 = "checked";
+											break;
+										case 'อุบัติเหตุยานยนต์':
+											$check_symptom_25 = "checked";
+											break;
+										
+									}
+								}
+							}
+						@endphp
+
+						<div class="row">
+							<div class="col-12 col-md-3 col-lg-3 ">
+								<label>
+									<input type="checkbox" {{ $check_symptom_1 }} name="symptom" value="ปวดท้อง หลัง เชิงกราน และขาหนีบ" class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑.ปวดท้อง หลัง เชิงกราน และขาหนีบ
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_2 }} name="symptom" value="แอนนาฟิแลกซิส ปฏิกิริยาภูมิแพ้/แมลงกัด"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒.แอนนาฟิแลกซิส ปฏิกิริยาภูมิแพ้/แมลงกัด
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_3 }} name="symptom" value="สัตว์กัด"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๓.สัตว์กัด
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_4 }} name="symptom" value="เลือดออกไม่ใช่จากการบาดเจ็บ"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๔.เลือดออกไม่ใช่จากการบาดเจ็บ
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_5 }} name="symptom" value="หายใจลำบาก"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๕.หายใจลำบาก 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_6 }} name="symptom" value="หัวใจหยุดเต้น"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๖.หัวใจหยุดเต้น
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_7 }} name="symptom" value="เจ็บแน่นทรางออก หัวใจ"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๗.เจ็บแน่นทรางออก หัวใจ
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_8 }} name="symptom" value="สำลักอุดทางเดินหายใจ"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๘.สำลักอุดทางเดินหายใจ
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_9 }} name="symptom" value="เบาหวาน"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๙.เบาหวาน
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_10 }} name="symptom" value="อันตรายจากสภาพแวดล้อม"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๐.อันตรายจากสภาพแวดล้อม
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_11 }} name="symptom" value="อื่นๆ(เว้นว่าง)"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<div>
+											๑๑.<s>อื่นๆ(เว้นว่าง)</s><sup>(๔)</sup>
+										</div>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_12 }} name="symptom" value="ปวดศรีษะ ลำคอ"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๒.ปวดศรีษะ ลำคอ 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_13 }} name="symptom" value="คลุ้มคลั่ง จิตประสาท อารมณ์"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๓.คลุ้มคลั่ง จิตประสาท อารมณ์ 
+									</div>
+								</label>
+							</div>
+
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_14 }} name="symptom" value="ยาเกิดขนาด ได้รับพิษ"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๔.ยาเกิดขนาด ได้รับพิษ 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_15 }} name="symptom" value="มีครรภ คลอด นรี"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๕.มีครรภ คลอด นรี 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_16 }} name="symptom" value="ชัก"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๖.ชัก 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_17 }} name="symptom" value="ป่วย อ่อนเพลีย"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๗.ป่วย อ่อนเพลีย 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_18 }} name="symptom" value="อัมพาต (หลอดเลือดสมองตีบ แตก)"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๘.อัมพาต (หลอดเลือดสมองตีบ แตก) 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_19 }} name="symptom" value="หมดสติ ไม่ตอบสนอง หมดสติชั่ววูบ"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๑๙.หมดสติ ไม่ตอบสนอง หมดสติชั่ววูบ 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_20 }} name="symptom" value="เด็ก ทารก (กุมารเวชกรรม)"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒๐.เด็ก ทารก (กุมารเวชกรรม) 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_21 }} name="symptom" value="ถูกทำร้าย บาดเจ็บ"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒๑.ถูกทำร้าย บาดเจ็บ 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_22 }} name="symptom" value="ไฟไหม้ ลวก ความร้อน กระแสไฟฟ้า สารเคมี"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒๒.ไฟไหม้ ลวก ความร้อน กระแสไฟฟ้า สารเคมี 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_23 }} name="symptom" value="จมน้ำ หน้าคว่ำจมน้ำ บาดเจ็บเหตุดำน้ำ บาดเจ็บทางน้ำ"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒๓.จมน้ำ หน้าคว่ำจมน้ำ บาดเจ็บเหตุดำน้ำ บาดเจ็บทางน้ำ 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_24 }} name="symptom" value="พลัดตกหลุม อุบัติเหตุ"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒๔.พลัดตกหลุม อุบัติเหตุ 
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_symptom_25 }} name="symptom" value="อุบัติเหตุยานยนต์"  class="card-input-element d-none symptom" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										๒๕.อุบัติเหตุยานยนต์ 
+									</div>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!---------------------------------- ข้อ 3  ---------------------------------->
+					<div id="step-3" class="tab-pane" role="tabpanel" aria-labelledby="step-3">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="fa-solid fa-square-info me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary">อาการ/เหตุการณ์/รายละเอียดอื่นๆ</h5>
+						</div>
+						<hr>
+						<textarea class="form-control" name="symptom_other" rows="15" placeholder="อธิบายถึง อาการ เหตุการณ์หรือรายละเอียดอื่นๆ">{{ isset($sos_help_center->form_yellow->symptom_other) ? $sos_help_center->form_yellow->symptom_other : ''}}</textarea>
+					</div>
+
+					<!---------------------------------- ข้อ 4  ---------------------------------->
+					<div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="fa-solid fa-person-falling-burst me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary"><b>การให้รหัสความรุนแรง <span style="font-size:15px;">IDC (Incident Dispatch Code)<sup>(๕)</sup></span></b></h5>
+						</div>
+						<hr>
+						@php
+							$check_idc_1 = "" ;
+							$check_idc_2 = "" ;
+							$check_idc_3 = "" ;
+							$check_idc_4 = "" ;
+							$check_idc_5 = "" ;
+							if( !empty($sos_help_center->form_yellow->idc) ){
+								if( $sos_help_center->form_yellow->idc == 'แดง(วิกฤติ)' ){
+									$check_idc_1 = "checked";
+								}else if ( $sos_help_center->form_yellow->idc == 'เหลือง(เร่งด่วน)' ){
+									$check_idc_2 = "checked";
+								}else if ( $sos_help_center->form_yellow->idc == 'เขียว(ไม่รุนแรง)' ){
+									$check_idc_3 = "checked";
+								}else if ( $sos_help_center->form_yellow->idc == 'ขาว(ทั่วไป)' ){
+									$check_idc_4 = "checked";
+								}else if ( $sos_help_center->form_yellow->idc == 'ดำ(รับบริการสาธารณสุขอื่น)' ){
+									$check_idc_5 = "checked";
+								}
+							}
+						@endphp
+						<div class="row">
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_idc_1 }} name="idc" value="แดง(วิกฤติ)"  class="card-input-element d-none" >
+									<div class="card card-body bg-danger text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											แดง(วิกฤติ)  
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_idc_4 }} name="idc" value="ขาว(ทั่วไป)"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>
+											ขาว(ทั่วไป)    
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_idc_2 }} name="idc" value="เหลือง(เร่งด่วน)"  class="card-input-element d-none" >
+									<div class="card card-body  bg-warning text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											เหลือง(เร่งด่วน)  
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_idc_5 }} name="idc" value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-element d-none" >
+									<div class="card card-body  bg-dark text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											ดำ(รับบริการสาธารณสุขอื่น)  
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_idc_3 }} name="idc" value="แดง(วิกฤติ)"  class="card-input-element d-none" >
+									<div class="card card-body  bg-success text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											เขียว(ไม่รุนแรง)
+										</b>
+									</div>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!---------------------------------- ข้อ 5  ---------------------------------->
+					<div id="step-5" class="tab-pane" role="tabpanel" aria-labelledby="step-5">
+						<div class="card-title d-flex align-items-center">
+							<div>
+								<i class="fa-duotone fa-chalkboard-user me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary">การสั่งการ (โดยการเห็นชอบของหัวหน้าศูนย์ฯ)</h5>
+						</div>
+						<hr>
+						@php
+							$check_vehicle_type_1 = "" ;
+							$check_vehicle_type_2 = "" ;
+							$check_vehicle_type_3 = "" ;
+							$check_vehicle_type_4 = "" ;
+							$check_vehicle_type_5 = "" ;
+							$check_vehicle_type_6 = "" ;
+							if( !empty($sos_help_center->form_yellow->vehicle_type) ){
+								if( $sos_help_center->form_yellow->vehicle_type == 'รถ' ){
+									$check_vehicle_type_1 = "checked";
+								}else if ( $sos_help_center->form_yellow->vehicle_type == 'อากาศยาน' ){
+									$check_vehicle_type_2 = "checked";
+								}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือ ป.๑' ){
+									$check_vehicle_type_3 = "checked";
+								}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือ ป.๒' ){
+									$check_vehicle_type_4 = "checked";
+								}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือ ป.๓' ){
+									$check_vehicle_type_5 = "checked";
+								}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือประเภทอื่นๆ' ){
+									$check_vehicle_type_6 = "checked";
+								}
+							}
+						@endphp
+						
+						<div class="row">
+							<div class="col-md-12 mb-2">
+								<label  class="form-label m-0">
+									<b>
+										ชนิดยานพาหนะ<sup>(๗)</sup>
+									</b>
+								</label>
+							</div>	
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_vehicle_type_1 }} name="vehicle_type" value="รถ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>รถ</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_vehicle_type_2 }} name="vehicle_type" value="อากาศยาน"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>อากาศยาน</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_vehicle_type_3 }} name="vehicle_type" value="เรือ ป.๑"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>เรือ ป.๑</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_vehicle_type_4 }} name="vehicle_type" value="เรือ ป.๒"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>เรือ ป.๒</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_vehicle_type_5 }} name="vehicle_type" value="เรือ ป.๓"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>เรือ ป.๓</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_vehicle_type_6 }} name="vehicle_type" value="เรือประเภทอื่นๆ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>เรือประเภทอื่นๆ</b>
+									</div>
+								</label>
+							</div>
+							
+							<div class="col-12"></div>
+							
+							<div class="col-md-6">
+								<label for="name_user" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="operation_unit_name" value="{{ isset($sos_help_center->form_yellow->operation_unit_name) ? $sos_help_center->form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<label for="phone_user" class="form-label"><b>ชื่อชุดปฏิบัติการ</b></label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-users-medical"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="action_set_name" value="{{ isset($sos_help_center->form_yellow->action_set_name) ? $sos_help_center->form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ">
+								</div>
+							</div>
+							
+							<div class="col-md-12 mb-2 mt-2">
+								<label  class="form-label mt-2">
+									<b>
+										ประเภทชุดปฏิบัติการ
+									</b>
+								</label>
+							</div>	
+							@php
+								$check_operating_suit_type_1 = "" ;
+								$check_operating_suit_type_2 = "" ;
+								$check_operating_suit_type_3 = "" ;
+								$check_operating_suit_type_4 = "" ;
+								if( !empty($sos_help_center->form_yellow->operating_suit_type) ){
+									if( $sos_help_center->form_yellow->operating_suit_type == 'FR' ){
+										$check_operating_suit_type_1 = "checked";
+									}else if ( $sos_help_center->form_yellow->operating_suit_type == 'BLS' ){
+										$check_operating_suit_type_2 = "checked";
+									}else if ( $sos_help_center->form_yellow->operating_suit_type == 'ILS' ){
+										$check_operating_suit_type_3 = "checked";
+									}else if ( $sos_help_center->form_yellow->operating_suit_type == 'ALS' ){
+										$check_operating_suit_type_4 = "checked";
+									}
+								}
+							@endphp
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_operating_suit_type_1 }} name="operating_suit_type" value="FR"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>FR</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_operating_suit_type_2 }} name="operating_suit_type" value="BLS"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>BLS</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_operating_suit_type_3 }} name="operating_suit_type" value="ILS"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ILS</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_operating_suit_type_4 }} name="operating_suit_type" value="ALS"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ALS</b>
+									</div>
+								</label>
+							</div>
+							<hr>
+							<div class="col-12">
+								<div class="table-responsive">
+									<!--Table-->
+									<table class="table  table-bordered border-secondary ">
+										<thead>
+											<tr>
+											<th scope="col"></th>
+											<th scope="col">รับแจ้ง</th>
+											<th scope="col">สั่งการ</th>
+											<th scope="col">ออกจากฐาน</th>
+											<th scope="col">ถึงที่เกิดเหตุ</th>
+											<th scope="col">ออกจากที่เกิดเหตุ</th>
+											<th scope="col">ถึง รพ.</th>
+											<th scope="col">ถึงฐาน</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row" style="vertical-align: middle;">
+													เวลา (น.)
+												</th>
+												<td>
+													<input class="form-control" type="time" name="time_create_sos" id="time_create_sos" value="{{ isset($sos_help_center->form_yellow->time_create_sos) ? $sos_help_center->form_yellow->time_create_sos : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="time" name="time_command" id="time_command" value="{{ isset($sos_help_center->form_yellow->time_command) ? $sos_help_center->form_yellow->time_command : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="time" name="time_go_to_help" id="time_go_to_help" value="{{ isset($sos_help_center->form_yellow->time_go_to_help) ? $sos_help_center->form_yellow->time_go_to_help : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="time" name="time_to_the_scene" id="time_to_the_scene" value="{{ isset($sos_help_center->form_yellow->time_to_the_scene) ? $sos_help_center->form_yellow->time_to_the_scene : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="time" name="time_leave_the_scene" id="time_leave_the_scene" value="{{ isset($sos_help_center->form_yellow->time_leave_the_scene) ? $sos_help_center->form_yellow->time_leave_the_scene : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="time" name="time_hospital" id="time_hospital" value="{{ isset($sos_help_center->form_yellow->time_hospital) ? $sos_help_center->form_yellow->time_hospital : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" value="{{ isset($sos_help_center->form_yellow->time_to_the_operating_base) ? $sos_help_center->form_yellow->time_to_the_operating_base : ''}}">
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">
+													รวมเวลา (นาที)
+												</th>
+												<td colspan="4" style="text-align: center;">
+													Response time = { $response_time } นาที
+												</td>
+												<td style="background-color:#D3D3D3;">
+													<!--  -->
+												</td>
+												<td colspan="2" style="text-align: center;">
+													........ นาที
+												</td>
+											</tr>
+											<tr>
+												<th scope="row" style="vertical-align: middle;">
+													เลข กม.
+												</th>
+												<td colspan="3">
+													<input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($sos_help_center->form_yellow->km_create_sos_to_go_to_help) ? $sos_help_center->form_yellow->km_create_sos_to_go_to_help : ''}}">
+												</td>
+												<td colspan="2">
+													<input class="form-control" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($sos_help_center->form_yellow->km_to_the_scene_to_leave_the_scene) ? $sos_help_center->form_yellow->km_to_the_scene_to_leave_the_scene : ''}}">
+												</td>
+												<td>
+													<input class="form-control"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($sos_help_center->form_yellow->km_hospital) ? $sos_help_center->form_yellow->km_hospital : ''}}">
+												</td>
+												<td>
+													<input class="form-control" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($sos_help_center->form_yellow->km_operating_base) ? $sos_help_center->form_yellow->km_operating_base : ''}}">
+												</td>
+											</tr>
+											<tr>
+												<th rowspan="2" style="vertical-align: middle;">
+													ระยะทาง (กม.)
+												</th>
+												<td  style="vertical-align: middle;text-align: center;" rowspan="2" colspan="4">
+													รวมระยะทางไป ................ กม.
+												</td>
+												<td style="background-color:#D3D3D3;">
+													<!--  -->
+												</td>
+												<td colspan="2" style="text-align: center;">
+													ระยะทางกลับ ....... กม.
+												</td>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" style="text-align: center;">
+													ระยะไป รพ. ....... กม.
+												</td>
+												<td style="background-color:#D3D3D3;">
+													<!--  -->
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<!--Table-->
+									</div>
+								</div>
+						</div>
+					</div>
+					
+					<!---------------------------------- ข้อ 6  ---------------------------------->
+					<div id="step-6" class="tab-pane" role="tabpanel" aria-labelledby="step-6">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="fa-duotone fa-burst me-1 font-22 text-primary"></i>
+							</div>
+							
+							<h5 class="mb-0 text-primary"><b>6.การให้รหัสความรุนแรง ณ จุดเกิดเหตุ  <span style="font-size:15px;">RC(Response Code)<sup>(๕)</sup></span></b></h5>
+						</div>
+						<hr>
+						@php
+							$check_rc_1 = "" ;
+							$check_rc_2 = "" ;
+							$check_rc_3 = "" ;
+							$check_rc_4 = "" ;
+							$check_rc_5 = "" ;
+							if( !empty($sos_help_center->form_yellow->rc) ){
+								if( $sos_help_center->form_yellow->rc == 'แดง(วิกฤติ)' ){
+									$check_rc_1 = "checked";
+								}else if ( $sos_help_center->form_yellow->rc == 'เหลือง(เร่งด่วน)' ){
+									$check_rc_2 = "checked";
+								}else if ( $sos_help_center->form_yellow->rc == 'เขียว(ไม่รุนแรง)' ){
+									$check_rc_3 = "checked";
+								}else if ( $sos_help_center->form_yellow->rc == 'ขาว(ทั่วไป)' ){
+									$check_rc_4 = "checked";
+								}else if ( $sos_help_center->form_yellow->rc == 'ดำ' ){
+									$check_rc_5 = "checked";
+								}
+							}
+						@endphp
+						<div class="row">
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_rc_1 }} name="rc" value="แดง(วิกฤติ)"  class="card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body bg-danger text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											แดง(วิกฤติ)  
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_rc_4 }} name="rc" value="ขาว(ทั่วไป)"  class="card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>
+											ขาว(ทั่วไป)    
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_rc_2 }} name="rc" value="เหลือง(เร่งด่วน)"  class="card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body  bg-warning text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											เหลือง(เร่งด่วน)  
+										</b>
+									</div>
+								</label>
+							</div>
+							
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_rc_3 }} name="rc" value="แดง(วิกฤติ)"  class="card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body  bg-success text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											เขียว(ไม่รุนแรง)
+										</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_rc_5 }} name="rc" id="rc_black"  value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body  bg-dark text-white d-flex flex-row justify-content-between align-items-center">
+										<b>
+											<div class="input-wrapper-b-code inline">
+												<span>
+													ดำ ( <input name="rc_black_text" id="rc_black_text" size="5" style="border-radius: 5px;border: none; border-bottom: 1px dashed #ffffff;color:#000" class="input_code_black  p-0 m-0" placeholder="ใส่รหัส" type="text" value="{{ isset($sos_help_center->form_yellow->rc_black_text) ? $sos_help_center->form_yellow->rc_black_text : ''}}" readonly> )
+												</span>
+											</div>
+										</b>
+										
+									</div>
+								</label>
+							</div>
+						</div>
+					</div>
+					
+					<!---------------------------------- ข้อ 7  ---------------------------------->
+					<div id="step-7" class="tab-pane" role="tabpanel" aria-labelledby="step-7">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="fa-solid fa-truck-medical me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary"><b>การปฏิบัติการ</b></h5>
+						</div>
+						<hr>
+						<style>
+							.select-case{
+								background: rgba(255, 255, 255, 0.8);
+								padding: 10px;
+								margin: 5px;
+								border-radius: 15px;
+							}
+						</style>
+						@php
+							$check_treatment_1 = "" ;
+							$check_treatment_2 = "" ;
+							if( !empty($sos_help_center->form_yellow->treatment) ){
+								if( $sos_help_center->form_yellow->treatment == 'มีการรักษา' ){
+									$check_treatment_1 = "checked";
+								}else if ( $sos_help_center->form_yellow->treatment == 'ไม่มีการรักษา' ){
+									$check_treatment_2 = "checked";
+								}
+							}
+
+							$check_sub_treatment_1 ="";$check_sub_treatment_2 ="";$check_sub_treatment_3 ="";$check_sub_treatment_4 ="";$check_sub_treatment_5 ="";$check_sub_treatment_6 ="";$check_sub_treatment_7 ="";$check_sub_treatment_8 ="";$check_sub_treatment_9 ="";
+							if( !empty($sos_help_center->form_yellow->sub_treatment) ){
+								$sub_treatment_explode = explode(",", $sos_help_center->form_yellow->sub_treatment);
+
+								for ($i=0; $i < count($sub_treatment_explode); $i++){
+									switch ($sub_treatment_explode[$i]) {
+										case 'นำส่ง':
+											$check_sub_treatment_1 = "checked";
+											break;
+										case 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า':
+											$check_sub_treatment_2 = "checked";
+											break;
+										case 'ไม่นำส่ง':
+											$check_sub_treatment_3 = "checked";
+											break;
+										case 'เสียชีวิตระหว่างนำส่ง':
+											$check_sub_treatment_4 = "checked";
+											break;
+										case 'เสียชีวิต ณ จุดเกิดเหตุ':
+											$check_sub_treatment_5 = "checked";
+											break;
+										case 'ผู้ป่วยปฏิเสธการรักษา / ไม่ประสงค์จะไป รพ.':
+											$check_sub_treatment_6 = "checked";
+											break;
+										case 'ยกเลิก':
+											$check_sub_treatment_7 = "checked";
+											break;
+										case 'ไม่พบเหตุ':
+											$check_sub_treatment_8 = "checked";
+											break;
+										case 'เสียชีวิตก่อนชุดปฏิบัติการไปถึง':
+											$check_sub_treatment_9 = "checked";
+											break;
+									}
+								}
+							}
+						@endphp
+						<div class="row">
+							<div class="col-12 col-md-6 col-lg-6">
+								<div class=" col-12">
+									<label>
+										<input type="radio" {{ $check_treatment_1 }} name="treatment" value="มีการรักษา"  class="card-input-red card-input-element d-none" onchange="check_treatment(); reset_sub_treatment();">
+										<div class="card card-body d-flex flex-row justify-content-between align-items-center text-danger" >
+											<b>
+												มีการรักษา
+											</b>
+										</div>
+									</label>
+								</div>
+							</div>
+
+							<div class="col-12 col-md-6 col-lg-6">
+								<div class="">
+									<label>
+										<input type="radio"{{ $check_treatment_2 }} name="treatment" value="ไม่มีการรักษา"  class="card-input-element d-none" onchange="check_treatment(); reset_sub_treatment();">
+										<div class="card card-body d-flex flex-row-reverse  justify-content-between align-items-center">
+											<b>
+												ไม่มีการรักษา
+											</b>
+										</div>
+									</label>
+								</div>
+							</div>
+
+							<div class="col-12" style="margin-bottom: 20%;">
+								<!-- -------------------------------------------   เคสมีการรักษา  ----------------------------------------------------- -->
+								<div class="row d-none" id="treatment_yes">
+									<br><br><br>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_1 }} name="sub_treatment" value="นำส่ง"  class="sub_treatment card-input-red card-input-element d-none">
+											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													นำส่ง
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_2 }} name="sub_treatment" value="ส่งต่อชุดปฏิบัติการระดับสูงกว่า"  class="sub_treatment card-input-red card-input-element d-none">
+											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													ส่งต่อชุดปฏิบัติการระดับสูงกว่า  
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_3}} name="sub_treatment" value="ไม่นำส่ง"  class="sub_treatment card-input-red card-input-element d-none">
+											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													ไม่นำส่ง 
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_4 }} name="sub_treatment" value="เสียชีวิตระหว่างนำส่ง"  class="sub_treatment card-input-red card-input-element d-none">
+											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													เสียชีวิตระหว่างนำส่ง  
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_5 }} name="sub_treatment" value="เสียชีวิต ณ จุดเกิดเหตุ"  class="sub_treatment card-input-red card-input-element d-none">
+											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													เสียชีวิต ณ จุดเกิดเหตุ
+												</b>
+											</div>
+										</label>
+									</div>
+								</div>
+
+								<!-- -------------------------------------------   เคส ไม่มี การรักษา  ----------------------------------------------------- -->
+								<div class="row d-none" id="treatment_no">
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_6 }} name="sub_treatment" value="ผู้ป่วยปฏิเสธการรักษา"  class="sub_treatment card-input-element d-none">
+											<div class="card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													ผู้ป่วยปฏิเสธการรักษา
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_7 }} name="sub_treatment" value="ยกเลิก"  class="sub_treatment card-input-element d-none">
+											<div class="card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													ยกเลิก  
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_8 }} name="sub_treatment" value="ไม่พบเหตุ"  class="sub_treatment card-input-element d-none">
+											<div class="card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													ไม่พบเหตุ 
+												</b>
+											</div>
+										</label>
+									</div>
+									<div class="col-12 col-md-4 col-lg-4">
+										<label>
+											<input type="checkbox" {{ $check_sub_treatment_9 }} name="sub_treatment" value="เสียชีวิตก่อนชุดปฏิบัติการไปถึง"  class="sub_treatment card-input-element d-none">
+											<div class="card card-body d-flex flex-row justify-content-between align-items-center">
+												<b>
+													เสียชีวิตก่อนชุดปฏิบัติการไปถึง
+												</b>
+											</div>
+										</label>
+									</div>
 								</div>
 							</div>
 						</div>
-						<!-- ตารางเวลาปฏิบัติการ -->
-						<div class="col-12 text-center" style="padding-right: 35px;padding-left:35px;">
-							<hr>
-							<div class="table-responsive-sm">
-								<table class="table table-bordered " style="border-color:#000000;font-size: 18px;">
-								  <thead>
-								    <tr>
-								      <th scope="col"></th>
-								      <th scope="col">รับแจ้ง</th>
-								      <th scope="col">สั่งการ</th>
-								      <th scope="col">ออกจากฐาน</th>
-								      <th scope="col">ถึงที่เกิดเหตุ</th>
-								      <th scope="col">ออกจากที่เกิดเหตุ</th>
-								      <th scope="col">ถึง รพ.</th>
-								      <th scope="col">ถึงฐาน</th>
-								    </tr>
-								  </thead>
-								  <tbody>
-								    <tr>
-								      	<th scope="row">
-								      		เวลา (น.)
-								      	</th>
-							      		<td>
-								      		<input class="form-control" type="time" name="time_create_sos" id="time_create_sos" value="{{ isset($sos_help_center->form_yellow->time_create_sos) ? $sos_help_center->form_yellow->time_create_sos : ''}}">
-								      	</td>
-								      	<td>
-								      		<input class="form-control" type="time" name="time_command" id="time_command" value="{{ isset($sos_help_center->form_yellow->time_command) ? $sos_help_center->form_yellow->time_command : ''}}">
-								      	</td>
-								      	<td>
-								      		<input class="form-control" type="time" name="time_go_to_help" id="time_go_to_help" value="{{ isset($sos_help_center->form_yellow->time_go_to_help) ? $sos_help_center->form_yellow->time_go_to_help : ''}}">
-								      	</td>
-								      	<td>
-								      		<input class="form-control" type="time" name="time_to_the_scene" id="time_to_the_scene" value="{{ isset($sos_help_center->form_yellow->time_to_the_scene) ? $sos_help_center->form_yellow->time_to_the_scene : ''}}">
-								      	</td>
-								      	<td>
-								      		<input class="form-control" type="time" name="time_leave_the_scene" id="time_leave_the_scene" value="{{ isset($sos_help_center->form_yellow->time_leave_the_scene) ? $sos_help_center->form_yellow->time_leave_the_scene : ''}}">
-								      	</td>
-								      	<td>
-								      		<input class="form-control" type="time" name="time_hospital" id="time_hospital" value="{{ isset($sos_help_center->form_yellow->time_hospital) ? $sos_help_center->form_yellow->time_hospital : ''}}">
-								      	</td>
-								      	<td>
-								      		<input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" value="{{ isset($sos_help_center->form_yellow->time_to_the_operating_base) ? $sos_help_center->form_yellow->time_to_the_operating_base : ''}}">
-								  		</td>
-								    </tr>
-								    <tr>
-								      	<th scope="row">
-								      		รวมเวลา (นาที)
-								      	</th>
-									    <td colspan="4">
-									    	Response time = { $response_time } นาที
-									    </td>
-									    <td style="background-color:#D3D3D3;">
-									    	<!--  -->
-									    </td>
-									    <td colspan="2">
-									    	........ นาที
-									    </td>
-								    </tr>
-								    <tr>
-								      	<th scope="row">
-									      	เลข กม.
-									      </th>
-								      	<td colspan="3">
-									      	<input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($sos_help_center->form_yellow->km_create_sos_to_go_to_help) ? $sos_help_center->form_yellow->km_create_sos_to_go_to_help : ''}}">
-									    </td>
-								      	<td colspan="2">
-								      		<input class="form-control" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($sos_help_center->form_yellow->km_to_the_scene_to_leave_the_scene) ? $sos_help_center->form_yellow->km_to_the_scene_to_leave_the_scene : ''}}">
-								      	</td>
-								      	<td>
-								      		<input class="form-control"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($sos_help_center->form_yellow->km_hospital) ? $sos_help_center->form_yellow->km_hospital : ''}}">
-								      	</td>
-								      	<td>
-								      		<input class="form-control" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($sos_help_center->form_yellow->km_operating_base) ? $sos_help_center->form_yellow->km_operating_base : ''}}">
-								      	</td>
-								    </tr>
-								    <tr>
-								      	<th rowspan="2">
-									      	ระยะทาง (กม.)
-									  	</th>
-								      	<td rowspan="2" colspan="4">
-									      	รวมระยะทางไป ................ กม.
-									    </td>
-								      	<td style="background-color:#D3D3D3;">
-								      		<!--  -->
-								      	</td>
-								      	<td colspan="2">
-								      		ระยะทางกลับ ....... กม.
-								      	</td>
-								      	</td>
-								    </tr>
-								    <tr>
-								      	<td colspan="2">
-								      		ระยะไป รพ. ....... กม.
-								      	</td>
-								      	<td style="background-color:#D3D3D3;">
-								      		<!--  -->
-								      	</td>
-								    </tr>
-								  </tbody>
-								</table>
+					</div>
+					
+					<!---------------------------------- ข้อ 8  ---------------------------------->
+					<div id="step-8" class="tab-pane" role="tabpanel" aria-labelledby="step-8">
+						<div class="card-title d-flex align-items-center">
+							<div><i class="fa-duotone fa-user-group me-1 font-22 text-primary"></i>
 							</div>
 							
+							<h5 class="mb-0 text-primary"><b> ชื่อผู้ป่วย</b></h5>
 						</div>
-					</div>
-				</div>
-				<div id="form_data_6" class="form_yellow carousel-item">
-		      		<div class="col-12">
-						<h3><b>6.การให้รหัสความรุนแรง ณ จุดเกิดเหตุ RC(Response Code)</b></h3>
-					</div>
-					<hr>
-					@php
-						$check_rc_1 = "" ;
-						$check_rc_2 = "" ;
-						$check_rc_3 = "" ;
-						$check_rc_4 = "" ;
-						$check_rc_5 = "" ;
-						if( !empty($sos_help_center->form_yellow->rc) ){
-							if( $sos_help_center->form_yellow->rc == 'แดง(วิกฤติ)' ){
-								$check_rc_1 = "checked";
-							}else if ( $sos_help_center->form_yellow->rc == 'เหลือง(เร่งด่วน)' ){
-								$check_rc_2 = "checked";
-							}else if ( $sos_help_center->form_yellow->rc == 'เขียว(ไม่รุนแรง)' ){
-								$check_rc_3 = "checked";
-							}else if ( $sos_help_center->form_yellow->rc == 'ขาว(ทั่วไป)' ){
-								$check_rc_4 = "checked";
-							}else if ( $sos_help_center->form_yellow->rc == 'ดำ' ){
-								$check_rc_5 = "checked";
-							}
-						}
-					@endphp
-					<div class="row">
-						<div class="col-6">
-							<p style="font-size:20px;">
-								<input type="radio" {{ $check_rc_1 }} name="rc" value="แดง(วิกฤติ)" onchange="check_click_rc();">&nbsp;&nbsp;แดง(วิกฤติ)&nbsp;&nbsp;
-								<br>
-								<input type="radio" {{ $check_rc_2 }} name="rc" value="เหลือง(เร่งด่วน)" onchange="check_click_rc();">&nbsp;&nbsp;เหลือง(เร่งด่วน)&nbsp;&nbsp;
-								<br>
-								<input type="radio" {{ $check_rc_3 }} name="rc" value="เขียว(ไม่รุนแรง)" onchange="check_click_rc();">&nbsp;&nbsp;เขียว(ไม่รุนแรง)&nbsp;&nbsp;
-								<br>
-							</p>
-						</div>
-						<div class="col-6">
-							<p style="font-size:20px;">
-								<input type="radio" {{ $check_rc_4 }} name="rc" value="ขาว(ทั่วไป)" onchange="check_click_rc();">&nbsp;&nbsp;ขาว(ทั่วไป)&nbsp;&nbsp;
-								<br>
-								<input type="radio" {{ $check_rc_5 }} name="rc" id="rc_black" value="ดำ" onchange="check_click_rc();">&nbsp;&nbsp;ดำ รหัส..&nbsp;&nbsp;
-								<input type="text" class="form-control" name="rc_black_text" id="rc_black_text" placeholder="ดำ รหัส.." value="{{ isset($sos_help_center->form_yellow->rc_black_text) ? $sos_help_center->form_yellow->rc_black_text : ''}}" readonly>
-								<br>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div id="form_data_7" class="form_yellow carousel-item">
-		      		<div class="col-12">
-						<h3><b>7.การปฏิบัติการ</b></h3>
-					</div>
-					<hr>
-					@php
-						$check_treatment_1 = "" ;
-						$check_treatment_2 = "" ;
-						if( !empty($sos_help_center->form_yellow->treatment) ){
-							if( $sos_help_center->form_yellow->treatment == 'มีการรักษา' ){
-								$check_treatment_1 = "checked";
-							}else if ( $sos_help_center->form_yellow->treatment == 'ไม่มีการรักษา' ){
-								$check_treatment_2 = "checked";
-							}
-						}
+						<hr>
+						<!-- ----------------------------------------------- ผู้ป่วย 1 ------------------------------------------------------------- -->
+						<fieldset class="rounded-3 p-3 field-user">
+							<legend class="float-none w-auto px-3">ผู้ป่วย ๑</legend>
+							<div class="row">
+								<div class="col-12 col-md-4 col-lg-4">
+									<label for="name_user" class="form-label">ผู้ป่วย ๑. ชื่อ-สกุล</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="patient_name_1" id="patient_name_1" value="{{ isset($sos_help_center->form_yellow->patient_name_1) ? $sos_help_center->form_yellow->patient_name_1 : ''}}" placeholder="ชื่อ-สกุล">
+									</div>
+								</div>
+								<div class="col-12 col-md-2 col-lg-2">
+									<label for="phone_user" class="form-label">อายุ (ปี)</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-input-numeric"></i></span>
+										<input  type="number" min="1" class="form-control border-start-0 radius-2" name="patient_age_1" id="patient_age_1" value="{{ isset($sos_help_center->form_yellow->patient_age_1) ? $sos_help_center->form_yellow->patient_age_1 : ''}}" placeholder="อายุ">
+									</div>
+								</div>
+								<div class="col-12 col-md-3 col-lg-3">
+									<label for="phone_user" class="form-label">HN</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card-clip"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2"  name="patient_hn_1" id="patient_hn_1" value="{{ isset($sos_help_center->form_yellow->patient_hn_1) ? $sos_help_center->form_yellow->patient_hn_1 : ''}}" placeholder="รหัสผู้ป่วย">
+									</div>
+								</div>
+								<div class="col-12 col-md-3 col-lg-3">
+									<label for="phone_user" class="form-label">เลขประจำตัวประชาชน</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2"name="patient_vn_1" id="patient_vn_1" value="{{ isset($sos_help_center->form_yellow->patient_vn_1) ? $sos_help_center->form_yellow->patient_vn_1 : ''}}" placeholder="เลขประจำตัวประชาชน">
+									</div>
+								</div>
+								<div class="col-12 mt-3"></div>
+								
+								<div class="col-12 col-md-6 col-lg-6">
+									<label for="phone_user" class="form-label">นำส่งที่จังหวัด</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-map-location-dot"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_province_1" id="delivered_province_1" value="{{ isset($sos_help_center->form_yellow->delivered_province_1) ? $sos_help_center->form_yellow->delivered_province_1 : ''}}" placeholder="จังหวัดที่นำส่ง">
+									</div>
+								</div>
+								<div class="ccol-12 col-md-6 col-lg-6">
+									<label for="phone_user" class="form-label">นำส่ง รพ.</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-hospital"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_hospital_1" id="delivered_hospital_1" value="{{ isset($sos_help_center->form_yellow->delivered_hospital_1) ? $sos_help_center->form_yellow->delivered_hospital_1 : ''}}" placeholder="โรงพยาบาลที่นำส่ง">
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						
 
-						$check_sub_treatment_1 ="";$check_sub_treatment_2 ="";$check_sub_treatment_3 ="";$check_sub_treatment_4 ="";$check_sub_treatment_5 ="";$check_sub_treatment_6 ="";$check_sub_treatment_7 ="";$check_sub_treatment_8 ="";$check_sub_treatment_9 ="";
-						if( !empty($sos_help_center->form_yellow->sub_treatment) ){
-							$sub_treatment_explode = explode(",", $sos_help_center->form_yellow->sub_treatment);
+						<fieldset class="rounded-3 p-3 field-user mt-4">
+							<legend class="float-none w-auto px-3">ผู้ป่วย ๒</legend>
+							<div class="row">
+								<div class="col-12 col-md-4 col-lg-4">
+									<label for="name_user" class="form-label">ผู้ป่วย ๑. ชื่อ-สกุล</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="patient_name_2" id="patient_name_2" value="{{ isset($sos_help_center->form_yellow->patient_name_2) ? $sos_help_center->form_yellow->patient_name_2 : ''}}" placeholder="ชื่อ-สกุล">
+									</div>
+								</div>
+								<div class="col-12 col-md-2 col-lg-2">
+									<label for="phone_user" class="form-label">อายุ (ปี)</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-input-numeric"></i></span>
+										<input  type="number" min="1" class="form-control border-start-0 radius-2" name="patient_age_2" id="patient_age_2" value="{{ isset($sos_help_center->form_yellow->patient_age_2) ? $sos_help_center->form_yellow->patient_age_2 : ''}}" placeholder="อายุ">
+									</div>
+								</div>
+								<div class="col-12 col-md-3 col-lg-3">
+									<label for="phone_user" class="form-label">HN</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card-clip"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2"  name="patient_hn_2" id="patient_hn_2" value="{{ isset($sos_help_center->form_yellow->patient_hn_2) ? $sos_help_center->form_yellow->patient_hn_2 : ''}}" placeholder="รหัสผู้ป่วย">
+									</div>
+								</div>
+								<div class="col-12 col-md-3 col-lg-3">
+									<label for="phone_user" class="form-label">เลขประจำตัวประชาชน</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2"name="patient_vn_2" id="patient_vn_2" value="{{ isset($sos_help_center->form_yellow->patient_vn_2) ? $sos_help_center->form_yellow->patient_vn_2 : ''}}" placeholder="เลขประจำตัวประชาชน">
+									</div>
+								</div>
+								<div class="col-12 mt-3"></div>
+								
+								<div class="col-12 col-md-6 col-lg-6">
+									<label for="phone_user" class="form-label">นำส่งที่จังหวัด</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-map-location-dot"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_province_2" id="delivered_province_2" value="{{ isset($sos_help_center->form_yellow->delivered_province_2) ? $sos_help_center->form_yellow->delivered_province_2 : ''}}" placeholder="จังหวัดที่นำส่ง">
+									</div>
+								</div>
+								<div class="col-12 col-md-6 col-lg-6">
+									<label for="phone_user" class="form-label">นำส่ง รพ.</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-hospital"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_hospital_2" id="delivered_hospital_2" value="{{ isset($sos_help_center->form_yellow->delivered_hospital_2) ? $sos_help_center->form_yellow->delivered_hospital_2 : ''}}" placeholder="โรงพยาบาลที่นำส่ง">
+									</div>
+								</div>
+							</div>
+						</fieldset>
 
-							for ($i=0; $i < count($sub_treatment_explode); $i++){
-								switch ($sub_treatment_explode[$i]) {
-					                case 'นำส่ง':
-					                    $check_sub_treatment_1 = "checked";
-					                    break;
-					                case 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า':
-					                    $check_sub_treatment_2 = "checked";
-					                    break;
-					                case 'ไม่นำส่ง':
-					                    $check_sub_treatment_3 = "checked";
-					                    break;
-					                case 'เสียชีวิตระหว่างนำส่ง':
-					                    $check_sub_treatment_4 = "checked";
-					                    break;
-					                case 'เสียชีวิต ณ จุดเกิดเหตุ':
-					                    $check_sub_treatment_5 = "checked";
-					                    break;
-					                case 'ผู้ป่วยปฏิเสธการรักษา / ไม่ประสงค์จะไป รพ.':
-					                    $check_sub_treatment_6 = "checked";
-					                    break;
-					                case 'ยกเลิก':
-					                    $check_sub_treatment_7 = "checked";
-					                    break;
-					                case 'ไม่พบเหตุ':
-					                    $check_sub_treatment_8 = "checked";
-					                    break;
-					                case 'เสียชีวิตก่อนชุดปฏิบัติการไปถึง':
-					                    $check_sub_treatment_9 = "checked";
-					                    break;
-					            }
-					        }
-					    }
-					@endphp
-					<div class="row">
-						<div class="col-6">
-							<p style="font-size:20px;" class="text-center">
-								<input type="radio" {{ $check_treatment_1 }} name="treatment" value="มีการรักษา">&nbsp; <b>มีการรักษา</b> &nbsp;
-							</p>
-							<p style="font-size:20px;">
-								<input type="checkbox" {{ $check_sub_treatment_1 }} class="sub_treatment" name="sub_treatment" value="นำส่ง">&nbsp; นำส่ง &nbsp;
-								<br>
-								<input type="checkbox" {{ $check_sub_treatment_2 }} class="sub_treatment" name="sub_treatment" value="ส่งต่อชุดปฏิบัติการระดับสูงกว่า">&nbsp; ส่งต่อชุดปฏิบัติการระดับสูงกว่า &nbsp;
-								<br>
-								<input type="checkbox" {{ $check_sub_treatment_3 }} class="sub_treatment" name="sub_treatment" value="ไม่นำส่ง">&nbsp; ไม่นำส่ง &nbsp;
-								<br>
-								<input type="checkbox" {{ $check_sub_treatment_4 }} class="sub_treatment" name="sub_treatment" value="เสียชีวิตระหว่างนำส่ง">&nbsp; เสียชีวิตระหว่างนำส่ง &nbsp;
-								<br>
-								<input type="checkbox" {{ $check_sub_treatment_5 }} class="sub_treatment" name="sub_treatment" value="เสียชีวิต ณ จุดเกิดเหตุ">&nbsp; เสียชีวิต ณ จุดเกิดเหตุ &nbsp;
-							</p>
-						</div>
-						<div class="col-6">
-							<p style="font-size:20px;" class="text-center">
-								<input type="radio" {{ $check_treatment_2 }} name="treatment" value="ไม่มีการรักษา">&nbsp; <b>ไม่มีการรักษา</b> &nbsp;
-							</p>
-							<p style="font-size:20px;">
-								<input type="checkbox" {{ $check_sub_treatment_6 }} class="sub_treatment" name="sub_treatment" value="ผู้ป่วยปฏิเสธการรักษา / ไม่ประสงค์จะไป รพ.">&nbsp; ผู้ป่วยปฏิเสธการรักษา / ไม่ประสงค์จะไป รพ. &nbsp;
-								<br>
-								<input type="checkbox" {{ $check_sub_treatment_7 }} class="sub_treatment" name="sub_treatment" value="ยกเลิก">&nbsp; ยกเลิก &nbsp;
-								<br>
-								<input type="checkbox" {{ $check_sub_treatment_8 }} class="sub_treatment" name="sub_treatment" value="ไม่พบเหตุ">&nbsp; ไม่พบเหตุ &nbsp;
-								<br>
-								<input type="checkbox" {{ $check_sub_treatment_9 }} class="sub_treatment" name="sub_treatment" value="เสียชีวิตก่อนชุดปฏิบัติการไปถึง">&nbsp; เสียชีวิตก่อนชุดปฏิบัติการไปถึง &nbsp;
-							</p>
-						</div>
-					</div>
-				</div>
-				<div id="form_data_8" class="form_yellow carousel-item">
-		      		<div class="col-12">
-						<h3><b>8.ชื่อผู้ป่วย</b></h3>
-					</div>
-					<hr>
-					<div class="row">
-						<!-- ---------------- ผู้ป่วย ๑. --------------- -->
-						<div class="col-4">
-							<p style="font-size:20px;">
-								<b>ผู้ป่วย ๑. ชื่อ-สกุล</b>
-							</p>
-							<input class="form-control" type="text" name="patient_name_1" id="patient_name_1" value="{{ isset($sos_help_center->form_yellow->patient_name_1) ? $sos_help_center->form_yellow->patient_name_1 : ''}}">
-						</div>
-						<div class="col-2">
-							<p style="font-size:20px;">
-								<b>อายุ (ปี)</b>
-							</p>
-							<input class="form-control" type="number" min="1" name="patient_age_1" id="patient_age_1" value="{{ isset($sos_help_center->form_yellow->patient_age_1) ? $sos_help_center->form_yellow->patient_age_1 : ''}}">
-						</div>
-						<div class="col-3">
-							<p style="font-size:20px;">
-								<b>HN</b>
-							</p>
-							<input class="form-control" type="text" name="patient_hn_1" id="patient_hn_1" value="{{ isset($sos_help_center->form_yellow->patient_hn_1) ? $sos_help_center->form_yellow->patient_hn_1 : ''}}">
-						</div>
-						<div class="col-3">
-							<p style="font-size:20px;">
-								<b>เลขประจำตัวประชาชน (VN)</b>
-							</p>
-							<input class="form-control" type="text" name="patient_vn_1" id="patient_vn_1" value="{{ isset($sos_help_center->form_yellow->patient_vn_1) ? $sos_help_center->form_yellow->patient_vn_1 : ''}}">
-						</div>
-						 <p><!-- --></p> 
-						<div class="col-6">
-							<p style="font-size:20px;">
-								<b>นำส่งที่จังหวัด</b>
-							</p>
-							<input class="form-control" type="text" name="delivered_province_1" id="delivered_province_1" value="{{ isset($sos_help_center->form_yellow->delivered_province_1) ? $sos_help_center->form_yellow->delivered_province_1 : ''}}">
-						</div>
-						<div class="col-6">
-							<p style="font-size:20px;">
-								<b>นำส่ง รพ.</b>
-							</p>
-							<input class="form-control" type="text" name="delivered_hospital_1" id="delivered_hospital_1" value="{{ isset($sos_help_center->form_yellow->delivered_hospital_1) ? $sos_help_center->form_yellow->delivered_hospital_1 : ''}}">
-						</div>
-						<div class="col-12">
-							<center>
-								<hr style="width:80%;border-width: 0.5px;">
-							</center>
-						</div>
-						<!-- ---------------- ผู้ป่วย ๒. --------------- -->
-						<div class="col-4">
-							<p style="font-size:20px;">
-								<b>ผู้ป่วย ๒. ชื่อ-สกุล</b>
-							</p>
-							<input class="form-control" type="text" name="patient_name_2" id="patient_name_2" value="{{ isset($sos_help_center->form_yellow->patient_name_2) ? $sos_help_center->form_yellow->patient_name_2 : ''}}">
-						</div>
-						<div class="col-2">
-							<p style="font-size:20px;">
-								<b>อายุ (ปี)</b>
-							</p>
-							<input class="form-control" type="number" min="1" name="patient_age_2" id="patient_age_2" value="{{ isset($sos_help_center->form_yellow->patient_age_2) ? $sos_help_center->form_yellow->patient_age_2 : ''}}">
-						</div>
-						<div class="col-3">
-							<p style="font-size:20px;">
-								<b>HN</b>
-							</p>
-							<input class="form-control" type="text" name="patient_hn_2" id="patient_hn_2" value="{{ isset($sos_help_center->form_yellow->patient_hn_2) ? $sos_help_center->form_yellow->patient_hn_2 : ''}}">
-						</div>
-						<div class="col-3">
-							<p style="font-size:20px;">
-								<b>เลขประจำตัวประชาชน (VN)</b>
-							</p>
-							<input class="form-control" type="text" name="patient_vn_2" id="patient_vn_2" value="{{ isset($sos_help_center->form_yellow->patient_vn_2) ? $sos_help_center->form_yellow->patient_vn_2 : ''}}">
-						</div>
-						 <p><!-- --></p> 
-						<div class="col-6">
-							<p style="font-size:20px;">
-								<b>นำส่งที่จังหวัด</b>
-							</p>
-							<input class="form-control" type="text" name="delivered_province_2" id="delivered_province_2" value="{{ isset($sos_help_center->form_yellow->delivered_province_2) ? $sos_help_center->form_yellow->delivered_province_2 : ''}}">
-						</div>
-						<div class="col-6">
-							<p style="font-size:20px;">
-								<b>นำส่ง รพ.</b>
-							</p>
-							<input class="form-control" type="text" name="delivered_hospital_2" id="delivered_hospital_2" value="{{ isset($sos_help_center->form_yellow->delivered_hospital_2) ? $sos_help_center->form_yellow->delivered_hospital_2 : ''}}">
-						</div>
-						<p><!-- --></p> 
-						<!-- ------------------------------- -->
 						@php
 
 							$check_submission_criteria_1 ="";$check_submission_criteria_2 ="";$check_submission_criteria_3 ="";$check_submission_criteria_4 ="";$check_submission_criteria_5 ="";
@@ -745,56 +1507,123 @@
 						        }
 						    }
 						@endphp
-						<div class="col-6">
-							<p style="font-size:20px;">
-								<b>เกณฑ์การนำส่ง (เลือกได้มากกว่า ๑ ข้อ)</b>
-							</p>
-							<p style="font-size:20px;">
-								<input type="checkbox" {{ $check_submission_criteria_1 }} class="submission_criteria" name="submission_criteria" value="สามารถรักษาได้">&nbsp; สามารถรักษาได้ &nbsp;
-								<input type="checkbox" {{ $check_submission_criteria_2 }} class="submission_criteria" name="submission_criteria" value="อยู่ใกล้">&nbsp; อยู่ใกล้ &nbsp;
-								<input type="checkbox" {{ $check_submission_criteria_3 }} class="submission_criteria" name="submission_criteria" value="มีหลักประกัน">&nbsp; มีหลักประกัน &nbsp;
-								<br>
-								<input type="checkbox" {{ $check_submission_criteria_4 }} class="submission_criteria" name="submission_criteria" value="ผู้ป่วยเก่า">&nbsp; ผู้ป่วยเก่า &nbsp;
-								<input type="checkbox" {{ $check_submission_criteria_5 }} class="submission_criteria" name="submission_criteria" value="เป็นความประสงค์">&nbsp; เป็นความประสงค์ &nbsp;
-							</p>
+
+						<div class="row mt-4">
+							<div class="col-md-12 mb-2">
+								<label  class="form-label m-0 h-3">
+									<b>
+										เกณฑ์การนำส่ง (เลือกได้มากกว่า ๑ ข้อ)
+									</b>
+								</label>
+							</div>	
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_submission_criteria_1 }} name="submission_criteria" value="สามารถรักษาได้"  class="card-input-element d-none submission_criteria" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>สามารถรักษาได้</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_submission_criteria_2 }} name="submission_criteria" value="อยู่ใกล้"  class="card-input-element d-none submission_criteria" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>อยู่ใกล้</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_submission_criteria_3 }} name="submission_criteria" value="มีหลักประกัน"  class="card-input-element d-none submission_criteria" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>มีหลักประกัน</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_submission_criteria_4 }} name="submission_criteria" value="ผู้ป่วยเก่า"  class="card-input-element d-none submission_criteria" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ผู้ป่วยเก่า</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_submission_criteria_5 }} name="submission_criteria" value="เป็นความประสงค์"  class="card-input-element d-none submission_criteria" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>เป็นความประสงค์</b>
+									</div>
+								</label>
+							</div>
 						</div>
-						<div class="col-6">
-							<p style="font-size:20px;">
-								<b>การติดต่อสื่อสารกับ รพ.ที่นำส่ง</b>
-							</p>
-							<p style="font-size:20px;">
-								<input type="checkbox" {{ $check_communication_hospital_1 }} class="communication_hospital" name="communication_hospital" value="แจ้งวิทยุ">&nbsp; แจ้งวิทยุ &nbsp;
-								<input type="checkbox" {{ $check_communication_hospital_2 }} class="communication_hospital" name="communication_hospital" value="แจ้งทางโทรศัพท์">&nbsp; แจ้งทางโทรศัพท์ &nbsp;
-								<input type="checkbox" {{ $check_communication_hospital_3 }} class="communication_hospital" name="communication_hospital" value="ไม่ได้แจ้ง">&nbsp; ไม่ได้แจ้ง &nbsp;
-							</p>
+
+
+						<div class="row mt-2">
+							<div class="col-md-12 mb-2">
+								<label  class="form-label m-0 h-3">
+									<b>
+										การติดต่อสื่อสารกับ รพ.ที่นำส่ง
+									</b>
+								</label>
+							</div>	
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_communication_hospital_1 }} name="communication_hospital" value="แจ้งวิทยุ"  class="card-input-element d-none communication_hospital" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>แจ้งวิทยุ</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_communication_hospital_2 }} name="communication_hospital" value="แจ้งทางโทรศัพท์"  class="card-input-element d-none communication_hospital" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>แจ้งทางโทรศัพท์</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="checkbox" {{ $check_communication_hospital_3 }} name="communication_hospital" value="ไม่ได้แจ้ง"  class="card-input-element d-none communication_hospital" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ไม่ได้แจ้ง</b>
+									</div>
+								</label>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div id="form_data_9" class="form_yellow carousel-item">
-		      		<div class="col-12">
-						<h3><b>9.เพิ่มเติม เฉพาะ อาการนำสำคัญของผู้ป่วยฉุกเฉินที่ได้จากการรับแจ้ง เป็นรหัส ๒๕ อุบัติเหตุยานยนต์ รายละเอียดการกรอกข้อมูลโปรดดูในโปรแกรม</b></h3>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-4">
-							<p style="font-size:20px;">
-								<b>ทะเบียนรถหมวด</b>
-							</p>
-							<input class="form-control" type="text" name="registration_category" value="{{ isset($sos_help_center->form_yellow->registration_category) ? $sos_help_center->form_yellow->registration_category : ''}}">
+
+					<!---------------------------------- ข้อ 9  ---------------------------------->
+					<div id="step-9" class="tab-pane" role="tabpanel" aria-labelledby="step-9">
+						<div class="card-title d-flex align-items-center">
+							<div>
+								<i class="fa-regular fa-circle-info me-3 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary"><b> เพิ่มเติม เฉพาะ อาการนำสำคัญของผู้ป่วยฉุกเฉินที่ได้จากการรับแจ้ง เป็นรหัส ๒๕ อุบัติเหตุยานยนต์ รายละเอียดการกรอกข้อมูลโปรดดูในโปรแกรม</b></h5>
 						</div>
-						<div class="col-4">
-							<p style="font-size:20px;">
-								<b>เลขทะเบียน</b>
-							</p>
-							<input class="form-control" type="text" name="registration_number" value="{{ isset($sos_help_center->form_yellow->registration_number) ? $sos_help_center->form_yellow->registration_number : ''}}">
+						<hr>
+						<div class="row">
+							<div class="col-12 col-md-4 col-lg-4">
+								<label for="registration_category" class="form-label">ทะเบียนรถหมวด</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-duotone fa-cars"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2"  name="registration_category" value="{{ isset($sos_help_center->form_yellow->registration_category) ? $sos_help_center->form_yellow->registration_category : ''}}" placeholder="ทะเบียนรถหมวด">
+								</div>
+							</div>
+							<div class="col-12 col-md-4 col-lg-4">
+								<label for="registration_number" class="form-label">เลขทะเบียน</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-duotone fa-input-numeric"></i></span>
+									<input  type="text" min="1" class="form-control border-start-0 radius-2" name="registration_number" value="{{ isset($sos_help_center->form_yellow->registration_number) ? $sos_help_center->form_yellow->registration_number : ''}}" placeholder="เลขทะเบียน">
+								</div>
+							</div>
+							<div class="col-12 col-md-4 col-lg-4">
+								<label for="registration_province" class="form-label">จังหวัด</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-duotone fa-map-location"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="registration_province" value="{{ isset($sos_help_center->form_yellow->registration_province) ? $sos_help_center->form_yellow->registration_province : ''}}" placeholder="จังหวัด">
+								</div>
+							</div>
 						</div>
-						<div class="col-4">
-							<p style="font-size:20px;">
-								<b>จังหวัด</b>
-							</p>
-							<input class="form-control" type="text" name="registration_province" value="{{ isset($sos_help_center->form_yellow->registration_province) ? $sos_help_center->form_yellow->registration_province : ''}}">
-						</div>
-						<p><!--  --></p>
+
 						@php
 							$check_owner_registration_1 = "" ;
 							$check_owner_registration_2 = "" ;
@@ -810,29 +1639,88 @@
 							}
 
 						@endphp
-						<div class="col-12">
-							<p style="font-size:20px;">
-								<input type="radio" {{ $check_owner_registration_1 }} name="owner_registration" value="ของผู้ประสบเหตุ">&nbsp; ของผู้ประสบเหตุ &nbsp;
-								<input type="radio" {{ $check_owner_registration_2 }} name="owner_registration" value="ของคู่กรณี">&nbsp; ของคู่กรณี &nbsp;
-								<input type="radio" {{ $check_owner_registration_3 }} name="owner_registration" value="ไม่สามารถระบุได้้">&nbsp; ไม่สามารถระบุได้้ &nbsp;
-							</p>
+						<div class="row mt-3">
+							<div class="col-md-12">
+								<label class="form-label m-0 h-3">
+									เจ้าของ
+								</label>
+							</div>	
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_owner_registration_1 }} name="owner_registration" value="ของผู้ประสบเหตุ"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ของผู้ประสบเหตุ</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_owner_registration_2 }} name="owner_registration" value="ของคู่กรณี"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ของคู่กรณี</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-3 col-lg-3">
+								<label>
+									<input type="radio" {{ $check_owner_registration_3 }} name="owner_registration" value="ไม่สามารถระบุได้"  class="card-input-element d-none" >
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>ไม่สามารถระบุได้</b>
+									</div>
+								</label>
+							</div>
 						</div>
 					</div>
 				</div>
-
+				<div class="row  m-0 p-0">
+					<div class="d-flex justify-content-end my-3 float-end">
+						<div class="d-flex align-items-end">
+						
+							<span>
+								ลงนาม 
+								<div class="input-wrapper">
+									<span class="size-span" id="span_name_officer_1"></span>
+									<input id="name_officer_1" oninput="updateChange(event)" size="5" style="border-radius:0;font-family: inherit;border: none; border-bottom: 1px dashed #000000;" class="form-control bg-transparent p-0 m-0"  type="text" >
+								</div>
+								(เจ้าหน้าที่ผู้บันทึก) 
+							</span>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<span>
+								ลงนาม 
+								<div class="input-wrapper">
+									<span class="size-span" id="span_name_officer_2"></span>
+									<input id="name_officer_2" oninput="updateChange(event)" size="5" style="border-radius:0;border: none; border-bottom: 1px dashed #000000;" class="form-control bg-transparent p-0 m-0"  type="text" >
+								</div>
+								 (แพทย์หรือพยาบาล) 
+							</span>
+						</div>
+					</div>
+					<div class="d-flex justify-content-between">
+						<button class="btn btn-primary " id="prev-btn" type="button" onclick="check_go_to('remove');">ย้อนกลับ</button>
+						&nbsp;&nbsp;
+						<button class="btn btn-primary" id="next-btn" type="button" onclick="check_go_to('add');">ต่อไป</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row" style="position: absolute;bottom: 5%;right:3%;">
+</div>
+
+
+<div class="container">
+	
+	<!-- <div class="row" style="position: absolute;bottom: 5%;right:3%;">
 		<div class="col-12">
 			<p>
         		ลงนาม ..................... (เจ้าหน้าที่ผู้บันทึก) &nbsp;&nbsp;&nbsp; ลงนาม ..................... ผู้รับรอง(แพทย์หรือพยาบาล)
    			</p>
 		</div>
-	</div>
-	<div class="row" style="position: absolute;bottom: 1%;right:3%;">
+	</div> -->
+	<!-- <i id="btn_next" class="fa-solid fa-caret-right text-secondary" href="#carousel_form_yellow" role="button" data-slide="next" onclick="check_go_to('add');"></i> -->
+
+	<!-- <div class="row" style="position: absolute;bottom: 1%;right:3%;"> -->
         <!-- -----------------BTN prev next------------------- -->
-        <div class="col-12 d-flex align-items-end">
+        <!-- <div class="col-12 d-flex align-items-end">
             <h4 class="text-primary text-end">
                 <i id="btn_prev" class="fa-solid fa-caret-left text-secondary" href="#carousel_form_yellow" role="button" data-slide="prev" onclick="check_go_to('remove');"></i>
                 &nbsp;&nbsp;
@@ -859,15 +1747,17 @@
                 <i id="btn_next" class="fa-solid fa-caret-right text-secondary" href="#carousel_form_yellow" role="button" data-slide="next" onclick="check_go_to('add');"></i>
             </h4>
         </div>
-    </div>
+    </div> -->
 
 </div>
 
 <script>
 
 	document.addEventListener('DOMContentLoaded', (event) => {
+		
         // console.log("START");
         check_color_btn(null,null);
+		check_treatment();
         check_lat_lng();
         
         let rc_black = document.querySelector('#rc_black').checked ;
@@ -901,57 +1791,26 @@
 
 	function check_go_to(type){
 		// console.log(type);
-		let next_page ;
-
-		let btn_prev = document.querySelector('#btn_prev');
-		let btn_next = document.querySelector('#btn_next');
-
-		let min = 1 ;
-		let max = document.querySelectorAll('.form_yellow').length ;
-			// console.log("max >> " + max);
 		
-		let active = document.querySelector('.active').id;
-		let active_sp = active.split("_");
-			// console.log(active_sp[2]);
+		let active = window.location.href.split('#step-')[1];
+			console.log(active);
 
-		if (type === "add") {
-
-			if (parseInt(active_sp[2]) === max) {
-				next_page = 1 ;
-			}else{
-				// document.querySelector('#span_form_data').innerHTML = parseInt(active_sp[2]) + 1 ;
-				let active_next = parseInt(active_sp[2]) + 1 ;
-				next_page = active_next ;
-			}
-			check_color_btn(active_sp[2],next_page);
-
-		}else if (type === "remove"){
-
-			if (parseInt(active_sp[2]) === min) {
-				next_page = max ;
-			}else{
-				// document.querySelector('#span_form_data').innerHTML = parseInt(active_sp[2]) + 1 ;
-				let active_prev = parseInt(active_sp[2]) - 1 ;
-				next_page = active_prev ;
-			}
-			check_color_btn(active_sp[2],next_page);
-		}
-
-		send_save_data(active_sp[2]);
+		check_color_btn(active);
+		send_save_data(active);
 	}
 
 	function go_to_form_data(click_to){
-		// console.log(click_to);
+		console.log(click_to);
 
-		let active = document.querySelector('.active').id;
-		let active_sp = active.split("_");
+		let active = window.location.href.split('#step-')[1];
+
 			// console.log("active >> " + active_sp[2]);
 
-		document.querySelector('#form_data_' + active_sp[2]).classList.remove('active');
-		document.querySelector('#form_data_' + click_to).classList.add('active');
+		// document.querySelector('#form_data_' + active_sp[2]).classList.remove('active');
+		// document.querySelector('#form_data_' + click_to).classList.add('active');
 
-		send_save_data(active_sp[2]);
-		check_color_btn(active_sp[2],click_to);
+		send_save_data(active);
+		check_color_btn(active,click_to);
 	}
 
 	function check_click_rc(){
@@ -1213,7 +2072,7 @@
 			        "submission_criteria" : submission_criteria_value,
 			        "communication_hospital" : communication_hospital_value,
 			    };
-			    // console.log(data_arr);
+			    console.log(data_arr);
 		    break;
 		    case '9':
 		    	data_arr = {
@@ -1249,5 +2108,112 @@
 
 <!-- check_color_btn() อยู่ในนี้ -->
 <script src="{{ asset('js/form1669/check_color_btn_form_yellow.js')}}"></script>
+<!--end row-->
 
+<!--end wrapper-->
+<!--start switcher-->
+</body>
+<script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
+<script>
+	$(document).ready(function() {
+		// Step show event
+		$("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
+			$("#prev-btn").removeClass('disabled');
+			$("#next-btn").removeClass('disabled');
+			if (stepPosition === 'first') {
+				$("#prev-btn").addClass('disabled');
+			} else if (stepPosition === 'last') {
+				$("#next-btn").addClass('disabled');
+			} else {
+				$("#prev-btn").removeClass('disabled');
+				$("#next-btn").removeClass('disabled');
+			}
+		});
+		// Smart Wizard
+		$('#smartwizard').smartWizard({
+			selected: 9,
+			theme: 'dots',
+			transition: {
+				animation: 'fade', // Effect on navigation, none/fade/slide-horizontal/slide-vertical/slide-swing
+			},
+			anchorSettings: {
+				anchorClickable: true, // Enable/Disable anchor navigation
+				enableAllAnchors: true, // Activates all anchors clickable all times
+				markDoneStep: true, // add done css
+				enableAnchorOnDoneStep: true // Enable/Disable the done steps navigation
+        	},
+			toolbarSettings: {
+				toolbarPosition: 'none', // both bottom
+			},
+		});
+		// External Button Events
+		$("#reset-btn").on("click", function() {
+			// Reset wizard
+			$('#smartwizard').smartWizard("reset");
+			return true;
+		});
+		$("#prev-btn").on("click", function() {
+			// Navigate previous
+			$('#smartwizard').smartWizard("prev");
+			return true;
+		});
+		$("#next-btn").on("click", function() {
+			// Navigate next
+			$('#smartwizard').smartWizard("next");
+			return true;
+		});
+	});
+</script>
+<script>
+	// ช่อง input ขยายตามตัวหนังสือ
+	function updateChange(event) {
+		if(event.target.id === "name_officer_1"){
+			const spanElement = document.querySelector('#span_name_officer_1');
+			const value = event.target.value;	
+			spanElement.innerText = value;
+		}if(event.target.id === "name_officer_2"){
+			const spanElement = document.querySelector('#span_name_officer_2');
+			const value = event.target.value;	
+			spanElement.innerText = value;
+		}
+	}
+</script>
 
+<script>
+	
+	function check_treatment() {
+		var check_treatment = document.getElementsByName('treatment');
+		// เช็คช่อง input ว่าเลือกมีการรักษาหรือไม่
+		for (var i = 0, length = check_treatment.length; i < length; i++) {
+			if (check_treatment[i].checked) {
+				if(check_treatment[i].value == "มีการรักษา"){
+					document.querySelector('#treatment_no').classList.add('d-none');
+					document.querySelector('#treatment_yes').classList.remove('d-none');
+					document.querySelector('#treatment_yes').classList.add('show-data');
+				}else{
+					document.querySelector('#treatment_yes').classList.add('d-none');
+					document.querySelector('#treatment_no').classList.remove('d-none');
+					document.querySelector('#treatment_no').classList.add('show-data');
+				}
+				
+				break;
+			} 
+		}
+
+        
+	}
+	function reset_sub_treatment(){
+		
+		var clist = document.getElementsByName('sub_treatment');
+
+		for (var i = 0, length = clist.length; i < length; i++) { 
+			if (clist[i].checked) {
+				
+				clist[i].checked = false; 
+			
+			}
+		}
+
+	}
+
+</script>
