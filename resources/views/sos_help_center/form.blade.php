@@ -13,79 +13,6 @@
 }
 
 </style>
-<!-- Modal cf_select_operating_unit -->
-<button id="cf_select_operating_unit" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#cf_select_operating_unit">
-    modal cf_select_operating_unit
-</button>
-<div class="modal fade" id="cf_select_operating_unit" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered ">
-        <div class="modal-content">
-            <div class="modal-body" style="background-color:lightblue;">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-8">
-                            <br>
-                            <h2>ยืนยันการเลือก<br>หน่วยแพทย์</h2>
-                        </div>
-                        <div class="col-4">
-                            <br>
-                            <img style="width:100%;" src="{{ url('/') }}/img/stickerline/PNG/7.png">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="modal-body">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-5">
-                            <h5>ชื่อหน่วย : </h5>
-                        </div>
-                        <div class="col-7">
-                            <span id="cf_select_name">cf_select_name</span>
-                        </div>
-                        <div class="col-5">
-                            <h5>พื้นที่ (สังกัด) : </h5>
-                        </div>
-                        <div class="col-7">
-                            <span id="cf_select_area">cf_select_area</span>
-                        </div>
-                        <div class="col-5">
-                            <h5>ระยะทาง : </h5>
-                        </div>
-                        <div class="col-7">
-                            <span id="cf_select_distance">cf_select_distance</span>
-                        </div>
-                        <div class="col-5">
-                            <h5>ระดับปฏิบัติการ : </h5>
-                        </div>
-                        <div class="col-7">
-                            <span id="cf_select_level">cf_select_level</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="modal-body text-center">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-6">
-                            <span style="width:80%;" class="btn btn-sm btn-warning text-white main-shadow main-radius">
-                                เปลี่ยน <i class="fa-duotone fa-right-left"></i>
-                            </span>
-                        </div>
-                        <div class="col-6">
-                            <span style="width:80%;" class="btn btn-sm btn-success main-shadow main-radius">
-                                ยืนยัน <i class="fa-solid fa-circle-check"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Modal -->
 <div class="modal fade" id="modal_mapMarkLocation" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -146,6 +73,28 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<!-- Modal ดูรูปภาพ -->
+<div class="modal fade" id="see_img_sos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -341,8 +290,8 @@
                         <b>จุดเกิดเหตุ</b>
                     </div>
                     <div class="col d-flex justify-content-end">
-                        <span class="btn btn-sm btn-danger" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
-                            เลือกจุด <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
+                        <span class="btn btn-sm btn-danger" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#see_img_sos">
+                            ดูรูปภาพ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
                         </span>
                     </div>
                 </div>
@@ -767,7 +716,7 @@
 </style>
 <script>
 
-    const image = "https://www.viicheck.com/img/icon/flag_2.png";
+    const image = "{{ url('/img/icon/operating_unit/sos.png') }}";
     var markers = [] ;
     let marker  ;
     var sos_markers = [] ;

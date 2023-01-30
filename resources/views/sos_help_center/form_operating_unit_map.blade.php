@@ -6,6 +6,81 @@
       height: calc(75vh);
     }
 </style>
+<!-- Modal cf_select_operating_unit -->
+<button id="btn_cf_select_operating_unit" type="button" class="btn btn-primary" data-toggle="modal" data-target="#cf_select_operating_unit">
+modal cf_select_operating_unit
+</button>
+
+<!-- Modal -->
+<div class="modal fade"id="cf_select_operating_unit"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color:lightblue;">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-8">
+                            <br>
+                            <h2>ยืนยันการเลือก<br>หน่วยแพทย์</h2>
+                        </div>
+                        <div class="col-4">
+                            <br>
+                            <img style="width:100%;" src="{{ url('/') }}/img/stickerline/PNG/7.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-body">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-5">
+                            <h5>ชื่อหน่วย : </h5>
+                        </div>
+                        <div class="col-7">
+                            <span id="cf_select_name">cf_select_name</span>
+                        </div>
+                        <div class="col-5">
+                            <h5>พื้นที่ (สังกัด) : </h5>
+                        </div>
+                        <div class="col-7">
+                            <span id="cf_select_area">cf_select_area</span>
+                        </div>
+                        <div class="col-5">
+                            <h5>ระยะทาง : </h5>
+                        </div>
+                        <div class="col-7">
+                            <span id="cf_select_distance">cf_select_distance</span>
+                        </div>
+                        <div class="col-5">
+                            <h5>ระดับปฏิบัติการ : </h5>
+                        </div>
+                        <div class="col-7">
+                            <span id="cf_select_level">cf_select_level</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-body text-center">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-6">
+                            <span style="width:80%;" class="btn btn-sm btn-warning text-white main-shadow main-radius">
+                                เปลี่ยน <i class="fa-duotone fa-right-left"></i>
+                            </span>
+                        </div>
+                        <div class="col-6">
+                            <span style="width:80%;" class="btn btn-sm btn-success main-shadow main-radius">
+                                ยืนยัน <i class="fa-solid fa-circle-check"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="container">
 	<div class="row">
