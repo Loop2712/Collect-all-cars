@@ -6,14 +6,16 @@
       height: calc(75vh);
     }
 </style>
+
 <div class="container">
 	<div class="row">
 		<div class="col-12" style="position:absolute;z-index: 999;right: 4%;margin-top: 0.3%; ">
 			<div class="btn-group float-end" role="group" aria-label="Basic example">
-			  	<button type="button" class="btn btn-success">FR</button>
-			  	<button type="button" class="btn btn-warning">BLS</button>
-			  	<button style="background-color:orange;" type="button" class="btn">ILS</button>
-			  	<button type="button" class="btn btn-danger">ALS</button>
+			  	<button type="button" class="btn btn-info text-white" onclick="select_level('all');">All</button>
+			  	<button type="button" class="btn btn-success" onclick="select_level('FR');">FR</button>
+			  	<button type="button" class="btn btn-warning" onclick="select_level('BLS');">BLS</button>
+			  	<button style="background-color:orange;" type="button" class="btn" onclick="select_level('ILS');">ILS</button>
+			  	<button type="button" class="btn btn-danger" onclick="select_level('ALS');">ALS</button>
 			</div>
 		</div>
 		<div class="col-9">
@@ -95,13 +97,13 @@ function map_operating_unit() {
         sos_operating_markers.push(sos_operating_marker);
     }
 
-    location_operating_unit(m_lat , m_lng);
+    location_operating_unit(m_lat , m_lng , 'all');
 
 }
 
-function location_operating_unit(m_lat , m_lng){
+function location_operating_unit(m_lat , m_lng , level){
 
-	fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng)
+	fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level)
 	    .then(response => response.json())
 	    .then(result => {
 	        // console.log(result);
@@ -146,25 +148,26 @@ function location_operating_unit(m_lat , m_lng){
 				let myLatlng = {lat: parseFloat(result[i]['lat']) , lng: parseFloat(result[i]['lng']) };
 		    	let round_i = i + 1 ;
 
-		    	if (i < 3) {
+		    	// set content 3 ตัวแรก
+		    	// if (i < 3) {
 
-		    		let contentString =
-				        '<div id="content">' +
-				        	'<h6 id="firstHeading" class="firstHeading"><b>'+ round_i + "." + result[i]['name'] +'</b></h6>' +
-				        	'<span class="text-secondary">'+
-				        	'ระยะห่าง(รัศมี) ≈ ' + result[i]['distance'].toFixed(2) + ' กม.<br>' +
-				        	'ระดับ :  ' + result[i]['level'] + '</span><br><br>' +
-					    	'<button class="btn btn-sm btn-success text-white main-shadow main-radius" style="width:100%;">เลือก</button>'+
-				        "</div>";
+		    	// 	let contentString =
+				//         '<div id="content">' +
+				//         	'<h6 id="firstHeading" class="firstHeading"><b>'+ round_i + "." + result[i]['name'] +'</b></h6>' +
+				//         	'<span class="text-secondary">'+
+				//         	'ระยะห่าง(รัศมี) ≈ ' + result[i]['distance'].toFixed(2) + ' กม.<br>' +
+				//         	'ระดับ :  ' + result[i]['level'] + '</span><br><br>' +
+				// 	    	'<button class="btn btn-sm btn-success text-white main-shadow main-radius" style="width:100%;">เลือก</button>'+
+				//         "</div>";
 
-				    start_infoWindow[i] = new google.maps.InfoWindow({
-				        content: contentString,
-				        position: myLatlng,
-				    });
+				//     start_infoWindow[i] = new google.maps.InfoWindow({
+				//         content: contentString,
+				//         position: myLatlng,
+				//     });
 
-				    start_infoWindow[i].open(map_operating_unit);
+				//     start_infoWindow[i].open(map_operating_unit);
 
-		    	}
+		    	// }
 
 		    	let text_data_operating = 
 		    		'<h5 class="card-title" >' + round_i + "." + result[i]['name'] + '</h5>' +
@@ -178,12 +181,12 @@ function location_operating_unit(m_lat , m_lng){
 			    			'</button>'+
 			    		'</div>' +
 			    		'<div class="col-6">' +
-			    			'<button id="get_Directions_id_'+ result[i]['id'] +'" class="btn btn-sm btn-warning text-white main-shadow main-radius" style="width:100%;"> '+
-			    			'<i class="fa-solid fa-location-arrow"></i>'+
-			    			'</button>'+
+			    			'<button class="btn btn-sm btn-success text-white main-shadow main-radius" style="width:100%;">เลือก</button>'+
 			    		'</div>' +
 			    		'<div class="col-12">' +
-			    			'<button class="btn btn-sm btn-success text-white main-shadow main-radius mt-2" style="width:100%;">เลือก</button>'+
+			    			'<button id="get_Directions_id_'+ result[i]['id'] +'" class="btn btn-sm btn-warning text-white main-shadow main-radius mt-2" style="width:100%;" disabled> '+
+			    			'<i class="fa-solid fa-location-arrow"></i>'+
+			    			'</button>'+
 			    		'</div>' +
 		    		'</div>' +
 		    		'<hr>' ;
@@ -208,8 +211,13 @@ function location_operating_unit(m_lat , m_lng){
 		    }
 
 	    });
-    
+
+    	let m_lng_ct = m_lng + 0.002 ;
+		
+		map_operating_unit.setCenter({lat: m_lat, lng: m_lng_ct});
+
 }
+
 
 function view_data_marker(id,name,distance,level,lat,lng){
 
@@ -262,10 +270,14 @@ function get_dir(lat,lng){
         icon: image_sos,
     });
 
-	get_Directions_API(sos_operating_marker, select_marker_goto);
+	get_Directions_API(sos_operating_marker, select_marker_goto , lat,lng);
 }
 
 function get_Directions_API(markerA, markerB) {
+
+	if (directionsDisplay) {
+        directionsDisplay.setMap(null);
+	}
 
 	service = new google.maps.DirectionsService();
 	directionsDisplay = new google.maps.DirectionsRenderer({
@@ -289,6 +301,49 @@ function get_Directions_API(markerA, markerB) {
             window.alert('Directions request failed due to ' + status);
         }
     });
+
+}
+
+function select_level(level){
+	// console.log(level);
+	document.querySelector('#card_data_operating').innerHTML = "" ;
+
+	for (var select_level_i = 0; select_level_i < location_unit_markers.length; select_level_i++) {
+	  	location_unit_markers[select_level_i].setMap(null);
+	}
+
+	if (select_marker_goto) {
+        select_marker_goto.setMap(null);
+    }
+    if (view_infoWindow) {
+        view_infoWindow.setMap(null);
+    }
+	if (start_infoWindow[0]) {
+        start_infoWindow[0].setMap(null);
+        start_infoWindow[1].setMap(null);
+        start_infoWindow[2].setMap(null);
+    }
+
+	let sos_lat = document.querySelector('#lat'); 
+    let sos_lng = document.querySelector('#lng'); 
+        // console.log(parseFloat(lat.value));
+        // console.log(parseFloat(lng.value));
+
+    let m_lat = "";
+    let m_lng = "";
+    let m_numZoom = "";
+
+    if (sos_lat.value && sos_lng.value) {
+        m_lat = parseFloat(sos_lat.value);
+        m_lng = parseFloat(sos_lng.value);
+        m_numZoom = parseFloat('17');
+    }else{
+        m_lat = parseFloat('12.870032');
+        m_lng = parseFloat('100.992541');
+        m_numZoom = parseFloat('6');
+    }
+
+	location_operating_unit(m_lat , m_lng , level);
 
 }
 

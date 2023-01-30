@@ -303,7 +303,7 @@
                             </a>
                         </li>
                         <li class="nav-item nav-pills nav-pills-secondary m-2" role="presentation">
-                            <a id="btn_select_operating_unit" class="nav-link  btn-outline-secondary btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false">
+                            <a id="btn_select_operating_unit" class="nav-link  btn-outline-secondary btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="map_operating_unit();">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
