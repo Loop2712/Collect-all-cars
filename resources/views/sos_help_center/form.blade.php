@@ -303,7 +303,7 @@
                             </a>
                         </li>
                         <li class="nav-item nav-pills nav-pills-secondary m-2" role="presentation">
-                            <a class="nav-link  btn-outline-secondary btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false">
+                            <a id="btn_select_operating_unit" class="nav-link  btn-outline-secondary btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
@@ -414,11 +414,12 @@
             </div>
 
             <div class="tab-pane fade" id="form-blue" role="tabpanel">
+                
                 <p>@include ('sos_help_center.form_sos_blue')</p>
             </div>
 
             <div class="tab-pane fade" id="form-green" role="tabpanel">
-                <p>@include ('sos_help_center.form_sos_green')</p>div_form_pink
+                <p>@include ('sos_help_center.form_sos_green')</p>
             </div>
 
             <div class="tab-pane fade" id="form-pink" role="tabpanel">
@@ -426,7 +427,13 @@
             </div>
 
             <div class="tab-pane fade" id="operating_unit" role="tabpanel">
-                <p>@include ('sos_help_center.form_operating_unit_map')</p>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            @include ('sos_help_center.form_operating_unit_map')
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -771,7 +778,7 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         initMap();
-        click_select_btn('operating_unit');
+        // click_select_btn('operating_unit');
     });
 
     function initMap() {
@@ -1184,55 +1191,55 @@
             .catch((e) => window.alert("Geocoder failed due to: " + e));
     }
 
-    function click_select_btn(btn){
+    // function click_select_btn(btn){
 
-        switch(btn) {
-            case "operating_unit":
-                document.querySelector('#div_form_operating_unit_map').classList.remove('d-none');
+    //     switch(btn) {
+    //         case "operating_unit":
+    //             document.querySelector('#div_form_operating_unit_map').classList.remove('d-none');
 
-                document.querySelector('#div_form_yellow').classList.add('d-none');
-                document.querySelector('#div_form_blue').classList.add('d-none');
-                document.querySelector('#div_form_green').classList.add('d-none');
-                document.querySelector('#div_form_pink').classList.add('d-none');
+    //             document.querySelector('#div_form_yellow').classList.add('d-none');
+    //             document.querySelector('#div_form_blue').classList.add('d-none');
+    //             document.querySelector('#div_form_green').classList.add('d-none');
+    //             document.querySelector('#div_form_pink').classList.add('d-none');
           
-                map_operating_unit();
-            break;
-            case "form_yellow":
-                document.querySelector('#div_form_yellow').classList.remove('d-none');
+    //             map_operating_unit();
+    //         break;
+    //         case "form_yellow":
+    //             document.querySelector('#div_form_yellow').classList.remove('d-none');
 
-                document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
-                document.querySelector('#div_form_blue').classList.add('d-none');
-                document.querySelector('#div_form_green').classList.add('d-none');
-                document.querySelector('#div_form_pink').classList.add('d-none');
-            break;
-            case "form_blue":
-                document.querySelector('#div_form_blue').classList.remove('d-none');
+    //             document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
+    //             document.querySelector('#div_form_blue').classList.add('d-none');
+    //             document.querySelector('#div_form_green').classList.add('d-none');
+    //             document.querySelector('#div_form_pink').classList.add('d-none');
+    //         break;
+    //         case "form_blue":
+    //             document.querySelector('#div_form_blue').classList.remove('d-none');
 
-                document.querySelector('#div_form_yellow').classList.add('d-none');
-                document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
-                document.querySelector('#div_form_green').classList.add('d-none');
-                document.querySelector('#div_form_pink').classList.add('d-none');
-            break;
-            break;
-            case "form_green":
-                document.querySelector('#div_form_green').classList.remove('d-none');
+    //             document.querySelector('#div_form_yellow').classList.add('d-none');
+    //             document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
+    //             document.querySelector('#div_form_green').classList.add('d-none');
+    //             document.querySelector('#div_form_pink').classList.add('d-none');
+    //         break;
+    //         break;
+    //         case "form_green":
+    //             document.querySelector('#div_form_green').classList.remove('d-none');
 
-                document.querySelector('#div_form_blue').classList.add('d-none');
-                document.querySelector('#div_form_yellow').classList.add('d-none');
-                document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
-                document.querySelector('#div_form_pink').classList.add('d-none');
-            break;
-            case "form_pink":
-                document.querySelector('#div_form_pink').classList.remove('d-none');
+    //             document.querySelector('#div_form_blue').classList.add('d-none');
+    //             document.querySelector('#div_form_yellow').classList.add('d-none');
+    //             document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
+    //             document.querySelector('#div_form_pink').classList.add('d-none');
+    //         break;
+    //         case "form_pink":
+    //             document.querySelector('#div_form_pink').classList.remove('d-none');
 
-                document.querySelector('#div_form_green').classList.add('d-none');
-                document.querySelector('#div_form_blue').classList.add('d-none');
-                document.querySelector('#div_form_yellow').classList.add('d-none');
-                document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
-            break;
-        }
+    //             document.querySelector('#div_form_green').classList.add('d-none');
+    //             document.querySelector('#div_form_blue').classList.add('d-none');
+    //             document.querySelector('#div_form_yellow').classList.add('d-none');
+    //             document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
+    //         break;
+    //     }
         
-    }
+    // }
 
 
 </script>
