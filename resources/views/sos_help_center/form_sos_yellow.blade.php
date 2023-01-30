@@ -471,7 +471,7 @@
 										case 'ยาเกิดขนาด ได้รับพิษ':
 											$check_symptom_14 = "checked";
 											break;
-										case 'ยาเกิดขนาด ได้รับพิษ':
+										case 'มีครรภ คลอด นรี':
 											$check_symptom_15 = "checked";
 											break;
 										case 'ชัก':
