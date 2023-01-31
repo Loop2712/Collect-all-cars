@@ -1,0 +1,154 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": 
+    {
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "ข้อมูลขอความช่วยเหลือ",
+        "weight": "bold",
+        "size": "xl"
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#451167"
+      },
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/storage/photo_sos.png",
+        "action": {
+          "type": "uri",
+          "uri": "https://www.viicheck.com/storage/photo_sos.png"
+        }
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#000000"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ผู้ขอความช่วยเหลือ",
+            "size": "md",
+            "margin": "md",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "name_user"
+          },
+          {
+            "type": "separator",
+            "margin": "md",
+            "color": "#000000"
+          }
+        ],
+        "margin": "md"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ระยะห่าง (รัศมี)",
+            "size": "md",
+            "margin": "md",
+            "weight": "bold"
+          },
+          {
+            "type": "text",
+            "text": "distance"
+          },
+          {
+            "type": "separator",
+            "margin": "md",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "date_time",
+            "margin": "md"
+          },
+          {
+            "type": "separator",
+            "margin": "md",
+            "color": "#000000"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "ดูแผนที่",
+              "uri": "https://www.google.co.th/maps/dir//gg_lat,lng/gg_lat_mail,lng,16z"
+            },
+            "margin": "md",
+            "style": "primary",
+            "height": "sm",
+            "color": "#F6CE28"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "กำลังไปช่วยเหลือ",
+              "uri": "https://www.viicheck.com/sos_help_center/reply_select/SOS_ID?answer=go_to_help"
+            },
+            "margin": "md",
+            "style": "primary",
+            "height": "sm",
+            "color": "#38B6FF"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "โทร",
+              "uri": "tel:0999999999"
+            },
+            "margin": "md",
+            "style": "primary",
+            "height": "sm",
+            "color": "#7ED957"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "ปฏิเสธ",
+              "uri": "https://www.viicheck.com/sos_help_center/reply_select/SOS_ID?answer=refuse"
+            },
+            "margin": "md",
+            "style": "primary",
+            "height": "sm",
+            "color": "#EA2D2B"
+          }
+        ],
+        "margin": "md"
+      }
+    ]
+  }
+}
+}

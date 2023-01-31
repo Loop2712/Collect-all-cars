@@ -208,6 +208,7 @@ Route::get('/data_help_center/','Sos_help_centerController@search_data_help_cent
 Route::get('/create_new_sos_help_center/{user_id}', 'Sos_help_centerController@create_new_sos_help_center');
 Route::post('/send_save_data/form_yellow', 'Sos_help_centerController@save_form_yellow');
 Route::get('/get_location_operating_unit/{lat}/{lng}/{level}', 'Sos_help_centerController@get_location_operating_unit');
+Route::get('/send_data_sos_to_operating_unit/{sos_id}/{operating_unit_id}/{user_id}/{distance}', 'Sos_help_centerController@send_data_sos_to_operating_unit');
 
 
 

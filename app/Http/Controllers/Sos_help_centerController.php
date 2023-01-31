@@ -12,6 +12,8 @@ use Google\Service\AlertCenter\Resource\Alerts;
 use Illuminate\Http\Request;
 use SebastianBergmann\Environment\Console;
 use App\Models\Data_1669_operating_officer;
+use App\Models\Mylog;
+use App\User;
 
 class Sos_help_centerController extends Controller
 {
@@ -343,6 +345,80 @@ class Sos_help_centerController extends Controller
         }
         
         return $locations ;
+    }
+
+    function send_data_sos_to_operating_unit( $sos_id, $operating_unit_id, $user_id , $distance)
+    {
+        $data_officers = User::where('id' , $user_id)->first();
+        $data_sos = Sos_help_center::where('id' , $sos_id)->first();
+
+        $date_now = date("Y-m-d H:i:s");
+        $text_at = '@' ;
+
+        $template_path = storage_path('../public/json/test_send_sos_center.json');   
+        $string_json = file_get_contents($template_path);
+
+        $string_json = str_replace("ตัวอย่าง","SOS 1669",$string_json);
+
+        // รูป
+        if (!empty($data_sos->photo_sos)) {
+            $string_json = str_replace("photo_sos.png",$data_sos->photo_sos,$string_json);
+        }else{
+            $string_json = str_replace("https://www.viicheck.com/storage/photo_sos.png","https://www.viicheck.com/img/stickerline/Flex/1.png",$string_json);
+        }
+        // ข้อมูล
+        $string_json = str_replace("name_user",$data_sos->name_user,$string_json);
+        $string_json = str_replace("distance",$distance ." กม.",$string_json);
+        $string_json = str_replace("date_time",$date_now,$string_json);
+
+        // ปุ่มดูแผนที่
+        $string_json = str_replace("gg_lat_mail",$text_at.$data_sos->lat,$string_json);
+        $string_json = str_replace("gg_lat",$data_sos->lat,$string_json);
+        $string_json = str_replace("lng",$data_sos->lng,$string_json);
+
+        // ปุ่มกำลังไปช่วยเหลือ และ ปฏิเสธ
+        $string_json = str_replace("SOS_ID",$data_sos->id,$string_json);
+
+        // โทร
+        $string_json = str_replace("0999999999",$data_sos->phone_user,$string_json);
+
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $data_officers->provider_id,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "Send data sos to",
+            "content" => "ID : " . $data_officers->id . " / NAME : " . $data_officers->name,
+        ];
+
+        MyLog::create($data);
+
+        DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $data_sos->id],
+                ])
+            ->update(['status' => "รอการยืนยัน"]);
+
+        return $data_sos->id ;
     }
 
 }

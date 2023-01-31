@@ -7,7 +7,7 @@
     }
 </style>
 <!-- Modal cf_select_operating_unit -->
-<button id="btn_cf_select_operating_unit" type="button" class="btn btn-primary" data-toggle="modal" data-target="#cf_select_operating_unit">
+<button id="btn_cf_select_operating_unit" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#cf_select_operating_unit">
 modal cf_select_operating_unit
 </button>
 
@@ -15,68 +15,103 @@ modal cf_select_operating_unit
 <div class="modal fade"id="cf_select_operating_unit"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-body" style="background-color:lightblue;">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-8">
-                            <br>
-                            <h2>ยืนยันการเลือก<br>หน่วยแพทย์</h2>
+            <div class="modal-header d-none">
+                <button id="btn_close_modal_cf_select" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- CF SELECT UNIT -->
+            <div id="div_cf_select_unit" class="">
+                <div class="modal-body" style="background-color:lightblue;">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-8">
+                                <br>
+                                <h2>ยืนยันการเลือก<br>หน่วยแพทย์</h2>
+                            </div>
+                            <div class="col-4">
+                                <br>
+                                <img style="width:100%;" src="{{ url('/') }}/img/stickerline/PNG/7.png">
+                            </div>
                         </div>
-                        <div class="col-4">
-                            <br>
-                            <img style="width:100%;" src="{{ url('/') }}/img/stickerline/PNG/7.png">
+                    </div>
+                </div>
+                <hr>
+                <div class="modal-body">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-5">
+                                <h5>ชื่อหน่วย : </h5>
+                            </div>
+                            <div class="col-7">
+                                <span id="cf_select_name">cf_select_name</span>
+                            </div>
+                            <div class="col-5">
+                                <h5>พื้นที่ (สังกัด) : </h5>
+                            </div>
+                            <div class="col-7">
+                                <span id="cf_select_area">cf_select_area</span>
+                            </div>
+                            <div class="col-5">
+                                <h5>ระยะห่าง (รัศมี) : </h5>
+                            </div>
+                            <div class="col-7">
+                                <span id="cf_select_distance">cf_select_distance</span>
+                            </div>
+                            <div class="col-5">
+                                <h5>ระดับปฏิบัติการ : </h5>
+                            </div>
+                            <div class="col-7">
+                                <span id="cf_select_level">cf_select_level</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="modal-body text-center">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <span id="btn_change_unit" style="width:80%;" class="btn btn-sm btn-warning text-white main-shadow main-radius">
+                                    เปลี่ยน <i class="fa-duotone fa-right-left"></i>
+                                </span>
+                            </div>
+                            <div class="col-6">
+                                <span id="btn_cf_unit" style="width:80%;" class="btn btn-sm btn-success main-shadow main-radius">
+                                    ยืนยัน <i class="fa-solid fa-circle-check"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <hr>
-            <div class="modal-body">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-5">
-                            <h5>ชื่อหน่วย : </h5>
-                        </div>
-                        <div class="col-7">
-                            <span id="cf_select_name">cf_select_name</span>
-                        </div>
-                        <div class="col-5">
-                            <h5>พื้นที่ (สังกัด) : </h5>
-                        </div>
-                        <div class="col-7">
-                            <span id="cf_select_area">cf_select_area</span>
-                        </div>
-                        <div class="col-5">
-                            <h5>ระยะทาง : </h5>
-                        </div>
-                        <div class="col-7">
-                            <span id="cf_select_distance">cf_select_distance</span>
-                        </div>
-                        <div class="col-5">
-                            <h5>ระดับปฏิบัติการ : </h5>
-                        </div>
-                        <div class="col-7">
-                            <span id="cf_select_level">cf_select_level</span>
+
+            <!-- WAIT UNIT -->
+            <div id="div_wait_unit" class="d-none">
+                <div class="modal-body" style="background-color:lightblue;">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-8">
+                                <br>
+                                <h2>รอการยืนยัน<br>จากหน่วยแพทย์</h2>
+                            </div>
+                            <div class="col-4">
+                                <br>
+                                <img style="width:100%;" src="{{ url('/') }}/img/stickerline/flex/2.png">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <hr>
-            <div class="modal-body text-center">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-6">
-                            <span style="width:80%;" class="btn btn-sm btn-warning text-white main-shadow main-radius">
-                                เปลี่ยน <i class="fa-duotone fa-right-left"></i>
-                            </span>
-                        </div>
-                        <div class="col-6">
-                            <span style="width:80%;" class="btn btn-sm btn-success main-shadow main-radius">
-                                ยืนยัน <i class="fa-solid fa-circle-check"></i>
-                            </span>
-                        </div>
+                <hr>
+                <div class="modal-body text-center">
+                    <div class="col-12">
+                        <img style="width:70%;" src="{{ url('/') }}/img/more/ออกแบบหน้าจอ สพฉ..gif">
+                        <br>
+                        <h3>กำลังรอ..</h3>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
@@ -178,6 +213,9 @@ function map_operating_unit() {
 
 function location_operating_unit(m_lat , m_lng , level){
 
+	let data_arr = [];
+	let text_data_arr = [];
+
 	fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level)
 	    .then(response => response.json())
 	    .then(result => {
@@ -256,7 +294,9 @@ function location_operating_unit(m_lat , m_lng , level){
 			    			'</button>'+
 			    		'</div>' +
 			    		'<div class="col-6">' +
-			    			'<button class="btn btn-sm btn-success text-white main-shadow main-radius" style="width:100%;">เลือก</button>'+
+			    			'<button id="bnt_select_id_'+ result[i]['id'] +'" class="btn btn-sm btn-success text-white main-shadow main-radius" style="width:100%;" >'+
+			    			'เลือก'+
+			    			'</button>'+
 			    		'</div>' +
 			    		'<div class="col-12">' +
 			    			'<button id="get_Directions_id_'+ result[i]['id'] +'" class="btn btn-sm btn-warning text-white main-shadow main-radius mt-2" style="width:100%;" disabled> '+
@@ -276,6 +316,12 @@ function location_operating_unit(m_lat , m_lng , level){
                 let btn_marker_onclick = document.createAttribute("onclick");
                     btn_marker_onclick.value = "view_data_marker("+  result[i]['id'] +  ",'" + result[i]['name'] + "'," + result[i]['distance'].toFixed(2) + ",'" + result[i]['level'] + "'," + result[i]['lat'] + "," + result[i]['lng'] +");" ;
                     btn_marker_id.setAttributeNode(btn_marker_onclick);
+
+                // add onclick to bnt_select_id_
+		    	let bnt_select_id = document.querySelector('#bnt_select_id_' + result[i]['id']) ;
+                let bnt_select_id_onclick = document.createAttribute("onclick");
+                    bnt_select_id_onclick.value = "select_operating_unit("+  result[i]['id'] +  ",'" + result[i]['name'] + "'," + result[i]['distance'].toFixed(2) + ",'" + result[i]['level'] + "'," + result[i]['operating_unit_id'] + "," + result[i]['user_id'] + ",'" + result[i]['area'] +"');" ;
+                    bnt_select_id.setAttributeNode(bnt_select_id_onclick);
 
                 // add onclick to get_Directions_id_
                 let get_Directions_id = document.querySelector('#get_Directions_id_' + result[i]['id']) ;
@@ -422,5 +468,68 @@ function select_level(level){
 
 }
 
+function select_operating_unit(id , name , distance , level , operating_unit_id , user_id , area){
+	
+    document.querySelector('#div_cf_select_unit').classList.remove('d-none');
+    document.querySelector('#div_wait_unit').classList.add('d-none');
+
+    document.querySelector('#cf_select_name').innerHTML = name ;
+    document.querySelector('#cf_select_area').innerHTML = area ;
+    document.querySelector('#cf_select_distance').innerHTML = distance ;
+    document.querySelector('#cf_select_level').innerHTML = level ;
+
+
+    document.querySelector('#btn_change_unit').onclick = function() { change_unit(); };
+    document.querySelector('#btn_cf_unit').onclick = function() { send_data_sos_tooperating_unit( '{{ $sos_help_center->id }}' , operating_unit_id , user_id , distance); }; 
+
+    document.querySelector('#btn_cf_select_operating_unit').click();
+
+	// console.log(id);
+	// console.log(name);
+	// console.log(distance);
+	// console.log(level);
+	// console.log(operating_unit_id);
+	// console.log(user_id);
+	// console.log(area);
+
+}
+
+function change_unit(){
+    document.querySelector('#cf_select_name').innerHTML = "" ;
+    document.querySelector('#cf_select_area').innerHTML = "" ;
+    document.querySelector('#cf_select_distance').innerHTML = "" ;
+    document.querySelector('#cf_select_level').innerHTML = "" ;
+
+    document.querySelector('#btn_close_modal_cf_select').click();
+}
+
+function send_data_sos_tooperating_unit(sos_id , operating_unit_id , user_id , distance){
+    console.log("sos_id >> " + sos_id);
+    console.log("operating_unit_id >> " + operating_unit_id);
+    console.log("user_id >> " + user_id);
+
+    fetch("{{ url('/') }}/api/send_data_sos_to_operating_unit" + "/" + sos_id + "/" + operating_unit_id + "/" + user_id + "/" + distance)
+        .then(response => response.text())
+        .then(result => {
+            console.log(result);
+
+            if (result) {
+                wait_operating_unit(result);
+            }
+
+    });
+
+    document.querySelector('#div_cf_select_unit').classList.add('d-none');
+    document.querySelector('#div_wait_unit').classList.remove('d-none');
+
+}
+
+function wait_operating_unit(sos_id){
+
+    setInterval(function() {
+        console.log(sos_id);
+    }, 5000);
+
+}
 
 </script>
