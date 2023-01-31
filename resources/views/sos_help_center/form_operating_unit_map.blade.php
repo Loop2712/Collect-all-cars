@@ -504,14 +504,14 @@ function change_unit(){
 }
 
 function send_data_sos_tooperating_unit(sos_id , operating_unit_id , user_id , distance){
-    console.log("sos_id >> " + sos_id);
-    console.log("operating_unit_id >> " + operating_unit_id);
-    console.log("user_id >> " + user_id);
+    // console.log("sos_id >> " + sos_id);
+    // console.log("operating_unit_id >> " + operating_unit_id);
+    // console.log("user_id >> " + user_id);
 
     fetch("{{ url('/') }}/api/send_data_sos_to_operating_unit" + "/" + sos_id + "/" + operating_unit_id + "/" + user_id + "/" + distance)
         .then(response => response.text())
         .then(result => {
-            console.log(result);
+            // console.log(result);
 
             if (result) {
                 wait_operating_unit(result);
@@ -524,12 +524,31 @@ function send_data_sos_tooperating_unit(sos_id , operating_unit_id , user_id , d
 
 }
 
+var myInterval ;
+
 function wait_operating_unit(sos_id){
 
-    setInterval(function() {
-        console.log(sos_id);
-    }, 5000);
+    myInterval = setInterval(function() {
+        // console.log(sos_id);
 
+        fetch("{{ url('/') }}/api/check_status_wait_operating_unit" + "/" + sos_id  )
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+
+                if (result != "รอการยืนยัน") {
+                    myStop_setInterval();
+                    document.querySelector('#btn_close_modal_cf_select').click();
+                }
+
+        });
+
+    }, 7500);
+
+}
+
+function myStop_setInterval() {
+    clearInterval(myInterval);
 }
 
 </script>

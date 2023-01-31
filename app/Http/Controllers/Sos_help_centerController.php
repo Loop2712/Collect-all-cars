@@ -421,4 +421,43 @@ class Sos_help_centerController extends Controller
         return $data_sos->id ;
     }
 
+    function check_status_wait_operating_unit($sos_id)
+    {
+        $data_sos = Sos_help_center::where('id' , $sos_id)->first();
+
+        return $data_sos->status ;
+    }
+
+    function reply_select($sos_id , Request $request)
+    {
+        $data_user = Auth::user();
+
+        $requestData = $request->all();
+        $answer = $requestData['answer'] ;
+
+        $data_sos = Sos_help_center::where('id' , $sos_id)->first();
+
+        if ($answer == "go_to_help") {
+            echo $data_user->name ;
+            echo "<br>--------------------------------<br>" ;
+            echo $answer ;
+            echo "<br>--------------------------------<br>" ;
+
+            echo "<pre>";
+            print_r($data_sos);
+            echo "<pre>";
+
+        }else if($answer == "refuse"){
+            echo $data_user->name ;
+            echo "<br>--------------------------------<br>" ;
+            echo $answer ;
+            echo "<br>--------------------------------<br>" ;
+
+            echo "<pre>";
+            print_r($data_sos);
+            echo "<pre>";
+        }
+
+    }
+
 }
