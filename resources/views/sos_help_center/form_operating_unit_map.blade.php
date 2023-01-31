@@ -536,9 +536,13 @@ function wait_operating_unit(sos_id){
             .then(result => {
                 console.log(result);
 
-                if (result != "รอการยืนยัน") {
+                if (result === "ปฏิเสธ") {
+                    myStop_setInterval();
+                    // เปลี่ยน DIV ใน MODAL ให้แสดงถึงการปฏิเสธ
+                }else if (result === "ออกจากฐาน") {
                     myStop_setInterval();
                     document.querySelector('#btn_close_modal_cf_select').click();
+                    // คลิก tag a หรือ เปลี่ยนการแสดงผลข้อมูลเจ้าหน้าที่
                 }
 
         });

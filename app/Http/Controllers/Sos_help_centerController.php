@@ -447,6 +447,14 @@ class Sos_help_centerController extends Controller
             print_r($data_sos);
             echo "<pre>";
 
+            // ******** UPDATE ข้อมูลเจ้าหน้าที่ในตาราง sos_help_center ด้วย *******
+
+            DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $sos_id],
+                ])
+            ->update(['status' => "ออกจากฐาน"]);
+
         }else if($answer == "refuse"){
             echo $data_user->name ;
             echo "<br>--------------------------------<br>" ;
@@ -456,6 +464,12 @@ class Sos_help_centerController extends Controller
             echo "<pre>";
             print_r($data_sos);
             echo "<pre>";
+
+            DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $sos_id],
+                ])
+            ->update(['status' => "ปฏิเสธ"]);
         }
 
     }
