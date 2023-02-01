@@ -38,7 +38,7 @@
 			<div id="smartwizard">
 				<ul class="nav">
 					<!-- <li class="nav-item">
-						<button style="position: relative;z-index: 999999;border-radius: 50px;" class="btn btn-info shadow" id="prev-btn" type="button"><i class="fa-solid fa-chevron-left"></i></button>
+						<button style="position: relative;z-index: 999999;border-radius: 50px;" class="btn btn-info shadow" id="prev-btn-form-yellow" type="button"><i class="fa-solid fa-chevron-left"></i></button>
 					</li> -->
 					<li class="nav-item">
 						<a class="nav-link danger position div_detail page_number" href="#step-1" onclick="go_to_form_data('1');"  id="form_data_1" page="number_1"> 
@@ -95,7 +95,7 @@
 						</a>
 					</li>
 					<!-- <li class="nav-item">
-						<button class="btn btn-info text-white"style="position: relative;z-index: 999999;border-radius: 50px;" id="next-btn" type="button"><i class="fa-solid fa-chevron-right"></i></button>
+						<button class="btn btn-info text-white"style="position: relative;z-index: 999999;border-radius: 50px;" id="next-btn-form-yellow" type="button"><i class="fa-solid fa-chevron-right"></i></button>
 
 					</li> -->
 				</ul>
@@ -166,6 +166,8 @@
 
 					.card-input-element:checked+.card {
 					border: 2px solid #0d6efd;
+					color: #fff !important;
+					background-color: #0d6efd !important;
 					-webkit-transition: border .3s;
 					-o-transition: border .3s;
 					transition: border .3s;
@@ -255,11 +257,43 @@
 							opacity: 1;
 						}
 					}.card-input-red:checked+.card {
-					border: 2px solid #db2d2e;
+					border: 2px solid #db2d2e !important;
+					background-color: #db2d2e !important;
+					color: #fff !important;
 					-webkit-transition: border .3s;
 					-o-transition: border .3s;
 					transition: border .3s;
-					}.field-user{
+					}
+					
+					.card-input-success:checked+.card {
+					border: 2px solid #29cc39 !important;
+					background-color: #29cc39 !important;
+					color: #fff !important;
+					-webkit-transition: border .3s;
+					-o-transition: border .3s;
+					transition: border .3s;
+					}
+
+					.card-input-warning:checked+.card {
+					border: 2px solid #ffc30e !important;
+					background-color: #ffc30e !important;
+					color: #fff !important;
+					-webkit-transition: border .3s;
+					-o-transition: border .3s;
+					transition: border .3s;
+					}
+
+					.card-input-dark:checked+.card {
+					border: 2px solid #000 !important;
+					background-color: #000 !important;
+					color: #fff !important;
+					-webkit-transition: border .3s;
+					-o-transition: border .3s;
+					transition: border .3s;
+					}
+					
+					
+					.field-user{
 						border: #000 1px solid;
 					}.field-user legend{
 						font-size: 18px;
@@ -759,8 +793,8 @@
 						<div class="row">
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_idc_1 }} name="idc" value="แดง(วิกฤติ)"  class="card-input-element d-none" >
-									<div class="card card-body bg-danger text-white d-flex flex-row justify-content-between align-items-center">
+									<input type="radio" {{ $check_idc_1 }} name="idc" value="แดง(วิกฤติ)"  class="card-input-red card-input-element d-none" >
+									<div class="card card-body text-danger d-flex flex-row justify-content-between align-items-center">
 										<b>
 											แดง(วิกฤติ)  
 										</b>
@@ -779,8 +813,8 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_idc_2 }} name="idc" value="เหลือง(เร่งด่วน)"  class="card-input-element d-none" >
-									<div class="card card-body  bg-warning text-white d-flex flex-row justify-content-between align-items-center">
+									<input type="radio" {{ $check_idc_2 }} name="idc" value="เหลือง(เร่งด่วน)"  class="card-input-warning card-input-element d-none" >
+									<div class="card card-body text-warning d-flex flex-row justify-content-between align-items-center">
 										<b>
 											เหลือง(เร่งด่วน)  
 										</b>
@@ -789,8 +823,8 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_idc_5 }} name="idc" value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-element d-none" >
-									<div class="card card-body  bg-dark text-white d-flex flex-row justify-content-between align-items-center">
+									<input type="radio" {{ $check_idc_5 }} name="idc" value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-dark card-input-element d-none" >
+									<div class="card card-body  text-dark d-flex flex-row justify-content-between align-items-center">
 										<b>
 											ดำ(รับบริการสาธารณสุขอื่น)  
 										</b>
@@ -799,8 +833,8 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_idc_3 }} name="idc" value="แดง(วิกฤติ)"  class="card-input-element d-none" >
-									<div class="card card-body  bg-success text-white d-flex flex-row justify-content-between align-items-center">
+									<input type="radio" {{ $check_idc_3 }} name="idc" value="แดง(วิกฤติ)"  class="card-input-success card-input-element d-none" >
+									<div class="card card-body text-success d-flex flex-row justify-content-between align-items-center">
 										<b>
 											เขียว(ไม่รุนแรง)
 										</b>
@@ -1109,8 +1143,8 @@
 						<div class="row">
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_rc_1 }} name="rc" value="แดง(วิกฤติ)"  class="card-input-element d-none" onchange="check_click_rc();">
-									<div class="card card-body bg-danger text-white d-flex flex-row justify-content-between align-items-center">
+									<input type="radio" {{ $check_rc_1 }} name="rc" value="แดง(วิกฤติ)"  class="card-input-red card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body text-danger d-flex flex-row justify-content-between align-items-center">
 										<b>
 											แดง(วิกฤติ)  
 										</b>
@@ -1129,8 +1163,8 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_rc_2 }} name="rc" value="เหลือง(เร่งด่วน)"  class="card-input-element d-none" onchange="check_click_rc();">
-									<div class="card card-body  bg-warning text-white d-flex flex-row justify-content-between align-items-center">
+									<input type="radio" {{ $check_rc_2 }} name="rc" value="เหลือง(เร่งด่วน)"  class="card-input-warning card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body  text-warning d-flex flex-row justify-content-between align-items-center">
 										<b>
 											เหลือง(เร่งด่วน)  
 										</b>
@@ -1140,8 +1174,8 @@
 							
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_rc_3 }} name="rc" value="แดง(วิกฤติ)"  class="card-input-element d-none" onchange="check_click_rc();">
-									<div class="card card-body  bg-success text-white d-flex flex-row justify-content-between align-items-center">
+									<input type="radio" {{ $check_rc_3 }} name="rc" value="เขียว(ไม่รุนแรง)"  class="card-input-success card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body  text-success d-flex flex-row justify-content-between align-items-center">
 										<b>
 											เขียว(ไม่รุนแรง)
 										</b>
@@ -1150,13 +1184,14 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_rc_5 }} name="rc" id="rc_black"  value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-element d-none" onchange="check_click_rc();">
-									<div class="card card-body  bg-dark text-white d-flex flex-row justify-content-between align-items-center">
+									<input type="radio" {{ $check_rc_5 }} name="rc" id="rc_black"  value="ดำ"  class="card-input-dark card-input-element d-none" onchange="check_click_rc();">
+									<div class="card card-body text-dark d-flex flex-row justify-content-between align-items-center">
 										<b>
 											<div class="input-wrapper-b-code inline">
 												<span>
-													ดำ ( <input name="rc_black_text" id="rc_black_text" size="5" style="border-radius: 5px;border: none; border-bottom: 1px dashed #ffffff;color:#000" class="input_code_black  p-0 m-0" placeholder="ใส่รหัส" type="text" value="{{ isset($sos_help_center->form_yellow->rc_black_text) ? $sos_help_center->form_yellow->rc_black_text : ''}}" readonly> )
+													ดำ <input name="rc_black_text" id="rc_black_text" size="10" style="border-radius: 5px;border: 1px solid dark; border-bottom: 1px dashed #ffffff;color:#000" class="form-control input_code_black  p-0 m-0" placeholder="ใส่รหัส" type="text" value="{{ isset($sos_help_center->form_yellow->rc_black_text) ? $sos_help_center->form_yellow->rc_black_text : ''}}" readonly>
 												</span>
+
 											</div>
 										</b>
 										
@@ -1696,9 +1731,9 @@
 						</div>
 					</div>
 					<div class="d-flex justify-content-between">
-						<button class="btn btn-primary " id="prev-btn" type="button" onclick="check_go_to('remove');">ย้อนกลับ</button>
+						<button class="btn btn-primary " id="prev-btn-form-yellow" type="button" onclick="check_go_to('remove');">ย้อนกลับ</button>
 						&nbsp;&nbsp;
-						<button class="btn btn-primary" id="next-btn" type="button" onclick="check_go_to('add');">ต่อไป</button>
+						<button class="btn btn-primary" id="next-btn-form-yellow" type="button" onclick="check_go_to('add');">ต่อไป</button>
 					</div>
 				</div>
 			</div>
@@ -1759,15 +1794,7 @@
         check_color_btn(null,null);
 		check_treatment();
         check_lat_lng();
-        
-        let rc_black = document.querySelector('#rc_black').checked ;
-		let rc_black_text = document.querySelector('#rc_black_text') ;
-		if (rc_black) {
-			rc_black_text.readOnly = false ;
-		}else{
-			rc_black_text.readOnly = true ;
-			rc_black_text.value = null ;
-		}
+        check_click_rc();
 
     });
 
@@ -1817,9 +1844,9 @@
 		let rc_black = document.querySelector('#rc_black').checked ;
 		let rc_black_text = document.querySelector('#rc_black_text') ;
 		if (rc_black) {
-			rc_black_text.readOnly = false ;
+			rc_black_text.readOnly = false;
 		}else{
-			rc_black_text.readOnly = true ;
+			rc_black_text.readOnly = true;
 			rc_black_text.value = null ;
 		}
 	}
@@ -2118,15 +2145,15 @@
 	$(document).ready(function() {
 		// Step show event
 		$("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
-			$("#prev-btn").removeClass('disabled');
-			$("#next-btn").removeClass('disabled');
+			$("#prev-btn-form-yellow").removeClass('disabled');
+			$("#next-btn-form-yellow").removeClass('disabled');
 			if (stepPosition === 'first') {
-				$("#prev-btn").addClass('disabled');
+				$("#prev-btn-form-yellow").addClass('disabled');
 			} else if (stepPosition === 'last') {
-				$("#next-btn").addClass('disabled');
+				$("#next-btn-form-yellow").addClass('disabled');
 			} else {
-				$("#prev-btn").removeClass('disabled');
-				$("#next-btn").removeClass('disabled');
+				$("#prev-btn-form-yellow").removeClass('disabled');
+				$("#next-btn-form-yellow").removeClass('disabled');
 			}
 		});
 		// Smart Wizard
@@ -2152,12 +2179,12 @@
 			$('#smartwizard').smartWizard("reset");
 			return true;
 		});
-		$("#prev-btn").on("click", function() {
+		$("#prev-btn-form-yellow").on("click", function() {
 			// Navigate previous
 			$('#smartwizard').smartWizard("prev");
 			return true;
 		});
-		$("#next-btn").on("click", function() {
+		$("#next-btn-form-yellow").on("click", function() {
 			// Navigate next
 			$('#smartwizard').smartWizard("next");
 			return true;

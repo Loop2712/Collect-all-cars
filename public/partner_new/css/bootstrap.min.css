@@ -3447,6 +3447,7 @@ fieldset:disabled .btn {
 	background-color: transparent
 }
 
+
 .btn-outline-warning {
 	color: #ffc107;
 	border-color: #ffc107
@@ -3484,6 +3485,47 @@ fieldset:disabled .btn {
 .btn-outline-warning.disabled,
 .btn-outline-warning:disabled {
 	color: #ffc107;
+	background-color: transparent
+}
+
+
+.btn-outline-purple {
+	color: #7b2bec;
+	border-color: #7b2bec
+}
+
+.btn-outline-purple:hover {
+	color: #fff !important;
+	background-color: #7b2bec;
+	border-color: #7b2bec
+}
+
+.btn-check:focus+.btn-outline-purple,
+.btn-outline-purple:focus {
+	box-shadow: 0 0 0 .25rem rgba(204, 41, 174, 0.5)
+}
+
+.btn-check:active+.btn-outline-purple,
+.btn-check:checked+.btn-outline-purple,
+.btn-outline-purple.active,
+.btn-outline-purple.dropdown-toggle.show,
+.btn-outline-purple:active {
+	color: #fff  !important;
+	background-color: #7b2bec;
+	border-color: #7b2bec
+}
+
+.btn-check:active+.btn-outline-purple:focus,
+.btn-check:checked+.btn-outline-purple:focus,
+.btn-outline-purple.active:focus,
+.btn-outline-purple.dropdown-toggle.show:focus,
+.btn-outline-purple:active:focus {
+	box-shadow: 0 0 0 .25rem rgba(106, 41, 204, 0.5)
+}
+
+.btn-outline-purple.disabled,
+.btn-outline-purple:disabled {
+	color: #7b2bec;
 	background-color: transparent
 }
 

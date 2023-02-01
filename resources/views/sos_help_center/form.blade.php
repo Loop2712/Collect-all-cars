@@ -149,6 +149,12 @@
         border: 0px solid black;
         padding: 25px;
     }
+    .blue-form{
+        background-color:#89acff;
+        height: auto;
+        border: 0px solid black;
+        padding: 25px;
+    }
 </style>
 <div>
     <div class="card radius-10">
@@ -210,10 +216,28 @@
                         color: #fff;
                         }
 
+                        .nav-pills-purple.nav-pills .nav-link{
+                        color: #7b2bec;
+                        border: 1px solid #7b2bec;
+                        }
+                        .nav-pills-purple.nav-pills .nav-link:hover{
+                            background-color: #7b2bec;
+                        color: #fff;
+                        }
+
                     </style>
                     <ul class="nav nav-pills m-3" role="tablist">
+                        <li class="nav-item nav-pills nav-pills-purple m-2" role="presentation">
+                            <a class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="document.querySelector('#div_detail_sos').classList.toggle('d-none');">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
+                                    </div>
+                                    <div class="tab-title">การดำเนินการ</div>
+                                </div>
+                            </a>
+                        </li>
                         <li class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
-                            <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true">
+                            <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="document.querySelector('#div_detail_sos').classList.remove('d-none');">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                     </div>
@@ -222,7 +246,7 @@
                             </a>
                         </li>
                         <li class="nav-item nav-pills nav-pills-info m-2" role="presentation">
-                            <a class="nav-link  btn-outline-info btn" data-bs-toggle="pill" href="#form-blue" role="tab" aria-selected="false">
+                            <a class="nav-link  btn-outline-info btn" data-bs-toggle="pill" href="#form-blue" role="tab" aria-selected="false" onclick="document.querySelector('#div_detail_sos').classList.remove('d-none');">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
@@ -232,7 +256,7 @@
                             </a>
                         </li>
                         <li class="nav-item  nav-pills nav-pills-success m-2" role="presentation">
-                            <a class="nav-link btn-outline-success btn" data-bs-toggle="pill" href="#form-green" role="tab" aria-selected="false">
+                            <a class="nav-link btn-outline-success btn" data-bs-toggle="pill" href="#form-green" role="tab" aria-selected="false" onclick="document.querySelector('#div_detail_sos').classList.remove('d-none');">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
@@ -242,7 +266,7 @@
                             </a>
                         </li>
                         <li class="nav-item nav-pills nav-pills-pink m-2" role="presentation">
-                            <a class="nav-link btn-outline-pink btn" data-bs-toggle="pill" href="#form-pink" role="tab" aria-selected="false">
+                            <a class="nav-link btn-outline-pink btn" data-bs-toggle="pill" href="#form-pink" role="tab" aria-selected="false" onclick="document.querySelector('#div_detail_sos').classList.remove('d-none');">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
@@ -284,7 +308,7 @@
                     <u>081-234-5678</u>
                 </h4>
             </div>
-            <div class="card radius-10 p-3">
+            <div class="card radius-10 p-3" id="div_detail_sos">
                 <div class="row d-flex justify-content-between">
                     <div class="col h6 d-flex align-items-center">
                         <b>จุดเกิดเหตุ</b>
@@ -318,6 +342,16 @@
     
     <div class="col-12 col-md-9 col-lg-9  "  >
         <div class="tab-content" id="pills-tabContent">
+            <!--------------------------------- operation --------------------------------->
+            <div class="tab-pane fade show active" id="operation" role="tabpanel">
+                <div class="card radius-10 p-3 yellow-form">
+                    <div class="row">
+                        <h1>ดำเนินการ</h1>
+                    </div>
+                </div>
+            </div>
+
+            <!--------------------------------- form yellow --------------------------------->
             <div class="tab-pane fade show active" id="form_yellow" role="tabpanel">
                 <div class="card radius-10 p-3 yellow-form">
                     <div class="row">
@@ -354,27 +388,67 @@
                             </div>
                         </div>
                         <div class="col-12">
-                        @include ('sos_help_center.form_sos_yellow')
-                        
-				
+                            @include ('sos_help_center.form_sos_yellow')
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!--------------------------------- form blue --------------------------------->
             <div class="tab-pane fade" id="form-blue" role="tabpanel">
-                
-                <p>@include ('sos_help_center.form_sos_blue')</p>
+                <div class="card radius-10 p-3 blue-form">
+                    <div class="row">
+                        <div class="col">
+                            <div class="box-status">
+                                @php
+                                    $date = $sos_help_center->created_at ;
+                                    $result = $date->format('d/m/Y');
+                                @endphp
+                                <span class="m-0">วันที่ </span>
+                                <h5 class="m-0 h5">
+                                    <b> {{ $result }}</b>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box-status">
+                                <span class="m-0">เลขที่ผู้ป่วย</span>
+                                <h5 class="m-0 h5">
+                                    <b>
+                                        Patient Number
+                                    </b>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box-status">
+                                <span class="m-0">ลำดับผู้ป่วย(CN)</span>
+                                <h5 class="m-0 h5">
+                                    <b>
+                                        Patient sequence
+                                    </b>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            @include ('sos_help_center.form_sos_blue')
+                        </div>
+                    </div>
+                </div>
             </div>
 
+
+            <!--------------------------------- form green --------------------------------->
             <div class="tab-pane fade" id="form-green" role="tabpanel">
                 <p>@include ('sos_help_center.form_sos_green')</p>
             </div>
 
+            <!--------------------------------- form pink --------------------------------->
             <div class="tab-pane fade" id="form-pink" role="tabpanel">
                 <p>@include ('sos_help_center.form_sos_pink')</p>
             </div>
 
+            <!--------------------------------- operating_unit --------------------------------->
             <div class="tab-pane fade" id="operating_unit" role="tabpanel">
                 <div class="row">
                     <div class="col-12">
