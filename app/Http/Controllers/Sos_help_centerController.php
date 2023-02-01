@@ -442,6 +442,8 @@ class Sos_help_centerController extends Controller
         $answer = $requestData['answer'] ;
         $unit_id = $requestData['unit_id'] ;
 
+        $redirectTo = 'sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '&unit_id=' . $unit_id ;
+
         if(Auth::check()){
             return redirect('sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '&unit_id=' . $unit_id);
         }else{
@@ -477,7 +479,7 @@ class Sos_help_centerController extends Controller
                 ['time_go_to_help' => $date_now],
             );
 
-            return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
+            // return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
 
         }else if($answer == "refuse"){
 
@@ -487,7 +489,7 @@ class Sos_help_centerController extends Controller
                 ])
             ->update(['status' => "ปฏิเสธ"]);
 
-            // ส่งไลน์ "คุณได้ทำการปฏิเสธ"
+            // ส่งไลน์ "ดำเนินการปฏิเสธเรียบร้อยแล้ว"
             return view('return_line');
         }
 
