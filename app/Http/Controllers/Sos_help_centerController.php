@@ -487,7 +487,7 @@ class Sos_help_centerController extends Controller
                 ])
             ->update(['status' => "ปฏิเสธ"]);
 
-            return back()->withInput();
+            return view('return_line');
         }
 
     }
