@@ -438,6 +438,19 @@ class Sos_help_centerController extends Controller
 
     function reply_select($sos_id , Request $request)
     {
+        $requestData = $request->all();
+        $answer = $requestData['answer'] ;
+        $unit_id = $requestData['unit_id'] ;
+
+        if(Auth::check()){
+            return redirect('sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '&unit_id=' . $unit_id);
+        }else{
+            return redirect('/login/line?redirectTo=' . 'sos_help_center/reply_select_2/' . $sos_id . '&answer=' . $answer . '&unit_id=' . $unit_id);
+        }
+    }
+
+    function reply_select_2($sos_id , Request $request)
+    {
         $data_user = Auth::user();
         $date_now = date("Y-m-d H:i:s");
 
@@ -483,7 +496,7 @@ class Sos_help_centerController extends Controller
     {
         $data_sos = Sos_help_center::findOrFail($id);
 
-        return view('sos_help_center. show_case', compact('data_sos'));
+        return view('sos_help_center.show_case', compact('data_sos'));
     }
 
 }

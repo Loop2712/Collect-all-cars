@@ -196,6 +196,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::resource('sos_help_center', 'Sos_help_centerController')->except(['create','index']);
 	Route::get('help_center_admin', 'Sos_help_centerController@help_center_admin');
 	Route::get('sos_help_center/reply_select/{sos_id}', 'Sos_help_centerController@reply_select');
+	Route::get('sos_help_center/reply_select_2/{sos_id}', 'Sos_help_centerController@reply_select_2');
 	Route::get('sos_help_center/{sos_id}/show_case', 'Sos_help_centerController@show_case_sos');
 
 	// ------- CONDO -------
