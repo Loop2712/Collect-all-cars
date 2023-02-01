@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-2">
                             <center>
-                                <button  type="button" class="btn btn-info text-white" style="width: 100%;" onclick="submit_locations_sos();">
+                                <button  type="button" class="btn btn-info text-white" style="width: 100%;" onclick="submit_locations_sos();open_map_operating_unit();">
                                     <i class="fa-solid fa-circle-check"></i> ยืนยัน
                                 </button>
                             </center>
@@ -210,7 +210,7 @@
                         }
 
                         .nav-pills-secondary.nav-pills .nav-link{
-                        color: #6c757d;
+                        color: #fff;
                         }
                         .nav-pills-secondary.nav-pills .nav-link:hover{
                         color: #fff;
@@ -227,8 +227,8 @@
 
                     </style>
                     <ul class="nav nav-pills m-3" role="tablist">
-                        <li class="nav-item nav-pills nav-pills-purple m-2" role="presentation">
-                            <a class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="document.querySelector('#div_detail_sos').classList.toggle('d-none');">
+                        <li id="btn_operation" class="nav-item nav-pills nav-pills-purple m-2 d-none" role="presentation">
+                            <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_unit');">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                     </div>
@@ -236,8 +236,8 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
-                            <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="document.querySelector('#div_detail_sos').classList.remove('d-none');">
+                        <li id="btn_form_yellow" class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
+                            <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                     </div>
@@ -245,8 +245,8 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item nav-pills nav-pills-info m-2" role="presentation">
-                            <a class="nav-link  btn-outline-info btn" data-bs-toggle="pill" href="#form-blue" role="tab" aria-selected="false" onclick="document.querySelector('#div_detail_sos').classList.remove('d-none');">
+                        <li id="btn_form_blue" class="nav-item nav-pills nav-pills-info m-2 d-none" role="presentation">
+                            <a class="nav-link  btn-outline-info btn" data-bs-toggle="pill" href="#form-blue" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
@@ -255,8 +255,8 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item  nav-pills nav-pills-success m-2" role="presentation">
-                            <a class="nav-link btn-outline-success btn" data-bs-toggle="pill" href="#form-green" role="tab" aria-selected="false" onclick="document.querySelector('#div_detail_sos').classList.remove('d-none');">
+                        <li id="btn_form_green" class="nav-item  nav-pills nav-pills-success m-2 d-none" role="presentation">
+                            <a class="nav-link btn-outline-success btn" data-bs-toggle="pill" href="#form-green" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
@@ -265,8 +265,8 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item nav-pills nav-pills-pink m-2" role="presentation">
-                            <a class="nav-link btn-outline-pink btn" data-bs-toggle="pill" href="#form-pink" role="tab" aria-selected="false" onclick="document.querySelector('#div_detail_sos').classList.remove('d-none');">
+                        <li id="btn_form_pink" class="nav-item nav-pills nav-pills-pink m-2 d-none" role="presentation">
+                            <a class="nav-link btn-outline-pink btn" data-bs-toggle="pill" href="#form-pink" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
@@ -275,8 +275,8 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item nav-pills nav-pills-secondary m-2" role="presentation">
-                            <a id="btn_select_operating_unit" class="nav-link  btn-outline-secondary btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="map_operating_unit();">
+                        <li id="btn_select_operating_unit" class="nav-item nav-pills nav-pills-secondary m-2" role="presentation">
+                            <a class="nav-link  btn-outline-secondary btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="open_map_operating_unit();">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
@@ -298,14 +298,14 @@
                     ชื่อ/รหัสผู้แจ้งเหตุ
                 </span>
                 <h4>
-                    <u>Teerasak Senarak</u>
+                    <u>{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}</u>
                 </h4>
                 <hr>
                 <span class="mt-2">
                     โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ
                 </span>
                 <h4>
-                    <u>081-234-5678</u>
+                    <u>{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}</u>
                 </h4>
             </div>
             <div class="card radius-10 p-3" id="div_detail_sos">
@@ -315,7 +315,7 @@
                     </div>
                     <div class="col d-flex justify-content-end">
                         <span class="btn btn-sm btn-danger" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#see_img_sos">
-                            ดูรูปภาพ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
+                            ดูรูปภาพ <i class="fa-duotone fa-images"></i>
                         </span>
                     </div>
                 </div>
@@ -326,6 +326,9 @@
                     </span>
                     <a id="go_to_maps" href="" target="bank"></a>
                 </div>
+            </div>
+            <div class="card radius-10 p-3 d-none" id="div_data_operating">
+                div_data_operating
             </div>
         </div>
     </div>
@@ -342,8 +345,9 @@
     
     <div class="col-12 col-md-9 col-lg-9  "  >
         <div class="tab-content" id="pills-tabContent">
+
             <!--------------------------------- operation --------------------------------->
-            <div class="tab-pane fade show active" id="operation" role="tabpanel">
+            <div class="tab-pane fade" id="operation" role="tabpanel">
                 <div class="card radius-10 p-3 yellow-form">
                     <div class="row">
                         <h1>ดำเนินการ</h1>
@@ -798,6 +802,8 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         initMap();
+        check_show_btn_form_color(null);
+        check_show_btn_select_unit();
         // click_select_btn('operating_unit');
     });
 
@@ -1211,55 +1217,72 @@
             .catch((e) => window.alert("Geocoder failed due to: " + e));
     }
 
-    // function click_select_btn(btn){
+    function show_div_sos_or_unit(type){
 
-    //     switch(btn) {
-    //         case "operating_unit":
-    //             document.querySelector('#div_form_operating_unit_map').classList.remove('d-none');
+        if (type === 'show_sos') {
+            document.querySelector('#div_detail_sos').classList.remove('d-none');
+            document.querySelector('#div_data_operating').classList.add('d-none');
+        }else if(type === 'show_unit'){
+            document.querySelector('#div_detail_sos').classList.add('d-none');
+            document.querySelector('#div_data_operating').classList.remove('d-none');
+        }
 
-    //             document.querySelector('#div_form_yellow').classList.add('d-none');
-    //             document.querySelector('#div_form_blue').classList.add('d-none');
-    //             document.querySelector('#div_form_green').classList.add('d-none');
-    //             document.querySelector('#div_form_pink').classList.add('d-none');
-          
-    //             map_operating_unit();
-    //         break;
-    //         case "form_yellow":
-    //             document.querySelector('#div_form_yellow').classList.remove('d-none');
+    }
 
-    //             document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
-    //             document.querySelector('#div_form_blue').classList.add('d-none');
-    //             document.querySelector('#div_form_green').classList.add('d-none');
-    //             document.querySelector('#div_form_pink').classList.add('d-none');
-    //         break;
-    //         case "form_blue":
-    //             document.querySelector('#div_form_blue').classList.remove('d-none');
+    function check_show_btn_form_color(suit){
 
-    //             document.querySelector('#div_form_yellow').classList.add('d-none');
-    //             document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
-    //             document.querySelector('#div_form_green').classList.add('d-none');
-    //             document.querySelector('#div_form_pink').classList.add('d-none');
-    //         break;
-    //         break;
-    //         case "form_green":
-    //             document.querySelector('#div_form_green').classList.remove('d-none');
+        let type = "" ;
 
-    //             document.querySelector('#div_form_blue').classList.add('d-none');
-    //             document.querySelector('#div_form_yellow').classList.add('d-none');
-    //             document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
-    //             document.querySelector('#div_form_pink').classList.add('d-none');
-    //         break;
-    //         case "form_pink":
-    //             document.querySelector('#div_form_pink').classList.remove('d-none');
+        if (suit != null) {
+           type = suit ;
+        }else{
+            let operating_suit_type = document.querySelectorAll('input[name="operating_suit_type"]');
+            let operating_suit_type_value = "" ;
+                operating_suit_type.forEach(operating_suit_type => {
+                    if(operating_suit_type.checked){
+                        operating_suit_type_value = operating_suit_type.value;
+                    }
+                })
+           type = operating_suit_type_value ;
+        }
 
-    //             document.querySelector('#div_form_green').classList.add('d-none');
-    //             document.querySelector('#div_form_blue').classList.add('d-none');
-    //             document.querySelector('#div_form_yellow').classList.add('d-none');
-    //             document.querySelector('#div_form_operating_unit_map').classList.add('d-none');
-    //         break;
-    //     }
-        
-    // }
+        switch(type) {
+            case 'FR':
+                document.querySelector('#btn_form_blue').classList.remove('d-none');
+                document.querySelector('#btn_form_green').classList.add('d-none');
+                document.querySelector('#btn_form_pink').classList.add('d-none');
+            break;
+            case 'BLS':
+                document.querySelector('#btn_form_blue').classList.add('d-none');
+                document.querySelector('#btn_form_green').classList.add('d-none');
+                document.querySelector('#btn_form_pink').classList.remove('d-none');
+            break;
+            case 'ILS':
+                document.querySelector('#btn_form_blue').classList.add('d-none');
+                document.querySelector('#btn_form_green').classList.remove('d-none');
+                document.querySelector('#btn_form_pink').classList.add('d-none');
+            break;
+            case 'ALS':
+                document.querySelector('#btn_form_blue').classList.add('d-none');
+                document.querySelector('#btn_form_green').classList.remove('d-none');
+                document.querySelector('#btn_form_pink').classList.add('d-none');
+            break;
+        }
 
+    }
+
+    function check_show_btn_select_unit(){
+
+        let status = '{{ $sos_help_center->status }}' ;
+
+        if (status === 'รอการยืนยัน' || status === 'ปฏิเสธ' || !status) {
+            document.querySelector('#btn_operation').classList.add('d-none');
+            document.querySelector('#btn_select_operating_unit').classList.remove('d-none');
+        }else{
+            document.querySelector('#btn_operation').classList.remove('d-none');
+            document.querySelector('#btn_select_operating_unit').classList.add('d-none');
+        }
+
+    }
 
 </script>

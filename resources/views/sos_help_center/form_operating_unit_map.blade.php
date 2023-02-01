@@ -156,7 +156,7 @@ modal cf_select_operating_unit
 
 
 <div class="container">
-	<div class="row">
+	<div id="div_show_data_unit" class="row">
 		<div class="col-12" style="position:absolute;z-index: 999;right: 4%;margin-top: 0.3%; ">
 			<div class="btn-group float-end" role="group" aria-label="Basic example">
 			  	<button type="button" class="btn btn-info text-white" onclick="select_level('all');">All</button>
@@ -183,7 +183,24 @@ modal cf_select_operating_unit
 	</div>
 	<!-- MAP -->
 	<div class="row">
-        <div id="map_operating_unit"  style="margin-top: -30px;"></div>
+        <div id="map_operating_unit" class="d-none" style="margin-top: -30px;">
+            <!-- MAP SHOW UNIT -->
+        </div>
+        <div id="map_operating_no_location" class="d-none" style="margin-top: -30px;">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <br><br><br>
+                    <img style="width:50%;" src="{{ url('/') }}/img/stickerline/PNG/10.png">
+                    <br><br><br>
+                    <h6>ไม่พบตำแหน่งของจุดเกิดเหตุ</h6>
+                    <h3>..กรุณาเลือกจุดเกิดเหตุ..</h3>
+                    <br>
+                    <span class="btn btn-sm btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
+                        เลือกจุดเกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
 	</div>
 </div>
 
@@ -205,49 +222,53 @@ const image_operating_unit_yellow = "{{ url('/img/icon/operating_unit/เหล�
 const image_operating_unit_green = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
 const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
 
-function map_operating_unit() {
+function open_map_operating_unit(){
+    show_div_sos_or_unit('show_sos');
+
     let sos_lat = document.querySelector('#lat'); 
     let sos_lng = document.querySelector('#lng'); 
         // console.log(parseFloat(sos_lat.value));
         // console.log(parseFloat(sos_lng.value));
 
-    let m_lat = "";
-    let m_lng = "";
-    let m_numZoom = "";
-
     if (sos_lat.value && sos_lng.value) {
-        m_lat = parseFloat(sos_lat.value);
-        m_lng = parseFloat(sos_lng.value);
-        m_numZoom = parseFloat('17');
-    }else{
-        m_lat = parseFloat('12.870032');
-        m_lng = parseFloat('100.992541');
-        m_numZoom = parseFloat('6');
-    }
 
-    let m_lng_ct = m_lng + 0.002 ;
-    
-    map_operating_unit = new google.maps.Map(document.getElementById("map_operating_unit"), {
-        center: {lat: m_lat, lng: m_lng_ct },
-        zoom: m_numZoom,
-    });
+        document.querySelector('#map_operating_unit').classList.remove('d-none');
+        document.querySelector('#div_show_data_unit').classList.remove('d-none');
+        document.querySelector('#map_operating_no_location').classList.add('d-none');
 
-    if (sos_lat.value && sos_lng.value) {
-        if (sos_operating_marker) {
-            sos_operating_marker.setMap(null);
+        let m_lat = parseFloat(sos_lat.value);
+        let m_lng = parseFloat(sos_lng.value);
+        let m_numZoom = parseFloat('17');
+
+        let m_lng_ct = m_lng + 0.002 ;
+
+        map_operating_unit = new google.maps.Map(document.getElementById("map_operating_unit"), {
+            center: {lat: m_lat, lng: m_lng_ct },
+            zoom: m_numZoom,
+        });
+
+        if (sos_lat.value && sos_lng.value) {
+            if (sos_operating_marker) {
+                sos_operating_marker.setMap(null);
+            }
+
+            sos_operating_marker = new google.maps.Marker({
+                position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
+                map: map_operating_unit,
+                icon: image_sos,
+            });
+            sos_operating_markers.push(sos_operating_marker);
         }
 
-        sos_operating_marker = new google.maps.Marker({
-            position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
-            map: map_operating_unit,
-            icon: image_sos,
-        });
-        sos_operating_markers.push(sos_operating_marker);
+        location_operating_unit(m_lat , m_lng , 'all');
+
+    }else{
+        document.querySelector('#map_operating_unit').classList.add('d-none');
+        document.querySelector('#div_show_data_unit').classList.add('d-none');
+        document.querySelector('#map_operating_no_location').classList.remove('d-none');
     }
-
-    location_operating_unit(m_lat , m_lng , 'all');
-
 }
+
 
 function location_operating_unit(m_lat , m_lng , level){
 
@@ -574,7 +595,7 @@ function wait_operating_unit(sos_id){
         fetch("{{ url('/') }}/api/check_status_wait_operating_unit" + "/" + sos_id  )
             .then(response => response.text())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if (result === "ปฏิเสธ") {
                     myStop_setInterval();
@@ -586,6 +607,9 @@ function wait_operating_unit(sos_id){
                     myStop_setInterval();
                     document.querySelector('#btn_close_modal_cf_select').click();
                     // คลิก tag a หรือ เปลี่ยนการแสดงผลข้อมูลเจ้าหน้าที่
+                    document.querySelector('#btn_operation').classList.remove('d-none');
+                    document.querySelector('#btn_select_operating_unit').classList.add('d-none');
+                    document.querySelector('#tag_a_operation').click();
                 }
 
         });

@@ -282,7 +282,7 @@ function check_color_btn(active){
 			break;
 
 			default:
-			console.log(nav.length)
+			// console.log(nav.length)
 
 			
 			// 1

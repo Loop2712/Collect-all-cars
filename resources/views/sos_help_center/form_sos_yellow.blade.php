@@ -976,7 +976,7 @@
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
 									<input type="radio" {{ $check_operating_suit_type_1 }} name="operating_suit_type" value="FR"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center" onclick="check_show_btn_form_color('FR');">
 										<b>FR</b>
 									</div>
 								</label>
@@ -984,7 +984,7 @@
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
 									<input type="radio" {{ $check_operating_suit_type_2 }} name="operating_suit_type" value="BLS"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center" onclick="check_show_btn_form_color('BLS');">
 										<b>BLS</b>
 									</div>
 								</label>
@@ -992,7 +992,7 @@
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
 									<input type="radio" {{ $check_operating_suit_type_3 }} name="operating_suit_type" value="ILS"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center" onclick="check_show_btn_form_color('ILS');">
 										<b>ILS</b>
 									</div>
 								</label>
@@ -1000,7 +1000,7 @@
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
 									<input type="radio" {{ $check_operating_suit_type_4 }} name="operating_suit_type" value="ALS"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center" onclick="check_show_btn_form_color('ALS');">
 										<b>ALS</b>
 									</div>
 								</label>
@@ -1808,6 +1808,7 @@
 			document.querySelector('#btn_select_operating_unit').disabled = false ;
 			document.querySelector('#btn_select_operating_unit').classList.add('btn-danger');
 			document.querySelector('#btn_select_operating_unit').classList.remove('btn-secondary');
+
 		}else{
 			document.querySelector('#btn_get_location_user').disabled = true ;
 			document.querySelector('#btn_select_operating_unit').disabled = true ;
@@ -1820,14 +1821,14 @@
 		// console.log(type);
 		
 		let active = window.location.href.split('#step-')[1];
-			console.log(active);
+			// console.log(active);
 
 		check_color_btn(active);
 		send_save_data(active);
 	}
 
 	function go_to_form_data(click_to){
-		console.log(click_to);
+		// console.log(click_to);
 
 		let active = window.location.href.split('#step-')[1];
 
@@ -2099,7 +2100,7 @@
 			        "submission_criteria" : submission_criteria_value,
 			        "communication_hospital" : communication_hospital_value,
 			    };
-			    console.log(data_arr);
+			    // console.log(data_arr);
 		    break;
 		    case '9':
 		    	data_arr = {
