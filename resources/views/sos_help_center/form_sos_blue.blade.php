@@ -286,12 +286,12 @@
                         </div>
 					</div>
 
-
+					<!---------------------------------- ข้อ 3  ---------------------------------->
                     <div id="blue-3" class="tab-pane" role="tabpanel" aria-labelledby="blue-3">
                         <div class="card-title d-flex align-items-center">
 							<div><i class="fa-solid fa-truck-clock me-1 font-22 text-primary"></i>
 							</div>
-							<h5 class="mb-0 text-primary">ผุ้เจ็บป่วย</h5>
+							<h5 class="mb-0 text-primary">ผู้เจ็บป่วย</h5>
 						</div>
 						<hr>
                         <div class="row">
@@ -545,10 +545,19 @@
 								    </div>
                                 </div>
                             </div>
+
+
+                            <div class="col-12 d-flex justify-content-center">
+                                <div class="card-title d-flex align-items-center text-center mt-3">
+                                    <h5 class="mb-0 text-primary">สภาพผู้ป่วย</h5>
+                                    </div>
+                                
+                            </div>
+                            <hr>
                            
 
-                            <div class="col-12 mt-3">
-								<label class="form-label">ประเภทผู้ป่วย</label>
+                            <div class="col-12 ">
+								<label class="form-label"> <b>ประเภทผู้ป่วย</b> </label>
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
@@ -577,7 +586,7 @@
                             
 
                             <div class="col-12 mt-3">
-								<label class="form-label">ความรู้สึกตัว</label>
+								<label class="form-label"> <b>ความรู้สึกตัว</b> </label>
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
@@ -642,7 +651,7 @@
 
 
                             <div class="col-12 mt-3">
-								<label class="form-label">การหายใจ</label>
+								<label class="form-label"> <b>การหายใจ</b> </label>
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
@@ -706,7 +715,7 @@
                             </div>
 
                             <div class="col-12 mt-3">
-								<label class="form-label">บาดแผล</label>
+								<label class="form-label"> <b>บาดแผล</b> </label>
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
@@ -818,7 +827,7 @@
                             </div>
 
                             <div class="col-12 mt-3">
-								<label class="form-label">กระดูกผิดรูป</label>
+								<label class="form-label"> <b>กระดูกผิดรูป</b> </label>
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
@@ -845,10 +854,536 @@
                                 </div>
                             </div>
 
-                            <div style="margin-top: 100px;"></div>
+
+                            <div class="col-12 mt-3">
+								<label class="form-label"> <b>อวัยวะ</b> </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="organ" value="ศรีษะ/คอ"  class=" card-input-element d-none">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                 ศรีษะ/คอ
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="organ" value="ใบหน้า"  class=" card-input-element d-none">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                 ใบหน้า
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="organ" value="สันหลัง/หลัง"  class=" card-input-element d-none">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                 สันหลัง/หลัง
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="organ" value="หน้าอก/ไหปลาร้า"  class=" card-input-element d-none">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                 หน้าอก/ไหปลาร้า
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="organ" value="ช่องท้อง"  class=" card-input-element d-none">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                 ช่องท้อง
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="organ" value="เชิงกราน"  class=" card-input-element d-none">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                 เชิงกราน
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="organ" value="Extremities"  class=" card-input-element d-none">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                 Extremities
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="organ" value="ผิวหนัง"  class=" card-input-element d-none">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                 ผิวหนัง
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="organ" value="Multiple injury back"  class=" card-input-element d-none">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                 Multiple injury back
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 d-flex justify-content-center">
+                                <div class="card-title d-flex align-items-center text-center mt-3">
+                                    <h5 class="mb-0 text-primary">การช่วยเหลือ</h5>
+                                </div>
+                            </div>
+                            <hr>
+                            
+                            <div class="col-12 mt-3">
+								<label class="form-label"> <b>ทางเดินหายใจ</b> </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="respiratory_tract" value="ไม่ได้ทำ"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                            ไม่ได้ทำ
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="respiratory_tract" value="จัดท่าผู้ป่วย"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                            จัดท่าผู้ป่วย
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="respiratory_tract" value="เปิดทางเดินหายใจ"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                            เปิดทางเดินหายใจ
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="respiratory_tract" value="ช่วยหายใจ"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                            ช่วยหายใจ
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="col-12 mt-3">
+								<label class="form-label"> <b>การห้ามเลือด</b> </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="hemostasis" value="ไม่ได้ทำ"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                            ไม่ได้ทำ
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="hemostasis" value="การกดห้ามเลือด"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                            การกดห้ามเลือด
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="hemostasis" value="ทำแผล"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                            ทำแผล
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="col-12 mt-3">
+								<label class="form-label"> <b>การดามกระดูก</b> </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="bone_splint" value="ไม่ได้ทำ"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                            ไม่ได้ทำ
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="bone_splint" value="เฝือกลม/ไม้ดาม"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                            เฝือกลม/ไม้ดาม
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="bone_splint" value="bone_splint"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                            เฝือกดามคอและกระดานรองหลังยาว
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="col-12 mt-3">
+								<label class="form-label"> <b>ช่วยฟื้นคืนชีพ</b> </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="help_revive" value="ไม่ได้ทำ"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                            ไม่ได้ทำ
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="help_revive" value="ทำ"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                           ทำ
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+
+
+                            <div class="col-12 mt-3">
+								<label class="form-label"> <b>ผลการดูแลรักษาเบื้องต้น</b> </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="results_of_care" value="ไม่ยอมให้รักษา"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                        ไม่ยอมให้รักษา
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="results_of_care" value="ทุเลา"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                           ทุเลา
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="results_of_care" value="คงเดิม"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                           คงเดิม
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="results_of_care" value="ทรุดหนัก"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                           ทรุดหนัก
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="results_of_care" value="เสียชีวิต ณ จุดเกิดเหตุ"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                           เสียชีวิต ณ จุดเกิดเหตุ
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <label>
+                                    <input type="checkbox" name="results_of_care" value="เสียชีวิตขณะนำส่ง"  class=" card-input-element d-none">
+                                    <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                        <b>
+                                           เสียชีวิตขณะนำส่ง
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div style="margin-top: 150px;"></div>
                             
                         </div>
 					</div>
+
+                    <!---------------------------------- ข้อ 4  ---------------------------------->
+					<div id="blue-4" class="tab-pane" role="tabpanel" aria-labelledby="blue-4">
+                        <div class="card-title d-flex align-items-center">
+							<div><i class="fa-solid fa-truck-clock me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary">เกณฑ์การตัดสินใจส่งโรงพยาบาล(โดยหัวหน้าทีมและ/ผ่านการเห็นชอบของศูนย์ฯ)</h5>
+						</div>
+						<hr>
+                        <div class="row">
+                            <div class="col-md-4">
+								<label for="name_hospital" class="form-label">นำส่งห้องฉุกเฉินโรงพยาบาล</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-hospital"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="name_hospital" value="" placeholder="ชื่อโรงพยาบาล">
+								</div>
+							</div>
+							<div class="col-md-2">
+								<label for="time_go_to_hospital" class="form-label">เวลา</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-clock"></i></span>
+									<input type="datetime-local" class="form-control border-start-0 radius-2" name="time_go_to_hospital" value="" placeholder="วันที่/เวลา">
+								</div>
+							</div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="type_hospital" value="ชาย"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                โรงพยาบาลรัฐ
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="type_hospital" value="ชาย"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                โรงพยาบาลเอกชน
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-3">
+								<label for="result" class="form-label">เหตุผล</label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="Reason_choosing_hospital" value="เหมาะสม/รักษาได้"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                เหมาะสม/รักษาได้
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="Reason_choosing_hospital" value="อยู่ใกล้"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                อยู่ใกล้
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="Reason_choosing_hospital" value="มีหลักประกัน"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                มีหลักประกัน
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="Reason_choosing_hospital" value="เป็นผู้ป่วยเก่า"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                เป็นผู้ป่วยเก่า
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="checkbox" name="Reason_choosing_hospital" value="เป็นความประสงค์"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                เป็นความประสงค์
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+								<label for="recorder" class="form-label">ผู้สรุปรายงาน</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-pen"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="recorder" value="" placeholder="ชื่อผู้สรุปรายงาน">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<label for="id_recorder" class="form-label">รหัส</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-regular fa-id-card-clip"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="id_recorder" value="" placeholder="รหัส">
+								</div>
+							</div>
+                        </div>
+					</div>
+
+                    <!---------------------------------- ข้อ 5  ---------------------------------->
+					<div id="blue-5" class="tab-pane" role="tabpanel" aria-labelledby="blue-5">
+                        <div class="card-title d-flex align-items-center">
+							<div><i class="fa-solid fa-truck-clock me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary">การประเมิน/รับรองการนำส่ง(โดยแพทย์ พยาบาล ประจำโรงพยาบาลที่รับดูแลต่อ)</h5>
+						</div>
+						<hr>
+                        <div class="row">
+                            <div class="col-md-4">
+								<label for="hospital_number" class="form-label">HN</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-hospital"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="hospital_number" value="" placeholder="หมายเลขของผู้ป่วยนอก">
+								</div>
+							</div>
+							<div class="col-md-2">
+								<label for="diagnosis" class="form-label">การวินิจฉัยโรค</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-clock"></i></span>
+									<input type="datetime-local" class="form-control border-start-0 radius-2" name="diagnosis" value="" placeholder="การวินิจฉัยโรค">
+								</div>
+							</div>
+                            
+                            <div class="col-12 mt-3">
+								<label for="result" class="form-label">ระดับการคัดแยก(ER Triage)</label>
+                            </div>
+
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <label>
+                                    <input type="radio" name="idc" value="แดง(วิกฤติ)"  class="card-input-red card-input-element d-none" >
+                                    <div class="card card-body text-danger d-flex flex-row justify-content-between align-items-center">
+                                        <b>
+                                            แดง(วิกฤติ)  
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <label>
+                                    <input type="radio" name="idc" value="ขาว(ทั่วไป)"  class="card-input-element d-none" >
+                                    <div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+                                        <b>
+                                            ขาว(ทั่วไป)    
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <label>
+                                    <input type="radio" name="idc" value="เหลือง(เร่งด่วน)"  class="card-input-warning card-input-element d-none" >
+                                    <div class="card card-body text-warning d-flex flex-row justify-content-between align-items-center">
+                                        <b>
+                                            เหลือง(เร่งด่วน)  
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <label>
+                                    <input type="radio" name="idc" value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-dark card-input-element d-none" >
+                                    <div class="card card-body  text-dark d-flex flex-row justify-content-between align-items-center">
+                                        <b>
+                                            ดำ(รับบริการสาธารณสุขอื่น)  
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <label>
+                                    <input type="radio" name="idc" value="แดง(วิกฤติ)"  class="card-input-success card-input-element d-none" >
+                                    <div class="card card-body text-success d-flex flex-row justify-content-between align-items-center">
+                                        <b>
+                                            เขียว(ไม่รุนแรง)
+                                        </b>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+					</div>
+
 				</div>
 				
 			</div>

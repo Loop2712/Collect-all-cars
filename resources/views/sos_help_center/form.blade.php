@@ -225,6 +225,13 @@
                         color: #fff;
                         }
 
+                        .nav-pills-danger.nav-pills .nav-link{
+                        color: #db2d2e;
+                        }
+                        .nav-pills-danger.nav-pills .nav-link:hover{
+                        color: #fff;
+                        }
+
                     </style>
                     <ul class="nav nav-pills m-3" role="tablist">
                         <li id="btn_operation" class="nav-item nav-pills nav-pills-purple m-2 d-none" role="presentation">
@@ -275,8 +282,8 @@
                                 </div>
                             </a>
                         </li>
-                        <li id="btn_select_operating_unit" class="nav-item nav-pills nav-pills-secondary m-2" role="presentation">
-                            <a class="nav-link  btn-outline-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="open_map_operating_unit();">
+                        <li id="btn_select_operating_unit" class="nav-item nav-pills nav-pills-danger m-2 " role="presentation">
+                            <a class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="open_map_operating_unit();">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
