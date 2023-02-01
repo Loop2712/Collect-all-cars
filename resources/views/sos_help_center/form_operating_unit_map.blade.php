@@ -466,8 +466,8 @@ function get_Directions_API(markerA, markerB) {
 	});
 
     service.route({
-        origin: markerA.getPosition(),
-        destination: markerB.getPosition(),
+        origin: markerB.getPosition(),
+        destination: markerA.getPosition(),
         travelMode: 'DRIVING'
     }, function(response, status) {
         if (status === 'OK') {
