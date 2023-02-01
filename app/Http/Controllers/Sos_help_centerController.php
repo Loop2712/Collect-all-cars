@@ -483,7 +483,7 @@ class Sos_help_centerController extends Controller
                     'time_go_to_help' => $date_now,
                 ]);
 
-            // return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
+            return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
 
         }else if($answer == "refuse"){
 
