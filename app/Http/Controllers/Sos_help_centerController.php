@@ -445,7 +445,7 @@ class Sos_help_centerController extends Controller
         if(Auth::check()){
             return redirect('sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '&unit_id=' . $unit_id);
         }else{
-            return redirect('/login/line?redirectTo=' . 'sos_help_center/reply_select_2/' . $sos_id . '&answer=' . $answer . '&unit_id=' . $unit_id);
+            return redirect('/login/line?redirectTo=' . 'sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '&unit_id=' . $unit_id);
         }
     }
 
@@ -487,6 +487,7 @@ class Sos_help_centerController extends Controller
                 ])
             ->update(['status' => "ปฏิเสธ"]);
 
+            // ส่งไลน์ "คุณได้ทำการปฏิเสธ"
             return view('return_line');
         }
 
