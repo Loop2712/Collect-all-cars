@@ -442,10 +442,10 @@ class Sos_help_centerController extends Controller
         $answer = $requestData['answer'] ;
         $unit_id = $requestData['unit_id'] ;
 
-        $redirectTo = 'sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '&unit_id=' . $unit_id ;
+        $redirectTo = 'sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '?unit_id=' . $unit_id ;
 
         if(Auth::check()){
-            return redirect('sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '?unit_id=' . $unit_id);
+            return redirect('sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '&unit_id=' . $unit_id);
         }else{
             return redirect('/login/line?redirectTo=' . $redirectTo);
         }
