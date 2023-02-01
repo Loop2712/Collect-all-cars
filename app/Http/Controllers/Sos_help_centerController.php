@@ -445,7 +445,7 @@ class Sos_help_centerController extends Controller
         $redirectTo = 'sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '&unit_id=' . $unit_id ;
 
         if(Auth::check()){
-            return redirect('sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '&unit_id=' . $unit_id);
+            return redirect('sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '?unit_id=' . $unit_id);
         }else{
             return redirect('/login/line?redirectTo=' . $redirectTo);
         }
