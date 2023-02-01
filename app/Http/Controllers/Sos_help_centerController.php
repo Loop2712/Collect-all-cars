@@ -442,10 +442,10 @@ class Sos_help_centerController extends Controller
         $answer = $requestData['answer'] ;
         $unit_id = $requestData['unit_id'] ;
 
-        $redirectTo = 'sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '&unit_id=' . $unit_id ;
+        $redirectTo = 'sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '_and_unit_id=' . $unit_id ;
 
         if(Auth::check()){
-            return redirect('sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '&unit_id=' . $unit_id);
+            return redirect('sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '_and_unit_id=' . $unit_id);
         }else{
             return redirect('/login/line?redirectTo=' . $redirectTo);
         }
@@ -457,8 +457,12 @@ class Sos_help_centerController extends Controller
         $date_now = date("Y-m-d H:i:s");
 
         $requestData = $request->all();
-        $answer = $requestData['answer'] ;
-        $unit_id = $requestData['unit_id'] ;
+
+        $all_answer = $requestData['answer'] ;
+        $ans_explode = explode("_and_unit_id=",$all_answer) ;
+
+        $answer = $ans_explode[0] ;
+        $unit_id = $ans_explode[1] ;
 
         $data_sos = Sos_help_center::where('id' , $sos_id)->first();
         $data_unit = Data_1669_operating_unit::where('id' , $unit_id)->first();
