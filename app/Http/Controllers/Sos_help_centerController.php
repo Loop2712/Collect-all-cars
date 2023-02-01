@@ -12,6 +12,7 @@ use Google\Service\AlertCenter\Resource\Alerts;
 use Illuminate\Http\Request;
 use SebastianBergmann\Environment\Console;
 use App\Models\Data_1669_operating_officer;
+use App\Models\Data_1669_operating_unit;
 use App\Models\Mylog;
 use App\User;
 
@@ -366,8 +367,18 @@ class Sos_help_centerController extends Controller
         }else{
             $string_json = str_replace("https://www.viicheck.com/storage/photo_sos.png","https://www.viicheck.com/img/stickerline/Flex/1.png",$string_json);
         }
-        // ข้อมูล
-        $string_json = str_replace("name_user",$data_sos->name_user,$string_json);
+
+        // ข้อมูลผู้ขอความช่วยเหลือ
+        if ( !empty($data_sos->name_user) ) {
+            $string_json = str_replace("name_user",$data_sos->name_user,$string_json);
+        }else{
+            $string_json = str_replace("name_user","ไม่ได้ระบุ",$string_json);
+        }
+
+        if ( !empty($data_sos->phone_user) ) {
+            $string_json = str_replace("phone_user",$data_sos->phone_user,$string_json);
+        }
+
         $string_json = str_replace("distance",$distance ." กม.",$string_json);
         $string_json = str_replace("date_time",$date_now,$string_json);
 
@@ -378,10 +389,7 @@ class Sos_help_centerController extends Controller
 
         // ปุ่มกำลังไปช่วยเหลือ และ ปฏิเสธ
         $string_json = str_replace("SOS_ID",$data_sos->id,$string_json);
-
-        // โทร
-        $string_json = str_replace("0999999999",$data_sos->phone_user,$string_json);
-
+        $string_json = str_replace("_UNIT_ID_",$operating_unit_id,$string_json);
 
         $messages = [ json_decode($string_json, true) ];
 
@@ -431,47 +439,51 @@ class Sos_help_centerController extends Controller
     function reply_select($sos_id , Request $request)
     {
         $data_user = Auth::user();
+        $date_now = date("Y-m-d H:i:s");
 
         $requestData = $request->all();
         $answer = $requestData['answer'] ;
+        $unit_id = $requestData['unit_id'] ;
 
         $data_sos = Sos_help_center::where('id' , $sos_id)->first();
+        $data_unit = Data_1669_operating_unit::where('id' , $unit_id)->first();
 
         if ($answer == "go_to_help") {
-            echo $data_user->name ;
-            echo "<br>--------------------------------<br>" ;
-            echo $answer ;
-            echo "<br>--------------------------------<br>" ;
 
-            echo "<pre>";
-            print_r($data_sos);
-            echo "<pre>";
-
-            // ******** UPDATE ข้อมูลเจ้าหน้าที่ในตาราง sos_help_center ด้วย *******
-
+            // ******** UPDATE ข้อมูลเจ้าหน้าที่ในตาราง sos_help_center *******
             DB::table('sos_help_centers')
             ->where([ 
                     ['id', $sos_id],
                 ])
-            ->update(['status' => "ออกจากฐาน"]);
+            ->update(
+                ['status' => "ออกจากฐาน"],
+                ['organization_helper' => $data_unit->name],
+                ['operating_unit_id' => $data_unit->id],
+                ['name_helper' => $data_user->name],
+                ['helper_id' => $data_user->id],
+                ['time_go_to_help' => $date_now],
+            );
+
+            return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
 
         }else if($answer == "refuse"){
-            echo $data_user->name ;
-            echo "<br>--------------------------------<br>" ;
-            echo $answer ;
-            echo "<br>--------------------------------<br>" ;
-
-            echo "<pre>";
-            print_r($data_sos);
-            echo "<pre>";
 
             DB::table('sos_help_centers')
             ->where([ 
                     ['id', $sos_id],
                 ])
             ->update(['status' => "ปฏิเสธ"]);
+
+            return back()->withInput();
         }
 
+    }
+
+    public function show_case_sos($id)
+    {
+        $data_sos = Sos_help_center::findOrFail($id);
+
+        return view('sos_help_center. show_case', compact('data_sos'));
     }
 
 }

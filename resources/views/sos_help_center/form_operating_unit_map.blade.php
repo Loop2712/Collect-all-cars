@@ -111,6 +111,44 @@ modal cf_select_operating_unit
                     </div>
                 </div>
             </div>
+
+            <!-- UNIT refuse -->
+            <div id="div_unit_refuse" class="d-none">
+                <div class="modal-body" style="background-color:lightblue;">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-8">
+                                <br>
+                                <h2>หน่วยแพทย์<br>ปฏิเสธ</h2>
+                            </div>
+                            <div class="col-4">
+                                <br>
+                                <img style="width:100%;" src="{{ url('/') }}/img/stickerline/PNG/17.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="modal-body text-center">
+                    <div class="col-12">
+                        <img style="width:70%;" src="{{ url('/') }}/img/icon/wrong.png">
+                        <br>
+                        <h3 class="text-danger">ปฏิเสธ</h3>
+                    </div>
+                </div>
+                <hr>
+                <div class="modal-body text-center">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <span style="width:80%;" class="btn btn-sm btn-warning text-white main-shadow main-radius close" type="button"  data-dismiss="modal" aria-label="Close">
+                                    เปลี่ยน <i class="fa-duotone fa-right-left"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
         </div>
     </div>
@@ -170,8 +208,8 @@ const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่
 function map_operating_unit() {
     let sos_lat = document.querySelector('#lat'); 
     let sos_lng = document.querySelector('#lng'); 
-        // console.log(parseFloat(lat.value));
-        // console.log(parseFloat(lng.value));
+        // console.log(parseFloat(sos_lat.value));
+        // console.log(parseFloat(sos_lng.value));
 
     let m_lat = "";
     let m_lng = "";
@@ -472,6 +510,7 @@ function select_operating_unit(id , name , distance , level , operating_unit_id 
 	
     document.querySelector('#div_cf_select_unit').classList.remove('d-none');
     document.querySelector('#div_wait_unit').classList.add('d-none');
+    document.querySelector('#div_unit_refuse').classList.add('d-none');
 
     document.querySelector('#cf_select_name').innerHTML = name ;
     document.querySelector('#cf_select_area').innerHTML = area ;
@@ -521,6 +560,7 @@ function send_data_sos_tooperating_unit(sos_id , operating_unit_id , user_id , d
 
     document.querySelector('#div_cf_select_unit').classList.add('d-none');
     document.querySelector('#div_wait_unit').classList.remove('d-none');
+    document.querySelector('#div_unit_refuse').classList.add('d-none');
 
 }
 
@@ -539,6 +579,9 @@ function wait_operating_unit(sos_id){
                 if (result === "ปฏิเสธ") {
                     myStop_setInterval();
                     // เปลี่ยน DIV ใน MODAL ให้แสดงถึงการปฏิเสธ
+                    document.querySelector('#div_cf_select_unit').classList.add('d-none');
+                    document.querySelector('#div_wait_unit').classList.add('d-none');
+                    document.querySelector('#div_unit_refuse').classList.remove('d-none');
                 }else if (result === "ออกจากฐาน") {
                     myStop_setInterval();
                     document.querySelector('#btn_close_modal_cf_select').click();
