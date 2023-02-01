@@ -244,7 +244,7 @@
                             </a>
                         </li>
                         <li id="btn_form_yellow" class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
-                            <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#step-1" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');">
+                            <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                     </div>
@@ -253,7 +253,7 @@
                             </a>
                         </li>
                         <li id="btn_form_blue" class="nav-item nav-pills nav-pills-info m-2 d-none" role="presentation">
-                            <a class="nav-link  btn-outline-info btn" data-bs-toggle="pill" href="#blue-1" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');">
+                            <a class="nav-link  btn-outline-info btn" data-bs-toggle="pill" href="#form-blue" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
