@@ -11,7 +11,7 @@
 						<button style="position: relative;z-index: 999999;border-radius: 50px;" class="btn btn-info shadow" id="prev-btn-form-blue" type="button"><i class="fa-solid fa-chevron-left"></i></button>
 					</li> -->
 					<li class="nav-item">
-						<a class="nav-link danger" href="#blue-1" > 
+						<a id="step_blue_1" class="nav-link danger" href="#blue-1" > 
 							<strong>หน่วย</strong>
 						</a>
 					</li> 
