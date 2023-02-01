@@ -447,7 +447,7 @@ class Sos_help_centerController extends Controller
         if(Auth::check()){
             return redirect('sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '&unit_id=' . $unit_id);
         }else{
-            return redirect('/login/line?redirectTo=' . 'sos_help_center/reply_select_2/' . $sos_id . '?answer=' . $answer . '&unit_id=' . $unit_id);
+            return redirect('/login/line?redirectTo=' . $redirectTo);
         }
     }
 
@@ -470,14 +470,14 @@ class Sos_help_centerController extends Controller
             ->where([ 
                     ['id', $sos_id],
                 ])
-            ->update(
-                ['status' => "ออกจากฐาน"],
-                ['organization_helper' => $data_unit->name],
-                ['operating_unit_id' => $data_unit->id],
-                ['name_helper' => $data_user->name],
-                ['helper_id' => $data_user->id],
-                ['time_go_to_help' => $date_now],
-            );
+            ->update([
+                    'status' => "ออกจากฐาน",
+                    'organization_helper' => $data_unit->name,
+                    'operating_unit_id' => $data_unit->id,
+                    'name_helper' => $data_user->name,
+                    'helper_id' => $data_user->id,
+                    'time_go_to_help' => $date_now,
+                ]);
 
             // return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
 
