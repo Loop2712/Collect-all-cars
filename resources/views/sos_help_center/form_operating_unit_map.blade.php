@@ -647,7 +647,8 @@ function wait_operating_unit(sos_id){
                             // ADD DATA officers
                             if (result_2['img_officer']) {
                                 let data_img_officers = document.querySelector('#data_img_officers');
-                                data_img_officers.src = '{{ url("storage/") }}' + result_2['img_officer'] ;
+                                let img_url = "https://www.viicheck.com/storage" + "/" + result_2['img_officer'] ;
+                                data_img_officers.src = img_url  ;
                             }
                             let data_name_officers = document.querySelector('#data_name_officers');
                                 data_name_officers.innerHTML = result_2['name_officer'] ;
