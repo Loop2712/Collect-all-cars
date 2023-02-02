@@ -619,7 +619,7 @@ function wait_operating_unit(sos_id){
                     document.querySelector('#btn_operation').classList.remove('d-none');
                     document.querySelector('#btn_select_operating_unit').classList.add('d-none');
 
-                    fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + officer_id + "/" +  operating_unit_id + "/" + sos_id )
+                    fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id )
                         .then(response => response.json())
                         .then(result_2 => {
                             console.log(result_2);
