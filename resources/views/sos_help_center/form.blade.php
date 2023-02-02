@@ -893,6 +893,7 @@
         let officer_id = "" ;
         let operating_unit_id = "" ;
         let sos_id =  '{{ $sos_help_center->id }}' ;
+        
         if ( '{{ $sos_help_center->helper_id }}' ) {
             officer_id = '{{ $sos_help_center->helper_id }}' ;
             operating_unit_id = '{{ $sos_help_center->operating_unit_id }}' ;

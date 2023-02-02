@@ -595,7 +595,7 @@ function wait_operating_unit(sos_id){
         fetch("{{ url('/') }}/api/check_status_wait_operating_unit" + "/" + sos_id  )
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 let status = result['status'];
                 let officer_id = result['helper_id'];
@@ -603,7 +603,7 @@ function wait_operating_unit(sos_id){
                 let sos_id = result['id'];
 
                 if (status === "ปฏิเสธ") {
-                    
+
                     myStop_setInterval();
 
                     // เปลี่ยน DIV ใน MODAL ให้แสดงถึงการปฏิเสธ
@@ -622,7 +622,7 @@ function wait_operating_unit(sos_id){
                     fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + officer_id + "/" +  operating_unit_id + "/" + sos_id )
                         .then(response => response.json())
                         .then(result_2 => {
-                            console.log(result_2);
+                            // console.log(result_2);
 
                             // ADD DATA operating_unit
                             let data_level_operating_unit = document.querySelector('#data_level_operating_unit');
@@ -647,7 +647,7 @@ function wait_operating_unit(sos_id){
                             // ADD DATA officers
                             if (result_2['img_officer']) {
                                 let data_img_officers = document.querySelector('#data_img_officers');
-                                data_img_officers.src = '{{ url("storage") }}' + '/' + result_2['img_officer'] ;
+                                data_img_officers.src = '{{ url("storage/") }}' + result_2['img_officer'] ;
                             }
                             let data_name_officers = document.querySelector('#data_name_officers');
                                 data_name_officers.innerHTML = result_2['name_officer'] ;
