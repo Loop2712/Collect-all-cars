@@ -648,7 +648,6 @@ function wait_operating_unit(sos_id){
                             if (result_2['img_officer']) {
                                 let data_img_officers = document.querySelector('#data_img_officers');
                                     data_img_officers.src = '{{ url("storage") }}' + '/' + result_2['img_officer'] ;
-                                    data_img_officers.classList.remove('d-none');
                             }
                             let data_name_officers = document.querySelector('#data_name_officers');
                                 data_name_officers.innerHTML = result_2['name_officer'] ;
@@ -656,6 +655,14 @@ function wait_operating_unit(sos_id){
                                 data_sub_organization_officers.innerHTML = result_2['sub_organization_officer'] ;
                             let data_phone_officers = document.querySelector('#data_phone_officers');
                                 data_phone_officers.innerHTML = result_2['phone_officer'] ;
+
+                            let operating_unit_id = document.querySelector('#operating_unit_id');
+                                operating_unit_id.innerHTML = result_2['operating_unit_id'] ;
+                            let officer_id = document.querySelector('#helper_id');
+                                officer_id.innerHTML = result_2['officer_id'] ;
+
+                                document.querySelector('#data_officers_by_js').classList.remove('d-none');
+                                document.querySelector('#data_officers_by_php').classList.add('d-none');
                     });
 
                     document.querySelector('#tag_a_operation').click();

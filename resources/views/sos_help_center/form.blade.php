@@ -384,28 +384,47 @@
                     <div class="card radius-15">
                         <div class="card-body text-center">
                             <div class="p-4 border radius-15 row">
-                                <div class="col-3">
-                                    <img id="data_img_officers" src="" width="80" height="80" class="rounded-circle shadow d-none">
-                                    @if(!empty($sos_help_center->officers_user->photo))
-                                        <img src="{{ url('storage')}}/{{ $sos_help_center->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
-                                    @else
-                                        <img src="{{ url('/img/stickerline/Flex/12.png') }}" width="80" height="80"  class="rounded-circle shadow">
-                                    @endif
-                                </div>
-                                <div class="col-9">
-                                    @if(!empty($sos_help_center->officers_user->name))
-                                        <h5 id="data_name_officers" class="mb-0 mt-3">{{ $sos_help_center->officers_user->name }}</h5>
-                                        <p id="data_sub_organization_officers" class="mb-3 mt-1">{{ str_replace("_"," ",$sos_help_center->officers_user->sub_organization) }}</p>
-                                    @endif
-                                </div>
-                                <div class="d-grid">
-                                    <br>
-                                    @if(!empty($sos_help_center->officers_user->phone))
+
+                                <div id="data_officers_by_js" class="d-none">
+                                    <div class="col-3">
+                                        <img id="data_img_officers" src="" width="80" height="80" class="rounded-circle shadow">
+                                    </div>
+                                    <div class="col-9">
+                                        <h5 id="data_name_officers" class="mb-0 mt-3"></h5>
+                                        <p id="data_sub_organization_officers" class="mb-3 mt-1"></p>
+                                    </div>
+                                    <div class="d-grid">
+                                        <br>
                                         <a id="data_phone_officers" href="tel:{{ $sos_help_center->officers_user->phone }}" class="btn btn-outline-primary radius-15">
-                                            เบอร์ {{ $sos_help_center->officers_user->phone }}
+                                            เบอร์ 
                                         </a>
-                                    @endif
+                                    </div>
                                 </div>
+                                
+                                <div id="data_officers_by_php" class="">
+                                    <div id="" class="col-3">
+                                        @if(!empty($sos_help_center->officers_user->photo))
+                                            <img src="{{ url('storage')}}/{{ $sos_help_center->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
+                                        @else
+                                            <img src="{{ url('/img/stickerline/Flex/12.png') }}" width="80" height="80"  class="rounded-circle shadow">
+                                        @endif
+                                    </div>
+                                    <div class="col-9">
+                                        @if(!empty($sos_help_center->officers_user->name))
+                                            <h5 class="mb-0 mt-3">{{ $sos_help_center->officers_user->name }}</h5>
+                                            <p class="mb-3 mt-1">{{ str_replace("_"," ",$sos_help_center->officers_user->sub_organization) }}</p>
+                                        @endif
+                                    </div>
+                                    <div class="d-grid">
+                                        <br>
+                                        @if(!empty($sos_help_center->officers_user->phone))
+                                            <a href="tel:{{ $sos_help_center->officers_user->phone }}" class="btn btn-outline-primary radius-15">
+                                                เบอร์ {{ $sos_help_center->officers_user->phone }}
+                                            </a>
+                                        @endif
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -768,11 +787,10 @@
 </div> -->
 
 
-
+<!-- ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ - ห้ามลบ - ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ -->
 
 <div class="item sos-map bg-white d-none">
-<br><br><br><br>
-    
+
     <div class="form-group {{ $errors->has('photo_sos') ? 'has-error' : ''}}">
         <label for="photo_sos" class="control-label">{{ 'Photo Sos' }}</label>
         <input class="form-control" name="photo_sos" type="file" id="photo_sos" value="{{ isset($sos_help_center->photo_sos) ? $sos_help_center->photo_sos : ''}}" >
@@ -793,10 +811,10 @@
         <input class="form-control" name="name_helper" type="text" id="name_helper" value="{{ isset($sos_help_center->name_helper) ? $sos_help_center->name_helper : ''}}" >
         {!! $errors->first('name_helper', '<p class="help-block">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('partner_id') ? 'has-error' : ''}}">
-        <label for="partner_id" class="control-label">{{ 'Partner Id' }}</label>
-        <input class="form-control" name="partner_id" type="number" id="partner_id" value="{{ isset($sos_help_center->partner_id) ? $sos_help_center->partner_id : ''}}" >
-        {!! $errors->first('partner_id', '<p class="help-block">:message</p>') !!}
+    <div class="form-group {{ $errors->has('operating_unit_id') ? 'has-error' : ''}}">
+        <label for="operating_unit_id" class="control-label">{{ 'Partner Id' }}</label>
+        <input class="form-control" name="operating_unit_id" type="number" id="operating_unit_id" value="{{ isset($sos_help_center->operating_unit_id) ? $sos_help_center->operating_unit_id : ''}}" >
+        {!! $errors->first('operating_unit_id', '<p class="help-block">:message</p>') !!}
     </div>
     <div class="form-group {{ $errors->has('helper_id') ? 'has-error' : ''}}">
         <label for="helper_id" class="control-label">{{ 'Helper Id' }}</label>
@@ -849,12 +867,13 @@
         {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
     </div>
 
-
     <div class="form-group">
         <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
     </div>
 
 </div>
+
+<!-- ⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆ - ห้ามลบ - ⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆ -->
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
@@ -891,14 +910,9 @@
     function reface_map_go_to_help(){
         show_div_sos_or_unit('show_unit');
 
-        let officer_id = "" ;
-        let operating_unit_id = "" ;
+        let officer_id = document.querySelector('#helper_id').value ;
+        let operating_unit_id = document.querySelector('#operating_unit_id').value ;
         let sos_id =  '{{ $sos_help_center->id }}' ;
-
-        if ( '{{ $sos_help_center->helper_id }}' ) {
-            officer_id = '{{ $sos_help_center->helper_id }}' ;
-            operating_unit_id = '{{ $sos_help_center->operating_unit_id }}' ;
-        }
 
         console.log(officer_id);
         console.log(operating_unit_id);

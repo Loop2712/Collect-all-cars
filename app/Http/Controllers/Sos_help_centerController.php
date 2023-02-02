@@ -532,6 +532,7 @@ class Sos_help_centerController extends Controller
         $data['phone_officer'] = $data_user->phone ;
         $data['sub_organization_officer'] = $data_user->sub_organization ;
         $data['img_officer'] = $data_user->photo ;
+        $data['officer_id'] = $officer_id ;
 
         $data['officer_lng'] = $data_officer->lng ;
         $data['officer_lng'] = $data_officer->lng ;
@@ -541,6 +542,7 @@ class Sos_help_centerController extends Controller
 
         $data['unit_name'] = $data_sos->organization_helper ;
         $data['unit_area'] = $data_officer->operating_unit->area ;
+        $data['operating_unit_id'] = $operating_unit_id ;
 
         return $data ;
 
