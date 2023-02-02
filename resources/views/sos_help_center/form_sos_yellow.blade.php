@@ -405,13 +405,13 @@
 							<div class="col-md-6">
 								<label for="name_user" class="form-label">ชื่อ/รหัสผู้แจ้งเหตุ</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="bx bxs-user"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="name_user" value="{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}" placeholder="ชื่อ/รหัสผู้แจ้งเหตุ">
+									<input type="text" class="form-control border-start-0 radius-2" id="name_user" name="name_user" value="{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}" placeholder="ชื่อ/รหัสผู้แจ้งเหตุ" oninput="document.querySelector('#u_name_user').innerHTML = document.querySelector('#name_user').value ;">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<label for="phone_user" class="form-label">โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-phone"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="phone_user" value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}" placeholder="โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ">
+									<input type="text" class="form-control border-start-0 radius-2" id="phone_user" name="phone_user" value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}" placeholder="โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ" oninput="document.querySelector('#u_phone_user').innerHTML = document.querySelector('#phone_user').value ;">
 								</div>
 							</div>
 
@@ -937,7 +937,7 @@
 							<div class="col-12"></div>
 							
 							<div class="col-md-6">
-								<label for="name_user" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
+								<label for="" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
 									<input type="text" class="form-control border-start-0 radius-2" name="operation_unit_name" value="{{ isset($sos_help_center->form_yellow->operation_unit_name) ? $sos_help_center->form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ">
 								</div>
@@ -1409,7 +1409,7 @@
 							<legend class="float-none w-auto px-3">ผู้ป่วย ๑</legend>
 							<div class="row">
 								<div class="col-12 col-md-4 col-lg-4">
-									<label for="name_user" class="form-label">ผู้ป่วย ๑. ชื่อ-สกุล</label>
+									<label for="" class="form-label">ผู้ป่วย ๑. ชื่อ-สกุล</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user"></i></span>
 										<input type="text" class="form-control border-start-0 radius-2" name="patient_name_1" id="patient_name_1" value="{{ isset($sos_help_center->form_yellow->patient_name_1) ? $sos_help_center->form_yellow->patient_name_1 : ''}}" placeholder="ชื่อ-สกุล">
 									</div>
@@ -1454,7 +1454,7 @@
 							<legend class="float-none w-auto px-3">ผู้ป่วย ๒</legend>
 							<div class="row">
 								<div class="col-12 col-md-4 col-lg-4">
-									<label for="name_user" class="form-label">ผู้ป่วย ๑. ชื่อ-สกุล</label>
+									<label for="" class="form-label">ผู้ป่วย ๑. ชื่อ-สกุล</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user"></i></span>
 										<input type="text" class="form-control border-start-0 radius-2" name="patient_name_2" id="patient_name_2" value="{{ isset($sos_help_center->form_yellow->patient_name_2) ? $sos_help_center->form_yellow->patient_name_2 : ''}}" placeholder="ชื่อ-สกุล">
 									</div>

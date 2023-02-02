@@ -235,7 +235,7 @@
                     </style>
                     <ul class="nav nav-pills m-3" role="tablist">
                         <li id="btn_operation" class="nav-item nav-pills nav-pills-purple m-2 d-none" role="presentation">
-                            <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_unit');">
+                            <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="reface_map_go_to_help();">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                     </div>
@@ -301,18 +301,19 @@
     <div class="col-12 col-md-3 col-lg-3">
         <div class="sticky">
             <div class="card radius-10 p-3">
+                <h3><b>ข้อมูลผู้แจ้งเหตุ</b></h3>
                 <span>
                     ชื่อ/รหัสผู้แจ้งเหตุ
                 </span>
                 <h4>
-                    <u>{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}</u>
+                    <u id="u_name_user">{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}</u>
                 </h4>
                 <hr>
                 <span class="mt-2">
                     โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ
                 </span>
                 <h4>
-                    <u>{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}</u>
+                    <u id="u_phone_user">{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}</u>
                 </h4>
             </div>
             <div class="card radius-10 p-3" id="div_detail_sos">
@@ -335,7 +336,77 @@
                 </div>
             </div>
             <div class="card radius-10 p-3 d-none" id="div_data_operating">
-                div_data_operating
+                <!-- div_data_operating -->
+                <h3>
+                    <b>ข้อมูลหน่วยแพทย์</b>
+                    @if(!empty($sos_help_center->operating_unit->level))
+                        @switch($sos_help_center->operating_unit->level)
+                            @case('FR')
+                                <span class="float-end btn btn-sm btn-success main-shadow main-radius">
+                                    {{ $sos_help_center->operating_unit->level }}
+                                </span>
+                            @break
+                            @case('BLS')
+                                <span class="float-end btn btn-sm btn-warning text-white main-shadow main-radius">
+                                    {{ $sos_help_center->operating_unit->level }}
+                                </span>
+                            @break
+                            @case('ILS')
+                                <span class="float-end btn btn-sm btn-danger main-shadow main-radius">
+                                    {{ $sos_help_center->operating_unit->level }}
+                                </span>
+                            @break
+                            @case('ALS')
+                                <span class="float-end btn btn-sm btn-danger main-shadow main-radius">
+                                    {{ $sos_help_center->operating_unit->level }}
+                                </span>
+                            @break
+                        @endswitch
+                    @endif
+                </h3>
+                <span>
+                    ชื่อหน่วย
+                </span>
+                <h5>
+                    <u>{{ isset($sos_help_center->organization_helper) ? $sos_help_center->organization_helper : ''}}</u>
+                </h5>
+                <span class="mt-2">
+                    พื้นที่ (สังกัด)
+                </span>
+                <h5>
+                    <u>{{ isset($sos_help_center->operating_unit->area) ? $sos_help_center->operating_unit->area : ''}}</u>
+                </h5>
+                <hr>
+                <h5><b>ข้อมูลเจ้าหน้าที่</b></h5>
+                <div class="col">
+                    <div class="card radius-15">
+                        <div class="card-body text-center">
+                            <div class="p-4 border radius-15 row">
+                                <div class="col-3">
+                                    @if(!empty($sos_help_center->officers_user->photo))
+                                        <img src="{{ url('storage')}}/{{ $sos_help_center->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
+                                    @else
+                                        <img src="{{ url('/img/stickerline/Flex/12.png') }}" width="80" height="80"  class="rounded-circle shadow">
+                                    @endif
+                                </div>
+                                <div class="col-9">
+                                    @if(!empty($sos_help_center->officers_user->name))
+                                        <h5 class="mb-0 mt-3">{{ $sos_help_center->officers_user->name }}</h5>
+                                        <p class="mb-3 mt-1">{{ str_replace("_"," ",$sos_help_center->officers_user->sub_organization) }}</p>
+                                    @endif
+                                </div>
+                                <div class="d-grid">
+                                    <br>
+                                    @if(!empty($sos_help_center->officers_user->phone))
+                                        <a href="tel:{{ $sos_help_center->officers_user->phone }}" class="btn btn-outline-primary radius-15">
+                                            เบอร์ {{ $sos_help_center->officers_user->phone }}
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -355,9 +426,18 @@
 
             <!--------------------------------- operation --------------------------------->
             <div class="tab-pane fade" id="operation" role="tabpanel">
-                <div class="card radius-10 p-3 yellow-form">
+                <div class="card radius-10 p-3">
                     <div class="row">
-                        <h1>ดำเนินการ</h1>
+                        <div class="col-12">
+                            <h4>
+                                <b>สถานะ : </b> <span id="show_status">หห</span>
+                                &nbsp;&nbsp;
+                                <b>ระยะทาง : </b> <span id="show_distance">1.7</span> กม.
+                            </h4>
+                        </div>
+                        <div class="col-12">
+                            <div id="map_go_to_help"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -792,10 +872,87 @@
       height: calc(80vh);
     }
 
+    #map_go_to_help {
+      height: calc(80vh);
+    }
+
     #mapTest {
       height: calc(80vh);
     }
 </style>
+
+<!-- MAP GO TO HELP -->
+<script>
+
+    function reface_map_go_to_help(){
+        show_div_sos_or_unit('show_unit');
+
+        let officer_id = "" ;
+        let operating_unit_id = "" ;
+        let sos_id =  '{{ $sos_help_center->id }}' ;
+        if ( '{{ $sos_help_center->helper_id }}' ) {
+            officer_id = '{{ $sos_help_center->helper_id }}' ;
+            operating_unit_id = '{{ $sos_help_center->operating_unit_id }}' ;
+        }
+
+        console.log(officer_id);
+        console.log(operating_unit_id);
+
+        reface_map_go_to = setInterval(function() {
+
+            fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + officer_id + "/" +  operating_unit_id + "/" + sos_id )
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+
+                    if (result['status_sos'] === 'ถึงที่เกิดเหตุ') {
+                        myStop_reface_map_go_to();
+                    }
+            });
+
+        }, 5000);
+
+        map_go_to_help();
+        // map_go_to_help(result['officer_lat'] , result['officer_lng']);
+    }
+
+    function myStop_reface_map_go_to() {
+        clearInterval(reface_map_go_to);
+    }
+
+    function map_go_to_help(){
+
+        let sos_lat = document.querySelector('#lat'); 
+        let sos_lng = document.querySelector('#lng'); 
+        // console.log(parseFloat(sos_lat.value));
+        // console.log(parseFloat(sos_lng.value));
+
+        let m_lat = parseFloat(sos_lat.value);
+        let m_lng = parseFloat(sos_lng.value);
+        let m_numZoom = parseFloat('17');
+
+        map_go_to_help = new google.maps.Map(document.getElementById("map_go_to_help"), {
+            center: {lat: m_lat, lng: m_lng },
+            zoom: m_numZoom,
+        });
+
+        if (sos_lat.value && sos_lng.value) {
+            if (sos_go_to_help_marker) {
+                sos_go_to_help_marker.setMap(null);
+            }
+
+            sos_go_to_help_marker = new google.maps.Marker({
+                position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
+                map: map_go_to_help,
+                icon: image_sos,
+            });
+
+        }
+        
+    }
+</script>
+<!-- END MAP GO TO HELP -->
+
 <script>
 
     const image = "{{ url('/img/icon/operating_unit/sos.png') }}";
@@ -805,6 +962,8 @@
     let sos_marker  ;
     var sos_operating_markers = [] ;
     let sos_operating_marker  ;
+
+    let sos_go_to_help_marker  ;
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");

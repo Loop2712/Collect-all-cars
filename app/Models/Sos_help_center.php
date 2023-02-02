@@ -30,5 +30,14 @@ class Sos_help_center extends Model
     public function form_yellow(){
         return $this->hasOne('App\Models\Sos_1669_form_yellow', 'sos_help_center_id');
     }
-    
+
+    public function operating_unit(){
+        return $this->belongsTo('App\Models\Data_1669_operating_unit', 'operating_unit_id' , 'id'); 
+    }
+
+
+    public function officers_user(){
+        return $this->belongsTo('App\User', 'helper_id' , 'id'); 
+    }
+
 }

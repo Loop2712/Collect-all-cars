@@ -30,4 +30,9 @@ class Data_1669_operating_unit extends Model
     public function operating_officers(){
         return $this->hasMany('App\Models\Data_1669_operating_officer', 'operating_unit_id');
     }
+
+    public function sos_help_center(){
+        return $this->hasMany('App\Models\Sos_help_center', 'operating_unit_id');
+    }
+
 }

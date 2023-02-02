@@ -330,6 +330,7 @@ class Sos_help_centerController extends Controller
             $locations = DB::table('data_1669_operating_units')
             ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
             ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
+            ->where('data_1669_operating_officers.status' , 'Standby')
             ->having("distance", "<", 10)
             ->orderBy("distance")
             ->limit(20)
@@ -339,6 +340,7 @@ class Sos_help_centerController extends Controller
             ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
             ->where('data_1669_operating_units.level' , $level)
             ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
+            ->where('data_1669_operating_officers.status' , 'Standby')
             ->having("distance", "<", 10)
             ->orderBy("distance")
             ->limit(20)
@@ -483,6 +485,16 @@ class Sos_help_centerController extends Controller
                     'time_go_to_help' => $date_now,
                 ]);
 
+            // อัพเดทสถานะ ใน data_1669_operating_officers
+            DB::table('data_1669_operating_officers')
+            ->where([ 
+                    ['user_id', $data_user->id],
+                    ['operating_unit_id', $data_unit->id],
+                ])
+            ->update([
+                    'status' => "Helping",
+                ]);
+
             return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
 
         }else if($answer == "refuse"){
@@ -504,6 +516,24 @@ class Sos_help_centerController extends Controller
         $data_sos = Sos_help_center::findOrFail($id);
 
         return view('sos_help_center.show_case', compact('data_sos'));
+    }
+
+    function get_current_officer_location($officer_id, $operating_unit_id, $sos_id){
+
+        $data_officer = Data_1669_operating_officer::where('operating_unit_id' , $operating_unit_id)
+            ->where('user_id' , $officer_id)
+            ->first();
+
+        $data_sos = Sos_help_center::findOrFail($sos_id);
+
+        $data = [] ;
+        $data['officer_lat'] = $data_officer->lat ;
+        $data['officer_lng'] = $data_officer->lng ;
+        $data['status_sos'] = $data_sos->status ;
+        $data['officer_level'] = $data_officer->operating_unit->level ;
+
+        return $data ;
+
     }
 
 }
