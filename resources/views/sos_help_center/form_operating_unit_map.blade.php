@@ -654,7 +654,8 @@ function wait_operating_unit(sos_id){
                             let data_sub_organization_officers = document.querySelector('#data_sub_organization_officers');
                                 data_sub_organization_officers.innerHTML = result_2['sub_organization_officer'] ;
                             let data_phone_officers = document.querySelector('#data_phone_officers');
-                                data_phone_officers.innerHTML = result_2['phone_officer'] ;
+                                data_phone_officers.innerHTML = 'เบอร์ ' + result_2['phone_officer'] ;
+                                data_phone_officers.href = 'tel:' + result_2['phone_officer'] ;
 
                             let operating_unit_id = document.querySelector('#operating_unit_id');
                                 operating_unit_id.innerHTML = result_2['operating_unit_id'] ;

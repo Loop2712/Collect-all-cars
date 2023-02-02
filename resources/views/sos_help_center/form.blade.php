@@ -395,7 +395,7 @@
                                     </div>
                                     <div class="d-grid">
                                         <br>
-                                        <a id="data_phone_officers" href="tel:{{ $sos_help_center->officers_user->phone }}" class="btn btn-outline-primary radius-15">
+                                        <a id="data_phone_officers" href="" class="btn btn-outline-primary radius-15">
                                             เบอร์ 
                                         </a>
                                     </div>
