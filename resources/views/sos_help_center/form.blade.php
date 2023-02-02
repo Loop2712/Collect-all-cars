@@ -385,8 +385,9 @@
                         <div class="card-body text-center">
                             <div class="p-4 border radius-15 row">
                                 <div class="col-3">
+                                    <img id="data_img_officers" src="" width="80" height="80" class="rounded-circle shadow d-none">
                                     @if(!empty($sos_help_center->officers_user->photo))
-                                        <img id="data_img_officers" src="{{ url('storage')}}/{{ $sos_help_center->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
+                                        <img src="{{ url('storage')}}/{{ $sos_help_center->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
                                     @else
                                         <img src="{{ url('/img/stickerline/Flex/12.png') }}" width="80" height="80"  class="rounded-circle shadow">
                                     @endif
@@ -893,7 +894,7 @@
         let officer_id = "" ;
         let operating_unit_id = "" ;
         let sos_id =  '{{ $sos_help_center->id }}' ;
-        
+
         if ( '{{ $sos_help_center->helper_id }}' ) {
             officer_id = '{{ $sos_help_center->helper_id }}' ;
             operating_unit_id = '{{ $sos_help_center->operating_unit_id }}' ;

@@ -647,11 +647,9 @@ function wait_operating_unit(sos_id){
                             // ADD DATA officers
                             if (result_2['img_officer']) {
                                 let data_img_officers = document.querySelector('#data_img_officers');
-                                let data_img_officers_src = document.createAttribute("src");
-                                    data_img_officers_src.value = '{{ url("storage") }}' + '/' + result_2['img_officer'] ;
-                                    data_img_officers.setAttributeNode(data_img_officers_src);
+                                    data_img_officers.src = '{{ url("storage") }}' + '/' + result_2['img_officer'] ;
+                                    data_img_officers.classList.remove('d-none');
                             }
-                            
                             let data_name_officers = document.querySelector('#data_name_officers');
                                 data_name_officers.innerHTML = result_2['name_officer'] ;
                             let data_sub_organization_officers = document.querySelector('#data_sub_organization_officers');
