@@ -927,7 +927,7 @@
                     open_map_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
             });
 
-        }, 15000);
+        }, 7000);
 
     }
 
