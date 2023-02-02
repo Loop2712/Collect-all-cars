@@ -922,11 +922,12 @@
                     if (result['status_sos'] === 'ถึงที่เกิดเหตุ') {
                         myStop_reface_map_go_to();
                     }
+
+                    open_map_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
             });
 
         }, 5000);
 
-        open_map_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
     }
 
     function myStop_reface_map_go_to() {
