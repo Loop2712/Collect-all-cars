@@ -906,19 +906,11 @@
 <!-- MAP GO TO HELP -->
 <script>
     var Active_reface_map_go_to ;
-    var first_reface_map_go_to = '0' ;
-    var time_reface_map_go_to ;
 
     function reface_map_go_to_help(){
         show_div_sos_or_unit('show_unit');
 
         let sos_id =  '{{ $sos_help_center->id }}' ;
-
-        if (first_reface_map_go_to === '0') {
-            time_reface_map_go_to = 1000 ;
-        }else{
-            time_reface_map_go_to = 15000 ;
-        }
 
         reface_map_go_to = setInterval(function() {
             Active_reface_map_go_to = "Yes" ;
@@ -935,14 +927,12 @@
                     open_map_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
             });
 
-        }, time_reface_map_go_to);
+        }, 15000);
 
     }
 
     function myStop_reface_map_go_to() {
         clearInterval(reface_map_go_to);
-        Active_reface_map_go_to = "No" ;
-        first_reface_map_go_to = '0' ;
     }
 
     function open_map_go_to_help(officer_lat , officer_lng , officer_level){
