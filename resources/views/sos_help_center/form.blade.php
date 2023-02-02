@@ -910,16 +910,11 @@
     function reface_map_go_to_help(){
         show_div_sos_or_unit('show_unit');
 
-        let officer_id = document.querySelector('#helper_id').value ;
-        let operating_unit_id = document.querySelector('#operating_unit_id').value ;
         let sos_id =  '{{ $sos_help_center->id }}' ;
-
-        console.log(officer_id);
-        console.log(operating_unit_id);
 
         reface_map_go_to = setInterval(function() {
             Active_reface_map_go_to = "Yes" ;
-            fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + officer_id + "/" +  operating_unit_id + "/" + sos_id )
+            fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id )
                 .then(response => response.json())
                 .then(result => {
                     console.log(result);

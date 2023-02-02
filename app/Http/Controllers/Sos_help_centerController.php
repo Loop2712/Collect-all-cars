@@ -518,14 +518,18 @@ class Sos_help_centerController extends Controller
         return view('sos_help_center.show_case', compact('data_sos'));
     }
 
-    function get_current_officer_location($officer_id, $operating_unit_id, $sos_id){
+    function get_current_officer_location($sos_id){
+
+        $data_sos = Sos_help_center::findOrFail($sos_id);
+
+        $officer_id = $data_sos->helper_id ;
+        $operating_unit_id =  $data_sos->operating_unit_id ;
 
         $data_officer = Data_1669_operating_officer::where('operating_unit_id' , $operating_unit_id)
             ->where('user_id' , $officer_id)
             ->first();
 
         $data_user = User::where('id',$officer_id)->first();
-        $data_sos = Sos_help_center::findOrFail($sos_id);
 
         $data = [] ;
         $data['name_officer'] = $data_officer->name_officer ;

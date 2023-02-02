@@ -657,9 +657,6 @@ function wait_operating_unit(sos_id){
                                 data_phone_officers.innerHTML = 'เบอร์ ' + result_2['phone_officer'] ;
                                 data_phone_officers.href = 'tel:' + result_2['phone_officer'] ;
 
-                            document.querySelector('#helper_id').value  = result_2['officer_id'] ;
-                            document.querySelector('#operating_unit_id').value  = result_2['operating_unit_id'] ;
-
                             document.querySelector('#data_officers_by_js').classList.remove('d-none');
                             document.querySelector('#data_officers_by_php').classList.add('d-none');
                     });
