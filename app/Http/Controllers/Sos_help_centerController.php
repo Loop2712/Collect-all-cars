@@ -538,7 +538,7 @@ class Sos_help_centerController extends Controller
         $data['img_officer'] = $data_user->photo ;
         $data['officer_id'] = $officer_id ;
 
-        $data['officer_lng'] = $data_officer->lng ;
+        $data['officer_lat'] = $data_officer->lat ;
         $data['officer_lng'] = $data_officer->lng ;
         $data['status_sos'] = $data_sos->status ;
 

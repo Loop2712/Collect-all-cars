@@ -926,8 +926,7 @@
 
         }, 5000);
 
-        map_go_to_help();
-        // map_go_to_help(result['officer_lat'] , result['officer_lng']);
+        open_map_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
     }
 
     function myStop_reface_map_go_to() {
@@ -935,7 +934,7 @@
         Active_reface_map_go_to = "No" ;
     }
 
-    function map_go_to_help(){
+    function open_map_go_to_help(officer_lat , officer_lng , officer_level){
 
         let sos_lat = document.querySelector('#lat'); 
         let sos_lng = document.querySelector('#lng'); 
@@ -963,6 +962,27 @@
             });
 
         }
+
+        let icon_level ;
+        switch(officer_level) {
+            case 'FR':
+                icon_level = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
+            break;
+            case 'BLS':
+                icon_level = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
+            break;
+            default:
+                icon_level = "{{ url('/img/icon/operating_unit/แดง.png') }}";
+        }
+
+        if (officer_go_to_help_marker) {
+            officer_go_to_help_marker.setMap(null);
+        }
+        officer_go_to_help_marker = new google.maps.Marker({
+            position: {lat: parseFloat(officer_lat) , lng: parseFloat(officer_lng) },
+            map: map_go_to_help,
+            icon: icon_level,
+        });
         
     }
 </script>
@@ -979,6 +999,7 @@
     let sos_operating_marker  ;
 
     let sos_go_to_help_marker  ;
+    let officer_go_to_help_marker  ;
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
