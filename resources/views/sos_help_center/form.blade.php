@@ -910,6 +910,7 @@
     function reface_map_go_to_help(){
         show_div_sos_or_unit('show_unit');
 
+        open_map_go_to_help();
         let sos_id =  '{{ $sos_help_center->id }}' ;
 
         reface_map_go_to = setInterval(function() {
@@ -923,11 +924,10 @@
                         myStop_reface_map_go_to();
                     }
 
-                    first_reface_map_go_to = '1' ;
-                    open_map_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
+                    set_marker_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
             });
 
-        }, 7000);
+        }, 15000);
 
     }
 
@@ -935,7 +935,7 @@
         clearInterval(reface_map_go_to);
     }
 
-    function open_map_go_to_help(officer_lat , officer_lng , officer_level){
+    function open_map_go_to_help(){
 
         let sos_lat = document.querySelector('#lat'); 
         let sos_lng = document.querySelector('#lng'); 
@@ -961,10 +961,12 @@
                 map: map_go_to_help,
                 icon: image_sos,
             });
-
         }
+    }
 
+    function set_marker_go_to_help(officer_lat , officer_lng , officer_level){
         let icon_level ;
+
         switch(officer_level) {
             case 'FR':
                 icon_level = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
@@ -984,7 +986,6 @@
             map: map_go_to_help,
             icon: icon_level,
         });
-        
     }
 </script>
 <!-- END MAP GO TO HELP -->
