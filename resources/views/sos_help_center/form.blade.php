@@ -910,6 +910,8 @@
     function reface_map_go_to_help(){
         show_div_sos_or_unit('show_unit');
 
+        open_map_go_to_help(null , null , null);
+
         let sos_id =  '{{ $sos_help_center->id }}' ;
 
         reface_map_go_to = setInterval(function() {
@@ -926,7 +928,7 @@
                     open_map_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
             });
 
-        }, 5000);
+        }, 15000);
 
     }
 
