@@ -244,7 +244,7 @@
                             </a>
                         </li>
                         <li id="btn_form_yellow" class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
-                            <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_yellow_1').click();">
+                            <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#form_data_1').click();">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                     </div>
@@ -339,6 +339,7 @@
                 <!-- div_data_operating -->
                 <h3>
                     <b>ข้อมูลหน่วยแพทย์</b>
+                    <span id="data_level_operating_unit">
                     @if(!empty($sos_help_center->operating_unit->level))
                         @switch($sos_help_center->operating_unit->level)
                             @case('FR')
@@ -363,18 +364,19 @@
                             @break
                         @endswitch
                     @endif
+                    </span>
                 </h3>
                 <span>
                     ชื่อหน่วย
                 </span>
                 <h5>
-                    <u>{{ isset($sos_help_center->organization_helper) ? $sos_help_center->organization_helper : ''}}</u>
+                    <u id="data_name_operating_unit">{{ isset($sos_help_center->organization_helper) ? $sos_help_center->organization_helper : ''}}</u>
                 </h5>
                 <span class="mt-2">
                     พื้นที่ (สังกัด)
                 </span>
                 <h5>
-                    <u>{{ isset($sos_help_center->operating_unit->area) ? $sos_help_center->operating_unit->area : ''}}</u>
+                    <u id="data_area_operating_unit">{{ isset($sos_help_center->operating_unit->area) ? $sos_help_center->operating_unit->area : ''}}</u>
                 </h5>
                 <hr>
                 <h5><b>ข้อมูลเจ้าหน้าที่</b></h5>
@@ -384,21 +386,21 @@
                             <div class="p-4 border radius-15 row">
                                 <div class="col-3">
                                     @if(!empty($sos_help_center->officers_user->photo))
-                                        <img src="{{ url('storage')}}/{{ $sos_help_center->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
+                                        <img id="data_img_officers" src="{{ url('storage')}}/{{ $sos_help_center->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
                                     @else
                                         <img src="{{ url('/img/stickerline/Flex/12.png') }}" width="80" height="80"  class="rounded-circle shadow">
                                     @endif
                                 </div>
                                 <div class="col-9">
                                     @if(!empty($sos_help_center->officers_user->name))
-                                        <h5 class="mb-0 mt-3">{{ $sos_help_center->officers_user->name }}</h5>
-                                        <p class="mb-3 mt-1">{{ str_replace("_"," ",$sos_help_center->officers_user->sub_organization) }}</p>
+                                        <h5 id="data_name_officers" class="mb-0 mt-3">{{ $sos_help_center->officers_user->name }}</h5>
+                                        <p id="data_sub_organization_officers" class="mb-3 mt-1">{{ str_replace("_"," ",$sos_help_center->officers_user->sub_organization) }}</p>
                                     @endif
                                 </div>
                                 <div class="d-grid">
                                     <br>
                                     @if(!empty($sos_help_center->officers_user->phone))
-                                        <a href="tel:{{ $sos_help_center->officers_user->phone }}" class="btn btn-outline-primary radius-15">
+                                        <a id="data_phone_officers" href="tel:{{ $sos_help_center->officers_user->phone }}" class="btn btn-outline-primary radius-15">
                                             เบอร์ {{ $sos_help_center->officers_user->phone }}
                                         </a>
                                     @endif
@@ -883,6 +885,7 @@
 
 <!-- MAP GO TO HELP -->
 <script>
+    var Active_reface_map_go_to ;
 
     function reface_map_go_to_help(){
         show_div_sos_or_unit('show_unit');
@@ -899,7 +902,7 @@
         console.log(operating_unit_id);
 
         reface_map_go_to = setInterval(function() {
-
+            Active_reface_map_go_to = "Yes" ;
             fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + officer_id + "/" +  operating_unit_id + "/" + sos_id )
                 .then(response => response.json())
                 .then(result => {
@@ -918,6 +921,7 @@
 
     function myStop_reface_map_go_to() {
         clearInterval(reface_map_go_to);
+        Active_reface_map_go_to = "No" ;
     }
 
     function map_go_to_help(){
@@ -1388,6 +1392,9 @@
         if (type === 'show_sos') {
             document.querySelector('#div_detail_sos').classList.remove('d-none');
             document.querySelector('#div_data_operating').classList.add('d-none');
+            if (Active_reface_map_go_to === "Yes") {
+                myStop_reface_map_go_to();
+            }
         }else if(type === 'show_unit'){
             document.querySelector('#div_detail_sos').classList.add('d-none');
             document.querySelector('#div_data_operating').classList.remove('d-none');

@@ -435,7 +435,7 @@ class Sos_help_centerController extends Controller
     {
         $data_sos = Sos_help_center::where('id' , $sos_id)->first();
 
-        return $data_sos->status ;
+        return $data_sos ;
     }
 
     function reply_select($sos_id , Request $request)
@@ -524,13 +524,23 @@ class Sos_help_centerController extends Controller
             ->where('user_id' , $officer_id)
             ->first();
 
+        $data_user = User::where('id',$officer_id)->first();
         $data_sos = Sos_help_center::findOrFail($sos_id);
 
         $data = [] ;
-        $data['officer_lat'] = $data_officer->lat ;
+        $data['name_officer'] = $data_officer->name_officer ;
+        $data['phone_officer'] = $data_user->phone ;
+        $data['sub_organization_officer'] = $data_user->sub_organization ;
+        $data['img_officer'] = $data_user->photo ;
+
+        $data['officer_lng'] = $data_officer->lng ;
         $data['officer_lng'] = $data_officer->lng ;
         $data['status_sos'] = $data_sos->status ;
+
         $data['officer_level'] = $data_officer->operating_unit->level ;
+
+        $data['unit_name'] = $data_sos->organization_helper ;
+        $data['unit_area'] = $data_officer->operating_unit->area ;
 
         return $data ;
 

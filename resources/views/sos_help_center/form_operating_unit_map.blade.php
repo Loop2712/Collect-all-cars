@@ -593,23 +593,72 @@ function wait_operating_unit(sos_id){
         // console.log(sos_id);
 
         fetch("{{ url('/') }}/api/check_status_wait_operating_unit" + "/" + sos_id  )
-            .then(response => response.text())
+            .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
-                if (result === "ปฏิเสธ") {
+                let status = result['status'];
+                let officer_id = result['helper_id'];
+                let operating_unit_id = result['operating_unit_id'];
+                let sos_id = result['id'];
+
+                if (status === "ปฏิเสธ") {
+                    
                     myStop_setInterval();
+
                     // เปลี่ยน DIV ใน MODAL ให้แสดงถึงการปฏิเสธ
                     document.querySelector('#div_cf_select_unit').classList.add('d-none');
                     document.querySelector('#div_wait_unit').classList.add('d-none');
                     document.querySelector('#div_unit_refuse').classList.remove('d-none');
-                }else if (result === "ออกจากฐาน") {
+
+                }else if (status === "ออกจากฐาน") {
+
                     myStop_setInterval();
                     document.querySelector('#btn_close_modal_cf_select').click();
                     // คลิก tag a หรือ เปลี่ยนการแสดงผลข้อมูลเจ้าหน้าที่
                     document.querySelector('#btn_operation').classList.remove('d-none');
                     document.querySelector('#btn_select_operating_unit').classList.add('d-none');
+
+                    fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + officer_id + "/" +  operating_unit_id + "/" + sos_id )
+                        .then(response => response.json())
+                        .then(result_2 => {
+                            console.log(result_2);
+
+                            // ADD DATA operating_unit
+                            let data_level_operating_unit = document.querySelector('#data_level_operating_unit');
+                                let html_level = '' ;
+                                switch(result_2['officer_level']) {
+                                    case "FR":
+                                        html_level = '<span class="float-end btn btn-sm btn-success main-shadow main-radius">'+result_2['officer_level']+'</span>';
+                                    break;
+                                    case "BLS":
+                                        html_level = '<span class="float-end btn btn-sm btn-warning text-white main-shadow main-radius">'+result_2['officer_level']+'</span>';
+                                    break;
+                                    default:
+                                        html_level = '<span class="float-end btn btn-sm btn-danger main-shadow main-radius">'+result_2['officer_level']+'</span>';
+                                }
+                                data_level_operating_unit.innerHTML = html_level ;
+
+                            let data_name_operating_unit = document.querySelector('#data_name_operating_unit');
+                                data_name_operating_unit.innerHTML = result_2['unit_name'] ;
+                            let data_area_operating_unit = document.querySelector('#data_area_operating_unit');
+                                data_area_operating_unit.innerHTML =  result_2['unit_area'] ;
+
+                            // ADD DATA officers
+                            if (result_2['img_officer']) {
+                                let data_img_officers = document.querySelector('#data_img_officers');
+                                data_img_officers.src = '{{ url("storage") }}' + '/' + result_2['img_officer'] ;
+                            }
+                            let data_name_officers = document.querySelector('#data_name_officers');
+                                data_name_officers.innerHTML = result_2['name_officer'] ;
+                            let data_sub_organization_officers = document.querySelector('#data_sub_organization_officers');
+                                data_sub_organization_officers.innerHTML = result_2['sub_organization_officer'] ;
+                            let data_phone_officers = document.querySelector('#data_phone_officers');
+                                data_phone_officers.innerHTML = result_2['phone_officer'] ;
+                    });
+
                     document.querySelector('#tag_a_operation').click();
+                    
                 }
 
         });
