@@ -552,4 +552,41 @@ class Sos_help_centerController extends Controller
 
     }
 
+    function update_location_officer($sos_id , $lat , $lng){
+
+        $data_sos = Sos_help_center::findOrFail($sos_id);
+        $officer_id = $data_sos->helper_id ;
+        $operating_unit_id =  $data_sos->operating_unit_id ;
+
+        DB::table('data_1669_operating_officers')
+            ->where([ 
+                    ['user_id', $officer_id],
+                    ['operating_unit_id', $operating_unit_id],
+                ])
+            ->update([
+                    'lat' => $lat,
+                    'lng' => $lng,
+                ]);
+
+        $data_sos_after_update = Sos_help_center::where('id' , $sos_id)->first();
+
+        return $data_sos_after_update ;
+
+    }
+
+    function update_status_officer($status, $sos_id){
+
+
+        DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $sos_id],
+                ])
+            ->update([
+                    'status' => $status,
+                ]);
+
+        return "Updated successfully" ;
+
+    }
+
 }
