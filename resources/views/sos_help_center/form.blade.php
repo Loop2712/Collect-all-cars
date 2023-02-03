@@ -788,7 +788,6 @@
 
 
 <!-- ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ - ห้ามลบ - ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ -->
-
 <div class="item sos-map bg-white d-none">
 
     <div class="form-group {{ $errors->has('photo_sos') ? 'has-error' : ''}}">
@@ -872,7 +871,6 @@
     </div>
 
 </div>
-
 <!-- ⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆ - ห้ามลบ - ⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆ -->
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -916,7 +914,7 @@
         fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id )
             .then(response => response.json())
             .then(start_result => {
-                console.log("start_result");
+                // console.log("start_result");
 
                 document.querySelector('#show_status').innerHTML = start_result['status_sos'] ;
                 document.querySelector('#show_distance').innerHTML = start_result['distance'].toFixed(2) ;
@@ -930,8 +928,8 @@
             fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id )
                 .then(response => response.json())
                 .then(result => {
-                    console.log("LOOP");
-                    console.log(result);
+                    // console.log("LOOP");
+                    // console.log(result);
 
                     if (result['status_sos'] === 'ถึงที่เกิดเหตุ') {
                         myStop_reface_map_go_to();
