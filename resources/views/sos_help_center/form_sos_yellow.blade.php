@@ -106,6 +106,7 @@
 					}
 					.position{
 					position: relative;
+					z-index: 1;
 					}
 					.tooltip{
 						text-align: center;
@@ -1821,6 +1822,8 @@
 
 		check_color_btn(active);
 		send_save_data(active);
+		btn_save_data();
+
 	}
 
 	function go_to_form_data(click_to){
@@ -1835,6 +1838,7 @@
 
 		send_save_data(active);
 		check_color_btn(active,click_to);
+		btn_save_data();
 	}
 
 	function check_click_rc(){

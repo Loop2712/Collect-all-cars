@@ -10,9 +10,38 @@
   align-items: center;
   height: 70px;  /* Set the height of the containing element */
   text-align: center;  /* Center the text horizontally */
+}#loading_success{
+    animation: success 500ms ease 0s 1 normal forwards;
 }
+@keyframes success {
+	0% {
+		transform: scale(0);
+	}
 
-</style>
+	100% {
+		transform: scale(1);
+	}
+}
+</style> 
+
+<button id="btn_save" class="btn btn-success d-flex justify-content-center" type="button" onclick="btn_save_data();"> 
+    <span id="loading" class="d-flex align-items-center d-none">
+        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>&nbsp;
+        Loading...
+    </span>
+
+    <div id="loading_success" class="d-none">
+    <i class="fa-duotone fa-circle-check"></i>
+        success
+    </div>
+    
+
+    <span id="save">
+        save
+    </span>
+    
+</button>
+
 <!-- Modal -->
 <div class="modal fade" id="modal_mapMarkLocation" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -151,6 +180,11 @@
     }
     .blue-form{
         background-color:#89acff;
+        height: auto;
+        border: 0px solid black;
+        padding: 25px;
+    }.pink-form{
+        background-color:#ea91c6;
         height: auto;
         border: 0px solid black;
         padding: 25px;
@@ -558,7 +592,45 @@
 
             <!--------------------------------- form pink --------------------------------->
             <div class="tab-pane fade" id="form-pink" role="tabpanel">
-                <p>@include ('sos_help_center.form_sos_pink')</p>
+                <div class="card radius-10 p-3 pink-form">
+                    <div class="row">
+                        <div class="col">
+                            <div class="box-status">
+                                @php
+                                    $date = $sos_help_center->created_at ;
+                                    $result = $date->format('d/m/Y');
+                                @endphp
+                                <span class="m-0">วันที่ </span>
+                                <h5 class="m-0 h5">
+                                    <b> {{ $result }}</b>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box-status">
+                                <span class="m-0">เลขที่ผู้ป่วย</span>
+                                <h5 class="m-0 h5">
+                                    <b>
+                                        Patient Number
+                                    </b>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="box-status">
+                                <span class="m-0">ลำดับผู้ป่วย(CN)</span>
+                                <h5 class="m-0 h5">
+                                    <b>
+                                        Patient sequence
+                                    </b>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            @include ('sos_help_center.form_sos_pink')
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!--------------------------------- operating_unit --------------------------------->
@@ -1506,4 +1578,28 @@
 
     }
 
+</script>
+<script>
+    function btn_save_data() {
+         document.getElementById("btn_save").disabled = true;
+         document.getElementById("save").classList.add('d-none');
+         document.getElementById("loading").classList.remove('d-none');
+        
+
+         setTimeout(() => {
+            document.getElementById("loading").classList.add('d-none');
+        }, 1000);
+
+        setTimeout(() => {
+            
+            document.getElementById("loading_success").classList.remove('d-none');
+        }, 1010);
+
+        setTimeout(() => {
+            document.getElementById("btn_save").disabled = false;
+            document.getElementById("loading_success").classList.add('d-none');
+         document.getElementById("save").classList.remove('d-none');
+
+        }, 2000);
+    }
 </script>

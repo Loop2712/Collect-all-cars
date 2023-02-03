@@ -179,7 +179,7 @@
                         <div class="card-title d-flex align-items-center">
 							<div><i class="fa-solid fa-truck-clock me-1 font-22 text-primary"></i>
 							</div>
-							<h5 class="mb-0 text-primary">ข้อมุลเวลา</h5>
+							<h5 class="mb-0 text-primary">ข้อมูลเวลา</h5>
 						</div>
 						<hr>
                         <div class="col-12">
@@ -390,7 +390,7 @@
                             </div>
 
                             <div class="col-12 d-none mb-3" id="thai_people">
-                                <label for="age" class="form-label">เลขบัตรประชาชน</label>
+                                <label for="age" class="form-label"> </label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card"></i></span>
                                     <input type="text" class="form-control border-start-0 radius-2" id="id_card" name="id_card" value="" placeholder="เลขบัตรประชาชน">
 								</div>
@@ -550,8 +550,7 @@
                             <div class="col-12 d-flex justify-content-center">
                                 <div class="card-title d-flex align-items-center text-center mt-3">
                                     <h5 class="mb-0 text-primary">สภาพผู้ป่วย</h5>
-                                    </div>
-                                
+                                </div>
                             </div>
                             <hr>
                            
@@ -1232,7 +1231,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="Reason_choosing_hospital" value="เหมาะสม/รักษาได้"  class=" card-input-element d-none" >
+                                        <input type="checkbox" name="reason_choosing_hospital" value="เหมาะสม/รักษาได้"  class=" card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 เหมาะสม/รักษาได้
@@ -1244,7 +1243,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="Reason_choosing_hospital" value="อยู่ใกล้"  class=" card-input-element d-none" >
+                                        <input type="checkbox" name="reason_choosing_hospital" value="อยู่ใกล้"  class=" card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 อยู่ใกล้
@@ -1256,7 +1255,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="Reason_choosing_hospital" value="มีหลักประกัน"  class=" card-input-element d-none" >
+                                        <input type="checkbox" name="reason_choosing_hospital" value="มีหลักประกัน"  class=" card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 มีหลักประกัน
@@ -1268,7 +1267,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="Reason_choosing_hospital" value="เป็นผู้ป่วยเก่า"  class=" card-input-element d-none" >
+                                        <input type="checkbox" name="reason_choosing_hospital" value="เป็นผู้ป่วยเก่า"  class=" card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 เป็นผู้ป่วยเก่า
@@ -1280,7 +1279,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="Reason_choosing_hospital" value="เป็นความประสงค์"  class=" card-input-element d-none" >
+                                        <input type="checkbox" name="reason_choosing_hospital" value="เป็นความประสงค์"  class=" card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 เป็นความประสงค์
@@ -1314,16 +1313,16 @@
 						</div>
 						<hr>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6 col-lg-6 col-6">
 								<label for="hospital_number" class="form-label">HN</label>
-								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-hospital"></i></span>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-duotone fa-id-card"></i></span>
 									<input type="text" class="form-control border-start-0 radius-2" name="hospital_number" value="" placeholder="หมายเลขของผู้ป่วยนอก">
 								</div>
 							</div>
-							<div class="col-md-2">
+							<div class="col-md-6 col-lg-6 col-6">
 								<label for="diagnosis" class="form-label">การวินิจฉัยโรค</label>
-								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-clock"></i></span>
-									<input type="datetime-local" class="form-control border-start-0 radius-2" name="diagnosis" value="" placeholder="การวินิจฉัยโรค">
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-person-burst"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="diagnosis" value="" placeholder="การวินิจฉัยโรค">
 								</div>
 							</div>
                             
@@ -1333,7 +1332,7 @@
 
                             <div class="col-12 col-md-3 col-lg-3">
                                 <label>
-                                    <input type="radio" name="idc" value="แดง(วิกฤติ)"  class="card-input-red card-input-element d-none" >
+                                    <input type="radio" name="er" value="แดง(วิกฤติ)"  class="card-input-red card-input-element d-none" >
                                     <div class="card card-body text-danger d-flex flex-row justify-content-between align-items-center">
                                         <b>
                                             แดง(วิกฤติ)  
@@ -1343,7 +1342,7 @@
                             </div>
                             <div class="col-12 col-md-3 col-lg-3">
                                 <label>
-                                    <input type="radio" name="idc" value="ขาว(ทั่วไป)"  class="card-input-element d-none" >
+                                    <input type="radio" name="er" value="ขาว(ทั่วไป)"  class="card-input-element d-none" >
                                     <div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
                                         <b>
                                             ขาว(ทั่วไป)    
@@ -1353,7 +1352,7 @@
                             </div>
                             <div class="col-12 col-md-3 col-lg-3">
                                 <label>
-                                    <input type="radio" name="idc" value="เหลือง(เร่งด่วน)"  class="card-input-warning card-input-element d-none" >
+                                    <input type="radio" name="er" value="เหลือง(เร่งด่วน)"  class="card-input-warning card-input-element d-none" >
                                     <div class="card card-body text-warning d-flex flex-row justify-content-between align-items-center">
                                         <b>
                                             เหลือง(เร่งด่วน)  
@@ -1363,7 +1362,7 @@
                             </div>
                             <div class="col-12 col-md-3 col-lg-3">
                                 <label>
-                                    <input type="radio" name="idc" value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-dark card-input-element d-none" >
+                                    <input type="radio" name="er" value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-dark card-input-element d-none" >
                                     <div class="card card-body  text-dark d-flex flex-row justify-content-between align-items-center">
                                         <b>
                                             ดำ(รับบริการสาธารณสุขอื่น)  
@@ -1373,13 +1372,411 @@
                             </div>
                             <div class="col-12 col-md-3 col-lg-3">
                                 <label>
-                                    <input type="radio" name="idc" value="แดง(วิกฤติ)"  class="card-input-success card-input-element d-none" >
+                                    <input type="radio" name="er" value="แดง(วิกฤติ)"  class="card-input-success card-input-element d-none" >
                                     <div class="card card-body text-success d-flex flex-row justify-content-between align-items-center">
                                         <b>
                                             เขียว(ไม่รุนแรง)
                                         </b>
                                     </div>
                                 </label>
+                            </div>
+
+                            <div class="col-12 mt-3">
+								<label for="result" class="form-label">ทางเดินหายใจ</label>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="respiratory_tract_by_doctor" value="ไม่จำเป็น"  class=" card-input-element d-none" onchange="check_respiratory_tract_by_doctor()">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ไม่จำเป็น
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="respiratory_tract_by_doctor" value="ไม่ได้ทำ"  class=" card-input-element d-none" onchange="check_respiratory_tract_by_doctor()">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ไม่ได้ทำ
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="respiratory_tract_by_doctor" value="ทำและเหมาสม"  class=" card-input-element d-none" onchange="check_respiratory_tract_by_doctor()">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ทำและเหมาะสม
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" id="respiratory_tract_by_doctor" name="respiratory_tract_by_doctor" value="ทำแต่ไม่เหมาะ"  class="card-input-element d-none" onchange="check_respiratory_tract_by_doctor()">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ทำแต่ไม่เหมาะสม
+                                                <button type="button" id="btn_respiratory_tract_by_doctor" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_respiratory_tract_by_doctor">
+                                                    แก้ไข
+                                                </button>
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- Modal ทำแต่ไม่เหมาะสม ทางเดินหายใจ-->
+                            <div class="modal fade" id="modal_respiratory_tract_by_doctor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">รายะละเอียดเพิ่มเติม การรักษาทางเดินหายใจ</h5>
+                                        <button type="button" class="close btn h6" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <textarea  class="form-control radius-4" id="respiratory_tract_by_doctor_detail" name="respiratory_tract_by_doctor_detail" value="" placeholder="ระบุ" rows="4" cols="100%"></textarea >
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">บันทึก</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+
+                            <div class="col-12 mt-3">
+								<label for="result" class="form-label">การห้ามเลือด</label>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="hemostasis_by_doctor" value="ไม่จำเป็น"  class=" card-input-element d-none" onchange="check_hemostasis_by_doctor();">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ไม่จำเป็น
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="hemostasis_by_doctor" value="ไม่ได้ทำ"  class=" card-input-element d-none" onchange="check_hemostasis_by_doctor();">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ไม่ได้ทำ
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="hemostasis_by_doctor" value="ทำและเหมาสม"  class=" card-input-element d-none" onchange="check_hemostasis_by_doctor();">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ทำและเหมาะสม
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" id="hemostasis_by_doctor" name="hemostasis_by_doctor" value="ทำแต่ไม่เหมาะ"  class=" card-input-element d-none" onchange="check_hemostasis_by_doctor();">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ทำแต่ไม่เหมาะสม
+                                                <button type="button" id="btn_hemostasis_by_doctor" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_hemostasis_by_doctor">
+                                                    แก้ไข
+                                                </button>
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- Modal ทำแต่ไม่เหมาะสม การห้ามเลือด-->
+                            <div class="modal fade" id="modal_hemostasis_by_doctor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">รายะละเอียดเพิ่มเติม การห้ามเลือด</h5>
+                                        <button type="button" class="close btn h6" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <textarea  class="form-control radius-4" id="hemostasis_by_doctor_detail" name="hemostasis_by_doctor_detail" value="" placeholder="ระบุ" rows="4" cols="100%"></textarea >
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">บันทึก</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 mt-3">
+								<label for="result" class="form-label">การดามกระดูก</label>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="splint_by_doctor" value="ไม่จำเป็น"  class=" card-input-element d-none" onchange="check_splint_by_doctor()">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ไม่จำเป็น
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="splint_by_doctor" value="ไม่ได้ทำ"  class=" card-input-element d-none" onchange="check_splint_by_doctor()">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ไม่ได้ทำ
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="splint_by_doctor" value="ทำและเหมาสม"  class=" card-input-element d-none" onchange="check_splint_by_doctor()">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ทำและเหมาะสม
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" id="splint_by_doctor" name="splint_by_doctor" value="ทำแต่ไม่เหมาะ"  class=" card-input-element d-none" onchange="check_splint_by_doctor()">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ทำแต่ไม่เหมาะสม
+                                                <button type="button" id="btn_splint_by_doctor" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_splint_by_doctor">
+                                                    แก้ไข
+                                                </button>
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- Modal ทำแต่ไม่เหมาะสม การดามกระดูก-->
+                            <div class="modal fade" id="modal_splint_by_doctor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">รายะละเอียดเพิ่มเติม การดามกระดูก</h5>
+                                        <button type="button" class="close btn h6" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <textarea  class="form-control radius-4" id="splint_by_doctor_detail" name="splint_by_doctor_detail" value="" placeholder="ระบุ" rows="4" cols="100%"></textarea >
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">บันทึก</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 mb-5"></div>
+                            <div class="col-md-3 col-lg-3 col-12">
+								<label for="name_doctor" class="form-label">ชื่อผู้ประเมิน</label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-doctor"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="name_doctor" value="" placeholder="ชื่อผู้ประเมิน">
+								</div>
+							</div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="role_doctor" value="แพทย์"  class=" card-input-element d-none" onchange="check_role_doctor();">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                แพทย์
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="role_doctor" value="พยาบาล"  class=" card-input-element d-none" onchange="check_role_doctor();">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                พยาบาล
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 col-lg-3">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" id="role_doctor" name="role_doctor" value="อื่นๆ"  class=" card-input-element d-none" onchange="check_role_doctor();">
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                อื่นๆ
+                                            </b><br>
+                                            <input type="text" id="role_other" disabled class="form-control border-start-0 radius-4" name="role_other" value="" placeholder="ตำแหน่ง">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+                    
+                    <!---------------------------------- ข้อ 6  ---------------------------------->
+					<div id="blue-6" class="tab-pane" role="tabpanel" aria-labelledby="blue-4">
+                        <div class="card-title d-flex align-items-center">
+							<div><i class="fa-solid fa-truck-clock me-1 font-22 text-primary"></i>
+							</div>
+							<h5 class="mb-0 text-primary">ผลการรักษาที่/ในโรงพยาบาล(ติดตามผลในวันสิ้นเดือน)</h5>
+						</div>
+						<hr>
+                        <div class="row">
+                            <div class="col-12 mt-3">
+								<label for="result" class="form-label">Admitted</label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="admitted" value="Yes"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                Yes
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="admitted" value="No"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                No
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 mt-3">
+								<label class="form-label">อาการ</label>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="treatment_effect" value="ทุเลา"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ทุเลา
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="treatment_effect" value="รักษาต่อที่อื่น"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                รักษาต่อที่อื่น
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="treatment_effect" value="ยังรักษาต่อในรพ."  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ยังรักษาต่อในรพ.  
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="treatment_effect" value="เสียชีวิตใน รพ."  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                เสียชีวิตใน รพ.
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="treatment_effect" value="ปฎิเสธการรักษา/หนีกลับ"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ปฎิเสธการรักษา/หนีกลับ
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="treatment_effect" value="กลับไปตายบ้าน"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                กลับไปตายบ้าน
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <div class=" col-12">
+                                    <label>
+                                        <input type="radio" name="treatment_effect" value="ตามแล้วไม่ทราบผล"  class=" card-input-element d-none" >
+                                        <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
+                                            <b>
+                                                ตามแล้วไม่ทราบผล
+                                            </b>
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
                         </div>
 					</div>
@@ -1391,11 +1788,7 @@
     </div>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        check_type_people();
-    });
-</script>
+
 <script>
 	$(document).ready(function() {
 		// Step show event
@@ -1454,7 +1847,7 @@
         var people_country = document.querySelector('#people_country');
         var passport = document.querySelector('#passport');
 
-        // เช็คว่าเลือกคนประเทศใด
+        // เช็คว่าเลือกคนประเทศใด แล้วเปิดช่อง input -> หน้า 3
         for (var i = 0, length = check_people_type.length; i < length; i++) {
             if (check_people_type[i].checked) {
                 if(check_people_type[i].value == "คนไทย"){
@@ -1489,7 +1882,7 @@
         var insurance_type_license_plate = document.querySelector('#insurance_type_license_plate');
         var insurance_license_plate = document.querySelector('#insurance_license_plate');
         var insurance_province = document.querySelector('#insurance_province');
-        // เช็คว่าเลือกคนประเทศใด
+        // เช็คว่าเลือกคนประเทศใด หัวข้อประกันอื่นๆ ->หน้า 3
         for (var i = 0, length = check_insurance.length; i < length; i++) {
             if (check_insurance[i].checked) {
                 if(check_insurance[i].value == "ประกันท่องเที่ยว"){
@@ -1509,6 +1902,67 @@
                 }
                 break;
             } 
+        }
+    }
+</script>
+
+<script>
+
+    // ถ้าเลือก ทำแต่ไม่เหมาะสม หัวข้อทางเดินหายใจ เปิดmodal ให้กรอก รายละเอียด -> อยู่หน้า 6
+    function check_respiratory_tract_by_doctor() { 
+        var respiratory_tract_by_doctor = document.querySelector('#respiratory_tract_by_doctor');
+        var detail = document.querySelector('#respiratory_tract_by_doctor_detail');
+
+        if (respiratory_tract_by_doctor.checked) {
+            document.querySelector('#btn_respiratory_tract_by_doctor').classList.remove('d-none');
+            document.querySelector('#btn_respiratory_tract_by_doctor').click();
+        }else{
+            document.querySelector('#btn_respiratory_tract_by_doctor').classList.add('d-none');
+            detail.value = null ;
+
+        }
+    }
+
+    // ถ้าเลือก ทำแต่ไม่เหมาะสม หัวข้อการห้ามเลือด เปิดmodal ให้กรอก รายละเอียด -> อยู่หน้า 6
+    function check_hemostasis_by_doctor() { 
+        var hemostasis_by_doctor = document.querySelector('#hemostasis_by_doctor');
+        var detail = document.querySelector('#hemostasis_by_doctor_detail');
+
+        if (hemostasis_by_doctor.checked) {
+            document.querySelector('#btn_hemostasis_by_doctor').classList.remove('d-none');
+            document.querySelector('#btn_hemostasis_by_doctor').click();
+        }else{
+            document.querySelector('#btn_hemostasis_by_doctor').classList.add('d-none');
+            detail.value = null ;
+
+        }
+    }
+    // ถ้าเลือก ทำแต่ไม่เหมาะสม หัวข้อดามกระดูก เปิดmodal ให้กรอก รายละเอียด -> อยู่หน้า 6
+    function check_splint_by_doctor() { 
+        var splint_by_doctor = document.querySelector('#splint_by_doctor');
+        var detail = document.querySelector('#splint_by_doctor_detail');
+
+        if (splint_by_doctor.checked) {
+            document.querySelector('#btn_splint_by_doctor').classList.remove('d-none');
+            document.querySelector('#btn_splint_by_doctor').click();
+        }else{
+            document.querySelector('#btn_splint_by_doctor').classList.add('d-none');
+            detail.value = null ;
+
+        }
+    }
+
+    // ถ้าเลือก ตำแหน่งอื่นๆ เปิดช่อง input ให้กรอก -> อยู่ข้อ 6
+    function check_role_doctor() { 
+        var role_doctor = document.querySelector('#role_doctor');
+        var role_other = document.querySelector('#role_other');
+
+        if (role_doctor.checked) {
+            role_other.disabled = false;
+
+        }else{
+            role_other.disabled = true;
+            role_other.value = null ;
         }
     }
 </script>
