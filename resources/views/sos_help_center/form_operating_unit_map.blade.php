@@ -611,6 +611,9 @@ function wait_operating_unit(sos_id){
                     document.querySelector('#div_wait_unit').classList.add('d-none');
                     document.querySelector('#div_unit_refuse').classList.remove('d-none');
 
+                    let audio_refuse = new Audio("{{ asset('sound/เจ้าหน้าที่ปฏิเสธ.mp3') }}");
+                        audio_refuse.play();
+
                 }else if (status === "ออกจากฐาน") {
 
                     myStop_setInterval();
@@ -622,7 +625,7 @@ function wait_operating_unit(sos_id){
                     fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id )
                         .then(response => response.json())
                         .then(result_2 => {
-                            console.log(result_2);
+                            // console.log(result_2);
 
                             // ADD DATA operating_unit
                             let data_level_operating_unit = document.querySelector('#data_level_operating_unit');
@@ -660,6 +663,9 @@ function wait_operating_unit(sos_id){
                             document.querySelector('#data_officers_by_js').classList.remove('d-none');
                             document.querySelector('#data_officers_by_php').classList.add('d-none');
                     });
+
+                    let audio_go_to_help = new Audio("{{ asset('sound/เจ้าหน้าที่กำลังไปช่วยเหลือ.mp3') }}");
+                        audio_go_to_help.play();
 
                     document.querySelector('#tag_a_operation').click();
                     
