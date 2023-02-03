@@ -222,6 +222,14 @@ class Sos_help_centerController extends Controller
 
     }
 
+    function switch_standby(Request $request){
+
+        $data_user = Auth::user();
+        $data_standby = Data_1669_operating_officer::where('user_id' ,$data_user->id)->first();
+
+        return view('sos_help_center.switch_standby', compact('data_user','data_standby'));
+    }
+
     public function create_new_sos_help_center($user_id)
     {
         $requestData = [] ;
@@ -591,6 +599,21 @@ class Sos_help_centerController extends Controller
         DB::table('sos_help_centers')
             ->where([ 
                     ['id', $sos_id],
+                ])
+            ->update([
+                    'status' => $status,
+                ]);
+
+        return "Updated successfully" ;
+
+    }
+
+    function update_status_officer_Standby($status, $officer_id){
+
+
+        DB::table('data_1669_operating_officers')
+            ->where([ 
+                    ['user_id', $officer_id],
                 ])
             ->update([
                     'status' => $status,

@@ -896,6 +896,9 @@
     function alerts_status(img , status){
         // console.log(status);
 
+        // notifications.js
+        // notifications.min.js
+        // notification-custom-script.js
         img_info_noti(img , status);
 
         let audio_update_status = new Audio("{{ asset('sound/เปลี่ยนสถานะ.mp3') }}");
