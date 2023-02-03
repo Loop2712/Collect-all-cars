@@ -540,6 +540,17 @@ class Sos_help_centerController extends Controller
 
         $data['officer_lat'] = $data_officer->lat ;
         $data['officer_lng'] = $data_officer->lng ;
+
+        $latitude = (float)$data['officer_lat'] ;
+        $longitude = (float)$data['officer_lng'];
+
+        $locations = DB::table('sos_help_centers')
+            ->where('id' , $sos_id)
+            ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
+            ->first();
+
+        $data['distance'] = $locations->distance ;
+
         $data['status_sos'] = $data_sos->status ;
 
         $data['officer_level'] = $data_officer->operating_unit->level ;

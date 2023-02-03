@@ -452,9 +452,9 @@
                     <div class="row">
                         <div class="col-12">
                             <h4>
-                                <b>สถานะ : </b> <span id="show_status">หห</span>
+                                สถานะ :  <b><span id="show_status" class="text-warning"></span></b>
                                 &nbsp;&nbsp;
-                                <b>ระยะทาง : </b> <span id="show_distance">1.7</span> กม.
+                                ระยะทาง :  <b><span id="show_distance" class="text-warning">1.7</span></b> กม.
                             </h4>
                         </div>
                         <div class="col-12">
@@ -913,17 +913,32 @@
         open_map_go_to_help();
         let sos_id =  '{{ $sos_help_center->id }}' ;
 
+        fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id )
+            .then(response => response.json())
+            .then(start_result => {
+                // console.log("start_result");
+                
+                document.querySelector('#show_status').innerHTML = start_result['status_sos'] ;
+                document.querySelector('#show_distance').innerHTML = start_result['distance'].toFixed(2) ;
+                set_marker_go_to_help(start_result['officer_lat'] , start_result['officer_lng'] , start_result['officer_level']);
+        });
+
+        // ---------------------------------------------------------------------------------------
+
         reface_map_go_to = setInterval(function() {
             Active_reface_map_go_to = "Yes" ;
             fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id )
                 .then(response => response.json())
                 .then(result => {
-                    console.log(result);
+                    // console.log("LOOP");
+                    // console.log(result);
 
                     if (result['status_sos'] === 'ถึงที่เกิดเหตุ') {
                         myStop_reface_map_go_to();
                     }
 
+                    document.querySelector('#show_status').innerHTML = result['status_sos'] ;
+                    document.querySelector('#show_distance').innerHTML = result['distance'].toFixed(2) ;
                     set_marker_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
             });
 
