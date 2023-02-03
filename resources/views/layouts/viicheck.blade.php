@@ -68,6 +68,16 @@
 
     .goog-te-banner-frame.skiptranslate {
       display: none !important;
+    }.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+      display: none !important;
+    }.VIpgJd-ZVi9od-aZ2wEe-wOHMyf{
+      display: none !important;
+    }.VIpgJd-ZVi9od-ORHb-OEVmcd {
+      display: none !important;
+
+    }#goog-gt-{
+      display: none !important;
+
     }
 
     .snowflake {
