@@ -159,11 +159,11 @@
 <div>
     <div class="card radius-10">
         <div class="row d-flex justify-content-between">
-            <div class="col-md-2 col-lg-2 col-12 menu-header bg-transparent d-inline">
+            <div class="col-md-6 col-lg-6 col-12 menu-header bg-transparent d-inline">
                 <h6 class=" font-weight-bold m-0 p-0">รหัสปฏิบัติการ</h6>
-                <h1><b><u>{{ $sos_help_center->id }}</u></b></h1>
+                <h3><b><u>XXXX-XXXX-00{{ $sos_help_center->id }}</u></b></h3>
             </div>
-            <div class="col-10 d-flex justify-content-end">
+            <div class="col-6 d-flex justify-content-end">
                 <div class="d-flex align-items-center">
                     <!-- <button type="button" class="btn btn-warning m-2" onclick="click_select_btn('form_yellow');">
                         <i class="fa-solid fa-files-medical"></i> <br> แบบฟอร์มเหลือง
@@ -485,7 +485,7 @@
                                 <span class="m-0">เลขที่ปฏิบัติการ(ON)</span>
                                 <h5 class="m-0 h5">
                                     <b>{{ $sos_help_center->operating_code }}
-                                        000000000000000
+                                        XXXX-XXXX-00{{ $sos_help_center->id }}
                                     </b>
                                 </h5>
                             </div>
