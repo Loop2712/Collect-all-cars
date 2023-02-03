@@ -41,7 +41,7 @@
 						<button style="position: relative;z-index: 999999;border-radius: 50px;" class="btn btn-info shadow" id="prev-btn-form-yellow" type="button"><i class="fa-solid fa-chevron-left"></i></button>
 					</li> -->
 					<li class="nav-item">
-						<a class="nav-link danger position div_detail page_number" href="#step-1" onclick="go_to_form_data('1');"  id="step-1" page="number_1"> 
+						<a class="nav-link danger position div_detail page_number" href="#step-1" onclick="go_to_form_data('1');"  id="form_data_1" page="number_1"> 
 							<strong>1</strong>
 							<span class="tooltip text-center">ข้อมูลทั่วไป</span>
 						</a>
