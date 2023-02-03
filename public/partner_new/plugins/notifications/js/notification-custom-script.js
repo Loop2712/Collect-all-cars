@@ -122,15 +122,30 @@ function img_default_noti() {
 	});
 }
 
-function img_info_noti() {
+function img_info_noti(img , msg) {
+
+	let text_msg = '<a href="https://www.viicheck.com/img/stickerline/PNG/37.2.png" >' + msg + '</a>' ;
+	// console.log(text_msg);
+
 	Lobibox.notify('info', {
 		pauseDelayOnHover: true,
 		continueDelayOnInactiveTab: false,
 		icon: 'bx bx-info-circle',
 		position: 'top right',
-		img: 'assets/plugins/notifications/img/2.jpg', //path to image
-		msg: 'Lorem ipsum dolor sit amet hears farmer indemnity inherent.'
+		img: img, //path to image
+		msg: text_msg
 	});
+
+	let dic_info_noti = document.querySelector('.lobibox-notify-info');
+
+    let tag_a = document.createElement("a");
+	let tag_a_href = document.createAttribute("href");
+        tag_a_href.value = "https://www.viicheck.com/img/stickerline/PNG/37.2.png" ;
+        tag_a.setAttributeNode(tag_a_href);
+    dic_info_noti.appendChild(tag_a);
+    
+	console.log(dic_info_noti);
+
 }
 
 function img_warning_noti() {

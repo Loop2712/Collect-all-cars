@@ -24,6 +24,7 @@
 	<link href="{{ asset('/partner_new/plugins/highcharts/css/highcharts.css') }}" rel="stylesheet" />
 	<link href="{{ asset('/partner_new/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
 	<link href="{{ asset('partner_new/plugins/smart-wizard/css/smart_wizard_all.min.css') }}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{{ asset('partner_new/plugins/notifications/css/lobibox.min.css') }}" />
 
 	<!-- loader-->
 	<link href="{{ asset('/css/pace.min.css') }}" rel="stylesheet" />
@@ -1201,7 +1202,10 @@
 <!-- dataTables -->
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-
+<!--notification js -->
+<script src="{{ asset('partner_new/plugins/notifications/js/lobibox.min.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/notifications/js/notifications.min.js') }}"></script>
+<script src="{{ asset('partner_new/plugins/notifications/js/notification-custom-script.js') }}"></script>
 
 
 

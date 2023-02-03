@@ -648,6 +648,9 @@
     </div>
 </div>
 
+<span type="button" class="btn btn-info px-5" onclick="img_info_noti('{{ url("/") }}/img/stickerline/PNG/37.2.png','HELLO')"> 
+    <i class="bx bx-info-circle"></i>Info
+</span>
 
 
 <!-- ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ - ห้ามลบ - ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ -->
@@ -774,6 +777,11 @@
         open_map_go_to_help();
         let sos_id =  '{{ $sos_help_center->id }}' ;
 
+        let sos_lat = document.querySelector('#lat'); 
+        let sos_lng = document.querySelector('#lng'); 
+        let m_lat = parseFloat(sos_lat.value);
+        let m_lng = parseFloat(sos_lng.value);
+
         fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id )
             .then(response => response.json())
             .then(start_result => {
@@ -782,7 +790,17 @@
                 document.querySelector('#show_status').innerHTML = start_result['status_sos'] ;
                 document.querySelector('#show_distance').innerHTML = start_result['distance'].toFixed(2) ;
                 set_marker_go_to_help(start_result['officer_lat'] , start_result['officer_lng'] , start_result['officer_level']);
-        });
+
+                let start_Item_1 = new google.maps.LatLng(m_lat, m_lng);
+                let start_myPlace = new google.maps.LatLng(start_result['officer_lat'], start_result['officer_lng']);
+
+                let start_bounds = new google.maps.LatLngBounds();
+                    start_bounds.extend(start_myPlace);
+                    start_bounds.extend(start_Item_1);
+                map_go_to_help.fitBounds(start_bounds);
+
+
+            });
 
         // ---------------------------------------------------------------------------------------
 
@@ -796,11 +814,21 @@
 
                     if (result['status_sos'] === 'ถึงที่เกิดเหตุ') {
                         myStop_reface_map_go_to();
+                        alerts_status(result['status_sos']);
                     }
 
                     document.querySelector('#show_status').innerHTML = result['status_sos'] ;
                     document.querySelector('#show_distance').innerHTML = result['distance'].toFixed(2) ;
                     set_marker_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
+
+                    let Item_1 = new google.maps.LatLng(m_lat, m_lng);
+                    let myPlace = new google.maps.LatLng(result['officer_lat'], result['officer_lng']);
+
+                    let bounds = new google.maps.LatLngBounds();
+                        bounds.extend(myPlace);
+                        bounds.extend(Item_1);
+                    map_go_to_help.fitBounds(bounds);
+
             });
 
         }, 15000);
@@ -865,6 +893,13 @@
     }
 </script>
 <!-- END MAP GO TO HELP -->
+
+
+<script>
+    function alerts_status(status){
+        console.log(status);
+    }
+</script>
 
 <script>
 
