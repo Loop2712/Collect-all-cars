@@ -415,8 +415,8 @@ var Lobibox = Lobibox || {};
         },
         info: {
             'class': 'lobibox-notify-info',
-            'title': 'Information',
-            sound: 'sound6'
+            'title': 'การอัพเดทสถานะ',
+            sound: false
         },
         icons: {
             bootstrap: {

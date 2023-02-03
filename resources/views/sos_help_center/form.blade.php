@@ -648,11 +648,6 @@
     </div>
 </div>
 
-<span type="button" class="btn btn-info px-5" onclick="img_info_noti('{{ url("/") }}/img/stickerline/PNG/37.2.png','HELLO')"> 
-    <i class="bx bx-info-circle"></i>Info
-</span>
-
-
 <!-- ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ - ห้ามลบ - ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ -->
 <div class="item sos-map bg-white d-none">
 
@@ -814,7 +809,9 @@
 
                     if (result['status_sos'] === 'ถึงที่เกิดเหตุ') {
                         myStop_reface_map_go_to();
-                        alerts_status(result['status_sos']);
+
+                        let img_stk = '{{ url("/") }}/img/stickerline/PNG/37.2.png' ;
+                        alerts_status(img_stk , result['status_sos']);
                     }
 
                     document.querySelector('#show_status').innerHTML = result['status_sos'] ;
@@ -896,8 +893,13 @@
 
 
 <script>
-    function alerts_status(status){
-        console.log(status);
+    function alerts_status(img , status){
+        // console.log(status);
+
+        img_info_noti(img , status);
+
+        let audio_update_status = new Audio("{{ asset('sound/เปลี่ยนสถานะ.mp3') }}");
+            audio_update_status.play();
     }
 </script>
 
