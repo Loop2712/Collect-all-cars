@@ -309,7 +309,7 @@
 
                 <div class="row" id="data_help">
                         @foreach($data_sos as $item)
-                            <a class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/' . $item->id . '/edit#step-1') }}"">
+                            <a class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}"">
                                 <div >
                                     <div class="card card-sos shadow">
                                         <div class="sos-header">
@@ -650,7 +650,7 @@
             .then(result => {
                 // console.log(result);
                 if (result) {
-                    window.location.replace("{{ url('/') }}/sos_help_center/" + result + "/edit#step-1");
+                    window.location.replace("{{ url('/') }}/sos_help_center/" + result + "/edit");
                 }
         });
 
@@ -730,7 +730,7 @@
                         let name = result['data'][i]['name_user'];
                         let organization_helper = result['data'][i]['organization_helper'];
                         let name_helper = result['data'][i]['name_helper'];
-                        let url_edit = "/sos_help_center/" + result['data'][i]['id'] + "/edit#step-1" ;
+                        let url_edit = "/sos_help_center/" + result['data'][i]['id'] + "/edit" ;
 
                         
                         

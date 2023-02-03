@@ -1022,6 +1022,7 @@
         check_show_btn_form_color(null);
         check_show_btn_select_unit();
         // click_select_btn('operating_unit');
+        document.querySelector('#form_data_1').click();
     });
 
     function initMap() {
