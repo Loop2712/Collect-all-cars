@@ -75,6 +75,9 @@
     }.VIpgJd-ZVi9od-ORHb-OEVmcd {
       display: none !important;
 
+    }#goog-gt-{
+      display: none !important;
+
     }
 
     .snowflake {
