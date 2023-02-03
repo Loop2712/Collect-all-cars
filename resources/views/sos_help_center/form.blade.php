@@ -454,7 +454,7 @@
                             <h4>
                                 สถานะ :  <b><span id="show_status" class="text-warning"></span></b>
                                 &nbsp;&nbsp;
-                                ระยะทาง :  <b><span id="show_distance" class="text-warning">1.7</span></b> กม.
+                                ระยะทาง (รัศมี) :  <b><span id="show_distance" class="text-warning">1.7</span></b> กม.
                             </h4>
                         </div>
                         <div class="col-12">
@@ -917,7 +917,7 @@
             .then(response => response.json())
             .then(start_result => {
                 // console.log("start_result");
-                
+
                 document.querySelector('#show_status').innerHTML = start_result['status_sos'] ;
                 document.querySelector('#show_distance').innerHTML = start_result['distance'].toFixed(2) ;
                 set_marker_go_to_help(start_result['officer_lat'] , start_result['officer_lng'] , start_result['officer_level']);
