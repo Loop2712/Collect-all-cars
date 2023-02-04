@@ -52,7 +52,7 @@
 				<p style="font-size: 16px; text-indent:30px;">เจ้าของข้อมูลส่วนบุคคลสามารถติดต่อในเรื่องข้อมูลส่วนบุคคลของตนเองได้ที่<br></p>
 					<ol>
 						<li style="font-weight: 400;"><span style="font-weight: 400;">อีเมล: </span><a href="mailto:contact.viicheck@gmail.com"><span style="font-weight: 400;">contact.viicheck@gmail.com</span></a></li>
-						<li style="font-weight: 400;"><span style="font-weight: 400;">โทร: 02-207-7856</span></li>
+						<li style="font-weight: 400;"><span style="font-weight: 400;">โทร: 02-027-7856</span></li>
 						<li style="font-weight: 400;"><span style="font-weight: 400;">สถานที่ติดต่อ:บริษัท 2บี กรีน จำกัด เลขที่ 82/25 ถนนประชาชื่น แขวงลาดยาวเขตจตุจักร กรุงเทพมหานคร 10900</span></li>
 					</ol>
 			</div>
