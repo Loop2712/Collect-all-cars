@@ -554,7 +554,6 @@
                             </div>
                             <hr>
                            
-
                             <div class="col-12 ">
 								<label class="form-label"> <b>ประเภทผู้ป่วย</b> </label>
                             </div>
@@ -582,6 +581,76 @@
                                     </label>
                                 </div>
                             </div>
+                            
+                            <div class="col-12 ">
+								<label class="form-label"> <b>สัญญาณชีพ และความรู้สึกตัว</b> </label>
+                            </div>
+                            <div class="col-2">
+                                <div class="mb-3">
+                                    <label class="form-label">เวลา:</label>
+                                    <input type="datetime-local" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">ระดับน้ำตาล</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                           </div>
+                           <div class="col-5">
+                                <div class="card  p-3">
+                                    <h6 class="text-center">
+                                        Vital Signs
+                                    </h6>
+                                    <div class="mb-3">
+                                        <label for="name_title" class="form-label">อุณหภูมิ</label>
+                                        <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-regular fa-temperature-three-quarters"></i></span>
+                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="อุณหภูมิ">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name_title" class="form-label">ความดันโลหิต</label>
+                                        <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-droplet"></i></span>
+                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="ความดันโลหิต">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name_title" class="form-label">ชีพจร</label>
+                                        <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-regular fa-wave-pulse"></i></span>
+                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="ชีพจร">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="name_title" class="form-label">อัตราหายใจ</label>
+                                        <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-lungs"></i></span>
+                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="อัตราหายใจ">
+                                        </div>
+                                    </div>
+                                </div>
+                           </div>
+                           <div class="col-5">
+                                <div class="card p-3">
+                                    <h6 class="text-center">
+                                        Neoru Signs
+                                    </h6>
+                                    <div class="mb-3">
+                                        <label for="name_title" class="form-label">ประเมินการลืมตา (E)</label>
+                                        <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-eye"></i></span>
+                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="อุณหภูมิ">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name_title" class="form-label">ประเมินการสื่อภาษา (V)</label>
+                                        <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-comment-lines"></i></span>
+                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="ความดันโลหิต">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name_title" class="form-label">ประเมินการเคลื่อนไหว  (M)</label>
+                                        <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-regular fa-wave-pulse"></i></span>
+                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="ชีพจร">
+                                        </div>
+                                    </div>
+                                </div>
+                           </div>
                             
 
                             <div class="col-12 mt-3">

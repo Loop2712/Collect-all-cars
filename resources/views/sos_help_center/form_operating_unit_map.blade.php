@@ -238,7 +238,7 @@ function open_map_operating_unit(){
 
         let m_lat = parseFloat(sos_lat.value);
         let m_lng = parseFloat(sos_lng.value);
-        let m_numZoom = parseFloat('17');
+        let m_numZoom = parseFloat('14');
 
         let m_lng_ct = m_lng + 0.002 ;
 
@@ -516,7 +516,7 @@ function select_level(level){
     if (sos_lat.value && sos_lng.value) {
         m_lat = parseFloat(sos_lat.value);
         m_lng = parseFloat(sos_lng.value);
-        m_numZoom = parseFloat('17');
+        m_numZoom = parseFloat('14');
     }else{
         m_lat = parseFloat('12.870032');
         m_lng = parseFloat('100.992541');

@@ -1412,13 +1412,11 @@
 
 <script>
     function btn_save_data() {
-        document.getElementById("btn_save").disabled = true;
         document.querySelector('#icon_save_data').classList.remove('d-none');
         document.querySelector('#text_btn_save').innerHTML = "บันทึก..";
         const animated = document.querySelector('.checkmark__check');
         animated.onanimationend = () => {
             setTimeout(() => {
-                document.getElementById("btn_save").disabled = false;
                 document.querySelector('#icon_save_data').classList.add('d-none');
                 document.querySelector('#text_btn_save').innerHTML = "บันทึก";
 

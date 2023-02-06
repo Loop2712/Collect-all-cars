@@ -21,7 +21,7 @@
 				    border-radius: 50%;
 				    display: block;
 				    stroke-width: 2;
-				    stroke: #fff;
+				    stroke: #29cc39;
 				    stroke-miterlimit: 10;
 				    margin: 10% auto;
 				    box-shadow: inset 0px 0px 0px #ffffff;
@@ -55,7 +55,7 @@
 
 				@keyframes fill {
 				    100% {
-				        box-shadow: inset 0px 0px 0px 60px #7ac142
+				        box-shadow: inset 0px 0px 0px 60px #fff
 				    }
 				}
             </style>
