@@ -10,7 +10,7 @@
 				    stroke-dashoffset: 166;
 				    stroke-width: 2;
 				    stroke-miterlimit: 10;
-				    stroke: #7ac142;
+				    stroke: #ffffff;
 				    fill: none;
 				    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards
 				}
@@ -24,7 +24,7 @@
 				    stroke: #fff;
 				    stroke-miterlimit: 10;
 				    margin: 10% auto;
-				    box-shadow: inset 0px 0px 0px #7ac142;
+				    box-shadow: inset 0px 0px 0px #ffffff;
 				    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
 				}
 

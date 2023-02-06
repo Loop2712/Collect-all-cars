@@ -518,7 +518,7 @@
                             </div>
                         </div>
                         <div class="col-2 float-end">
-                            <button id="btn_save" class=" btn btn-success d-flex justify-content-center btn-block" type="button" onclick="btn_save_data();send_save_data();"> 
+                            <button style="width: 100%;" id="btn_save" class=" btn btn-success d-flex justify-content-center btn-block" type="button" onclick="btn_save_data();send_save_data();"> 
                                 <div id="icon_save_data" class="d-none">
                                     <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                                         <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
