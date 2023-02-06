@@ -142,7 +142,13 @@
 	    	navigator.geolocation.getCurrentPosition(showPosition);
 	  	} else {
 	    	// x.innerHTML = "Geolocation is not supported by this browser.";
+			getLocation_again();
 	  	}
+	}
+
+	function getLocation_again(){
+		console.log('getLocation_again');
+		getLocation();
 	}
 
 	function showPosition(position) {
@@ -194,7 +200,7 @@
 		}
 
 
-		fetch("{{ url('/') }}/api/update_status_officer_Standby" + "/" + status + "/" + '{{ $data_user->id }}' + "/" m_lat + "/" + m_lng)
+		fetch("{{ url('/') }}/api/update_status_officer_Standby" + "/" + status + "/" + '{{ $data_user->id }}' + "/" +m_lat + "/" + m_lng)
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
