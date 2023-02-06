@@ -1849,10 +1849,12 @@
 	document.addEventListener('DOMContentLoaded', (event) => {
 		
         // console.log("START");
-        check_color_btn(null,null);
-		check_treatment();
-        check_lat_lng();
-        check_click_rc();
+        setTimeout(function() {
+            check_color_btn(null,null);
+			check_treatment();
+	        check_lat_lng();
+	        check_click_rc();
+        }, 1500);
 
     });
 
