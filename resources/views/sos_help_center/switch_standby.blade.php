@@ -125,6 +125,9 @@
 	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
 	var officer_marker ;
 
+	var lat ;
+	var lng ;
+
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         let status_officers = '{{ $data_standby->status }}' ;
@@ -147,17 +150,19 @@
 
 	function showPosition(position) {
 
-		let lat = position.coords.latitude ;
-		let lng = position.coords.longitude ;
+		lat = position.coords.latitude ;
+		lng = position.coords.longitude ;
 
 		console.log(lat);
 		console.log(lng);
 
-        initMap(lat , lng);
+        initMap();
 	}
 
-    function initMap(m_lat , m_lng) {
+    function initMap() {
 
+    	let m_lat = lat ;
+    	let m_lng = lng ;
         let m_numZoom = parseFloat('15');
 
         map_officers_switch = new google.maps.Map(document.getElementById("map_officers_switch"), {
@@ -175,11 +180,14 @@
         });
 
         document.querySelector('#div_switch').classList.remove('d-none');
-        click_switch_standby(m_lat , m_lng);
+        click_switch_standby();
 
     }
 
-	function click_switch_standby(m_lat , m_lng){
+	function click_switch_standby(){
+		let m_lat = lat ;
+    	let m_lng = lng ;
+    	
 		let switch_standby = document.querySelector('#switch_standby');
 		let status ;
 
@@ -193,8 +201,10 @@
 			document.querySelector('#text_show_standby').innerHTML = "ไม่พร้อม" ;
 		}
 
+		let text_lat = m_lat.toString() ;
+		let text_lng = m_lng.toString() ;
 
-		fetch("{{ url('/') }}/api/update_status_officer_Standby" + "/" + status + "/" + '{{ $data_user->id }}' + "/" + m_lat.toString() + "/" + m_lng.toString())
+		fetch("{{ url('/') }}/api/update_status_officer_Standby" + "/" + status + "/" + '{{ $data_user->id }}' + "/" + text_lat + "/" + text_lng)
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
