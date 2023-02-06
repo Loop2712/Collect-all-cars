@@ -222,6 +222,14 @@ class Sos_help_centerController extends Controller
 
     }
 
+    function switch_standby_login(){
+        if(Auth::check()){
+            return redirect('officers/switch_standby');
+        }else{
+            return redirect('/login/line?redirectTo=officers/switch_standby');
+        }
+    }
+
     function switch_standby(Request $request){
 
         $data_user = Auth::user();

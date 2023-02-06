@@ -208,6 +208,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 
 // -------- SOS HELP CENTER NO LOGIN ---------
 Route::get('sos_help_center/reply_select/{sos_id}', 'Sos_help_centerController@reply_select');
+Route::get('officers/switch_standby_login', 'Sos_help_centerController@switch_standby_login');
 Route::get('officers/switch_standby', 'Sos_help_centerController@switch_standby');
 
 //partner
