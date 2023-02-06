@@ -270,6 +270,20 @@ class Sos_help_centerController extends Controller
         return $sos_help_center_last->id;
     }
 
+    // function add_photo_sos_by_officers(Request $request , $id)
+    // {
+    //     $requestData = $request->all();
+
+    //     if ($request->hasFile('photo_sos_by_officers')) {
+    //         $requestData['photo_sos_by_officers'] = $request->file('photo_sos_by_officers')->store('uploads', 'public');
+    //     }
+
+    //     $sos_help_center = Sos_help_center::findOrFail($id);
+    //     $sos_help_center->update($requestData);
+
+    //     return back()->withInput();
+    // }
+
     function save_form_yellow(Request $request)
     {
         $requestData = $request->all();
@@ -623,7 +637,7 @@ class Sos_help_centerController extends Controller
 
     function update_status_officer($status, $sos_id){
 
-
+        // อย่าลืมอัพเดทเวลาต่างๆด้วย
         DB::table('sos_help_centers')
             ->where([ 
                     ['id', $sos_id],

@@ -14,10 +14,60 @@
     }
 </style>
 
+
+<!-- Button trigger modal -->
+<button id="btn_modal_add_photo_sos" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_add_photo_sos">
+  Launch static backdrop modal
+</button>
+<!-- Modal -->
+<div class="modal fade" id="modal_add_photo_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="max-height: calc(100%);overflow-y: auto;">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="row">
+            <div class="col-12">
+            	<!--  -->
+            	เพิ่มภาพถ่าย และข้อคิดเห็นของเจ้าหน้าที่
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" >
+            ยืนยัน
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="row notranslate" style="margin-top:150px;">
 	<div class="col-12 text-center">
 		<center>
 			<h4>สถานะ : <b><span id="show_status" class="text-warning"></span></b></h4>
+			<div class="row text-center">
+				<div class="col-6">
+					<button class="btn btn-sm btn-primary text-white main-shadow main-radius mt-2" disabled style="width:80%;" onclick="get_dir();">
+						ดูเส้นทาง <i class="fa-solid fa-location-arrow"></i>
+					</button>
+				</div>
+				<div class="col-6">
+					@php
+						$gg_lat_mail = '@' . $data_sos->lat ;
+						$gg_lat = $data_sos->lat ;
+						$lng = $data_sos->lng ;
+					@endphp
+					<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="btn btn-sm btn-danger text-white main-shadow main-radius mt-2" style="width:80%;" target="bank">
+						Google Map <i class="fa-solid fa-location-arrow"></i>
+					</a>
+				</div>
+			</div>
             <div class="col-12 main-shadow main-radius p-0" id="map_show_case">
                 <img style=" object-fit: cover; border-radius:15px" width="100%" height="100%" src="{{ asset('/img/more/sorry-no-text.png') }}" class="card-img-top center" style="padding: 10px;">
                 <div style="position: relative; z-index: 5">
@@ -39,22 +89,57 @@
 		</center>
 	</div>
 
-	<!-- เคส ออกจากฐาน => ถึงที่เกิดเหตุ -->
+	<div>
+		<center>
+			<div class="col-12 mt-2">
+				<button class="btn btn-info main-shadow main-radius" style="width:50%;" onclick="add_photo_sos_by_officers();">
+					เพิ่มรูปภาพ <i class="fa-solid fa-camera-viewfinder"></i>
+				</button>
+			</div>
+			<hr style="border: 1px solid red;width: 70%;color: red;">
+		</center>
+	</div>
+
+	<!-- ปุ่ม ถึงที่เกิดเหตุ -->
 	<div id="div_gotohelp" class="">
 		<center>
-			<button class="btn btn-sm btn-primary text-white main-shadow main-radius mt-2" disabled style="width:70%;" onclick="get_dir();">
-				เส้นทาง <i class="fa-solid fa-location-arrow"></i>
-			</button>
-			<hr style="border: 1px solid red;width: 70%;color: red;">
 			<div class="col-12 mt-2">
 				<button class="btn btn-warning main-shadow main-radius" style="width:90%;" onclick="update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}');">
 					ถึงที่เกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
 				</button>
 			</div>
-			<div class="col-12 mt-2">
-				<button class="btn btn-info main-shadow main-radius" style="width:50%;">
-					เพิ่มรูปภาพ <i class="fa-solid fa-camera-viewfinder"></i>
-				</button>
+		</center>
+	</div>
+
+	<!-- ปุ่มเลือกระดับเหตุการณ์ -->
+	<div id="div_event_level" class="d-none">
+		<center>
+			<div class="row">
+				<div class="col-6 mt-2">
+					<button class="btn btn-dark main-shadow main-radius" style="width:90%;" >
+						ดำ
+					</button>
+				</div>
+				<div class="col-6 mt-2">
+					<button class="btn btn-light main-shadow main-radius" style="width:90%;" >
+						ขาว
+					</button>
+				</div>
+				<div class="col-6 mt-2">
+					<button class="btn btn-success main-shadow main-radius" style="width:90%;" >
+						เขียว
+					</button>
+				</div>
+				<div class="col-6 mt-2">
+					<button class="btn btn-warning main-shadow main-radius" style="width:90%;" >
+						เหลือง
+					</button>
+				</div>
+				<div class="col-12 mt-2">
+					<button class="btn btn-danger main-shadow main-radius" style="width:90%;" >
+						แดง
+					</button>
+				</div>
 			</div>
 		</center>
 	</div>
@@ -208,12 +293,31 @@
         map_show_case.fitBounds(bounds);
     }
 
+
+    function add_photo_sos_by_officers(){
+    	console.log('add_photo_sos_by_officers');
+    	document.querySelector('#btn_modal_add_photo_sos').click();
+    	capture_registration();
+    }
+
+
+
+    // UPDATE STATUS SOS
 	function update_status(status , sos_id){
+
+        status_sos = status ;
+        document.querySelector('#show_status').innerHTML = status_sos ;
 
 		fetch("{{ url('/') }}/api/update_status_officer" + "/" + status + "/" + sos_id)
             .then(response => response.text())
             .then(result => {
-                console.log(result);
+                // console.log(result);
+
+                if (status_sos === "ถึงที่เกิดเหตุ") {
+                	document.querySelector('#div_gotohelp').classList.add('d-none');
+                	document.querySelector('#div_event_level').classList.remove('d-none');
+
+                }
 
         });
 	}
@@ -221,6 +325,8 @@
 </script>
 
 
+
+<!-- --------------- ระยะทาง(เสียเงิน) --------------- -->
 <script>
 	
 	function get_dir(){

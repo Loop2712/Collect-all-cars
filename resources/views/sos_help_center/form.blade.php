@@ -780,8 +780,8 @@
         fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id )
             .then(response => response.json())
             .then(start_result => {
-                // console.log("start_result");
-                
+                console.log("start_result");
+
                 status_old = start_result['status_sos'] ;
 
                 document.querySelector('#show_status').innerHTML = start_result['status_sos'] ;
@@ -806,14 +806,16 @@
             fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id )
                 .then(response => response.json())
                 .then(result => {
-                    // console.log("LOOP");
+                    console.log("LOOP");
                     // console.log(result);
 
-                    if (result['status_sos'] === 'ถึงที่เกิดเหตุ' && result['status_sos'] != status_old) {
-                        myStop_reface_map_go_to();
+                    if (result['status_sos'] != status_old) {
+                        // myStop_reface_map_go_to();
 
                         let img_stk = '{{ url("/") }}/img/stickerline/PNG/37.2.png' ;
                         alerts_status(img_stk , result['status_sos']);
+                        
+                        status_old = result['status_sos'] ;
                     }
 
                     document.querySelector('#show_status').innerHTML = result['status_sos'] ;
