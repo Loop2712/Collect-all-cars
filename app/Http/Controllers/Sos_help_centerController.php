@@ -240,12 +240,32 @@ class Sos_help_centerController extends Controller
 
     public function create_new_sos_help_center($user_id)
     {
+        $date_now = date("Y-m-d H:i:s");
+
         $requestData = [] ;
         $requestData['create_by'] = $user_id;
+        $requestData['notify'] = 'none';
+        $requestData['time_create_sos'] = $date_now;
 
         Sos_help_center::create($requestData);
 
         $sos_help_center_last = Sos_help_center::latest()->first();
+
+        $date_Y = date("y");
+        $date_m = date("m");
+
+        $province_code = "00" ;
+        $district_code = "00" ;
+        $id_code = str_pad($sos_help_center_last->id, 4, "0", STR_PAD_LEFT);
+        $operating_code = $date_Y.$date_m . "-" . $province_code.$district_code . "-" . $id_code ;
+
+        DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $sos_help_center_last->id],
+                ])
+            ->update([
+                    'operating_code' => $operating_code,
+                ]);
 
         return $sos_help_center_last->id;
     }

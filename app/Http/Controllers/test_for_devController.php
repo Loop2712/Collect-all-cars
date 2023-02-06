@@ -20,21 +20,7 @@ class test_for_devController extends Controller
 {
     public function main_test()
     {
-
-        $latitude = 14.316791260931913;
-        $longitude = 100.6068968684157;
-
-        $locations = DB::table('data_1669_operating_units')
-            ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
-            ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
-            ->having("distance", "<", 10)
-            ->orderBy("distance")
-            ->limit(20)
-            ->get();
-            
-        echo "<pre>";
-        print_r($locations);
-        echo "<pre>";
+        echo "HELLO" ;
         exit();
     }
 

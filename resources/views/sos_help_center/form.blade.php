@@ -178,7 +178,7 @@
         <div class="row d-flex justify-content-between">
             <div class="col-md-6 col-lg-6 col-12 menu-header bg-transparent d-inline">
                 <h6 class=" font-weight-bold m-0 p-0">รหัสปฏิบัติการ</h6>
-                <h3><b><u>XXXX-XXXX-00{{ $sos_help_center->id }}</u></b></h3>
+                <h3><b><u>{{ $sos_help_center->operating_code }}</u></b></h3>
             </div>
             <div class="col-md-6 col-lg-6 col-12  d-flex justify-content-end">
                 <div class="d-flex align-items-center">
@@ -501,8 +501,8 @@
                             <div class="box-status">
                                 <span class="m-0">เลขที่ปฏิบัติการ(ON)</span>
                                 <h5 class="m-0 h5">
-                                    <b>{{ $sos_help_center->operating_code }}
-                                        XXXX-XXXX-00{{ $sos_help_center->id }}
+                                    <b>
+                                        {{ $sos_help_center->operating_code }}
                                     </b>
                                 </h5>
                             </div>
