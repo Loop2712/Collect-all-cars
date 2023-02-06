@@ -8,6 +8,9 @@
       	background-color: grey;
       	border-radius: 20px;
       	border: 1px solid red;
+      	width: 90%;
+      	margin-top:25px; 
+      	margin-bottom:10px;
     }
 
     :root {
@@ -68,17 +71,30 @@
 	  	box-shadow: none;
 	}
 
-
 </style>
 
 <div class="row notranslate" style="margin-top:150px;">
+
 	<div class="col-12 text-center">
-		<div id="map_officers_switch"></div>
 		<center>
+            <div class="col-12 main-shadow main-radius p-0" id="map_officers_switch">
+                    <img style=" object-fit: cover; border-radius:15px" width="100%" height="100%" src="{{ asset('/img/more/sorry-no-text.png') }}" class="card-img-top center" style="padding: 10px;">
+                    <div style="position: relative; z-index: 5">
+                        <div class="translate">
+                        	<center>
+                        		<h4 style="top:-330px;left: 130px;position: absolute;font-family: 'Sarabun', sans-serif;">ขออภัยค่ะ</h4>
+	                            <h5 style="top:-270px;left: 35px;width: 80%;position: absolute;font-family: 'Sarabun', sans-serif;">
+	                            	ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ
+	                            </h5>
+                        	</center>
+                            
+                        </div>
+                    </div>
+            </div>
 			<hr style="border: 1px solid red;width: 70%;color: red;">
 		</center>
 	</div>
-	<div class="col-12">
+	<div id="div_switch" class="col-12 d-none">
 		<h3 class="text-center">สถานะ : <span id="text_show_standby"></span></h3>
 		<br>
 		<div class="toggle-switch">
@@ -99,8 +115,11 @@
 	</div>
 </div>
 	
-
+<!-- VIICHECK ใช้จริงใช้อันนี้ -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 <script>
+	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
+	var officer_marker ;
 
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
@@ -109,26 +128,70 @@
         if (status_officers === 'Standby') {
         	switch_standby.checked = true ;
         }
-        click_switch_standby();
-        initMap();
+
+        getLocation();
+
     });
 
-    function initMap() {
+	function stop_reface_getLocation_switch() {
+        clearInterval(reface_getLocation_switch);
+    }
 
-        let m_lat = parseFloat('12.870032');
-        let m_lng = parseFloat('100.992541');
-        let m_numZoom = parseFloat('6');
+    function getLocation() {
+	  	if (navigator.geolocation) {
+	    	navigator.geolocation.getCurrentPosition(showPosition);
+	    	stop_reface_getLocation_switch();
+	  	} else {
+	    	// x.innerHTML = "Geolocation is not supported by this browser.";
+			reface_getLocation_switch = setInterval(function() {
+				console.log('กรุณาเปิดตำแหน่งที่ตั้ง');
+				console.log('New getLocation');
+				getLocation();
+	        }, 5000);
+	  	}
+	}
+
+	function showPosition(position) {
+
+		let lat = position.coords.latitude ;
+		let lng = position.coords.longitude ;
+
+		console.log(lat);
+		console.log(lng);
+
+        initMap(lat , lng);
+        document.querySelector('#switch_standby').disabled = false ;
+	}
+
+    function initMap(m_lat , m_lng) {
+
+        let m_numZoom = parseFloat('15');
 
         map_officers_switch = new google.maps.Map(document.getElementById("map_officers_switch"), {
             center: {lat: m_lat, lng: m_lng },
             zoom: m_numZoom,
         });
 
+        if (officer_marker) {
+            officer_marker.setMap(null);
+        }
+        officer_marker = new google.maps.Marker({
+            position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
+            map: map_officers_switch,
+            icon: image_operating_unit_general,
+        });
+
+        document.querySelector('#div_switch').classList.remove('d-none');
+        click_switch_standby();
+
     }
 
 	function click_switch_standby(){
 		let switch_standby = document.querySelector('#switch_standby');
 		let status ;
+
+		let lat = position.coords.latitude ;
+		let lng = position.coords.longitude ;
 
 		if (switch_standby.checked) {
 			// console.log('พร้อม');
