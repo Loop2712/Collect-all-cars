@@ -471,7 +471,7 @@
                             <h4>
                                 สถานะ :  <b><span id="show_status" class="text-warning"></span></b>
                                 &nbsp;&nbsp;
-                                ระยะทาง (รัศมี) :  <b><span id="show_distance" class="text-warning">1.7</span></b> กม.
+                                ระยะทาง (รัศมี) :  <b><span id="show_distance" class="text-warning"></span></b> กม.
                             </h4>
                         </div>
                         <div class="col-12">
