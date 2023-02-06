@@ -142,13 +142,7 @@
 	    	navigator.geolocation.getCurrentPosition(showPosition);
 	  	} else {
 	    	// x.innerHTML = "Geolocation is not supported by this browser.";
-			getLocation_again();
 	  	}
-	}
-
-	function getLocation_again(){
-		console.log('getLocation_again');
-		getLocation();
 	}
 
 	function showPosition(position) {
