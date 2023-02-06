@@ -86,6 +86,10 @@
 	                            <h5 style="top:-270px;left: 35px;width: 80%;position: absolute;font-family: 'Sarabun', sans-serif;">
 	                            	ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ
 	                            </h5>
+	                            <br>
+	                            <span style="top:-200px;left: 130px;position: absolute;" class="btn btn-sm btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
+	                            	<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
+	                            </span>
                         	</center>
                             
                         </div>
@@ -133,22 +137,18 @@
 
     });
 
-	function stop_reface_getLocation_switch() {
-        clearInterval(reface_getLocation_switch);
-    }
-
     function getLocation() {
 	  	if (navigator.geolocation) {
 	    	navigator.geolocation.getCurrentPosition(showPosition);
-	    	stop_reface_getLocation_switch();
 	  	} else {
 	    	// x.innerHTML = "Geolocation is not supported by this browser.";
-			reface_getLocation_switch = setInterval(function() {
-				console.log('กรุณาเปิดตำแหน่งที่ตั้ง');
-				console.log('New getLocation');
-				getLocation();
-	        }, 5000);
+			getLocation_again();
 	  	}
+	}
+
+	function getLocation_again(){
+		console.log('getLocation_again');
+		getLocation();
 	}
 
 	function showPosition(position) {
@@ -160,7 +160,6 @@
 		console.log(lng);
 
         initMap(lat , lng);
-        document.querySelector('#switch_standby').disabled = false ;
 	}
 
     function initMap(m_lat , m_lng) {
@@ -182,16 +181,13 @@
         });
 
         document.querySelector('#div_switch').classList.remove('d-none');
-        click_switch_standby();
+        click_switch_standby(m_lat , m_lng);
 
     }
 
-	function click_switch_standby(){
+	function click_switch_standby(m_lat , m_lng){
 		let switch_standby = document.querySelector('#switch_standby');
 		let status ;
-
-		let lat = position.coords.latitude ;
-		let lng = position.coords.longitude ;
 
 		if (switch_standby.checked) {
 			// console.log('พร้อม');
@@ -204,7 +200,7 @@
 		}
 
 
-		fetch("{{ url('/') }}/api/update_status_officer_Standby" + "/" + status + "/" + '{{ $data_user->id }}')
+		fetch("{{ url('/') }}/api/update_status_officer_Standby" + "/" + status + "/" + '{{ $data_user->id }}' + "/" m_lat + "/" + m_lng)
             .then(response => response.text())
             .then(result => {
                 // console.log(result);

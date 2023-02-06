@@ -616,7 +616,7 @@ class Sos_help_centerController extends Controller
 
     }
 
-    function update_status_officer_Standby($status, $officer_id){
+    function update_status_officer_Standby($status, $officer_id , $lat , $lng){
 
 
         DB::table('data_1669_operating_officers')
@@ -625,6 +625,8 @@ class Sos_help_centerController extends Controller
                 ])
             ->update([
                     'status' => $status,
+                    'lat' => $lat,
+                    'lng' => $lng,
                 ]);
 
         return "Updated successfully" ;
