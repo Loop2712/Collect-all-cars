@@ -814,7 +814,7 @@
                     }
 
                     document.querySelector('#show_status').innerHTML = result['status_sos'] ;
-                    document.querySelector('#show_distance').innerHTML = result['distance'].toFixed(2) ;
+                    document.querySelector('#show_distance').innerHTML = result['distance'].toFixed(1) ;
                     set_marker_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
 
                     let Item_1 = new google.maps.LatLng(m_lat, m_lng);
