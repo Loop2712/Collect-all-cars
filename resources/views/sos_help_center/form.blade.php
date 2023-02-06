@@ -764,6 +764,7 @@
 <!-- MAP GO TO HELP -->
 <script>
     var Active_reface_map_go_to ;
+    var status_old ;
 
     function reface_map_go_to_help(){
         show_div_sos_or_unit('show_unit');
@@ -780,6 +781,8 @@
             .then(response => response.json())
             .then(start_result => {
                 // console.log("start_result");
+                
+                status_old = start_result['status_sos'] ;
 
                 document.querySelector('#show_status').innerHTML = start_result['status_sos'] ;
                 document.querySelector('#show_distance').innerHTML = start_result['distance'].toFixed(2) ;
@@ -806,7 +809,7 @@
                     // console.log("LOOP");
                     // console.log(result);
 
-                    if (result['status_sos'] === 'ถึงที่เกิดเหตุ') {
+                    if (result['status_sos'] === 'ถึงที่เกิดเหตุ' && result['status_sos'] != status_old) {
                         myStop_reface_map_go_to();
 
                         let img_stk = '{{ url("/") }}/img/stickerline/PNG/37.2.png' ;

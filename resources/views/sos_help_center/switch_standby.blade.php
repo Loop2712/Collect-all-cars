@@ -78,22 +78,22 @@
 	<div class="col-12 text-center">
 		<center>
             <div class="col-12 main-shadow main-radius p-0" id="map_officers_switch">
-                    <img style=" object-fit: cover; border-radius:15px" width="100%" height="100%" src="{{ asset('/img/more/sorry-no-text.png') }}" class="card-img-top center" style="padding: 10px;">
-                    <div style="position: relative; z-index: 5">
-                        <div class="translate">
-                        	<center>
-                        		<h4 style="top:-330px;left: 130px;position: absolute;font-family: 'Sarabun', sans-serif;">ขออภัยค่ะ</h4>
-	                            <h5 style="top:-270px;left: 35px;width: 80%;position: absolute;font-family: 'Sarabun', sans-serif;">
-	                            	ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ
-	                            </h5>
-	                            <br>
-	                            <span style="top:-200px;left: 130px;position: absolute;" class="btn btn-sm btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
-	                            	<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
-	                            </span>
-                        	</center>
-                            
-                        </div>
+                <img style=" object-fit: cover; border-radius:15px" width="100%" height="100%" src="{{ asset('/img/more/sorry-no-text.png') }}" class="card-img-top center" style="padding: 10px;">
+                <div style="position: relative; z-index: 5">
+                    <div class="translate">
+                    	<center>
+                    		<h4 style="top:-330px;left: 130px;position: absolute;font-family: 'Sarabun', sans-serif;">ขออภัยค่ะ</h4>
+                            <h5 style="top:-270px;left: 35px;width: 80%;position: absolute;font-family: 'Sarabun', sans-serif;">
+                            	ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ
+                            </h5>
+                            <br>
+                            <span style="top:-200px;left: 130px;position: absolute;" class="btn btn-sm btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
+                            	<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
+                            </span>
+                    	</center>
+                        
                     </div>
+                </div>
             </div>
 			<hr style="border: 1px solid red;width: 70%;color: red;">
 		</center>
