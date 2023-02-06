@@ -24,23 +24,6 @@
 }
 </style> 
 
-<button id="btn_save" class="btn btn-success d-flex justify-content-center" type="button" onclick="btn_save_data();"> 
-    <span id="loading" class="d-flex align-items-center d-none">
-        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>&nbsp;
-        Loading...
-    </span>
-
-    <div id="loading_success" class="d-none">
-    <i class="fa-duotone fa-circle-check"></i>
-        success
-    </div>
-    
-
-    <span id="save">
-        save
-    </span>
-    
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="modal_mapMarkLocation" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -197,7 +180,7 @@
                 <h6 class=" font-weight-bold m-0 p-0">รหัสปฏิบัติการ</h6>
                 <h3><b><u>XXXX-XXXX-00{{ $sos_help_center->id }}</u></b></h3>
             </div>
-            <div class="col-6 d-flex justify-content-end">
+            <div class="col-md-6 col-lg-6 col-12  d-flex justify-content-end">
                 <div class="d-flex align-items-center">
                     <!-- <button type="button" class="btn btn-warning m-2" onclick="click_select_btn('form_yellow');">
                         <i class="fa-solid fa-files-medical"></i> <br> แบบฟอร์มเหลือง
@@ -502,7 +485,7 @@
             <div class="tab-pane fade show active" id="form_yellow" role="tabpanel">
                 <div class="card radius-10 p-3 yellow-form">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-3">
                             <div class="box-status">
                                 @php
                                     $date = $sos_help_center->created_at ;
@@ -514,7 +497,7 @@
                                 </h5>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-4">
                             <div class="box-status">
                                 <span class="m-0">เลขที่ปฏิบัติการ(ON)</span>
                                 <h5 class="m-0 h5">
@@ -524,7 +507,7 @@
                                 </h5>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-3">
                             <div class="box-status">
                                 <span class="m-0">ลำดับผู้ป่วย(CN)</span>
                                 <h5 class="m-0 h5">
@@ -533,6 +516,22 @@
                                     </b>
                                 </h5>
                             </div>
+                        </div>
+                        <div class="col-2 float-end">
+                            <button id="btn_save" class=" btn btn-success d-flex justify-content-center btn-block" type="button" onclick="btn_save_data();send_save_data();"> 
+                                <div id="icon_save_data" class="d-none">
+                                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                                    </svg>
+                                </div>
+                                    &nbsp;
+                                <span id="text_btn_save">
+                                    บันทึก
+                                </span>
+                                
+                            </button>
+
                         </div>
                         <div class="col-12">
                             @include ('sos_help_center.form_sos_yellow')
@@ -1410,27 +1409,22 @@
     }
 
 </script>
+
 <script>
     function btn_save_data() {
-         document.getElementById("btn_save").disabled = true;
-         document.getElementById("save").classList.add('d-none');
-         document.getElementById("loading").classList.remove('d-none');
-        
+        document.getElementById("btn_save").disabled = true;
+        document.querySelector('#icon_save_data').classList.remove('d-none');
+        document.querySelector('#text_btn_save').innerHTML = "บันทึก..";
+        const animated = document.querySelector('.checkmark__check');
+        animated.onanimationend = () => {
+            setTimeout(() => {
+                document.getElementById("btn_save").disabled = false;
+                document.querySelector('#icon_save_data').classList.add('d-none');
+                document.querySelector('#text_btn_save').innerHTML = "บันทึก";
 
-         setTimeout(() => {
-            document.getElementById("loading").classList.add('d-none');
-        }, 1000);
+            }, 1000);
 
-        setTimeout(() => {
-            
-            document.getElementById("loading_success").classList.remove('d-none');
-        }, 1010);
+        };
 
-        setTimeout(() => {
-            document.getElementById("btn_save").disabled = false;
-            document.getElementById("loading_success").classList.add('d-none');
-         document.getElementById("save").classList.remove('d-none');
-
-        }, 2000);
     }
 </script>
