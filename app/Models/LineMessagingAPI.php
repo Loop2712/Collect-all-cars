@@ -167,10 +167,10 @@ class LineMessagingAPI extends Model
     {   
     	switch($message_type)
         {   
-            case 'สพฉ':
+            case 'niems':
                 $template_path = storage_path('../public/json/text_success.json');   
                 $string_json = file_get_contents($template_path);
-                $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","https://www.viicheck.com/officers/switch_standby_login",$string_json);
+                $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","https://www.viicheck.com/officers/switch_standby_login?openExternalBrowser=1",$string_json);
 
                 $messages = [ json_decode($string_json, true) ]; 
             break;

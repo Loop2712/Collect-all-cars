@@ -169,7 +169,7 @@ class LineApiController extends Controller
                     $line->replyToUser(null, $event, "other");
                     break;
                 case "สพฉ" :  
-                    $line->replyToUser(null, $event, "สพฉ");
+                    $line->replyToUser(null, $event, "niems");
                     break;
                 case "ข่าวสาร" :  
                     $line->replyToUser(null, $event, "vnews");
