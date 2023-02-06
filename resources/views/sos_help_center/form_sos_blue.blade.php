@@ -61,9 +61,9 @@
 						<hr>
 						<div class="row">
 							<div class="col-md-6">
-								<label for="organization_helper" class="form-label">ชื่อหน่วยปฏิบัติการ</label>
+								<label for="blue_organization_helper" class="form-label">ชื่อหน่วยปฏิบัติการ</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-duotone fa-shield-halved"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="organization_helper" value="{{ isset($sos_help_center->organization_helper) ? $sos_help_center->organization_helper : ''}}" placeholder="หน่วยปฏิบัติการ" readonly>
+									<input type="text" class="form-control border-start-0 radius-2" name="blue_organization_helper" value="{{ isset($sos_help_center->organization_helper) ? $sos_help_center->organization_helper : ''}}" placeholder="หน่วยปฏิบัติการ" readonly>
 								</div>
 							</div>
 							<div class="col-md-3">
@@ -110,21 +110,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="card radius-6 p-3 d-flex">
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <img class="img-helper" src="{{ url('storage')}}/{{ Auth::user()->photo }}" alt="">
-                                        </div>
-                                        <div class="col-9 d-flex align-items-center">
-                                            <div class="p-2 detail-helper">
-                                                <h4 class="p-0 m-0">ชื่อ : {{ Auth::user()->name }}</h4>
-                                                <h6 class="p-0 m-0">รหัส : 60122420123</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <!-- /////////////////////////////////////////////// data helper ////////////////////////////////////////////// -->
 
 
@@ -135,7 +120,7 @@
                                 <div class="col-12 col-md-6 col-lg-6">
                                     <div class=" col-12">
                                         <label>
-                                            <input type="radio" name="help_result" value="ไม่พบเหตุ"  class="card-input-red card-input-element d-none" >
+                                            <input type="radio" name="blue_help_result" value="ไม่พบเหตุ"  class="card-input-red card-input-element d-none" >
                                             <div class="card card-body d-flex flex-row justify-content-between align-items-center text-danger" >
                                                 <b>
                                                     ไม่พบเหตุ
@@ -148,7 +133,7 @@
                                 <div class="col-12 col-md-6 col-lg-6">
                                     <div class="">
                                         <label>
-                                            <input type="radio"  name="help_result" value="พบเหตุ"  class="card-input-element d-none" >
+                                            <input type="radio"  name="blue_help_result" value="พบเหตุ"  class="card-input-element d-none" >
                                             <div class="card card-body d-flex flex-row-reverse  justify-content-between align-items-center">
                                                 <b>
                                                     พบเหตุ
@@ -160,15 +145,15 @@
                             </div>
 
                             <div class="col-md-6">
-								<label for="location_sos" class="form-label">สถานที่เกิดเหตุ</label>
+								<label for="blue_location_sos" class="form-label">สถานที่เกิดเหตุ</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-location-exclamation"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="location_sos" value="{{ isset($sos_help_center->location_sos) ? $sos_help_center->location_sos : ''}}" placeholder="สถานที่เกิดเหตุ">
+									<input type="text" class="form-control border-start-0 radius-2" name="blue_location_sos" value="{{ isset($sos_help_center->location_sos) ? $sos_help_center->location_sos : ''}}" placeholder="สถานที่เกิดเหตุ">
 								</div>
 							</div>
 							<div class="col-md-6">
-								<label for="dateil_sos" class="form-label">เหตุการณ์</label>
+								<label for="blue_dateil_sos" class="form-label">เหตุการณ์</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-person-burst"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="dateil_sos" value="{{ isset($sos_help_center->dateil_sos) ? $sos_help_center->dateil_sos : ''}}" placeholder="เหตุการณ์">
+									<input type="text" class="form-control border-start-0 radius-2" name="blue_dateil_sos" value="{{ isset($sos_help_center->dateil_sos) ? $sos_help_center->dateil_sos : ''}}" placeholder="เหตุการณ์">
 								</div>
 							</div>
                         </div>
@@ -204,25 +189,25 @@
                                                 เวลา (น.)
                                             </th>
                                             <td>
-                                                <input class="form-control" type="time" name="time_create_sos" id="time_create_sos" value="{{ isset($sos_help_center->form_yellow->time_create_sos) ? $sos_help_center->form_yellow->time_create_sos : ''}}">
+                                                <input class="form-control" type="time" name="blue_time_create_sos" id="blue_time_create_sos" value="">
                                             </td>
                                             <td>
-                                                <input class="form-control" type="time" name="time_command" id="time_command" value="{{ isset($sos_help_center->form_yellow->time_command) ? $sos_help_center->form_yellow->time_command : ''}}">
+                                                <input class="form-control" type="time" name="blue_time_command" id="blue_time_command" value="">
                                             </td>
                                             <td>
-                                                <input class="form-control" type="time" name="time_go_to_help" id="time_go_to_help" value="{{ isset($sos_help_center->form_yellow->time_go_to_help) ? $sos_help_center->form_yellow->time_go_to_help : ''}}">
+                                                <input class="form-control" type="time" name="blue_time_go_to_help" id="blue_time_go_to_help" value="">
                                             </td>
                                             <td>
-                                                <input class="form-control" type="time" name="time_to_the_scene" id="time_to_the_scene" value="{{ isset($sos_help_center->form_yellow->time_to_the_scene) ? $sos_help_center->form_yellow->time_to_the_scene : ''}}">
+                                                <input class="form-control" type="time" name="blue_time_to_the_scene" id="blue_time_to_the_scene" value="">
                                             </td>
                                             <td>
-                                                <input class="form-control" type="time" name="time_leave_the_scene" id="time_leave_the_scene" value="{{ isset($sos_help_center->form_yellow->time_leave_the_scene) ? $sos_help_center->form_yellow->time_leave_the_scene : ''}}">
+                                                <input class="form-control" type="time" name="blue_time_leave_the_scene" id="blue_time_leave_the_scene" value="">
                                             </td>
                                             <td>
-                                                <input class="form-control" type="time" name="time_hospital" id="time_hospital" value="{{ isset($sos_help_center->form_yellow->time_hospital) ? $sos_help_center->form_yellow->time_hospital : ''}}">
+                                                <input class="form-control" type="time" name="blue_time_hospital" id="blue_time_hospital" value="">
                                             </td>
                                             <td>
-                                                <input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" value="{{ isset($sos_help_center->form_yellow->time_to_the_operating_base) ? $sos_help_center->form_yellow->time_to_the_operating_base : ''}}">
+                                                <input class="form-control" type="time" name="blue_time_to_the_operating_base" id="blue_time_to_the_operating_base" value="">
                                             </td>
                                         </tr>
                                         <tr>
@@ -244,16 +229,16 @@
                                                 เลข กม.
                                             </th>
                                             <td colspan="3">
-                                                <input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($sos_help_center->form_yellow->km_create_sos_to_go_to_help) ? $sos_help_center->form_yellow->km_create_sos_to_go_to_help : ''}}">
+                                                <input class="form-control" type="number" min="0" name="blue_km_create_sos_to_go_to_help" id="blue_km_create_sos_to_go_to_help" value="">
                                             </td>
                                             <td colspan="2">
-                                                <input class="form-control" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($sos_help_center->form_yellow->km_to_the_scene_to_leave_the_scene) ? $sos_help_center->form_yellow->km_to_the_scene_to_leave_the_scene : ''}}">
+                                                <input class="form-control" type="number"min="0" name="blue_km_to_the_scene_to_leave_the_scene" id="blue_km_to_the_scene_to_leave_the_scene" value="">
                                             </td>
                                             <td>
-                                                <input class="form-control"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($sos_help_center->form_yellow->km_hospital) ? $sos_help_center->form_yellow->km_hospital : ''}}">
+                                                <input class="form-control"type="number" min="0" name="blue_km_hospital" id="blue_km_hospital" value="">
                                             </td>
                                             <td>
-                                                <input class="form-control" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($sos_help_center->form_yellow->km_operating_base) ? $sos_help_center->form_yellow->km_operating_base : ''}}">
+                                                <input class="form-control" type="number" min="0" name="blue_km_operating_base" id="blue_km_operating_base" value="">
                                             </td>
                                         </tr>
                                         <tr>
@@ -296,24 +281,24 @@
 						<hr>
                         <div class="row">
                             <div class="col-md-6">
-								<label for="name_title" class="form-label">คำนำหน้าชื่อผู้ป่วย</label>
+								<label for="blue_name_title" class="form-label">คำนำหน้าชื่อผู้ป่วย</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-location-exclamation"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="name_title" value="{{ isset($sos_help_center->location_sos) ? $sos_help_center->location_sos : ''}}" placeholder="คำนำหน้าชื่อผู้ป่วย">
+									<input type="text" class="form-control border-start-0 radius-2" name="blue_name_title" value="" placeholder="คำนำหน้าชื่อผู้ป่วย">
 								</div>
 							</div>
 							<div class="col-md-6">
-								<label for="age" class="form-label">อายุ</label>
+								<label for="blue_age" class="form-label">อายุ</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-person-burst"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="age" value="{{ isset($sos_help_center->dateil_sos) ? $sos_help_center->dateil_sos : ''}}" placeholder="อายุ">
+									<input type="text" class="form-control border-start-0 radius-2" name="blue_age" value="" placeholder="อายุ">
 								</div>
 							</div>
                             <div class="col-12 mt-3">
-								<label for="result" class="form-label">เพศ</label>
+								<label class="form-label">เพศ</label>
                             </div>
                             <div class="col-12 col-md-6 col-lg-6">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="gender" value="ชาย"  class=" card-input-element d-none" >
+                                        <input type="radio" name="blue_gender" value="ชาย"  class=" card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 <i class="fa-solid fa-mars"></i> ชาย
@@ -339,7 +324,7 @@
                             <div class="col-12 col-md-6 col-lg-6">
                                 <div>
                                     <label>
-                                        <input type="radio"  name="gender" value="หญิง"  class="card-input-female card-input-element d-none" >
+                                        <input type="radio"  name="blue_gender" value="หญิง"  class="card-input-female card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row-reverse text-female justify-content-between align-items-center">
                                             <b >
                                                 <i class="fa-solid fa-venus"></i> หญิง
@@ -350,12 +335,12 @@
                             </div>
 
                             <div class="col-12 mt-3">
-								<label for="result" class="form-label">ประเภท</label>
+								<label class="form-label">ประเภท</label>
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="people_type" value="คนไทย"  class=" card-input-element d-none" onchange="check_type_people()">
+                                        <input type="radio" name="blue_people_type" value="คนไทย"  class=" card-input-element d-none" onchange="blue_check_type_people()">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  คนไทย
@@ -367,7 +352,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="people_type" value="แรงงานต่างด้าว"  class=" card-input-element d-none" onchange="check_type_people()">
+                                        <input type="radio" name="blue_people_type" value="แรงงานต่างด้าว"  class=" card-input-element d-none" onchange="blue_check_type_people()">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  แรงงานต่างด้าว
@@ -379,7 +364,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="people_type" value="ชาวต่างชาติ"  class=" card-input-element d-none" onchange="check_type_people()">
+                                        <input type="radio" name="blue_people_type" value="ชาวต่างชาติ"  class=" card-input-element d-none" onchange="blue_check_type_people()">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ชาวต่างชาติ
@@ -389,25 +374,25 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 d-none mb-3" id="thai_people">
-                                <label for="age" class="form-label"> </label>
+                            <div class="col-12 d-none mb-3" id="blue_thai_people">
+                                <label  class="form-label"> </label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card"></i></span>
-                                    <input type="text" class="form-control border-start-0 radius-2" id="id_card" name="id_card" value="" placeholder="เลขบัตรประชาชน">
+                                    <input type="text" class="form-control border-start-0 radius-2" id="blue_id_card" name="blue_id_card" value="" placeholder="เลขบัตรประชาชน">
 								</div>
                             </div>
 
-                            <div class="col-12 d-none mb-3" id="foreigner">
+                            <div class="col-12 d-none mb-3" id="blue_foreigner">
                                 <div class="row">
                                     <div class="col-6">
-                                        <label for="people_country" class="form-label">ประเทศ</label>
+                                        <label for="blue_people_country" class="form-label">ประเทศ</label>
                                         <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-earth-americas"></i></span>
-                                            <input type="text" class="form-control border-start-0 radius-2" id="people_country" name="people_country" value="" placeholder="ประเทศ">
+                                            <input type="text" class="form-control border-start-0 radius-2" id="blue_people_country" name="blue_people_country" value="" placeholder="ประเทศ">
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        <label for="passport" class="form-label">หนังสือเดินทาง</label>
+                                        <label for="blue_passport" class="form-label">หนังสือเดินทาง</label>
                                         <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-passport"></i></span>
-                                            <input type="text" class="form-control border-start-0 radius-2" id="passport" name="passport" value="" placeholder="หนังสือเดินทาง">
+                                            <input type="text" class="form-control border-start-0 radius-2" id="blue_passport" name="blue_passport" value="" placeholder="หนังสือเดินทาง">
                                         </div>
                                     </div>
                                 </div>
@@ -416,12 +401,12 @@
                             
                             
                             <div class="col-12 mt-3">
-								<label for="result" class="form-label">สิทธิการรักษา</label>
+								<label class="form-label">สิทธิการรักษา</label>
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="treatment_rights" value="บัตรทอง"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_treatment_rights" value="บัตรทอง"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  บัตรทอง
@@ -433,7 +418,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="treatment_rights" value="ข้าราชการ"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_treatment_rights" value="ข้าราชการ"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ข้าราชการ
@@ -445,7 +430,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="treatment_rights" value="ประกันสังคม"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_treatment_rights" value="ประกันสังคม"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ประกันสังคม
@@ -457,7 +442,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="treatment_rights" value="แรงงานต่างด้าวขึ้นทะเบียน"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_treatment_rights" value="แรงงานต่างด้าวขึ้นทะเบียน"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  แรงงานต่างด้าวขึ้นทะเบียน
@@ -469,7 +454,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="treatment_rights" value="ไม่มีหลักประกัน"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_treatment_rights" value="ไม่มีหลักประกัน"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ไม่มีหลักประกัน
@@ -487,7 +472,7 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="insurance" value="ประกันท่องเที่ยว"  class=" card-input-element d-none" onchange="check_insurance()">
+                                        <input type="radio" name="blue_insurance" value="ประกันท่องเที่ยว"  class=" card-input-element d-none" onchange="blue_check_insurance()">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ประกันท่องเที่ยว
@@ -499,7 +484,7 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="insurance" value="ผู้ประสบภัยจากรถ"  class=" card-input-element d-none" onchange="check_insurance()">
+                                        <input type="radio" name="blue_insurance" value="ผู้ประสบภัยจากรถ"  class=" card-input-element d-none" onchange="blue_check_insurance()">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ผู้ประสบภัยจากรถ  
@@ -509,39 +494,39 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 d-none" id="div_insurance_country">
-                                <label for="insurance_country" class="form-label">ประเทศ</label>
+                            <div class="col-12 d-none" id="blue_div_insurance_country">
+                                <label for="blue_insurance_country" class="form-label">ประเทศ</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-earth-americas"></i></span>
-                                    <input type="text" class="form-control border-start-0 radius-2" id="insurance_country" name="insurance_country" value="" placeholder="ประเทศ">
+                                    <input type="text" class="form-control border-start-0 radius-2" id="blue_insurance_country" name="blue_insurance_country" value="" placeholder="ประเทศ">
 								</div>
                             </div>
 
-                            <div class="row d-none" id="div_insurance_car">
+                            <div class="row d-none" id="blue_div_insurance_car">
                                  <div class="col-3">
-                                    <label for="insurance_country" class="form-label">ประเภทรถ</label>
+                                    <label for="blue_insurance_type_car" class="form-label">ประเภทรถ</label>
                                     <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-car-bus"></i></span>
-                                        <input type="text" class="form-control border-start-0 radius-2" id="insurance_type_car" name="insurance_type_car" value="" placeholder="ประเภทรถ">
+                                        <input type="text" class="form-control border-start-0 radius-2" id="blue_insurance_type_car" name="blue_insurance_type_car" value="" placeholder="ประเภทรถ">
                                     </div>
                                 </div>
 
                                 <div class="col-3">
-                                    <label for="insurance_country" class="form-label">ทะเบียนรถหมวด</label>
+                                    <label for="blue_insurance_type_license_plate" class="form-label">ทะเบียนรถหมวด</label>
 								    <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-car-rear"></i></span>
-                                        <input type="text" class="form-control border-start-0 radius-2" id="insurance_type_license_plate" name="insurance_type_license_plate" value="" placeholder="ทะเบียนรถหมวด">
+                                        <input type="text" class="form-control border-start-0 radius-2" id="blue_insurance_type_license_plate" name="blue_insurance_type_license_plate" value="" placeholder="ทะเบียนรถหมวด">
 								    </div>
                                 </div>
 
                                 <div class="col-3">
-                                    <label for="insurance_country" class="form-label">เลขทะเบียน</label>
+                                    <label for="blue_insurance_license_plate" class="form-label">เลขทะเบียน</label>
 								    <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-regular fa-input-numeric"></i></span>
-                                        <input type="text" class="form-control border-start-0 radius-2" id="insurance_license_plate" name="insurance_license_plate" value="" placeholder="เลขทะเบียน">
+                                        <input type="text" class="form-control border-start-0 radius-2" id="blue_insurance_license_plate" name="blue_insurance_license_plate" value="" placeholder="เลขทะเบียน">
 								    </div>
                                 </div>
 
                                 <div class="col-3">
-                                    <label for="insurance_country" class="form-label">จังหวัด</label>
+                                    <label for="blue_insurance_province" class="form-label">จังหวัด</label>
 								    <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-map-location"></i></span>
-                                        <input type="text" class="form-control border-start-0 radius-2" id="insurance_province" name="insurance_province" value="" placeholder="จังหวัด">
+                                        <input type="text" class="form-control border-start-0 radius-2" id="blue_insurance_province" name="blue_insurance_province" value="" placeholder="จังหวัด">
 								    </div>
                                 </div>
                             </div>
@@ -560,7 +545,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="type_patient" value="บาดเจ็บ/อุบัติเหตุ"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_type_patient" value="บาดเจ็บ/อุบัติเหตุ"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  บาดเจ็บ/อุบัติเหตุ
@@ -572,7 +557,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="type_patient" value="ป่วยฉุกเฉิน"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_type_patient" value="ป่วยฉุกเฉิน"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ป่วยฉุกเฉิน  
@@ -601,27 +586,27 @@
                                         Vital Signs
                                     </h6>
                                     <div class="mb-3">
-                                        <label for="name_title" class="form-label">อุณหภูมิ</label>
+                                        <label for="temperature" class="form-label">อุณหภูมิ</label>
                                         <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-regular fa-temperature-three-quarters"></i></span>
-                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="อุณหภูมิ">
+                                            <input type="text" class="form-control border-start-0 radius-2" name="blue_temperature" value="" placeholder="อุณหภูมิ">
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="name_title" class="form-label">ความดันโลหิต</label>
+                                        <label for="blood_pressure" class="form-label">ความดันโลหิต</label>
                                         <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-droplet"></i></span>
-                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="ความดันโลหิต">
+                                            <input type="text" class="form-control border-start-0 radius-2" name="blue_blood_pressure" value="" placeholder="ความดันโลหิต">
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="name_title" class="form-label">ชีพจร</label>
+                                        <label for="pulse" class="form-label">ชีพจร</label>
                                         <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-regular fa-wave-pulse"></i></span>
-                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="ชีพจร">
+                                            <input type="text" class="form-control border-start-0 radius-2" name="blue_pulse" value="" placeholder="ชีพจร">
                                         </div>
                                     </div>
                                     <div>
-                                        <label for="name_title" class="form-label">อัตราหายใจ</label>
+                                        <label for="respiration" class="form-label">อัตราหายใจ</label>
                                         <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-lungs"></i></span>
-                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="อัตราหายใจ">
+                                            <input type="text" class="form-control border-start-0 radius-2" name="blue_respiration" value="" placeholder="อัตราหายใจ">
                                         </div>
                                     </div>
                                 </div>
@@ -634,19 +619,19 @@
                                     <div class="mb-3">
                                         <label for="name_title" class="form-label">ประเมินการลืมตา (E)</label>
                                         <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-eye"></i></span>
-                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="อุณหภูมิ">
+                                            <input type="text" class="form-control border-start-0 radius-2" name="blue_name_title" value="" placeholder="ระดับการลืมตา">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="name_title" class="form-label">ประเมินการสื่อภาษา (V)</label>
                                         <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-comment-lines"></i></span>
-                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="ความดันโลหิต">
+                                            <input type="text" class="form-control border-start-0 radius-2" name="blue_name_title" value="" placeholder="ระดับการสื่อสาร">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="name_title" class="form-label">ประเมินการเคลื่อนไหว  (M)</label>
-                                        <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-regular fa-wave-pulse"></i></span>
-                                            <input type="text" class="form-control border-start-0 radius-2" name="name_title" value="" placeholder="ชีพจร">
+                                        <div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-child-reaching"></i></span>
+                                            <input type="text" class="form-control border-start-0 radius-2" name="blue_name_title" value="" placeholder="ระดับการเคลื่อนไหว">
                                         </div>
                                     </div>
                                 </div>
@@ -659,7 +644,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="consciousness" value="รู้สึกตัวดี"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_consciousness" value="รู้สึกตัวดี"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  รู้สึกตัวดี
@@ -671,7 +656,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="consciousness" value="ซึม"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_consciousness" value="ซึม"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ซึม 
@@ -683,7 +668,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="consciousness" value="หมดสติปลุกตื่น"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_consciousness" value="หมดสติปลุกตื่น"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  หมดสติปลุกตื่น
@@ -695,7 +680,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="consciousness" value="หมดสติปลุกไม่ตื่น"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_consciousness" value="หมดสติปลุกไม่ตื่น"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  หมดสติปลุกไม่ตื่น  
@@ -707,7 +692,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="consciousness" value="แอะอะโวยวาย"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_consciousness" value="แอะอะโวยวาย"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  แอะอะโวยวาย
@@ -724,7 +709,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="breathing" value="ปกติ"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_breathing" value="ปกติ"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ปกติ
@@ -736,7 +721,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="breathing" value="เร็ว"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_breathing" value="เร็ว"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  เร็ว 
@@ -748,7 +733,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="breathing" value="ช้า"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_breathing" value="ช้า"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ช้า
@@ -760,7 +745,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="breathing" value="ไม่สม่ำเสมอ"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_breathing" value="ไม่สม่ำเสมอ"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ไม่สม่ำเสมอ  
@@ -772,7 +757,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="breathing" value="ไม่หายใจ"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_breathing" value="ไม่หายใจ"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ไม่หายใจ
@@ -788,7 +773,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="wound" value="ไม่มี"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_wound" value="ไม่มี"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ไม่มี
@@ -800,7 +785,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="wound" value="แผลถลอก"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_wound" value="แผลถลอก"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  แผลถลอก 
@@ -812,7 +797,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="wound" value="ฉีกขาด/ตัด"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_wound" value="ฉีกขาด/ตัด"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ฉีกขาด/ตัด
@@ -824,7 +809,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="wound" value="แผลฝกช้ำ"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_wound" value="แผลฝกช้ำ"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  แผลฝกช้ำ  
@@ -836,7 +821,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="wound" value="แผลไหม้"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_wound" value="แผลไหม้"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  แผลไหม้
@@ -848,7 +833,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="wound" value="ถูกยิง"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_wound" value="ถูกยิง"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ถูกยิง 
@@ -860,7 +845,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="wound" value="ถูกแทง"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_wound" value="ถูกแทง"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ถูกแทง
@@ -872,7 +857,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="wound" value="อวัยวะตัดขาด"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_wound" value="อวัยวะตัดขาด"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  อวัยวะตัดขาด  
@@ -884,7 +869,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="wound" value="ถูกระเบิด"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_wound" value="ถูกระเบิด"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ถูกระเบิด
@@ -900,7 +885,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="deformed_bone" value="ไม่มี"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_deformed_bone" value="ไม่มี"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ไม่มี
@@ -912,7 +897,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="deformed_bone" value="ผิดรูป"  class=" card-input-element d-none">
+                                        <input type="radio" name="blue_deformed_bone" value="ผิดรูป"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ผิดรูป 
@@ -929,7 +914,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="organ" value="ศรีษะ/คอ"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_organ" value="ศรีษะ/คอ"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ศรีษะ/คอ
@@ -941,7 +926,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="organ" value="ใบหน้า"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_organ" value="ใบหน้า"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ใบหน้า
@@ -953,7 +938,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="organ" value="สันหลัง/หลัง"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_organ" value="สันหลัง/หลัง"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  สันหลัง/หลัง
@@ -965,7 +950,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="organ" value="หน้าอก/ไหปลาร้า"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_organ" value="หน้าอก/ไหปลาร้า"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  หน้าอก/ไหปลาร้า
@@ -977,7 +962,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="organ" value="ช่องท้อง"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_organ" value="ช่องท้อง"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ช่องท้อง
@@ -989,7 +974,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="organ" value="เชิงกราน"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_organ" value="เชิงกราน"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  เชิงกราน
@@ -1001,7 +986,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="organ" value="Extremities"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_organ" value="Extremities"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  Extremities
@@ -1013,7 +998,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="organ" value="ผิวหนัง"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_organ" value="ผิวหนัง"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  ผิวหนัง
@@ -1025,7 +1010,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="organ" value="Multiple injury back"  class=" card-input-element d-none">
+                                        <input type="checkbox" name="blue_organ" value="Multiple injury back"  class=" card-input-element d-none">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                  Multiple injury back
@@ -1047,7 +1032,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="respiratory_tract" value="ไม่ได้ทำ"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_respiratory_tract" value="ไม่ได้ทำ"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                             ไม่ได้ทำ
@@ -1057,7 +1042,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="respiratory_tract" value="จัดท่าผู้ป่วย"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_respiratory_tract" value="จัดท่าผู้ป่วย"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                             จัดท่าผู้ป่วย
@@ -1067,7 +1052,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="respiratory_tract" value="เปิดทางเดินหายใจ"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_respiratory_tract" value="เปิดทางเดินหายใจ"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                             เปิดทางเดินหายใจ
@@ -1077,7 +1062,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="respiratory_tract" value="ช่วยหายใจ"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_respiratory_tract" value="ช่วยหายใจ"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                             ช่วยหายใจ
@@ -1091,7 +1076,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="hemostasis" value="ไม่ได้ทำ"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_hemostasis" value="ไม่ได้ทำ"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                             ไม่ได้ทำ
@@ -1101,7 +1086,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="hemostasis" value="การกดห้ามเลือด"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_hemostasis" value="การกดห้ามเลือด"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                             การกดห้ามเลือด
@@ -1111,7 +1096,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="hemostasis" value="ทำแผล"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_hemostasis" value="ทำแผล"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                             ทำแผล
@@ -1125,7 +1110,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="bone_splint" value="ไม่ได้ทำ"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_bone_splint" value="ไม่ได้ทำ"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                             ไม่ได้ทำ
@@ -1135,7 +1120,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="bone_splint" value="เฝือกลม/ไม้ดาม"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_bone_splint" value="เฝือกลม/ไม้ดาม"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                             เฝือกลม/ไม้ดาม
@@ -1145,7 +1130,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="bone_splint" value="bone_splint"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_bone_splint" value="เฝือกดามคอและกระดานรองหลังยาว"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                             เฝือกดามคอและกระดานรองหลังยาว
@@ -1159,7 +1144,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="help_revive" value="ไม่ได้ทำ"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_help_revive" value="ไม่ได้ทำ"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                             ไม่ได้ทำ
@@ -1169,7 +1154,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="help_revive" value="ทำ"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_help_revive" value="ทำ"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                            ทำ
@@ -1184,7 +1169,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="results_of_care" value="ไม่ยอมให้รักษา"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_results_of_care" value="ไม่ยอมให้รักษา"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                         ไม่ยอมให้รักษา
@@ -1194,7 +1179,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="results_of_care" value="ทุเลา"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_results_of_care" value="ทุเลา"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                            ทุเลา
@@ -1204,7 +1189,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="results_of_care" value="คงเดิม"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_results_of_care" value="คงเดิม"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                            คงเดิม
@@ -1214,7 +1199,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="results_of_care" value="ทรุดหนัก"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_results_of_care" value="ทรุดหนัก"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                            ทรุดหนัก
@@ -1224,7 +1209,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="results_of_care" value="เสียชีวิต ณ จุดเกิดเหตุ"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_results_of_care" value="เสียชีวิต ณ จุดเกิดเหตุ"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                            เสียชีวิต ณ จุดเกิดเหตุ
@@ -1234,7 +1219,7 @@
                             </div>
                             <div class="col-12 col-md-4 col-lg-4">
                                 <label>
-                                    <input type="checkbox" name="results_of_care" value="เสียชีวิตขณะนำส่ง"  class=" card-input-element d-none">
+                                    <input type="checkbox" name="blue_results_of_care" value="เสียชีวิตขณะนำส่ง"  class=" card-input-element d-none">
                                     <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                         <b>
                                            เสียชีวิตขณะนำส่ง
@@ -1258,21 +1243,21 @@
 						<hr>
                         <div class="row">
                             <div class="col-md-4">
-								<label for="name_hospital" class="form-label">นำส่งห้องฉุกเฉินโรงพยาบาล</label>
+								<label for="blue_name_hospital" class="form-label">นำส่งห้องฉุกเฉินโรงพยาบาล</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-hospital"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="name_hospital" value="" placeholder="ชื่อโรงพยาบาล">
+									<input type="text" class="form-control border-start-0 radius-2" name="blue_name_hospital" value="" placeholder="ชื่อโรงพยาบาล">
 								</div>
 							</div>
 							<div class="col-md-2">
-								<label for="time_go_to_hospital" class="form-label">เวลา</label>
+								<label for="blue_time_go_to_hospital" class="form-label">เวลา</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-clock"></i></span>
-									<input type="datetime-local" class="form-control border-start-0 radius-2" name="time_go_to_hospital" value="" placeholder="วันที่/เวลา">
+									<input type="datetime-local" class="form-control border-start-0 radius-2" name="blue_time_go_to_hospital" value="" placeholder="วันที่/เวลา">
 								</div>
 							</div>
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="type_hospital" value="ชาย"  class=" card-input-element d-none" >
+                                        <input type="radio" name="blue_type_hospital" value="ชาย"  class=" card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 โรงพยาบาลรัฐ
@@ -1284,7 +1269,7 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="type_hospital" value="ชาย"  class=" card-input-element d-none" >
+                                        <input type="radio" name="blue_type_hospital" value="ชาย"  class=" card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 โรงพยาบาลเอกชน
@@ -1300,7 +1285,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="reason_choosing_hospital" value="เหมาะสม/รักษาได้"  class=" card-input-element d-none" >
+                                        <input type="checkbox" name="blue_reason_choosing_hospital" value="เหมาะสม/รักษาได้"  class=" card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 เหมาะสม/รักษาได้
@@ -1312,7 +1297,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="reason_choosing_hospital" value="อยู่ใกล้"  class=" card-input-element d-none" >
+                                        <input type="checkbox" name="blue_reason_choosing_hospital" value="อยู่ใกล้"  class=" card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 อยู่ใกล้
@@ -1324,7 +1309,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="reason_choosing_hospital" value="มีหลักประกัน"  class=" card-input-element d-none" >
+                                        <input type="checkbox" name="blue_reason_choosing_hospital" value="มีหลักประกัน"  class=" card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 มีหลักประกัน
@@ -1336,7 +1321,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="reason_choosing_hospital" value="เป็นผู้ป่วยเก่า"  class=" card-input-element d-none" >
+                                        <input type="checkbox" name="blue_reason_choosing_hospital" value="เป็นผู้ป่วยเก่า"  class=" card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 เป็นผู้ป่วยเก่า
@@ -1348,7 +1333,7 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="checkbox" name="reason_choosing_hospital" value="เป็นความประสงค์"  class=" card-input-element d-none" >
+                                        <input type="checkbox" name="blue_reason_choosing_hospital" value="เป็นความประสงค์"  class=" card-input-element d-none" >
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 เป็นความประสงค์
@@ -1359,15 +1344,15 @@
                             </div>
 
                             <div class="col-md-6">
-								<label for="recorder" class="form-label">ผู้สรุปรายงาน</label>
+								<label for="blue_recorder" class="form-label">ผู้สรุปรายงาน</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-pen"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="recorder" value="" placeholder="ชื่อผู้สรุปรายงาน">
+									<input type="text" class="form-control border-start-0 radius-2" name="blue_recorder" value="" placeholder="ชื่อผู้สรุปรายงาน">
 								</div>
 							</div>
 							<div class="col-md-6">
-								<label for="id_recorder" class="form-label">รหัส</label>
+								<label for="blue_id_recorder" class="form-label">รหัส</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-regular fa-id-card-clip"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="id_recorder" value="" placeholder="รหัส">
+									<input type="text" class="form-control border-start-0 radius-2" name="blue_id_recorder" value="" placeholder="รหัส">
 								</div>
 							</div>
                         </div>
@@ -1383,20 +1368,20 @@
 						<hr>
                         <div class="row">
                             <div class="col-md-6 col-lg-6 col-6">
-								<label for="hospital_number" class="form-label">HN</label>
+								<label for="blue_hospital_number" class="form-label">HN</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-duotone fa-id-card"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="hospital_number" value="" placeholder="หมายเลขของผู้ป่วยนอก">
+									<input type="text" class="form-control border-start-0 radius-2" name="blue_hospital_number" value="" placeholder="หมายเลขของผู้ป่วยนอก">
 								</div>
 							</div>
 							<div class="col-md-6 col-lg-6 col-6">
-								<label for="diagnosis" class="form-label">การวินิจฉัยโรค</label>
+								<label for="blue_diagnosis" class="form-label">การวินิจฉัยโรค</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-person-burst"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="diagnosis" value="" placeholder="การวินิจฉัยโรค">
+									<input type="text" class="form-control border-start-0 radius-2" name="blue_diagnosis" value="" placeholder="การวินิจฉัยโรค">
 								</div>
 							</div>
                             
                             <div class="col-12 mt-3">
-								<label for="result" class="form-label">ระดับการคัดแยก(ER Triage)</label>
+								<label class="form-label">ระดับการคัดแยก(ER Triage)</label>
                             </div>
 
                             <div class="col-12 col-md-3 col-lg-3">
@@ -1421,7 +1406,7 @@
                             </div>
                             <div class="col-12 col-md-3 col-lg-3">
                                 <label>
-                                    <input type="radio" name="er" value="เหลือง(เร่งด่วน)"  class="card-input-warning card-input-element d-none" >
+                                    <input type="radio" name="blue_er" value="เหลือง(เร่งด่วน)"  class="card-input-warning card-input-element d-none" >
                                     <div class="card card-body text-warning d-flex flex-row justify-content-between align-items-center">
                                         <b>
                                             เหลือง(เร่งด่วน)  
@@ -1431,7 +1416,7 @@
                             </div>
                             <div class="col-12 col-md-3 col-lg-3">
                                 <label>
-                                    <input type="radio" name="er" value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-dark card-input-element d-none" >
+                                    <input type="radio" name="blue_er" value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-dark card-input-element d-none" >
                                     <div class="card card-body  text-dark d-flex flex-row justify-content-between align-items-center">
                                         <b>
                                             ดำ(รับบริการสาธารณสุขอื่น)  
@@ -1441,7 +1426,7 @@
                             </div>
                             <div class="col-12 col-md-3 col-lg-3">
                                 <label>
-                                    <input type="radio" name="er" value="แดง(วิกฤติ)"  class="card-input-success card-input-element d-none" >
+                                    <input type="radio" name="blue_er" value="แดง(วิกฤติ)"  class="card-input-success card-input-element d-none" >
                                     <div class="card card-body text-success d-flex flex-row justify-content-between align-items-center">
                                         <b>
                                             เขียว(ไม่รุนแรง)
@@ -1451,12 +1436,12 @@
                             </div>
 
                             <div class="col-12 mt-3">
-								<label for="result" class="form-label">ทางเดินหายใจ</label>
+								<label class="form-label">ทางเดินหายใจ</label>
                             </div>
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="respiratory_tract_by_doctor" value="ไม่จำเป็น"  class=" card-input-element d-none" onchange="check_respiratory_tract_by_doctor()">
+                                        <input type="radio" name="blue_respiratory_tract_by_doctor" value="ไม่จำเป็น"  class=" card-input-element d-none" onchange="blue_check_respiratory_tract_by_doctor()">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 ไม่จำเป็น
@@ -1468,7 +1453,7 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="respiratory_tract_by_doctor" value="ไม่ได้ทำ"  class=" card-input-element d-none" onchange="check_respiratory_tract_by_doctor()">
+                                        <input type="radio" name="blue_respiratory_tract_by_doctor" value="ไม่ได้ทำ"  class=" card-input-element d-none" onchange="blue_check_respiratory_tract_by_doctor()">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 ไม่ได้ทำ
@@ -1480,7 +1465,7 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="respiratory_tract_by_doctor" value="ทำและเหมาสม"  class=" card-input-element d-none" onchange="check_respiratory_tract_by_doctor()">
+                                        <input type="radio" name="blue_respiratory_tract_by_doctor" value="ทำและเหมาสม"  class=" card-input-element d-none" onchange="blue_check_respiratory_tract_by_doctor()">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 ทำและเหมาะสม
@@ -1492,11 +1477,11 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" id="respiratory_tract_by_doctor" name="respiratory_tract_by_doctor" value="ทำแต่ไม่เหมาะ"  class="card-input-element d-none" onchange="check_respiratory_tract_by_doctor()">
+                                        <input type="radio" id="blue_respiratory_tract_by_doctor" name="blue_respiratory_tract_by_doctor" value="ทำแต่ไม่เหมาะ"  class="card-input-element d-none" onchange="blue_check_respiratory_tract_by_doctor()">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 ทำแต่ไม่เหมาะสม
-                                                <button type="button" id="btn_respiratory_tract_by_doctor" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_respiratory_tract_by_doctor">
+                                                <button type="button" id="blue_btn_respiratory_tract_by_doctor" class="btn btn-primary d-none" data-toggle="modal" data-target="#blue_modal_respiratory_tract_by_doctor">
                                                     แก้ไข
                                                 </button>
                                             </b>
@@ -1505,7 +1490,7 @@
                                 </div>
                             </div>
                             <!-- Modal ทำแต่ไม่เหมาะสม ทางเดินหายใจ-->
-                            <div class="modal fade" id="modal_respiratory_tract_by_doctor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="blue_modal_respiratory_tract_by_doctor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
@@ -1515,7 +1500,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <textarea  class="form-control radius-4" id="respiratory_tract_by_doctor_detail" name="respiratory_tract_by_doctor_detail" value="" placeholder="ระบุ" rows="4" cols="100%"></textarea >
+                                        <textarea  class="form-control radius-4" id="blue_respiratory_tract_by_doctor_detail" name="blue_respiratory_tract_by_doctor_detail" value="" placeholder="ระบุ" rows="4" cols="100%"></textarea >
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary" data-dismiss="modal">บันทึก</button>
@@ -1527,12 +1512,12 @@
 
 
                             <div class="col-12 mt-3">
-								<label for="result" class="form-label">การห้ามเลือด</label>
+								<label  class="form-label">การห้ามเลือด</label>
                             </div>
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="hemostasis_by_doctor" value="ไม่จำเป็น"  class=" card-input-element d-none" onchange="check_hemostasis_by_doctor();">
+                                        <input type="radio" name="blue_hemostasis_by_doctor" value="ไม่จำเป็น"  class=" card-input-element d-none" onchange="blue_check_hemostasis_by_doctor();">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 ไม่จำเป็น
@@ -1544,7 +1529,7 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="hemostasis_by_doctor" value="ไม่ได้ทำ"  class=" card-input-element d-none" onchange="check_hemostasis_by_doctor();">
+                                        <input type="radio" name="blue_hemostasis_by_doctor" value="ไม่ได้ทำ"  class=" card-input-element d-none" onchange="blue_check_hemostasis_by_doctor();">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 ไม่ได้ทำ
@@ -1556,7 +1541,7 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="hemostasis_by_doctor" value="ทำและเหมาสม"  class=" card-input-element d-none" onchange="check_hemostasis_by_doctor();">
+                                        <input type="radio" name="blue_hemostasis_by_doctor" value="ทำและเหมาสม"  class=" card-input-element d-none" onchange="blue_check_hemostasis_by_doctor();">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 ทำและเหมาะสม
@@ -1568,11 +1553,11 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" id="hemostasis_by_doctor" name="hemostasis_by_doctor" value="ทำแต่ไม่เหมาะ"  class=" card-input-element d-none" onchange="check_hemostasis_by_doctor();">
+                                        <input type="radio" id="blue_hemostasis_by_doctor" name="blue_hemostasis_by_doctor" value="ทำแต่ไม่เหมาะ"  class=" card-input-element d-none" onchange="blue_check_hemostasis_by_doctor();">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 ทำแต่ไม่เหมาะสม
-                                                <button type="button" id="btn_hemostasis_by_doctor" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_hemostasis_by_doctor">
+                                                <button type="button" id="blue_btn_hemostasis_by_doctor" class="btn btn-primary d-none" data-toggle="modal" data-target="#blue_modal_hemostasis_by_doctor">
                                                     แก้ไข
                                                 </button>
                                             </b>
@@ -1581,7 +1566,7 @@
                                 </div>
                             </div>
                             <!-- Modal ทำแต่ไม่เหมาะสม การห้ามเลือด-->
-                            <div class="modal fade" id="modal_hemostasis_by_doctor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="blue_modal_hemostasis_by_doctor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
@@ -1591,7 +1576,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <textarea  class="form-control radius-4" id="hemostasis_by_doctor_detail" name="hemostasis_by_doctor_detail" value="" placeholder="ระบุ" rows="4" cols="100%"></textarea >
+                                        <textarea  class="form-control radius-4" id="blue_hemostasis_by_doctor_detail" name="blue_hemostasis_by_doctor_detail" value="" placeholder="ระบุ" rows="4" cols="100%"></textarea >
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary" data-dismiss="modal">บันทึก</button>
@@ -1607,7 +1592,7 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="splint_by_doctor" value="ไม่จำเป็น"  class=" card-input-element d-none" onchange="check_splint_by_doctor()">
+                                        <input type="radio" name="blue_splint_by_doctor" value="ไม่จำเป็น"  class=" card-input-element d-none" onchange="blue_check_splint_by_doctor()">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 ไม่จำเป็น
@@ -1619,7 +1604,7 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="splint_by_doctor" value="ไม่ได้ทำ"  class=" card-input-element d-none" onchange="check_splint_by_doctor()">
+                                        <input type="radio" name="blue_splint_by_doctor" value="ไม่ได้ทำ"  class=" card-input-element d-none" onchange="blue_check_splint_by_doctor()">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 ไม่ได้ทำ
@@ -1631,7 +1616,7 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="splint_by_doctor" value="ทำและเหมาสม"  class=" card-input-element d-none" onchange="check_splint_by_doctor()">
+                                        <input type="radio" name="blue_splint_by_doctor" value="ทำและเหมาสม"  class=" card-input-element d-none" onchange="blue_check_splint_by_doctor()">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 ทำและเหมาะสม
@@ -1643,11 +1628,11 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" id="splint_by_doctor" name="splint_by_doctor" value="ทำแต่ไม่เหมาะ"  class=" card-input-element d-none" onchange="check_splint_by_doctor()">
+                                        <input type="radio" id="blue_splint_by_doctor" name="blue_splint_by_doctor" value="ทำแต่ไม่เหมาะ"  class=" card-input-element d-none" onchange="blue_check_splint_by_doctor()">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 ทำแต่ไม่เหมาะสม
-                                                <button type="button" id="btn_splint_by_doctor" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_splint_by_doctor">
+                                                <button type="button" id="blue_btn_splint_by_doctor" class="btn btn-primary d-none" data-toggle="modal" data-target="#blue_modal_splint_by_doctor">
                                                     แก้ไข
                                                 </button>
                                             </b>
@@ -1656,7 +1641,7 @@
                                 </div>
                             </div>
                             <!-- Modal ทำแต่ไม่เหมาะสม การดามกระดูก-->
-                            <div class="modal fade" id="modal_splint_by_doctor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="blue_modal_splint_by_doctor" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
@@ -1666,7 +1651,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <textarea  class="form-control radius-4" id="splint_by_doctor_detail" name="splint_by_doctor_detail" value="" placeholder="ระบุ" rows="4" cols="100%"></textarea >
+                                        <textarea  class="form-control radius-4" id="blue_splint_by_doctor_detail" name="blue_splint_by_doctor_detail" value="" placeholder="ระบุ" rows="4" cols="100%"></textarea >
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary" data-dismiss="modal">บันทึก</button>
@@ -1678,15 +1663,15 @@
 
                             <div class="col-12 mb-5"></div>
                             <div class="col-md-3 col-lg-3 col-12">
-								<label for="name_doctor" class="form-label">ชื่อผู้ประเมิน</label>
+								<label for="blue_name_doctor" class="form-label">ชื่อผู้ประเมิน</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-doctor"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="name_doctor" value="" placeholder="ชื่อผู้ประเมิน">
+									<input type="text" class="form-control border-start-0 radius-2" name="blue_name_doctor" value="" placeholder="ชื่อผู้ประเมิน">
 								</div>
 							</div>
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="role_doctor" value="แพทย์"  class=" card-input-element d-none" onchange="check_role_doctor();">
+                                        <input type="radio" name="blue_role_doctor" value="แพทย์"  class=" card-input-element d-none" onchange="blue_check_role_doctor();">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 แพทย์
@@ -1698,7 +1683,7 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" name="role_doctor" value="พยาบาล"  class=" card-input-element d-none" onchange="check_role_doctor();">
+                                        <input type="radio" name="blue_role_doctor" value="พยาบาล"  class=" card-input-element d-none" onchange="blue_check_role_doctor();">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 พยาบาล
@@ -1710,12 +1695,12 @@
                             <div class="col-12 col-md-3 col-lg-3">
                                 <div class=" col-12">
                                     <label>
-                                        <input type="radio" id="role_doctor" name="role_doctor" value="อื่นๆ"  class=" card-input-element d-none" onchange="check_role_doctor();">
+                                        <input type="radio" id="blue_role_doctor" name="blue_role_doctor" value="อื่นๆ"  class=" card-input-element d-none" onchange="blue_check_role_doctor();">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center " >
                                             <b>
                                                 อื่นๆ
                                             </b><br>
-                                            <input type="text" id="role_other" disabled class="form-control border-start-0 radius-4" name="role_other" value="" placeholder="ตำแหน่ง">
+                                            <input type="text" id="blue_role_other" disabled class="form-control border-start-0 radius-4" name="blue_role_other" value="" placeholder="ตำแหน่ง">
                                         </div>
                                     </label>
                                 </div>
@@ -1910,11 +1895,11 @@
 </script>
 
 <script>
-    function check_type_people() {
-        var check_people_type = document.getElementsByName('people_type');
-        var id_card = document.querySelector('#id_card');
-        var people_country = document.querySelector('#people_country');
-        var passport = document.querySelector('#passport');
+    function blue_check_type_people() {
+        var check_people_type = document.getElementsByName('blue_people_type');
+        var id_card = document.querySelector('#blue_id_card');
+        var people_country = document.querySelector('#blue_people_country');
+        var passport = document.querySelector('#blue_passport');
 
         // เช็คว่าเลือกคนประเทศใด แล้วเปิดช่อง input -> หน้า 3
         for (var i = 0, length = check_people_type.length; i < length; i++) {
@@ -1923,16 +1908,16 @@
                     document.querySelector('#foreigner').classList.add('d-none');
                     people_country.value = null ;
                     passport.value = null ;
-                    document.querySelector('#thai_people').classList.remove('d-none');
-                    document.querySelector('#thai_people').classList.add('show-data');
+                    document.querySelector('#blue_thai_people').classList.remove('d-none');
+                    document.querySelector('#blue_thai_people').classList.add('show-data');
                 }else if(check_people_type[i].value == "ชาวต่างชาติ"){
-                    document.querySelector('#thai_people').classList.add('d-none');
+                    document.querySelector('#blue_thai_people').classList.add('d-none');
                     id_card.value = null ;
-                    document.querySelector('#foreigner').classList.remove('d-none');
-                    document.querySelector('#foreigner').classList.add('show-data');
+                    document.querySelector('#blue_foreigner').classList.remove('d-none');
+                    document.querySelector('#blue_foreigner').classList.add('show-data');
                 }else{
-                    document.querySelector('#foreigner').classList.add('d-none');
-                    document.querySelector('#thai_people').classList.add('d-none');
+                    document.querySelector('#blue_foreigner').classList.add('d-none');
+                    document.querySelector('#blue_thai_people').classList.add('d-none');
                     people_country.value = null ;
                     passport.value = null ;
                     id_card.value = null ;
@@ -1942,31 +1927,31 @@
         }
     }
 
-    function check_insurance() {
-        var check_insurance = document.getElementsByName('insurance');
+    function blue_check_insurance() {
+        var check_insurance = document.getElementsByName('blue_insurance');
 
-        var insurance_country = document.querySelector('#insurance_country');
+        var insurance_country = document.querySelector('#blue_insurance_country');
 
-        var insurance_type_car = document.querySelector('#insurance_type_car');
-        var insurance_type_license_plate = document.querySelector('#insurance_type_license_plate');
-        var insurance_license_plate = document.querySelector('#insurance_license_plate');
-        var insurance_province = document.querySelector('#insurance_province');
+        var insurance_type_car = document.querySelector('#blue_insurance_type_car');
+        var insurance_type_license_plate = document.querySelector('#blue_insurance_type_license_plate');
+        var insurance_license_plate = document.querySelector('#blue_insurance_license_plate');
+        var insurance_province = document.querySelector('#blue_insurance_province');
         // เช็คว่าเลือกคนประเทศใด หัวข้อประกันอื่นๆ ->หน้า 3
         for (var i = 0, length = check_insurance.length; i < length; i++) {
             if (check_insurance[i].checked) {
                 if(check_insurance[i].value == "ประกันท่องเที่ยว"){
-                    document.querySelector('#div_insurance_country').classList.remove('d-none');
-                    document.querySelector('#div_insurance_car').classList.add('d-none');
-                    document.querySelector('#div_insurance_country').classList.add('show-data');
+                    document.querySelector('#blue_div_insurance_country').classList.remove('d-none');
+                    document.querySelector('#blue_div_insurance_car').classList.add('d-none');
+                    document.querySelector('#blue_div_insurance_country').classList.add('show-data');
                     insurance_type_car.value = null ;
                     insurance_type_license_plate.value = null ;
                     insurance_license_plate.value = null ;
                     insurance_province.value = null ;
 
                 }else{
-                    document.querySelector('#div_insurance_country').classList.add('d-none');
-                    document.querySelector('#div_insurance_car').classList.add('show-data');
-                    document.querySelector('#div_insurance_car').classList.remove('d-none');
+                    document.querySelector('#blue_div_insurance_country').classList.add('d-none');
+                    document.querySelector('#blue_div_insurance_car').classList.add('show-data');
+                    document.querySelector('#blue_div_insurance_car').classList.remove('d-none');
                     insurance_country.value = null ;
                 }
                 break;
@@ -1978,53 +1963,53 @@
 <script>
 
     // ถ้าเลือก ทำแต่ไม่เหมาะสม หัวข้อทางเดินหายใจ เปิดmodal ให้กรอก รายละเอียด -> อยู่หน้า 6
-    function check_respiratory_tract_by_doctor() { 
-        var respiratory_tract_by_doctor = document.querySelector('#respiratory_tract_by_doctor');
-        var detail = document.querySelector('#respiratory_tract_by_doctor_detail');
+    function blue_check_respiratory_tract_by_doctor() { 
+        var respiratory_tract_by_doctor = document.querySelector('#blue_respiratory_tract_by_doctor');
+        var detail = document.querySelector('#blue_respiratory_tract_by_doctor_detail');
 
         if (respiratory_tract_by_doctor.checked) {
-            document.querySelector('#btn_respiratory_tract_by_doctor').classList.remove('d-none');
-            document.querySelector('#btn_respiratory_tract_by_doctor').click();
+            document.querySelector('#blue_btn_respiratory_tract_by_doctor').classList.remove('d-none');
+            document.querySelector('#blue_btn_respiratory_tract_by_doctor').click();
         }else{
-            document.querySelector('#btn_respiratory_tract_by_doctor').classList.add('d-none');
+            document.querySelector('#blue_btn_respiratory_tract_by_doctor').classList.add('d-none');
             detail.value = null ;
 
         }
     }
 
     // ถ้าเลือก ทำแต่ไม่เหมาะสม หัวข้อการห้ามเลือด เปิดmodal ให้กรอก รายละเอียด -> อยู่หน้า 6
-    function check_hemostasis_by_doctor() { 
-        var hemostasis_by_doctor = document.querySelector('#hemostasis_by_doctor');
-        var detail = document.querySelector('#hemostasis_by_doctor_detail');
+    function blue_check_hemostasis_by_doctor() { 
+        var hemostasis_by_doctor = document.querySelector('#blue_hemostasis_by_doctor');
+        var detail = document.querySelector('#blue_hemostasis_by_doctor_detail');
 
         if (hemostasis_by_doctor.checked) {
-            document.querySelector('#btn_hemostasis_by_doctor').classList.remove('d-none');
-            document.querySelector('#btn_hemostasis_by_doctor').click();
+            document.querySelector('#blue_btn_hemostasis_by_doctor').classList.remove('d-none');
+            document.querySelector('#blue_btn_hemostasis_by_doctor').click();
         }else{
-            document.querySelector('#btn_hemostasis_by_doctor').classList.add('d-none');
+            document.querySelector('#blue_btn_hemostasis_by_doctor').classList.add('d-none');
             detail.value = null ;
 
         }
     }
     // ถ้าเลือก ทำแต่ไม่เหมาะสม หัวข้อดามกระดูก เปิดmodal ให้กรอก รายละเอียด -> อยู่หน้า 6
-    function check_splint_by_doctor() { 
-        var splint_by_doctor = document.querySelector('#splint_by_doctor');
-        var detail = document.querySelector('#splint_by_doctor_detail');
+    function blue_check_splint_by_doctor() { 
+        var splint_by_doctor = document.querySelector('#blue_splint_by_doctor');
+        var detail = document.querySelector('#blue_splint_by_doctor_detail');
 
         if (splint_by_doctor.checked) {
-            document.querySelector('#btn_splint_by_doctor').classList.remove('d-none');
-            document.querySelector('#btn_splint_by_doctor').click();
+            document.querySelector('#blue_btn_splint_by_doctor').classList.remove('d-none');
+            document.querySelector('#blue_btn_splint_by_doctor').click();
         }else{
-            document.querySelector('#btn_splint_by_doctor').classList.add('d-none');
+            document.querySelector('#blue_btn_splint_by_doctor').classList.add('d-none');
             detail.value = null ;
 
         }
     }
 
     // ถ้าเลือก ตำแหน่งอื่นๆ เปิดช่อง input ให้กรอก -> อยู่ข้อ 6
-    function check_role_doctor() { 
-        var role_doctor = document.querySelector('#role_doctor');
-        var role_other = document.querySelector('#role_other');
+    function blue_check_role_doctor() { 
+        var role_doctor = document.querySelector('#blue_role_doctor');
+        var role_other = document.querySelector('#blue_role_other');
 
         if (role_doctor.checked) {
             role_other.disabled = false;
