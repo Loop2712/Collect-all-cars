@@ -153,8 +153,8 @@
 		lat = position.coords.latitude ;
 		lng = position.coords.longitude ;
 
-		console.log(lat);
-		console.log(lng);
+		// console.log(lat);
+		// console.log(lng);
 
         initMap();
 	}
