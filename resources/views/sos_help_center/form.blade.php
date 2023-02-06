@@ -782,7 +782,11 @@
                 // console.log("start_result");
 
                 document.querySelector('#show_status').innerHTML = start_result['status_sos'] ;
-                document.querySelector('#show_distance').innerHTML = start_result['distance'].toFixed(2) ;
+                try{
+                    document.querySelector('#show_distance').innerHTML = start_result['distance'].toFixed(2) ;
+                }catch{
+                    document.querySelector('#show_distance').innerHTML = start_result['distance'] ;
+                }
                 set_marker_go_to_help(start_result['officer_lat'] , start_result['officer_lng'] , start_result['officer_level']);
 
                 let start_Item_1 = new google.maps.LatLng(m_lat, m_lng);
@@ -814,7 +818,11 @@
                     }
 
                     document.querySelector('#show_status').innerHTML = result['status_sos'] ;
-                    document.querySelector('#show_distance').innerHTML = result['distance'].toFixed(2) ;
+                    try{
+                        document.querySelector('#show_distance').innerHTML = result['distance'].toFixed(2) ;
+                    }catch{
+                        document.querySelector('#show_distance').innerHTML = result['distance'] ;
+                    }
                     set_marker_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
 
                     let Item_1 = new google.maps.LatLng(m_lat, m_lng);
