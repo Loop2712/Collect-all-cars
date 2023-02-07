@@ -1029,7 +1029,7 @@ function search_data(){
     .then(response => response.json())
         .then(result => {
             try {
-                console.log(result);
+                // console.log(result);
 
                 document.querySelector('#count_search_data').innerHTML = result['length'] ;
 
