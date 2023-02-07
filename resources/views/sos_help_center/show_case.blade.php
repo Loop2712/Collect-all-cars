@@ -63,8 +63,15 @@
 						<i class="fa-solid fa-camera-viewfinder"></i>
 					</button>
         		</div>
+        		<!-- ระยะทางและเวลา (เสียเงิน) -->
+        		<div id="div_distance_and_duration" class="col-12 d-none">
+        			<p class="mt-2">
+        				ระยะทาง : <span id="text_distance"></span> / เวลา : <span id="text_duration"></span>
+        			</p>
+        		</div>
         		<!-- lat lng -->
-        		<div class="col-12">
+        		
+        		<div class="col-12 d-none">
         			<p class="mt-2">
         				LAT : <span id="text_show_lat"></span> 
         				<br>
@@ -110,7 +117,7 @@
 							<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="btn btn-sm btn-danger text-white main-shadow main-radius mt-2" style="width:50%;"  target="bank">
 								Google Map <i class="fa-solid fa-location-arrow"></i>
 							</a>
-							<button class="btn btn-sm btn-primary text-white main-shadow main-radius mt-2" disabled  onclick="get_dir();">
+							<button class="btn btn-sm btn-primary text-white main-shadow main-radius mt-2" onclick="get_dir();">
 								<i class="fa-solid fa-eye"></i>
 							</button>
 				        </div>
@@ -499,15 +506,18 @@
 	    }, function(response, status) {
 	        if (status === 'OK') {
 	            directionsDisplay.setDirections(response);
-	            	console.log(response);
+	            	// console.log(response);
 
 	            // ระยะทาง
 	            let text_distance = response.routes[0].legs[0].distance.text ;
-	            	console.log(text_distance);
+	            	// console.log(text_distance);
+	            	document.querySelector('#text_distance').innerHTML = text_distance ;
 	            // เวลา
 	            let text_duration = response.routes[0].legs[0].duration.text ;
-	            	console.log(text_duration);
+	            	// console.log(text_duration);
+	            	document.querySelector('#text_duration').innerHTML = text_duration ;
 	            
+	            document.querySelector('#div_distance_and_duration').classList.remove('d-none');
 	        } else {
 	            window.alert('Directions request failed due to ' + status);
 	        }

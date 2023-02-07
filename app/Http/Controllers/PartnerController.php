@@ -1211,8 +1211,43 @@ class PartnerController extends Controller
     }
 
     function broadcast_by_check_in(Request $request){
-        echo "<h2>จะเป็ดให้ใช้บริการเร็วๆนี้</h2>" ;
-        exit();
+        
+        $data_user = Auth::user();
+
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->first();
+
+        $all_area_partners = Partner::where("name", $data_partners->name)
+            ->where("name_area", "!=", "")
+            ->get();
+
+        $partners_id = $data_partners->id ;
+        $partners_logo = $data_partners->logo ;
+
+        $partner_premium = Partner_premium::where("id_partner",$partners_id)->first();
+
+        if (!empty($partner_premium)) {
+            $BC_by_check_in_max = $partner_premium->BC_by_check_in_max ;
+            $name_partner = $partner_premium->name_partner ;
+            $partner_id = $partner_premium->id_partner ;
+
+            $check_in = Check_in::where('check_in_at', 'LIKE', "%$name_partner%")
+                ->groupBy('user_id')
+                ->get();
+
+            if ($partner_premium->BC_by_check_in_max == null) {
+                $BC_by_check_in_sent = 0 ;
+            }else{
+                $BC_by_check_in_sent = $partner_premium->BC_by_check_in_sent ;
+            }
+
+            $ads_contents = Ads_content::where('id_partner' , $partner_id)->where('type_content' , 'BC_by_check_in')->get();
+
+            return view('partner.broadcast.broadcast_by_check_in', compact('BC_by_check_in_max','BC_by_check_in_sent','name_partner' , 'partner_id','ads_contents','check_in','all_area_partners'));
+        }else{
+            return redirect('404');
+        }
     }
 
     function broadcast_by_user(Request $request){

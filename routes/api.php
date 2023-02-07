@@ -85,11 +85,22 @@ Route::get('/select_car_brand_user/{car_brand}/model','API\CarbrandController@se
 Route::get('/select_motor_brand_user','API\CarbrandController@select_motor_brand_user');
 Route::get('/select_motor_brand_user/{motor_brand}/model','API\CarbrandController@select_motor_model_user');
 
+//////////////////////
+//////BROADCAST//////
+/////////////////////
+Route::get('/check_content','API\CarbrandController@check_content');
+// car
 Route::post('/search_data_broadcast_by_car','API\CarbrandController@search_data_broadcast_by_car');
 Route::get('/search_data_selected_car/{car_id}','API\CarbrandController@search_data_selected_car');
-
 Route::post('/send_content_BC_by_car','API\CarbrandController@send_content_BC_by_car');
-Route::get('/check_content','API\CarbrandController@check_content');
+// check in
+Route::post('/search_data_broadcast_by_check_in','API\API_Broadcast@search_data_broadcast_by_check_in');
+Route::post('/send_content_BC_by_check_in','API\API_Broadcast@send_content_BC_by_check_in');
+
+///////////////////////////
+////// END BROADCAST//////
+//////////////////////////
+
 
 // ยี่ห้อจากราคากลาง
 Route::get('/brand_middle_price','API\Brand_middle_price_carsController@getBrand');
