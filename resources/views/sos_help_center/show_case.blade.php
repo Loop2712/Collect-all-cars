@@ -63,6 +63,14 @@
 						<i class="fa-solid fa-camera-viewfinder"></i>
 					</button>
         		</div>
+        		<!-- lat lng -->
+        		<div class="col-12">
+        			<p class="mt-2">
+        				LAT : <span id="text_show_lat"></span> 
+        				<br>
+        				LONG : <span id="text_show_lng"></span>
+        			</p>
+        		</div>
     		</div>
         </div>
         <!-- MAP -->
@@ -296,9 +304,12 @@
 
 		lat = position.coords.latitude ;
 		lng = position.coords.longitude ;
-
 		// console.log(lat);
 		// console.log(lng);
+
+		document.querySelector('#text_show_lat').innerHTML = lat ;
+		document.querySelector('#text_show_lng').innerHTML = lng ;
+		
 
         fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat + "/" + lng)
             .then(response => response.json())
@@ -313,29 +324,53 @@
 
                 status_sos = result['status'] ;
                 document.querySelector('#show_status').innerHTML = status_sos ;
-                
         });
 
-        // LOOP ------------------------------------------------------------------
-        reface_getLocation = setInterval(function() {
+        getLocation_LOOP();
+
+	}
+
+	function getLocation_LOOP() {
+	  	reface_getLocation = setInterval(function() {
+
+			// console.log("getLocation_LOOP");
+
+		  	if (navigator.geolocation) {
+		    	navigator.geolocation.getCurrentPosition(loop_location_officer);
+		  	} else {
+		    	// x.innerHTML = "Geolocation is not supported by this browser.";
+		  	}
+
+	  	}, 15000);
+	}
+
+	function loop_location_officer(position){
+		// console.log("loop_location_officer");
+
+		// LOOP ------------------------------------------------------------------
+        lat = position.coords.latitude ;
+		lng = position.coords.longitude ;
+		// console.log(lat);
+		// console.log(lng);
+		
+		document.querySelector('#text_show_lat').innerHTML = lat ;
+		document.querySelector('#text_show_lng').innerHTML = lng ;
             
-        	fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat + "/" + lng)
-	            .then(response => response.json())
-	            .then(result_2 => {
-	                // console.log(result_2);
-	                // console.log(result_2['status']);
+    	fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat + "/" + lng)
+            .then(response => response.json())
+            .then(result_2 => {
+                // console.log(result_2);
+                // console.log(result_2['status']);
 
-	                let sos_lat = result_2['lat'] ;
-	                let sos_lng = result_2['lng'] ;
+                let sos_lat = result_2['lat'] ;
+                let sos_lng = result_2['lng'] ;
 
-					set_marker_map_show_case(sos_lat , sos_lng);
+				set_marker_map_show_case(sos_lat , sos_lng);
 
-                	status_sos = result_2['status'] ;
-                	document.querySelector('#show_status').innerHTML = status_sos ;
+            	status_sos = result_2['status'] ;
+            	document.querySelector('#show_status').innerHTML = status_sos ;
 
-	        });
-
-        }, 15000);
+        });
 
 	}
 
