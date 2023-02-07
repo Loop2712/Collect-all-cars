@@ -46,137 +46,170 @@
   </div>
 </div>
 
+<!-- ----------------------------------------------------------------------------------------- -->
 
-<div class="row notranslate" style="margin-top:150px;">
-	<div class="col-12 text-center">
-		<center>
-			<h4>สถานะ : <b><span id="show_status" class="text-warning"></span></b></h4>
-
-			<p id="show_level_by_control_center" class="d-none">
-				ระดับสถานะการณ์ (ศูนย์) : <b><span id="text_level_by_control_center"></span></b>
-			</p>
-			<p id="show_level_by_officers" class="d-none">
-				ระดับสถานะการณ์ (เจ้าหน้าที่) : <b><span id="text_level_by_officers"></span></b>
-			</p>
-
-			<div class="row text-center">
-				<div class="col-6">
-					<button class="btn btn-sm btn-primary text-white main-shadow main-radius mt-2" disabled style="width:80%;" onclick="get_dir();">
-						ดูเส้นทาง <i class="fa-solid fa-location-arrow"></i>
+<div class="container notranslate" style="margin-top:140px;">
+	<div class="row">
+		<!-- หัวข้อ -->
+    	<div class="col-12 text-center">
+    		<div class="row" style="margin-left:4%;margin-right: 2%;">
+    			<div class="col-9">
+    				<h4>
+    					<b><span id="show_status" class="text-warning float-start"></span></b>
+    				</h4>
+    			</div>
+    			<div class="col-3">
+        			<button class="btn btn-info main-shadow main-radius" onclick="add_photo_sos_by_officers();">
+						<i class="fa-solid fa-camera-viewfinder"></i>
 					</button>
-				</div>
-				<div class="col-6">
-					@php
-						$gg_lat_mail = '@' . $data_sos->lat ;
-						$gg_lat = $data_sos->lat ;
-						$lng = $data_sos->lng ;
-					@endphp
-					<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="btn btn-sm btn-danger text-white main-shadow main-radius mt-2" style="width:80%;" target="bank">
-						Google Map <i class="fa-solid fa-location-arrow"></i>
-					</a>
-				</div>
-			</div>
-            <div class="col-12 main-shadow main-radius p-0" id="map_show_case">
-                <img style=" object-fit: cover; border-radius:15px" width="100%" height="100%" src="{{ asset('/img/more/sorry-no-text.png') }}" class="card-img-top center" style="padding: 10px;">
-                <div style="position: relative; z-index: 5">
-                    <div class="translate">
-                    	<center>
-                    		<h4 style="top:-330px;left: 130px;position: absolute;font-family: 'Sarabun', sans-serif;">ขออภัยค่ะ</h4>
-                            <h5 style="top:-270px;left: 35px;width: 80%;position: absolute;font-family: 'Sarabun', sans-serif;">
-                            	ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ
-                            </h5>
-                            <br>
-                            <span style="top:-200px;left: 130px;position: absolute;" class="btn btn-sm btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
-                            	<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
-                            </span>
-                    	</center>
-                        
-                    </div>
-                </div>
-            </div>
-		</center>
-	</div>
+        		</div>
+    		</div>
+        </div>
+        <!-- MAP -->
+        <div class="col-12">
+        	<div class="row">
+        		<div class="col-12">
+        			<center>
+			        	<div class="main-shadow main-radius p-0" id="map_show_case">
+			                <img style=" object-fit: cover; border-radius:15px" width="100%" height="100%" src="{{ asset('/img/more/sorry-no-text.png') }}" class="card-img-top center" style="padding: 10px;">
+			                <div style="position: relative; z-index: 5">
+			                    <div class="translate">
+			                    	<center>
+			                    		<h4 style="top:-330px;left: 130px;position: absolute;font-family: 'Sarabun', sans-serif;">ขออภัยค่ะ</h4>
+			                            <h5 style="top:-270px;left: 35px;width: 80%;position: absolute;font-family: 'Sarabun', sans-serif;">
+			                            	ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ
+			                            </h5>
+			                            <br>
+			                            <span style="top:-200px;left: 130px;position: absolute;" class="btn btn-sm btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
+			                            	<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
+			                            </span>
+			                    	</center>
+			                        
+			                    </div>
+			                </div>
+			            </div>
+		            </center>
+        		</div>
+        		<div class="col-12" style="position:absolute;bottom: 10%;left: 7%;z-index: 9999;">
+        			<div class="row">
+        				<!-- Google Map และ ดูเส้นทาง -->
+				        <div id="btn_google_map" class="col-12 d-">
+							@php
+								$gg_lat_mail = '@' . $data_sos->lat ;
+								$gg_lat = $data_sos->lat ;
+								$lng = $data_sos->lng ;
+							@endphp
+							<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="btn btn-sm btn-danger text-white main-shadow main-radius mt-2" style="width:50%;"  target="bank">
+								Google Map <i class="fa-solid fa-location-arrow"></i>
+							</a>
+							<button class="btn btn-sm btn-primary text-white main-shadow main-radius mt-2" disabled  onclick="get_dir();">
+								<i class="fa-solid fa-eye"></i>
+							</button>
+				        </div>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+        
+        <!-- ระดับสถานะการณ์ และ ปุ่มเพิ่มภาพถ่าย -->
+        <div class="col-12 text-center">
+        	<div class="row">
+        		<div class="col-12">
+        			<h5>ระดับสถานะการณ์ </h5>
+        		</div>
+        		<div class="col-6">
+        			<p id="show_level_by_control_center" class="">
+						ศูนย์สั่งการ
+						<br>
+						<b><span style="width:80%;" class="btn btn-sm main-shadow main-radius" id="text_level_by_control_center">ไม่ได้ระบุ</span></b>
+					</p>
+        		</div>
+        		<div class="col-6">
+        			<p id="show_level_by_officers" class="">
+						เจ้าหน้าที่
+						<br>
+						<b><span style="width:80%;" class="btn btn-sm main-shadow main-radius" id="text_level_by_officers">ไม่ได้ระบุ</span></b>
+					</p>
+        		</div>
+        	</div>
+        	<center>
+				<hr style="border: 1px solid red;width: 80%;color: red;">
+        	</center>
+        </div>
 
-	<div>
-		<center>
-			<div class="col-12 mt-2">
-				<button class="btn btn-info main-shadow main-radius" style="width:50%;" onclick="add_photo_sos_by_officers();">
-					เพิ่มรูปภาพ <i class="fa-solid fa-camera-viewfinder"></i>
-				</button>
-			</div>
-			<hr style="border: 1px solid red;width: 70%;color: red;">
-		</center>
-	</div>
+        <!-- ปุ่ม ถึงที่เกิดเหตุ -->
+		<div class="col-12 text-center" id="div_gotohelp">
+			<button class="btn btn-warning main-shadow main-radius" style="width:90%;" onclick="update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}');">
+				ถึงที่เกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
+			</button>
+		</div>
 
-	<!-- ปุ่ม ถึงที่เกิดเหตุ -->
-	<div id="div_gotohelp" class="">
-		<center>
-			<div class="col-12 mt-2">
-				<button class="btn btn-warning main-shadow main-radius" style="width:90%;" onclick="update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}');">
-					ถึงที่เกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
-				</button>
-			</div>
-		</center>
-	</div>
-
-	<!-- ปุ่มเลือกระดับเหตุการณ์ -->
-	<div id="div_event_level" class="d-none">
-		<center>
+		<!-- ปุ่มเลือกระดับเหตุการณ์ -->
+		<div class="col-12 text-center d-none" id="div_event_level" >
 			<div class="row">
 				<div class="col-6 mt-2">
-					<button class="btn btn-dark main-shadow main-radius" style="width:90%;" >
+					<button class="btn btn-dark main-shadow main-radius" style="width:90%;" 
+					onclick="update_event_level('ดำ','{{ $data_sos->id }}');">
 						ดำ
 					</button>
 				</div>
 				<div class="col-6 mt-2">
-					<button class="btn btn-light main-shadow main-radius" style="width:90%;" >
-						ขาว
+					<button class="btn btn-light main-shadow main-radius" style="width:90%;" 
+					onclick="update_event_level('ขาว(ทั่วไป)','{{ $data_sos->id }}');">
+						ขาว(ทั่วไป)
 					</button>
 				</div>
 				<div class="col-6 mt-2">
-					<button class="btn btn-success main-shadow main-radius" style="width:90%;" >
-						เขียว
+					<button class="btn btn-success main-shadow main-radius" style="width:90%;" 
+					onclick="update_event_level('เขียว(ไม่รุนแรง)','{{ $data_sos->id }}');">
+						เขียว(ไม่รุนแรง)
 					</button>
 				</div>
 				<div class="col-6 mt-2">
-					<button class="btn btn-warning main-shadow main-radius" style="width:90%;" >
-						เหลือง
+					<button class="btn btn-warning main-shadow main-radius" style="width:90%;" 
+					onclick="update_event_level('เหลือง(เร่งด่วน)','{{ $data_sos->id }}');">
+						เหลือง(เร่งด่วน)
 					</button>
 				</div>
 				<div class="col-12 mt-2">
-					<button class="btn btn-danger main-shadow main-radius" style="width:90%;" >
-						แดง
+					<button class="btn btn-danger main-shadow main-radius" style="width:95%;" 
+					onclick="update_event_level('แดง(วิกฤติ)','{{ $data_sos->id }}');">
+						แดง(วิกฤติ)
 					</button>
 				</div>
 			</div>
-		</center>
-	</div>
+		</div>
 
 
-	<!-- ปุ่มแก้ไขฟอร์ม -->
-	<div>
-		<center>
-			<hr style="border: 1px solid red;width: 70%;color: red;">
-			<div class="col-12 mt-2">
-				<a href="{{ url('/sos_help_center' . '/' . $data_sos->id . '/edit') }}" class="btn btn-warning main-shadow main-radius" style="width:90%;" >
-					แก้ไขข้อมูล ฟอร์มเหลือง
-				</a>
+
+
+
+
+		<!-- ปุ่มแก้ไขฟอร์ม -->
+		<div class="col-12 text-center">
+			<br>
+			<div class="row">
+				<div class="col-12 mt-2">
+					<a href="{{ url('/sos_help_center' . '/' . $data_sos->id . '/edit') }}" class="btn btn-warning main-shadow main-radius" style="width:90%;" >
+						แก้ไขข้อมูล ฟอร์มเหลือง
+					</a>
+				</div>
+				<div class="col-12 mt-2">
+					<button class="btn btn-secondary main-shadow main-radius" style="width:90%;" >
+						แก้ไขข้อมูล ฟอร์ม...
+					</button>
+				</div>
 			</div>
-			<div class="col-12 mt-2">
-				<button class="btn btn-secondary main-shadow main-radius" style="width:90%;" >
-					แก้ไขข้อมูล ฟอร์ม...
-				</button>
-			</div>
-		</center>
-	</div>
+		</div>
 
-
+    </div>
 </div>
 
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 <script>
 
+	// แสดงข้อมูลเริ่มต้น -----------------------------------------------------------------------------
 	var status_sos = '{{ $data_sos->status }}';
         document.querySelector('#show_status').innerHTML = status_sos ;
 
@@ -184,13 +217,53 @@
     var event_level_by_officers = '{{ $data_sos->form_yellow->rc }}';
 
 	if (event_level_by_control_center) {
-		document.querySelector('#show_level_by_control_center').classList.remove('d-none') ;
+		// document.querySelector('#show_level_by_control_center').classList.remove('d-none') ;
+		let class_color_center ;
+		let class_color_officers ;
+		switch(event_level_by_control_center){
+			case 'แดง(วิกฤติ)':
+				class_color_center = 'btn-danger';
+			break;
+			case 'เหลือง(เร่งด่วน)':
+				class_color_center = 'btn-warning';
+			break;
+			case 'เขียว(ไม่รุนแรง)':
+				class_color_center = 'btn-success';
+			break;
+			case 'ขาว(ทั่วไป)':
+				class_color_center = 'btn-light';
+			break;
+			case 'ดำ(รับบริการสาธารณสุขอื่น)':
+				class_color_center = 'btn-dark';
+			break;
+		}
+		document.querySelector('#text_level_by_control_center').classList.add(class_color_center) ;
     	document.querySelector('#text_level_by_control_center').innerHTML = event_level_by_control_center ;
 	}
 	if (event_level_by_officers) {
-		document.querySelector('#show_level_by_officers').classList.remove('d-none') ;
+		// document.querySelector('#show_level_by_officers').classList.remove('d-none') ;
+		switch(event_level_by_officers){
+			case 'แดง(วิกฤติ)':
+				class_color_officers = 'btn-danger';
+			break;
+			case 'เหลือง(เร่งด่วน)':
+				class_color_officers = 'btn-warning';
+			break;
+			case 'เขียว(ไม่รุนแรง)':
+				class_color_officers = 'btn-success';
+			break;
+			case 'ขาว(ทั่วไป)':
+				class_color_officers = 'btn-light';
+			break;
+			case 'ดำ':
+				class_color_officers = 'btn-dark';
+			break;
+		}
+		document.querySelector('#text_level_by_officers').classList.add(class_color_officers) ;
     	document.querySelector('#text_level_by_officers').innerHTML = event_level_by_officers ;
 	}
+
+	// ------------------------------------------------------------------------------------------
 
 	var lat ;
 	var lng ;
