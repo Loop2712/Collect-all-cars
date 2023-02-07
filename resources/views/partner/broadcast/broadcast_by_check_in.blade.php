@@ -1439,7 +1439,7 @@ function reset_BC(){
     document.querySelector('#div_add_img').classList.remove('d-none');
     // document.querySelector('#img-content').src = null ;
     document.querySelector('#photo').value = null ;
-    document.querySelector('#img_add_img').src = "{{ asset('/img/stickerline/Flex/9.png') }}" ;
+    document.querySelector('#img_add_img').src = "{{ asset('/img/more/add_img_2.png') }}" ;
     
 }
 
