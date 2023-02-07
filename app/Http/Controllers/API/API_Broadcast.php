@@ -797,7 +797,7 @@ class API_Broadcast extends Controller
 
                 $data_user = User::where('id' , $arr_user_id[$xi])->first();
 
-                $template_path = storage_path('../public/json/broadcast/flex-broadcast.json');
+                $template_path = storage_path('../public/json/flex-broadcast.json');
                 $string_json = file_get_contents($template_path);
 
                 $string_json = str_replace("ตัวอย่าง",$requestData['name_content'],$string_json);
