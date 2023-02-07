@@ -51,6 +51,14 @@
 	<div class="col-12 text-center">
 		<center>
 			<h4>สถานะ : <b><span id="show_status" class="text-warning"></span></b></h4>
+
+			<p id="show_level_by_control_center" class="d-none">
+				ระดับสถานะการณ์ (ศูนย์) : <b><span id="text_level_by_control_center"></span></b>
+			</p>
+			<p id="show_level_by_officers" class="d-none">
+				ระดับสถานะการณ์ (เจ้าหน้าที่) : <b><span id="text_level_by_officers"></span></b>
+			</p>
+
 			<div class="row text-center">
 				<div class="col-6">
 					<button class="btn btn-sm btn-primary text-white main-shadow main-radius mt-2" disabled style="width:80%;" onclick="get_dir();">
@@ -171,6 +179,18 @@
 
 	var status_sos = '{{ $data_sos->status }}';
         document.querySelector('#show_status').innerHTML = status_sos ;
+
+    var event_level_by_control_center = '{{ $data_sos->form_yellow->idc }}';
+    var event_level_by_officers = '{{ $data_sos->form_yellow->rc }}';
+
+	if (event_level_by_control_center) {
+		document.querySelector('#show_level_by_control_center').classList.remove('d-none') ;
+    	document.querySelector('#text_level_by_control_center').innerHTML = event_level_by_control_center ;
+	}
+	if (event_level_by_officers) {
+		document.querySelector('#show_level_by_officers').classList.remove('d-none') ;
+    	document.querySelector('#text_level_by_officers').innerHTML = event_level_by_officers ;
+	}
 
 	var lat ;
 	var lng ;
@@ -318,6 +338,25 @@
                 	document.querySelector('#div_event_level').classList.remove('d-none');
 
                 }
+
+        });
+	}
+
+	function update_event_level(level , sos_id){
+
+        text_event_level = level ;
+        document.querySelector('#show_event_level').innerHTML = text_event_level ;
+
+		fetch("{{ url('/') }}/api/update_event_level" + "/" + level + "/" + sos_id)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+
+                // if (status_sos === "ถึงที่เกิดเหตุ") {
+                // 	document.querySelector('#div_gotohelp').classList.add('d-none');
+                // 	document.querySelector('#div_event_level').classList.remove('d-none');
+
+                // }
 
         });
 	}

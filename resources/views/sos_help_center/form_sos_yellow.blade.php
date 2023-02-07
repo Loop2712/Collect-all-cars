@@ -891,7 +891,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_idc_3 }} name="idc" value="แดง(วิกฤติ)"  class="card-input-success card-input-element d-none" >
+									<input type="radio" {{ $check_idc_3 }} name="idc" value="เขียว(ไม่รุนแรง)"  class="card-input-success card-input-element d-none" >
 									<div class="card card-body text-success d-flex flex-row justify-content-between align-items-center">
 										<b>
 											เขียว(ไม่รุนแรง)
