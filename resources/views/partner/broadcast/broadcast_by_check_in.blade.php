@@ -396,7 +396,7 @@ display:none;
     }
 </style>
 
-<div id="check_in_max" class="div_alert " role="alert">
+<div id="check_in_max" class="div_alert d-none" role="alert">
     <span id="text_check_in_max">
         ขออภัย เกินจำนวนที่กำหนด
     </span>
@@ -407,10 +407,10 @@ display:none;
 <form method="POST" action="{{ url('/') }}/api/send_content_BC_by_check_in" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
     {{ csrf_field() }}
 
-    <input class="form-control " type="text" name="type_content" id="type_content" value="BC_by_check_in">
-    <input class="form-control " type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
-    <input class="form-control " type="text" name="name_partner" id="name_partner" value="{{ $name_partner }}">
-    <input class="form-control " type="text" name="id_partner" id="id_partner" value="{{ $partner_id }}">
+    <input class="form-control d-none" type="text" name="type_content" id="type_content" value="BC_by_check_in">
+    <input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
+    <input class="form-control d-none" type="text" name="name_partner" id="name_partner" value="{{ $name_partner }}">
+    <input class="form-control d-none" type="text" name="id_partner" id="id_partner" value="{{ $partner_id }}">
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -420,7 +420,7 @@ display:none;
                     <div class="col-12 col-md-9 col-lg-9">
                         <div class="modal-content" style="border-radius: 20px;">
                             <div class="modal-header">
-                                <input class="form-control " type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
+                                <input class="form-control d-none" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
 
                                 <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bold;font-family: 'Kanit', sans-serif;">
                                     กำหนดบรอดแคสต์
@@ -453,7 +453,7 @@ display:none;
                                                 </div>
                                                 <br>
                                             </div>
-                                            <div class="col-12 ">
+                                            <div class="col-12 d-none">
                                                 <div class="form-group {{ $errors->has('detail') ? 'has-error' : ''}}">
                                                     <label for="detail" class="control-label">{{ 'คำอธิบาย' }}</label>
                                                     <!-- <span class="text-secondary">(ไม่แสดงต่อผู้ใช้)</span> -->
@@ -467,25 +467,25 @@ display:none;
                                                 <!-- &nbsp; ไม่ซ้ำกับผู้ใช้ที่เคยส่งแล้ว -->
                                                 <br>
                                             </div>
-                                            <div class="col-12 ">
+                                            <div class="col-12 d-none">
                                                 <div class="form-group {{ $errors->has('arr_show_user') ? 'has-error' : ''}}">
                                                     <input class="form-control" name="arr_show_user" type="text" id="arr_show_user" value="" readonly>
                                                 </div>
                                                 <br>
                                             </div>
-                                            <div class="col-3 ">
+                                            <div class="col-3 d-none">
                                                 <div class="form-group {{ $errors->has('send_again') ? 'has-error' : ''}}">
                                                     <input class="form-control" name="send_again" type="text" id="send_again" value="" readonly>
                                                 </div>
                                                 <br>
                                             </div>
-                                            <div class="col-3 ">
+                                            <div class="col-3 d-none">
                                                 <div class="form-group {{ $errors->has('id_ads') ? 'has-error' : ''}}">
                                                     <input class="form-control" name="id_ads" type="text" id="id_ads" value="" readonly>
                                                 </div>
                                                 <br>
                                             </div>
-                                            <div class="col-6 ">
+                                            <div class="col-6 d-none">
                                                 <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
                                                     <!-- <label for="photo" class="control-label">{{ 'รูปภาพ' }}</label> -->
                                                     <input class="form-control" name="photo" id="photo" type="file" accept="image/*" onchange="loadFile(event),check_send_content();">
@@ -495,7 +495,7 @@ display:none;
 
                                             <div class="col-6">
                                                 <span style="font-size:20px;color:blue;">จำนวน <span id="span_amount_send">0</span> คน</span>
-                                                <div class=" form-group {{ $errors->has('amount') ? 'has-error' : ''}}">
+                                                <div class="d-none form-group {{ $errors->has('amount') ? 'has-error' : ''}}">
                                                     <!-- <label for="amount" class="control-label">{{ 'Amount' }}</label> -->
                                                     <input class="form-control" name="amount" type="text" id="amount" value="" readonly>
                                                 </div>
@@ -505,7 +505,7 @@ display:none;
                                                     <button id="btn_send_content" style="float: right;width: 40%;" class="btn-select btn btn-success btn-md main-shadow main-radius" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" disabled onclick="document.querySelector('#btn_btn_send_content_submit').click();">
                                                         ยืนยัน
                                                     </button>
-                                                    <input class="" id="btn_btn_send_content_submit" type="submit" value="{{ 'ยืนยัน' }}"  >
+                                                    <input class="d-none" id="btn_btn_send_content_submit" type="submit" value="{{ 'ยืนยัน' }}"  >
                                                 </div>
                                             </div>
                                         </div>
@@ -582,27 +582,27 @@ display:none;
                         
                     </style>
                     <div class="col-12 col-md-3 col-lg-3">
-                        <center>
-                            <br class="mt-5 d-block d-m">
-                            <div class="phone-frame ml-5 modal-content" style="padding-top: 0px;">
-                                <div class="row">
-                                    <div class="col-12 " style="background-color: #FFFFFF;  border-radius:50px 50px 0px 0px;margin-top:-0.5%">
-                                        <div class="row">
-                                        <div class="col-3 text-center">{{ date('H:i') }}</div>
-                                        <div class="col-6 phone-camera"></div>
-                                        <div class="col-3 d-flex align-items-center">
-                                            <div class="col-12 p-0">
-                                                <div class="row ">
-                                                    <div class="col p-0 phone-icon"><i class="fa-sharp fa-solid fa-signal-bars"></i></div>
-                                                    <div class="col p-0 phone-icon"><i class="fa-solid fa-wifi"></i></div>
-                                                    <div class="col p-0 phone-icon"><i class="fa-solid fa-battery-full"></i></div></div>
-                                                </div>
+                    <center>
+                        <br class="mt-5 d-block d-md-none">
+                        <div class="phone-frame ml-5 modal-content" style="padding-top: 0px;">
+                            <div class="row">
+                                <div class="col-12 " style="background-color: #FFFFFF;  border-radius:50px 50px 0px 0px;margin-top:-0.5%">
+                                    <div class="row">
+                                    <div class="col-3 text-center">{{ date('H:i') }}</div>
+                                    <div class="col-6 phone-camera"></div>
+                                    <div class="col-3 d-flex align-items-center">
+                                        <div class="col-12 p-0">
+                                            <div class="row ">
+                                                <div class="col p-0 phone-icon"><i class="fa-sharp fa-solid fa-signal-bars"></i></div>
+                                                <div class="col p-0 phone-icon"><i class="fa-solid fa-wifi"></i></div>
+                                                <div class="col p-0 phone-icon"><i class="fa-solid fa-battery-full"></i></div></div>
                                             </div>
-                                        </div>  
-                                    </div>
-                                    <div class="phone-header">
-                                        <div class="row">
-                                            <div class="col-7 phone-name ">
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="phone-header">
+                                    <div class="row">
+                                        <div class="col-7 phone-name ">
                                             <div class="row">
                                                 <div class="col-2 text-center"><i class="fa-solid fa-chevron-left"></i></div>
                                                 <div class="col-10 text-start p-0"> <img src="{{ asset('/img/icon/โล่.png') }}" alt="" width="8%"> ViiCHECK</div>
@@ -616,50 +616,51 @@ display:none;
 
                                             </div>
                                         </div>
-                                        </div>
                                     </div>
-                                    <div  class="phone-content" >
-                                        <div id="div_img" class="col-12  remove-scrollbar div_img" style="min-width: 100%;max-height: 100%;overflow:auto;cursor: grab;">
-                                            <div class="col-12" >
-                                                <div id="send-img">
-                                                    <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="float: left;border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px;height:10%;object-fit:contain;" alt="" width="15%" height="1%">
-                                                        
-                                                    <button id="img_exchange" type="button" class="button-reset-img" onclick="document.querySelector('#photo').click();">
-                                                        <span class="button-reset-img-icon">
-                                                            <i class="fa-solid fa-arrows-rotate"></i>
-                                                        </span>
-                                                        <span class="button-reset-img-text">Reset</span>
-                                                    </button>
-                                                    <img src="" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img-content"  >
-                                                </div>
+                                </div>
+                                <div  class="phone-content" >
+                                    <div id="div_img" class="col-12 d-none remove-scrollbar div_img" style="min-width: 100%;max-height: 100%;overflow:auto;cursor: grab;">
+                                        <div class="col-12" >
+                                            <div id="send-img">
+                                                <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="float: left;border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
+                                                    
+                                                <button id="img_exchange" type="button" class="button-reset-img" onclick="document.querySelector('#photo').click();">
+                                                    <span class="button-reset-img-icon">
+                                                        <i class="fa-solid fa-arrows-rotate"></i>
+                                                    </span>
+                                                    <span class="button-reset-img-text">Reset</span>
+                                                </button>
+                                                <img src="" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img-content"  >
                                             </div>
-                                            <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
                                         </div>
-                                        <div id="div_add_img" class="col-12 remove-scrollbar" style="min-width: 100%;max-height: 250px;overflow:auto;cursor: grab;" onclick="document.querySelector('#photo').click();">
-                                            <div class="col-12" >
-                                                <div id="send-img">
-                                                    <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="float: left;border-radius: 50%; padding:2px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px;height:30px;object-fit:contain;" alt="" width="30px" >
-                                                    <img src="{{ asset('/img/more/add_img_2.png') }}" alt="" width="100%" style="padding: 0px 5px;border-radius:10px;height:100%;" id="img_add_img"  >
-                                                </div>
+                                        
+                                        <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
+                                    </div>
+                                    <div id="div_add_img" class="col-12 remove-scrollbar" style="min-width: 100%;max-height: 250px;overflow:auto;cursor: grab;" onclick="document.querySelector('#photo').click();">
+                                        <div class="col-12" >
+                                            <div id="send-img">
+                                                <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="float: left;border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
+                                                <img src="{{ asset('/img/more/add_img_2.png') }}" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img_add_img"  >
                                             </div>
-                                            <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
                                         </div>
+                                        <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
                                     </div>
-                                    <div class="richmenu text-center" >
-                                        <img src="{{ asset('/img/new_rich_menu/rich_menu_new/richmenu-th.png') }}" alt="" width="100%">
+                                </div>
+                                <div class="richmenu text-center" >
+                                    <img src="{{ asset('/img/new_rich_menu/rich_menu_new/richmenu-th.png') }}" alt="" width="100%">
+                                </div>
+                                <div class="row phone-footer d-flex justify-content-start">
+                                    <div class="col d-flex justify-content-start" style="float: left;"><img src="{{ asset('/img/icon/keyboard.png') }}" alt="" width="20%"></div>
+                                    <div class="col d-flex justify-content-start" style="cursor: pointer;float: left;">
+                                        <span onclick="document.querySelector('.richmenu').classList.toggle('d-none');
+                                        document.querySelector('.phone-content').classList.toggle('no-richmenu');
+                                        document.querySelector('.div_img').classList.toggle('no-richmenu');">เมนู▾</span>
                                     </div>
-                                    <div class="row phone-footer d-flex justify-content-start">
-                                        <div class="col d-flex justify-content-start" style="float: left;"><img src="{{ asset('/img/icon/keyboard.png') }}" alt="" width="20%"></div>
-                                        <div class="col d-flex justify-content-start" style="cursor: pointer;float: left;">
-                                            <span onclick="document.querySelector('.richmenu').classList.toggle('');
-                                            document.querySelector('.phone-content').classList.toggle('no-richmenu');
-                                            document.querySelector('.div_img').classList.toggle('no-richmenu');">เมนู▾</span>
-                                        </div>
-                                    </div>
-                                </div> 
-                            </div>
-                        </center>
-                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </center>
+                </div>
                 </div>
             </div>
         </div>
