@@ -1887,7 +1887,7 @@ display:none;
     margin:10,
     nav:true,
     pading:10,
-    navText : ["<i style='background-color: #F8F8F8;border-radius:50px;padding:20px 25px' class='fa fa-chevron-left btn_con btn'></i>",
+    navText : ["<i style='background-color: #F8F8F8;border-radius:50px;padding:20px 25px' class='fa-solid fa-chevron-left'></i>",
     "<i style='background-color: #F8F8F8;border-radius:50px;padding:20px 25px' class='fa fa-chevron-right btn_con btn'></i>"],
     responsive:{
         0:{

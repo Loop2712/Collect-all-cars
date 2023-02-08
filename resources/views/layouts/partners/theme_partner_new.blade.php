@@ -40,7 +40,7 @@
 	<link rel="stylesheet" href="{{ asset('partner_new/css/header-colors.css') }}" />
 	<!-- fontawesome icon -->
     <link rel="stylesheet" href="{{ asset('/partner/fonts/fontawesome/css/fontawesome-all.min.css') }}">
- 	<link href="https://kit-pro.fontawesome.com/releases/v6.2.0/css/pro.min.css" rel="stylesheet">
+ 	<link href="https://kit-pro.fontawesome.com/releases/v6.3.0/css/pro.min.css" rel="stylesheet">
     
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

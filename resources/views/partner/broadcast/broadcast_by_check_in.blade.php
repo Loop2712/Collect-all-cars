@@ -368,16 +368,45 @@ display:none;
 	background: rgba(0, 0, 0, 0.08);
 } 
   
+@media (min-width:1281px) {  
+        .owl-carousel{
+            padding: 0px 100px;
+            
+        }
+        .owl-carousel .owl-nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+    
+        }
+        .owl-carousel .owl-nav .owl-prev{
+            background-color: #000000;
+            border-radius: 50%;
+        margin-left: -100px;
+        margin-top: -25%;
+    }
+    .owl-carousel .owl-nav .owl-next{
+        background-color: #000000;
+        border-radius: 50%;
+        margin-right: -100px;
+        margin-top: -25%;
+        
+    }
+    .content{
+        padding: 0px 100px;
+    }
+  }
+  
   @media (min-width:200px) and (max-width:1200px){
     .owl-nav{
         display: none;
     }
-  }.item-content-send{
+  }.item-content{
     background-color: #DAE3F8;
     border-radius: 20px;
     padding: 10px 10px;
     }
-    .item-content-send h5{
+    .item-content h5{
         white-space: nowrap; 
         width: 100%; 
         overflow: hidden;
@@ -395,7 +424,9 @@ display:none;
     margin: 0px;
     }
 </style>
-
+ <!-- carousel -->
+ <link href="{{ asset('carousel-12/css/owl.carousel.min.css') }}" rel="stylesheet">
+ 
 <div id="check_in_max" class="div_alert d-none" role="alert">
     <span id="text_check_in_max">
         ขออภัย เกินจำนวนที่กำหนด
@@ -535,7 +566,7 @@ display:none;
 
                                         <h4>เลือกเนื้อหา</h4>
                                         <br>
-                                        <div class="owl-carousel owl-theme content col-12">
+                                        <div class="owl-carousel owl-theme content">
                                             @if(!empty($ads_contents))
                                                 @foreach($ads_contents as $ads)
                                                     @php
@@ -1634,5 +1665,30 @@ function check_click_checked($checked){
 
   };
 </script>
-
+<script src="{{ asset('carousel-12/js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/popper.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/main.js') }}"></script>
+  <script>
+    $('.owl-carousel').owlCarousel({
+    loop:false,
+    margin:10,
+    nav:true,
+    pading:10,
+    navText : ["<i style='background-color: #F8F8F8;border-radius:50px;padding:20px 25px' class='fa-solid fa-chevron-left'></i>",
+    "<i style='background-color: #F8F8F8;border-radius:50px;padding:20px 25px' class='fa fa-chevron-right'></i>"],
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+</script>
 @endsection
