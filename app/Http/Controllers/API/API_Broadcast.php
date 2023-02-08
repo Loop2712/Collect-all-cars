@@ -787,11 +787,14 @@ class API_Broadcast extends Controller
             $show_user = json_decode($data_Ads_content->show_user) ;
         }
 
-        $img = 'https://www.viicheck.com/storage/' . $requestData['photo'];
-        $img_content = Image::make( $img );
+        if (!empty($requestData['photo'])) {
+            $img = 'https://www.viicheck.com/storage/' . $requestData['photo'];
+            $img_content = Image::make( $img );
 
-        $img_content_w = $img_content->width();
-        $img_content_h = $img_content->height();
+            $img_content_w = $img_content->width();
+            $img_content_h = $img_content->height();
+        }
+        
 
         // ส่ง content
         if (!empty($arr_user_id)) {
