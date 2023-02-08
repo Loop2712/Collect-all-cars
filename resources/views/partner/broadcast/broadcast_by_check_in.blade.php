@@ -438,7 +438,26 @@ display:none;
                                 <div class="row">
                                     <div class="col-12" style="font-family: 'Kanit', sans-serif;">
                                         <h4 class="text-dark">สร้างเนื้อหาใหม่</h4>
-                                        <div class="row">
+
+                                        <div class="row text-center">
+                                            <div class="col-6">
+                                                <span style="width:80%;" class="btn btn-outline-primary main-shadow main-radius">
+                                                    ข้อความ
+                                                </span>
+                                            </div>
+                                            <div class="col-6">
+                                                <span style="width:80%;" class="btn btn-outline-primary main-shadow main-radius">
+                                                    รูปภาพ
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <!-- TEXT -->
+                                        <div class="row"  id="div_bc_text">
+                                            
+                                        </div>
+                                        <!-- IMG -->
+                                        <div class="row" id="div_bc_img">
                                             <div class="col-6">
                                                 <div class="form-group {{ $errors->has('name_content') ? 'has-error' : ''}}">
                                                     <label for="name_content" class="control-label">{{ 'ชื่อเนื้อหา' }}</label>
