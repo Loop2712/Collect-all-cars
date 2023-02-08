@@ -750,14 +750,16 @@ class API_Broadcast extends Controller
                         'BC_by_check_in_sent' => $sum_BC_by_check_in_sent ,
                 ]);
 
-                DB::table('ads_contents')
-                    ->where('id', $data_Ads_content->id)
-                    ->update([
-                        'link' => "https://www.viicheck.com/api/check_content?redirectTo=" . $requestData['link'] . "&id_content=" . $data_Ads_content->id,
-                        'send_round' => $sum_send_round ,
-                ]);
+                if (!empty($requestData['link'])) {
+                    DB::table('ads_contents')
+                        ->where('id', $data_Ads_content->id)
+                        ->update([
+                            'link' => "https://www.viicheck.com/api/check_content?redirectTo=" . $requestData['link'] . "&id_content=" . $data_Ads_content->id,
+                            'send_round' => $sum_send_round ,
+                    ]);
 
-                $requestData['link'] = "https://www.viicheck.com/api/check_content?redirectTo=" . $requestData['link'] . "&id_content=" . $data_Ads_content->id;
+                    $requestData['link'] = "https://www.viicheck.com/api/check_content?redirectTo=" . $requestData['link'] . "&id_content=" . $data_Ads_content->id;
+                }
 
                 // ส่ง content เข้าไลน์
                 $this->send_content_BC_to_line($requestData , $data_Ads_content);
@@ -797,14 +799,22 @@ class API_Broadcast extends Controller
 
                 $data_user = User::where('id' , $arr_user_id[$xi])->first();
 
-                $template_path = storage_path('../public/json/flex-broadcast.json');
-                $string_json = file_get_contents($template_path);
+                if (!empty($requestData['link'])){
+
+                    $template_path = storage_path('../public/json/flex-broadcast/flex-broadcast_TEXT_URL.json');
+                    $string_json = file_get_contents($template_path);
+                    $string_json = str_replace("TEXT_URL",$requestData['link'] . "&user_id=" . $arr_user_id[$xi] ,$string_json);
+
+                }else{
+                    $template_path = storage_path('../public/json/flex-broadcast/flex-broadcast_NONE_TEXT_URL.json');
+                    $string_json = file_get_contents($template_path);
+                }
+
 
                 $string_json = str_replace("ตัวอย่าง",$requestData['name_content'],$string_json);
                 $string_json = str_replace("TEXT_W",$img_content_w,$string_json);
                 $string_json = str_replace("TEXT_H",$img_content_h,$string_json);
                 $string_json = str_replace("PHOTO_BC",$requestData['photo'],$string_json);
-                $string_json = str_replace("TEXT_URL",$requestData['link'] . "&user_id=" . $arr_user_id[$xi] ,$string_json);
 
                 $messages = [ json_decode($string_json, true) ];
 

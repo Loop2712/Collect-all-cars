@@ -1413,10 +1413,10 @@ function remain_it_0(remain){
 
 function check_send_content(){
     let name_content = document.querySelector("#name_content").value;
-    let link = document.querySelector("#link").value;
+    // let link = document.querySelector("#link").value;
     let photo = document.querySelector("#photo").value;
 
-    if (name_content && link && photo) {
+    if (name_content && photo) {
         document.querySelector('#btn_send_content').disabled = false ;
     }else{
         document.querySelector('#btn_send_content').disabled = true ;
