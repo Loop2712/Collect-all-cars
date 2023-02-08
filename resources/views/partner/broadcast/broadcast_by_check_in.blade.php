@@ -468,27 +468,27 @@ display:none;
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-12" style="font-family: 'Kanit', sans-serif;">
-                                        <h4 class="text-dark">สร้างเนื้อหาใหม่</h4>
-
                                         <div class="row text-center">
                                             <div class="col-6">
-                                                <span style="width:80%;" class="btn btn-outline-primary main-shadow main-radius">
+                                                <h4 class="text-dark float-start">สร้างเนื้อหาใหม่</h4>
+                                            </div>
+                                            <div class="col-3">
+                                                <span id="btn_select_text_content" style="width:80%;" class="btn btn-outline-primary main-shadow main-radius" onclick="switch_type_content('text');">
                                                     ข้อความ
                                                 </span>
                                             </div>
-                                            <div class="col-6">
-                                                <span style="width:80%;" class="btn btn-outline-primary main-shadow main-radius">
+                                            <div class="col-3">
+                                                <span id="btn_select_img_content" style="width:80%;" class="btn btn-primary main-shadow main-radius" onclick="switch_type_content('img');">
                                                     รูปภาพ
                                                 </span>
                                             </div>
+                                            <div class="col-12 d-none">
+                                                <input class="d-none" type="text" name="type_content_bc" id="type_content_bc" value="img">
+                                            </div>
                                         </div>
                                         <hr>
-                                        <!-- TEXT -->
-                                        <div class="row"  id="div_bc_text">
-                                            
-                                        </div>
-                                        <!-- IMG -->
-                                        <div class="row" id="div_bc_img">
+                                        <!-- name content -->
+                                        <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group {{ $errors->has('name_content') ? 'has-error' : ''}}">
                                                     <label for="name_content" class="control-label">{{ 'ชื่อเนื้อหา' }}</label>
@@ -496,22 +496,32 @@ display:none;
                                                 </div>
                                                 <br>
                                             </div>
-                                            <div class="col-6">
+                                            <!-- IMG -->
+                                            <div class="col-6" id="div_bc_img">
                                                 <div class="form-group {{ $errors->has('link') ? 'has-error' : ''}}">
                                                     <label for="link" class="control-label">{{ 'ลิงก์' }}</label>
                                                     <input  style="border-radius: 10px;"class="form-control" name="link" type="text" id="link" value="" onchange="check_send_content();">
                                                 </div>
                                                 <br>
                                             </div>
-                                            <div class="col-12 d-none">
-                                                <div class="form-group {{ $errors->has('detail') ? 'has-error' : ''}}">
-                                                    <label for="detail" class="control-label">{{ 'คำอธิบาย' }}</label>
-                                                    <!-- <span class="text-secondary">(ไม่แสดงต่อผู้ใช้)</span> -->
-                                                    <textarea class="form-control" name="detail" rows="4" type="text" id="detail" value="" onchange="check_send_content();"></textarea>
-                                                    <br>
+                                            <div class="col-6 d-none">
+                                                <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
+                                                    <!-- <label for="photo" class="control-label">{{ 'รูปภาพ' }}</label> -->
+                                                    <input class="form-control" name="photo" id="photo" type="file" accept="image/*" onchange="loadFile(event),check_send_content();">
                                                 </div>
+                                                <br>
                                             </div>
-                                            <div id="div_user_unique" class="col-12  d-flex align-items-center">
+
+                                            <!-- TEXT -->
+                                            <div class="col-12 d-none" id="div_bc_text">
+                                                <textarea class="form-control" id="detail" name="detail" rows="4" placeholder="เพิ่มข้อความของคุณที่นี่" oninput="document.querySelector('#add_text_content').innerHTML = document.querySelector('#detail').value ;check_send_content();"></textarea>
+                                            </div>
+                                            
+                                        </div>
+                                        <hr>
+                                        <!-- ALL -->
+                                        <div class="row">
+                                            <div id="div_user_unique" class="col-12 d-none d-flex align-items-center">
                                                 <input class="" name="user_unique" type="checkbox" id="user_unique" value="" style="border-radius:50px;width:20px;height: 20px;cursor: pointer;" onclick="check_user_unique();">
                                                     &nbsp;<label for="user_unique" style="cursor: pointer;">ไม่ซ้ำกับผู้ใช้ที่เคยส่งแล้ว</label>
                                                 <!-- &nbsp; ไม่ซ้ำกับผู้ใช้ที่เคยส่งแล้ว -->
@@ -535,14 +545,6 @@ display:none;
                                                 </div>
                                                 <br>
                                             </div>
-                                            <div class="col-6 d-none">
-                                                <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
-                                                    <!-- <label for="photo" class="control-label">{{ 'รูปภาพ' }}</label> -->
-                                                    <input class="form-control" name="photo" id="photo" type="file" accept="image/*" onchange="loadFile(event),check_send_content();">
-                                                </div>
-                                                <br>
-                                            </div>
-
                                             <div class="col-6">
                                                 <span style="font-size:20px;color:blue;">จำนวน <span id="span_amount_send">0</span> คน</span>
                                                 <div class="d-none form-group {{ $errors->has('amount') ? 'has-error' : ''}}">
@@ -668,7 +670,8 @@ display:none;
                                         </div>
                                     </div>
                                 </div>
-                                <div  class="phone-content" >
+                                <!-- IMG SHOW CONTENT ----------------------------------------------------------------- -->
+                                <div id="show_img_content"  class="phone-content" >
                                     <div id="div_img" class="col-12 d-none remove-scrollbar div_img" style="min-width: 100%;max-height: 100%;overflow:auto;cursor: grab;">
                                         <div class="col-12" >
                                             <div id="send-img">
@@ -696,6 +699,21 @@ display:none;
                                         <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
                                     </div>
                                 </div>
+                                <!-- END IMG SHOW CONTENT ----------------------------------------------------- -->
+
+                                <!-- TEXT SHOW CONTENT ----------------------------------------------------------------- -->
+                                <div id="show_text_content" class="phone-content d-none" >
+                                    <div class="col-12 remove-scrollbar" style="min-width: 100%;max-height: 250px;overflow:auto;cursor: grab;">
+                                        <div class="col-12">
+                                            <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="float: left;border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
+                                            <p class="float-start" style="font-size:10px;margin-top: 7px;width: 75%;float:left;">
+                                                <span id="add_text_content" style="background-color: #66d470;" class="btn btn-sm">เพิ่มข้อความของคุณ</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- TEXT SHOW CONTENT --------------------------------------------------------- -->
+
                                 <div class="richmenu text-center" >
                                     <img src="{{ asset('/img/new_rich_menu/rich_menu_new/richmenu-th.png') }}" alt="" width="100%">
                                 </div>
@@ -1462,15 +1480,26 @@ function remain_it_0(remain){
 // ----------------------------- function in modal -----------------------------------
 
 function check_send_content(){
-    let name_content = document.querySelector("#name_content").value;
-    // let link = document.querySelector("#link").value;
-    let photo = document.querySelector("#photo").value;
+    let type_content_bc = document.querySelector('#type_content_bc') ;
 
-    if (name_content && photo) {
-        document.querySelector('#btn_send_content').disabled = false ;
-    }else{
-        document.querySelector('#btn_send_content').disabled = true ;
-    }
+    let name_content = document.querySelector("#name_content").value;
+    let photo = document.querySelector("#photo").value;
+    let detail = document.querySelector("#detail").value;
+
+        if (type_content_bc.value === 'text') {
+            if (name_content && detail) {
+                document.querySelector('#btn_send_content').disabled = false ;
+            }else{
+                document.querySelector('#btn_send_content').disabled = true ;
+            }
+        }else{
+            if (name_content && photo) {
+                document.querySelector('#btn_send_content').disabled = false ;
+            }else{
+                document.querySelector('#btn_send_content').disabled = true ;
+            }
+        }
+    
 }
 
 function reset_BC(){
@@ -1536,6 +1565,38 @@ function select_content_again(ads_id){
     @endforeach
 
     document.querySelector('#btn_send_content').disabled = false ;
+}
+
+function switch_type_content(type){
+
+    document.querySelector('#type_content_bc').value = type ;
+    if (type === 'text') {
+        // btn
+        document.querySelector('#btn_select_text_content').classList.add('btn-primary');
+        document.querySelector('#btn_select_text_content').classList.remove('btn-outline-primary');
+        document.querySelector('#btn_select_img_content').classList.remove('btn-primary');
+        document.querySelector('#btn_select_img_content').classList.add('btn-outline-primary');
+        // div
+        document.querySelector('#div_bc_text').classList.remove('d-none');
+        document.querySelector('#div_bc_img').classList.add('d-none');
+        // show line
+        document.querySelector('#show_img_content').classList.add('d-none');
+        document.querySelector('#show_text_content').classList.remove('d-none');
+    }else{
+        // btn
+        document.querySelector('#btn_select_text_content').classList.remove('btn-primary');
+        document.querySelector('#btn_select_text_content').classList.add('btn-outline-primary');
+        document.querySelector('#btn_select_img_content').classList.add('btn-primary');
+        document.querySelector('#btn_select_img_content').classList.remove('btn-outline-primary');
+        // div
+        document.querySelector('#div_bc_text').classList.add('d-none');
+        document.querySelector('#div_bc_img').classList.remove('d-none');
+        // show line
+        document.querySelector('#show_img_content').classList.remove('d-none');
+        document.querySelector('#show_text_content').classList.add('d-none');
+    }
+
+    check_send_content();
 }
 
 function check_user_unique(){

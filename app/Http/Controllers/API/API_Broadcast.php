@@ -799,22 +799,28 @@ class API_Broadcast extends Controller
 
                 $data_user = User::where('id' , $arr_user_id[$xi])->first();
 
-                if (!empty($requestData['link'])){
-
-                    $template_path = storage_path('../public/json/flex-broadcast/flex-broadcast_TEXT_URL.json');
+                if ($requestData['type_content_bc'] == 'text') {
+                    // LINE TEXT
+                    $template_path = storage_path('../public/json/flex-broadcast/flex-broadcast_TEXT.json');
                     $string_json = file_get_contents($template_path);
-                    $string_json = str_replace("TEXT_URL",$requestData['link'] . "&user_id=" . $arr_user_id[$xi] ,$string_json);
 
+                    $string_json = str_replace("ใส่ข้อความตรงนี้ครับ",$requestData['detail'],$string_json);
                 }else{
-                    $template_path = storage_path('../public/json/flex-broadcast/flex-broadcast_NONE_TEXT_URL.json');
-                    $string_json = file_get_contents($template_path);
+                    // LINE IMG
+                    if (!empty($requestData['link'])){
+                        $template_path = storage_path('../public/json/flex-broadcast/flex-broadcast_TEXT_URL.json');
+                        $string_json = file_get_contents($template_path);
+                        $string_json = str_replace("TEXT_URL",$requestData['link']."&user_id=".$arr_user_id[$xi] ,$string_json);
+                    }else{
+                        $template_path = storage_path('../public/json/flex-broadcast/flex-broadcast_NONE_TEXT_URL.json');
+                        $string_json = file_get_contents($template_path);
+                    }
+
+                    $string_json = str_replace("ตัวอย่าง",$requestData['name_content'],$string_json);
+                    $string_json = str_replace("TEXT_W",$img_content_w,$string_json);
+                    $string_json = str_replace("TEXT_H",$img_content_h,$string_json);
+                    $string_json = str_replace("PHOTO_BC",$requestData['photo'],$string_json);
                 }
-
-
-                $string_json = str_replace("ตัวอย่าง",$requestData['name_content'],$string_json);
-                $string_json = str_replace("TEXT_W",$img_content_w,$string_json);
-                $string_json = str_replace("TEXT_H",$img_content_h,$string_json);
-                $string_json = str_replace("PHOTO_BC",$requestData['photo'],$string_json);
 
                 $messages = [ json_decode($string_json, true) ];
 
