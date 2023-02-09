@@ -907,7 +907,6 @@
 
         let audio_update_status = new Audio("{{ asset('sound/เปลี่ยนสถานะ.mp3') }}");
             audio_update_status.play();
-            audio_update_status.play();
     }
 </script>
 
