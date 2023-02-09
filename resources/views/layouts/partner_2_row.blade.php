@@ -19,6 +19,7 @@
             @endif
         @endforeach
     </div>
+    <div class="col-12 d-block d-md-none"><br> <br></div>
     <div class="owl-carousel owl-4 mt-3">
         @php
           $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
@@ -35,6 +36,7 @@
             @endif
         @endforeach
     </div>
+    <div class="col-12 d-block d-md-none"><br> <br></div>
 </div>   
 <script src="{{ asset('js/car/owl.carousel.min.js')}}"></script>
 <script src="{{ asset('carousel-12/js/jquery-3.3.1.min.js') }}"></script>
