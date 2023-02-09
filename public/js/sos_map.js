@@ -205,7 +205,8 @@
                 let logo_partner_help = document.querySelector('#logo_help');
                 let logo_sos = 'https://www.viicheck.com/storage/' + result_area[ii]['logo'];
 
-                console.log(result_area[ii]['id'])
+                console.log(result_area);
+
                 if(result_area[ii]['logo']){   
                     logo_partner_help.src = logo_sos ;
                 }else{
