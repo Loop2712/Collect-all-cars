@@ -65,6 +65,7 @@
               </div>
             </div>
           </div>
+          <div class="col-12 d-block d-md-none"><br> <br></div>
           <div class="col-12 mt-3">
             <div class=" owl-4-style">
               <div class="owl-carousel owl-4 ">
@@ -78,6 +79,7 @@
               </div>
             </div>
           </div>
+          <div class="col-12 d-block d-md-none"><br> <br></div>
         </div>
       </div>
     </div>
@@ -118,7 +120,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12"><br> <br></div>
+          <div class="col-12 d-block d-md-none"><br> <br></div>
           <div class="col-12 mt-3">
             <div class=" owl-4-style">
               <div class="owl-carousel owl-4 ">
@@ -132,7 +134,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12"><br> <br></div>
+          <div class="col-12 d-block d-md-none"><br> <br></div>
 
       </div>
     </div>
