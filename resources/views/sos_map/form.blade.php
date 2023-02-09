@@ -98,7 +98,7 @@
                             <div class="d-flex">
                                 <div class="col-3 p-0 d-flex align-items-center">
                                     <div class="justify-content-center col-12 p-0">
-                                        <img id="logo_help" src="" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                        <img id="logo_help" src="" width="70%" style="border:white solid 3px;border-radius:50%;background-color: #ffffff;"> 
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center col-9 text-center">
