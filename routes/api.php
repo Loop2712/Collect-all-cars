@@ -225,5 +225,6 @@ Route::get('/get_current_officer_location/{sos_id}', 'Sos_help_centerController@
 Route::get('/update_location_officer/{sos_id}/{lat}/{lng}', 'Sos_help_centerController@update_location_officer');
 Route::get('/update_status_officer/{status}/{sos_id}', 'Sos_help_centerController@update_status_officer');
 Route::get('/update_status_officer_Standby/{status}/{officer_id}/{lat}/{lng}', 'Sos_help_centerController@update_status_officer_Standby');
+Route::get('/update_event_level_rc/{level}/{sos_id}', 'Sos_help_centerController@update_event_level_rc');
 
 

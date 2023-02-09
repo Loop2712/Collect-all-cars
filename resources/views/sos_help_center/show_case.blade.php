@@ -50,7 +50,7 @@
 
 <div class="container notranslate" style="margin-top:140px;">
 	<div class="row">
-		<!-- หัวข้อ -->
+		<!-- หัวข้อ และ ปุ่มเพิ่มภาพถ่าย -->
     	<div class="col-12 text-center">
     		<div class="row" style="margin-left:4%;margin-right: 2%;">
     			<div class="col-9">
@@ -62,12 +62,6 @@
         			<button class="btn btn-info main-shadow main-radius" onclick="add_photo_sos_by_officers();">
 						<i class="fa-solid fa-camera-viewfinder"></i>
 					</button>
-        		</div>
-        		<!-- ระยะทางและเวลา (เสียเงิน) -->
-        		<div id="div_distance_and_duration" class="col-12 d-none">
-        			<p class="mt-2">
-        				ระยะทาง : <span id="text_distance"></span> / เวลา : <span id="text_duration"></span>
-        			</p>
         		</div>
         		<!-- lat lng -->
         		
@@ -83,6 +77,13 @@
         <!-- MAP -->
         <div class="col-12">
         	<div class="row">
+        		<!-- ระยะทางและเวลา (เสียเงิน) -->
+        		<div id="div_distance_and_duration" class="col-12 d-none">
+        			<p class="mt-2">
+        				ระยะทาง : <span id="text_distance"></span> / เวลา : <span id="text_duration"></span>
+        			</p>
+        		</div>
+        		<!-- show map -->
         		<div class="col-12">
         			<center>
 			        	<div class="main-shadow main-radius p-0" id="map_show_case">
@@ -118,15 +119,19 @@
 								Google Map <i class="fa-solid fa-location-arrow"></i>
 							</a>
 							<button class="btn btn-sm btn-primary text-white main-shadow main-radius mt-2" onclick="get_dir();">
-								<i class="fa-solid fa-eye"></i>
+								<i id="icon_btn_get_dir_close" class="fa-sharp fa-solid fa-eye-slash"></i>
+								<i id="icon_btn_get_dir_open" class="fa-solid fa-eye d-none"></i>
+								<!--เปิด fa-solid fa-eye -->
+								<!--ปิด fa-sharp fa-solid fa-eye-slash -->
 							</button>
+							<input class="d-none" type="checkbox" name="input_check_open_get_dir" id="input_check_open_get_dir">
 				        </div>
         			</div>
         		</div>
         	</div>
         </div>
         
-        <!-- ระดับสถานะการณ์ และ ปุ่มเพิ่มภาพถ่าย -->
+        <!-- ระดับสถานะการณ์ -->
         <div class="col-12 text-center">
         	<div class="row">
         		<div class="col-12">
@@ -153,7 +158,7 @@
         </div>
 
         <!-- ปุ่ม ถึงที่เกิดเหตุ -->
-		<div class="col-12 text-center" id="div_gotohelp">
+		<div class="col-12 text-center d-none" id="div_gotohelp">
 			<button class="btn btn-warning main-shadow main-radius" style="width:90%;" onclick="update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}');">
 				ถึงที่เกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
 			</button>
@@ -164,38 +169,136 @@
 			<div class="row">
 				<div class="col-6 mt-2">
 					<button class="btn btn-dark main-shadow main-radius" style="width:90%;" 
-					onclick="update_event_level('ดำ','{{ $data_sos->id }}');">
+					onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
 						ดำ
 					</button>
 				</div>
 				<div class="col-6 mt-2">
 					<button class="btn btn-light main-shadow main-radius" style="width:90%;" 
-					onclick="update_event_level('ขาว(ทั่วไป)','{{ $data_sos->id }}');">
+					onclick="update_event_level_rc('ขาว(ทั่วไป)','{{ $data_sos->id }}');">
 						ขาว(ทั่วไป)
 					</button>
 				</div>
 				<div class="col-6 mt-2">
 					<button class="btn btn-success main-shadow main-radius" style="width:90%;" 
-					onclick="update_event_level('เขียว(ไม่รุนแรง)','{{ $data_sos->id }}');">
+					onclick="update_event_level_rc('เขียว(ไม่รุนแรง)','{{ $data_sos->id }}');">
 						เขียว(ไม่รุนแรง)
 					</button>
 				</div>
 				<div class="col-6 mt-2">
 					<button class="btn btn-warning main-shadow main-radius" style="width:90%;" 
-					onclick="update_event_level('เหลือง(เร่งด่วน)','{{ $data_sos->id }}');">
+					onclick="update_event_level_rc('เหลือง(เร่งด่วน)','{{ $data_sos->id }}');">
 						เหลือง(เร่งด่วน)
 					</button>
 				</div>
 				<div class="col-12 mt-2">
 					<button class="btn btn-danger main-shadow main-radius" style="width:95%;" 
-					onclick="update_event_level('แดง(วิกฤติ)','{{ $data_sos->id }}');">
+					onclick="update_event_level_rc('แดง(วิกฤติ)','{{ $data_sos->id }}');">
 						แดง(วิกฤติ)
 					</button>
 				</div>
 			</div>
 		</div>
 
+		<!-- ปุ่มเลือกการรักษา -->
+		<div class="col-12 text-center d-none" id="div_select_treatment" >
+			<!-- Modal -->
+			<div class="modal fade" id="modal_select_treatment" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="header_modal_treatment" aria-hidden="true" style="z-index:99999;width: 90%;">
+			  	<div class="modal-dialog modal-dialog-centered">
+			    	<div class="modal-content">
+			      		<div class="modal-header">
+			        		<h3 class="modal-title text-dark" id="header_modal_treatment"></h3>
+			        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          			<span aria-hidden="true">&times;</span>
+			        		</button>
+			      		</div>
+			      		<!-- มีการรักษา -->
+				      	<div id="modal_body_treatment" class="modal-body d-none">
+				        	<div class="row">
+				        		<div class="col-12 mt-2">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:100%;">
+										นำส่ง
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;">
+										ส่งต่อชุดปฏิบัติการ
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;">
+										ไม่นำส่ง
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;">
+										เสียชีวิตระหว่างนำส่ง
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;">
+										เสียชีวิต ณ จุดเกิดเหตุ
+									</span>
+				        		</div>
+				        	</div>
+				      	</div>
+				      	<!-- ไม่ มีการรักษา -->
+				      	<div id="modal_body_no_treatment" class="modal-body d-none">
+				        	<div class="row">
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;">
+										ผู้ป่วยปฎิเสธการรักษา
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;">
+										เสียชีวิต ก่อนชุดปฎิบัติการไปถึง
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;">
+										ยกเลิก
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;">
+										ไม่พบเหตุ
+									</span>
+				        		</div>
+				        		
+				        	</div>
+				      	</div>
+			    	</div>
+			  	</div>
+			</div>
+			<!-- END Modal -->
+			<div class="row">
+				<div class="col-6">
+					<span class="btn btn-info main-shadow main-radius" style="width:95%;" data-toggle="modal" data-target="#modal_select_treatment" onclick="click_btn_select_treatment('มีการรักษา');">
+						มีการรักษา
+					</span>
+				</div>
+				<div class="col-6">
+					<span class="btn btn-danger main-shadow main-radius" style="width:95%;" data-toggle="modal" data-target="#modal_select_treatment" onclick="click_btn_select_treatment('ไม่มีการรักษา');">
+						ไม่มีการรักษา
+					</span>
+				</div>
+				<script>
+					function click_btn_select_treatment(type){
+						if (type === 'มีการรักษา') {
+							document.querySelector('#header_modal_treatment').innerHTML = 'มีการรักษา' ;
+							document.querySelector('#modal_body_treatment').classList.remove('d-none') ;
+							document.querySelector('#modal_body_no_treatment').classList.add('d-none') ;
 
+						}else if(type === 'ไม่มีการรักษา'){
+							document.querySelector('#header_modal_treatment').innerHTML = 'ไม่มีการรักษา' ;
+							document.querySelector('#modal_body_no_treatment').classList.remove('d-none') ;
+							document.querySelector('#modal_body_treatment').classList.add('d-none') ;
+						}
+					}
+				</script>
+			</div>
+		</div>
 
 
 
@@ -225,12 +328,36 @@
 <script>
 
 	// แสดงข้อมูลเริ่มต้น -----------------------------------------------------------------------------
-	var status_sos = '{{ $data_sos->status }}';
-        document.querySelector('#show_status').innerHTML = status_sos ;
-
-    var event_level_by_control_center = '{{ $data_sos->form_yellow->idc }}';
+	var event_level_by_control_center = '{{ $data_sos->form_yellow->idc }}';
     var event_level_by_officers = '{{ $data_sos->form_yellow->rc }}';
 
+	// แสดงเคสและปุ่มดำเนินการต่างๆ
+	var status_sos = '{{ $data_sos->status }}';
+    	document.querySelector('#show_status').innerHTML = status_sos ;
+    	// div_gotohelp
+    	// div_event_level
+    	// div_select_treatment
+        switch(status_sos){
+			case 'ออกจากฐาน':
+				document.querySelector('#div_gotohelp').classList.remove('d-none');
+				document.querySelector('#div_event_level').classList.add('d-none');
+				document.querySelector('#div_select_treatment').classList.add('d-none');
+			break;
+		case 'ถึงที่เกิดเหตุ':
+				if (!event_level_by_officers) {
+					document.querySelector('#div_event_level').classList.remove('d-none');
+					document.querySelector('#div_select_treatment').classList.add('d-none');
+					document.querySelector('#div_gotohelp').classList.add('d-none');
+				}else{
+					document.querySelector('#div_select_treatment').classList.remove('d-none');
+					document.querySelector('#div_event_level').classList.add('d-none');
+					document.querySelector('#div_gotohelp').classList.add('d-none');
+				}
+			break;
+			
+		}
+
+    // แสดงระดับเหตุการณ์
 	if (event_level_by_control_center) {
 		// document.querySelector('#show_level_by_control_center').classList.remove('d-none') ;
 		let class_color_center ;
@@ -377,6 +504,16 @@
             	status_sos = result_2['status'] ;
             	document.querySelector('#show_status').innerHTML = status_sos ;
 
+            	let input_check = document.querySelector('#input_check_open_get_dir');
+				if (input_check.checked) {
+					get_Directions_API(officer_marker, sos_marker);
+				}else{
+					if (directionsDisplay) {
+				        directionsDisplay.setMap(null);
+					}
+					document.querySelector('#div_distance_and_duration').classList.add('d-none');
+				}
+
         });
 
 	}
@@ -457,21 +594,41 @@
         });
 	}
 
-	function update_event_level(level , sos_id){
+	function update_event_level_rc(level , sos_id){
 
         text_event_level = level ;
-        document.querySelector('#show_event_level').innerHTML = text_event_level ;
 
-		fetch("{{ url('/') }}/api/update_event_level" + "/" + level + "/" + sos_id)
+        let class_color_old = document.querySelector('#text_level_by_officers').classList[4] ;
+        document.querySelector('#text_level_by_officers').classList.remove(class_color_old);
+
+        switch(text_event_level){
+			case 'แดง(วิกฤติ)':
+				class_color_officers = 'btn-danger';
+			break;
+			case 'เหลือง(เร่งด่วน)':
+				class_color_officers = 'btn-warning';
+			break;
+			case 'เขียว(ไม่รุนแรง)':
+				class_color_officers = 'btn-success';
+			break;
+			case 'ขาว(ทั่วไป)':
+				class_color_officers = 'btn-light';
+			break;
+			case 'ดำ':
+				class_color_officers = 'btn-dark';
+			break;
+		}
+		document.querySelector('#text_level_by_officers').classList.add(class_color_officers) ;
+    	document.querySelector('#text_level_by_officers').innerHTML = text_event_level ;
+
+		fetch("{{ url('/') }}/api/update_event_level_rc" + "/" + level + "/" + sos_id)
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
 
-                // if (status_sos === "ถึงที่เกิดเหตุ") {
-                // 	document.querySelector('#div_gotohelp').classList.add('d-none');
-                // 	document.querySelector('#div_event_level').classList.remove('d-none');
+                document.querySelector('#div_event_level').classList.add('d-none');
+                document.querySelector('#div_select_treatment').classList.remove('d-none');
 
-                // }
 
         });
 	}
@@ -484,7 +641,27 @@
 <script>
 	
 	function get_dir(){
-		get_Directions_API(officer_marker, sos_marker);
+
+		let input_check = document.querySelector('#input_check_open_get_dir');
+		let icon_btn_get_dir_open = document.querySelector('#icon_btn_get_dir_open');
+		let icon_btn_get_dir_close = document.querySelector('#icon_btn_get_dir_close');
+		// เปิด fa-solid fa-eye
+		// ปิด fa-sharp fa-solid fa-eye-slash
+		if (input_check.checked) {
+			if (directionsDisplay) {
+		        directionsDisplay.setMap(null);
+			}
+			document.querySelector('#div_distance_and_duration').classList.add('d-none');
+			input_check.checked = false ;
+			document.querySelector('#icon_btn_get_dir_close').classList.remove('d-none');
+			document.querySelector('#icon_btn_get_dir_open').classList.add('d-none');
+		}else{
+			input_check.checked = true ;
+			document.querySelector('#icon_btn_get_dir_open').classList.remove('d-none');
+			document.querySelector('#icon_btn_get_dir_close').classList.add('d-none');
+			get_Directions_API(officer_marker, sos_marker);
+		}
+
 	}
 
 	function get_Directions_API(markerA, markerB) {

@@ -639,15 +639,24 @@ class Sos_help_centerController extends Controller
 
         // อย่าลืมอัพเดทเวลาต่างๆด้วย
         DB::table('sos_help_centers')
-            ->where([ 
-                    ['id', $sos_id],
-                ])
-            ->update([
-                    'status' => $status,
-                ]);
+            ->where([ ['id', $sos_id],])
+            ->update(['status' => $status,]);
 
         return "Updated successfully" ;
 
+    }
+
+    function update_event_level_rc($level , $sos_id){
+
+        DB::table('sos_1669_form_yellows')
+            ->where([ 
+                    ['sos_help_center_id', $sos_id],
+                ])
+            ->update([
+                    'rc' => $level,
+                ]);
+
+        return "Updated successfully" ;
     }
 
     function update_status_officer_Standby($status, $officer_id , $lat , $lng){
