@@ -203,16 +203,16 @@
                 }
                 
                 let logo_partner_help = document.querySelector('#logo_help');
-                let logo_sos_1 = '{{ url("/storage' + '/' + result_area[ii]['logo'] +'") }}';
                 let logo_sos = 'https://www.viicheck.com/storage/' + result_area[ii]['logo'];
 
-                
+                console.log(result_area[ii]['id'])
                 if(result_area[ii]['logo']){   
-                    logo_partner_help.src = logo_sos_1 ;
+                    logo_partner_help.src = logo_sos ;
                 }else{
-                    logo_partner_help.src = '{{ url("/img/logo/logo_x-icon.png") }}';
+                    logo_partner_help.src = 'https://www.viicheck.com/img/logo/logo_x-icon.png';
                 }  
 
+                 
 
                 if ( inside([ lat, lng ], area_arr) ) {
 
