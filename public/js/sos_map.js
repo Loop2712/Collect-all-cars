@@ -185,6 +185,7 @@
             // console.log(JSON.parse(result_area[ii]['sos_area']).length);
 
             let name_partner = result_area[ii]['name'];
+
             // let text_name_area = result_area[ii]['name_area'];
             let arr_lat_lng = JSON.parse(result_area[ii]['sos_area']);
             
@@ -200,6 +201,17 @@
 
                     area_arr.push(text_latlng);
                 }
+                
+                let logo_partner_help = document.querySelector('#logo_help');
+                let logo_sos_1 = '{{ url("/storage' + '/' + result_area[ii]['logo'] +'") }}';
+                let logo_sos = 'https://www.viicheck.com/storage/' + result_area[ii]['logo'];
+
+                
+                if(result_area[ii]['logo']){   
+                    logo_partner_help.src = logo_sos_1 ;
+                }else{
+                    logo_partner_help.src = '{{ url("/img/logo/logo_x-icon.png") }}';
+                }  
 
 
                 if ( inside([ lat, lng ], area_arr) ) {
@@ -207,8 +219,9 @@
                     document.querySelector('#a_help').classList.remove('d-none');
 
                     let area_help = document.querySelector("#area_help");
-                    let name_area = document.querySelector("#name_area");
 
+                    let name_area = document.querySelector("#name_area");
+                    
                         let text_name_area = result_area[ii]['name_area'];
 
                         // console.log(name_area.value);
@@ -225,6 +238,10 @@
                         }else{
                             area_help.innerHTML = name_partner ;
                         }
+
+                       
+
+                        
                         
 
                     document.querySelector('#btn_quick_help').classList.add('d-none');

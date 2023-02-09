@@ -88,12 +88,34 @@
                         <!-- a_help click modal -->
                         <a id="a_help_modal" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" data-toggle="modal" data-target="#staticBackdrop"></a>
 
-                        <a id="a_help" style="font-family: 'Kanit', sans-serif;border-radius:15px" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" onclick="area_help_general();">
+                        <!-- <a id="a_help" style="font-family: 'Kanit', sans-serif;border-radius:15px" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" onclick="area_help_general();">
                             <i class="fas fa-bullhorn"></i> <b>Ask for HELP </b>
                             <br>
                             <b><span class="notranslate" id="area_help"></span></b>
+                        </a> -->
+
+                        <a id="a_help" class="d-none mail-shadow btn btn-md btn-block btn-warning text-dark"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;"  onclick="area_help_general();">
+                            <div class="d-flex">
+                                <div class="col-3 p-0 d-flex align-items-center">
+                                    <div class="justify-content-center col-12 p-0">
+                                        <img id="logo_help" src="" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center col-9 text-center">
+                                    <div class="justify-content-center col-12">
+                                        <b>
+                                            <span class="d-block" >
+                                                <i class="fas fa-bullhorn"></i> Ask for HELP
+                                            </span>
+                                            <span class="d-block notranslate" id="area_help"></span>
+                                        </b>
+                                    </div>
+                                    
+                                </div>
+                            </div>
                         </a>
                     </div>
+                    
                     <div class="col-12 order-3">
                         <a style="font-family: 'Kanit', sans-serif;border-radius:15px" href="tel:112" id="btn_quick_help" class="shadow btn btn-warning btn-block shadow-box " onclick="save_sos_content('police' , '112');">
                                 <i class="fas fa-bullhorn"></i> <b>Ask for HELP (police)</b>
