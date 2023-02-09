@@ -202,16 +202,9 @@
                     area_arr.push(text_latlng);
                 }
                 
-                let logo_partner_help = document.querySelector('#logo_help');
-                let logo_sos = 'https://www.viicheck.com/storage/' + result_area[ii]['logo'];
+                
 
-                console.log(result_area);
-
-                if(result_area[ii]['logo']){   
-                    logo_partner_help.src = logo_sos ;
-                }else{
-                    logo_partner_help.src = 'https://www.viicheck.com/img/logo/logo_x-icon.png';
-                }  
+              
 
                  
 
@@ -222,6 +215,9 @@
                     let area_help = document.querySelector("#area_help");
 
                     let name_area = document.querySelector("#name_area");
+
+                    let logo_partner_help = document.querySelector('#logo_help');
+                    let logo_sos = 'https://www.viicheck.com/storage/' + result_area[ii]['logo'];
                     
                         let text_name_area = result_area[ii]['name_area'];
 
@@ -240,6 +236,11 @@
                             area_help.innerHTML = name_partner ;
                         }
 
+                        if(result_area[ii]['logo']){   
+                            logo_partner_help.src = logo_sos ;
+                        }else{
+                            logo_partner_help.src = 'https://www.viicheck.com/img/logo/logo_x-icon.png';
+                        }  
                        
 
                         
