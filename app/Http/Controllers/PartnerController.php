@@ -747,6 +747,7 @@ class PartnerController extends Controller
 
         $all_area_partners = Partner::where("name", $data_user->organization)
                             ->where("name_area", "!=" , null)
+                            ->orderBy('id' , 'DESC')
                             ->get();
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
