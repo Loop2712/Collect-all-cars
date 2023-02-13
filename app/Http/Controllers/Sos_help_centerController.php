@@ -600,14 +600,19 @@ class Sos_help_centerController extends Controller
             ->first();
 
         $data['distance'] = $locations->distance ;
-
         $data['status_sos'] = $data_sos->status ;
+        $data['remark_status'] = $data_sos->remark_status ;
 
         $data['officer_level'] = $data_officer->operating_unit->level ;
 
         $data['unit_name'] = $data_sos->organization_helper ;
         $data['unit_area'] = $data_officer->operating_unit->area ;
         $data['operating_unit_id'] = $operating_unit_id ;
+
+        // FORM YELLOWS
+        $form_yellows = DB::table('sos_1669_form_yellows')->where('id' , $sos_id)->first();
+        $data['rc'] = $form_yellows->rc ;
+        $data['idc'] = $form_yellows->idc ;
 
         return $data ;
 
@@ -635,12 +640,26 @@ class Sos_help_centerController extends Controller
 
     }
 
-    function update_status_officer($status, $sos_id){
+    function update_status_officer($status , $sos_id , $reason){
 
-        // อย่าลืมอัพเดทเวลาต่างๆด้วย
-        DB::table('sos_help_centers')
-            ->where([ ['id', $sos_id],])
-            ->update(['status' => $status,]);
+        $reason = str_replace("_"," ",$reason);
+        $date_now = date("Y-m-d H:i:s");
+
+        if ($status == "เสร็จสิ้น") {
+             // อย่าลืมอัพเดทเวลาต่างๆด้วย
+            DB::table('sos_help_centers')
+                ->where([ ['id', $sos_id],])
+                ->update([
+                        'status' => $status,
+                        'remark_status' => $reason,
+                        'time_sos_success' => $date_now,
+                ]);
+        }else{
+            // อย่าลืมอัพเดทเวลาต่างๆด้วย
+            DB::table('sos_help_centers')
+                ->where([ ['id', $sos_id],])
+                ->update(['status' => $status,]);
+        }
 
         return "Updated successfully" ;
 
@@ -657,6 +676,18 @@ class Sos_help_centerController extends Controller
                 ]);
 
         return "Updated successfully" ;
+    }
+
+    function update_officer_to_the_operating_base($sos_id){
+
+        $date_now = date("Y-m-d H:i:s");
+
+        DB::table('sos_help_centers')
+            ->where([ ['id', $sos_id],])
+            ->update(['time_to_the_operating_base' => $date_now,]);
+
+        return "Updated successfully" ;
+        // return redirect('officers/switch_standby')->with('flash_message', 'Sos_help_center updated!');
     }
 
     function update_status_officer_Standby($status, $officer_id , $lat , $lng){

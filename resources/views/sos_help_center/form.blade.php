@@ -469,10 +469,20 @@
                     <div class="row">
                         <div class="col-12">
                             <h4>
-                                สถานะ :  <b><span id="show_status" class="text-warning"></span></b>
+                                สถานะ :  <b><span id="show_status" class=""></span></b>
+                                <span id="show_remark_status" class="d-none text-secondary">(<span id="text_remark_status"></span>)</span>
                                 &nbsp;&nbsp;
                                 ระยะทาง (รัศมี) :  <b><span id="show_distance" class="text-warning"></span></b> กม.
                             </h4>
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <p>การให้รหัสความรุนแรง (IDC) : <span id="show_idc" class="btn btn-sm px-5 radius-30 d-none"></span></p>
+                                </div>
+                                <div class="col-6">
+                                    <p>รหัสความรุนแรง ณ จุดเกิดเหตุ (RC): <span id="show_rc" class="btn btn-sm px-5 radius-30 d-none"></span></p>
+                                </div>
+                                
+                            </div>
                         </div>
                         <div class="col-12">
                             <div id="map_go_to_help"></div>
@@ -765,6 +775,7 @@
 <script>
     var Active_reface_map_go_to ;
     var status_old ;
+    var rc_old ;
 
     function reface_map_go_to_help(){
         show_div_sos_or_unit('show_unit');
@@ -783,8 +794,80 @@
                 console.log("start_result");
 
                 status_old = start_result['status_sos'] ;
+                rc_old = start_result['rc'] ;
+                if (rc_old) {
+                    document.querySelector('#show_rc').classList.remove('d-none');
+                    document.querySelector('#show_rc').innerHTML = rc_old ;
+
+                    let start_class_text_show_rc ;
+                    switch(start_result['rc']) {
+                        case 'ดำ':
+                            start_class_text_show_rc = "btn-dark";
+                        break;
+                        case 'ขาว(ทั่วไป)':
+                            start_class_text_show_rc = "btn-light";
+                        break;
+                        case 'เขียว(ไม่รุนแรง)':
+                            start_class_text_show_rc = "btn-success";
+                        break;
+                        case 'เหลือง(เร่งด่วน)':
+                            start_class_text_show_rc = "btn-warning";
+                        break;
+                        case 'แดง(วิกฤติ)':
+                            start_class_text_show_rc = "btn-danger";
+                        break;
+                    }
+                    document.querySelector('#show_rc').classList.add(start_class_text_show_rc);
+                }
+
+                if (start_result['idc']) {
+                    document.querySelector('#show_idc').classList.remove('d-none');
+                    document.querySelector('#show_idc').innerHTML = start_result['idc'] ;
+
+                    let start_class_text_show_idc ;
+                    switch(start_result['idc']) {
+                        case 'ดำ':
+                            start_class_text_show_idc = "btn-dark";
+                        break;
+                        case 'ขาว(ทั่วไป)':
+                            start_class_text_show_idc = "btn-light";
+                        break;
+                        case 'เขียว(ไม่รุนแรง)':
+                            start_class_text_show_idc = "btn-success";
+                        break;
+                        case 'เหลือง(เร่งด่วน)':
+                            start_class_text_show_idc = "btn-warning";
+                        break;
+                        case 'แดง(วิกฤติ)':
+                            start_class_text_show_idc = "btn-danger";
+                        break;
+                    }
+                    document.querySelector('#show_idc').classList.add(start_class_text_show_idc);
+                }
+
+
 
                 document.querySelector('#show_status').innerHTML = start_result['status_sos'] ;
+                switch(start_result['status_sos']) {
+                    case 'เสร็จสิ้น':
+                        start_class_text_show_status = "text-success";
+                    break;
+                    default:
+                        start_class_text_show_status = "text-warning";
+                    break;
+                }
+                let start_class_show_status = document.querySelector('#show_status').classList ;
+                    document.querySelector('#show_status').classList.remove(start_class_show_status[0]);
+                    document.querySelector('#show_status').classList.add(start_class_text_show_status);
+
+                if (start_result['remark_status']) {
+                    document.querySelector('#show_remark_status').classList.remove('d-none');
+                    document.querySelector('#text_remark_status').innerHTML = start_result['remark_status'];
+                }else{
+                    document.querySelector('#show_remark_status').classList.add('d-none');
+                    document.querySelector('#text_remark_status').innerHTML = "";
+                }
+
                 document.querySelector('#show_distance').innerHTML = start_result['distance'].toFixed(2) ;
                 set_marker_go_to_help(start_result['officer_lat'] , start_result['officer_lng'] , start_result['officer_level']);
 
@@ -813,12 +896,63 @@
                         // myStop_reface_map_go_to();
 
                         let img_stk = '{{ url("/") }}/img/stickerline/PNG/37.2.png' ;
-                        alerts_status(img_stk , result['status_sos']);
+                        alerts_status(img_stk , result['status_sos'] , 'status');
                         
                         status_old = result['status_sos'] ;
                     }
 
+                    if (result['rc'] != rc_old) {
+
+                        document.querySelector('#show_rc').classList.remove('d-none');
+                        document.querySelector('#show_rc').innerHTML = result['rc'] ;
+
+                        let class_text_show_rc ;
+                        switch(result['rc']) {
+                            case 'ดำ':
+                                class_text_show_rc = "btn-dark";
+                            break;
+                            case 'ขาว(ทั่วไป)':
+                                class_text_show_rc = "btn-light";
+                            break;
+                            case 'เขียว(ไม่รุนแรง)':
+                                class_text_show_rc = "btn-success";
+                            break;
+                            case 'เหลือง(เร่งด่วน)':
+                                class_text_show_rc = "btn-warning";
+                            break;
+                            case 'แดง(วิกฤติ)':
+                                class_text_show_rc = "btn-danger";
+                            break;
+                        }
+                        document.querySelector('#show_rc').classList.add(class_text_show_rc);
+
+                        // let img_stk = '{{ url("/") }}/img/stickerline/PNG/37.2.png' ;
+                        // alerts_status(img_stk , , 'rc');
+                        
+                        rc_old = result['rc'] ;
+                    }
+
                     document.querySelector('#show_status').innerHTML = result['status_sos'] ;
+                    switch(result['status_sos']) {
+                        case 'เสร็จสิ้น':
+                            class_text_show_status = "text-success";
+                        break;
+                        default:
+                            class_text_show_status = "text-warning";
+                        break;
+                    }
+                    let class_show_status = document.querySelector('#show_status').classList ;
+                        document.querySelector('#show_status').classList.remove(class_show_status[0]);
+                        document.querySelector('#show_status').classList.add(class_text_show_status);
+
+                    if (result['remark_status']) {
+                        document.querySelector('#show_remark_status').classList.remove('d-none');
+                        document.querySelector('#text_remark_status').innerHTML = result['remark_status'];
+                    }else{
+                        document.querySelector('#show_remark_status').classList.add('d-none');
+                        document.querySelector('#text_remark_status').innerHTML = "";
+                    }
+
                     document.querySelector('#show_distance').innerHTML = result['distance'].toFixed(2) ;
                     set_marker_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
 
@@ -897,13 +1031,15 @@
 
 
 <script>
-    function alerts_status(img , status){
+    function alerts_status(img , status , type){
         // console.log(status);
 
         // notifications.js
         // notifications.min.js
         // notification-custom-script.js
-        img_info_noti(img , status);
+        if (type === 'status') {
+            img_info_noti(img , status);
+        }
 
         let audio_update_status = new Audio("{{ asset('sound/เปลี่ยนสถานะ.mp3') }}");
             audio_update_status.play();

@@ -57,6 +57,8 @@
     				<h4>
     					<b><span id="show_status" class="text-warning float-start"></span></b>
     				</h4>
+    				<br>
+    				<span id="show_remark_status" class="text-secondary float-start"></span>
     			</div>
     			<div class="col-3">
         			<button class="btn btn-info main-shadow main-radius" onclick="add_photo_sos_by_officers();">
@@ -159,7 +161,7 @@
 
         <!-- ปุ่ม ถึงที่เกิดเหตุ -->
 		<div class="col-12 text-center d-none" id="div_gotohelp">
-			<button class="btn btn-warning main-shadow main-radius" style="width:90%;" onclick="update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}');">
+			<button class="btn btn-warning main-shadow main-radius" style="width:90%;" onclick="update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');">
 				ถึงที่เกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
 			</button>
 		</div>
@@ -216,27 +218,32 @@
 				      	<div id="modal_body_treatment" class="modal-body d-none">
 				        	<div class="row">
 				        		<div class="col-12 mt-2">
-				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:100%;">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:100%;"
+				        			onclick="update_status('ออกจากที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');" data-dismiss="modal" aria-label="Close">
 										นำส่ง
 									</span>
 				        		</div>
 				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า');" data-dismiss="modal" aria-label="Close">
 										ส่งต่อชุดปฏิบัติการ
 									</span>
 				        		</div>
 				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่นำส่ง');" data-dismiss="modal" aria-label="Close">
 										ไม่นำส่ง
 									</span>
 				        		</div>
 				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิตระหว่างนำส่ง');" data-dismiss="modal" aria-label="Close">
 										เสียชีวิตระหว่างนำส่ง
 									</span>
 				        		</div>
 				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ณ_จุดเกิดเหตุ');" data-dismiss="modal" aria-label="Close">
 										เสียชีวิต ณ จุดเกิดเหตุ
 									</span>
 				        		</div>
@@ -246,22 +253,26 @@
 				      	<div id="modal_body_no_treatment" class="modal-body d-none">
 				        	<div class="row">
 				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;">
+				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ผู้ป่วยปฎิเสธการรักษา');" data-dismiss="modal" aria-label="Close">
 										ผู้ป่วยปฎิเสธการรักษา
 									</span>
 				        		</div>
 				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;">
+				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ก่อนชุดปฎิบัติการไปถึง');" data-dismiss="modal" aria-label="Close">
 										เสียชีวิต ก่อนชุดปฎิบัติการไปถึง
 									</span>
 				        		</div>
 				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;">
+				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ยกเลิก');" data-dismiss="modal" aria-label="Close">
 										ยกเลิก
 									</span>
 				        		</div>
 				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;">
+				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่พบเหตุ');" data-dismiss="modal" aria-label="Close">
 										ไม่พบเหตุ
 									</span>
 				        		</div>
@@ -300,6 +311,29 @@
 			</div>
 		</div>
 
+		<!-- ปุ่มเลือก กลับถึงฐาน -->
+		<div class="col-12 text-center d-none" id="div_operating_base" >
+			<div class="row">
+				<div class="col-12 mt-2">
+					<button class="btn btn-success main-shadow main-radius" style="width:95%;"
+					onclick="officer_to_the_operating_base('{{ $data_sos->id }}');">
+						กลับถึงฐาน
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- ปุ่มเลือก ถึง รพ. -->
+		<div class="col-12 text-center d-none" id="div_to_hospital" >
+			<div class="row">
+				<div class="col-12 mt-2">
+					<button class="btn btn-success main-shadow main-radius" style="width:95%;"
+					onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ถึงโรงพยาบาล');">
+						ถึงโรงพยาบาล
+					</button>
+				</div>
+			</div>
+		</div>
 
 
 
@@ -320,6 +354,8 @@
 			</div>
 		</div>
 
+		<a id="tag_a_switch_standby" href="{{ url('/officers/switch_standby') }}" class="d-none"></a>
+
     </div>
 </div>
 
@@ -334,6 +370,11 @@
 	// แสดงเคสและปุ่มดำเนินการต่างๆ
 	var status_sos = '{{ $data_sos->status }}';
     	document.querySelector('#show_status').innerHTML = status_sos ;
+    var show_remark_status_sos = '{{ $data_sos->remark_status }}';
+    	if (show_remark_status_sos) {
+			show_remark_status_sos = show_remark_status_sos.replaceAll("_" , " ");
+    		document.querySelector('#show_remark_status').innerHTML = show_remark_status_sos ;
+    	}
     	// div_gotohelp
     	// div_event_level
     	// div_select_treatment
@@ -342,19 +383,42 @@
 				document.querySelector('#div_gotohelp').classList.remove('d-none');
 				document.querySelector('#div_event_level').classList.add('d-none');
 				document.querySelector('#div_select_treatment').classList.add('d-none');
+              	document.querySelector('#div_operating_base').classList.add('d-none');
+              	document.querySelector('#div_to_hospital').classList.add('d-none');
 			break;
-		case 'ถึงที่เกิดเหตุ':
+			case 'ถึงที่เกิดเหตุ':
 				if (!event_level_by_officers) {
 					document.querySelector('#div_event_level').classList.remove('d-none');
 					document.querySelector('#div_select_treatment').classList.add('d-none');
 					document.querySelector('#div_gotohelp').classList.add('d-none');
+              		document.querySelector('#div_operating_base').classList.add('d-none');
+              		document.querySelector('#div_to_hospital').classList.add('d-none');
 				}else{
 					document.querySelector('#div_select_treatment').classList.remove('d-none');
 					document.querySelector('#div_event_level').classList.add('d-none');
 					document.querySelector('#div_gotohelp').classList.add('d-none');
+              		document.querySelector('#div_operating_base').classList.add('d-none');
+              		document.querySelector('#div_to_hospital').classList.add('d-none');
 				}
 			break;
-			
+			case 'ออกจากที่เกิดเหตุ':
+              	document.querySelector('#div_to_hospital').classList.remove('d-none');
+              	document.querySelector('#div_operating_base').classList.add('d-none');
+             	document.querySelector('#div_gotohelp').classList.add('d-none');
+				document.querySelector('#div_event_level').classList.add('d-none');
+				document.querySelector('#div_select_treatment').classList.add('d-none');
+			break;
+			case 'เสร็จสิ้น':
+              	document.querySelector('#div_operating_base').classList.remove('d-none');
+             	document.querySelector('#div_gotohelp').classList.add('d-none');
+				document.querySelector('#div_event_level').classList.add('d-none');
+				document.querySelector('#div_select_treatment').classList.add('d-none');
+              	document.querySelector('#div_to_hospital').classList.add('d-none');
+
+              	document.querySelector('#show_status').classList.remove('text-warning');
+              	document.querySelector('#show_status').classList.add('text-success');
+            break;
+
 		}
 
     // แสดงระดับเหตุการณ์
@@ -458,6 +522,10 @@
 
                 status_sos = result['status'] ;
                 document.querySelector('#show_status').innerHTML = status_sos ;
+                if (result['remark_status']) {
+                	result['remark_status'] = result['remark_status'].replaceAll("_" , " ");
+            		document.querySelector('#show_remark_status').innerHTML = result['remark_status'] ;
+				}
         });
 
         getLocation_LOOP();
@@ -503,6 +571,10 @@
 
             	status_sos = result_2['status'] ;
             	document.querySelector('#show_status').innerHTML = status_sos ;
+            	if (result_2['remark_status']) {
+                	result_2['remark_status'] = result_2['remark_status'].replaceAll("_" , " ");
+            		document.querySelector('#show_remark_status').innerHTML = result_2['remark_status'] ;
+				}
 
             	let input_check = document.querySelector('#input_check_open_get_dir');
 				if (input_check.checked) {
@@ -575,20 +647,54 @@
 
 
     // UPDATE STATUS SOS
-	function update_status(status , sos_id){
+	    // div_gotohelp
+	    // div_event_level
+	    // div_select_treatment
+	    // div_to_hospital
+	    // div_operating_base
+	    
+	function update_status(status , sos_id , reason){
 
         status_sos = status ;
         document.querySelector('#show_status').innerHTML = status_sos ;
 
-		fetch("{{ url('/') }}/api/update_status_officer" + "/" + status + "/" + sos_id)
+		fetch("{{ url('/') }}/api/update_status_officer" + "/" + status + "/" + sos_id + "/" + reason)
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
 
                 if (status_sos === "ถึงที่เกิดเหตุ") {
-                	document.querySelector('#div_gotohelp').classList.add('d-none');
                 	document.querySelector('#div_event_level').classList.remove('d-none');
 
+                	document.querySelector('#div_gotohelp').classList.add('d-none');
+                	document.querySelector('#div_select_treatment').classList.add('d-none');
+                	document.querySelector('#div_to_hospital').classList.add('d-none');
+                	document.querySelector('#div_operating_base').classList.add('d-none');
+
+                }else if(status_sos === "เสร็จสิ้น"){
+                	if (reason != 'null') {
+                		reason = reason.replaceAll("_" , " ");
+			    		document.querySelector('#show_remark_status').innerHTML = reason ;
+					}
+					document.querySelector('#div_operating_base').classList.remove('d-none');
+
+                	document.querySelector('#div_gotohelp').classList.add('d-none');
+                	document.querySelector('#div_event_level').classList.add('d-none');
+                	document.querySelector('#div_select_treatment').classList.add('d-none');
+                	document.querySelector('#div_to_hospital').classList.add('d-none');
+
+					document.querySelector('#show_status').classList.remove('text-warning');
+              		document.querySelector('#show_status').classList.add('text-success');
+                }else if(status_sos === "ออกจากที่เกิดเหตุ"){
+                	document.querySelector('#show_remark_status').innerHTML = '' ;
+                	document.querySelector('#show_remark_status').classList.add('d-none') ;
+
+                	document.querySelector('#div_to_hospital').classList.remove('d-none');
+
+                	document.querySelector('#div_gotohelp').classList.add('d-none');
+                	document.querySelector('#div_event_level').classList.add('d-none');
+                	document.querySelector('#div_select_treatment').classList.add('d-none');
+                	document.querySelector('#div_operating_base').classList.add('d-none');
                 }
 
         });
@@ -629,6 +735,20 @@
                 document.querySelector('#div_event_level').classList.add('d-none');
                 document.querySelector('#div_select_treatment').classList.remove('d-none');
 
+
+        });
+	}
+
+	// UPDATE เจ้าหน้าที่กลับถึงฐาน
+	function officer_to_the_operating_base(sos_id){
+
+		fetch("{{ url('/') }}/api/update_officer_to_the_operating_base" + "/" + sos_id)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                if (result === 'Updated successfully') {
+                	document.querySelector('#tag_a_switch_standby').click();
+                }
 
         });
 	}
