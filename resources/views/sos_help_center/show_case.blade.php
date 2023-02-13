@@ -20,7 +20,7 @@
   Launch static backdrop modal
 </button>
 <!-- Modal -->
-<div class="modal fade" id="modal_add_photo_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="max-height: calc(100%);overflow-y: auto;">
+<div class="modal fade" id="modal_add_photo_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="max-height: calc(100%);overflow-y: auto;z-index: 99999;">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
@@ -32,12 +32,19 @@
         <div class="row">
             <div class="col-12">
             	<!--  -->
-            	เพิ่มภาพถ่าย และข้อคิดเห็นของเจ้าหน้าที่
+            	<div id="div_input_photo_sos" class="">
+	            	<!-- เพิ่มภาพถ่าย และข้อคิดเห็นของเจ้าหน้าที่ -->
+	            	<label class="form-label">เพิ่มภาพถ่าย</label>
+					<input class="form-control" id="photo_sos_by_officers" name="photo_sos_by_officers" type="file" multiple>
+            	</div>
+            	<div id="show_photo_sos" class="d-none">
+            		<span id="text_photo_sos"></span>
+            	</div>
             </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" >
+        <button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="add_photo_sos_by_officers('{{ $data_sos->id }}');">
             ยืนยัน
         </button>
 
@@ -61,7 +68,7 @@
     				<span id="show_remark_status" class="text-secondary float-start"></span>
     			</div>
     			<div class="col-3">
-        			<button class="btn btn-info main-shadow main-radius" onclick="add_photo_sos_by_officers();">
+        			<button class="btn btn-info main-shadow main-radius" onclick="document.querySelector('#btn_modal_add_photo_sos').click();">
 						<i class="fa-solid fa-camera-viewfinder"></i>
 					</button>
         		</div>
@@ -638,10 +645,23 @@
     }
 
 
-    function add_photo_sos_by_officers(){
+    function add_photo_sos_by_officers(sos_id){
+
     	console.log('add_photo_sos_by_officers');
-    	document.querySelector('#btn_modal_add_photo_sos').click();
-    	capture_registration();
+    	let photo_sos_by_officers = document.querySelector('#photo_sos_by_officers');
+
+    	fetch("{{ url('/') }}/api/add_photo_sos_by_officers?photo_sos_by_officers=" + photo_sos_by_officers.value + "&sos_id=" + sos_id)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                if (result) {
+                	// text_photo_sos
+                	// show_photo_sos
+                	document.querySelector('#text_photo_sos').innerHTML = result['photo_sos_by_officers'];
+                	document.querySelector('#show_photo_sos').classList.remove('d-none');
+                }
+        });
+
     }
 
 

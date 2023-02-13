@@ -472,7 +472,7 @@
                                 สถานะ :  <b><span id="show_status" class=""></span></b>
                                 <span id="show_remark_status" class="d-none text-secondary">(<span id="text_remark_status"></span>)</span>
                                 &nbsp;&nbsp;
-                                ระยะทาง (รัศมี) :  <b><span id="show_distance" class="text-warning"></span></b> กม.
+                                <span id="h4_show_distance" class="">ระยะทาง (รัศมี) :  <b><span id="show_distance" class="text-warning"></span></b> กม.</span>
                             </h4>
                             <div class="row text-center">
                                 <div class="col-6">
@@ -868,21 +868,28 @@
                     document.querySelector('#text_remark_status').innerHTML = "";
                 }
 
-                document.querySelector('#show_distance').innerHTML = start_result['distance'].toFixed(2) ;
-                set_marker_go_to_help(start_result['officer_lat'] , start_result['officer_lng'] , start_result['officer_level']);
+                document.querySelector('#h4_show_distance').classList.add('d-none');
 
-                let start_Item_1 = new google.maps.LatLng(m_lat, m_lng);
-                let start_myPlace = new google.maps.LatLng(start_result['officer_lat'], start_result['officer_lng']);
+                if (start_result['status_sos'] != 'เสร็จสิ้น') {
 
-                let start_bounds = new google.maps.LatLngBounds();
-                    start_bounds.extend(start_myPlace);
-                    start_bounds.extend(start_Item_1);
-                map_go_to_help.fitBounds(start_bounds);
+                    document.querySelector('#show_distance').innerHTML = start_result['distance'].toFixed(2) ;
+                    document.querySelector('#h4_show_distance').classList.remove('d-none');
+
+                    set_marker_go_to_help(start_result['officer_lat'] , start_result['officer_lng'] , start_result['officer_level']);
+
+                    let start_Item_1 = new google.maps.LatLng(m_lat, m_lng);
+                    let start_myPlace = new google.maps.LatLng(start_result['officer_lat'], start_result['officer_lng']);
+
+                    let start_bounds = new google.maps.LatLngBounds();
+                        start_bounds.extend(start_myPlace);
+                        start_bounds.extend(start_Item_1);
+                    map_go_to_help.fitBounds(start_bounds);
+                }
 
 
             });
 
-        // ---------------------------------------------------------------------------------------
+        // LOOP ---------------------------------------------------------------------------------------
 
         reface_map_go_to = setInterval(function() {
             Active_reface_map_go_to = "Yes" ;
@@ -893,7 +900,6 @@
                     // console.log(result);
 
                     if (result['status_sos'] != status_old) {
-                        // myStop_reface_map_go_to();
 
                         let img_stk = '{{ url("/") }}/img/stickerline/PNG/37.2.png' ;
                         alerts_status(img_stk , result['status_sos'] , 'status');
@@ -953,16 +959,23 @@
                         document.querySelector('#text_remark_status').innerHTML = "";
                     }
 
-                    document.querySelector('#show_distance').innerHTML = result['distance'].toFixed(2) ;
-                    set_marker_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
+                    
 
-                    let Item_1 = new google.maps.LatLng(m_lat, m_lng);
-                    let myPlace = new google.maps.LatLng(result['officer_lat'], result['officer_lng']);
+                    if (result['status_sos'] === 'เสร็จสิ้น') {
+                        document.querySelector('#h4_show_distance').classList.add('d-none');
+                        myStop_reface_map_go_to();
+                    }else{
+                        document.querySelector('#show_distance').innerHTML = result['distance'].toFixed(2) ;
+                        set_marker_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
 
-                    let bounds = new google.maps.LatLngBounds();
-                        bounds.extend(myPlace);
-                        bounds.extend(Item_1);
-                    map_go_to_help.fitBounds(bounds);
+                        let Item_1 = new google.maps.LatLng(m_lat, m_lng);
+                        let myPlace = new google.maps.LatLng(result['officer_lat'], result['officer_lng']);
+
+                        let bounds = new google.maps.LatLngBounds();
+                            bounds.extend(myPlace);
+                            bounds.extend(Item_1);
+                        map_go_to_help.fitBounds(bounds);
+                    }
 
             });
 
@@ -972,6 +985,7 @@
 
     function myStop_reface_map_go_to() {
         clearInterval(reface_map_go_to);
+        console.log("STOP LOOP");
     }
 
     function open_map_go_to_help(){

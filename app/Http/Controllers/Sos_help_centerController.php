@@ -690,6 +690,21 @@ class Sos_help_centerController extends Controller
         // return redirect('officers/switch_standby')->with('flash_message', 'Sos_help_center updated!');
     }
 
+    function add_photo_sos_by_officers(Request $request){
+
+        $requestData = $request->all();
+
+        if ($request->hasFile('photo_sos_by_officers')) {
+            $requestData['photo_sos_by_officers'] = $request->file('photo_sos_by_officers')->store('uploads', 'public');
+        }
+
+        $sos_help_center = Sos_help_center::findOrFail($requestData['sos_id']);
+        $sos_help_center->update($requestData);
+
+        return $requestData ;
+        
+    }
+
     function update_status_officer_Standby($status, $officer_id , $lat , $lng){
 
 
