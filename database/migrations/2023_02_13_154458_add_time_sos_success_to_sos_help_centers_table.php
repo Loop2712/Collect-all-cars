@@ -14,7 +14,7 @@ class AddTimeSosSuccessToSosHelpCentersTable extends Migration
     public function up()
     {
         Schema::table('sos_help_centers', function (Blueprint $table) {
-            $table->time('time_sos_success')->nullable();
+            $table->datetime('time_sos_success')->nullable();
         });
     }
 
