@@ -101,7 +101,7 @@
 							</div>
 							<div class="col-md-4">
 								<label for="inputPassword" class="form-label">ชื่อพื้นที่</label>
-								<input class="form-control" name="name_area" type="name_area" id="name_area" value="{{ isset($partner->name_area) ? $partner->name_area : ''}}" required>
+								<input class="form-control" name="name_area" type="name_area" id="name_area" value="{{ isset($partner->name_area) ? $partner->name_area : ''}}" required oninput="check_name_area();">
 								{!! $errors->first('name_area', '<p class="help-block">:message</p>') !!}
 							</div>
 							<div class="col-5">
@@ -732,6 +732,14 @@
 					document.querySelector('#div_cf_pass_area').classList.remove('d-none');
 
 	        });
+		}
+
+		function check_name_area(){
+			let arr_name_area = [] ;
+				@for($i=0; $i < count('{{ $all_area_partners }}'); $i++)
+					console.log('{{ $i }}');
+				@endfor
+			let name_area = document.querySelector('#name_area');
 		}
 
 		function check_pass_area(){
