@@ -735,20 +735,16 @@
 		}
 
 		function check_name_area(){
-			let name_area = document.querySelector('#name_area');
+			let name_area = document.querySelector('#name_area').value;
 			let check = "" ;
-
 				@foreach($all_area_partners as $item)
-					console.log('{{ count($all_area_partners) }}');
-					console.log('{{ $item->name_area }}');
-
-					if (name_area.value === '{{ $item->name_area }}') {
+					if (name_area.toLowerCase() === '{{ strtolower($item->name_area) }}') {
 						console.log('ซ้ำ');
 						check = "Yes" ;
 					}
 
 				@endforeach
-				
+
 				console.log(check);
 		}
 
