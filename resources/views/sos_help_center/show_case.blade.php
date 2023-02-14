@@ -29,22 +29,32 @@
         </button>
       </div>
       <div class="modal-body text-center">
-        <div class="row">
-            <div class="col-12">
-            	<!--  -->
-            	<div id="div_input_photo_sos" class="">
-	            	<!-- เพิ่มภาพถ่าย และข้อคิดเห็นของเจ้าหน้าที่ -->
-	            	<label class="form-label">เพิ่มภาพถ่าย</label>
-					<input class="form-control" id="photo_sos_by_officers" name="photo_sos_by_officers" type="file" multiple>
-            	</div>
-            	<div id="show_photo_sos" class="d-none">
-            		<span id="text_photo_sos"></span>
-            	</div>
-            </div>
-        </div>
+      	<form method="GET" action="{{ url('/sos_help_center/add_photo_sos_by_officers/' . $data_sos->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+            {{ method_field('PATCH') }}
+            {{ csrf_field() }}
+	        <div class="row">
+	            <div class="col-12">
+	            	<!--  -->
+	            	<div id="div_input_photo_sos" class="">
+		            	<!-- เพิ่มภาพถ่าย และข้อคิดเห็นของเจ้าหน้าที่ -->
+		            	<label class="form-label">เพิ่มภาพถ่าย</label>
+						<input class="form-control" id="photo_sos_by_officers" name="photo_sos_by_officers" type="file" multiple>
+	            	</div>
+	            	<div id="show_photo_sos" class="d-none">
+	            		<span id="text_photo_sos"></span>
+	            	</div>
+	            </div>
+	            <hr>
+	            <div class="col-12">
+	            	<div class="form-group">
+				        <input class="btn btn-primary" type="submit" value="edit">
+				    </div>
+	            </div>
+	        </div>
+	    </form>
       </div>
       <div class="modal-footer">
-        <button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="add_photo_sos_by_officers('{{ $data_sos->id }}');">
+        <button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="">
             ยืนยัน
         </button>
 
@@ -643,28 +653,6 @@
             bounds.extend(Item_1);
         map_show_case.fitBounds(bounds);
     }
-
-
-    function add_photo_sos_by_officers(sos_id){
-
-    	console.log('add_photo_sos_by_officers');
-    	let photo_sos_by_officers = document.querySelector('#photo_sos_by_officers');
-
-    	fetch("{{ url('/') }}/api/add_photo_sos_by_officers?photo_sos_by_officers=" + photo_sos_by_officers.value + "&sos_id=" + sos_id)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                if (result) {
-                	// text_photo_sos
-                	// show_photo_sos
-                	document.querySelector('#text_photo_sos').innerHTML = result['photo_sos_by_officers'];
-                	document.querySelector('#show_photo_sos').classList.remove('d-none');
-                }
-        });
-
-    }
-
-
 
     // UPDATE STATUS SOS
 	    // div_gotohelp
