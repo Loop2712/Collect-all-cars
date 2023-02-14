@@ -174,9 +174,8 @@ class PartnerController extends Controller
         
         Partner::create($requestData);
 
-        $data_partners = Partner::where("name", $requestData['name'])
-                                ->where("name_area", $requestData['name_area'])
-                                ->get();
+        $data_partners = Partner::where("name", $requestData['name'])->latest()->get();
+        
         foreach ($data_partners as $key_1) {
 
             DB::table('group_lines')
@@ -185,9 +184,11 @@ class PartnerController extends Controller
                         'owner' => $requestData['name']." (Partner)",
                         'partner_id' => $key_1->id,
                 ]);
+
+            $id_partner =  $key_1->id ;
         }
 
-        $group_line = Group_line::where('groupName', $requestData['line_group'])->get();
+        $group_line = Group_line::where('partner_id', $id_partner)->get();
         foreach ($group_line as $key_2) {
 
             DB::table('partners')
