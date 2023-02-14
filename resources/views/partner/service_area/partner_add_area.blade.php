@@ -100,7 +100,7 @@
 								{!! $errors->first('type_partner', '<p class="help-block">:message</p>') !!}
 							</div>
 							<div class="col-md-4">
-								<label for="inputPassword" class="form-label">ชื่อพื้นที่</label>
+								<label for="inputPassword" class="form-label">ชื่อพื้นที่</label><span class="text-danger d-none" id="text_name_area_doubly">*ไม่สามารถใช้ชื่อซ้ำได้</span>
 								<input class="form-control" name="name_area" type="name_area" id="name_area" value="{{ isset($partner->name_area) ? $partner->name_area : ''}}" required oninput="check_name_area();">
 								{!! $errors->first('name_area', '<p class="help-block">:message</p>') !!}
 							</div>
@@ -737,15 +737,23 @@
 		function check_name_area(){
 			let name_area = document.querySelector('#name_area').value;
 			let check = "" ;
-				@foreach($all_area_partners as $item)
-					if (name_area.toLowerCase() === '{{ strtolower($item->name_area) }}') {
-						console.log('ซ้ำ');
-						check = "Yes" ;
-					}
 
-				@endforeach
+			@foreach($all_area_partners as $item)
+				if (name_area.toLowerCase() === '{{ strtolower($item->name_area) }}') {
+					// console.log('ซ้ำ');
+					check = "Yes" ;
+				}
 
-				console.log(check);
+			@endforeach
+			// console.log(check);
+
+			if (check === 'Yes') {
+				document.querySelector('#line_group').disabled = true ;
+				document.querySelector('#text_name_area_doubly').classList.remove('d-none');
+			}else{
+				document.querySelector('#line_group').disabled = false ;
+				document.querySelector('#text_name_area_doubly').classList.add('d-none');
+			}
 		}
 
 		function check_pass_area(){
