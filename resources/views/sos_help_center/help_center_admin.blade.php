@@ -646,11 +646,11 @@
         let user_id = {{ $data_user->id }} ;
 
         fetch("{{ url('/') }}/api/create_new_sos_help_center/" + user_id)
-            .then(response => response.text())
+            .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
                 if (result) {
-                    window.location.replace("{{ url('/') }}/sos_help_center/" + result + "/edit");
+                    window.location.replace("{{ url('/') }}/sos_help_center/" + result['id'] + "/edit");
                 }
         });
 

@@ -16,6 +16,8 @@ use App\Models\Data_1669_operating_unit;
 use App\Models\Mylog;
 use App\User;
 
+use \Carbon\Carbon;
+
 class Sos_help_centerController extends Controller
 {
     /**
@@ -248,13 +250,13 @@ class Sos_help_centerController extends Controller
 
     public function create_new_sos_help_center($user_id)
     {
-        $date_now = date("Y-m-d H:i:s");
+        $date_now = Carbon::now();
 
         $requestData = [] ;
         $requestData['create_by'] = $user_id;
         $requestData['notify'] = 'none';
-        $requestData['time_go_to_help'] = $date_now;
-
+        $requestData['time_create_sos'] = $date_now;
+        
         Sos_help_center::create($requestData);
 
         $sos_help_center_last = Sos_help_center::latest()->first();
@@ -275,7 +277,7 @@ class Sos_help_centerController extends Controller
                     'operating_code' => $operating_code,
                 ]);
 
-        return $sos_help_center_last->id;
+        return $sos_help_center_last;
     }
 
     function save_form_yellow(Request $request)
