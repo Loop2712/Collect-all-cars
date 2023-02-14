@@ -753,6 +753,7 @@
 			}else{
 				document.querySelector('#line_group').disabled = false ;
 				document.querySelector('#text_name_area_doubly').classList.add('d-none');
+				document.querySelector('#btn_send_pass_area').classList.add('d-none');
 			}
 		}
 
