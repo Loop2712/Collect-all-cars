@@ -737,14 +737,16 @@
 		function check_name_area(){
 			let name_area = document.querySelector('#name_area');
 
-				@for($i=0; $i < count($all_area_partners); $i++)
+				@foreach($all_area_partners as $item)
 					console.log('{{ count($all_area_partners) }}');
-					console.log('{{ $all_area_partners["name_area"] }}');
+					console.log('{{ $item->name_area }}');
 
-					// if (name_area.value === ) {
-
-					// }
-				@endfor
+					if (name_area.value === '{{ $item->name_area }}') {
+						console.log('ซ้ำ');
+					}else{
+						console.log('ใช้ได้');
+					}
+				@endforeach
 		}
 
 		function check_pass_area(){
