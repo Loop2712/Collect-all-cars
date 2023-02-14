@@ -253,7 +253,7 @@ class Sos_help_centerController extends Controller
         $requestData = [] ;
         $requestData['create_by'] = $user_id;
         $requestData['notify'] = 'none';
-        // $requestData['time_create_sos'] = $date_now;
+        $requestData['time_go_to_help'] = $date_now;
 
         Sos_help_center::create($requestData);
 
@@ -273,7 +273,6 @@ class Sos_help_centerController extends Controller
                 ])
             ->update([
                     'operating_code' => $operating_code,
-                    'time_create_sos' => $sos_help_center_last->created_at,
                 ]);
 
         return $sos_help_center_last->id;
