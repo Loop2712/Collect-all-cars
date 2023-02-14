@@ -168,13 +168,17 @@ class PartnerController extends Controller
     public function partner_add_area(Request $request)
     {
         $requestData = $request->all();
+        echo "<pre>";
+        print_r($requestData);
+        echo "<pre>";
+        exit();
 
         $requestData['phone'] = str_replace("-", "", $requestData['phone']);
         $requestData['phone'] = str_replace(" ", "", $requestData['phone']);
         
         Partner::create($requestData);
 
-        $data_partners = Partner::latest()->get();
+        $data_partners = Partner::where("name", $requestData['name'])->get();
 
         foreach ($data_partners as $key_1) {
 
