@@ -391,9 +391,10 @@ class Sos_mapController extends Controller
                 $name_line_group = $data_partner->line_group ;
                 $mail_partner = $data_partner->mail ;
                 $id_partner = $data_partner->id ;
+                $group_line_id = $data_partner->group_line_id;
             }
 
-            $data_line_group = DB::table('group_lines')->where('partner_id', $id_partner)->get();
+            $data_line_group = DB::table('group_lines')->where('id', $group_line_id)->get();
 
             foreach ($data_line_group as $key) {
                 $groupId = $key->groupId ;
