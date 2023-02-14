@@ -351,8 +351,8 @@
         <div class="col-3">
             <div class="card">
                 <div class="row main-sos-switcher slide-switcher-open">
-                    <div class="col-1 d-flex align-items-center opacity-100">
-                        <button class="btn switcher-btn-sos slide-switcher-open " onclick="hide_data_officer()"> <i class="fa-solid fa-chevron-right hide-data-sos"></i></button>
+                    <div class="col-1">
+                        <button class="btn switcher-btn-sos slide-switcher-open mt-2 ml-2" onclick="hide_data_officer()"> <i class="fa-solid fa-chevron-right hide-data-sos"></i></button>
                     </div>
                     <div class="col-11 d-flex data-sos-switcher  slide-switcher-open">
                         <div class="card radius-10 w-100">
