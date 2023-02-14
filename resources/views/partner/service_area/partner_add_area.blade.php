@@ -483,6 +483,7 @@
                 <div class="card-body" style="padding: 0px 10px 0px 10px;">
 				@foreach($all_area_partners as $area)
                     @foreach($data_partners as $data_partner)
+                    	<input type="text" name="id_partner" value="{{ $data_partner->id }}" class="d-none">
                     @endforeach
                     <div class="card col-12 d-block d-lg-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
 					<center>
