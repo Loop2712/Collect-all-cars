@@ -174,8 +174,8 @@ class PartnerController extends Controller
         
         Partner::create($requestData);
 
-        $data_partners = Partner::where("name", $requestData['name'])->latest()->get();
-        
+        $data_partners = Partner::latest()->get();
+
         foreach ($data_partners as $key_1) {
 
             DB::table('group_lines')
