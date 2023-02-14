@@ -20,47 +20,41 @@
   Launch static backdrop modal
 </button>
 <!-- Modal -->
-<div class="modal fade" id="modal_add_photo_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="max-height: calc(100%);overflow-y: auto;z-index: 99999;">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-      	<form method="GET" action="{{ url('/sos_help_center/add_photo_sos_by_officers/' . $data_sos->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-            {{ method_field('PATCH') }}
-            {{ csrf_field() }}
-	        <div class="row">
-	            <div class="col-12">
-	            	<!--  -->
-	            	<div id="div_input_photo_sos" class="">
-		            	<!-- เพิ่มภาพถ่าย และข้อคิดเห็นของเจ้าหน้าที่ -->
-		            	<label class="form-label">เพิ่มภาพถ่าย</label>
-						<input class="form-control" id="photo_sos_by_officers" name="photo_sos_by_officers" type="file" multiple>
-	            	</div>
-	            	<div id="show_photo_sos" class="d-none">
-	            		<span id="text_photo_sos"></span>
-	            	</div>
-	            </div>
-	            <hr>
-	            <div class="col-12">
-	            	<div class="form-group">
-				        <input class="btn btn-primary" type="submit" value="edit">
-				    </div>
-	            </div>
-	        </div>
-	    </form>
-      </div>
-      <div class="modal-footer">
-        <button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="">
-            ยืนยัน
-        </button>
+<div class="modal fade" id="modal_add_photo_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="max-height: calc(100%);overflow-y: auto;z-index: 9999;">
+  	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          			<span aria-hidden="true"><i class="far fa-times-circle"></i></span>
+        		</button>
+      		</div>
+      		<form method="POST" action="{{ url('/sos_help_center/' . $data_sos->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+           		{{ method_field('PATCH') }}
+        		{{ csrf_field() }}
+      			<div class="modal-body text-center">
 
-      </div>
-    </div>
-  </div>
+	            	<!-- เพิ่มภาพถ่าย และข้อคิดเห็นของเจ้าหน้าที่ -->
+
+	            	<label class="form-label">เพิ่มภาพถ่าย</label>
+					<input class="form-control" name="photo_sos_by_officers" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" multiple>
+    				{!! $errors->first('photo_sos_by_officers', '<p class="help-block">:message</p>') !!}
+
+    				@if(!empty($data_sos->photo_sos_by_officers))
+    					<img src="{{ url('storage')}}/{{ $data_sos->photo_sos_by_officers }}" style="width:80%;">
+    				@endif
+		            	
+	            	<div class="form-group d-none">
+				        <input id="btn_submit_form_photo" class="btn btn-primary" type="submit">
+				    </div>
+      			</div>
+      		</form>
+	      	<div class="modal-footer">
+	        	<button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_submit_form_photo').click();">
+	           		ยืนยัน
+	        	</button>
+	      	</div>
+    	</div>
+  	</div>
 </div>
 
 <!-- ----------------------------------------------------------------------------------------- -->
@@ -125,7 +119,7 @@
 			            </div>
 		            </center>
         		</div>
-        		<div class="col-12" style="position:absolute;bottom: 10%;left: 7%;z-index: 9999;">
+        		<div class="col-12" style="position:absolute;bottom: 10%;left: 7%;z-index: 99;">
         			<div class="row">
         				<!-- Google Map และ ดูเส้นทาง -->
 				        <div id="btn_google_map" class="col-12 d-">

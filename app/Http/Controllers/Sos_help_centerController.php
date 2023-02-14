@@ -77,9 +77,10 @@ class Sos_help_centerController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $date_now = date("Y-m-d H:i:s");
         $requestData = $request->all();
-                if ($request->hasFile('photo_sos')) {
+
+        if ($request->hasFile('photo_sos')) {
             $requestData['photo_sos'] = $request->file('photo_sos')
                 ->store('uploads', 'public');
         }
@@ -155,12 +156,19 @@ class Sos_help_centerController extends Controller
             $requestData['photo_succeed_by'] = $request->file('photo_succeed_by')
                 ->store('uploads', 'public');
         }
-        
+        if ($request->hasFile('photo_sos_by_officers')) {
+            $requestData['photo_sos_by_officers'] = $request->file('photo_sos_by_officers')
+                ->store('uploads', 'public');
+        }
 
         $sos_help_center = Sos_help_center::findOrFail($id);
         $sos_help_center->update($requestData);
         
-        return redirect('sos_help_center/' . $id . '/edit')->with('flash_message', 'Sos_help_center updated!');
+        if (!empty($requestData['photo_sos_by_officers'])) {
+            return redirect('sos_help_center/' . $id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
+        }else{
+            return redirect('sos_help_center/' . $id . '/edit')->with('flash_message', 'Sos_help_center updated!');
+        }
     }
     /**
      * Remove the specified resource from storage.
@@ -675,23 +683,6 @@ class Sos_help_centerController extends Controller
         return "Updated successfully" ;
         // return redirect('officers/switch_standby')->with('flash_message', 'Sos_help_center updated!');
     }
-
-    function add_photo_sos_by_officers(Request $request, $id){
-
-        $requestData = $request->all();
-
-        if ($request->hasFile('photo_sos_by_officers')) {
-            $requestData['photo_sos_by_officers'] = $request->file('photo_sos_by_officers')->store('uploads', 'public');
-        }
-        
-        $sos_help_center = Sos_help_center::findOrFail($id);
-        $sos_help_center->update($requestData);
-
-        // return back()->withInput();
-        return redirect('sos_help_center/' . $id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
-        
-    }
-
 
     function update_status_officer_Standby($status, $officer_id , $lat , $lng){
 

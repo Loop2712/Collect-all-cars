@@ -393,7 +393,7 @@ class Sos_mapController extends Controller
                 $id_partner = $data_partner->id ;
             }
 
-            $data_line_group = DB::table('group_lines')->where('groupName', 'LIKE', "%$name_line_group%")->get();
+            $data_line_group = DB::table('group_lines')->where('partner_id', $id_partner)->get();
 
             foreach ($data_line_group as $key) {
                 $groupId = $key->groupId ;
