@@ -253,7 +253,8 @@ class Sos_help_centerController extends Controller
         $requestData = [] ;
         $requestData['create_by'] = $user_id;
         $requestData['notify'] = 'none';
-        $requestData['time_create_sos'] = $date_now;
+        // $requestData['time_create_sos'] = $date_now;
+        $requestData['time_create_sos'] = "1998-08-31 10:49:00";
 
         Sos_help_center::create($requestData);
 
