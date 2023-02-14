@@ -254,7 +254,6 @@ class Sos_help_centerController extends Controller
         $requestData['create_by'] = $user_id;
         $requestData['notify'] = 'none';
         // $requestData['time_create_sos'] = $date_now;
-        $requestData['time_create_sos'] = "1998-08-31 10:49:00";
 
         Sos_help_center::create($requestData);
 
@@ -274,6 +273,7 @@ class Sos_help_centerController extends Controller
                 ])
             ->update([
                     'operating_code' => $operating_code,
+                    'time_create_sos' => $date_now,
                 ]);
 
         return $sos_help_center_last->id;
