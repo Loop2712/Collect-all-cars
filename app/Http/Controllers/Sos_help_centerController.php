@@ -273,7 +273,7 @@ class Sos_help_centerController extends Controller
                 ])
             ->update([
                     'operating_code' => $operating_code,
-                    'time_create_sos' => $date_now,
+                    'time_create_sos' => $sos_help_center_last->created_at,
                 ]);
 
         return $sos_help_center_last->id;
