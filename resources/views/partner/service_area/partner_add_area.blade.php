@@ -722,7 +722,7 @@
 			fetch("{{ url('/') }}/api/send_pass_area/"+line_group+'/'+num_pass_area)
 	            .then(response => response.json())
 	            .then(result => {
-	                // console.log(result);
+	                console.log(result);
 	                // console.log(num_pass_area);
 	                
 	                let group_line_id = document.querySelector('#group_line_id');

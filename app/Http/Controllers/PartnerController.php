@@ -178,19 +178,16 @@ class PartnerController extends Controller
         
         Partner::create($requestData);
 
-        $data_partners = Partner::where("name", $requestData['name'])->get();
+        $data_partners = Partner::where("name", $requestData['name'])->where('name_area' , $requestData['name_area'])->first();
 
-        foreach ($data_partners as $key_1) {
+        DB::table('group_lines')
+                ->where('id', $requestData['group_line_id'])
+                ->update([
+                    'owner' => $requestData['name']." (Partner)",
+                    'partner_id' => $data_partners->id,
+            ]);
 
-            DB::table('group_lines')
-                    ->where('groupName', $requestData['line_group'])
-                    ->update([
-                        'owner' => $requestData['name']." (Partner)",
-                        'partner_id' => $key_1->id,
-                ]);
-
-            $id_partner =  $key_1->id ;
-        }
+        $id_partner =  $data_partners->id ;
 
         $group_line = Group_line::where('partner_id', $id_partner)->get();
         foreach ($group_line as $key_2) {
