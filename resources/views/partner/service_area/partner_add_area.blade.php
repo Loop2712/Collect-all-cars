@@ -736,7 +736,7 @@
 
 		function check_name_area(){
 			let arr_name_area = [] ;
-				@for($i=0; $i < count('{{ $all_area_partners }}'); $i++)
+				@for($i=0; $i < count($all_area_partners); $i++)
 					console.log('{{ $i }}');
 				@endfor
 			let name_area = document.querySelector('#name_area');
