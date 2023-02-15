@@ -792,6 +792,7 @@
             .then(response => response.json())
             .then(start_result => {
                 console.log("start_result");
+                console.log(start_result);
 
                 status_old = start_result['status_sos'] ;
                 rc_old = start_result['rc'] ;
@@ -897,7 +898,7 @@
                 .then(response => response.json())
                 .then(result => {
                     console.log("LOOP");
-                    // console.log(result);
+                    console.log(result);
 
                     if (result['status_sos'] != status_old) {
 

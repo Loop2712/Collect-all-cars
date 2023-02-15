@@ -608,7 +608,7 @@ class Sos_help_centerController extends Controller
                 ->where('operating_unit_id',$data_unit->id)->first();
 
             $sum_go_to_help = 0 ;
-            $sum_go_to_help = (int)$sum_go_to_help + (int)$data_officers->go_to_help ;
+            $sum_go_to_help = (int)$data_officers->go_to_help + 1 ;
             // อัพเดทสถานะ ใน data_1669_operating_officers
             DB::table('data_1669_operating_officers')
             ->where([ 
