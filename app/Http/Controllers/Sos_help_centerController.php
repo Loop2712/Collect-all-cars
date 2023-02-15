@@ -297,6 +297,27 @@ class Sos_help_centerController extends Controller
         $date_sos = $data_sos_help_center->created_at ;
         $result = $date_sos->format('Y-m-d');
 
+        // if ($requestData['time_create_sos']) {
+        //     $requestData['time_create_sos'] = $result . " " . $requestData['time_create_sos'];
+        // }
+        // if ($requestData['time_command']) {
+        //     $requestData['time_command'] = $result . " " . $requestData['time_command'];
+        // }
+        // if ($requestData['time_go_to_help']) {
+        //     $requestData['time_go_to_help'] = $result . " " . $requestData['time_go_to_help'];
+        // }
+        // if ($requestData['time_to_the_scene']) {
+        //     $requestData['time_to_the_scene'] = $result . " " . $requestData['time_to_the_scene'];
+        // }
+        // if ($requestData['time_leave_the_scene']) {
+        //     $requestData['time_leave_the_scene'] = $result . " " . $requestData['time_leave_the_scene'];
+        // }
+        // if ($requestData['time_hospital']) {
+        //     $requestData['time_hospital'] = $result . " " . $requestData['time_hospital'];
+        // }
+        // if ($requestData['time_to_the_operating_base']) {
+        //     $requestData['time_to_the_operating_base'] = $result . " " . $requestData['time_to_the_operating_base'];
+        // }
 
         $data_sos_help_center->update($requestData);
         
