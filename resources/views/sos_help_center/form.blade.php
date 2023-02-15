@@ -636,7 +636,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            @include ('sos_help_center.form_sos_pink')
+                            <!-- @include ('sos_help_center.form_sos_pink') -->
                         </div>
                     </div>
                 </div>

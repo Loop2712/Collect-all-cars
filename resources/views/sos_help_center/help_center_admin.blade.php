@@ -611,7 +611,6 @@
     </div>
 </div> -->
 
-
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus"></script>
 <style type="text/css">
@@ -646,11 +645,11 @@
         let user_id = {{ $data_user->id }} ;
 
         fetch("{{ url('/') }}/api/create_new_sos_help_center/" + user_id)
-            .then(response => response.json())
+            .then(response => response.text())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 if (result) {
-                    window.location.replace("{{ url('/') }}/sos_help_center/" + result['id'] + "/edit");
+                    window.location.replace("{{ url('/') }}/sos_help_center/" + result + "/edit");
                 }
         });
 

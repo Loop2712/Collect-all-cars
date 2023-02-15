@@ -379,19 +379,19 @@
 									$check_be_notified_4 = "" ;
 									$check_be_notified_5 = "" ;
 									$check_be_notified_6 = "" ;
-									if( !empty($sos_help_center->form_yellow->be_notified) ){
+									if( !empty($data_form_yellow->be_notified) ){
 
-										if( $sos_help_center->form_yellow->be_notified == 'แพลตฟอร์มวีเช็ค' ){
+										if( $data_form_yellow->be_notified == 'แพลตฟอร์มวีเช็ค' ){
 											$check_be_notified_1 = "checked";
-										}else if( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙' ){
+										}else if( $data_form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙' ){
 											$check_be_notified_2 = "checked";
-										}else if ( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)' ){
+										}else if ( $data_form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)' ){
 											$check_be_notified_3 = "checked";
-										}else if ( $sos_help_center->form_yellow->be_notified == 'โทรศัพท์หมายเลขอื่นๆ' ){
+										}else if ( $data_form_yellow->be_notified == 'โทรศัพท์หมายเลขอื่นๆ' ){
 											$check_be_notified_4 = "checked";
-										}else if ( $sos_help_center->form_yellow->be_notified == 'วิทยุสื่อสาร' ){
+										}else if ( $data_form_yellow->be_notified == 'วิทยุสื่อสาร' ){
 											$check_be_notified_5 = "checked";
-										}else if ( $sos_help_center->form_yellow->be_notified == 'วิธีอื่นๆ' ){
+										}else if ( $data_form_yellow->be_notified == 'วิธีอื่นๆ' ){
 											$check_be_notified_6 = "checked";
 										}
 
@@ -500,7 +500,7 @@
 									</div>
 								</div>
 								<br>
-								<textarea class="form-control radius" name="location_sos" id="detail_location_sos" rows="4" placeholder="รายละเอียดสถานที่เกิดเหตุ" rows="3">{{ isset($sos_help_center->form_yellow->location_sos) ? $sos_help_center->form_yellow->location_sos : ''}}</textarea>
+								<textarea class="form-control radius" name="location_sos" id="detail_location_sos" rows="4" placeholder="รายละเอียดสถานที่เกิดเหตุ" rows="3">{{ isset($data_form_yellow->location_sos) ? $data_form_yellow->location_sos : ''}}</textarea>
 							</div>
 						</div>
 					</div>
@@ -516,8 +516,8 @@
 						@php
 							$check_symptom_1 ="";$check_symptom_2 ="";$check_symptom_3 ="";$check_symptom_4 ="";$check_symptom_5 ="";$check_symptom_6 ="";$check_symptom_7 ="";$check_symptom_8 ="";$check_symptom_9 ="";$check_symptom_10 ="";$check_symptom_11 ="";$check_symptom_12 ="";$check_symptom_13 ="";$check_symptom_14 ="";$check_symptom_15 ="";$check_symptom_16 ="";$check_symptom_17 ="";$check_symptom_18 ="";$check_symptom_19 ="";$check_symptom_20 ="";$check_symptom_21 ="";$check_symptom_22 ="";$check_symptom_23 ="";$check_symptom_24 ="";$check_symptom_25 ="";
 
-							if( !empty($sos_help_center->form_yellow->symptom) ){
-								$symptom_explode = explode(",", $sos_help_center->form_yellow->symptom);
+							if( !empty($data_form_yellow->symptom) ){
+								$symptom_explode = explode(",", $data_form_yellow->symptom);
 
 								for ($i=0; $i < count($symptom_explode); $i++){
 									switch ($symptom_explode[$i]) {
@@ -817,7 +817,7 @@
 							<h5 class="mb-0 text-primary">อาการ/เหตุการณ์/รายละเอียดอื่นๆ</h5>
 						</div>
 						<hr>
-						<textarea class="form-control" name="symptom_other" rows="15" placeholder="อธิบายถึง อาการ เหตุการณ์หรือรายละเอียดอื่นๆ">{{ isset($sos_help_center->form_yellow->symptom_other) ? $sos_help_center->form_yellow->symptom_other : ''}}</textarea>
+						<textarea class="form-control" name="symptom_other" rows="15" placeholder="อธิบายถึง อาการ เหตุการณ์หรือรายละเอียดอื่นๆ">{{ isset($data_form_yellow->symptom_other) ? $data_form_yellow->symptom_other : ''}}</textarea>
 					</div>
 
 					<!---------------------------------- ข้อ 4  ---------------------------------->
@@ -834,16 +834,16 @@
 							$check_idc_3 = "" ;
 							$check_idc_4 = "" ;
 							$check_idc_5 = "" ;
-							if( !empty($sos_help_center->form_yellow->idc) ){
-								if( $sos_help_center->form_yellow->idc == 'แดง(วิกฤติ)' ){
+							if( !empty($data_form_yellow->idc) ){
+								if( $data_form_yellow->idc == 'แดง(วิกฤติ)' ){
 									$check_idc_1 = "checked";
-								}else if ( $sos_help_center->form_yellow->idc == 'เหลือง(เร่งด่วน)' ){
+								}else if ( $data_form_yellow->idc == 'เหลือง(เร่งด่วน)' ){
 									$check_idc_2 = "checked";
-								}else if ( $sos_help_center->form_yellow->idc == 'เขียว(ไม่รุนแรง)' ){
+								}else if ( $data_form_yellow->idc == 'เขียว(ไม่รุนแรง)' ){
 									$check_idc_3 = "checked";
-								}else if ( $sos_help_center->form_yellow->idc == 'ขาว(ทั่วไป)' ){
+								}else if ( $data_form_yellow->idc == 'ขาว(ทั่วไป)' ){
 									$check_idc_4 = "checked";
-								}else if ( $sos_help_center->form_yellow->idc == 'ดำ(รับบริการสาธารณสุขอื่น)' ){
+								}else if ( $data_form_yellow->idc == 'ดำ(รับบริการสาธารณสุขอื่น)' ){
 									$check_idc_5 = "checked";
 								}
 							}
@@ -918,18 +918,18 @@
 							$check_vehicle_type_4 = "" ;
 							$check_vehicle_type_5 = "" ;
 							$check_vehicle_type_6 = "" ;
-							if( !empty($sos_help_center->form_yellow->vehicle_type) ){
-								if( $sos_help_center->form_yellow->vehicle_type == 'รถ' ){
+							if( !empty($data_form_yellow->vehicle_type) ){
+								if( $data_form_yellow->vehicle_type == 'รถ' ){
 									$check_vehicle_type_1 = "checked";
-								}else if ( $sos_help_center->form_yellow->vehicle_type == 'อากาศยาน' ){
+								}else if ( $data_form_yellow->vehicle_type == 'อากาศยาน' ){
 									$check_vehicle_type_2 = "checked";
-								}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือ ป.๑' ){
+								}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๑' ){
 									$check_vehicle_type_3 = "checked";
-								}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือ ป.๒' ){
+								}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๒' ){
 									$check_vehicle_type_4 = "checked";
-								}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือ ป.๓' ){
+								}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๓' ){
 									$check_vehicle_type_5 = "checked";
-								}else if ( $sos_help_center->form_yellow->vehicle_type == 'เรือประเภทอื่นๆ' ){
+								}else if ( $data_form_yellow->vehicle_type == 'เรือประเภทอื่นๆ' ){
 									$check_vehicle_type_6 = "checked";
 								}
 							}
@@ -997,13 +997,13 @@
 							<div class="col-md-6">
 								<label for="" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="operation_unit_name" value="{{ isset($sos_help_center->form_yellow->operation_unit_name) ? $sos_help_center->form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ">
+									<input type="text" class="form-control border-start-0 radius-2" name="operation_unit_name" value="{{ isset($data_form_yellow->operation_unit_name) ? $data_form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<label for="phone_user" class="form-label"><b>ชื่อชุดปฏิบัติการ</b></label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-users-medical"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="action_set_name" value="{{ isset($sos_help_center->form_yellow->action_set_name) ? $sos_help_center->form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ">
+									<input type="text" class="form-control border-start-0 radius-2" name="action_set_name" value="{{ isset($data_form_yellow->action_set_name) ? $data_form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ">
 								</div>
 							</div>
 							
@@ -1019,14 +1019,14 @@
 								$check_operating_suit_type_2 = "" ;
 								$check_operating_suit_type_3 = "" ;
 								$check_operating_suit_type_4 = "" ;
-								if( !empty($sos_help_center->form_yellow->operating_suit_type) ){
-									if( $sos_help_center->form_yellow->operating_suit_type == 'FR' ){
+								if( !empty($data_form_yellow->operating_suit_type) ){
+									if( $data_form_yellow->operating_suit_type == 'FR' ){
 										$check_operating_suit_type_1 = "checked";
-									}else if ( $sos_help_center->form_yellow->operating_suit_type == 'BLS' ){
+									}else if ( $data_form_yellow->operating_suit_type == 'BLS' ){
 										$check_operating_suit_type_2 = "checked";
-									}else if ( $sos_help_center->form_yellow->operating_suit_type == 'ILS' ){
+									}else if ( $data_form_yellow->operating_suit_type == 'ILS' ){
 										$check_operating_suit_type_3 = "checked";
-									}else if ( $sos_help_center->form_yellow->operating_suit_type == 'ALS' ){
+									}else if ( $data_form_yellow->operating_suit_type == 'ALS' ){
 										$check_operating_suit_type_4 = "checked";
 									}
 								}
@@ -1086,25 +1086,25 @@
 													เวลา (น.)
 												</th>
 												<td>
-													<input class="form-control" type="time" name="time_create_sos" id="time_create_sos" value="{{ isset($sos_help_center->form_yellow->time_create_sos) ? $sos_help_center->form_yellow->time_create_sos : ''}}">
+													<input class="form-control" type="time" name="time_create_sos" id="time_create_sos" value="{{ isset($data_form_yellow->time_create_sos) ? $data_form_yellow->time_create_sos : ''}}">
 												</td>
 												<td>
-													<input class="form-control" type="time" name="time_command" id="time_command" value="{{ isset($sos_help_center->form_yellow->time_command) ? $sos_help_center->form_yellow->time_command : ''}}">
+													<input class="form-control" type="time" name="time_command" id="time_command" value="{{ isset($data_form_yellow->time_command) ? $data_form_yellow->time_command : ''}}">
 												</td>
 												<td>
-													<input class="form-control" type="time" name="time_go_to_help" id="time_go_to_help" value="{{ isset($sos_help_center->form_yellow->time_go_to_help) ? $sos_help_center->form_yellow->time_go_to_help : ''}}">
+													<input class="form-control" type="time" name="time_go_to_help" id="time_go_to_help" value="{{ isset($data_form_yellow->time_go_to_help) ? $data_form_yellow->time_go_to_help : ''}}">
 												</td>
 												<td>
-													<input class="form-control" type="time" name="time_to_the_scene" id="time_to_the_scene" value="{{ isset($sos_help_center->form_yellow->time_to_the_scene) ? $sos_help_center->form_yellow->time_to_the_scene : ''}}">
+													<input class="form-control" type="time" name="time_to_the_scene" id="time_to_the_scene" value="{{ isset($data_form_yellow->time_to_the_scene) ? $data_form_yellow->time_to_the_scene : ''}}">
 												</td>
 												<td>
-													<input class="form-control" type="time" name="time_leave_the_scene" id="time_leave_the_scene" value="{{ isset($sos_help_center->form_yellow->time_leave_the_scene) ? $sos_help_center->form_yellow->time_leave_the_scene : ''}}">
+													<input class="form-control" type="time" name="time_leave_the_scene" id="time_leave_the_scene" value="{{ isset($data_form_yellow->time_leave_the_scene) ? $data_form_yellow->time_leave_the_scene : ''}}">
 												</td>
 												<td>
-													<input class="form-control" type="time" name="time_hospital" id="time_hospital" value="{{ isset($sos_help_center->form_yellow->time_hospital) ? $sos_help_center->form_yellow->time_hospital : ''}}">
+													<input class="form-control" type="time" name="time_hospital" id="time_hospital" value="{{ isset($data_form_yellow->time_hospital) ? $data_form_yellow->time_hospital : ''}}">
 												</td>
 												<td>
-													<input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" value="{{ isset($sos_help_center->form_yellow->time_to_the_operating_base) ? $sos_help_center->form_yellow->time_to_the_operating_base : ''}}">
+													<input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" value="{{ isset($data_form_yellow->time_to_the_operating_base) ? $data_form_yellow->time_to_the_operating_base : ''}}">
 												</td>
 											</tr>
 											<tr>
@@ -1126,16 +1126,16 @@
 													เลข กม.
 												</th>
 												<td colspan="3">
-													<input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($sos_help_center->form_yellow->km_create_sos_to_go_to_help) ? $sos_help_center->form_yellow->km_create_sos_to_go_to_help : ''}}">
+													<input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : ''}}">
 												</td>
 												<td colspan="2">
-													<input class="form-control" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($sos_help_center->form_yellow->km_to_the_scene_to_leave_the_scene) ? $sos_help_center->form_yellow->km_to_the_scene_to_leave_the_scene : ''}}">
+													<input class="form-control" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : ''}}">
 												</td>
 												<td>
-													<input class="form-control"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($sos_help_center->form_yellow->km_hospital) ? $sos_help_center->form_yellow->km_hospital : ''}}">
+													<input class="form-control"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : ''}}">
 												</td>
 												<td>
-													<input class="form-control" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($sos_help_center->form_yellow->km_operating_base) ? $sos_help_center->form_yellow->km_operating_base : ''}}">
+													<input class="form-control" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : ''}}">
 												</td>
 											</tr>
 											<tr>
@@ -1184,16 +1184,16 @@
 							$check_rc_3 = "" ;
 							$check_rc_4 = "" ;
 							$check_rc_5 = "" ;
-							if( !empty($sos_help_center->form_yellow->rc) ){
-								if( $sos_help_center->form_yellow->rc == 'แดง(วิกฤติ)' ){
+							if( !empty($data_form_yellow->rc) ){
+								if( $data_form_yellow->rc == 'แดง(วิกฤติ)' ){
 									$check_rc_1 = "checked";
-								}else if ( $sos_help_center->form_yellow->rc == 'เหลือง(เร่งด่วน)' ){
+								}else if ( $data_form_yellow->rc == 'เหลือง(เร่งด่วน)' ){
 									$check_rc_2 = "checked";
-								}else if ( $sos_help_center->form_yellow->rc == 'เขียว(ไม่รุนแรง)' ){
+								}else if ( $data_form_yellow->rc == 'เขียว(ไม่รุนแรง)' ){
 									$check_rc_3 = "checked";
-								}else if ( $sos_help_center->form_yellow->rc == 'ขาว(ทั่วไป)' ){
+								}else if ( $data_form_yellow->rc == 'ขาว(ทั่วไป)' ){
 									$check_rc_4 = "checked";
-								}else if ( $sos_help_center->form_yellow->rc == 'ดำ' ){
+								}else if ( $data_form_yellow->rc == 'ดำ' ){
 									$check_rc_5 = "checked";
 								}
 							}
@@ -1247,7 +1247,7 @@
 										<b>
 											<div class="input-wrapper-b-code inline">
 												<span>
-													ดำ <input name="rc_black_text" id="rc_black_text" size="10" style="border-radius: 5px;border: 1px solid dark; border-bottom: 1px dashed #ffffff;color:#000" class="form-control input_code_black  p-0 m-0" placeholder="ใส่รหัส" type="text" value="{{ isset($sos_help_center->form_yellow->rc_black_text) ? $sos_help_center->form_yellow->rc_black_text : ''}}" readonly>
+													ดำ <input name="rc_black_text" id="rc_black_text" size="10" style="border-radius: 5px;border: 1px solid dark; border-bottom: 1px dashed #ffffff;color:#000" class="form-control input_code_black  p-0 m-0" placeholder="ใส่รหัส" type="text" value="{{ isset($data_form_yellow->rc_black_text) ? $data_form_yellow->rc_black_text : ''}}" readonly>
 												</span>
 
 											</div>
@@ -1278,17 +1278,17 @@
 						@php
 							$check_treatment_1 = "" ;
 							$check_treatment_2 = "" ;
-							if( !empty($sos_help_center->form_yellow->treatment) ){
-								if( $sos_help_center->form_yellow->treatment == 'มีการรักษา' ){
+							if( !empty($data_form_yellow->treatment) ){
+								if( $data_form_yellow->treatment == 'มีการรักษา' ){
 									$check_treatment_1 = "checked";
-								}else if ( $sos_help_center->form_yellow->treatment == 'ไม่มีการรักษา' ){
+								}else if ( $data_form_yellow->treatment == 'ไม่มีการรักษา' ){
 									$check_treatment_2 = "checked";
 								}
 							}
 
 							$check_sub_treatment_1 ="";$check_sub_treatment_2 ="";$check_sub_treatment_3 ="";$check_sub_treatment_4 ="";$check_sub_treatment_5 ="";$check_sub_treatment_6 ="";$check_sub_treatment_7 ="";$check_sub_treatment_8 ="";$check_sub_treatment_9 ="";
-							if( !empty($sos_help_center->form_yellow->sub_treatment) ){
-								$sub_treatment_explode = explode(",", $sos_help_center->form_yellow->sub_treatment);
+							if( !empty($data_form_yellow->sub_treatment) ){
+								$sub_treatment_explode = explode(",", $data_form_yellow->sub_treatment);
 
 								for ($i=0; $i < count($sub_treatment_explode); $i++){
 									switch ($sub_treatment_explode[$i]) {
@@ -1469,25 +1469,25 @@
 								<div class="col-12 col-md-4 col-lg-4">
 									<label for="" class="form-label">ผู้ป่วย ๑. ชื่อ-สกุล</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user"></i></span>
-										<input type="text" class="form-control border-start-0 radius-2" name="patient_name_1" id="patient_name_1" value="{{ isset($sos_help_center->form_yellow->patient_name_1) ? $sos_help_center->form_yellow->patient_name_1 : ''}}" placeholder="ชื่อ-สกุล">
+										<input type="text" class="form-control border-start-0 radius-2" name="patient_name_1" id="patient_name_1" value="{{ isset($data_form_yellow->patient_name_1) ? $data_form_yellow->patient_name_1 : ''}}" placeholder="ชื่อ-สกุล">
 									</div>
 								</div>
 								<div class="col-12 col-md-2 col-lg-2">
 									<label for="phone_user" class="form-label">อายุ (ปี)</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-input-numeric"></i></span>
-										<input  type="number" min="1" class="form-control border-start-0 radius-2" name="patient_age_1" id="patient_age_1" value="{{ isset($sos_help_center->form_yellow->patient_age_1) ? $sos_help_center->form_yellow->patient_age_1 : ''}}" placeholder="อายุ">
+										<input  type="number" min="1" class="form-control border-start-0 radius-2" name="patient_age_1" id="patient_age_1" value="{{ isset($data_form_yellow->patient_age_1) ? $data_form_yellow->patient_age_1 : ''}}" placeholder="อายุ">
 									</div>
 								</div>
 								<div class="col-12 col-md-3 col-lg-3">
 									<label for="phone_user" class="form-label">HN</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card-clip"></i></span>
-										<input type="text" class="form-control border-start-0 radius-2"  name="patient_hn_1" id="patient_hn_1" value="{{ isset($sos_help_center->form_yellow->patient_hn_1) ? $sos_help_center->form_yellow->patient_hn_1 : ''}}" placeholder="รหัสผู้ป่วย">
+										<input type="text" class="form-control border-start-0 radius-2"  name="patient_hn_1" id="patient_hn_1" value="{{ isset($data_form_yellow->patient_hn_1) ? $data_form_yellow->patient_hn_1 : ''}}" placeholder="รหัสผู้ป่วย">
 									</div>
 								</div>
 								<div class="col-12 col-md-3 col-lg-3">
 									<label for="phone_user" class="form-label">เลขประจำตัวประชาชน</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card"></i></span>
-										<input type="text" class="form-control border-start-0 radius-2"name="patient_vn_1" id="patient_vn_1" value="{{ isset($sos_help_center->form_yellow->patient_vn_1) ? $sos_help_center->form_yellow->patient_vn_1 : ''}}" placeholder="เลขประจำตัวประชาชน">
+										<input type="text" class="form-control border-start-0 radius-2"name="patient_vn_1" id="patient_vn_1" value="{{ isset($data_form_yellow->patient_vn_1) ? $data_form_yellow->patient_vn_1 : ''}}" placeholder="เลขประจำตัวประชาชน">
 									</div>
 								</div>
 								<div class="col-12 mt-3"></div>
@@ -1495,13 +1495,13 @@
 								<div class="col-12 col-md-6 col-lg-6">
 									<label for="phone_user" class="form-label">นำส่งที่จังหวัด</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-map-location-dot"></i></span>
-										<input type="text" class="form-control border-start-0 radius-2" name="delivered_province_1" id="delivered_province_1" value="{{ isset($sos_help_center->form_yellow->delivered_province_1) ? $sos_help_center->form_yellow->delivered_province_1 : ''}}" placeholder="จังหวัดที่นำส่ง">
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_province_1" id="delivered_province_1" value="{{ isset($data_form_yellow->delivered_province_1) ? $data_form_yellow->delivered_province_1 : ''}}" placeholder="จังหวัดที่นำส่ง">
 									</div>
 								</div>
 								<div class="ccol-12 col-md-6 col-lg-6">
 									<label for="phone_user" class="form-label">นำส่ง รพ.</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-hospital"></i></span>
-										<input type="text" class="form-control border-start-0 radius-2" name="delivered_hospital_1" id="delivered_hospital_1" value="{{ isset($sos_help_center->form_yellow->delivered_hospital_1) ? $sos_help_center->form_yellow->delivered_hospital_1 : ''}}" placeholder="โรงพยาบาลที่นำส่ง">
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_hospital_1" id="delivered_hospital_1" value="{{ isset($data_form_yellow->delivered_hospital_1) ? $data_form_yellow->delivered_hospital_1 : ''}}" placeholder="โรงพยาบาลที่นำส่ง">
 									</div>
 								</div>
 							</div>
@@ -1514,25 +1514,25 @@
 								<div class="col-12 col-md-4 col-lg-4">
 									<label for="" class="form-label">ผู้ป่วย ๑. ชื่อ-สกุล</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user"></i></span>
-										<input type="text" class="form-control border-start-0 radius-2" name="patient_name_2" id="patient_name_2" value="{{ isset($sos_help_center->form_yellow->patient_name_2) ? $sos_help_center->form_yellow->patient_name_2 : ''}}" placeholder="ชื่อ-สกุล">
+										<input type="text" class="form-control border-start-0 radius-2" name="patient_name_2" id="patient_name_2" value="{{ isset($data_form_yellow->patient_name_2) ? $data_form_yellow->patient_name_2 : ''}}" placeholder="ชื่อ-สกุล">
 									</div>
 								</div>
 								<div class="col-12 col-md-2 col-lg-2">
 									<label for="phone_user" class="form-label">อายุ (ปี)</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-input-numeric"></i></span>
-										<input  type="number" min="1" class="form-control border-start-0 radius-2" name="patient_age_2" id="patient_age_2" value="{{ isset($sos_help_center->form_yellow->patient_age_2) ? $sos_help_center->form_yellow->patient_age_2 : ''}}" placeholder="อายุ">
+										<input  type="number" min="1" class="form-control border-start-0 radius-2" name="patient_age_2" id="patient_age_2" value="{{ isset($data_form_yellow->patient_age_2) ? $data_form_yellow->patient_age_2 : ''}}" placeholder="อายุ">
 									</div>
 								</div>
 								<div class="col-12 col-md-3 col-lg-3">
 									<label for="phone_user" class="form-label">HN</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card-clip"></i></span>
-										<input type="text" class="form-control border-start-0 radius-2"  name="patient_hn_2" id="patient_hn_2" value="{{ isset($sos_help_center->form_yellow->patient_hn_2) ? $sos_help_center->form_yellow->patient_hn_2 : ''}}" placeholder="รหัสผู้ป่วย">
+										<input type="text" class="form-control border-start-0 radius-2"  name="patient_hn_2" id="patient_hn_2" value="{{ isset($data_form_yellow->patient_hn_2) ? $data_form_yellow->patient_hn_2 : ''}}" placeholder="รหัสผู้ป่วย">
 									</div>
 								</div>
 								<div class="col-12 col-md-3 col-lg-3">
 									<label for="phone_user" class="form-label">เลขประจำตัวประชาชน</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card"></i></span>
-										<input type="text" class="form-control border-start-0 radius-2"name="patient_vn_2" id="patient_vn_2" value="{{ isset($sos_help_center->form_yellow->patient_vn_2) ? $sos_help_center->form_yellow->patient_vn_2 : ''}}" placeholder="เลขประจำตัวประชาชน">
+										<input type="text" class="form-control border-start-0 radius-2"name="patient_vn_2" id="patient_vn_2" value="{{ isset($data_form_yellow->patient_vn_2) ? $data_form_yellow->patient_vn_2 : ''}}" placeholder="เลขประจำตัวประชาชน">
 									</div>
 								</div>
 								<div class="col-12 mt-3"></div>
@@ -1540,13 +1540,13 @@
 								<div class="col-12 col-md-6 col-lg-6">
 									<label for="phone_user" class="form-label">นำส่งที่จังหวัด</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-map-location-dot"></i></span>
-										<input type="text" class="form-control border-start-0 radius-2" name="delivered_province_2" id="delivered_province_2" value="{{ isset($sos_help_center->form_yellow->delivered_province_2) ? $sos_help_center->form_yellow->delivered_province_2 : ''}}" placeholder="จังหวัดที่นำส่ง">
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_province_2" id="delivered_province_2" value="{{ isset($data_form_yellow->delivered_province_2) ? $data_form_yellow->delivered_province_2 : ''}}" placeholder="จังหวัดที่นำส่ง">
 									</div>
 								</div>
 								<div class="col-12 col-md-6 col-lg-6">
 									<label for="phone_user" class="form-label">นำส่ง รพ.</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-hospital"></i></span>
-										<input type="text" class="form-control border-start-0 radius-2" name="delivered_hospital_2" id="delivered_hospital_2" value="{{ isset($sos_help_center->form_yellow->delivered_hospital_2) ? $sos_help_center->form_yellow->delivered_hospital_2 : ''}}" placeholder="โรงพยาบาลที่นำส่ง">
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_hospital_2" id="delivered_hospital_2" value="{{ isset($data_form_yellow->delivered_hospital_2) ? $data_form_yellow->delivered_hospital_2 : ''}}" placeholder="โรงพยาบาลที่นำส่ง">
 									</div>
 								</div>
 							</div>
@@ -1556,8 +1556,8 @@
 
 							$check_submission_criteria_1 ="";$check_submission_criteria_2 ="";$check_submission_criteria_3 ="";$check_submission_criteria_4 ="";$check_submission_criteria_5 ="";
 
-							if( !empty($sos_help_center->form_yellow->submission_criteria) ){
-								$submission_criteria_explode = explode(",", $sos_help_center->form_yellow->submission_criteria);
+							if( !empty($data_form_yellow->submission_criteria) ){
+								$submission_criteria_explode = explode(",", $data_form_yellow->submission_criteria);
 
 								for ($i=0; $i < count($submission_criteria_explode); $i++){
 									switch ($submission_criteria_explode[$i]) {
@@ -1582,8 +1582,8 @@
 
 					        $check_communication_hospital_1 ="";$check_communication_hospital_2 ="";$check_communication_hospital_3 ="";
 
-					        if( !empty($sos_help_center->form_yellow->communication_hospital) ){
-								$communication_hospital_explode = explode(",", $sos_help_center->form_yellow->communication_hospital);
+					        if( !empty($data_form_yellow->communication_hospital) ){
+								$communication_hospital_explode = explode(",", $data_form_yellow->communication_hospital);
 
 								for ($i=0; $i < count($communication_hospital_explode); $i++){
 									switch ($communication_hospital_explode[$i]) {
@@ -1700,19 +1700,19 @@
 							<div class="col-12 col-md-4 col-lg-4">
 								<label for="registration_category" class="form-label">ทะเบียนรถหมวด</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-duotone fa-cars"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2"  name="registration_category" value="{{ isset($sos_help_center->form_yellow->registration_category) ? $sos_help_center->form_yellow->registration_category : ''}}" placeholder="ทะเบียนรถหมวด">
+									<input type="text" class="form-control border-start-0 radius-2"  name="registration_category" value="{{ isset($data_form_yellow->registration_category) ? $data_form_yellow->registration_category : ''}}" placeholder="ทะเบียนรถหมวด">
 								</div>
 							</div>
 							<div class="col-12 col-md-4 col-lg-4">
 								<label for="registration_number" class="form-label">เลขทะเบียน</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-duotone fa-input-numeric"></i></span>
-									<input  type="text" min="1" class="form-control border-start-0 radius-2" name="registration_number" value="{{ isset($sos_help_center->form_yellow->registration_number) ? $sos_help_center->form_yellow->registration_number : ''}}" placeholder="เลขทะเบียน">
+									<input  type="text" min="1" class="form-control border-start-0 radius-2" name="registration_number" value="{{ isset($data_form_yellow->registration_number) ? $data_form_yellow->registration_number : ''}}" placeholder="เลขทะเบียน">
 								</div>
 							</div>
 							<div class="col-12 col-md-4 col-lg-4">
 								<label for="registration_province" class="form-label">จังหวัด</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-duotone fa-map-location"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="registration_province" value="{{ isset($sos_help_center->form_yellow->registration_province) ? $sos_help_center->form_yellow->registration_province : ''}}" placeholder="จังหวัด">
+									<input type="text" class="form-control border-start-0 radius-2" name="registration_province" value="{{ isset($data_form_yellow->registration_province) ? $data_form_yellow->registration_province : ''}}" placeholder="จังหวัด">
 								</div>
 							</div>
 						</div>
@@ -1721,12 +1721,12 @@
 							$check_owner_registration_1 = "" ;
 							$check_owner_registration_2 = "" ;
 							$check_owner_registration_3 = "" ;
-							if( !empty($sos_help_center->form_yellow->owner_registration) ){
-								if( $sos_help_center->form_yellow->owner_registration == 'ของผู้ประสบเหตุ' ){
+							if( !empty($data_form_yellow->owner_registration) ){
+								if( $data_form_yellow->owner_registration == 'ของผู้ประสบเหตุ' ){
 									$check_owner_registration_1 = "checked";
-								}else if ( $sos_help_center->form_yellow->owner_registration == 'ของคู่กรณี' ){
+								}else if ( $data_form_yellow->owner_registration == 'ของคู่กรณี' ){
 									$check_owner_registration_2 = "checked";
-								}else if ( $sos_help_center->form_yellow->owner_registration == 'ไม่สามารถระบุได้' ){
+								}else if ( $data_form_yellow->owner_registration == 'ไม่สามารถระบุได้' ){
 									$check_owner_registration_3 = "checked";
 								}
 							}

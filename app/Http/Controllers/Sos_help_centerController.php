@@ -124,6 +124,7 @@ class Sos_help_centerController extends Controller
     public function edit($id)
     {
         $sos_help_center = Sos_help_center::findOrFail($id);
+        $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id',$id)->first();
 
         $all_provinces = DB::table('districts')
             ->where('province' , '!=' , null)
@@ -131,7 +132,7 @@ class Sos_help_centerController extends Controller
             ->orderBy('province' , 'ASC')
             ->get();
 
-        return view('sos_help_center.edit', compact('sos_help_center','all_provinces'));
+        return view('sos_help_center.edit', compact('sos_help_center','all_provinces','data_form_yellow'));
     }
 
     /**
@@ -250,16 +251,20 @@ class Sos_help_centerController extends Controller
 
     public function create_new_sos_help_center($user_id)
     {
-        $date_now = Carbon::now();
+        $time_create_sos = Carbon::now();
 
         $requestData = [] ;
         $requestData['create_by'] = $user_id;
         $requestData['notify'] = 'none';
-        $requestData['time_create_sos'] = $date_now;
+        $requestData['status'] = 'รับแจ้งเหตุ';
+        $requestData['time_create_sos'] = $time_create_sos;
         
         Sos_help_center::create($requestData);
 
         $sos_help_center_last = Sos_help_center::latest()->first();
+
+        $requestData['sos_help_center_id'] = $sos_help_center_last->id ;
+        Sos_1669_form_yellow::create($requestData);
 
         $date_Y = date("y");
         $date_m = date("m");
@@ -277,24 +282,21 @@ class Sos_help_centerController extends Controller
                     'operating_code' => $operating_code,
                 ]);
 
-        return $sos_help_center_last;
+        return $sos_help_center_last->id ;
     }
 
     function save_form_yellow(Request $request)
     {
         $requestData = $request->all();
+        // $time_create_sos = Carbon::now();
+        // $requestData['time_create_sos'] = $time_create_sos ;
 
         $data_sos_help_center = Sos_help_center::where('id',$requestData['sos_help_center_id'])->first();
-        $data_sos_help_center->update($requestData);
+        // $data_sos_help_center->update($requestData);
 
         $data_Sos_1669 = Sos_1669_form_yellow::where('sos_help_center_id',$requestData['sos_help_center_id'])->first();
-
-        if ($data_Sos_1669) {
-            $data_Sos_1669->update($requestData);
-        }else{
-            Sos_1669_form_yellow::create($requestData);
-        }
-
+        $data_Sos_1669->update($requestData);
+        
         return "OK" ;
     }
 
