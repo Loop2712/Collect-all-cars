@@ -1919,7 +1919,16 @@
 
 	function send_save_data(active){
 
-		// ---------------------------- ข้อใน form ----------------------------
+		// ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
+
+		fetch("{{ url('/') }}/api/check_update/form_yellow" + "/" + '{{ $sos_help_center->id }}')
+            .then(response => response.json())
+            .then(data_arr => {
+                // console.log(data_arr);
+
+            });
+
+		// ---------------------------- ข้อใน form ----------------------------//
 	    // ==>> 1
 		let be_notified = document.querySelectorAll('input[name="be_notified"]');
 		let be_notified_value = "" ;
@@ -2072,7 +2081,7 @@
 
 		// ------------------------------------------------------------------------------------------------------------
 
-		let data_arr = [] ;
+		// let data_arr = [] ;
 
 		switch(active) {
 		  	case '1':
@@ -2243,7 +2252,7 @@
 			    if (vehicle_type_value) {
 	        		document.querySelector('#input_vehicle_type').value = vehicle_type_value;
 			    }
-		    
+
 		    break;
 		}
 

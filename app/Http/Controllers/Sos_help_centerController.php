@@ -285,38 +285,14 @@ class Sos_help_centerController extends Controller
         return $sos_help_center_last->id ;
     }
 
+    function check_update_form_yellow($sos_id){
+        $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id',$sos_id)->first();
+        return $data_form_yellow ;
+    }
+
     function save_form_yellow(Request $request)
     {
         $requestData = $request->all();
-
-        echo "<br>" ;
-        echo "<-------------------- ว่าง -------------------->" ;
-        echo "<br>" ;
-        foreach ($requestData as $key => $value) {
-
-            if (empty($value)) {
-                echo "ว่าง >> " . $key . "<br>VALUE == " . $value ;
-                echo "<br>" ;
-            }
-           
-        }
-        echo "<br>" ;
-        echo "<-------------------- ไม่ว่าง -------------------->" ;
-        echo "<br>" ;
-
-        foreach ($requestData as $key => $value) {
-
-            if (!empty($value)) {
-                echo "ไม่ว่าง >> " . $key . "<br>VALUE == " . $value ;
-                echo "<br>" ;
-            }           
-        }
-
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>";
-        // return $requestData ;
-        exit();
 
         $data_sos_help_center = Sos_help_center::where('id',$requestData['sos_help_center_id'])->first();
 
