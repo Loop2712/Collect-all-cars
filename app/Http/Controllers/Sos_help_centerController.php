@@ -393,14 +393,34 @@ class Sos_help_centerController extends Controller
         return $data_sos ;
     }
 
-    function get_location_operating_unit($m_lat , $m_lng , $level){
+    function get_location_operating_unit($m_lat , $m_lng , $level , $vehicle_type){
 
         $latitude = (float)$m_lat ;
         $longitude = (float)$m_lng;
 
-        if ($level == 'all') {
+        if ($level == "all" && $vehicle_type == "all") {
             $locations = DB::table('data_1669_operating_units')
             ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
+            ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
+            ->where('data_1669_operating_officers.status' , 'Standby')
+            ->having("distance", "<", 10)
+            ->orderBy("distance")
+            ->limit(20)
+            ->get();
+        }else if ($level == "all" && $vehicle_type != "all") {
+            $locations = DB::table('data_1669_operating_units')
+            ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
+            ->where('data_1669_operating_officers.vehicle_type' , $vehicle_type)
+            ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
+            ->where('data_1669_operating_officers.status' , 'Standby')
+            ->having("distance", "<", 10)
+            ->orderBy("distance")
+            ->limit(20)
+            ->get();
+        }else if ($level != "all" && $vehicle_type == "all") {
+            $locations = DB::table('data_1669_operating_units')
+            ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
+            ->where('data_1669_operating_officers.level' , $level)
             ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
             ->where('data_1669_operating_officers.status' , 'Standby')
             ->having("distance", "<", 10)
@@ -411,6 +431,7 @@ class Sos_help_centerController extends Controller
             $locations = DB::table('data_1669_operating_units')
             ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
             ->where('data_1669_operating_officers.level' , $level)
+            ->where('data_1669_operating_officers.vehicle_type' , $vehicle_type)
             ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
             ->where('data_1669_operating_officers.status' , 'Standby')
             ->having("distance", "<", 10)

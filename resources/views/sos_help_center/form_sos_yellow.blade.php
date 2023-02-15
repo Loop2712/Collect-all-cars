@@ -1065,7 +1065,7 @@
 							</div>
 							<div class="col-md-4">
 								<label for="" class="form-label"><b>&nbsp;</b></label>
-								<span class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();" style="width:100%;" >
+								<span class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();select_level();" style="width:100%;" >
                                     <i class="fa-solid fa-hospital-user"></i> เลือกหน่วยแพทย์
 								</span>
 							</div>
@@ -2123,6 +2123,11 @@
 			        "km_hospital" : km_hospital.value,
 			        "km_operating_base" : km_operating_base.value,
 			    };
+
+			    let level_of_no5 = document.querySelector('#input_select_level');
+			    	level_of_no5.value = operating_suit_type_value ;
+            	let vehicle_type_of_no5 = document.querySelector('#input_vehicle_type');
+            		vehicle_type_of_no5.value = vehicle_type_value ;
 		    break;
 		    case '6':
 
@@ -2177,58 +2182,60 @@
 			    }; 
 		    break;
 			default :
-			data_arr = {
-				"sos_help_center_id" : "{{ $sos_help_center->id }}",
-				"be_notified" : be_notified_value,
-				"name_user" : name_user.value,
-				"phone_user" : phone_user.value,
-				"lat" : lat.value,
-				"lng" : lng.value,
-				"location_sos" : location_sos.value,
-				"symptom" : symptom_value,
-				"symptom_other" : symptom_other.value,
-				"idc" : idc_value,
-				"vehicle_type" : vehicle_type_value,
-				"operating_suit_type" : operating_suit_type_value,
-				"operation_unit_name" : operation_unit_name.value,
-				"action_set_name" : action_set_name.value,
-				"time_create_sos" : time_create_sos.value,
-				"time_command" : time_command.value,
-				"time_go_to_help" : time_go_to_help.value,
-				"time_to_the_scene" : time_to_the_scene.value,
-				"time_leave_the_scene" : time_leave_the_scene.value,
-				"time_hospital" : time_hospital.value,
-				"time_to_the_operating_base" : time_to_the_operating_base.value,
-				"km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
-				"km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
-				"km_hospital" : km_hospital.value,
-				"km_operating_base" : km_operating_base.value,
-				"rc" : rc_value,
-				"rc_black_text" : rc_black_text.value,
-				"treatment" : treatment_value,
-				"sub_treatment" : sub_treatment_value,
-				"patient_name_1" : patient_name_1.value,
-				"patient_age_1" : patient_age_1.value,
-				"patient_hn_1" : patient_hn_1.value,
-				"patient_vn_1" : patient_vn_1.value,
-				"delivered_province_1" : delivered_province_1.value,
-				"delivered_hospital_1" : delivered_hospital_1.value,
-				"patient_name_2" : patient_name_2.value,
-				"patient_age_2" : patient_age_2.value,
-				"patient_hn_2" : patient_hn_2.value,
-				"patient_vn_2" : patient_vn_2.value,
-				"delivered_province_2" : delivered_province_2.value,
-				"delivered_hospital_2" : delivered_hospital_2.value,
-				"submission_criteria" : submission_criteria_value,
-				"communication_hospital" : communication_hospital_value,
-				"registration_category" : registration_category.value,
-				"registration_number" : registration_number.value,
-				"registration_province" : registration_province.value,
-				"owner_registration" : owner_registration_value,
+				data_arr = {
+					"sos_help_center_id" : "{{ $sos_help_center->id }}",
+					"be_notified" : be_notified_value,
+					"name_user" : name_user.value,
+					"phone_user" : phone_user.value,
+					"lat" : lat.value,
+					"lng" : lng.value,
+					"location_sos" : location_sos.value,
+					"symptom" : symptom_value,
+					"symptom_other" : symptom_other.value,
+					"idc" : idc_value,
+					"vehicle_type" : vehicle_type_value,
+					"operating_suit_type" : operating_suit_type_value,
+					"operation_unit_name" : operation_unit_name.value,
+					"action_set_name" : action_set_name.value,
+					"time_create_sos" : time_create_sos.value,
+					"time_command" : time_command.value,
+					"time_go_to_help" : time_go_to_help.value,
+					"time_to_the_scene" : time_to_the_scene.value,
+					"time_leave_the_scene" : time_leave_the_scene.value,
+					"time_hospital" : time_hospital.value,
+					"time_to_the_operating_base" : time_to_the_operating_base.value,
+					"km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
+					"km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
+					"km_hospital" : km_hospital.value,
+					"km_operating_base" : km_operating_base.value,
+					"rc" : rc_value,
+					"rc_black_text" : rc_black_text.value,
+					"treatment" : treatment_value,
+					"sub_treatment" : sub_treatment_value,
+					"patient_name_1" : patient_name_1.value,
+					"patient_age_1" : patient_age_1.value,
+					"patient_hn_1" : patient_hn_1.value,
+					"patient_vn_1" : patient_vn_1.value,
+					"delivered_province_1" : delivered_province_1.value,
+					"delivered_hospital_1" : delivered_hospital_1.value,
+					"patient_name_2" : patient_name_2.value,
+					"patient_age_2" : patient_age_2.value,
+					"patient_hn_2" : patient_hn_2.value,
+					"patient_vn_2" : patient_vn_2.value,
+					"delivered_province_2" : delivered_province_2.value,
+					"delivered_hospital_2" : delivered_hospital_2.value,
+					"submission_criteria" : submission_criteria_value,
+					"communication_hospital" : communication_hospital_value,
+					"registration_category" : registration_category.value,
+					"registration_number" : registration_number.value,
+					"registration_province" : registration_province.value,
+					"owner_registration" : owner_registration_value,
+				}
 
-
-
-			}
+				let level_default = document.querySelector('#input_select_level');
+			    	level_default.value = operating_suit_type_value ;
+            	let vehicle_type_default = document.querySelector('#input_vehicle_type');
+            		vehicle_type_default.value = vehicle_type_value ;
 		    break;
 		}
 
@@ -2248,7 +2255,6 @@
         }).catch(function(error){
             // console.error(error);
         });
-
 	}
 
 </script>

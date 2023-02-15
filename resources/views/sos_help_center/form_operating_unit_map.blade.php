@@ -535,7 +535,7 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <h5 class="mb-0">ข้อมูลเจ้าหน้าที่</h5>
+                                        <h5 class="mb-0">ข้อมูลเจ้าหน้าที่ (รัศมี 10 กม.)</h5>
                                     </div>
                                     <!-- <div class="font-22 ms-auto">
                                             <button class="btn btn-success" onclick="test()"> <i class="fa-regular fa-eye-slash"></i></button>
@@ -546,7 +546,8 @@
                             <div class="chat-tab-menu ">
                                 <ul class="nav nav-pills nav-justified">
                                     <li class="nav-item">
-                                        <a class="nav-link  menu-select-lv-all all-active" href="javascript:;" onclick="select_level('all');">
+                                        <a class="nav-link  menu-select-lv-all" href="javascript:;" 
+                                        onclick="document.querySelector('#input_select_level').value = 'all';select_level();">
                                             <div class="font-24">ALL
                                             </div>
                                             <div><small>ทั้งหมด</small>
@@ -554,7 +555,8 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link  menu-select-lv-fr" href="javascript:;" onclick="select_level('fr');">
+                                        <a class="nav-link  menu-select-lv-fr" href="javascript:;" 
+                                        onclick="document.querySelector('#input_select_level').value = 'fr';select_level()">
                                             <div class="font-24">FR
                                                 </div>
                                             <div>
@@ -563,7 +565,8 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link menu-select-lv-bls" href="javascript:;" onclick="select_level('bls');">
+                                        <a class="nav-link menu-select-lv-bls" href="javascript:;" 
+                                        onclick="document.querySelector('#input_select_level').value = 'bls';select_level()">
                                             <div class="font-24">BLS
                                             </div>
                                             <div><small>ทั่วไป</small>
@@ -571,7 +574,8 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link menu-select-lv-ils" href="javascript:;" onclick="select_level('ils');">
+                                        <a class="nav-link menu-select-lv-ils" href="javascript:;" 
+                                        onclick="document.querySelector('#input_select_level').value = 'ils';select_level()">
                                             <div class="font-24">ILS
                                             </div>
                                             <div><small>กลาง</small>
@@ -579,7 +583,8 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link menu-select-lv-als" href="javascript:;" onclick="select_level('als');">
+                                        <a class="nav-link menu-select-lv-als" href="javascript:;" 
+                                        onclick="document.querySelector('#input_select_level').value = 'als';select_level()">
                                             <div class="font-24">ALS
                                             </div>
                                             <div><small>สูง</small>
@@ -587,18 +592,40 @@
                                         </a>
                                     </li>
                                 </ul>
+                                <input class="d-none" type="text" name="input_select_level" id="input_select_level" value="all">
                             </div>
                             <div class="btn-group-round mt-2">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-white">ทั้งหมด</button>
-                                    <button type="button" class="btn btn-white">รถ</button>
-                                    <button type="button" class="btn btn-white">อากาศยาน</button>
-                                    <button type="button" class="btn btn-white">เรือ ป.1</button>
-                                    <button type="button" class="btn btn-white">เรือ ป.2</button>
-                                    <button type="button" class="btn btn-white">เรือ ป.3</button>
-                                    <button type="button" class="btn btn-white">เรืออื่น</button>
-
+                                    <button type="button" class="btn btn-white"
+                                    onclick="document.querySelector('#input_vehicle_type').value = 'all';select_level();">
+                                        ทั้งหมด
+                                    </button>
+                                    <button type="button" class="btn btn-white"
+                                    onclick="document.querySelector('#input_vehicle_type').value = 'รถ';select_level();">
+                                        รถ
+                                    </button>
+                                    <button type="button" class="btn btn-white"
+                                    onclick="document.querySelector('#input_vehicle_type').value = 'อากาศยาน';select_level();">
+                                        อากาศยาน
+                                    </button>
+                                    <button type="button" class="btn btn-white"
+                                    onclick="document.querySelector('#input_vehicle_type').value = 'เรือ ป.1';select_level();" >
+                                        เรือ ป.1
+                                    </button>
+                                    <button type="button" class="btn btn-white"
+                                    onclick="document.querySelector('#input_vehicle_type').value = 'เรือ ป.2';select_level();">
+                                        เรือ ป.2
+                                    </button>
+                                    <button type="button" class="btn btn-white"
+                                    onclick="document.querySelector('#input_vehicle_type').value = 'เรือ ป.3';select_level();">
+                                        เรือ ป.3
+                                    </button>
+                                    <button type="button" class="btn btn-white"
+                                    onclick="document.querySelector('#input_vehicle_type').value = 'เรือประเภทอื่นๆ';select_level();">
+                                        เรืออื่นๆ
+                                    </button>
                                 </div>
+                                <input class="d-none" type="text" name="input_vehicle_type" id="input_vehicle_type" value="all" >
                             </div>
                             <div class="data-officer p-3 mb-3 ps ps--active-y" id="card_data_operating">
 
@@ -750,7 +777,10 @@
                 sos_operating_markers.push(sos_operating_marker);
             }
 
-            location_operating_unit(m_lat, m_lng, 'all');
+            let level_start = document.querySelector('#input_select_level').value;
+            let vehicle_type_start = document.querySelector('#input_vehicle_type').value;
+
+            location_operating_unit(m_lat, m_lng, level_start ,vehicle_type_start);
 
         } else {
             document.querySelector('#map_operating_unit').classList.add('d-none');
@@ -760,12 +790,18 @@
     }
 
 
-    function location_operating_unit(m_lat, m_lng, level) {
-        // console.log(level);
+    function location_operating_unit(m_lat, m_lng, level ,vehicle_type) {
+        // console.log("level >> " + level);
+        // console.log("vehicle_type >> " + vehicle_type);
+
+        level = level.toLowerCase();
+        set_active_btn_menu_select(level , vehicle_type);
+
+        // ------------------------------------------------------------------------------------------
         let data_arr = [];
         let text_data_arr = [];
 
-        fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level)
+        fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level + "/" + vehicle_type)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
@@ -849,7 +885,7 @@
                         ' <center> ' + result[i]['level'] + '</center>' +
                         '</div>' +
                         '<div class="ms-2">' +
-                        '<h6 class="mb-1 font-14">' + result[i]['name'] + '</h6>' +
+                        '<h6 class="mb-1 font-14">' + result[i]['name'] + ' ('+ result[i]['vehicle_type'] +')</h6>' +
                         '<p class="mb-0 font-14">เจ้าหน้าที่ : ' + result[i]['name_officer'] + '</p>' +
                         '<p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ ' + result[i]['distance'].toFixed(2) + ' กม. </p>' +
                         '</div>' +
@@ -1030,17 +1066,15 @@
 
     }
 
-    function select_level(level) {
+    function select_level() {
 
+        let level = document.querySelector('#input_select_level').value;
+            level = level.toLowerCase();
+        let vehicle_type = document.querySelector('#input_vehicle_type').value;
 
-        document.querySelector('.menu-select-lv-all').classList.remove("all-active");
-        document.querySelector('.menu-select-lv-fr').classList.remove("fr-active");
-        document.querySelector('.menu-select-lv-bls').classList.remove("bls-active");
-        document.querySelector('.menu-select-lv-ils').classList.remove("ils-active");
-        document.querySelector('.menu-select-lv-als').classList.remove("als-active");
-
-        document.querySelector('.menu-select-lv-' + level).classList.add(level + "-active");
-
+        level = level.toLowerCase();
+        set_active_btn_menu_select(level , vehicle_type);
+        // ------------------------------------------------------------------------------
 
         document.querySelector('#card_data_operating').innerHTML = "";
 
@@ -1079,7 +1113,7 @@
             m_numZoom = parseFloat('6');
         }
 
-        location_operating_unit(m_lat, m_lng, level);
+        location_operating_unit(m_lat, m_lng, level, vehicle_type);
 
     }
 
@@ -1124,6 +1158,20 @@
 
 
         document.querySelector('#btn_close_modal_cf_select').click();
+    }
+
+    function set_active_btn_menu_select(level , vehicle_type){
+        //  LEVEL
+        document.querySelector('.menu-select-lv-all').classList.remove("all-active");
+        document.querySelector('.menu-select-lv-fr').classList.remove("fr-active");
+        document.querySelector('.menu-select-lv-bls').classList.remove("bls-active");
+        document.querySelector('.menu-select-lv-ils').classList.remove("ils-active");
+        document.querySelector('.menu-select-lv-als').classList.remove("als-active");
+
+        document.querySelector('.menu-select-lv-' + level).classList.add(level + "-active");
+
+        // VEHICLE TYPE
+        // 
     }
 
     function send_data_sos_tooperating_unit(sos_id, operating_unit_id, user_id, distance) {
