@@ -7,15 +7,19 @@
         height: calc(75vh);
     } */
 
-    .opacity-100 {
-        opacity: 1 !important;
+    .text-select-officer{
+        font-size: 18px;
     }
     /* ปิดคลุมดำ */
     body{
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
-}
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    }.spinner-border{
+        height: 80px;
+        width: 80px;
+        border-width: 10px;
+    }
 </style>
 <!-- Modal cf_select_operating_unit -->
 <button id="btn_cf_select_operating_unit" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#cf_select_operating_unit">
@@ -40,8 +44,7 @@
                 <div class="modal-body pb-0">
                     <div class="col-12 d-flex align-items-center">
                        <img style="width:50px;" src="{{ url('/') }}/img/stickerline/PNG/7.png">
-                        <span class="h2">ยืนยันการเลือก "หน่วยแพทย์"</span>
-                           
+                        <span class="h2 m-0 pl-2">ยืนยันการเลือก "หน่วยแพทย์"</span>
                     </div>
                 </div>
                 <hr>
@@ -49,22 +52,22 @@
                     <div class="col-12">
                         <div class="row">
                             <div class="col-12 text-center">
-                                <span class="px-2 py-1" id="cf_select_level" style="border-radius: 10px;"><b>cf_select_level</b></span>
+                                <span class="px-2 py-1" id="cf_select_level_tag" style="border-radius: 10px;"><b>cf_select_level</b></span>
                                 <span class="h5" id="cf_select_name">cf_select_name</span>
                             </div>
                             
                             <div class="col-12 text-center mt-2">
-                                <span class=" h5">พื้นที่ (สังกัด) :</span>
+                                <span class="text-select-officer">พื้นที่ (สังกัด) :</span>
                                 <span class="h5 font-weight-bold" id="cf_select_area">cf_select_area</span>
                             </div>
 
                             <div class="col-12 text-center mt-2">
-                                <span class=" h5">ระยะห่าง (รัศมี) :</span>
+                                <span class=" text-select-officer">ระยะห่าง (รัศมี) :</span>
                                 <span class="h5 font-weight-bold" id="cf_select_distance">cf_select_distance</span>
                             </div>
 
                             <div class="col-12 text-center mt-2">
-                                <span class=" h5">ระดับปฏิบัติการ :</span>
+                                <span class=" text-select-officer">ระดับปฏิบัติการ :</span>
                                 <span class="h5" id="cf_select_level">cf_select_level</span>
                             </div>
                             <!-- <div class="col-5">
@@ -123,7 +126,7 @@
             </div>
 
             <!-- WAIT UNIT -->
-            <div id="div_wait_unit" class="d-none">
+            <!-- <div id="div_wait_unit" class="d-none">
                 <div class="modal-body" style="background-color:lightblue;">
                     <div class="col-12">
                         <div class="row">
@@ -146,10 +149,26 @@
                         <h3>กำลังรอ..</h3>
                     </div>
                 </div>
+            </div> -->
+
+            <div id="div_wait_unit" class="d-none">
+                <div class="modal-body">
+                    <div class="col-12 mt-5 d-flex justify-content-center">
+                        <div class="spinner-border" role="status"> 
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <h2 class="text-center mt-5">
+                        รอการยืนยัน จากหน่วยแพทย์
+                    </h2>
+                    <h5 class="text-center mt-5">
+                        โปรดรอสักครู่...
+                    </h5>
+                </div>
             </div>
 
             <!-- UNIT refuse -->
-            <div id="div_unit_refuse" class="d-none">
+            <!-- <div id="div_unit_refuse" class="d-none">
                 <div class="modal-body" style="background-color:lightblue;">
                     <div class="col-12">
                         <div class="row">
@@ -184,7 +203,69 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+            <div id="div_unit_refuse" class="d-none">
+                <div class="modal-body">
+                    <div class="col-12 mt-5 d-flex justify-content-center">
+                        <svg class="checkmark-cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark-circle-cross" cx="26" cy="26" r="25" fill="none"/>
+                            <path class="checkmark-check-cross" fill="none" d="M14.1 14.1l23.8 23.8 m0,-23.8 l-23.8,23.8"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-center mt-5">
+                        หน่วยแพทย์ปฏิเสธ
+                    </h2>
+                    <h5 class="text-center mt-5">
+                        โปรดเปลี่ยนหน่วย
+                    </h5>
+                </div>
+                <hr class="mb-0">
+                <div class="modal-body text-center m-0 p-0">
+                    <div class="row m-0 p-0">
+                        <span class="col-12 btn-warning btn close" style="border-radius: 0 0 15px 15px;" type="button" data-dismiss="modal" aria-label="Close">
+                            เปลี่ยน <i class="fa-duotone fa-right-left"></i>
+                        </span>
+                    </div>
+                </div>
             </div>
+
+            
+            <!-- <div id="div_unit_refuse" class="d-none">
+                <div class="modal-body" style="background-color:lightblue;">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-8">
+                                <br>
+                                <h2>หน่วยแพทย์<br>ปฏิเสธ</h2>
+                            </div>
+                            <div class="col-4">
+                                <br>
+                                <img style="width:100%;" src="{{ url('/') }}/img/stickerline/PNG/17.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="modal-body text-center">
+                    <div class="col-12">
+                        <img style="width:70%;" src="{{ url('/') }}/img/icon/wrong.png">
+                        <br>
+                        <h3 class="text-danger">ปฏิเสธ</h3>
+                    </div>
+                </div>
+                <hr>
+                <div class="modal-body text-center">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <span style="width:80%;" class="btn btn-sm btn-warning text-white main-shadow main-radius close" type="button" data-dismiss="modal" aria-label="Close">
+                                    เปลี่ยน <i class="fa-duotone fa-right-left"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
 
         </div>
     </div>
@@ -282,6 +363,7 @@
                 color: #000;
                 background-color: #fff;
                 margin-left: -20px;
+                height: 110px;
             }
 
             .rotate {
@@ -327,25 +409,80 @@
 
             .fr-active {
                 color: #24b333 !important;
-
             }
 
             .bls-active {
                 color: #fac831 !important;
-                ;
-
             }
 
             .ils-active {
                 color: #faa507 !important;
-                ;
 
             }
 
             .als-active {
                 color: #ce1124 !important;
-                ;
 
+            }.gm-style-iw{
+                max-width: 250px !important;
+                padding: 500px;
+            }.btn-select-officer{
+                width:50px!important;
+                color:white!important;
+                background-color:#24b333!important;
+                border-radius:25px !important;
+            }
+            .btn-select-officer:hover{
+                color:#24b333!important;
+                background-color:white!important;
+                border:1px solid #24b333;
+            }
+            .checkmark-cross {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            box-shadow: inset 0px 0px 0px #db2d2e;
+            animation:  fill-check-mark-cross .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+            }
+
+            .checkmark-circle-cross {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #db2d2e;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+            }
+
+            .checkmark-check-cross {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+            }
+
+            @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+            }
+            @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+            }
+            @keyframes fill-check-mark-cross {
+            100% {
+                box-shadow: inset 0px 0px 0px 50px #db2d2e;
+            }
             }
         </style>
         <div class="col-3">
@@ -371,7 +508,7 @@
                                 <ul class="nav nav-pills nav-justified">
                                     <li class="nav-item">
                                         <a class="nav-link  menu-select-lv-all all-active" href="javascript:;" onclick="select_level('all');">
-                                            <div class="font-24">ALL
+                                            <div class="font-24 all-active">ALL
                                             </div>
                                             <div><small>ทั้งหมด</small>
                                             </div>
@@ -379,7 +516,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link  menu-select-lv-fr" href="javascript:;" onclick="select_level('fr');">
-                                            <div class="font-24">FR
+                                            <div class="font-24 fr-active">FR
                                             </div>
                                             <div><small>เบื้องต้น</small>
                                             </div>
@@ -387,7 +524,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link menu-select-lv-bls" href="javascript:;" onclick="select_level('bls');">
-                                            <div class="font-24">BLS
+                                            <div class="font-24 bls-active">BLS
                                             </div>
                                             <div><small>ทั่วไป</small>
                                             </div>
@@ -395,7 +532,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link menu-select-lv-ils" href="javascript:;" onclick="select_level('ils');">
-                                            <div class="font-24">ILS
+                                            <div class="font-24 ils-active">ILS
                                             </div>
                                             <div><small>กลาง</small>
                                             </div>
@@ -403,7 +540,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link menu-select-lv-als" href="javascript:;" onclick="select_level('als');">
-                                            <div class="font-24">ALS
+                                            <div class="font-24 als-active">ALS
                                             </div>
                                             <div><small>สูง</small>
                                             </div>
@@ -666,7 +803,7 @@
                         '</div>' +
                         '<div class="list-inline d-flex customers-contacts ms-auto">' +
                             '<a href="javascript:;" class="list-inline-item"><i class="fa-solid fa-location-arrow" id="get_Directions_id_' + result[i]['id'] + '"></i></a>' +
-                            '<a href="javascript:;" class="list-inline-item" id="bnt_select_id_' + result[i]['id'] + '"> เลือก </a>' +
+                            '<a href="javascript:;" class="btn-select-officer list-inline-item" id="bnt_select_id_' + result[i]['id'] + '"> เลือก </a>' +
                         '</div>' +
                         '</div>';
 
@@ -747,7 +884,7 @@
         };
 
         let contentString =
-            '<div id="content">'+
+            '<div id="content data_sos_map">'+
                 '<div  class="data-officer-item d-flex align-items-center  p-2 cursor-pointer">' +
                     ' <div class="level  ' + level + ' d-flex align-items-center ">' +
                         ' <center> ' + level + '</center>' +
@@ -898,9 +1035,10 @@
         document.querySelector('#cf_select_name').innerHTML = name;
         document.querySelector('#cf_select_area').innerHTML = area;
         document.querySelector('#cf_select_distance').innerHTML = distance;
+        document.querySelector('#cf_select_level_tag').className = '';
+        document.querySelector('#cf_select_level_tag').classList.add(level , 'px-2' , 'py-1');
+        document.querySelector('#cf_select_level_tag').innerHTML = level;
         document.querySelector('#cf_select_level').innerHTML = level;
-        document.querySelector('#cf_select_level').className = '';
-        document.querySelector('#cf_select_level').classList.add(level , 'px-2' , 'py-1');
         document.querySelector('#btn_change_unit').onclick = function() {
             change_unit();
         };
