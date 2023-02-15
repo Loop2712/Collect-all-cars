@@ -403,27 +403,64 @@
 
             }
 
-            .all-active {
+            
+            
+            .menu-select-lv-all{
+                background-color: #fff!important;
                 color: #8833ff !important;
+                border: #8833ff 1px solid !important;
+                border-radius: 5px 0 0 5px !important;
+            }
+            .all-active {
+                background-color: #8833ff !important;;
+                color: #ffffff !important;
             }
 
-            .fr-active {
+            .menu-select-lv-fr{
+                background-color: #fff!important;
                 color: #24b333 !important;
+                border: #24b333 1px solid !important;
+                border-radius: 0px !important;
+            }
+            .fr-active {
+                background-color: #24b333 !important;
+                color: #ffffff !important;
             }
 
-            .bls-active {
+            .menu-select-lv-bls{
+               background-color: #fff!important;
                 color: #fac831 !important;
+                border: #fac831 1px solid !important;
+                border-radius: 0px !important;
+            }
+            .bls-active { 
+                background-color: #fac831!important;
+                color: #ffffff !important;
             }
 
-            .ils-active {
+            .menu-select-lv-ils{
+                background-color: #fff!important;
                 color: #faa507 !important;
-
+                border: #faa507 1px solid !important;
+                border-radius: 0px !important;
+            }
+            .ils-active {
+                background-color: #faa507!important;
+                color: #ffffff !important;
             }
 
-            .als-active {
+            .menu-select-lv-als{
+                background-color: #fff!important;
                 color: #ce1124 !important;
-
-            }.gm-style-iw{
+                border: #ce1124 1px solid !important;
+                border-radius:  0 5px 5px  0!important;
+            }
+            .als-active {
+                background-color: #ce1124!important;
+                color: #ffffff !important;
+            }
+            
+            .gm-style-iw{
                 max-width: 250px !important;
                 padding: 500px;
             }.btn-select-officer{
@@ -484,6 +521,8 @@
                 box-shadow: inset 0px 0px 0px 50px #db2d2e;
             }
             }
+           
+           
         </style>
         <div class="col-3">
             <div class="card">
@@ -508,7 +547,7 @@
                                 <ul class="nav nav-pills nav-justified">
                                     <li class="nav-item">
                                         <a class="nav-link  menu-select-lv-all all-active" href="javascript:;" onclick="select_level('all');">
-                                            <div class="font-24 all-active">ALL
+                                            <div class="font-24">ALL
                                             </div>
                                             <div><small>ทั้งหมด</small>
                                             </div>
@@ -516,15 +555,16 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link  menu-select-lv-fr" href="javascript:;" onclick="select_level('fr');">
-                                            <div class="font-24 fr-active">FR
-                                            </div>
-                                            <div><small>เบื้องต้น</small>
+                                            <div class="font-24">FR
+                                                </div>
+                                            <div>
+                                                <small>เบื้องต้น</small>
                                             </div>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link menu-select-lv-bls" href="javascript:;" onclick="select_level('bls');">
-                                            <div class="font-24 bls-active">BLS
+                                            <div class="font-24">BLS
                                             </div>
                                             <div><small>ทั่วไป</small>
                                             </div>
@@ -532,7 +572,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link menu-select-lv-ils" href="javascript:;" onclick="select_level('ils');">
-                                            <div class="font-24 ils-active">ILS
+                                            <div class="font-24">ILS
                                             </div>
                                             <div><small>กลาง</small>
                                             </div>
@@ -540,13 +580,25 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link menu-select-lv-als" href="javascript:;" onclick="select_level('als');">
-                                            <div class="font-24 als-active">ALS
+                                            <div class="font-24">ALS
                                             </div>
                                             <div><small>สูง</small>
                                             </div>
                                         </a>
                                     </li>
                                 </ul>
+                            </div>
+                            <div class="btn-group-round mt-2">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-white">ทั้งหมด</button>
+                                    <button type="button" class="btn btn-white">รถ</button>
+                                    <button type="button" class="btn btn-white">อากาศยาน</button>
+                                    <button type="button" class="btn btn-white">เรือ ป.1</button>
+                                    <button type="button" class="btn btn-white">เรือ ป.2</button>
+                                    <button type="button" class="btn btn-white">เรือ ป.3</button>
+                                    <button type="button" class="btn btn-white">เรืออื่น</button>
+
+                                </div>
                             </div>
                             <div class="data-officer p-3 mb-3 ps ps--active-y" id="card_data_operating">
 
