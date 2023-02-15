@@ -603,6 +603,12 @@ class Sos_help_centerController extends Controller
                     'action_set_name' => $data_user->name,
                 ]);
 
+            // ------------------------------------------------------------------
+            $data_officers = Data_1669_operating_officer::where('user_id', $data_user->id)
+                ->where('operating_unit_id',$data_unit->id)->first();
+
+            $sum_go_to_help = 0 ;
+            $sum_go_to_help = (int)$sum_go_to_help + (int)$data_officers->go_to_help ;
             // อัพเดทสถานะ ใน data_1669_operating_officers
             DB::table('data_1669_operating_officers')
             ->where([ 
@@ -611,7 +617,7 @@ class Sos_help_centerController extends Controller
                 ])
             ->update([
                     'status' => "Helping",
-                    'go_to_help' => DB::raw('go_to_help+1'),
+                    'go_to_help' => $sum_go_to_help,
                 ]);
 
             return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
