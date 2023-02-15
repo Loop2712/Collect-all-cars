@@ -894,9 +894,18 @@
                         '<p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ ' + distance + ' กม. </p>' +
                     '</div>' +
                 '</div>'+
-                '<button class="btn btn-sm btn-success text-white main-shadow main-radius my-3" style="width:100%;border-radius:25px;"> เลือก "' + name +'"</button>' +
+                '<button id="btn_select_in_map' +id + '" class="btn btn-sm btn-success text-white main-shadow main-radius my-3" style="width:100%;border-radius:25px;"> เลือก </button>' +
             '</div>';
 
+            let btn_select_in_map = document.querySelector('#btn_select_in_map' + id);
+            
+            let btn_onclick = document.createAttribute("onclick");
+                btn_onclick.value = "document.querySelector('btn_select_id_'" + id + ").click();";
+                btn_select_in_map.setAttributeNode(btn_onclick);
+
+
+            
+            
             // '<div id="content" >' +
             
             // '<h6 id="firstHeading" class="firstHeading"><b>' + name + '</b></h6>' +
