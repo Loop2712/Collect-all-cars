@@ -2239,15 +2239,15 @@
 					"owner_registration" : owner_registration_value,
 				}
 
-				if (operating_suit_type_value) {
-			    	let level_default = document.querySelector('#input_select_level');
-			    		level_default.value = operating_suit_type_value ;
-			    }
+				// if (operating_suit_type_value) {
+			    // 	let level_default = document.querySelector('#input_select_level');
+			    // 		level_default.value = operating_suit_type_value ;
+			    // }
 
-			    if (vehicle_type_value) {
-			    	let vehicle_type_default = document.querySelector('#input_vehicle_type');
-            			vehicle_type_default.value = vehicle_type_value ;
-			    }
+			    // if (vehicle_type_value) {
+			    // 	let vehicle_type_default = document.querySelector('#input_vehicle_type');
+            	// 		vehicle_type_default.value = vehicle_type_value ;
+			    // }
 
 		    break;
 		}
