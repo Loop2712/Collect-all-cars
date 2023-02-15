@@ -2124,15 +2124,11 @@
 			        "km_operating_base" : km_operating_base.value,
 			    };
 
-			    if (operating_suit_type_value) {
-			    	let level_of_no5 = document.querySelector('#input_select_level');
-			    		level_of_no5.value = operating_suit_type_value ;
-			    }
+			    let level_of_no5 = document.querySelector('#input_select_level');
+			    	level_of_no5.value = operating_suit_type_value ;
 
-			    if (vehicle_type_value) {
-			    	let vehicle_type_of_no5 = document.querySelector('#input_vehicle_type');
+			    let vehicle_type_of_no5 = document.querySelector('#input_vehicle_type');
             		vehicle_type_of_no5.value = vehicle_type_value ;
-			    }
             	
 
 		    break;
@@ -2239,16 +2235,12 @@
 					"owner_registration" : owner_registration_value,
 				}
 
-				// if (operating_suit_type_value) {
-			    // 	let level_default = document.querySelector('#input_select_level');
-			    // 		level_default.value = operating_suit_type_value ;
-			    // }
-
-			    // if (vehicle_type_value) {
-			    // 	let vehicle_type_default = document.querySelector('#input_vehicle_type');
-            	// 		vehicle_type_default.value = vehicle_type_value ;
-			    // }
-
+			    let level_default = document.querySelector('#input_select_level');
+			    	level_default.value = operating_suit_type_value ;
+			    
+			    let vehicle_type_default = document.querySelector('#input_vehicle_type');
+            			vehicle_type_default.value = vehicle_type_value ;
+			    
 		    break;
 		}
 
