@@ -252,7 +252,7 @@
                     </style>
                     <ul class="nav nav-pills m-3" role="tablist">
                         <li id="btn_operation" class="nav-item nav-pills nav-pills-purple m-2 d-none" role="presentation">
-                            <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="reface_map_go_to_help();">
+                            <a id="tag_a_operation" href="{{ url()->full() }}#operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill"  role="tab" aria-selected="true" onclick="reface_map_go_to_help();">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                     </div>
@@ -261,7 +261,7 @@
                             </a>
                         </li>
                         <li id="btn_form_yellow" class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
-                            <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#form_data_1').click();">
+                            <a class="nav-link btn-outline-warning btn active" href="{{ url()->full() }}#form_yellow"  data-bs-toggle="pill" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#form_data_1').click();">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                     </div>
@@ -270,7 +270,7 @@
                             </a>
                         </li>
                         <li id="btn_form_blue" class="nav-item nav-pills nav-pills-info m-2 d-none" role="presentation">
-                            <a class="nav-link  btn-outline-info btn" data-bs-toggle="pill" href="#form-blue" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_blue_1').click();">
+                            <a class="nav-link  btn-outline-info btn" data-bs-toggle="pill" href="{{ url()->full() }}#form-blue" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_blue_1').click();">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
@@ -280,7 +280,7 @@
                             </a>
                         </li>
                         <li id="btn_form_green" class="nav-item  nav-pills nav-pills-success m-2 d-none" role="presentation">
-                            <a class="nav-link btn-outline-success btn" data-bs-toggle="pill" href="#form-green" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_green_1').click();">
+                            <a class="nav-link btn-outline-success btn" data-bs-toggle="pill" href="{{ url()->full() }}#form-green" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_green_1').click();">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
@@ -290,7 +290,7 @@
                             </a>
                         </li>
                         <li id="btn_form_pink" class="nav-item nav-pills nav-pills-pink m-2 d-none" role="presentation">
-                            <a class="nav-link btn-outline-pink btn" data-bs-toggle="pill" href="#form-pink" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_pink_1').click();">
+                            <a class="nav-link btn-outline-pink btn" data-bs-toggle="pill" href="{{ url()->full() }}#form-pink" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_pink_1').click();">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
@@ -300,7 +300,7 @@
                             </a>
                         </li>
                         <li id="btn_select_operating_unit" class="nav-item nav-pills nav-pills-danger m-2 " role="presentation">
-                            <a id="tag_a_open_map_operating_unit" class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="open_map_operating_unit();select_level();">
+                            <a id="tag_a_open_map_operating_unit" class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="{{ url()->full() }}#operating_unit" role="tab" aria-selected="false" onclick="open_map_operating_unit();select_level();">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
