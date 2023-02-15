@@ -791,8 +791,7 @@
         fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id )
             .then(response => response.json())
             .then(start_result => {
-                console.log("start_result");
-                console.log(start_result);
+                // console.log("start_result");
 
                 status_old = start_result['status_sos'] ;
                 rc_old = start_result['rc'] ;
@@ -897,8 +896,8 @@
             fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id )
                 .then(response => response.json())
                 .then(result => {
-                    console.log("LOOP");
-                    console.log(result);
+                    // console.log("LOOP");
+                    // console.log(result);
 
                     if (result['status_sos'] != status_old) {
 
@@ -986,7 +985,7 @@
 
     function myStop_reface_map_go_to() {
         clearInterval(reface_map_go_to);
-        console.log("STOP LOOP");
+        // console.log("STOP LOOP");
     }
 
     function open_map_go_to_help(){
