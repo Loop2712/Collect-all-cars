@@ -289,46 +289,67 @@ class Sos_help_centerController extends Controller
     {
         $requestData = $request->all();
 
-        // เช็ค requestData ว่า ค่าว่างหรือไม่
+        echo "<br>" ;
+        echo "<-------------------- ว่าง -------------------->" ;
+        echo "<br>" ;
+        foreach ($requestData as $key => $value) {
+
+            if (empty($value)) {
+                echo "ว่าง >> " . $key . "<br>VALUE == " . $value ;
+                echo "<br>" ;
+            }
+           
+        }
+        echo "<br>" ;
+        echo "<-------------------- ไม่ว่าง -------------------->" ;
+        echo "<br>" ;
+
         foreach ($requestData as $key => $value) {
 
             if (!empty($value)) {
-                
-                $data_sos_help_center = Sos_help_center::where('id',$requestData['sos_help_center_id'])->first();
-
-                $data_Sos_1669 = Sos_1669_form_yellow::where('sos_help_center_id',$requestData['sos_help_center_id'])->first();
-                $data_Sos_1669->update($requestData);
-
-                $date_sos = $data_sos_help_center->created_at ;
-                $result = $date_sos->format('Y-m-d');
-
-                if (!empty($requestData['time_create_sos'])) {
-                    $requestData['time_create_sos'] = $result . " " . $requestData['time_create_sos'];
-                }
-                if (!empty($requestData['time_command'])) {
-                    $requestData['time_command'] = $result . " " . $requestData['time_command'];
-                }
-                if (!empty($requestData['time_go_to_help'])) {
-                    $requestData['time_go_to_help'] = $result . " " . $requestData['time_go_to_help'];
-                }
-                if (!empty($requestData['time_to_the_scene'])) {
-                    $requestData['time_to_the_scene'] = $result . " " . $requestData['time_to_the_scene'];
-                }
-                if (!empty($requestData['time_leave_the_scene'])) {
-                    $requestData['time_leave_the_scene'] = $result . " " . $requestData['time_leave_the_scene'];
-                }
-                if (!empty($requestData['time_hospital'])) {
-                    $requestData['time_hospital'] = $result . " " . $requestData['time_hospital'];
-                }
-                if (!empty($requestData['time_to_the_operating_base'])) {
-                    $requestData['time_to_the_operating_base'] = $result . " " . $requestData['time_to_the_operating_base'];
-                }
-
-                $data_sos_help_center->update($requestData);
-
+                echo "ไม่ว่าง >> " . $key . "<br>VALUE == " . $value ;
+                echo "<br>" ;
             }           
         }
 
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // return $requestData ;
+        exit();
+
+        $data_sos_help_center = Sos_help_center::where('id',$requestData['sos_help_center_id'])->first();
+
+        $data_Sos_1669 = Sos_1669_form_yellow::where('sos_help_center_id',$requestData['sos_help_center_id'])->first();
+        $data_Sos_1669->update($requestData);
+
+        $date_sos = $data_sos_help_center->created_at ;
+        $result = $date_sos->format('Y-m-d');
+
+        if (!empty($requestData['time_create_sos'])) {
+            $requestData['time_create_sos'] = $result . " " . $requestData['time_create_sos'];
+        }
+        if (!empty($requestData['time_command'])) {
+            $requestData['time_command'] = $result . " " . $requestData['time_command'];
+        }
+        if (!empty($requestData['time_go_to_help'])) {
+            $requestData['time_go_to_help'] = $result . " " . $requestData['time_go_to_help'];
+        }
+        if (!empty($requestData['time_to_the_scene'])) {
+            $requestData['time_to_the_scene'] = $result . " " . $requestData['time_to_the_scene'];
+        }
+        if (!empty($requestData['time_leave_the_scene'])) {
+            $requestData['time_leave_the_scene'] = $result . " " . $requestData['time_leave_the_scene'];
+        }
+        if (!empty($requestData['time_hospital'])) {
+            $requestData['time_hospital'] = $result . " " . $requestData['time_hospital'];
+        }
+        if (!empty($requestData['time_to_the_operating_base'])) {
+            $requestData['time_to_the_operating_base'] = $result . " " . $requestData['time_to_the_operating_base'];
+        }
+
+        $data_sos_help_center->update($requestData);
+        
         return "OK" ;
     }
 
