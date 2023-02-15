@@ -563,6 +563,7 @@ class Sos_help_centerController extends Controller
     {
         $data_user = Auth::user();
         $date_now = date("Y-m-d H:i:s");
+        $time_now = date("H:i:s");
 
         $requestData = $request->all();
 
@@ -589,6 +590,17 @@ class Sos_help_centerController extends Controller
                     'name_helper' => $data_user->name,
                     'helper_id' => $data_user->id,
                     'time_go_to_help' => $date_now,
+                    'wait' => null,
+                ]);
+
+            DB::table('sos_1669_form_yellows')
+            ->where([ 
+                    ['sos_help_center_id', $sos_id],
+                ])
+            ->update([
+                    'time_go_to_help' => $time_now,
+                    'operation_unit_name' => $data_unit->name,
+                    'action_set_name' => $data_user->name,
                 ]);
 
             // อัพเดทสถานะ ใน data_1669_operating_officers
@@ -599,6 +611,7 @@ class Sos_help_centerController extends Controller
                 ])
             ->update([
                     'status' => "Helping",
+                    'go_to_help' => DB::raw('go_to_help+1'),
                 ]);
 
             return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
