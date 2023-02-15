@@ -592,7 +592,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <input class="d-none" type="text" name="input_select_level" id="input_select_level" value="all">
+                                <input class="d-none" type="text" name="input_select_level" id="input_select_level" value="{{ isset($data_form_yellow->operating_suit_type) ? $data_form_yellow->operating_suit_type : 'all'}}">
                             </div>
                             <div class="btn-group-round mt-2">
                                 <div class="btn-group">
@@ -625,7 +625,7 @@
                                         เรืออื่นๆ
                                     </button>
                                 </div>
-                                <input class="d-none" type="text" name="input_vehicle_type" id="input_vehicle_type" value="all" >
+                                <input class="d-none" type="text" name="input_vehicle_type" id="input_vehicle_type" value="{{ isset($data_form_yellow->vehicle_type) ? $data_form_yellow->vehicle_type : 'all'}}" >
                             </div>
                             <div class="data-officer p-3 mb-3 ps ps--active-y" id="card_data_operating">
 
