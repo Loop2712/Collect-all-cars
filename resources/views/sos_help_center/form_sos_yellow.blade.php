@@ -991,22 +991,7 @@
 									</div>
 								</label>
 							</div>
-							
-							<div class="col-12"></div>
-							
-							<div class="col-md-6">
-								<label for="" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
-								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="operation_unit_name" value="{{ isset($data_form_yellow->operation_unit_name) ? $data_form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<label for="phone_user" class="form-label"><b>ชื่อชุดปฏิบัติการ</b></label>
-								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-users-medical"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="action_set_name" value="{{ isset($data_form_yellow->action_set_name) ? $data_form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ">
-								</div>
-							</div>
-							
+
 							<div class="col-md-12 mb-2 mt-2">
 								<label  class="form-label mt-2">
 									<b>
@@ -1063,8 +1048,29 @@
 									</div>
 								</label>
 							</div>
-							<hr>
-							<div class="col-12">
+
+							<div class="col-md-12"></div>
+
+							<div class="col-md-4">
+								<label for="" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="operation_unit_name" value="{{ isset($data_form_yellow->operation_unit_name) ? $data_form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ" readonly>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<label for="phone_user" class="form-label"><b>ชื่อชุดปฏิบัติการ</b></label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-users-medical"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" name="action_set_name" value="{{ isset($data_form_yellow->action_set_name) ? $data_form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ" readonly>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<label for="" class="form-label"><b>&nbsp;</b></label>
+								<span class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();" style="width:100%;" >
+                                    <i class="fa-solid fa-hospital-user"></i> เลือกหน่วยแพทย์
+								</span>
+							</div>
+							<hr class="mt-2">
+							<div class="col-12 mt-2">
 								<div class="table-responsive">
 									<!--Table-->
 									<table class="table  table-bordered border-secondary ">

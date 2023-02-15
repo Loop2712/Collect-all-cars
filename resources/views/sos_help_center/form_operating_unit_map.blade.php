@@ -761,7 +761,7 @@
 
 
     function location_operating_unit(m_lat, m_lng, level) {
-
+        // console.log(level);
         let data_arr = [];
         let text_data_arr = [];
 

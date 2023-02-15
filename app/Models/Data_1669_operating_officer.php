@@ -25,7 +25,7 @@ class Data_1669_operating_officer extends Model
      *
      * @var array
      */
-    protected $fillable = ['name_officer', 'lat', 'lng', 'operating_unit_id', 'user_id','status','go_to_help','refuse'];
+    protected $fillable = ['name_officer', 'lat', 'lng', 'operating_unit_id', 'user_id','status','go_to_help','refuse','level','vehicle_type','operating_suit_type'];
 
     public function operating_unit(){
         return $this->belongsTo('App\Models\Data_1669_operating_unit', 'operating_unit_id' , 'id'); 

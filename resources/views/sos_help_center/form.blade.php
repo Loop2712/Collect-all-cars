@@ -300,7 +300,7 @@
                             </a>
                         </li>
                         <li id="btn_select_operating_unit" class="nav-item nav-pills nav-pills-danger m-2 " role="presentation">
-                            <a class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="open_map_operating_unit();">
+                            <a id="tag_a_open_map_operating_unit" class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="open_map_operating_unit();">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon">
                                         <i class="fa-solid fa-hospital-user"></i>
@@ -636,7 +636,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <!-- @include ('sos_help_center.form_sos_pink') -->
+                            <!--  -->
                         </div>
                     </div>
                 </div>

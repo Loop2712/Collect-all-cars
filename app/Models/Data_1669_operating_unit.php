@@ -25,7 +25,7 @@ class Data_1669_operating_unit extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'area', 'level'];
+    protected $fillable = ['name', 'area'];
 
     public function operating_officers(){
         return $this->hasMany('App\Models\Data_1669_operating_officer', 'operating_unit_id');

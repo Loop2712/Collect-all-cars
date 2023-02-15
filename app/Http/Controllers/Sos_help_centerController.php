@@ -288,14 +288,38 @@ class Sos_help_centerController extends Controller
     function save_form_yellow(Request $request)
     {
         $requestData = $request->all();
-        // $time_create_sos = Carbon::now();
-        // $requestData['time_create_sos'] = $time_create_sos ;
 
         $data_sos_help_center = Sos_help_center::where('id',$requestData['sos_help_center_id'])->first();
-        // $data_sos_help_center->update($requestData);
 
         $data_Sos_1669 = Sos_1669_form_yellow::where('sos_help_center_id',$requestData['sos_help_center_id'])->first();
         $data_Sos_1669->update($requestData);
+
+        $date_sos = $data_sos_help_center->created_at ;
+        $result = $date_sos->format('Y-m-d');
+
+        if ($requestData['time_create_sos']) {
+            $requestData['time_create_sos'] = $result . " " . $requestData['time_create_sos'];
+        }
+        if ($requestData['time_command']) {
+            $requestData['time_command'] = $result . " " . $requestData['time_command'];
+        }
+        if ($requestData['time_go_to_help']) {
+            $requestData['time_go_to_help'] = $result . " " . $requestData['time_go_to_help'];
+        }
+        if ($requestData['time_to_the_scene']) {
+            $requestData['time_to_the_scene'] = $result . " " . $requestData['time_to_the_scene'];
+        }
+        if ($requestData['time_leave_the_scene']) {
+            $requestData['time_leave_the_scene'] = $result . " " . $requestData['time_leave_the_scene'];
+        }
+        if ($requestData['time_hospital']) {
+            $requestData['time_hospital'] = $result . " " . $requestData['time_hospital'];
+        }
+        if ($requestData['time_to_the_operating_base']) {
+            $requestData['time_to_the_operating_base'] = $result . " " . $requestData['time_to_the_operating_base'];
+        }
+
+        $data_sos_help_center->update($requestData);
         
         return "OK" ;
     }
@@ -386,7 +410,7 @@ class Sos_help_centerController extends Controller
         }else{
             $locations = DB::table('data_1669_operating_units')
             ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
-            ->where('data_1669_operating_units.level' , $level)
+            ->where('data_1669_operating_officers.level' , $level)
             ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
             ->where('data_1669_operating_officers.status' , 'Standby')
             ->having("distance", "<", 10)
