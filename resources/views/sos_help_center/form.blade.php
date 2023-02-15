@@ -1553,7 +1553,7 @@
 
         let status = '{{ $sos_help_center->status }}' ;
 
-        if (status === 'รอการยืนยัน' || status === 'ปฏิเสธ' || !status) {
+        if (status === 'รอการยืนยัน' || status === 'ปฏิเสธ' || status === 'รับแจ้งเหตุ' || !status) {
             document.querySelector('#btn_operation').classList.add('d-none');
             document.querySelector('#btn_select_operating_unit').classList.remove('d-none');
         }else{

@@ -803,7 +803,7 @@
                         '</div>' +
                         '<div class="list-inline d-flex customers-contacts ms-auto">' +
                             '<a href="javascript:;" class="list-inline-item"><i class="fa-solid fa-location-arrow" id="get_Directions_id_' + result[i]['id'] + '"></i></a>' +
-                            '<a href="javascript:;" class="btn-select-officer list-inline-item" id="bnt_select_id_' + result[i]['id'] + '"> เลือก </a>' +
+                            '<a href="javascript:;" class="btn-select-officer list-inline-item" id="btn_select_id_' + result[i]['id'] + '"> เลือก </a>' +
                         '</div>' +
                         '</div>';
 
@@ -819,7 +819,7 @@
                     //     '</button>' +
                     //     '</div>' +
                     //     '<div class="col-6">' +
-                    //     '<button id="bnt_select_id_' + result[i]['id'] + '" class="btn btn-sm btn-success text-white main-shadow main-radius" style="width:100%;" >' +
+                    //     '<button id="btn_select_id_' + result[i]['id'] + '" class="btn btn-sm btn-success text-white main-shadow main-radius" style="width:100%;" >' +
                     //     'เลือก' +
                     //     '</button>' +
                     //     '</div>' +
@@ -842,11 +842,11 @@
                     btn_marker_onclick.value = "view_data_marker(" + result[i]['id'] + ",'" + result[i]['name'] + "'," + result[i]['distance'].toFixed(2) + ",'" + result[i]['level'] + "'," + result[i]['lat'] + "," + result[i]['lng'] + ");";
                     btn_marker_id.setAttributeNode(btn_marker_onclick);
 
-                    // add onclick to bnt_select_id_
-                    let bnt_select_id = document.querySelector('#bnt_select_id_' + result[i]['id']);
-                    let bnt_select_id_onclick = document.createAttribute("onclick");
-                    bnt_select_id_onclick.value = "select_operating_unit(" + result[i]['id'] + ",'" + result[i]['name'] + "'," + result[i]['distance'].toFixed(2) + ",'" + result[i]['level'] + "'," + result[i]['operating_unit_id'] + "," + result[i]['user_id'] + ",'" + result[i]['area'] + "');";
-                    bnt_select_id.setAttributeNode(bnt_select_id_onclick);
+                    // add onclick to btn_select_id_
+                    let bnt_select_id = document.querySelector('#btn_select_id_' + result[i]['id']);
+                    let btn_select_id_onclick = document.createAttribute("onclick");
+                    btn_select_id_onclick.value = "select_operating_unit(" + result[i]['id'] + ",'" + result[i]['name'] + "'," + result[i]['distance'].toFixed(2) + ",'" + result[i]['level'] + "'," + result[i]['operating_unit_id'] + "," + result[i]['user_id'] + ",'" + result[i]['area'] + "');";
+                    bnt_select_id.setAttributeNode(btn_select_id_onclick);
 
                     // add onclick to get_Directions_id_
                     let get_Directions_id = document.querySelector('#get_Directions_id_' + result[i]['id']);
@@ -894,17 +894,9 @@
                         '<p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ ' + distance + ' กม. </p>' +
                     '</div>' +
                 '</div>'+
-                '<button id="btn_select_in_map' +id + '" class="btn btn-sm btn-success text-white main-shadow main-radius my-3" style="width:100%;border-radius:25px;"> เลือก </button>' +
+                '<button onclick="click_btn_in_map(' + id + ')" class="btn btn-sm btn-success text-white main-shadow main-radius my-3" style="width:100%;border-radius:25px;"> เลือก </button>' +
             '</div>';
 
-            let btn_select_in_map = document.querySelector('#btn_select_in_map' + id);
-            
-            let btn_onclick = document.createAttribute("onclick");
-                btn_onclick.value = "document.querySelector('btn_select_id_'" + id + ").click();";
-                btn_select_in_map.setAttributeNode(btn_onclick);
-
-
-            
             
             // '<div id="content" >' +
             
@@ -922,6 +914,10 @@
 
         view_infoWindow.open(map_operating_unit);
 
+    }
+
+    function click_btn_in_map(id){
+        document.querySelector("#btn_select_id_" + id ).click();
     }
 
 
