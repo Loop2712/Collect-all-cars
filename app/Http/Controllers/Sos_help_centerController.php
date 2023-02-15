@@ -449,6 +449,7 @@ class Sos_help_centerController extends Controller
         $data_sos = Sos_help_center::where('id' , $sos_id)->first();
 
         $date_now = date("Y-m-d H:i:s");
+        $time_now = date("H:i:s");
         $text_at = '@' ;
 
         $template_path = storage_path('../public/json/test_send_sos_center.json');   
@@ -519,7 +520,19 @@ class Sos_help_centerController extends Controller
             ->where([ 
                     ['id', $data_sos->id],
                 ])
-            ->update(['status' => "รอการยืนยัน"]);
+            ->update([
+                'status' => "รอการยืนยัน",
+                'wait' => $user_id,
+                'time_command' => $date_now
+            ]);
+
+        DB::table('sos_1669_form_yellows')
+            ->where([ 
+                    ['sos_help_center_id', $data_sos->id],
+                ])
+            ->update([
+                'time_command' => $time_now
+            ]);
 
         return $data_sos->id ;
     }
