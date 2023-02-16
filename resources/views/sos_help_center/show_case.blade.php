@@ -1,18 +1,513 @@
 @extends('layouts.viicheck')
 
 @section('content')
-
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
+	div , span ,body,h1,h2,h3,h4,h5 ,h6{
+		font-family: 'Kanit', sans-serif !important;
+	}
 	#map_show_case {
       	height: calc(40vh);
       	background-color: grey;
-      	border-radius: 20px;
-      	border: 1px solid red;
-      	width: 90%;
-      	margin-top:25px; 
-      	margin-bottom:10px;
+      	border-radius: 0 0 20px 20px;
+      	border: 1px solid darkgray;
+      	width: 100%;
+    }label {
+		width: 100%;
+		font-size: 1rem;
+	}
+	.status-remark{
+		border: 1px solid darkgray;
+		border-radius: 20px 0 0 0;
+	}.add-img{
+		border: 1px solid darkgray;
+		border-radius: 0 20px 0 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}.fill {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden
     }
+
+    .full_img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    .parent {
+        position: relative;
+        /* define context for absolutly positioned children */
+        /* size set by image in this case */
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .parent img {
+        display: block;
+    }
+
+    .parent:after {
+        content: '';
+        /* :after has to have a content... but you don't want one */
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        background: rgba(0, 0, 0, 0);
+
+        transition: 1s;
+    }
+
+    .parent:hover:after {
+        background: rgba(0, 0, 0, .5);
+    }
+
+    .parent:hover .child {
+        opacity: 1;
+    }
+
+    .child {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        z-index: 5;
+        /* only works when position is defined */
+        /* think of a stack of paper... this element is now 5 higher than the bottom */
+
+        color: white;
+        opacity: 0;
+        transition: .5s;
+    }.sry-open-location {
+  position: relative;
+  }
+
+.sry-open-location-text{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  margin: 0;
+  padding: 0;
+  color: black;
+  width: 80%;
+}
+
+
+.sry-open-location img {
+  width: 100%;
+  object-fit: cover; 
+  border-radius:15px;
+  height: 100%;
+}
+
+.situation-none{
+	color:black;
+	background-color: white;
+}
+.situation-red{
+	color: white;
+	background-color: #dc3545;
+}
+.situation-yellow{
+	color: black;
+	background-color: #ffc107;
+}
+.situation-normal{
+	color: white;
+	background-color: #007bff;
+}.situation-black{
+	color: white;
+	background-color: #000000;
+}.situation-green{
+	color: white;
+	background-color: #28a745;
+}.card-input-element+.card {
+height: calc(36px + 2*1rem);
+color: #0d6efd;
+-webkit-box-shadow: none;
+box-shadow: none;
+border: 2px solid transparent;
+border-radius: 10px;
+}
+
+.card-input-element+.card:hover {
+cursor: pointer;
+}
+
+.card-input-element:checked+.card {
+border: 2px solid #0d6efd;
+color: #fff !important;
+background-color: #0d6efd !important;
+-webkit-transition: border .3s;
+-o-transition: border .3s;
+transition: border .3s;
+}
+
+.card-input-element:checked+.card::after {
+content: '\e5ca';
+color: #AFB8EA;
+font-family: 'Material Icons';
+font-size: 24px;
+-webkit-animation-name: fadeInCheckbox;
+animation-name: fadeInCheckbox;
+-webkit-animation-duration: .5s;
+animation-duration: .5s;
+-webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@-webkit-keyframes fadeInCheckbox {
+	from {
+		opacity: 0;
+		-webkit-transform: rotateZ(-20deg);
+	}
+	to {
+		opacity: 1;
+		-webkit-transform: rotateZ(0deg);
+	}
+}
+
+@keyframes fadeInCheckbox {
+	from {
+		opacity: 0;
+		transform: rotateZ(-20deg);
+	}
+	to {
+		opacity: 1;
+		transform: rotateZ(0deg);
+	}
+}.card-input-red:checked+.card {
+	border: 2px solid #db2d2e !important;
+	background-color: #db2d2e !important;
+	color: #fff !important;
+	-webkit-transition: border .3s;
+	-o-transition: border .3s;
+	transition: border .3s;
+}.show-data{
+	animation: myAnim 1s ease 0s 1 normal forwards;
+}
+@keyframes myAnim {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}.btn-update-status{
+	width:100%;
+	border-width:2px;
+	padding:10px;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 </style>
+
+<br><br><br><br><br><br><br><br>
+<div class="container">
+	<div class="row" style="padding: 8px 14px 0 14px !important;">
+		<span id="situation_of_status" class="col-10 status-remark py-2">
+			<h5 class="m-0 font-weight-bold">สถานะ</h5>
+			<small class="h6 text-bold" id="show_status"></small> <small id="show_remark_status"></small>
+		</span>
+		<div class="col-12 d-none">
+			<p class="mt-2">
+				LAT : <span id="text_show_lat"></span> 
+				<br>
+				LONG : <span id="text_show_lng"></span>
+			</p>
+		</div>
+		<span class="col-2 add-img btn btn-info">
+			<i class="fa-solid fa-camera-viewfinder h4 m-0" onclick="document.querySelector('#btn_modal_add_photo_sos').click();"></i>
+		</span>
+	</div>
+	<div class="col-12 p-0">
+		<div class="main-shadow main-radius p-0" id="map_show_case">
+			<!-- <img style=" object-fit: cover; border-radius:15px" width="100%" height="100%" src="{{ asset('/img/more/sorry-no-text.png') }}" class="card-img-top center" style="padding: 10px;"> -->
+			<div class="sry-open-location">
+				<img src="{{ asset('/img/more/sorry-no-text.png') }}" />
+				<center>
+					<p class="sry-open-location-text h4" style="top: 20%;">ขออภัยค่ะ</p>	
+					<p class="sry-open-location-text h5" style="top: 35%;">ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ</p>
+					<span style="top: 50%;" class="sry-open-location-text btn btn-md btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
+						<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
+					</span>
+				</center>
+			</div>
+			<!-- <div style="position: relative; z-index: 5">
+				<div class="translate">
+					<center>
+						<h4 style="top:-50%;left: 130px;position: absolute;font-family: 'Sarabun', sans-serif;">ขออภัยค่ะ</h4>
+						<h5 style="top:-270px;left: 35px;width: 80%;position: absolute;font-family: 'Sarabun', sans-serif;">
+							ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ
+						</h5>
+						<br>
+						<span style="top:-200px;left: 130px;position: absolute;" class="btn btn-sm btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
+							<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
+						</span>
+					</center>
+					
+				</div>
+			</div> -->
+		</div>
+	</div>
+	<div class="card-title d-flex align-items-center mt-5">
+		<div>
+			<i class="fa-solid fa-messages-question h5 m-0 text-primary"></i>
+		</div>
+		<h5 class="mb-0 text-primary"> &nbsp;&nbsp;<b>สถานะการณ์</b> </h5>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-6">
+			<div id="show_level_by_control_center" class="card-body p-3 main-shadow" style="border-radius: 15px;">
+				<div class="d-flex align-items-center">
+					<div  class="">
+						<p class="mb-0">ศูนย์สั่งการ</p>
+						<h5 class="mb-0 font-weight-bold" id="text_level_by_control_center">ไม่ได้ระบุ</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-6">
+			<div id="show_level_by_officers" class="card-body p-3 main-shadow" style="border-radius: 15px;">
+				<div class="d-flex align-items-center">
+					<div>
+						<p class="mb-0">เจ้าหน้าที่</p>
+						<h5 class="mb-0 font-weight-bold" id="text_level_by_officers">ไม่ได้ระบุ</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ปุ่ม ถึงที่เกิดเหตุ -->
+	<div class="col-12 text-center d-none p-0" id="div_gotohelp">
+		<div class="card-title d-flex align-items-center mt-5">
+			<div>
+				<i class="text-danger fa-regular fa-truck-medical h5 mb-0"></i>
+			</div>
+			<h5 class="mb-0 text-danger"> &nbsp;&nbsp;<b>การเดินทาง</b> </h5>
+		</div>
+		<hr>
+		<div class="col-12 mt-3">
+			<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" onclick="update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');">
+					<i class="fa-sharp fa-solid fa-location-crosshairs"></i> ถึงที่เกิดเหตุ 
+			</button>
+		</div>
+	</div>
+	
+	<div id="div_event_level" class="d-none">
+		<div class="card-title d-flex align-items-center mt-5">
+			<div>
+				<i class="text-danger fa-duotone fa-person-burst h5 mb-0"></i>
+			</div>
+			<h5 class="mb-0 text-danger"> &nbsp;&nbsp;<b>ความรุนแรง ณ จุดเกิดเหตุ</b> </h5>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-6">
+				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-black" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
+						ดำ
+				</button>
+			</div>
+			<div class="col-6">
+				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-normal" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ขาว(ทั่วไป)','{{ $data_sos->id }}');">
+						ขาว(ทั่วไป)
+				</button>
+			</div>
+			<div class="col-6 mt-3">
+				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-green" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('เขียว(ไม่รุนแรง)','{{ $data_sos->id }}');">
+						เขียว(ไม่รุนแรง)
+				</button>
+			</div>
+			<div class="col-6 mt-3">
+				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('เหลือง(เร่งด่วน)','{{ $data_sos->id }}');">
+						เหลือง(เร่งด่วน)
+				</button>
+			</div>
+			<div class="col-12 mt-3">
+				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-red" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('แดง(วิกฤติ)','{{ $data_sos->id }}');">
+						แดง(วิกฤติ)
+				</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="col-12 text-center d-none" id="div_select_treatment" >
+		<div class="card-title d-flex align-items-center mt-5">
+			<div>
+				<i class="text-danger fa-solid fa-hospital h5 mb-0"></i>
+			</div>
+			<h5 class="mb-0 text-danger"> &nbsp;&nbsp;<b>การปฏิบัติการ</b> </h5>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-6 p-0">
+				<label >
+					<input type="radio"name="treatment" value="มีการรักษา"  class="card-input-red card-input-element d-none"  onchange="check_btn_select_treatment();">
+					<div class="card card-body d-flex flex-row justify-content-between align-items-center text-danger border-danger w-100" style="border-radius: 10px 0 0 10px;">
+						<b>
+							มีการรักษา
+						</b>
+					</div>
+				</label>
+
+			</div>
+
+			<div class="col-6 p-0">
+				<label >
+					<input type="radio" name="treatment" value="ไม่มีการรักษา"  class="card-input-element d-none"  onchange="check_btn_select_treatment();">
+					<div class="card card-body d-flex flex-row-reverse  justify-content-between align-items-center border-primary"style="border-radius: 0 10px 10px 0;">
+						<b>
+							ไม่มีการรักษา
+						</b>
+					</div>
+				</label>
+			</div>
+			<script>
+				function check_btn_select_treatment(){
+
+					var check_treatment = document.getElementsByName('treatment');
+					// เช็คช่อง input ว่าเลือกมีการรักษาหรือไม่
+					for (var i = 0, length = check_treatment.length; i < length; i++) {
+						if (check_treatment[i].checked) {
+							if(check_treatment[i].value == "มีการรักษา"){
+								document.querySelector('#treatment_no').classList.add('d-none');
+								document.querySelector('#treatment_yes').classList.remove('d-none');
+								document.querySelector('#treatment_yes').classList.add('show-data');
+							}else{
+								document.querySelector('#treatment_yes').classList.add('d-none');
+								document.querySelector('#treatment_no').classList.remove('d-none');
+								document.querySelector('#treatment_no').classList.add('show-data');
+							}
+							break;
+						} 
+					}
+				}
+
+			</script>
+			<div class="col-12" style="margin-bottom: 20%;">
+				<!-- -------------------------------------------   เคสมีการรักษา  ----------------------------------------------------- -->
+				<div class="row d-none mt-3" id="treatment_yes">
+					<div class="col-12 col-md-4 col-lg-4">
+						<span class="btn btn-outline-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
+							onclick="update_status('ออกจากที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');">
+								นำส่ง
+						</span>
+					</div>
+					<div class="col-6 col-md-4 col-lg-4 mt-3">
+						<span class="btn btn-outline-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
+						onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า');">
+							ส่งต่อชุดปฏิบัติการ
+						</span>
+					</div>
+					<div class="col-6 col-md-4 col-lg-4 mt-3">
+						<span class="btn btn-outline-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่นำส่ง');">
+								ไม่นำส่ง
+						</span>
+					</div>
+					<div class="col-6 col-md-4 col-lg-4 mt-3">
+						<span class="btn btn-outline-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิตระหว่างนำส่ง');">
+								เสียชีวิตระหว่างนำส่ง
+						</span>
+					</div>
+					<div class="col-6 col-md-4 col-lg-4 mt-3">
+						<span class="btn btn-outline-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ณ_จุดเกิดเหตุ');">
+							เสียชีวิต ณ จุดเกิดเหตุ
+						</span>
+					</div>
+				</div>
+
+				<!-- -------------------------------------------   เคส ไม่มี การรักษา  ----------------------------------------------------- -->
+				<div class="row d-none mt-3" id="treatment_no">
+					<div class="col-6  col-md-4 col-lg-4">
+						<span class="btn btn-outline-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ผู้ป่วยปฎิเสธการรักษา');">
+							ผู้ป่วยปฎิเสธการรักษา
+						</span>
+					</div>
+					<div class="col-6 col-md-4 col-lg-4">
+						<span class="btn btn-outline-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ก่อนชุดปฎิบัติการไปถึง');">
+							เสียชีวิต ก่อนชุดปฎิบัติการไปถึง
+						</span>
+					</div>
+					<div class="col-6 mt-3 col-md-4 col-lg-4">
+						<span class="btn btn-outline-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ยกเลิก');" >
+							ยกเลิก
+						</span>
+					</div>
+					<div class="col-6 mt-3 col-md-4 col-lg-4">
+						<span class="btn btn-outline-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่พบเหตุ');" >
+								ไม่พบเหตุ
+						</span>
+					</div>
+				
+					
+				</div>
+			</div>
+		</div>
+
+		
+	</div>
+
+	<!-- ปุ่มเลือก กลับถึงฐาน -->
+	<div class="col-12 text-center d-none" id="div_operating_base" >
+		<div class="card-title d-flex align-items-center mt-5">
+			<div>
+				<i class="text-danger fa-duotone fa-tower-observation h5 mb-0"></i>
+			</div>
+			<h5 class="mb-0 text-danger"> &nbsp;&nbsp;<b>กลับฐาน</b> </h5>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-12 mt-2">
+				<button class="btn btn-success main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
+				onclick="officer_to_the_operating_base('{{ $data_sos->id }}');">
+					กลับถึงฐาน
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- ปุ่มเลือก ถึง รพ. -->
+	<div class="col-12 text-center d-none" id="div_to_hospital" >
+		<div class="card-title d-flex align-items-center mt-5">
+			<div>
+				<i class="text-danger fa-solid fa-light-emergency-on h5 mb-0"></i>
+			</div>
+			<h5 class="mb-0 text-danger"> &nbsp;&nbsp;<b>นำส่ง</b> </h5>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-12 mt-2">
+				<button class="btn btn-success main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
+				onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ถึงโรงพยาบาล');">
+					ถึงโรงพยาบาล
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 <!-- Button trigger modal -->
@@ -20,28 +515,52 @@
   Launch static backdrop modal
 </button>
 <!-- Modal -->
-<div class="modal fade" id="modal_add_photo_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="max-height: calc(100%);overflow-y: auto;z-index: 9999;">
+<div class="modal fade" id="modal_add_photo_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
   	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     	<div class="modal-content">
-      		<div class="modal-header">
+      		<div class="modal-header d-flex align-items-center">
+				<h3 class="m-0"> <b>เพิ่มภาพถ่าย</b> </h3>
         		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          			<span aria-hidden="true"><i class="far fa-times-circle"></i></span>
+          			<span aria-hidden="true"><i class="fa-solid fa-xmark-large"></i></span>
         		</button>
       		</div>
       		<form method="POST" action="{{ url('/sos_help_center/' . $data_sos->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
            		{{ method_field('PATCH') }}
         		{{ csrf_field() }}
       			<div class="modal-body text-center">
+					<div class="col-12">
+						<label class="col-12" style="padding:0px;" for="photo_sos_by_officers" >
+							<div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
+								<div class="form-group p-3"id="add_select_img">
+									<input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
+									<div  class="text-center">
+										<center>
+											<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
+										</center>
+										<br>
+										<h3 class="text-center m-0">
+											<b>กรุณาเลือกรูป "คลิก"</b> 
+										</h3>
+									</div>
+									
+								</div>
+								<img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_sos_by_officers" />
+								<div class="child">
+									<span>เลือกรูป</span>
+								</div>
+							</div>
+						</label>
+					</div>
 
 	            	<!-- เพิ่มภาพถ่าย และข้อคิดเห็นของเจ้าหน้าที่ -->
 
-	            	<label class="form-label">เพิ่มภาพถ่าย</label>
+	            	<!-- <label class="form-label">เพิ่มภาพถ่าย</label>
 					<input class="form-control" name="photo_sos_by_officers" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" multiple>
     				{!! $errors->first('photo_sos_by_officers', '<p class="help-block">:message</p>') !!}
 
     				@if(!empty($data_sos->photo_sos_by_officers))
     					<img src="{{ url('storage')}}/{{ $data_sos->photo_sos_by_officers }}" style="width:80%;">
-    				@endif
+    				@endif -->
 		            	
 	            	<div class="form-group d-none">
 				        <input id="btn_submit_form_photo" class="btn btn-primary" type="submit">
@@ -296,12 +815,12 @@
 			<!-- END Modal -->
 			<div class="row">
 				<div class="col-6">
-					<span class="btn btn-info main-shadow main-radius" style="width:95%;" data-toggle="modal" data-target="#modal_select_treatment" onclick="click_btn_select_treatment('มีการรักษา');">
-						มีการรักษา
+					<span class="btn btn-info main-shadow main-radius" style="width:95%;" data-toggle="modal" data-target="#modal_select_treatment" onclick="aad('มีการรักษา');">
+						มีการรักษาก
 					</span>
 				</div>
 				<div class="col-6">
-					<span class="btn btn-danger main-shadow main-radius" style="width:95%;" data-toggle="modal" data-target="#modal_select_treatment" onclick="click_btn_select_treatment('ไม่มีการรักษา');">
+					<span class="btn btn-danger main-shadow main-radius" style="width:95%;" data-toggle="modal" data-target="#modal_select_treatment" onclick="aad('ไม่มีการรักษา');">
 						ไม่มีการรักษา
 					</span>
 				</div>
@@ -384,13 +903,14 @@
     var show_remark_status_sos = '{{ $data_sos->remark_status }}';
     	if (show_remark_status_sos) {
 			show_remark_status_sos = show_remark_status_sos.replaceAll("_" , " ");
-    		document.querySelector('#show_remark_status').innerHTML = show_remark_status_sos ;
+    		document.querySelector('#show_remark_status').innerHTML =  '(' + show_remark_status_sos +')';
     	}
     	// div_gotohelp
     	// div_event_level
     	// div_select_treatment
         switch(status_sos){
 			case 'ออกจากฐาน':
+				document.querySelector('#situation_of_status').classList.add('situation-yellow');
 				document.querySelector('#div_gotohelp').classList.remove('d-none');
 				document.querySelector('#div_event_level').classList.add('d-none');
 				document.querySelector('#div_select_treatment').classList.add('d-none');
@@ -398,7 +918,9 @@
               	document.querySelector('#div_to_hospital').classList.add('d-none');
 			break;
 			case 'ถึงที่เกิดเหตุ':
+				document.querySelector('#situation_of_status').classList.add('situation-yellow');
 				if (!event_level_by_officers) {
+					document.querySelector('#situation_of_status').classList.add('situation-yellow');
 					document.querySelector('#div_event_level').classList.remove('d-none');
 					document.querySelector('#div_select_treatment').classList.add('d-none');
 					document.querySelector('#div_gotohelp').classList.add('d-none');
@@ -413,6 +935,7 @@
 				}
 			break;
 			case 'ออกจากที่เกิดเหตุ':
+				document.querySelector('#situation_of_status').classList.add('situation-yellow');
               	document.querySelector('#div_to_hospital').classList.remove('d-none');
               	document.querySelector('#div_operating_base').classList.add('d-none');
              	document.querySelector('#div_gotohelp').classList.add('d-none');
@@ -420,14 +943,12 @@
 				document.querySelector('#div_select_treatment').classList.add('d-none');
 			break;
 			case 'เสร็จสิ้น':
+				document.querySelector('#situation_of_status').classList.add('situation-green');
               	document.querySelector('#div_operating_base').classList.remove('d-none');
              	document.querySelector('#div_gotohelp').classList.add('d-none');
 				document.querySelector('#div_event_level').classList.add('d-none');
 				document.querySelector('#div_select_treatment').classList.add('d-none');
               	document.querySelector('#div_to_hospital').classList.add('d-none');
-
-              	document.querySelector('#show_status').classList.remove('text-warning');
-              	document.querySelector('#show_status').classList.add('text-success');
             break;
 
 		}
@@ -439,44 +960,44 @@
 		let class_color_officers ;
 		switch(event_level_by_control_center){
 			case 'แดง(วิกฤติ)':
-				class_color_center = 'btn-danger';
+				class_color_center = "situation-red";
 			break;
 			case 'เหลือง(เร่งด่วน)':
-				class_color_center = 'btn-warning';
+				class_color_center = 'situation-yellow';
 			break;
 			case 'เขียว(ไม่รุนแรง)':
-				class_color_center = 'btn-success';
+				class_color_center = 'situation-green';
 			break;
 			case 'ขาว(ทั่วไป)':
-				class_color_center = 'btn-light';
+				class_color_center = 'situation-normal';
 			break;
 			case 'ดำ(รับบริการสาธารณสุขอื่น)':
-				class_color_center = 'btn-dark';
+				class_color_center = 'situation-black';
 			break;
 		}
-		document.querySelector('#text_level_by_control_center').classList.add(class_color_center) ;
+		document.querySelector('#show_level_by_control_center').classList.add(class_color_center) ;
     	document.querySelector('#text_level_by_control_center').innerHTML = event_level_by_control_center ;
 	}
 	if (event_level_by_officers) {
 		// document.querySelector('#show_level_by_officers').classList.remove('d-none') ;
 		switch(event_level_by_officers){
 			case 'แดง(วิกฤติ)':
-				class_color_officers = 'btn-danger';
+				class_color_officers = 'situation-red';
 			break;
 			case 'เหลือง(เร่งด่วน)':
-				class_color_officers = 'btn-warning';
+				class_color_officers = 'situation-yellow';
 			break;
 			case 'เขียว(ไม่รุนแรง)':
-				class_color_officers = 'btn-success';
+				class_color_officers = 'situation-green';
 			break;
 			case 'ขาว(ทั่วไป)':
-				class_color_officers = 'btn-light';
+				class_color_officers = 'situation-normal';
 			break;
 			case 'ดำ':
-				class_color_officers = 'btn-dark';
+				class_color_officers = 'situation-black';
 			break;
 		}
-		document.querySelector('#text_level_by_officers').classList.add(class_color_officers) ;
+		document.querySelector('#show_level_by_officers').classList.add(class_color_officers) ;
     	document.querySelector('#text_level_by_officers').innerHTML = event_level_by_officers ;
 	}
 
@@ -535,7 +1056,7 @@
                 document.querySelector('#show_status').innerHTML = status_sos ;
                 if (result['remark_status']) {
                 	result['remark_status'] = result['remark_status'].replaceAll("_" , " ");
-            		document.querySelector('#show_remark_status').innerHTML = result['remark_status'] ;
+            		document.querySelector('#show_remark_status').innerHTML = '(' + result['remark_status'] +')';
 				}
         });
 
@@ -584,7 +1105,7 @@
             	document.querySelector('#show_status').innerHTML = status_sos ;
             	if (result_2['remark_status']) {
                 	result_2['remark_status'] = result_2['remark_status'].replaceAll("_" , " ");
-            		document.querySelector('#show_remark_status').innerHTML = result_2['remark_status'] ;
+            		document.querySelector('#show_remark_status').innerHTML = '(' + result_2['remark_status'] + ')';
 				}
 
             	let input_check = document.querySelector('#input_check_open_get_dir');
@@ -659,7 +1180,6 @@
 
         status_sos = status ;
         document.querySelector('#show_status').innerHTML = status_sos ;
-
 		fetch("{{ url('/') }}/api/update_status_officer" + "/" + status + "/" + sos_id + "/" + reason)
             .then(response => response.text())
             .then(result => {
@@ -676,7 +1196,7 @@
                 }else if(status_sos === "เสร็จสิ้น"){
                 	if (reason != 'null') {
                 		reason = reason.replaceAll("_" , " ");
-			    		document.querySelector('#show_remark_status').innerHTML = reason ;
+			    		document.querySelector('#show_remark_status').innerHTML = '(' + reason +')';
 					}
 					document.querySelector('#div_operating_base').classList.remove('d-none');
 
@@ -684,9 +1204,6 @@
                 	document.querySelector('#div_event_level').classList.add('d-none');
                 	document.querySelector('#div_select_treatment').classList.add('d-none');
                 	document.querySelector('#div_to_hospital').classList.add('d-none');
-
-					document.querySelector('#show_status').classList.remove('text-warning');
-              		document.querySelector('#show_status').classList.add('text-success');
                 }else if(status_sos === "ออกจากที่เกิดเหตุ"){
                 	document.querySelector('#show_remark_status').innerHTML = '' ;
                 	document.querySelector('#show_remark_status').classList.add('d-none') ;
@@ -711,22 +1228,22 @@
 
         switch(text_event_level){
 			case 'แดง(วิกฤติ)':
-				class_color_officers = 'btn-danger';
+				class_color_officers = 'situation-red';
 			break;
 			case 'เหลือง(เร่งด่วน)':
-				class_color_officers = 'btn-warning';
+				class_color_officers = 'situation-yellow';
 			break;
 			case 'เขียว(ไม่รุนแรง)':
-				class_color_officers = 'btn-success';
+				class_color_officers = 'situation-green';
 			break;
 			case 'ขาว(ทั่วไป)':
-				class_color_officers = 'btn-light';
+				class_color_officers = 'situation-normal';
 			break;
 			case 'ดำ':
-				class_color_officers = 'btn-dark';
+				class_color_officers = 'situation-black';
 			break;
 		}
-		document.querySelector('#text_level_by_officers').classList.add(class_color_officers) ;
+		document.querySelector('#show_level_by_officers').classList.add(class_color_officers) ;
     	document.querySelector('#text_level_by_officers').innerHTML = text_event_level ;
 
 		fetch("{{ url('/') }}/api/update_event_level_rc" + "/" + level + "/" + sos_id)
@@ -824,5 +1341,13 @@
 
 	}
 
+</script>
+<script>
+	function check_add_img(){
+		document.getElementById('add_select_img').classList.add('d-none')
+		document.getElementById('photo_sos_by_officers').classList.add('d-none');
+		document.getElementById('show_photo_sos_by_officers').classList.remove('d-none');
+
+	}
 </script>
 @endsection
