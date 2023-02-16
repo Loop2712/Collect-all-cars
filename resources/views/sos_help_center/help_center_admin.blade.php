@@ -450,6 +450,10 @@
                                                             สถานะการณ์<br>(ไม่รุนแรง)
                                                         </button>
                                                     @break
+                                                    @default
+                                                        <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 0 20px;">
+                                                            สถานะการณ์<br>ไม่ได้ระบุ
+                                                        </button>
                                                 @endswitch
                                                 <!-- RC -->
                                                 @switch($item->form_yellow->rc)
@@ -478,6 +482,10 @@
                                                             สถานะการณ์<br>(ไม่รุนแรง)
                                                         </button>
                                                     @break
+                                                    @default
+                                                        <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 20px 0;">
+                                                            สถานะการณ์<br>ไม่ได้ระบุ
+                                                        </button>
                                                 @endswitch
                                             </div>
                                         </div>

@@ -543,6 +543,7 @@
                                         </div> -->
                                 </div>
                             </div>
+                            <!-- BTN Select Level -->
                             <div class="chat-tab-menu ">
                                 <ul class="nav nav-pills nav-justified">
                                     <li class="nav-item">
@@ -594,7 +595,155 @@
                                 </ul>
                                 <input class="d-none" type="text" name="input_select_level" id="input_select_level" value="{{ isset($data_form_yellow->operating_suit_type) ? $data_form_yellow->operating_suit_type : 'all'}}">
                             </div>
-                            <div class="btn-group-round mt-2">
+
+                            <style>
+                                .menu-select-vehicle-all{
+                                    background-color: #fff!important;
+                                    color: #0dcaf0 !important;
+                                    border: #0dcaf0 1px solid !important;
+                                    border-radius: 5px 0 0 5px !important;
+                                }
+                                .vehicle-all-active {
+                                    background-color: #0dcaf0 !important;;
+                                    color: #ffffff !important;
+                                }
+
+                                .menu-select-vehicle-car{
+                                    background-color: #fff!important;
+                                    color: #0dcaf0 !important;
+                                    border: #0dcaf0 1px solid !important;
+                                    border-radius: 0 0 0 0 !important;
+                                }
+                                .vehicle-car-active {
+                                    background-color: #0dcaf0 !important;;
+                                    color: #ffffff !important;
+                                }
+
+                                .menu-select-vehicle-aircraft{
+                                    background-color: #fff!important;
+                                    color: #0dcaf0 !important;
+                                    border: #0dcaf0 1px solid !important;
+                                    border-radius: 0 5px 5px 0 !important;
+                                }
+                                .vehicle-aircraft-active {
+                                    background-color: #0dcaf0 !important;;
+                                    color: #ffffff !important;
+                                }
+
+                                .menu-select-vehicle-boat-1{
+                                    background-color: #fff!important;
+                                    color: #0dcaf0 !important;
+                                    border: #0dcaf0 1px solid !important;
+                                    border-radius: 5px 0 0 5px !important;
+                                }
+                                .vehicle-boat-1-active {
+                                    background-color: #0dcaf0 !important;;
+                                    color: #ffffff !important;
+                                }
+
+                                .menu-select-vehicle-boat-2{
+                                    background-color: #fff!important;
+                                    color: #0dcaf0 !important;
+                                    border: #0dcaf0 1px solid !important;
+                                    border-radius: 0 0 0 0 !important;
+                                }
+                                .vehicle-boat-2-active {
+                                    background-color: #0dcaf0 !important;;
+                                    color: #ffffff !important;
+                                }
+
+                                .menu-select-vehicle-boat-3{
+                                    background-color: #fff!important;
+                                    color: #0dcaf0 !important;
+                                    border: #0dcaf0 1px solid !important;
+                                    border-radius: 0 0 0 0 !important;
+                                }
+                                .vehicle-boat-3-active {
+                                    background-color: #0dcaf0 !important;;
+                                    color: #ffffff !important;
+                                }
+
+                                .menu-select-vehicle-boat-other{
+                                    background-color: #fff!important;
+                                    color: #0dcaf0 !important;
+                                    border: #0dcaf0 1px solid !important;
+                                    border-radius: 0 5px 5px 0 !important;
+                                }
+                                .vehicle-boat-other-active {
+                                    background-color: #0dcaf0 !important;;
+                                    color: #ffffff !important;
+                                }
+                            </style>
+                            <!-- BTN Select vehicle  -->
+                            <div class="chat-tab-menu mt-2">
+                                <ul class="nav nav-pills nav-justified">
+                                    <li class="nav-item">
+                                        <a class="nav-link  menu-select-vehicle-all" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'all';select_level();">
+                                            <div class="font-24">
+                                                ทั้งหมด
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-select-vehicle-car" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'รถ';select_level();">
+                                            <div class="font-24">
+                                                รถ
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-select-vehicle-aircraft" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'อากาศยาน';select_level();">
+                                            <div class="font-24">
+                                                อากาศยาน
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="chat-tab-menu mt-1">
+                                <ul class="nav nav-pills nav-justified">
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-select-vehicle-boat-1" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'เรือ ป.1';select_level();">
+                                            <div class="font-24">
+                                                เรือ ป.1
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-select-vehicle-boat-2" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'เรือ ป.2';select_level();">
+                                            <div class="font-24">
+                                                เรือ ป.2
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-select-vehicle-boat-3" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'เรือ ป.3';select_level();">
+                                            <div class="font-24">
+                                                เรือ ป.3
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-select-vehicle-boat-other" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'เรือประเภทอื่นๆ';select_level();">
+                                            <div class="font-24">
+                                                เรืออื่นๆ
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <input class="d-none" type="text" name="input_vehicle_type" id="input_vehicle_type" value="{{ isset($data_form_yellow->vehicle_type) ? $data_form_yellow->vehicle_type : 'all'}}" >
+                            </div>
+
+                           <!--  <div class="btn-group-round mt-2">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-white"
                                     onclick="document.querySelector('#input_vehicle_type').value = 'all';select_level();">
@@ -625,8 +774,9 @@
                                         เรืออื่นๆ
                                     </button>
                                 </div>
-                                <input class="d-none" type="text" name="input_vehicle_type" id="input_vehicle_type" value="{{ isset($data_form_yellow->vehicle_type) ? $data_form_yellow->vehicle_type : 'all'}}" >
-                            </div>
+                            </div> -->
+
+
                             <div class="data-officer p-3 mb-3 ps ps--active-y" id="card_data_operating">
 
                                 <!-- <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
@@ -1171,7 +1321,40 @@
         document.querySelector('.menu-select-lv-' + level).classList.add(level + "-active");
 
         // VEHICLE TYPE
-        // 
+        document.querySelector('.menu-select-vehicle-all').classList.remove("vehicle-all-active");
+        document.querySelector('.menu-select-vehicle-car').classList.remove("vehicle-car-active");
+        document.querySelector('.menu-select-vehicle-aircraft').classList.remove("vehicle-aircraft-active");
+        document.querySelector('.menu-select-vehicle-boat-1').classList.remove("vehicle-boat-1-active");
+        document.querySelector('.menu-select-vehicle-boat-2').classList.remove("vehicle-boat-2-active");
+        document.querySelector('.menu-select-vehicle-boat-3').classList.remove("vehicle-boat-3-active");
+        document.querySelector('.menu-select-vehicle-boat-other').classList.remove("vehicle-boat-other-active");
+
+        let text_vehicle_type ;
+
+        switch(vehicle_type) {
+            case 'all':
+                text_vehicle_type = "all" ;
+            break;
+            case 'รถ':
+                text_vehicle_type = "car" ;
+            break;
+            case 'อากาศยาน':
+                text_vehicle_type = "aircraft" ;
+            break;
+            case 'เรือ ป.1':
+                text_vehicle_type = "boat-1" ;
+            break;
+            case 'เรือ ป.2':
+                text_vehicle_type = "boat-2" ;
+            break;
+            case 'เรือ ป.3':
+                text_vehicle_type = "boat-3" ;
+            break;
+            case 'เรือ ป.3':
+                text_vehicle_type = "boat-other" ;
+            break;
+        }
+        document.querySelector('.menu-select-vehicle-' + text_vehicle_type).classList.add("vehicle-" + text_vehicle_type + "-active");
     }
 
     function send_data_sos_tooperating_unit(sos_id, operating_unit_id, user_id, distance) {
