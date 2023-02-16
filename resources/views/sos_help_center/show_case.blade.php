@@ -500,7 +500,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		<hr>
 		<div class="row">
 			<div class="col-12 mt-2">
-				<button class="btn btn-success main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
+				<button class="btn btn-primary main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
 				onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ถึงโรงพยาบาล');">
 					ถึงโรงพยาบาล
 				</button>
@@ -602,7 +602,6 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 </div>
 
 <!-- ----------------------------------------------------------------------------------------- -->
-
 
 
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->

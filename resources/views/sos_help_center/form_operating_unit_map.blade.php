@@ -287,7 +287,7 @@
             <div class="card">
                 <div id="div_text_Directions" class="card-body d-none main-shadow" style="position:absolute;z-index: 999;left: 0%;margin-top: 8%; background-color: #ffffff;border-radius: 20px;width: 45%;">
                     <div class="col-12 p-0 d-flex align-items-center">
-                        <img style="width:100%; border-radius: 50%;outline: #db2d2e 1px solid; width: 50px; height: 50px;margin-right: 10px;" src="{{ url('/') }}/img/stickerline/flex/7.png">
+                        <img style="width:100%; border-radius: 50%;outline: #db2d2e 1px solid; width: 50px; height: 50px;margin-right: 10px;" src="{{ url('/') }}/img/stickerline/Flex/7.png">
                         <h6 id="show_text_Directions" class="text-danger p-0"></h6>
                     </div>
                 </div>
