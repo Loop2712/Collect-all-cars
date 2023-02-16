@@ -213,6 +213,8 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}.text-of-status{
+	font-size: clamp(17px, 5vw, 20px) !important;
 }
 </style>
 
@@ -277,7 +279,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 				<div class="d-flex align-items-center">
 					<div  class="">
 						<p class="mb-0">ศูนย์สั่งการ</p>
-						<h5 class="mb-0 font-weight-bold" id="text_level_by_control_center">ไม่ได้ระบุ</h5>
+						<h5 class="mb-0 font-weight-bold text-of-status" id="text_level_by_control_center">ไม่ได้ระบุ</h5>
 					</div>
 				</div>
 			</div>
@@ -287,7 +289,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 				<div class="d-flex align-items-center">
 					<div>
 						<p class="mb-0">เจ้าหน้าที่</p>
-						<h5 class="mb-0 font-weight-bold" id="text_level_by_officers">ไม่ได้ระบุ</h5>
+						<h5 class="mb-0 font-weight-bold text-of-status" id="text_level_by_officers">ไม่ได้ระบุ</h5>
 					</div>
 				</div>
 			</div>
@@ -603,6 +605,316 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 <!-- ----------------------------------------------------------------------------------------- -->
 
+<div class="container notranslate" style="margin-top:140px;">
+	<div class="row">
+		<!-- หัวข้อ และ ปุ่มเพิ่มภาพถ่าย -->
+    	<div class="col-12 text-center">
+    		<div class="row" style="margin-left:4%;margin-right: 2%;">
+    			<div class="col-9">
+    				<h4>
+    					<b><span id="show_status" class="text-warning float-start"></span></b>
+    				</h4>
+    				<br>
+    				<span id="show_remark_status" class="text-secondary float-start"></span>
+    			</div>
+    			<div class="col-3">
+        			<button class="btn btn-info main-shadow main-radius" onclick="document.querySelector('#btn_modal_add_photo_sos').click();">
+						<i class="fa-solid fa-camera-viewfinder"></i>
+					</button>
+        		</div>
+        		<!-- lat lng -->
+        		
+        		<div class="col-12 d-none">
+        			<p class="mt-2">
+        				LAT : <span id="text_show_lat"></span> 
+        				<br>
+        				LONG : <span id="text_show_lng"></span>
+        			</p>
+        		</div>
+    		</div>
+        </div>
+        <!-- MAP -->
+        <div class="col-12">
+        	<div class="row">
+        		<!-- ระยะทางและเวลา (เสียเงิน) -->
+        		<div id="div_distance_and_duration" class="col-12 d-none">
+        			<p class="mt-2">
+        				ระยะทาง : <span id="text_distance"></span> / เวลา : <span id="text_duration"></span>
+        			</p>
+        		</div>
+        		<!-- show map -->
+        		<div class="col-12">
+        			<center>
+			        	<div class="main-shadow main-radius p-0" id="map_show_case">
+			                <img style=" object-fit: cover; border-radius:15px" width="100%" height="100%" src="{{ asset('/img/more/sorry-no-text.png') }}" class="card-img-top center" style="padding: 10px;">
+			                <div style="position: relative; z-index: 5">
+			                    <div class="translate">
+			                    	<center>
+			                    		<h4 style="top:-330px;left: 130px;position: absolute;font-family: 'Sarabun', sans-serif;">ขออภัยค่ะ</h4>
+			                            <h5 style="top:-270px;left: 35px;width: 80%;position: absolute;font-family: 'Sarabun', sans-serif;">
+			                            	ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ
+			                            </h5>
+			                            <br>
+			                            <span style="top:-200px;left: 130px;position: absolute;" class="btn btn-sm btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
+			                            	<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
+			                            </span>
+			                    	</center>
+			                        
+			                    </div>
+			                </div>
+			            </div>
+		            </center>
+        		</div>
+        		<div class="col-12" style="position:absolute;bottom: 10%;left: 7%;z-index: 99;">
+        			<div class="row">
+        				<!-- Google Map และ ดูเส้นทาง -->
+				        <div id="btn_google_map" class="col-12 d-">
+							@php
+								$gg_lat_mail = '@' . $data_sos->lat ;
+								$gg_lat = $data_sos->lat ;
+								$lng = $data_sos->lng ;
+							@endphp
+							<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="btn btn-sm btn-danger text-white main-shadow main-radius mt-2" style="width:50%;"  target="bank">
+								Google Map <i class="fa-solid fa-location-arrow"></i>
+							</a>
+							<button class="btn btn-sm btn-primary text-white main-shadow main-radius mt-2" onclick="get_dir();">
+								<i id="icon_btn_get_dir_close" class="fa-sharp fa-solid fa-eye-slash"></i>
+								<i id="icon_btn_get_dir_open" class="fa-solid fa-eye d-none"></i>
+								<!--เปิด fa-solid fa-eye -->
+								<!--ปิด fa-sharp fa-solid fa-eye-slash -->
+							</button>
+							<input class="d-none" type="checkbox" name="input_check_open_get_dir" id="input_check_open_get_dir">
+				        </div>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+        
+        <!-- ระดับสถานะการณ์ -->
+        <div class="col-12 text-center">
+        	<div class="row">
+        		<div class="col-12">
+        			<h5>ระดับสถานะการณ์ </h5>
+        		</div>
+        		<div class="col-6">
+        			<p id="show_level_by_control_center" class="">
+						ศูนย์สั่งการ
+						<br>
+						<b><span style="width:80%;" class="btn btn-sm main-shadow main-radius" id="text_level_by_control_center">ไม่ได้ระบุ</span></b>
+					</p>
+        		</div>
+        		<div class="col-6">
+        			<p id="show_level_by_officers" class="">
+						เจ้าหน้าที่
+						<br>
+						<b><span style="width:80%;" class="btn btn-sm main-shadow main-radius" id="text_level_by_officers">ไม่ได้ระบุ</span></b>
+					</p>
+        		</div>
+        	</div>
+        	<center>
+				<hr style="border: 1px solid red;width: 80%;color: red;">
+        	</center>
+        </div>
+
+        <!-- ปุ่ม ถึงที่เกิดเหตุ -->
+		<div class="col-12 text-center d-none" id="div_gotohelp">
+			<button class="btn btn-warning main-shadow main-radius" style="width:90%;" onclick="update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');">
+				ถึงที่เกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
+			</button>
+		</div>
+
+		<!-- ปุ่มเลือกระดับเหตุการณ์ -->
+		<div class="col-12 text-center d-none" id="div_event_level" >
+			<div class="row">
+				<div class="col-6 mt-2">
+					<button class="btn btn-dark main-shadow main-radius" style="width:90%;" 
+					onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
+						ดำ
+					</button>
+				</div>
+				<div class="col-6 mt-2">
+					<button class="btn btn-light main-shadow main-radius" style="width:90%;" 
+					onclick="update_event_level_rc('ขาว(ทั่วไป)','{{ $data_sos->id }}');">
+						ขาว(ทั่วไป)
+					</button>
+				</div>
+				<div class="col-6 mt-2">
+					<button class="btn btn-success main-shadow main-radius" style="width:90%;" 
+					onclick="update_event_level_rc('เขียว(ไม่รุนแรง)','{{ $data_sos->id }}');">
+						เขียว(ไม่รุนแรง)
+					</button>
+				</div>
+				<div class="col-6 mt-2">
+					<button class="btn btn-warning main-shadow main-radius" style="width:90%;" 
+					onclick="update_event_level_rc('เหลือง(เร่งด่วน)','{{ $data_sos->id }}');">
+						เหลือง(เร่งด่วน)
+					</button>
+				</div>
+				<div class="col-12 mt-2">
+					<button class="btn btn-danger main-shadow main-radius" style="width:95%;" 
+					onclick="update_event_level_rc('แดง(วิกฤติ)','{{ $data_sos->id }}');">
+						แดง(วิกฤติ)
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- ปุ่มเลือกการรักษา -->
+		<div class="col-12 text-center d-none" id="div_select_treatment" >
+			<!-- Modal -->
+			<div class="modal fade" id="modal_select_treatment" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="header_modal_treatment" aria-hidden="true" style="z-index:99999;width: 90%;">
+			  	<div class="modal-dialog modal-dialog-centered">
+			    	<div class="modal-content">
+			      		<div class="modal-header">
+			        		<h3 class="modal-title text-dark" id="header_modal_treatment"></h3>
+			        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          			<span aria-hidden="true">&times;</span>
+			        		</button>
+			      		</div>
+			      		<!-- มีการรักษา -->
+				      	<div id="modal_body_treatment" class="modal-body d-none">
+				        	<div class="row">
+				        		<div class="col-12 mt-2">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:100%;"
+				        			onclick="update_status('ออกจากที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');" data-dismiss="modal" aria-label="Close">
+										นำส่ง
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า');" data-dismiss="modal" aria-label="Close">
+										ส่งต่อชุดปฏิบัติการ
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่นำส่ง');" data-dismiss="modal" aria-label="Close">
+										ไม่นำส่ง
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิตระหว่างนำส่ง');" data-dismiss="modal" aria-label="Close">
+										เสียชีวิตระหว่างนำส่ง
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ณ_จุดเกิดเหตุ');" data-dismiss="modal" aria-label="Close">
+										เสียชีวิต ณ จุดเกิดเหตุ
+									</span>
+				        		</div>
+				        	</div>
+				      	</div>
+				      	<!-- ไม่ มีการรักษา -->
+				      	<div id="modal_body_no_treatment" class="modal-body d-none">
+				        	<div class="row">
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ผู้ป่วยปฎิเสธการรักษา');" data-dismiss="modal" aria-label="Close">
+										ผู้ป่วยปฎิเสธการรักษา
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ก่อนชุดปฎิบัติการไปถึง');" data-dismiss="modal" aria-label="Close">
+										เสียชีวิต ก่อนชุดปฎิบัติการไปถึง
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ยกเลิก');" data-dismiss="modal" aria-label="Close">
+										ยกเลิก
+									</span>
+				        		</div>
+				        		<div class="col-6 mt-2">
+				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;"
+				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่พบเหตุ');" data-dismiss="modal" aria-label="Close">
+										ไม่พบเหตุ
+									</span>
+				        		</div>
+				        		
+				        	</div>
+				      	</div>
+			    	</div>
+			  	</div>
+			</div>
+			<!-- END Modal -->
+			<div class="row">
+				<div class="col-6">
+					<span class="btn btn-info main-shadow main-radius" style="width:95%;" data-toggle="modal" data-target="#modal_select_treatment" onclick="aad('มีการรักษา');">
+						มีการรักษาก
+					</span>
+				</div>
+				<div class="col-6">
+					<span class="btn btn-danger main-shadow main-radius" style="width:95%;" data-toggle="modal" data-target="#modal_select_treatment" onclick="aad('ไม่มีการรักษา');">
+						ไม่มีการรักษา
+					</span>
+				</div>
+				<script>
+					function click_btn_select_treatment(type){
+						if (type === 'มีการรักษา') {
+							document.querySelector('#header_modal_treatment').innerHTML = 'มีการรักษา' ;
+							document.querySelector('#modal_body_treatment').classList.remove('d-none') ;
+							document.querySelector('#modal_body_no_treatment').classList.add('d-none') ;
+
+						}else if(type === 'ไม่มีการรักษา'){
+							document.querySelector('#header_modal_treatment').innerHTML = 'ไม่มีการรักษา' ;
+							document.querySelector('#modal_body_no_treatment').classList.remove('d-none') ;
+							document.querySelector('#modal_body_treatment').classList.add('d-none') ;
+						}
+					}
+				</script>
+			</div>
+		</div>
+
+		<!-- ปุ่มเลือก กลับถึงฐาน -->
+		<div class="col-12 text-center d-none" id="div_operating_base" >
+			<div class="row">
+				<div class="col-12 mt-2">
+					<button class="btn btn-success main-shadow main-radius" style="width:95%;"
+					onclick="officer_to_the_operating_base('{{ $data_sos->id }}');">
+						กลับถึงฐาน
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- ปุ่มเลือก ถึง รพ. -->
+		<div class="col-12 text-center d-none" id="div_to_hospital" >
+			<div class="row">
+				<div class="col-12 mt-2">
+					<button class="btn btn-success main-shadow main-radius" style="width:95%;"
+					onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ถึงโรงพยาบาล');">
+						ถึงโรงพยาบาล
+					</button>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- ปุ่มแก้ไขฟอร์ม -->
+		<div class="col-12 text-center">
+			<br>
+			<div class="row">
+				<div class="col-12 mt-2">
+					<a href="{{ url('/sos_help_center' . '/' . $data_sos->id . '/edit') }}" class="btn btn-warning main-shadow main-radius" style="width:90%;" >
+						แก้ไขข้อมูล ฟอร์มเหลือง
+					</a>
+				</div>
+				<div class="col-12 mt-2">
+					<button class="btn btn-secondary main-shadow main-radius" style="width:90%;" >
+						แก้ไขข้อมูล ฟอร์ม...
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<a id="tag_a_switch_standby" href="{{ url('/officers/switch_standby') }}" class="d-none"></a>
+
+    </div>
+</div>
 
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
