@@ -279,6 +279,7 @@
                     </div>
                 </div>
             </div>
+            <br>
             <div class="col-12">
                 <div class="row mt-2">
                     <div class="col-4  ">
@@ -314,15 +315,46 @@
                                     <div class="card card-sos shadow">
                                         <div class="sos-header">
                                             <div>
-                                                <h6 class="m-0 p-0 data-overflow">รหัส{{$item->id}}</h6>
+                                                <h4 class="m-0 p-0 data-overflow">
+                                                    รหัส <b class="text-dark">{{$item->operating_code}}</b>
+                                                </h4>
                                                 <p class="m-0 data-overflow">{{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }}</p>
                                                 <p class="m-0 data-overflow">{{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}</p>
 
                                             </div>
                                             <div>
-                                            <button class=" btn-request btn-status">
-                                                รับแจ้งเหตุ
-                                            </button>
+                                                @switch($item->status)
+                                                    @case('รับแจ้งเหตุ')
+                                                        <button class=" btn-request btn-status">
+                                                            รับแจ้งเหตุ
+                                                        </button>
+                                                    @break
+                                                    @case('รอการยืนยัน')
+                                                        <button class=" btn-order btn-status">
+                                                            สั่งการ
+                                                        </button>
+                                                    @break
+                                                    @case('ออกจากฐาน')
+                                                        <button class="btn-leave btn-status">
+                                                            ออกจากฐาน
+                                                        </button>
+                                                    @break
+                                                    @case('ถึงที่เกิดเหตุ')
+                                                        <button class="btn-to btn-status">
+                                                            ถึงที่เกิดเหตุ
+                                                        </button>
+                                                    @break
+                                                    @case('ออกจากที่เกิดเหตุ')
+                                                        <button class="btn-leave-the-scene btn-status">
+                                                            ออกจากที่เกิดเหตุ
+                                                        </button>
+                                                    @break
+                                                    @case('เสร็จสิ้น')
+                                                        <button class="btn-hospital btn-status" >
+                                                            เสร็จสิ้น ({{ $item->remark_status }})
+                                                        </button>
+                                                    @break
+                                                @endswitch
                                             </div>
                                         </div> 
                                         
@@ -386,6 +418,71 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <hr class="p-0 m-0" style="margin-bottom:0 ;">
+
+                                        <div class="sos-helper m-0 p-0">
+                                            <div class="row m-0 p-0">
+                                                <!-- IDC -->
+                                                @switch($item->form_yellow->idc)
+                                                    @case('แดง(วิกฤติ)')
+                                                        <button class="btn-status-crisis btn-status col-6" style="border-radius:0 0 0 20px;">
+                                                            สถานะการณ์<br>(วิกฤติ)
+                                                        </button>
+                                                    @break
+                                                    @case('ขาว(ทั่วไป)')
+                                                        <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 0 20px;">
+                                                            สถานะการณ์<br>(ทั่วไป)
+                                                        </button>
+                                                    @break
+                                                    @case('เหลือง(เร่งด่วน)')
+                                                        <button class="btn-status-hurry btn-status col-6" style="border-radius:0 0 0 20px;">
+                                                            สถานะการณ์<br>(เร่งด่วน)
+                                                        </button>
+                                                    @break
+                                                    @case('ดำ(รับบริการสาธารณสุขอื่น)')
+                                                        <button class="btn-status-other btn-status col-6" style="border-radius:0 0 0 20px;">
+                                                            สถานะการณ์<br>(รับบริการอื่นๆ)
+                                                        </button>
+                                                    @break
+                                                    @case('เขียว(ไม่รุนแรง)')
+                                                        <button class="btn-status-weak btn-status col-6" style="border-radius:0 0 0 20px;">
+                                                            สถานะการณ์<br>(ไม่รุนแรง)
+                                                        </button>
+                                                    @break
+                                                @endswitch
+                                                <!-- RC -->
+                                                @switch($item->form_yellow->rc)
+                                                    @case('แดง(วิกฤติ)')
+                                                        <button class="btn-status-crisis btn-status col-6" style="border-radius:0 0 20px 0;">
+                                                            สถานะการณ์<br>(วิกฤติ)
+                                                        </button>
+                                                    @break
+                                                    @case('ขาว(ทั่วไป)')
+                                                        <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 20px 0;">
+                                                            สถานะการณ์<br>(ทั่วไป)
+                                                        </button>
+                                                    @break
+                                                    @case('เหลือง(เร่งด่วน)')
+                                                        <button class="btn-status-hurry btn-status col-6" style="border-radius:0 0 20px 0;">
+                                                            สถานะการณ์<br>(เร่งด่วน)
+                                                        </button>
+                                                    @break
+                                                    @case('ดำ')
+                                                        <button class="btn-status-other btn-status col-6" style="border-radius:0 0 20px 0;">
+                                                            สถานะการณ์<br>({{ $item->form_yellow->rc_black_text }})
+                                                        </button>
+                                                    @break
+                                                    @case('เขียว(ไม่รุนแรง)')
+                                                        <button class="btn-status-weak btn-status col-6" style="border-radius:0 0 20px 0;">
+                                                            สถานะการณ์<br>(ไม่รุนแรง)
+                                                        </button>
+                                                    @break
+                                                @endswitch
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
                             </a>
@@ -432,43 +529,43 @@
                                 background-color: #00B900;
                             }
                         </style>
-                        <div class="col-12">
-                    <h1>สถานะต่างๆ</h1>
-                    <hr>
-                    <button class=" btn-request btn-status">
-                        รับแจ้งเหตุ
-                    </button>
-                    <button class=" btn-order btn-status">
-                        สั่งการ
-                    </button>
-                    <button class="btn-leave btn-status">
-                        ออกจากฐาน
-                    </button>
-                    <button class="btn-to btn-status">
-                        ถึงที่เกิดเหตุ
-                    </button>
-                    <button class="btn-status-other btn-status">
-                        สถานะการณ์<br>(รับบริการอื่นๆ)
-                    </button>
-                    <button class="btn-status-normal btn-status">
-                        สถานะการณ์<br>(ทั่วไป)
-                    </button>
-                    <button class="btn-status-weak btn-status">
-                        สถานะการณ์<br>(ไม่รุนแรง)
-                    </button>
-                    <button class="btn-status-hurry btn-status">
-                        สถานะการณ์<br>(เร่งด่วน)
-                    </button>
-                    <button class="btn-status-crisis btn-status">
-                        สถานะการณ์<br>(วิกฤติ)
-                    </button>
-                    <button class="btn-leave-the-scene btn-status">
-                        ออกจากที่เกิดเหตุ
-                    </button>
-                    <button class="btn-hospital btn-status" >
-                        ถึง รพ.
-                    </button>
-                </div>
+                        <div class="col-12 d-none">
+                            <h1>สถานะต่างๆ</h1>
+                            <hr>
+                            <button class=" btn-request btn-status">
+                                รับแจ้งเหตุ
+                            </button>
+                            <button class=" btn-order btn-status">
+                                สั่งการ
+                            </button>
+                            <button class="btn-leave btn-status">
+                                ออกจากฐาน
+                            </button>
+                            <button class="btn-to btn-status">
+                                ถึงที่เกิดเหตุ
+                            </button>
+                            <button class="btn-status-other btn-status">
+                                สถานะการณ์<br>(รับบริการอื่นๆ)
+                            </button>
+                            <button class="btn-status-normal btn-status">
+                                สถานะการณ์<br>(ทั่วไป)
+                            </button>
+                            <button class="btn-status-weak btn-status">
+                                สถานะการณ์<br>(ไม่รุนแรง)
+                            </button>
+                            <button class="btn-status-hurry btn-status">
+                                สถานะการณ์<br>(เร่งด่วน)
+                            </button>
+                            <button class="btn-status-crisis btn-status">
+                                สถานะการณ์<br>(วิกฤติ)
+                            </button>
+                            <button class="btn-leave-the-scene btn-status">
+                                ออกจากที่เกิดเหตุ
+                            </button>
+                            <button class="btn-hospital btn-status" >
+                                ถึง รพ.
+                            </button>
+                        </div>
                 </div>
             </div>
         </div>

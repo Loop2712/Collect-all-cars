@@ -222,12 +222,6 @@ class Sos_help_centerController extends Controller
 
         //     ->latest()->paginate($perPage);
         // }
-     
-        
-        
-
-
-
 
         return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos' ,'count_data'));
 

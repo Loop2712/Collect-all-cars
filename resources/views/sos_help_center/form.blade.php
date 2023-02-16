@@ -261,7 +261,14 @@
                             </a>
                         </li>
                         <li id="btn_form_yellow" class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
-                            <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#form_data_1').click();">
+                            <!-- <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#form_data_1').click();">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
+                                    </div>
+                                    <div class="tab-title">แบบฟอร์มเหลือง</div>
+                                </div>
+                            </a> -->
+                            <a class="nav-link btn-outline-warning btn active" href="{{ url('/sos_help_center') . '/' . $sos_help_center->id . '/edit' }}" >
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                     </div>

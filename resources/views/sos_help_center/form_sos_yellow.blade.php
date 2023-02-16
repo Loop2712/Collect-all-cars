@@ -1132,16 +1132,16 @@
 													เลข กม.
 												</th>
 												<td colspan="3">
-													<input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : ''}}">
+													<input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : 0}}" onchange="distance_in_no5();">
 												</td>
 												<td colspan="2">
-													<input class="form-control" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : ''}}">
+													<input class="form-control" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : 0}}" onchange="distance_in_no5();">
 												</td>
 												<td>
-													<input class="form-control"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : ''}}">
+													<input class="form-control"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : 0}}" onchange="distance_in_no5();">
 												</td>
 												<td>
-													<input class="form-control" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : ''}}">
+													<input class="form-control" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : 0}}" onchange="distance_in_no5();">
 												</td>
 											</tr>
 											<tr>
@@ -1149,19 +1149,19 @@
 													ระยะทาง (กม.)
 												</th>
 												<td  style="vertical-align: middle;text-align: center;" rowspan="2" colspan="4">
-													รวมระยะทางไป ................ กม.
+													รวมระยะทางไป <b><span id="text_distance_to" class="text-dark"></span></b> กม.
 												</td>
 												<td style="background-color:#D3D3D3;">
 													<!--  -->
 												</td>
 												<td colspan="2" style="text-align: center;">
-													ระยะทางกลับ ....... กม.
+													ระยะทางกลับ <b><span id="text_return_distance" class="text-dark"></span></b> กม.
 												</td>
 												</td>
 											</tr>
 											<tr>
 												<td colspan="2" style="text-align: center;">
-													ระยะไป รพ. ....... กม.
+													ระยะไป รพ. <b><span id="text_distance_to_hospital" class="text-dark"></span></b> กม.
 												</td>
 												<td style="background-color:#D3D3D3;">
 													<!--  -->
@@ -1862,6 +1862,8 @@
 	        check_click_rc();
         }, 1500);
 
+        distance_in_no5();
+
     });
 
     function check_lat_lng(){
@@ -1918,15 +1920,6 @@
 	}
 
 	function send_save_data(active){
-
-		// ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
-
-		fetch("{{ url('/') }}/api/check_update/form_yellow" + "/" + '{{ $sos_help_center->id }}')
-            .then(response => response.json())
-            .then(data_arr => {
-                // console.log(data_arr);
-
-            });
 
 		// ---------------------------- ข้อใน form ----------------------------//
 	    // ==>> 1
@@ -2255,10 +2248,22 @@
 
 		    break;
 		}
+		
+		console.log(data_arr);
 
 
-		// console.log(data_arr);
+		// ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
+		fetch("{{ url('/') }}/api/check_update/form_yellow" + "/" + '{{ $sos_help_center->id }}')
+            .then(response => response.json())
+            .then(check_update => {
+                // console.log("check_update");
+        		// console.log(check_update);
+                // console.log(check_update['be_notified']);
 
+            });
+        
+
+		// ---------------------------- ส่งข้อมูลไปอัพเดท ----------------------------//
 		fetch("{{ url('/') }}/api/send_save_data/form_yellow", {
             method: 'post',
             body: JSON.stringify(data_arr),
@@ -2275,6 +2280,117 @@
 
 	}
 
+</script>
+
+<!-- ตำนวณข้อ 5  -->
+<script>
+	function time_in_no5(){
+		let time_create_sos = document.querySelector('[name="time_create_sos"]'); 
+		let time_command = document.querySelector('[name="time_command"]'); 
+		let time_go_to_help = document.querySelector('[name="time_go_to_help"]'); 
+		let time_to_the_scene = document.querySelector('[name="time_to_the_scene"]'); 
+		let time_leave_the_scene = document.querySelector('[name="time_leave_the_scene"]'); 
+		let time_hospital = document.querySelector('[name="time_hospital"]'); 
+		let time_to_the_operating_base = document.querySelector('[name="time_to_the_operating_base"]');
+		// ------------------------------------------------------------------------------------------------//
+
+		const date1 = new Date('2022-02-01');
+		const date2 = new Date('2023-02-16');
+
+		// Calculate the difference in milliseconds
+		const diffInMs = Math.abs(date2 - date1);
+
+		// Calculate the difference in seconds, minutes, hours, and days
+		const diffInSec = Math.floor(diffInMs / 1000);
+		const diffInMin = Math.floor(diffInSec / 60);
+		const diffInHrs = Math.floor(diffInMin / 60);
+		const diffInDays = Math.floor(diffInHrs / 24);
+
+		// Print the results
+		console.log(`The distance between ${date1} and ${date2} is: `);
+		console.log(`${diffInMs} milliseconds`);
+		console.log(`${diffInSec} seconds`);
+		console.log(`${diffInMin} minutes`);
+		console.log(`${diffInHrs} hours`);
+		console.log(`${diffInDays} days`);
+
+		let response_time_1 ;
+
+		let response_time_2 ;
+
+	}
+
+	function distance_in_no5(){
+		let num_km_1 = 0 ;
+		let num_km_2 = 0 ;
+		let num_km_3 = 0 ;
+		let num_km_4 = 0 ;
+
+		let km_create_sos_to_go_to_help = document.querySelector('#km_create_sos_to_go_to_help');
+		if (km_create_sos_to_go_to_help.value) {
+			num_km_1 = km_create_sos_to_go_to_help.value ;
+		}
+		let km_to_the_scene_to_leave_the_scene = document.querySelector('#km_to_the_scene_to_leave_the_scene');
+		if (km_to_the_scene_to_leave_the_scene.value) {
+			num_km_2 = km_to_the_scene_to_leave_the_scene.value ;
+		}
+		//  num_km_2 / 2
+		let divide_2 = parseFloat(num_km_2) / 2 ;
+
+		let km_hospital = document.querySelector('#km_hospital');
+		if (km_hospital.value) {
+			num_km_3 = km_hospital.value ;
+		}
+		let km_operating_base = document.querySelector('#km_operating_base');
+		if (km_operating_base.value) {
+			num_km_4 = km_operating_base.value ;
+		}
+
+		// ------------------------------- รวมระยะทางไป ---------------------------------------//
+		let no5_distance_to_1 = 0 ;
+		let no5_distance_to_2 = 0 ;
+	
+		no5_distance_to_1 = parseFloat(num_km_1) + parseFloat(divide_2) ;
+		no5_distance_to_2 = parseFloat(num_km_1) + parseFloat(num_km_2) ;
+
+		if (parseFloat(num_km_1) === 0 && parseFloat(num_km_2) === 0) {
+			document.querySelector('#text_distance_to').innerHTML = '0' ;
+		}else if(parseFloat(num_km_1) != 0 && parseFloat(num_km_2) === 0){
+			document.querySelector('#text_distance_to').innerHTML = num_km_1 ;
+		}else if(parseFloat(num_km_1) === 0 && parseFloat(num_km_2) != 0){
+			document.querySelector('#text_distance_to').innerHTML = num_km_2 ;
+		}else{
+			document.querySelector('#text_distance_to').innerHTML = no5_distance_to_1 + " - " + no5_distance_to_2 ;
+		}
+		// ------------------------------- จบ รวมระยะทางไป ---------------------------------------//
+
+		// ------------------------------- รวมระยะทางกลับ ---------------------------------------//
+		let return_distance = 0 ;
+
+		return_distance = parseFloat(num_km_3) + parseFloat(num_km_4) ;
+		document.querySelector('#text_return_distance').innerHTML = return_distance ;
+		// ------------------------------- จบ รวมระยะทางกลับ ---------------------------------------//
+
+		// ------------------------------- ระยะไป รพ ---------------------------------------//
+		let distance_to_hospital_1 = 0 ;
+		let distance_to_hospital_2 = 0 ;
+
+		distance_to_hospital_1 = parseFloat(divide_2) + parseFloat(num_km_3) ;
+		distance_to_hospital_2 = parseFloat(num_km_2) + parseFloat(num_km_3) ;
+
+		if (parseFloat(num_km_2) === 0 && parseFloat(num_km_3) === 0) {
+			document.querySelector('#text_distance_to_hospital').innerHTML = '0' ;
+		}else if(parseFloat(num_km_2) != 0 && parseFloat(num_km_3) === 0){
+			document.querySelector('#text_distance_to_hospital').innerHTML = num_km_2 ;
+		}else if(parseFloat(num_km_2) === 0 && parseFloat(num_km_3) != 0){
+			document.querySelector('#text_distance_to_hospital').innerHTML = num_km_3 ;
+		}else{
+			document.querySelector('#text_distance_to_hospital').innerHTML = distance_to_hospital_1 + " - " + distance_to_hospital_2 ;
+		}
+		// ------------------------------- จบ ระยะไป รพ ---------------------------------------//
+
+		time_in_no5();
+	}
 </script>
 
 <!-- check_color_btn() อยู่ในนี้ -->
