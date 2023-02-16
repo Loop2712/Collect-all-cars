@@ -149,7 +149,7 @@
                             </div>
                             
                         </span> -->
-                        @if(Auth::user()->id == '1' && Auth::user()->id == '64')
+                        <!-- @if(Auth::user()->id == '1' && Auth::user()->id == '64') -->
                             <span  class="mail-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" >
                                 <div class="d-flex">
                                     <div class="col-3 p-0 d-flex align-items-center">
@@ -169,7 +169,7 @@
                                     </div>
                                 </div>
                             </span>
-                        @endif
+                        <!-- @endif -->
                         <span  class="mail-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
                             <div class="d-flex">
                                 <div class="col-3 p-0 d-flex align-items-center">
