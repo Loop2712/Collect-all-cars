@@ -11,10 +11,12 @@ use App\User;
 use App\Models\Register_car;
 use App\Models\LineMessagingAPI;
 use App\Models\Mylog;
+use Illuminate\Http\Request;
 
 use App\Models\Data_1669_operating_officer;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Mail_proposal;
 
 class test_for_devController extends Controller
 {
@@ -27,6 +29,24 @@ class test_for_devController extends Controller
     public function test_table()
     {
         return view('test_for_dev.test_table'); 
+    }
+
+    public function test_send_mail_proposal()
+    {
+        //ส่งเมล
+        $data_send_mail = array();
+
+        $data_send_mail['title'] = "Hello Word" ;
+
+        // $email_arr = [] ;
+        // $email[1] = "lux_senarak@hotmail.com" ;
+        // $email[2] = "luxsenarak1@gmail.com" ;
+
+        $email = "luxsenarak1@gmail.com" ;
+        
+        Mail::to($email)->send(new Mail_proposal($data_send_mail));
+
+        return "Sent Success"; 
     }
 
 
