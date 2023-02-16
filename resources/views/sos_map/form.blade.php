@@ -1,4 +1,4 @@
-
+ss
 @if(Auth::user()->id == '1')
 <div style="display:none;">
 @else
@@ -121,7 +121,26 @@
                                 <i class="fas fa-bullhorn"></i> <b>Ask for HELP (police)</b>
                         </a>
                     </div>
-                        
+                    <div class="col-12 order-2 mt-3 mb-3">
+                    <span  class="mail-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" >
+                                <div class="d-flex">
+                                    <div class="col-3 p-0 d-flex align-items-center">
+                                        <div class="justify-content-center col-12 p-0">
+                                            <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center col-9 text-center">
+                                        <div class="justify-content-center col-12">
+                                            <b>
+                                                <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน</span>
+                                                <span class="d-block" style="color: #ffffff;">(1669)</span>
+                                            </b>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </span></s
                     <div class="col-12 order-2 mt-3 mb-3" id="btn_emergency_volunteer">
                         <!-- <button class="shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#08361d;" onclick="call_sos_of_js100();">
                             <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp;Call Emergency  JS 100</b>
