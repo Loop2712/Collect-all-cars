@@ -1183,6 +1183,7 @@
         });
 
         get_Directions_API(sos_operating_marker, select_marker_goto, lat, lng);
+        hide_data_officer();
     }
 
     function get_Directions_API(markerA, markerB) {
