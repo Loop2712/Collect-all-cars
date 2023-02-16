@@ -592,15 +592,6 @@ class Sos_help_centerController extends Controller
                     'wait' => null,
                 ]);
 
-            DB::table('sos_1669_form_yellows')
-            ->where([ 
-                    ['sos_help_center_id', $sos_id],
-                ])
-            ->update([
-                    'time_go_to_help' => $time_now,
-                    'operation_unit_name' => $data_unit->name,
-                    'action_set_name' => $data_user->name,
-                ]);
 
             // ------------------------------------------------------------------
             $data_officers = Data_1669_operating_officer::where('user_id', $data_user->id)
@@ -617,6 +608,18 @@ class Sos_help_centerController extends Controller
             ->update([
                     'status' => "Helping",
                     'go_to_help' => $sum_go_to_help,
+                ]);
+
+            DB::table('sos_1669_form_yellows')
+            ->where([ 
+                    ['sos_help_center_id', $sos_id],
+                ])
+            ->update([
+                    'time_go_to_help' => $time_now,
+                    'operation_unit_name' => $data_unit->name,
+                    'action_set_name' => $data_user->name,
+                    'vehicle_type' => $data_officers->vehicle_type,
+                    'operating_suit_type' => $data_officers->level,
                 ]);
 
             return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
