@@ -14,6 +14,8 @@
   <!-- Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <link href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" rel="stylesheet">
+  <link href="https://kit-pro.fontawesome.com/releases/v6.3.0/css/pro.min.css" rel="stylesheet">
+  
     <!-- google font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -246,6 +248,12 @@
                   <a class="nav-link" href="{{ url('/check_in/admin_gallery') }}">
                     <i class="fas fa-qrcode text-info"></i>
                     <span class="nav-link-text">สร้าง QR-Code เช็คอิน</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/index_send_mail_proposal') }}">
+                    <i class="fa-solid fa-inbox"></i>
+                    <span class="nav-link-text">Send Mail Proposal</span>
                   </a>
                 </li>
               </div>

@@ -31,23 +31,7 @@ class test_for_devController extends Controller
         return view('test_for_dev.test_table'); 
     }
 
-    public function test_send_mail_proposal()
-    {
-        //ส่งเมล
-        $data_send_mail = array();
-
-        $data_send_mail['title'] = "Hello Word" ;
-
-        // $email_arr = [] ;
-        // $email[1] = "lux_senarak@hotmail.com" ;
-        // $email[2] = "luxsenarak1@gmail.com" ;
-
-        $email = "luxsenarak1@gmail.com" ;
-        
-        Mail::to($email)->send(new Mail_proposal($data_send_mail));
-
-        return "Sent Success"; 
-    }
+    
 
 
     // นับตัวอักษร
@@ -159,4 +143,44 @@ class test_for_devController extends Controller
         return $type_car_registration ;
     }
     
+    ///////////////////////////////////
+    ////////// อันนี้ใช้งานจริงนะ ///////////
+    ///////////////////////////////////
+
+    public function index_send_mail_proposal()
+    {
+
+        return view('admin_viicheck.index_send_mail_proposal'); 
+    }
+
+    public function send_mail_proposal(Request $request)
+    {
+        $requestData = $request->all();
+
+        $count = count($requestData) - 2;
+        $count = $count / 2;
+
+        // echo $count ;
+        // echo "<br>";
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+
+        for ($i=0; $i < $count; $i++) { 
+            $xxz = $i + 1 ;
+            $name = $requestData['title_'.$xxz] ;
+            $email = $requestData['mail_'.$xxz] ;
+
+            echo "เรียนคุณ : " . $name . " >> Send to Mail : " . $email;
+            echo "<br>";
+
+            //ส่งเมล
+            Mail::to($email)->send(new Mail_proposal($name));
+        }
+
+        return "Sent Success"; 
+    }
+    ///////////////////////////////////
+    ////////// อันนี้ใช้งานจริงนะ ///////////
+    ///////////////////////////////////
 }

@@ -29,8 +29,8 @@ class Mail_proposal extends Mailable
      */
     public function build()
     {
-        $data = $this->data;
+        $name = $this->data;
         return $this->subject('ทดสอบระบบส่ง Proposal')
-        ->view('mail.Mail_proposal', compact('data') );
+        ->view('mail.Mail_proposal', compact('name') );
     }
 }
