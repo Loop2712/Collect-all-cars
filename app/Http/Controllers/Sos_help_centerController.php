@@ -680,7 +680,7 @@ class Sos_help_centerController extends Controller
         $data['status_sos'] = $data_sos->status ;
         $data['remark_status'] = $data_sos->remark_status ;
 
-        $data['officer_level'] = $data_officer->operating_unit->level ;
+        $data['officer_level'] = $data_officer->level ;
 
         $data['unit_name'] = $data_sos->organization_helper ;
         $data['unit_area'] = $data_officer->operating_unit->area ;
