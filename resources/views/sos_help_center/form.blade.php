@@ -364,26 +364,30 @@
                 <h3>
                     <b>ข้อมูลหน่วยแพทย์</b>
                     <span id="data_level_operating_unit">
-                    @if(!empty($sos_help_center->operating_unit->level))
-                        @switch($sos_help_center->operating_unit->level)
+                    @php
+                        $data_officer = App\Models\Data_1669_operating_officer::where('operating_unit_id' , $sos_help_center->operating_unit_id)->where('user_id',$sos_help_center->helper_id)->first();
+                    @endphp
+
+                    @if(!empty($data_officer->level))
+                        @switch($data_officer->level)
                             @case('FR')
                                 <span class="float-end btn btn-sm btn-success main-shadow main-radius">
-                                    {{ $sos_help_center->operating_unit->level }}
+                                    {{ $data_officer->level }}
                                 </span>
                             @break
                             @case('BLS')
                                 <span class="float-end btn btn-sm btn-warning text-white main-shadow main-radius">
-                                    {{ $sos_help_center->operating_unit->level }}
+                                    {{ $data_officer->level }}
                                 </span>
                             @break
                             @case('ILS')
                                 <span class="float-end btn btn-sm btn-danger main-shadow main-radius">
-                                    {{ $sos_help_center->operating_unit->level }}
+                                    {{ $data_officer->level }}
                                 </span>
                             @break
                             @case('ALS')
                                 <span class="float-end btn btn-sm btn-danger main-shadow main-radius">
-                                    {{ $sos_help_center->operating_unit->level }}
+                                    {{ $data_officer->level }}
                                 </span>
                             @break
                         @endswitch
