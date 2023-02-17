@@ -424,69 +424,73 @@
                                         <div class="sos-helper m-0 p-0">
                                             <div class="row m-0 p-0">
                                                 <!-- IDC -->
-                                                @switch($item->form_yellow->idc)
-                                                    @case('แดง(วิกฤติ)')
-                                                        <button class="btn-status-crisis btn-status col-6" style="border-radius:0 0 0 20px;">
-                                                            สถานะการณ์<br>(วิกฤติ)
-                                                        </button>
-                                                    @break
-                                                    @case('ขาว(ทั่วไป)')
-                                                        <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 0 20px;">
-                                                            สถานะการณ์<br>(ทั่วไป)
-                                                        </button>
-                                                    @break
-                                                    @case('เหลือง(เร่งด่วน)')
-                                                        <button class="btn-status-hurry btn-status col-6" style="border-radius:0 0 0 20px;">
-                                                            สถานะการณ์<br>(เร่งด่วน)
-                                                        </button>
-                                                    @break
-                                                    @case('ดำ(รับบริการสาธารณสุขอื่น)')
-                                                        <button class="btn-status-other btn-status col-6" style="border-radius:0 0 0 20px;">
-                                                            สถานะการณ์<br>(รับบริการอื่นๆ)
-                                                        </button>
-                                                    @break
-                                                    @case('เขียว(ไม่รุนแรง)')
-                                                        <button class="btn-status-weak btn-status col-6" style="border-radius:0 0 0 20px;">
-                                                            สถานะการณ์<br>(ไม่รุนแรง)
-                                                        </button>
-                                                    @break
-                                                    @default
-                                                        <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 0 20px;">
-                                                            สถานะการณ์<br>ไม่ได้ระบุ
-                                                        </button>
-                                                @endswitch
+                                                @if(!empty($item->form_yellow->idc))
+                                                    @switch($item->form_yellow->idc)
+                                                        @case('แดง(วิกฤติ)')
+                                                            <button class="btn-status-crisis btn-status col-6" style="border-radius:0 0 0 20px;">
+                                                                สถานะการณ์<br>(วิกฤติ)
+                                                            </button>
+                                                        @break
+                                                        @case('ขาว(ทั่วไป)')
+                                                            <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 0 20px;">
+                                                                สถานะการณ์<br>(ทั่วไป)
+                                                            </button>
+                                                        @break
+                                                        @case('เหลือง(เร่งด่วน)')
+                                                            <button class="btn-status-hurry btn-status col-6" style="border-radius:0 0 0 20px;">
+                                                                สถานะการณ์<br>(เร่งด่วน)
+                                                            </button>
+                                                        @break
+                                                        @case('ดำ(รับบริการสาธารณสุขอื่น)')
+                                                            <button class="btn-status-other btn-status col-6" style="border-radius:0 0 0 20px;">
+                                                                สถานะการณ์<br>(รับบริการอื่นๆ)
+                                                            </button>
+                                                        @break
+                                                        @case('เขียว(ไม่รุนแรง)')
+                                                            <button class="btn-status-weak btn-status col-6" style="border-radius:0 0 0 20px;">
+                                                                สถานะการณ์<br>(ไม่รุนแรง)
+                                                            </button>
+                                                        @break
+                                                        @default
+                                                            <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 0 20px;">
+                                                                สถานะการณ์<br>ไม่ได้ระบุ
+                                                            </button>
+                                                    @endswitch
+                                                @endif
                                                 <!-- RC -->
-                                                @switch($item->form_yellow->rc)
-                                                    @case('แดง(วิกฤติ)')
-                                                        <button class="btn-status-crisis btn-status col-6" style="border-radius:0 0 20px 0;">
-                                                            สถานะการณ์<br>(วิกฤติ)
-                                                        </button>
-                                                    @break
-                                                    @case('ขาว(ทั่วไป)')
-                                                        <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 20px 0;">
-                                                            สถานะการณ์<br>(ทั่วไป)
-                                                        </button>
-                                                    @break
-                                                    @case('เหลือง(เร่งด่วน)')
-                                                        <button class="btn-status-hurry btn-status col-6" style="border-radius:0 0 20px 0;">
-                                                            สถานะการณ์<br>(เร่งด่วน)
-                                                        </button>
-                                                    @break
-                                                    @case('ดำ')
-                                                        <button class="btn-status-other btn-status col-6" style="border-radius:0 0 20px 0;">
-                                                            สถานะการณ์<br>({{ $item->form_yellow->rc_black_text }})
-                                                        </button>
-                                                    @break
-                                                    @case('เขียว(ไม่รุนแรง)')
-                                                        <button class="btn-status-weak btn-status col-6" style="border-radius:0 0 20px 0;">
-                                                            สถานะการณ์<br>(ไม่รุนแรง)
-                                                        </button>
-                                                    @break
-                                                    @default
-                                                        <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 20px 0;">
-                                                            สถานะการณ์<br>ไม่ได้ระบุ
-                                                        </button>
-                                                @endswitch
+                                                @if(!empty($item->form_yellow->rc))
+                                                    @switch($item->form_yellow->rc)
+                                                        @case('แดง(วิกฤติ)')
+                                                            <button class="btn-status-crisis btn-status col-6" style="border-radius:0 0 20px 0;">
+                                                                สถานะการณ์<br>(วิกฤติ)
+                                                            </button>
+                                                        @break
+                                                        @case('ขาว(ทั่วไป)')
+                                                            <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 20px 0;">
+                                                                สถานะการณ์<br>(ทั่วไป)
+                                                            </button>
+                                                        @break
+                                                        @case('เหลือง(เร่งด่วน)')
+                                                            <button class="btn-status-hurry btn-status col-6" style="border-radius:0 0 20px 0;">
+                                                                สถานะการณ์<br>(เร่งด่วน)
+                                                            </button>
+                                                        @break
+                                                        @case('ดำ')
+                                                            <button class="btn-status-other btn-status col-6" style="border-radius:0 0 20px 0;">
+                                                                สถานะการณ์<br>({{ $item->form_yellow->rc_black_text }})
+                                                            </button>
+                                                        @break
+                                                        @case('เขียว(ไม่รุนแรง)')
+                                                            <button class="btn-status-weak btn-status col-6" style="border-radius:0 0 20px 0;">
+                                                                สถานะการณ์<br>(ไม่รุนแรง)
+                                                            </button>
+                                                        @break
+                                                        @default
+                                                            <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 20px 0;">
+                                                                สถานะการณ์<br>ไม่ได้ระบุ
+                                                            </button>
+                                                    @endswitch
+                                                @endif
                                             </div>
                                         </div>
 
