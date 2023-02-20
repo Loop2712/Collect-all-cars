@@ -1,11 +1,6 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="row">
-	<div class="col-12">
-		<button class="btn btn-primary" onclick="check_start_data_form_yellow();">
-			check_start_data_form_yellow();
-		</button>
-	</div>
 	<div class="col-xl-12 mx-auto">
 		<div class="card-body">
             <style>
