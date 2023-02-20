@@ -2562,6 +2562,9 @@
 			transition: {
 				animation: 'fade', // Effect on navigation, none/fade/slide-horizontal/slide-vertical/slide-swing
 			},
+			keyboardSettings: {
+				keyNavigation: false, // Enable/Disable keyboard navigation(left and right keys are used if enabled)
+			},
 			anchorSettings: {
 				anchorClickable: true, // Enable/Disable anchor navigation
 				enableAllAnchors: true, // Activates all anchors clickable all times
