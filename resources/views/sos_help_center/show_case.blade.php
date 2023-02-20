@@ -1460,7 +1460,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 					<div class="ml-3">
 						<small>{{$greetings}}</small><br>
-						<h4 class="m-0 p-0">{{Auth::user()->name}}</h4>
+						<h4 class="m-0 p-0 notranslate">{{Auth::user()->name}}</h4>
 					</div>
 					
 				</div>
