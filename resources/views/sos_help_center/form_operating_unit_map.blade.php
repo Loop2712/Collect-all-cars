@@ -599,83 +599,131 @@
                             <style>
                                 .menu-select-vehicle-all{
                                     background-color: #fff!important;
-                                    color: #0dcaf0 !important;
-                                    border: #0dcaf0 1px solid !important;
-                                    border-radius: 5px 0 0 5px !important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius: 25px !important;
+                                    
                                 }
                                 .vehicle-all-active {
-                                    background-color: #0dcaf0 !important;;
+                                    background-color: #00438c !important;
                                     color: #ffffff !important;
                                 }
 
                                 .menu-select-vehicle-car{
                                     background-color: #fff!important;
-                                    color: #0dcaf0 !important;
-                                    border: #0dcaf0 1px solid !important;
-                                    border-radius: 0 0 0 0 !important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius: 25px !important;
                                 }
                                 .vehicle-car-active {
-                                    background-color: #0dcaf0 !important;;
+                                    background-color: #00438c !important;
                                     color: #ffffff !important;
                                 }
 
                                 .menu-select-vehicle-aircraft{
                                     background-color: #fff!important;
-                                    color: #0dcaf0 !important;
-                                    border: #0dcaf0 1px solid !important;
-                                    border-radius: 0 5px 5px 0 !important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius:25px!important;
                                 }
                                 .vehicle-aircraft-active {
-                                    background-color: #0dcaf0 !important;;
+                                    background-color: #00438c !important;
                                     color: #ffffff !important;
                                 }
 
                                 .menu-select-vehicle-boat-1{
                                     background-color: #fff!important;
-                                    color: #0dcaf0 !important;
-                                    border: #0dcaf0 1px solid !important;
-                                    border-radius: 5px 0 0 5px !important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius: 25px !important;
                                 }
                                 .vehicle-boat-1-active {
-                                    background-color: #0dcaf0 !important;;
+                                    background-color: #00438c !important;
                                     color: #ffffff !important;
                                 }
 
                                 .menu-select-vehicle-boat-2{
                                     background-color: #fff!important;
-                                    color: #0dcaf0 !important;
-                                    border: #0dcaf0 1px solid !important;
-                                    border-radius: 0 0 0 0 !important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius: 25px !important;
                                 }
                                 .vehicle-boat-2-active {
-                                    background-color: #0dcaf0 !important;;
+                                    background-color: #00438c !important;
                                     color: #ffffff !important;
                                 }
 
                                 .menu-select-vehicle-boat-3{
                                     background-color: #fff!important;
-                                    color: #0dcaf0 !important;
-                                    border: #0dcaf0 1px solid !important;
-                                    border-radius: 0 0 0 0 !important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius:25px !important;
                                 }
                                 .vehicle-boat-3-active {
-                                    background-color: #0dcaf0 !important;;
+                                    background-color: #00438c !important;
                                     color: #ffffff !important;
                                 }
 
                                 .menu-select-vehicle-boat-other{
                                     background-color: #fff!important;
-                                    color: #0dcaf0 !important;
-                                    border: #0dcaf0 1px solid !important;
-                                    border-radius: 0 5px 5px 0 !important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius: 25px !important;
                                 }
                                 .vehicle-boat-other-active {
-                                    background-color: #0dcaf0 !important;;
+                                    background-color: #00438c !important;
                                     color: #ffffff !important;
                                 }
                             </style>
                             <!-- BTN Select vehicle  -->
-                            <div class="chat-tab-menu mt-2">
+                            <div class="owl-carousel owl-theme owlmenu-vehicle p-3">
+                                <div class="item" style="width:100%">
+                                    <a class="btn menu-select-vehicle-all" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'all';select_level();">
+                                    ทั้งหมด
+                                    </a>
+                                </div>
+                                <div class="item" style="width:100%">
+                                    <a class="btn menu-select-vehicle-car" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'รถ';select_level();">
+                                    รถ
+                                    </a>
+                                </div>
+                                <div class="item" style="width:100%">
+                                    <a class="btn menu-select-vehicle-aircraft" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'อากาศยาน';select_level();">
+                                    อากาศยาน
+                                    </a>
+                                </div>
+                                <div class="item" style="width:100%">
+                                    <a class="btn menu-select-vehicle-boat-1" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'เรือ ป.1';select_level();">
+                                    เรือ ป.1
+                                    </a>
+                                </div>
+                                <div class="item" style="width:100%">
+                                    <a class="btn menu-select-vehicle-boat-2" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'เรือ ป.2';select_level();">
+                                    เรือ ป.2
+                                    </a>
+                                </div>
+                                <div class="item" style="width:100%">
+                                    <a class="btn menu-select-vehicle-boat-3" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'เรือ ป.3';select_level();">
+                                    เรือ ป.3
+                                    </a>
+                                </div>
+                                <div class="item" style="width:100%">
+                                    <a class="btn  menu-select-vehicle-boat-other" href="javascript:;" 
+                                    onclick="document.querySelector('#input_vehicle_type').value = 'เรือประเภทอื่นๆ';select_level();">
+                                        เรืออื่นๆ
+                                    </a>
+                                </div>
+                            </div>
+                           
+                            
+                          
+                            <!-- <div class="chat-tab-menu mt-2">
                                 <ul class="nav nav-pills nav-justified">
                                     <li class="nav-item">
                                         <a class="nav-link  menu-select-vehicle-all" href="javascript:;" 
@@ -740,8 +788,8 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <input class="d-none" type="text" name="input_vehicle_type" id="input_vehicle_type" value="{{ isset($data_form_yellow->vehicle_type) ? $data_form_yellow->vehicle_type : 'all'}}" >
-                            </div>
+                            </div> -->
+                            <input class="d-none" type="text" name="input_vehicle_type" id="input_vehicle_type" value="{{ isset($data_form_yellow->vehicle_type) ? $data_form_yellow->vehicle_type : 'all'}}" >
 
                            <!--  <div class="btn-group-round mt-2">
                                 <div class="btn-group">
@@ -1351,7 +1399,7 @@
             case 'เรือ ป.3':
                 text_vehicle_type = "boat-3" ;
             break;
-            case 'เรือ ป.3':
+            case 'เรือประเภทอื่นๆ':
                 text_vehicle_type = "boat-other" ;
             break;
         }
@@ -1481,4 +1529,17 @@
 
 <script>
     new PerfectScrollbar('.data-officer');
+</script>
+
+<script>
+    $(function() {
+    // Owl Carousel
+    var owl = $(".owlmenu-vehicle");
+    owl.owlCarousel({
+        margin: 5,
+        loop: false,
+        autoWidth:true,
+        dots:false
+    });
+    });
 </script>
