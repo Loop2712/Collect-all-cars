@@ -986,6 +986,13 @@
                             bounds.extend(myPlace);
                             bounds.extend(Item_1);
                         map_go_to_help.fitBounds(bounds);
+
+                        // if ( map_go_to_help.getZoom() ){   // or set a minimum
+                        //     map_go_to_help.setZoom(map_go_to_help.getZoom() - 2);  // set zoom here
+                        //     console.log(map_go_to_help.getZoom());
+                        //     console.log(map_go_to_help.getZoom() -2 );
+                        //     console.log("-----------");
+                        // }
                     }
 
             });
@@ -1073,6 +1080,18 @@
 
 <script>
 
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        initMap();
+        check_show_btn_form_color(null);
+        check_show_btn_select_unit();
+        // click_select_btn('operating_unit');
+        setTimeout(function() {
+            document.querySelector('#form_data_1').click();
+        }, 1000);
+    });
+
+
     const image = "{{ url('/img/icon/operating_unit/sos.png') }}";
     var markers = [] ;
     let marker  ;
@@ -1084,14 +1103,7 @@
     let sos_go_to_help_marker  ;
     let officer_go_to_help_marker  ;
 
-    document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START");
-        initMap();
-        check_show_btn_form_color(null);
-        check_show_btn_select_unit();
-        // click_select_btn('operating_unit');
-        document.querySelector('#form_data_1').click();
-    });
+    
 
     function initMap() {
 

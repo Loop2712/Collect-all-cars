@@ -1,6 +1,11 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="row">
+	<div class="col-12">
+		<button class="btn btn-primary" onclick="check_start_data_form_yellow();">
+			check_start_data_form_yellow();
+		</button>
+	</div>
 	<div class="col-xl-12 mx-auto">
 		<div class="card-body">
             <style>
@@ -401,7 +406,7 @@
 								<div class="row mt-3">
 									<div class="col-12	col-md-3 col-lg-3">
 										<label>
-											<input type="radio" {{ $check_be_notified_1 }} name="be_notified" value="แพลตฟอร์มวีเช็ค"  class="card-input-element d-none" >
+											<input type="radio" {{ $check_be_notified_1 }} data-be_notified="แพลตฟอร์มวีเช็ค" name="be_notified" value="แพลตฟอร์มวีเช็ค"  class="card-input-element d-none" >
 											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 												แพลตฟอร์มวีเช็ค 
 											</div>
@@ -409,7 +414,7 @@
 									</div>
 									<div class="col-12	col-md-3 col-lg-3">
 										<label>
-											<input type="radio" {{ $check_be_notified_2 }} name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙" class="card-input-element d-none" >
+											<input type="radio" {{ $check_be_notified_2 }} data-be_notified="โทรศัพท์หมายเลข ๑๖๖๙" name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙" class="card-input-element d-none" >
 											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 												<span>
 													โทรศัพท์หมายเลข ๑๖๖๙<sup>(๑)</sup>
@@ -419,7 +424,7 @@
 									</div>
 									<div class="col-12	col-md-3 col-lg-3">
 										<label>
-											<input type="radio" {{ $check_be_notified_3 }} name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙ (second call)" class="card-input-element d-none" >
+											<input type="radio" {{ $check_be_notified_3 }} data-be_notified="โทรศัพท์หมายเลข ๑๖๖๙ (second call)" name="be_notified" value="โทรศัพท์หมายเลข ๑๖๖๙ (second call)" class="card-input-element d-none" >
 											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 												<span>
 													โทรศัพท์หมายเลข ๑๖๖๙ (second call)<sup>(๒)</sup>
@@ -429,7 +434,7 @@
 									</div>
 									<div class="col-12	col-md-3 col-lg-3">
 										<label>
-											<input type="radio" {{ $check_be_notified_4 }} name="be_notified" value="โทรศัพท์หมายเลขอื่นๆ" class="card-input-element d-none" >
+											<input type="radio" {{ $check_be_notified_4 }} data-be_notified="โทรศัพท์หมายเลขอื่นๆ" name="be_notified" value="โทรศัพท์หมายเลขอื่นๆ" class="card-input-element d-none" >
 											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 												<span>
 													โทรศัพท์หมายเลขอื่นๆ<sup>(๓)</sup>
@@ -439,7 +444,7 @@
 									</div>
 									<div class="col-12	col-md-3 col-lg-3">
 										<label>
-											<input type="radio" {{ $check_be_notified_5 }} name="be_notified" value="วิทยุสื่อสาร" class="card-input-element d-none" >
+											<input type="radio" {{ $check_be_notified_5 }} data-be_notified="วิทยุสื่อสาร" name="be_notified" value="วิทยุสื่อสาร" class="card-input-element d-none" >
 											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 												<span>
 													วิทยุสื่อสาร
@@ -449,7 +454,7 @@
 									</div>
 									<div class="col-12	col-md-3 col-lg-3">
 										<label>
-											<input type="radio" {{ $check_be_notified_6 }} name="be_notified" value="วิธีอื่นๆ" class="card-input-element d-none" >
+											<input type="radio" {{ $check_be_notified_6 }} data-be_notified="วิธีอื่นๆ" name="be_notified" value="วิธีอื่นๆ" class="card-input-element d-none" >
 											<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 												<span>
 													วิธีอื่นๆ  
@@ -605,7 +610,7 @@
 						<div class="row">
 							<div class="col-12 col-md-3 col-lg-3 ">
 								<label>
-									<input type="checkbox" {{ $check_symptom_1 }} name="symptom" value="ปวดท้อง หลัง เชิงกราน และขาหนีบ" class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_1 }} name="symptom" data-symptom="ปวดท้อง หลัง เชิงกราน และขาหนีบ" value="ปวดท้อง หลัง เชิงกราน และขาหนีบ" class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๑.ปวดท้อง หลัง เชิงกราน และขาหนีบ
 									</div>
@@ -613,7 +618,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_2 }} name="symptom" value="แอนนาฟิแลกซิส ปฏิกิริยาภูมิแพ้/แมลงกัด"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_2 }} name="symptom" data-symptom="แอนนาฟิแลกซิส ปฏิกิริยาภูมิแพ้/แมลงกัด" value="แอนนาฟิแลกซิส ปฏิกิริยาภูมิแพ้/แมลงกัด"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๒.แอนนาฟิแลกซิส ปฏิกิริยาภูมิแพ้/แมลงกัด
 									</div>
@@ -621,7 +626,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_3 }} name="symptom" value="สัตว์กัด"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_3 }} name="symptom" data-symptom="สัตว์กัด" value="สัตว์กัด"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๓.สัตว์กัด
 									</div>
@@ -629,7 +634,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_4 }} name="symptom" value="เลือดออกไม่ใช่จากการบาดเจ็บ"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_4 }} name="symptom" data-symptom="เลือดออกไม่ใช่จากการบาดเจ็บ" value="เลือดออกไม่ใช่จากการบาดเจ็บ"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๔.เลือดออกไม่ใช่จากการบาดเจ็บ
 									</div>
@@ -637,7 +642,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_5 }} name="symptom" value="หายใจลำบาก"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_5 }} name="symptom" data-symptom="หายใจลำบาก" value="หายใจลำบาก"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๕.หายใจลำบาก 
 									</div>
@@ -645,7 +650,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_6 }} name="symptom" value="หัวใจหยุดเต้น"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_6 }} name="symptom" data-symptom="หัวใจหยุดเต้น" value="หัวใจหยุดเต้น"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๖.หัวใจหยุดเต้น
 									</div>
@@ -653,7 +658,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_7 }} name="symptom" value="เจ็บแน่นทรางออก หัวใจ"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_7 }} name="symptom" data-symptom="เจ็บแน่นทรางออก หัวใจ" value="เจ็บแน่นทรางออก หัวใจ"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๗.เจ็บแน่นทรางออก หัวใจ
 									</div>
@@ -661,7 +666,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_8 }} name="symptom" value="สำลักอุดทางเดินหายใจ"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_8 }} name="symptom" data-symptom="สำลักอุดทางเดินหายใจ" value="สำลักอุดทางเดินหายใจ"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๘.สำลักอุดทางเดินหายใจ
 									</div>
@@ -669,7 +674,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_9 }} name="symptom" value="เบาหวาน"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_9 }} name="symptom" data-symptom="เบาหวาน" value="เบาหวาน"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๙.เบาหวาน
 									</div>
@@ -677,7 +682,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_10 }} name="symptom" value="อันตรายจากสภาพแวดล้อม"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_10 }} name="symptom" data-symptom="อันตรายจากสภาพแวดล้อม" value="อันตรายจากสภาพแวดล้อม"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๑๐.อันตรายจากสภาพแวดล้อม
 									</div>
@@ -685,7 +690,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_11 }} name="symptom" value="อื่นๆ(เว้นว่าง)"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_11 }} name="symptom" data-symptom="อื่นๆ(เว้นว่าง)" value="อื่นๆ(เว้นว่าง)"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<div>
 											๑๑.<s>อื่นๆ(เว้นว่าง)</s><sup>(๔)</sup>
@@ -695,7 +700,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_12 }} name="symptom" value="ปวดศรีษะ ลำคอ"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_12 }} name="symptom" data-symptom="ปวดศรีษะ ลำคอ" value="ปวดศรีษะ ลำคอ"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๑๒.ปวดศรีษะ ลำคอ 
 									</div>
@@ -703,7 +708,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_13 }} name="symptom" value="คลุ้มคลั่ง จิตประสาท อารมณ์"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_13 }} name="symptom" data-symptom="คลุ้มคลั่ง จิตประสาท อารมณ์" value="คลุ้มคลั่ง จิตประสาท อารมณ์"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๑๓.คลุ้มคลั่ง จิตประสาท อารมณ์ 
 									</div>
@@ -712,7 +717,7 @@
 
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_14 }} name="symptom" value="ยาเกิดขนาด ได้รับพิษ"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_14 }} name="symptom" data-symptom="ยาเกิดขนาด ได้รับพิษ" value="ยาเกิดขนาด ได้รับพิษ"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๑๔.ยาเกิดขนาด ได้รับพิษ 
 									</div>
@@ -720,7 +725,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_15 }} name="symptom" value="มีครรภ คลอด นรี"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_15 }} name="symptom" data-symptom="มีครรภ คลอด นรี" value="มีครรภ คลอด นรี"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๑๕.มีครรภ คลอด นรี 
 									</div>
@@ -728,7 +733,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_16 }} name="symptom" value="ชัก"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_16 }} name="symptom" data-symptom="ชัก" value="ชัก"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๑๖.ชัก 
 									</div>
@@ -736,7 +741,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_17 }} name="symptom" value="ป่วย อ่อนเพลีย"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_17 }} name="symptom" data-symptom="ป่วย อ่อนเพลีย" value="ป่วย อ่อนเพลีย"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๑๗.ป่วย อ่อนเพลีย 
 									</div>
@@ -744,7 +749,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_18 }} name="symptom" value="อัมพาต (หลอดเลือดสมองตีบ แตก)"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_18 }} name="symptom" data-symptom="อัมพาต (หลอดเลือดสมองตีบ แตก)" value="อัมพาต (หลอดเลือดสมองตีบ แตก)"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๑๘.อัมพาต (หลอดเลือดสมองตีบ แตก) 
 									</div>
@@ -752,7 +757,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_19 }} name="symptom" value="หมดสติ ไม่ตอบสนอง หมดสติชั่ววูบ"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_19 }} name="symptom" data-symptom="หมดสติ ไม่ตอบสนอง หมดสติชั่ววูบ" value="หมดสติ ไม่ตอบสนอง หมดสติชั่ววูบ"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๑๙.หมดสติ ไม่ตอบสนอง หมดสติชั่ววูบ 
 									</div>
@@ -760,7 +765,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_20 }} name="symptom" value="เด็ก ทารก (กุมารเวชกรรม)"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_20 }} name="symptom" data-symptom="เด็ก ทารก (กุมารเวชกรรม)" value="เด็ก ทารก (กุมารเวชกรรม)"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๒๐.เด็ก ทารก (กุมารเวชกรรม) 
 									</div>
@@ -768,7 +773,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_21 }} name="symptom" value="ถูกทำร้าย บาดเจ็บ"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_21 }} name="symptom" data-symptom="ถูกทำร้าย บาดเจ็บ" value="ถูกทำร้าย บาดเจ็บ"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๒๑.ถูกทำร้าย บาดเจ็บ 
 									</div>
@@ -776,7 +781,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_22 }} name="symptom" value="ไฟไหม้ ลวก ความร้อน กระแสไฟฟ้า สารเคมี"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_22 }} name="symptom" data-symptom="ไฟไหม้ ลวก ความร้อน กระแสไฟฟ้า สารเคมี" value="ไฟไหม้ ลวก ความร้อน กระแสไฟฟ้า สารเคมี"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๒๒.ไฟไหม้ ลวก ความร้อน กระแสไฟฟ้า สารเคมี 
 									</div>
@@ -784,7 +789,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_23 }} name="symptom" value="จมน้ำ หน้าคว่ำจมน้ำ บาดเจ็บเหตุดำน้ำ บาดเจ็บทางน้ำ"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_23 }} name="symptom" data-symptom="จมน้ำ หน้าคว่ำจมน้ำ บาดเจ็บเหตุดำน้ำ บาดเจ็บทางน้ำ" value="จมน้ำ หน้าคว่ำจมน้ำ บาดเจ็บเหตุดำน้ำ บาดเจ็บทางน้ำ"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๒๓.จมน้ำ หน้าคว่ำจมน้ำ บาดเจ็บเหตุดำน้ำ บาดเจ็บทางน้ำ 
 									</div>
@@ -792,7 +797,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_24 }} name="symptom" value="พลัดตกหลุม อุบัติเหตุ"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_24 }} name="symptom" data-symptom="พลัดตกหลุม อุบัติเหตุ" value="พลัดตกหลุม อุบัติเหตุ"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๒๔.พลัดตกหลุม อุบัติเหตุ 
 									</div>
@@ -800,7 +805,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_symptom_25 }} name="symptom" value="อุบัติเหตุยานยนต์"  class="card-input-element d-none symptom" >
+									<input type="checkbox" {{ $check_symptom_25 }} name="symptom" data-symptom="อุบัติเหตุยานยนต์" value="อุบัติเหตุยานยนต์"  class="card-input-element d-none symptom" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										๒๕.อุบัติเหตุยานยนต์ 
 									</div>
@@ -851,7 +856,7 @@
 						<div class="row">
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_idc_1 }} name="idc" value="แดง(วิกฤติ)"  class="card-input-red card-input-element d-none" >
+									<input type="radio" {{ $check_idc_1 }} data-idc="แดง(วิกฤติ)" name="idc" value="แดง(วิกฤติ)"  class="card-input-red card-input-element d-none" >
 									<div class="card card-body text-danger d-flex flex-row justify-content-between align-items-center">
 										<b>
 											แดง(วิกฤติ)  
@@ -861,7 +866,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_idc_4 }} name="idc" value="ขาว(ทั่วไป)"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_idc_4 }} data-idc="ขาว(ทั่วไป)" name="idc" value="ขาว(ทั่วไป)"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>
 											ขาว(ทั่วไป)    
@@ -871,7 +876,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_idc_2 }} name="idc" value="เหลือง(เร่งด่วน)"  class="card-input-warning card-input-element d-none" >
+									<input type="radio" {{ $check_idc_2 }} data-idc="เหลือง(เร่งด่วน)" name="idc" value="เหลือง(เร่งด่วน)"  class="card-input-warning card-input-element d-none" >
 									<div class="card card-body text-warning d-flex flex-row justify-content-between align-items-center">
 										<b>
 											เหลือง(เร่งด่วน)  
@@ -881,7 +886,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_idc_5 }} name="idc" value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-dark card-input-element d-none" >
+									<input type="radio" {{ $check_idc_5 }} data-idc="ดำ(รับบริการสาธารณสุขอื่น)" name="idc" value="ดำ(รับบริการสาธารณสุขอื่น)"  class="card-input-dark card-input-element d-none" >
 									<div class="card card-body  text-dark d-flex flex-row justify-content-between align-items-center">
 										<b>
 											ดำ(รับบริการสาธารณสุขอื่น)  
@@ -891,7 +896,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_idc_3 }} name="idc" value="เขียว(ไม่รุนแรง)"  class="card-input-success card-input-element d-none" >
+									<input type="radio" {{ $check_idc_3 }} data-idc="เขียว(ไม่รุนแรง)" name="idc" value="เขียว(ไม่รุนแรง)"  class="card-input-success card-input-element d-none" >
 									<div class="card card-body text-success d-flex flex-row justify-content-between align-items-center">
 										<b>
 											เขียว(ไม่รุนแรง)
@@ -945,7 +950,7 @@
 							</div>	
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_vehicle_type_1 }} name="vehicle_type" value="รถ"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_vehicle_type_1 }} name="vehicle_type" data-vehicle_type="รถ" value="รถ"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>รถ</b>
 									</div>
@@ -953,7 +958,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_vehicle_type_2 }} name="vehicle_type" value="อากาศยาน"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_vehicle_type_2 }} name="vehicle_type" data-vehicle_type="อากาศยาน" value="อากาศยาน"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>อากาศยาน</b>
 									</div>
@@ -961,7 +966,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_vehicle_type_3 }} name="vehicle_type" value="เรือ ป.๑"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_vehicle_type_3 }} name="vehicle_type" data-vehicle_type="เรือ ป.๑" value="เรือ ป.๑"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>เรือ ป.๑</b>
 									</div>
@@ -969,7 +974,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_vehicle_type_4 }} name="vehicle_type" value="เรือ ป.๒"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_vehicle_type_4 }} name="vehicle_type" data-vehicle_type="เรือ ป.๒" value="เรือ ป.๒"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>เรือ ป.๒</b>
 									</div>
@@ -977,7 +982,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_vehicle_type_5 }} name="vehicle_type" value="เรือ ป.๓"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_vehicle_type_5 }} name="vehicle_type" data-vehicle_type="เรือ ป.๓" value="เรือ ป.๓"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>เรือ ป.๓</b>
 									</div>
@@ -985,7 +990,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_vehicle_type_6 }} name="vehicle_type" value="เรือประเภทอื่นๆ"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_vehicle_type_6 }} name="vehicle_type" data-vehicle_type="เรือประเภทอื่นๆ" value="เรือประเภทอื่นๆ"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>เรือประเภทอื่นๆ</b>
 									</div>
@@ -1018,7 +1023,7 @@
 							@endphp
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_operating_suit_type_1 }} name="operating_suit_type" value="FR"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_operating_suit_type_1 }} data-operating_suit_type="FR" name="operating_suit_type" value="FR"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center" onclick="check_show_btn_form_color('FR');">
 										<b>FR</b>
 									</div>
@@ -1026,7 +1031,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_operating_suit_type_2 }} name="operating_suit_type" value="BLS"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_operating_suit_type_2 }} data-operating_suit_type="BLS" name="operating_suit_type" value="BLS"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center" onclick="check_show_btn_form_color('BLS');">
 										<b>BLS</b>
 									</div>
@@ -1034,7 +1039,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_operating_suit_type_3 }} name="operating_suit_type" value="ILS"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_operating_suit_type_3 }} data-operating_suit_type="ILS" name="operating_suit_type" value="ILS"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center" onclick="check_show_btn_form_color('ILS');">
 										<b>ILS</b>
 									</div>
@@ -1042,7 +1047,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_operating_suit_type_4 }} name="operating_suit_type" value="ALS"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_operating_suit_type_4 }} data-operating_suit_type="ALS" name="operating_suit_type" value="ALS"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center" onclick="check_show_btn_form_color('ALS');">
 										<b>ALS</b>
 									</div>
@@ -1207,7 +1212,7 @@
 						<div class="row">
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_rc_1 }} name="rc" value="แดง(วิกฤติ)"  class="card-input-red card-input-element d-none" onchange="check_click_rc();">
+									<input type="radio" {{ $check_rc_1 }} name="rc" data-rc="แดง(วิกฤติ)" value="แดง(วิกฤติ)"  class="card-input-red card-input-element d-none" onchange="check_click_rc();">
 									<div class="card card-body text-danger d-flex flex-row justify-content-between align-items-center">
 										<b>
 											แดง(วิกฤติ)  
@@ -1217,7 +1222,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_rc_4 }} name="rc" value="ขาว(ทั่วไป)"  class="card-input-element d-none" onchange="check_click_rc();">
+									<input type="radio" {{ $check_rc_4 }} name="rc" data-rc="ขาว(ทั่วไป)" value="ขาว(ทั่วไป)"  class="card-input-element d-none" onchange="check_click_rc();">
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>
 											ขาว(ทั่วไป)    
@@ -1227,7 +1232,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_rc_2 }} name="rc" value="เหลือง(เร่งด่วน)"  class="card-input-warning card-input-element d-none" onchange="check_click_rc();">
+									<input type="radio" {{ $check_rc_2 }} name="rc" data-rc="เหลือง(เร่งด่วน)" value="เหลือง(เร่งด่วน)"  class="card-input-warning card-input-element d-none" onchange="check_click_rc();">
 									<div class="card card-body  text-warning d-flex flex-row justify-content-between align-items-center">
 										<b>
 											เหลือง(เร่งด่วน)  
@@ -1238,7 +1243,7 @@
 							
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_rc_3 }} name="rc" value="เขียว(ไม่รุนแรง)"  class="card-input-success card-input-element d-none" onchange="check_click_rc();">
+									<input type="radio" {{ $check_rc_3 }} name="rc" data-rc="เขียว(ไม่รุนแรง)" value="เขียว(ไม่รุนแรง)"  class="card-input-success card-input-element d-none" onchange="check_click_rc();">
 									<div class="card card-body  text-success d-flex flex-row justify-content-between align-items-center">
 										<b>
 											เขียว(ไม่รุนแรง)
@@ -1248,7 +1253,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_rc_5 }} name="rc" id="rc_black"  value="ดำ"  class="card-input-dark card-input-element d-none" onchange="check_click_rc();">
+									<input type="radio" {{ $check_rc_5 }} name="rc" data-rc="ดำ" id="rc_black"  value="ดำ"  class="card-input-dark card-input-element d-none" onchange="check_click_rc();">
 									<div class="card card-body text-dark d-flex flex-row justify-content-between align-items-center">
 										<b>
 											<div class="input-wrapper-b-code inline">
@@ -1333,7 +1338,7 @@
 							<div class="col-12 col-md-6 col-lg-6">
 								<div class=" col-12">
 									<label>
-										<input type="radio" {{ $check_treatment_1 }} name="treatment" value="มีการรักษา"  class="card-input-red card-input-element d-none" onchange="check_treatment(); reset_sub_treatment();">
+										<input type="radio" {{ $check_treatment_1 }} name="treatment" data-treatment="มีการรักษา" value="มีการรักษา"  class="card-input-red card-input-element d-none" onchange="check_treatment(); reset_sub_treatment();">
 										<div class="card card-body d-flex flex-row justify-content-between align-items-center text-danger" >
 											<b>
 												มีการรักษา
@@ -1346,7 +1351,7 @@
 							<div class="col-12 col-md-6 col-lg-6">
 								<div class="">
 									<label>
-										<input type="radio"{{ $check_treatment_2 }} name="treatment" value="ไม่มีการรักษา"  class="card-input-element d-none" onchange="check_treatment(); reset_sub_treatment();">
+										<input type="radio"{{ $check_treatment_2 }} name="treatment" data-treatment="ไม่มีการรักษา" value="ไม่มีการรักษา"  class="card-input-element d-none" onchange="check_treatment(); reset_sub_treatment();">
 										<div class="card card-body d-flex flex-row-reverse  justify-content-between align-items-center">
 											<b>
 												ไม่มีการรักษา
@@ -1362,7 +1367,7 @@
 									<br><br><br>
 									<div class="col-12 col-md-4 col-lg-4">
 										<label>
-											<input type="checkbox" {{ $check_sub_treatment_1 }} name="sub_treatment" value="นำส่ง"  class="sub_treatment card-input-red card-input-element d-none">
+											<input type="checkbox" {{ $check_sub_treatment_1 }} name="sub_treatment" data-sub_treatment="นำส่ง" value="นำส่ง"  class="sub_treatment card-input-red card-input-element d-none">
 											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
 												<b>
 													นำส่ง
@@ -1372,7 +1377,7 @@
 									</div>
 									<div class="col-12 col-md-4 col-lg-4">
 										<label>
-											<input type="checkbox" {{ $check_sub_treatment_2 }} name="sub_treatment" value="ส่งต่อชุดปฏิบัติการระดับสูงกว่า"  class="sub_treatment card-input-red card-input-element d-none">
+											<input type="checkbox" {{ $check_sub_treatment_2 }} name="sub_treatment" data-sub_treatment="ส่งต่อชุดปฏิบัติการระดับสูงกว่า" value="ส่งต่อชุดปฏิบัติการระดับสูงกว่า"  class="sub_treatment card-input-red card-input-element d-none">
 											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
 												<b>
 													ส่งต่อชุดปฏิบัติการระดับสูงกว่า  
@@ -1382,7 +1387,7 @@
 									</div>
 									<div class="col-12 col-md-4 col-lg-4">
 										<label>
-											<input type="checkbox" {{ $check_sub_treatment_3}} name="sub_treatment" value="ไม่นำส่ง"  class="sub_treatment card-input-red card-input-element d-none">
+											<input type="checkbox" {{ $check_sub_treatment_3}} name="sub_treatment" data-sub_treatment="ไม่นำส่ง" value="ไม่นำส่ง"  class="sub_treatment card-input-red card-input-element d-none">
 											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
 												<b>
 													ไม่นำส่ง 
@@ -1392,7 +1397,7 @@
 									</div>
 									<div class="col-12 col-md-4 col-lg-4">
 										<label>
-											<input type="checkbox" {{ $check_sub_treatment_4 }} name="sub_treatment" value="เสียชีวิตระหว่างนำส่ง"  class="sub_treatment card-input-red card-input-element d-none">
+											<input type="checkbox" {{ $check_sub_treatment_4 }} name="sub_treatment" data-sub_treatment="เสียชีวิตระหว่างนำส่ง" value="เสียชีวิตระหว่างนำส่ง"  class="sub_treatment card-input-red card-input-element d-none">
 											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
 												<b>
 													เสียชีวิตระหว่างนำส่ง  
@@ -1402,7 +1407,7 @@
 									</div>
 									<div class="col-12 col-md-4 col-lg-4">
 										<label>
-											<input type="checkbox" {{ $check_sub_treatment_5 }} name="sub_treatment" value="เสียชีวิต ณ จุดเกิดเหตุ"  class="sub_treatment card-input-red card-input-element d-none">
+											<input type="checkbox" {{ $check_sub_treatment_5 }} name="sub_treatment" data-sub_treatment="เสียชีวิต ณ จุดเกิดเหตุ" value="เสียชีวิต ณ จุดเกิดเหตุ"  class="sub_treatment card-input-red card-input-element d-none">
 											<div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
 												<b>
 													เสียชีวิต ณ จุดเกิดเหตุ
@@ -1416,7 +1421,7 @@
 								<div class="row d-none" id="treatment_no">
 									<div class="col-12 col-md-4 col-lg-4">
 										<label>
-											<input type="checkbox" {{ $check_sub_treatment_6 }} name="sub_treatment" value="ผู้ป่วยปฏิเสธการรักษา"  class="sub_treatment card-input-element d-none">
+											<input type="checkbox" {{ $check_sub_treatment_6 }} name="sub_treatment" data-sub_treatment="ผู้ป่วยปฏิเสธการรักษา" value="ผู้ป่วยปฏิเสธการรักษา"  class="sub_treatment card-input-element d-none">
 											<div class="card card-body d-flex flex-row justify-content-between align-items-center">
 												<b>
 													ผู้ป่วยปฏิเสธการรักษา
@@ -1426,7 +1431,7 @@
 									</div>
 									<div class="col-12 col-md-4 col-lg-4">
 										<label>
-											<input type="checkbox" {{ $check_sub_treatment_7 }} name="sub_treatment" value="ยกเลิก"  class="sub_treatment card-input-element d-none">
+											<input type="checkbox" {{ $check_sub_treatment_7 }} name="sub_treatment" data-sub_treatment="ยกเลิก" value="ยกเลิก"  class="sub_treatment card-input-element d-none">
 											<div class="card card-body d-flex flex-row justify-content-between align-items-center">
 												<b>
 													ยกเลิก  
@@ -1436,7 +1441,7 @@
 									</div>
 									<div class="col-12 col-md-4 col-lg-4">
 										<label>
-											<input type="checkbox" {{ $check_sub_treatment_8 }} name="sub_treatment" value="ไม่พบเหตุ"  class="sub_treatment card-input-element d-none">
+											<input type="checkbox" {{ $check_sub_treatment_8 }} name="sub_treatment" data-sub_treatment="ไม่พบเหตุ" value="ไม่พบเหตุ"  class="sub_treatment card-input-element d-none">
 											<div class="card card-body d-flex flex-row justify-content-between align-items-center">
 												<b>
 													ไม่พบเหตุ 
@@ -1446,7 +1451,7 @@
 									</div>
 									<div class="col-12 col-md-4 col-lg-4">
 										<label>
-											<input type="checkbox" {{ $check_sub_treatment_9 }} name="sub_treatment" value="เสียชีวิตก่อนชุดปฏิบัติการไปถึง"  class="sub_treatment card-input-element d-none">
+											<input type="checkbox" {{ $check_sub_treatment_9 }} name="sub_treatment" data-sub_treatment="เสียชีวิตก่อนชุดปฏิบัติการไปถึง" value="เสียชีวิตก่อนชุดปฏิบัติการไปถึง"  class="sub_treatment card-input-element d-none">
 											<div class="card card-body d-flex flex-row justify-content-between align-items-center">
 												<b>
 													เสียชีวิตก่อนชุดปฏิบัติการไปถึง
@@ -1617,7 +1622,7 @@
 							</div>	
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_submission_criteria_1 }} name="submission_criteria" value="สามารถรักษาได้"  class="card-input-element d-none submission_criteria" >
+									<input type="checkbox" {{ $check_submission_criteria_1 }} name="submission_criteria" data-submission_criteria="สามารถรักษาได้" value="สามารถรักษาได้"  class="card-input-element d-none submission_criteria" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>สามารถรักษาได้</b>
 									</div>
@@ -1625,7 +1630,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_submission_criteria_2 }} name="submission_criteria" value="อยู่ใกล้"  class="card-input-element d-none submission_criteria" >
+									<input type="checkbox" {{ $check_submission_criteria_2 }} name="submission_criteria" data-submission_criteria="อยู่ใกล้" value="อยู่ใกล้"  class="card-input-element d-none submission_criteria" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>อยู่ใกล้</b>
 									</div>
@@ -1633,7 +1638,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_submission_criteria_3 }} name="submission_criteria" value="มีหลักประกัน"  class="card-input-element d-none submission_criteria" >
+									<input type="checkbox" {{ $check_submission_criteria_3 }} name="submission_criteria" data-submission_criteria="มีหลักประกัน" value="มีหลักประกัน"  class="card-input-element d-none submission_criteria" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>มีหลักประกัน</b>
 									</div>
@@ -1641,7 +1646,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_submission_criteria_4 }} name="submission_criteria" value="ผู้ป่วยเก่า"  class="card-input-element d-none submission_criteria" >
+									<input type="checkbox" {{ $check_submission_criteria_4 }} name="submission_criteria" data-submission_criteria="ผู้ป่วยเก่า" value="ผู้ป่วยเก่า"  class="card-input-element d-none submission_criteria" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>ผู้ป่วยเก่า</b>
 									</div>
@@ -1649,7 +1654,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_submission_criteria_5 }} name="submission_criteria" value="เป็นความประสงค์"  class="card-input-element d-none submission_criteria" >
+									<input type="checkbox" {{ $check_submission_criteria_5 }} name="submission_criteria" data-submission_criteria="เป็นความประสงค์" value="เป็นความประสงค์"  class="card-input-element d-none submission_criteria" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>เป็นความประสงค์</b>
 									</div>
@@ -1668,7 +1673,7 @@
 							</div>	
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_communication_hospital_1 }} name="communication_hospital" value="แจ้งวิทยุ"  class="card-input-element d-none communication_hospital" >
+									<input type="checkbox" {{ $check_communication_hospital_1 }} name="communication_hospital" data-communication_hospital="แจ้งวิทยุ" value="แจ้งวิทยุ"  class="card-input-element d-none communication_hospital" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>แจ้งวิทยุ</b>
 									</div>
@@ -1676,7 +1681,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_communication_hospital_2 }} name="communication_hospital" value="แจ้งทางโทรศัพท์"  class="card-input-element d-none communication_hospital" >
+									<input type="checkbox" {{ $check_communication_hospital_2 }} name="communication_hospital" data-communication_hospital="แจ้งทางโทรศัพท์" value="แจ้งทางโทรศัพท์"  class="card-input-element d-none communication_hospital" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>แจ้งทางโทรศัพท์</b>
 									</div>
@@ -1684,7 +1689,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="checkbox" {{ $check_communication_hospital_3 }} name="communication_hospital" value="ไม่ได้แจ้ง"  class="card-input-element d-none communication_hospital" >
+									<input type="checkbox" {{ $check_communication_hospital_3 }} name="communication_hospital" data-communication_hospital="ไม่ได้แจ้ง" value="ไม่ได้แจ้ง"  class="card-input-element d-none communication_hospital" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>ไม่ได้แจ้ง</b>
 									</div>
@@ -1746,7 +1751,7 @@
 							</div>	
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_owner_registration_1 }} name="owner_registration" value="ของผู้ประสบเหตุ"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_owner_registration_1 }} name="owner_registration" data-owner_registration="ของผู้ประสบเหตุ" value="ของผู้ประสบเหตุ"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>ของผู้ประสบเหตุ</b>
 									</div>
@@ -1754,7 +1759,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_owner_registration_2 }} name="owner_registration" value="ของคู่กรณี"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_owner_registration_2 }} name="owner_registration" data-owner_registration="ของคู่กรณี" value="ของคู่กรณี"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>ของคู่กรณี</b>
 									</div>
@@ -1762,7 +1767,7 @@
 							</div>
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
-									<input type="radio" {{ $check_owner_registration_3 }} name="owner_registration" value="ไม่สามารถระบุได้"  class="card-input-element d-none" >
+									<input type="radio" {{ $check_owner_registration_3 }} name="owner_registration" data-owner_registration="ไม่สามารถระบุได้" value="ไม่สามารถระบุได้"  class="card-input-element d-none" >
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
 										<b>ไม่สามารถระบุได้</b>
 									</div>
@@ -1853,8 +1858,10 @@
 <script>
 
 	document.addEventListener('DOMContentLoaded', (event) => {
-		
         // console.log("START");
+
+        check_start_data_form_yellow();
+
         setTimeout(function() {
             check_color_btn(null,null);
 			check_treatment();
@@ -1862,9 +1869,96 @@
 	        check_click_rc();
         }, 1500);
 
+        reface_check_form_yellow = setInterval(function() {
+        	check_start_data_form_yellow();
+        }, 5000);
+
         distance_in_no5();
 
     });
+
+	let start_data_arr = [] ;
+	let check_start_data_arr = "No" ;
+	let data_arr = [] ;
+
+	function Stop_reface_check_form_yellow() {
+        clearInterval(reface_check_form_yellow);
+        // console.log("STOP LOOP");
+    }
+
+    function check_start_data_form_yellow(){
+
+		console.log("Check data form yellow");
+    	// ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
+		fetch("{{ url('/') }}/api/check_update/form_yellow" + "/" + '{{ $sos_help_center->id }}')
+            .then(response => response.json())
+            .then(data_new_5vi => {
+
+            	if (start_data_arr) {
+            		for (const [key, value] of Object.entries(data_new_5vi)) {
+				  		// console.log(key + " = " + value);
+				  		if (data_new_5vi[key] === null) {
+				  			data_new_5vi[key] = '';
+				  		}
+
+				  		if (data_new_5vi[key] != start_data_arr[key] && check_start_data_arr == "Yes") {
+				  			// console.log(key + " ==>> ข้อมูลเปลี่ยน");
+				  			// console.log(start_data_arr[key] + " เปลี่ยนเป็น " + data_new_5vi[key]);
+
+	        				// UPDATE DATA
+	        				alert_edit_form_yellow(key,start_data_arr[key],value);
+				  		}
+					}
+            	}
+            });
+    }
+
+    function alert_edit_form_yellow(key,old,value){
+
+    	let text = "มีการเปลี่ยนแปลงข้อมูล " + key + " จากเดิม : " + old + " เปลี่ยนเป็น : " + value;
+    	// alert(text);
+    	// UPDATE DATA
+	    edit_form_yellow(key,value);
+    }
+
+    function edit_form_yellow(key,value){
+
+    	start_data_arr[key] = value ;
+		data_arr[key] = value ;
+
+		//  radio
+		if (key === 'be_notified' || key === 'idc' || key === 'vehicle_type' || key === 'operating_suit_type' || key === 'rc' || key === 'treatment' || key === 'sub_treatment' || key === 'owner_registration') {
+			document.querySelector('[data-'+key+'="'+ value +'"]').checked = true;
+			if (key === 'treatment') {
+				check_treatment();
+				reset_sub_treatment();
+			}
+		}
+		// cheeck box
+		else if (key === 'symptom' || key === 'submission_criteria' || key === 'communication_hospital') {
+			let data_all_cheeck_box = value.split(",");
+			for (let i = 0; i < data_all_cheeck_box.length; i++) {
+		        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[i] +'"]').checked = true;
+		    }
+		}
+		// user_name && phone_user
+		else if(key === 'name_user' || key === 'phone_user'){
+			document.querySelector('#'+key).value = value;
+			document.querySelector('#u_'+key).innerHTML = value ;
+		}
+		// text area
+		else if(key === 'location_sos' || key === 'symptom_other'){
+			document.querySelector('[name="'+key+'"]').innerText = value ;
+		}
+		// input general
+		else{
+			document.querySelector('#'+key).value = value;
+		}
+
+		send_save_data(null);
+		btn_save_data();
+
+    }
 
     function check_lat_lng(){
     	// Check lat lng empty
@@ -2074,194 +2168,244 @@
 
 		// ------------------------------------------------------------------------------------------------------------
 
-		// let data_arr = [] ;
+		// switch(active) {
+		//   	case '1':
+		//     	data_arr = {
+		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+		// 	        "be_notified" : be_notified_value,
+		// 	        "name_user" : name_user.value,
+		// 	        "phone_user" : phone_user.value,
+		// 	        "lat" : lat.value,
+		// 	        "lng" : lng.value,
+		// 	        "location_sos" : location_sos.value,
+		// 	    };
+		//     break;
+		//   	case '2':
+		//     	data_arr = {
+		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+		// 	        "symptom" : symptom_value,
+		// 	    };
+		//     break;
+		// 	case '3':
+		//     	data_arr = {
+		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+		// 	        "symptom_other" : symptom_other.value,
+		// 	    };
+		//     break;
+		//     case '4':
+		//     	data_arr = {
+		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+		// 	        "idc" : idc_value,
+		// 	    };
+		//     break;
+		//     case '5':
+		//     	data_arr = {
+		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+		// 	        "vehicle_type" : vehicle_type_value,
+		// 	        "operating_suit_type" : operating_suit_type_value,
+		// 	        "operation_unit_name" : operation_unit_name.value,
+		// 	        "action_set_name" : action_set_name.value,
+		// 	        "time_create_sos" : time_create_sos.value,
+		// 	        "time_command" : time_command.value,
+		// 	        "time_go_to_help" : time_go_to_help.value,
+		// 	        "time_to_the_scene" : time_to_the_scene.value,
+		// 	        "time_leave_the_scene" : time_leave_the_scene.value,
+		// 	        "time_hospital" : time_hospital.value,
+		// 	        "time_to_the_operating_base" : time_to_the_operating_base.value,
+		// 	        "km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
+		// 	        "km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
+		// 	        "km_hospital" : km_hospital.value,
+		// 	        "km_operating_base" : km_operating_base.value,
+		// 	    };
 
-		switch(active) {
-		  	case '1':
-		    	data_arr = {
-			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-			        "be_notified" : be_notified_value,
-			        "name_user" : name_user.value,
-			        "phone_user" : phone_user.value,
-			        "lat" : lat.value,
-			        "lng" : lng.value,
-			        "location_sos" : location_sos.value,
-			    };
-		    break;
-		  	case '2':
-		    	data_arr = {
-			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-			        "symptom" : symptom_value,
-			    };
-		    break;
-			case '3':
-		    	data_arr = {
-			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-			        "symptom_other" : symptom_other.value,
-			    };
-		    break;
-		    case '4':
-		    	data_arr = {
-			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-			        "idc" : idc_value,
-			    };
-		    break;
-		    case '5':
-		    	data_arr = {
-			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-			        "vehicle_type" : vehicle_type_value,
-			        "operating_suit_type" : operating_suit_type_value,
-			        "operation_unit_name" : operation_unit_name.value,
-			        "action_set_name" : action_set_name.value,
-			        "time_create_sos" : time_create_sos.value,
-			        "time_command" : time_command.value,
-			        "time_go_to_help" : time_go_to_help.value,
-			        "time_to_the_scene" : time_to_the_scene.value,
-			        "time_leave_the_scene" : time_leave_the_scene.value,
-			        "time_hospital" : time_hospital.value,
-			        "time_to_the_operating_base" : time_to_the_operating_base.value,
-			        "km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
-			        "km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
-			        "km_hospital" : km_hospital.value,
-			        "km_operating_base" : km_operating_base.value,
-			    };
+		// 	    if (operating_suit_type_value) {
+		// 	    	document.querySelector('#input_select_level').value = operating_suit_type_value;
+		// 	    }
 
-			    if (operating_suit_type_value) {
-			    	document.querySelector('#input_select_level').value = operating_suit_type_value;
-			    }
-
-			    if (vehicle_type_value) {
-            		document.querySelector('#input_vehicle_type').value = vehicle_type_value;
-			    }
+		// 	    if (vehicle_type_value) {
+        //     		document.querySelector('#input_vehicle_type').value = vehicle_type_value;
+		// 	    }
 			   
-		    break;
-		    case '6':
+		//     break;
+		//     case '6':
 
-		    	if ( rc_value && rc_value === "ดำ" ) {
-		    		data_arr = {
-				        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-				        "rc" : rc_value,
-				        "rc_black_text" : rc_black_text.value,
-				    };
-		    	}else{
-		    		data_arr = {
-				        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-				        "rc" : rc_value,
-				    };
-		    	}
+		//     	if ( rc_value && rc_value === "ดำ" ) {
+		//     		data_arr = {
+		// 		        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+		// 		        "rc" : rc_value,
+		// 		        "rc_black_text" : rc_black_text.value,
+		// 		    };
+		//     	}else{
+		//     		data_arr = {
+		// 		        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+		// 		        "rc" : rc_value,
+		// 		    };
+		//     	}
 		    	
-		    break;
-		    case '7':
-		    	data_arr = {
-			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-			        "treatment" : treatment_value,
-			        "sub_treatment" : sub_treatment_value,
-			    };
-		    break;
-		    case '8':
-		    	data_arr = {
-			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-			        "patient_name_1" : patient_name_1.value,
-			        "patient_age_1" : patient_age_1.value,
-			        "patient_hn_1" : patient_hn_1.value,
-			        "patient_vn_1" : patient_vn_1.value,
-			        "delivered_province_1" : delivered_province_1.value,
-			        "delivered_hospital_1" : delivered_hospital_1.value,
-			        "patient_name_2" : patient_name_2.value,
-			        "patient_age_2" : patient_age_2.value,
-			        "patient_hn_2" : patient_hn_2.value,
-			        "patient_vn_2" : patient_vn_2.value,
-			        "delivered_province_2" : delivered_province_2.value,
-			        "delivered_hospital_2" : delivered_hospital_2.value,
-			        "submission_criteria" : submission_criteria_value,
-			        "communication_hospital" : communication_hospital_value,
-			    };
-			    // console.log(data_arr);
-		    break;
-		    case '9':
-		    	data_arr = {
-			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-			        "registration_category" : registration_category.value,
-			        "registration_number" : registration_number.value,
-			        "registration_province" : registration_province.value,
-			        "owner_registration" : owner_registration_value,
-			    }; 
-		    break;
-			default :
-				data_arr = {
-					"sos_help_center_id" : "{{ $sos_help_center->id }}",
-					"be_notified" : be_notified_value,
-					"name_user" : name_user.value,
-					"phone_user" : phone_user.value,
-					"lat" : lat.value,
-					"lng" : lng.value,
-					"location_sos" : location_sos.value,
-					"symptom" : symptom_value,
-					"symptom_other" : symptom_other.value,
-					"idc" : idc_value,
-					"vehicle_type" : vehicle_type_value,
-					"operating_suit_type" : operating_suit_type_value,
-					"operation_unit_name" : operation_unit_name.value,
-					"action_set_name" : action_set_name.value,
-					"time_create_sos" : time_create_sos.value,
-					"time_command" : time_command.value,
-					"time_go_to_help" : time_go_to_help.value,
-					"time_to_the_scene" : time_to_the_scene.value,
-					"time_leave_the_scene" : time_leave_the_scene.value,
-					"time_hospital" : time_hospital.value,
-					"time_to_the_operating_base" : time_to_the_operating_base.value,
-					"km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
-					"km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
-					"km_hospital" : km_hospital.value,
-					"km_operating_base" : km_operating_base.value,
-					"rc" : rc_value,
-					"rc_black_text" : rc_black_text.value,
-					"treatment" : treatment_value,
-					"sub_treatment" : sub_treatment_value,
-					"patient_name_1" : patient_name_1.value,
-					"patient_age_1" : patient_age_1.value,
-					"patient_hn_1" : patient_hn_1.value,
-					"patient_vn_1" : patient_vn_1.value,
-					"delivered_province_1" : delivered_province_1.value,
-					"delivered_hospital_1" : delivered_hospital_1.value,
-					"patient_name_2" : patient_name_2.value,
-					"patient_age_2" : patient_age_2.value,
-					"patient_hn_2" : patient_hn_2.value,
-					"patient_vn_2" : patient_vn_2.value,
-					"delivered_province_2" : delivered_province_2.value,
-					"delivered_hospital_2" : delivered_hospital_2.value,
-					"submission_criteria" : submission_criteria_value,
-					"communication_hospital" : communication_hospital_value,
-					"registration_category" : registration_category.value,
-					"registration_number" : registration_number.value,
-					"registration_province" : registration_province.value,
-					"owner_registration" : owner_registration_value,
-				}
+		//     break;
+		//     case '7':
+		//     	data_arr = {
+		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+		// 	        "treatment" : treatment_value,
+		// 	        "sub_treatment" : sub_treatment_value,
+		// 	    };
+		//     break;
+		//     case '8':
+		//     	data_arr = {
+		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+		// 	        "patient_name_1" : patient_name_1.value,
+		// 	        "patient_age_1" : patient_age_1.value,
+		// 	        "patient_hn_1" : patient_hn_1.value,
+		// 	        "patient_vn_1" : patient_vn_1.value,
+		// 	        "delivered_province_1" : delivered_province_1.value,
+		// 	        "delivered_hospital_1" : delivered_hospital_1.value,
+		// 	        "patient_name_2" : patient_name_2.value,
+		// 	        "patient_age_2" : patient_age_2.value,
+		// 	        "patient_hn_2" : patient_hn_2.value,
+		// 	        "patient_vn_2" : patient_vn_2.value,
+		// 	        "delivered_province_2" : delivered_province_2.value,
+		// 	        "delivered_hospital_2" : delivered_hospital_2.value,
+		// 	        "submission_criteria" : submission_criteria_value,
+		// 	        "communication_hospital" : communication_hospital_value,
+		// 	    };
+		// 	    // console.log(data_arr);
+		//     break;
+		//     case '9':
+		//     	data_arr = {
+		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+		// 	        "registration_category" : registration_category.value,
+		// 	        "registration_number" : registration_number.value,
+		// 	        "registration_province" : registration_province.value,
+		// 	        "owner_registration" : owner_registration_value,
+		// 	    }; 
+		//     break;
+		// 	default :
+		// 		data_arr = {
+		// 			"sos_help_center_id" : "{{ $sos_help_center->id }}",
+		// 			"be_notified" : be_notified_value,
+		// 			"name_user" : name_user.value,
+		// 			"phone_user" : phone_user.value,
+		// 			"lat" : lat.value,
+		// 			"lng" : lng.value,
+		// 			"location_sos" : location_sos.value,
+		// 			"symptom" : symptom_value,
+		// 			"symptom_other" : symptom_other.value,
+		// 			"idc" : idc_value,
+		// 			"vehicle_type" : vehicle_type_value,
+		// 			"operating_suit_type" : operating_suit_type_value,
+		// 			"operation_unit_name" : operation_unit_name.value,
+		// 			"action_set_name" : action_set_name.value,
+		// 			"time_create_sos" : time_create_sos.value,
+		// 			"time_command" : time_command.value,
+		// 			"time_go_to_help" : time_go_to_help.value,
+		// 			"time_to_the_scene" : time_to_the_scene.value,
+		// 			"time_leave_the_scene" : time_leave_the_scene.value,
+		// 			"time_hospital" : time_hospital.value,
+		// 			"time_to_the_operating_base" : time_to_the_operating_base.value,
+		// 			"km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
+		// 			"km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
+		// 			"km_hospital" : km_hospital.value,
+		// 			"km_operating_base" : km_operating_base.value,
+		// 			"rc" : rc_value,
+		// 			"rc_black_text" : rc_black_text.value,
+		// 			"treatment" : treatment_value,
+		// 			"sub_treatment" : sub_treatment_value,
+		// 			"patient_name_1" : patient_name_1.value,
+		// 			"patient_age_1" : patient_age_1.value,
+		// 			"patient_hn_1" : patient_hn_1.value,
+		// 			"patient_vn_1" : patient_vn_1.value,
+		// 			"delivered_province_1" : delivered_province_1.value,
+		// 			"delivered_hospital_1" : delivered_hospital_1.value,
+		// 			"patient_name_2" : patient_name_2.value,
+		// 			"patient_age_2" : patient_age_2.value,
+		// 			"patient_hn_2" : patient_hn_2.value,
+		// 			"patient_vn_2" : patient_vn_2.value,
+		// 			"delivered_province_2" : delivered_province_2.value,
+		// 			"delivered_hospital_2" : delivered_hospital_2.value,
+		// 			"submission_criteria" : submission_criteria_value,
+		// 			"communication_hospital" : communication_hospital_value,
+		// 			"registration_category" : registration_category.value,
+		// 			"registration_number" : registration_number.value,
+		// 			"registration_province" : registration_province.value,
+		// 			"owner_registration" : owner_registration_value,
+		// 		}
 
-				if (operating_suit_type_value) {
-			    	document.querySelector('#input_select_level').value = operating_suit_type_value;
-			    }
+		// 		if (operating_suit_type_value) {
+		// 	    	document.querySelector('#input_select_level').value = operating_suit_type_value;
+		// 	    }
 
-			    if (vehicle_type_value) {
-	        		document.querySelector('#input_vehicle_type').value = vehicle_type_value;
-			    }
+		// 	    if (vehicle_type_value) {
+	    //     		document.querySelector('#input_vehicle_type').value = vehicle_type_value;
+		// 	    }
 
-		    break;
+		//     break;
+		// }
+
+		data_arr = {
+			"sos_help_center_id" : "{{ $sos_help_center->id }}",
+			"be_notified" : be_notified_value,
+			"name_user" : name_user.value,
+			"phone_user" : phone_user.value,
+			"lat" : lat.value,
+			"lng" : lng.value,
+			"location_sos" : location_sos.value,
+			"symptom" : symptom_value,
+			"symptom_other" : symptom_other.value,
+			"idc" : idc_value,
+			"vehicle_type" : vehicle_type_value,
+			"operating_suit_type" : operating_suit_type_value,
+			"operation_unit_name" : operation_unit_name.value,
+			"action_set_name" : action_set_name.value,
+			"time_create_sos" : time_create_sos.value,
+			"time_command" : time_command.value,
+			"time_go_to_help" : time_go_to_help.value,
+			"time_to_the_scene" : time_to_the_scene.value,
+			"time_leave_the_scene" : time_leave_the_scene.value,
+			"time_hospital" : time_hospital.value,
+			"time_to_the_operating_base" : time_to_the_operating_base.value,
+			"km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
+			"km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
+			"km_hospital" : km_hospital.value,
+			"km_operating_base" : km_operating_base.value,
+			"rc" : rc_value,
+			"rc_black_text" : rc_black_text.value,
+			"treatment" : treatment_value,
+			"sub_treatment" : sub_treatment_value,
+			"patient_name_1" : patient_name_1.value,
+			"patient_age_1" : patient_age_1.value,
+			"patient_hn_1" : patient_hn_1.value,
+			"patient_vn_1" : patient_vn_1.value,
+			"delivered_province_1" : delivered_province_1.value,
+			"delivered_hospital_1" : delivered_hospital_1.value,
+			"patient_name_2" : patient_name_2.value,
+			"patient_age_2" : patient_age_2.value,
+			"patient_hn_2" : patient_hn_2.value,
+			"patient_vn_2" : patient_vn_2.value,
+			"delivered_province_2" : delivered_province_2.value,
+			"delivered_hospital_2" : delivered_hospital_2.value,
+			"submission_criteria" : submission_criteria_value,
+			"communication_hospital" : communication_hospital_value,
+			"registration_category" : registration_category.value,
+			"registration_number" : registration_number.value,
+			"registration_province" : registration_province.value,
+			"owner_registration" : owner_registration_value,
 		}
-		
-		console.log(data_arr);
 
+		if (operating_suit_type_value) {
+	    	document.querySelector('#input_select_level').value = operating_suit_type_value;
+	    }
 
-		// ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
-		fetch("{{ url('/') }}/api/check_update/form_yellow" + "/" + '{{ $sos_help_center->id }}')
-            .then(response => response.json())
-            .then(check_update => {
-                // console.log("check_update");
-        		// console.log(check_update);
-                // console.log(check_update['be_notified']);
+	    if (vehicle_type_value) {
+    		document.querySelector('#input_vehicle_type').value = vehicle_type_value;
+	    }
 
-            });
-        
+	  	// console.log(">>>>>>>>>> DATA ARRAY <<<<<<<<<<");
+
+		for (const [key, value] of Object.entries(data_arr)) {
+	  		start_data_arr[key] = value ;
+	  		// console.log(key + ' >> ' + value);
+		}
+		check_start_data_arr = "Yes" ;
 
 		// ---------------------------- ส่งข้อมูลไปอัพเดท ----------------------------//
 		fetch("{{ url('/') }}/api/send_save_data/form_yellow", {

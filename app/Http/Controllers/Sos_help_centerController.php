@@ -281,7 +281,58 @@ class Sos_help_centerController extends Controller
 
     function check_update_form_yellow($sos_id){
         $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id',$sos_id)->first();
-        return $data_form_yellow ;
+
+        $data_arr = array();
+
+        $data_arr["sos_help_center_id"] =  $data_form_yellow->id ;
+        $data_arr["be_notified"] = $data_form_yellow->be_notified;
+        $data_arr["name_user"] = $data_form_yellow->name_user ;
+        $data_arr["phone_user"] = $data_form_yellow->phone_user ;
+        $data_arr["lat"] = $data_form_yellow->lat ;
+        $data_arr["lng"] = $data_form_yellow->lng ;
+        $data_arr["location_sos"] = $data_form_yellow->location_sos ;
+        $data_arr["symptom"] = $data_form_yellow->symptom ;
+        $data_arr["symptom_other"] = $data_form_yellow->symptom_other ;
+        $data_arr["idc"] = $data_form_yellow->idc ;
+        $data_arr["vehicle_type"] = $data_form_yellow->vehicle_type ;
+        $data_arr["operating_suit_type"] = $data_form_yellow->operating_suit_type ;
+        $data_arr["operation_unit_name"] = $data_form_yellow->operation_unit_name ;
+        $data_arr["action_set_name"] = $data_form_yellow->action_set_name ;
+        $data_arr["time_create_sos"] = $data_form_yellow->time_create_sos ;
+        $data_arr["time_command"] = $data_form_yellow->time_command ;
+        $data_arr["time_go_to_help"] = $data_form_yellow->time_go_to_help ;
+        $data_arr["time_to_the_scene"] = $data_form_yellow->time_to_the_scene ;
+        $data_arr["time_leave_the_scene"] = $data_form_yellow->time_leave_the_scene ;
+        $data_arr["time_hospital"] = $data_form_yellow->time_hospital ;
+        $data_arr["time_to_the_operating_base"] = $data_form_yellow->time_to_the_operating_base ;
+        $data_arr["km_create_sos_to_go_to_help"] = $data_form_yellow->km_create_sos_to_go_to_help ;
+        $data_arr["km_to_the_scene_to_leave_the_scene"] = $data_form_yellow->km_to_the_scene_to_leave_the_scene ;
+        $data_arr["km_hospital"] = $data_form_yellow->km_hospital ;
+        $data_arr["km_operating_base"] = $data_form_yellow->km_operating_base ;
+        $data_arr["rc"] = $data_form_yellow->rc ;
+        $data_arr["rc_black_text"] = $data_form_yellow->rc_black_text ;
+        $data_arr["treatment"] = $data_form_yellow->treatment ;
+        $data_arr["sub_treatment"] = $data_form_yellow->sub_treatment ;
+        $data_arr["patient_name_1"] = $data_form_yellow->patient_name_1 ;
+        $data_arr["patient_age_1"] = $data_form_yellow->patient_age_1 ;
+        $data_arr["patient_hn_1"] = $data_form_yellow->patient_hn_1 ;
+        $data_arr["patient_vn_1"] = $data_form_yellow->patient_vn_1 ;
+        $data_arr["delivered_province_1"] = $data_form_yellow->delivered_province_1 ;
+        $data_arr["delivered_hospital_1"] = $data_form_yellow->delivered_hospital_1 ;
+        $data_arr["patient_name_2"] = $data_form_yellow->patient_name_2 ;
+        $data_arr["patient_age_2"] = $data_form_yellow->patient_age_2 ;
+        $data_arr["patient_hn_2"] = $data_form_yellow->patient_hn_2 ;
+        $data_arr["patient_vn_2"] = $data_form_yellow->patient_vn_2 ;
+        $data_arr["delivered_province_2"] = $data_form_yellow->delivered_province_2 ;
+        $data_arr["delivered_hospital_2"] = $data_form_yellow->delivered_hospital_2 ;
+        $data_arr["submission_criteria"] = $data_form_yellow->submission_criteria ;
+        $data_arr["communication_hospital"] = $data_form_yellow->communication_hospital ;
+        $data_arr["registration_category"] = $data_form_yellow->registration_category ;
+        $data_arr["registration_number"] = $data_form_yellow->registration_number ;
+        $data_arr["registration_province"] = $data_form_yellow->registration_province ;
+        $data_arr["owner_registration"] = $data_form_yellow->owner_registration ;
+
+        return $data_arr ;
     }
 
     function save_form_yellow(Request $request)
