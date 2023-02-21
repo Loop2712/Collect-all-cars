@@ -419,12 +419,38 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 			@endif
 		</div>
 	</div>
-
+	
 	<div class="menubar show-menubar">
+		<button class="btn w-25 btn_menu" id="btn_menu_3" onclick="show_data_menu(3);"><i class="fa-solid fa-file-pen"></i></button>
 		<button class="btn w-25 btn_menu" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-messages-question"></i></button>
 		<button class="btn w-25 btn_menu btn-danger" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-regular fa-truck-medical"></i></button>
-		<button class="btn w-25 btn_menu" id="btn_menu_3" onclick="show_data_menu(3);"><i class="fa-solid fa-file-pen"></i></button>
+		<button class="btn w-25 btn_menu" id="btn_menu_4" onclick="show_data_menu(4);"><i class="fa-duotone fa-map"></i></button>
 	</div>
+
+	
+	<!-- Google Map และ ดูเส้นทาง -->
+	<div id="menu_4" class="row data-menu show-data-menu d-none " style="top:83%">
+		@php
+			$gg_lat_mail = '@' . $data_sos->lat ;
+			$gg_lat = $data_sos->lat ;
+			$lng = $data_sos->lng ;
+		@endphp
+		<menu class="col-9">
+			<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 " style="width:100%;border-radius: 25px 5px 5px 25px;"  target="bank">
+				<img src="{{ asset('/img/icon/icon-google-map.png') }}" width="25" alt=""> Google Maps 
+			</a>
+		</menu>
+		<menu class="col-3 pl-0">
+			<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 btn-primary" style="width:100%;border-radius: 5px 25px 25px 5px;background-color: #007bff;" onclick="get_dir();">
+				<i id="icon_btn_get_dir_close" class="text-white fa-sharp fa-solid fa-eye-slash"></i>
+				<i id="icon_btn_get_dir_open" class="text-white fa-solid fa-eye d-none"></i>
+				<!--เปิด fa-solid fa-eye -->
+				<!--ปิด fa-sharp fa-solid fa-eye-slash -->
+			</button>
+		</menu>
+	
+	</div>
+
 	<div class="row data-menu show-data-menu d-none" id="menu_1" style="top:75%">
 		<menu class="col-12 "  >
 			<div id="show_level_by_control_center" class="card-body p-3 main-shadow" style="border-radius: 15px; ">
@@ -621,39 +647,18 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 			var test = element.classList.contains('btn-danger');
 
 			
-			for (let i = 1; i <= 3; i++) {
+			for (let i = 1; i <= 4; i++) {
 				document.querySelector('#menu_'+ [i]).classList.add('d-none');
 				document.querySelector('#btn_menu_'+ [i]).classList.remove('btn-danger');
 			}
 
 			if (test === true) {
-				// alert(1);A
-				// document.querySelector('#btn_menu_'+ id).classList.remove('btn-danger');
-				// document.querySelector('#menu_'+ id).classList.remove('show-data-menu');
-				// document.querySelector('#menu_'+ id).classList.add('close-data-menu');
 				document.querySelector('#menu_'+ id).classList.add('d-none');
-
 			} else {
-				// alert(2);A
-				// document.querySelector('#menu_'+ id).classList.remove('close-data-menu');
-				// document.querySelector('#menu_'+ id).classList.add('show-data-menu');
 				document.querySelector('#btn_menu_'+ id).classList.toggle('btn-danger');
 				document.querySelector('#menu_'+ id).classList.toggle('d-none');
 				
 			}
-			// if(element.classList.contains('btn-danger') == true) {
-			// 	alert(true);
-			// 	document.querySelector('#btn_menu_'+ id).classList.remove('btn-danger');
-			// 	document.querySelector('#menu_'+ id).classList.add('d-none');
-			// }else{
-			// 	alert(false);
-			// 	document.querySelector('#btn_menu_'+ id).classList.toggle('btn-danger');
-			// 	document.querySelector('#menu_'+ id).classList.toggle('d-none');
-			// }
-
-			
-			
-
 		}
 	</script>
 
@@ -1835,7 +1840,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             bounds.extend(myPlace);
             bounds.extend(Item_1);
         map_show_case.fitBounds(bounds);
-		
+
 		map_show_case.setZoom(map_show_case.getZoom() - 0.5);
 
 		// if ( map_show_case.getZoom() ){   // or set a minimum
