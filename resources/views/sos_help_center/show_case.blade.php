@@ -448,9 +448,9 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		</menu>
 	</div>
 
-	<div class="row data-menu show-data-menu show-data-menu" id="menu_2" >
+	<div class="row data-menu show-data-menu show-data-menu" id="menu_2" style="top: 90%;">
 		<!-- ----------------------------------------- ถึงที่เกิดเหตุ ------------------------------------------- -->
-		<div id="div_gotohelp" class="d-none"  style="margin-top:-60%">
+		<div id="div_gotohelp" class="d-none"  style="margin-top:-25%">
 			<menu class="col-12 " >
 				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" onclick="update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');">
 						<i class="fa-sharp fa-solid fa-location-crosshairs"></i> ถึงที่เกิดเหตุ 
@@ -459,7 +459,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		</div>
 		
 		<!-- -------------------------------------------  สถานะการณ์  ---------------------------------------------------- -->
-		<div id="div_event_level" class="d-none row  data-menu show-data-menu"  style="top:-1200%">
+		<div id="div_event_level" class="d-none row  data-menu show-data-menu"  style="top:-750%">
 			<menu class="col-6">
 				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-black" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
 						ดำ
@@ -488,7 +488,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		</div>
 
 		<!-- ---------------------------------------การปฎิบัติการ-------------------------------------------------- -->
-		<div class="d-none row data-menu show-data-menu" id="div_select_treatment" style="margin-top:-25%">
+		<div class="d-none row data-menu show-data-menu" id="div_select_treatment" style="margin-top:10%">
 			
 			<div class="col-12" style="margin-bottom: 5%;">
 				<!-- -------------------------------------------   เคสมีการรักษา  ----------------------------------------------------- -->
@@ -582,7 +582,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		</div>
 
 		<!-- ---------------------------------------กลับถึงฐาน-------------------------------------------------- -->
-		<div id="div_operating_base" class="d-none"  style="margin-top:-60%">
+		<div id="div_operating_base" class="d-none"  style="margin-top:-30%">
 			<menu class="col-12 " >
 				<button class="btn btn-success main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
 				onclick="officer_to_the_operating_base('{{ $data_sos->id }}');">
@@ -591,7 +591,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 			</menu>
 		</div>
 		
-		<div id="div_to_hospital" class="d-none"  style="margin-top:-60%">
+		<div id="div_to_hospital" class="d-none"  style="margin-top:-30%">
 			<menu class="col-12 " >
 				<button class="btn btn-primary main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
 				onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ถึงโรงพยาบาล');">
