@@ -1171,9 +1171,8 @@
   <input class="d-none" type="text" name="full_url" id="full_url" value="{{ url()->full() }}">
 
   @yield('content')
-  <br>
   <!-- ======= Footer WEB ======= -->
-  <footer class="text-center text-white" style="background-color: #F1F7FD;padding-top:10px;">
+  <footer class="text-center text-white mt-3" style="background-color: #F1F7FD;padding-top:10px;">
     <!-- Grid container -->
     <div class="container p-1">
       <!-- Section: Images -->
