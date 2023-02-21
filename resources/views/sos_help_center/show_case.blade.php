@@ -1835,10 +1835,12 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             bounds.extend(myPlace);
             bounds.extend(Item_1);
         map_show_case.fitBounds(bounds);
+		
+		map_show_case.setZoom(map_show_case.getZoom() - 0.5);
 
-		if ( map_show_case.getZoom() ){   // or set a minimum
-			map_show_case.setZoom(map_show_case.getZoom() - 0.5);  // set zoom here
-		}
+		// if ( map_show_case.getZoom() ){   // or set a minimum
+		// 	  // set zoom here
+		// }
     }
 
     // UPDATE STATUS SOS
