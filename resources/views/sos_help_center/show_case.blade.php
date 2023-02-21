@@ -1837,7 +1837,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         map_show_case.fitBounds(bounds);
 
 		if ( map_show_case.getZoom() ){   // or set a minimum
-			map_show_case.setZoom(map_show_case.getZoom() - 2);  // set zoom here
+			map_show_case.setZoom(map_show_case.getZoom() - 0.5);  // set zoom here
 		}
     }
 
