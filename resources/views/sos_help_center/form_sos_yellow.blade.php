@@ -1092,25 +1092,25 @@
 													เวลา (น.)
 												</th>
 												<td>
-													<input class="form-control" type="time" name="time_create_sos" id="time_create_sos" value="{{ isset($data_form_yellow->time_create_sos) ? $data_form_yellow->time_create_sos : ''}}">
+													<input class="form-control" type="time" name="time_create_sos" id="time_create_sos" step="2" value="{{ isset($data_form_yellow->time_create_sos) ? $data_form_yellow->time_create_sos : ''}}">
 												</td>
 												<td>
-													<input class="form-control" type="time" name="time_command" id="time_command" value="{{ isset($data_form_yellow->time_command) ? $data_form_yellow->time_command : ''}}">
+													<input class="form-control" type="time" name="time_command" id="time_command" step="2" value="{{ isset($data_form_yellow->time_command) ? $data_form_yellow->time_command : ''}}">
 												</td>
 												<td>
-													<input class="form-control" type="time" name="time_go_to_help" id="time_go_to_help" value="{{ isset($data_form_yellow->time_go_to_help) ? $data_form_yellow->time_go_to_help : ''}}">
+													<input class="form-control" type="time" name="time_go_to_help" id="time_go_to_help" step="2" value="{{ isset($data_form_yellow->time_go_to_help) ? $data_form_yellow->time_go_to_help : ''}}">
 												</td>
 												<td>
-													<input class="form-control" type="time" name="time_to_the_scene" id="time_to_the_scene" value="{{ isset($data_form_yellow->time_to_the_scene) ? $data_form_yellow->time_to_the_scene : ''}}">
+													<input class="form-control" type="time" name="time_to_the_scene" id="time_to_the_scene" step="2" value="{{ isset($data_form_yellow->time_to_the_scene) ? $data_form_yellow->time_to_the_scene : ''}}">
 												</td>
 												<td>
-													<input class="form-control" type="time" name="time_leave_the_scene" id="time_leave_the_scene" value="{{ isset($data_form_yellow->time_leave_the_scene) ? $data_form_yellow->time_leave_the_scene : ''}}">
+													<input class="form-control" type="time" name="time_leave_the_scene" id="time_leave_the_scene" step="2" value="{{ isset($data_form_yellow->time_leave_the_scene) ? $data_form_yellow->time_leave_the_scene : ''}}">
 												</td>
 												<td>
-													<input class="form-control" type="time" name="time_hospital" id="time_hospital" value="{{ isset($data_form_yellow->time_hospital) ? $data_form_yellow->time_hospital : ''}}">
+													<input class="form-control" type="time" name="time_hospital" id="time_hospital" step="2" value="{{ isset($data_form_yellow->time_hospital) ? $data_form_yellow->time_hospital : ''}}">
 												</td>
 												<td>
-													<input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" value="{{ isset($data_form_yellow->time_to_the_operating_base) ? $data_form_yellow->time_to_the_operating_base : ''}}">
+													<input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" step="2" value="{{ isset($data_form_yellow->time_to_the_operating_base) ? $data_form_yellow->time_to_the_operating_base : ''}}">
 												</td>
 											</tr>
 											<tr>
@@ -1118,13 +1118,13 @@
 													รวมเวลา (นาที)
 												</th>
 												<td colspan="4" style="text-align: center;">
-													Response time = { $response_time } นาที
+													Response time = <b><span id="time_zone_1" class="text-dark">...</span></b> นาที
 												</td>
 												<td style="background-color:#D3D3D3;">
 													<!--  -->
 												</td>
 												<td colspan="2" style="text-align: center;">
-													........ นาที
+													<b><span id="time_zone_2" class="text-dark">...</span></b> นาที
 												</td>
 											</tr>
 											<tr>
@@ -1866,9 +1866,8 @@
 
         reface_check_form_yellow = setInterval(function() {
         	check_start_data_form_yellow();
+        	distance_in_no5();
         }, 5000);
-
-        distance_in_no5();
 
     });
 
@@ -2424,6 +2423,7 @@
 <!-- ตำนวณข้อ 5  -->
 <script>
 	function time_in_no5(){
+
 		let time_create_sos = document.querySelector('[name="time_create_sos"]'); 
 		let time_command = document.querySelector('[name="time_command"]'); 
 		let time_go_to_help = document.querySelector('[name="time_go_to_help"]'); 
@@ -2433,29 +2433,87 @@
 		let time_to_the_operating_base = document.querySelector('[name="time_to_the_operating_base"]');
 		// ------------------------------------------------------------------------------------------------//
 
-		const date1 = new Date('2022-02-01');
-		const date2 = new Date('2023-02-16');
+		// ---------------------- TIME ZONE 1 ---------------------- //
+		let zone1_time1 = "00:00:00";
+		let zone1_time2 = "00:00:00";
 
-		// Calculate the difference in milliseconds
-		const diffInMs = Math.abs(date2 - date1);
+		// time 1
+		if (time_create_sos.value) {
+			zone1_time1 = time_create_sos.value;
+		}
+		// time 2
+		if (time_command.value) {
+			zone1_time2 = time_command.value;
+		}
+		if (time_go_to_help.value) {
+			zone1_time2 = time_go_to_help.value;
+		}
+		if (time_to_the_scene.value) {
+			zone1_time2 = time_to_the_scene.value;
+		}
 
-		// Calculate the difference in seconds, minutes, hours, and days
-		const diffInSec = Math.floor(diffInMs / 1000);
-		const diffInMin = Math.floor(diffInSec / 60);
-		const diffInHrs = Math.floor(diffInMin / 60);
-		const diffInDays = Math.floor(diffInHrs / 24);
+		// Extract the hours, minutes, and seconds from the two times
+		let [zone1_hours1, zone1_minutes1, zone1_seconds1] = zone1_time1.split(":");
+		let [zone1_hours2, zone1_minutes2, zone1_seconds2] = zone1_time2.split(":");
+		// Convert the hours, minutes, and seconds to the total number of seconds
+		let zone1_totalSeconds1 = parseInt(zone1_hours1) * 3600 + parseInt(zone1_minutes1) * 60 + parseInt(zone1_seconds1);
+		let zone1_totalSeconds2 = parseInt(zone1_hours2) * 3600 + parseInt(zone1_minutes2) * 60 + parseInt(zone1_seconds2);
+		// Calculate the time difference in seconds
+		let zone1_TotalSeconds = zone1_totalSeconds2 - zone1_totalSeconds1;
+			// console.log('TotalSeconds >> ' + TotalSeconds);
+		let zone1_Time_min =  Math.floor(zone1_TotalSeconds / 60);
+			// console.log('Time_min >> ' + Time_min);
+		let zone1_Time_Seconds = zone1_TotalSeconds - (zone1_Time_min*60);
+			// console.log('Time_Seconds >> ' + Time_Seconds);
+		let zone1_tiem_all;
+		if (zone1_Time_Seconds === 0) {
+			zone1_tiem_all = zone1_Time_min ;
+		}else{
+			zone1_tiem_all = zone1_Time_min + ":" + zone1_Time_Seconds;
+		}
+		// console.log('ระยะห่าง >> ' + zone1_tiem_all + " นาที");
 
-		// Print the results
-		console.log(`The distance between ${date1} and ${date2} is: `);
-		console.log(`${diffInMs} milliseconds`);
-		console.log(`${diffInSec} seconds`);
-		console.log(`${diffInMin} minutes`);
-		console.log(`${diffInHrs} hours`);
-		console.log(`${diffInDays} days`);
+		if (zone1_tiem_all != 0) {
+			document.querySelector('#time_zone_1').innerHTML = zone1_tiem_all ;
+		}
 
-		let response_time_1 ;
+		// ---------------------- TIME ZONE 2 ---------------------- //
+		let zone2_time1 = "00:00:00";
+		let zone2_time2 = "00:00:00";
 
-		let response_time_2 ;
+		// time 1
+		if (time_hospital.value) {
+			zone2_time1 = time_hospital.value;
+		}
+		// time 2
+		if (time_to_the_operating_base.value) {
+			zone2_time2 = time_to_the_operating_base.value;
+		}
+
+		// Extract the hours, minutes, and seconds from the two times
+		let [zone2_hours1, zone2_minutes1, zone2_seconds1] = zone2_time1.split(":");
+		let [zone2_hours2, zone2_minutes2, zone2_seconds2] = zone2_time2.split(":");
+		// Convert the hours, minutes, and seconds to the total number of seconds
+		let zone2_totalSeconds1 = parseInt(zone2_hours1) * 3600 + parseInt(zone2_minutes1) * 60 + parseInt(zone2_seconds1);
+		let zone2_totalSeconds2 = parseInt(zone2_hours2) * 3600 + parseInt(zone2_minutes2) * 60 + parseInt(zone2_seconds2);
+		// Calculate the time difference in seconds
+		let zone2_TotalSeconds = zone2_totalSeconds2 - zone2_totalSeconds1;
+			// console.log('TotalSeconds >> ' + TotalSeconds);
+		let zone2_Time_min =  Math.floor(zone2_TotalSeconds / 60);
+			// console.log('Time_min >> ' + Time_min);
+		let zone2_Time_Seconds = zone2_TotalSeconds - (zone2_Time_min*60);
+			// console.log('Time_Seconds >> ' + Time_Seconds);
+		let zone2_tiem_all;
+		if (zone2_Time_Seconds === 0) {
+			zone2_tiem_all = zone2_Time_min ;
+		}else{
+			zone2_tiem_all = zone2_Time_min + ":" + zone2_Time_Seconds;
+		}
+		// console.log('ระยะห่าง >> ' + zone2_tiem_all + " นาที");
+
+		if (zone2_tiem_all != 0) {
+			document.querySelector('#time_zone_2').innerHTML = zone2_tiem_all ;
+		}
 
 	}
 
