@@ -21,96 +21,91 @@
 	100% {
 		transform: scale(1);
 	}
+}.iziToast > .iziToast-body .iziToast-texts {
+  margin: 100px 0 0 0;
+  padding-right: 2px;
+  display: contents !important;
+  float: left;
+}
+.iziToast-texts p{
+    margin-top: 5px !important;
+    white-space: nowrap;
+    overflow: hidden;
+  text-overflow: ellipsis;
+}
+.iziToast {
+    width:30% !important;
+    max-height: 100% !important;
+}
+.iziToast-texts{
+    min-width: 10% !important;
+    max-width: 40% !important;
+}
+
+.iziToast > .iziToast-body .iziToast-message {
+  margin-top: 5px;
+  white-space: normal !important;
 }
 </style> 
-	
+
 
 <div class="container">
+  <!-- <button class="btn btn-default" id="customClick">Custom</button> -->
+  <button class="btn btn-default" onclick="alet_new_data('เหลือง' ,'ชื่อ นามสกุล เบอร์โทร')">ทดสอบแจ้งเตือนบันทึกข้อมูล</button>
 
-  <h1>iziToast テスト</h1>
-  <br />
-  <button class="btn btn-primary" id="infoClick">Info</button>
-  <button class="btn btn-success" id="successClick">Success</button>
-  <button class="btn btn-warning" id="warningClick">Warning</button>
-  <button class="btn btn-danger" id="errorClick">Error</button>
-  <button class="btn btn-default" id="customClick">Custom</button>
 
 </div>
+
+
 <script>
-        // settings関数で初期設定 全体に適応させたい場合
-        iziToast.settings({
-      timeout: 3000, // default timeout
-      resetOnHover: true,
-      // icon: '', // icon class
-      transitionIn: 'flipInX',
-      transitionOut: 'flipOutX',
-      position: 'topRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-      onOpen: function () {
-        console.log('callback abriu!');
-      },
-      onClose: function () {
-        console.log("callback fechou!");
-      }
-    });
-
-
-    // info
-    $('#infoClick').click(function () {
-      iziToast.info({position: "center", title: 'Hello', message: 'iziToast.info()'});
-    }); // ! click
-
-    // success
-    $('#successClick').click(function () {
-      iziToast.success({timeout: 5000, icon: 'fa fa-chrome', title: 'OK', message: 'iziToast.sucess() with custom icon!'});
-    }); // ! .click
-
-    // warning
-    $('#warningClick').click(function () {
-      iziToast.warning({position: "bottomLeft", title: 'Caution', message: '日本語環境のテスト'});
-    });
-
-    // error
-    $('#errorClick').click(function () {
-      iziToast.error({title: 'Error', message: 'Illegal operation'});
-    });
-
-    // custom toast
-    $('#customClick').click(function () {
-
-      iziToast.show({
+    function alet_new_data(form_color , data) {
+        iziToast.show({
         color: 'dark',
-        icon: 'fa fa-user',
-        title: 'Hey',
-        message: 'Custom Toast!',
-        position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+        icon: 'fa-duotone fa-file-import',
+        timeout: 7000,
+        title: 'ฟอร์ม "' +form_color+ '" มีข้อมูลใหม่!!',
+        message: 'ข้อมูลที่มีการเปลี่ยนแปลงมีดังนี้ ' + data,
+        position: 'bottomLeft', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
         progressBarColor: 'rgb(0, 255, 184)',
         buttons: [
           [
-            '<button>Ok</button>',
+            '<button>บันทึก</button>',
             function (instance, toast) {
-              alert("Hello world!");
-            }
-          ],
-          [
-            '<button>Close</button>',
-            function (instance, toast) {
+                save_data(form_color , data)
               instance.hide({
                 transitionOut: 'fadeOutUp'
               }, toast);
             }
+          ],
+          [
+            '<button class="btn-danger">ไม่บันทึก</button>',
+            function (instance, toast) {
+                dont_save_data(form_color , data);
+                instance.hide({
+                transitionOut: 'fadeOutUp'
+              }, toast);
+            }
           ]
-        ]
+        ],onClosed: function asdfa(instance, toast, closedBy){
+            if (closedBy === 'timeout') {
+                save_data(form_color , data);
+            }
+           
+        }
+        
       });
 
-    }); // ! .click()
+      
+    }
+</script>
 
-$('#any').click(function(){
-  iziToast.error({
-    title: 'Errorカラー',
-    message: 'iziToast.error()'
-  });
-});
-
+<script>
+    function save_data(form_color , data){
+        iziToast.success({timeout: 2000,position: "bottomLeft", icon: 'fa-solid fa-file-check', title: 'บันทึกเรียบร้อย' ,message: 'บันทึกข้อมูล ' + data + 'ในฟอร์ม' + form_color + 'เรียบร้อย'});
+    }
+    function dont_save_data(form_color , data){
+        iziToast.warning({timeout: 2000,position: "bottomLeft", icon: 'fa-solid fa-file-excel',  title: 'ไม่บันทึก' , message: 'ปฎิเศษการบันทึกข้อมูล' + data +'ในฟอร์ม' +form_color});
+    }
 </script>
 <!-- Modal -->
 <div class="modal fade" id="modal_mapMarkLocation" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

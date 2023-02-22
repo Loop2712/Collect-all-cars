@@ -26,6 +26,11 @@
 	<link href="{{ asset('partner_new/plugins/smart-wizard/css/smart_wizard_all.min.css') }}" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="{{ asset('partner_new/plugins/notifications/css/lobibox.min.css') }}" />
 
+	<!-- izitoast -->
+	<link rel='stylesheet' href='https://unpkg.com/izitoast/dist/css/iziToast.min.css'>
+
+
+	<link rel='stylesheet' href='https://unpkg.com/izitoast/dist/css/iziToast.min.css'>
 	<!-- loader-->
 	<link href="{{ asset('/css/pace.min.css') }}" rel="stylesheet" />
 	<script src="{{ asset('/js/pace.min.js') }}"></script>
@@ -41,7 +46,12 @@
 	<!-- fontawesome icon -->
     <link rel="stylesheet" href="{{ asset('/partner/fonts/fontawesome/css/fontawesome-all.min.css') }}">
  	<link href="https://kit-pro.fontawesome.com/releases/v6.3.0/css/pro.min.css" rel="stylesheet">
-    
+	 
+	<!-- carousel -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1173,14 +1183,15 @@
 <input id="color_of_partner" type="text" class="d-none" name="" value="">
 <input id="class_color_menu" type="text" class="d-none" name="" value="">
 <input id="check_name_partner" type="hidden" name="" value="">
-
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://unpkg.com/izitoast/dist/js/iziToast.min.js'></script>
 <!-- Bootstrap JS -->
 <script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
 <!--plugins-->
 <script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/simplebar/js/simplebar.min.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/metismenu/js/metisMenu.min.js') }}"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="{{ asset('partner_new/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
@@ -1191,7 +1202,6 @@
 <script src="{{ asset('partner_new/plugins/highcharts/js/export-data.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/highcharts/js/accessibility.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <script>
