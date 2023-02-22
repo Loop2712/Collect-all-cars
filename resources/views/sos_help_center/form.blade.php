@@ -60,43 +60,95 @@
 <script>
     function alet_new_data(form_color , data) {
         iziToast.show({
-        color: 'dark',
-        icon: 'fa-duotone fa-file-import',
-        timeout: 7000,
-        title: 'ฟอร์ม "' +form_color+ '" มีข้อมูลใหม่!!',
-        message: 'ข้อมูลที่มีการเปลี่ยนแปลงมีดังนี้ ' + data,
-        position: 'bottomLeft', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
-        progressBarColor: 'rgb(0, 255, 184)',
-        buttons: [
-          [
-            '<button>บันทึก</button>',
-            function (instance, toast) {
-                save_data(form_color , data)
-              instance.hide({
-                transitionOut: 'fadeOutUp'
-              }, toast);
+            color: 'dark',
+            icon: 'fa-duotone fa-file-import',
+            close: false,
+            timeout: 8000,
+            resetOnHover: true,
+            title: 'ฟอร์ม "' +form_color+ '" มีข้อมูลใหม่!!',
+            message: 'ข้อมูลที่มีการเปลี่ยนแปลงมีดังนี้ ' + data + "<br>",
+            position: 'bottomLeft', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+            progressBarColor: 'rgb(0, 255, 184)',
+            buttons: [
+              [
+                '<button>บันทึก (<span id="nub_vi">8</span>)</button>',
+                function (instance, toast) {
+                    save_data(form_color , data)
+                  instance.hide({
+                    transitionOut: 'fadeOutUp'
+                  }, toast);
+                }
+              ],
+              [
+                '<button class="btn-danger">ไม่บันทึก</button>',
+                function (instance, toast) {
+                    dont_save_data(form_color , data);
+                    instance.hide({
+                    transitionOut: 'fadeOutUp'
+                  }, toast);
+                }
+              ]
+            ],onClosed: function asdfa(instance, toast, closedBy){
+                if (closedBy === 'timeout') {
+                    save_data(form_color , data);
+                }
+               
             }
-          ],
-          [
-            '<button class="btn-danger">ไม่บันทึก</button>',
-            function (instance, toast) {
-                dont_save_data(form_color , data);
-                instance.hide({
-                transitionOut: 'fadeOutUp'
-              }, toast);
-            }
-          ]
-        ],onClosed: function asdfa(instance, toast, closedBy){
-            if (closedBy === 'timeout') {
-                save_data(form_color , data);
-            }
-           
-        }
         
-      });
+        });
 
-      
+        startTimer_nub_vi();
+
+        // ----------------------------
+        const test_iziToast = document.querySelector(".iziToast");
+
+        test_iziToast.addEventListener("mouseout", (event) => {
+            
+            // นับวิต่อเนื่อจากเดิม
+            console.log("mouseout");
+            startTimer_nub_vi();
+            // alert("นับวิต่อเนื่อจากเดิม");
+
+        }, false);
+
+        test_iziToast.addEventListener("mouseover", (event) => {
+            
+            console.log("mouseover");
+            // หยุดนับ
+            // alert("หยุดนับ");
+            myStop_startTimer_nub_vi();
+
+        }, false);
+        
     }
+
+    
+
+    function startTimer(duration, display) {
+        var timer = duration, seconds;
+        timer_nub_vi = setInterval(function () {
+            seconds = parseInt(timer % 60, 10);
+
+            display.textContent =  seconds;
+
+            if (--timer < 0) {
+                timer = duration;
+            }
+        }, 1000);
+    }
+
+    function startTimer_nub_vi() {
+        var fiveMinutes = 7,
+            display = document.querySelector('#nub_vi');
+        startTimer(fiveMinutes, display);
+    };
+
+    function myStop_startTimer_nub_vi() {
+        clearInterval(timer_nub_vi);
+        // alert("STOP");
+    }
+
+
 </script>
 
 <script>
