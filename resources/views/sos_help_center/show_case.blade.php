@@ -446,7 +446,12 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 			</a>
 		</menu>
 		<menu class="col-3 pl-0">
-			<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 btn-primary" style="width:100%;border-radius: 5px 25px 25px 5px;background-color: #007bff;" onclick="get_dir();">
+			@if( Auth::user()->id == '1' || Auth::user()->id == '64' )
+				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 btn-primary" style="width:100%;border-radius: 5px 25px 25px 5px;background-color: #007bff;" onclick="get_dir();">
+			@else
+				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 btn-primary" disabled style="width:100%;border-radius: 5px 25px 25px 5px;background-color: #007bff;" onclick="get_dir();">
+			@endif
+			
 				<i id="icon_btn_get_dir_close" class="text-white fa-sharp fa-solid fa-eye-slash"></i>
 				<i id="icon_btn_get_dir_open" class="text-white fa-solid fa-eye d-none"></i>
 				<!--เปิด fa-solid fa-eye -->
