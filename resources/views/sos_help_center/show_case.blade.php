@@ -435,6 +435,11 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 			$gg_lat = $data_sos->lat ;
 			$lng = $data_sos->lng ;
 		@endphp
+		<menu id="div_distance_and_duration" class="col-12 d-none">
+    		<button class="card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
+				ระยะทาง : <span id="text_distance"></span> / เวลา : <span id="text_duration"></span>
+			</button>
+		</menu>
 		<menu class="col-9">
 			<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 " style="width:100%;border-radius: 25px 5px 5px 25px;"  target="bank">
 				<img src="{{ asset('/img/icon/icon-google-map.png') }}" width="25" alt=""> Google Maps 
@@ -1748,12 +1753,11 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		    	// x.innerHTML = "Geolocation is not supported by this browser.";
 		  	}
 
-	  	}, 5000);
+	  	}, 10000);
 	}
 
 	function loop_location_officer(position){
 		// console.log("loop_location_officer");
-
 		// LOOP ------------------------------------------------------------------
         lat = position.coords.latitude ;
 		lng = position.coords.longitude ;
@@ -1772,7 +1776,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
                 let sos_lat = result_2['lat'] ;
                 let sos_lng = result_2['lng'] ;
 
-				set_marker_map_show_case(sos_lat , sos_lng);
+				// set_marker_map_show_case(sos_lat , sos_lng);
 
             	status_sos = result_2['status'] ;
             	document.querySelector('#show_status').innerHTML = status_sos ;
@@ -1788,6 +1792,8 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 					if (directionsDisplay) {
 				        directionsDisplay.setMap(null);
 					}
+
+					set_marker_map_show_case(sos_lat , sos_lng);
 					document.querySelector('#div_distance_and_duration').classList.add('d-none');
 				}
 
@@ -1842,7 +1848,6 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         map_show_case.fitBounds(bounds);
 
 		map_show_case.setZoom(map_show_case.getZoom() - 0.5);
-
 		// if ( map_show_case.getZoom() ){   // or set a minimum
 		// 	  // set zoom here
 		// }

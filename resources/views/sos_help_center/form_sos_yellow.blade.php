@@ -2434,8 +2434,8 @@
 		// ------------------------------------------------------------------------------------------------//
 
 		// ---------------------- TIME ZONE 1 ---------------------- //
-		let zone1_time1 = "00:00:00";
-		let zone1_time2 = "00:00:00";
+		let zone1_time1 ;
+		let zone1_time2 ;
 
 		// time 1
 		if (time_create_sos.value) {
@@ -2452,34 +2452,36 @@
 			zone1_time2 = time_to_the_scene.value;
 		}
 
-		// Extract the hours, minutes, and seconds from the two times
-		let [zone1_hours1, zone1_minutes1, zone1_seconds1] = zone1_time1.split(":");
-		let [zone1_hours2, zone1_minutes2, zone1_seconds2] = zone1_time2.split(":");
-		// Convert the hours, minutes, and seconds to the total number of seconds
-		let zone1_totalSeconds1 = parseInt(zone1_hours1) * 3600 + parseInt(zone1_minutes1) * 60 + parseInt(zone1_seconds1);
-		let zone1_totalSeconds2 = parseInt(zone1_hours2) * 3600 + parseInt(zone1_minutes2) * 60 + parseInt(zone1_seconds2);
-		// Calculate the time difference in seconds
-		let zone1_TotalSeconds = zone1_totalSeconds2 - zone1_totalSeconds1;
-			// console.log('TotalSeconds >> ' + TotalSeconds);
-		let zone1_Time_min =  Math.floor(zone1_TotalSeconds / 60);
-			// console.log('Time_min >> ' + Time_min);
-		let zone1_Time_Seconds = zone1_TotalSeconds - (zone1_Time_min*60);
-			// console.log('Time_Seconds >> ' + Time_Seconds);
-		let zone1_tiem_all;
-		if (zone1_Time_Seconds === 0) {
-			zone1_tiem_all = zone1_Time_min ;
-		}else{
-			zone1_tiem_all = zone1_Time_min + ":" + zone1_Time_Seconds;
-		}
-		// console.log('ระยะห่าง >> ' + zone1_tiem_all + " นาที");
+		if (zone1_time1 && zone1_time2) {
+			// Extract the hours, minutes, and seconds from the two times
+			let [zone1_hours1, zone1_minutes1, zone1_seconds1] = zone1_time1.split(":");
+			let [zone1_hours2, zone1_minutes2, zone1_seconds2] = zone1_time2.split(":");
+			// Convert the hours, minutes, and seconds to the total number of seconds
+			let zone1_totalSeconds1 = parseInt(zone1_hours1) * 3600 + parseInt(zone1_minutes1) * 60 + parseInt(zone1_seconds1);
+			let zone1_totalSeconds2 = parseInt(zone1_hours2) * 3600 + parseInt(zone1_minutes2) * 60 + parseInt(zone1_seconds2);
+			// Calculate the time difference in seconds
+			let zone1_TotalSeconds = zone1_totalSeconds2 - zone1_totalSeconds1;
+				// console.log('TotalSeconds >> ' + TotalSeconds);
+			let zone1_Time_min =  Math.floor(zone1_TotalSeconds / 60);
+				// console.log('Time_min >> ' + Time_min);
+			let zone1_Time_Seconds = zone1_TotalSeconds - (zone1_Time_min*60);
+				// console.log('Time_Seconds >> ' + Time_Seconds);
+			let zone1_tiem_all;
+			if (zone1_Time_Seconds === 0) {
+				zone1_tiem_all = zone1_Time_min ;
+			}else{
+				zone1_tiem_all = zone1_Time_min + ":" + zone1_Time_Seconds;
+			}
+			// console.log('ระยะห่าง >> ' + zone1_tiem_all + " นาที");
 
-		if (zone1_tiem_all != 0) {
-			document.querySelector('#time_zone_1').innerHTML = zone1_tiem_all ;
+			if (zone1_tiem_all != 0) {
+				document.querySelector('#time_zone_1').innerHTML = zone1_tiem_all ;
+			}
 		}
 
 		// ---------------------- TIME ZONE 2 ---------------------- //
-		let zone2_time1 = "00:00:00";
-		let zone2_time2 = "00:00:00";
+		let zone2_time1 ;
+		let zone2_time2 ;
 
 		// time 1
 		if (time_hospital.value) {
@@ -2490,29 +2492,31 @@
 			zone2_time2 = time_to_the_operating_base.value;
 		}
 
-		// Extract the hours, minutes, and seconds from the two times
-		let [zone2_hours1, zone2_minutes1, zone2_seconds1] = zone2_time1.split(":");
-		let [zone2_hours2, zone2_minutes2, zone2_seconds2] = zone2_time2.split(":");
-		// Convert the hours, minutes, and seconds to the total number of seconds
-		let zone2_totalSeconds1 = parseInt(zone2_hours1) * 3600 + parseInt(zone2_minutes1) * 60 + parseInt(zone2_seconds1);
-		let zone2_totalSeconds2 = parseInt(zone2_hours2) * 3600 + parseInt(zone2_minutes2) * 60 + parseInt(zone2_seconds2);
-		// Calculate the time difference in seconds
-		let zone2_TotalSeconds = zone2_totalSeconds2 - zone2_totalSeconds1;
-			// console.log('TotalSeconds >> ' + TotalSeconds);
-		let zone2_Time_min =  Math.floor(zone2_TotalSeconds / 60);
-			// console.log('Time_min >> ' + Time_min);
-		let zone2_Time_Seconds = zone2_TotalSeconds - (zone2_Time_min*60);
-			// console.log('Time_Seconds >> ' + Time_Seconds);
-		let zone2_tiem_all;
-		if (zone2_Time_Seconds === 0) {
-			zone2_tiem_all = zone2_Time_min ;
-		}else{
-			zone2_tiem_all = zone2_Time_min + ":" + zone2_Time_Seconds;
-		}
-		// console.log('ระยะห่าง >> ' + zone2_tiem_all + " นาที");
+		if (zone2_time1 && zone2_time2) {
+			// Extract the hours, minutes, and seconds from the two times
+			let [zone2_hours1, zone2_minutes1, zone2_seconds1] = zone2_time1.split(":");
+			let [zone2_hours2, zone2_minutes2, zone2_seconds2] = zone2_time2.split(":");
+			// Convert the hours, minutes, and seconds to the total number of seconds
+			let zone2_totalSeconds1 = parseInt(zone2_hours1) * 3600 + parseInt(zone2_minutes1) * 60 + parseInt(zone2_seconds1);
+			let zone2_totalSeconds2 = parseInt(zone2_hours2) * 3600 + parseInt(zone2_minutes2) * 60 + parseInt(zone2_seconds2);
+			// Calculate the time difference in seconds
+			let zone2_TotalSeconds = zone2_totalSeconds2 - zone2_totalSeconds1;
+				// console.log('TotalSeconds >> ' + TotalSeconds);
+			let zone2_Time_min =  Math.floor(zone2_TotalSeconds / 60);
+				// console.log('Time_min >> ' + Time_min);
+			let zone2_Time_Seconds = zone2_TotalSeconds - (zone2_Time_min*60);
+				// console.log('Time_Seconds >> ' + Time_Seconds);
+			let zone2_tiem_all;
+			if (zone2_Time_Seconds === 0) {
+				zone2_tiem_all = zone2_Time_min ;
+			}else{
+				zone2_tiem_all = zone2_Time_min + ":" + zone2_Time_Seconds;
+			}
+			// console.log('ระยะห่าง >> ' + zone2_tiem_all + " นาที");
 
-		if (zone2_tiem_all != 0) {
-			document.querySelector('#time_zone_2').innerHTML = zone2_tiem_all ;
+			if (zone2_tiem_all != 0) {
+				document.querySelector('#time_zone_2').innerHTML = zone2_tiem_all ;
+			}
 		}
 
 	}
