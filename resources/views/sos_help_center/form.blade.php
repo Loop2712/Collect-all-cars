@@ -23,151 +23,94 @@
 	}
 }
 </style> 
+	
 
-<button id="alert_save_data" type="button" data-delay="5" class="btn btn-danger px-5"  onclick="alert_save_data('ชื่อ , นามสุกล' , 'เหลือง');"><i class="bx bx-x-circle"></i> Danger</button>
+<div class="container">
 
+  <h1>iziToast テスト</h1>
+  <br />
+  <button class="btn btn-primary" id="infoClick">Info</button>
+  <button class="btn btn-success" id="successClick">Success</button>
+  <button class="btn btn-warning" id="warningClick">Warning</button>
+  <button class="btn btn-danger" id="errorClick">Error</button>
+  <button class="btn btn-default" id="customClick">Custom</button>
+
+</div>
 <script>
-    function alert_save_data(data , form_color) {
-
-        let test = 'ที่มีการเปลี่ยนแปลงมีดังนี้ '+ data +' <br><button class="btn btn-success btn-sm " data-delay="5" onclick="save_data()">บันทึก (<span id="time">7</span>)</button> <button class=" btn-sm btn btn-danger" data-delay="5" onclick="dont_save_data()">ไม่ต้องเปลี่ยน</button>';
-        let text_title = 'ฟอร์ม'+form_color+'มีการเปลี่ยนแปลง';
-
-	    var alert_test = Lobibox.notify('info', {
-		pauseDelayOnHover: true,
-		icon: 'fa-solid fa-file-signature',
-		size: 'normal',
-		continueDelayOnInactiveTab: false,
-		position: 'bottom left',
-        delay: 7000,
-        title: text_title,
-        delayIndicator: true, 
-        width: 400,
-        sound: 'sound6.mp3',
-		msg: test  ,
-        
-	});
-
-    setTimeout(() => {
-        save_data();
-    }, 8000);
-    
-} 
-
-
-function dont_save_data() {
-    alert("ไม่เปลี่ยนข้อมูล")
-}
-
-function save_data() {
-    alert("บันทึกข้อมูลเรียบร้อย");
-}
-
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        seconds = parseInt(timer % 60, 10);
-        
-        display.textContent = seconds;
-
-        if (--timer < 0) {
-            timer = duration;
-        }
-    }, 1000);
-}
-
-window.onload = function () {
-    var fiveMinutes = 7,
-        display = document.querySelector('#time');
-    startTimer(fiveMinutes, display);
-};
-</script>
-
-<script type="text/javascript">
-    var sqTranslations = {
-        "Credit card number is not valid": bbr_mls_cc_err_number,
-        "CVV is not valid": bbr_mls_cc_err_cvc,
-        "Expiration date is not valid": bbr_mls_cc_err_exp,
-        "Postal code is not valid": bbr_mls_cc_err_postal_code
-    }
-    var sqPaymentForm = new SqPaymentForm({
-        // Replace this value with your application's ID (available from the merchant dashboard).
-        // If you're just testing things out, replace this with your _Sandbox_ application ID,
-        // which is also available there.
-        applicationId: 'sandbox-sq0idp-LM7Elz6g-4BoZS64z3ae4Q',
-        inputClass: 'sq-input',
-        cardNumber: {
-            elementId: 'sq-card-number',
-            placeholder: "0000 0000 0000 0000"
-        },
-        cvv: {
-            elementId: 'sq-cvv',
-            placeholder: 'CVC'
-        },
-        expirationDate: {
-            elementId: 'sq-expiration-date',
-            placeholder: 'MM / YY'
-        },
-        postalCode: {
-            elementId: 'sq-postal-code',
-            placeholder: 'Postal Code'
-        },
-        inputStyles: [
-            // Because this object provides no value for mediaMaxWidth or mediaMinWidth,
-            // these styles apply for screens of all sizes, unless overridden by another
-            // input style below.
-            {
-                fontSize: '14px',
-                padding: '3px'
-            },
-            // These styles are applied to inputs ONLY when the screen width is 400px
-            // or smaller. Note that because it doesn't specify a value for padding,
-            // the padding value in the previous object is preserved.
-            {
-                mediaMaxWidth: '400px',
-                fontSize: '18px',
-            }
-        ],
-        callbacks: {
-            cardNonceResponseReceived: function(errors, nonce, cardData) {
-                if (errors) {
-                    $("#loading-div-background").hide();
-                    // var errorDiv = document.getElementById('errors');
-                    // errorDiv.innerHTML = "";
-                    var msg = '',
-                        sep = '';
-                    errors.forEach(function(error) {
-                        if (sqTranslations.hasOwnProperty(error.message)) {
-                            error.message = sqTranslations[error.message];
-                        }
-                        msg += sep + error.message;
-                        sep = "<br>\n";
-                    });
-                    Lobibox.alert('error', {
-                        "msg": msg
-                    });
-                } else {
-                    // This alert is for debugging purposes only.
-                    // alert('Nonce received! ' + nonce + ' ' + JSON.stringify(cardData));
-                    // Assign the value of the nonce to a hidden form element
-                    var nonceField = document.getElementById('card-nonce');
-                    nonceField.value = nonce;
-                    // Submit the form
-                    // document.getElementById('form').submit();
-                    $('#btn_submit_form').trigger('click');
-
-                }
-            },
-            unsupportedBrowserDetected: function() {
-                // Alert the buyer that their browser is not supported
-            }
-        }
+        // settings関数で初期設定 全体に適応させたい場合
+        iziToast.settings({
+      timeout: 3000, // default timeout
+      resetOnHover: true,
+      // icon: '', // icon class
+      transitionIn: 'flipInX',
+      transitionOut: 'flipOutX',
+      position: 'topRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+      onOpen: function () {
+        console.log('callback abriu!');
+      },
+      onClose: function () {
+        console.log("callback fechou!");
+      }
     });
 
-    function submitButtonClick(event) {
-        $("#loading-div-background").show();
-        event.preventDefault();
-        sqPaymentForm.requestCardNonce();
-    }
+
+    // info
+    $('#infoClick').click(function () {
+      iziToast.info({position: "center", title: 'Hello', message: 'iziToast.info()'});
+    }); // ! click
+
+    // success
+    $('#successClick').click(function () {
+      iziToast.success({timeout: 5000, icon: 'fa fa-chrome', title: 'OK', message: 'iziToast.sucess() with custom icon!'});
+    }); // ! .click
+
+    // warning
+    $('#warningClick').click(function () {
+      iziToast.warning({position: "bottomLeft", title: 'Caution', message: '日本語環境のテスト'});
+    });
+
+    // error
+    $('#errorClick').click(function () {
+      iziToast.error({title: 'Error', message: 'Illegal operation'});
+    });
+
+    // custom toast
+    $('#customClick').click(function () {
+
+      iziToast.show({
+        color: 'dark',
+        icon: 'fa fa-user',
+        title: 'Hey',
+        message: 'Custom Toast!',
+        position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+        progressBarColor: 'rgb(0, 255, 184)',
+        buttons: [
+          [
+            '<button>Ok</button>',
+            function (instance, toast) {
+              alert("Hello world!");
+            }
+          ],
+          [
+            '<button>Close</button>',
+            function (instance, toast) {
+              instance.hide({
+                transitionOut: 'fadeOutUp'
+              }, toast);
+            }
+          ]
+        ]
+      });
+
+    }); // ! .click()
+
+$('#any').click(function(){
+  iziToast.error({
+    title: 'Errorカラー',
+    message: 'iziToast.error()'
+  });
+});
+
 </script>
 <!-- Modal -->
 <div class="modal fade" id="modal_mapMarkLocation" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
