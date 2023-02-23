@@ -1930,15 +1930,10 @@
 		}
 		// cheeck box
 		else if (key === 'symptom' || key === 'submission_criteria' || key === 'communication_hospital') {
-			try{
-				let data_all_cheeck_box = value.split(",");
-				for (let i = 0; i < data_all_cheeck_box.length; i++) {
-			        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[i] +'"]').checked = true;
-			    }
-			}catch{
-				// 
-			}
-			
+			let data_all_cheeck_box = value.split(",");
+			for (let i = 0; i < data_all_cheeck_box.length; i++) {
+		        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[i] +'"]').checked = true;
+		    }
 		}
 		// user_name && phone_user
 		else if(key === 'name_user' || key === 'phone_user'){
@@ -2400,7 +2395,7 @@
 	    // }
 
 		// ----------------------------------------------------------------------------
-
+		
 	  	// console.log(">>>>>>>>>> DATA ARRAY <<<<<<<<<<");
 
 		for (const [key, value] of Object.entries(data_arr)) {
