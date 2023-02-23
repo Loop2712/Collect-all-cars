@@ -408,6 +408,13 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 				<small class="h6 text-bold p-0 m-0" id="show_status"></small> 
 				<small class="p-0 m-0" id="show_remark_status"></small>
 			</div>
+			<div class="ml-3 d-none">
+				<p class="mt-2">
+					LAT : <span id="text_show_lat"></span> 
+					<br>
+					LONG : <span id="text_show_lng"></span>
+				</p>
+			</div>
 			<button class="btn btn-danger"> <i class="fa-duotone fa-camera-retro" onclick="document.querySelector('#btn_modal_add_photo_sos').click();"></i></button>
 		</div>
 		<div class="btn p-0 m-0" data-toggle="modal" data-target="#exampleModalCenter">
@@ -457,6 +464,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 				<!--เปิด fa-solid fa-eye -->
 				<!--ปิด fa-sharp fa-solid fa-eye-slash -->
 			</button>
+			<input class="d-none" type="checkbox" name="input_check_open_get_dir" id="input_check_open_get_dir">
 		</menu>
 	
 	</div>
@@ -675,7 +683,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 
 
-<div class="container d-none">
+<!-- <div class="container d-none">
 	<div class="row" style="padding: 8px 14px 0 14px !important;">
 		<span id="situation_of_status" class="col-10 status-remark py-2">
 			<h5 class="m-0 font-weight-bold">สถานะ</h5>
@@ -694,7 +702,6 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	</div>
 	<div class="col-12 p-0">
 		<div class="main-shadow main-radius p-0" id="map_show_case">
-			<!-- <img style=" object-fit: cover; border-radius:15px" width="100%" height="100%" src="{{ asset('/img/more/sorry-no-text.png') }}" class="card-img-top center" style="padding: 10px;"> -->
 			<div class="sry-open-location">
 				<img src="{{ asset('/img/more/sorry-no-text.png') }}" />
 				<center>
@@ -707,7 +714,6 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 			</div>
 			<div class="col-12" style="position:absolute;bottom: 10%;left: 7%;z-index: 99;">
 				<div class="row">
-					<!-- Google Map และ ดูเส้นทาง -->
 					<div id="btn_google_map" class="col-12 d-">
 						@php
 							$gg_lat_mail = '@' . $data_sos->lat ;
@@ -720,60 +726,14 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 						<button class="btn btn-sm btn-primary text-white main-shadow main-radius mt-2" onclick="get_dir();">
 							<i id="icon_btn_get_dir_close" class="fa-sharp fa-solid fa-eye-slash"></i>
 							<i id="icon_btn_get_dir_open" class="fa-solid fa-eye d-none"></i>
-							<!--เปิด fa-solid fa-eye -->
-							<!--ปิด fa-sharp fa-solid fa-eye-slash -->
 						</button>
-						<input class="d-none" type="checkbox" name="input_check_open_get_dir" id="input_check_open_get_dir" on>
+						<input class="d-none" type="checkbox" name="input_check_open_get_dir" id="input_check_open_get_dir">
 					</div>
 				</div>
 			</div>
-			<!-- <div style="position: relative; z-index: 5">
-				<div class="translate">
-					<center>
-						<h4 style="top:-50%;left: 130px;position: absolute;font-family: 'Sarabun', sans-serif;">ขออภัยค่ะ</h4>
-						<h5 style="top:-270px;left: 35px;width: 80%;position: absolute;font-family: 'Sarabun', sans-serif;">
-							ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ
-						</h5>
-						<br>
-						<span style="top:-200px;left: 130px;position: absolute;" class="btn btn-sm btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
-							<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
-						</span>
-					</center>
-					
-				</div>
-			</div> -->
 		</div>
 	</div>
-		<!-- <div class="row mx-1 mt-3">
-			<div class="col-6 m-0 p-0">
-				<div id="show_level_by_control_center" class="card-body  main-shadow py-2 px-3" style="border-radius: 15px 0 0 15px">
-					<div class="d-flex align-items-center">
-						<div  class="div-text-status">
-							<p class="mb-0" style="font-size: 12px;">ศูนย์สั่งการ</p>
-							<h5 class="mb-0 font-weight-bold text-of-status " id="text_level_by_control_center">ไม่ได้ระบุ</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-6 m-0 p-0">
-				<div id="show_level_by_officers" class="card-body  main-shadow py-2 px-3" style="border-radius:0 15px 15px 0;">
-					<div class="d-flex align-items-center">
-						<div class="div-text-status">
-							<p class="mb-0" style="font-size: 12px;">เจ้าหน้าที่</p>
-							<h5 class="mb-0 font-weight-bold text-of-status " id="text_level_by_officers">ไม่ได้ระบุ</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> -->
 	<div class="bg-drak-gray">
-		<!-- <div class="card-title d-flex align-items-center mt-3">
-			<div>
-				<i class="fa-solid fa-messages-question h5 m-0 text-primary"></i>
-			</div>
-			<h5 class="mb-0 text-primary"> &nbsp;&nbsp;<b>สถานะการณ์</b> </h5>
-		</div>
-		<hr> -->
 		<div class="row mt-3">
 			<div class="col-6 " style="padding: 0 0 0 15px;" >
 				<div id="show_level_by_control_center" class="card-body p-3 main-shadow" style="border-radius: 15px 0 0 15px; ">
@@ -798,7 +758,6 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		</div>
 	</div>
 
-	<!-- ปุ่ม ถึงที่เกิดเหตุ -->
 	<div class="col-12 text-center d-none p-0" id="div_gotohelp">
 		<div class="card-title d-flex align-items-center mt-3">
 			<div>
@@ -882,30 +841,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 					</div>
 				</label>
 			</div>
-			<script>
-				function check_btn_select_treatment(){
-
-					var check_treatment = document.getElementsByName('treatment');
-					// เช็คช่อง input ว่าเลือกมีการรักษาหรือไม่
-					for (var i = 0, length = check_treatment.length; i < length; i++) {
-						if (check_treatment[i].checked) {
-							if(check_treatment[i].value == "มีการรักษา"){
-								document.querySelector('#treatment_no').classList.add('d-none');
-								document.querySelector('#treatment_yes').classList.remove('d-none');
-								document.querySelector('#treatment_yes').classList.add('show-data');
-							}else{
-								document.querySelector('#treatment_yes').classList.add('d-none');
-								document.querySelector('#treatment_no').classList.remove('d-none');
-								document.querySelector('#treatment_no').classList.add('show-data');
-							}
-							break;
-						} 
-					}
-				}
-
-			</script>
 			<div class="col-12" style="margin-bottom: 20%;">
-				<!-- -------------------------------------------   เคสมีการรักษา  ----------------------------------------------------- -->
 				<div class="row d-none mt-3" id="treatment_yes">
 					<div class="col-12 col-md-4 col-lg-4">
 						<span class="btn btn-outline-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
@@ -939,7 +875,6 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 					</div>
 				</div>
 
-				<!-- -------------------------------------------   เคส ไม่มี การรักษา  ----------------------------------------------------- -->
 				<div class="row d-none mt-3" id="treatment_no">
 					<div class="col-6  col-md-4 col-lg-4">
 						<span class="btn btn-outline-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
@@ -970,11 +905,8 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 				</div>
 			</div>
 		</div>
-
-		
 	</div>
 
-	<!-- ปุ่มเลือก กลับถึงฐาน -->
 	<div class="col-12 text-center d-none" id="div_operating_base" >
 		<div class="card-title d-flex align-items-center mt-3">
 			<div>
@@ -993,7 +925,6 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		</div>
 	</div>
 
-	<!-- ปุ่มเลือก ถึง รพ. -->
 	<div class="col-12 text-center d-none" id="div_to_hospital" >
 		<div class="card-title d-flex align-items-center mt-3">
 			<div>
@@ -1012,7 +943,6 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		</div>
 	</div>
 
-	<!-- ปุ่มแก้ไขฟอร์ม -->
 	<div class="col-12 text-center">
 		<div class="card-title d-flex align-items-center mt-5">
 			<div>
@@ -1021,23 +951,22 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 			<h5 class="mb-0 text-danger"> &nbsp;&nbsp;<b>ฟอร์ม</b> </h5>
 		</div>
 		<hr>
-			<div class="row">
-				<div class="col-12 mt-2">
-					<a href="{{ url('/sos_help_center' . '/' . $data_sos->id . '/edit') }}" class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" >
-						แก้ไขข้อมูล ฟอร์มเหลือง
-					</a>
-				</div>
-				<div class="col-12 mt-2">
-					<button class="btn btn-secondary main-shadow main-radius btn-update-status" style="width:100%;" >
-						แก้ไขข้อมูล ฟอร์ม...
-					</button>
-				</div>
+		<div class="row">
+			<div class="col-12 mt-2">
+				<a href="{{ url('/sos_help_center' . '/' . $data_sos->id . '/edit') }}" class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" >
+					แก้ไขข้อมูล ฟอร์มเหลือง
+				</a>
+			</div>
+			<div class="col-12 mt-2">
+				<button class="btn btn-secondary main-shadow main-radius btn-update-status" style="width:100%;" >
+					แก้ไขข้อมูล ฟอร์ม...
+				</button>
 			</div>
 		</div>
+	</div>
+</div> -->
 
-	<a id="tag_a_switch_standby" href="{{ url('/officers/switch_standby') }}" class="d-none"></a>
-</div>
-
+<a id="tag_a_switch_standby" href="{{ url('/officers/switch_standby') }}" class="d-none"></a>
 
 <!-- Button trigger modal -->
 <button id="btn_modal_add_photo_sos" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_add_photo_sos">
@@ -1081,16 +1010,6 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 						</label>
 					</div>
 
-	            	<!-- เพิ่มภาพถ่าย และข้อคิดเห็นของเจ้าหน้าที่ -->
-
-	            	<!-- <label class="form-label">เพิ่มภาพถ่าย</label>
-					<input class="form-control" name="photo_sos_by_officers" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" multiple>
-    				{!! $errors->first('photo_sos_by_officers', '<p class="help-block">:message</p>') !!}
-
-    				@if(!empty($data_sos->photo_sos_by_officers))
-    					<img src="{{ url('storage')}}/{{ $data_sos->photo_sos_by_officers }}" style="width:80%;">
-    				@endif -->
-		            	
 	            	<div class="form-group d-none">
 				        <input id="btn_submit_form_photo" class="btn btn-primary" type="submit">
 				    </div>
@@ -1105,318 +1024,6 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   	</div>
 </div>
 
-<!-- ----------------------------------------------------------------------------------------- -->
-
-<!-- <div class="container notranslate d-none" style="margin-top:140px;">
-	<div class="row">
-		หัวข้อ และ ปุ่มเพิ่มภาพถ่าย
-    	<div class="col-12 text-center">
-    		<div class="row" style="margin-left:4%;margin-right: 2%;">
-    			<div class="col-9">
-    				<h4>
-    					<b><span id="show_status" class="text-warning float-start"></span></b>
-    				</h4>
-    				<br>
-    				<span id="show_remark_status" class="text-secondary float-start"></span>
-    			</div>
-    			<div class="col-3">
-        			<button class="btn btn-info main-shadow main-radius" onclick="document.querySelector('#btn_modal_add_photo_sos').click();">
-						<i class="fa-solid fa-camera-viewfinder"></i>
-					</button>
-        		</div>
-        		lat lng
-        		
-        		<div class="col-12 d-none">
-        			<p class="mt-2">
-        				LAT : <span id="text_show_lat"></span> 
-        				<br>
-        				LONG : <span id="text_show_lng"></span>
-        			</p>
-        		</div>
-    		</div>
-        </div>
-        MAP
-        <div class="col-12">
-        	<div class="row">
-        		ระยะทางและเวลา (เสียเงิน)
-        		<div id="div_distance_and_duration" class="col-12 d-none">
-        			<p class="mt-2">
-        				ระยะทาง : <span id="text_distance"></span> / เวลา : <span id="text_duration"></span>
-        			</p>
-        		</div>
-        		show map
-        		<div class="col-12">
-        			<center>
-			        	<div class="main-shadow main-radius p-0" id="map_show_case">
-			                <img style=" object-fit: cover; border-radius:15px" width="100%" height="100%" src="{{ asset('/img/more/sorry-no-text.png') }}" class="card-img-top center" style="padding: 10px;">
-			                <div style="position: relative; z-index: 5">
-			                    <div class="translate">
-			                    	<center>
-			                    		<h4 style="top:-330px;left: 130px;position: absolute;font-family: 'Sarabun', sans-serif;">ขออภัยค่ะ</h4>
-			                            <h5 style="top:-270px;left: 35px;width: 80%;position: absolute;font-family: 'Sarabun', sans-serif;">
-			                            	ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ
-			                            </h5>
-			                            <br>
-			                            <span style="top:-200px;left: 130px;position: absolute;" class="btn btn-sm btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
-			                            	<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
-			                            </span>
-			                    	</center>
-			                        
-			                    </div>
-			                </div>
-			            </div>
-		            </center>
-        		</div>
-        		<div class="col-12" style="position:absolute;bottom: 10%;left: 7%;z-index: 99;">
-        			<div class="row">
-        				Google Map และ ดูเส้นทาง
-				        <div id="btn_google_map" class="col-12 d-">
-							@php
-								$gg_lat_mail = '@' . $data_sos->lat ;
-								$gg_lat = $data_sos->lat ;
-								$lng = $data_sos->lng ;
-							@endphp
-							<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="btn btn-sm btn-danger text-white main-shadow main-radius mt-2" style="width:50%;"  target="bank">
-								Google Map <i class="fa-solid fa-location-arrow"></i>
-							</a>
-							<button class="btn btn-sm btn-primary text-white main-shadow main-radius mt-2" onclick="get_dir();">
-								<i id="icon_btn_get_dir_close" class="fa-sharp fa-solid fa-eye-slash"></i>
-								<i id="icon_btn_get_dir_open" class="fa-solid fa-eye d-none"></i>
-								เปิด fa-solid fa-eye
-								ปิด fa-sharp fa-solid fa-eye-slash
-							</button>
-							<input class="d-none" type="checkbox" name="input_check_open_get_dir" id="input_check_open_get_dir">
-				        </div>
-        			</div>
-        		</div>
-        	</div>
-        </div>
-        
-        ระดับสถานะการณ์
-        <div class="col-12 text-center">
-        	<div class="row">
-        		<div class="col-12">
-        			<h5>ระดับสถานะการณ์ </h5>
-        		</div>
-        		<div class="col-6">
-        			<p id="show_level_by_control_center" class="">
-						ศูนย์สั่งการ
-						<br>
-						<b><span style="width:80%;" class="btn btn-sm main-shadow main-radius" id="text_level_by_control_center">ไม่ได้ระบุ</span></b>
-					</p>
-        		</div>
-        		<div class="col-6">
-        			<p id="show_level_by_officers" class="">
-						เจ้าหน้าที่
-						<br>
-						<b><span style="width:80%;" class="btn btn-sm main-shadow main-radius" id="text_level_by_officers">ไม่ได้ระบุ</span></b>
-					</p>
-        		</div>
-        	</div>
-        	<center>
-				<hr style="border: 1px solid red;width: 80%;color: red;">
-        	</center>
-        </div>
-
-        ปุ่ม ถึงที่เกิดเหตุ
-		<div class="col-12 text-center d-none" id="div_gotohelp">
-			<button class="btn btn-warning main-shadow main-radius" style="width:90%;" onclick="update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');">
-				ถึงที่เกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
-			</button>
-		</div>
-
-		ปุ่มเลือกระดับเหตุการณ์
-		<div class="col-12 text-center d-none" id="div_event_level" >
-			<div class="row">
-				<div class="col-6 mt-2">
-					<button class="btn btn-dark main-shadow main-radius" style="width:90%;" 
-					onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
-						ดำ
-					</button>
-				</div>
-				<div class="col-6 mt-2">
-					<button class="btn btn-light main-shadow main-radius" style="width:90%;" 
-					onclick="update_event_level_rc('ขาว(ทั่วไป)','{{ $data_sos->id }}');">
-						ขาว(ทั่วไป)
-					</button>
-				</div>
-				<div class="col-6 mt-2">
-					<button class="btn btn-success main-shadow main-radius" style="width:90%;" 
-					onclick="update_event_level_rc('เขียว(ไม่รุนแรง)','{{ $data_sos->id }}');">
-						เขียว(ไม่รุนแรง)
-					</button>
-				</div>
-				<div class="col-6 mt-2">
-					<button class="btn btn-warning main-shadow main-radius" style="width:90%;" 
-					onclick="update_event_level_rc('เหลือง(เร่งด่วน)','{{ $data_sos->id }}');">
-						เหลือง(เร่งด่วน)
-					</button>
-				</div>
-				<div class="col-12 mt-2">
-					<button class="btn btn-danger main-shadow main-radius" style="width:95%;" 
-					onclick="update_event_level_rc('แดง(วิกฤติ)','{{ $data_sos->id }}');">
-						แดง(วิกฤติ)
-					</button>
-				</div>
-			</div>
-		</div>
-
-		ปุ่มเลือกการรักษา
-		<div class="col-12 text-center d-none" id="div_select_treatment" >
-			Modal
-			<div class="modal fade" id="modal_select_treatment" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="header_modal_treatment" aria-hidden="true" style="z-index:99999;width: 90%;">
-			  	<div class="modal-dialog modal-dialog-centered">
-			    	<div class="modal-content">
-			      		<div class="modal-header">
-			        		<h3 class="modal-title text-dark" id="header_modal_treatment"></h3>
-			        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          			<span aria-hidden="true">&times;</span>
-			        		</button>
-			      		</div>
-			      		มีการรักษา
-				      	<div id="modal_body_treatment" class="modal-body d-none">
-				        	<div class="row">
-				        		<div class="col-12 mt-2">
-				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:100%;"
-				        			onclick="update_status('ออกจากที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');" data-dismiss="modal" aria-label="Close">
-										นำส่ง
-									</span>
-				        		</div>
-				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;"
-				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า');" data-dismiss="modal" aria-label="Close">
-										ส่งต่อชุดปฏิบัติการ
-									</span>
-				        		</div>
-				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;"
-				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่นำส่ง');" data-dismiss="modal" aria-label="Close">
-										ไม่นำส่ง
-									</span>
-				        		</div>
-				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;"
-				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิตระหว่างนำส่ง');" data-dismiss="modal" aria-label="Close">
-										เสียชีวิตระหว่างนำส่ง
-									</span>
-				        		</div>
-				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-success main-shadow main-radius" style="width:95%;"
-				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ณ_จุดเกิดเหตุ');" data-dismiss="modal" aria-label="Close">
-										เสียชีวิต ณ จุดเกิดเหตุ
-									</span>
-				        		</div>
-				        	</div>
-				      	</div>
-				      	ไม่ มีการรักษา
-				      	<div id="modal_body_no_treatment" class="modal-body d-none">
-				        	<div class="row">
-				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;"
-				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ผู้ป่วยปฎิเสธการรักษา');" data-dismiss="modal" aria-label="Close">
-										ผู้ป่วยปฎิเสธการรักษา
-									</span>
-				        		</div>
-				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;"
-				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ก่อนชุดปฎิบัติการไปถึง');" data-dismiss="modal" aria-label="Close">
-										เสียชีวิต ก่อนชุดปฎิบัติการไปถึง
-									</span>
-				        		</div>
-				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;"
-				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ยกเลิก');" data-dismiss="modal" aria-label="Close">
-										ยกเลิก
-									</span>
-				        		</div>
-				        		<div class="col-6 mt-2">
-				        			<span class="btn btn-outline-warning main-shadow main-radius" style="width:95%;"
-				        			onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่พบเหตุ');" data-dismiss="modal" aria-label="Close">
-										ไม่พบเหตุ
-									</span>
-				        		</div>
-				        		
-				        	</div>
-				      	</div>
-			    	</div>
-			  	</div>
-			</div>
-			END Modal
-			<div class="row">
-				<div class="col-6">
-					<span class="btn btn-info main-shadow main-radius" style="width:95%;" data-toggle="modal" data-target="#modal_select_treatment" onclick="aad('มีการรักษา');">
-						มีการรักษาก
-					</span>
-				</div>
-				<div class="col-6">
-					<span class="btn btn-danger main-shadow main-radius" style="width:95%;" data-toggle="modal" data-target="#modal_select_treatment" onclick="aad('ไม่มีการรักษา');">
-						ไม่มีการรักษา
-					</span>
-				</div>
-				<script>
-					function click_btn_select_treatment(type){
-						if (type === 'มีการรักษา') {
-							document.querySelector('#header_modal_treatment').innerHTML = 'มีการรักษา' ;
-							document.querySelector('#modal_body_treatment').classList.remove('d-none') ;
-							document.querySelector('#modal_body_no_treatment').classList.add('d-none') ;
-
-						}else if(type === 'ไม่มีการรักษา'){
-							document.querySelector('#header_modal_treatment').innerHTML = 'ไม่มีการรักษา' ;
-							document.querySelector('#modal_body_no_treatment').classList.remove('d-none') ;
-							document.querySelector('#modal_body_treatment').classList.add('d-none') ;
-						}
-					}
-				</script>
-			</div>
-		</div>
-
-		ปุ่มเลือก กลับถึงฐาน
-		<div class="col-12 text-center d-none" id="div_operating_base" >
-			<div class="row">
-				<div class="col-12 mt-2">
-					<button class="btn btn-success main-shadow main-radius" style="width:95%;"
-					onclick="officer_to_the_operating_base('{{ $data_sos->id }}');">
-						กลับถึงฐาน
-					</button>
-				</div>
-			</div>
-		</div>
-
-		ปุ่มเลือก ถึง รพ.
-		<div class="col-12 text-center d-none" id="div_to_hospital" >
-			<div class="row">
-				<div class="col-12 mt-2">
-					<button class="btn btn-success main-shadow main-radius" style="width:95%;"
-					onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ถึงโรงพยาบาล');">
-						ถึงโรงพยาบาล
-					</button>
-				</div>
-			</div>
-		</div>
-
-
-
-		ปุ่มแก้ไขฟอร์ม
-		<div class="col-12 text-center">
-			<br>
-			<div class="row">
-				<div class="col-12 mt-2">
-					<a href="{{ url('/sos_help_center' . '/' . $data_sos->id . '/edit') }}" class="btn btn-warning main-shadow main-radius" style="width:90%;" >
-						แก้ไขข้อมูล ฟอร์มเหลือง
-					</a>
-				</div>
-				<div class="col-12 mt-2">
-					<button class="btn btn-secondary main-shadow main-radius" style="width:90%;" >
-						แก้ไขข้อมูล ฟอร์ม...
-					</button>
-				</div>
-			</div>
-		</div>
-
-		<a id="tag_a_switch_standby" href="{{ url('/officers/switch_standby') }}" class="d-none"></a>
-
-    </div>
-</div> -->
 <style>
 	.menu-profile-header{
 		display: flex;
@@ -1636,52 +1243,54 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 		}
 
-    // แสดงระดับเหตุการณ์
-	if (event_level_by_control_center) {
-		// document.querySelector('#show_level_by_control_center').classList.remove('d-none') ;
-		let class_color_center ;
-		let class_color_officers ;
-		switch(event_level_by_control_center){
-			case 'แดง(วิกฤติ)':
-				class_color_center = "situation-red";
-			break;
-			case 'เหลือง(เร่งด่วน)':
-				class_color_center = 'situation-yellow';
-			break;
-			case 'เขียว(ไม่รุนแรง)':
-				class_color_center = 'situation-green';
-			break;
-			case 'ขาว(ทั่วไป)':
-				class_color_center = 'situation-normal';
-			break;
-			case 'ดำ(รับบริการสาธารณสุขอื่น)':
-				class_color_center = 'situation-black';
-			break;
+	function show_event_level(){
+	    // แสดงระดับเหตุการณ์
+		if (event_level_by_control_center) {
+			// document.querySelector('#show_level_by_control_center').classList.remove('d-none') ;
+			let class_color_center ;
+			let class_color_officers ;
+			switch(event_level_by_control_center){
+				case 'แดง(วิกฤติ)':
+					class_color_center = "situation-red";
+				break;
+				case 'เหลือง(เร่งด่วน)':
+					class_color_center = 'situation-yellow';
+				break;
+				case 'เขียว(ไม่รุนแรง)':
+					class_color_center = 'situation-green';
+				break;
+				case 'ขาว(ทั่วไป)':
+					class_color_center = 'situation-normal';
+				break;
+				case 'ดำ(รับบริการสาธารณสุขอื่น)':
+					class_color_center = 'situation-black';
+				break;
+			}
+			document.querySelector('#show_level_by_control_center').classList.add(class_color_center) ;
+	    	document.querySelector('#text_level_by_control_center').innerHTML = event_level_by_control_center ;
 		}
-		document.querySelector('#show_level_by_control_center').classList.add(class_color_center) ;
-    	document.querySelector('#text_level_by_control_center').innerHTML = event_level_by_control_center ;
-	}
-	if (event_level_by_officers) {
-		// document.querySelector('#show_level_by_officers').classList.remove('d-none') ;
-		switch(event_level_by_officers){
-			case 'แดง(วิกฤติ)':
-				class_color_officers = 'situation-red';
-			break;
-			case 'เหลือง(เร่งด่วน)':
-				class_color_officers = 'situation-yellow';
-			break;
-			case 'เขียว(ไม่รุนแรง)':
-				class_color_officers = 'situation-green';
-			break;
-			case 'ขาว(ทั่วไป)':
-				class_color_officers = 'situation-normal';
-			break;
-			case 'ดำ':
-				class_color_officers = 'situation-black';
-			break;
+		if (event_level_by_officers) {
+			// document.querySelector('#show_level_by_officers').classList.remove('d-none') ;
+			switch(event_level_by_officers){
+				case 'แดง(วิกฤติ)':
+					class_color_officers = 'situation-red';
+				break;
+				case 'เหลือง(เร่งด่วน)':
+					class_color_officers = 'situation-yellow';
+				break;
+				case 'เขียว(ไม่รุนแรง)':
+					class_color_officers = 'situation-green';
+				break;
+				case 'ขาว(ทั่วไป)':
+					class_color_officers = 'situation-normal';
+				break;
+				case 'ดำ':
+					class_color_officers = 'situation-black';
+				break;
+			}
+			document.querySelector('#show_level_by_officers').classList.add(class_color_officers) ;
+	    	document.querySelector('#text_level_by_officers').innerHTML = event_level_by_officers ;
 		}
-		document.querySelector('#show_level_by_officers').classList.add(class_color_officers) ;
-    	document.querySelector('#text_level_by_officers').innerHTML = event_level_by_officers ;
 	}
 
 	// ------------------------------------------------------------------------------------------
@@ -1698,6 +1307,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+        show_event_level();
         getLocation();
     });
 
@@ -1777,6 +1387,11 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             .then(result_2 => {
                 // console.log(result_2);
                 // console.log(result_2['status']);
+
+                if (result_2['idc']) {
+                	event_level_by_control_center = result_2['idc'] ;
+                	show_event_level();
+                }
 
                 let sos_lat = result_2['lat'] ;
                 let sos_lng = result_2['lng'] ;
@@ -1872,7 +1487,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		fetch("{{ url('/') }}/api/update_status_officer" + "/" + status + "/" + sos_id + "/" + reason)
             .then(response => response.text())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 if (status_sos === "ถึงที่เกิดเหตุ") {
                 	document.querySelector('#div_event_level').classList.remove('d-none');
@@ -1947,6 +1562,20 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         });
 	}
 
+	function update_data_form_yellows(column , data){
+
+		let sos_id = '{{ $data_sos->id }}' ;
+
+		fetch("{{ url('/') }}/api/update_data_form_yellows" + "/" + sos_id + "/" + column + "/" + data)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+                
+
+        });
+
+	}
+
 	// UPDATE เจ้าหน้าที่กลับถึงฐาน
 	function officer_to_the_operating_base(sos_id){
 
@@ -1959,6 +1588,28 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
                 }
 
         });
+	}
+
+	function check_btn_select_treatment(){
+
+		var check_treatment = document.getElementsByName('treatment');
+		// เช็คช่อง input ว่าเลือกมีการรักษาหรือไม่
+		for (var i = 0, length = check_treatment.length; i < length; i++) {
+			if (check_treatment[i].checked) {
+				if(check_treatment[i].value == "มีการรักษา"){
+					update_data_form_yellows('treatment','มีการรักษา');
+					document.querySelector('#treatment_no').classList.add('d-none');
+					document.querySelector('#treatment_yes').classList.remove('d-none');
+					document.querySelector('#treatment_yes').classList.add('show-data');
+				}else{
+					update_data_form_yellows('treatment','ไม่มีการรักษา');
+					document.querySelector('#treatment_yes').classList.add('d-none');
+					document.querySelector('#treatment_no').classList.remove('d-none');
+					document.querySelector('#treatment_no').classList.add('show-data');
+				}
+				break;
+			} 
+		}
 	}
 
 </script>
@@ -2038,27 +1689,5 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		document.getElementById('show_photo_sos_by_officers').classList.remove('d-none');
 
 	}
-</script>
-<script>
-	function check_btn_select_treatment(){
-
-		var check_treatment = document.getElementsByName('treatment');
-		// เช็คช่อง input ว่าเลือกมีการรักษาหรือไม่
-		for (var i = 0, length = check_treatment.length; i < length; i++) {
-			if (check_treatment[i].checked) {
-				if(check_treatment[i].value == "มีการรักษา"){
-					document.querySelector('#treatment_no').classList.add('d-none');
-					document.querySelector('#treatment_yes').classList.remove('d-none');
-					document.querySelector('#treatment_yes').classList.add('show-data');
-				}else{
-					document.querySelector('#treatment_yes').classList.add('d-none');
-					document.querySelector('#treatment_no').classList.remove('d-none');
-					document.querySelector('#treatment_no').classList.add('show-data');
-				}
-				break;
-			} 
-		}
-	}
-
 </script>
 @endsection

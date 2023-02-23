@@ -626,6 +626,10 @@ class Sos_help_centerController extends Controller
         $data_sos = Sos_help_center::where('id' , $sos_id)->first();
         $data_unit = Data_1669_operating_unit::where('id' , $unit_id)->first();
 
+        $data_officers = Data_1669_operating_officer::where('user_id', $data_user->id)
+                ->where('operating_unit_id',$data_unit->id)
+                ->first();
+
         if ($answer == "go_to_help") {
 
             // ******** UPDATE ข้อมูลเจ้าหน้าที่ในตาราง sos_help_center *******
@@ -645,9 +649,7 @@ class Sos_help_centerController extends Controller
 
 
             // ------------------------------------------------------------------
-            $data_officers = Data_1669_operating_officer::where('user_id', $data_user->id)
-                ->where('operating_unit_id',$data_unit->id)->first();
-
+            
             $sum_go_to_help = 0 ;
             $sum_go_to_help = (int)$data_officers->go_to_help + 1 ;
             // อัพเดทสถานะ ใน data_1669_operating_officers
@@ -661,6 +663,7 @@ class Sos_help_centerController extends Controller
                     'go_to_help' => $sum_go_to_help,
                 ]);
 
+            // UPDATE sos_1669_form_yellows
             DB::table('sos_1669_form_yellows')
             ->where([ 
                     ['sos_help_center_id', $sos_id],
@@ -677,11 +680,36 @@ class Sos_help_centerController extends Controller
 
         }else if($answer == "refuse"){
 
-            DB::table('sos_help_centers')
+            if (!empty($data_officers->refuse)) {
+                $officers_refuse = $data_officers->refuse . "," . $sos_id ;
+            }else{
+                $officers_refuse = $sos_id ;
+            }
+
+            // อัพเดทสถานะ ใน data_1669_operating_officers
+            DB::table('data_1669_operating_officers')
             ->where([ 
-                    ['id', $sos_id],
+                    ['user_id', $data_user->id],
+                    ['operating_unit_id', $data_unit->id],
                 ])
-            ->update(['status' => "ปฏิเสธ"]);
+            ->update([
+                    'refuse' => $officers_refuse,
+                ]);
+
+            if (!empty($data_sos->refuse)) {
+                $update_refuse = $data_sos->refuse . "," . $data_user->id ;
+            }else{
+                $update_refuse = $data_user->id ;
+            }
+            
+            DB::table('sos_help_centers')
+                ->where([ 
+                        ['id', $sos_id],
+                    ])
+                ->update([
+                    'status' => "ปฏิเสธ",
+                    'refuse' => $update_refuse,
+                ]);
 
             // ส่งไลน์ "ดำเนินการปฏิเสธเรียบร้อยแล้ว"
             return view('return_line');
@@ -764,6 +792,9 @@ class Sos_help_centerController extends Controller
 
         $data_sos_after_update = Sos_help_center::where('id' , $sos_id)->first();
 
+        $form_yellow = Sos_1669_form_yellow::where('sos_help_center_id' , $sos_id)->first();
+        $data_sos_after_update->idc = $form_yellow->idc ;
+
         return $data_sos_after_update ;
 
     }
@@ -773,24 +804,93 @@ class Sos_help_centerController extends Controller
         $reason = str_replace("_"," ",$reason);
         $date_now = date("Y-m-d H:i:s");
 
-        if ($status == "เสร็จสิ้น") {
-             // อย่าลืมอัพเดทเวลาต่างๆด้วย
+        if($status == "ถึงที่เกิดเหตุ"){
+
             DB::table('sos_help_centers')
                 ->where([ ['id', $sos_id],])
                 ->update([
-                        'status' => $status,
-                        'remark_status' => $reason,
-                        'time_sos_success' => $date_now,
+                    'status' => $status,
+                    'time_to_the_scene' => $date_now,
                 ]);
-        }else{
-            // อย่าลืมอัพเดทเวลาต่างๆด้วย
+
+            DB::table('sos_1669_form_yellows')
+                ->where([ ['sos_help_center_id', $sos_id],])
+                ->update(['time_to_the_scene' => $date_now,]);
+        }
+        else if($status == "ออกจากที่เกิดเหตุ"){
+
             DB::table('sos_help_centers')
                 ->where([ ['id', $sos_id],])
-                ->update(['status' => $status,]);
+                ->update([
+                    'status' => $status,
+                    'time_leave_the_scene' => $date_now,
+                ]);
+
+            DB::table('sos_1669_form_yellows')
+                ->where([ ['sos_help_center_id', $sos_id],])
+                ->update(['time_leave_the_scene' => $date_now,'sub_treatment' => 'นำส่ง',]);
+
         }
+        else if ($status == "เสร็จสิ้น") {
+
+            if ($reason == "ถึงโรงพยาบาล") {
+
+                DB::table('sos_help_centers')
+                    ->where([ ['id', $sos_id],])
+                    ->update([
+                            'status' => $status,
+                            'remark_status' => $reason,
+                            'time_sos_success' => $date_now,
+                            'time_hospital' => $date_now,
+                    ]);
+
+                DB::table('sos_1669_form_yellows')
+                    ->where([ ['sos_help_center_id', $sos_id],])
+                    ->update(['time_hospital' => $date_now,]);
+
+            }else{
+                DB::table('sos_help_centers')
+                    ->where([ ['id', $sos_id],])
+                    ->update([
+                            'status' => $status,
+                            'remark_status' => $reason,
+                            'time_sos_success' => $date_now,
+                    ]);
+
+                DB::table('sos_1669_form_yellows')
+                    ->where([ ['sos_help_center_id', $sos_id],])
+                    ->update(['sub_treatment' => $reason,]);
+            }
+
+        }
+        
+        return "Updated >> ". $status . " successfully" ;
+
+    }
+
+    function update_officer_to_the_operating_base($sos_id){
+
+        $date_now = date("Y-m-d H:i:s");
+
+        DB::table('sos_help_centers')
+            ->where([ ['id', $sos_id],])
+            ->update(['time_to_the_operating_base' => $date_now,]);
+
+        DB::table('sos_1669_form_yellows')
+            ->where([ ['sos_help_center_id', $sos_id],])
+            ->update(['time_to_the_operating_base' => $date_now,]);
 
         return "Updated successfully" ;
+        // return redirect('officers/switch_standby')->with('flash_message', 'Sos_help_center updated!');
+    }
 
+    function update_data_form_yellows($sos_id , $column , $data){
+
+        DB::table('sos_1669_form_yellows')
+            ->where([ ['sos_help_center_id', $sos_id],])
+            ->update([$column => $data,]);
+
+        return "Updated column : ". $column ." >> ". $data ." successfully" ;
     }
 
     function update_event_level_rc($level , $sos_id){
@@ -804,18 +904,6 @@ class Sos_help_centerController extends Controller
                 ]);
 
         return "Updated successfully" ;
-    }
-
-    function update_officer_to_the_operating_base($sos_id){
-
-        $date_now = date("Y-m-d H:i:s");
-
-        DB::table('sos_help_centers')
-            ->where([ ['id', $sos_id],])
-            ->update(['time_to_the_operating_base' => $date_now,]);
-
-        return "Updated successfully" ;
-        // return redirect('officers/switch_standby')->with('flash_message', 'Sos_help_center updated!');
     }
 
     function update_status_officer_Standby($status, $officer_id , $lat , $lng){
