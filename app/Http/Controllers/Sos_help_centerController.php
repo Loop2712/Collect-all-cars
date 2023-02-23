@@ -613,7 +613,6 @@ class Sos_help_centerController extends Controller
     {
         $data_user = Auth::user();
         $date_now = date("Y-m-d H:i:s");
-        $time_now = date("H:i:s");
 
         $requestData = $request->all();
 
@@ -669,7 +668,7 @@ class Sos_help_centerController extends Controller
                     ['sos_help_center_id', $sos_id],
                 ])
             ->update([
-                    'time_go_to_help' => $time_now,
+                    'time_go_to_help' => $date_now,
                     'operation_unit_name' => $data_unit->name,
                     'action_set_name' => $data_user->name,
                     'vehicle_type' => $data_officers->vehicle_type,
