@@ -1118,13 +1118,13 @@
 													รวมเวลา (นาที)
 												</th>
 												<td colspan="4" style="text-align: center;">
-													Response time = <b><span id="time_zone_1" class="text-dark">...</span></b> นาที
+													Response time = <b><span id="time_zone_1" class="text-dark">...</span></b>
 												</td>
 												<td style="background-color:#D3D3D3;">
 													<!--  -->
 												</td>
 												<td colspan="2" style="text-align: center;">
-													<b><span id="time_zone_2" class="text-dark">...</span></b> นาที
+													<b><span id="time_zone_2" class="text-dark">...</span></b>
 												</td>
 											</tr>
 											<tr>
@@ -2468,9 +2468,9 @@
 				// console.log('Time_Seconds >> ' + Time_Seconds);
 			let zone1_tiem_all;
 			if (zone1_Time_Seconds === 0) {
-				zone1_tiem_all = zone1_Time_min ;
+				zone1_tiem_all = zone1_Time_min + " นาที" ; ;
 			}else{
-				zone1_tiem_all = zone1_Time_min + ":" + zone1_Time_Seconds;
+				zone1_tiem_all = zone1_Time_min + " นาที " + zone1_Time_Seconds + " วินาที";
 			}
 			// console.log('ระยะห่าง >> ' + zone1_tiem_all + " นาที");
 
@@ -2508,9 +2508,9 @@
 				// console.log('Time_Seconds >> ' + Time_Seconds);
 			let zone2_tiem_all;
 			if (zone2_Time_Seconds === 0) {
-				zone2_tiem_all = zone2_Time_min ;
+				zone2_tiem_all = zone2_Time_min + " นาที" ;
 			}else{
-				zone2_tiem_all = zone2_Time_min + ":" + zone2_Time_Seconds;
+				zone2_tiem_all = zone2_Time_min + " นาที " + zone2_Time_Seconds + " วินาที";
 			}
 			// console.log('ระยะห่าง >> ' + zone2_tiem_all + " นาที");
 
