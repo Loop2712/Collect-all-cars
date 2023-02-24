@@ -31,4 +31,8 @@ class Data_1669_operating_officer extends Model
         return $this->belongsTo('App\Models\Data_1669_operating_unit', 'operating_unit_id' , 'id'); 
     }
 
+    public function user(){
+        return $this->belongsTo('App\User', 'user_id', 'id'); 
+    }
+
 }

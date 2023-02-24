@@ -631,6 +631,7 @@ class Sos_help_centerController extends Controller
 
         if ($answer == "go_to_help") {
 
+            echo "<br> >>> " . $date_now . " <<< <br>";
             echo "<br> >>> UPDATE sos_help_centers <<< <br>";
             echo "<br> DATA UNIT <br>";
             echo "<pre>";
@@ -680,8 +681,8 @@ class Sos_help_centerController extends Controller
                     'vehicle_type' => $data_officers->vehicle_type,
                     'operating_suit_type' => $data_officers->level,
                     'time_go_to_help' => $date_now,
-                    'operation_unit_name' => $data_unit->name,
-                    'action_set_name' => $data_user->name,
+                    'operation_unit_name' => $data_officers->operating_unit->name,
+                    'action_set_name' => $data_officers->user->name,
                 ]);
 
             exit();

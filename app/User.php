@@ -65,6 +65,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\sos_help_center', 'helper_id');
     }
 
+    public function operating_officer(){
+        return $this->hasMany('App\Models\Data_1669_operating_officer', 'user_id' ,'id');
+    }
 
     // public function sell(){
     //     return $this->hasMany('App\Sell', 'user_id'); 
