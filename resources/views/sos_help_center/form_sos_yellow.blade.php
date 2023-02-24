@@ -1867,7 +1867,7 @@
         reface_check_form_yellow = setInterval(function() {
         	check_start_data_form_yellow();
         	distance_in_no5();
-        }, 7000);
+        }, 5000);
 
     });
 
@@ -1956,10 +1956,12 @@
 	            }
 	        }
 
-			let data_all_cheeck_box = value.split(",");
-			for (let xxi = 0; xxi < data_all_cheeck_box.length; xxi++) {
-		        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[xxi] +'"]').checked = true;
-		    }
+	        if (value != null) {}
+				let data_all_cheeck_box = value.split(",");
+				for (let xxi = 0; xxi < data_all_cheeck_box.length; xxi++) {
+			        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[xxi] +'"]').checked = true;
+			    }
+			}
 			
 		}
 		// user_name && phone_user
