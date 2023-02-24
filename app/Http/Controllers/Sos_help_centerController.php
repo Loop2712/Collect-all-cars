@@ -631,6 +631,18 @@ class Sos_help_centerController extends Controller
 
         if ($answer == "go_to_help") {
 
+            echo "<br> >>> UPDATE sos_help_centers <<< <br>"
+            echo "<br> DATA UNIT <br>"
+            echo "<pre>";
+            print_r($data_unit)
+            echo "</pre>";
+            echo "<br> ------------------------ <br>"
+            echo "<br> DATA officers <br>"
+            echo "<pre>";
+            print_r($data_user)
+            echo "</pre>";
+            echo "<br> ------------------------ <br>"
+
             // ******** UPDATE ข้อมูลเจ้าหน้าที่ในตาราง sos_help_center *******
             DB::table('sos_help_centers')
             ->where([ 
@@ -646,6 +658,19 @@ class Sos_help_centerController extends Controller
                     'wait' => null,
                 ]);
 
+        
+            echo "<br> >>> UPDATE sos_1669_form_yellows <<< <br>"
+            echo "<br> DATA UNIT <br>"
+            echo "<pre>";
+            print_r($data_unit)
+            echo "</pre>";
+            echo "<br> ------------------------ <br>"
+            echo "<br> DATA officers <br>"
+            echo "<pre>";
+            print_r($data_user)
+            echo "</pre>";
+            echo "<br> ------------------------ <br>"
+
             // UPDATE sos_1669_form_yellows
             DB::table('sos_1669_form_yellows')
             ->where([ 
@@ -659,7 +684,7 @@ class Sos_help_centerController extends Controller
                     'action_set_name' => $data_user->name,
                 ]);
 
-
+            exit();
             // ------------------------------------------------------------------
             
             $sum_go_to_help = 0 ;
