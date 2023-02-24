@@ -295,8 +295,8 @@ class Sos_help_centerController extends Controller
         $data_arr["symptom_other"] = $data_form_yellow->symptom_other ;
         $data_arr["idc"] = $data_form_yellow->idc ;
         $data_arr["vehicle_type"] = $data_form_yellow->vehicle_type ;
-        // $data_arr["operating_suit_type"] = $data_form_yellow->operating_suit_type ;
-        // $data_arr["operation_unit_name"] = $data_form_yellow->operation_unit_name ;
+        $data_arr["operating_suit_type"] = $data_form_yellow->operating_suit_type ;
+        $data_arr["operation_unit_name"] = $data_form_yellow->operation_unit_name ;
         $data_arr["action_set_name"] = $data_form_yellow->action_set_name ;
         $data_arr["time_create_sos"] = $data_form_yellow->time_create_sos ;
         $data_arr["time_command"] = $data_form_yellow->time_command ;
