@@ -1975,7 +1975,7 @@
 		// text area
 		else if(key === 'location_sos' || key === 'symptom_other'){
 			console.log("text area");
-			document.querySelector('[name="'+key+'"]').innerHTML = value ;
+			document.querySelector('[name="'+key+'"]').value = value ;
 		}
 		// input general
 		else{
