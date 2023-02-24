@@ -1961,7 +1961,7 @@
 			}else{
 				let data_all_cheeck_box = value.split(",");
 				for (let xxi = 0; xxi < data_all_cheeck_box.length; xxi++) {
-			        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[i] +'"]').checked = true;
+			        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[xxi] +'"]').checked = true;
 			    }
 			}
 			
