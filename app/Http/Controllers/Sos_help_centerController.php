@@ -653,8 +653,8 @@ class Sos_help_centerController extends Controller
                 ])
             ->update([
                     'time_go_to_help' => $date_now,
-                    'operation_unit_name' => $data_unit->name,
-                    'action_set_name' => $data_user->name,
+                    'operation_unit_name' => "สวัสดี",
+                    'action_set_name' => "สวัสดี",
                     'vehicle_type' => $data_officers->vehicle_type,
                     'operating_suit_type' => $data_officers->level,
                 ]);
@@ -664,7 +664,7 @@ class Sos_help_centerController extends Controller
             
             $sum_go_to_help = 0 ;
             $sum_go_to_help = (int)$data_officers->go_to_help + 1 ;
-            
+
             // อัพเดทสถานะ ใน data_1669_operating_officers
             DB::table('data_1669_operating_officers')
             ->where([ 
