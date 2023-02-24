@@ -646,22 +646,6 @@ class Sos_help_centerController extends Controller
                     'wait' => null,
                 ]);
 
-
-            // ------------------------------------------------------------------
-            
-            $sum_go_to_help = 0 ;
-            $sum_go_to_help = (int)$data_officers->go_to_help + 1 ;
-            // อัพเดทสถานะ ใน data_1669_operating_officers
-            DB::table('data_1669_operating_officers')
-            ->where([ 
-                    ['user_id', $data_user->id],
-                    ['operating_unit_id', $data_unit->id],
-                ])
-            ->update([
-                    'status' => "Helping",
-                    'go_to_help' => $sum_go_to_help,
-                ]);
-
             // UPDATE sos_1669_form_yellows
             DB::table('sos_1669_form_yellows')
             ->where([ 
@@ -673,6 +657,23 @@ class Sos_help_centerController extends Controller
                     'action_set_name' => $data_user->name,
                     'vehicle_type' => $data_officers->vehicle_type,
                     'operating_suit_type' => $data_officers->level,
+                ]);
+
+
+            // ------------------------------------------------------------------
+            
+            $sum_go_to_help = 0 ;
+            $sum_go_to_help = (int)$data_officers->go_to_help + 1 ;
+            
+            // อัพเดทสถานะ ใน data_1669_operating_officers
+            DB::table('data_1669_operating_officers')
+            ->where([ 
+                    ['user_id', $data_user->id],
+                    ['operating_unit_id', $data_unit->id],
+                ])
+            ->update([
+                    'status' => "Helping",
+                    'go_to_help' => $sum_go_to_help,
                 ]);
 
             return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
