@@ -642,7 +642,7 @@ class Sos_help_centerController extends Controller
                     'operating_unit_id' => $data_unit->id,
                     'name_helper' => $data_user->name,
                     'helper_id' => $data_user->id,
-                    'time_go_to_help' => $date_now,
+                    // 'time_go_to_help' => $date_now,
                     'wait' => null,
                 ]);
 
@@ -652,11 +652,11 @@ class Sos_help_centerController extends Controller
                     ['sos_help_center_id', $sos_id],
                 ])
             ->update([
-                    'time_go_to_help' => $date_now,
-                    'operation_unit_name' => "สวัสดี",
-                    'action_set_name' => "สวัสดี",
                     'vehicle_type' => $data_officers->vehicle_type,
                     'operating_suit_type' => $data_officers->level,
+                    // 'time_go_to_help' => $date_now,
+                    'operation_unit_name' => $data_unit->name,
+                    'action_set_name' => $data_user->name,
                 ]);
 
 
