@@ -1952,6 +1952,10 @@
 		}
 		// input general
 		else{
+			if (value === null) {
+				value = '' ;
+			}
+			
 			console.log("input general");
 			document.querySelector('#'+key).value = value;
 		}
