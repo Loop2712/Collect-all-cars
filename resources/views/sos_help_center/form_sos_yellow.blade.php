@@ -1706,19 +1706,19 @@
 							<div class="col-12 col-md-4 col-lg-4">
 								<label for="registration_category" class="form-label">ทะเบียนรถหมวด</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-duotone fa-cars"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2"  name="registration_category" value="{{ isset($data_form_yellow->registration_category) ? $data_form_yellow->registration_category : ''}}" placeholder="ทะเบียนรถหมวด">
+									<input type="text" class="form-control border-start-0 radius-2" id="registration_category"  name="registration_category" value="{{ isset($data_form_yellow->registration_category) ? $data_form_yellow->registration_category : ''}}" placeholder="ทะเบียนรถหมวด">
 								</div>
 							</div>
 							<div class="col-12 col-md-4 col-lg-4">
 								<label for="registration_number" class="form-label">เลขทะเบียน</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-duotone fa-input-numeric"></i></span>
-									<input  type="text" min="1" class="form-control border-start-0 radius-2" name="registration_number" value="{{ isset($data_form_yellow->registration_number) ? $data_form_yellow->registration_number : ''}}" placeholder="เลขทะเบียน">
+									<input  type="text" min="1" class="form-control border-start-0 radius-2" id="registration_number" name="registration_number" value="{{ isset($data_form_yellow->registration_number) ? $data_form_yellow->registration_number : ''}}" placeholder="เลขทะเบียน">
 								</div>
 							</div>
 							<div class="col-12 col-md-4 col-lg-4">
 								<label for="registration_province" class="form-label">จังหวัด</label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-duotone fa-map-location"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="registration_province" value="{{ isset($data_form_yellow->registration_province) ? $data_form_yellow->registration_province : ''}}" placeholder="จังหวัด">
+									<input type="text" class="form-control border-start-0 radius-2" id="registration_province" name="registration_province" value="{{ isset($data_form_yellow->registration_province) ? $data_form_yellow->registration_province : ''}}" placeholder="จังหวัด">
 								</div>
 							</div>
 						</div>
