@@ -1917,6 +1917,8 @@
 
     function edit_form_yellow(key,value){
 
+		console.log(key + " >> " + value);
+
     	start_data_arr[key] = value ;
 		data_arr[key] = value ;
 
