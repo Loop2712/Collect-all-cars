@@ -1054,13 +1054,13 @@
 							<div class="col-md-4">
 								<label for="" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="operation_unit_name" value="{{ isset($data_form_yellow->operation_unit_name) ? $data_form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ" readonly>
+									<input type="text" class="form-control border-start-0 radius-2" id="operation_unit_name" name="operation_unit_name" value="{{ isset($data_form_yellow->operation_unit_name) ? $data_form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ" readonly>
 								</div>
 							</div>
 							<div class="col-md-4">
 								<label for="phone_user" class="form-label"><b>ชื่อชุดปฏิบัติการ</b></label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-users-medical"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" name="action_set_name" value="{{ isset($data_form_yellow->action_set_name) ? $data_form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ" readonly>
+									<input type="text" class="form-control border-start-0 radius-2" id="action_set_name" name="action_set_name" value="{{ isset($data_form_yellow->action_set_name) ? $data_form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ" readonly>
 								</div>
 							</div>
 							<div class="col-md-4">
@@ -1952,10 +1952,6 @@
 		}
 		// input general
 		else{
-			if (value === null) {
-				value = '' ;
-			}
-			
 			console.log("input general");
 			document.querySelector('#'+key).value = value;
 		}
