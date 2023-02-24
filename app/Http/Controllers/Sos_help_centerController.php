@@ -655,7 +655,7 @@ class Sos_help_centerController extends Controller
                     'vehicle_type' => $data_officers->vehicle_type,
                     'operating_suit_type' => $data_officers->level,
                     'time_go_to_help' => $date_now,
-                    'operation_unit_name' => $data_unit->name,
+                    'name_user' => $data_unit->name,
                     'action_set_name' => $data_user->name,
                 ]);
 
