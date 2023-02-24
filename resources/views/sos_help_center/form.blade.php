@@ -51,29 +51,38 @@
 
 <div class="container">
   <!-- <button class="btn btn-default" id="customClick">Custom</button> -->
-  <button class="btn btn-default" onclick="alet_new_data('เหลือง' ,'ชื่อ นามสกุล เบอร์โทร')">ทดสอบแจ้งเตือนบันทึกข้อมูล</button>
+  <button class="btn btn-default" onclick="alet_new_data('เหลือง' , 'ชื่อ' ,'TNK')">ทดสอบแจ้งเตือนบันทึกข้อมูล</button>
 
 
 </div>
 
 
 <script>
-    function alet_new_data(form_color , data) {
+    function alet_new_data(form_color , key , value , old) {
+
+        let text_form_yellow ;
+
+        switch(form_color) {
+            case 'form_yellow':
+                text_form_yellow = 'สีเหลือง' ;
+            break;
+        }
+
         iziToast.show({
             color: 'dark',
             icon: 'fa-duotone fa-file-import',
             close: false,
             timeout: 8000,
             resetOnHover: true,
-            title: 'ฟอร์ม "' +form_color+ '" มีข้อมูลใหม่!!',
-            message: 'ข้อมูลที่มีการเปลี่ยนแปลงมีดังนี้ ' + data + "<br>",
+            title: 'ฟอร์ม "' +text_form_yellow+ '" มีข้อมูลใหม่!!',
+            message: 'การเปลี่ยนแปลง ข้อ : ' +key+ "<br>ข้อมูลที่เปลี่ยนแปลง : จาก <b>" +old+ "</b> เป็น <b>" +value+ "</b><br>",
             position: 'bottomLeft', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
             progressBarColor: 'rgb(0, 255, 184)',
             buttons: [
               [
                 '<button>บันทึก (<span id="nub_vi">8</span>)</button>',
                 function (instance, toast) {
-                    save_data(form_color , data)
+                    save_data(key , value , old)
                   instance.hide({
                     transitionOut: 'fadeOutUp'
                   }, toast);
@@ -82,7 +91,7 @@
               [
                 '<button class="btn-danger">ไม่บันทึก</button>',
                 function (instance, toast) {
-                    dont_save_data(form_color , data);
+                    dont_save_data(key , value , old);
                     instance.hide({
                     transitionOut: 'fadeOutUp'
                   }, toast);
@@ -90,7 +99,7 @@
               ]
             ],onClosed: function asdfa(instance, toast, closedBy){
                 if (closedBy === 'timeout') {
-                    save_data(form_color , data);
+                    save_data(key , value , old);
                 }
                
             }
@@ -152,11 +161,14 @@
 </script>
 
 <script>
-    function save_data(form_color , data){
-        iziToast.success({timeout: 2000,position: "bottomLeft", icon: 'fa-solid fa-file-check', title: 'บันทึกเรียบร้อย' ,message: 'บันทึกข้อมูล ' + data + 'ในฟอร์ม' + form_color + 'เรียบร้อย'});
+    function save_data(key , value , old){
+        iziToast.success({timeout: 2000,position: "bottomLeft", icon: 'fa-solid fa-file-check', title: 'บันทึกเรียบร้อย' ,message: 'บันทึกข้อมูล ' + value + 'ในฟอร์ม' + key + 'เรียบร้อย'});
+        
+        edit_form_yellow(key , value , old);
+
     }
-    function dont_save_data(form_color , data){
-        iziToast.warning({timeout: 2000,position: "bottomLeft", icon: 'fa-solid fa-file-excel',  title: 'ไม่บันทึก' , message: 'ปฎิเศษการบันทึกข้อมูล' + data +'ในฟอร์ม' +form_color});
+    function dont_save_data(key , value , old){
+        iziToast.warning({timeout: 2000,position: "bottomLeft", icon: 'fa-solid fa-file-excel',  title: 'ไม่บันทึก' , message: 'ปฎิเศษการบันทึกข้อมูล' + value +'ในฟอร์ม' +key});
     }
 </script>
 <!-- Modal -->

@@ -1858,7 +1858,7 @@
         check_start_data_form_yellow();
 
         setTimeout(function() {
-            check_color_btn(null,null);
+            check_color_btn(null);
 			check_treatment();
 	        check_lat_lng();
 	        check_click_rc();
@@ -1909,13 +1909,15 @@
 
     function alert_edit_form_yellow(key,old,value){
 
-    	let text = "มีการเปลี่ยนแปลงข้อมูล " + key + " จากเดิม : " + old + " เปลี่ยนเป็น : " + value;
+    	// let text = "มีการเปลี่ยนแปลงข้อมูล " + key + " จากเดิม : " + old + " เปลี่ยนเป็น : " + value;
     	// alert(text);
-    	// UPDATE DATA
-	    edit_form_yellow(key,value);
+
+    	// alert UPDATE DATA //
+		alet_new_data('form_yellow' ,key , value , old);
+
     }
 
-    function edit_form_yellow(key,value){
+    function edit_form_yellow(key,value,old){
 
 		console.log(key + " >> " + value);
 
@@ -1981,8 +1983,10 @@
 			document.querySelector('#'+key).value = value;
 		}
 
-		send_save_data(null);
-		btn_save_data();
+        check_go_to(null);
+
+		// send_save_data(null);
+		// btn_save_data();
 
     }
 
@@ -2024,7 +2028,7 @@
 		// document.querySelector('#form_data_' + click_to).classList.add('active');
 
 		send_save_data(active);
-		check_color_btn(active,click_to);
+		check_color_btn(active);
 		btn_save_data();
 	}
 
