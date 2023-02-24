@@ -1925,7 +1925,20 @@
 		//  radio
 		if (key === 'be_notified' || key === 'idc' || key === 'vehicle_type' || key === 'operating_suit_type' || key === 'rc' || key === 'treatment' || key === 'sub_treatment' || key === 'owner_registration') {
 			console.log("radio");
-			document.querySelector('[data-'+key+'="'+ value +'"]').checked = true;
+			if (value === null) {
+
+				let key_radio = document.getElementsByName(key);
+
+		        for (let iov = 0, length = key_radio.length; iov < length; iov++) { 
+		            if (key_radio[iov].checked) {
+		                key_radio[iov].checked = false; 
+		            }
+		        }
+
+			}else{
+				document.querySelector('[data-'+key+'="'+ value +'"]').checked = true;
+			}
+
 			if (key === 'treatment') {
 				check_treatment();
 				reset_sub_treatment();
@@ -1934,10 +1947,24 @@
 		// cheeck box
 		else if (key === 'symptom' || key === 'submission_criteria' || key === 'communication_hospital') {
 			console.log("cheeck box");
-			let data_all_cheeck_box = value.split(",");
-			for (let i = 0; i < data_all_cheeck_box.length; i++) {
-		        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[i] +'"]').checked = true;
-		    }
+
+			if (value === null) {
+
+				let key_cheeck_box = document.getElementsByName(key);
+
+		        for (let izi = 0, length = key_cheeck_box.length; izi < length; izi++) { 
+		            if (key_cheeck_box[izi].checked) {
+		                key_cheeck_box[izi].checked = false; 
+		            }
+		        }
+
+			}else{
+				let data_all_cheeck_box = value.split(",");
+				for (let xxi = 0; xxi < data_all_cheeck_box.length; xxi++) {
+			        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[i] +'"]').checked = true;
+			    }
+			}
+			
 		}
 		// user_name && phone_user
 		else if(key === 'name_user' || key === 'phone_user'){
