@@ -1948,22 +1948,18 @@
 		else if (key === 'symptom' || key === 'submission_criteria' || key === 'communication_hospital') {
 			console.log("cheeck box");
 
-			if (value === null) {
+			let key_cheeck_box = document.getElementsByName(key);
 
-				let key_cheeck_box = document.getElementsByName(key);
+	        for (let izi = 0, length = key_cheeck_box.length; izi < length; izi++) { 
+	            if (key_cheeck_box[izi].checked) {
+	                key_cheeck_box[izi].checked = false; 
+	            }
+	        }
 
-		        for (let izi = 0, length = key_cheeck_box.length; izi < length; izi++) { 
-		            if (key_cheeck_box[izi].checked) {
-		                key_cheeck_box[izi].checked = false; 
-		            }
-		        }
-
-			}else{
-				let data_all_cheeck_box = value.split(",");
-				for (let xxi = 0; xxi < data_all_cheeck_box.length; xxi++) {
-			        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[xxi] +'"]').checked = true;
-			    }
-			}
+			let data_all_cheeck_box = value.split(",");
+			for (let xxi = 0; xxi < data_all_cheeck_box.length; xxi++) {
+		        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[xxi] +'"]').checked = true;
+		    }
 			
 		}
 		// user_name && phone_user
