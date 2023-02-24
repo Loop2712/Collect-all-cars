@@ -1924,6 +1924,7 @@
 
 		//  radio
 		if (key === 'be_notified' || key === 'idc' || key === 'vehicle_type' || key === 'operating_suit_type' || key === 'rc' || key === 'treatment' || key === 'sub_treatment' || key === 'owner_registration') {
+			console.log("radio");
 			document.querySelector('[data-'+key+'="'+ value +'"]').checked = true;
 			if (key === 'treatment') {
 				check_treatment();
@@ -1932,6 +1933,7 @@
 		}
 		// cheeck box
 		else if (key === 'symptom' || key === 'submission_criteria' || key === 'communication_hospital') {
+			console.log("cheeck box");
 			let data_all_cheeck_box = value.split(",");
 			for (let i = 0; i < data_all_cheeck_box.length; i++) {
 		        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[i] +'"]').checked = true;
@@ -1939,15 +1941,18 @@
 		}
 		// user_name && phone_user
 		else if(key === 'name_user' || key === 'phone_user'){
+			console.log("usera");
 			document.querySelector('#'+key).value = value;
 			document.querySelector('#u_'+key).innerHTML = value ;
 		}
 		// text area
 		else if(key === 'location_sos' || key === 'symptom_other'){
+			console.log("text area");
 			document.querySelector('[name="'+key+'"]').innerText = value ;
 		}
 		// input general
 		else{
+			console.log("input general");
 			document.querySelector('#'+key).value = value;
 		}
 
