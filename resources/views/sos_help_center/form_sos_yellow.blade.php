@@ -1864,16 +1864,23 @@
 	        check_click_rc();
         }, 1500);
 
-        reface_check_form_yellow = setInterval(function() {
-        	check_start_data_form_yellow();
-        	distance_in_no5();
-        }, 5000);
+        Loop_check_form_yellow();
 
     });
 
 	let start_data_arr = [] ;
 	let check_start_data_arr = "No" ;
 	let data_arr = [] ;
+
+	function Loop_check_form_yellow() {
+
+        // console.log("LOOP");
+        reface_check_form_yellow = setInterval(function() {
+        	check_start_data_form_yellow();
+        	distance_in_no5();
+        }, 5000);
+
+    }
 
 	function Stop_reface_check_form_yellow() {
         clearInterval(reface_check_form_yellow);
@@ -1899,29 +1906,22 @@
 				  			// console.log(key + " ==>> ข้อมูลเปลี่ยน");
 				  			// console.log(start_data_arr[key] + " เปลี่ยนเป็น " + data_new_5vi[key]);
 
-	        				// UPDATE DATA
-	        				alert_edit_form_yellow(key,start_data_arr[key],value);
+	        				// แจ้งเตือนข้อมูลเปลี่ยนแปลง
+	        				alet_new_data('form_yellow' ,key , value , start_data_arr[key]);
 				  		}
 					}
             	}
             });
     }
 
-    function alert_edit_form_yellow(key,old,value){
-
-    	// let text = "มีการเปลี่ยนแปลงข้อมูล " + key + " จากเดิม : " + old + " เปลี่ยนเป็น : " + value;
-    	// alert(text);
-
-    	// alert UPDATE DATA //
-		alet_new_data('form_yellow' ,key , value , old);
-
-    }
-
     function edit_form_yellow(key,value,old){
 
+		console.log("-------------------------------------------");
+		console.log(">>> SAVE NEW DATA <<<");
 		console.log(key + " >> " + value);
+		console.log("--------------------------------------------");
 
-    	start_data_arr[key] = value ;
+		start_data_arr[key] = value ;
 		data_arr[key] = value ;
 
 		//  radio
@@ -2043,7 +2043,44 @@
 		}
 	}
 
+	function check_before_save_form_yellow(){
+
+		console.log("ตรวจสอบก่อนบันทึก form yellow");
+    	// ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
+		fetch("{{ url('/') }}/api/check_update/form_yellow" + "/" + '{{ $sos_help_center->id }}')
+            .then(response => response.json())
+            .then(data_check_before => {
+
+            	if (start_data_arr) {
+            		for (const [key, value] of Object.entries(data_check_before)) {
+				  		// console.log(key + " = " + value);
+				  		if (data_check_before[key] === null) {
+				  			data_check_before[key] = '';
+				  		}
+
+				  		if (data_check_before[key] != start_data_arr[key] && check_start_data_arr == "Yes") {
+				  			// console.log(key + " ==>> ข้อมูลเปลี่ยน");
+				  			// console.log(start_data_arr[key] + " เปลี่ยนเป็น " + data_check_before[key]);
+
+	        				// แจ้งเตือนข้อมูลเปลี่ยนแปลง
+	        				// alet_new_data('form_yellow' ,key , value , start_data_arr[key]);
+	        				alet();
+
+				  		}
+					}
+            	}
+            });
+    }
+
+
 	function send_save_data(active){
+
+
+		confirm_send_save_data(active);
+	}
+
+
+	function confirm_send_save_data(active){
 
 		// ---------------------------- ข้อใน form ----------------------------//
 	    // ==>> 1

@@ -48,129 +48,13 @@
 }
 </style> 
 
+<!-- TEST alet_new_data -->
+<!-- <div class="container">
+  <button class="btn btn-default" onclick="alet_new_data('เหลือง' , 'name_user' ,'TNK' , 'B')">ทดสอบแจ้งเตือนบันทึกข้อมูล</button>
+  <button class="btn btn-default" onclick="alet_new_data('เหลือง' , 'name_user' ,'b' , 'Bdd')">ทดสอบแจ้งเตือนบันทึกข้อมูล</button>
+  <button class="btn btn-default" onclick="alet_new_data('เหลือง' , 'name_user' ,'Bdd' , 'B451')">ทดสอบแจ้งเตือนบันทึกข้อมูล</button>
+</div> -->
 
-<div class="container">
-  <!-- <button class="btn btn-default" id="customClick">Custom</button> -->
-  <button class="btn btn-default" onclick="alet_new_data('เหลือง' , 'ชื่อ' ,'TNK')">ทดสอบแจ้งเตือนบันทึกข้อมูล</button>
-
-
-</div>
-
-
-<script>
-    function alet_new_data(form_color , key , value , old) {
-
-        let text_form_yellow ;
-
-        switch(form_color) {
-            case 'form_yellow':
-                text_form_yellow = 'สีเหลือง' ;
-            break;
-        }
-
-        iziToast.show({
-            color: 'dark',
-            icon: 'fa-duotone fa-file-import',
-            close: false,
-            timeout: 8000,
-            resetOnHover: true,
-            title: 'ฟอร์ม "' +text_form_yellow+ '" มีข้อมูลใหม่!!',
-            message: 'การเปลี่ยนแปลง ข้อ : ' +key+ "<br>ข้อมูลที่เปลี่ยนแปลง : จาก <b>" +old+ "</b> เป็น <b>" +value+ "</b><br>",
-            position: 'bottomLeft', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
-            progressBarColor: 'rgb(0, 255, 184)',
-            buttons: [
-              [
-                '<button>บันทึก (<span id="nub_vi">8</span>)</button>',
-                function (instance, toast) {
-                    save_data(key , value , old)
-                  instance.hide({
-                    transitionOut: 'fadeOutUp'
-                  }, toast);
-                }
-              ],
-              [
-                '<button class="btn-danger">ไม่บันทึก</button>',
-                function (instance, toast) {
-                    dont_save_data(key , value , old);
-                    instance.hide({
-                    transitionOut: 'fadeOutUp'
-                  }, toast);
-                }
-              ]
-            ],onClosed: function asdfa(instance, toast, closedBy){
-                if (closedBy === 'timeout') {
-                    save_data(key , value , old);
-                }
-               
-            }
-        
-        });
-
-        startTimer_nub_vi();
-
-        // ----------------------------
-        const test_iziToast = document.querySelector(".iziToast");
-
-        test_iziToast.addEventListener("mouseout", (event) => {
-            
-            // นับวิต่อเนื่อจากเดิม
-            console.log("mouseout");
-            startTimer_nub_vi();
-            // alert("นับวิต่อเนื่อจากเดิม");
-
-        }, false);
-
-        test_iziToast.addEventListener("mouseover", (event) => {
-            
-            console.log("mouseover");
-            // หยุดนับ
-            // alert("หยุดนับ");
-            myStop_startTimer_nub_vi();
-
-        }, false);
-        
-    }
-
-    
-
-    function startTimer(duration, display) {
-        var timer = duration, seconds;
-        timer_nub_vi = setInterval(function () {
-            seconds = parseInt(timer % 60, 10);
-
-            display.textContent =  seconds;
-
-            if (--timer < 0) {
-                timer = duration;
-            }
-        }, 1000);
-    }
-
-    function startTimer_nub_vi() {
-        var fiveMinutes = 7,
-            display = document.querySelector('#nub_vi');
-        startTimer(fiveMinutes, display);
-    };
-
-    function myStop_startTimer_nub_vi() {
-        clearInterval(timer_nub_vi);
-        // alert("STOP");
-    }
-
-
-</script>
-
-<script>
-    function save_data(key , value , old){
-        iziToast.success({timeout: 2000,position: "bottomLeft", icon: 'fa-solid fa-file-check', title: 'บันทึกเรียบร้อย' ,message: 'บันทึกข้อมูล ' + value + 'ในฟอร์ม' + key + 'เรียบร้อย'});
-        
-        edit_form_yellow(key , value , old);
-
-    }
-    function dont_save_data(key , value , old){
-        iziToast.warning({timeout: 2000,position: "bottomLeft", icon: 'fa-solid fa-file-excel',  title: 'ไม่บันทึก' , message: 'ปฎิเศษการบันทึกข้อมูล' + value +'ในฟอร์ม' +key});
-    }
-</script>
 <!-- Modal -->
 <div class="modal fade" id="modal_mapMarkLocation" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -1750,3 +1634,348 @@
 
     }
 </script>
+
+
+<!-- alet_new_data -->
+<script>
+
+    function alet_new_data(form_color , key , value , old) {
+
+        // เช็คว่ามีอันเดิมที่แสดงอยู่หรือไม่
+        let elms_check = document.querySelectorAll('div[class~="iziToast"]')
+        let check_alet_new_data = "No" ;
+
+        let text_check = key + "_" + value + "_" + old ;
+
+        for(let i_check = 0; i_check < elms_check.length; i_check++){
+
+            // console.log(elms_check[i_check]['attributes']['data-change']['value']);
+
+            if(elms_check[i_check]['attributes']['data-change']['value'] && elms_check[i_check]['attributes']['data-change']['value'] === text_check) {
+                check_alet_new_data = "Yes" ;
+                // console.log(i_check);
+                break;
+            }else{
+                check_alet_new_data = "No" ;
+            }
+        }
+        // จบ เช็คว่ามีอันเดิมที่แสดงอยู่หรือไม่
+
+        if (check_alet_new_data === "No") {
+
+            // console.log("SHOW alet_new_data");
+
+            let pass = Math.floor(1000 + Math.random() * 9000);
+            let text_form_yellow ;
+
+            switch(form_color) {
+                case 'form_yellow':
+                    text_form_yellow = 'สีเหลือง' ;
+                break;
+            }
+
+            let text_key = change_key_to_text_key(key);
+
+            iziToast.show({
+                color: 'dark',
+                icon: 'fa-duotone fa-file-import',
+                close: false,
+                timeout: 8000,
+                resetOnHover: true,
+                title: 'ฟอร์ม "' +text_form_yellow+ '" มีข้อมูลใหม่!!',
+                message: 'การเปลี่ยนแปลง ข้อ : ' +text_key+ '<br>ข้อมูลที่เปลี่ยนแปลง : จาก <b>' +old+ '</b> เป็น <b>' +value+ '</b>',
+                position: 'bottomLeft', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+                progressBarColor: 'rgb(0, 255, 184)',
+                buttons: [
+                  [
+                    '<button>บันทึก (<span id="nub_vi_'+pass+'">8</span>)</button>',
+                    function (instance, toast) {
+                        save_data(key , value , old)
+                      instance.hide({
+                        transitionOut: 'fadeOutUp'
+                      }, toast);
+                    }
+                  ],
+                  [
+                    '<button class="btn-danger">ไม่บันทึก</button>',
+                    function (instance, toast) {
+                        dont_save_data(key , value , old);
+                        instance.hide({
+                        transitionOut: 'fadeOutUp'
+                      }, toast);
+                    }
+                  ]
+                ],onClosed: function asdfa(instance, toast, closedBy){
+                    if (closedBy === 'timeout') {
+                        save_data(key , value , old);
+                    }
+                   
+                },onOpening: function () {
+                    // console.log(pass);
+                    startTimer_nub_vi(pass);
+                    let audio_alet_new_data = new Audio("{{ asset('sound/เตือน.mp3') }}");
+                        audio_alet_new_data.play();
+                }
+            
+            });
+
+            // ----------------------------
+            let tag_iziToast = [] ;
+
+            // check data-id
+            let elms = document.querySelectorAll('div[class~="iziToast"]')
+
+            for(let i=0; i < elms.length; i++){
+                // var test = elms[i].getAttribute("data-izitoast-ref")
+
+                if (!elms[i]['attributes']['data-id']) {
+                    // console.log("NO data-id");
+                    let data_id = document.createAttribute("data-id");
+                        data_id.value = pass ;
+                        elms[i].setAttributeNode(data_id);
+                }
+
+                if (!elms[i]['attributes']['data-change']) {
+                    let data_change = document.createAttribute("data-change");
+                        data_change.value = key + "_" + value + "_" + old ;
+                        elms[i].setAttributeNode(data_change);
+                }
+            }
+
+            // กำหนด Tag ให้ tag_iziToast
+            for(let xi =0; xi < elms.length; xi++){
+                tag_iziToast[pass] = elms[xi] ;
+            }
+
+            // เมาส์วาง
+            tag_iziToast[pass].addEventListener("mouseout", (event) => {
+                // นับวิใหม่
+                startTimer_nub_vi(pass);
+            }, false);
+
+            tag_iziToast[pass].addEventListener("mouseover", (event) => {
+                // หยุดนับ
+                myStop_startTimer_nub_vi(pass);
+            }, false);
+            // จบ เมาส์วาง
+        }
+        
+    }
+
+    var timer_nub_vi = [] ;
+
+    function startTimer(duration, display,pass) {
+        let timer = duration, seconds;
+        
+        timer_nub_vi[pass] = setInterval(function () {
+
+            seconds = parseInt(timer % 60, 10);
+            display.textContent =  seconds;
+
+            if (--timer < 0) {
+                timer = duration;
+            }
+
+        }, 1000);
+    }
+
+    function startTimer_nub_vi(pass) {
+        let fiveMinutes = 7,
+            display = document.querySelector('#nub_vi_'+pass);
+        startTimer(fiveMinutes, display,pass);
+    };
+
+    function myStop_startTimer_nub_vi(pass) {
+        clearInterval(timer_nub_vi[pass]);
+        // alert("STOP");
+    }
+
+    function save_data(key , value , old){
+
+        let text_key = change_key_to_text_key(key);
+
+        iziToast.success({
+            timeout: 4000,
+            position: "bottomLeft",
+            icon: 'fa-solid fa-file-check',
+            title: 'บันทึกข้อมูลเรียบร้อย',
+            message: 'บันทึกข้อมูล ข้อ : ' + text_key + ' เรียบร้อย ข้อมูลที่เปลี่ยนแปลง : ' + value
+        });
+        // บันทึกข้อมูลใหม่
+        edit_form_yellow(key , value , old);
+        let audio_save_data = new Audio("{{ asset('sound/ยืนยัน.mp3') }}");
+            audio_save_data.play();
+
+    }
+    function dont_save_data(key , value , old){
+
+        let text_key = change_key_to_text_key(key);
+
+        iziToast.warning({
+            timeout: 4000,
+            position: "bottomLeft",
+            icon: 'fa-solid fa-file-excel',
+            title: 'บันทึกข้อมูลไม่สำเร็จ',
+            message: 'ปฏิเสธการบันทึกข้อมูล ข้อ : ' + text_key + ' เรียบร้อย'
+        });
+
+        // เปลี่ยนข้อมูลกลับเหมือนเดิม
+        check_go_to(null);
+        let audio_dont_save_data = new Audio("{{ asset('sound/ปฏิเสธ.mp3') }}");
+            audio_dont_save_data.play();
+    }
+
+    function change_key_to_text_key(key){
+
+        let text_key ;
+
+        switch(key) {
+
+            case 'be_notified':
+                text_key = "รับแจ้งเหตุทาง" ;
+            break;
+            case 'name_user':
+                text_key = "ชื่อ/รหัสผู้แจ้งเหตุ" ;
+            break;
+            case 'phone_user':
+                text_key = "โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ" ;
+            break;
+            case 'lat':
+                text_key = "ละติจูด" ;
+            break;
+            case 'lng':
+                text_key = "ลองติจูด" ;
+            break;
+            case 'location_sos':
+                text_key = "รายละเอียดสถานที่เกิดเหตุ" ;
+            break;
+            case 'symptom':
+                text_key = "อาการนำสำคัญ" ;
+            break;
+            case 'symptom_other':
+                text_key = "อาการนำสำคัญ รายละเอียดอื่นๆ" ;
+            break;
+            case 'idc':
+                text_key = "การให้รหัสความรุนแรง" ;
+            break;
+            case 'vehicle_type':
+                text_key = "ชนิดยานพาหนะ" ;
+            break;
+            case 'operating_suit_type':
+                text_key = "ประเภทชุดปฏิบัติการ" ;
+            break;
+            case 'operation_unit_name':
+                text_key = "ชื่อหน่วยปฏิบัติการ" ;
+            break;
+            case 'action_set_name':
+                text_key = "ชื่อชุดปฏิบัติการ" ;
+            break;
+            case 'time_create_sos':
+                text_key = "เวลารับแจ้งเหตุ" ;
+            break;
+            case 'time_command':
+                text_key = "เวลาสั่งการ" ;
+            break;
+            case 'time_go_to_help':
+                text_key = "เวลาออกจากฐาน" ;
+            break;
+            case 'time_to_the_scene':
+                text_key = "เวลาถึงที่เกิดเหตุ" ;
+            break;
+            case 'time_leave_the_scene':
+                text_key = "เวลาออกจากที่เกิดเหตุ" ;
+            break;
+            case 'time_hospital':
+                text_key = "เวลาถึง รพ." ;
+            break;
+            case 'time_to_the_operating_base':
+                text_key = "เวลากลับถึงฐาน" ;
+            break;
+            case 'km_create_sos_to_go_to_help':
+                text_key = "เลขไมค์ก่อนออกจากฐาน" ;
+            break;
+            case 'km_to_the_scene_to_leave_the_scene':
+                text_key = "เลขไมค์ถึงที่เกิดเหตุ" ;
+            break;
+            case 'km_hospital':
+                text_key = "เลขไมค์ถึง รพ." ;
+            break;
+            case 'km_operating_base':
+                text_key = "เลขไมค์กลับถึงฐาน" ;
+            break;
+            case 'rc':
+                text_key = "การให้รหัสความรุนแรง ณ จุดเกิดเหตุ" ;
+            break;
+            case 'rc_black_text':
+                text_key = "รหัส สีดำ" ;
+            break;
+            case 'treatment':
+                text_key = "การปฏิบัติการ" ;
+            break;
+            case 'sub_treatment':
+                text_key = "การปฏิบัติการ เพิ่มเติม" ;
+            break;
+            case 'patient_name_1':
+                text_key = "ผู้ป่วย ๑. ชื่อ-สกุล" ;
+            break;
+            case 'patient_age_1':
+                text_key = "ผู้ป่วย ๑. อายุ (ปี)" ;
+            break;
+            case 'patient_hn_1':
+                text_key = "ผู้ป่วย ๑. รหัสผู้ป่วย" ;
+            break;
+            case 'patient_vn_1':
+                text_key = "ผู้ป่วย ๑. เลขประจำตัวประชาชน" ;
+            break;
+            case 'delivered_province_1':
+                text_key = "ผู้ป่วย ๑. จังหวัดที่นำส่ง" ;
+            break;
+            case 'delivered_hospital_1':
+                text_key = "ผู้ป่วย ๑. โรงพยาบาลที่นำส่ง" ;
+            break;
+            case 'patient_name_2':
+                text_key = "ผู้ป่วย ๒. ชื่อ-สกุล" ;
+            break;
+            case 'patient_age_2':
+                text_key = "ผู้ป่วย ๒. อายุ (ปี)" ;
+            break;
+            case 'patient_hn_2':
+                text_key = "ผู้ป่วย ๒. รหัสผู้ป่วย" ;
+            break;
+            case 'patient_vn_2':
+                text_key = "ผู้ป่วย ๒. เลขประจำตัวประชาชน" ;
+            break;
+            case 'delivered_province_2':
+                text_key = "ผู้ป่วย ๒. จังหวัดที่นำส่ง" ;
+            break;
+            case 'delivered_hospital_2':
+                text_key = "ผู้ป่วย ๒. โรงพยาบาลที่นำส่ง" ;
+            break;
+            case 'submission_criteria':
+                text_key = "เกณฑ์การนำส่ง" ;
+            break;
+            case 'communication_hospital':
+                text_key = "การติดต่อสื่อสารกับ รพ.ที่นำส่ง" ;
+            break;
+            case 'registration_category':
+                text_key = "เพิ่มเติม ทะเบียนรถหมวด" ;
+            break;
+            case 'registration_number':
+                text_key = "เพิ่มเติม เลขทะเบียน" ;
+            break;
+            case 'registration_province':
+                text_key = "เพิ่มเติม จังหวัด" ;
+            break;
+            case 'owner_registration':
+                text_key = "เพิ่มเติม เจ้าของ" ;
+            break;
+            
+            default:
+                text_key = "..." ;
+        }
+
+        return text_key ;
+    }
+
+</script>
+<!-- END alet_new_data -->
