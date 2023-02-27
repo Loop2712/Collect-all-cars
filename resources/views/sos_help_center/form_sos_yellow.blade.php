@@ -2043,7 +2043,7 @@
 		}
 	}
 
-	function check_before_save_form_yellow(){
+	function check_before_save_form_yellow(active){
 
 		console.log("ตรวจสอบก่อนบันทึก form yellow");
     	// ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
@@ -2063,9 +2063,11 @@
 				  			// console.log(start_data_arr[key] + " เปลี่ยนเป็น " + data_check_before[key]);
 
 	        				// แจ้งเตือนข้อมูลเปลี่ยนแปลง
-	        				// alet_new_data('form_yellow' ,key , value , start_data_arr[key]);
-	        				alet();
+	        				// document.querySelector('#modal_alet_new_data').click();
+	        				console.log("แจ้งเตือนข้อมูลเปลี่ยนแปลง form yellow");
 
+				  		}else{
+							// confirm_send_save_data(active);
 				  		}
 					}
             	}
@@ -2075,10 +2077,9 @@
 
 	function send_save_data(active){
 
-
+		// check_before_save_form_yellow(active);
 		confirm_send_save_data(active);
 	}
-
 
 	function confirm_send_save_data(active){
 
