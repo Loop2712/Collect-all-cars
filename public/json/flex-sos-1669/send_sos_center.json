@@ -155,6 +155,39 @@
             "contents": [
               {
                 "type": "image",
+                "url": "https://www.viicheck.com/img/icon/VICONVzoom.png",
+                "aspectMode": "fit",
+                "size": "full",
+                "aspectRatio": "194:237"
+              }
+            ],
+            "width": "100%",
+            "height": "100%"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "50%",
+        "offsetStart": "81.6%",
+        "width": "9%",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "https://www.viicheck.com/storage/photo_sos.png"
+        },
+        "height": "7.5%"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
                 "url": "https://www.viicheck.com/storage/photo_sos.png",
                 "aspectMode": "cover",
                 "size": "full",
@@ -178,39 +211,6 @@
         },
         "height": "35%",
         "cornerRadius": "15px"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "image",
-                "url": "https://www.viicheck.com/img/icon/VICONVzoom.png",
-                "aspectMode": "fit",
-                "size": "full",
-                "aspectRatio": "194:237"
-              }
-            ],
-            "width": "100%",
-            "height": "100%"
-          }
-        ],
-        "position": "absolute",
-        "offsetTop": "50%",
-        "offsetStart": "81.6%",
-        "width": "9%",
-        "alignItems": "center",
-        "justifyContent": "center",
-        "action": {
-          "type": "uri",
-          "label": "action",
-          "uri": "https://www.viicheck.com/storage/photo_sos.png"
-        },
-        "height": "7.5%"
       },
       {
         "type": "box",
