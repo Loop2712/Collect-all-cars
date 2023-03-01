@@ -1065,7 +1065,7 @@
 							</div>
 							<div class="col-md-4">
 								<label for="" class="form-label"><b>&nbsp;</b></label>
-								<span class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();select_level();" style="width:100%;" >
+								<span id="btn_select_unit_in_no5" class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();select_level();" style="width:100%;" >
                                     <i class="fa-solid fa-hospital-user"></i> เลือกหน่วยแพทย์
 								</span>
 							</div>
@@ -2498,6 +2498,12 @@
         }).catch(function(error){
             // console.error(error);
         });
+
+        if (action_set_name.value && action_set_name.value) {
+        	document.querySelector('#btn_select_unit_in_no5').classList.add('d-none');
+        }else{
+        	document.querySelector('#btn_select_unit_in_no5').classList.remove('d-none');
+        }
 
 	}
 
