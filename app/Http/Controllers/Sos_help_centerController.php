@@ -519,8 +519,6 @@ class Sos_help_centerController extends Controller
         if (!empty($data_sos->photo_sos)) {
             $string_json = str_replace("photo_sos.png",$data_sos->photo_sos,$string_json);
             $string_json = str_replace("_VICONV_","",$string_json);
-        }else{
-            $string_json = str_replace("https://www.viicheck.com/storage/photo_sos.png","https://www.viicheck.com/img/stickerline/Flex/1.png",$string_json);
         }
 
         // ข้อมูลผู้ขอความช่วยเหลือ
