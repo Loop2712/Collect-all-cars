@@ -2499,7 +2499,7 @@
             // console.error(error);
         });
 
-        if (action_set_name.value && action_set_name.value) {
+        if (operation_unit_name.value && action_set_name.value) {
         	document.querySelector('#btn_select_unit_in_no5').classList.add('d-none');
         }else{
         	document.querySelector('#btn_select_unit_in_no5').classList.remove('d-none');
