@@ -282,7 +282,7 @@
                     </style>
                     <ul class="nav nav-pills m-3" role="tablist">
                         <li id="btn_operation" class="nav-item nav-pills nav-pills-purple m-2 d-none" role="presentation">
-                            <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="reface_map_go_to_help();">
+                            <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="reface_map_go_to_help();Stop_reface_check_form_yellow();">
                                 <div class="d-flex align-items-center">
                                     <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                     </div>

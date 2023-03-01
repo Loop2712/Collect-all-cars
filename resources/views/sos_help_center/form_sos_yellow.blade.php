@@ -1874,7 +1874,7 @@
 
 	function Loop_check_form_yellow() {
 
-        // console.log("LOOP");
+        console.log("LOOP check form yellow");
         reface_check_form_yellow = setInterval(function() {
         	check_start_data_form_yellow();
         	distance_in_no5();
@@ -1884,7 +1884,7 @@
 
 	function Stop_reface_check_form_yellow() {
         clearInterval(reface_check_form_yellow);
-        // console.log("STOP LOOP");
+        console.log("STOP LOOP check form yellow");
     }
 
     function check_start_data_form_yellow(){
