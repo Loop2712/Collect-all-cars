@@ -1868,9 +1868,9 @@
 
     });
 
-	let start_data_arr = [] ;
-	let check_start_data_arr = "No" ;
-	let data_arr = [] ;
+	var start_data_arr = [] ;
+	var check_start_data_arr = "No" ;
+	var data_arr = [] ;
 
 	function Loop_check_form_yellow() {
 
@@ -1897,17 +1897,23 @@
 
             	if (start_data_arr) {
             		for (const [key, value] of Object.entries(data_new_5vi)) {
-				  		// console.log(key + " = " + value);
+				  		// console.log(key);
 				  		if (data_new_5vi[key] === null) {
 				  			data_new_5vi[key] = '';
 				  		}
 
 				  		if (data_new_5vi[key] != start_data_arr[key] && check_start_data_arr == "Yes") {
+
 				  			// console.log(key + " ==>> ข้อมูลเปลี่ยน");
 				  			// console.log(start_data_arr[key] + " เปลี่ยนเป็น " + data_new_5vi[key]);
 
-	        				// แจ้งเตือนข้อมูลเปลี่ยนแปลง
-	        				alet_new_data('form_yellow' ,key , value , start_data_arr[key]);
+				  			if (key === 'lat' || key === 'lng') {
+				  				// console.log("สั่งบันทึก lat lng >> " + key)
+        						check_go_to(null);
+				  			}else{
+				  				// แจ้งเตือนข้อมูลเปลี่ยนแปลง
+	        					alet_new_data('form_yellow' ,key , value , start_data_arr[key]);
+				  			}
 				  		}
 					}
             	}
@@ -2043,36 +2049,36 @@
 		}
 	}
 
-	function check_before_save_form_yellow(active){
+	// function check_before_save_form_yellow(active){
 
-		console.log("ตรวจสอบก่อนบันทึก form yellow");
-    	// ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
-		fetch("{{ url('/') }}/api/check_update/form_yellow" + "/" + '{{ $sos_help_center->id }}')
-            .then(response => response.json())
-            .then(data_check_before => {
+	// 	console.log("ตรวจสอบก่อนบันทึก form yellow");
+    // 	// ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
+	// 	fetch("{{ url('/') }}/api/check_update/form_yellow" + "/" + '{{ $sos_help_center->id }}')
+    //         .then(response => response.json())
+    //         .then(data_check_before => {
 
-            	if (start_data_arr) {
-            		for (const [key, value] of Object.entries(data_check_before)) {
-				  		// console.log(key + " = " + value);
-				  		if (data_check_before[key] === null) {
-				  			data_check_before[key] = '';
-				  		}
+    //         	if (start_data_arr) {
+    //         		for (const [key, value] of Object.entries(data_check_before)) {
+	// 			  		// console.log(key + " = " + value);
+	// 			  		if (data_check_before[key] === null) {
+	// 			  			data_check_before[key] = '';
+	// 			  		}
 
-				  		if (data_check_before[key] != start_data_arr[key] && check_start_data_arr == "Yes") {
-				  			// console.log(key + " ==>> ข้อมูลเปลี่ยน");
-				  			// console.log(start_data_arr[key] + " เปลี่ยนเป็น " + data_check_before[key]);
+	// 			  		if (data_check_before[key] != start_data_arr[key] && check_start_data_arr == "Yes") {
+	// 			  			// console.log(key + " ==>> ข้อมูลเปลี่ยน");
+	// 			  			// console.log(start_data_arr[key] + " เปลี่ยนเป็น " + data_check_before[key]);
 
-	        				// แจ้งเตือนข้อมูลเปลี่ยนแปลง
-	        				// document.querySelector('#modal_alet_new_data').click();
-	        				console.log("แจ้งเตือนข้อมูลเปลี่ยนแปลง form yellow");
+	//         				// แจ้งเตือนข้อมูลเปลี่ยนแปลง
+	//         				// document.querySelector('#modal_alet_new_data').click();
+	//         				console.log("แจ้งเตือนข้อมูลเปลี่ยนแปลง form yellow");
 
-				  		}else{
-							// confirm_send_save_data(active);
-				  		}
-					}
-            	}
-            });
-    }
+	// 			  		}else{
+	// 						// confirm_send_save_data(active);
+	// 			  		}
+	// 				}
+    //         	}
+    //         });
+    // }
 
 
 	function send_save_data(active){
