@@ -1131,7 +1131,10 @@
 												<th scope="row" style="vertical-align: middle;">
 													เลข กม.
 												</th>
-												<td colspan="3">
+												<td colspan="2" style="background-color:#D3D3D3;">
+													<!--  -->
+												</td>
+												<td>
 													<input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : ''}}" onchange="distance_in_no5();">
 												</td>
 												<td colspan="2">
@@ -1148,23 +1151,25 @@
 												<th rowspan="2" style="vertical-align: middle;">
 													ระยะทาง (กม.)
 												</th>
-												<td  style="vertical-align: middle;text-align: center;" rowspan="2" colspan="4">
+												<td rowspan="2" colspan="2" style="background-color:#D3D3D3;">
+													<!--  -->
+												</td>
+												<td  style="vertical-align: middle;text-align: center;" rowspan="2" colspan="2">
 													รวมระยะทางไป <b><span id="text_distance_to" class="text-dark"></span></b> กม.
 												</td>
+												<td colspan="2" style="text-align: center;">
+													ระยะทางไป รพ. <b><span id="text_distance_to_hospital" class="text-dark"></span></b> กม.
+												</td>
+												<td style="background-color:#D3D3D3;">
+													<!--  -->
+												</td>
+											</tr>
+											<tr>
 												<td style="background-color:#D3D3D3;">
 													<!--  -->
 												</td>
 												<td colspan="2" style="text-align: center;">
 													ระยะทางกลับ <b><span id="text_return_distance" class="text-dark"></span></b> กม.
-												</td>
-												</td>
-											</tr>
-											<tr>
-												<td colspan="2" style="text-align: center;">
-													ระยะไป รพ. <b><span id="text_distance_to_hospital" class="text-dark"></span></b> กม.
-												</td>
-												<td style="background-color:#D3D3D3;">
-													<!--  -->
 												</td>
 											</tr>
 										</tbody>
@@ -2624,9 +2629,6 @@
 		if (km_to_the_scene_to_leave_the_scene.value) {
 			num_km_2 = km_to_the_scene_to_leave_the_scene.value ;
 		}
-		//  num_km_2 / 2
-		let divide_2 = parseFloat(num_km_2) / 2 ;
-
 		let km_hospital = document.querySelector('#km_hospital');
 		if (km_hospital.value) {
 			num_km_3 = km_hospital.value ;
@@ -2637,47 +2639,42 @@
 		}
 
 		// ------------------------------- รวมระยะทางไป ---------------------------------------//
-		let no5_distance_to_1 = 0 ;
-		let no5_distance_to_2 = 0 ;
+		let no5_distance_to = 0 ;
 	
-		no5_distance_to_1 = parseFloat(num_km_1) + parseFloat(divide_2) ;
-		no5_distance_to_2 = parseFloat(num_km_1) + parseFloat(num_km_2) ;
+		no5_distance_to = parseFloat(num_km_2) - parseFloat(num_km_1) ;
 
-		if (parseFloat(num_km_1) === 0 && parseFloat(num_km_2) === 0) {
+		if (parseFloat(num_km_1) === 0 || parseFloat(num_km_2) === 0) {
 			document.querySelector('#text_distance_to').innerHTML = '0' ;
-		}else if(parseFloat(num_km_1) != 0 && parseFloat(num_km_2) === 0){
-			document.querySelector('#text_distance_to').innerHTML = num_km_1 ;
-		}else if(parseFloat(num_km_1) === 0 && parseFloat(num_km_2) != 0){
-			document.querySelector('#text_distance_to').innerHTML = num_km_2 ;
 		}else{
-			document.querySelector('#text_distance_to').innerHTML = no5_distance_to_1 + " - " + no5_distance_to_2 ;
+			document.querySelector('#text_distance_to').innerHTML = no5_distance_to.toFixed(2) ;
 		}
 		// ------------------------------- จบ รวมระยะทางไป ---------------------------------------//
+
+		// ------------------------------- ระยะไป รพ ---------------------------------------//
+		let distance_to_hospital = 0 ;
+
+		distance_to_hospital = parseFloat(num_km_3) - parseFloat(num_km_2) ;
+
+		if (parseFloat(num_km_2) === 0 || parseFloat(num_km_3) === 0) {
+			document.querySelector('#text_distance_to_hospital').innerHTML = '0' ;
+		}else{
+			document.querySelector('#text_distance_to_hospital').innerHTML = distance_to_hospital.toFixed(2) ;
+		}
+		// ------------------------------- จบ ระยะไป รพ ---------------------------------------//
 
 		// ------------------------------- รวมระยะทางกลับ ---------------------------------------//
 		let return_distance = 0 ;
 
-		return_distance = parseFloat(num_km_3) + parseFloat(num_km_4) ;
-		document.querySelector('#text_return_distance').innerHTML = return_distance ;
+		return_distance = parseFloat(num_km_4) - parseFloat(num_km_3) ;
+
+		if (parseFloat(num_km_3) === 0 || parseFloat(num_km_4) === 0) {
+			document.querySelector('#text_return_distance').innerHTML = '0' ;
+		}else{
+			document.querySelector('#text_return_distance').innerHTML = return_distance.toFixed(2) ;
+		}
 		// ------------------------------- จบ รวมระยะทางกลับ ---------------------------------------//
 
-		// ------------------------------- ระยะไป รพ ---------------------------------------//
-		let distance_to_hospital_1 = 0 ;
-		let distance_to_hospital_2 = 0 ;
-
-		distance_to_hospital_1 = parseFloat(divide_2) + parseFloat(num_km_3) ;
-		distance_to_hospital_2 = parseFloat(num_km_2) + parseFloat(num_km_3) ;
-
-		if (parseFloat(num_km_2) === 0 && parseFloat(num_km_3) === 0) {
-			document.querySelector('#text_distance_to_hospital').innerHTML = '0' ;
-		}else if(parseFloat(num_km_2) != 0 && parseFloat(num_km_3) === 0){
-			document.querySelector('#text_distance_to_hospital').innerHTML = num_km_2 ;
-		}else if(parseFloat(num_km_2) === 0 && parseFloat(num_km_3) != 0){
-			document.querySelector('#text_distance_to_hospital').innerHTML = num_km_3 ;
-		}else{
-			document.querySelector('#text_distance_to_hospital').innerHTML = distance_to_hospital_1 + " - " + distance_to_hospital_2 ;
-		}
-		// ------------------------------- จบ ระยะไป รพ ---------------------------------------//
+		
 
 		time_in_no5();
 	}

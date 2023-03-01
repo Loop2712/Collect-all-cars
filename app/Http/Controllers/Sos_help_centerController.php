@@ -497,19 +497,28 @@ class Sos_help_centerController extends Controller
     {
         $data_officers = User::where('id' , $user_id)->first();
         $data_sos = Sos_help_center::where('id' , $sos_id)->first();
+        $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id' , $sos_id)->first();
 
-        $date_now = date("Y-m-d H:i:s");
+        $date_now = date("Y-m-d");
         $time_now = date("H:i:s");
         $text_at = '@' ;
 
-        $template_path = storage_path('../public/json/test_send_sos_center.json');   
+        $template_path = storage_path('../public/json/flex-sos-1669/send_sos_center.json');   
         $string_json = file_get_contents($template_path);
 
-        $string_json = str_replace("ตัวอย่าง","SOS 1669",$string_json);
+        // แปลภาษา
+        $string_json = str_replace("ตัวอย่าง","ขอความช่วยเหลือ",$string_json);
+        $string_json = str_replace("ขอความช่วยเหลือ","ขอความช่วยเหลือ",$string_json);
+        $string_json = str_replace("ระยะห่าง","ระยะห่าง",$string_json);
+        $string_json = str_replace("ชื่อผู้ขอความช่วยเหลือ","ชื่อผู้ขอความช่วยเหลือ",$string_json);
+        $string_json = str_replace("ไปช่วยเหลือ","ไปช่วยเหลือ",$string_json);
+        $string_json = str_replace("ปฏิเสธ","ปฏิเสธ",$string_json);
 
-        // รูป
+
+        // รูปภาพ SOS
         if (!empty($data_sos->photo_sos)) {
             $string_json = str_replace("photo_sos.png",$data_sos->photo_sos,$string_json);
+            $string_json = str_replace("_VICONV_","",$string_json);
         }else{
             $string_json = str_replace("https://www.viicheck.com/storage/photo_sos.png","https://www.viicheck.com/img/stickerline/Flex/1.png",$string_json);
         }
@@ -525,8 +534,10 @@ class Sos_help_centerController extends Controller
             $string_json = str_replace("phone_user",$data_sos->phone_user,$string_json);
         }
 
+        // วัน เวลา ระยะห่าง
         $string_json = str_replace("distance",$distance ." กม.",$string_json);
-        $string_json = str_replace("date_time",$date_now,$string_json);
+        $string_json = str_replace("_date_",$date_now,$string_json);
+        $string_json = str_replace("_time_",$data_form_yellow->time_create_sos,$string_json);
 
         // ปุ่มดูแผนที่
         $string_json = str_replace("gg_lat_mail",$text_at.$data_sos->lat,$string_json);

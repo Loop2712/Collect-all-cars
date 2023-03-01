@@ -91,6 +91,11 @@ class LineApiController extends Controller
             case "Chinese" : 
                 $line->replyToUser(null, $event, "Chinese");
                 break;
+            case "sos_1669" : 
+                // SOS_ID/go_to_help/_UNIT_ID_
+                // sos_1669?SOS_ID/go_to_help/_UNIT_ID_
+                $line->sos_1669_reply_select($data_postback_explode[1], $event, "sos_1669");
+                break;
         }   
 
     }
