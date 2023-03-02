@@ -20,19 +20,6 @@
         "color": "#451167"
       },
       {
-        "type": "image",
-        "url": "https://www.viicheck.com/storage/photo_sos.png",
-        "action": {
-          "type": "uri",
-          "uri": "https://www.viicheck.com/storage/photo_sos.png"
-        }
-      },
-      {
-        "type": "separator",
-        "margin": "md",
-        "color": "#000000"
-      },
-      {
         "type": "box",
         "layout": "vertical",
         "contents": [
@@ -60,60 +47,10 @@
         "layout": "vertical",
         "contents": [
           {
-            "type": "text",
-            "text": "ระยะห่าง (รัศมี)",
-            "size": "md",
-            "margin": "md",
-            "weight": "bold"
-          },
-          {
-            "type": "text",
-            "text": "distance"
-          },
-          {
-            "type": "separator",
-            "margin": "md",
-            "color": "#000000"
-          }
-        ]
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "date_time",
-            "margin": "md"
-          },
-          {
-            "type": "separator",
-            "margin": "md",
-            "color": "#000000"
-          }
-        ]
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
             "type": "button",
             "action": {
               "type": "uri",
-              "label": "ดูแผนที่",
-              "uri": "https://www.google.co.th/maps/dir//gg_lat,lng/gg_lat_mail,lng,16z"
-            },
-            "margin": "md",
-            "style": "primary",
-            "height": "sm",
-            "color": "#F6CE28"
-          },
-          {
-            "type": "button",
-            "action": {
-              "type": "uri",
-              "label": "กำลังไปช่วยเหลือ",
+              "label": "ดำเนินการ",
               "uri": "https://www.viicheck.com/sos_help_center/reply_select/SOS_ID?openExternalBrowser=1&answer=go_to_help&unit_id=_UNIT_ID_"
             },
             "margin": "md",
@@ -136,14 +73,14 @@
           {
             "type": "button",
             "action": {
-              "type": "uri",
-              "label": "ปฏิเสธ",
-              "uri": "https://www.viicheck.com/sos_help_center/reply_select/SOS_ID?answer=refuse&unit_id=_UNIT_ID_"
+              "type": "message",
+              "label": "Meet",
+              "text": "soon"
             },
             "margin": "md",
             "style": "primary",
             "height": "sm",
-            "color": "#EA2D2B"
+            "color": "#745125"
           }
         ],
         "margin": "md"

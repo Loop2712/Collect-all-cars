@@ -66,6 +66,7 @@ class LineApiController extends Controller
     public function postbackHandler($event)
     {
         $line = new LineMessagingAPI();
+        $sos_1669 = new Sos_help_centerController();
     	
         $data_postback_explode = explode("?",$event["postback"]["data"]);
         $data_postback = $data_postback_explode[0] ;
@@ -93,8 +94,8 @@ class LineApiController extends Controller
                 break;
             case "sos_1669" : 
                 // SOS_ID/go_to_help/_UNIT_ID_
-                // sos_1669?SOS_ID/go_to_help/_UNIT_ID_
-                $line->sos_1669_reply_select($data_postback_explode[1], $event, "sos_1669");
+                // sos_1669?SOS_ID/refuse/_UNIT_ID_
+                $sos_1669->sos_1669_confirm_or_refuse_case($data_postback_explode[1], $event);
                 break;
         }   
 
