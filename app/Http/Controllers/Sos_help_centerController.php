@@ -609,11 +609,18 @@ class Sos_help_centerController extends Controller
         // SOS_ID/refuse/_UNIT_ID_
         $data_data = explode("/",$data_postback);
 
+        // SAVE LOG
+        $data_test_save = [
+            "title" => "ถึงตรงนี้",
+            "content" => "sos id",
+        ];
+        MyLog::create($data_test_save);
+
         $id_sos_1669 = $data_data[0] ;
         $answer = $data_data[1] ;
         $unit_id = $data_data[2] ;
 
-        $data_sos = Sos_help_center::findOrFail($id_sos_1669);
+        $data_sos = Sos_help_center::where('id' , $id_sos_1669)->first();
 
         if ($answer == 'go_to_help') {
             $template_path = storage_path('../public/json/flex-sos-1669/test_send_sos_center.json');   
