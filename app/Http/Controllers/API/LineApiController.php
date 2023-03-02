@@ -14,6 +14,7 @@ use App\Models\Sos_map;
 use App\Models\Partner;
 use App\Models\Partner_condo;
 use App\User;
+use App\Models\Sos_help_center;
 
 class LineApiController extends Controller
 {
@@ -66,7 +67,6 @@ class LineApiController extends Controller
     public function postbackHandler($event)
     {
         $line = new LineMessagingAPI();
-        $sos_1669 = new Sos_help_centerController();
     	
         $data_postback_explode = explode("?",$event["postback"]["data"]);
         $data_postback = $data_postback_explode[0] ;
@@ -95,7 +95,7 @@ class LineApiController extends Controller
             case "sos_1669" : 
                 // SOS_ID/go_to_help/_UNIT_ID_
                 // sos_1669?SOS_ID/refuse/_UNIT_ID_
-                $sos_1669->sos_1669_confirm_or_refuse_case($data_postback_explode[1], $event);
+                $this->sos_1669_confirm_or_refuse_case($data_postback_explode[1], $event);
                 break;
         }   
 
@@ -1607,6 +1607,83 @@ class LineApiController extends Controller
         MyLog::create($data);
 
         return "OK" ;
+    }
+
+    function sos_1669_confirm_or_refuse_case($data_postback, $event){
+
+        // SOS_ID/go_to_help/_UNIT_ID_
+        // SOS_ID/refuse/_UNIT_ID_
+        $data_data = explode("/",$data_postback);
+
+        // SAVE LOG
+        $data_test_save = [
+            "title" => "ถึงตรงนี้",
+            "content" => "sos id",
+        ];
+        MyLog::create($data_test_save);
+
+        $id_sos_1669 = $data_data[0] ;
+        $answer = $data_data[1] ;
+        $unit_id = $data_data[2] ;
+
+        $data_sos = Sos_help_center::where('id' , $id_sos_1669)->first();
+
+        if ($answer == 'go_to_help') {
+            $template_path = storage_path('../public/json/flex-sos-1669/test_send_sos_center.json');   
+            $string_json = file_get_contents($template_path);
+
+            $string_json = str_replace("ตัวอย่าง","ขอความช่วยเหลือ",$string_json);
+            
+            // ข้อมูลผู้ขอความช่วยเหลือ
+            if ( !empty($data_sos->name_user) ) {
+                $string_json = str_replace("name_user",$data_sos->name_user,$string_json);
+            }else{
+                $string_json = str_replace("name_user","ไม่ได้ระบุ",$string_json);
+            }
+
+            if ( !empty($data_sos->phone_user) ) {
+                $string_json = str_replace("phone_user",$data_sos->phone_user,$string_json);
+            }
+
+            // ปุ่มดำเนินการ
+            $string_json = str_replace("SOS_ID",$id_sos_1669,$string_json);
+            $string_json = str_replace("_UNIT_ID_",$unit_id,$string_json);
+        }else{
+            $template_path = storage_path('../public/json/text_success.json');   
+            $string_json = file_get_contents($template_path);
+
+            $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","ปฏิเสธเรียบร้อยแล้ว",$string_json);
+        }
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "replyToken" => $event["replyToken"],
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/reply";
+        $result = file_get_contents($url, false, $context);
+
+        // SAVE LOG
+        $data = [
+            "title" => "เจ้าหน้าที่ : " . $unit_id . " >> " . $answer,
+            "content" => "sos id = " . $id_sos_1669,
+        ];
+        MyLog::create($data);
+
+
     }
 
 }
