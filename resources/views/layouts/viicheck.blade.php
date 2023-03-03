@@ -337,6 +337,9 @@
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       @guest
+      <a href="{{ url('/sos_map/create') }}" style="margin-right:10px" class="appointment-btn scrollto order-last order-lg-1">
+        <span class="d-block d-md-inline">SOS</span>
+      </a>
       <a  id="tag_a_login_viicheck" href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto order-last order-lg-1">
         <span class="d-block d-md-inline">เข้าสู่ระบบ</span>
       </a>
