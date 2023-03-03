@@ -108,12 +108,12 @@
             </label>
             <br><br><br><br><br>
         </div>
-        <div class="row text-center">
-        	<div class="col-6">
-        		<h5>พร้อม</h5>
-        	</div>
+        <div class="row text-center d-none">
         	<div class="col-6">
         		<h5>ไม่พร้อม</h5>
+        	</div>
+        	<div class="col-6">
+        		<h5>พร้อม</h5>
         	</div>
         </div>
 	</div>
