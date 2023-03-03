@@ -255,6 +255,9 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('notify_repair', 'Notify_repairController')->except(['index','show','edit']);
 	Route::get('/sos_map/add_photo/{id_sos_map}', 'Sos_mapController@sos_map_add_photo');
 
+	// SOS 1669
+	Route::get('sos_help_center/{sos_id}/show_user', 'Sos_help_centerController@show_user_sos');
+
 });
 
 Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');

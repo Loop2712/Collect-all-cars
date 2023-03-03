@@ -734,6 +734,13 @@ class Sos_help_centerController extends Controller
         return view('sos_help_center.show_case', compact('data_sos'));
     }
 
+    public function show_user_sos($id)
+    {
+        $data_sos = Sos_help_center::findOrFail($id);
+
+        return view('sos_help_center.show_user', compact('data_sos'));
+    }
+
     function get_current_officer_location($sos_id){
 
         $data_sos = Sos_help_center::findOrFail($sos_id);

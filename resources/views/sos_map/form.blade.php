@@ -367,7 +367,30 @@
     <!-- Modal -->
     <div class="modal fade" id="modal_add_photo_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
         <div class="modal-dialog modal-dialog-centered ">
+
             <div class="modal-content">
+                <div id="div_wait_unit" class="d-">
+                    <div class="modal-body">
+                        <div class="col-12 mt-5 d-flex justify-content-center">
+                            <div class="spinner-border" role="status"> 
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <h3 class="text-center text-info mt-5">
+                            <b>เจ้าหน้าที่ได้รับข้อมูลแล้ว</b>
+                        </h3>
+                        <h4 class="text-center mt-2">
+                            กำลังค้นหาหน่วยแพทย์
+                        </h4>
+                        <h5 class="text-center mt-">
+                            โปรดรอสักครู่...
+                        </h5>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-content d-none">
                 <div class="modal-header d-flex align-items-center">
                     <h4 class="modal-title" id="staticBackdropLabel">
                         สวัสดีคุณ<br>
