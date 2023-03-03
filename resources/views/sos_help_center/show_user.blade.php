@@ -99,8 +99,11 @@
 		</center>
 	</div>
 	<div id="" class="col-12 ">
-		<h3 class="text-center">สถานะ : เจ้าหน้าที่กำลังเดินทางมา</h3>
-		<h5 class="text-center mt-2">
+		<h3 class="text-center text-info">
+			<b>เจ้าหน้าที่กำลังเดินทางมา</b>
+		</h3>
+
+		<h5 class="text-center mt-3">
 			ระยะทาง : <span id="text_distance"></span>
 		</h5>
 		<h5 class="text-center mt-2">
@@ -118,7 +121,7 @@
 
 	var officer_marker ;
 	var sos_marker ;
-	
+
 	var service;
 	var directionsDisplay;
 
