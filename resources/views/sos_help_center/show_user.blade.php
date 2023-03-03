@@ -99,7 +99,13 @@
 		</center>
 	</div>
 	<div id="" class="col-12 ">
-		<h3 class="text-center">สถานะ : <span id="text_show_standby"></span></h3>
+		<h3 class="text-center">สถานะ : เจ้าหน้าที่กำลังเดินทางมา</h3>
+		<h5 class="text-center mt-2">
+			ระยะทาง : <span id="text_distance"></span>
+		</h5>
+		<h5 class="text-center mt-2">
+			ระยะเวลาโดยประมาณ : <span id="text_duration"></span>
+		</h5>
 		
 	</div>
 </div>
@@ -108,7 +114,13 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 <script>
 	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
+    const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
+
 	var officer_marker ;
+	var sos_marker ;
+	
+	var service;
+	var directionsDisplay;
 
 	var lat ;
 	var lng ;
@@ -158,10 +170,86 @@
             icon: image_operating_unit_general,
         });
 
-        document.querySelector('#div_switch').classList.remove('d-none');
-        click_switch_standby();
+        // หมุด SOS
+        if (sos_marker) {
+            sos_marker.setMap(null);
+        }
+        sos_marker = new google.maps.Marker({
+            position: {lat: 14.316998 , lng: 100.602959 },
+            map: map_officers_switch,
+            icon: image_sos,
+        });
+
+		get_Directions_API(officer_marker, sos_marker);
 
     }
 
 </script>
+
+<script>
+	
+	function get_dir(){
+
+		let input_check = document.querySelector('#input_check_open_get_dir');
+		let icon_btn_get_dir_open = document.querySelector('#icon_btn_get_dir_open');
+		let icon_btn_get_dir_close = document.querySelector('#icon_btn_get_dir_close');
+		// เปิด fa-solid fa-eye
+		// ปิด fa-sharp fa-solid fa-eye-slash
+		if (input_check.checked) {
+			if (directionsDisplay) {
+		        directionsDisplay.setMap(null);
+			}
+			document.querySelector('#div_distance_and_duration').classList.add('d-none');
+			input_check.checked = false ;
+			document.querySelector('#icon_btn_get_dir_close').classList.remove('d-none');
+			document.querySelector('#icon_btn_get_dir_open').classList.add('d-none');
+		}else{
+			input_check.checked = true ;
+			document.querySelector('#icon_btn_get_dir_open').classList.remove('d-none');
+			document.querySelector('#icon_btn_get_dir_close').classList.add('d-none');
+			get_Directions_API(officer_marker, sos_marker);
+		}
+
+	}
+
+	function get_Directions_API(markerA, markerB) {
+
+		if (directionsDisplay) {
+	        directionsDisplay.setMap(null);
+		}
+
+		service = new google.maps.DirectionsService();
+		directionsDisplay = new google.maps.DirectionsRenderer({
+		    draggable: true,
+		    map: map_officers_switch
+		});
+
+	    service.route({
+	        origin: markerA.getPosition(),
+	        destination: markerB.getPosition(),
+	        travelMode: 'DRIVING'
+	    }, function(response, status) {
+	        if (status === 'OK') {
+	            directionsDisplay.setDirections(response);
+	            	// console.log(response);
+
+	            // ระยะทาง
+	            let text_distance = response.routes[0].legs[0].distance.text ;
+	            	// console.log(text_distance);
+	            	document.querySelector('#text_distance').innerHTML = text_distance ;
+	            // เวลา
+	            let text_duration = response.routes[0].legs[0].duration.text ;
+	            	// console.log(text_duration);
+	            	document.querySelector('#text_duration').innerHTML = text_duration ;
+	            
+	            // document.querySelector('#div_distance_and_duration').classList.remove('d-none');
+	        } else {
+	            window.alert('Directions request failed due to ' + status);
+	        }
+	    });
+
+	}
+
+</script>
+
 @endsection
