@@ -437,10 +437,11 @@
                         </div>
                     </div>
                 </form>
-                <div class="modal-footer">
-                    <button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_submit_form_photo').click();">
-                        ยืนยัน
+                <div class="text-center">
+                    <button id="btn_help_area" style="width:60%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_submit_form_photo').click();">
+                        ขอความช่วยเหลือ
                     </button>
+                    <br><br>
                 </div>
             </div>
         </div>
