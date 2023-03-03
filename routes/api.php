@@ -229,4 +229,5 @@ Route::get('/update_status_officer_Standby/{status}/{officer_id}/{lat}/{lng}', '
 Route::get('/update_event_level_rc/{level}/{sos_id}', 'Sos_help_centerController@update_event_level_rc');
 Route::get('/update_officer_to_the_operating_base/{sos_id}', 'Sos_help_centerController@update_officer_to_the_operating_base');
 Route::get('/update_data_form_yellows/{sos_id}/{column}/{data}', 'Sos_help_centerController@update_data_form_yellows');
+Route::get('/update_mileage_officer/{sos_id}/{mileage}/{location}', 'Sos_help_centerController@update_mileage_officer');
 
