@@ -939,5 +939,20 @@ class Sos_help_centerController extends Controller
         return "Updated successfully" ;
 
     }
+    
+    function update_mileage_officer($sos_id , $mileage , $location){
 
+        DB::table('sos_1669_form_yellows')
+            ->where([ 
+                    ['sos_help_center_id', $sos_id],
+                ])
+            ->update([
+                    $location => $mileage,
+                ]);
+
+        $data_update_mileage = Sos_1669_form_yellow::where('sos_help_center_id' , $sos_id)->first();
+
+
+        return $data_update_mileage ;
+    }
 }

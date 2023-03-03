@@ -491,9 +491,109 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 			</div>
 		</menu>
 	</div>
+	<style>
+		.card-car-mileage{
+			border-radius: 15px;
+			padding: 20px;
+			background-color: #000;
+		}/* From uiverse.io by @satyamchaudharydev */
+/* removing default style of button */
 
+.btn-car-mileage{
+ border-radius: 50% !important;
+}
+/* styling of whole input container */
+.form-car-mileage {
+	margin-top:15px ;
+  --timing: 0.3s;
+  --width-of-input: 100%;
+  --height-of-input: 40px;
+  --border-height: 2px;
+  --input-bg: #fff;
+  --border-color: #2f2ee9;
+  --border-radius: 30px;
+  --after-border-radius: 1px;
+  position: relative;
+  width: var(--width-of-input);
+  height: var(--height-of-input);
+  display: flex;
+  align-items: center;
+  padding-inline: 0.8em;
+  border-radius: var(--border-radius);
+  transition: border-radius 0.5s ease;
+  background: var(--input-bg,#fff);
+}
+/* styling of Input */
+.input-car-mileage {
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+}
+/* styling of animated border */
+.form-car-mileage:before {
+  content: "";
+  position: absolute;
+  background: var(--border-color);
+  transform: scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: var(--border-height);
+  left: 0;
+  bottom: 0;
+  border-radius: 1px;
+  transition: transform var(--timing) ease;
+}
+
+.form-car-mileage:before .btn-car-mileage{
+  border-radius: 1px;
+  transition: transform var(--timing) ease;
+}
+/* Hover on Input */
+.form-car-mileage:focus-within {
+  border-radius: var(--after-border-radius);
+}
+
+input:focus {
+  outline: none;
+}
+/* here is code of animated border */
+.form-car-mileage:focus-within:before {
+  transform: scale(1);
+}
+	</style>
 	<div class="row data-menu show-data-menu show-data-menu" id="menu_2" style="top: 90%;">
 		<!-- ----------------------------------------- ถึงที่เกิดเหตุ ------------------------------------------- -->
+		<div id="mileage_gotohelp" class=""  style="margin-top:-46%" >
+			<menu class="col-12 " >
+				<div class="card card-car-mileage">
+					<div class="h5 text-white font-weight-bold"><i class="fa-duotone fa-tire"></i> เลขกิโลเมตรรถ</div>
+						<div class="form-car-mileage pr-1" id="div_km_create_sos_to_go_to_help">
+							<input class="input-car-mileage" placeholder="ออกจากฐาน" id="km_create_sos_to_go_to_help" name="km_create_sos_to_go_to_help" required="" type="text">
+							<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_create_sos_to_go_to_help')"><i class="fa-solid fa-paper-plane-top"></i></a>
+						</div>
+
+						<div class="form-car-mileage pr-1 d-none" id="div_km_to_the_scene_to_leave_the_scene">
+							<input class="input-car-mileage " placeholder="ถึงที่เกิดเหตุ" id="km_to_the_scene_to_leave_the_scene" name="km_to_the_scene_to_leave_the_scene" required="" type="text">
+							<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_to_the_scene_to_leave_the_scene')"><i class="fa-solid fa-paper-plane-top"></i></a>
+						</div>
+
+						<div class="form-car-mileage pr-1 d-none" id="div_km_hospital">
+							<input class="input-car-mileage " placeholder="ถึงโรงพยาบาล" id="km_hospital" name="km_hospital" required="" type="text">
+							<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_hospital')"><i class="fa-solid fa-paper-plane-top"></i></a>
+						</div>
+
+						<div class="form-car-mileage pr-1 d-none" id="div_km_operating_base">
+								<input class="input-car-mileage " placeholder="ถึงฐาน" id="km_operating_base" name="km_operating_base" required="" type="text">
+								<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_operating_base'); officer_to_the_operating_base('{{ $data_sos->id }}');"><i class="fa-solid fa-paper-plane-top"></i></a>
+						</div>
+				</div>
+			</menu>
+		</div>
+
 		<div id="div_gotohelp" class="d-none"  style="margin-top:-25%">
 			<menu class="col-12 " >
 				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" onclick="update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');">
@@ -629,7 +729,8 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		<div id="div_operating_base" class="d-none"  style="margin-top:-30%">
 			<menu class="col-12 " >
 				<button class="btn btn-success main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
-				onclick="officer_to_the_operating_base('{{ $data_sos->id }}');">
+				onclick="document.querySelector('#div_operating_base').classList.add('d-none');
+				document.querySelector('#mileage_gotohelp').classList.remove('d-none');">
 					กลับถึงฐาน
 				</button>
 			</menu>
@@ -989,20 +1090,38 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 					<div class="col-12">
 						<label class="col-12" style="padding:0px;" for="photo_sos_by_officers" >
 							<div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
-								<div class="form-group p-3"id="add_select_img">
-									<input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
-									<div  class="text-center">
-										<center>
-											<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
-										</center>
-										<br>
-										<h3 class="text-center m-0">
-											<b>กรุณาเลือกรูป "คลิก"</b> 
-										</h3>
+								@if(empty($data_sos->photo_sos_by_officers))
+									<div class="form-group p-3"id="add_select_img">
+										<input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
+										<div  class="text-center">
+											<center>
+												<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
+											</center>
+											<br>
+											<h3 class="text-center m-0">
+												<b>กรุณาเลือกรูป "คลิก"</b> 
+											</h3>
+										</div>
+										
 									</div>
+									<img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_sos_by_officers" />
+								@else
+									<div class="form-group p-3 d-none" id="add_select_img">
+										<input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
+										<div  class="text-center">
+											<center>
+												<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
+											</center>
+											<br>
+											<h3 class="text-center m-0">
+												<b>กรุณาเลือกรูป "คลิก"</b> 
+											</h3>
+										</div>
+										
+									</div>
+									<img class="full_img" style="padding:0px ;" width="100%" alt="your image" src="{{ url('storage')}}/{{ $data_sos->photo_sos_by_officers }}" id="show_photo_sos_by_officers" />
 									
-								</div>
-								<img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_sos_by_officers" />
+								@endif
 								<div class="child">
 									<span>เลือกรูป</span>
 								</div>
@@ -1201,7 +1320,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         switch(status_sos){
 			case 'ออกจากฐาน':
 				document.querySelector('#situation_of_status').classList.add('situation-yellow');
-				document.querySelector('#div_gotohelp').classList.remove('d-none');
+				document.querySelector('#mileage_gotohelp').classList.remove('d-none');
 				document.querySelector('#div_event_level').classList.add('d-none');
 				document.querySelector('#div_select_treatment').classList.add('d-none');
               	document.querySelector('#div_operating_base').classList.add('d-none');
@@ -1211,7 +1330,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 				document.querySelector('#situation_of_status').classList.add('situation-yellow');
 				if (!event_level_by_officers) {
 					document.querySelector('#situation_of_status').classList.add('situation-yellow');
-					document.querySelector('#div_event_level').classList.remove('d-none');
+					document.querySelector('#mileage_gotohelp').classList.remove('d-none');
 					document.querySelector('#div_select_treatment').classList.add('d-none');
 					document.querySelector('#div_gotohelp').classList.add('d-none');
               		document.querySelector('#div_operating_base').classList.add('d-none');
@@ -1234,7 +1353,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 			break;
 			case 'เสร็จสิ้น':
 				document.querySelector('#situation_of_status').classList.add('situation-green');
-              	document.querySelector('#div_operating_base').classList.remove('d-none');
+              	document.querySelector('#mileage_gotohelp').classList.remove('d-none');
              	document.querySelector('#div_gotohelp').classList.add('d-none');
 				document.querySelector('#div_event_level').classList.add('d-none');
 				document.querySelector('#div_select_treatment').classList.add('d-none');
@@ -1490,7 +1609,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
                 console.log(result);
 
                 if (status_sos === "ถึงที่เกิดเหตุ") {
-                	document.querySelector('#div_event_level').classList.remove('d-none');
+                	document.querySelector('#mileage_gotohelp').classList.remove('d-none');
 
                 	document.querySelector('#div_gotohelp').classList.add('d-none');
                 	document.querySelector('#div_select_treatment').classList.add('d-none');
@@ -1502,7 +1621,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
                 		reason = reason.replaceAll("_" , " ");
 			    		document.querySelector('#show_remark_status').innerHTML = '(' + reason +')';
 					}
-					document.querySelector('#div_operating_base').classList.remove('d-none');
+					document.querySelector('#mileage_gotohelp').classList.remove('d-none');
 
                 	document.querySelector('#div_gotohelp').classList.add('d-none');
                 	document.querySelector('#div_event_level').classList.add('d-none');
@@ -1612,6 +1731,58 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		}
 	}
 
+	function update_mileage_officer(sos_id , location){
+
+		mileage_location = location ;
+
+		switch(mileage_location){
+			case 'km_create_sos_to_go_to_help':
+				mileage = document.getElementById("km_create_sos_to_go_to_help").value;
+			break;
+			case 'km_to_the_scene_to_leave_the_scene':
+				mileage = document.getElementById("km_to_the_scene_to_leave_the_scene").value;
+			break;
+			case 'km_hospital':
+				mileage = document.getElementById("km_hospital").value;
+			break;
+			case 'km_operating_base':
+				mileage = document.getElementById("km_operating_base").value;
+			break;
+		}
+
+		
+	fetch("{{ url('/') }}/api/update_mileage_officer" + "/" + sos_id + "/" + mileage + "/" + location)
+		.then(response => response.json())
+		.then(result => {
+			// console.log(result);
+			// if (result === 'Updated successfully') {
+			// 	document.querySelector('#tag_a_switch_standby').click();
+			// }
+			document.querySelector('#mileage_gotohelp').classList.add('d-none');
+
+			// console.log(result['km_create_sos_to_go_to_help'])
+			if (result['km_create_sos_to_go_to_help'] && !result['km_to_the_scene_to_leave_the_scene'] && !result['km_hospital']) {
+				document.querySelector('#div_km_create_sos_to_go_to_help').classList.add('d-none');
+				document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.remove('d-none');
+				document.querySelector('#div_gotohelp').classList.remove('d-none');
+			}else if (result['km_create_sos_to_go_to_help'] && result['km_to_the_scene_to_leave_the_scene'] && !result['km_hospital'] ) {
+				document.querySelector('#div_gotohelp').classList.add('d-none');
+				document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.add('d-none');
+				document.querySelector('#div_km_hospital').classList.remove('d-none');
+				document.querySelector('#div_event_level').classList.remove('d-none');
+			}else if (result['km_create_sos_to_go_to_help'] && result['km_to_the_scene_to_leave_the_scene'] && result['km_hospital']) {
+				document.querySelector('#div_operating_base').classList.remove('d-none');
+				document.querySelector('#div_gotohelp').classList.add('d-none');
+				document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.add('d-none');
+				document.querySelector('#km_hospital').classList.add('d-none');
+				document.querySelector('#div_km_hospital').classList.add('d-none');
+				document.querySelector('#div_km_operating_base').classList.remove('d-none');
+				
+			}
+
+
+	});
+	}
 </script>
 
 
