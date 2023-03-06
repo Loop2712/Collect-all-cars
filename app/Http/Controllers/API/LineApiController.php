@@ -242,7 +242,7 @@ class LineApiController extends Controller
         $data_partner = Partner::where('id' , $data_groupline->partner_id)->first();
         $data_user = User::where('provider_id',$event["source"]["userId"])->first();
 
-        if (in_array("น้องวี", $event["message"]["text"])){
+        if ( $event["message"]["text"] == "น้องวี")  {
             
             $template_path = storage_path('../public/json/text_done.json');
             $string_json = file_get_contents($template_path);
