@@ -351,25 +351,22 @@
     </div>
 </div>
 
-@if(Auth::user()->id == '1' || Auth::user()->id == '64')
-    <button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#btn-loading-test" data-dismiss="modal" aria-label="Close" >
-        ทดสอบ modal
-        </button>
+@if(Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '2')
 
     <span class="shadow btn btn-md btn-block" onclick="sos_of_Charlie_Bangkok();">
         <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp; ทดสอบ ชาลีกรุงเทพ</b>
     </span>
 
     <!-- Button trigger modal -->
-    <button id="btn_modal_add_photo_sos" type="button" class="btn btn-primary d-" data-toggle="modal" data-target="#modal_add_photo_sos">
+    <span id="btn_1669_modal_add_photo_sos" class="btn btn-primary d-" data-toggle="modal" data-target="#1669_modal_add_photo_sos">
       Launch static backdrop modal
-    </button>
+    </span>
     <!-- Modal -->
-    <div class="modal fade" id="modal_add_photo_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+    <div class="modal fade" id="1669_modal_add_photo_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="1669_staticBackdropLabel" aria-hidden="true" >
         <div class="modal-dialog modal-dialog-centered ">
 
             <div class="modal-content">
-                <div id="div_wait_unit" class="d-">
+                <div id="1669_div_wait_unit" class="d-">
                     <div class="modal-body">
                         <div class="col-12 mt-5 d-flex justify-content-center">
                             <div class="spinner-border" role="status"> 
@@ -392,50 +389,45 @@
 
             <div class="modal-content d-none">
                 <div class="modal-header d-flex align-items-center">
-                    <h4 class="modal-title" id="staticBackdropLabel">
+                    <h4 class="modal-title" id="1669_staticBackdropLabel">
                         สวัสดีคุณ<br>
                         <b style="color:blue;">{{ $user->name }}</b>
                     </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fa-solid fa-xmark-large"></i></span>
-                    </button>
+                    </span>
                 </div>
-                <form method="POST" action="{{ url('/sos_help_center/') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                    {{ method_field('PATCH') }}
-                    {{ csrf_field() }}
                     <div class="modal-body text-center">
                         <div class="col-12">
-                            <div id="div_data_phone">
+                            <div id="1669_div_data_phone">
                                 <img width="50%" src="{{ asset('/img/stickerline/PNG/7.png') }}">
                                 <br><br>
                                 โปรดยืนยันหมายเลขโทรศัพท์ของคุณ
                                 <br>
-                                <input type="hidden" name="" id="input_phone_url" value="{{ url()->full() }}">
                                 <div style="margin-top:10px;">
                                     <b>
-                                        <span style="font-size:22px;color: blue;" id="text_phone">
+                                        <span style="font-size:22px;color: blue;" id="1669_text_phone">
                                             @if(!empty($user->phone)){{ $user->phone }}@endif
                                         </span>
                                         @if(!empty($user->phone))
-                                            <i style="font-size:25px;" class="fas fa-edit" onclick="document.querySelector('#input_phone').classList.remove('d-none');"></i>
+                                            <i style="font-size:25px;" class="fas fa-edit" onclick="document.querySelector('#1669_input_phone').classList.remove('d-none');"></i>
                                         @endif
                                     </b>
                                 </div>
                                 
                                 @if(!empty($user->phone))
-                                    <!-- <span style="font-size:22px;" id="not_empty_phone">{{ $user->phone }}</span> -->
-                                    <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์"  oninput="edit_phone();">
+                                    <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="1669_input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์"  oninput="edit_phone();">
                                 @endif
 
                                 @if(empty($user->phone))
-                                    <input style="margin-top:15px;" class="form-control text-center"  type="phone" id="input_not_phone" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone();">
+                                    <input style="margin-top:15px;" class="form-control text-center"  type="phone" id="1669_input_not_phone" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone();">
                                 @endif
                                 <hr>
                             </div>
                             <label class="col-12" style="padding:0px;" for="photo_sos_by_officers" >
                                 <div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
-                                    <div class="form-group p-3"id="add_select_img">
-                                        <input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_by_officers" value="" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
+                                    <div class="form-group p-3"id="1669_add_select_img">
+                                        <input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="1669_photo_sos_by_officers" value="" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
                                         <div  class="text-center">
                                             <center>
                                                 <img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
@@ -447,7 +439,7 @@
                                         </div>
                                         
                                     </div>
-                                    <img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_sos_by_officers" />
+                                    <img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="1669_show_photo_sos_by_officers" />
                                     <div class="child">
                                         <span>เลือกรูป</span>
                                     </div>
@@ -455,15 +447,11 @@
                             </label>
                         </div>
 
-                        <div class="form-group d-none">
-                            <input id="btn_submit_form_photo" class="btn btn-primary" type="submit">
-                        </div>
                     </div>
-                </form>
                 <div class="text-center">
-                    <button id="btn_help_area" style="width:60%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_submit_form_photo').click();">
+                    <span id="1669_btn_help_area" style="width:60%;" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="alert('OK')">
                         ขอความช่วยเหลือ
-                    </button>
+                    </span>
                     <br><br>
                 </div>
             </div>

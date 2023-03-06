@@ -449,7 +449,7 @@
 				<!-- Other -->
 
 				@if(Auth::check())
-					@if(Auth::user()->id == "1" or Auth::user()->id == "64")
+					@if(Auth::user()->id == "1" or Auth::user()->id == "64" or Auth::user()->id == "2")
 						<!-- SOS HELP CENTER -->
 						<li>
 							<a href="#" class="has-arrow">

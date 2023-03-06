@@ -31,9 +31,6 @@ class test_for_devController extends Controller
         return view('test_for_dev.test_table'); 
     }
 
-    
-
-
     // นับตัวอักษร
     function utf8_strlen($s) {
         $c = strlen($s); $l = 0;
