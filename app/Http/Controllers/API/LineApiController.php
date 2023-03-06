@@ -56,11 +56,24 @@ class LineApiController extends Controller
 
 	public function messageHandler($event)
     {
-        switch($event["message"]["type"]){
-            case "text" : 
-                $this->textHandler($event);
-                break;
-        }   
+        if ($event["source"]["type"] == "user") {
+
+            switch($event["message"]["type"]){
+                case "text" : 
+                    $this->textHandler($event);
+                    break;
+            }   
+
+        }elseif ($event["source"]["type"] == "group"){
+
+            switch($event["message"]["type"]){
+                case "text" : 
+                    $this->textHandler_group($event);
+                    break;
+            } 
+
+        }
+        
 
     }
 
@@ -221,6 +234,13 @@ class LineApiController extends Controller
                 //     break;
             }   
         }
+    }
+
+    public function textHandler_group($event)
+    {
+        
+        // $event["message"]["text"] == "ติดต่อ ViiCHECK" ;
+        
     }
 
     public function save_group_line($event)
