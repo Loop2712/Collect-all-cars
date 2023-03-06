@@ -151,6 +151,7 @@
                         </span> -->
 
                         <!-- /////// BTN SOS 1669 /////// -->
+                        @if(Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '2')
                         <span  class="mail-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
                             <div class="d-flex">
                                 <div class="col-3 p-0 d-flex align-items-center">
@@ -170,7 +171,8 @@
                                 </div>
                             </div>
                         </span>
-                    <!-- /////// END BTN SOS 1669 /////// -->
+                        <!-- /////// END BTN SOS 1669 /////// -->
+                        @endif
 
                         <span  class="mail-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
                             <div class="d-flex">
