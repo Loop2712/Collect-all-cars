@@ -238,6 +238,41 @@ class LineApiController extends Controller
 
     public function textHandler_group($event)
     {
+        $data_groupline = Group_line::where('groupId',$event["source"]["groupId"])->first();
+        $data_partner = Partner::where('id' , $data_groupline->partner_id)->first();
+        $data_user = User::where('provider_id',$event["source"]["userId"])->first();
+
+        if (in_array("น้องวี", $event["message"]["text"])){
+            
+            $template_path = storage_path('../public/json/text_done.json');
+            $string_json = file_get_contents($template_path);
+
+            $text = "สวัสดีค่ะคุณ : " . $data_user->name . " วีกำลังตอบกลับที่กลุ่มไลน์ของ Partner : " . $data_partner->name . " ชื่อกลุ่มไลน์ : " . $data_groupline->groupName ;
+
+            $string_json = str_replace("ขออภัยค่ะมีการดำเนินการแล้ว ขอบคุณค่ะ",$text,$string_json);
+
+            $messages = [ json_decode($string_json, true) ];
+
+            $body = [
+                "replyToken" => $event["replyToken"],
+                "messages" => $messages,
+            ];
+
+            $opts = [
+                'http' =>[
+                    'method'  => 'POST',
+                    'header'  => "Content-Type: application/json \r\n".
+                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                    'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                    //'timeout' => 60
+                ]
+            ];
+                                
+            $context  = stream_context_create($opts);
+            //https://api-data.line.me/v2/bot/message/11914912908139/content
+            $url = "https://api.line.me/v2/bot/message/reply";
+            $result = file_get_contents($url, false, $context);
+        }
         
         // $event["message"]["text"] == "ติดต่อ ViiCHECK" ;
         
