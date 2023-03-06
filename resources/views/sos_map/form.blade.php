@@ -363,9 +363,6 @@
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
 
-            <span id="btn_Close_modal_sos_1669" class="d-none" data-toggle="modal" data-dismiss="modal" aria-label="Close">
-                ปิด
-            </span>
             <a id="go_to_show_user" class="d-none" href="">
                 Go To SHOW USER
             </a>
@@ -571,8 +568,8 @@
                 // console.log(result['status']);
                 
                 if (result['status'] === "ออกจากฐาน") {
+                    
                     myStop_reface_check_unit_cf_sos();
-                    // document.querySelector('#btn_Close_modal_sos_1669').click();
 
                     let go_to_show_user = document.querySelector('#go_to_show_user');
                     let go_to_show_user_href = document.createAttribute("href");
