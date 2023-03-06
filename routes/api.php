@@ -217,6 +217,7 @@ Route::get('/register_api', 'Auth\LoginController@register_api');
 // SOS HELP CENTER
 Route::get('/data_help_center/','Sos_help_centerController@search_data_help_center');
 Route::get('/create_new_sos_help_center/{user_id}', 'Sos_help_centerController@create_new_sos_help_center');
+Route::post('/create_new_sos_by_user', 'Sos_help_centerController@create_new_sos_by_user');
 Route::post('/send_save_data/form_yellow', 'Sos_help_centerController@save_form_yellow');
 Route::get('/check_update/form_yellow/{sos_id}', 'Sos_help_centerController@check_update_form_yellow');
 Route::get('/get_location_operating_unit/{lat}/{lng}/{level}/{vehicle_type}', 'Sos_help_centerController@get_location_operating_unit');
@@ -230,4 +231,5 @@ Route::get('/update_event_level_rc/{level}/{sos_id}', 'Sos_help_centerController
 Route::get('/update_officer_to_the_operating_base/{sos_id}', 'Sos_help_centerController@update_officer_to_the_operating_base');
 Route::get('/update_data_form_yellows/{sos_id}/{column}/{data}', 'Sos_help_centerController@update_data_form_yellows');
 Route::get('/update_mileage_officer/{sos_id}/{mileage}/{location}', 'Sos_help_centerController@update_mileage_officer');
-
+    // SOS HELP CENTER USER CLICK
+    Route::get('/check_unit_cf_sos_form_user/{sos_id}', 'Sos_help_centerController@check_unit_cf_sos_form_user');

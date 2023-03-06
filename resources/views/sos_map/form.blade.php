@@ -1,5 +1,5 @@
 
-@if(Auth::user()->id == '1')
+@if(Auth::user()->id == '1' || Auth::user()->id == '2')
 <div style="display:none;">
 @else
 <div style="display:none;">
@@ -150,29 +150,27 @@
                             
                         </span> -->
 
-                        <!-- /////// SOS 1669 /////// -->
-                        @if(Auth::user()->id == '1' || Auth::user()->id == '64')
-                            <span  class="mail-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" >
-                                <div class="d-flex">
-                                    <div class="col-3 p-0 d-flex align-items-center">
-                                        <div class="justify-content-center col-12 p-0">
-                                            <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center col-9 text-center">
-                                        <div class="justify-content-center col-12">
-                                            <b>
-                                                <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน</span>
-                                                <span class="d-block" style="color: #ffffff;">(1669)</span>
-                                            </b>
-                                            
-                                        </div>
-                                        
+                        <!-- /////// BTN SOS 1669 /////// -->
+                        <span  class="mail-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
+                            <div class="d-flex">
+                                <div class="col-3 p-0 d-flex align-items-center">
+                                    <div class="justify-content-center col-12 p-0">
+                                        <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
                                     </div>
                                 </div>
-                            </span>
-                        @endif
-                        <!-- /////// END SOS 1669 /////// -->
+                                <div class="d-flex align-items-center col-9 text-center">
+                                    <div class="justify-content-center col-12">
+                                        <b>
+                                            <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน</span>
+                                            <span class="d-block" style="color: #ffffff;">(1669)</span>
+                                        </b>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </span>
+                    <!-- /////// END BTN SOS 1669 /////// -->
 
                         <span  class="mail-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
                             <div class="d-flex">
@@ -224,7 +222,9 @@
             <div class="modal-content">
             @if(!empty($user))
               <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">สวัสดีคุณ <b style="color:blue;" id="text_name">{{ $user->name }}</b></h5>
+                <h5 class="modal-title" id="staticBackdropLabel">สวัสดีคุณ <br>
+                    <b style="color:blue;" id="text_name">{{ $user->name }}</b>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="stop();">
                   <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
                 </button>
@@ -323,6 +323,7 @@
                         </div>
                     </div>
                 </div>
+
               </div>
               <div class="modal-footer">
                 <!-- @if(!empty($user->phone))
@@ -351,45 +352,44 @@
     </div>
 </div>
 
-@if(Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '2')
+<!-- Button trigger modal -->
+<span id="btn_modal_sos_1669" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_sos_1669">
+    ทดสอบ 1669
+</span>
+<!-- Modal -->
+<div class="modal fade" id="modal_sos_1669" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="BackdropLabel_modal_sos_1669" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
 
-    <span class="shadow btn btn-md btn-block" onclick="sos_of_Charlie_Bangkok();">
-        <b><i class="fa-regular fa-light-emergency-on"></i> &nbsp; ทดสอบ ชาลีกรุงเทพ</b>
-    </span>
+            <span id="btn_Close_modal_sos_1669" class="d-none" data-toggle="modal" data-dismiss="modal" aria-label="Close">
+                ปิด
+            </span>
+            <a id="go_to_show_user" class="d-none" href="">
+                Go To SHOW USER
+            </a>
 
-    <!-- Button trigger modal -->
-    <span id="btn_1669_modal_add_photo_sos" class="btn btn-primary d-" data-toggle="modal" data-target="#1669_modal_add_photo_sos">
-      Launch static backdrop modal
-    </span>
-    <!-- Modal -->
-    <div class="modal fade" id="1669_modal_add_photo_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="1669_staticBackdropLabel" aria-hidden="true" >
-        <div class="modal-dialog modal-dialog-centered ">
-
-            <div class="modal-content">
-                <div id="1669_div_wait_unit" class="d-">
-                    <div class="modal-body">
-                        <div class="col-12 mt-5 d-flex justify-content-center">
-                            <div class="spinner-border" role="status"> 
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
+            <div id="div_wait_unit" class="d-none">
+                <div class="modal-body">
+                    <div class="col-12 mt-5 d-flex justify-content-center">
+                        <div class="spinner-border" role="status"> 
+                            <span class="visually-hidden">Loading...</span>
                         </div>
-                        <h3 class="text-center text-info mt-5">
-                            <b>เจ้าหน้าที่ได้รับข้อมูลแล้ว</b>
-                        </h3>
-                        <h4 class="text-center mt-2">
-                            กำลังค้นหาหน่วยแพทย์
-                        </h4>
-                        <h5 class="text-center mt-">
-                            โปรดรอสักครู่...
-                        </h5>
-
                     </div>
+                    <h3 class="text-center text-info mt-5">
+                        <b>เจ้าหน้าที่ได้รับข้อมูลแล้ว</b>
+                    </h3>
+                    <h4 class="text-center mt-2">
+                        กำลังค้นหาหน่วยแพทย์
+                    </h4>
+                    <h5 class="text-center mt-">
+                        โปรดรอสักครู่...
+                    </h5>
                 </div>
             </div>
 
-            <div class="modal-content d-none">
+            <div id="div_data_ask_for_help" class="">
                 <div class="modal-header d-flex align-items-center">
-                    <h4 class="modal-title" id="1669_staticBackdropLabel">
+                    <h4 class="modal-title" id="BackdropLabel_modal_sos_1669">
                         สวัสดีคุณ<br>
                         <b style="color:blue;">{{ $user->name }}</b>
                     </h4>
@@ -397,67 +397,196 @@
                         <span aria-hidden="true"><i class="fa-solid fa-xmark-large"></i></span>
                     </span>
                 </div>
-                    <div class="modal-body text-center">
-                        <div class="col-12">
-                            <div id="1669_div_data_phone">
-                                <img width="50%" src="{{ asset('/img/stickerline/PNG/7.png') }}">
-                                <br><br>
-                                โปรดยืนยันหมายเลขโทรศัพท์ของคุณ
-                                <br>
-                                <div style="margin-top:10px;">
+
+                <div class="modal-body text-center">
+                    <div class="col-12">
+                        <div id="div_data_phone_1669">
+                            <!-- <img width="50%" src="{{ asset('/img/stickerline/PNG/7.png') }}"> -->
+                            <br>
+                            <h3>โปรดยืนยันหมายเลขโทรศัพท์</h3>
+
+                            <div style="margin-top:10px;">
+                                <b>
+                                    <span style="font-size:22px;color: blue;" id="text_phone_1669">
+                                        @if(!empty($user->phone)){{ $user->phone }}@endif
+                                    </span>
+                                    @if(!empty($user->phone))
+                                        <i style="font-size:25px;" class="fas fa-edit" onclick="document.querySelector('#input_phone_1669').classList.remove('d-none');"></i>
+                                    @endif
+                                </b>
+                            </div>
+                            
+                            @if(!empty($user->phone))
+                                <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="input_phone_1669" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="edit_phone_1669();">
+                            @endif
+
+                            @if(empty($user->phone))
+                                <input style="margin-top:15px;" class="form-control text-center"  type="phone" id="input_not_phone_1669" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone_1669();">
+                            @endif
+                            <hr>
+                        </div>
+                        <label class="col-12" style="padding:0px;" for="photo_sos_1669" >
+                            <div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
+                                <div class="form-group p-3"id="add_select_img">
+                                    <input class="form-control d-none" name="photo_sos_1669" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_1669" value="" accept="image/*" onchange="document.getElementById('show_photo_sos_1669').src = window.URL.createObjectURL(this.files[0]);check_add_img();">
+                                    <div  class="text-center">
+                                        <center>
+                                            <img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
+                                        </center>
+                                        <br>
+                                        <h3 class="text-center m-0">
+                                            <b>เพิ่มภาพถ่าย "คลิก"</b> 
+                                        </h3>
+                                    </div>
+                                    
+                                </div>
+                                <img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_sos_1669" />
+                                <div class="child">
+                                    <span>เลือกรูป</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="text-center">
+                    <center>
+                    <span class="mail-shadow btn btn-md btn-block" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;width: 90%;" onclick="send_ask_for_help_1669();">
+                        <div class="d-flex">
+                            <div class="col-3 p-0 d-flex align-items-center">
+                                <div class="justify-content-center col-12 p-0">
+                                    <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center col-9 text-center">
+                                <div class="justify-content-center col-12">
                                     <b>
-                                        <span style="font-size:22px;color: blue;" id="1669_text_phone">
-                                            @if(!empty($user->phone)){{ $user->phone }}@endif
-                                        </span>
-                                        @if(!empty($user->phone))
-                                            <i style="font-size:25px;" class="fas fa-edit" onclick="document.querySelector('#1669_input_phone').classList.remove('d-none');"></i>
-                                        @endif
+                                        <span class="d-block" style="color: #ffffff;">ขอความช่วยเหลือ</span>
+                                        <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน (1669)</span>
                                     </b>
                                 </div>
-                                
-                                @if(!empty($user->phone))
-                                    <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="1669_input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์"  oninput="edit_phone();">
-                                @endif
-
-                                @if(empty($user->phone))
-                                    <input style="margin-top:15px;" class="form-control text-center"  type="phone" id="1669_input_not_phone" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone();">
-                                @endif
-                                <hr>
                             </div>
-                            <label class="col-12" style="padding:0px;" for="photo_sos_by_officers" >
-                                <div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
-                                    <div class="form-group p-3"id="1669_add_select_img">
-                                        <input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="1669_photo_sos_by_officers" value="" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
-                                        <div  class="text-center">
-                                            <center>
-                                                <img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
-                                            </center>
-                                            <br>
-                                            <h3 class="text-center m-0">
-                                                <b>กรุณาเลือกรูป "คลิก"</b> 
-                                            </h3>
-                                        </div>
-                                        
-                                    </div>
-                                    <img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="1669_show_photo_sos_by_officers" />
-                                    <div class="child">
-                                        <span>เลือกรูป</span>
-                                    </div>
-                                </div>
-                            </label>
                         </div>
-
-                    </div>
-                <div class="text-center">
-                    <span id="1669_btn_help_area" style="width:60%;" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="alert('OK')">
-                        ขอความช่วยเหลือ
                     </span>
-                    <br><br>
+                    </center>
+                    <br>
                 </div>
             </div>
         </div>
     </div>
-@endif
+</div>
+
+<!-- //// SOS 1669 //// -->
+<script>
+    function send_ask_for_help_1669(){
+        // console.log('send_ask_for_help_1669');
+
+        let data_sos_1669 = [] ;
+        let type_help = 'by_user' ;
+
+        let name = document.querySelector("#name");
+        let phone = document.querySelector("#phone");
+        let user_id = document.querySelector("#user_id");
+        let lat = document.querySelector("#lat");
+        let lng = document.querySelector("#lng");
+        let photo_sos_1669 = document.querySelector("#photo_sos_1669");
+        
+        // console.log("name >> " + name.value);
+        // console.log("phone >> " + phone.value);
+        // console.log("user_id >> " + user_id.value);
+        // console.log("lat >> " + lat.value);
+        // console.log("lng >> " + lng.value);
+        // console.log("photo_sos_1669 >> " + photo_sos_1669.value);
+
+        data_sos_1669 = {
+            "name_user" : name.value,
+            "phone_user" : phone.value,
+            "user_id" : user_id.value,
+            "lat" : lat.value,
+            "lng" : lng.value,
+            "photo_sos" : photo_sos_1669.value,
+        }
+
+        fetch("{{ url('/') }}/api/create_new_sos_by_user", {
+            method: 'post',
+            body: JSON.stringify(data_sos_1669),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(data){
+            // console.log(data);
+            document.querySelector('#div_data_ask_for_help').classList.add('d-none');
+            document.querySelector('#div_wait_unit').classList.remove('d-none');
+
+            check_unit_cf_sos(data);
+        }).catch(function(error){
+            // console.error(error);
+        });
+    }
+
+    function edit_phone_1669() {
+        let phone = document.querySelector("#phone");
+        let text_phone_1669 = document.querySelector("#text_phone_1669");
+        let input_phone_1669 = document.querySelector("#input_phone_1669");
+            text_phone_1669.innerHTML = input_phone_1669.value ;
+            phone.value = input_phone_1669.value ;
+            // console.log(text_phone_1669.innerHTML);
+    }
+
+    function add_phone_1669() {
+        let phone = document.querySelector("#phone");
+        let text_phone_1669 = document.querySelector("#text_phone_1669");
+        let input_not_phone_1669 = document.querySelector("#input_not_phone_1669");
+            text_phone_1669.innerHTML = input_not_phone_1669.value ;
+            phone.value = input_not_phone_1669.value ;
+            // console.log(text_phone.innerHTML);
+    }
+
+    function check_add_img(){
+        document.getElementById('add_select_img').classList.add('d-none')
+        document.getElementById('photo_sos_1669').classList.add('d-none');
+        document.getElementById('show_photo_sos_1669').classList.remove('d-none');
+
+    }
+
+    function check_unit_cf_sos(sos_id){
+        reface_check_unit_cf_sos = setInterval(function() {
+            send_api_check_unit_cf_sos(sos_id);
+        }, 5000);
+    }
+
+    function myStop_reface_check_unit_cf_sos() {
+        clearInterval(reface_check_unit_cf_sos);
+    }
+
+    function send_api_check_unit_cf_sos(sos_id){
+
+        fetch("{{ url('/') }}/api/check_unit_cf_sos_form_user" + "/" + sos_id)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result['status']);
+                
+                if (result['status'] === "ออกจากฐาน") {
+                    myStop_reface_check_unit_cf_sos();
+                    // document.querySelector('#btn_Close_modal_sos_1669').click();
+
+                    let go_to_show_user = document.querySelector('#go_to_show_user');
+                    let go_to_show_user_href = document.createAttribute("href");
+                        go_to_show_user_href.value = '{{ url("/") }}/sos_help_center/'+sos_id+'/show_user' ;
+                        go_to_show_user.setAttributeNode(go_to_show_user_href);
+
+                    setTimeout(function() {
+                        document.querySelector('#go_to_show_user').click();
+                    }, 1000);
+                }
+        });
+    }
+
+    
+</script>
+<!-- //// SOS 1669 //// -->
 
 <br><br>
 

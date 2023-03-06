@@ -248,7 +248,7 @@ class Sos_help_centerController extends Controller
         $time_create_sos = Carbon::now();
 
         $requestData = [] ;
-        $requestData['create_by'] = $user_id;
+        $requestData['create_by'] = "admin - " . $user_id;
         $requestData['notify'] = 'none';
         $requestData['status'] = 'รับแจ้งเหตุ';
         $requestData['time_create_sos'] = $time_create_sos;
@@ -277,6 +277,51 @@ class Sos_help_centerController extends Controller
                 ]);
 
         return $sos_help_center_last->id ;
+    }
+
+    public function create_new_sos_by_user(Request $request)
+    {
+        $time_create_sos = Carbon::now();
+        $requestData = $request->all();
+
+        if ($request->hasFile('photo_sos')) {
+            $requestData['photo_sos'] = $request->file('photo_sos')->store('uploads', 'public');
+        }
+
+        $requestData['create_by'] = "user - " . $requestData['user_id'];
+        $requestData['notify'] = '(ชื่อจังหวัด)';
+        $requestData['status'] = 'รับแจ้งเหตุ';
+        $requestData['time_create_sos'] = $time_create_sos;
+        
+        Sos_help_center::create($requestData);
+
+        $sos_help_center_last = Sos_help_center::latest()->first();
+
+        $requestData['sos_help_center_id'] = $sos_help_center_last->id ;
+        Sos_1669_form_yellow::create($requestData);
+
+        $date_Y = date("y");
+        $date_m = date("m");
+
+        $province_code = "00" ;
+        $district_code = "00" ;
+        $id_code = str_pad($sos_help_center_last->id, 4, "0", STR_PAD_LEFT);
+        $operating_code = $date_Y.$date_m . "-" . $province_code.$district_code . "-" . $id_code ;
+
+        DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $sos_help_center_last->id],
+                ])
+            ->update([
+                    'operating_code' => $operating_code,
+                ]);
+
+        return $requestData['sos_help_center_id'] ;
+    }
+
+    function check_unit_cf_sos_form_user($sos_id){
+        $data_sos = Sos_help_center::where('id',$sos_id)->first();
+        return $data_sos ;
     }
 
     function check_update_form_yellow($sos_id){
