@@ -785,8 +785,28 @@ class Sos_help_centerController extends Controller
     public function show_user_sos($id)
     {
         $data_sos = Sos_help_center::findOrFail($id);
+        $data_user = Auth::user();
 
-        return view('sos_help_center.show_user', compact('data_sos'));
+        return view('sos_help_center.show_user', compact('data_sos','data_user'));
+    }
+
+    function check_location_officer($sos_id)
+    {
+        $data_sos = Sos_help_center::findOrFail($sos_id);
+        $officer_id = $data_sos->helper_id ;
+        $operating_unit_id =  $data_sos->operating_unit_id ;
+        
+        $data_officer = Data_1669_operating_officer::where('operating_unit_id' , $operating_unit_id)
+            ->where('user_id' , $officer_id)
+            ->first();
+
+        $data = [] ;
+        $data['status'] = $data_sos->status ;
+
+        $data['officer_lat'] = $data_officer->lat ;
+        $data['officer_lng'] = $data_officer->lng ;
+
+        return $data ;
     }
 
     function get_current_officer_location($sos_id){

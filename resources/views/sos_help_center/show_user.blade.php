@@ -3,7 +3,7 @@
 @section('content')
 
 <style>
-	#map_officers_switch {
+	#map_show_user {
       	height: calc(40vh);
       	background-color: grey;
       	border-radius: 20px;
@@ -77,7 +77,7 @@
 
 	<div class="col-12 text-center">
 		<center>
-            <div class="col-12 main-shadow main-radius p-0" id="map_officers_switch">
+            <div class="col-12 main-shadow main-radius p-0" id="map_show_user">
                 <img style=" object-fit: cover; border-radius:15px" width="100%" height="100%" src="{{ asset('/img/more/sorry-no-text.png') }}" class="card-img-top center" style="padding: 10px;">
                 <div style="position: relative; z-index: 5">
                     <div class="translate">
@@ -109,8 +109,61 @@
 		<h5 class="text-center mt-2">
 			ระยะเวลาโดยประมาณ : <span id="text_duration"></span>
 		</h5>
-		
 	</div>
+
+	<center>
+		<hr style="width:80%;">
+	</center>
+
+	<div class="col-12 ">
+		<h3 class="text-center text-info">
+			<b>ข้อมูลเจ้าหน้าที่</b>
+		</h3>
+		<div class="row">
+			<div class="col-3">
+				<img src="{{ url('storage')}}/{{ $data_sos->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
+			</div>
+			<div class="col-9">
+				ชื่อ : {{ $data_sos->name_helper }}
+				<br>
+				หน่วยงาน : {{ $data_sos->organization_helper }}
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Button modal -->
+<span id="btn_modal_officer_to_the_scene" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_sos_1669"></span>
+<!-- Modal -->
+<div class="modal fade" id="modal_sos_1669" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="BackdropLabel_modal_sos_1669" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+
+            <div class="modal-header d-flex align-items-center">
+                <h4 class="modal-title" id="BackdropLabel_modal_sos_1669">
+                    สวัสดีคุณ<br>
+                    <b class="text-info">{{ $data_user->name }}</b>
+                </h4>
+                <span class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa-solid fa-xmark-large"></i></span>
+                </span>
+            </div>
+
+            <div class="modal-body text-center">
+                <div class="col-12">
+                	<img width="50%" src="{{ asset('/img/stickerline/PNG/34.png') }}">
+                    <br><br>
+                    เจ้าหน้าที่เดินทางมาถึงคุณแล้ว
+                    <br>
+                    <a href="https://page.line.me/702ytkls?openQrModal=true" style="width:80%;" class="btn btn-sm btn-success main-shadow main-radius">
+                    	เสร็จสิ้น
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 	
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
@@ -118,6 +171,7 @@
 <script>
 	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
     const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
+	const image_empty = "{{ url('/img/icon/flag_empty.png') }}";
 
 	var officer_marker ;
 	var sos_marker ;
@@ -127,6 +181,11 @@
 
 	var lat ;
 	var lng ;
+
+	var sos_lat = '{{ $data_sos->lat }}' ;
+    var sos_lng = '{{ $data_sos->lng }}' ;
+
+	var time_to_the_scene ;
 
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
@@ -159,7 +218,7 @@
     	let m_lng = lng ;
         let m_numZoom = parseFloat('15');
 
-        map_officers_switch = new google.maps.Map(document.getElementById("map_officers_switch"), {
+        map_show_user = new google.maps.Map(document.getElementById("map_show_user"), {
             center: {lat: m_lat, lng: m_lng },
             zoom: m_numZoom,
         });
@@ -169,7 +228,7 @@
         }
         officer_marker = new google.maps.Marker({
             position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
-            map: map_officers_switch,
+            map: map_show_user,
             icon: image_operating_unit_general,
         });
 
@@ -178,8 +237,8 @@
             sos_marker.setMap(null);
         }
         sos_marker = new google.maps.Marker({
-            position: {lat: 14.316998 , lng: 100.602959 },
-            map: map_officers_switch,
+            position: {lat: parseFloat(sos_lat) , lng: parseFloat(sos_lng) },
+            map: map_show_user,
             icon: image_sos,
         });
 
@@ -224,7 +283,8 @@
 		service = new google.maps.DirectionsService();
 		directionsDisplay = new google.maps.DirectionsRenderer({
 		    draggable: true,
-		    map: map_officers_switch
+		    map: map_show_user,
+		    suppressMarkers: true, // suppress the default markers
 		});
 
 	    service.route({
@@ -244,12 +304,52 @@
 	            let text_duration = response.routes[0].legs[0].duration.text ;
 	            	// console.log(text_duration);
 	            	document.querySelector('#text_duration').innerHTML = text_duration ;
+
+	            	loop_check_location_officer();
 	            
 	            // document.querySelector('#div_distance_and_duration').classList.remove('d-none');
 	        } else {
 	            window.alert('Directions request failed due to ' + status);
 	        }
 	    });
+
+	}
+
+	function loop_check_location_officer(){
+		loop_check_officer = setInterval(function() {
+			check_location_officer();
+        }, 8000);
+	}
+
+	function Stop_loop_check_officer() {
+        clearInterval(loop_check_officer);
+    }
+
+	function check_location_officer(){
+
+		fetch("{{ url('/') }}/api/check_location_officer" + "/" + '{{ $data_sos->id }}')
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                // console.log(result['officer_lat']);
+                // console.log(result['officer_lng']);
+
+                if (result['status'] != "ถึงที่เกิดเหตุ") {
+
+                	if (officer_marker) {
+			            officer_marker.setMap(null);
+			        }
+			        officer_marker = new google.maps.Marker({
+			            position: {lat: parseFloat(result['officer_lat']) , lng: parseFloat(result['officer_lng']) },
+			            map: map_show_user,
+			            icon: image_operating_unit_general,
+			        });
+
+                }else{
+                	Stop_loop_check_officer();
+                	document.querySelector('#btn_modal_officer_to_the_scene').click();
+                }
+        });
 
 	}
 
