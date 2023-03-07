@@ -284,8 +284,10 @@ class Sos_help_centerController extends Controller
         $time_create_sos = Carbon::now();
         $requestData = $request->all();
 
-        if ($request->hasFile('photo_sos')) {
-            $requestData['photo_sos'] = $request->file('photo_sos')->store('uploads', 'public');
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $path = $image->store('uploads', 'public');
+            $requestData['photo_sos'] = $path ;
         }
 
         $requestData['create_by'] = "user - " . $requestData['user_id'];
@@ -298,6 +300,7 @@ class Sos_help_centerController extends Controller
         $sos_help_center_last = Sos_help_center::latest()->first();
 
         $requestData['sos_help_center_id'] = $sos_help_center_last->id ;
+        $requestData['be_notified'] = "แพลตฟอร์มวีเช็ค" ;
         Sos_1669_form_yellow::create($requestData);
 
         $date_Y = date("y");

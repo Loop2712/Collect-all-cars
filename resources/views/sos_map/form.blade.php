@@ -480,38 +480,35 @@
     function send_ask_for_help_1669(){
         // console.log('send_ask_for_help_1669');
 
-        let data_sos_1669 = [] ;
-        let type_help = 'by_user' ;
-
         let name = document.querySelector("#name");
         let phone = document.querySelector("#phone");
         let user_id = document.querySelector("#user_id");
         let lat = document.querySelector("#lat");
         let lng = document.querySelector("#lng");
-        let photo_sos_1669 = document.querySelector("#photo_sos_1669");
-        
-        // console.log("name >> " + name.value);
-        // console.log("phone >> " + phone.value);
-        // console.log("user_id >> " + user_id.value);
-        // console.log("lat >> " + lat.value);
-        // console.log("lng >> " + lng.value);
-        // console.log("photo_sos_1669 >> " + photo_sos_1669.value);
+        // let photo_sos_1669 = document.querySelector("#photo_sos_1669");
 
-        data_sos_1669 = {
+        // API UPLOAD IMG //
+        let formData = new FormData();
+        let imageFile = document.getElementById('photo_sos_1669').files[0];
+            formData.append('image', imageFile);
+
+        let data_sos_1669 = {
             "name_user" : name.value,
             "phone_user" : phone.value,
             "user_id" : user_id.value,
             "lat" : lat.value,
             "lng" : lng.value,
-            "photo_sos" : photo_sos_1669.value,
         }
 
+        formData.append('name_user', data_sos_1669.name_user);
+        formData.append('phone_user', data_sos_1669.phone_user);
+        formData.append('user_id', data_sos_1669.user_id);
+        formData.append('lat', data_sos_1669.lat);
+        formData.append('lng', data_sos_1669.lng);
+
         fetch("{{ url('/') }}/api/create_new_sos_by_user", {
-            method: 'post',
-            body: JSON.stringify(data_sos_1669),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            method: 'POST',
+            body: formData
         }).then(function (response){
             return response.text();
         }).then(function(data){
@@ -520,9 +517,11 @@
             document.querySelector('#div_wait_unit').classList.remove('d-none');
 
             check_unit_cf_sos(data);
+
         }).catch(function(error){
             // console.error(error);
         });
+
     }
 
     function edit_phone_1669() {
