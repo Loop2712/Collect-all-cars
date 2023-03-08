@@ -275,10 +275,7 @@ class Sos_help_centerController extends Controller
         $date_Y = date("y");
         $date_m = date("m");
 
-        $province_code = "00" ;
-        $district_code = "00" ;
-        $id_code = str_pad($sos_help_center_last->id, 4, "0", STR_PAD_LEFT);
-        $operating_code = $date_Y.$date_m . "-" . $province_code.$district_code . "-" . $id_code ;
+        $operating_code = $date_Y.$date_m . "-" . "0000-0000" ;
         // จบรหัส
 
         DB::table('sos_help_centers')
@@ -354,16 +351,22 @@ class Sos_help_centerController extends Controller
             ->get();
 
         $count_sos_area = 0 ;
+        $count_for_gen_code = 0 ;
 
         foreach ($sos_1669_province_codes as $item) {
             $province_code = $item->district_code ;
+            // count_sos
             $old_count_sos = $item->count_sos ;
             $count_sos_area = $count_sos_area + (int)$old_count_sos ;
+            // for gen code
+            $old_for_gen_code = $item->for_gen_code ;
+            $count_for_gen_code = $count_for_gen_code + (int)$old_for_gen_code ;
         }
 
         $sum_count_sos_area = $count_sos_area + 1 ;
+        $sum_for_gen_code = $count_for_gen_code + 1 ;
 
-        $id_code = str_pad($sum_count_sos_area, 4, "0", STR_PAD_LEFT);
+        $id_code = str_pad($sum_for_gen_code, 4, "0", STR_PAD_LEFT);
         $operating_code = $date_Y.$date_m . "-" . $province_code . "-" . $id_code ;
         // จบรหัส
 
@@ -382,6 +385,7 @@ class Sos_help_centerController extends Controller
             ->first();
 
         $update_count_sos = (int)$data_old_count_sos->count_sos + 1 ;
+        $update_for_gen_code = (int)$data_old_count_sos->for_gen_code + 1 ;
 
         DB::table('sos_1669_province_codes')
             ->where([ 
@@ -389,6 +393,7 @@ class Sos_help_centerController extends Controller
                 ])
             ->update([
                     'count_sos' => $update_count_sos,
+                    'for_gen_code' => $update_for_gen_code,
                 ]);
 
         return $requestData['sos_help_center_id'] ;

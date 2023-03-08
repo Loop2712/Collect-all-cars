@@ -318,6 +318,7 @@
                                                 <h4 class="m-0 p-0 data-overflow">
                                                     รหัส <b class="text-dark">{{$item->operating_code}}</b>
                                                 </h4>
+                                                <p class="m-0 data-overflow">{{$item->address}}</p>
                                                 <p class="m-0 data-overflow">{{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }}</p>
                                                 <p class="m-0 data-overflow">{{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}</p>
 

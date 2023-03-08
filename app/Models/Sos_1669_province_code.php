@@ -25,7 +25,7 @@ class Sos_1669_province_code extends Model
      *
      * @var array
      */
-    protected $fillable = ['area_code', 'province_code', 'province_name', 'district_code', 'district_name', 'sub_district_code', 'sub_district_name', 'count_sos'];
+    protected $fillable = ['area_code', 'province_code', 'province_name', 'district_code', 'district_name', 'sub_district_code', 'sub_district_name', 'count_sos','for_gen_code'];
 
     
 }
