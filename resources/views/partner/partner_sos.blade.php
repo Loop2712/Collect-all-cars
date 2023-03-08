@@ -612,6 +612,8 @@
                 //     zoom: 14,
                 // });
 
+                // console.log(JSON.parse('{"lng": 101.43383789062517,"lat": 14.388422012329102}'));
+
                 let bounds = new google.maps.LatLngBounds();
 
                     for (let vc = 0; vc < all_lat_lng.length; vc++) {

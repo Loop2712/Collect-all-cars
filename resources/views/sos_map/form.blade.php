@@ -487,6 +487,42 @@
         let lng = document.querySelector("#lng");
         // let photo_sos_1669 = document.querySelector("#photo_sos_1669");
 
+        // --------------- get district ---------------------- //
+        const latlng = {
+            lat: parseFloat(lat.value),
+            lng: parseFloat(lng.value),
+        };
+        geocoder
+            .geocode({ location: latlng })
+            .then((response) => {
+                // console.log(response);
+
+                //// ถ้าอยากรับอย่างอื่นเข้าไปดูที่ results[0]['address_components']['types'] ////
+                
+                const resultType_P = "administrative_area_level_1";
+                const resultType_A = "administrative_area_level_2";
+
+                //// รับจังหวัดอย่างเดียว ////
+                for (const component of response.results[0].address_components) {
+                    if (component.types.includes(resultType_P)) {
+                        const district_P = component.long_name;
+                        // console.log(district_P);
+                        break;
+                    }
+                }
+                //// รับอำเภออย่างเดียว ////
+                for (const component of response.results[0].address_components) {
+                    if (component.types.includes(resultType_A)) {
+                        const district_A = component.long_name;
+                        // console.log(district_A);
+                        break;
+                    }
+                }
+
+            })
+            .catch((e) => window.alert("Geocoder failed due to: " + e));
+        // --------------- end get district ---------------------- //
+
         // API UPLOAD IMG //
         let formData = new FormData();
         let imageFile = document.getElementById('photo_sos_1669').files[0];
@@ -498,6 +534,8 @@
             "user_id" : user_id.value,
             "lat" : lat.value,
             "lng" : lng.value,
+            "changwat" : district_P,
+            "amphoe" : district_A,
         }
 
         formData.append('name_user', data_sos_1669.name_user);
@@ -505,6 +543,8 @@
         formData.append('user_id', data_sos_1669.user_id);
         formData.append('lat', data_sos_1669.lat);
         formData.append('lng', data_sos_1669.lng);
+        formData.append('changwat', data_sos_1669.changwat);
+        formData.append('amphoe', data_sos_1669.amphoe);
 
         fetch("{{ url('/') }}/api/create_new_sos_by_user", {
             method: 'POST',

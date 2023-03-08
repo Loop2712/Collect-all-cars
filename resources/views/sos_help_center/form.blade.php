@@ -1527,6 +1527,29 @@
         geocoder
             .geocode({ location: latlng })
             .then((response) => {
+                // console.log(response);
+                
+                //// ถ้าอยากรับอย่างอื่นเข้าไปดูที่ results[0]['address_components']['types'] ////
+
+                // const resultType_P = "administrative_area_level_1";
+                // const resultType_A = "administrative_area_level_2";
+
+                // //// รับจังหวัดอย่างเดียว ////
+                // for (const component of response.results[0].address_components) {
+                //     if (component.types.includes(resultType_P)) {
+                //         const district_P = component.long_name;
+                //         // console.log(district_P);
+                //         break;
+                //     }
+                // }
+                // //// รับอำเภออย่างเดียว ////
+                // for (const component of response.results[0].address_components) {
+                //     if (component.types.includes(resultType_A)) {
+                //         const district_A = component.long_name;
+                //         // console.log(district_A);
+                //         break;
+                //     }
+                // }
                 if (response.results[0]) {
                     map.setZoom(15);
                     const marker = new google.maps.Marker({

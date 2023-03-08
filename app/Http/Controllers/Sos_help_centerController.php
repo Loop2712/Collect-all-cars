@@ -231,7 +231,7 @@ class Sos_help_centerController extends Controller
 
     function draw_area_help_center(){
 
-        $polygon_provinces = DB::table('province_th')
+        $polygon_provinces = DB::table('province_ths')
             ->where('polygon' , '!=' , null)
             ->get();
 
