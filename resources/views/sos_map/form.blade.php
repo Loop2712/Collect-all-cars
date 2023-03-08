@@ -548,7 +548,7 @@
                     "amphoe" : district_A,
                     "tambon" : district_T,
                 }
-                console.log(data_sos_1669);
+                // console.log(data_sos_1669);
 
                 formData.append('name_user', data_sos_1669.name_user);
                 formData.append('phone_user', data_sos_1669.phone_user);
@@ -621,7 +621,7 @@
         fetch("{{ url('/') }}/api/check_unit_cf_sos_form_user" + "/" + sos_id)
             .then(response => response.json())
             .then(result => {
-                // console.log(result['status']);
+                // console.log(result);
                 
                 if (result['status'] === "ออกจากฐาน") {
                     

@@ -348,19 +348,10 @@ class Sos_help_centerController extends Controller
         $date_Y = date("y");
         $date_m = date("m");
 
-        echo $province_name;
-        echo "<br>";
-        echo $district_name;
-        echo "<br>";
-
         $sos_1669_province_codes = DB::table('sos_1669_province_codes')
             ->where('province_name' , "LIKE"  , "%$province_name%")
             ->where('district_name' , "LIKE" , "%$district_name%")
             ->get();
-
-        echo "<pre>";
-        print_r($sos_1669_province_codes);
-        echo "<pre>";
 
         $count_sos_area = 0 ;
 
