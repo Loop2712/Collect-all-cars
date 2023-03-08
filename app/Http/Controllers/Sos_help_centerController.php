@@ -339,6 +339,7 @@ class Sos_help_centerController extends Controller
 
         $requestData['sos_help_center_id'] = $sos_help_center_last->id ;
         $requestData['be_notified'] = "แพลตฟอร์มวีเช็ค" ;
+        $requestData['location_sos'] = $requestData['all_address'] ;
         Sos_1669_form_yellow::create($requestData);
 
         // รหัส
@@ -397,6 +398,101 @@ class Sos_help_centerController extends Controller
                 ]);
 
         return $requestData['sos_help_center_id'] ;
+    }
+
+    function update_code_sos_1669(Request $request)
+    {
+        $requestData = $request->all();
+
+        $data_sos = Sos_help_center::where('id',$requestData['id'])->first();
+        $old_operating_code = $data_sos->operating_code ;
+        $code_ex = explode("-",$old_operating_code);
+        $code_1 = $code_ex[0];
+
+        $changwat_exp = explode("จังหวัด",$requestData['changwat']);
+        if ( !empty($changwat_exp[1]) ) {
+            $province_name = $changwat_exp[1] ;
+            $province_name = str_replace(" ","",$province_name);
+        }else{
+            $province_name = $changwat_exp[0] ;
+            $province_name = str_replace(" ","",$province_name);
+        }
+
+        $amphoe_exp = explode("อำเภอ",$requestData['amphoe']);
+        if ( !empty($amphoe_exp[1]) ) {
+            $district_name = $amphoe_exp[1] ;
+            $district_name = str_replace(" ","",$district_name);
+        }else{
+            $district_name = $amphoe_exp[0] ;
+            $district_name = str_replace(" ","",$district_name);
+        }
+
+        $tambon_exp = explode("ตำบล",$requestData['tambon']);
+        if ( !empty($tambon_exp[1]) ) {
+            $sub_district_name = $tambon_exp[1] ;
+            $sub_district_name = str_replace(" ","",$sub_district_name);
+        }else{
+            $sub_district_name = $tambon_exp[0] ;
+            $sub_district_name = str_replace(" ","",$sub_district_name);
+        }
+
+        $address = $province_name."/".$district_name."/".$sub_district_name ;
+
+        // รหัส
+        $sos_1669_province_codes = DB::table('sos_1669_province_codes')
+            ->where('province_name' , "LIKE"  , "%$province_name%")
+            ->where('district_name' , "LIKE" , "%$district_name%")
+            ->get();
+
+        $count_sos_area = 0 ;
+        $count_for_gen_code = 0 ;
+
+        foreach ($sos_1669_province_codes as $item) {
+            $province_code = $item->district_code ;
+            // count_sos
+            $old_count_sos = $item->count_sos ;
+            $count_sos_area = $count_sos_area + (int)$old_count_sos ;
+            // for gen code
+            $old_for_gen_code = $item->for_gen_code ;
+            $count_for_gen_code = $count_for_gen_code + (int)$old_for_gen_code ;
+        }
+
+        $sum_count_sos_area = $count_sos_area + 1 ;
+        $sum_for_gen_code = $count_for_gen_code + 1 ;
+
+        $id_code = str_pad($sum_for_gen_code, 4, "0", STR_PAD_LEFT);
+        $operating_code = $code_1 . "-" . $province_code . "-" . $id_code ;
+        // จบรหัส
+
+        DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $data_sos->id],
+                ])
+            ->update([
+                    'operating_code' => $operating_code,
+                    'address' => $address,
+                ]);
+
+        $data_old_count_sos =  DB::table('sos_1669_province_codes')
+            ->where('province_name' , "LIKE" , "%$province_name%")
+            ->where('district_name' , "LIKE" , "%$district_name%")
+            ->where('sub_district_name' , "LIKE" , "%$sub_district_name%")
+            ->first();
+
+        $update_count_sos = (int)$data_old_count_sos->count_sos + 1 ;
+        $update_for_gen_code = (int)$data_old_count_sos->for_gen_code + 1 ;
+
+        DB::table('sos_1669_province_codes')
+            ->where([ 
+                    ['id', $data_old_count_sos->id],
+                ])
+            ->update([
+                    'count_sos' => $update_count_sos,
+                    'for_gen_code' => $update_for_gen_code,
+                ]);
+
+        return $operating_code ;
+
     }
 
     function check_unit_cf_sos_form_user($sos_id){

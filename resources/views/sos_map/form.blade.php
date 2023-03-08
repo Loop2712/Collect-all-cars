@@ -151,8 +151,7 @@
                         </span> -->
 
                         <!-- /////// BTN SOS 1669 /////// -->
-                        @if(Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '2')
-                        <span  class="mail-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
+                        <span id="btn_ask_1669" class="mail-shadow btn btn-md btn-block d-none"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
                             <div class="d-flex">
                                 <div class="col-3 p-0 d-flex align-items-center">
                                     <div class="justify-content-center col-12 p-0">
@@ -172,7 +171,6 @@
                             </div>
                         </span>
                         <!-- /////// END BTN SOS 1669 /////// -->
-                        @endif
 
                         <span  class="mail-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
                             <div class="d-flex">
@@ -475,173 +473,7 @@
     </div>
 </div>
 
-<!-- //// SOS 1669 //// -->
-<script>
-    function send_ask_for_help_1669(){
-        // console.log('send_ask_for_help_1669');
 
-        let name = document.querySelector("#name");
-        let phone = document.querySelector("#phone");
-        let user_id = document.querySelector("#user_id");
-        let lat = document.querySelector("#lat");
-        let lng = document.querySelector("#lng");
-        // let photo_sos_1669 = document.querySelector("#photo_sos_1669");
-
-        // --------------- get district ---------------------- //
-        const geocoder = new google.maps.Geocoder();
-
-        const latlng = {
-            lat: parseFloat(lat.value),
-            lng: parseFloat(lng.value),
-        };
-        geocoder
-            .geocode({ location: latlng })
-            .then((response) => {
-                // console.log(response);
-                let district_P ;
-                let district_A ;
-                let district_T ;
-
-                //// ถ้าอยากรับอย่างอื่นเข้าไปดูที่ results[0]['address_components']['types'] ////
-                
-                const resultType_P = "administrative_area_level_1";
-                const resultType_A = "administrative_area_level_2";
-                const resultType_T = "locality";
-
-                //// รับ จังหวัด อย่างเดียว ////
-                for (const component_p of response.results[0].address_components) {
-                    if (component_p.types.includes(resultType_P)) {
-                        district_P = component_p.long_name;
-                        // console.log(district_P);
-                        break;
-                    }
-                }
-                //// รับ อำเภอ อย่างเดียว ////
-                for (const component_a of response.results[0].address_components) {
-                    if (component_a.types.includes(resultType_A)) {
-                        district_A = component_a.long_name;
-                        // console.log(district_A);
-                        break;
-                    }
-                }
-                //// รับ ตำบล อย่างเดียว ////
-                for (const component_t of response.results[0].address_components) {
-                    if (component_t.types.includes(resultType_T)) {
-                        district_T = component_t.long_name;
-                        // console.log(district_T);
-                        break;
-                    }
-                }
-
-                // API UPLOAD IMG //
-                let formData = new FormData();
-                let imageFile = document.getElementById('photo_sos_1669').files[0];
-                    formData.append('image', imageFile);
-
-                let data_sos_1669 = {
-                    "name_user" : name.value,
-                    "phone_user" : phone.value,
-                    "user_id" : user_id.value,
-                    "lat" : lat.value,
-                    "lng" : lng.value,
-                    "changwat" : district_P,
-                    "amphoe" : district_A,
-                    "tambon" : district_T,
-                }
-                // console.log(data_sos_1669);
-
-                formData.append('name_user', data_sos_1669.name_user);
-                formData.append('phone_user', data_sos_1669.phone_user);
-                formData.append('user_id', data_sos_1669.user_id);
-                formData.append('lat', data_sos_1669.lat);
-                formData.append('lng', data_sos_1669.lng);
-                formData.append('changwat', data_sos_1669.changwat);
-                formData.append('amphoe', data_sos_1669.amphoe);
-                formData.append('tambon', data_sos_1669.tambon);
-
-                fetch("{{ url('/') }}/api/create_new_sos_by_user", {
-                    method: 'POST',
-                    body: formData
-                }).then(function (response){
-                    return response.text();
-                }).then(function(data){
-                    // console.log(data);
-                    document.querySelector('#div_data_ask_for_help').classList.add('d-none');
-                    document.querySelector('#div_wait_unit').classList.remove('d-none');
-
-                    check_unit_cf_sos(data);
-
-                }).catch(function(error){
-                    // console.error(error);
-                });
-
-            })
-            .catch((e) => window.alert("Geocoder failed due to: " + e));
-        // --------------- end get district ---------------------- //
-
-    }
-
-    function edit_phone_1669() {
-        let phone = document.querySelector("#phone");
-        let text_phone_1669 = document.querySelector("#text_phone_1669");
-        let input_phone_1669 = document.querySelector("#input_phone_1669");
-            text_phone_1669.innerHTML = input_phone_1669.value ;
-            phone.value = input_phone_1669.value ;
-            // console.log(text_phone_1669.innerHTML);
-    }
-
-    function add_phone_1669() {
-        let phone = document.querySelector("#phone");
-        let text_phone_1669 = document.querySelector("#text_phone_1669");
-        let input_not_phone_1669 = document.querySelector("#input_not_phone_1669");
-            text_phone_1669.innerHTML = input_not_phone_1669.value ;
-            phone.value = input_not_phone_1669.value ;
-            // console.log(text_phone.innerHTML);
-    }
-
-    function check_add_img(){
-        document.getElementById('add_select_img').classList.add('d-none')
-        document.getElementById('photo_sos_1669').classList.add('d-none');
-        document.getElementById('show_photo_sos_1669').classList.remove('d-none');
-
-    }
-
-    function check_unit_cf_sos(sos_id){
-        reface_check_unit_cf_sos = setInterval(function() {
-            send_api_check_unit_cf_sos(sos_id);
-        }, 5000);
-    }
-
-    function myStop_reface_check_unit_cf_sos() {
-        clearInterval(reface_check_unit_cf_sos);
-    }
-
-    function send_api_check_unit_cf_sos(sos_id){
-
-        fetch("{{ url('/') }}/api/check_unit_cf_sos_form_user" + "/" + sos_id)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                
-                if (result['status'] === "ออกจากฐาน") {
-                    
-                    myStop_reface_check_unit_cf_sos();
-
-                    let go_to_show_user = document.querySelector('#go_to_show_user');
-                    let go_to_show_user_href = document.createAttribute("href");
-                        go_to_show_user_href.value = '{{ url("/") }}/sos_help_center/'+sos_id+'/show_user' ;
-                        go_to_show_user.setAttributeNode(go_to_show_user_href);
-
-                    setTimeout(function() {
-                        document.querySelector('#go_to_show_user').click();
-                    }, 1000);
-                }
-        });
-    }
-
-    
-</script>
-<!-- //// SOS 1669 //// -->
 
 <br><br>
 
@@ -715,8 +547,6 @@
                     document.querySelector('#input_not_phone').classList.add('d-none') ;
                 } 
         }
-
-        
 
     });
 
@@ -890,3 +720,255 @@
     }
 
 </script>
+
+<!-- //// SOS 1669 //// -->
+<script>
+
+    function check_user_in_area(position) {
+        let btn_ask_1669 = document.querySelector('#btn_ask_1669');
+
+        let lat = position.coords.latitude ;
+        let lng = position.coords.longitude ;
+        let latlng = position.coords.latitude+","+position.coords.longitude ;
+
+            // console.log(lat);
+            // console.log(lng);
+            // console.log(latlng);
+
+        fetch("{{ url('/') }}/api/draw_area_help_center")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                for (let ii = 0; ii < result.length; ii++) {
+
+                    if (result[ii]['sos_1669_show'] == 'show') {
+
+                        let arr_lat_lng = JSON.parse(result[ii]['polygon']);
+                    
+                        if (arr_lat_lng !== null) {
+                            let area_arr = [] ;
+
+                            let arr_length = JSON.parse(result[ii]['polygon']).length;
+
+                            for(z = 0; z < arr_length; z++){
+                                let text_latlng = parseFloat(arr_lat_lng[z]['lat']) + "," + parseFloat(arr_lat_lng[z]['lng']) ;
+                                    text_latlng = JSON.parse("[" + text_latlng + "]");
+
+                                area_arr.push(text_latlng);
+                            }
+                            
+                            if ( inside_1669([ lat, lng ], area_arr) ) {
+                                // console.log('You inside area 1669!!');
+                                btn_ask_1669.classList.remove('d-none');
+                                break;
+                            }else{
+                                // console.log('You NO inside ');
+                                btn_ask_1669.classList.add('d-none');
+                            }
+                            
+                        }
+                    }else{
+
+                        btn_ask_1669.classList.add('d-none');
+
+                        let check_user_id = '{{ Auth::user()->id }}' ;
+
+                        if ( check_user_id == '1' || check_user_id == '64' || check_user_id == '2' ) {
+                            btn_ask_1669.classList.remove('d-none');
+                        }
+
+                    }
+                }
+        });
+
+        
+    }
+
+    function inside_1669(point, vs) {
+        // console.log(vs);
+
+        let x = point[0], y = point[1];
+        
+        let inside = false;
+
+        for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+            let xi = vs[i][0], yi = vs[i][1];
+            let xj = vs[j][0], yj = vs[j][1];
+            
+            let intersect = ((yi > y) != (yj > y))
+                && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+            if (intersect) inside = !inside;
+        }
+        // console.log(inside);
+        return inside;
+
+    }
+
+    function send_ask_for_help_1669(){
+        // console.log('send_ask_for_help_1669');
+
+        let name = document.querySelector("#name");
+        let phone = document.querySelector("#phone");
+        let user_id = document.querySelector("#user_id");
+        let lat = document.querySelector("#lat");
+        let lng = document.querySelector("#lng");
+        // let photo_sos_1669 = document.querySelector("#photo_sos_1669");
+
+        // --------------- get district ---------------------- //
+        const geocoder = new google.maps.Geocoder();
+
+        const latlng = {
+            lat: parseFloat(lat.value),
+            lng: parseFloat(lng.value),
+        };
+        geocoder
+            .geocode({ location: latlng })
+            .then((response) => {
+                // console.log(response);
+                let district_P ;
+                let district_A ;
+                let district_T ;
+
+                //// ถ้าอยากรับอย่างอื่นเข้าไปดูที่ results[0]['address_components']['types'] ////
+                
+                const resultType_P = "administrative_area_level_1";
+                const resultType_A = "administrative_area_level_2";
+                const resultType_T = "locality";
+
+                //// รับ จังหวัด อย่างเดียว ////
+                for (const component_p of response.results[0].address_components) {
+                    if (component_p.types.includes(resultType_P)) {
+                        district_P = component_p.long_name;
+                        // console.log(district_P);
+                        break;
+                    }
+                }
+                //// รับ อำเภอ อย่างเดียว ////
+                for (const component_a of response.results[0].address_components) {
+                    if (component_a.types.includes(resultType_A)) {
+                        district_A = component_a.long_name;
+                        // console.log(district_A);
+                        break;
+                    }
+                }
+                //// รับ ตำบล อย่างเดียว ////
+                for (const component_t of response.results[0].address_components) {
+                    if (component_t.types.includes(resultType_T)) {
+                        district_T = component_t.long_name;
+                        // console.log(district_T);
+                        break;
+                    }
+                }
+
+                // API UPLOAD IMG //
+                let formData = new FormData();
+                let imageFile = document.getElementById('photo_sos_1669').files[0];
+                    formData.append('image', imageFile);
+
+                let data_sos_1669 = {
+                    "name_user" : name.value,
+                    "phone_user" : phone.value,
+                    "user_id" : user_id.value,
+                    "lat" : lat.value,
+                    "lng" : lng.value,
+                    "changwat" : district_P,
+                    "amphoe" : district_A,
+                    "tambon" : district_T,
+                    "all_address" : response.results[0].formatted_address,
+                }
+                // console.log(data_sos_1669);
+
+                formData.append('name_user', data_sos_1669.name_user);
+                formData.append('phone_user', data_sos_1669.phone_user);
+                formData.append('user_id', data_sos_1669.user_id);
+                formData.append('lat', data_sos_1669.lat);
+                formData.append('lng', data_sos_1669.lng);
+                formData.append('changwat', data_sos_1669.changwat);
+                formData.append('amphoe', data_sos_1669.amphoe);
+                formData.append('tambon', data_sos_1669.tambon);
+                formData.append('all_address', data_sos_1669.all_address);
+
+                fetch("{{ url('/') }}/api/create_new_sos_by_user", {
+                    method: 'POST',
+                    body: formData
+                }).then(function (response){
+                    return response.text();
+                }).then(function(data){
+                    // console.log(data);
+                    document.querySelector('#div_data_ask_for_help').classList.add('d-none');
+                    document.querySelector('#div_wait_unit').classList.remove('d-none');
+
+                    check_unit_cf_sos(data);
+
+                }).catch(function(error){
+                    // console.error(error);
+                });
+
+            })
+            .catch((e) => window.alert("Geocoder failed due to: " + e));
+        // --------------- end get district ---------------------- //
+
+    }
+
+    function edit_phone_1669() {
+        let phone = document.querySelector("#phone");
+        let text_phone_1669 = document.querySelector("#text_phone_1669");
+        let input_phone_1669 = document.querySelector("#input_phone_1669");
+            text_phone_1669.innerHTML = input_phone_1669.value ;
+            phone.value = input_phone_1669.value ;
+            // console.log(text_phone_1669.innerHTML);
+    }
+
+    function add_phone_1669() {
+        let phone = document.querySelector("#phone");
+        let text_phone_1669 = document.querySelector("#text_phone_1669");
+        let input_not_phone_1669 = document.querySelector("#input_not_phone_1669");
+            text_phone_1669.innerHTML = input_not_phone_1669.value ;
+            phone.value = input_not_phone_1669.value ;
+            // console.log(text_phone.innerHTML);
+    }
+
+    function check_add_img(){
+        document.getElementById('add_select_img').classList.add('d-none')
+        document.getElementById('photo_sos_1669').classList.add('d-none');
+        document.getElementById('show_photo_sos_1669').classList.remove('d-none');
+
+    }
+
+    function check_unit_cf_sos(sos_id){
+        reface_check_unit_cf_sos = setInterval(function() {
+            send_api_check_unit_cf_sos(sos_id);
+        }, 5000);
+    }
+
+    function myStop_reface_check_unit_cf_sos() {
+        clearInterval(reface_check_unit_cf_sos);
+    }
+
+    function send_api_check_unit_cf_sos(sos_id){
+
+        fetch("{{ url('/') }}/api/check_unit_cf_sos_form_user" + "/" + sos_id)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                
+                if (result['status'] === "ออกจากฐาน") {
+                    
+                    myStop_reface_check_unit_cf_sos();
+
+                    let go_to_show_user = document.querySelector('#go_to_show_user');
+                    let go_to_show_user_href = document.createAttribute("href");
+                        go_to_show_user_href.value = '{{ url("/") }}/sos_help_center/'+sos_id+'/show_user' ;
+                        go_to_show_user.setAttributeNode(go_to_show_user_href);
+
+                    setTimeout(function() {
+                        document.querySelector('#go_to_show_user').click();
+                    }, 1000);
+                }
+        });
+    }
+
+    
+</script>
+<!-- //// SOS 1669 //// -->

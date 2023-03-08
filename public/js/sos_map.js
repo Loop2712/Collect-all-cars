@@ -3,6 +3,7 @@
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
         navigator.geolocation.getCurrentPosition(initMap);
+        navigator.geolocation.getCurrentPosition(check_user_in_area);
 
         // navigator.geolocation.getCurrentPosition(geocodeLatLng);
       } else { 

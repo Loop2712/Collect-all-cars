@@ -99,7 +99,7 @@
                         </div>
                         <div class="col-2">
                             <center>
-                                <button  type="button" class="btn btn-info text-white" style="width: 100%;" onclick="submit_locations_sos();open_map_operating_unit();">
+                                <button id="span_submit_locations_sos" type="button" class="btn btn-info text-white" style="width: 100%;" onclick="submit_locations_sos();open_map_operating_unit();">
                                     <i class="fa-solid fa-circle-check"></i> ยืนยัน
                                 </button>
                             </center>
@@ -208,7 +208,7 @@
         <div class="row d-flex justify-content-between">
             <div class="col-md-6 col-lg-6 col-12 menu-header bg-transparent d-inline">
                 <h6 class=" font-weight-bold m-0 p-0">รหัสปฏิบัติการ</h6>
-                <h3><b><u>{{ $sos_help_center->operating_code }}</u></b></h3>
+                <h3><b><u id="text_u_operating_code">{{ $sos_help_center->operating_code }}</u></b></h3>
             </div>
             <div class="col-md-6 col-lg-6 col-12  d-flex justify-content-end">
                 <div class="d-flex align-items-center">
@@ -552,7 +552,7 @@
                             <div class="box-status">
                                 <span class="m-0">เลขที่ปฏิบัติการ(ON)</span>
                                 <h5 class="m-0 h5">
-                                    <b>
+                                    <b id="text_in_formyellow_operating_code">
                                         {{ $sos_help_center->operating_code }}
                                     </b>
                                 </h5>
@@ -1179,7 +1179,7 @@
         const geocoder = new google.maps.Geocoder();
         const infowindow = new google.maps.InfoWindow();
 
-        document.getElementById("btn_get_location_user").addEventListener("click", () => {
+        document.getElementById("span_submit_locations_sos").addEventListener("click", () => {
             
             geocodeLatLng(geocoder, map, infowindow);
         });
@@ -1529,38 +1529,79 @@
             .then((response) => {
                 // console.log(response);
                 
+                let district_P ;
+                let district_A ;
+                let district_T ;
+
                 //// ถ้าอยากรับอย่างอื่นเข้าไปดูที่ results[0]['address_components']['types'] ////
+                
+                const resultType_P = "administrative_area_level_1";
+                const resultType_A = "administrative_area_level_2";
+                const resultType_T = "locality";
 
-                // const resultType_P = "administrative_area_level_1";
-                // const resultType_A = "administrative_area_level_2";
+                //// รับ จังหวัด อย่างเดียว ////
+                for (const component_p of response.results[0].address_components) {
+                    if (component_p.types.includes(resultType_P)) {
+                        district_P = component_p.long_name;
+                        // console.log(district_P);
+                        break;
+                    }
+                }
+                //// รับ อำเภอ อย่างเดียว ////
+                for (const component_a of response.results[0].address_components) {
+                    if (component_a.types.includes(resultType_A)) {
+                        district_A = component_a.long_name;
+                        // console.log(district_A);
+                        break;
+                    }
+                }
+                //// รับ ตำบล อย่างเดียว ////
+                for (const component_t of response.results[0].address_components) {
+                    if (component_t.types.includes(resultType_T)) {
+                        district_T = component_t.long_name;
+                        // console.log(district_T);
+                        break;
+                    }
+                }
 
-                // //// รับจังหวัดอย่างเดียว ////
-                // for (const component of response.results[0].address_components) {
-                //     if (component.types.includes(resultType_P)) {
-                //         const district_P = component.long_name;
-                //         // console.log(district_P);
-                //         break;
-                //     }
-                // }
-                // //// รับอำเภออย่างเดียว ////
-                // for (const component of response.results[0].address_components) {
-                //     if (component.types.includes(resultType_A)) {
-                //         const district_A = component.long_name;
-                //         // console.log(district_A);
-                //         break;
-                //     }
-                // }
+                let formData = new FormData();
+
+                let data_sos_1669 = {
+                    "id" : "{{ $sos_help_center->id }}",
+                    "changwat" : district_P,
+                    "amphoe" : district_A,
+                    "tambon" : district_T,
+                }
+                // console.log(data_sos_1669);
+
+                formData.append('id', data_sos_1669.id);
+                formData.append('changwat', data_sos_1669.changwat);
+                formData.append('amphoe', data_sos_1669.amphoe);
+                formData.append('tambon', data_sos_1669.tambon);
+
+                fetch("{{ url('/') }}/api/update_code_sos_1669", {
+                    method: 'POST',
+                    body: formData
+                }).then(function (response){
+                    return response.text();
+                }).then(function(data){
+                    // console.log(data);
+                    document.querySelector('#text_u_operating_code').innerHTML = data ;
+                    document.querySelector('#text_in_formyellow_operating_code').innerHTML = data ;
+                }).catch(function(error){
+                    // console.error(error);
+                });
+
+
                 if (response.results[0]) {
                     map.setZoom(15);
-                    const marker = new google.maps.Marker({
-                      position: latlng,
-                      map: map,
-                    });
-                    infowindow.setContent(response.results[0].formatted_address);
-                    infowindow.open(map, marker);
 
                     let detail_location_sos = document.querySelector("#detail_location_sos");
-                        detail_location_sos.innerHTML = response.results[0].formatted_address;
+                        detail_location_sos.value = response.results[0].formatted_address;
+
+                        check_lat_lng();
+                        check_go_to(null);
+
                 } else {
                     window.alert("No results found");
                 }

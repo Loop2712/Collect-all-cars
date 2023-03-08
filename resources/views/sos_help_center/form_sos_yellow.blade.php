@@ -488,14 +488,14 @@
 											<input type="text" class="form-control border-start-0 radius-2" name="lng" id="lng" value="{{ isset($sos_help_center->lng) ? $sos_help_center->lng : ''}}" readonly placeholder="ลองติจูด">
 										</div>
 									</div>
-									<div class="col-6 col-md-2 col-lg-2">
-										<span class="btn btn-sm btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
+									<div class="col-6 col-md-4 col-lg-4">
+										<span class="btn btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" style="width:90%;" onclick="mapMarkLocation('12.870032','100.992541','6');">
 											เลือกจุดเกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
 										</span>
 									</div>
-									<div class="col-6 col-md-2 col-lg-2">
-										<button id="btn_get_location_user"  class="btn btn-sm btn-info text-white main-shadow main-radius">
-											รับรายละเอียดที่อยู่ (<span>100</span>)
+									<div class="col-6 col-md-2 col-lg-2 d-none">
+										<button id="btn_get_location_user" class="btn btn-sm btn-info text-white main-shadow main-radius" onclick="document.querySelector('#detail_location_sos').value = document.querySelector('#text_location_sos').value ;">
+											รับรายละเอียดที่อยู่
 										</button>
 									</div>
 								</div>

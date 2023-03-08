@@ -233,6 +233,7 @@ Route::get('/update_data_form_yellows/{sos_id}/{column}/{data}', 'Sos_help_cente
 Route::get('/update_mileage_officer/{sos_id}/{mileage}/{location}', 'Sos_help_centerController@update_mileage_officer');
 Route::get('/draw_area_help_center', 'Sos_help_centerController@draw_area_help_center');
 Route::post('/edit_data_officer_Standby', 'Sos_help_centerController@edit_data_officer_Standby');
+Route::post('/update_code_sos_1669', 'Sos_help_centerController@update_code_sos_1669');
     // SOS HELP CENTER FORM USER 
     Route::get('/check_unit_cf_sos_form_user/{sos_id}', 'Sos_help_centerController@check_unit_cf_sos_form_user');
     Route::get('/check_location_officer/{sos_id}', 'Sos_help_centerController@check_location_officer');
