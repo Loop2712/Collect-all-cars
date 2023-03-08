@@ -95,7 +95,7 @@
 		position: absolute;
 		border-radius: 25px;
 		width: 99%;
-		transform: translate(0, -50%);
+		
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -324,7 +324,7 @@ input:checked + .slider:before {
 	<button class="btn w-25 btn_menu" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-solid fa-messages-question"></i></button>
 </div>
 
-<div class="row data-menu show-data-menu" id="menu_1" style="bottom:1%">
+<div class="row data-menu show-data-menu" id="menu_1" style="bottom:10%">
 	<menu class="col-12" id="div_switch">
 		<div id="show_level_by_officers" class="card-body p-3 main-shadow bg-white" style="border-radius: 15px;">
 			<div class="d-flex align-items-center">
@@ -356,7 +356,7 @@ input:checked + .slider:before {
 	</menu>
 </div>
 
-<div class="row data-menu show-data-menu d-none" id="menu_2" style="bottom:-23%">
+<div class="row data-menu show-data-menu d-none" id="menu_2" style="bottom: 10%;">
 	<menu class="col-12 "  >
 		<div class="bg-white card-body p-3 main-shadow" style="border-radius: 15px; ">
 			<center>	
