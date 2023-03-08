@@ -1034,4 +1034,37 @@ class Sos_help_centerController extends Controller
 
         return $data_update_mileage ;
     }
+
+
+    function edit_data_officer_Standby(Request $request){
+
+        $requestData = $request->all();
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $path = $image->store('uploads', 'public');
+            $requestData['photo_officer'] = $path ;
+
+            DB::table('users')
+            ->where([ 
+                    ['id', $requestData['id']],
+                ])
+            ->update([
+                    'photo' => $requestData['photo_officer'],
+                ]);
+        }
+
+        DB::table('data_1669_operating_officers')
+        ->where([ 
+                ['id', $requestData['id']],
+            ])
+        ->update([
+                'name_officer' => $requestData['name_officer'],
+                'level' => $requestData['level_officer'],
+                'vehicle_type' => $requestData['vehicle_type'],
+            ]);
+        
+        return $requestData['name_officer'];
+    }
+
 }
