@@ -321,7 +321,7 @@ input:checked + .slider:before {
 </div>
 <div class="menubar show-menubar">
 	<button class="btn w-25 btn_menu btn-danger" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-light-emergency-on"></i></button>
-	<button class="btn w-25 btn_menu" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-solid fa-messages-question"></i></button>
+	<button class="btn w-25 btn_menu" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-solid fa-user-pen"></i></button>
 </div>
 
 <div class="row data-menu show-data-menu" id="menu_1" style="bottom:10%">
