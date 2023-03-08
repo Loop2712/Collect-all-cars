@@ -428,3 +428,6 @@ Route::resource('data_1669_operating_officer', 'Data_1669_operating_officerContr
 
 Route::get('index_send_mail_proposal', 'test_for_devController@index_send_mail_proposal');
 Route::get('send_mail_proposal', 'test_for_devController@send_mail_proposal');
+
+Route::resource('province_th.json', 'Province_th.jsonController');
+Route::resource('province_th', 'Province_thController');

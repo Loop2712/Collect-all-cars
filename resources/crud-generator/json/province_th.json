@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "province_id",
+            "type": "string"
+        },
+        {
+            "name": "province_name",
+            "type": "string"
+        },
+        {
+            "name": "province_lat",
+            "type": "string"
+        },
+        {
+            "name": "province_lon",
+            "type": "string"
+        },
+        {
+            "name": "province_zoom",
+            "type": "string"
+        },
+        {
+            "name": "polygon",
+            "type": "string"
+        },
+        {
+            "name": "count_sos_1669",
+            "type": "string"
+        }
+    ]
+}

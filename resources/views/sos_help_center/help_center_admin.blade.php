@@ -747,6 +747,41 @@
             zoom: m_numZoom,
         });
 
+        draw_area_help_center() ;
+
+    }
+
+    function draw_area_help_center(){
+
+        let all_lat_lng = [];
+
+        fetch("{{ url('/') }}/api/draw_area_help_center")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                for (let ii = 0; ii < result.length; ii++) {
+                    for (let xx = 0; xx < JSON.parse(result[ii]['polygon']).length; xx++) {
+                        all_lat_lng.push(JSON.parse(result[ii]['polygon'])[xx]);
+                    }
+                }
+
+                for (let xi = 0; xi < result.length; xi++) {
+
+                    // วาดแยกแต่ละพื้นที่
+                    let draw_area_other = new google.maps.Polygon({
+                        paths: JSON.parse(result[xi]['polygon']),
+                        strokeColor: "#008450",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 1,
+                        fillColor: "#008450",
+                        fillOpacity: 0.25,
+                        zIndex:10,
+                    });
+                    draw_area_other.setMap(map);
+                    
+                }
+        });
     }
 
     function create_new_sos_help_center(){

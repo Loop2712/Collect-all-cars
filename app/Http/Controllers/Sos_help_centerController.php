@@ -223,8 +223,19 @@ class Sos_help_centerController extends Controller
         //     ->latest()->paginate($perPage);
         // }
 
+        
+
         return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos' ,'count_data'));
 
+    }
+
+    function draw_area_help_center(){
+
+        $polygon_provinces = DB::table('province_th')
+            ->where('polygon' , '!=' , null)
+            ->get();
+
+        return $polygon_provinces ;
     }
 
     function switch_standby_login(){
@@ -795,7 +806,7 @@ class Sos_help_centerController extends Controller
         $data_sos = Sos_help_center::findOrFail($sos_id);
         $officer_id = $data_sos->helper_id ;
         $operating_unit_id =  $data_sos->operating_unit_id ;
-        
+
         $data_officer = Data_1669_operating_officer::where('operating_unit_id' , $operating_unit_id)
             ->where('user_id' , $officer_id)
             ->first();
