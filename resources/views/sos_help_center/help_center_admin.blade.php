@@ -105,6 +105,12 @@
                 <div class="sticky">
                     <div id="map" style="border-radius:25px"></div>
 
+                    <h6 class="mt-3">
+                        <i class="fa-solid fa-circle" style="color: #006400;"></i> เปิดให้บริการ
+                        <i class="fa-solid fa-circle" style="color: #696969;"></i> ยังไม่เปิดบริการ
+                        <i class="fa-solid fa-circle" style="color: #FF4500;"></i> พื้นที่ทดสอบ
+                    </h6>
+
                     <a style="background-color: green;" type="button" class="btn text-white btn-reset" onclick="initMap();">
                         <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
                     </a>
@@ -759,7 +765,7 @@
         fetch("{{ url('/') }}/api/draw_area_help_center")
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 for (let ii = 0; ii < result.length; ii++) {
                     for (let xx = 0; xx < JSON.parse(result[ii]['polygon']).length; xx++) {
@@ -769,13 +775,23 @@
 
                 for (let xi = 0; xi < result.length; xi++) {
 
+                    let color_poly = [] ;
+
+                    if (result[xi]['sos_1669_show'] == 'show') {
+                        color_poly[xi] = '#006400' ;
+                    }else if (result[xi]['sos_1669_show'] == 'test'){
+                        color_poly[xi] = '#FF4500' ;
+                    }else if (result[xi]['sos_1669_show'] == 'no'){
+                        color_poly[xi] = '#696969' ;
+                    }
+
                     // วาดแยกแต่ละพื้นที่
                     let draw_area_other = new google.maps.Polygon({
                         paths: JSON.parse(result[xi]['polygon']),
-                        strokeColor: "#008450",
+                        strokeColor: color_poly[xi],
                         strokeOpacity: 0.8,
                         strokeWeight: 1,
-                        fillColor: "#008450",
+                        fillColor: color_poly[xi],
                         fillOpacity: 0.25,
                         zIndex:10,
                     });
