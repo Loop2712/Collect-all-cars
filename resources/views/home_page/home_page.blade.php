@@ -70,14 +70,176 @@
           <div class="col-sm-6 wow  fadeInLeft"> <img width="70%" src="{{ asset('Medilab/img/icon.png') }}" alt=""> </div>
           <div class="col-sm-6  wow  fadeInRight" style="margin-top:60px;">
             <h1 style="text-align: right;font-family: 'Kanit', sans-serif;">ยินดีต้อนรับสู่ ViiCHECK</h1>
+           
             <h2 class="wow  fadeInRight" style="text-align: right;font-family: 'Kanit', sans-serif;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ <br>แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
             <a style="font-size: 18px; float: right;font-family: 'Kanit', sans-serif;" href="https://line.me/R/ti/p/%40702ytkls" class=" fadeInRight btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
           </div>
 
     </section>
+    <style>
+      .card-slogan{
+        padding: 10px;
+        border-radius: 15px;
+        font-family: 'Kanit', sans-serif;
+        display: inline-flex;
+        animation: myAnim 1s ease 0s 1 normal forwards;
+        opacity: 0;
+        transition: all 0.5s;
+      } .slogan-text{
+        margin-bottom: 0;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }.slogan-text h4{
+        font-family: 'Kanit', sans-serif;
+        font-weight: bold;
+      }
+      @keyframes myAnim {
+        0% {
+          opacity: 0 !important;
+          transform: rotateX(-100deg);
+          transform-origin: top;
+        }
+
+        100% {
+          opacity: 1;
+          display: none;
+          transform: rotateX(0deg);
+          transform-origin: top;
+        }
+      }
+
+
+      .slogan-card {
+        position: relative;
+        left: 2em;
+        width: 100%;
+        height: 6.5em;
+        background: white;
+        -webkit-transition: .4s ease-in-out;
+        transition: .4s ease-in-out;
+        border-radius: 15px;
+        animation: myAnim 1s ease 0s 1 normal forwards;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+                box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+      }
+
+      .slogan-heading {
+        top:30%;
+        position: relative;
+        color: black;
+        font-weight: bold;
+        font-size: 1.3em;
+        padding-left: 1em;
+        -webkit-transition: .4s ease-in-out;
+        transition: .4s ease-in-out;
+      }
+      
+
+      .slogan-glasses {
+        position: relative;
+        top: -30%;
+        right: -50%;
+        width: 50%;
+        transition: .4s ease-in-out;
+        z-index: 9999999;
+      }
+
+      .slogan-card:hover {
+        width: 12.5em;
+        height: 12em;
+        left: 3.3em;
+      }
+
+      .slogan-card:hover  .slogan-glasses {
+        -webkit-transform: translateY(25%) translateX(-48%);
+            -ms-transform: translateY(25%) translateX(-48%);
+                transform: translateY(25%) translateX(-48%);
+        width: 70% !important;
+      }
+
+      .slogan-card:hover .slogan-heading {
+        -webkit-transform: translateY(200%) translateX(25%);
+        -ms-transform: translateY(200%) translateX(25%);
+        transform: translateY(200%) translateX(25%);
+        top:40%;
+        color: #EB2424;
+                
+      }
+
+      </style>
 
     <section id="why-us" class="why-us" style="font-family: 'Kanit', sans-serif;">
       <div class="container">
+        
+        <div class="row mb-3">
+              <div class="col-3">
+              <div class="slogan-card" style="animation-delay: 0.0s;">
+                <div class="slogan-heading">รวดเร็ว</div>
+                <img class="slogan-glasses"src="{{ asset('img/stickerline/PNG/34.2.png') }}" style="width: 48%;" alt="">
+              </div>
+              
+                <!-- <div class="card-slogan card text-center  text-white " style="animation-delay: 0.0s;">
+                  <div class="row">
+                    <div class="col-5 pr-0">
+                      <img class="d-inline-flex"src="{{ asset('img/stickerline/PNG/1.png') }}" width="100%" alt="">
+                    </div>
+                    <div class="col-7 slogan-text p-0">
+                      <h4 > รวดเร็ว </h4>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+              <div class="col-3">
+                <div class="slogan-card" style="animation-delay: 0.2s;">
+                <div class="slogan-heading">ปลอดภัย</div>
+                <img class="slogan-glasses"src="{{ asset('img/stickerline/PNG/37.2.png') }}"  style="width: 45%;" alt="">
+              </div>
+                <!-- <div class="card-slogan card text-center wow  " style="animation-delay: 0.5s;">
+                  <div class="row">
+                    <div class="col-5 pr-0">
+                      <img class="d-inline-flex"src="{{ asset('img/stickerline/PNG/1.png') }}" width="100%" alt="">
+                    </div>
+                    <div class="col-7 slogan-text p-0">
+                      <h4> ปลอดภัย </h4>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+              <div class="col-3">
+                <div class="slogan-card" style="animation-delay: 0.3s;">
+                <div class="slogan-heading" >อุ่นใจ</div>
+                <img class="slogan-glasses"src="{{ asset('img/stickerline/PNG/32.png') }}" width="100%" alt="">
+              </div>
+                <!-- <div class="card-slogan card text-center wow  " style="animation-delay: 1s;">
+                  <div class="row">
+                    <div class="col-5 pr-0">
+                      <img class="d-inline-flex"src="{{ asset('img/stickerline/PNG/1.png') }}" width="100%" alt="">
+                    </div>
+                    <div class="col-7 slogan-text p-0">
+                      <h4> อุ่นใจ </h4>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+              <div class="col-3">
+                <div class="slogan-card" style="animation-delay: 0.4s;">
+                <div class="slogan-heading">ใช้วีเช็ค</div>
+                <img class="slogan-glasses"src="{{ asset('img/logo/logo_x-icon_2.png') }}"  style="width: 45%;"alt="">
+              </div>
+                <!-- <div class="card-slogan card text-center wow  " style="animation-delay: 1.5s;">
+                  <div class="row">
+                    <div class="col-5 pr-0">
+                      <img class="d-inline-flex"src="{{ asset('img/stickerline/PNG/1.png') }}" width="100%" alt="">
+                    </div>
+                    <div class="col-7 slogan-text p-0">
+                      <h4 > ใช้วีเช็ค </h4>
+                    </div>
+                  </div>
+                </div> -->
+              </div>
+            </div>
         <div class="row">
           <div class="col-lg-5 d-flex align-items-stretch wow fadeInRight">
             <div class="content d-flex align-items-center">
