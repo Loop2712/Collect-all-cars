@@ -2,14 +2,19 @@
 
 @section('content')
 <style>
+	body, html {
+  height: 100%;
+  width: 100%;
+}
+
 	body,div , span ,body,h1,h2,h3,h4,h5 ,h6{
 		font-family: 'Kanit', sans-serif !important;
 	}
 	#map_officers_switch {
 		position: relative;
-		height: calc(99.8vh);
+		width: 100% !important; 
+		height: 100%!important; 
 
-      	width: 100% !important; 
     }
 	#topbar{
 		display: none !important;
@@ -338,7 +343,7 @@ input:checked + .slider:before {
 					<p class="mb-0 ">
 						<span class="badge badge-pill bg-light-danger pl-0" id="text_show_standby"></span>
 					</p>
-					<p class="font-weight-bold mb-0 text-officer no-translate" id="p_name_officer">{{ $data_standby->name_officer }}</p>
+					<p class="font-weight-bold mb-0 text-officer notranslate" id="p_name_officer">{{ $data_standby->name_officer }}</p>
 					<!-- <p class="text-secondary mb-0">online</p> -->
 					
 				</div>
@@ -390,22 +395,22 @@ input:checked + .slider:before {
 				<label class="mt-3 d-none" id="leble_show_img_officer" for="img_officer">
 					<img width="60" height="60" class="rounded-circle" alt="your image" for="img_officer" id="show_img_officer"/>
 				</label>
-				<input type="text" class="input-data-officer mt-3" id="name_officer"placeholder="ชื่อ" value="{{ isset($data_standby->name_officer) ? $data_standby->name_officer : Auth::user()->id}}">
+				<input type="text" class="input-data-officer mt-3 " id="name_officer"placeholder="ชื่อ" value="{{ isset($data_standby->name_officer) ? $data_standby->name_officer : Auth::user()->id}}">
 
 				<select class="input-data-officer mt-3" id="officer_level" name="level">
-					<option class="font-weight-bold" value="FR">FR</option>
-					<option class="font-weight-bold" value="BLS">BLS</option>
-					<option class="font-weight-bold" value="ILS">ILS</option>
-					<option class="font-weight-bold" value="ALS">ALS</option>
+					<option class="notranslate font-weight-bold" value="FR">FR</option>
+					<option class="notranslate font-weight-bold" value="BLS">BLS</option>
+					<option class="notranslate font-weight-bold" value="ILS">ILS</option>
+					<option class="notranslate font-weight-bold" value="ALS">ALS</option>
 				</select>
 
 				<select class="input-data-officer mt-3" id="vehicle_type" name="level">
-					<option class="font-weight-bold" value="รถ">รถ</option>
-					<option class="font-weight-bold" value="อากาศยาน">อากาศยาน</option>
-					<option class="font-weight-bold" value="เรือ ป.1">เรือ ป.1</option>
-					<option class="font-weight-bold" value="เรือ ป.2">เรือ ป.2</option>
-					<option class="font-weight-bold" value="เรือ ป.3">เรือ ป.3</option>
-					<option class="font-weight-bold" value="เรือประเภทอื่นๆ">เรือประเภทอื่นๆ</option>
+					<option class="notranslate font-weight-bold" value="รถ">รถ</option>
+					<option class="notranslate font-weight-bold" value="อากาศยาน">อากาศยาน</option>
+					<option class="notranslate font-weight-bold" value="เรือ ป.1">เรือ ป.1</option>
+					<option class="notranslate font-weight-bold" value="เรือ ป.2">เรือ ป.2</option>
+					<option class="notranslate font-weight-bold" value="เรือ ป.3">เรือ ป.3</option>
+					<option class="notranslate font-weight-bold" value="เรือประเภทอื่นๆ">เรือประเภทอื่นๆ</option>
 				</select>
 
 				<button id="btn_submit_data_officer" class="button-submit-data-officer" onclick="edit_data_officer();">แก้ไข</button>
@@ -655,6 +660,7 @@ input:checked + .slider:before {
         if (officer_marker) {
             officer_marker.setMap(null);
         }
+		
         officer_marker = new google.maps.Marker({
             position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
             map: map_officers_switch,
