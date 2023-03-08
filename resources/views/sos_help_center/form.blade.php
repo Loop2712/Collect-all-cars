@@ -375,9 +375,9 @@
                     <div class="col h6 d-flex align-items-center">
                         <b>จุดเกิดเหตุ</b>
                     </div>
-                    <div class="col d-flex justify-content-end">
+                    <div class="col w-100 p-0 m-0">
                         <span class="btn btn-sm btn-danger" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#see_img_sos">
-                            ดูรูปภาพ <i class="fa-duotone fa-images"></i>
+                        <i class="fa-duotone fa-images"></i>รูปภาพ 
                         </span>
                     </div>
                 </div>
