@@ -1134,7 +1134,7 @@ class Sos_help_centerController extends Controller
                 'vehicle_type' => $requestData['vehicle_type'],
             ]);
         
-        return $requestData['name_officer'];
+        return $requestData;
     }
 
 }

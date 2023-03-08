@@ -331,10 +331,10 @@ input:checked + .slider:before {
 					<div class="centered">
 						<div class="badge-wrap">
 							@if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
-								<img src="{{ Auth::user()->avatar }}" width="60" height="60" class="rounded-circle" alt="">
+								<img id="img_profile" src="{{ Auth::user()->avatar }}" width="60" height="60" class="rounded-circle" alt="">
 							@endif
 							@if(!empty(Auth::user()->photo))
-								<img src="{{ url('storage')}}/{{ Auth::user()->photo }}" width="60" height="60" class="rounded-circle" alt="">
+								<img id="img_profile" src="{{ url('storage')}}/{{ Auth::user()->photo }}" width="60" height="60" class="rounded-circle" alt="">
 							@endif
 						<div class="badge-without-number with-wave "></div>
 					</div>
@@ -806,10 +806,12 @@ input:checked + .slider:before {
 				method: 'POST',
 				body: formData
 			}).then(function (response){
-				return response.text();
+				return response.json();
 			}).then(function(data){
-				// console.log(data);
-				document.querySelector('#p_name_officer').innerHTML = data;
+				document.querySelector('#p_name_officer').innerHTML = data.name_officer;
+				if(data.photo_officer){
+					document.querySelector('#img_profile').src = '{{ url("/storage") }}' + '/' + data.photo_officer;
+				}
 
 			}).catch(function(error){
 				// console.error(error);
