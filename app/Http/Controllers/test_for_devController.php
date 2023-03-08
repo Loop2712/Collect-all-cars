@@ -22,7 +22,22 @@ class test_for_devController extends Controller
 {
     public function main_test()
     {
-        echo "HELLO" ;
+        $njhjk = "จังหวัดปทุมธานี" ;
+
+        $changwat_exp = explode("จังหวัด",$njhjk);
+
+        if ( !empty($changwat_exp[1]) ) {
+            $province_name = $changwat_exp[1] ;
+        }else{
+            $province_name = $changwat_exp[0] ;
+        }
+
+        echo $province_name ;
+        echo "<br>";
+        // echo "<pre>";
+        // print_r($changwat_exp);
+        // echo "<pre>";
+
         exit();
     }
 

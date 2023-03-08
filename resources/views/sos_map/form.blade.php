@@ -488,6 +488,8 @@
         // let photo_sos_1669 = document.querySelector("#photo_sos_1669");
 
         // --------------- get district ---------------------- //
+        const geocoder = new google.maps.Geocoder();
+
         const latlng = {
             lat: parseFloat(lat.value),
             lng: parseFloat(lng.value),
@@ -496,71 +498,86 @@
             .geocode({ location: latlng })
             .then((response) => {
                 // console.log(response);
+                let district_P ;
+                let district_A ;
+                let district_T ;
 
                 //// ถ้าอยากรับอย่างอื่นเข้าไปดูที่ results[0]['address_components']['types'] ////
                 
                 const resultType_P = "administrative_area_level_1";
                 const resultType_A = "administrative_area_level_2";
+                const resultType_T = "locality";
 
-                //// รับจังหวัดอย่างเดียว ////
-                for (const component of response.results[0].address_components) {
-                    if (component.types.includes(resultType_P)) {
-                        const district_P = component.long_name;
+                //// รับ จังหวัด อย่างเดียว ////
+                for (const component_p of response.results[0].address_components) {
+                    if (component_p.types.includes(resultType_P)) {
+                        district_P = component_p.long_name;
                         // console.log(district_P);
                         break;
                     }
                 }
-                //// รับอำเภออย่างเดียว ////
-                for (const component of response.results[0].address_components) {
-                    if (component.types.includes(resultType_A)) {
-                        const district_A = component.long_name;
+                //// รับ อำเภอ อย่างเดียว ////
+                for (const component_a of response.results[0].address_components) {
+                    if (component_a.types.includes(resultType_A)) {
+                        district_A = component_a.long_name;
                         // console.log(district_A);
                         break;
                     }
                 }
+                //// รับ ตำบล อย่างเดียว ////
+                for (const component_t of response.results[0].address_components) {
+                    if (component_t.types.includes(resultType_T)) {
+                        district_T = component_t.long_name;
+                        // console.log(district_T);
+                        break;
+                    }
+                }
+
+                // API UPLOAD IMG //
+                let formData = new FormData();
+                let imageFile = document.getElementById('photo_sos_1669').files[0];
+                    formData.append('image', imageFile);
+
+                let data_sos_1669 = {
+                    "name_user" : name.value,
+                    "phone_user" : phone.value,
+                    "user_id" : user_id.value,
+                    "lat" : lat.value,
+                    "lng" : lng.value,
+                    "changwat" : district_P,
+                    "amphoe" : district_A,
+                    "tambon" : district_T,
+                }
+                console.log(data_sos_1669);
+
+                formData.append('name_user', data_sos_1669.name_user);
+                formData.append('phone_user', data_sos_1669.phone_user);
+                formData.append('user_id', data_sos_1669.user_id);
+                formData.append('lat', data_sos_1669.lat);
+                formData.append('lng', data_sos_1669.lng);
+                formData.append('changwat', data_sos_1669.changwat);
+                formData.append('amphoe', data_sos_1669.amphoe);
+                formData.append('tambon', data_sos_1669.tambon);
+
+                fetch("{{ url('/') }}/api/create_new_sos_by_user", {
+                    method: 'POST',
+                    body: formData
+                }).then(function (response){
+                    return response.text();
+                }).then(function(data){
+                    // console.log(data);
+                    document.querySelector('#div_data_ask_for_help').classList.add('d-none');
+                    document.querySelector('#div_wait_unit').classList.remove('d-none');
+
+                    check_unit_cf_sos(data);
+
+                }).catch(function(error){
+                    // console.error(error);
+                });
 
             })
             .catch((e) => window.alert("Geocoder failed due to: " + e));
         // --------------- end get district ---------------------- //
-
-        // API UPLOAD IMG //
-        let formData = new FormData();
-        let imageFile = document.getElementById('photo_sos_1669').files[0];
-            formData.append('image', imageFile);
-
-        let data_sos_1669 = {
-            "name_user" : name.value,
-            "phone_user" : phone.value,
-            "user_id" : user_id.value,
-            "lat" : lat.value,
-            "lng" : lng.value,
-            "changwat" : district_P,
-            "amphoe" : district_A,
-        }
-
-        formData.append('name_user', data_sos_1669.name_user);
-        formData.append('phone_user', data_sos_1669.phone_user);
-        formData.append('user_id', data_sos_1669.user_id);
-        formData.append('lat', data_sos_1669.lat);
-        formData.append('lng', data_sos_1669.lng);
-        formData.append('changwat', data_sos_1669.changwat);
-        formData.append('amphoe', data_sos_1669.amphoe);
-
-        fetch("{{ url('/') }}/api/create_new_sos_by_user", {
-            method: 'POST',
-            body: formData
-        }).then(function (response){
-            return response.text();
-        }).then(function(data){
-            // console.log(data);
-            document.querySelector('#div_data_ask_for_help').classList.add('d-none');
-            document.querySelector('#div_wait_unit').classList.remove('d-none');
-
-            check_unit_cf_sos(data);
-
-        }).catch(function(error){
-            // console.error(error);
-        });
 
     }
 

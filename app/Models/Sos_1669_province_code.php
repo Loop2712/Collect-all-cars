@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Province_th extends Model
+class Sos_1669_province_code extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'province_ths';
+    protected $table = 'sos_1669_province_codes';
 
     /**
     * The database primary key value.
@@ -25,7 +25,7 @@ class Province_th extends Model
      *
      * @var array
      */
-    protected $fillable = ['province_id', 'province_name', 'province_lat', 'province_lon', 'province_zoom', 'polygon', 'sos_1669_show'];
+    protected $fillable = ['area_code', 'province_code', 'province_name', 'district_code', 'district_name', 'sub_district_code', 'sub_district_name', 'count_sos'];
 
     
 }

@@ -431,3 +431,4 @@ Route::get('send_mail_proposal', 'test_for_devController@send_mail_proposal');
 
 Route::resource('province_th.json', 'Province_th.jsonController');
 Route::resource('province_th', 'Province_thController');
+Route::resource('sos_1669_province_code', 'Sos_1669_province_codeController');

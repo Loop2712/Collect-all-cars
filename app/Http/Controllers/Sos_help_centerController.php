@@ -271,6 +271,7 @@ class Sos_help_centerController extends Controller
         $requestData['sos_help_center_id'] = $sos_help_center_last->id ;
         Sos_1669_form_yellow::create($requestData);
 
+        // รหัส
         $date_Y = date("y");
         $date_m = date("m");
 
@@ -278,6 +279,7 @@ class Sos_help_centerController extends Controller
         $district_code = "00" ;
         $id_code = str_pad($sos_help_center_last->id, 4, "0", STR_PAD_LEFT);
         $operating_code = $date_Y.$date_m . "-" . $province_code.$district_code . "-" . $id_code ;
+        // จบรหัส
 
         DB::table('sos_help_centers')
             ->where([ 
@@ -286,7 +288,7 @@ class Sos_help_centerController extends Controller
             ->update([
                     'operating_code' => $operating_code,
                 ]);
-
+        
         return $sos_help_center_last->id ;
     }
 
@@ -295,6 +297,33 @@ class Sos_help_centerController extends Controller
         $time_create_sos = Carbon::now();
         $requestData = $request->all();
 
+        $changwat_exp = explode("จังหวัด",$requestData['changwat']);
+        if ( !empty($changwat_exp[1]) ) {
+            $province_name = $changwat_exp[1] ;
+            $province_name = str_replace(" ","",$province_name);
+        }else{
+            $province_name = $changwat_exp[0] ;
+            $province_name = str_replace(" ","",$province_name);
+        }
+
+        $amphoe_exp = explode("อำเภอ",$requestData['amphoe']);
+        if ( !empty($amphoe_exp[1]) ) {
+            $district_name = $amphoe_exp[1] ;
+            $district_name = str_replace(" ","",$district_name);
+        }else{
+            $district_name = $amphoe_exp[0] ;
+            $district_name = str_replace(" ","",$district_name);
+        }
+
+        $tambon_exp = explode("ตำบล",$requestData['tambon']);
+        if ( !empty($tambon_exp[1]) ) {
+            $sub_district_name = $tambon_exp[1] ;
+            $sub_district_name = str_replace(" ","",$sub_district_name);
+        }else{
+            $sub_district_name = $tambon_exp[0] ;
+            $sub_district_name = str_replace(" ","",$sub_district_name);
+        }
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $path = $image->store('uploads', 'public');
@@ -302,9 +331,10 @@ class Sos_help_centerController extends Controller
         }
 
         $requestData['create_by'] = "user - " . $requestData['user_id'];
-        $requestData['notify'] = '(ชื่อจังหวัด)';
+        $requestData['notify'] = $province_name;
         $requestData['status'] = 'รับแจ้งเหตุ';
         $requestData['time_create_sos'] = $time_create_sos;
+        $requestData['address'] = $province_name."/".$district_name."/".$sub_district_name ;
         
         Sos_help_center::create($requestData);
 
@@ -314,13 +344,37 @@ class Sos_help_centerController extends Controller
         $requestData['be_notified'] = "แพลตฟอร์มวีเช็ค" ;
         Sos_1669_form_yellow::create($requestData);
 
+        // รหัส
         $date_Y = date("y");
         $date_m = date("m");
 
-        $province_code = "00" ;
-        $district_code = "00" ;
-        $id_code = str_pad($sos_help_center_last->id, 4, "0", STR_PAD_LEFT);
-        $operating_code = $date_Y.$date_m . "-" . $province_code.$district_code . "-" . $id_code ;
+        echo $province_name;
+        echo "<br>";
+        echo $district_name;
+        echo "<br>";
+
+        $sos_1669_province_codes = DB::table('sos_1669_province_codes')
+            ->where('province_name' , "LIKE"  , "%$province_name%")
+            ->where('district_name' , "LIKE" , "%$district_name%")
+            ->get();
+
+        echo "<pre>";
+        print_r($sos_1669_province_codes);
+        echo "<pre>";
+
+        $count_sos_area = 0 ;
+
+        foreach ($sos_1669_province_codes as $item) {
+            $province_code = $item->district_code ;
+            $old_count_sos = $item->count_sos ;
+            $count_sos_area = $count_sos_area + (int)$old_count_sos ;
+        }
+
+        $sum_count_sos_area = $count_sos_area + 1 ;
+
+        $id_code = str_pad($sum_count_sos_area, 4, "0", STR_PAD_LEFT);
+        $operating_code = $date_Y.$date_m . "-" . $province_code . "-" . $id_code ;
+        // จบรหัส
 
         DB::table('sos_help_centers')
             ->where([ 
@@ -328,6 +382,22 @@ class Sos_help_centerController extends Controller
                 ])
             ->update([
                     'operating_code' => $operating_code,
+                ]);
+
+        $data_old_count_sos =  DB::table('sos_1669_province_codes')
+            ->where('province_name' , "LIKE" , "%$province_name%")
+            ->where('district_name' , "LIKE" , "%$district_name%")
+            ->where('sub_district_name' , "LIKE" , "%$sub_district_name%")
+            ->first();
+
+        $update_count_sos = (int)$data_old_count_sos->count_sos + 1 ;
+
+        DB::table('sos_1669_province_codes')
+            ->where([ 
+                    ['id', $data_old_count_sos->id],
+                ])
+            ->update([
+                    'count_sos' => $update_count_sos,
                 ]);
 
         return $requestData['sos_help_center_id'] ;

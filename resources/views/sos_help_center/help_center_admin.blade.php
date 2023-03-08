@@ -758,7 +758,7 @@
         fetch("{{ url('/') }}/api/draw_area_help_center")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 for (let ii = 0; ii < result.length; ii++) {
                     for (let xx = 0; xx < JSON.parse(result[ii]['polygon']).length; xx++) {
@@ -779,7 +779,7 @@
                         zIndex:10,
                     });
                     draw_area_other.setMap(map);
-                    
+
                 }
         });
     }

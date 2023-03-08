@@ -1,0 +1,36 @@
+{
+    "fields": [
+        {
+            "name": "area_code",
+            "type": "string"
+        },
+        {
+            "name": "province_code",
+            "type": "string"
+        },
+        {
+            "name": "province_name",
+            "type": "string"
+        },
+        {
+            "name": "district_code",
+            "type": "string"
+        },
+        {
+            "name": "district_name",
+            "type": "string"
+        },
+        {
+            "name": "sub_district_code",
+            "type": "string"
+        },
+        {
+            "name": "sub_district_name",
+            "type": "string"
+        },
+        {
+            "name": "count_sos",
+            "type": "string"
+        }
+    ]
+}
