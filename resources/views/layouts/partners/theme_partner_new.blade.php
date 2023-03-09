@@ -154,7 +154,11 @@
 								<div class="menu-title">Admin</div>
 							</a>
 							<ul>
-								<li> <a href="{{ url('/manage_user_partner') }}"><i class='fas fa-users-cog'></i> Admin</a>
+								<li>
+									<a href="{{ url('/manage_user_partner') }}"><i class='fas fa-users-cog'></i> รายชื่อทั้งหมด</a>
+								</li>
+								<li>
+									<a href="#"><i class="fa-solid fa-user-plus"></i> เพิ่มผู้ใช้</a>
 								</li>
 							</ul>
 						</li>
@@ -344,45 +348,46 @@
 					@endif
 				<!-- สำหรับ องค์กร / คอนโด -->
 
-				<!-- ViiCare -->
-					<li>
-						<a href="#" class="has-arrow">
-							<div class="parent-icon"><i class="fas fa-hand-holding-heart"></i>
-							</div>
-							<div class="menu-title">Vii Care</div>
-						</a>
-						<ul>
-							<li> <a href="{{ url('/check_in/view') }}"><i class="fas fa-map-marker-check"></i> ข้อมูลการเข้าออก</a>
+				<!-- care move sos -->
+				@if(Auth::check() && Auth::user()->organization != 'สพฉ')
+					@if( Auth::user()->role == "admin-partner" or Auth::user()->role == "partner" )
+						<!-- ViiCare -->
+							<li>
+								<a href="#" class="has-arrow">
+									<div class="parent-icon"><i class="fas fa-hand-holding-heart"></i>
+									</div>
+									<div class="menu-title">Vii Care</div>
+								</a>
+								<ul>
+									<li> <a href="{{ url('/check_in/view') }}"><i class="fas fa-map-marker-check"></i> ข้อมูลการเข้าออก</a>
+									</li>
+									<li> <a href="{{ url('/check_in/add_new_check_in') }}"><i class="fas fa-qrcode"></i> เพิ่มจุด Check in</a>
+									</li>
+									<li> <a href="{{ url('/check_in/gallery') }}"><i class="far fa-images"></i>คลังภาพ</a>
+									</li>
+								</ul>
 							</li>
-							<li> <a href="{{ url('/check_in/add_new_check_in') }}"><i class="fas fa-qrcode"></i> เพิ่มจุด Check in</a>
-							</li>
-							<li> <a href="{{ url('/check_in/gallery') }}"><i class="far fa-images"></i>คลังภาพ</a>
-							</li>
-						</ul>
-					</li>
-				<!-- ViiCare -->
+						<!-- ViiCare -->
 
-				<!-- ViiMove -->
-					<li>
-						<a href="#" class="has-arrow">
-							<div class="parent-icon"><i class="fas fa-car-crash"></i>
-							</div>
-							<div class="menu-title">Vii Move</div>
-						</a>
-						<ul>
-							<li> <a href="{{ url('/register_cars_partner') }}"><i class='fas fa-car'></i> รถลงทะเบียน</a>
+						<!-- ViiMove -->
+							<li>
+								<a href="#" class="has-arrow">
+									<div class="parent-icon"><i class="fas fa-car-crash"></i>
+									</div>
+									<div class="menu-title">Vii Move</div>
+								</a>
+								<ul>
+									<li> <a href="{{ url('/register_cars_partner') }}"><i class='fas fa-car'></i> รถลงทะเบียน</a>
+									</li>
+									<li> <a href="{{ url('/guest_partner') }}"><i class="fas fa-file-signature"></i> รถที่ถูกรายงาน</a>
+									</li>
+									<li> <a href="{{ url('/partner_guest_latest') }}"><i class="fas fa-history"></i>รถที่ถูกรายงานล่าสุด</a>
+									</li>
+								</ul>
 							</li>
-							<li> <a href="{{ url('/guest_partner') }}"><i class="fas fa-file-signature"></i> รถที่ถูกรายงาน</a>
-							</li>
-							<li> <a href="{{ url('/partner_guest_latest') }}"><i class="fas fa-history"></i>รถที่ถูกรายงานล่าสุด</a>
-							</li>
-						</ul>
-					</li>
-				<!-- ViiMove -->
+						<!-- ViiMove -->
 
-				<!-- Vii SOS -->
-					@if(Auth::check())
-						@if(Auth::user()->role == "admin-partner" or Auth::user()->role == "partner")
+						<!-- Vii SOS -->
 							<li class="main-submenu">
 								<a href="#" class="has-arrow">
 									<div class="parent-icon"><i class="fas fa-siren-on"></i>
@@ -428,9 +433,32 @@
 									@endif
 								</ul>
 							</li>
-						@endif
+						<!-- Vii SOS -->
 					@endif
-				<!-- Vii SOS -->
+				@endif
+				<!-- end care move sos -->
+
+				<!-- SOS HELP CENTER 1669 -->
+				@if(Auth::check())
+					@if(Auth::user()->id == "1" or Auth::user()->id == "64" or Auth::user()->id == "2" or Auth::user()->organization == 'สพฉ')
+						<li>
+							<a href="#" class="has-arrow">
+								<div class="parent-icon">
+									<i class="fa-solid fa-truck-medical"></i>
+								</div>
+								<div class="menu-title">ขอความช่วยเหลือ</div>
+							</a>
+							<ul>
+								<li> 
+									<a href="{{ url('/help_center_admin') }}">
+										<i class="fa-regular fa-table-columns"></i> Dashboard
+									</a>
+								</li>
+							</ul>
+						</li>
+					@endif
+				@endif
+				<!-- SOS HELP CENTER 1669 -->
 
 				<!-- Other -->
 				<li>
@@ -448,25 +476,6 @@
 				</li>
 				<!-- Other -->
 
-				@if(Auth::check())
-					@if(Auth::user()->id == "1" or Auth::user()->id == "64" or Auth::user()->id == "2")
-						<!-- SOS HELP CENTER -->
-						<li>
-							<a href="#" class="has-arrow">
-								<div class="parent-icon">
-									<i class="fa-solid fa-truck-medical"></i>
-								</div>
-								<div class="menu-title">SOS HELP CENTER</div>
-							</a>
-							<ul>
-								<li> 
-									<a href="{{ url('/help_center_admin') }}"><i class="fa-regular fa-table-columns"></i> Index Admin</a>
-								</li>
-							</ul>
-						</li>
-						<!-- SOS HELP CENTER -->
-					@endif
-				@endif
 
 				<br>
 
