@@ -1924,7 +1924,7 @@ class LineMessagingAPI extends Model
             $template_path = storage_path('../public/json/flex-act.json');   
             $string_json = file_get_contents($template_path);
             $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-            $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
+            $string_json = str_replace("99ก9999",$item->registration_number,$string_json);
             $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
             $string_json = str_replace("00/00/0000",$item->act,$string_json);
             $string_json = str_replace("car_id",$item->id,$string_json);
@@ -1997,7 +1997,7 @@ class LineMessagingAPI extends Model
             $template_path = storage_path('../public/json/flex-act.json');   
             $string_json = file_get_contents($template_path);
             $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-            $string_json = str_replace("9กก9999",$item->registration_number,$string_json);
+            $string_json = str_replace("99ก9999",$item->registration_number,$string_json);
             $string_json = str_replace("กรุงเทพมหานคร",$item->province,$string_json);
             $string_json = str_replace("00/00/0000",$item->insurance,$string_json);
             $string_json = str_replace("พรบ",$data_topic[1],$string_json);
