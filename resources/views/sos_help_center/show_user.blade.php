@@ -108,7 +108,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 	display: flex;
 	align-items: center;
 	width: 100%;
-	height: 30%;
+	height: 35%;
 	bottom: 0;
 }.box-data-helper div{
 	width: 100%;
@@ -118,6 +118,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 
 }.centered{
 	width: 70px !important;
+}.open-location-pls{
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-items: center;
+	width: 100%;
+	height: 35%;
+	bottom: 0;
+	margin: auto;
+	padding: auto;
 }
 </style><link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
@@ -136,7 +146,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 </div>
 	<div class="bordertest"></div>
 
-	<div class="container box-data-helper">
+	<div class="container box-data-helper d-none">
 		<div>
 			<span class="d-block" >
 				<span id="text_distance"></span>
@@ -144,16 +154,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 			</span>
 			<span class="d-block" id="text_duration"></span>
 			<hr>
-				<div class="d-flex align-items-center ml-2">
-					<div class="centered">
-						<div class="badge-wrap">
-							@if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
-								<img id="img_profile" src="{{ Auth::user()->avatar }}" width="70" height="70" class="rounded-circle" alt="">
-							@endif
-							@if(!empty(Auth::user()->photo))
-								<img id="img_profile" src="{{ url('storage')}}/{{ Auth::user()->photo }}" width="70" height="70" class="rounded-circle" alt="">
-							@endif
-						<div class="badge-without-number with-wave "></div>
+			<div class="d-flex align-items-center ml-2">
+				<div class="centered">
+					<div class="badge-wrap">
+						@if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
+							<img id="img_profile" src="{{ Auth::user()->avatar }}" width="70" height="70" class="rounded-circle" alt="">
+						@endif
+						@if(!empty(Auth::user()->photo))
+							<img id="img_profile" src="{{ url('storage')}}/{{ Auth::user()->photo }}" width="70" height="70" class="rounded-circle" alt="">
+						@endif
 					</div>
 				</div>
 				<div class="flex-grow-1 ms-3 box-organization_helper">
@@ -166,6 +175,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 					
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<div class="container bg-white open-location-pls w-100" style="bottom: -4.5%;">
+		<div class="w-100 text-center">
+			<img  src="{{ asset('/img/stickerline/PNG/7.png') }}" width="120"  alt="">
+			<br>
+			<h5 class="font-weight-bold mb-0 notranslate">กรุณาเปิดตำแหน่งที่ตั้งด้วยค่ะ</h5>		
 		</div>
 	</div>
 	<!-- <div id="" class="col-12 ">
@@ -478,6 +495,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	}
 
     function initMap() {
+
+		document.querySelector(".box-data-helper").classList.remove('d-none');
+		document.querySelector(".open-location-pls").classList.add('d-none');
+
 
     	let m_lat = lat ;
     	let m_lng = lng ;
