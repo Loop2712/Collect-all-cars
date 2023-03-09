@@ -27,16 +27,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     { 
-        $schedule->command('cron:alert_act')->everyMinute()->withoutOverlapping(5);
+        // $schedule->command('cron:alert_act')->everyMinute()->withoutOverlapping(5);
+        $schedule->command('cron:alert_act')->everyMinute();
         $schedule->command('cron:cancel_after_6_month')->everyMinute()->withoutOverlapping(5);
         $schedule->command('cron:delete_check_in_after_15_day')->everyMinute()->withoutOverlapping(5);
         $schedule->command('cron:set_null_for_gen_codea')->everyMinute()->withoutOverlapping(5);
     }
 
-    protected function schedule_alert_act(Schedule $schedule)
-    { 
-        $schedule->command('cron:alert_act')->everyMinute()->withoutOverlapping(5);
-    }
 
     /**
      * Register the commands for the application.
