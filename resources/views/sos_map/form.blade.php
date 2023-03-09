@@ -734,22 +734,22 @@
             // console.log(lat);
             // console.log(lng);
             // console.log(latlng);
-        alert('>> ไม่ต้องเข้าอันนั้นอ่ะ <<');
+            // alert('>> ไม่ต้องเข้าอันนั้นอ่ะ <<');
 
         fetch("{{ url('/') }}/api/draw_area_help_center")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
 
-                alert('>> นอก for <<');
+                // alert('>> นอก for <<');
 
                 for (let ii = 0; ii < result.length; ii++) {
 
-                    console.log(result[ii]['sos_1669_show']);
+                    // console.log(result[ii]['sos_1669_show']);
 
                     if (result[ii]['sos_1669_show'] == 'show') {
 
-                        alert('>> if 749 ' + result[ii]['sos_1669_show'] + " <<");
+                        // alert('>> if 749 ' + result[ii]['sos_1669_show'] + " <<");
 
                         let arr_lat_lng = JSON.parse(result[ii]['polygon']);
                     
@@ -766,7 +766,7 @@
                             }
                             
                             if ( inside_1669([ lat, lng ], area_arr) ) {
-                                console.log('You inside area 1669!!');
+                                // console.log('You inside area 1669!!');
                                 btn_ask_1669.classList.remove('d-none');
                                 break;
                             }else{
@@ -777,7 +777,7 @@
                         }
                     }else{
 
-                        alert('>> else 775 ' + result[ii]['sos_1669_show'] + " <<");
+                        // alert('>> else 775 ' + result[ii]['sos_1669_show'] + " <<");
 
                         let check_user_id = '{{ Auth::user()->id }}' ;
                         let check_role = '{{ Auth::user()->role }}' ;
