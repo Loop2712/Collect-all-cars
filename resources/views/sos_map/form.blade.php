@@ -746,7 +746,7 @@
 
                     if (result[ii]['sos_1669_show'] == 'show') {
 
-                        console.log('>> if 749 <<');
+                        alert('>> if 749 <<');
 
                         let arr_lat_lng = JSON.parse(result[ii]['polygon']);
                     
@@ -774,7 +774,7 @@
                         }
                     }else{
 
-                        console.log('>> else 775 <<');
+                        alert('>> else 775 <<');
 
                         let check_user_id = '{{ Auth::user()->id }}' ;
                         let check_role = '{{ Auth::user()->role }}' ;
