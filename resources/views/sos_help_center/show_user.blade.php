@@ -1,6 +1,230 @@
 @extends('layouts.viicheck')
 
 @section('content')
+<style>
+	body, html {
+  height: 100%;
+  width: 100%;
+}
+
+	body,div , span ,body,h1,h2,h3,h4,h5 ,h6{
+		font-family: 'Kanit', sans-serif !important;
+	}
+	#map_show_user {
+		position: relative;
+		width: 100% !important; 
+		height: 70%!important; 
+
+    }
+	#topbar{
+		display: none !important;
+	} header{
+		display: none !important;
+	}
+	footer{
+		display: none !important;
+
+	}.gmnoprint{
+		display: none;
+
+	}
+	
+	.gm-style-cc{
+		display: none;
+	}
+	.gm-fullscreen-control{
+		display: none;
+	}
+	.gm-svpc{
+		display: none;
+	}
+	.sry-open-location-text{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  margin: 0;
+  padding: 0;
+  color: black;
+  width: 80%;
+}
+	.sry-open-location img{
+	margin-top: 30%;
+	width: 100%;
+  object-fit: cover; 
+  height: 100%;
+}.sry-open-location p{
+	font-size: clamp(12px, 5vw, 20px) !important;
+}[alt="google"] {
+    display: none !important;
+}.bordertest {
+		position: absolute;
+		top: 63.5%;
+    height:60px;
+    width:100%;
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC42NSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgb(255, 255, 255) 100%); /* FF3.6-15 */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgb(255, 255, 255))); /* Chrome4-9,Safari4-5 */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgb(255, 255, 255) 100%); /* Chrome10-25,Safari5.1-6 */
+background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgb(255, 255, 255) 100%); /* Opera 11.10-11.50 */
+background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgb(255, 255, 255) 100%); /* IE10 preview */
+background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgb(255, 255, 255) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-8 */
+}.logo-viichek{
+	position: absolute;
+	z-index: 99;
+	top: 1%;
+	left: 5%;
+	width: 100px;
+}#text_distance{
+	font-size: 3rem;
+	font-weight: bolder;
+	color: #808080;
+	margin: 5px 0 0 10px;
+}#text_duration{
+	font-size: 1.5rem;
+	font-weight: bolder;
+	color: #808080;
+	margin: -5px 0 0 10px;
+}hr{
+	margin:25px 0 25px 10px;
+	width: 70px;
+}.box-organization_helper{
+	margin: 0 0 0 10px;
+}.box-organization_helper p{
+	color: #808080;
+	font-size: 1.3rem;
+}.box-data-helper{
+	position: absolute;
+	display: flex;
+	align-items: center;
+	height: 30%;
+	bottom: 0;
+}#text_distance_km{
+	font-size: 1.2em;
+}
+</style><link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+<img class="logo-viichek" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" />
+<div id="map_show_user">
+	<div class="sry-open-location">
+		<img src="{{ asset('/img/more/sorry-no-text.png') }}" />
+		<center>
+			<p class="sry-open-location-text h4" style="top: 35%;">ขออภัยค่ะ</p>	
+			<p class="sry-open-location-text h5" style="top: 45%;">ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ</p>
+			<span style="top: 60%;" class="sry-open-location-text btn btn-md btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
+				<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
+			</span>
+		</center>
+	</div>	
+</div>
+	<div class="bordertest"></div>
+
+	<div class="container box-data-helper">
+		<div>
+			<span class="d-block" >
+				<span id="text_distance"></span>
+				<span id="text_distance_km"></span>
+			</span>
+			<span class="d-block" id="text_duration"></span>
+			<hr>
+				<div class="d-flex align-items-center ml-2">
+					<div class="centered">
+						<div class="badge-wrap">
+							@if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
+								<img id="img_profile" src="{{ Auth::user()->avatar }}" width="70" height="70" class="rounded-circle" alt="">
+							@endif
+							@if(!empty(Auth::user()->photo))
+								<img id="img_profile" src="{{ url('storage')}}/{{ Auth::user()->photo }}" width="60" height="60" class="rounded-circle" alt="">
+							@endif
+						<div class="badge-without-number with-wave "></div>
+					</div>
+				</div>
+				<div class="flex-grow-1 ms-3 box-organization_helper">
+					<!-- <p class="mb-0 ">
+						<span class="badge badge-pill bg-light-danger pl-0">{{ $data_sos->name_helper }}</span>
+					</p> -->
+					<p class="font-weight-bold mb-0 notranslate">{{ $data_sos->name_helper }}</p>
+					<!-- <p class="text-secondary mb-0">online</p> -->
+					<p class="font-weight-bold mb-0 notranslate">{{ $data_sos->organization_helper }}</p>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <div id="" class="col-12 ">
+		<h3 class="text-center text-info">
+			<b>เจ้าหน้าที่กำลังเดินทางมา</b>
+		</h3>
+
+		<h5 class="text-center mt-3">
+			ระยะทาง : <span id="text_distance"></span>
+		</h5>
+		<h5 class="text-center mt-2">
+			ระยะเวลาโดยประมาณ : <span id="text_duration"></span>
+		</h5>
+	</div>
+
+	<center>
+		<hr style="width:80%;">
+	</center> -->
+
+	<!-- <div class="col-12 ">
+		<h3 class="text-center text-info">
+			<b>ข้อมูลเจ้าหน้าที่</b>
+		</h3>
+		<div class="row">
+			<div class="col-3">
+				<img src="{{ url('storage')}}/{{ $data_sos->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
+			</div>
+			<div class="col-9">
+				ชื่อ : {{ $data_sos->name_helper }}
+				<br>
+				หน่วยงาน : {{ $data_sos->organization_helper }}
+			</div>
+		</div>
+	</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
 
 <style>
 	#map_show_user {
@@ -70,9 +294,33 @@
 	  	background-color: var(--light);
 	  	box-shadow: none;
 	}
+	.div-data-officer{
+		position: relative;
+	}
+	.bordertest {
+		position: absolute;
+    height:300px;
+    width:100%;
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC42NSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome4-9,Safari4-5 */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Opera 11.10-11.50 */
+background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* IE10 preview */
+background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-8 */
 
+
+
+}
 </style>
-
+<br><br><br><br><br><br><br><br>
+<br><br><br><br><b><b>b
+	<br><br>
+</b></b>
+<div class="div-data-officer">
+	<div class="bordertest"></div>
+</div>
 <div class="row notranslate" style="margin-top:150px;">
 
 	<div class="col-12 text-center">
@@ -131,7 +379,7 @@
 		</div>
 	</div>
 
-</div>
+</div> -->
 
 <!-- Button modal -->
 <span id="btn_modal_officer_to_the_scene" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_sos_1669"></span>
@@ -299,7 +547,9 @@
 	            // ระยะทาง
 	            let text_distance = response.routes[0].legs[0].distance.text ;
 	            	// console.log(text_distance);
-	            	document.querySelector('#text_distance').innerHTML = text_distance ;
+					let text_distance_sp = text_distance.split(' ');
+	            	document.querySelector('#text_distance').innerHTML = text_distance_sp[0] ;
+					document.querySelector('#text_distance_km').innerHTML = text_distance_sp[1] ;
 	            // เวลา
 	            let text_duration = response.routes[0].legs[0].duration.text ;
 	            	// console.log(text_duration);
