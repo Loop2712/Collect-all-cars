@@ -129,9 +129,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 	margin: auto;
 	padding: auto;
 }
-</style><link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
-<img class="logo-viichek" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}" />
+</style>
+<img class="logo-viichek" src="{{ asset('/img/logo/logo-viicheck-outline.png') }}" />
 <div id="map_show_user">
 	<div class="sry-open-location">
 		<img src="{{ asset('/img/more/sorry-no-text.png') }}" />
