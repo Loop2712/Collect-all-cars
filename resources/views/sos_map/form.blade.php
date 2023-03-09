@@ -734,11 +734,14 @@
             // console.log(lat);
             // console.log(lng);
             // console.log(latlng);
+        alert('>> ไม่ต้องเข้าอันนั้นอ่ะ <<');
 
         fetch("{{ url('/') }}/api/draw_area_help_center")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
+
+                alert('>> นอก for <<');
 
                 for (let ii = 0; ii < result.length; ii++) {
 
