@@ -33,6 +33,11 @@ class Kernel extends ConsoleKernel
         $schedule->command('cron:set_null_for_gen_codea')->everyMinute()->withoutOverlapping(5);
     }
 
+    protected function schedule_alert_act(Schedule $schedule)
+    { 
+        $schedule->command('cron:alert_act')->everyMinute()->withoutOverlapping(5);
+    }
+
     /**
      * Register the commands for the application.
      *

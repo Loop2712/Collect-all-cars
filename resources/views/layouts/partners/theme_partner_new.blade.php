@@ -454,6 +454,11 @@
 										<i class="fa-regular fa-table-columns"></i> Dashboard
 									</a>
 								</li>
+								<li>
+								  	<button class="btn btn-default" onclick="alet_new_data();">
+									  ทดสอบแจ้งเตือน
+									</button>
+								</li>
 							</ul>
 						</li>
 					@endif
@@ -896,9 +901,9 @@
 					 <div class="user-box dropdown">
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         @if(!empty(Auth::user()->photo))
-                                <img alt="" style="width:50px;"class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ Auth::user()->photo }}" data-original-title="Usuario"> 
+                                <img alt="" style="width:60px;" class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ Auth::user()->photo }}" data-original-title="Usuario"> 
                             @else
-                                <img src="{{ asset('/partner/images/user/avatar-1.jpg') }}" width="25%" class="img-radius" alt="User-Profile-Image">
+                                <img src="{{ asset('/partner/images/user/avatar-1.jpg') }}" style="width:60px;" class="img-radius" alt="User-Profile-Image">
                             @endif
 							<div class="user-info ps-3">
 								<p class="user-name mb-0">{{ Auth::user()->name }}</p>
@@ -1799,10 +1804,107 @@
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                
+                // alet_new_data();
             });
 
 	}
+
+	function alet_new_data() {
+
+        iziToast.show({
+            image: 'https://www.viicheck.com/img/stickerline/PNG/27.png',
+		    imageWidth: 100,
+		    maxWidth: 600,
+            close: true,
+            timeout: 30000,
+            resetOnHover: true,
+            title: 'การขอความช่วยเหลือใหม่ !!',
+            titleColor: 'red',
+		    titleSize: '35',
+            message: '<br><br>การเปลี่ยนแปลง ข้อ : <br>ข้อมูลที่เปลี่ยนแปลง : จาก  เป็น ',
+            position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+            progressBarColor: 'red',
+            buttons: [
+            [
+                '<button>บันทึก</button>',
+                function (instance, toast) {
+                	// 
+                  instance.hide({
+                    transitionOut: 'fadeOutUp'
+                  }, toast);
+                }
+            ],
+            ],onClosed: function asdfa(instance, toast, closedBy){
+                if (closedBy === 'timeout') {
+                	// 
+                }
+               
+            },onOpening: function () {
+                // console.log(pass);
+
+                let audio_alet_new_data = new Audio("{{ asset('sound/เตือน.mp3') }}");
+                    audio_alet_new_data.play();
+            }
+        
+        });
+
+        iziToast.show({
+		    id: null, 
+		    class: '',
+		    title: 'title',
+		    titleColor: 'red',
+		    titleSize: '50',
+		    titleLineHeight: '',
+		    message: 'message',
+		    messageColor: 'dark',
+		    messageSize: '35',
+		    messageLineHeight: '',
+		    backgroundColor: 'green',
+		    theme: 'light', // dark
+		    color: 'blue', // blue, red, green, yellow
+		    icon: '',
+		    iconText: '',
+		    iconColor: '',
+		    iconUrl: null,
+		    image: 'https://www.viicheck.com/img/stickerline/PNG/1.png',
+		    imageWidth: 100,
+		    maxWidth: 500,
+		    zindex: 999,
+		    layout: 1,
+		    balloon: false,
+		    close: true,
+		    closeOnEscape: false,
+		    closeOnClick: false,
+		    displayMode: 0, // once, replace
+		    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+		    target: '',
+		    targetFirst: true,
+		    timeout: 10000,
+		    rtl: false,
+		    animateInside: true,
+		    drag: true,
+		    pauseOnHover: true,
+		    resetOnHover: false,
+		    progressBar: true,
+		    progressBarColor: 'red',
+		    progressBarEasing: 'linear',
+		    overlay: false,
+		    overlayClose: false,
+		    overlayColor: 'rgba(0, 0, 0, 0.6)',
+		    transitionIn: 'fadeInUp',
+		    transitionOut: 'fadeOut',
+		    transitionInMobile: 'fadeInUp',
+		    transitionOutMobile: 'fadeOutDown',
+		    buttons: {},
+		    inputs: {},
+		    onOpening: function () {},
+		    onOpened: function () {},
+		    onClosing: function () {},
+		    onClosed: function () {}
+		});
+
+    }
+        
 
 </script>
 <!-- END SOS 1669 -->
