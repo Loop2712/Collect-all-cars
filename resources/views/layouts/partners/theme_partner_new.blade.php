@@ -1235,19 +1235,23 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+
         // show_menu_bar();
 		check_data_partner();
 		check_submenu();
 
-		// check_sos_alarm();
-	    // check_sos_js100();
-
-	    setInterval(function() {
-	    	// เช็ค SOS
-	       	check_sos_alarm();
-	    	// เช็ค JS100
-	       	// check_sos_js100();
-	    }, 10000);
+		@if(Auth::check() && Auth::user()->organization != 'สพฉ')
+		    setInterval(function() {
+		    	//// เช็ค SOS ทั่วไป ////
+		       	check_sos_alarm();
+		    	//// เช็ค JS100 ////
+		       	// check_sos_js100();
+		    }, 10000);
+		@else
+			setInterval(function() {
+				check_ask_for_help_1669();
+		    }, 5000);
+		@endif
         
     });
 
@@ -1299,36 +1303,38 @@
                 }
         });
 
-        fetch("{{ url('/') }}/api/check_data_partner_premium/" + user_organization)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                
-                if (result.length >= 1) {
-                	document.querySelector('#div_menu_Broadcast').classList.remove('d-none');
-                }else{
-                	document.querySelector('#div_menu_Broadcast').classList.add('d-none');
-                }
+        @if(Auth::check() && Auth::user()->organization != 'สพฉ')
+	        fetch("{{ url('/') }}/api/check_data_partner_premium/" + user_organization)
+	            .then(response => response.json())
+	            .then(result => {
+	                // console.log(result);
+	                
+	                if (result.length >= 1) {
+	                	document.querySelector('#div_menu_Broadcast').classList.remove('d-none');
+	                }else{
+	                	document.querySelector('#div_menu_Broadcast').classList.add('d-none');
+	                }
 
-                if (!result[0]['BC_by_check_in_max'] || result[0]['BC_by_check_in_max'] == '0') {
-                	document.querySelector('#li_menu_Check_in').classList.add('disabled');
-                	document.querySelector('#li_menu_Check_in').href = "";
-					document.querySelector('#tip_check_in').classList.remove("d-none");
-                }
+	                if (!result[0]['BC_by_check_in_max'] || result[0]['BC_by_check_in_max'] == '0') {
+	                	document.querySelector('#li_menu_Check_in').classList.add('disabled');
+	                	document.querySelector('#li_menu_Check_in').href = "";
+						document.querySelector('#tip_check_in').classList.remove("d-none");
+	                }
 
-                if (!result[0]['BC_by_car_max'] || result[0]['BC_by_car_max'] == '0') {
-                	document.querySelector('#li_menu_Car').classList.add('disabled');
-                	document.querySelector('#li_menu_Car').href = "";
-					document.querySelector('#tip_car').classList.remove("d-none");
-                }
+	                if (!result[0]['BC_by_car_max'] || result[0]['BC_by_car_max'] == '0') {
+	                	document.querySelector('#li_menu_Car').classList.add('disabled');
+	                	document.querySelector('#li_menu_Car').href = "";
+						document.querySelector('#tip_car').classList.remove("d-none");
+	                }
 
-                if (!result[0]['BC_by_user_max'] || result[0]['BC_by_user_max'] == '0') {
-                	document.querySelector('#li_menu_User').classList.add('disabled');
-                	document.querySelector('#li_menu_User').href = "";
-					document.querySelector('#tip_user').classList.remove("d-none");
-                }
+	                if (!result[0]['BC_by_user_max'] || result[0]['BC_by_user_max'] == '0') {
+	                	document.querySelector('#li_menu_User').classList.add('disabled');
+	                	document.querySelector('#li_menu_User').href = "";
+						document.querySelector('#tip_user').classList.remove("d-none");
+	                }
 
-        });
+	        });
+	    @endif
             
     }
 
@@ -1779,6 +1785,27 @@
 		}
 	}
 </script>
+
+<!-- SOS 1669 -->
+<script>
+	
+	function check_ask_for_help_1669(){
+		console.log('สพฉ');
+
+		let sub_organization =  '{{ Auth::user()->sub_organization }}' ;
+            console.log(sub_organization);
+
+		fetch("{{ url('/') }}/api/check_ask_for_help_1669/" + sub_organization)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                
+            });
+
+	}
+
+</script>
+<!-- END SOS 1669 -->
 
 
 </body>

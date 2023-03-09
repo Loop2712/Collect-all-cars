@@ -400,6 +400,19 @@ class Sos_help_centerController extends Controller
         return $requestData['sos_help_center_id'] ;
     }
 
+    function check_ask_for_help_1669($sub_organization){
+
+        $data = [] ;
+
+        $check_data = Sos_help_center::where('notify' , $sub_organization)->first();
+        if ($check_data) {
+            return $check_data ;
+        }else{
+            $data[0] = "ไม่มีข้อมูล" ;
+            return $data ;
+        }
+    }
+
     function update_code_sos_1669(Request $request)
     {
         $requestData = $request->all();
