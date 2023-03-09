@@ -78,8 +78,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 	position: absolute;
 	z-index: 99;
 	top: 1%;
-	left: 5%;
-	width: 100px;
+	left: 3%;
+	width: 80px;
 }#text_distance{
 	font-size: 3rem;
 	font-weight: bolder;
