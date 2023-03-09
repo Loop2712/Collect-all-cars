@@ -742,7 +742,11 @@
 
                 for (let ii = 0; ii < result.length; ii++) {
 
+                    console.log(result[ii]['sos_1669_show']);
+
                     if (result[ii]['sos_1669_show'] == 'show') {
+
+                        console.log('>> if 749 <<');
 
                         let arr_lat_lng = JSON.parse(result[ii]['polygon']);
                     
@@ -759,7 +763,7 @@
                             }
                             
                             if ( inside_1669([ lat, lng ], area_arr) ) {
-                                // console.log('You inside area 1669!!');
+                                console.log('You inside area 1669!!');
                                 btn_ask_1669.classList.remove('d-none');
                                 break;
                             }else{
@@ -770,18 +774,24 @@
                         }
                     }else{
 
-                        btn_ask_1669.classList.add('d-none');
+                        console.log('>> else 775 <<');
 
                         let check_user_id = '{{ Auth::user()->id }}' ;
                         let check_role = '{{ Auth::user()->role }}' ;
                         let check_organization = '{{ Auth::user()->organization }}' ;
 
-                        if ( check_user_id == '1' || check_user_id == '64' || check_user_id == '2' ) {
+                        if ( check_user_id == '1' || check_user_id == '64' || check_user_id == '2' ) { // check_user_id == '64' ||
                             btn_ask_1669.classList.remove('d-none');
+                            break;
+                        }else{
+                            btn_ask_1669.classList.add('d-none');
                         }
 
                         if (  check_organization == 'สพฉ' && check_role == 'admin-partner' || check_role == 'partner' ) {
                             btn_ask_1669.classList.remove('d-none');
+                            break;
+                        }else{
+                            btn_ask_1669.classList.add('d-none');
                         }
 
                     }
