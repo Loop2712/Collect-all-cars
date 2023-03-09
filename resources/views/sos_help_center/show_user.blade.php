@@ -86,21 +86,33 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	color: #808080;
 	margin: -5px 0 0 10px;
 }hr{
-	margin:25px 0 25px 10px;
+	margin:15px 0 15px 10px;
 	width: 70px;
 }.box-organization_helper{
 	margin: 0 0 0 10px;
+	width: 100%;
 }.box-organization_helper p{
 	color: #808080;
 	font-size: 1.3rem;
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 90%;
 }.box-data-helper{
 	position: absolute;
 	display: flex;
 	align-items: center;
+	width: 100%;
 	height: 30%;
 	bottom: 0;
+}.box-data-helper div{
+	width: 100%;
 }#text_distance_km{
 	font-size: 1.2em;
+	color: #808080;
+
+}.centered{
+	width: 70px !important;
 }
 </style><link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
@@ -134,7 +146,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 								<img id="img_profile" src="{{ Auth::user()->avatar }}" width="70" height="70" class="rounded-circle" alt="">
 							@endif
 							@if(!empty(Auth::user()->photo))
-								<img id="img_profile" src="{{ url('storage')}}/{{ Auth::user()->photo }}" width="60" height="60" class="rounded-circle" alt="">
+								<img id="img_profile" src="{{ url('storage')}}/{{ Auth::user()->photo }}" width="70" height="70" class="rounded-circle" alt="">
 							@endif
 						<div class="badge-without-number with-wave "></div>
 					</div>
