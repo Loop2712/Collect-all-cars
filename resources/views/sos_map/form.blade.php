@@ -736,7 +736,7 @@
             // console.log(latlng);
             // alert('>> ไม่ต้องเข้าอันนั้นอ่ะ <<');
 
-        fetch("{{ url('/') }}/api/draw_area_help_center" + "/" + "all")
+        fetch("{{ url('/') }}/api/draw_area_help_center/all")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
@@ -749,7 +749,7 @@
 
                     if (result[ii]['sos_1669_show'] == 'show') {
 
-                        alert('>> if 749 ' + result[ii]['sos_1669_show'] + " <<");
+                        // alert('>> if 749 ' + result[ii]['sos_1669_show'] + " <<");
 
                         let arr_lat_lng = JSON.parse(result[ii]['polygon']);
                     
@@ -777,7 +777,7 @@
                         }
                     }else{
 
-                        alert('>> else 775 ' + result[ii]['sos_1669_show'] + " <<");
+                        // alert('>> else 775 ' + result[ii]['sos_1669_show'] + " <<");
 
                         let check_user_id = '{{ Auth::user()->id }}' ;
                         let check_role = '{{ Auth::user()->role }}' ;
