@@ -1824,9 +1824,10 @@
             .then(result => {
                 // console.log(result);
 
-				alet_new_sos_1669(result);
-
 				if (result[0] != "ไม่มีข้อมูล") {
+
+					alet_new_sos_1669(result);
+
 					fetch("{{ url('/') }}/api/update_last_check_ask_for_help_1669/" + result['id'])
 		            .then(response => response.text())
 		            .then(result => {
