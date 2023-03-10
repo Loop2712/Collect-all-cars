@@ -352,12 +352,309 @@
     </div>
 </div>
 
+
 <!-- Button trigger modal -->
-<span id="btn_modal_sos_1669" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_sos_1669">
+<span id="btn_modal_sos_1669" class="btn btn-primary" data-toggle="modal" data-target="#modal_sos_1669">
     ทดสอบ 1669
 </span>
+
+<style>
+    .modal-dialog {
+        border-radius: 10px;
+    }.b-radius-10{
+        border-radius: 15px !important;
+    }body,div , span ,body,h1,h2,h3,h4,h5 ,h6{
+		font-family: 'Kanit', sans-serif !important;
+	}.user-name{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+        font-weight: bold;
+    }#div_data_phone_1669{
+        display: flex;
+        justify-content: center;
+       
+    }.phone-user{
+        border-radius: 15px;
+         background-color: #07375D !important;
+         padding: 5px 18px;
+        color: #fff;
+    }.btn-phone{
+        background-color: #fff;
+        color: #07375D !important;
+        padding: 0 10px ;
+        font-weight: bold;
+    }.add-img{
+		border: 1px solid darkgray;
+		border-radius: 0 20px 0 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}.fill {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden
+    }
+
+    .full_img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    .parent {
+        position: relative;
+        /* define context for absolutly positioned children */
+        /* size set by image in this case */
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .parent img {
+        display: block;
+    }
+
+    .parent:after {
+        content: '';
+        /* :after has to have a content... but you don't want one */
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        background: rgba(0, 0, 0, 0);
+
+        transition: 1s;
+    }
+
+    .parent:hover:after {
+        background: rgba(0, 0, 0, .5);
+    }
+
+    .parent:hover .child {
+        opacity: 1;
+    }
+
+    .child {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        z-index: 5;
+        /* only works when position is defined */
+        /* think of a stack of paper... this element is now 5 higher than the bottom */
+
+        color: white;
+        opacity: 0;
+        transition: .5s;
+    }#input_phone_1669{
+        border-radius: 10px;
+    }
+.div_alert{
+  position: fixed;
+  /* position: absolute; */
+  top: -13%;
+  /* top: 55%; */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Kanit', sans-serif;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+}
+.div_alert i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    max-width: 70px;
+    height: 50px;
+    background-color: #ffddde;
+    border-radius: 50%;
+    color: #ff5757;
+    font-size: 1.5rem;
+    margin-left: 1.5rem;
+
+}
+
+.up-down {
+  animation-name: slideDownAndUp;
+  animation-duration: 2s;
+}
+
+@keyframes slideDownAndUp {
+  0% {
+    transform: translateY(0);
+  }
+  /* Change the percentage here to make it faster */
+  10% {
+    transform: translateY(100px);
+  }
+  /* Change the percentage here to make it stay down for longer */
+  90% {
+    transform: translateY(100px);
+  }
+  /* Keep this at the end */
+ 100% {
+    transform: translateY(0);
+ }
+}
+.alert-child{
+    background-color: #ff5500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 15px;
+    height: 5rem;
+    width: 90%;
+    padding:20px 10px;
+}.text-alert{
+    color: #fff;
+   float: left;
+}
+</style>
+<div id="alert_phone" class=" div_alert " role="alert">
+    <div class="alert-child">
+        <div >
+            <span class="d-block  text-alert font-weight-bold">มีข้อผิดพลาด</span>
+            <span class="d-block  text-alert">โปรดตรวจสอบเบอร์โทรให้ถูกต้อง</span>
+        </div>
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+   
+</div>
 <!-- Modal -->
 <div class="modal fade" id="modal_sos_1669" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="BackdropLabel_modal_sos_1669" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered b-radius-10">
+        <div class="modal-content b-radius-10">
+
+            <a id="go_to_show_user" class="d-none" href="">
+                Go To SHOW USER
+            </a>
+
+            <div id="div_wait_unit" class="d-none">
+                <div class="modal-body">
+                    <div class="col-12 mt-5 d-flex justify-content-center">
+                        <div class="spinner-border" role="status"> 
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <h3 class="text-center text-info mt-5">
+                        <b>เจ้าหน้าที่ได้รับข้อมูลแล้ว</b>
+                    </h3>
+                    <h4 class="text-center mt-2">
+                        กำลังค้นหาหน่วยแพทย์
+                    </h4>
+                    <h5 class="text-center mt-">
+                        โปรดรอสักครู่...
+                    </h5>
+                </div>
+            </div>
+
+            <div id="div_data_ask_for_help" class="">
+                <div class="modal-body text-center">
+                    <div class="col-12">
+                        <div class="text-center h4 user-name">
+                            สวัสดีคุณ {{ $user->name }}
+                        </div>
+                        <div class="text-center h6 mt-3">
+                            โปรดตรวจสอบเบอร์โทรของท่านให้ถูกต้อง 
+                        </div>
+                        <div id="div_data_phone_1669" class="mt-3">
+                            <div class="phone-user">
+                                @if(!empty($user->phone))
+                                <span id="phone_user">{{ $user->phone }}</span>
+                                <input style="width: 60%;" class="text-center d-none"  type="phone" id="input_phone_1669" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="edit_phone_1669();">
+                                <a class="btn-phone btn ml-3" onclick="
+                                document.querySelector('#input_phone_1669').classList.remove('d-none');
+                                document.querySelector('#phone_user').classList.add('d-none'); 
+                                document.querySelector('#input_phone_1669').focus();
+                                ">แก้ไข</a>
+                                @else
+                                 <input style="width: 60%;"  class="form-control text-center"  type="phone" id="input_not_phone_1669" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone_1669();">
+                                @endif
+                            </div>
+                            <!-- <div style="margin-top:10px;">
+                                <b>
+                                    <span style="font-size:22px;color: blue;" id="text_phone_1669">
+                                        @if(!empty($user->phone))
+                                            {{ $user->phone }}
+                                        @endif
+                                    </span>
+                                        @if(!empty($user->phone))
+                                            <i style="font-size:25px;" class="fas fa-edit" onclick="document.querySelector('#input_phone_1669').classList.remove('d-none');"></i>
+                                        @endif
+                                </b>
+                            </div>
+                            
+                            @if(!empty($user->phone))
+                                <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="input_phone_1669" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="edit_phone_1669();">
+                            @endif
+
+                            @if(empty($user->phone))
+                                <input style="margin-top:15px;" class="form-control text-center"  type="phone" id="input_not_phone_1669" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone_1669();">
+                            @endif
+                            <hr> -->
+                        </div>
+                        <label class="col-12 mt-3" style="padding:0px;" for="photo_sos_1669" >
+                            <div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
+                                <div class="form-group p-3"id="add_select_img">
+                                    <input class="form-control d-none" name="photo_sos_1669" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_1669" value="" accept="image/*" onchange="document.getElementById('show_photo_sos_1669').src = window.URL.createObjectURL(this.files[0]);check_add_img();">
+                                    <div  class="text-center">
+                                        <center>
+                                            <img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
+                                        </center>
+                                        <br>
+                                        <h3 class="text-center m-0">
+                                            <b>เพิ่มภาพถ่าย "คลิก"</b> 
+                                        </h3>
+                                    </div>
+                                    
+                                </div>
+                                <img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_sos_1669" />
+                                <div class="child">
+                                    <span>เลือกรูป</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="text-center">
+                    <center>
+                    <span class="mail-shadow btn btn-md btn-block" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;width: 90%;" onclick="send_ask_for_help_1669();">
+                        <div class="d-flex">
+                            <div class="col-3 p-0 d-flex align-items-center">
+                                <div class="justify-content-center col-12 p-0">
+                                    <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center col-9 text-center">
+                                <div class="justify-content-center col-12">
+                                    <b>
+                                        <span class="d-block" style="color: #ffffff;">ขอความช่วยเหลือ</span>
+                                        <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน (1669)</span>
+                                    </b>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                    </center>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="modal fade" id="modal_sos_1669" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="BackdropLabel_modal_sos_1669" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
 
@@ -398,7 +695,7 @@
                 <div class="modal-body text-center">
                     <div class="col-12">
                         <div id="div_data_phone_1669">
-                            <!-- <img width="50%" src="{{ asset('/img/stickerline/PNG/7.png') }}"> -->
+                            <img width="50%" src="{{ asset('/img/stickerline/PNG/7.png') }}">
                             <br>
                             <h3>โปรดยืนยันหมายเลขโทรศัพท์</h3>
 
@@ -471,7 +768,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 
@@ -827,106 +1124,120 @@
     function send_ask_for_help_1669(){
         // console.log('send_ask_for_help_1669');
 
-        let name = document.querySelector("#name");
-        let phone = document.querySelector("#phone");
-        let user_id = document.querySelector("#user_id");
-        let lat = document.querySelector("#lat");
-        let lng = document.querySelector("#lng");
-        // let photo_sos_1669 = document.querySelector("#photo_sos_1669");
+        let phone_1669 = document.querySelector("#input_phone_1669");
+        var phoneno = /^\d{10}$/;
+        if (phone_1669.value.match(phoneno)) {
+            let name = document.querySelector("#name");
+            let phone = document.querySelector("#phone");
+            let user_id = document.querySelector("#user_id");
+            let lat = document.querySelector("#lat");
+            let lng = document.querySelector("#lng");
+            // let photo_sos_1669 = document.querySelector("#photo_sos_1669");
 
-        // --------------- get district ---------------------- //
-        const geocoder = new google.maps.Geocoder();
+            // --------------- get district ---------------------- //
+            const geocoder = new google.maps.Geocoder();
 
-        const latlng = {
-            lat: parseFloat(lat.value),
-            lng: parseFloat(lng.value),
-        };
-        geocoder
-            .geocode({ location: latlng })
-            .then((response) => {
-                // console.log(response);
-                let district_P ;
-                let district_A ;
-                let district_T ;
+            const latlng = {
+                lat: parseFloat(lat.value),
+                lng: parseFloat(lng.value),
+            };
+            geocoder
+                .geocode({ location: latlng })
+                .then((response) => {
+                    // console.log(response);
+                    let district_P ;
+                    let district_A ;
+                    let district_T ;
 
-                //// ถ้าอยากรับอย่างอื่นเข้าไปดูที่ results[0]['address_components']['types'] ////
-                
-                const resultType_P = "administrative_area_level_1";
-                const resultType_A = "administrative_area_level_2";
-                const resultType_T = "locality";
+                    //// ถ้าอยากรับอย่างอื่นเข้าไปดูที่ results[0]['address_components']['types'] ////
+                    
+                    const resultType_P = "administrative_area_level_1";
+                    const resultType_A = "administrative_area_level_2";
+                    const resultType_T = "locality";
 
-                //// รับ จังหวัด อย่างเดียว ////
-                for (const component_p of response.results[0].address_components) {
-                    if (component_p.types.includes(resultType_P)) {
-                        district_P = component_p.long_name;
-                        // console.log(district_P);
-                        break;
+                    //// รับ จังหวัด อย่างเดียว ////
+                    for (const component_p of response.results[0].address_components) {
+                        if (component_p.types.includes(resultType_P)) {
+                            district_P = component_p.long_name;
+                            // console.log(district_P);
+                            break;
+                        }
                     }
-                }
-                //// รับ อำเภอ อย่างเดียว ////
-                for (const component_a of response.results[0].address_components) {
-                    if (component_a.types.includes(resultType_A)) {
-                        district_A = component_a.long_name;
-                        // console.log(district_A);
-                        break;
+                    //// รับ อำเภอ อย่างเดียว ////
+                    for (const component_a of response.results[0].address_components) {
+                        if (component_a.types.includes(resultType_A)) {
+                            district_A = component_a.long_name;
+                            // console.log(district_A);
+                            break;
+                        }
                     }
-                }
-                //// รับ ตำบล อย่างเดียว ////
-                for (const component_t of response.results[0].address_components) {
-                    if (component_t.types.includes(resultType_T)) {
-                        district_T = component_t.long_name;
-                        // console.log(district_T);
-                        break;
+                    //// รับ ตำบล อย่างเดียว ////
+                    for (const component_t of response.results[0].address_components) {
+                        if (component_t.types.includes(resultType_T)) {
+                            district_T = component_t.long_name;
+                            // console.log(district_T);
+                            break;
+                        }
                     }
-                }
 
-                // API UPLOAD IMG //
-                let formData = new FormData();
-                let imageFile = document.getElementById('photo_sos_1669').files[0];
-                    formData.append('image', imageFile);
+                    // API UPLOAD IMG //
+                    let formData = new FormData();
+                    let imageFile = document.getElementById('photo_sos_1669').files[0];
+                        formData.append('image', imageFile);
 
-                let data_sos_1669 = {
-                    "name_user" : name.value,
-                    "phone_user" : phone.value,
-                    "user_id" : user_id.value,
-                    "lat" : lat.value,
-                    "lng" : lng.value,
-                    "changwat" : district_P,
-                    "amphoe" : district_A,
-                    "tambon" : district_T,
-                    "all_address" : response.results[0].formatted_address,
-                }
-                // console.log(data_sos_1669);
+                    let data_sos_1669 = {
+                        "name_user" : name.value,
+                        "phone_user" : phone.value,
+                        "user_id" : user_id.value,
+                        "lat" : lat.value,
+                        "lng" : lng.value,
+                        "changwat" : district_P,
+                        "amphoe" : district_A,
+                        "tambon" : district_T,
+                        "all_address" : response.results[0].formatted_address,
+                    }
+                    // console.log(data_sos_1669);
 
-                formData.append('name_user', data_sos_1669.name_user);
-                formData.append('phone_user', data_sos_1669.phone_user);
-                formData.append('user_id', data_sos_1669.user_id);
-                formData.append('lat', data_sos_1669.lat);
-                formData.append('lng', data_sos_1669.lng);
-                formData.append('changwat', data_sos_1669.changwat);
-                formData.append('amphoe', data_sos_1669.amphoe);
-                formData.append('tambon', data_sos_1669.tambon);
-                formData.append('all_address', data_sos_1669.all_address);
+                    formData.append('name_user', data_sos_1669.name_user);
+                    formData.append('phone_user', data_sos_1669.phone_user);
+                    formData.append('user_id', data_sos_1669.user_id);
+                    formData.append('lat', data_sos_1669.lat);
+                    formData.append('lng', data_sos_1669.lng);
+                    formData.append('changwat', data_sos_1669.changwat);
+                    formData.append('amphoe', data_sos_1669.amphoe);
+                    formData.append('tambon', data_sos_1669.tambon);
+                    formData.append('all_address', data_sos_1669.all_address);
 
-                fetch("{{ url('/') }}/api/create_new_sos_by_user", {
-                    method: 'POST',
-                    body: formData
-                }).then(function (response){
-                    return response.text();
-                }).then(function(data){
-                    // console.log(data);
-                    document.querySelector('#div_data_ask_for_help').classList.add('d-none');
-                    document.querySelector('#div_wait_unit').classList.remove('d-none');
+                    fetch("{{ url('/') }}/api/create_new_sos_by_user", {
+                        method: 'POST',
+                        body: formData
+                    }).then(function (response){
+                        return response.text();
+                    }).then(function(data){
+                        // console.log(data);
+                        document.querySelector('#div_data_ask_for_help').classList.add('d-none');
+                        document.querySelector('#div_wait_unit').classList.remove('d-none');
 
-                    check_unit_cf_sos(data);
+                        check_unit_cf_sos(data);
 
-                }).catch(function(error){
-                    // console.error(error);
-                });
+                    }).catch(function(error){
+                        // console.error(error);
+                    });
 
-            })
-            .catch((e) => window.alert("Geocoder failed due to: " + e));
-        // --------------- end get district ---------------------- //
+                })
+                .catch((e) => window.alert("Geocoder failed due to: " + e));
+            // --------------- end get district ---------------------- //
+        } else {
+
+            document.querySelector('#alert_phone').classList.add('up-down');
+
+            const animated = document.querySelector('.up-down');
+            animated.onanimationend = () => {
+                document.querySelector('#alert_phone').classList.remove('up-down');
+            };
+            
+        }
+        
 
     }
 

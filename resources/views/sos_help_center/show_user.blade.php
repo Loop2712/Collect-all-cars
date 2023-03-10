@@ -275,6 +275,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 	36% {
     stroke-dashoffset: 0;
   }
+}.text-organization{
+	font-size: 1rem !important;
 }
 </style>
 <img class="logo-viichek" src="{{ asset('/img/logo/logo-viicheck-outline.png') }}" />
@@ -314,7 +316,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 					</p> -->
 					<p class="font-weight-bold mb-0 notranslate">{{ $data_sos->name_helper }}</p>
 					<!-- <p class="text-secondary mb-0">online</p> -->
-					<p class="font-weight-bold mb-0 notranslate">{{ $data_sos->organization_helper }}</p>
+					<p class="font-weight-bold mb-0 notranslate text-organization">{{ $data_sos->organization_helper }}</p>
 					
 				</div>
 			</div>

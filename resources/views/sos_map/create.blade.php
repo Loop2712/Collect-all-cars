@@ -40,7 +40,7 @@
                                                     </span>
                                                     <br>
                                                     <input class="form-control d-none" type="text" name="id_of_user" value="{{ Auth::user()->id }}">
-                                                    <input style="margin-top:15px;font-family: 'Kanit', sans-serif;" class="form-control text-center" type="phone" name="input_pls_input_phone" id="input_pls_input_phone" value="" placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="check_input_pls_input_phone();">
+                                                    <input style="margin-top:15px;font-family: 'Kanit', sans-serif;" class="form-control text-center" type="tel" pattern="[0-9]{10}" name="input_pls_input_phone" id="input_pls_input_phone" value="" placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="check_input_pls_input_phone();">
                                                     <hr>
 
                                                     <input id="cf_input_pls_input_phone" style="width:50%;font-family: 'Kanit', sans-serif;" class="btn btn-success d-none" type="submit" value="ยืนยัน">
