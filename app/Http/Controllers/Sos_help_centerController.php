@@ -264,11 +264,11 @@ class Sos_help_centerController extends Controller
     public function create_new_sos_help_center($user_id)
     {
         $time_create_sos = Carbon::now();
-        $data_user = Auth::user();
+        $data_user = User::where('id' , $user_id)->first();
 
         $requestData = [] ;
         $requestData['create_by'] = "admin - " . $user_id;
-        $requestData['notify'] = 'none - ' . $data_user->sub_organization;
+        $requestData['notify'] = 'none - ' . $data_user->sub_organization ;
         $requestData['status'] = 'รับแจ้งเหตุ';
         $requestData['time_create_sos'] = $time_create_sos;
         
@@ -432,7 +432,7 @@ class Sos_help_centerController extends Controller
             ->update([
                     'notify' => "notified - " . $data_sos->notify,
                 ]);
-            
+
         return "Updated successfully" ;
     }
 
