@@ -22,8 +22,22 @@ class test_for_devController extends Controller
 {
     public function main_test()
     {
-        $date_d = date("d");
-        echo $date_d ;
+        $date_now = date("Y-m-d");
+        $date_add_1 = date("Y-m-d", strtotime($date_now . ' +1 day'));
+
+        echo "date_now >> " . $date_now;
+        echo "<br>";
+        echo "date_add_1 >> " . $date_add_1;
+        echo "<br>";
+
+        $data = DB::table('ads_contents')
+                    ->whereDate('created_at', '>=' , $date_now )
+                    ->whereDate('created_at', '<=' , $date_add_1 )
+                    ->get();
+
+        echo "<pre>";
+        print_r($data);
+        echo "<pre>";
         exit();
     }
 

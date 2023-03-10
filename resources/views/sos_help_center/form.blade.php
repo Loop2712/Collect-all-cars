@@ -21,7 +21,8 @@
 	100% {
 		transform: scale(1);
 	}
-}.iziToast > .iziToast-body .iziToast-texts {
+}
+/*.iziToast > .iziToast-body .iziToast-texts {
   margin: 100px 0 0 0;
   padding-right: 2px;
   display: contents !important;
@@ -45,7 +46,7 @@
 .iziToast > .iziToast-body .iziToast-message {
   margin-top: 5px;
   white-space: normal !important;
-}
+}*/
 </style> 
 
 <!-- TEST alet_new_data -->
@@ -1761,7 +1762,7 @@
                     }
                   ],
                   [
-                    '<button class="btn-danger">ไม่บันทึก</button>',
+                    '<button class="btn btn-danger">ไม่บันทึก</button>',
                     function (instance, toast) {
                         dont_save_data(key , value , old);
                         instance.hide({

@@ -742,6 +742,8 @@
         initMap();
 
     });
+    
+    const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
 
     function initMap() {
 
@@ -754,24 +756,47 @@
             zoom: m_numZoom,
         });
 
-        draw_area_help_center() ;
+        @foreach($data_sos as $item)
+            marker = new google.maps.Marker({
+                position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+                map: map,
+                icon: image_sos,
+            });
+        @endforeach
+        
+
+        if ('{{ Auth::user()->organization }}' == 'สพฉ' && '{{ Auth::user()->sub_organization }}' != 'ศูนย์ใหญ่') {
+            draw_area_help_center('{{ Auth::user()->sub_organization }}') ;
+        }else if('{{ Auth::user()->organization }}' == 'สพฉ' && '{{ Auth::user()->sub_organization }}' == 'ศูนย์ใหญ่'){
+            draw_area_help_center('ศูนย์ใหญ่') ;
+        }
 
     }
 
-    function draw_area_help_center(){
+    function draw_area_help_center(type){
 
         let all_lat_lng = [];
 
-        fetch("{{ url('/') }}/api/draw_area_help_center")
+        fetch("{{ url('/') }}/api/draw_area_help_center/" + type)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
+
+                let bounds = new google.maps.LatLngBounds();
 
                 for (let ii = 0; ii < result.length; ii++) {
                     for (let xx = 0; xx < JSON.parse(result[ii]['polygon']).length; xx++) {
+
                         all_lat_lng.push(JSON.parse(result[ii]['polygon'])[xx]);
+
+                        bounds.extend(all_lat_lng[xx]);
                     }
                 }
+
+                if (type != 'ศูนย์ใหญ่') {
+                    map.fitBounds(bounds);
+                }
+
 
                 for (let xi = 0; xi < result.length; xi++) {
 

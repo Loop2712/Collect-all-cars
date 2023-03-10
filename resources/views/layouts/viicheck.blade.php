@@ -1506,7 +1506,7 @@
     fetch("{{ url('/') }}/api/update_user_nationalitie/" + nationality + "/" + user_id)
       .then(response => response.text())
       .then(result => {
-        console.log(result);
+        // console.log(result);
 
         if (result === "OK") {
           document.querySelector('#btn_close_modal_nationalitie').click();

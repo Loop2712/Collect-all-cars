@@ -123,6 +123,23 @@
 
         }
 
+		.bg-color-progressbar {
+		  animation-name: change-color;
+		  animation-duration: 10s;
+		  animation-timing-function: linear;
+		  animation-iteration-count: infinite;
+		  background-color: green;
+		  animation-play-state: running;
+		}
+
+		@keyframes change-color {
+		  0% {background-color: green;}
+		  30% {background-color: yellow;}
+		  50% {background-color: orange;}
+		  70% {background-color: red;}
+		  100% {background-color: green;}
+		}
+
 	</style>
 </head>
 
@@ -451,13 +468,13 @@
 							<ul>
 								<li> 
 									<a href="{{ url('/help_center_admin') }}">
-										<i class="fa-regular fa-table-columns"></i> Dashboard
+										<i class="fa-solid fa-user-headset"></i> ควบคุมและสั่งการ
 									</a>
 								</li>
-								<li>
-								  	<button class="btn btn-default" onclick="alet_new_data();">
-									  ทดสอบแจ้งเตือน
-									</button>
+								<li> 
+									<a href="#">
+										<i class="fa-solid fa-chart-pie"></i> วิเคราะห์ข้อมูล
+									</a>
 								</li>
 							</ul>
 						</li>
@@ -1253,9 +1270,11 @@
 		       	// check_sos_js100();
 		    }, 10000);
 		@else
-			setInterval(function() {
-				check_ask_for_help_1669();
-		    }, 5000);
+			@if(Auth::user()->sub_organization != 'ศูนย์ใหญ่')
+				setInterval(function() {
+					check_ask_for_help_1669();
+			    }, 5000);
+			@endif
 		@endif
         
     });
@@ -1803,105 +1822,166 @@
 		fetch("{{ url('/') }}/api/check_ask_for_help_1669/" + sub_organization)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
-                // alet_new_data();
+                // console.log(result);
+
+				alet_new_sos_1669(result);
+
+				if (result[0] != "ไม่มีข้อมูล") {
+					fetch("{{ url('/') }}/api/update_last_check_ask_for_help_1669/" + result['id'])
+		            .then(response => response.text())
+		            .then(result => {
+		                console.log(result);
+		            });
+				}
             });
 
 	}
 
-	function alet_new_data() {
+	function alet_new_sos_1669(result) {
+
+        // console.log(result);
+		// console.log(result['name_user']);
+        // console.log(result['phone_user']);
+        // console.log(result['photo_sos']);
+
+        let photo_sos ;
+        if (result['photo_sos']) {
+        	photo_sos = "https://www.viicheck.com/storage" + "/" + result['photo_sos'];
+        }else{
+        	photo_sos = "https://www.viicheck.com/img/stickerline/PNG/21.png" ;
+        }
 
         iziToast.show({
-            image: 'https://www.viicheck.com/img/stickerline/PNG/27.png',
-		    imageWidth: 100,
-		    maxWidth: 600,
-            close: true,
-            timeout: 30000,
-            resetOnHover: true,
+            image: photo_sos,
+		    imageWidth: 200,
+		    maxWidth: '50rem',
+            timeout: 10000,
             title: 'การขอความช่วยเหลือใหม่ !!',
             titleColor: 'red',
 		    titleSize: '35',
-            message: '<br><br>การเปลี่ยนแปลง ข้อ : <br>ข้อมูลที่เปลี่ยนแปลง : จาก  เป็น ',
+		    titleLineHeight: '50',
+            message: '<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
+            			'ชื่อผู้ขอความช่วยเหลือ : '+ result['name_user'] +
+            		'</p>'+
+            		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">'+
+            			'เบอร์โทร : '+ result['phone_user'] +
+            		'</p>',
+            messageSize: '20',
+            messageLineHeight: '35',
             position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
             progressBarColor: 'red',
+            // progressBarColor: 'linear-gradient(to right,  rgba(255,5,9,1) 0%,rgba(252,120,5,1) 25%,rgba(255,255,5,1) 50%,rgba(0,255,29,1) 100%)',
+		    progressBarEasing: 'linear',
+            backgroundColor: '#ffffff',
+		    theme: 'light', // dark
             buttons: [
             [
-                '<button>บันทึก</button>',
+                '<span class="h3" style="margin-right:20px;"><button class="btn btn-info text-white"><i class="fa-solid fa-file-spreadsheet"></i> ดูข้อมูล</button></span>',
                 function (instance, toast) {
                 	// 
-                  instance.hide({
-                    transitionOut: 'fadeOutUp'
-                  }, toast);
+                  	instance.hide({
+                    	transitionOut: 'fadeOutUp'
+                  	}, toast);
                 }
             ],
-            ],onClosed: function asdfa(instance, toast, closedBy){
-                if (closedBy === 'timeout') {
-                	// 
-                }
-               
-            },onOpening: function () {
+          	[
+	            '<span class="h3" style="margin-right:20px;"><button class="btn btn-danger"><i class="fa-regular fa-map-location-dot"></i> ดูแผนที่</button></span',
+	            function (instance, toast) {
+	            	// 
+	                instance.hide({
+	                transitionOut: 'fadeOutUp'
+	              }, toast);
+	            }
+	        ],
+          	[
+	            '<span class="h3"><button class="btn btn-success"><i class="fa-solid fa-phone"></i> โทร</button></span',
+	            function (instance, toast) {
+	            	// 
+	                instance.hide({
+	                transitionOut: 'fadeOutUp'
+	              }, toast);
+	            }
+	        ]
+            ],onOpening: function () {
                 // console.log(pass);
+                let tag_progressbar = document.querySelector('.iziToast-progressbar');
+                let divElements = tag_progressbar.querySelectorAll('div');
+					divElements.forEach((div) => {
+						// console.log(div)
+					  	div.classList.add('bg-color-progressbar');
+					});
 
-                let audio_alet_new_data = new Audio("{{ asset('sound/เตือน.mp3') }}");
-                    audio_alet_new_data.play();
+				let iziToast_opened = document.querySelector('.iziToast');
+				let bg_color = tag_progressbar.querySelector('.bg-color-progressbar');
+
+				iziToast_opened.addEventListener('mouseenter', () => {
+				  bg_color.style.animationPlayState = 'paused';
+				});
+
+				iziToast_opened.addEventListener('mouseleave', () => {
+				  bg_color.style.animationPlayState = 'running';
+				});
+
+                let audio_alet_new_sos_1669 = new Audio("{{ asset('sound/Alarm Clock.mp3') }}");
+                    audio_alet_new_sos_1669.play();
             }
         
         });
 
-        iziToast.show({
-		    id: null, 
-		    class: '',
-		    title: 'title',
-		    titleColor: 'red',
-		    titleSize: '50',
-		    titleLineHeight: '',
-		    message: 'message',
-		    messageColor: 'dark',
-		    messageSize: '35',
-		    messageLineHeight: '',
-		    backgroundColor: 'green',
-		    theme: 'light', // dark
-		    color: 'blue', // blue, red, green, yellow
-		    icon: '',
-		    iconText: '',
-		    iconColor: '',
-		    iconUrl: null,
-		    image: 'https://www.viicheck.com/img/stickerline/PNG/1.png',
-		    imageWidth: 100,
-		    maxWidth: 500,
-		    zindex: 999,
-		    layout: 1,
-		    balloon: false,
-		    close: true,
-		    closeOnEscape: false,
-		    closeOnClick: false,
-		    displayMode: 0, // once, replace
-		    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-		    target: '',
-		    targetFirst: true,
-		    timeout: 10000,
-		    rtl: false,
-		    animateInside: true,
-		    drag: true,
-		    pauseOnHover: true,
-		    resetOnHover: false,
-		    progressBar: true,
-		    progressBarColor: 'red',
-		    progressBarEasing: 'linear',
-		    overlay: false,
-		    overlayClose: false,
-		    overlayColor: 'rgba(0, 0, 0, 0.6)',
-		    transitionIn: 'fadeInUp',
-		    transitionOut: 'fadeOut',
-		    transitionInMobile: 'fadeInUp',
-		    transitionOutMobile: 'fadeOutDown',
-		    buttons: {},
-		    inputs: {},
-		    onOpening: function () {},
-		    onOpened: function () {},
-		    onClosing: function () {},
-		    onClosed: function () {}
-		});
+        // iziToast.show({
+		//     id: null, 
+		//     class: '',
+		//     title: 'title',
+		//     titleColor: 'red',
+		//     titleSize: '50',
+		//     titleLineHeight: '',
+		//     message: 'message',
+		//     messageColor: 'dark',
+		//     messageSize: '35',
+		//     messageLineHeight: '',
+		//     backgroundColor: 'green',
+		//     theme: 'light', // dark
+		//     color: 'blue', // blue, red, green, yellow
+		//     icon: '',
+		//     iconText: '',
+		//     iconColor: '',
+		//     iconUrl: null,
+		//     image: 'https://www.viicheck.com/img/stickerline/PNG/1.png',
+		//     imageWidth: 100,
+		//     maxWidth: 500,
+		//     zindex: 999,
+		//     layout: 1,
+		//     balloon: false,
+		//     close: true,
+		//     closeOnEscape: false,
+		//     closeOnClick: false,
+		//     displayMode: 0, // once, replace
+		//     position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+		//     target: '',
+		//     targetFirst: true,
+		//     timeout: 10000,
+		//     rtl: false,
+		//     animateInside: true,
+		//     drag: true,
+		//     pauseOnHover: true,
+		//     resetOnHover: false,
+		//     progressBar: true,
+		//     progressBarColor: 'red',
+		//     progressBarEasing: 'linear',
+		//     overlay: false,
+		//     overlayClose: false,
+		//     overlayColor: 'rgba(0, 0, 0, 0.6)',
+		//     transitionIn: 'fadeInUp',
+		//     transitionOut: 'fadeOut',
+		//     transitionInMobile: 'fadeInUp',
+		//     transitionOutMobile: 'fadeOutDown',
+		//     buttons: {},
+		//     inputs: {},
+		//     onOpening: function () {},
+		//     onOpened: function () {},
+		//     onClosing: function () {},
+		//     onClosed: function () {}
+		// });
 
     }
         

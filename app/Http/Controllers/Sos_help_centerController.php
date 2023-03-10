@@ -229,11 +229,18 @@ class Sos_help_centerController extends Controller
 
     }
 
-    function draw_area_help_center(){
+    function draw_area_help_center($type){
 
-        $polygon_provinces = DB::table('province_ths')
+        if ($type != 'ศูนย์ใหญ่') {
+            $polygon_provinces = DB::table('province_ths')
+                ->where('polygon' , '!=' , null)
+                ->where('province_name' , $type)
+                ->get();
+        }else{
+            $polygon_provinces = DB::table('province_ths')
             ->where('polygon' , '!=' , null)
             ->get();
+        }
 
         return $polygon_provinces ;
     }
@@ -257,10 +264,11 @@ class Sos_help_centerController extends Controller
     public function create_new_sos_help_center($user_id)
     {
         $time_create_sos = Carbon::now();
+        $data_user = Auth::user();
 
         $requestData = [] ;
         $requestData['create_by'] = "admin - " . $user_id;
-        $requestData['notify'] = 'none';
+        $requestData['notify'] = 'none - ' . $data_user->sub_organization;
         $requestData['status'] = 'รับแจ้งเหตุ';
         $requestData['time_create_sos'] = $time_create_sos;
         
@@ -411,6 +419,21 @@ class Sos_help_centerController extends Controller
             $data[0] = "ไม่มีข้อมูล" ;
             return $data ;
         }
+    }
+
+    function update_last_check_ask_for_help_1669($sos_id){
+
+        $data_sos = Sos_help_center::where('id' , $sos_id)->first();
+
+        DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $sos_id],
+                ])
+            ->update([
+                    'notify' => "notified - " . $data_sos->notify,
+                ]);
+            
+        return "Updated successfully" ;
     }
 
     function update_code_sos_1669(Request $request)
