@@ -136,8 +136,7 @@
 		  0% {background-color: green;}
 		  30% {background-color: yellow;}
 		  50% {background-color: orange;}
-		  70% {background-color: red;}
-		  100% {background-color: green;}
+		  100% {background-color: red;}
 		}
 
 	</style>
@@ -474,6 +473,11 @@
 								<li> 
 									<a href="#">
 										<i class="fa-solid fa-chart-pie"></i> วิเคราะห์ข้อมูล
+									</a>
+								</li>
+								<li> 
+									<a href="#" onclick="tetetetfttfg();">
+										<i class="fa-solid fa-chart-pie"></i> new sos 1669
 									</a>
 								</li>
 							</ul>
@@ -1814,10 +1818,10 @@
 <script>
 	
 	function check_ask_for_help_1669(){
-		console.log('สพฉ');
+		// console.log('สพฉ');
 
 		let sub_organization =  '{{ Auth::user()->sub_organization }}' ;
-            console.log(sub_organization);
+            // console.log(sub_organization);
 
 		fetch("{{ url('/') }}/api/check_ask_for_help_1669/" + sub_organization)
             .then(response => response.json())
@@ -1831,7 +1835,7 @@
 					fetch("{{ url('/') }}/api/update_last_check_ask_for_help_1669/" + result['id'])
 		            .then(response => response.text())
 		            .then(result => {
-		                console.log(result);
+		                // console.log(result);
 		            });
 				}
             });
@@ -1879,7 +1883,7 @@
             [
                 '<span class="h3" style="margin-right:20px;"><button class="btn btn-info text-white"><i class="fa-solid fa-file-spreadsheet"></i> ดูข้อมูล</button></span>',
                 function (instance, toast) {
-                	// 
+                	click_tag_a_new_sos1669(result['id']);
                   	instance.hide({
                     	transitionOut: 'fadeOutUp'
                   	}, toast);
@@ -1888,7 +1892,7 @@
           	[
 	            '<span class="h3" style="margin-right:20px;"><button class="btn btn-danger"><i class="fa-regular fa-map-location-dot"></i> ดูแผนที่</button></span',
 	            function (instance, toast) {
-	            	// 
+	            	click_tag_a_go_to_map(result['lat'],result['lng']);
 	                instance.hide({
 	                transitionOut: 'fadeOutUp'
 	              }, toast);
@@ -1897,13 +1901,20 @@
           	[
 	            '<span class="h3"><button class="btn btn-success"><i class="fa-solid fa-phone"></i> โทร</button></span',
 	            function (instance, toast) {
-	            	// 
+	            	click_tag_a_tel_user_1669(result['phone_user'])
 	                instance.hide({
 	                transitionOut: 'fadeOutUp'
 	              }, toast);
 	            }
 	        ]
-            ],onOpening: function () {
+            ],onClosed: function asdfa(instance, toast, closedBy){
+                // if (closedBy === 'timeout') {
+                // 	// 
+                // }
+
+                add_data_new_sos1669_to_div(result);
+               
+            },onOpening: function () {
                 // console.log(pass);
                 let tag_progressbar = document.querySelector('.iziToast-progressbar');
                 let divElements = tag_progressbar.querySelectorAll('div');
@@ -1929,66 +1940,67 @@
         
         });
 
-        // iziToast.show({
-		//     id: null, 
-		//     class: '',
-		//     title: 'title',
-		//     titleColor: 'red',
-		//     titleSize: '50',
-		//     titleLineHeight: '',
-		//     message: 'message',
-		//     messageColor: 'dark',
-		//     messageSize: '35',
-		//     messageLineHeight: '',
-		//     backgroundColor: 'green',
-		//     theme: 'light', // dark
-		//     color: 'blue', // blue, red, green, yellow
-		//     icon: '',
-		//     iconText: '',
-		//     iconColor: '',
-		//     iconUrl: null,
-		//     image: 'https://www.viicheck.com/img/stickerline/PNG/1.png',
-		//     imageWidth: 100,
-		//     maxWidth: 500,
-		//     zindex: 999,
-		//     layout: 1,
-		//     balloon: false,
-		//     close: true,
-		//     closeOnEscape: false,
-		//     closeOnClick: false,
-		//     displayMode: 0, // once, replace
-		//     position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-		//     target: '',
-		//     targetFirst: true,
-		//     timeout: 10000,
-		//     rtl: false,
-		//     animateInside: true,
-		//     drag: true,
-		//     pauseOnHover: true,
-		//     resetOnHover: false,
-		//     progressBar: true,
-		//     progressBarColor: 'red',
-		//     progressBarEasing: 'linear',
-		//     overlay: false,
-		//     overlayClose: false,
-		//     overlayColor: 'rgba(0, 0, 0, 0.6)',
-		//     transitionIn: 'fadeInUp',
-		//     transitionOut: 'fadeOut',
-		//     transitionInMobile: 'fadeInUp',
-		//     transitionOutMobile: 'fadeOutDown',
-		//     buttons: {},
-		//     inputs: {},
-		//     onOpening: function () {},
-		//     onOpened: function () {},
-		//     onClosing: function () {},
-		//     onClosed: function () {}
-		// });
+    }
 
+    function click_tag_a_new_sos1669(id){
+
+    	let tag_a_new_sos1669 = document.querySelector('#tag_a_new_sos1669');
+    		tag_a_new_sos1669.setAttribute('href', '{{ url("/") }}' + "/sos_help_center/" + id + "/edit");
+
+    	tag_a_new_sos1669.click();
+    	
+    }
+
+    function click_tag_a_go_to_map(lat,lng){
+
+    	let lat_text = '@'+lat ;
+
+    	let tag_a_go_to_map = document.querySelector('#tag_a_go_to_map');
+    		tag_a_go_to_map.setAttribute('href', 'https://www.google.co.th/maps/search/'+lat+','+lng+'/'+lat_text+',lng,16z');
+
+    	tag_a_go_to_map.click();
+    }
+
+    function click_tag_a_tel_user_1669(phone){
+    	let tag_a_tel_user_1669 = document.querySelector('#tag_a_tel_user_1669');
+    		tag_a_tel_user_1669.setAttribute('href', 'tel:'+phone);
+
+    	tag_a_tel_user_1669.click();
+    }
+
+    function add_data_new_sos1669_to_div(result){
+
+        let data_help = document.querySelector('#data_help');
+        	data_help.insertAdjacentHTML('afterbegin', '<p>1</p>'); // แทรกบนสุด
+        	// data_help.insertAdjacentHTML('beforeend', '<p>1</p>'); // แทรกล่างสุด
+
+        console.log(data_help);
+
+    }
+
+    function tetetetfttfg(){
+
+    	let result = [] ;
+
+    	result['id'] = "1" ;
+    	result['lat'] = "13.1515" ;
+    	result['lng'] = "100.15153" ;
+    	result['name_user'] = "TNK" ;
+        result['phone_user'] = "0998877661" ;
+        result['photo_sos'] = "" ;
+
+        alet_new_sos_1669(result);
     }
         
 
 </script>
+
+<a id="tag_a_new_sos1669" class="d-none"></a>
+<a id="tag_a_go_to_map" class="d-none" target="bank"></a>
+<a id="tag_a_tel_user_1669" class="d-none"></a>
+
 <!-- END SOS 1669 -->
+
 
 
 </body>
