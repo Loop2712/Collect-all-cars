@@ -746,7 +746,7 @@ class Sos_help_centerController extends Controller
         }
 
         if (!empty($keyword)) {
-            $data_sos = Sos_help_center::where('id', 'LIKE', "%$keyword%")
+            $data_sos = Sos_help_center::where('operating_code', 'LIKE', "%$keyword%")
                 ->orWhere('name_user', 'LIKE', "%$keyword%")
                 ->orWhere('photo_sos', 'LIKE', "%$keyword%")
                 ->orWhere('organization_helper', 'LIKE', "%$keyword%")
