@@ -1018,7 +1018,7 @@
 
 
 <script>
-    document.querySelector('form').addEventListener('keydown', function(event) {
+    document.querySelector('#form_sos_map').addEventListener('keydown', function(event) {
         if (event.keyCode === 13) {
             event.preventDefault();
             return false;

@@ -27,7 +27,7 @@
                                         </button>
                                     </div>
                                     @if(!empty($user))
-                                        <form method="POST" action="{{ url('api/sos_input_input_phone') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                                        <form id="form_sos_map" method="POST" action="{{ url('api/sos_input_input_phone') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                             <div class="modal-body text-center">
                                                 <div>
