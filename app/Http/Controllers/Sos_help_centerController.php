@@ -219,7 +219,7 @@ class Sos_help_centerController extends Controller
                     ->orWhere('name_helper', 'LIKE', "%$keyword%")
                     ->latest()->paginate($perPage);
             } else {
-                $data_sos = Sos_help_center::where('notify', 'LIKE', "%$sub_organization%")->orderBy('created_at' , 'ASC')->paginate($perPage);
+                $data_sos = Sos_help_center::where('notify', 'LIKE', "%$sub_organization%")->orderBy('created_at' , 'DESC')->paginate($perPage);
             }
         }
         
