@@ -62,7 +62,7 @@ class test_for_devController extends Controller
         echo "<br>";
 
         $for_gen_code = DB::table('sos_1669_province_codes')
-            ->where('count_sos', '!=' , null )
+            ->where('for_gen_code', '!=' , null )
             ->get();
 
         foreach ($for_gen_code as $item_2) {
