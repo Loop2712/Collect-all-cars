@@ -1855,7 +1855,7 @@
 				            .then(result => {
 				                // console.log(result);
 				            });
-		            
+
 					}else{
 						add_data_new_sos1669_to_div(result);
 					}
@@ -2206,7 +2206,7 @@
     	let text_html = 
 
 	    	`
-	    	<a class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/' . `+result['id']+` . '/edit') }}">
+	    	<a class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/`+result['id']+`/edit') }}">
                 <div >
                     <div class="card card-sos shadow"  id="text_html_id_`+result['id']+`">
                         <div class="sos-header">
