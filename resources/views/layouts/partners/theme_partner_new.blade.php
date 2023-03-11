@@ -2046,6 +2046,8 @@
             hour: '2-digit', minute: '2-digit' 
         });
 
+        let url_edit = "/sos_help_center/" + result['id'] + "/edit" ;
+
     	let color_be_notified ;
     	if (result['be_notified'] == 'แพลตฟอร์มวีเช็ค') {
     		color_be_notified = 'danger' ;
@@ -2202,7 +2204,7 @@
     	let text_html = 
 
 	    	`
-	    	<a class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/`+result['id']+`/edit') }}">
+	    	<a class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{url('/') }}`+url_edit+`">
                 <div >
                     <div class="card card-sos shadow"  id="text_html_id_`+result['id']+`">
                         <div class="sos-header">
