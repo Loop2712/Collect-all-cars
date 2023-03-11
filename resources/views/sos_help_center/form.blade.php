@@ -100,7 +100,7 @@
                         </div>
                         <div class="col-2">
                             <center>
-                                <button id="span_submit_locations_sos" type="button" class="btn btn-info text-white" style="width: 100%;" onclick="submit_locations_sos();open_map_operating_unit();">
+                                <button id="span_submit_locations_sos" type="button" class="btn btn-info text-white" style="width: 100%;">
                                     <i class="fa-solid fa-circle-check"></i> ยืนยัน
                                 </button>
                             </center>
@@ -1134,8 +1134,6 @@
     let sos_go_to_help_marker  ;
     let officer_go_to_help_marker  ;
 
-    
-
     function initMap() {
 
         let lat = document.querySelector('#lat'); 
@@ -1188,14 +1186,45 @@
 
     function mapMarkLocation(lat , lng , numZoom) {
 
-        let m_lat = parseFloat(lat);
-        let m_lng = parseFloat(lng);
-        let m_numZoom = parseFloat(numZoom);
+        let m_lat ;
+        let m_lng ;
+        let m_numZoom ;
 
-        mapMarkLocation = new google.maps.Map(document.getElementById("mapMarkLocation"), {
-            center: {lat: m_lat, lng: m_lng },
-            zoom: m_numZoom,
-        });
+        if ('{{ Auth::user()->sub_organization }}' != 'ศูนย์ใหญ่') {
+
+            fetch("{{ url('/') }}/api/get_lat_lng_area_sub_organization/" + '{{ Auth::user()->sub_organization }}')
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                    m_lat = parseFloat(result[0]['province_lat']);
+                    m_lng = parseFloat(result[0]['province_lon']);
+                    m_numZoom = parseFloat(result[0]['province_zoom']);
+
+                    mapMarkLocation = new google.maps.Map(document.getElementById("mapMarkLocation"), {
+                        center: {lat: m_lat, lng: m_lng },
+                        zoom: m_numZoom,
+                    });
+
+                    document.querySelector('#location_P').value = '{{ Auth::user()->sub_organization }}';
+                    document.querySelector('#location_P').setAttribute('readonly', 'true');
+                    show_amphoe();
+                });
+
+            
+        }else{
+            m_lat = parseFloat(lat);
+            m_lng = parseFloat(lng);
+            m_numZoom = parseFloat(numZoom);
+
+            mapMarkLocation = new google.maps.Map(document.getElementById("mapMarkLocation"), {
+                center: {lat: m_lat, lng: m_lng },
+                zoom: m_numZoom,
+            });
+        }
+
+
+        
 
         // Create the initial InfoWindow.
         let infoWindow = new google.maps.InfoWindow({
@@ -1528,7 +1557,7 @@
         geocoder
             .geocode({ location: latlng })
             .then((response) => {
-                // console.log(response);
+                console.log(response);
                 
                 let district_P ;
                 let district_A ;
@@ -1538,7 +1567,10 @@
                 
                 const resultType_P = "administrative_area_level_1";
                 const resultType_A = "administrative_area_level_2";
-                const resultType_T = "locality";
+
+                const resultType_T_1 = "locality";
+                const resultType_T_2 = "sublocality";
+                const resultType_T_3 = "sublocality_level_1";
 
                 //// รับ จังหวัด อย่างเดียว ////
                 for (const component_p of response.results[0].address_components) {
@@ -1548,63 +1580,98 @@
                         break;
                     }
                 }
-                //// รับ อำเภอ อย่างเดียว ////
-                for (const component_a of response.results[0].address_components) {
-                    if (component_a.types.includes(resultType_A)) {
-                        district_A = component_a.long_name;
-                        // console.log(district_A);
-                        break;
+
+                ////// เช็คว่าเป็นพื้นที่จังหวัดรับผิดชอบหรือไม่ //////
+                let sub_organization = "{{ Auth::user()->sub_organization }}" ;
+                let name_district_P = district_P.replaceAll(' ','');
+                    name_district_P = name_district_P.replaceAll('จังหวัด','');
+                // console.log(sub_organization);
+                // console.log(name_district_P);
+
+                if (sub_organization != name_district_P && sub_organization != 'ศูนย์ใหญ่') { // ไม่อยู่ในพื้นที่
+                    alert("ขออภัยค่ะ ตำแหน่งที่ท่านเลือก ไม่อยู่ในพื้นที่ของท่านค่ะ");
+                }else{ // อยู่ในพื้นที่
+
+                    //// รับ อำเภอ อย่างเดียว ////
+                    for (const component_a of response.results[0].address_components) {
+                        if (component_a.types.includes(resultType_A)) {
+                            district_A = component_a.long_name;
+                            // console.log(district_A);
+                            break;
+                        }
                     }
-                }
-                //// รับ ตำบล อย่างเดียว ////
-                for (const component_t of response.results[0].address_components) {
-                    if (component_t.types.includes(resultType_T)) {
-                        district_T = component_t.long_name;
-                        // console.log(district_T);
-                        break;
+                    //// รับ ตำบล อย่างเดียว ////
+                    for (const component_t of response.results[0].address_components) {
+                        if (component_t.types.includes(resultType_T_1)) {
+                            district_T = component_t.long_name;
+                            // console.log(district_T);
+                            break;
+                        }
                     }
-                }
+                    // // เช็คว่ามีข้อมูลตำบลหรือไม่ // //
+                    if (!district_T) {
+                        for (const component_t of response.results[0].address_components) {
+                            if (component_t.types.includes(resultType_T_2)) {
+                                district_T = component_t.long_name;
+                                // console.log(district_T);
+                                break;
+                            }
+                        }
+                    }
+                    if (!district_T) {
+                        for (const component_t of response.results[0].address_components) {
+                            if (component_t.types.includes(resultType_T_3)) {
+                                district_T = component_t.long_name;
+                                // console.log(district_T);
+                                break;
+                            }
+                        }
+                    }
 
-                let formData = new FormData();
+                    let formData = new FormData();
 
-                let data_sos_1669 = {
-                    "id" : "{{ $sos_help_center->id }}",
-                    "changwat" : district_P,
-                    "amphoe" : district_A,
-                    "tambon" : district_T,
-                }
-                // console.log(data_sos_1669);
+                    let data_sos_1669 = {
+                        "id" : "{{ $sos_help_center->id }}",
+                        "changwat" : district_P,
+                        "amphoe" : district_A,
+                        "tambon" : district_T,
+                    }
+                    console.log(data_sos_1669);
 
-                formData.append('id', data_sos_1669.id);
-                formData.append('changwat', data_sos_1669.changwat);
-                formData.append('amphoe', data_sos_1669.amphoe);
-                formData.append('tambon', data_sos_1669.tambon);
+                    formData.append('id', data_sos_1669.id);
+                    formData.append('changwat', data_sos_1669.changwat);
+                    formData.append('amphoe', data_sos_1669.amphoe);
+                    formData.append('tambon', data_sos_1669.tambon);
 
-                fetch("{{ url('/') }}/api/update_code_sos_1669", {
-                    method: 'POST',
-                    body: formData
-                }).then(function (response){
-                    return response.text();
-                }).then(function(data){
-                    // console.log(data);
-                    document.querySelector('#text_u_operating_code').innerHTML = data ;
-                    document.querySelector('#text_in_formyellow_operating_code').innerHTML = data ;
-                }).catch(function(error){
-                    // console.error(error);
-                });
+                    fetch("{{ url('/') }}/api/update_code_sos_1669", {
+                        method: 'POST',
+                        body: formData
+                    }).then(function (response){
+                        return response.text();
+                    }).then(function(data){
+                        // console.log(data);
+                        document.querySelector('#text_u_operating_code').innerHTML = data ;
+                        document.querySelector('#text_in_formyellow_operating_code').innerHTML = data ;
+                    }).catch(function(error){
+                        // console.error(error);
+                    });
 
 
-                if (response.results[0]) {
-                    map.setZoom(15);
+                    if (response.results[0]) {
+                        map.setZoom(15);
 
-                    let detail_location_sos = document.querySelector("#detail_location_sos");
-                        detail_location_sos.value = response.results[0].formatted_address;
+                        let detail_location_sos = document.querySelector("#detail_location_sos");
+                            detail_location_sos.value = response.results[0].formatted_address;
 
-                        check_lat_lng();
-                        check_go_to(null);
+                            check_lat_lng();
+                            check_go_to(null);
 
-                } else {
-                    window.alert("No results found");
+                    } else {
+                        window.alert("No results found");
+                    }
+
+                    submit_locations_sos();
+                    open_map_operating_unit();
                 }
             })
             .catch((e) => window.alert("Geocoder failed due to: " + e));

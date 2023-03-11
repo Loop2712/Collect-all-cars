@@ -316,52 +316,82 @@
 
                 <div class="row" id="data_help">
                         @foreach($data_sos as $item)
-                            <a class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}"">
+                            <a class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}">
                                 <div >
                                     <div class="card card-sos shadow">
                                         <div class="sos-header">
                                             <div>
-                                                <h4 class="m-0 p-0 data-overflow">
+                                                @php
+                                                    if($item->form_yellow->be_notified == 'แพลตฟอร์มวีเช็ค'){
+                                                        $color_be_notified = 'danger' ;
+                                                    }else if($item->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙' or $item->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)'){
+                                                        $color_be_notified = 'info text-white' ;
+                                                    }else{
+                                                        $color_be_notified = 'secondary' ;
+                                                    }
+                                                @endphp
+                                                <button style="position:absolute;top: 0px;left: 0px;border-radius: 0px 20px 20px 0px;" class="btn btn-sm btn-{{ $color_be_notified }} main-shadow main-radius">
+                                                    <b>{{ $item->form_yellow->be_notified }}</b>
+                                                </button>
+                                                <br>
+                                                <h4 class="mt-2 m-0 p-0 data-overflow">
                                                     รหัส <b class="text-dark">{{$item->operating_code}}</b>
                                                 </h4>
-                                                <p class="m-0 data-overflow">{{$item->address}}</p>
-                                                <p class="m-0 data-overflow">{{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }}</p>
-                                                <p class="m-0 data-overflow">{{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}</p>
-
+                                                <p class="m-0 data-overflow">
+                                                    {{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }}
+                                                </p>
+                                                <p class="m-0 data-overflow">
+                                                    {{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}
+                                                </p>
                                             </div>
                                             <div>
                                                 @switch($item->status)
                                                     @case('รับแจ้งเหตุ')
-                                                        <button class=" btn-request btn-status">
+                                                        <button class="float-end btn-request btn-status main-shadow main-radius">
                                                             รับแจ้งเหตุ
                                                         </button>
                                                     @break
                                                     @case('รอการยืนยัน')
-                                                        <button class=" btn-order btn-status">
+                                                        <button class="float-end btn-order btn-status main-shadow main-radius">
                                                             สั่งการ
                                                         </button>
                                                     @break
                                                     @case('ออกจากฐาน')
-                                                        <button class="btn-leave btn-status">
+                                                        <button class="float-end btn-leave btn-status main-shadow main-radius">
                                                             ออกจากฐาน
                                                         </button>
                                                     @break
                                                     @case('ถึงที่เกิดเหตุ')
-                                                        <button class="btn-to btn-status">
+                                                        <button class="float-end btn-to btn-status main-shadow main-radius">
                                                             ถึงที่เกิดเหตุ
                                                         </button>
                                                     @break
                                                     @case('ออกจากที่เกิดเหตุ')
-                                                        <button class="btn-leave-the-scene btn-status">
+                                                        <button class="float-end btn-leave-the-scene btn-status main-shadow main-radius">
                                                             ออกจากที่เกิดเหตุ
                                                         </button>
                                                     @break
                                                     @case('เสร็จสิ้น')
-                                                        <button class="btn-hospital btn-status" >
+                                                        <button class="float-end btn-hospital btn-status main-shadow main-radius" >
                                                             เสร็จสิ้น ({{ $item->remark_status }})
                                                         </button>
                                                     @break
                                                 @endswitch
+                                                <br>
+                                                <p class="mt-3 data-overflow">
+                                                    @if(!empty($item->address))
+                                                        @php
+                                                            $address_ex = explode("/",$item->address);
+                                                        @endphp
+                                                        <span class="float-end">
+                                                            {{ $address_ex[0] }}
+                                                            <br>
+                                                            {{ $address_ex[1] }} {{ $address_ex[2] }}
+                                                        </span>
+                                                    @else
+                                                        <span class="float-end">ไม่มีข้อมูล</span>
+                                                    @endif
+                                                </p>
                                             </div>
                                         </div> 
                                         
@@ -372,15 +402,25 @@
                                                 <div class="col-2 m-0 text-center d-flex align-items-center">
                                                     <i class="fa-duotone fa-user"></i>
                                                 </div>
-                                                <div class="col-10 m-0 p-0">
+                                                <div class="col-6 m-0 p-0">
                                                     <p class="p-0 m-0 color-darkgrey data-overflow topic">ผู้ขอความช่วยเหลือ</p>
-                                                    <h6 class="p-0 m-0 color-dark data-overflow">
+                                                    <h5 class="p-0 m-0 color-dark data-overflow">
                                                         @if(!empty($item->name_user))
-                                                            {{ $item->name_user }}
+                                                            <b>{{ $item->name_user }}</b>
                                                         @else
                                                             ไม่ทราบชื่อ
                                                         @endif
-                                                    </h6>
+                                                    </h5>
+                                                </div>
+                                                <div class="col-4 m-0 p-0">
+                                                    <p class="p-0 m-0 color-darkgrey data-overflow topic">เบอร์ติดต่อ</p>
+                                                    <h5 class="p-0 m-0 color-dark data-overflow">
+                                                        @if(!empty($item->phone_user))
+                                                            <b>{{ $item->phone_user }}</b>
+                                                        @else
+                                                            ไม่ได้ระบุ
+                                                        @endif
+                                                    </h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -460,7 +500,7 @@
                                                         @break
                                                     @endswitch
                                                 @else
-                                                    <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 0 20px;">
+                                                    <button class="btn-status-normal btn-status col-6" style="border-width: 0px;border-radius:0 0 0 20px;">
                                                         สถานะการณ์<br>ไม่ได้ระบุ
                                                     </button>
                                                 @endif
@@ -494,7 +534,7 @@
                                                         @break
                                                     @endswitch
                                                 @else
-                                                    <button class="btn-status-normal btn-status col-6" style="border-radius:0 0 20px 0;">
+                                                    <button class="btn-status-normal btn-status col-6" style="border-width: 0px;border-radius:0 0 20px 0;">
                                                         สถานะการณ์<br>ไม่ได้ระบุ
                                                     </button>
                                                 @endif

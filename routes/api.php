@@ -236,6 +236,8 @@ Route::post('/edit_data_officer_Standby', 'Sos_help_centerController@edit_data_o
 Route::post('/update_code_sos_1669', 'Sos_help_centerController@update_code_sos_1669');
 Route::get('/check_ask_for_help_1669/{sub_organization}', 'Sos_help_centerController@check_ask_for_help_1669');
 Route::get('/update_last_check_ask_for_help_1669/{sos_id}', 'Sos_help_centerController@update_last_check_ask_for_help_1669');
+Route::get('/get_lat_lng_area_sub_organization/{name_area}', 'Sos_help_centerController@get_lat_lng_area_sub_organization');
+
     // SOS HELP CENTER FORM USER 
     Route::get('/check_unit_cf_sos_form_user/{sos_id}', 'Sos_help_centerController@check_unit_cf_sos_form_user');
     Route::get('/check_location_officer/{sos_id}', 'Sos_help_centerController@check_location_officer');

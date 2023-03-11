@@ -194,38 +194,46 @@ class Sos_help_centerController extends Controller
 
         
         $data_user = Auth::user();
+        $sub_organization = $data_user->sub_organization;
 
         $count_data = Sos_help_center::count();
-     
-      
 
-        if (!empty($keyword)) {
-            $data_sos = Sos_help_center::where('id', 'LIKE', "%$keyword%")
-                ->orWhere('name_user', 'LIKE', "%$keyword%")
-                ->orWhere('photo_sos', 'LIKE', "%$keyword%")
-                ->orWhere('organization_helper', 'LIKE', "%$keyword%")
-                ->orWhere('name_helper', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $data_sos = Sos_help_center::latest()->paginate($perPage);
+        if ($sub_organization == "ศูนย์ใหญ่") {
+            if (!empty($keyword)) {
+                $data_sos = Sos_help_center::where('id', 'LIKE', "%$keyword%")
+                    ->orWhere('name_user', 'LIKE', "%$keyword%")
+                    ->orWhere('photo_sos', 'LIKE', "%$keyword%")
+                    ->orWhere('organization_helper', 'LIKE', "%$keyword%")
+                    ->orWhere('name_helper', 'LIKE', "%$keyword%")
+                    ->latest()->paginate($perPage);
+            } else {
+                $data_sos = Sos_help_center::latest()->paginate($perPage);
+            }
+        }else{
+             if (!empty($keyword)) {
+                $data_sos = Sos_help_center::where('id', 'LIKE', "%$keyword%")
+                    ->where('notify', 'LIKE', "%$sub_organization%")
+                    ->orWhere('name_user', 'LIKE', "%$keyword%")
+                    ->orWhere('photo_sos', 'LIKE', "%$keyword%")
+                    ->orWhere('organization_helper', 'LIKE', "%$keyword%")
+                    ->orWhere('name_helper', 'LIKE', "%$keyword%")
+                    ->latest()->paginate($perPage);
+            } else {
+                $data_sos = Sos_help_center::where('notify', 'LIKE', "%$sub_organization%")->paginate($perPage);
+            }
         }
         
-        // elseif($needFilter){
-        //     $data_sos = Sos_help_center::Where('id' , $id)
-        //         ->Where('name_user',    'LIKE', '%' .$name.  '%')
-        //     // ->where('name_helper',    'LIKE', '%' .$helper.  '%')
-
-        //         ->where('organization_helper',    'LIKE', '%' .$organization.'%')
-        //     // ->where('name_helper',    'LIKE', '%' .$helper.  '%')
-        //     // ->where('created_at',    'LIKE', '%' .$date. '%')
-        //     // ->whereBetween('created_at', [$time1,$time2])
-
-        //     ->latest()->paginate($perPage);
-        // }
-
-        
-
         return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos' ,'count_data'));
+
+    }
+
+    function get_lat_lng_area_sub_organization($data){
+
+        $polygon_provinces = DB::table('province_ths')
+            ->where('province_name' , $data)
+            ->get();
+
+        return $polygon_provinces ;
 
     }
 
@@ -369,11 +377,20 @@ class Sos_help_centerController extends Controller
             $count_sos_area = $count_sos_area + (int)$old_count_sos ;
             // for gen code
             $old_for_gen_code = $item->for_gen_code ;
-            $count_for_gen_code = $count_for_gen_code + (int)$old_for_gen_code ;
+            // $count_for_gen_code = $count_for_gen_code + (int)$old_for_gen_code ;
         }
 
         $sum_count_sos_area = $count_sos_area + 1 ;
-        $sum_for_gen_code = $count_for_gen_code + 1 ;
+        // $sum_for_gen_code = $count_for_gen_code + 1 ;
+        $sum_for_gen_code = (int)$old_for_gen_code + 1 ;
+
+         DB::table('sos_1669_province_codes')
+            ->where([ 
+                    ['district_code', $province_code],
+                ])
+            ->update([
+                    'for_gen_code' => $sum_for_gen_code,
+                ]);
 
         $id_code = str_pad($sum_for_gen_code, 4, "0", STR_PAD_LEFT);
         $operating_code = $date_Y.$date_m . "-" . $province_code . "-" . $id_code ;
@@ -394,7 +411,7 @@ class Sos_help_centerController extends Controller
             ->first();
 
         $update_count_sos = (int)$data_old_count_sos->count_sos + 1 ;
-        $update_for_gen_code = (int)$data_old_count_sos->for_gen_code + 1 ;
+        // $update_for_gen_code = (int)$data_old_count_sos->for_gen_code + 1 ;
 
         DB::table('sos_1669_province_codes')
             ->where([ 
@@ -402,7 +419,7 @@ class Sos_help_centerController extends Controller
                 ])
             ->update([
                     'count_sos' => $update_count_sos,
-                    'for_gen_code' => $update_for_gen_code,
+                    // 'for_gen_code' => $update_for_gen_code,
                 ]);
 
         return $requestData['sos_help_center_id'] ;
@@ -441,9 +458,37 @@ class Sos_help_centerController extends Controller
         $requestData = $request->all();
 
         $data_sos = Sos_help_center::where('id',$requestData['id'])->first();
+
         $old_operating_code = $data_sos->operating_code ;
         $code_ex = explode("-",$old_operating_code);
         $code_1 = $code_ex[0];
+        $code_2 = $code_ex[1];
+        $code_3 = $code_ex[2];
+
+        //// เคลีย count_sos && for_gen_code // //
+        if ($code_ex[1] != '0000') {
+            $old_address = $data_sos->address ;
+            $old_address_exp = explode("/",$old_address);
+
+            $old_province_codes = DB::table('sos_1669_province_codes')
+                ->where('province_name' , "LIKE"  , "%$old_address_exp[0]%")
+                ->where('district_name' , "LIKE" , "%$old_address_exp[1]%")
+                ->where('sub_district_name' , "LIKE" , "%$old_address_exp[2]%")
+                ->first();
+
+            $old_count_sos = $old_province_codes->count_sos ;
+            $delete_count_sos = (int)$old_count_sos - 1 ;
+
+            DB::table('sos_1669_province_codes')
+                ->where([ 
+                        ['id', $old_province_codes->id],
+                    ])
+                ->update([
+                        'count_sos' => $delete_count_sos,
+                    ]);
+        }
+        
+        //// สร้าง operating_code และ count_sos ใหม่ // //
 
         $changwat_exp = explode("จังหวัด",$requestData['changwat']);
         if ( !empty($changwat_exp[1]) ) {
@@ -490,13 +535,29 @@ class Sos_help_centerController extends Controller
             $count_sos_area = $count_sos_area + (int)$old_count_sos ;
             // for gen code
             $old_for_gen_code = $item->for_gen_code ;
-            $count_for_gen_code = $count_for_gen_code + (int)$old_for_gen_code ;
+            // $count_for_gen_code = $count_for_gen_code + (int)$old_for_gen_code ;
         }
 
         $sum_count_sos_area = $count_sos_area + 1 ;
-        $sum_for_gen_code = $count_for_gen_code + 1 ;
+        // $sum_for_gen_code = $count_for_gen_code + 1 ;
+        
+        // เช็คว่าถ้ายังอยู่ที่อำเภอเดิม เลขรันไม่ต้องเปลี่ยน
+        if ($code_2 == $province_code) {
+            $id_code = $code_3 ;
+            $sum_for_gen_code = (int)$old_for_gen_code ;
+        }else{
+            $sum_for_gen_code = (int)$old_for_gen_code + 1 ;
+            $id_code = str_pad($sum_for_gen_code, 4, "0", STR_PAD_LEFT);
+        }
 
-        $id_code = str_pad($sum_for_gen_code, 4, "0", STR_PAD_LEFT);
+        DB::table('sos_1669_province_codes')
+            ->where([ 
+                    ['district_code', $province_code],
+                ])
+            ->update([
+                    'for_gen_code' => $sum_for_gen_code,
+                ]);
+
         $operating_code = $code_1 . "-" . $province_code . "-" . $id_code ;
         // จบรหัส
 
@@ -524,7 +585,7 @@ class Sos_help_centerController extends Controller
                 ])
             ->update([
                     'count_sos' => $update_count_sos,
-                    'for_gen_code' => $update_for_gen_code,
+                    // 'for_gen_code' => $update_for_gen_code,
                 ]);
 
         return $operating_code ;

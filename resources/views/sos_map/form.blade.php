@@ -1153,7 +1153,10 @@
                     
                     const resultType_P = "administrative_area_level_1";
                     const resultType_A = "administrative_area_level_2";
-                    const resultType_T = "locality";
+
+                    const resultType_T_1 = "locality";
+                    const resultType_T_2 = "sublocality";
+                    const resultType_T_3 = "sublocality_level_1";
 
                     //// รับ จังหวัด อย่างเดียว ////
                     for (const component_p of response.results[0].address_components) {
@@ -1173,10 +1176,29 @@
                     }
                     //// รับ ตำบล อย่างเดียว ////
                     for (const component_t of response.results[0].address_components) {
-                        if (component_t.types.includes(resultType_T)) {
+                        if (component_t.types.includes(resultType_T_1)) {
                             district_T = component_t.long_name;
                             // console.log(district_T);
                             break;
+                        }
+                    }
+                    // // เช็คว่ามีข้อมูลตำบลหรือไม่ // //
+                    if (!district_T) {
+                        for (const component_t of response.results[0].address_components) {
+                            if (component_t.types.includes(resultType_T_2)) {
+                                district_T = component_t.long_name;
+                                // console.log(district_T);
+                                break;
+                            }
+                        }
+                    }
+                    if (!district_T) {
+                        for (const component_t of response.results[0].address_components) {
+                            if (component_t.types.includes(resultType_T_3)) {
+                                district_T = component_t.long_name;
+                                // console.log(district_T);
+                                break;
+                            }
                         }
                     }
 
