@@ -1018,16 +1018,13 @@
 
 
 <script>
-    document.querySelector('#form_sos_map').addEventListener('keydown', function(event) {
-        if (event.keyCode === 13) {
+    // Add an event listener for when the user presses a key
+    document.addEventListener("keydown", function(event) {
+        // If the key pressed was Enter
+        if (event.key === "Enter") {
+            // Prevent the default form submission behavior
             event.preventDefault();
-            return false;
         }
-
-        // if (event.key === "Enter") {
-        //     // Prevent the default form submission behavior
-        //     event.preventDefault();
-        // }
     });
 </script>
 
