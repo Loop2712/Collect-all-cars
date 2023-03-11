@@ -432,7 +432,9 @@ class Sos_help_centerController extends Controller
         if($sub_organization != 'ศูนย์ใหญ่'){
             $check_data = Sos_help_center::where('notify' , $sub_organization)->first();
         }else{
-            $check_data = Sos_help_center::where('notify' , '!=' , null)->first();
+            $check_data = Sos_help_center::where('notify', 'not like', '%notified%')
+                              ->orWhere('notify', 'not like', '%none%')
+                              ->first();
         }
 
         if ($check_data) {
