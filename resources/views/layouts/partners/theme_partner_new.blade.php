@@ -1991,6 +1991,10 @@
 
         alet_new_sos_1669(result);
     }
+
+    function gen_html_div_data_sos(){
+    	// 
+    }
         
 
 </script>

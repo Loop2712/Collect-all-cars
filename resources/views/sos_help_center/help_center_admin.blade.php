@@ -986,7 +986,8 @@
                         }
 
                         //--------------------สถานะของแต่ละเคสยังไม่ได้ทำนะจ๊ะ--------------------//
-
+                        //let div_data_help_center = gen_html_div_data_sos();
+                        
                         let div_data_help_center = 
                         
                         `

@@ -46,8 +46,6 @@
     </div>
 
     <input type="text" id="condo_id" name="condo_id" value="{{ $condo_id }}">
-    
-
 
     <div class="form-group"> 
         <input class="btn btn-primary" id="btn_submit" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
@@ -1018,6 +1016,21 @@
 
 </script>
 
+
+<script>
+    document.querySelector('form').addEventListener('keydown', function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            return false;
+        }
+
+        // if (event.key === "Enter") {
+        //     // Prevent the default form submission behavior
+        //     event.preventDefault();
+        // }
+    });
+</script>
+
 <!-- //// SOS 1669 //// -->
 <script>
 
@@ -1324,3 +1337,4 @@
     
 </script>
 <!-- //// SOS 1669 //// -->
+
