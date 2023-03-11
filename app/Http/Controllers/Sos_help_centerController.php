@@ -723,7 +723,7 @@ class Sos_help_centerController extends Controller
         $data = DB::table('sos_help_centers');
         
         if ($id) {
-            $data->where('id', $id);
+            $data->where('operating_code', "%$id%");
             $keyword = null;
         }if ($name) {
             $data->where('name_user','LIKE', "%$name%");
