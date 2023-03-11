@@ -431,6 +431,14 @@ class Sos_help_centerController extends Controller
 
         $check_data = Sos_help_center::where('notify' , $sub_organization)->first();
         if ($check_data) {
+
+            $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id',$check_data->id)->first();
+
+            $check_data->be_notified = $data_form_yellow->be_notified;
+            $check_data->idc = $data_form_yellow->idc;
+            $check_data->rc = $data_form_yellow->rc;
+            $check_data->rc_black_text = $data_form_yellow->rc_black_text;
+
             return $check_data ;
         }else{
             $data[0] = "ไม่มีข้อมูล" ;
@@ -746,12 +754,28 @@ class Sos_help_centerController extends Controller
         }
 
         if (!empty($keyword)) {
-            $data_sos = Sos_help_center::where('operating_code', 'LIKE', "%$keyword%")
-                ->orWhere('name_user', 'LIKE', "%$keyword%")
-                ->orWhere('photo_sos', 'LIKE', "%$keyword%")
-                ->orWhere('organization_helper', 'LIKE', "%$keyword%")
-                ->orWhere('name_helper', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+            
+            /////////////////////////////////////
+            //// ---------- อันเดิม ---------- ////
+            ////////////////////////////////////
+            // $data_sos = Sos_help_center::where('operating_code', 'LIKE', "%$keyword%")
+            //     ->orWhere('name_user', 'LIKE', "%$keyword%")
+            //     ->orWhere('photo_sos', 'LIKE', "%$keyword%")
+            //     ->orWhere('organization_helper', 'LIKE', "%$keyword%")
+            //     ->orWhere('name_helper', 'LIKE', "%$keyword%")
+            //     ->latest()->paginate($perPage);
+
+            $data_sos = DB::table('sos_help_centers')
+                ->join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+                ->select('sos_help_centers.*', 'sos_1669_form_yellows.be_notified', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text')
+                ->where(function($query) use ($keyword) {
+                    $query->where('sos_help_centers.operating_code', 'like', "%$keyword%")
+                          ->orWhere('sos_help_centers.name_user', 'like', "%$keyword%")
+                          ->orWhere('sos_help_centers.organization_helper', 'like', "%$keyword%")
+                          ->orWhere('sos_help_centers.name_helper', 'like', "%$keyword%");
+                })
+                ->get();
+
         }
         else {
             $data_sos = $data->latest()->paginate($perPage);

@@ -139,6 +139,25 @@
 		  100% {background-color: red;}
 		}
 
+		.border-color-change-color {
+		  animation-name: change-color-border;
+		  animation-duration: 10s;
+		  animation-timing-function: linear;
+		  animation-iteration-count: infinite;
+		  border-width: 2px;
+		  border-style: solid;
+		  border-radius: 20px;
+		  border-color: green;
+		  animation-play-state: running;
+		}
+
+		@keyframes change-color-border {
+		  0% {border-color: green;}
+		  30% {border-color: yellow;}
+		  50% {border-color: orange;}
+		  100% {border-color: red;}
+		}
+
 	</style>
 </head>
 
@@ -1971,10 +1990,20 @@
     function add_data_new_sos1669_to_div(result){
 
         let data_help = document.querySelector('#data_help');
-        	data_help.insertAdjacentHTML('afterbegin', '<p>1</p>'); // แทรกบนสุด
-        	// data_help.insertAdjacentHTML('beforeend', '<p>1</p>'); // แทรกล่างสุด
 
-        console.log(data_help);
+        let text_html = gen_html_div_data_sos_1669(result);
+
+        data_help.insertAdjacentHTML('afterbegin', text_html); // แทรกบนสุด
+        // data_help.insertAdjacentHTML('beforeend', '<p>1</p>'); // แทรกล่างสุด
+
+        let div_text_html = document.querySelector('#text_html_id_'+result['id']);
+			div_text_html.classList.add('border-color-change-color');
+
+	        setTimeout(function() {
+	            div_text_html.classList.remove('border-color-change-color');
+	        }, 10000);
+
+        console.log(div_text_html);
 
     }
 
@@ -1985,15 +2014,295 @@
     	result['id'] = "1" ;
     	result['lat'] = "13.1515" ;
     	result['lng'] = "100.15153" ;
-    	result['name_user'] = "TNK" ;
+    	result['name_user'] = "BBENZ" ;
         result['phone_user'] = "0998877661" ;
         result['photo_sos'] = "" ;
+        result['be_notified'] = 'แพลตฟอร์มวีเช็ค' ;
+        result['operating_code'] = '1234' ;
+        result['created_at'] = '2023-03-11T14:16:51.000000Z' ;
+        result['status'] = 'รับแจ้งเหตุ' ;
+        result['remark_status'] = 'ถึง รพ.' ;
+        result['address'] = 'พระนครศรีอยุธยา/พระนครศรีอยุธยา/คลองสวนพลู' ;
+        result['organization_helper'] = 'วีเช็ค' ;
+        result['name_helper'] = 'จิตใจดี ชอบช่วยเหลือ' ;
+        result['idc'] = 'เขียว(ไม่รุนแรง)' ;
+        result['rc'] = 'ดำ(รับบริการสาธารณสุขอื่น)' ;
+        result['rc_black_text'] = 'เมารถ' ;
 
         alet_new_sos_1669(result);
     }
 
-    function gen_html_div_data_sos(){
-    	// 
+    function gen_html_div_data_sos_1669(result){
+
+    	// วันที่
+    	const date = new Date(result['created_at'])
+        
+        const date_created = date.toLocaleDateString('th-TH', {
+            weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' 
+        });
+
+        // เวลา
+        const time_created = date.toLocaleTimeString('th-TH', {
+            hour: '2-digit', minute: '2-digit' 
+        });
+
+    	let color_be_notified ;
+    	if (result['be_notified'] == 'แพลตฟอร์มวีเช็ค') {
+    		color_be_notified = 'danger' ;
+    	}else if(result['be_notified'] == 'โทรศัพท์หมายเลข ๑๖๖๙' || result['be_notified'] == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)'){
+    		color_be_notified = 'info text-white' ;
+    	}else{
+    		color_be_notified = 'secondary' ;
+    	}
+
+    	let html_status ;
+    	switch(result['status']) {
+			case 'รับแจ้งเหตุ':
+			    html_status = 	'<button class="float-end btn-request btn-status main-shadow main-radius">'+
+				                    'รับแจ้งเหตุ'+
+				                '</button>';
+			break;
+			case 'รอการยืนยัน':
+			    html_status = 	'<button class="float-end btn-order btn-status main-shadow main-radius">'+
+				                    'สั่งการ'+
+				                '</button>';
+		    break;
+		    case 'ออกจากฐาน':
+			    html_status = 	'<button class="float-end btn-leave btn-status main-shadow main-radius">'+
+				                    'ออกจากฐาน'+
+				                '</button>';
+		    break;
+		    case 'ถึงที่เกิดเหตุ':
+			    html_status = 	'<button class="float-end btn-to btn-status main-shadow main-radius">'+
+				                    'ถึงที่เกิดเหตุ'+
+				                '</button>';
+		    break;
+		    case 'ออกจากที่เกิดเหตุ':
+			    html_status = 	'<button class="float-end btn-leave-the-scene btn-status main-shadow main-radius">'+
+				                    'ออกจากที่เกิดเหตุ'+
+				                '</button>';
+		    break;
+		    case 'เสร็จสิ้น':
+			    html_status = 	'<button class="float-end btn-hospital btn-status main-shadow main-radius">'+
+				                    'เสร็จสิ้น ('+result['remark_status']+')'+
+				                '</button>';
+		    break;
+		}
+
+		let html_address ;
+
+		if (result['address']) {
+            let address_ex = result['address'].split("/");
+            html_address = 	'<span class="float-end">'+
+				                address_ex[0] +
+				                '<br>'+
+				                address_ex[1] + ' ' + address_ex[2] +
+				            '</span>' ;
+    	}else{
+    		html_address = '<span class="float-end">ไม่มีข้อมูล</span>' ;
+    	}
+
+    	let name_user ;
+    	if (result['name_user']) {
+    		name_user = result['name_user'] ;
+    	}else{
+    		name_user = 'ไม่ทราบชื่อ' ;
+    	}
+
+    	let phone_user ;
+    	if (result['phone_user']) {
+    		phone_user = result['phone_user'] ;
+    	}else{
+    		phone_user = 'ไม่ได้ระบุ' ;
+    	}
+
+    	let organization_helper ;
+    	if (result['organization_helper']) {
+    		organization_helper = result['organization_helper'] ;
+    	}else{
+    		organization_helper = 'ไม่ทราบหน่วยงาน' ;
+    	}
+
+    	let name_helper ;
+    	if (result['name_helper']) {
+    		name_helper = result['name_helper'] ;
+    	}else{
+    		name_helper = 'ไม่ทราบชื่อ' ;
+    	}
+
+    	let html_idc ;
+    	switch(result['idc']) {
+			case 'แดง(วิกฤติ)':
+			    html_idc = 	'<button class="btn-status-crisis btn-status col-6" style="border-radius:0 0 0 20px;">'+
+			                        'สถานะการณ์<br>(วิกฤติ)'+
+			                    '</button>' ;
+			break;
+			case 'ขาว(ทั่วไป)':
+			    html_idc = 	'<button class="btn-status-normal btn-status col-6" style="border-radius:0 0 0 20px;">'+
+			                        'สถานะการณ์<br>(ทั่วไป)'+
+			                    '</button>' ;
+			break;
+			case 'เหลือง(เร่งด่วน)':
+			    html_idc = 	'<button class="btn-status-hurry btn-status col-6" style="border-radius:0 0 0 20px;">'+
+			                        'สถานะการณ์<br>(เร่งด่วน)'+
+			                    '</button>' ;
+			break;
+			case 'ดำ(รับบริการสาธารณสุขอื่น)':
+			    html_idc = 	'<button class="btn-status-other btn-status col-6" style="border-radius:0 0 0 20px;">'+
+			                        'สถานะการณ์<br>(รับบริการอื่นๆ)'+
+			                    '</button>' ;
+			break;
+			case 'เขียว(ไม่รุนแรง)':
+			    html_idc = 	'<button class="btn-status-weak btn-status col-6" style="border-radius:0 0 0 20px;">'+
+			                        'สถานะการณ์<br>(ไม่รุนแรง)'+
+			                    '</button>' ;
+			break;
+
+			default:
+				html_idc =	'<button class="btn-status-normal btn-status col-6" style="border-width: 0px;border-radius:0 0 0 20px;">'+
+				               'สถานะการณ์<br>ไม่ได้ระบุ'+
+				            '</button>' ;
+		}
+
+		let html_rc ;
+    	switch(result['rc']) {
+			case 'แดง(วิกฤติ)':
+			    html_rc = 	'<button class="btn-status-crisis btn-status col-6" style="border-radius:0 0 20px 0;">'+
+		                        'สถานะการณ์<br>(วิกฤติ)'+
+		                    '</button>' ;
+			break;
+			case 'ขาว(ทั่วไป)':
+			    html_rc = 	'<button class="btn-status-normal btn-status col-6" style="border-radius:0 0 20px 0;">'+
+		                        'สถานะการณ์<br>(ทั่วไป)'+
+		                    '</button>' ;
+			break;
+			case 'เหลือง(เร่งด่วน)':
+			    html_rc = 	'<button class="btn-status-hurry btn-status col-6" style="border-radius:0 0 20px 0;">'+
+		                        'สถานะการณ์<br>(เร่งด่วน)'+
+		                    '</button>' ;
+			break;
+			case 'ดำ(รับบริการสาธารณสุขอื่น)':
+			    html_rc = 	'<button class="btn-status-other btn-status col-6" style="border-radius:0 0 20px 0;">'+
+		                        'สถานะการณ์<br>('+result['rc_black_text']+')'+
+		                    '</button>' ;
+			break;
+			case 'เขียว(ไม่รุนแรง)':
+			    html_rc = 	'<button class="btn-status-weak btn-status col-6" style="border-radius:0 0 20px 0;">'+
+		                        'สถานะการณ์<br>(ไม่รุนแรง)'+
+		                    '</button>' ;
+			break;
+
+			default:
+				html_rc =	'<button class="btn-status-normal btn-status col-6" style="border-width: 0px;border-radius:0 0 20px 0;">'+
+				                'สถานะการณ์<br>ไม่ได้ระบุ'+
+				            '</button>' ;
+		}
+
+        
+    	let text_html = 
+
+	    	`
+	    	<a class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/' . `+result['id']+` . '/edit') }}">
+                <div >
+                    <div class="card card-sos shadow"  id="text_html_id_`+result['id']+`">
+                        <div class="sos-header">
+                            <div>
+                                <button style="position:absolute;top: 0px;left: 0px;border-radius: 0px 20px 20px 0px;" class="btn btn-sm btn-`+color_be_notified+` main-shadow main-radius">
+                                    <b>`+result['be_notified']+`</b>
+                                </button>
+                                <br>
+                                <h4 class="mt-2 m-0 p-0 data-overflow">
+                                    รหัส <b class="text-dark">`+result['operating_code']+`</b>
+                                </h4>
+                                <p class="m-0 data-overflow">
+                                    {{ thaidate("วันlที่ j M Y" , strtotime(`+date_created+`)) }}
+                                </p>
+                                <p class="m-0 data-overflow">
+                                    {{ thaidate("เวลา H:i" , strtotime(`+time_created+`)) }}
+                                </p>
+                            </div>
+                            <div>
+                                `+html_status+`
+                                <br>
+                                <p class="mt-3 data-overflow">
+                                    `+html_address+`
+                                </p>
+                            </div>
+                        </div> 
+                        
+                        <hr>
+
+                        <div class="sos-username">
+                            <div class="row">
+                                <div class="col-2 m-0 text-center d-flex align-items-center">
+                                    <i class="fa-duotone fa-user"></i>
+                                </div>
+                                <div class="col-6 m-0 p-0">
+                                    <p class="p-0 m-0 color-darkgrey data-overflow topic">ผู้ขอความช่วยเหลือ</p>
+                                    <h5 class="p-0 m-0 color-dark data-overflow">
+                                        <b>`+name_user+`</b>
+                                    </h5>
+                                </div>
+                                <div class="col-4 m-0 p-0">
+                                    <p class="p-0 m-0 color-darkgrey data-overflow topic">เบอร์ติดต่อ</p>
+                                    <h5 class="p-0 m-0 color-dark data-overflow">
+                                        <b>`+phone_user+`</b>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="p-0 m-0" style="margin-bottom:0 ;">
+
+                        <div class="sos-helper">
+                            <div class="row">
+                                <div class="col-6 p-0 helper helper-border">
+                                    <div class="row">
+                                        <div class="col-4 text-center d-flex align-items-center icon-organization">
+                                            <i class="fa-duotone fa-sitemap"></i>
+                                        </div>
+                                        <div class="col-8 m-0  pt-2 "style="padding-left:5px">
+                                            <p class="p-0 m-0 color-darkgrey data-overflow topic">หน่วยงาน</p>
+                                            <h6 class="p-0 m-0 color-dark data-overflow">
+                                                `+organization_helper+`
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 p-0 helper">
+                                    <div class="row">
+                                        <div class="col-4 text-center d-flex align-items-center icon-organization">
+                                            <i class="fa-duotone fa-user-police"></i>
+                                        </div>
+                                        <div class="col-8 m-0 p-0 pt-2" >
+                                            <p class="p-0 m-0 color-darkgrey data-overflow topic">เจ้าหน้าที่</p>
+                                            <h6 class="p-0 m-0 color-dark data-overflow">
+                                                `+name_helper+`
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="p-0 m-0" style="margin-bottom:0 ;">
+
+                        <div class="sos-helper m-0 p-0">
+                            <div class="row m-0 p-0">
+                                <!-- IDC -->
+                                `+html_idc+`
+                                <!-- RC -->
+                                `+html_rc+`
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </a>
+
+	    	`;
+
+	    return text_html ;
     }
         
 

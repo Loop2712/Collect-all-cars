@@ -699,6 +699,81 @@
     </div>
 </div>
 
+<style>
+    .div_alert{
+  position: fixed;
+  /* position: absolute; */
+  top: -13%;
+  /* top: 55%; */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Kanit', sans-serif;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+}
+.div_alert i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    max-width: 70px;
+    height: 50px;
+    background-color: #ffddde;
+    border-radius: 50%;
+    color: #ff5757;
+    font-size: 1.5rem;
+    margin-left: 1.5rem;
+
+}
+
+.up-down {
+  animation-name: slideDownAndUp;
+  animation-duration: 5s;
+}
+
+@keyframes slideDownAndUp {
+  0% {
+    transform: translateY(0);
+  }
+  /* Change the percentage here to make it faster */
+  10% {
+    transform: translateY(125px);
+  }
+  /* Change the percentage here to make it stay down for longer */
+  90% {
+    transform: translateY(150px);
+  }
+  /* Keep this at the end */
+ 100% {
+    transform: translateY(0);
+ }
+}
+.alert-child{
+    background-color: #ff5500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 15px;
+    height: 5rem;
+    width: 50%;
+    padding:20px 10px;
+}.text-alert{
+    color: #fff;
+   float: left;
+}
+</style>
+<div id="alert_phone" class=" div_alert " role="alert">
+    <div class="alert-child">
+        <div >
+            <h4 class="d-block  text-alert">ขออภัยค่ะ ตำแหน่งที่ท่านเลือก ไม่อยู่ในพื้นที่ของท่านค่ะ</h4>
+        </div>
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+   
+</div>
+
 <!-- ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ - ห้ามลบ - ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ -->
 <div class="item sos-map bg-white d-none">
 
@@ -1192,26 +1267,10 @@
 
         if ('{{ Auth::user()->sub_organization }}' != 'ศูนย์ใหญ่') {
 
-            fetch("{{ url('/') }}/api/get_lat_lng_area_sub_organization/" + '{{ Auth::user()->sub_organization }}')
-                .then(response => response.json())
-                .then(result => {
-                    // console.log(result);
-
-                    m_lat = parseFloat(result[0]['province_lat']);
-                    m_lng = parseFloat(result[0]['province_lon']);
-                    m_numZoom = parseFloat(result[0]['province_zoom']);
-
-                    mapMarkLocation = new google.maps.Map(document.getElementById("mapMarkLocation"), {
-                        center: {lat: m_lat, lng: m_lng },
-                        zoom: m_numZoom,
-                    });
-
-                    document.querySelector('#location_P').value = '{{ Auth::user()->sub_organization }}';
-                    document.querySelector('#location_P').setAttribute('readonly', 'true');
-                    document.querySelector('#location_P').setAttribute('disabled', 'true');
-                    show_amphoe();
-                });
-
+            document.querySelector('#location_P').value = '{{ Auth::user()->sub_organization }}';
+            document.querySelector('#location_P').setAttribute('readonly', 'true');
+            document.querySelector('#location_P').setAttribute('disabled', 'true');
+            show_amphoe();
             
         }else{
             m_lat = parseFloat(lat);
@@ -1590,7 +1649,13 @@
                 // console.log(name_district_P);
 
                 if (sub_organization != name_district_P && sub_organization != 'ศูนย์ใหญ่') { // ไม่อยู่ในพื้นที่
-                    alert("ขออภัยค่ะ ตำแหน่งที่ท่านเลือก ไม่อยู่ในพื้นที่ของท่านค่ะ");
+                    
+                    document.querySelector('#alert_phone').classList.add('up-down');
+                    const animated = document.querySelector('.up-down');
+                    animated.onanimationend = () => {
+                        document.querySelector('#alert_phone').classList.remove('up-down');
+                    };
+
                 }else{ // อยู่ในพื้นที่
 
                     //// รับ อำเภอ อย่างเดียว ////

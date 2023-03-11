@@ -904,7 +904,19 @@
 
 </script>
 <script>
+
+    let delayTimer; // Global variable to store the delay timer
+
     function search_data_help(){
+        // Clear any pending delay timer
+        clearTimeout(delayTimer);
+        
+        // Start a new delay timer of 2 seconds before executing data_help_center()
+        delayTimer = setTimeout(delay_2_seconds, 1500);
+    }
+
+    function delay_2_seconds(){
+        // search_data_help
         let data_id = document.querySelector('#id').value;
         let data_name = document.querySelector('#name').value;
         let data_helper = document.querySelector('#helper').value;
@@ -913,8 +925,6 @@
         let data_time1 = document.querySelector('#time1').value;
         let data_time2 = document.querySelector('#time2').value;
         let data_search = document.querySelector('#search').value;
-       
-
 
         if (!data_id && !data_name &&! data_helper && !data_organization && !data_date && !data_time1 && !data_time2 && !data_search) {
             document.querySelector('#div_body_help').classList.add('d-none');
@@ -938,140 +948,183 @@
         fetch("{{ url('/') }}/api/data_help_center/?id=" + search_by_id + "&name=" + search_by_name + "&helper=" + search_by_helper + "&organization=" + search_by_organization + "&date=" + search_by_date + "&time1=" + search_by_time1 + "&time2=" + search_by_time2 + "&search=" + search_data)
             .then(response => response.json())
             .then(result => {
-                // console.log(result.data);
-                
-                if (result.data) {
-                    for (var i = 0; i < result['data']['length']; i++) {
+                // console.log(result);
+
+                if (result) {
+                    for (var xxi = 0; xxi < result.length; xxi++) {
 
                         let div_data_add = document.createElement("div");
                         let id_div_data_add = document.createAttribute("id");
-                            id_div_data_add.value = "data_id_" + result['data'][i]['id'];
+                            id_div_data_add.value = "data_id_" + result[xxi]['id'];
                             div_data_add.setAttributeNode(id_div_data_add);
                         let class_div_data_add = document.createAttribute("class");
                             class_div_data_add.value = "col-6";
                             div_data_add.setAttributeNode(class_div_data_add);
                         div_body_help.appendChild(div_data_add);
 
-                        let name = result['data'][i]['name_user'];
-                        let organization_helper = result['data'][i]['organization_helper'];
-                        let name_helper = result['data'][i]['name_helper'];
-                        let url_edit = "/sos_help_center/" + result['data'][i]['id'] + "/edit" ;
+                        let data_html = [] ;
+                            data_html['id'] = result[xxi]['id'] ;
+                            data_html['lat'] = result[xxi]['lat'] ;
+                            data_html['lng'] = result[xxi]['lng'] ;
+                            data_html['name_user'] = result[xxi]['name_user'] ;
+                            data_html['phone_user'] = result[xxi]['phone_user'] ;
+                            data_html['photo_sos'] = result[xxi]['photo_sos'] ;
+                            data_html['operating_code'] = result[xxi]['operating_code'] ;
+                            data_html['created_at'] = result[xxi]['created_at'] ;
+                            data_html['status'] = result[xxi]['status'] ;
+                            data_html['remark_status'] = result[xxi]['remark_status'] ;
+                            data_html['address'] = result[xxi]['address'] ;
+                            data_html['organization_helper'] = result[xxi]['organization_helper'] ;
+                            data_html['name_helper'] = result[xxi]['name_helper'] ;
 
-                        
-                        
-                        // วันที่
-                        
-                        const date = new Date(result['data'][i]['created_at'])
+                            data_html['be_notified'] = result[xxi]['be_notified'] ;
+                            data_html['idc'] = result[xxi]['idc'] ;
+                            data_html['rc'] = result[xxi]['rc'] ;
+                            data_html['rc_black_text'] = result[xxi]['rc_black_text'] ;
 
-                        
-                        const date_created = date.toLocaleDateString('th-TH', {
-                            weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' 
-                        });
+                        let div_data_help_center = gen_html_div_data_sos_1669(data_html);
 
-                        // เวลา
-                        const time_created = date.toLocaleTimeString('th-TH', {
-                            hour: '2-digit', minute: '2-digit' 
-                        });
-
-                        if(!name){
-                            name = "ไม่ทราบชื่อ";
-                        }
-
-                        if(!organization_helper){
-                            organization_helper = "ไม่ทราบหน่วยงาน";
-                        }
-
-                        if(!name_helper){
-                            name_helper = "ไม่ทราบชื่อ";
-                        }
-
-                        //--------------------สถานะของแต่ละเคสยังไม่ได้ทำนะจ๊ะ--------------------//
-                        //let div_data_help_center = gen_html_div_data_sos();
-                        
-                        let div_data_help_center = 
-                        
-                        `
-                        <a class="col-lg-6 col-md-6 col-12 a_data_user show"  href="{{url('/') }}` + url_edit + ` ">
-                            <div >
-                                <div class="card card-sos shadow data-show">
-                                    <div class="sos-header">
-                                        <div>
-                                            <h6 class="m-0 p-0 data-overflow">รหัส`+ result['data'][i]['id'] + `</h6>
-                                            <p class="m-0 data-overflow">`+ date_created +`</p>
-                                            <p class="m-0 data-overflow">เวลา `+ time_created +`</p>
-
-                                        </div>
-                                        <div>
-                                        <button class=" btn-request btn-status">
-                                            รับแจ้งเหตุ
-                                        </button>
-                                        </div>
-                                    </div> 
-                                    
-                                    <hr>
-
-                                    <div class="sos-username">
-                                        <div class="row">
-                                            <div class="col-2 m-0 text-center d-flex align-items-center">
-                                                <i class="fa-duotone fa-user"></i>
-                                            </div>
-                                            <div class="col-10 m-0 p-0">
-                                                <p class="p-0 m-0 color-darkgrey data-overflow topic">ผู้ขอความช่วยเหลือ</p>
-                                                <h6 class="p-0 m-0 color-dark data-overflow">
-                                                `+
-                                               name
-                                                + `
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr class="p-0 m-0" style="margin-bottom:0 ;">
-
-                                    <div class="sos-helper">
-                                        <div class="row">
-                                            <div class="col-6 p-0 helper helper-border">
-                                                <div class="row">
-                                                    <div class="col-4 text-center d-flex align-items-center icon-organization">
-                                                        <i class="fa-duotone fa-sitemap"></i>
-                                                    </div>
-                                                    <div class="col-8 m-0  pt-2 "style="padding-left:5px">
-                                                        <p class="p-0 m-0 color-darkgrey data-overflow topic">หน่วยงาน</p>
-                                                        <h6 class="p-0 m-0 color-dark data-overflow">
-                                                            `+
-                                                            organization_helper
-                                                            + `
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 p-0 helper">
-                                                <div class="row">
-                                                    <div class="col-4 text-center d-flex align-items-center icon-organization">
-                                                        <i class="fa-duotone fa-user-police"></i>
-                                                    </div>
-                                                    <div class="col-8 m-0 p-0 pt-2" >
-                                                        <p class="p-0 m-0 color-darkgrey data-overflow topic">เจ้าหน้าที่</p>
-                                                        <h6 class="p-0 m-0 color-dark data-overflow">
-                                                            `+
-                                                            name_helper
-                                                            + `
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                        `;
-
-                        document.querySelector('#data_id_' + result['data'][i]['id']).innerHTML = div_data_help_center ;
+                        document.querySelector('#data_id_' + result[xxi]['id']).innerHTML = div_data_help_center ;
 
                     }
                 }
+
+                /////////////////////////////////////
+                //// ---------- อันเดิม ---------- ////
+                ////////////////////////////////////
+
+                // console.log(result.data);
+                
+                // if (result.data) {
+                //     for (var i = 0; i < result['data']['length']; i++) {
+
+                //         let div_data_add = document.createElement("div");
+                //         let id_div_data_add = document.createAttribute("id");
+                //             id_div_data_add.value = "data_id_" + result['data'][i]['id'];
+                //             div_data_add.setAttributeNode(id_div_data_add);
+                //         let class_div_data_add = document.createAttribute("class");
+                //             class_div_data_add.value = "col-6";
+                //             div_data_add.setAttributeNode(class_div_data_add);
+                //         div_body_help.appendChild(div_data_add);
+
+                //         let name = result['data'][i]['name_user'];
+                //         let organization_helper = result['data'][i]['organization_helper'];
+                //         let name_helper = result['data'][i]['name_helper'];
+                //         let url_edit = "/sos_help_center/" + result['data'][i]['id'] + "/edit" ;
+
+                        
+                        
+                //         // วันที่
+                        
+                //         const date = new Date(result['data'][i]['created_at'])
+                        
+                //         const date_created = date.toLocaleDateString('th-TH', {
+                //             weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' 
+                //         });
+
+                //         // เวลา
+                //         const time_created = date.toLocaleTimeString('th-TH', {
+                //             hour: '2-digit', minute: '2-digit' 
+                //         });
+
+                //         if(!name){
+                //             name = "ไม่ทราบชื่อ";
+                //         }
+
+                //         if(!organization_helper){
+                //             organization_helper = "ไม่ทราบหน่วยงาน";
+                //         }
+
+                //         if(!name_helper){
+                //             name_helper = "ไม่ทราบชื่อ";
+                //         }
+
+                //         //--------------------สถานะของแต่ละเคสยังไม่ได้ทำนะจ๊ะ--------------------//
+
+                //         let div_data_help_center = 
+                        
+                //         `
+                //         <a class="col-lg-6 col-md-6 col-12 a_data_user show"  href="{{url('/') }}` + url_edit + ` ">
+                //             <div >
+                //                 <div class="card card-sos shadow data-show">
+                //                     <div class="sos-header">
+                //                         <div>
+                //                             <h6 class="m-0 p-0 data-overflow">รหัส`+ result['data'][i]['id'] + `</h6>
+                //                             <p class="m-0 data-overflow">`+ date_created +`</p>
+                //                             <p class="m-0 data-overflow">เวลา `+ time_created +`</p>
+
+                //                         </div>
+                //                         <div>
+                //                         <button class=" btn-request btn-status">
+                //                             รับแจ้งเหตุ
+                //                         </button>
+                //                         </div>
+                //                     </div> 
+                                    
+                //                     <hr>
+
+                //                     <div class="sos-username">
+                //                         <div class="row">
+                //                             <div class="col-2 m-0 text-center d-flex align-items-center">
+                //                                 <i class="fa-duotone fa-user"></i>
+                //                             </div>
+                //                             <div class="col-10 m-0 p-0">
+                //                                 <p class="p-0 m-0 color-darkgrey data-overflow topic">ผู้ขอความช่วยเหลือ</p>
+                //                                 <h6 class="p-0 m-0 color-dark data-overflow">
+                //                                 `+
+                //                                name
+                //                                 + `
+                //                                 </h6>
+                //                             </div>
+                //                         </div>
+                //                     </div>
+
+                //                     <hr class="p-0 m-0" style="margin-bottom:0 ;">
+
+                //                     <div class="sos-helper">
+                //                         <div class="row">
+                //                             <div class="col-6 p-0 helper helper-border">
+                //                                 <div class="row">
+                //                                     <div class="col-4 text-center d-flex align-items-center icon-organization">
+                //                                         <i class="fa-duotone fa-sitemap"></i>
+                //                                     </div>
+                //                                     <div class="col-8 m-0  pt-2 "style="padding-left:5px">
+                //                                         <p class="p-0 m-0 color-darkgrey data-overflow topic">หน่วยงาน</p>
+                //                                         <h6 class="p-0 m-0 color-dark data-overflow">
+                //                                             `+
+                //                                             organization_helper
+                //                                             + `
+                //                                         </h6>
+                //                                     </div>
+                //                                 </div>
+                //                             </div>
+                //                             <div class="col-6 p-0 helper">
+                //                                 <div class="row">
+                //                                     <div class="col-4 text-center d-flex align-items-center icon-organization">
+                //                                         <i class="fa-duotone fa-user-police"></i>
+                //                                     </div>
+                //                                     <div class="col-8 m-0 p-0 pt-2" >
+                //                                         <p class="p-0 m-0 color-darkgrey data-overflow topic">เจ้าหน้าที่</p>
+                //                                         <h6 class="p-0 m-0 color-dark data-overflow">
+                //                                             `+
+                //                                             name_helper
+                //                                             + `
+                //                                         </h6>
+                //                                     </div>
+                //                                 </div>
+                //                             </div>
+                //                         </div>
+                //                     </div>
+                //                 </div>
+                //             </div>
+                //         </a>
+
+                //         `;
+
+                //         document.querySelector('#data_id_' + result['data'][i]['id']).innerHTML = div_data_help_center ;
+
+                //     }
+                // }
                 
 
                 
