@@ -41,6 +41,48 @@ class test_for_devController extends Controller
         exit();
     }
 
+    public function reset_count_sos_1669()
+    {
+        $count_sos = DB::table('sos_1669_province_codes')
+            ->where('count_sos', '!=' , null )
+            ->get();
+
+        foreach ($count_sos as $item_1) {
+
+            DB::table('sos_1669_province_codes')
+                ->where([ 
+                        ['id', $item_1->id],
+                    ])
+                ->update([
+                    'count_sos' => null,
+                ]);
+
+        }
+        echo "Updated >> count_sos << successfully";
+        echo "<br>";
+
+        $for_gen_code = DB::table('sos_1669_province_codes')
+            ->where('count_sos', '!=' , null )
+            ->get();
+
+        foreach ($for_gen_code as $item_2) {
+
+            DB::table('sos_1669_province_codes')
+                ->where([ 
+                        ['id', $item_2->id],
+                    ])
+                ->update([
+                    'for_gen_code' => null,
+                ]);
+
+        }
+
+        echo "Updated >> for_gen_code << successfully";
+        echo "<br>";
+
+        exit();
+    }
+
     public function test_table()
     {
         return view('test_for_dev.test_table'); 
