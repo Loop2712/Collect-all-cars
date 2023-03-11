@@ -1293,11 +1293,9 @@
 		       	// check_sos_js100();
 		    }, 10000);
 		@else
-			@if(Auth::user()->sub_organization != 'ศูนย์ใหญ่')
-				setInterval(function() {
-					check_ask_for_help_1669();
-			    }, 5000);
-			@endif
+			setInterval(function() {
+				check_ask_for_help_1669();
+		    }, 5000);
 		@endif
         
     });
@@ -1849,7 +1847,11 @@
 
 				if (result[0] != "ไม่มีข้อมูล") {
 
-					alet_new_sos_1669(result);
+					if (sub_organization != 'ศูนย์ใหญ่') {
+						alet_new_sos_1669(result);
+					}else{
+						add_data_new_sos1669_to_div(result);
+					}
 
 					fetch("{{ url('/') }}/api/update_last_check_ask_for_help_1669/" + result['id'])
 		            .then(response => response.text())
