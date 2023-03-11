@@ -1208,6 +1208,7 @@
 
                     document.querySelector('#location_P').value = '{{ Auth::user()->sub_organization }}';
                     document.querySelector('#location_P').setAttribute('readonly', 'true');
+                    document.querySelector('#location_P').setAttribute('disabled', 'true');
                     show_amphoe();
                 });
 
