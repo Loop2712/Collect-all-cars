@@ -1842,6 +1842,7 @@ class LineApiController extends Controller
                 ->update([
                     'status' => "ปฏิเสธ",
                     'refuse' => $update_refuse,
+                    'wait' => null,
                 ]);
 
         }
