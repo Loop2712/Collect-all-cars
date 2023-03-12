@@ -1690,13 +1690,7 @@ class LineApiController extends Controller
 
         // --------------------------------------------------------------------------------------
 
-        if ($data_sos->status != 'รอการยืนยัน' || $data_sos->wait != $officer_id) {
-
-            $template_path = storage_path('../public/json/text_success.json');   
-            $string_json = file_get_contents($template_path);
-
-            $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","เคสนี้มีการดำเนินการแล้ว",$string_json);
-        }else{
+        if( $data_sos->status == 'รอการยืนยัน' && $data_sos->wait == $officer_id ){
 
             if ($answer == 'go_to_help') {
                 $template_path = storage_path('../public/json/flex-sos-1669/send_view_data_sos.json');   
@@ -1734,6 +1728,12 @@ class LineApiController extends Controller
                 $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","ปฏิเสธเรียบร้อยแล้ว",$string_json);
             }
 
+        }else{
+
+            $template_path = storage_path('../public/json/text_success.json');   
+            $string_json = file_get_contents($template_path);
+
+            $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","เคสนี้มีการดำเนินการแล้ว",$string_json);
         }
 
         $messages = [ json_decode($string_json, true) ];
