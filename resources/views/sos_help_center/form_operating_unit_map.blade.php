@@ -1426,37 +1426,45 @@
         document.querySelector('#div_wait_unit').classList.remove('d-none');
         document.querySelector('#div_unit_refuse').classList.add('d-none');
 
-        clearInterval(timer_timer_wait_officer);
-        start_timer_wait_officer();
+        startTimer_wait_officer();
 
     }
 
-    var timer_wait_officer ;
+    // Set up global variables to hold the timer and start time
+    var timerInterval_wait_officer;
+    var startTime_wait_officer;
 
-    function start_timer_wait_officer(){
+    // Function to start the timer
+    function startTimer_wait_officer() {
+      // Get the timer element
+      var timerElem = document.getElementById('timer_wait_officer');
 
-        document.querySelector('#timer_wait_officer').innerHTML = "" ;
+      // If the timer is already running, stop it and reset the start time
+      if (timerInterval_wait_officer) {
+        clearInterval(timerInterval_wait_officer);
+        startTime_wait_officer = null;
+      }
 
-        let startTime = Date.now();
-        let elapsedTime = 0;
+      // Start the timer
+      startTime_wait_officer = Date.now();
+      timerInterval_wait_officer = setInterval(function() {
+        // Calculate the elapsed time
+        var elapsedTime = Date.now() - startTime_wait_officer;
 
-        timer_timer_wait_officer = setInterval(() => {
-          // Calculate the elapsed time in seconds
-          elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+        // Convert the elapsed time to minutes and seconds
+        var minutes = Math.floor(elapsedTime / 60000);
+        var seconds = Math.floor((elapsedTime % 60000) / 1000);
 
-          // Calculate hours, minutes, and seconds
-          const hours = Math.floor(elapsedTime / 3600);
-          const minutes = Math.floor((elapsedTime % 3600) / 60);
-          const seconds = elapsedTime % 60;
+        // Format the time as a string with leading zeros
+        var timeString = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 
-          // Display the elapsed time in the format of "hh:mm:ss"
-          document.getElementById("timer_wait_officer").textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }, 1000);
-
+        // Update the timer element
+        timerElem.innerText = timeString;
+      }, 1000);
     }
+
 
     var myInterval;
-
     function wait_operating_unit(sos_id) {
 
         myInterval = setInterval(function() {
