@@ -875,10 +875,12 @@ class Sos_help_centerController extends Controller
             $string_json = str_replace("phone_user",$data_sos->phone_user,$string_json);
         }
 
+        $time_ex = explode(":",$data_form_yellow->time_create_sos);
+        
         // วัน เวลา ระยะห่าง
         $string_json = str_replace("distance",$distance ." กม.",$string_json);
         $string_json = str_replace("_date_",$date_now,$string_json);
-        $string_json = str_replace("_time_",$data_form_yellow->time_create_sos,$string_json);
+        $string_json = str_replace("_time_",$time_ex[0].":".$time_ex[1],$string_json);
 
         // ปุ่มดูแผนที่
         $string_json = str_replace("gg_lat_mail",$text_at.$data_sos->lat,$string_json);

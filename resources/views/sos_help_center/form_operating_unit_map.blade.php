@@ -1426,12 +1426,21 @@
         document.querySelector('#div_wait_unit').classList.remove('d-none');
         document.querySelector('#div_unit_refuse').classList.add('d-none');
 
+        clearInterval(timer_timer_wait_officer);
+        start_timer_wait_officer();
+
+    }
+
+    var timer_wait_officer ;
+
+    function start_timer_wait_officer(){
+
         document.querySelector('#timer_wait_officer').innerHTML = "" ;
 
         let startTime = Date.now();
         let elapsedTime = 0;
 
-        const timer = setInterval(() => {
+        timer_timer_wait_officer = setInterval(() => {
           // Calculate the elapsed time in seconds
           elapsedTime = Math.floor((Date.now() - startTime) / 1000);
 
@@ -1443,7 +1452,6 @@
           // Display the elapsed time in the format of "hh:mm:ss"
           document.getElementById("timer_wait_officer").textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }, 1000);
-
 
     }
 

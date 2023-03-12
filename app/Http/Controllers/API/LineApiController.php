@@ -1705,10 +1705,11 @@ class LineApiController extends Controller
                 $string_json = str_replace("ตัวอย่าง","ยืนยันการดำเนินการ",$string_json);
 
                 $date_ex = explode(" ",$data_sos->created_at);
+                $time_ex = explode(":",$date_ex[1]);
 
                 $string_json = str_replace("ID_SOS_HELP_CENTER",$data_sos->operating_code,$string_json);
                 $string_json = str_replace("DATE_SOS_HELP_CENTER",$date_ex[0],$string_json);
-                $string_json = str_replace("TIME_SOS_HELP_CENTER",$date_ex[1],$string_json);
+                $string_json = str_replace("TIME_SOS_HELP_CENTER",$time_ex[0].":".$time_ex[1],$string_json);
 
                 $string_json = str_replace("NAME_OFFICER",$data_officers->name_officer,$string_json);
                 
