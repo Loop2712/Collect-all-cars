@@ -336,7 +336,7 @@ input:checked + .slider:before {
 							@if(!empty(Auth::user()->photo))
 								<img id="img_profile" src="{{ url('storage')}}/{{ Auth::user()->photo }}" width="60" height="60" class="rounded-circle" alt="">
 							@endif
-						<div class="badge-without-number with-wave "></div>
+						<div id="badge-status-officer" class="badge-without-number with-wave d-none"></div>
 					</div>
 				</div>
 				<div class="flex-grow-1 ms-3 box-status-officer">
@@ -348,7 +348,7 @@ input:checked + .slider:before {
 					
 				</div>
 				<label class="switch">
-					<input id="switch_standby"  type="checkbox" onclick="click_switch_standby();">
+					<input id="switch_standby"  disabled type="checkbox" onclick="click_switch_standby();">
 					<span class="slider"></span>
 				</label>
 			</div>
@@ -668,6 +668,9 @@ input:checked + .slider:before {
         });
 
         document.querySelector('#div_switch').classList.remove('d-none');
+        document.querySelector('#badge-status-officer').classList.remove('d-none');
+
+		document.getElementById("switch_standby").disabled = false;
         click_switch_standby();
 
     }
