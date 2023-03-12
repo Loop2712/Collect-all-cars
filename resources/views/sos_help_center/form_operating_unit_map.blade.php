@@ -162,7 +162,7 @@
                         รอการยืนยัน จากหน่วยแพทย์
                     </h2>
                     <h5 class="text-center mt-5">
-                        โปรดรอสักครู่...
+                        โปรดรอสักครู่... (<span id="timer_wait_officer"></span>)
                     </h5>
                 </div>
             </div>
@@ -1425,6 +1425,25 @@
         document.querySelector('#div_cf_select_unit').classList.add('d-none');
         document.querySelector('#div_wait_unit').classList.remove('d-none');
         document.querySelector('#div_unit_refuse').classList.add('d-none');
+
+        document.querySelector('#timer_wait_officer').innerHTML = "" ;
+
+        let startTime = Date.now();
+        let elapsedTime = 0;
+
+        const timer = setInterval(() => {
+          // Calculate the elapsed time in seconds
+          elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+
+          // Calculate hours, minutes, and seconds
+          const hours = Math.floor(elapsedTime / 3600);
+          const minutes = Math.floor((elapsedTime % 3600) / 60);
+          const seconds = elapsedTime % 60;
+
+          // Display the elapsed time in the format of "hh:mm:ss"
+          document.getElementById("timer_wait_officer").textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }, 1000);
+
 
     }
 
