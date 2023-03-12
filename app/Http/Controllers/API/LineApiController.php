@@ -1728,6 +1728,89 @@ class LineApiController extends Controller
                 $string_json = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","ปฏิเสธเรียบร้อยแล้ว",$string_json);
             }
 
+            // UPDATE DATA SOS 1669
+            if ($answer == "go_to_help") {
+
+                // ******** UPDATE ข้อมูลเจ้าหน้าที่ในตาราง sos_help_center *******
+                DB::table('sos_help_centers')
+                ->where([ 
+                        ['id', $id_sos_1669],
+                    ])
+                ->update([
+                        'status' => "ออกจากฐาน",
+                        'organization_helper' => $data_unit->name,
+                        'operating_unit_id' => $data_unit->id,
+                        'name_helper' => $data_user->name,
+                        'helper_id' => $data_user->id,
+                        'time_go_to_help' => $date_now,
+                        'wait' => null,
+                    ]);
+
+                // UPDATE sos_1669_form_yellows
+                DB::table('sos_1669_form_yellows')
+                ->where([ 
+                        ['sos_help_center_id', $id_sos_1669],
+                    ])
+                ->update([
+                        'vehicle_type' => $data_officers->vehicle_type,
+                        'operating_suit_type' => $data_officers->level,
+                        'time_go_to_help' => $date_now,
+                        'operation_unit_name' => $data_unit->name,
+                        'action_set_name' => $data_user->name,
+                    ]);
+
+                // ------------------------------------------------------------------
+                
+                $sum_go_to_help = 0 ;
+                $sum_go_to_help = (int)$data_officers->go_to_help + 1 ;
+
+                // อัพเดทสถานะ ใน data_1669_operating_officers
+                DB::table('data_1669_operating_officers')
+                ->where([ 
+                        ['user_id', $data_user->id],
+                        ['operating_unit_id', $data_unit->id],
+                    ])
+                ->update([
+                        'status' => "Helping",
+                        'go_to_help' => $sum_go_to_help,
+                    ]);
+
+            }else if($answer == "refuse"){
+
+                if (!empty($data_officers->refuse)) {
+                    $officers_refuse = $data_officers->refuse . "," . $id_sos_1669 ;
+                }else{
+                    $officers_refuse = $id_sos_1669 ;
+                }
+
+                // อัพเดทสถานะ ใน data_1669_operating_officers
+                DB::table('data_1669_operating_officers')
+                ->where([ 
+                        ['user_id', $data_user->id],
+                        ['operating_unit_id', $data_unit->id],
+                    ])
+                ->update([
+                        'refuse' => $officers_refuse,
+                    ]);
+
+                if (!empty($data_sos->refuse)) {
+                    $update_refuse = $data_sos->refuse . "," . $data_user->id ;
+                }else{
+                    $update_refuse = $data_user->id ;
+                }
+                
+                DB::table('sos_help_centers')
+                    ->where([ 
+                            ['id', $id_sos_1669],
+                        ])
+                    ->update([
+                        'status' => "ปฏิเสธ",
+                        'refuse' => $update_refuse,
+                        'wait' => null,
+                    ]);
+
+            }
+
         }else{
 
             $template_path = storage_path('../public/json/text_success.json');   
@@ -1764,90 +1847,7 @@ class LineApiController extends Controller
         ];
         MyLog::create($data);
 
-        // UPDATE DATA SOS 1669
-        if ($answer == "go_to_help") {
-
-            // ******** UPDATE ข้อมูลเจ้าหน้าที่ในตาราง sos_help_center *******
-            DB::table('sos_help_centers')
-            ->where([ 
-                    ['id', $id_sos_1669],
-                ])
-            ->update([
-                    'status' => "ออกจากฐาน",
-                    'organization_helper' => $data_unit->name,
-                    'operating_unit_id' => $data_unit->id,
-                    'name_helper' => $data_user->name,
-                    'helper_id' => $data_user->id,
-                    'time_go_to_help' => $date_now,
-                    'wait' => null,
-                ]);
-
-            // UPDATE sos_1669_form_yellows
-            DB::table('sos_1669_form_yellows')
-            ->where([ 
-                    ['sos_help_center_id', $id_sos_1669],
-                ])
-            ->update([
-                    'vehicle_type' => $data_officers->vehicle_type,
-                    'operating_suit_type' => $data_officers->level,
-                    'time_go_to_help' => $date_now,
-                    'operation_unit_name' => $data_unit->name,
-                    'action_set_name' => $data_user->name,
-                ]);
-
-            // ------------------------------------------------------------------
-            
-            $sum_go_to_help = 0 ;
-            $sum_go_to_help = (int)$data_officers->go_to_help + 1 ;
-
-            // อัพเดทสถานะ ใน data_1669_operating_officers
-            DB::table('data_1669_operating_officers')
-            ->where([ 
-                    ['user_id', $data_user->id],
-                    ['operating_unit_id', $data_unit->id],
-                ])
-            ->update([
-                    'status' => "Helping",
-                    'go_to_help' => $sum_go_to_help,
-                ]);
-
-        }else if($answer == "refuse"){
-
-            if (!empty($data_officers->refuse)) {
-                $officers_refuse = $data_officers->refuse . "," . $id_sos_1669 ;
-            }else{
-                $officers_refuse = $id_sos_1669 ;
-            }
-
-            // อัพเดทสถานะ ใน data_1669_operating_officers
-            DB::table('data_1669_operating_officers')
-            ->where([ 
-                    ['user_id', $data_user->id],
-                    ['operating_unit_id', $data_unit->id],
-                ])
-            ->update([
-                    'refuse' => $officers_refuse,
-                ]);
-
-            if (!empty($data_sos->refuse)) {
-                $update_refuse = $data_sos->refuse . "," . $data_user->id ;
-            }else{
-                $update_refuse = $data_user->id ;
-            }
-            
-            DB::table('sos_help_centers')
-                ->where([ 
-                        ['id', $id_sos_1669],
-                    ])
-                ->update([
-                    'status' => "ปฏิเสธ",
-                    'refuse' => $update_refuse,
-                    'wait' => null,
-                ]);
-
-        }
-
-
+        
     }
 
 }
