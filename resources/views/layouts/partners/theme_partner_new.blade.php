@@ -491,12 +491,7 @@
 								</li>
 								<li> 
 									<a href="#">
-										<i class="fa-solid fa-chart-pie"></i> วิเคราะห์ข้อมูล
-									</a>
-								</li>
-								<li> 
-									<a href="#" onclick="tetetetfttfg();">
-										<i class="fa-solid fa-chart-pie"></i> new sos 1669
+										<i class="fa-solid fa-chart-pie"></i> วิเคราะห์ข้อมูล (soon)
 									</a>
 								</li>
 							</ul>
@@ -521,6 +516,32 @@
 				</li>
 				<!-- Other -->
 
+				<!-- FOR DEV -->
+				@if(Auth::check())
+					@if(Auth::user()->id == "1" or Auth::user()->id == "64" or Auth::user()->id == "2" or Auth::user()->id == "3" or Auth::user()->id == "4")
+						<li>
+							<a href="#" class="has-arrow">
+								<div class="parent-icon">
+									<i class="fa-solid fa-code text-danger"></i>
+								</div>
+								<div class="menu-title">FOR DEV ViiCHECK</div>
+							</a>
+							<ul>
+								<li> 
+									<a href="#" onclick="tetetetfttfg();">
+										<i class="fa-solid fa-siren-on"></i> Test new sos 1669
+									</a>
+								</li>
+								<li> 
+									<a href="#" onclick="reset_count_sos_1669();">
+										<i class="fa-solid fa-repeat"></i> reset count sos 1669
+									</a>
+								</li>
+							</ul>
+						</li>
+					@endif
+				@endif
+				<!-- END FOR DEV -->
 
 				<br>
 
@@ -2030,6 +2051,14 @@
         result['rc_black_text'] = 'เมารถ' ;
 
         alet_new_sos_1669(result);
+    }
+
+    function reset_count_sos_1669(){
+    	fetch("{{ url('/') }}/reset_count_sos_1669/")
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+            });
     }
 
     function gen_html_div_data_sos_1669(result){
