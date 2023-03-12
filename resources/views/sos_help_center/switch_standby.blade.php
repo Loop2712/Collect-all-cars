@@ -347,8 +347,8 @@ input:checked + .slider:before {
 					<!-- <p class="text-secondary mb-0">online</p> -->
 					
 				</div>
-				<label class="switch">
-					<input id="switch_standby" class="d-none"  disabled type="checkbox" onclick="click_switch_standby();">
+				<label class="switch d-none" id="lable_switch_standby">
+					<input id="switch_standby" type="checkbox" onclick="click_switch_standby();">
 					<span class="slider"></span>
 				</label>
 			</div>
@@ -669,7 +669,7 @@ input:checked + .slider:before {
 
         document.querySelector('#div_switch').classList.remove('d-none');
         document.querySelector('#badge-status-officer').classList.remove('d-none');
-        document.querySelector('#switch_standby').classList.remove('d-none');
+        document.querySelector('#lable_switch_standby').classList.remove('d-none');
         click_switch_standby();
 
     }
