@@ -456,17 +456,17 @@
         border-radius: 10px;
     }
 .div_alert{
-  position: fixed;
-  /* position: absolute; */
-  top: -13%;
-  /* top: 55%; */
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-family: 'Kanit', sans-serif;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
+    position: fixed;
+    /* position: absolute; */
+    top: -500px;
+    /* top: 55%; */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Kanit', sans-serif;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
 }
 .div_alert i{
     display: flex;
@@ -494,11 +494,11 @@
   }
   /* Change the percentage here to make it faster */
   10% {
-    transform: translateY(100px);
+    transform: translateY(520px);
   }
   /* Change the percentage here to make it stay down for longer */
   90% {
-    transform: translateY(100px);
+    transform: translateY(520px);
   }
   /* Keep this at the end */
  100% {
@@ -506,7 +506,7 @@
  }
 }
 .alert-child{
-    background-color: #ff5500;
+    background-color: #db2d2e;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -516,7 +516,7 @@
     padding:20px 10px;
 }.text-alert{
     color: #fff;
-   float: left;
+    float: left;
 }
 </style>
 <div id="alert_phone" class=" div_alert " role="alert">
