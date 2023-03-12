@@ -751,7 +751,7 @@
  }
 }
 .alert-child{
-    background-color: #ff5500;
+    background-color: #DB2D2E;
     display: flex;
     align-items: center;
     justify-content: space-between;

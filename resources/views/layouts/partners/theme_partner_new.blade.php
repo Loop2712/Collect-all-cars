@@ -2003,7 +2003,7 @@
 	            div_text_html.classList.remove('border-color-change-color');
 	        }, 10000);
 
-        console.log(div_text_html);
+        // console.log(div_text_html);
 
     }
 
@@ -2019,7 +2019,7 @@
         result['photo_sos'] = "" ;
         result['be_notified'] = 'แพลตฟอร์มวีเช็ค' ;
         result['operating_code'] = '1234' ;
-        result['created_at'] = '2023-03-11T14:16:51.000000Z' ;
+        result['created_at'] = '2023-03-12T03:42:05.000000Z' ;
         result['status'] = 'รับแจ้งเหตุ' ;
         result['remark_status'] = 'ถึง รพ.' ;
         result['address'] = 'พระนครศรีอยุธยา/พระนครศรีอยุธยา/คลองสวนพลู' ;
@@ -2034,17 +2034,19 @@
 
     function gen_html_div_data_sos_1669(result){
 
-    	// วันที่
-    	const date = new Date(result['created_at'])
-        
-        const date_created = date.toLocaleDateString('th-TH', {
-            weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' 
-        });
+    	// วันที่ / เวลา
+        const date = new Date(result['created_at']);
 
-        // เวลา
-        const time_created = date.toLocaleTimeString('th-TH', {
-            hour: '2-digit', minute: '2-digit' 
-        });
+		const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
+		const dateFormatter = new Intl.DateTimeFormat('th-TH', options);
+		const date_created = dateFormatter.format(date);
+
+		const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: false };
+		const timeFormatter = new Intl.DateTimeFormat('th-TH', timeOptions);
+		const time_created = timeFormatter.format(date);
+
+		// console.log(date_created);
+		// console.log('Time', time_created);
 
         let url_edit = "/sos_help_center/" + result['id'] + "/edit" ;
 
@@ -2217,10 +2219,10 @@
                                     รหัส <b class="text-dark">`+result['operating_code']+`</b>
                                 </h4>
                                 <p class="m-0 data-overflow">
-                                    {{ thaidate("วันlที่ j M Y" , strtotime(`+date_created+`)) }}
+                                    `+date_created+`
                                 </p>
                                 <p class="m-0 data-overflow">
-                                    {{ thaidate("เวลา H:i" , strtotime(`+time_created+`)) }}
+                                    `+time_created+`
                                 </p>
                             </div>
                             <div>

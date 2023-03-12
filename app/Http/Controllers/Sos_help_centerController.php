@@ -888,6 +888,7 @@ class Sos_help_centerController extends Controller
         // ปุ่มกำลังไปช่วยเหลือ และ ปฏิเสธ
         $string_json = str_replace("SOS_ID",$data_sos->id,$string_json);
         $string_json = str_replace("_UNIT_ID_",$operating_unit_id,$string_json);
+        $string_json = str_replace("_OFFICER_ID_",$user_id,$string_json);
 
         $messages = [ json_decode($string_json, true) ];
 
@@ -966,108 +967,9 @@ class Sos_help_centerController extends Controller
     function reply_select_2($sos_id , Request $request)
     {
         $data_user = Auth::user();
-        $date_now = date("Y-m-d H:i:s");
 
-        $requestData = $request->all();
-
-        $all_answer = $requestData['answer'] ;
-        $ans_explode = explode("_and_unit_id=",$all_answer) ;
-
-        $answer = $ans_explode[0] ;
-        $unit_id = $ans_explode[1] ;
-
-        $data_sos = Sos_help_center::where('id' , $sos_id)->first();
-        $data_unit = Data_1669_operating_unit::where('id' , $unit_id)->first();
-
-        $data_officers = Data_1669_operating_officer::where('user_id', $data_user->id)
-                ->where('operating_unit_id',$data_unit->id)
-                ->first();
-
-        if ($answer == "go_to_help") {
-
-            // ******** UPDATE ข้อมูลเจ้าหน้าที่ในตาราง sos_help_center *******
-            DB::table('sos_help_centers')
-            ->where([ 
-                    ['id', $sos_id],
-                ])
-            ->update([
-                    'status' => "ออกจากฐาน",
-                    'organization_helper' => $data_unit->name,
-                    'operating_unit_id' => $data_unit->id,
-                    'name_helper' => $data_user->name,
-                    'helper_id' => $data_user->id,
-                    'time_go_to_help' => $date_now,
-                    'wait' => null,
-                ]);
-
-            // UPDATE sos_1669_form_yellows
-            DB::table('sos_1669_form_yellows')
-            ->where([ 
-                    ['sos_help_center_id', $sos_id],
-                ])
-            ->update([
-                    'vehicle_type' => $data_officers->vehicle_type,
-                    'operating_suit_type' => $data_officers->level,
-                    'time_go_to_help' => $date_now,
-                    'operation_unit_name' => $data_unit->name,
-                    'action_set_name' => $data_user->name,
-                ]);
-
-            // ------------------------------------------------------------------
-            
-            $sum_go_to_help = 0 ;
-            $sum_go_to_help = (int)$data_officers->go_to_help + 1 ;
-
-            // อัพเดทสถานะ ใน data_1669_operating_officers
-            DB::table('data_1669_operating_officers')
-            ->where([ 
-                    ['user_id', $data_user->id],
-                    ['operating_unit_id', $data_unit->id],
-                ])
-            ->update([
-                    'status' => "Helping",
-                    'go_to_help' => $sum_go_to_help,
-                ]);
-
-            return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
-
-        }else if($answer == "refuse"){
-
-            if (!empty($data_officers->refuse)) {
-                $officers_refuse = $data_officers->refuse . "," . $sos_id ;
-            }else{
-                $officers_refuse = $sos_id ;
-            }
-
-            // อัพเดทสถานะ ใน data_1669_operating_officers
-            DB::table('data_1669_operating_officers')
-            ->where([ 
-                    ['user_id', $data_user->id],
-                    ['operating_unit_id', $data_unit->id],
-                ])
-            ->update([
-                    'refuse' => $officers_refuse,
-                ]);
-
-            if (!empty($data_sos->refuse)) {
-                $update_refuse = $data_sos->refuse . "," . $data_user->id ;
-            }else{
-                $update_refuse = $data_user->id ;
-            }
-            
-            DB::table('sos_help_centers')
-                ->where([ 
-                        ['id', $sos_id],
-                    ])
-                ->update([
-                    'status' => "ปฏิเสธ",
-                    'refuse' => $update_refuse,
-                ]);
-
-            // ส่งไลน์ "ดำเนินการปฏิเสธเรียบร้อยแล้ว"
-            return view('return_line');
-        }
-
+        return redirect('sos_help_center/' . $sos_id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
+        
     }
 
     public function show_case_sos($id)

@@ -1002,7 +1002,7 @@
         fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level + "/" + vehicle_type)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 for (var i = 0; i < result.length; i++) {
 

@@ -102,14 +102,14 @@
             "type": "text",
             "text": "_time_",
             "color": "#881111",
-            "size": "33px",
+            "size": "30px",
             "wrap": false,
             "align": "center",
             "weight": "bold"
           }
         ],
         "position": "absolute",
-        "offsetTop": "47%",
+        "offsetTop": "49%",
         "offsetStart": "10%",
         "width": "34%"
       },
@@ -306,7 +306,7 @@
         "justifyContent": "center",
         "action": {
           "type": "postback",
-          "data": "sos_1669?SOS_ID/go_to_help/_UNIT_ID_",
+          "data": "sos_1669?SOS_ID/go_to_help/_UNIT_ID_/_OFFICER_ID_",
           "displayText": "ไปช่วยเหลือ"
         },
         "height": "10%"
@@ -332,7 +332,7 @@
         "justifyContent": "center",
         "action": {
           "type": "postback",
-          "data": "sos_1669?SOS_ID/refuse/_UNIT_ID_",
+          "data": "sos_1669?SOS_ID/refuse/_UNIT_ID_/_OFFICER_ID_",
           "displayText": "ปฏิเสธ"
         },
         "height": "10%"
