@@ -1250,7 +1250,8 @@
         service = new google.maps.DirectionsService();
         directionsDisplay = new google.maps.DirectionsRenderer({
             draggable: true,
-            map: map_operating_unit
+            map: map_operating_unit,
+            suppressMarkers: true, // suppress the default markers
         });
 
         service.route({

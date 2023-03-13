@@ -1956,7 +1956,8 @@ input:focus {
 		service = new google.maps.DirectionsService();
 		directionsDisplay = new google.maps.DirectionsRenderer({
 		    draggable: true,
-		    map: map_show_case
+		    map: map_show_case,
+		    suppressMarkers: true, // suppress the default markers
 		});
 
 	    service.route({
