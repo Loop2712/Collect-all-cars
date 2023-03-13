@@ -1482,6 +1482,26 @@ input:focus {
 			      	console.log(seconds_officer);
 			      	console.log(check_send_update_location_officer);
 
+			      	// หมุดเจ้าหน้าที่
+			        if (officer_marker) {
+			            officer_marker.setMap(null);
+			        }
+			        officer_marker = new google.maps.Marker({
+			            position: {lat: parseFloat(latitude) , lng: parseFloat(longitude) },
+			            map: map_show_case,
+			            icon: image_operating_unit_general,
+			        });
+
+			        // let Item_1 = new google.maps.LatLng(m_lat, m_lng);
+			        // let myPlace = new google.maps.LatLng(sos_lat , sos_lng);
+
+			        // let bounds = new google.maps.LatLngBounds();
+			        //     bounds.extend(myPlace);
+			        //     bounds.extend(Item_1);
+			        // map_show_case.fitBounds(bounds);
+
+					// map_show_case.setZoom(map_show_case.getZoom() - 0.5);
+
 			      	if (check_send_update_location_officer == 'send_update_location_officer') {
 			      		func_send_update_location_officer(latitude , longitude);
 			      	}
@@ -1504,7 +1524,7 @@ input:focus {
 		document.querySelector('#text_show_lng').innerHTML = lng_officer ;
 		
 
-        fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat + "/" + lng)
+        fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat_officer + "/" + lng_officer)
             .then(response => response.json())
             .then(result => {
                 console.log(result);
@@ -1512,29 +1532,6 @@ input:focus {
 
                 let sos_lat = result['lat'] ;
                 let sos_lng = result['lng'] ;
-
-                // หมุดเจ้าหน้าที่
-		        if (officer_marker) {
-		            officer_marker.setMap(null);
-		        }
-		        officer_marker = new google.maps.Marker({
-		            position: {lat: parseFloat(lat_officer) , lng: parseFloat(lng_officer) },
-		            map: map_show_case,
-		            icon: image_operating_unit_general,
-		        });
-
-		        // let Item_1 = new google.maps.LatLng(m_lat, m_lng);
-		        // let myPlace = new google.maps.LatLng(sos_lat , sos_lng);
-
-		        // let bounds = new google.maps.LatLngBounds();
-		        //     bounds.extend(myPlace);
-		        //     bounds.extend(Item_1);
-		        // map_show_case.fitBounds(bounds);
-
-				// map_show_case.setZoom(map_show_case.getZoom() - 0.5);
-		        
-
-                // open_map_show_case(sos_lat , sos_lng)
 
                 status_sos = result['status'] ;
                 document.querySelector('#show_status').innerHTML = status_sos ;
