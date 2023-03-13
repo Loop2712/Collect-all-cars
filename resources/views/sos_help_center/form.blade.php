@@ -1289,7 +1289,7 @@
 
         service_go_to_help = new google.maps.DirectionsService();
         directionsDisplay_go_to_help = new google.maps.DirectionsRenderer({
-            draggable: true,
+            draggable: false,
             map: map_go_to_help,
             suppressMarkers: true, // suppress the default markers
         });

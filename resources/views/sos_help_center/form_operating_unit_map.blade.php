@@ -1249,7 +1249,7 @@
 
         service = new google.maps.DirectionsService();
         directionsDisplay = new google.maps.DirectionsRenderer({
-            draggable: true,
+            draggable: false,
             map: map_operating_unit,
             suppressMarkers: true, // suppress the default markers
         });

@@ -823,7 +823,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 		service = new google.maps.DirectionsService();
 		directionsDisplay = new google.maps.DirectionsRenderer({
-		    draggable: true,
+		    draggable: false,
 		    map: map_show_user,
 		    suppressMarkers: true, // suppress the default markers
 		});
