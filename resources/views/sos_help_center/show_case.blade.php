@@ -1496,7 +1496,7 @@ input:focus {
 			      const latitude = position.coords.latitude;
 			      const longitude = position.coords.longitude;
 			      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-			      // alert(`Latitude: ${latitude}, Longitude: ${longitude}`);
+			      alert(`Latitude: ${latitude}, Longitude: ${longitude}`);
 			    },
 			    function(error) {
 			      console.log(`Error: ${error.message}`);
