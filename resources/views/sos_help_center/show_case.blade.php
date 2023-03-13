@@ -1424,6 +1424,9 @@ input:focus {
 	var check_send_update_location_officer ;
     var seconds_officer ;
 
+    var sos_lo_lat = "{{ $data_sos->lat }}" ;
+    var sos_lo_lng = "{{ $data_sos->lng }}" ;
+
 	const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
 	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
 
@@ -1435,6 +1438,28 @@ input:focus {
         // getLocation();
         watchPosition_officer();
     });
+
+    function open_map_show_case() {
+
+    	
+        let m_numZoom = parseFloat('15');
+
+        map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
+            center: {lat: parseFloat(m_lat), lng: parseFloat(m_lng) },
+            zoom: m_numZoom,
+        });
+
+        // หมุดที่เกิดเหตุ 
+        if (sos_marker) {
+            sos_marker.setMap(null);
+        }
+        sos_marker = new google.maps.Marker({
+            position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
+            map: map_show_case,
+            icon: image_sos,
+        });
+
+    }
 
     function timer_test(){
     	// Start the timer
@@ -1492,13 +1517,13 @@ input:focus {
 			            icon: image_operating_unit_general,
 			        });
 
-			        // let Item_1 = new google.maps.LatLng(m_lat, m_lng);
-			        // let myPlace = new google.maps.LatLng(sos_lat , sos_lng);
+			        let Item_1 = new google.maps.LatLng(latitude, longitude);
+			        let myPlace = new google.maps.LatLng(sos_lo_lat , sos_lo_lng);
 
-			        // let bounds = new google.maps.LatLngBounds();
-			        //     bounds.extend(myPlace);
-			        //     bounds.extend(Item_1);
-			        // map_show_case.fitBounds(bounds);
+			        let bounds = new google.maps.LatLngBounds();
+			            bounds.extend(myPlace);
+			            bounds.extend(Item_1);
+			        map_show_case.fitBounds(bounds);
 
 					// map_show_case.setZoom(map_show_case.getZoom() - 0.5);
 
@@ -1660,29 +1685,7 @@ input:focus {
 
 	}
 
-	function open_map_show_case() {
-
-    	let m_lat = "{{ $data_sos->lat }}" ;
-    	let m_lng = "{{ $data_sos->lng }}" ;
-        let m_numZoom = parseFloat('15');
-
-        map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
-            center: {lat: parseFloat(m_lat), lng: parseFloat(m_lng) },
-            zoom: m_numZoom,
-        });
-
-        // หมุดที่เกิดเหตุ 
-        if (sos_marker) {
-            sos_marker.setMap(null);
-        }
-        sos_marker = new google.maps.Marker({
-            position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
-            map: map_show_case,
-            icon: image_sos,
-        });
-
-        // set_marker_map_show_case(m_lat , m_lng);
-    }
+	
 
     function set_marker_map_show_case(sos_lat , sos_lng){
 
