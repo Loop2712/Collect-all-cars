@@ -2337,6 +2337,17 @@
 
 	    return text_html ;
     }
+
+    function func_arrivalTime(duration){
+        // assuming you have already obtained the duration from Google Maps API and stored it in a variable called `duration`
+        let date_now = new Date(); // get the current time
+        let travelTimeInSeconds = duration; // get the travel time in seconds
+        let arrivalTime = new Date(date_now.getTime() + (travelTimeInSeconds * 1000)); // add the travel time to the current time and create a new date object
+        let formattedTime = arrivalTime.toLocaleTimeString(); // format the arrival time as a string in a readable format
+            formattedTime = formattedTime.split(':');
+            formattedTime = formattedTime[0]+' : '+formattedTime[1];
+        return formattedTime ;
+    }
         
 
 </script>

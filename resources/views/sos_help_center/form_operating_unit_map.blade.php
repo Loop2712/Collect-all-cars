@@ -1078,19 +1078,21 @@
                     // }
 
                     let text_data_operating =
-                        '<div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer" id="btn_marker_id_' + result[i]['id'] + '">' +
-                        ' <div class="level  ' + result[i]['level'] + ' d-flex align-items-center ">' +
-                        ' <center> ' + result[i]['level'] + '</center>' +
-                        '</div>' +
-                        '<div class="ms-2">' +
-                        '<h6 class="mb-1 font-14">' + result[i]['name'] + ' ('+ result[i]['vehicle_type'] +')</h6>' +
-                        '<p class="mb-0 font-14">เจ้าหน้าที่ : ' + result[i]['name_officer'] + '</p>' +
-                        '<p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ ' + result[i]['distance'].toFixed(2) + ' กม. </p>' +
-                        '</div>' +
-                        '<div class="list-inline d-flex customers-contacts ms-auto">' +
-                            '<a href="javascript:;" class="list-inline-item"><i class="fa-solid fa-location-arrow" id="get_Directions_id_' + result[i]['id'] + '"></i></a>' +
-                            '<a href="javascript:;" class="btn-select-officer list-inline-item" id="btn_select_id_' + result[i]['id'] + '"> เลือก </a>' +
-                        '</div>' +
+                        '<div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">' +
+                            '<div class="data-officer-item d-flex align-items-center p-2 cursor-pointer" id="btn_marker_id_' + result[i]['id'] + '">'+
+                                '<div class="level  ' + result[i]['level'] + ' d-flex align-items-center ">' +
+                                    ' <center> ' + result[i]['level'] + '</center>' +
+                                '</div>' +
+                                '<div class="ms-2">' +
+                                    '<h6 class="mb-1 font-14">' + result[i]['name'] + ' ('+ result[i]['vehicle_type'] +')</h6>' +
+                                    '<p class="mb-0 font-14">เจ้าหน้าที่ : ' + result[i]['name_officer'] + '</p>' +
+                                    '<p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ ' + result[i]['distance'].toFixed(2) + ' กม. </p>' +
+                                '</div>' +
+                            '</div>'+
+                            '<div class="list-inline d-flex customers-contacts ms-auto">' +
+                                '<a href="javascript:;" class="list-inline-item"><i class="fa-solid fa-location-arrow" id="get_Directions_id_' + result[i]['id'] + '"></i></a>' +
+                                '<a href="javascript:;" class="btn-select-officer list-inline-item" id="btn_select_id_' + result[i]['id'] + '"> เลือก </a>' +
+                            '</div>' +
                         '</div>';
 
 
@@ -1155,6 +1157,11 @@
 
 
     function view_data_marker(id, name, distance, level, lat, lng) {
+
+        if (directionsDisplay) {
+            directionsDisplay.setMap(null);
+            document.querySelector('#div_text_Directions').classList.add('d-none');
+        }
 
         if (view_infoWindow) {
             view_infoWindow.setMap(null);
@@ -1317,6 +1324,10 @@
     }
 
     function select_operating_unit(id, name, distance, level, operating_unit_id, user_id, area) {
+
+        if (view_infoWindow) {
+            view_infoWindow.setMap(null);
+        }
 
         document.querySelector('#div_cf_select_unit').classList.remove('d-none');
         document.querySelector('#div_wait_unit').classList.add('d-none');
@@ -1503,22 +1514,31 @@
                         fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id)
                             .then(response => response.json())
                             .then(result_2 => {
-                                // console.log(result_2);
+                                console.log(result_2);
 
-                                // ADD DATA operating_unit
+                                // ADD DATA level
                                 let data_level_operating_unit = document.querySelector('#data_level_operating_unit');
-                                let html_level = '';
+                                let color_btn_level ;
                                 switch (result_2['officer_level']) {
-                                    case "FR":
-                                        html_level = '<span class="float-end btn btn-sm btn-success main-shadow main-radius">' + result_2['officer_level'] + '</span>';
-                                        break;
-                                    case "BLS":
-                                        html_level = '<span class="float-end btn btn-sm btn-warning text-white main-shadow main-radius">' + result_2['officer_level'] + '</span>';
-                                        break;
-                                    default:
-                                        html_level = '<span class="float-end btn btn-sm btn-danger main-shadow main-radius">' + result_2['officer_level'] + '</span>';
+                                    case 'FR':
+                                        color_btn_level = 'btn-success' ;
+                                    break;
+                                    case 'BLS':
+                                        color_btn_level = 'btn-warning text-white' ;
+                                    break;
+                                    case 'ILS':
+                                        color_btn_level = 'btn-danger' ;
+                                    break;
+                                    case 'ALS':
+                                        color_btn_level = 'btn-danger' ;
+                                    break;
                                 }
-                                data_level_operating_unit.innerHTML = html_level;
+                                data_level_operating_unit.innerHTML = result_2['officer_level'];
+                                data_level_operating_unit.classList.add(color_btn_level);
+
+                                // ADD DATA vehicle_type
+                                let data_vehicle_type_operating_unit = document.querySelector('#data_vehicle_type_operating_unit');
+                                    data_vehicle_type_operating_unit.innerHTML = result_2['officer_vehicle_type'];
 
                                 let data_name_operating_unit = document.querySelector('#data_name_operating_unit');
                                 data_name_operating_unit.innerHTML = result_2['unit_name'];
@@ -1535,7 +1555,7 @@
                                 let data_sub_organization_officers = document.querySelector('#data_sub_organization_officers');
                                 data_sub_organization_officers.innerHTML = result_2['sub_organization_officer'];
                                 let data_phone_officers = document.querySelector('#data_phone_officers');
-                                data_phone_officers.innerHTML = 'เบอร์ ' + result_2['phone_officer'];
+                                data_phone_officers.innerHTML = '<i class="fa-solid fa-phone"></i> ' + result_2['phone_officer'];
                                 data_phone_officers.href = 'tel:' + result_2['phone_officer'];
 
                                 document.querySelector('#data_officers_by_js').classList.remove('d-none');

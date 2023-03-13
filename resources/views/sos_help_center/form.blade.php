@@ -119,26 +119,72 @@
 </div>
 
 
-<!-- Modal ดูรูปภาพ -->
+<!-- Modal View Image -->
 <div class="modal fade" id="see_img_sos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">รูปภาพการขอความช่วยเหลือ</h5>
+                <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        @if( !empty($sos_help_center->photo_sos) )
+                            <img src="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos }}" class="img-fluid rounded shadow-lg hover-zoom" style="width: 80%; cursor: pointer;" alt="Picture from Users">
+                        @else
+                            <img src="https://www.viicheck.com/img/stickerline/PNG/17.png" class="img-fluid rounded shadow-lg hover-zoom" style="width: 80%; cursor: pointer;" alt="Picture from Users">
+                        @endif
+
+                        <p style="margin-top: 20px;">รูปภาพจากผู้ใช้</p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        @if( !empty($sos_help_center->photo_sos_by_officers) )
+                            <img src="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos_by_officers }}" class="img-fluid rounded shadow-lg hover-zoom" style="width: 80%; cursor: pointer;" alt="Staff Photo">
+                        @else
+                            <img src="https://www.viicheck.com/img/stickerline/PNG/49.png" class="img-fluid rounded shadow-lg hover-zoom" style="width: 80%; cursor: pointer;" alt="Staff Photo">
+                        @endif
+                        
+                        <p style="margin-top: 20px;">รูปภาพจากเจ้าหน้าที่</p>
+                   </div>
+                </div>
+            </div>
+            <div class="modal-footer d-none">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
+
+<!-- Modal steps_travel -->
+<div class="modal fade" id="modal_steps_travel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">แนะนำการเดินทาง</h5>
+                <i class="fa-sharp fa-solid fa-circle-xmark btn" data-dismiss="modal" aria-label="Close"></i>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="div_steps_travel">
+                    <div class="col-2">
+                        turn-right
+                    </div>
+                    <div class="col-8">
+                        เลี้ยว<b>ขวา</b><div style="font-size:0.9em">ปลายทางจะอยู่ทางขวา</div>
+                    </div>
+                    <div class="col-2">
+                        0.6 กม.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -203,6 +249,14 @@
         border: 0px solid black;
         padding: 25px;
     }
+    .hover-zoom {
+      transition: transform 0.5s;
+    }
+
+    .hover-zoom:hover {
+      transform: scale(2.5);
+    }
+
 </style>
 <div>
     <div class="card radius-10">
@@ -347,6 +401,16 @@
                                 </div>
                             </a>
                         </li>
+                        <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 d-" role="presentation">
+                            <a class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#meet_sos" role="tab" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-icon">
+                                        <i class="fa-solid fa-hospital-user"></i>
+                                    </div>
+                                    <div class="tab-title">Meet (soon)</div>
+                                </div>
+                            </a>
+                        </li>
                     </ul>
             </div>
         </div>
@@ -394,36 +458,6 @@
                 <!-- div_data_operating -->
                 <h3>
                     <b>ข้อมูลหน่วยแพทย์</b>
-                    <span id="data_level_operating_unit">
-                    @php
-                        $data_officer = App\Models\Data_1669_operating_officer::where('operating_unit_id' , $sos_help_center->operating_unit_id)->where('user_id',$sos_help_center->helper_id)->first();
-                    @endphp
-
-                    @if(!empty($data_officer->level))
-                        @switch($data_officer->level)
-                            @case('FR')
-                                <span class="float-end btn btn-sm btn-success main-shadow main-radius">
-                                    {{ $data_officer->level }}
-                                </span>
-                            @break
-                            @case('BLS')
-                                <span class="float-end btn btn-sm btn-warning text-white main-shadow main-radius">
-                                    {{ $data_officer->level }}
-                                </span>
-                            @break
-                            @case('ILS')
-                                <span class="float-end btn btn-sm btn-danger main-shadow main-radius">
-                                    {{ $data_officer->level }}
-                                </span>
-                            @break
-                            @case('ALS')
-                                <span class="float-end btn btn-sm btn-danger main-shadow main-radius">
-                                    {{ $data_officer->level }}
-                                </span>
-                            @break
-                        @endswitch
-                    @endif
-                    </span>
                 </h3>
                 <span>
                     ชื่อหน่วย
@@ -442,49 +476,106 @@
                 <div class="col">
                     <div class="card radius-15">
                         <div class="card-body text-center">
-                            <div class="p-4 border radius-15 row">
 
-                                <div id="data_officers_by_js" class="d-none">
-                                    <div class="col-3">
-                                        <img id="data_img_officers" src="" width="80" height="80" class="rounded-circle shadow">
-                                    </div>
-                                    <div class="col-9">
-                                        <h5 id="data_name_officers" class="mb-0 mt-3"></h5>
-                                        <p id="data_sub_organization_officers" class="mb-3 mt-1"></p>
-                                    </div>
-                                    <div class="d-grid">
-                                        <br>
-                                        <a id="data_phone_officers" href="" class="btn btn-outline-primary radius-15">
-                                            เบอร์ 
-                                        </a>
-                                    </div>
-                                </div>
-                                
-                                <div id="data_officers_by_php" class="">
-                                    <div id="" class="col-3">
-                                        @if(!empty($sos_help_center->officers_user->photo))
-                                            <img src="{{ url('storage')}}/{{ $sos_help_center->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
+                            <!-- //// PHP //// -->
+                            <div id="data_officers_by_php" class="p-4 border radius-15 row">
+                                @php
+                                    $data_officer = App\Models\Data_1669_operating_officer::where('operating_unit_id' , $sos_help_center->operating_unit_id)->where('user_id',$sos_help_center->helper_id)->first();
+
+                                    $color_btn_level = 'info' ;
+
+                                    if(!empty($data_officer->level)){
+                                        switch($data_officer->level){
+                                            case 'FR':
+                                                $color_btn_level = 'success' ;
+                                            break;
+                                            case 'BLS':
+                                                $color_btn_level = 'warning text-white' ;
+                                            break;
+                                            case 'ILS':
+                                                $color_btn_level = 'danger' ;
+                                            break;
+                                            case 'ALS':
+                                                $color_btn_level = 'danger' ;
+                                            break;
+                                        }
+                                    }
+
+                                @endphp
+                                <div class="col-12">
+                                    <br>
+                                    <button style="position:absolute;top: 6%;left: 1%;border-radius: 0px 20px 20px 0px; width:45%;" class="btn btn-sm btn-info main-shadow main-radius float-start">
+                                        @if(!empty($data_officer->vehicle_type))
+                                            <b>{{ $data_officer->vehicle_type }}</b>
                                         @else
-                                            <img src="{{ url('/img/stickerline/Flex/12.png') }}" width="80" height="80"  class="rounded-circle shadow">
+                                            ...
                                         @endif
-                                    </div>
-                                    <div class="col-9">
-                                        @if(!empty($sos_help_center->officers_user->name))
-                                            <h5 class="mb-0 mt-3">{{ $sos_help_center->officers_user->name }}</h5>
-                                            <p class="mb-3 mt-1">{{ str_replace("_"," ",$sos_help_center->officers_user->sub_organization) }}</p>
+                                    </button>
+                                    <button style="position:absolute;top: 6%;right: 1%;border-radius: 20px 0px 0px 20px; width:45%;" class="btn btn-sm btn-{{ $color_btn_level }} main-shadow main-radius float-end">
+                                        @if(!empty($data_officer->level))
+                                            <b>{{ $data_officer->level }}</b>
+                                        @else
+                                            ...
                                         @endif
-                                    </div>
-                                    <div class="d-grid">
-                                        <br>
-                                        @if(!empty($sos_help_center->officers_user->phone))
-                                            <a href="tel:{{ $sos_help_center->officers_user->phone }}" class="btn btn-outline-primary radius-15">
-                                                เบอร์ {{ $sos_help_center->officers_user->phone }}
-                                            </a>
-                                        @endif
-                                    </div>
+                                    </button>
                                 </div>
+                                <div class="col-12 col-md-3 mt-2">
+                                    @if(!empty($sos_help_center->officers_user->photo))
+                                        <img src="{{ url('storage')}}/{{ $sos_help_center->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
+                                    @else
+                                        <img src="{{ url('/img/stickerline/Flex/12.png') }}" width="80" height="80"  class="rounded-circle shadow">
+                                    @endif
+                                </div>
+                                <div class="col-12 col-md-9 mt-3">
+                                    @if(!empty($sos_help_center->officers_user->name))
+                                        <h5>{{ $sos_help_center->officers_user->name }}</h5>
+                                    @endif
 
+                                    @if(!empty($sos_help_center->officers_user->sub_organization))
+                                        <p>{{ str_replace("_"," ",$sos_help_center->officers_user->sub_organization) }}</p>
+                                    @endif
+                                </div>
+                                <div class="col-12 col-md-12 mt-3">
+                                    เบอร์เจ้าหน้าที่
+                                    @if(!empty($sos_help_center->officers_user->phone))
+                                        <a href="tel:{{ $sos_help_center->officers_user->phone }}" style="width:90%;" class="btn btn-outline-success radius-15">
+                                            <i class="fa-solid fa-phone"></i> {{ $sos_help_center->officers_user->phone }}
+                                        </a>
+                                    @else
+                                        <br>ไม่ได้ระบุ
+                                    @endif
+                                    
+                                </div>
                             </div>
+                            <!-- //// END PHP //// -->
+
+                            <!-- //// JAVA SCRIPT //// -->
+                            <div id="data_officers_by_js" class="p-4 border radius-15 row d-none">
+                                <div class="col-12">
+                                    <br>
+                                    <button id="data_vehicle_type_operating_unit" style="position:absolute;top: 6%;left: 1%;border-radius: 0px 20px 20px 0px; width:45%;" class="btn btn-sm btn-info main-shadow main-radius float-start">
+                                        <!-- ... -->
+                                    </button>
+                                    <button id="data_level_operating_unit" style="position:absolute;top: 6%;right: 1%;border-radius: 20px 0px 0px 20px; width:45%;" class="btn btn-sm  main-shadow main-radius float-end">
+                                        <!-- ... -->
+                                    </button>
+                                </div>
+                                <div class="col-12 col-md-3 mt-2">
+                                    <img id="data_img_officers" src="{{ url('/img/stickerline/Flex/12.png') }}" width="80" height="80" class="rounded-circle shadow">
+                                </div>
+                                <div class="col-12 col-md-9 mt-3">
+                                    <h5 id="data_name_officers"></h5>
+                                    <p id="data_sub_organization_officers"></p>
+                                </div>
+                                <div class="col-12 col-md-12 mt-3">
+                                    เบอร์เจ้าหน้าที่
+                                    <a id="data_phone_officers" href="" style="width:90%;" class="btn btn-outline-success radius-15">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- //// END JAVA SCRIPT //// -->
+
                         </div>
                     </div>
                 </div>
@@ -510,12 +601,36 @@
                 <div class="card radius-10 p-3">
                     <div class="row">
                         <div class="col-12">
-                            <h4>
-                                สถานะ :  <b><span id="show_status" class=""></span></b>
-                                <span id="show_remark_status" class="d-none text-secondary">(<span id="text_remark_status"></span>)</span>
-                                &nbsp;&nbsp;
-                                <span id="h4_show_distance" class="">ระยะทาง (รัศมี) :  <b><span id="show_distance" class="text-warning"></span></b> กม.</span>
-                            </h4>
+                            @php
+                                if($sos_help_center->status != 'เสร็จสิ้น'){
+                                    $class_span_status = 'float-end' ;
+                                }else{
+                                    $class_span_status = 'float-start' ;
+                                }
+                            @endphp
+                            <div class="row">
+                                <h4>
+                                    <span class="{{ $class_span_status }}">
+                                        สถานะ :  <b><span id="show_status" class=""></span></b>
+                                        <span id="show_remark_status" class="d-none text-secondary">(<span id="text_remark_status"></span>)</span>
+                                    </span>
+
+                                    @if($sos_help_center->status != 'เสร็จสิ้น')
+                                        <span id="h4_show_distance" class="">
+                                            <i class="fa-duotone fa-road"></i> ระยะทาง :  <b><span id="show_distance" class="text-warning"></span></b>
+                                        </span>
+                                        &nbsp;&nbsp;
+                                        <span>
+                                            <i class="fa-solid fa-timer"></i> ระยะเวลา :  <b><span id="text_duration" class="text-warning"></span></b>
+                                        </span>
+                                        &nbsp;&nbsp;
+                                        <span>
+                                            <i class="fa-solid fa-circle-check"></i> เวลาถึงโดยประมาณ :  <b><span id="text_arrivalTime" class="text-warning"></span></b>
+                                        </span>
+                                    @endif
+                                </h4>
+                            </div>
+                            <hr>
                             <div class="row text-center">
                                 <div class="col-6">
                                     <p>การให้รหัสความรุนแรง (IDC) : <span id="show_idc" class="btn btn-sm px-5 radius-30 d-none"></span></p>
@@ -523,10 +638,12 @@
                                 <div class="col-6">
                                     <p>รหัสความรุนแรง ณ จุดเกิดเหตุ (RC): <span id="show_rc" class="btn btn-sm px-5 radius-30 d-none"></span></p>
                                 </div>
-                                
                             </div>
                         </div>
                         <div class="col-12">
+                            <span class="btn btn-danger main-shadow main-radius" style="position: absolute;top: 17.5%;right: 6.5%;z-index: 9999;" data-toggle="modal" data-target="#modal_steps_travel">
+                                แนะนำการเดินทาง
+                            </span>
                             <div id="map_go_to_help"></div>
                         </div>
                     </div>
@@ -880,7 +997,7 @@
     }
 
     #map_go_to_help {
-      height: calc(80vh);
+      height: calc(65vh);
     }
 
     #mapTest {
@@ -985,14 +1102,17 @@
                     document.querySelector('#text_remark_status').innerHTML = "";
                 }
 
-                document.querySelector('#h4_show_distance').classList.add('d-none');
+                // document.querySelector('#h4_show_distance').classList.add('d-none');
 
                 if (start_result['status_sos'] != 'เสร็จสิ้น') {
 
-                    document.querySelector('#show_distance').innerHTML = start_result['distance'].toFixed(2) ;
-                    document.querySelector('#h4_show_distance').classList.remove('d-none');
+                    // document.querySelector('#show_distance').innerHTML = start_result['distance'].toFixed(2) ;
+                    // document.querySelector('#h4_show_distance').classList.remove('d-none');
 
                     set_marker_go_to_help(start_result['officer_lat'] , start_result['officer_lng'] , start_result['officer_level']);
+                    
+                    // เส้นทาง
+                    get_Directions_map_go_to_help(officer_go_to_help_marker,sos_go_to_help_marker);
 
                     let start_Item_1 = new google.maps.LatLng(m_lat, m_lng);
                     let start_myPlace = new google.maps.LatLng(start_result['officer_lat'], start_result['officer_lng']);
@@ -1013,7 +1133,7 @@
             fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id )
                 .then(response => response.json())
                 .then(result => {
-                    // console.log("LOOP");
+                    // console.log("LOOP get_current_officer");
                     // console.log(result);
 
                     if (result['status_sos'] != status_old) {
@@ -1079,10 +1199,10 @@
                     
 
                     if (result['status_sos'] === 'เสร็จสิ้น') {
-                        document.querySelector('#h4_show_distance').classList.add('d-none');
+                        // document.querySelector('#h4_show_distance').classList.add('d-none');
                         myStop_reface_map_go_to();
                     }else{
-                        document.querySelector('#show_distance').innerHTML = result['distance'].toFixed(2) ;
+                        // document.querySelector('#show_distance').innerHTML = result['distance'].toFixed(2) ;
                         set_marker_go_to_help(result['officer_lat'] , result['officer_lng'] , result['officer_level']);
 
                         let Item_1 = new google.maps.LatLng(m_lat, m_lng);
@@ -1091,7 +1211,7 @@
                         let bounds = new google.maps.LatLngBounds();
                             bounds.extend(myPlace);
                             bounds.extend(Item_1);
-                        map_go_to_help.fitBounds(bounds);
+                        // map_go_to_help.fitBounds(bounds);
 
                         // if ( map_go_to_help.getZoom() ){   // or set a minimum
                         //     map_go_to_help.setZoom(map_go_to_help.getZoom() - 2);  // set zoom here
@@ -1141,6 +1261,7 @@
         }
     }
 
+
     function set_marker_go_to_help(officer_lat , officer_lng , officer_level){
         let icon_level ;
 
@@ -1163,7 +1284,63 @@
             map: map_go_to_help,
             icon: icon_level,
         });
+
     }
+
+    function get_Directions_map_go_to_help(markerA, markerB) {
+
+        // console.log('get_Directions');
+
+        if (directionsDisplay_go_to_help) {
+            directionsDisplay_go_to_help.setMap(null);
+        }
+
+        service_go_to_help = new google.maps.DirectionsService();
+        directionsDisplay_go_to_help = new google.maps.DirectionsRenderer({
+            draggable: true,
+            map: map_go_to_help
+        });
+
+        service_go_to_help.route({
+            origin: markerA.getPosition(),
+            destination: markerB.getPosition(),
+            travelMode: 'DRIVING',
+        }, function(response, status) {
+            console.log(response);
+            if (status === 'OK') {
+                directionsDisplay_go_to_help.setDirections(response);
+                // ระยะทาง
+                let text_distance = response.routes[0].legs[0].distance.text;
+                document.querySelector('#show_distance').innerHTML = text_distance;
+                // เวลา
+                let text_duration = response.routes[0].legs[0].duration.text ;
+                document.querySelector('#text_duration').innerHTML = text_duration ;
+                // เวลาถึงโดยประมาณ func_arrivalTime ==> อยู่หน้า theme ทั้ง viicheck และ partner
+                let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value) ;
+                document.querySelector('#text_arrivalTime').innerHTML = text_arrivalTime ;
+
+                // แนะนำการเดินทาง
+                let div_steps_travel = document.querySelector('#div_steps_travel');
+
+                var steps_travel = response.routes[0].legs[0].steps;
+                for (var i = 0; i < steps_travel.length; i++) {
+
+                    let No_step = i + 1 ; // ข้อที่
+                    let distance_step = steps_travel[i].distance ; // ระยะทางก่อนเปลี่ยน
+                    let instructions_step = steps_travel[i].instructions ; // คำอธิบาย
+                    let maneuver = steps_travel[i].maneuver ; // วิธีเปลี่ยนเส้นทาง
+
+                    let steps_travel_html = '' ;
+
+                    div_steps_travel.insertAdjacentHTML('beforeend', steps_travel[i].instructions); // แทรกล่างสุด
+                }
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+
+    }
+
 </script>
 <!-- END MAP GO TO HELP -->
 
@@ -1208,6 +1385,8 @@
 
     let sos_go_to_help_marker  ;
     let officer_go_to_help_marker  ;
+    let directionsDisplay_go_to_help ;
+    let service_go_to_help ;
 
     function initMap() {
 
@@ -1648,7 +1827,7 @@
                 // console.log(sub_organization);
                 // console.log(name_district_P);
 
-                if (sub_organization != name_district_P && sub_organization != 'ศูนย์ใหญ่') { // ไม่อยู่ในพื้นที่
+                if ( sub_organization != 'ศูนย์ใหญ่' && sub_organization != name_district_P ) { // ไม่อยู่ในพื้นที่
                     
                     document.querySelector('#alert_phone').classList.add('up-down');
                     const animated = document.querySelector('.up-down');
@@ -1744,6 +1923,7 @@
     }
 
     function show_div_sos_or_unit(type){
+        // console.log("type >>> " + type);
 
         if (type === 'show_sos') {
             document.querySelector('#div_detail_sos').classList.remove('d-none');
@@ -1807,9 +1987,11 @@
         if (status === 'รอการยืนยัน' || status === 'ปฏิเสธ' || status === 'รับแจ้งเหตุ' || !status) {
             document.querySelector('#btn_operation').classList.add('d-none');
             document.querySelector('#btn_select_operating_unit').classList.remove('d-none');
+            document.querySelector('#btn_open_meet').classList.add('d-none');
         }else{
             document.querySelector('#btn_operation').classList.remove('d-none');
             document.querySelector('#btn_select_operating_unit').classList.add('d-none');
+            document.querySelector('#btn_open_meet').classList.remove('d-none');
         }
 
     }
