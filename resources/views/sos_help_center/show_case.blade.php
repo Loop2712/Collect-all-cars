@@ -1445,7 +1445,7 @@ input:focus {
         let m_numZoom = parseFloat('15');
 
         map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
-            center: {lat: parseFloat(m_lat), lng: parseFloat(m_lng) },
+            center: {lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
             zoom: m_numZoom,
         });
 
@@ -1454,7 +1454,7 @@ input:focus {
             sos_marker.setMap(null);
         }
         sos_marker = new google.maps.Marker({
-            position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
+            position: {lat: parseFloat(sos_lo_lat) , lng: parseFloat(sos_lo_lng) },
             map: map_show_case,
             icon: image_sos,
         });
