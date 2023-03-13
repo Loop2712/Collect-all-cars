@@ -1435,29 +1435,11 @@ input:focus {
     }
 
 	function getLocation() {
-	  	// if (navigator.geolocation) {
-	    // 	navigator.geolocation.getCurrentPosition(showPosition);
-	  	// } else {
-	    // 	// x.innerHTML = "Geolocation is not supported by this browser.";
-	  	// }
-
 	  	if (navigator.geolocation) {
-		  	const watchId = navigator.geolocation.watchPosition(
-			    function(position) {
-			      // Retrieve latitude and longitude from the position object
-			      const latitude = position.coords.latitude;
-			      const longitude = position.coords.longitude;
-			      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-			      alert(`Latitude: ${latitude}, Longitude: ${longitude}`);
-			    },
-			    function(error) {
-			      console.log(`Error: ${error.message}`);
-			    }
-		  	);
-		} else {
-		  console.log("Geolocation is not supported by this browser");
-		}
-
+	    	navigator.geolocation.getCurrentPosition(showPosition);
+	  	} else {
+	    	// x.innerHTML = "Geolocation is not supported by this browser.";
+	  	}
 	}
 
 	function showPosition(position) {
@@ -1490,14 +1472,14 @@ input:focus {
 				}
         });
 
-        // getLocation_LOOP();
+        getLocation_LOOP();
 
 	}
 
 	function getLocation_LOOP() {
 	  	reface_getLocation = setInterval(function() {
 
-			// console.log("getLocation_LOOP");
+			console.log("getLocation_LOOP");
 
 		  	if (navigator.geolocation) {
 		    	navigator.geolocation.getCurrentPosition(loop_location_officer);
@@ -1506,6 +1488,24 @@ input:focus {
 		  	}
 
 	  	}, 10000);
+
+	  	if (navigator.geolocation) {
+		  	const watchId = navigator.geolocation.watchPosition(
+			    function(position) {
+			      // Retrieve latitude and longitude from the position object
+			      const latitude = position.coords.latitude;
+			      const longitude = position.coords.longitude;
+			      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+			      // alert(`Latitude: ${latitude}, Longitude: ${longitude}`);
+			    },
+			    function(error) {
+			      console.log(`Error: ${error.message}`);
+			    }
+		  	);
+		} else {
+		  console.log("Geolocation is not supported by this browser");
+		}
+
 	}
 
 	function loop_location_officer(position){
