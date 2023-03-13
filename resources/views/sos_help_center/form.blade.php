@@ -169,16 +169,8 @@
                 <i class="fa-sharp fa-solid fa-circle-xmark btn" data-dismiss="modal" aria-label="Close"></i>
             </div>
             <div class="modal-body">
-                <div class="row" id="div_steps_travel">
-                    <div class="col-2">
-                        turn-right
-                    </div>
-                    <div class="col-8">
-                        เลี้ยว<b>ขวา</b><div style="font-size:0.9em">ปลายทางจะอยู่ทางขวา</div>
-                    </div>
-                    <div class="col-2">
-                        0.6 กม.
-                    </div>
+                <div class="row" id="div_steps_travel" style="font-size: 20px !important;">
+                    <!-- ข้อมูลแนะนำการเดินทาง -->
                 </div>
             </div>
         </div>
@@ -1306,7 +1298,7 @@
             destination: markerB.getPosition(),
             travelMode: 'DRIVING',
         }, function(response, status) {
-            console.log(response);
+            // console.log(response);
             if (status === 'OK') {
                 directionsDisplay_go_to_help.setDirections(response);
                 // ระยะทาง
@@ -1321,18 +1313,30 @@
 
                 // แนะนำการเดินทาง
                 let div_steps_travel = document.querySelector('#div_steps_travel');
+                    div_steps_travel.innerHTML = '' ;
 
                 var steps_travel = response.routes[0].legs[0].steps;
                 for (var i = 0; i < steps_travel.length; i++) {
 
                     let No_step = i + 1 ; // ข้อที่
-                    let distance_step = steps_travel[i].distance ; // ระยะทางก่อนเปลี่ยน
+                    let distance_step = steps_travel[i].distance.text ; // ระยะทางก่อนเปลี่ยน
                     let instructions_step = steps_travel[i].instructions ; // คำอธิบาย
                     let maneuver = steps_travel[i].maneuver ; // วิธีเปลี่ยนเส้นทาง
 
-                    let steps_travel_html = '' ;
+                    let steps_travel_html = 
+                        '<div class="col-2">'+
+                            maneuver +
+                        '</div>'+
+                        '<div class="col-8">'+
+                            instructions_step +
+                        '</div>'+
+                        '<div class="col-2">'+
+                            distance_step +
+                        '</div>'+
+                        '<hr>'
+                    ;
 
-                    div_steps_travel.insertAdjacentHTML('beforeend', steps_travel[i].instructions); // แทรกล่างสุด
+                    div_steps_travel.insertAdjacentHTML('beforeend', steps_travel_html); // แทรกล่างสุด
                 }
             } else {
                 window.alert('Directions request failed due to ' + status);

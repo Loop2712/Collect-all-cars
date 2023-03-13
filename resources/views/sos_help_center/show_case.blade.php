@@ -1421,14 +1421,135 @@ input:focus {
 	var service;
 	var directionsDisplay;
 
+	var check_send_update_location_officer ;
+    var seconds_officer ;
+
 	const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
 	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
 
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         show_event_level();
-        getLocation();
+        open_map_show_case();
+        timer_test();
+        // getLocation();
+        watchPosition_officer();
     });
+
+    function timer_test(){
+    	// Start the timer
+        	startTime_wait_officer = Date.now();
+
+		  	test_timer = setInterval(function() {
+	            // Calculate the elapsed time
+	            var elapsedTime = Date.now() - startTime_wait_officer;
+
+	            // Convert the elapsed time to minutes and seconds
+	            seconds_officer = Math.floor((elapsedTime % 60000) / 1000);
+
+	            if (seconds_officer === 10) {
+	            	check_send_update_location_officer = "send_update_location_officer" ;
+
+	            	restart_timer_test();
+	            	
+	            }
+
+	            // Update the timer element
+	            // timerElem.innerText = seconds_officer;
+	        }, 1000);
+    }
+
+    function restart_timer_test(){
+    	// If the timer is already running, stop it and reset the start time
+        if (test_timer) {
+            clearInterval(test_timer);
+            startTime_wait_officer = null;
+        }
+
+        timer_test();
+    }
+
+
+    function watchPosition_officer(){
+    	if (navigator.geolocation) {
+		  	const watchId = navigator.geolocation.watchPosition(
+			    function(position) {
+			      	// Retrieve latitude and longitude from the position object
+			      	let latitude = position.coords.latitude;
+			      	let longitude = position.coords.longitude;
+			      	console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+			      	// alert(`Latitude: ${latitude}, Longitude: ${longitude}`);
+			      	console.log(seconds_officer);
+			      	console.log(check_send_update_location_officer);
+
+			      	if (check_send_update_location_officer == 'send_update_location_officer') {
+			      		func_send_update_location_officer(latitude , longitude);
+			      	}
+
+			    },
+			    function(error) {
+			      console.log(`Error: ${error.message}`);
+			    }
+		  	);
+
+		} else {
+		  console.log("Geolocation is not supported by this browser");
+		}
+
+    }
+
+    function func_send_update_location_officer(lat_officer , lng_officer) {
+
+		document.querySelector('#text_show_lat').innerHTML = lat_officer ;
+		document.querySelector('#text_show_lng').innerHTML = lng_officer ;
+		
+
+        fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat + "/" + lng)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                // console.log(result['status']);
+
+                let sos_lat = result['lat'] ;
+                let sos_lng = result['lng'] ;
+
+                // หมุดเจ้าหน้าที่
+		        if (officer_marker) {
+		            officer_marker.setMap(null);
+		        }
+		        officer_marker = new google.maps.Marker({
+		            position: {lat: parseFloat(lat_officer) , lng: parseFloat(lng_officer) },
+		            map: map_show_case,
+		            icon: image_operating_unit_general,
+		        });
+
+		        // let Item_1 = new google.maps.LatLng(m_lat, m_lng);
+		        // let myPlace = new google.maps.LatLng(sos_lat , sos_lng);
+
+		        // let bounds = new google.maps.LatLngBounds();
+		        //     bounds.extend(myPlace);
+		        //     bounds.extend(Item_1);
+		        // map_show_case.fitBounds(bounds);
+
+				// map_show_case.setZoom(map_show_case.getZoom() - 0.5);
+		        
+
+                // open_map_show_case(sos_lat , sos_lng)
+
+                status_sos = result['status'] ;
+                document.querySelector('#show_status').innerHTML = status_sos ;
+                if (result['remark_status']) {
+                	result['remark_status'] = result['remark_status'].replaceAll("_" , " ");
+            		document.querySelector('#show_remark_status').innerHTML = '(' + result['remark_status'] +')';
+				}
+
+				check_send_update_location_officer = 'no' ;
+        });
+
+	}
+
+
+
 
     function myStop_reface_getLocation() {
         clearInterval(reface_getLocation);
@@ -1441,6 +1562,7 @@ input:focus {
 	    	// x.innerHTML = "Geolocation is not supported by this browser.";
 	  	}
 	}
+
 
 	function showPosition(position) {
 
@@ -1479,7 +1601,7 @@ input:focus {
 	function getLocation_LOOP() {
 	  	reface_getLocation = setInterval(function() {
 
-			console.log("getLocation_LOOP");
+			// console.log("getLocation_LOOP");
 
 		  	if (navigator.geolocation) {
 		    	navigator.geolocation.getCurrentPosition(loop_location_officer);
@@ -1489,27 +1611,10 @@ input:focus {
 
 	  	}, 10000);
 
-	  	if (navigator.geolocation) {
-		  	const watchId = navigator.geolocation.watchPosition(
-			    function(position) {
-			      // Retrieve latitude and longitude from the position object
-			      const latitude = position.coords.latitude;
-			      const longitude = position.coords.longitude;
-			      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-			      alert(`Latitude: ${latitude}, Longitude: ${longitude}`);
-			    },
-			    function(error) {
-			      console.log(`Error: ${error.message}`);
-			    }
-		  	);
-		} else {
-		  console.log("Geolocation is not supported by this browser");
-		}
-
 	}
 
 	function loop_location_officer(position){
-		// console.log("loop_location_officer");
+		console.log("loop_location_officer");
 		// LOOP ------------------------------------------------------------------
         lat = position.coords.latitude ;
 		lng = position.coords.longitude ;
@@ -1522,7 +1627,7 @@ input:focus {
     	fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat + "/" + lng)
             .then(response => response.json())
             .then(result_2 => {
-                // console.log(result_2);
+                console.log(result_2);
                 // console.log(result_2['status']);
 
                 if (result_2['idc']) {
@@ -1558,18 +1663,28 @@ input:focus {
 
 	}
 
-	function open_map_show_case(sos_lat , sos_lng) {
+	function open_map_show_case() {
 
-    	let m_lat = lat ;
-    	let m_lng = lng ;
+    	let m_lat = "{{ $data_sos->lat }}" ;
+    	let m_lng = "{{ $data_sos->lng }}" ;
         let m_numZoom = parseFloat('15');
 
         map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
-            center: {lat: m_lat, lng: m_lng },
+            center: {lat: parseFloat(m_lat), lng: parseFloat(m_lng) },
             zoom: m_numZoom,
         });
 
-        set_marker_map_show_case(sos_lat , sos_lng);
+        // หมุดที่เกิดเหตุ 
+        if (sos_marker) {
+            sos_marker.setMap(null);
+        }
+        sos_marker = new google.maps.Marker({
+            position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
+            map: map_show_case,
+            icon: image_sos,
+        });
+
+        // set_marker_map_show_case(m_lat , m_lng);
     }
 
     function set_marker_map_show_case(sos_lat , sos_lng){
@@ -1878,5 +1993,44 @@ input:focus {
 		document.getElementById('show_photo_sos_by_officers').classList.remove('d-none');
 
 	}
+</script>
+
+<script>
+	function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+	  const earthRadius = 6371; // Radius of the earth in km
+	  const dLat = deg2rad(lat2-lat1);
+	  const dLon = deg2rad(lon2-lon1);
+	  const a = 
+	    Math.sin(dLat/2) * Math.sin(dLat/2) +
+	    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+	    Math.sin(dLon/2) * Math.sin(dLon/2);
+	  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	  const distance = earthRadius * c; // Distance in km
+	  return distance;
+	}
+
+	function deg2rad(deg) {
+	  return deg * (Math.PI/180)
+	}
+
+	const currentLatitude = 37.7749; // User's current latitude
+const currentLongitude = -122.4194; // User's current longitude
+
+// Iterate over each step in the route
+response.routes[0].legs[0].steps.forEach(step => {
+  const stepLatitude = step.lat; // Latitude of the step
+  const stepLongitude = step.lng; // Longitude of the step
+
+  // Calculate the distance between the user's location and the step
+  const distance = getDistanceFromLatLonInKm(
+    currentLatitude, currentLongitude, stepLatitude, stepLongitude
+  );
+
+  // If the distance is less than 100 meters, the user is close to the step
+  if (distance < 0.1) {
+    console.log("User is close to this step:", step);
+  }
+});
+
 </script>
 @endsection

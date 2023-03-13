@@ -1447,31 +1447,32 @@
 
     // Function to start the timer
     function startTimer_wait_officer() {
-      // Get the timer element
-      var timerElem = document.getElementById('timer_wait_officer');
+        // Get the timer element
+        var timerElem = document.getElementById('timer_wait_officer');
 
-      // If the timer is already running, stop it and reset the start time
-      if (timerInterval_wait_officer) {
-        clearInterval(timerInterval_wait_officer);
-        startTime_wait_officer = null;
-      }
+        // If the timer is already running, stop it and reset the start time
+        if (timerInterval_wait_officer) {
+            clearInterval(timerInterval_wait_officer);
+            startTime_wait_officer = null;
+        }
 
-      // Start the timer
-      startTime_wait_officer = Date.now();
-      timerInterval_wait_officer = setInterval(function() {
-        // Calculate the elapsed time
-        var elapsedTime = Date.now() - startTime_wait_officer;
+        // Start the timer
+        startTime_wait_officer = Date.now();
 
-        // Convert the elapsed time to minutes and seconds
-        var minutes = Math.floor(elapsedTime / 60000);
-        var seconds = Math.floor((elapsedTime % 60000) / 1000);
+        timerInterval_wait_officer = setInterval(function() {
+            // Calculate the elapsed time
+            var elapsedTime = Date.now() - startTime_wait_officer;
 
-        // Format the time as a string with leading zeros
-        var timeString = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+            // Convert the elapsed time to minutes and seconds
+            var minutes = Math.floor(elapsedTime / 60000);
+            var seconds = Math.floor((elapsedTime % 60000) / 1000);
 
-        // Update the timer element
-        timerElem.innerText = timeString;
-      }, 1000);
+            // Format the time as a string with leading zeros
+            var timeString = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+
+            // Update the timer element
+            timerElem.innerText = timeString;
+        }, 1000);
     }
 
 
