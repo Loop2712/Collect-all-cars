@@ -1525,7 +1525,7 @@ input:focus {
 			            bounds.extend(Item_1);
 			        map_show_case.fitBounds(bounds);
 
-					// map_show_case.setZoom(map_show_case.getZoom() - 0.5);
+					map_show_case.setZoom(map_show_case.getZoom() - 0.5);
 
 			      	if (check_send_update_location_officer == 'send_update_location_officer') {
 			      		func_send_update_location_officer(latitude , longitude);
