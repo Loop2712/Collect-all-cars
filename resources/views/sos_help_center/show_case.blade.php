@@ -388,6 +388,81 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 </style>
 
+<style>
+    .div_alert{
+  position: fixed;
+  /* position: absolute; */
+  top: -13%;
+  /* top: 55%; */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Kanit', sans-serif;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+}
+.div_alert i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    max-width: 70px;
+    height: 50px;
+    background-color: #ffddde;
+    border-radius: 50%;
+    color: #ff5757;
+    font-size: 1.5rem;
+    margin-left: 1.5rem;
+
+}
+
+.up-down {
+  animation-name: slideDownAndUp;
+  animation-duration: 5s;
+}
+
+@keyframes slideDownAndUp {
+  0% {
+    transform: translateY(0);
+  }
+  /* Change the percentage here to make it faster */
+  10% {
+    transform: translateY(125px);
+  }
+  /* Change the percentage here to make it stay down for longer */
+  90% {
+    transform: translateY(150px);
+  }
+  /* Keep this at the end */
+ 100% {
+    transform: translateY(0);
+ }
+}
+.alert-child{
+    background-color: #DB2D2E;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 15px;
+    height: 5rem;
+    width: 90%;
+    padding:20px 10px;
+}.text-alert{
+    color: #fff;
+   float: left;
+}
+</style>
+<div id="alert_send_update" class=" div_alert " role="alert">
+    <div class="alert-child">
+        <div >
+            <h4 class="d-block  text-alert">Send update location officer</h4>
+        </div>
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+   
+</div>
+
 	<div id="map_show_case">
 		<div class="sry-open-location">
 			<img src="{{ asset('/img/more/sorry-no-text.png') }}" />
@@ -445,6 +520,11 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		<menu id="div_distance_and_duration" class="col-12 d-none">
     		<button class="card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
 				ระยะทาง : <span id="text_distance"></span> / เวลา : <span id="text_duration"></span>
+			</button>
+		</menu>
+		<menu class="col-12">
+    		<button class="card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
+				<span id="text_lat_lng" ></span> 
 			</button>
 		</menu>
 		<menu class="col-9">
@@ -1432,15 +1512,16 @@ input:focus {
 
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+        // getLocation();
+
         show_event_level();
         open_map_show_case();
-        timer_test();
-        // getLocation();
+
+        timer_check_send_update_officer();
         watchPosition_officer();
     });
 
     function open_map_show_case() {
-
     	
         let m_numZoom = parseFloat('15');
 
@@ -1461,7 +1542,7 @@ input:focus {
 
     }
 
-    function timer_test(){
+    function timer_check_send_update_officer(){
     	// Start the timer
         	startTime_wait_officer = Date.now();
 
@@ -1475,7 +1556,7 @@ input:focus {
 	            if (seconds_officer === 10) {
 	            	check_send_update_location_officer = "send_update_location_officer" ;
 
-	            	restart_timer_test();
+	            	restart_timer_check_send_update_officer();
 	            	
 	            }
 
@@ -1484,14 +1565,14 @@ input:focus {
 	        }, 1000);
     }
 
-    function restart_timer_test(){
+    function restart_timer_check_send_update_officer(){
     	// If the timer is already running, stop it and reset the start time
         if (test_timer) {
             clearInterval(test_timer);
             startTime_wait_officer = null;
         }
 
-        timer_test();
+        timer_check_send_update_officer();
     }
 
 
@@ -1503,7 +1584,9 @@ input:focus {
 			      	let latitude = position.coords.latitude;
 			      	let longitude = position.coords.longitude;
 			      	console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-			      	// alert(`Latitude: ${latitude}, Longitude: ${longitude}`);
+
+			      	document.querySelector('#text_lat_lng').innerHTML = `Latitude: ${latitude} <br> Longitude: ${longitude}` ;
+
 			      	console.log(seconds_officer);
 			      	console.log(check_send_update_location_officer);
 
@@ -1566,6 +1649,12 @@ input:focus {
 				}
 
 				check_send_update_location_officer = 'no' ;
+
+				document.querySelector('#alert_send_update').classList.add('up-down');
+                const animated = document.querySelector('.up-down');
+                animated.onanimationend = () => {
+                    document.querySelector('#alert_send_update').classList.remove('up-down');
+                };
         });
 
 	}
