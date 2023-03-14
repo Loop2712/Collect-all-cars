@@ -519,7 +519,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		@endphp
 
 		<menu class="col-12">
-    		<button class="card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
+    		<button class="card-body p-3 main-shadow d-flex align-items-center btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
 				<img class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
 				<span class="text-center">เลี้ยงขวา</span>
 				<span class="float-right">0.6 กม.</span>
@@ -527,7 +527,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		</menu>
 		<menu class="col-8">
 			<button class="card-body p-3 main-shadow btn btn-sm text-start font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;font-size: 15px;">
-				ระยะทาง : <span id="text_distance"></span> <br> ถึงประมาณ : <span id="text_duration"></span>
+				ระยะทาง : <span id="text_distance"></span> <br> ถึงเวลาประมาณ : <span id="text_duration"></span>
 			</button>
 		</menu>
 		<menu class="col-4 pl-0">
