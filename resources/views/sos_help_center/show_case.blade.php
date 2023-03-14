@@ -517,34 +517,23 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 			$gg_lat = $data_sos->lat ;
 			$lng = $data_sos->lng ;
 		@endphp
-		<menu id="div_distance_and_duration" class="col-12 d-none">
-    		<button class="card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
-				ระยะทาง : <span id="text_distance"></span> / เวลา : <span id="text_duration"></span>
-			</button>
-		</menu>
+
 		<menu class="col-12">
     		<button class="card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
-				<span id="text_lat_lng" ></span> 
+				<img class="float-left" src="{{ asset('/img/icon/icon-google-map.png') }}" width="30" alt="">
+				<span class="text-center">เลี้ยงขวา</span>
+				<span class="float-right">0.6 กม.</span>
 			</button>
 		</menu>
-		<menu class="col-9">
-			<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 " style="width:100%;border-radius: 25px 5px 5px 25px;"  target="bank">
-				<img src="{{ asset('/img/icon/icon-google-map.png') }}" width="25" alt=""> Google Maps 
+		<menu class="col-8">
+			<button class="card-body p-3 main-shadow btn btn-sm text-start font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;font-size: 16px;">
+				ระยะทาง : <span id="text_distance"></span> <br> ถึงประมาณ : <span id="text_duration"></span>
+			</button>
+		</menu>
+		<menu class="col-4 pl-0">
+			<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 notranslate" style="width:100%;border-radius: 25px 25px 25px 25px;"  target="bank">
+				<img src="{{ asset('/img/icon/icon-google-map.png') }}" width="20" alt=""><br>Google 
 			</a>
-		</menu>
-		<menu class="col-3 pl-0">
-			@if( Auth::user()->id == '1' || Auth::user()->id == '64' )
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 btn-primary" style="width:100%;border-radius: 5px 25px 25px 5px;background-color: #007bff;" onclick="get_dir();">
-			@else
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 btn-primary" disabled style="width:100%;border-radius: 5px 25px 25px 5px;background-color: #007bff;" onclick="get_dir();">
-			@endif
-			
-				<i id="icon_btn_get_dir_close" class="text-white fa-sharp fa-solid fa-eye-slash"></i>
-				<i id="icon_btn_get_dir_open" class="text-white fa-solid fa-eye d-none"></i>
-				<!--เปิด fa-solid fa-eye -->
-				<!--ปิด fa-sharp fa-solid fa-eye-slash -->
-			</button>
-			<input class="d-none" type="checkbox" name="input_check_open_get_dir" id="input_check_open_get_dir">
 		</menu>
 	
 	</div>
@@ -1512,16 +1501,33 @@ input:focus {
 
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        // getLocation();
 
+        getLocation();
         show_event_level();
-        open_map_show_case();
+
+		show_data_menu(4);
 
         timer_check_send_update_officer();
         watchPosition_officer();
+
     });
 
-    function open_map_show_case() {
+    function myStop_reface_getLocation() {
+        clearInterval(reface_getLocation);
+    }
+
+	function getLocation() {
+	  	if (navigator.geolocation) {
+	    	navigator.geolocation.getCurrentPosition(open_map_show_case);
+	  	} else {
+	    	// x.innerHTML = "Geolocation is not supported by this browser.";
+	  	}
+	}
+
+    function open_map_show_case(position) {
+
+    	start_officer_lat = position.coords.latitude ;
+		start_officer_lng = position.coords.longitude ;
     	
         let m_numZoom = parseFloat('15');
 
@@ -1539,6 +1545,18 @@ input:focus {
             map: map_show_case,
             icon: image_sos,
         });
+
+        // หมุดเจ้าหน้าที่
+        if (officer_marker) {
+            officer_marker.setMap(null);
+        }
+        officer_marker = new google.maps.Marker({
+            position: {lat: parseFloat(start_officer_lat) , lng: parseFloat(start_officer_lng) },
+            map: map_show_case,
+            icon: image_operating_unit_general,
+        });
+
+		get_Directions_API(officer_marker, sos_marker);
 
     }
 
@@ -1585,8 +1603,6 @@ input:focus {
 			      	let longitude = position.coords.longitude;
 			      	console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
 
-			      	document.querySelector('#text_lat_lng').innerHTML = `Latitude: ${latitude} <br> Longitude: ${longitude}` ;
-
 			      	console.log(seconds_officer);
 			      	console.log(check_send_update_location_officer);
 
@@ -1606,9 +1622,9 @@ input:focus {
 			        let bounds = new google.maps.LatLngBounds();
 			            bounds.extend(myPlace);
 			            bounds.extend(Item_1);
-			        map_show_case.fitBounds(bounds);
+			        // map_show_case.fitBounds(bounds);
 
-					map_show_case.setZoom(map_show_case.getZoom() - 0.5);
+					map_show_case.setZoom(map_show_case.getZoom() - 1.5 );
 
 			      	if (check_send_update_location_officer == 'send_update_location_officer') {
 			      		func_send_update_location_officer(latitude , longitude);
@@ -1650,169 +1666,180 @@ input:focus {
 
 				check_send_update_location_officer = 'no' ;
 
-				document.querySelector('#alert_send_update').classList.add('up-down');
-                const animated = document.querySelector('.up-down');
-                animated.onanimationend = () => {
-                    document.querySelector('#alert_send_update').classList.remove('up-down');
-                };
         });
 
 	}
 
+	// <!-- --------------- ระยะทาง(เสียเงิน) --------------- -->
+	function get_Directions_API(markerA, markerB) {
+		console.log( "get_Directions_API" );
 
+		if (directionsDisplay) {
+	        directionsDisplay.setMap(null);
+		}
 
+		service = new google.maps.DirectionsService();
+		directionsDisplay = new google.maps.DirectionsRenderer({
+		    draggable: false,
+		    map: map_show_case,
+		    suppressMarkers: true, // suppress the default markers
+		});
 
-    function myStop_reface_getLocation() {
-        clearInterval(reface_getLocation);
-    }
+	    service.route({
+	        origin: markerA.getPosition(),
+	        destination: markerB.getPosition(),
+	        travelMode: 'DRIVING'
+	    }, function(response, status) {
+	        if (status === 'OK') {
+	            directionsDisplay.setDirections(response);
+	            	// console.log(response);
 
-	function getLocation() {
-	  	if (navigator.geolocation) {
-	    	navigator.geolocation.getCurrentPosition(showPosition);
-	  	} else {
-	    	// x.innerHTML = "Geolocation is not supported by this browser.";
-	  	}
+	            // ระยะทาง
+	            let text_distance = response.routes[0].legs[0].distance.text ;
+	            	// console.log(text_distance);
+	            	document.querySelector('#text_distance').innerHTML = text_distance ;
+	            // เวลา
+	            let text_duration = response.routes[0].legs[0].duration.text ;
+	            	// console.log(text_duration);
+	            	document.querySelector('#text_duration').innerHTML = text_duration ;
+	            
+	        } else {
+	            window.alert('Directions request failed due to ' + status);
+	        }
+	    });
+
 	}
 
 
-	function showPosition(position) {
 
-		lat = position.coords.latitude ;
-		lng = position.coords.longitude ;
-		// console.log(lat);
-		// console.log(lng);
 
-		document.querySelector('#text_show_lat').innerHTML = lat ;
-		document.querySelector('#text_show_lng').innerHTML = lng ;
+	// function showPosition(position) {
+
+	// 	lat = position.coords.latitude ;
+	// 	lng = position.coords.longitude ;
+	// 	// console.log(lat);
+	// 	// console.log(lng);
+
+	// 	document.querySelector('#text_show_lat').innerHTML = lat ;
+	// 	document.querySelector('#text_show_lng').innerHTML = lng ;
 		
 
-        fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat + "/" + lng)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                // console.log(result['status']);
+    //     fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat + "/" + lng)
+    //         .then(response => response.json())
+    //         .then(result => {
+    //             // console.log(result);
+    //             // console.log(result['status']);
 
-                let sos_lat = result['lat'] ;
-                let sos_lng = result['lng'] ;
+    //             let sos_lat = result['lat'] ;
+    //             let sos_lng = result['lng'] ;
 
-                open_map_show_case(sos_lat , sos_lng)
+    //             open_map_show_case(sos_lat , sos_lng)
 
-                status_sos = result['status'] ;
-                document.querySelector('#show_status').innerHTML = status_sos ;
-                if (result['remark_status']) {
-                	result['remark_status'] = result['remark_status'].replaceAll("_" , " ");
-            		document.querySelector('#show_remark_status').innerHTML = '(' + result['remark_status'] +')';
-				}
-        });
+    //             status_sos = result['status'] ;
+    //             document.querySelector('#show_status').innerHTML = status_sos ;
+    //             if (result['remark_status']) {
+    //             	result['remark_status'] = result['remark_status'].replaceAll("_" , " ");
+    //         		document.querySelector('#show_remark_status').innerHTML = '(' + result['remark_status'] +')';
+	// 			}
+    //     });
 
-        getLocation_LOOP();
+    //     getLocation_LOOP();
 
-	}
+	// }
 
-	function getLocation_LOOP() {
-	  	reface_getLocation = setInterval(function() {
+	// function getLocation_LOOP() {
+	//   	reface_getLocation = setInterval(function() {
 
-			// console.log("getLocation_LOOP");
+	// 		// console.log("getLocation_LOOP");
 
-		  	if (navigator.geolocation) {
-		    	navigator.geolocation.getCurrentPosition(loop_location_officer);
-		  	} else {
-		    	// x.innerHTML = "Geolocation is not supported by this browser.";
-		  	}
+	// 	  	if (navigator.geolocation) {
+	// 	    	navigator.geolocation.getCurrentPosition(loop_location_officer);
+	// 	  	} else {
+	// 	    	// x.innerHTML = "Geolocation is not supported by this browser.";
+	// 	  	}
 
-	  	}, 10000);
+	//   	}, 10000);
 
-	}
+	// }
 
-	function loop_location_officer(position){
-		console.log("loop_location_officer");
-		// LOOP ------------------------------------------------------------------
-        lat = position.coords.latitude ;
-		lng = position.coords.longitude ;
-		// console.log(lat);
-		// console.log(lng);
+	// function loop_location_officer(position){
+	// 	console.log("loop_location_officer");
+	// 	// LOOP ------------------------------------------------------------------
+    //     lat = position.coords.latitude ;
+	// 	lng = position.coords.longitude ;
+	// 	// console.log(lat);
+	// 	// console.log(lng);
 		
-		document.querySelector('#text_show_lat').innerHTML = lat ;
-		document.querySelector('#text_show_lng').innerHTML = lng ;
+	// 	document.querySelector('#text_show_lat').innerHTML = lat ;
+	// 	document.querySelector('#text_show_lng').innerHTML = lng ;
             
-    	fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat + "/" + lng)
-            .then(response => response.json())
-            .then(result_2 => {
-                console.log(result_2);
-                // console.log(result_2['status']);
+    // 	fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat + "/" + lng)
+    //         .then(response => response.json())
+    //         .then(result_2 => {
+    //             console.log(result_2);
+    //             // console.log(result_2['status']);
 
-                if (result_2['idc']) {
-                	event_level_by_control_center = result_2['idc'] ;
-                	show_event_level();
-                }
+    //             if (result_2['idc']) {
+    //             	event_level_by_control_center = result_2['idc'] ;
+    //             	show_event_level();
+    //             }
 
-                let sos_lat = result_2['lat'] ;
-                let sos_lng = result_2['lng'] ;
+    //             let sos_lat = result_2['lat'] ;
+    //             let sos_lng = result_2['lng'] ;
 
-				// set_marker_map_show_case(sos_lat , sos_lng);
+	// 			// set_marker_map_show_case(sos_lat , sos_lng);
 
-            	status_sos = result_2['status'] ;
-            	document.querySelector('#show_status').innerHTML = status_sos ;
-            	if (result_2['remark_status']) {
-                	result_2['remark_status'] = result_2['remark_status'].replaceAll("_" , " ");
-            		document.querySelector('#show_remark_status').innerHTML = '(' + result_2['remark_status'] + ')';
-				}
+    //         	status_sos = result_2['status'] ;
+    //         	document.querySelector('#show_status').innerHTML = status_sos ;
+    //         	if (result_2['remark_status']) {
+    //             	result_2['remark_status'] = result_2['remark_status'].replaceAll("_" , " ");
+    //         		document.querySelector('#show_remark_status').innerHTML = '(' + result_2['remark_status'] + ')';
+	// 			}
 
-            	let input_check = document.querySelector('#input_check_open_get_dir');
-				if (input_check.checked) {
-					get_Directions_API(officer_marker, sos_marker);
-				}else{
-					if (directionsDisplay) {
-				        directionsDisplay.setMap(null);
-					}
 
-					set_marker_map_show_case(sos_lat , sos_lng);
-					document.querySelector('#div_distance_and_duration').classList.add('d-none');
-				}
+    //     });
 
-        });
-
-	}
+	// }
 
 	
 
-    function set_marker_map_show_case(sos_lat , sos_lng){
+    // function set_marker_map_show_case(sos_lat , sos_lng){
 
-    	let m_lat = lat ;
-    	let m_lng = lng ;
-    	// หมุดที่เกิดเหตุ 
-        if (sos_marker) {
-            sos_marker.setMap(null);
-        }
-        sos_marker = new google.maps.Marker({
-            position: {lat: parseFloat(sos_lat) , lng: parseFloat(sos_lng) },
-            map: map_show_case,
-            icon: image_sos,
-        });
+    // 	let m_lat = lat ;
+    // 	let m_lng = lng ;
+    // 	// หมุดที่เกิดเหตุ 
+    //     if (sos_marker) {
+    //         sos_marker.setMap(null);
+    //     }
+    //     sos_marker = new google.maps.Marker({
+    //         position: {lat: parseFloat(sos_lat) , lng: parseFloat(sos_lng) },
+    //         map: map_show_case,
+    //         icon: image_sos,
+    //     });
 
-        // หมุดเจ้าหน้าที่
-        if (officer_marker) {
-            officer_marker.setMap(null);
-        }
-        officer_marker = new google.maps.Marker({
-            position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
-            map: map_show_case,
-            icon: image_operating_unit_general,
-        });
+    //     // หมุดเจ้าหน้าที่
+    //     if (officer_marker) {
+    //         officer_marker.setMap(null);
+    //     }
+    //     officer_marker = new google.maps.Marker({
+    //         position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
+    //         map: map_show_case,
+    //         icon: image_operating_unit_general,
+    //     });
 
-        let Item_1 = new google.maps.LatLng(m_lat, m_lng);
-        let myPlace = new google.maps.LatLng(sos_lat , sos_lng);
+    //     let Item_1 = new google.maps.LatLng(m_lat, m_lng);
+    //     let myPlace = new google.maps.LatLng(sos_lat , sos_lng);
 
-        let bounds = new google.maps.LatLngBounds();
-            bounds.extend(myPlace);
-            bounds.extend(Item_1);
-        map_show_case.fitBounds(bounds);
+    //     let bounds = new google.maps.LatLngBounds();
+    //         bounds.extend(myPlace);
+    //         bounds.extend(Item_1);
+    //     map_show_case.fitBounds(bounds);
 
-		map_show_case.setZoom(map_show_case.getZoom() - 0.5);
-		// if ( map_show_case.getZoom() ){   // or set a minimum
-		// 	  // set zoom here
-		// }
-    }
+	// 	map_show_case.setZoom(map_show_case.getZoom() - 0.5);
+	// 	// if ( map_show_case.getZoom() ){   // or set a minimum
+	// 	// 	  // set zoom here
+	// 	// }
+    // }
 
     // UPDATE STATUS SOS
 	    // div_gotohelp
@@ -2009,73 +2036,6 @@ input:focus {
 
 
 
-<!-- --------------- ระยะทาง(เสียเงิน) --------------- -->
-<script>
-	
-	function get_dir(){
-
-		let input_check = document.querySelector('#input_check_open_get_dir');
-		let icon_btn_get_dir_open = document.querySelector('#icon_btn_get_dir_open');
-		let icon_btn_get_dir_close = document.querySelector('#icon_btn_get_dir_close');
-		// เปิด fa-solid fa-eye
-		// ปิด fa-sharp fa-solid fa-eye-slash
-		if (input_check.checked) {
-			if (directionsDisplay) {
-		        directionsDisplay.setMap(null);
-			}
-			document.querySelector('#div_distance_and_duration').classList.add('d-none');
-			input_check.checked = false ;
-			document.querySelector('#icon_btn_get_dir_close').classList.remove('d-none');
-			document.querySelector('#icon_btn_get_dir_open').classList.add('d-none');
-		}else{
-			input_check.checked = true ;
-			document.querySelector('#icon_btn_get_dir_open').classList.remove('d-none');
-			document.querySelector('#icon_btn_get_dir_close').classList.add('d-none');
-			get_Directions_API(officer_marker, sos_marker);
-		}
-
-	}
-
-	function get_Directions_API(markerA, markerB) {
-
-		if (directionsDisplay) {
-	        directionsDisplay.setMap(null);
-		}
-
-		service = new google.maps.DirectionsService();
-		directionsDisplay = new google.maps.DirectionsRenderer({
-		    draggable: false,
-		    map: map_show_case,
-		    suppressMarkers: true, // suppress the default markers
-		});
-
-	    service.route({
-	        origin: markerA.getPosition(),
-	        destination: markerB.getPosition(),
-	        travelMode: 'DRIVING'
-	    }, function(response, status) {
-	        if (status === 'OK') {
-	            directionsDisplay.setDirections(response);
-	            	// console.log(response);
-
-	            // ระยะทาง
-	            let text_distance = response.routes[0].legs[0].distance.text ;
-	            	// console.log(text_distance);
-	            	document.querySelector('#text_distance').innerHTML = text_distance ;
-	            // เวลา
-	            let text_duration = response.routes[0].legs[0].duration.text ;
-	            	// console.log(text_duration);
-	            	document.querySelector('#text_duration').innerHTML = text_duration ;
-	            
-	            document.querySelector('#div_distance_and_duration').classList.remove('d-none');
-	        } else {
-	            window.alert('Directions request failed due to ' + status);
-	        }
-	    });
-
-	}
-
-</script>
 <script>
 	function check_add_img(){
 		document.getElementById('add_select_img').classList.add('d-none')
@@ -2086,41 +2046,41 @@ input:focus {
 </script>
 
 <script>
-	function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-	  const earthRadius = 6371; // Radius of the earth in km
-	  const dLat = deg2rad(lat2-lat1);
-	  const dLon = deg2rad(lon2-lon1);
-	  const a = 
-	    Math.sin(dLat/2) * Math.sin(dLat/2) +
-	    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-	    Math.sin(dLon/2) * Math.sin(dLon/2);
-	  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-	  const distance = earthRadius * c; // Distance in km
-	  return distance;
-	}
+// 	function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+// 	  const earthRadius = 6371; // Radius of the earth in km
+// 	  const dLat = deg2rad(lat2-lat1);
+// 	  const dLon = deg2rad(lon2-lon1);
+// 	  const a = 
+// 	    Math.sin(dLat/2) * Math.sin(dLat/2) +
+// 	    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+// 	    Math.sin(dLon/2) * Math.sin(dLon/2);
+// 	  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+// 	  const distance = earthRadius * c; // Distance in km
+// 	  return distance;
+// 	}
 
-	function deg2rad(deg) {
-	  return deg * (Math.PI/180)
-	}
+// 	function deg2rad(deg) {
+// 	  return deg * (Math.PI/180)
+// 	}
 
-	const currentLatitude = 37.7749; // User's current latitude
-const currentLongitude = -122.4194; // User's current longitude
+// 	const currentLatitude = 37.7749; // User's current latitude
+// const currentLongitude = -122.4194; // User's current longitude
 
-// Iterate over each step in the route
-response.routes[0].legs[0].steps.forEach(step => {
-  const stepLatitude = step.lat; // Latitude of the step
-  const stepLongitude = step.lng; // Longitude of the step
+// // Iterate over each step in the route
+// response.routes[0].legs[0].steps.forEach(step => {
+//   const stepLatitude = step.lat; // Latitude of the step
+//   const stepLongitude = step.lng; // Longitude of the step
 
-  // Calculate the distance between the user's location and the step
-  const distance = getDistanceFromLatLonInKm(
-    currentLatitude, currentLongitude, stepLatitude, stepLongitude
-  );
+//   // Calculate the distance between the user's location and the step
+//   const distance = getDistanceFromLatLonInKm(
+//     currentLatitude, currentLongitude, stepLatitude, stepLongitude
+//   );
 
-  // If the distance is less than 100 meters, the user is close to the step
-  if (distance < 0.1) {
-    console.log("User is close to this step:", step);
-  }
-});
+//   // If the distance is less than 100 meters, the user is close to the step
+//   if (distance < 0.1) {
+//     console.log("User is close to this step:", step);
+//   }
+// });
 
 </script>
 @endsection
