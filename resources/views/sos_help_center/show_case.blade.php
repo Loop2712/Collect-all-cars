@@ -419,7 +419,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 .up-down {
   animation-name: slideDownAndUp;
-  animation-duration: 5s;
+  animation-duration: 1s;
 }
 
 @keyframes slideDownAndUp {
