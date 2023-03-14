@@ -1618,10 +1618,13 @@ input:focus {
                 let element = document.querySelector('#text_instructions'); // เลือก element ที่ต้องการดึงข้อความ
 				let textContent = element.textContent.trim(); // ดึงข้อความและตัดช่องว่างด้านหน้าและด้านหลังด้วย method trim()
 
-				if(check_speak === "Yes"){
-					message_speech = "อีก " + distance_step + " " + textContent ;
-					viicheck_speech(message_speech);
-				}
+				setTimeout(function() {
+		        	if(check_speak === "Yes"){
+						message_speech = "อีก " + distance_step + " " + textContent ;
+						viicheck_speech(message_speech);
+					}
+		        }, 2000);
+				
                 // <img id="img_maneuver" class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
 				// <span id="text_instructions" class="text-center"></span>
 				// <span id="text_distance_step" class="float-right"></span>
