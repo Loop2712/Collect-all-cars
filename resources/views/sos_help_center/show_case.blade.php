@@ -511,7 +511,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 	
 	<!-- Google Map และ ดูเส้นทาง -->
-	<div id="menu_4" class="row data-menu show-data-menu d-none " style="bottom: -3.2rem">
+	<div id="menu_4" class="row data-menu show-data-menu d-none " style="bottom: -3.5rem">
 		@php
 			$gg_lat_mail = '@' . $data_sos->lat ;
 			$gg_lat = $data_sos->lat ;
