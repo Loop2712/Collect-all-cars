@@ -1776,7 +1776,7 @@ input:focus {
 		  	
 		  	// console.log(distance);
 		  	// If the distance is less than 100 meters, the user is close to the step
-		  	if (distance <= 0.20) {
+		  	if (distance <= 0.1) {
 		   	 	// console.log("User is close to this step:", i);
 
 		   	 	let firstElement ;
