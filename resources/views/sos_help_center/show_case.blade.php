@@ -520,18 +520,18 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 		<menu class="col-12">
     		<button class="card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
-				<img class="float-left" src="{{ asset('/img/icon/icon-google-map.png') }}" width="30" alt="">
+				<img class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
 				<span class="text-center">เลี้ยงขวา</span>
 				<span class="float-right">0.6 กม.</span>
 			</button>
 		</menu>
 		<menu class="col-8">
-			<button class="card-body p-3 main-shadow btn btn-sm text-start font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;font-size: 16px;">
+			<button class="card-body p-3 main-shadow btn btn-sm text-start font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;font-size: 15px;">
 				ระยะทาง : <span id="text_distance"></span> <br> ถึงประมาณ : <span id="text_duration"></span>
 			</button>
 		</menu>
 		<menu class="col-4 pl-0">
-			<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 notranslate" style="width:100%;border-radius: 25px 25px 25px 25px;"  target="bank">
+			<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 notranslate" style="width:100%;border-radius: 25px 25px 25px 25px;font-size: 15px;"  target="bank">
 				<img src="{{ asset('/img/icon/icon-google-map.png') }}" width="20" alt=""><br>Google 
 			</a>
 		</menu>
@@ -1512,10 +1512,6 @@ input:focus {
 
     });
 
-    function myStop_reface_getLocation() {
-        clearInterval(reface_getLocation);
-    }
-
 	function getLocation() {
 	  	if (navigator.geolocation) {
 	    	navigator.geolocation.getCurrentPosition(open_map_show_case);
@@ -1533,7 +1529,7 @@ input:focus {
 
         map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
             center: {lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
-            zoom: m_numZoom,
+            // zoom: m_numZoom,
         });
 
         // หมุดที่เกิดเหตุ 
@@ -1595,16 +1591,17 @@ input:focus {
 
 
     function watchPosition_officer(){
+
     	if (navigator.geolocation) {
 		  	const watchId = navigator.geolocation.watchPosition(
 			    function(position) {
 			      	// Retrieve latitude and longitude from the position object
 			      	let latitude = position.coords.latitude;
 			      	let longitude = position.coords.longitude;
-			      	console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
 
-			      	console.log(seconds_officer);
-			      	console.log(check_send_update_location_officer);
+			      	// console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+			      	// console.log(seconds_officer);
+			      	// console.log(check_send_update_location_officer);
 
 			      	// หมุดเจ้าหน้าที่
 			        if (officer_marker) {
@@ -1616,19 +1613,28 @@ input:focus {
 			            icon: image_operating_unit_general,
 			        });
 
-			        let Item_1 = new google.maps.LatLng(latitude, longitude);
-			        let myPlace = new google.maps.LatLng(sos_lo_lat , sos_lo_lng);
-
-			        let bounds = new google.maps.LatLngBounds();
-			            bounds.extend(myPlace);
-			            bounds.extend(Item_1);
-			        // map_show_case.fitBounds(bounds);
-
-					map_show_case.setZoom(map_show_case.getZoom() - 1.5 );
-
 			      	if (check_send_update_location_officer == 'send_update_location_officer') {
 			      		func_send_update_location_officer(latitude , longitude);
 			      	}
+
+			      	setTimeout(function() {
+			            let bounds = new google.maps.LatLngBounds();
+
+			                bounds.extend(officer_marker.getPosition());
+			                bounds.extend(sos_marker.getPosition());
+
+			            let mapHeight = document.getElementById("map_show_case").clientHeight;
+			            let topPadding = mapHeight * 0.15;
+			            let bottomPadding = mapHeight * 0.25;
+			            let verticalPadding = topPadding + bottomPadding;
+
+			            map_show_case.fitBounds(bounds, { top: topPadding, bottom: bottomPadding });
+			   			console.log('fitBounds in watchPosition_officer');
+			        }, 1000); // รอ 1 วินาที (1000 มิลลิวินาที) ก่อนคำนวณขนาดแผนที่และ fitBounds
+
+			        setTimeout(function() {
+			        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
+			        }, 1000);
 
 			    },
 			    function(error) {
@@ -1651,7 +1657,7 @@ input:focus {
         fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat_officer + "/" + lng_officer)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 // console.log(result['status']);
 
                 let sos_lat = result['lat'] ;
@@ -1693,16 +1699,36 @@ input:focus {
 	        if (status === 'OK') {
 	            directionsDisplay.setDirections(response);
 	            	// console.log(response);
-
 	            // ระยะทาง
 	            let text_distance = response.routes[0].legs[0].distance.text ;
-	            	// console.log(text_distance);
-	            	document.querySelector('#text_distance').innerHTML = text_distance ;
-	            // เวลา
-	            let text_duration = response.routes[0].legs[0].duration.text ;
-	            	// console.log(text_duration);
-	            	document.querySelector('#text_duration').innerHTML = text_duration ;
-	            
+	            document.querySelector('#text_distance').innerHTML = text_distance ;
+	            // เวลาถึงโดยประมาณ func_arrivalTime ==> อยู่หน้า theme ทั้ง viicheck และ partner
+                let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value) ;
+                document.querySelector('#text_duration').innerHTML = text_arrivalTime ;
+
+			    // ใช้ setTimeout() เพื่อรอให้การ setDirections เสร็จสมบูรณ์ก่อนคำนวณขนาดแผนที่และ fitBounds ใหม่
+		        // setTimeout(function() {
+		        //     let bounds = new google.maps.LatLngBounds();
+		        //     response.routes[0].legs.forEach(function(leg) {
+		        //         bounds.extend(leg.start_location);
+		        //         bounds.extend(leg.end_location);
+		        //     });
+
+		        //     let mapHeight = document.getElementById("map_show_case").clientHeight;
+		        //     let topPadding = mapHeight * 0.15;
+		        //     let bottomPadding = mapHeight * 0.25;
+		        //     let verticalPadding = topPadding + bottomPadding;
+
+		        //     map_show_case.fitBounds(bounds, { top: topPadding, bottom: bottomPadding });
+			   	// 	console.log('fitBounds in setDirections');
+
+		        // }, 1000); // รอ 1 วินาที (1000 มิลลิวินาที) ก่อนคำนวณขนาดแผนที่และ fitBounds
+
+		        // setTimeout(function() {
+		        // 	map_show_case.setZoom(map_show_case.getZoom() + 0.3 );
+		        // }, 1000);
+
+
 	        } else {
 	            window.alert('Directions request failed due to ' + status);
 	        }
@@ -1710,143 +1736,12 @@ input:focus {
 
 	}
 
-
-
-
-	// function showPosition(position) {
-
-	// 	lat = position.coords.latitude ;
-	// 	lng = position.coords.longitude ;
-	// 	// console.log(lat);
-	// 	// console.log(lng);
-
-	// 	document.querySelector('#text_show_lat').innerHTML = lat ;
-	// 	document.querySelector('#text_show_lng').innerHTML = lng ;
-		
-
-    //     fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat + "/" + lng)
-    //         .then(response => response.json())
-    //         .then(result => {
-    //             // console.log(result);
-    //             // console.log(result['status']);
-
-    //             let sos_lat = result['lat'] ;
-    //             let sos_lng = result['lng'] ;
-
-    //             open_map_show_case(sos_lat , sos_lng)
-
-    //             status_sos = result['status'] ;
-    //             document.querySelector('#show_status').innerHTML = status_sos ;
-    //             if (result['remark_status']) {
-    //             	result['remark_status'] = result['remark_status'].replaceAll("_" , " ");
-    //         		document.querySelector('#show_remark_status').innerHTML = '(' + result['remark_status'] +')';
-	// 			}
-    //     });
-
-    //     getLocation_LOOP();
-
-	// }
-
-	// function getLocation_LOOP() {
-	//   	reface_getLocation = setInterval(function() {
-
-	// 		// console.log("getLocation_LOOP");
-
-	// 	  	if (navigator.geolocation) {
-	// 	    	navigator.geolocation.getCurrentPosition(loop_location_officer);
-	// 	  	} else {
-	// 	    	// x.innerHTML = "Geolocation is not supported by this browser.";
-	// 	  	}
-
-	//   	}, 10000);
-
-	// }
-
-	// function loop_location_officer(position){
-	// 	console.log("loop_location_officer");
-	// 	// LOOP ------------------------------------------------------------------
-    //     lat = position.coords.latitude ;
-	// 	lng = position.coords.longitude ;
-	// 	// console.log(lat);
-	// 	// console.log(lng);
-		
-	// 	document.querySelector('#text_show_lat').innerHTML = lat ;
-	// 	document.querySelector('#text_show_lng').innerHTML = lng ;
-            
-    // 	fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat + "/" + lng)
-    //         .then(response => response.json())
-    //         .then(result_2 => {
-    //             console.log(result_2);
-    //             // console.log(result_2['status']);
-
-    //             if (result_2['idc']) {
-    //             	event_level_by_control_center = result_2['idc'] ;
-    //             	show_event_level();
-    //             }
-
-    //             let sos_lat = result_2['lat'] ;
-    //             let sos_lng = result_2['lng'] ;
-
-	// 			// set_marker_map_show_case(sos_lat , sos_lng);
-
-    //         	status_sos = result_2['status'] ;
-    //         	document.querySelector('#show_status').innerHTML = status_sos ;
-    //         	if (result_2['remark_status']) {
-    //             	result_2['remark_status'] = result_2['remark_status'].replaceAll("_" , " ");
-    //         		document.querySelector('#show_remark_status').innerHTML = '(' + result_2['remark_status'] + ')';
-	// 			}
-
-
-    //     });
-
-	// }
-
-	
-
-    // function set_marker_map_show_case(sos_lat , sos_lng){
-
-    // 	let m_lat = lat ;
-    // 	let m_lng = lng ;
-    // 	// หมุดที่เกิดเหตุ 
-    //     if (sos_marker) {
-    //         sos_marker.setMap(null);
-    //     }
-    //     sos_marker = new google.maps.Marker({
-    //         position: {lat: parseFloat(sos_lat) , lng: parseFloat(sos_lng) },
-    //         map: map_show_case,
-    //         icon: image_sos,
-    //     });
-
-    //     // หมุดเจ้าหน้าที่
-    //     if (officer_marker) {
-    //         officer_marker.setMap(null);
-    //     }
-    //     officer_marker = new google.maps.Marker({
-    //         position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
-    //         map: map_show_case,
-    //         icon: image_operating_unit_general,
-    //     });
-
-    //     let Item_1 = new google.maps.LatLng(m_lat, m_lng);
-    //     let myPlace = new google.maps.LatLng(sos_lat , sos_lng);
-
-    //     let bounds = new google.maps.LatLngBounds();
-    //         bounds.extend(myPlace);
-    //         bounds.extend(Item_1);
-    //     map_show_case.fitBounds(bounds);
-
-	// 	map_show_case.setZoom(map_show_case.getZoom() - 0.5);
-	// 	// if ( map_show_case.getZoom() ){   // or set a minimum
-	// 	// 	  // set zoom here
-	// 	// }
-    // }
-
-    // UPDATE STATUS SOS
-	    // div_gotohelp
-	    // div_event_level
-	    // div_select_treatment
-	    // div_to_hospital
-	    // div_operating_base
+    // -------- UPDATE STATUS SOS -------- //
+    // div_gotohelp
+    // div_event_level
+    // div_select_treatment
+    // div_to_hospital
+    // div_operating_base
 	    
 	function update_status(status , sos_id , reason){
 
