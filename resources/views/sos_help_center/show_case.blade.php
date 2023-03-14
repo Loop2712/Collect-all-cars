@@ -2116,7 +2116,7 @@ input:focus {
 
 	            // console.log("seconds_speak => " + seconds_speak + " check_speak => '" + check_speak + "'");
 
-	            if (seconds_speak === 5) {
+	            if (seconds_speak === 10) {
 
 	            	check_speak = "Yes" ;
 
