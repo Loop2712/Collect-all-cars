@@ -527,6 +527,12 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		@endphp
 
 		<menu class="col-12">
+			<span id="btn_open_or_close_viicheck_speak" class="float-right btn" 
+			onclick="check_click_btn_open_or_close_viicheck_speak();" 
+			style="position: absolute;top: -60%;right: 5%;border-radius: 25px 25px 25px 25px;background-color: white;">
+				<i class="fa-solid fa-volume-slash"></i>
+			</span>
+
     		<button class="btn_route_guide card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
 				<img id="img_maneuver" class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
 				<span id="text_instructions" class="text-center"></span>
@@ -1504,6 +1510,7 @@ input:focus {
 	var check_send_update_location_officer ;
     var seconds_officer ;
 
+    var open_viicheck_speak = "No" ;
     var check_speak = "Yes" ;
 	var seconds_speak ;
 	var message_speech ;
@@ -1519,7 +1526,7 @@ input:focus {
         getLocation();
         show_event_level();
 
-		show_data_menu(4);
+		// show_data_menu(4);
 
         timer_check_send_update_officer();
         timer_check_speak();
@@ -1619,7 +1626,7 @@ input:focus {
 				let textContent = element.textContent.trim(); // ดึงข้อความและตัดช่องว่างด้านหน้าและด้านหลังด้วย method trim()
 
 				setTimeout(function() {
-		        	if(check_speak === "Yes"){
+		        	if(check_speak === "Yes" && open_viicheck_speak == "Yes"){
 						message_speech = "อีก " + distance_step + " " + textContent ;
 						viicheck_speech(message_speech);
 					}
@@ -1803,7 +1810,7 @@ input:focus {
 
 					// console.log("check_speak = " + check_speak ) ;
 
-					if (check_speak === "Yes") {
+					if (check_speak === "Yes" && open_viicheck_speak == "Yes") {
 						message_speech = "ขับ ไปอีก " + distance_step + "หลังจากนั้น " + textContent ;
 						viicheck_speech(message_speech);
 					}
@@ -1824,7 +1831,7 @@ input:focus {
 
 					// console.log("check_speak = " + check_speak ) ;
 
-					if (check_speak === "Yes") {
+					if (check_speak === "Yes" && open_viicheck_speak == "Yes") {
 						message_speech = "ขับ ไปอีก " + distance_step + "หลังจากนั้น " + textContent ;
 						viicheck_speech(message_speech);
 					}
@@ -2139,6 +2146,22 @@ input:focus {
 
         timer_check_speak();
     }
+
+    // Listen for a click event on the button
+    function check_click_btn_open_or_close_viicheck_speak(){
+
+    	let btn = document.querySelector('#btn_open_or_close_viicheck_speak');
+	  // Toggle the icon and update the variable
+	  if (open_viicheck_speak === "No") {
+	    btn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+	    open_viicheck_speak = "Yes";
+	  } else {
+	    btn.innerHTML = '<i class="fa-solid fa-volume-slash"></i>';
+	    open_viicheck_speak = "No";
+	  }
+
+	  // console.log('open_viicheck_speak >> ' + open_viicheck_speak );
+	}
 
 </script>
 <!-- จบ เสียงพูด -->
