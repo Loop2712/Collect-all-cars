@@ -29,7 +29,7 @@
 		align-items: center;
 		justify-content: space-between;
 	}
-			
+
 	.status-remark{
 		border: 1px solid darkgray;
 		border-radius: 20px 0 0 0;
@@ -528,9 +528,9 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 		<menu class="col-12">
     		<button class="btn_route_guide card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
-				<img class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
-				<span class="text-center">เลี้ยงขวา</span>
-				<span class="float-right">0.6 กม.</span>
+				<img id="img_maneuver" class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
+				<span id="text_instructions" class="text-center"></span>
+				<span id="text_distance_step" class="float-right"></span>
 			</button>
 		</menu>
 		<menu class="col-8">
@@ -1498,8 +1498,15 @@ input:focus {
 	var service;
 	var directionsDisplay;
 
+	var steps_travel ;
+	var steps_travel_arr = [] ;
+
 	var check_send_update_location_officer ;
     var seconds_officer ;
+
+    var check_speak = "Yes" ;
+	var seconds_speak ;
+	var message_speech ;
 
     var sos_lo_lat = "{{ $data_sos->lat }}" ;
     var sos_lo_lng = "{{ $data_sos->lng }}" ;
@@ -1509,13 +1516,14 @@ input:focus {
 
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-
         getLocation();
         show_event_level();
 
 		show_data_menu(4);
 
         timer_check_send_update_officer();
+        timer_check_speak();
+
         watchPosition_officer();
 
     });
@@ -1564,6 +1572,67 @@ input:focus {
 
     }
 
+    // <!-- --------------- ระยะทาง(เสียเงิน) --------------- -->
+	function get_Directions_API(markerA, markerB) {
+		// console.log( "get_Directions_API" );
+
+		if (directionsDisplay) {
+	        directionsDisplay.setMap(null);
+		}
+
+		service = new google.maps.DirectionsService();
+		directionsDisplay = new google.maps.DirectionsRenderer({
+		    draggable: false,
+		    map: map_show_case,
+		    suppressMarkers: true, // suppress the default markers
+		});
+
+	    service.route({
+	        origin: markerA.getPosition(),
+	        destination: markerB.getPosition(),
+	        travelMode: 'DRIVING'
+	    }, function(response, status) {
+	        if (status === 'OK') {
+	            directionsDisplay.setDirections(response);
+	            	// console.log(response);
+	            // ระยะทาง
+	            let text_distance = response.routes[0].legs[0].distance.text ;
+	            document.querySelector('#text_distance').innerHTML = text_distance ;
+	            // เวลาถึงโดยประมาณ func_arrivalTime ==> อยู่หน้า theme ทั้ง viicheck และ partner
+                let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value) ;
+                document.querySelector('#text_duration').innerHTML = text_arrivalTime ;
+
+                steps_travel = response.routes[0].legs[0].steps;
+
+                steps_travel_arr = steps_travel ;
+                drop_arr_start = steps_travel_arr.shift();
+
+                let distance_step = steps_travel[0].distance.text ; // ระยะทางก่อนเปลี่ยน
+                let instructions_step = steps_travel[0].instructions ; // คำอธิบาย
+                let maneuver = steps_travel[0].maneuver ; // วิธีเปลี่ยนเส้นทาง
+
+                // document.querySelector('#img_maneuver')
+                document.querySelector('#text_instructions').innerHTML = instructions_step ;
+                document.querySelector('#text_distance_step').innerHTML = distance_step ;
+
+                let element = document.querySelector('#text_instructions'); // เลือก element ที่ต้องการดึงข้อความ
+				let textContent = element.textContent.trim(); // ดึงข้อความและตัดช่องว่างด้านหน้าและด้านหลังด้วย method trim()
+
+				if(check_speak === "Yes"){
+					message_speech = "อีก " + distance_step + " " + textContent ;
+					viicheck_speech(message_speech);
+				}
+                // <img id="img_maneuver" class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
+				// <span id="text_instructions" class="text-center"></span>
+				// <span id="text_distance_step" class="float-right"></span>
+
+	        } else {
+	            window.alert('Directions request failed due to ' + status);
+	        }
+	    });
+
+	}
+	
     function timer_check_send_update_officer(){
     	// Start the timer
         	startTime_wait_officer = Date.now();
@@ -1637,12 +1706,14 @@ input:focus {
 			            let verticalPadding = topPadding + bottomPadding;
 
 			            map_show_case.fitBounds(bounds, { top: topPadding, bottom: bottomPadding });
-			   			console.log('fitBounds in watchPosition_officer');
+			   			// console.log('fitBounds in watchPosition_officer');
 			        }, 1000); // รอ 1 วินาที (1000 มิลลิวินาที) ก่อนคำนวณขนาดแผนที่และ fitBounds
 
 			        setTimeout(function() {
 			        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
 			        }, 1000);
+
+			        distance_check(latitude,longitude);
 
 			    },
 			    function(error) {
@@ -1684,65 +1755,108 @@ input:focus {
 
 	}
 
-	// <!-- --------------- ระยะทาง(เสียเงิน) --------------- -->
-	function get_Directions_API(markerA, markerB) {
-		console.log( "get_Directions_API" );
+	function distance_check(latitude,longitude){
+        // console.log("distance_check");
 
-		if (directionsDisplay) {
-	        directionsDisplay.setMap(null);
-		}
+		const currentLatitude = latitude ; // User's current latitude
+		const currentLongitude = longitude ; // User's current longitude
 
-		service = new google.maps.DirectionsService();
-		directionsDisplay = new google.maps.DirectionsRenderer({
-		    draggable: false,
-		    map: map_show_case,
-		    suppressMarkers: true, // suppress the default markers
-		});
+		// console.log(steps_travel_arr);
 
-	    service.route({
-	        origin: markerA.getPosition(),
-	        destination: markerB.getPosition(),
-	        travelMode: 'DRIVING'
-	    }, function(response, status) {
-	        if (status === 'OK') {
-	            directionsDisplay.setDirections(response);
-	            	// console.log(response);
-	            // ระยะทาง
-	            let text_distance = response.routes[0].legs[0].distance.text ;
-	            document.querySelector('#text_distance').innerHTML = text_distance ;
-	            // เวลาถึงโดยประมาณ func_arrivalTime ==> อยู่หน้า theme ทั้ง viicheck และ partner
-                let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value) ;
-                document.querySelector('#text_duration').innerHTML = text_arrivalTime ;
+		for (let i = 0; i < steps_travel_arr.length; i++) {
+	      	let stepLatitude = steps_travel_arr[i].end_location.lat();
+	      	let stepLongitude = steps_travel_arr[i].end_location.lng();
+	      	// console.log("End Lat: " + stepLatitude);
+	      	// console.log("End Lng: " + stepLongitude);
 
-			    // ใช้ setTimeout() เพื่อรอให้การ setDirections เสร็จสมบูรณ์ก่อนคำนวณขนาดแผนที่และ fitBounds ใหม่
-		        // setTimeout(function() {
-		        //     let bounds = new google.maps.LatLngBounds();
-		        //     response.routes[0].legs.forEach(function(leg) {
-		        //         bounds.extend(leg.start_location);
-		        //         bounds.extend(leg.end_location);
-		        //     });
+		  	// Calculate the distance between the user's location and the step
+		  	const distance = getDistanceFromLatLonInKm(
+		    	currentLatitude, currentLongitude, stepLatitude, stepLongitude
+		  	);
+		  	
+		  	// console.log(distance);
+		  	// If the distance is less than 100 meters, the user is close to the step
+		  	if (distance <= 0.20) {
+		   	 	// console.log("User is close to this step:", i);
 
-		        //     let mapHeight = document.getElementById("map_show_case").clientHeight;
-		        //     let topPadding = mapHeight * 0.15;
-		        //     let bottomPadding = mapHeight * 0.25;
-		        //     let verticalPadding = topPadding + bottomPadding;
+		   	 	let firstElement ;
 
-		        //     map_show_case.fitBounds(bounds, { top: topPadding, bottom: bottomPadding });
-			   	// 	console.log('fitBounds in setDirections');
+		   	 	if (distance < 0) {
+		   	 		// ลบ arr ที่ผ่านไปแล้ว แล้วเพิ่ม step ถัดไป
 
-		        // }, 1000); // รอ 1 วินาที (1000 มิลลิวินาที) ก่อนคำนวณขนาดแผนที่และ fitBounds
+		   	 		firstElement = steps_travel_arr.shift();
+					// console.log("ลบ arr ที่ผ่านไปแล้ว แล้วเพิ่ม step ถัดไป");
 
-		        // setTimeout(function() {
-		        // 	map_show_case.setZoom(map_show_case.getZoom() + 0.3 );
-		        // }, 1000);
+					let distance_step = firstElement.distance.text ; // ระยะทางก่อนเปลี่ยน
+	                let instructions_step = firstElement.instructions ; // คำอธิบาย
+	                let maneuver = firstElement.maneuver ; // วิธีเปลี่ยนเส้นทาง
 
+			   	 	// document.querySelector('#img_maneuver')
+	                document.querySelector('#text_instructions').innerHTML = instructions_step ;
+	                document.querySelector('#text_distance_step').innerHTML = distance_step ;
 
-	        } else {
-	            window.alert('Directions request failed due to ' + status);
-	        }
-	    });
+	                let element = document.querySelector('#text_instructions'); // เลือก element ที่ต้องการดึงข้อความ
+					let textContent = element.textContent.trim(); // ดึงข้อความและตัดช่องว่างด้านหน้าและด้านหลังด้วย method trim()
+
+					// console.log("check_speak = " + check_speak ) ;
+
+					if (check_speak === "Yes") {
+						message_speech = "ขับ ไปอีก " + distance_step + "หลังจากนั้น " + textContent ;
+						viicheck_speech(message_speech);
+					}
+
+		   	 	}else{
+		   	 		// แจ้งเตือนด้วยเสียงพูด
+
+		   	 		let distance_step = steps_travel_arr[0].distance.text ; // ระยะทางก่อนเปลี่ยน
+	                let instructions_step = steps_travel_arr[0].instructions ; // คำอธิบาย
+	                let maneuver = steps_travel_arr[0].maneuver ; // วิธีเปลี่ยนเส้นทาง
+
+		   	 		// document.querySelector('#img_maneuver')
+	                document.querySelector('#text_instructions').innerHTML = instructions_step ;
+	                document.querySelector('#text_distance_step').innerHTML = distance_step ;
+
+	                let element = document.querySelector('#text_instructions'); // เลือก element ที่ต้องการดึงข้อความ
+					let textContent = element.textContent.trim(); // ดึงข้อความและตัดช่องว่างด้านหน้าและด้านหลังด้วย method trim()
+
+					// console.log("check_speak = " + check_speak ) ;
+
+					if (check_speak === "Yes") {
+						message_speech = "ขับ ไปอีก " + distance_step + "หลังจากนั้น " + textContent ;
+						viicheck_speech(message_speech);
+					}
+		   	 	}
+		   	 	
+		  		break;
+		  	}else{
+		  		break;
+		  	}
+		  	// console.log("----------------------------------");
+
+	    }
 
 	}
+
+	function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+	  	const earthRadius = 6371; // Radius of the earth in km
+	  	const dLat = deg2rad(lat2-lat1);
+	  	const dLon = deg2rad(lon2-lon1);
+	  	const a = 
+	    	Math.sin(dLat/2) * Math.sin(dLat/2) +
+	    	Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+	    	Math.sin(dLon/2) * Math.sin(dLon/2);
+	  	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	  	const distance = earthRadius * c; // Distance in km
+
+	  	return distance;
+	}
+
+	function deg2rad(deg) {
+
+	  	return deg * (Math.PI/180)
+
+	}
+
 
     // -------- UPDATE STATUS SOS -------- //
     // div_gotohelp
@@ -1948,42 +2062,82 @@ input:focus {
 	}
 </script>
 
+<!-- เสียงพูด -->
 <script>
-// 	function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-// 	  const earthRadius = 6371; // Radius of the earth in km
-// 	  const dLat = deg2rad(lat2-lat1);
-// 	  const dLon = deg2rad(lon2-lon1);
-// 	  const a = 
-// 	    Math.sin(dLat/2) * Math.sin(dLat/2) +
-// 	    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-// 	    Math.sin(dLon/2) * Math.sin(dLon/2);
-// 	  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-// 	  const distance = earthRadius * c; // Distance in km
-// 	  return distance;
-// 	}
+	
+	function viicheck_speech(message_speech){
 
-// 	function deg2rad(deg) {
-// 	  return deg * (Math.PI/180)
-// 	}
+		// console.log("viicheck_speech >> " + message_speech)
 
-// 	const currentLatitude = 37.7749; // User's current latitude
-// const currentLongitude = -122.4194; // User's current longitude
+		// check if the browser supports the Web Speech API
+		if ('speechSynthesis' in window) {
 
-// // Iterate over each step in the route
-// response.routes[0].legs[0].steps.forEach(step => {
-//   const stepLatitude = step.lat; // Latitude of the step
-//   const stepLongitude = step.lng; // Longitude of the step
+		  	// create a new SpeechSynthesisUtterance object
+		  	const message = new SpeechSynthesisUtterance();
 
-//   // Calculate the distance between the user's location and the step
-//   const distance = getDistanceFromLatLonInKm(
-//     currentLatitude, currentLongitude, stepLatitude, stepLongitude
-//   );
+		  	// set the text that you want to convert to audio in Thai
+		  	message.text = message_speech;
 
-//   // If the distance is less than 100 meters, the user is close to the step
-//   if (distance < 0.1) {
-//     console.log("User is close to this step:", step);
-//   }
-// });
+		  	// set the language to use (in this case, Thai)
+		  	message.lang = 'th-TH';
+
+		  	// get the Thai voice from the available voices
+		 	 const voices = window.speechSynthesis.getVoices();
+		  	// filter for a female voice
+		  	const femaleVoice = voices.find(voice => voice.lang === 'th-TH' && voice.name.includes('Female'));
+		  	message.voice = femaleVoice;
+
+		  	// set the volume, pitch, and rate
+		  	message.volume = 1;
+		 	message.pitch = 0.75;
+		  	message.rate = 0.75;
+
+		  	// play the audio
+		  	window.speechSynthesis.speak(message);
+
+		}
+
+		check_speak = "No" ;
+		// console.log("พักการพูดชั่วคราว") ;
+	    restart_timer_check_speak();
+
+	}
+
+	function timer_check_speak(){
+    	// Start the timer
+        	startTime_timer_check_speak = Date.now();
+
+		  	speak_timer = setInterval(function() {
+	            // Calculate the elapsed time
+	            var speak_elapsedTime = Date.now() - startTime_timer_check_speak;
+
+	            // Convert the elapsed time to minutes and seconds
+	            seconds_speak = Math.floor((speak_elapsedTime % 60000) / 1000);
+
+	            // console.log("seconds_speak => " + seconds_speak + " check_speak => '" + check_speak + "'");
+
+	            if (seconds_speak === 5) {
+
+	            	check_speak = "Yes" ;
+
+	            	restart_timer_check_speak();
+	            	
+	            }
+
+	        }, 1000);
+    }
+
+    function restart_timer_check_speak(){
+    	// If the timer is already running, stop it and reset the start time
+        if (speak_timer) {
+            clearInterval(speak_timer);
+            startTime_timer_check_speak = null;
+        }
+
+        timer_check_speak();
+    }
 
 </script>
+<!-- จบ เสียงพูด -->
+
 @endsection

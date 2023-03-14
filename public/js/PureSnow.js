@@ -22,11 +22,13 @@ function toggle_snow() {
 function spawn_snow(snow_density = 200) {
     snow_density -= 1;
 
-    for (let x = 0; x < snow_density; x++) {
-        let board = document.createElement('div');
-        board.className = "snowflake";
-
-        document.getElementById('snow').appendChild(board);
+    let tag_snow = document.querySelector('#snow');
+    if (tag_snow) {
+        for (let x = 0; x < snow_density; x++) {
+            let board = document.createElement('div');
+            board.className = "snowflake";
+            document.getElementById('snow').appendChild(board);
+        }
     }
 }
 
