@@ -514,7 +514,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		<button class="btn w-25 btn_menu" id="btn_menu_3" onclick="show_data_menu(3);"><i class="fa-solid fa-file-pen"></i></button>
 		<button class="btn w-25 btn_menu" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-messages-question"></i></button>
 		<button class="btn w-25 btn_menu btn-danger" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-regular fa-truck-medical"></i></button>
-		<button class="btn w-25 btn_menu" id="btn_menu_4" onclick="show_data_menu(4);"><i class="fa-duotone fa-map"></i></button>
+		<button class="btn w-25 btn_menu" id="btn_menu_4" onclick="show_data_menu(4);get_Directions_API(officer_marker, sos_marker);"><i class="fa-duotone fa-map"></i></button>
 	</div>
 
 	
@@ -530,7 +530,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 			<span id="btn_open_or_close_viicheck_speak" class="float-right btn" 
 			onclick="check_click_btn_open_or_close_viicheck_speak();" 
 			style="position: absolute;top: -60%;right: 5%;border-radius: 25px 25px 25px 25px;background-color: white;">
-				<i class="fa-solid fa-volume-slash"></i>
+				<i class="fa-solid fa-volume-high"></i>
 			</span>
 
     		<button class="btn_route_guide card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
@@ -1511,9 +1511,13 @@ input:focus {
 	var check_send_update_location_officer ;
     var seconds_officer ;
 
-    var open_viicheck_speak = "No" ;
+    var check_get_dir = "No" ;
+    var open_viicheck_speak = "Yes" ;
 	var seconds_speak ;
 	var message_speech ;
+
+	var element_text_instructions ; 
+	var textContent_text_instructions ; 
 
     var sos_lo_lat = "{{ $data_sos->lat }}" ;
     var sos_lo_lng = "{{ $data_sos->lng }}" ;
@@ -1526,11 +1530,10 @@ input:focus {
         getLocation();
         show_event_level();
 
-		show_data_menu(4);
-		document.querySelector('#btn_open_or_close_viicheck_speak').click();
+		// show_data_menu(4);
+		// document.querySelector('#btn_open_or_close_viicheck_speak').click();
 
         timer_check_send_update_officer();
-        timer_check_speak();
 
         watchPosition_officer();
 
@@ -1576,7 +1579,7 @@ input:focus {
             icon: image_operating_unit_general,
         });
 
-		get_Directions_API(officer_marker, sos_marker);
+		// get_Directions_API(officer_marker, sos_marker);
 
     }
 
@@ -1620,17 +1623,23 @@ input:focus {
                 document.querySelector('#text_instructions').innerHTML = instructions_step ;
                 document.querySelector('#text_distance_step').innerHTML = distance_step ;
 
-                let element = document.querySelector('#text_instructions'); // เลือก element ที่ต้องการดึงข้อความ
-				let textContent = element.textContent.trim(); // ดึงข้อความและตัดช่องว่างด้านหน้าและด้านหลังด้วย method trim()
+                element_text_instructions = document.querySelector('#text_instructions');
+				textContent_text_instructions = element_text_instructions.textContent.trim();
 
 				setTimeout(function() {
-					message_speech = "อีก " + distance_step + " " + textContent ;
+			        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
+			        }, 1000);
+				
+				setTimeout(function() {
+					message_speech = "อีก " + distance_step + " " + textContent_text_instructions ;
 					viicheck_speech(message_speech);
 		        }, 2000);
 
 				// ลบ array ตัวแรกออก
                 steps_travel_arr = steps_travel ;
                 drop_arr_start = steps_travel_arr.shift();
+
+                check_get_dir = "Yes" ;
 
 	        } else {
 	            window.alert('Directions request failed due to ' + status);
@@ -1719,7 +1728,9 @@ input:focus {
 			        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
 			        }, 1000);
 
-			        distance_check(latitude,longitude);
+			        if (check_get_dir == "Yes") {
+			        	distance_check(latitude,longitude);
+			        }
 
 			    },
 			    function(error) {
@@ -1783,30 +1794,28 @@ input:focus {
 
 	}
 
+	let worked_100 = false;
+	let worked_300 = false;
+	let worked_500 = false;
+
 	function runLoop(distance) {
-
-		let worked_100 = false;
-		let worked_300 = false;
-		let worked_500 = false;
-
-		let element ; 
-		let textContent ; 
 
 		console.log("ระยะทางที่เหลือ => " + distance);
 
-	  	if (distance <= 50) {
+	  	if (distance <= 0.05) {
 		    console.log(">>>>>>>>> --------------------------- <<<<<<<<<");
-		    console.log(">>>>>>>>>  แจ้งผู้ใช้ให้เปลี่ยนเส้นทาง " + steps_travel_arr[0].instructions + "  <<<<<<<<<");
 
 		    document.querySelector('#speak_to_user').innerHTML = steps_travel_arr[0].instructions ;
 		    let span_speak_to_user = document.querySelector('#speak_to_user') ;
 		    let text_speak_to_user = span_speak_to_user.textContent.trim();
+
 		    viicheck_speech(text_speak_to_user);
 
+		    console.log(">>>>>>>>>  แจ้งผู้ใช้ให้เปลี่ยนเส้นทาง " + text_speak_to_user + "  <<<<<<<<<");
 		    console.log(">>>>>>>>> --------------------------- <<<<<<<<<");
 
 		    // ลบตัวแรกออก
-		    steps_travel_arr = steps_travel_arr.shift();
+		    drop_steps_travel_arr = steps_travel_arr.shift();
 
 		    // เพิ่มไปยัง div แนะนำเส้นทาง
 		    let distance_step = steps_travel_arr[0].distance.text ; // ระยะทางก่อนเปลี่ยน
@@ -1817,44 +1826,47 @@ input:focus {
             document.querySelector('#text_instructions').innerHTML = instructions_step ;
             document.querySelector('#text_distance_step').innerHTML = distance_step ;
 
-            element = document.querySelector('#text_instructions'); // เลือก element ที่ต้องการดึงข้อความ
-			textContent = element.textContent.trim(); // ดึงข้อความและตัดช่องว่างด้านหน้าและด้านหลังด้วย method trim()
+            element_text_instructions = document.querySelector('#text_instructions'); // เลือก element_text_instructions ที่ต้องการดึงข้อความ
+			textContent_text_instructions = element_text_instructions.textContent.trim(); // ดึงข้อความและตัดช่องว่างด้านหน้าและด้านหลังด้วย method trim()
 
 
-		    if (steps_travel_arr[0].instructions) {
-		      	console.log("หัวข้อการนำทางต่อไป = " + textContent + "  ระยะใหม่ : " + distance);
-		      	// viicheck_speech("ขับต่อไปอีก " + distance + "จากนั้น " + textContent);
+		    if (steps_travel_arr[0].instructions && distance > 1) {
+
+		      	console.log("หัวข้อการนำทางต่อไป = " + textContent_text_instructions + "  ระยะใหม่ : " + distance);
+		      	viicheck_speech("ขับต่อไปอีก " + distance + "เมตร จากนั้น " + textContent_text_instructions);
+
+		    }else {
+
+	      		console.log("ถึงปลายทางของท่านแล้ว");
+		      	viicheck_speech("ถึงปลายทางของท่านแล้ว");
+
 		    }
 
 	    	worked_100 = false;
 	    	worked_300 = false;
 	    	worked_500 = false;
 	  	} else {
-		    if (distance <= 100 && !worked_100 && worked_500 && worked_300) {
-		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent);
-		      	viicheck_speech(" อีก 100 เมตร " + textContent);
+		    if (distance <= 0.10 && !worked_100 && worked_500 && worked_300) {
+		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent_text_instructions);
+		      	viicheck_speech(" อีก 100 เมตร " + textContent_text_instructions);
 
 		     	worked_100 = true;
 		      	worked_300 = true;
 		      	worked_500 = true;
 		    }
-		    if (distance <= 300 && !worked_300 && !worked_100) {
-		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent);
-		      	viicheck_speech(" อีก 300 เมตร " + textContent);
+		    if (distance <= 0.30 && !worked_300 && !worked_100) {
+		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent_text_instructions);
+		      	viicheck_speech(" อีก 300 เมตร " + textContent_text_instructions);
 
 		      	worked_300 = true;
 		      	worked_500 = true;
 		    }
-		    if (distance <= 500 && !worked_500) {
-		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent);
-		      	viicheck_speech(" อีก 500 เมตร " + textContent);
+		    if (distance <= 0.50 && !worked_500) {
+		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent_text_instructions);
+		      	viicheck_speech(" อีก 500 เมตร " + textContent_text_instructions);
 		      	worked_500 = true;
 		    }
 
-		    if (!steps_travel_arr[0].instructions) {
-	      		console.log("ถึงปลายทางของท่านแล้ว");
-		      	viicheck_speech("ถึงปลายทางของท่านแล้ว");
-		    }
 	  	}
 
 	}
