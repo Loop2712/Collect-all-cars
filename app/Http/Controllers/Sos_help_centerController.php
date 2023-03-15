@@ -977,8 +977,14 @@ class Sos_help_centerController extends Controller
     public function show_case_sos($id)
     {
         $data_sos = Sos_help_center::findOrFail($id);
+        $data_user = Auth::user();
 
-        return view('sos_help_center.show_case', compact('data_sos'));
+        if ($data_sos->user_id == $data_user->id) {
+            return view('sos_help_center.show_case', compact('data_sos'));
+        }else{
+            return redirect('404');
+        }
+
     }
 
     public function show_user_sos($id)

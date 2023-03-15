@@ -514,7 +514,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		<button class="btn w-25 btn_menu" id="btn_menu_3" onclick="show_data_menu(3);"><i class="fa-solid fa-file-pen"></i></button>
 		<button class="btn w-25 btn_menu" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-messages-question"></i></button>
 		<button class="btn w-25 btn_menu btn-danger" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-regular fa-truck-medical"></i></button>
-		<button class="btn w-25 btn_menu" id="btn_menu_4" onclick="show_data_menu(4);get_Directions_API(officer_marker, sos_marker);"><i class="fa-duotone fa-map"></i></button>
+		<button class="btn w-25 btn_menu" id="btn_menu_4" onclick="show_data_menu(4);"><i class="fa-duotone fa-map"></i></button>
 	</div>
 
 	
@@ -526,7 +526,16 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 			$lng = $data_sos->lng ;
 		@endphp
 
-		<menu class="col-12">
+		<menu class="col-12" id="ask_travel_guide">
+			<button class="card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
+				<center>
+					<span class="btn btn-info btn-sm" onclick="get_Directions_API(officer_marker, sos_marker);">
+						การแนะนำเส้นทางและเวลา
+					</span>
+				</center>
+			</button>
+		</menu>
+		<menu class="col-12 d-none" id="show_travel_guide">
 			<span id="btn_open_or_close_viicheck_speak" class="float-right btn" 
 			onclick="check_click_btn_open_or_close_viicheck_speak();" 
 			style="position: absolute;top: -60%;right: 5%;border-radius: 25px 25px 25px 25px;background-color: white;">
@@ -1389,26 +1398,29 @@ input:focus {
 	// แสดงข้อมูลเริ่มต้น -----------------------------------------------------------------------------
 	var event_level_by_control_center = '{{ $data_sos->form_yellow->idc }}';
     var event_level_by_officers = '{{ $data_sos->form_yellow->rc }}';
-
 	// แสดงเคสและปุ่มดำเนินการต่างๆ
 	var status_sos = '{{ $data_sos->status }}';
-    	document.querySelector('#show_status').innerHTML = status_sos ;
     var show_remark_status_sos = '{{ $data_sos->remark_status }}';
-    	if (show_remark_status_sos) {
+
+    function start_page(){
+
+    	document.querySelector('#show_status').innerHTML = status_sos ;
+
+		if (show_remark_status_sos) {
 			show_remark_status_sos = show_remark_status_sos.replaceAll("_" , " ");
-    		document.querySelector('#show_remark_status').innerHTML =  '(' + show_remark_status_sos +')';
-    	}
-    	// div_gotohelp
-    	// div_event_level
-    	// div_select_treatment
-        switch(status_sos){
+			document.querySelector('#show_remark_status').innerHTML =  '(' + show_remark_status_sos +')';
+		}
+		// div_gotohelp
+		// div_event_level
+		// div_select_treatment
+	    switch(status_sos){
 			case 'ออกจากฐาน':
 				document.querySelector('#situation_of_status').classList.add('situation-yellow');
 				document.querySelector('#mileage_gotohelp').classList.remove('d-none');
 				document.querySelector('#div_event_level').classList.add('d-none');
 				document.querySelector('#div_select_treatment').classList.add('d-none');
-              	document.querySelector('#div_operating_base').classList.add('d-none');
-              	document.querySelector('#div_to_hospital').classList.add('d-none');
+	          	document.querySelector('#div_operating_base').classList.add('d-none');
+	          	document.querySelector('#div_to_hospital').classList.add('d-none');
 			break;
 			case 'ถึงที่เกิดเหตุ':
 				document.querySelector('#situation_of_status').classList.add('situation-yellow');
@@ -1417,34 +1429,35 @@ input:focus {
 					document.querySelector('#mileage_gotohelp').classList.remove('d-none');
 					document.querySelector('#div_select_treatment').classList.add('d-none');
 					document.querySelector('#div_gotohelp').classList.add('d-none');
-              		document.querySelector('#div_operating_base').classList.add('d-none');
-              		document.querySelector('#div_to_hospital').classList.add('d-none');
+	          		document.querySelector('#div_operating_base').classList.add('d-none');
+	          		document.querySelector('#div_to_hospital').classList.add('d-none');
 				}else{
 					document.querySelector('#div_select_treatment').classList.remove('d-none');
 					document.querySelector('#div_event_level').classList.add('d-none');
 					document.querySelector('#div_gotohelp').classList.add('d-none');
-              		document.querySelector('#div_operating_base').classList.add('d-none');
-              		document.querySelector('#div_to_hospital').classList.add('d-none');
+	          		document.querySelector('#div_operating_base').classList.add('d-none');
+	          		document.querySelector('#div_to_hospital').classList.add('d-none');
 				}
 			break;
 			case 'ออกจากที่เกิดเหตุ':
 				document.querySelector('#situation_of_status').classList.add('situation-yellow');
-              	document.querySelector('#div_to_hospital').classList.remove('d-none');
-              	document.querySelector('#div_operating_base').classList.add('d-none');
-             	document.querySelector('#div_gotohelp').classList.add('d-none');
+	          	document.querySelector('#div_to_hospital').classList.remove('d-none');
+	          	document.querySelector('#div_operating_base').classList.add('d-none');
+	         	document.querySelector('#div_gotohelp').classList.add('d-none');
 				document.querySelector('#div_event_level').classList.add('d-none');
 				document.querySelector('#div_select_treatment').classList.add('d-none');
 			break;
 			case 'เสร็จสิ้น':
 				document.querySelector('#situation_of_status').classList.add('situation-green');
-              	document.querySelector('#mileage_gotohelp').classList.remove('d-none');
-             	document.querySelector('#div_gotohelp').classList.add('d-none');
+	          	document.querySelector('#mileage_gotohelp').classList.remove('d-none');
+	         	document.querySelector('#div_gotohelp').classList.add('d-none');
 				document.querySelector('#div_event_level').classList.add('d-none');
 				document.querySelector('#div_select_treatment').classList.add('d-none');
-              	document.querySelector('#div_to_hospital').classList.add('d-none');
-            break;
+	          	document.querySelector('#div_to_hospital').classList.add('d-none');
+	        break;
 
 		}
+	}
 
 	function show_event_level(){
 	    // แสดงระดับเหตุการณ์
@@ -1527,14 +1540,12 @@ input:focus {
 
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+
+        start_page();
         getLocation();
         show_event_level();
 
-		// show_data_menu(4);
-		// document.querySelector('#btn_open_or_close_viicheck_speak').click();
-
         timer_check_send_update_officer();
-
         watchPosition_officer();
 
     });
@@ -1586,6 +1597,9 @@ input:focus {
     // <!-- --------------- ระยะทาง(เสียเงิน) --------------- -->
 	function get_Directions_API(markerA, markerB) {
 		// console.log( "get_Directions_API" );
+
+		document.querySelector('#ask_travel_guide').classList.add('d-none');
+		document.querySelector('#show_travel_guide').classList.remove('d-none');
 
 		if (directionsDisplay) {
 	        directionsDisplay.setMap(null);
