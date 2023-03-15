@@ -537,6 +537,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 				<img id="img_maneuver" class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
 				<span id="text_instructions" class="text-center"></span>
 				<span id="text_distance_step" class="float-right"></span>
+				<span id="speak_to_user"></span>
 			</button>
 		</menu>
 		<menu class="col-8">
@@ -1511,7 +1512,6 @@ input:focus {
     var seconds_officer ;
 
     var open_viicheck_speak = "No" ;
-    var check_speak = "Yes" ;
 	var seconds_speak ;
 	var message_speech ;
 
@@ -1527,6 +1527,7 @@ input:focus {
         show_event_level();
 
 		show_data_menu(4);
+		document.querySelector('#btn_open_or_close_viicheck_speak').click();
 
         timer_check_send_update_officer();
         timer_check_speak();
@@ -1618,7 +1619,7 @@ input:focus {
                 let instructions_step = steps_travel[0].instructions ; // คำอธิบาย
                 let maneuver = steps_travel[0].maneuver ; // วิธีเปลี่ยนเส้นทาง
 
-                // document.querySelector('#img_maneuver')
+                document.querySelector('#img_maneuver').src = "{{ asset('/img/traffic sign/new-image.png') }}" ;
                 document.querySelector('#text_instructions').innerHTML = instructions_step ;
                 document.querySelector('#text_distance_step').innerHTML = distance_step ;
 
@@ -1626,15 +1627,9 @@ input:focus {
 				let textContent = element.textContent.trim(); // ดึงข้อความและตัดช่องว่างด้านหน้าและด้านหลังด้วย method trim()
 
 				setTimeout(function() {
-		        	if(check_speak === "Yes" && open_viicheck_speak == "Yes"){
-						message_speech = "อีก " + distance_step + " " + textContent ;
-						viicheck_speech(message_speech);
-					}
+					message_speech = "อีก " + distance_step + " " + textContent ;
+					viicheck_speech(message_speech);
 		        }, 2000);
-				
-                // <img id="img_maneuver" class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
-				// <span id="text_instructions" class="text-center"></span>
-				// <span id="text_distance_step" class="float-right"></span>
 
 	        } else {
 	            window.alert('Directions request failed due to ' + status);
@@ -1766,84 +1761,100 @@ input:focus {
 	}
 
 	function distance_check(latitude,longitude){
-        // console.log("distance_check");
+        console.log("distance_check");
 
 		const currentLatitude = latitude ; // User's current latitude
 		const currentLongitude = longitude ; // User's current longitude
 
-		// console.log(steps_travel_arr);
+		console.log(steps_travel_arr);
 
-		for (let i = 0; i < steps_travel_arr.length; i++) {
-	      	let stepLatitude = steps_travel_arr[i].end_location.lat();
-	      	let stepLongitude = steps_travel_arr[i].end_location.lng();
-	      	// console.log("End Lat: " + stepLatitude);
-	      	// console.log("End Lng: " + stepLongitude);
+      	let stepLatitude = steps_travel_arr[0].end_location.lat();
+      	let stepLongitude = steps_travel_arr[0].end_location.lng();
+      	// console.log("End Lat: " + stepLatitude);
+      	// console.log("End Lng: " + stepLongitude);
 
-		  	// Calculate the distance between the user's location and the step
-		  	const distance = getDistanceFromLatLonInKm(
-		    	currentLatitude, currentLongitude, stepLatitude, stepLongitude
-		  	);
-		  	
-		  	// console.log(distance);
-		  	// If the distance is less than 100 meters, the user is close to the step
-		  	if (distance <= 0.2) {
-		   	 	// console.log("User is close to this step:", i);
+	  	// Calculate the distance between the user's location and the step
+	  	const distance = getDistanceFromLatLonInKm(
+	    	currentLatitude, currentLongitude, stepLatitude, stepLongitude
+	  	);
+	  	
+	  	runLoop(distance);
 
-		   	 	let firstElement ;
+	}
 
-		   	 	if (distance < 0) {
-		   	 		// ลบ arr ที่ผ่านไปแล้ว แล้วเพิ่ม step ถัดไป
+	function runLoop(distance) {
 
-		   	 		firstElement = steps_travel_arr.shift();
-					// console.log("ลบ arr ที่ผ่านไปแล้ว แล้วเพิ่ม step ถัดไป");
+		let worked_100 = false;
+		let worked_300 = false;
+		let worked_500 = false;
 
-					let distance_step = firstElement.distance.text ; // ระยะทางก่อนเปลี่ยน
-	                let instructions_step = firstElement.instructions ; // คำอธิบาย
-	                let maneuver = firstElement.maneuver ; // วิธีเปลี่ยนเส้นทาง
+		let element ; 
+		let textContent ; 
 
-			   	 	// document.querySelector('#img_maneuver')
-	                document.querySelector('#text_instructions').innerHTML = instructions_step ;
-	                document.querySelector('#text_distance_step').innerHTML = distance_step ;
+		console.log("ระยะทางที่เหลือ => " + distance);
 
-	                let element = document.querySelector('#text_instructions'); // เลือก element ที่ต้องการดึงข้อความ
-					let textContent = element.textContent.trim(); // ดึงข้อความและตัดช่องว่างด้านหน้าและด้านหลังด้วย method trim()
+	  	if (distance <= 50) {
+		    console.log(">>>>>>>>> --------------------------- <<<<<<<<<");
+		    console.log(">>>>>>>>>  แจ้งผู้ใช้ให้เปลี่ยนเส้นทาง " + steps_travel_arr[0].instructions + "  <<<<<<<<<");
 
-					// console.log("check_speak = " + check_speak ) ;
+		    document.querySelector('#speak_to_user').innerHTML = steps_travel_arr[0].instructions ;
+		    let span_speak_to_user = document.querySelector('#speak_to_user') ;
+		    let text_speak_to_user = span_speak_to_user.textContent.trim();
+		    viicheck_speech(text_speak_to_user);
 
-					if (check_speak === "Yes" && open_viicheck_speak == "Yes") {
-						message_speech = "ขับ ไปอีก " + distance_step + "หลังจากนั้น " + textContent ;
-						viicheck_speech(message_speech);
-					}
+		    console.log(">>>>>>>>> --------------------------- <<<<<<<<<");
 
-		   	 	}else{
-		   	 		// แจ้งเตือนด้วยเสียงพูด
+		    // ลบตัวแรกออก
+		    steps_travel_arr = steps_travel_arr.shift();
 
-		   	 		let distance_step = steps_travel_arr[0].distance.text ; // ระยะทางก่อนเปลี่ยน
-	                let instructions_step = steps_travel_arr[0].instructions ; // คำอธิบาย
-	                let maneuver = steps_travel_arr[0].maneuver ; // วิธีเปลี่ยนเส้นทาง
+		    // เพิ่มไปยัง div แนะนำเส้นทาง
+		    let distance_step = steps_travel_arr[0].distance.text ; // ระยะทางก่อนเปลี่ยน
+            let instructions_step = steps_travel_arr[0].instructions ; // คำอธิบาย
+            let maneuver = steps_travel_arr[0].maneuver ; // วิธีเปลี่ยนเส้นทาง
 
-		   	 		// document.querySelector('#img_maneuver')
-	                document.querySelector('#text_instructions').innerHTML = instructions_step ;
-	                document.querySelector('#text_distance_step').innerHTML = distance_step ;
+            document.querySelector('#img_maneuver').src = "{{ asset('/img/traffic sign/new-image.png') }}" ;
+            document.querySelector('#text_instructions').innerHTML = instructions_step ;
+            document.querySelector('#text_distance_step').innerHTML = distance_step ;
 
-	                let element = document.querySelector('#text_instructions'); // เลือก element ที่ต้องการดึงข้อความ
-					let textContent = element.textContent.trim(); // ดึงข้อความและตัดช่องว่างด้านหน้าและด้านหลังด้วย method trim()
+            element = document.querySelector('#text_instructions'); // เลือก element ที่ต้องการดึงข้อความ
+			textContent = element.textContent.trim(); // ดึงข้อความและตัดช่องว่างด้านหน้าและด้านหลังด้วย method trim()
 
-					// console.log("check_speak = " + check_speak ) ;
 
-					if (check_speak === "Yes" && open_viicheck_speak == "Yes") {
-						message_speech = "ขับ ไปอีก " + distance_step + "หลังจากนั้น " + textContent ;
-						viicheck_speech(message_speech);
-					}
-		   	 	}
-		   	 	
-		  		break;
-		  	}else{
-		  		break;
-		  	}
-		  	// console.log("----------------------------------");
+		    if (steps_travel_arr[0].instructions) {
+		      	console.log("หัวข้อการนำทางต่อไป = " + textContent + "  ระยะใหม่ : " + distance);
+		      	// viicheck_speech("ขับต่อไปอีก " + distance + "จากนั้น " + textContent);
+		    }
 
-	    }
+	    	worked_100 = false;
+	    	worked_300 = false;
+	    	worked_500 = false;
+	  	} else {
+		    if (distance <= 100 && !worked_100 && worked_500 && worked_300) {
+		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent);
+		      	viicheck_speech(" อีก 100 เมตร " + textContent);
+
+		     	worked_100 = true;
+		      	worked_300 = true;
+		      	worked_500 = true;
+		    }
+		    if (distance <= 300 && !worked_300 && !worked_100) {
+		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent);
+		      	viicheck_speech(" อีก 300 เมตร " + textContent);
+
+		      	worked_300 = true;
+		      	worked_500 = true;
+		    }
+		    if (distance <= 500 && !worked_500) {
+		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent);
+		      	viicheck_speech(" อีก 500 เมตร " + textContent);
+		      	worked_500 = true;
+		    }
+
+		    if (!steps_travel_arr[0].instructions) {
+	      		console.log("ถึงปลายทางของท่านแล้ว");
+		      	viicheck_speech("ถึงปลายทางของท่านแล้ว");
+		    }
+	  	}
 
 	}
 
@@ -2079,73 +2090,37 @@ input:focus {
 
 		// console.log("viicheck_speech >> " + message_speech)
 
-		// check if the browser supports the Web Speech API
-		if ('speechSynthesis' in window) {
+		if(open_viicheck_speak == "Yes"){
+			// check if the browser supports the Web Speech API
+			if ('speechSynthesis' in window) {
 
-		  	// create a new SpeechSynthesisUtterance object
-		  	const message = new SpeechSynthesisUtterance();
+			  	// create a new SpeechSynthesisUtterance object
+			  	const message = new SpeechSynthesisUtterance();
 
-		  	// set the text that you want to convert to audio in Thai
-		  	message.text = message_speech;
+			  	// set the text that you want to convert to audio in Thai
+			  	message.text = message_speech;
 
-		  	// set the language to use (in this case, Thai)
-		  	message.lang = 'th-TH';
+			  	// set the language to use (in this case, Thai)
+			  	message.lang = 'th-TH';
 
-		  	// get the Thai voice from the available voices
-		 	 const voices = window.speechSynthesis.getVoices();
-		  	// filter for a female voice
-		  	const femaleVoice = voices.find(voice => voice.lang === 'th-TH' && voice.name.includes('Female'));
-		  	message.voice = femaleVoice;
+			  	// get the Thai voice from the available voices
+			 	 const voices = window.speechSynthesis.getVoices();
+			  	// filter for a female voice
+			  	const femaleVoice = voices.find(voice => voice.lang === 'th-TH' && voice.name.includes('Female'));
+			  	message.voice = femaleVoice;
 
-		  	// set the volume, pitch, and rate
-		  	message.volume = 1;
-		 	message.pitch = 0.75;
-		  	message.rate = 0.75;
+			  	// set the volume, pitch, and rate
+			  	message.volume = 1;
+			 	message.pitch = 0.75;
+			  	message.rate = 0.75;
 
-		  	// play the audio
-		  	window.speechSynthesis.speak(message);
+			  	// play the audio
+			  	window.speechSynthesis.speak(message);
 
+			}
 		}
 
-		check_speak = "No" ;
-		// console.log("พักการพูดชั่วคราว") ;
-	    restart_timer_check_speak();
-
 	}
-
-	function timer_check_speak(){
-    	// Start the timer
-        	startTime_timer_check_speak = Date.now();
-
-		  	speak_timer = setInterval(function() {
-	            // Calculate the elapsed time
-	            var speak_elapsedTime = Date.now() - startTime_timer_check_speak;
-
-	            // Convert the elapsed time to minutes and seconds
-	            seconds_speak = Math.floor((speak_elapsedTime % 60000) / 1000);
-
-	            // console.log("seconds_speak => " + seconds_speak + " check_speak => '" + check_speak + "'");
-
-	            if (seconds_speak === 10) {
-
-	            	check_speak = "Yes" ;
-
-	            	restart_timer_check_speak();
-	            	
-	            }
-
-	        }, 1000);
-    }
-
-    function restart_timer_check_speak(){
-    	// If the timer is already running, stop it and reset the start time
-        if (speak_timer) {
-            clearInterval(speak_timer);
-            startTime_timer_check_speak = null;
-        }
-
-        timer_check_speak();
-    }
 
     // Listen for a click event on the button
     function check_click_btn_open_or_close_viicheck_speak(){
