@@ -851,7 +851,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	            	document.querySelector('#text_duration').innerHTML = text_duration ;
 
 					let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value) ;
-                		document.querySelector('#time_duration').innerHTML = "ถึงเวลา " + text_arrivalTime + " น.";
+                		document.querySelector('#time_duration').innerHTML = "ถึงเวลา " + text_arrivalTime;
 	            	
 						loop_check_location_officer();
 	            

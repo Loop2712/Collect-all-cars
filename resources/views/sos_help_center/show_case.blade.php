@@ -1526,7 +1526,7 @@ input:focus {
         getLocation();
         show_event_level();
 
-		// show_data_menu(4);
+		show_data_menu(4);
 
         timer_check_send_update_officer();
         timer_check_speak();

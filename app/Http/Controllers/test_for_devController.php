@@ -41,6 +41,11 @@ class test_for_devController extends Controller
         exit();
     }
 
+    public function main_test_blade(){
+
+        return view('test_for_dev.main_test_blade'); 
+    }
+
     public function reset_count_sos_1669()
     {
         $count_sos = DB::table('sos_1669_province_codes')
