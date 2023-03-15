@@ -517,6 +517,13 @@
 }.text-alert{
     color: #fff;
     float: left;
+}.modal-content{
+    position: relative !important;
+}.btn-close-modal-sos-1669{
+    position: absolute !important;
+    top:1rem;
+    right: 1rem;
+    z-index: 99999;
 }
 </style>
 <div id="alert_phone" class=" div_alert " role="alert">
@@ -527,13 +534,15 @@
         </div>
         <i class="fa-solid fa-xmark"></i>
     </div>
-   
 </div>
 <!-- Modal -->
 <div class="modal fade" id="modal_sos_1669" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="BackdropLabel_modal_sos_1669" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered b-radius-10">
         <div class="modal-content b-radius-10">
-
+            <a class="close btn-close-modal-sos-1669"  type="button"  data-dismiss="modal" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+            
             <a id="go_to_show_user" class="d-none" href="">
                 Go To SHOW USER
             </a>

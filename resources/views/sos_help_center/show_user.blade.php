@@ -85,7 +85,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 	font-weight: bolder;
 	color: #808080;
 	margin: 5px 0 0 10px;
-}#text_duration{
+}#text_duration ,#time_duration{
 	font-size: 1.5rem;
 	font-weight: bolder;
 	color: #808080;
@@ -297,7 +297,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 				<span id="text_distance"></span>
 				<span id="text_distance_km"></span>
 			</span>
-			<span class="d-block" id="text_duration"></span>
+			<div class="d-block">
+				<span id="text_duration"></span>
+				<span id="time_duration"></span>
+			</div>
 			<hr>
 			<div class="d-flex align-items-center ml-2">
 				<div class="centered">
@@ -329,7 +332,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 			<br>
 			<h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #808080;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">สวัสดีคุณ {{ $data_user->name }}</h5>
 			<h6 class="mb-0 notranslate mt-1" style="color: #808080;">เจ้าหน้าที่มาถึงแล้ว</h6> 
-			<button class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">เสร็จสิ้น</button>		
+			<a href="https://lin.ee/y3gA8A3" class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">เสร็จสิ้น</a>		
 		</div>
 	</div>
 
@@ -434,7 +437,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 		</h3>
 		<div class="row">
 			<div class="col-3">
-				<img src="{{ url('storage')}}/{{ $data_sos->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
 			</div>
 			<div class="col-9">
 				ชื่อ : {{ $data_sos->name_helper }}
@@ -629,7 +631,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 		</h3>
 		<div class="row">
 			<div class="col-3">
-				<img src="{{ url('storage')}}/{{ $data_sos->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
 			</div>
 			<div class="col-9">
 				ชื่อ : {{ $data_sos->name_helper }}
@@ -846,9 +847,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	            // เวลา
 	            let text_duration = response.routes[0].legs[0].duration.text ;
 	            	// console.log(text_duration);
+					
 	            	document.querySelector('#text_duration').innerHTML = text_duration ;
 
-	            	loop_check_location_officer();
+					let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value) ;
+                		document.querySelector('#time_duration').innerHTML = "ถึงเวลา " + text_arrivalTime + " น.";
+	            	
+						loop_check_location_officer();
 	            
 	            // document.querySelector('#div_distance_and_duration').classList.remove('d-none');
 	        } else {
