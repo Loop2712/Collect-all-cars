@@ -1612,9 +1612,6 @@ input:focus {
 
                 steps_travel = response.routes[0].legs[0].steps;
 
-                steps_travel_arr = steps_travel ;
-                drop_arr_start = steps_travel_arr.shift();
-
                 let distance_step = steps_travel[0].distance.text ; // ระยะทางก่อนเปลี่ยน
                 let instructions_step = steps_travel[0].instructions ; // คำอธิบาย
                 let maneuver = steps_travel[0].maneuver ; // วิธีเปลี่ยนเส้นทาง
@@ -1630,6 +1627,10 @@ input:focus {
 					message_speech = "อีก " + distance_step + " " + textContent ;
 					viicheck_speech(message_speech);
 		        }, 2000);
+
+				// ลบ array ตัวแรกออก
+                steps_travel_arr = steps_travel ;
+                drop_arr_start = steps_travel_arr.shift();
 
 	        } else {
 	            window.alert('Directions request failed due to ' + status);
