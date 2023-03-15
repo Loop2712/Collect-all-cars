@@ -537,7 +537,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 				<img id="img_maneuver" class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
 				<span id="text_instructions" class="text-center"></span>
 				<span id="text_distance_step" class="float-right"></span>
-				<span id="speak_to_user"></span>
+				<span class="d-none" id="speak_to_user"></span>
 			</button>
 		</menu>
 		<menu class="col-8">
@@ -1616,7 +1616,7 @@ input:focus {
                 let instructions_step = steps_travel[0].instructions ; // คำอธิบาย
                 let maneuver = steps_travel[0].maneuver ; // วิธีเปลี่ยนเส้นทาง
 
-                document.querySelector('#img_maneuver').src = "{{ asset('/img/traffic sign/new-image.png') }}" ;
+                // document.querySelector('#img_maneuver').src = "{{ asset('/img/traffic sign/new-image.png') }}" ;
                 document.querySelector('#text_instructions').innerHTML = instructions_step ;
                 document.querySelector('#text_distance_step').innerHTML = distance_step ;
 
@@ -1813,7 +1813,7 @@ input:focus {
             let instructions_step = steps_travel_arr[0].instructions ; // คำอธิบาย
             let maneuver = steps_travel_arr[0].maneuver ; // วิธีเปลี่ยนเส้นทาง
 
-            document.querySelector('#img_maneuver').src = "{{ asset('/img/traffic sign/new-image.png') }}" ;
+            // document.querySelector('#img_maneuver').src = "{{ asset('/img/traffic sign/new-image.png') }}" ;
             document.querySelector('#text_instructions').innerHTML = instructions_step ;
             document.querySelector('#text_distance_step').innerHTML = distance_step ;
 
