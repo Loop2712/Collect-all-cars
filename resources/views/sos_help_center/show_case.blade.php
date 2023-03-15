@@ -2107,7 +2107,7 @@ input:focus {
 			  	// get the Thai voice from the available voices
 			 	 const voices = window.speechSynthesis.getVoices();
 			  	// filter for a female voice
-			  	const femaleVoice = voices.find(voice => voice.lang === 'th-TH' && voice.name.includes('male'));
+			  	const femaleVoice = voices.find(voice => voice.lang === 'th-TH');
 			  	message.voice = femaleVoice;
 
 			  	// set the volume, pitch, and rate
