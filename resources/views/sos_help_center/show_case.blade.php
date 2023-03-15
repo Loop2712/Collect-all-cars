@@ -1629,7 +1629,7 @@ input:focus {
 				setTimeout(function() {
 			        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
 			        }, 1000);
-				
+
 				setTimeout(function() {
 					message_speech = "อีก " + distance_step + " " + textContent_text_instructions ;
 					viicheck_speech(message_speech);
@@ -1794,9 +1794,9 @@ input:focus {
 
 	}
 
-	let worked_100 = false;
-	let worked_300 = false;
-	let worked_500 = false;
+	var worked_100 = false;
+	var worked_300 = false;
+	var worked_500 = false;
 
 	function runLoop(distance) {
 
@@ -1846,7 +1846,7 @@ input:focus {
 	    	worked_300 = false;
 	    	worked_500 = false;
 	  	} else {
-		    if (distance <= 0.10 && !worked_100 && worked_500 && worked_300) {
+		    if (distance <= 0.1 && !worked_100) {
 		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent_text_instructions);
 		      	viicheck_speech(" อีก 100 เมตร " + textContent_text_instructions);
 
@@ -1854,14 +1854,14 @@ input:focus {
 		      	worked_300 = true;
 		      	worked_500 = true;
 		    }
-		    if (distance <= 0.30 && !worked_300 && !worked_100) {
+		    if (distance <= 0.3 && !worked_300) {
 		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent_text_instructions);
 		      	viicheck_speech(" อีก 300 เมตร " + textContent_text_instructions);
 
 		      	worked_300 = true;
 		      	worked_500 = true;
 		    }
-		    if (distance <= 0.50 && !worked_500) {
+		    if (distance <= 0.5 && !worked_500) {
 		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent_text_instructions);
 		      	viicheck_speech(" อีก 500 เมตร " + textContent_text_instructions);
 		      	worked_500 = true;
