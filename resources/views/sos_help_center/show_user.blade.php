@@ -305,11 +305,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 			<div class="d-flex align-items-center ml-2">
 				<div class="centered">
 					<div class="badge-wrap">
-						@if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
-							<img id="img_profile" src="{{ Auth::user()->avatar }}" width="70" height="70" class="rounded-circle" alt="">
-						@endif
-						@if(!empty(Auth::user()->photo))
-							<img id="img_profile" src="{{ url('storage')}}/{{ Auth::user()->photo }}" width="70" height="70" class="rounded-circle" alt="">
+						@if(!empty($data_sos->officers_user->photo))
+							<img id="img_profile" src="{{ url('storage')}}/{{ $data_sos->officers_user->photo }}" width="70" height="70" class="rounded-circle" alt="">
+						@else
+							<img id="img_profile" src="{{ asset('/img/stickerline/PNG/34.png') }}" width="70" height="70" class="rounded-circle" alt="">
 						@endif
 					</div>
 				</div>
@@ -707,69 +706,45 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 <script>
-	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
-    const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
-	const image_empty = "{{ url('/img/icon/flag_empty.png') }}";
 
-	var officer_marker ;
-	var sos_marker ;
+		const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
+	  const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
+		const image_empty = "{{ url('/img/icon/flag_empty.png') }}";
 
-	var service;
-	var directionsDisplay;
+		var officer_marker ;
+		var sos_marker ;
 
-	var lat ;
-	var lng ;
+		var service;
+		var directionsDisplay;
 
-	var sos_lat = '{{ $data_sos->lat }}' ;
-    var sos_lng = '{{ $data_sos->lng }}' ;
+		var sos_lat = '{{ $data_sos->lat }}' ;
+	  var sos_lng = '{{ $data_sos->lng }}' ;
 
-	var time_to_the_scene ;
+	  var officer_lat = '{{ $data_sos->operating_officer->lat }}' ;
+	  var officer_lng = '{{ $data_sos->operating_officer->lng }}' ;
 
-	document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START");
-        getLocation();
+		var time_to_the_scene ;
 
-    });
-
-    function getLocation() {
-	  	if (navigator.geolocation) {
-	    	navigator.geolocation.getCurrentPosition(showPosition);
-	  	} else {
-	    	// x.innerHTML = "Geolocation is not supported by this browser.";
-	  	}
-	}
-
-	function showPosition(position) {
-
-		lat = position.coords.latitude ;
-		lng = position.coords.longitude ;
-
-		// console.log(lat);
-		// console.log(lng);
-
-        initMap();
-	}
+		document.addEventListener('DOMContentLoaded', (event) => {
+	        // console.log("START");
+	        initMap();
+	  });
 
     function initMap() {
 
-		document.querySelector(".box-data-helper").classList.remove('d-none');
-		document.querySelector(".open-location-pls").classList.add('d-none');
-
-
-    	let m_lat = lat ;
-    	let m_lng = lng ;
-        let m_numZoom = parseFloat('15');
+				document.querySelector(".box-data-helper").classList.remove('d-none');
+				document.querySelector(".open-location-pls").classList.add('d-none');
 
         map_show_user = new google.maps.Map(document.getElementById("map_show_user"), {
-            center: {lat: m_lat, lng: m_lng },
-            zoom: m_numZoom,
+            center: {lat: parseFloat(sos_lat) , lng: parseFloat(sos_lng) },
+            zoom: 15
         });
 
         if (officer_marker) {
             officer_marker.setMap(null);
         }
         officer_marker = new google.maps.Marker({
-            position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
+            position: {lat: parseFloat(officer_lat) , lng: parseFloat(officer_lng) },
             map: map_show_user,
             icon: image_operating_unit_general,
         });
@@ -784,37 +759,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
             icon: image_sos,
         });
 
-		get_Directions_API(officer_marker, sos_marker);
+				get_Directions_API(officer_marker, sos_marker);
 
     }
 
 </script>
 
 <script>
-	
-	function get_dir(){
-
-		let input_check = document.querySelector('#input_check_open_get_dir');
-		let icon_btn_get_dir_open = document.querySelector('#icon_btn_get_dir_open');
-		let icon_btn_get_dir_close = document.querySelector('#icon_btn_get_dir_close');
-		// เปิด fa-solid fa-eye
-		// ปิด fa-sharp fa-solid fa-eye-slash
-		if (input_check.checked) {
-			if (directionsDisplay) {
-		        directionsDisplay.setMap(null);
-			}
-			document.querySelector('#div_distance_and_duration').classList.add('d-none');
-			input_check.checked = false ;
-			document.querySelector('#icon_btn_get_dir_close').classList.remove('d-none');
-			document.querySelector('#icon_btn_get_dir_open').classList.add('d-none');
-		}else{
-			input_check.checked = true ;
-			document.querySelector('#icon_btn_get_dir_open').classList.remove('d-none');
-			document.querySelector('#icon_btn_get_dir_close').classList.add('d-none');
-			get_Directions_API(officer_marker, sos_marker);
-		}
-
-	}
 
 	function get_Directions_API(markerA, markerB) {
 
@@ -841,19 +792,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	            // ระยะทาง
 	            let text_distance = response.routes[0].legs[0].distance.text ;
 	            	// console.log(text_distance);
-					let text_distance_sp = text_distance.split(' ');
+							let text_distance_sp = text_distance.split(' ');
 	            	document.querySelector('#text_distance').innerHTML = text_distance_sp[0] ;
-					document.querySelector('#text_distance_km').innerHTML = text_distance_sp[1] ;
+								document.querySelector('#text_distance_km').innerHTML = text_distance_sp[1] ;
 	            // เวลา
 	            let text_duration = response.routes[0].legs[0].duration.text ;
 	            	// console.log(text_duration);
-					
 	            	document.querySelector('#text_duration').innerHTML = text_duration ;
 
-					let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value) ;
+							let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value) ;
                 		document.querySelector('#time_duration').innerHTML = "ถึงเวลา " + text_arrivalTime;
 	            	
-						loop_check_location_officer();
+							loop_check_location_officer();
 	            
 	            // document.querySelector('#div_distance_and_duration').classList.remove('d-none');
 	        } else {
@@ -866,7 +816,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	function loop_check_location_officer(){
 		loop_check_officer = setInterval(function() {
 			check_location_officer();
-        }, 8000);
+        }, 5000);
 	}
 
 	function Stop_loop_check_officer() {
@@ -882,23 +832,23 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
                 // console.log(result['officer_lat']);
                 // console.log(result['officer_lng']);
 
-                if (result['status'] != "ถึงที่เกิดเหตุ") {
+              if (result['status'] != "ถึงที่เกิดเหตุ") {
 
-                	if (officer_marker) {
-			            officer_marker.setMap(null);
-			        }
-			        officer_marker = new google.maps.Marker({
-			            position: {lat: parseFloat(result['officer_lat']) , lng: parseFloat(result['officer_lng']) },
-			            map: map_show_user,
-			            icon: image_operating_unit_general,
-			        });
+              	const newPosition = new google.maps.LatLng(parseFloat(result['officer_lat']), parseFloat(result['officer_lng']));
+    						officer_marker.setPosition(newPosition);
 
-                }else{
+    						let bounds = new google.maps.LatLngBounds();
+										bounds.extend(new google.maps.LatLng(parseFloat(sos_lat), parseFloat(sos_lng)));
+										bounds.extend(new google.maps.LatLng(parseFloat(result['officer_lat']), parseFloat(result['officer_lng'])));
+
+								map_show_user.fitBounds(bounds);
+
+              }else{
                 	Stop_loop_check_officer();
                 	// document.querySelector('#btn_modal_officer_to_the_scene').click();
-					document.querySelector('.box-data-helper').classList.add('close-data');
-					document.querySelector('.officer-arrive').classList.remove('d-none');
-					document.querySelector('.officer-arrive').classList.add('show-data');
+									document.querySelector('.box-data-helper').classList.add('close-data');
+									document.querySelector('.officer-arrive').classList.remove('d-none');
+									document.querySelector('.officer-arrive').classList.add('show-data');
                 }
         });
 
