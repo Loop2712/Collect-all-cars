@@ -1185,15 +1185,27 @@ class Sos_help_centerController extends Controller
         return "Updated column : ". $column ." >> ". $data ." successfully" ;
     }
 
-    function update_event_level_rc($level , $sos_id){
+    function update_event_level_rc($level , $sos_id , $rc_black_text){
 
-        DB::table('sos_1669_form_yellows')
-            ->where([ 
-                    ['sos_help_center_id', $sos_id],
-                ])
-            ->update([
-                    'rc' => $level,
-                ]);
+        if ($level != 'rc_black_text') {
+
+            DB::table('sos_1669_form_yellows')
+                ->where([ 
+                        ['sos_help_center_id', $sos_id],
+                    ])
+                ->update([
+                        'rc' => $level,
+                    ]);
+        }else{
+            DB::table('sos_1669_form_yellows')
+                ->where([ 
+                        ['sos_help_center_id', $sos_id],
+                    ])
+                ->update([
+                        'rc_black_text' => $rc_black_text,
+                    ]);
+        }
+        
 
         return "Updated successfully" ;
     }

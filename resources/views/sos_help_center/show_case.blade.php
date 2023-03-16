@@ -460,7 +460,86 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     color: #fff;
    float: left;
 }
+.card-car-mileage{
+			border-radius: 15px;
+			padding: 20px;
+			background-color: #000;
+		}/* From uiverse.io by @satyamchaudharydev */
+/* removing default style of button */
+
+.btn-car-mileage{
+ border-radius: 50% !important;
+}
+/* styling of whole input container */
+.form-car-mileage {
+	margin-top:15px ;
+  --timing: 0.3s;
+  --width-of-input: 100%;
+  --height-of-input: 40px;
+  --border-height: 2px;
+  --input-bg: #fff;
+  --border-color: #2f2ee9;
+  --border-radius: 30px;
+  --after-border-radius: 1px;
+  position: relative;
+  width: var(--width-of-input);
+  height: var(--height-of-input);
+  display: flex;
+  align-items: center;
+  padding-inline: 0.8em;
+  border-radius: var(--border-radius);
+  transition: border-radius 0.5s ease;
+  background: var(--input-bg,#fff);
+}
+
+/* styling of Input */
+.input-car-mileage {
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+}
+/* styling of animated border */
+.form-car-mileage:before {
+  content: "";
+  position: absolute;
+  background: var(--border-color);
+  transform: scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: var(--border-height);
+  left: 0;
+  bottom: 0;
+  border-radius: 1px;
+  transition: transform var(--timing) ease;
+}
+
+.form-car-mileage:before .btn-car-mileage{
+  border-radius: 1px;
+  transition: transform var(--timing) ease;
+}
+/* Hover on Input */
+.form-car-mileage:focus-within {
+  border-radius: var(--after-border-radius);
+}
+
+input:focus {
+  outline: none;
+}
+/* here is code of animated border */
+.form-car-mileage:focus-within:before {
+  transform: scale(1);
+}
+
 </style>
+
+
+
+
+
 <div id="alert_send_update" class=" div_alert " role="alert">
     <div class="alert-child">
         <div >
@@ -511,15 +590,287 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	</div>
 	
 	<div class="menubar show-menubar">
-		<button class="btn w-25 btn_menu" id="btn_menu_3" onclick="show_data_menu(3);"><i class="fa-solid fa-file-pen"></i></button>
-		<button class="btn w-25 btn_menu" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-messages-question"></i></button>
-		<button class="btn w-25 btn_menu btn-danger" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-regular fa-truck-medical"></i></button>
+		<button class="btn w-25 btn_menu" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-file-pen"></i></button>
+		<button class="btn w-25 btn_menu" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-solid fa-messages-question"></i></button>
+		<button class="btn w-25 btn_menu btn-danger" id="btn_menu_3" onclick="show_data_menu(3);"><i class="fa-regular fa-truck-medical"></i></button>
 		<button class="btn w-25 btn_menu" id="btn_menu_4" onclick="show_data_menu(4);"><i class="fa-duotone fa-map"></i></button>
 	</div>
 
-	
-	<!-- Google Map และ ดูเส้นทาง -->
-	<div id="menu_4" class="row data-menu show-data-menu d-none " style="bottom: -3.5rem">
+
+	<!-- ////////////////////////////////////////// MENU 1 EDIT FORM ////////////////////////////////////////// -->
+	<div class="row data-menu show-data-menu d-none" id="menu_1" style="bottom: -1rem">
+		
+		<menu class="col-12 " >
+			<a href="#" class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" >
+				แก้ไขข้อมูล ฟอร์มเหลือง
+			</a>
+		</menu>
+		<menu class="col-12 " >
+			<button class="btn btn-secondary main-shadow main-radius btn-update-status" style="width:100%;" >
+				แก้ไขข้อมูล ฟอร์ม...
+			</button>
+		</menu>
+	</div>
+	<!-- ////////////////////////////////////////// END MENU 1 EDIT FORM ////////////////////////////////////////// -->
+
+
+
+	<!-- ////////////////////////////////////////// MENU 2 SHOW LEVEL EVENT ////////////////////////////////////////// -->
+	<div class="row data-menu show-data-menu d-none" id="menu_2" style="bottom: -2rem">
+		<menu class="col-12 "  >
+			<div id="show_level_by_control_center" class="card-body p-3 main-shadow" style="border-radius: 15px; ">
+				<div class="d-flex align-items-center div-text-status">
+					<div  class="">
+						<p class="mb-0">ศูนย์สั่งการ</p>
+						<h5 class="mb-0 font-weight-bold text-of-status" id="text_level_by_control_center">ไม่ได้ระบุ</h5>
+					</div>
+				</div>
+			</div>
+		</menu>
+		<menu class="col-12">
+			<div>
+				<span style="position: absolute;top: 5%;right: 5%;" onclick="click_edit_level_officer();">
+					<i id="tag_i_edit_level_officer" class="fa-solid fa-pen-to-square btn text-warning"></i>
+				</span>
+			</div>
+			<div id="show_level_by_officers" class="card-body p-3 main-shadow" style="border-radius: 15px;">
+				<div class="d-flex align-items-center div-text-status">
+					<div>
+						<p class="mb-0">เจ้าหน้าที่</p>
+						<h5 class="mb-0 font-weight-bold text-of-status" id="text_level_by_officers">ไม่ได้ระบุ</h5>
+					</div>
+				</div>
+			</div>
+		</menu>
+	</div>
+	<!-- ////////////////////////////////////////// END MENU 2 SHOW LEVEL EVENT ////////////////////////////////////////// -->
+
+
+
+	<!-- ////////////////////////////////////////// MENU 3 OFFICER ACTION ////////////////////////////////////////// -->
+	<div class="row data-menu show-data-menu show-data-menu" id="menu_3" style="bottom: -2rem">
+
+		<!-- ----------------------------------------- ช่องกรอกเลข กม. ทั้งหมด ------------------------------------------- -->
+		<div id="div_mileage" class=d-none  >
+			<menu class="col-12 " >
+				<div class="card card-car-mileage">
+					<div class="h5 text-white font-weight-bold">
+						<i class="fa-duotone fa-tire"></i> เลข กม. รถ : <u><span id="title_div_mileage"></span></u>
+					</div>
+
+					<div class="form-car-mileage pr-1 d-none" id="div_km_create_sos_to_go_to_help">
+						<input class="input-car-mileage" placeholder="เลข กม. รถ ออกจากฐาน" id="km_create_sos_to_go_to_help" name="km_create_sos_to_go_to_help" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_create_sos_to_go_to_help ) ? $data_sos->form_yellow->km_create_sos_to_go_to_help : ''}}">
+						<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_create_sos_to_go_to_help')"><i class="fa-solid fa-paper-plane-top"></i></a>
+					</div>
+
+					<div class="form-car-mileage pr-1 d-none" id="div_km_to_the_scene_to_leave_the_scene">
+						<input class="input-car-mileage " placeholder="เลข กม. รถ ถึงที่เกิดเหตุ" id="km_to_the_scene_to_leave_the_scene" name="km_to_the_scene_to_leave_the_scene" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_to_the_scene_to_leave_the_scene ) ? $data_sos->form_yellow->km_to_the_scene_to_leave_the_scene : ''}}">
+						<!-- <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button">
+							<i class="fa-solid fa-paper-plane-top"></i>
+						</a> -->
+					</div>
+
+					<div class="form-car-mileage pr-1 d-none" id="div_km_hospital">
+						<input class="input-car-mileage " placeholder="เลข กม. รถ ถึงโรงพยาบาล" id="km_hospital" name="km_hospital" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_hospital ) ? $data_sos->form_yellow->km_hospital : ''}}">
+						<!-- <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button">
+							<i class="fa-solid fa-paper-plane-top"></i>
+						</a> -->
+					</div>
+
+					<div class="form-car-mileage pr-1 d-none" id="div_km_operating_base">
+						<input class="input-car-mileage " placeholder="เลข กม. รถ ถึงฐาน" id="km_operating_base" name="km_operating_base" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_operating_base ) ? $data_sos->form_yellow->km_operating_base : ''}}">
+						<!-- <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" >
+							<i class="fa-solid fa-paper-plane-top"></i>
+						</a> -->
+					</div>
+
+				</div>
+			</menu>
+		</div>
+		<!-- ----------------------------------------- จบ ช่องกรอกเลข กม. ทั้งหมด ------------------------------------------- -->
+
+		
+		<!-- -------------------------------------------  เลือกสถานะการณ์  ---------------------------------------------------- -->
+		<div id="div_event_level" class="d-none row  data-menu show-data-menu"  style="margin-top:-35%">
+			<menu class="col-6">
+				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-black" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
+						ดำ
+				</button>
+			</menu>
+			<menu class="col-6">
+				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-normal" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ขาว(ทั่วไป)','{{ $data_sos->id }}');">
+						ขาว(ทั่วไป)
+				</button>
+			</menu>
+			<menu class="col-6 mt-3">
+				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-green" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('เขียว(ไม่รุนแรง)','{{ $data_sos->id }}');">
+						เขียว(ไม่รุนแรง)
+				</button>
+			</menu>
+			<menu class="col-6 mt-3">
+				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('เหลือง(เร่งด่วน)','{{ $data_sos->id }}');">
+						เหลือง(เร่งด่วน)
+				</button>
+			</menu>
+			<menu class="col-12 mt-3">
+				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-red" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('แดง(วิกฤติ)','{{ $data_sos->id }}');">
+						แดง(วิกฤติ)
+				</button>
+			</menu>
+		</div>
+		<!-- -------------------------------------------  จบ เลือกสถานะการณ์  ---------------------------------------------------- -->
+
+
+		<!-- -------------------------------------------  เพิ่มเติมสถานะการสีดำ  ---------------------------------------------------- -->
+		<div id="div_add_rc_black_text" class="d-none row  data-menu show-data-menu"  style="margin-top:-45%">
+			<div class="card-body p-3 main-shadow" style="border-radius: 15px;">
+				<div class="d-flex align-items-center div-text-status">
+					<p class="mb-0">สถานะการณ์ : ดำ</p>
+					<input class="input-car-mileage" placeholder="ใส่รหัส" id="rc_black_text" name="rc_black_text" required="" type="text" value="{{ isset( $data_sos->form_yellow->rc_black_text ) ? $data_sos->form_yellow->rc_black_text : ''}}">
+					<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_event_level_rc('rc_black_text','{{ $data_sos->id }}');">
+						<i class="fa-solid fa-paper-plane-top"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- ------------------------------------------- จบ เพิ่มเติมสถานะการสีดำ  ---------------------------------------------------- -->
+
+
+		<!-- --------------------------------------- เลือกการปฎิบัติการ -------------------------------------------------- -->
+		<div class="d-none row data-menu show-data-menu" id="div_select_treatment" style="margin-top:-30%">
+
+			<!-- ---  เลือก รักษา / ไม่รักษา  --- -->
+			<menu class="col-6  p-0">
+				<label >
+					<input type="radio"name="treatment" value="มีการรักษา"  class="card-input-red card-input-element d-none"  onchange="check_btn_select_treatment();">
+					<div class="card card-body d-flex flex-row justify-content-between align-items-center text-danger border-danger w-100" style="border-radius: 10px 0 0 10px;">
+						<b>
+							มีการรักษา
+						</b>
+					</div>
+				</label>
+
+			</menu>
+
+			<menu class="col-6 p-0">
+				<label >
+					<input type="radio" name="treatment" value="ไม่มีการรักษา"  class="card-input-element d-none"  onchange="check_btn_select_treatment();">
+					<div class="card card-body d-flex flex-row-reverse  justify-content-between align-items-center border-primary"style="border-radius: 0 10px 10px 0;">
+						<b>
+							ไม่มีการรักษา
+						</b>
+					</div>
+				</label>
+			</menu>
+			
+			<div class="col-12" style="margin-bottom: 5%;">
+
+				<!-- ---  เคสมีการรักษา  --- -->
+				<div class="row d-none mt-3" id="treatment_yes">
+					<div class="col-12 col-md-4 col-lg-4">
+						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
+							onclick="update_status('ออกจากที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');">
+								นำส่ง
+						</span>
+					</div>
+					<div class="col-6 col-md-4 col-lg-4 mt-3">
+						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
+						onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า');">
+							ส่งต่อชุดปฏิบัติการ
+						</span>
+					</div>
+					<div class="col-6 col-md-4 col-lg-4 mt-3">
+						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่นำส่ง');">
+								ไม่นำส่ง
+						</span>
+					</div>
+					<div class="col-6 col-md-4 col-lg-4 mt-3">
+						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิตระหว่างนำส่ง');">
+								เสียชีวิตระหว่างนำส่ง
+						</span>
+					</div>
+					<div class="col-6 col-md-4 col-lg-4 mt-3">
+						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ณ_จุดเกิดเหตุ');">
+							เสียชีวิต ณ จุดเกิดเหตุ
+						</span>
+					</div>
+				</div>
+
+				<!-- ---   เคส ไม่มี การรักษา  --- -->
+				<div class="row d-none mt-3" id="treatment_no">
+					<div class="col-6  col-md-4 col-lg-4">
+						<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ผู้ป่วยปฎิเสธการรักษา');">
+							ผู้ป่วยปฎิเสธการรักษา
+						</span>
+					</div>
+					<div class="col-6 col-md-4 col-lg-4">
+						<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ก่อนชุดปฎิบัติการไปถึง');">
+							เสียชีวิต ก่อนชุดปฎิบัติการไปถึง
+						</span>
+					</div>
+					<div class="col-6 mt-3 col-md-4 col-lg-4">
+						<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ยกเลิก');" >
+							ยกเลิก
+						</span>
+					</div>
+					<div class="col-6 mt-3 col-md-4 col-lg-4">
+						<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่พบเหตุ');" >
+								ไม่พบเหตุ
+						</span>
+					</div>
+				
+					
+				</div>
+			</div>
+			
+		</div>
+		<!-- --------------------------------------- จบ เลือกการปฎิบัติการ -------------------------------------------------- -->
+
+		<!-- ----------------------------------------- ปุ่ม ถึงที่เกิดเหตุ ------------------------------------------- -->
+		<div id="div_btn_to_the_scene" class="d-none" style="margin-top:-5%">
+			<menu class="col-12 " >
+				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" 
+					onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_to_the_scene_to_leave_the_scene')">
+						<i class="fa-sharp fa-solid fa-location-crosshairs"></i> ถึงที่เกิดเหตุ 
+				</button>
+			</menu>
+		</div>
+
+		<!-- --------------------------------------- ปุ่ม ถึงโรงพยาบาล -------------------------------------------------- -->
+		<div id="div_to_hospital" class="d-none"  style="margin-top:-5%">
+			<menu class="col-12 " >
+				<button class="btn btn-primary main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
+				onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_hospital')">
+					ถึงโรงพยาบาล
+				</button>
+			</menu>
+		</div>
+
+		<!-- --------------------------------------- ปุ่ม กลับถึงฐาน -------------------------------------------------- -->
+		<div id="div_operating_base" class="d-none"  style="margin-top: -5%">
+			<menu class="col-12 " >
+				<button id="btn_operating_base" class="btn btn-success main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;" 
+				onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_operating_base'); ">
+					กลับถึงฐาน
+				</button>
+			</menu>
+		</div>
+
+
+	</div>
+	<!-- ////////////////////////////////////////// END MENU 3 OFFICER ACTION ////////////////////////////////////////// -->
+
+
+
+	<!-- ////////////////////////////////////////// MENU 4 MAP ////////////////////////////////////////// -->
+	<div id="menu_4" class="row data-menu show-data-menu d-none " style="bottom: -2rem">
 		@php
 			$gg_lat_mail = '@' . $data_sos->lat ;
 			$gg_lat = $data_sos->lat ;
@@ -561,298 +912,9 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		</menu>
 	
 	</div>
+	<!-- ////////////////////////////////////////// END MENU 4 MAP ////////////////////////////////////////// -->
 
-	<div class="row data-menu show-data-menu d-none" id="menu_1" style="top:75%">
-		<menu class="col-12 "  >
-			<div id="show_level_by_control_center" class="card-body p-3 main-shadow" style="border-radius: 15px; ">
-				<div class="d-flex align-items-center div-text-status">
-					<div  class="">
-						<p class="mb-0">ศูนย์สั่งการ</p>
-						<h5 class="mb-0 font-weight-bold text-of-status" id="text_level_by_control_center">ไม่ได้ระบุ</h5>
-					</div>
-				</div>
-			</div>
-		</menu>
-		<menu class="col-12">
-			<div id="show_level_by_officers" class="card-body p-3 main-shadow" style="border-radius: 15px;">
-				<div class="d-flex align-items-center div-text-status">
-					<div>
-						<p class="mb-0">เจ้าหน้าที่</p>
-						<h5 class="mb-0 font-weight-bold text-of-status" id="text_level_by_officers">ไม่ได้ระบุ</h5>
-					</div>
-				</div>
-			</div>
-		</menu>
-	</div>
-	<style>
-		.card-car-mileage{
-			border-radius: 15px;
-			padding: 20px;
-			background-color: #000;
-		}/* From uiverse.io by @satyamchaudharydev */
-/* removing default style of button */
 
-.btn-car-mileage{
- border-radius: 50% !important;
-}
-/* styling of whole input container */
-.form-car-mileage {
-	margin-top:15px ;
-  --timing: 0.3s;
-  --width-of-input: 100%;
-  --height-of-input: 40px;
-  --border-height: 2px;
-  --input-bg: #fff;
-  --border-color: #2f2ee9;
-  --border-radius: 30px;
-  --after-border-radius: 1px;
-  position: relative;
-  width: var(--width-of-input);
-  height: var(--height-of-input);
-  display: flex;
-  align-items: center;
-  padding-inline: 0.8em;
-  border-radius: var(--border-radius);
-  transition: border-radius 0.5s ease;
-  background: var(--input-bg,#fff);
-}
-/* styling of Input */
-.input-car-mileage {
-  font-size: 0.9rem;
-  background-color: transparent;
-  width: 100%;
-  height: 100%;
-  padding-inline: 0.5em;
-  padding-block: 0.7em;
-  border: none;
-}
-/* styling of animated border */
-.form-car-mileage:before {
-  content: "";
-  position: absolute;
-  background: var(--border-color);
-  transform: scaleX(0);
-  transform-origin: center;
-  width: 100%;
-  height: var(--border-height);
-  left: 0;
-  bottom: 0;
-  border-radius: 1px;
-  transition: transform var(--timing) ease;
-}
-
-.form-car-mileage:before .btn-car-mileage{
-  border-radius: 1px;
-  transition: transform var(--timing) ease;
-}
-/* Hover on Input */
-.form-car-mileage:focus-within {
-  border-radius: var(--after-border-radius);
-}
-
-input:focus {
-  outline: none;
-}
-/* here is code of animated border */
-.form-car-mileage:focus-within:before {
-  transform: scale(1);
-}
-	</style>
-	<div class="row data-menu show-data-menu show-data-menu" id="menu_2" style="top: 90%;">
-		<!-- ----------------------------------------- ถึงที่เกิดเหตุ ------------------------------------------- -->
-		<div id="mileage_gotohelp" class=""  style="margin-top:-46%" >
-			<menu class="col-12 " >
-				<div class="card card-car-mileage">
-					<div class="h5 text-white font-weight-bold"><i class="fa-duotone fa-tire"></i> เลขกิโลเมตรรถ</div>
-						<div class="form-car-mileage pr-1" id="div_km_create_sos_to_go_to_help">
-							<input class="input-car-mileage" placeholder="ออกจากฐาน" id="km_create_sos_to_go_to_help" name="km_create_sos_to_go_to_help" required="" type="text">
-							<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_create_sos_to_go_to_help')"><i class="fa-solid fa-paper-plane-top"></i></a>
-						</div>
-
-						<div class="form-car-mileage pr-1 d-none" id="div_km_to_the_scene_to_leave_the_scene">
-							<input class="input-car-mileage " placeholder="ถึงที่เกิดเหตุ" id="km_to_the_scene_to_leave_the_scene" name="km_to_the_scene_to_leave_the_scene" required="" type="text">
-							<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_to_the_scene_to_leave_the_scene')"><i class="fa-solid fa-paper-plane-top"></i></a>
-						</div>
-
-						<div class="form-car-mileage pr-1 d-none" id="div_km_hospital">
-							<input class="input-car-mileage " placeholder="ถึงโรงพยาบาล" id="km_hospital" name="km_hospital" required="" type="text">
-							<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_hospital')"><i class="fa-solid fa-paper-plane-top"></i></a>
-						</div>
-
-						<div class="form-car-mileage pr-1 d-none" id="div_km_operating_base">
-								<input class="input-car-mileage " placeholder="ถึงฐาน" id="km_operating_base" name="km_operating_base" required="" type="text">
-								<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_operating_base'); officer_to_the_operating_base('{{ $data_sos->id }}');"><i class="fa-solid fa-paper-plane-top"></i></a>
-						</div>
-				</div>
-			</menu>
-		</div>
-
-		<div id="div_gotohelp" class="d-none"  style="margin-top:-25%">
-			<menu class="col-12 " >
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" onclick="update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');">
-						<i class="fa-sharp fa-solid fa-location-crosshairs"></i> ถึงที่เกิดเหตุ 
-				</button>
-			</menu>
-		</div>
-		
-		<!-- -------------------------------------------  สถานะการณ์  ---------------------------------------------------- -->
-		<div id="div_event_level" class="d-none row  data-menu show-data-menu"  style="top:-750%">
-			<menu class="col-6">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-black" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
-						ดำ
-				</button>
-			</menu>
-			<menu class="col-6">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-normal" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ขาว(ทั่วไป)','{{ $data_sos->id }}');">
-						ขาว(ทั่วไป)
-				</button>
-			</menu>
-			<menu class="col-6 mt-3">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-green" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('เขียว(ไม่รุนแรง)','{{ $data_sos->id }}');">
-						เขียว(ไม่รุนแรง)
-				</button>
-			</menu>
-			<menu class="col-6 mt-3">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('เหลือง(เร่งด่วน)','{{ $data_sos->id }}');">
-						เหลือง(เร่งด่วน)
-				</button>
-			</menu>
-			<menu class="col-12 mt-3">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-red" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('แดง(วิกฤติ)','{{ $data_sos->id }}');">
-						แดง(วิกฤติ)
-				</button>
-			</menu>
-		</div>
-
-		<!-- ---------------------------------------การปฎิบัติการ-------------------------------------------------- -->
-		<div class="d-none row data-menu show-data-menu" id="div_select_treatment" style="margin-top:10%">
-			
-			<div class="col-12" style="margin-bottom: 5%;">
-				<!-- -------------------------------------------   เคสมีการรักษา  ----------------------------------------------------- -->
-				<div class="row d-none mt-3" id="treatment_yes">
-					<div class="col-12 col-md-4 col-lg-4">
-						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
-							onclick="update_status('ออกจากที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');">
-								นำส่ง
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4 mt-3">
-						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
-						onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า');">
-							ส่งต่อชุดปฏิบัติการ
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4 mt-3">
-						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่นำส่ง');">
-								ไม่นำส่ง
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4 mt-3">
-						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิตระหว่างนำส่ง');">
-								เสียชีวิตระหว่างนำส่ง
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4 mt-3">
-						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ณ_จุดเกิดเหตุ');">
-							เสียชีวิต ณ จุดเกิดเหตุ
-						</span>
-					</div>
-				</div>
-
-				<!-- -------------------------------------------   เคส ไม่มี การรักษา  ----------------------------------------------------- -->
-				<div class="row d-none mt-3" id="treatment_no">
-					<div class="col-6  col-md-4 col-lg-4">
-						<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ผู้ป่วยปฎิเสธการรักษา');">
-							ผู้ป่วยปฎิเสธการรักษา
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4">
-						<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ก่อนชุดปฎิบัติการไปถึง');">
-							เสียชีวิต ก่อนชุดปฎิบัติการไปถึง
-						</span>
-					</div>
-					<div class="col-6 mt-3 col-md-4 col-lg-4">
-						<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ยกเลิก');" >
-							ยกเลิก
-						</span>
-					</div>
-					<div class="col-6 mt-3 col-md-4 col-lg-4">
-						<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่พบเหตุ');" >
-								ไม่พบเหตุ
-						</span>
-					</div>
-				
-					
-				</div>
-			</div>
-
-			<menu class="col-6  p-0">
-				<label >
-					<input type="radio"name="treatment" value="มีการรักษา"  class="card-input-red card-input-element d-none"  onchange="check_btn_select_treatment();">
-					<div class="card card-body d-flex flex-row justify-content-between align-items-center text-danger border-danger w-100" style="border-radius: 10px 0 0 10px;">
-						<b>
-							มีการรักษา
-						</b>
-					</div>
-				</label>
-
-			</menu>
-
-			<menu class="col-6 p-0">
-				<label >
-					<input type="radio" name="treatment" value="ไม่มีการรักษา"  class="card-input-element d-none"  onchange="check_btn_select_treatment();">
-					<div class="card card-body d-flex flex-row-reverse  justify-content-between align-items-center border-primary"style="border-radius: 0 10px 10px 0;">
-						<b>
-							ไม่มีการรักษา
-						</b>
-					</div>
-				</label>
-			</menu>
-			
-		</div>
-
-		<!-- ---------------------------------------กลับถึงฐาน-------------------------------------------------- -->
-		<div id="div_operating_base" class="d-none"  style="margin-top:-30%">
-			<menu class="col-12 " >
-				<button class="btn btn-success main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
-				onclick="document.querySelector('#div_operating_base').classList.add('d-none');
-				document.querySelector('#mileage_gotohelp').classList.remove('d-none');">
-					กลับถึงฐาน
-				</button>
-			</menu>
-		</div>
-		
-		<div id="div_to_hospital" class="d-none"  style="margin-top:-30%">
-			<menu class="col-12 " >
-				<button class="btn btn-primary main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
-				onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ถึงโรงพยาบาล');">
-					ถึงโรงพยาบาล
-				</button>
-			</menu>
-		</div>
-
-	</div>
-
-	<div class="row data-menu show-data-menu d-none" id="menu_3" style="margin-top:-35%">
-		
-		<menu class="col-12 " >
-			<a href="{{ url('/sos_help_center' . '/' . $data_sos->id . '/edit') }}" class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" >
-				แก้ไขข้อมูล ฟอร์มเหลือง
-			</a>
-		</menu>
-		<menu class="col-12 " >
-			<button class="btn btn-secondary main-shadow main-radius btn-update-status" style="width:100%;" >
-				แก้ไขข้อมูล ฟอร์ม...
-			</button>
-		</menu>
-	</div>
 	<script>
 		function show_data_menu(id){
 			var element = document.getElementById('btn_menu_'+id);
@@ -871,294 +933,11 @@ input:focus {
 				document.querySelector('#menu_'+ id).classList.toggle('d-none');
 				
 			}
+
+			start_page();
 		}
 	</script>
 
-
-
-
-<!-- <div class="container d-none">
-	<div class="row" style="padding: 8px 14px 0 14px !important;">
-		<span id="situation_of_status" class="col-10 status-remark py-2">
-			<h5 class="m-0 font-weight-bold">สถานะ</h5>
-			<small class="h6 text-bold" id="show_status"></small> <small id="show_remark_status"></small>
-		</span>
-		<div class="col-12 d-none">
-			<p class="mt-2">
-				LAT : <span id="text_show_lat"></span> 
-				<br>
-				LONG : <span id="text_show_lng"></span>
-			</p>
-		</div>
-		<span class="col-2 add-img btn btn-info">
-			<i class="fa-solid fa-camera-viewfinder h4 m-0" onclick="document.querySelector('#btn_modal_add_photo_sos').click();"></i>
-		</span>
-	</div>
-	<div class="col-12 p-0">
-		<div class="main-shadow main-radius p-0" id="map_show_case">
-			<div class="sry-open-location">
-				<img src="{{ asset('/img/more/sorry-no-text.png') }}" />
-				<center>
-					<p class="sry-open-location-text h4" style="top: 20%;">ขออภัยค่ะ</p>	
-					<p class="sry-open-location-text h5" style="top: 35%;">ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ</p>
-					<span style="top: 50%;" class="sry-open-location-text btn btn-md btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
-						<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
-					</span>
-				</center>
-			</div>
-			<div class="col-12" style="position:absolute;bottom: 10%;left: 7%;z-index: 99;">
-				<div class="row">
-					<div id="btn_google_map" class="col-12 d-">
-						@php
-							$gg_lat_mail = '@' . $data_sos->lat ;
-							$gg_lat = $data_sos->lat ;
-							$lng = $data_sos->lng ;
-						@endphp
-						<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="btn btn-sm btn-danger text-white main-shadow main-radius mt-2" style="width:50%;"  target="bank">
-							Google Map <i class="fa-solid fa-location-arrow"></i>
-						</a>
-						<button class="btn btn-sm btn-primary text-white main-shadow main-radius mt-2" onclick="get_dir();">
-							<i id="icon_btn_get_dir_close" class="fa-sharp fa-solid fa-eye-slash"></i>
-							<i id="icon_btn_get_dir_open" class="fa-solid fa-eye d-none"></i>
-						</button>
-						<input class="d-none" type="checkbox" name="input_check_open_get_dir" id="input_check_open_get_dir">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="bg-drak-gray">
-		<div class="row mt-3">
-			<div class="col-6 " style="padding: 0 0 0 15px;" >
-				<div id="show_level_by_control_center" class="card-body p-3 main-shadow" style="border-radius: 15px 0 0 15px; ">
-					<div class="d-flex align-items-center div-text-status">
-						<div  class="">
-							<p class="mb-0">ศูนย์สั่งการ</p>
-							<h5 class="mb-0 font-weight-bold text-of-status" id="text_level_by_control_center">ไม่ได้ระบุ</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-6 "style="padding: 0 15px 0 0;">
-				<div id="show_level_by_officers" class="card-body p-3 main-shadow" style="border-radius: 0 15px 15px 0;">
-					<div class="d-flex align-items-center div-text-status">
-						<div>
-							<p class="mb-0">เจ้าหน้าที่</p>
-							<h5 class="mb-0 font-weight-bold text-of-status" id="text_level_by_officers">ไม่ได้ระบุ</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-12 text-center d-none p-0" id="div_gotohelp">
-		<div class="card-title d-flex align-items-center mt-3">
-			<div>
-				<i class="text-danger fa-regular fa-truck-medical h5 mb-0"></i>
-			</div>
-			<h5 class="mb-0 text-danger"> &nbsp;&nbsp;<b>การเดินทาง</b> </h5>
-		</div>
-		<hr>
-		<div class="col-12 mt-3">
-			<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" onclick="update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');">
-					<i class="fa-sharp fa-solid fa-location-crosshairs"></i> ถึงที่เกิดเหตุ 
-			</button>
-		</div>
-	</div>
-	
-	<div id="div_event_level" class="d-none">
-		<div class="card-title d-flex align-items-center mt-3">
-			<div>
-				<i class="text-danger fa-duotone fa-person-burst h5 mb-0"></i>
-			</div>
-			<h5 class="mb-0 text-danger"> &nbsp;&nbsp;<b>ความรุนแรง ณ จุดเกิดเหตุ</b> </h5>
-		</div>
-		<hr>
-		<div class="row">
-			<div class="col-6">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-black" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
-						ดำ
-				</button>
-			</div>
-			<div class="col-6">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-normal" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ขาว(ทั่วไป)','{{ $data_sos->id }}');">
-						ขาว(ทั่วไป)
-				</button>
-			</div>
-			<div class="col-6 mt-3">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-green" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('เขียว(ไม่รุนแรง)','{{ $data_sos->id }}');">
-						เขียว(ไม่รุนแรง)
-				</button>
-			</div>
-			<div class="col-6 mt-3">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('เหลือง(เร่งด่วน)','{{ $data_sos->id }}');">
-						เหลือง(เร่งด่วน)
-				</button>
-			</div>
-			<div class="col-12 mt-3">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-red" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('แดง(วิกฤติ)','{{ $data_sos->id }}');">
-						แดง(วิกฤติ)
-				</button>
-			</div>
-		</div>
-	</div>
-	
-	<div class="col-12 text-center d-none" id="div_select_treatment" >
-		<div class="card-title d-flex align-items-center mt-3">
-			<div>
-				<i class="text-danger fa-solid fa-hospital h5 mb-0"></i>
-			</div>
-			<h5 class="mb-0 text-danger"> &nbsp;&nbsp;<b>การปฏิบัติการ</b> </h5>
-		</div>
-		<hr>
-		<div class="row">
-			<div class="col-6 p-0">
-				<label >
-					<input type="radio"name="treatment" value="มีการรักษา"  class="card-input-red card-input-element d-none"  onchange="check_btn_select_treatment();">
-					<div class="card card-body d-flex flex-row justify-content-between align-items-center text-danger border-danger w-100" style="border-radius: 10px 0 0 10px;">
-						<b>
-							มีการรักษา
-						</b>
-					</div>
-				</label>
-
-			</div>
-
-			<div class="col-6 p-0">
-				<label >
-					<input type="radio" name="treatment" value="ไม่มีการรักษา"  class="card-input-element d-none"  onchange="check_btn_select_treatment();">
-					<div class="card card-body d-flex flex-row-reverse  justify-content-between align-items-center border-primary"style="border-radius: 0 10px 10px 0;">
-						<b>
-							ไม่มีการรักษา
-						</b>
-					</div>
-				</label>
-			</div>
-			<div class="col-12" style="margin-bottom: 20%;">
-				<div class="row d-none mt-3" id="treatment_yes">
-					<div class="col-12 col-md-4 col-lg-4">
-						<span class="btn btn-outline-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
-							onclick="update_status('ออกจากที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');">
-								นำส่ง
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4 mt-3">
-						<span class="btn btn-outline-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
-						onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า');">
-							ส่งต่อชุดปฏิบัติการ
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4 mt-3">
-						<span class="btn btn-outline-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่นำส่ง');">
-								ไม่นำส่ง
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4 mt-3">
-						<span class="btn btn-outline-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิตระหว่างนำส่ง');">
-								เสียชีวิตระหว่างนำส่ง
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4 mt-3">
-						<span class="btn btn-outline-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ณ_จุดเกิดเหตุ');">
-							เสียชีวิต ณ จุดเกิดเหตุ
-						</span>
-					</div>
-				</div>
-
-				<div class="row d-none mt-3" id="treatment_no">
-					<div class="col-6  col-md-4 col-lg-4">
-						<span class="btn btn-outline-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ผู้ป่วยปฎิเสธการรักษา');">
-							ผู้ป่วยปฎิเสธการรักษา
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4">
-						<span class="btn btn-outline-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ก่อนชุดปฎิบัติการไปถึง');">
-							เสียชีวิต ก่อนชุดปฎิบัติการไปถึง
-						</span>
-					</div>
-					<div class="col-6 mt-3 col-md-4 col-lg-4">
-						<span class="btn btn-outline-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ยกเลิก');" >
-							ยกเลิก
-						</span>
-					</div>
-					<div class="col-6 mt-3 col-md-4 col-lg-4">
-						<span class="btn btn-outline-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่พบเหตุ');" >
-								ไม่พบเหตุ
-						</span>
-					</div>
-				
-					
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-12 text-center d-none" id="div_operating_base" >
-		<div class="card-title d-flex align-items-center mt-3">
-			<div>
-				<i class="text-danger fa-duotone fa-tower-observation h5 mb-0"></i>
-			</div>
-			<h5 class="mb-0 text-danger"> &nbsp;&nbsp;<b>กลับฐาน</b> </h5>
-		</div>
-		<hr>
-		<div class="row">
-			<div class="col-12 mt-2">
-				<button class="btn btn-success main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
-				onclick="officer_to_the_operating_base('{{ $data_sos->id }}');">
-					กลับถึงฐาน
-				</button>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-12 text-center d-none" id="div_to_hospital" >
-		<div class="card-title d-flex align-items-center mt-3">
-			<div>
-				<i class="text-danger fa-solid fa-light-emergency-on h5 mb-0"></i>
-			</div>
-			<h5 class="mb-0 text-danger"> &nbsp;&nbsp;<b>นำส่ง</b> </h5>
-		</div>
-		<hr>
-		<div class="row">
-			<div class="col-12 mt-2">
-				<button class="btn btn-primary main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
-				onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ถึงโรงพยาบาล');">
-					ถึงโรงพยาบาล
-				</button>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-12 text-center">
-		<div class="card-title d-flex align-items-center mt-5">
-			<div>
-				<i class="text-danger fa-solid fa-file h5 mb-0"></i>
-			</div>
-			<h5 class="mb-0 text-danger"> &nbsp;&nbsp;<b>ฟอร์ม</b> </h5>
-		</div>
-		<hr>
-		<div class="row">
-			<div class="col-12 mt-2">
-				<a href="{{ url('/sos_help_center' . '/' . $data_sos->id . '/edit') }}" class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" >
-					แก้ไขข้อมูล ฟอร์มเหลือง
-				</a>
-			</div>
-			<div class="col-12 mt-2">
-				<button class="btn btn-secondary main-shadow main-radius btn-update-status" style="width:100%;" >
-					แก้ไขข้อมูล ฟอร์ม...
-				</button>
-			</div>
-		</div>
-	</div>
-</div> -->
 
 <a id="tag_a_switch_standby" href="{{ url('/officers/switch_standby') }}" class="d-none"></a>
 
@@ -1395,122 +1174,6 @@ input:focus {
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 <script>
 
-	// แสดงข้อมูลเริ่มต้น -----------------------------------------------------------------------------
-	var event_level_by_control_center = '{{ $data_sos->form_yellow->idc }}';
-    var event_level_by_officers = '{{ $data_sos->form_yellow->rc }}';
-	// แสดงเคสและปุ่มดำเนินการต่างๆ
-	var status_sos = '{{ $data_sos->status }}';
-    var show_remark_status_sos = '{{ $data_sos->remark_status }}';
-
-    function start_page(){
-
-    	document.querySelector('#show_status').innerHTML = status_sos ;
-
-		if (show_remark_status_sos) {
-			show_remark_status_sos = show_remark_status_sos.replaceAll("_" , " ");
-			document.querySelector('#show_remark_status').innerHTML =  '(' + show_remark_status_sos +')';
-		}
-		// div_gotohelp
-		// div_event_level
-		// div_select_treatment
-	    switch(status_sos){
-			case 'ออกจากฐาน':
-				document.querySelector('#situation_of_status').classList.add('situation-yellow');
-				document.querySelector('#mileage_gotohelp').classList.remove('d-none');
-				document.querySelector('#div_event_level').classList.add('d-none');
-				document.querySelector('#div_select_treatment').classList.add('d-none');
-	          	document.querySelector('#div_operating_base').classList.add('d-none');
-	          	document.querySelector('#div_to_hospital').classList.add('d-none');
-			break;
-			case 'ถึงที่เกิดเหตุ':
-				document.querySelector('#situation_of_status').classList.add('situation-yellow');
-				if (!event_level_by_officers) {
-					document.querySelector('#situation_of_status').classList.add('situation-yellow');
-					document.querySelector('#mileage_gotohelp').classList.remove('d-none');
-					document.querySelector('#div_select_treatment').classList.add('d-none');
-					document.querySelector('#div_gotohelp').classList.add('d-none');
-	          		document.querySelector('#div_operating_base').classList.add('d-none');
-	          		document.querySelector('#div_to_hospital').classList.add('d-none');
-				}else{
-					document.querySelector('#div_select_treatment').classList.remove('d-none');
-					document.querySelector('#div_event_level').classList.add('d-none');
-					document.querySelector('#div_gotohelp').classList.add('d-none');
-	          		document.querySelector('#div_operating_base').classList.add('d-none');
-	          		document.querySelector('#div_to_hospital').classList.add('d-none');
-				}
-			break;
-			case 'ออกจากที่เกิดเหตุ':
-				document.querySelector('#situation_of_status').classList.add('situation-yellow');
-	          	document.querySelector('#div_to_hospital').classList.remove('d-none');
-	          	document.querySelector('#div_operating_base').classList.add('d-none');
-	         	document.querySelector('#div_gotohelp').classList.add('d-none');
-				document.querySelector('#div_event_level').classList.add('d-none');
-				document.querySelector('#div_select_treatment').classList.add('d-none');
-			break;
-			case 'เสร็จสิ้น':
-				document.querySelector('#situation_of_status').classList.add('situation-green');
-	          	document.querySelector('#mileage_gotohelp').classList.remove('d-none');
-	         	document.querySelector('#div_gotohelp').classList.add('d-none');
-				document.querySelector('#div_event_level').classList.add('d-none');
-				document.querySelector('#div_select_treatment').classList.add('d-none');
-	          	document.querySelector('#div_to_hospital').classList.add('d-none');
-	        break;
-
-		}
-	}
-
-	function show_event_level(){
-	    // แสดงระดับเหตุการณ์
-		if (event_level_by_control_center) {
-			// document.querySelector('#show_level_by_control_center').classList.remove('d-none') ;
-			let class_color_center ;
-			let class_color_officers ;
-			switch(event_level_by_control_center){
-				case 'แดง(วิกฤติ)':
-					class_color_center = "situation-red";
-				break;
-				case 'เหลือง(เร่งด่วน)':
-					class_color_center = 'situation-yellow';
-				break;
-				case 'เขียว(ไม่รุนแรง)':
-					class_color_center = 'situation-green';
-				break;
-				case 'ขาว(ทั่วไป)':
-					class_color_center = 'situation-normal';
-				break;
-				case 'ดำ(รับบริการสาธารณสุขอื่น)':
-					class_color_center = 'situation-black';
-				break;
-			}
-			document.querySelector('#show_level_by_control_center').classList.add(class_color_center) ;
-	    	document.querySelector('#text_level_by_control_center').innerHTML = event_level_by_control_center ;
-		}
-		if (event_level_by_officers) {
-			// document.querySelector('#show_level_by_officers').classList.remove('d-none') ;
-			switch(event_level_by_officers){
-				case 'แดง(วิกฤติ)':
-					class_color_officers = 'situation-red';
-				break;
-				case 'เหลือง(เร่งด่วน)':
-					class_color_officers = 'situation-yellow';
-				break;
-				case 'เขียว(ไม่รุนแรง)':
-					class_color_officers = 'situation-green';
-				break;
-				case 'ขาว(ทั่วไป)':
-					class_color_officers = 'situation-normal';
-				break;
-				case 'ดำ':
-					class_color_officers = 'situation-black';
-				break;
-			}
-			document.querySelector('#show_level_by_officers').classList.add(class_color_officers) ;
-	    	document.querySelector('#text_level_by_officers').innerHTML = event_level_by_officers ;
-		}
-	}
-
-	// ------------------------------------------------------------------------------------------
-
 	var lat ;
 	var lng ;
 	var officer_marker ;
@@ -1542,12 +1205,16 @@ input:focus {
         // console.log("START");
 
         start_page();
-        getLocation();
         show_event_level();
 
-        timer_check_send_update_officer();
-        watchPosition_officer();
-
+        if (status_sos != "เสร็จสิ้น") {
+        	getLocation();
+        	timer_check_send_update_officer();
+        	watchPosition_officer();
+        }else{
+        	open_map_status_success();
+        }
+        
     });
 
 	function getLocation() {
@@ -1906,12 +1573,230 @@ input:focus {
 	}
 
 
-    // -------- UPDATE STATUS SOS -------- //
-    // div_gotohelp
-    // div_event_level
-    // div_select_treatment
-    // div_to_hospital
-    // div_operating_base
+    //////// -------- START PAGE CHECK OF STATUS -------- ////////
+
+    // แสดงข้อมูลเริ่มต้น ---------------------------------------------
+	var event_level_by_control_center = '{{ $data_sos->form_yellow->idc }}';
+    var event_level_by_officers = '{{ $data_sos->form_yellow->rc }}';
+    var event_level_rc_black_text = '{{ $data_sos->form_yellow->rc_black_text }}';
+
+	var status_sos = '{{ $data_sos->status }}';
+    var show_remark_status_sos = '{{ $data_sos->remark_status }}';
+
+    var km_go_to_help = '{{ $data_sos->form_yellow->km_create_sos_to_go_to_help }}';
+    var km_to_the_scene = '{{ $data_sos->form_yellow->km_to_the_scene_to_leave_the_scene }}';
+    var km_hospital = '{{ $data_sos->form_yellow->km_hospital }}';
+    var km_operating_base = '{{ $data_sos->form_yellow->km_operating_base }}';
+    var time_to_the_operating_base = '{{ $data_sos->form_yellow->time_to_the_operating_base }}';
+
+    var treatment = '{{ $data_sos->form_yellow->treatment }}';
+
+	// จบ แสดงข้อมูลเริ่มต้น ---------------------------------------------
+
+
+    function start_page(){
+
+    	// console.log(status_sos);
+    	
+    	document.querySelector('#show_status').innerHTML = status_sos ;
+
+		if (show_remark_status_sos) {
+			show_remark_status_sos = show_remark_status_sos.replaceAll("_" , " ");
+			document.querySelector('#show_remark_status').innerHTML =  '(' + show_remark_status_sos +')';
+		}
+
+	    switch(status_sos){
+			case 'ออกจากฐาน':
+
+				document.querySelector('#situation_of_status').classList.add('situation-yellow');
+
+				if (!km_go_to_help) {
+					document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
+					document.querySelector('#title_div_mileage').innerHTML = 'ออกจากฐาน' ; // หัวข้อเลข กม. รถ
+					document.querySelector('#div_km_create_sos_to_go_to_help').classList.remove('d-none') ; // input เลข 
+				}else{
+					document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
+					document.querySelector('#title_div_mileage').innerHTML = 'ถึงที่เกิดเหตุ' ; // หัวข้อเลข กม. รถ
+					document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.remove('d-none') ; // input เลข 
+
+					document.querySelector('#div_btn_to_the_scene').classList.remove('d-none');
+					document.querySelector('#menu_3').style = "bottom: -4.5rem" ;
+				}
+
+				document.querySelector('#div_add_rc_black_text').classList.add('d-none');
+				document.querySelector('#div_select_treatment').classList.add('d-none');
+				document.querySelector('#div_to_hospital').classList.add('d-none');
+				document.querySelector('#div_operating_base').classList.add('d-none');
+				document.querySelector('#div_event_level').classList.add('d-none');
+
+			break;
+			case 'ถึงที่เกิดเหตุ':
+				
+				document.querySelector('#situation_of_status').classList.add('situation-yellow');
+
+				if (!km_to_the_scene) {
+					document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
+					document.querySelector('#title_div_mileage').innerHTML = 'ถึงที่เกิดเหตุ' ; // หัวข้อเลข กม. รถ
+					document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.remove('d-none') ; // input เลข 
+				}else{
+
+					document.querySelector('#div_mileage').classList.add('d-none');
+
+					if (!event_level_by_officers) {
+						document.querySelector('#div_event_level').classList.remove('d-none');
+					}else{
+
+						document.querySelector('#div_event_level').classList.add('d-none');
+
+						if (event_level_by_officers === "ดำ" && !event_level_rc_black_text) {
+							
+							document.querySelector('#div_add_rc_black_text').classList.remove('d-none');
+							document.querySelector('#div_select_treatment').classList.add('d-none');
+						}else{
+							document.querySelector('#div_add_rc_black_text').classList.add('d-none');
+							document.querySelector('#div_select_treatment').classList.remove('d-none');
+
+							if (treatment) {
+
+								let check_treatment = document.getElementsByName('treatment');
+
+								for (let i = 0, length = check_treatment.length; i < length; i++) {
+
+									if(check_treatment[i].value == treatment){
+										check_treatment[i].checked = true ;
+									}
+								}
+
+								if(treatment == "มีการรักษา"){
+									document.querySelector('#treatment_no').classList.add('d-none');
+									document.querySelector('#treatment_yes').classList.remove('d-none');
+									document.querySelector('#treatment_yes').classList.add('show-data');
+								}else{
+									document.querySelector('#treatment_yes').classList.add('d-none');
+									document.querySelector('#treatment_no').classList.remove('d-none');
+									document.querySelector('#treatment_no').classList.add('show-data');
+								}
+
+							}
+			          	}
+					}
+				}
+
+				document.querySelector('#div_btn_to_the_scene').classList.add('d-none');
+				document.querySelector('#div_to_hospital').classList.add('d-none');
+				document.querySelector('#div_operating_base').classList.add('d-none');
+
+			break;
+			case 'ออกจากที่เกิดเหตุ':
+				document.querySelector('#situation_of_status').classList.add('situation-yellow');
+
+				document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
+				document.querySelector('#title_div_mileage').innerHTML = 'ถึงโรงพยาบาล' ; // หัวข้อเลข กม. รถ
+				document.querySelector('#div_km_hospital').classList.remove('d-none') ; // input เลข ถึงที่เกิดเหตุ
+
+				document.querySelector('#div_to_hospital').classList.remove('d-none');
+				document.querySelector('#menu_3').style = "bottom: -4.5rem" ;
+
+				document.querySelector('#div_add_rc_black_text').classList.add('d-none');
+				document.querySelector('#div_select_treatment').classList.add('d-none');
+				document.querySelector('#div_btn_to_the_scene').classList.add('d-none');
+				document.querySelector('#div_operating_base').classList.add('d-none');
+				document.querySelector('#div_event_level').classList.add('d-none');
+
+
+			break;
+			case 'เสร็จสิ้น':
+				document.querySelector('#situation_of_status').classList.add('situation-green');
+
+				if (!km_operating_base || !time_to_the_operating_base) {
+					
+	          		document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
+					document.querySelector('#title_div_mileage').innerHTML = 'ถึงฐาน' ; // หัวข้อเลข กม. รถ
+					document.querySelector('#div_km_operating_base').classList.remove('d-none') ; // input เลข ถึงที่เกิดเหตุ
+
+					document.querySelector('#div_operating_base').classList.remove('d-none');
+					document.querySelector('#menu_3').style = "bottom: -4.5rem" ;
+					
+				}else{
+					document.querySelector('#div_operating_base').classList.add('d-none');
+					document.querySelector('#div_mileage').classList.add('d-none');
+					document.querySelector('#tag_i_edit_level_officer').classList.add('d-none');
+					document.querySelector('#btn_menu_3').classList.add('d-none');
+					document.querySelector('#btn_menu_4').classList.add('d-none');
+					show_data_menu(1);
+				}
+
+				document.querySelector('#div_add_rc_black_text').classList.add('d-none');
+				document.querySelector('#div_select_treatment').classList.add('d-none');
+				document.querySelector('#div_btn_to_the_scene').classList.add('d-none');
+				document.querySelector('#div_to_hospital').classList.add('d-none');
+				document.querySelector('#div_event_level').classList.add('d-none');
+
+	        break;
+
+		}
+	}
+
+	function show_event_level(){
+	    // แสดงระดับเหตุการณ์
+		if (event_level_by_control_center) {
+			// document.querySelector('#show_level_by_control_center').classList.remove('d-none') ;
+			let class_color_center ;
+			let class_color_officers ;
+			switch(event_level_by_control_center){
+				case 'แดง(วิกฤติ)':
+					class_color_center = "situation-red";
+				break;
+				case 'เหลือง(เร่งด่วน)':
+					class_color_center = 'situation-yellow';
+				break;
+				case 'เขียว(ไม่รุนแรง)':
+					class_color_center = 'situation-green';
+				break;
+				case 'ขาว(ทั่วไป)':
+					class_color_center = 'situation-normal';
+				break;
+				case 'ดำ(รับบริการสาธารณสุขอื่น)':
+					class_color_center = 'situation-black';
+				break;
+			}
+			document.querySelector('#show_level_by_control_center').classList.add(class_color_center) ;
+	    	document.querySelector('#text_level_by_control_center').innerHTML = event_level_by_control_center ;
+		}
+		if (event_level_by_officers) {
+			// document.querySelector('#show_level_by_officers').classList.remove('d-none') ;
+			switch(event_level_by_officers){
+				case 'แดง(วิกฤติ)':
+					class_color_officers = 'situation-red';
+				break;
+				case 'เหลือง(เร่งด่วน)':
+					class_color_officers = 'situation-yellow';
+				break;
+				case 'เขียว(ไม่รุนแรง)':
+					class_color_officers = 'situation-green';
+				break;
+				case 'ขาว(ทั่วไป)':
+					class_color_officers = 'situation-normal';
+				break;
+				case 'ดำ':
+					class_color_officers = 'situation-black';
+				break;
+			}
+			document.querySelector('#show_level_by_officers').classList.add(class_color_officers) ;
+			
+			if (event_level_by_officers != "ดำ") {
+	    		document.querySelector('#text_level_by_officers').innerHTML = event_level_by_officers ;
+			}else{
+	    		document.querySelector('#text_level_by_officers').innerHTML = event_level_by_officers + " : " + event_level_rc_black_text ;
+			}
+
+		    document.querySelector('#tag_i_edit_level_officer').classList.remove('text-warning');
+		    document.querySelector('#tag_i_edit_level_officer').classList.add('text-white');
+
+		}
+	}
+
+	// ------------------------------------------------------------------------------------------
 	    
 	function update_status(status , sos_id , reason){
 
@@ -1920,37 +1805,49 @@ input:focus {
 		fetch("{{ url('/') }}/api/update_status_officer" + "/" + status + "/" + sos_id + "/" + reason)
             .then(response => response.text())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if (status_sos === "ถึงที่เกิดเหตุ") {
-                	document.querySelector('#mileage_gotohelp').classList.remove('d-none');
 
-                	document.querySelector('#div_gotohelp').classList.add('d-none');
-                	document.querySelector('#div_select_treatment').classList.add('d-none');
-                	document.querySelector('#div_to_hospital').classList.add('d-none');
-                	document.querySelector('#div_operating_base').classList.add('d-none');
+                	document.querySelector('#div_btn_to_the_scene').classList.add('d-none');
+                	document.querySelector('#div_km_create_sos_to_go_to_help').classList.add('d-none');
 
                 }else if(status_sos === "เสร็จสิ้น"){
+
+                	document.querySelector('#situation_of_status').classList.add('situation-green');
+                	
                 	if (reason != 'null') {
                 		reason = reason.replaceAll("_" , " ");
 			    		document.querySelector('#show_remark_status').innerHTML = '(' + reason +')';
 					}
-					document.querySelector('#mileage_gotohelp').classList.remove('d-none');
 
-                	document.querySelector('#div_gotohelp').classList.add('d-none');
-                	document.querySelector('#div_event_level').classList.add('d-none');
                 	document.querySelector('#div_select_treatment').classList.add('d-none');
+                	document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.add('d-none');
+
+					document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
+					document.querySelector('#title_div_mileage').innerHTML = 'ถึงฐาน' ; // หัวข้อเลข กม. รถ
+					document.querySelector('#div_km_operating_base').classList.remove('d-none') ; // input เลข 
+
+                	document.querySelector('#div_operating_base').classList.remove('d-none');
+					document.querySelector('#menu_3').style = "bottom: -4.5rem" ;
+
                 	document.querySelector('#div_to_hospital').classList.add('d-none');
+
                 }else if(status_sos === "ออกจากที่เกิดเหตุ"){
+
                 	document.querySelector('#show_remark_status').innerHTML = '' ;
                 	document.querySelector('#show_remark_status').classList.add('d-none') ;
 
+                	document.querySelector('#div_select_treatment').classList.add('d-none');
+                	document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.add('d-none');
+
+					document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
+					document.querySelector('#title_div_mileage').innerHTML = 'ถึงโรงพยาบาล' ; // หัวข้อเลข กม. รถ
+					document.querySelector('#div_km_hospital').classList.remove('d-none') ; // input เลข 
+
+					document.querySelector('#menu_3').style = "bottom: -4.5rem" ;
                 	document.querySelector('#div_to_hospital').classList.remove('d-none');
 
-                	document.querySelector('#div_gotohelp').classList.add('d-none');
-                	document.querySelector('#div_event_level').classList.add('d-none');
-                	document.querySelector('#div_select_treatment').classList.add('d-none');
-                	document.querySelector('#div_operating_base').classList.add('d-none');
                 }
 
         });
@@ -1962,6 +1859,8 @@ input:focus {
 
         let class_color_old = document.querySelector('#text_level_by_officers').classList[4] ;
         document.querySelector('#text_level_by_officers').classList.remove(class_color_old);
+
+        let input_rc_black_text = 'null' ;
 
         switch(text_event_level){
 			case 'แดง(วิกฤติ)':
@@ -1979,20 +1878,39 @@ input:focus {
 			case 'ดำ':
 				class_color_officers = 'situation-black';
 			break;
+			case 'rc_black_text':
+				class_color_officers = 'situation-black';
+				input_rc_black_text = document.querySelector('#rc_black_text').value;
+			break;
 		}
 		document.querySelector('#show_level_by_officers').classList.add(class_color_officers) ;
-    	document.querySelector('#text_level_by_officers').innerHTML = text_event_level ;
 
-		fetch("{{ url('/') }}/api/update_event_level_rc" + "/" + level + "/" + sos_id)
+		if (text_event_level != "rc_black_text") {
+    		document.querySelector('#text_level_by_officers').innerHTML = text_event_level ;
+		}else{
+    		document.querySelector('#text_level_by_officers').innerHTML = "ดำ : " + input_rc_black_text ;
+		}
+
+		fetch("{{ url('/') }}/api/update_event_level_rc" + "/" + level + "/" + sos_id + "/" + input_rc_black_text)
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
 
-                document.querySelector('#div_event_level').classList.add('d-none');
-                document.querySelector('#div_select_treatment').classList.remove('d-none');
+                if (level === 'ดำ') {
+                	document.querySelector('#div_event_level').classList.add('d-none');
+                	document.querySelector('#div_add_rc_black_text').classList.remove('d-none');
+                }else{
+                	document.querySelector('#div_event_level').classList.add('d-none');
+                	document.querySelector('#div_select_treatment').classList.remove('d-none');
+                	document.querySelector('#div_add_rc_black_text').classList.add('d-none');
+        			start_page();
+                }
 
+		    	document.querySelector('#tag_i_edit_level_officer').classList.remove('text-warning');
+		    	document.querySelector('#tag_i_edit_level_officer').classList.add('text-white');
 
         });
+
 	}
 
 	function update_data_form_yellows(column , data){
@@ -2002,7 +1920,7 @@ input:focus {
 		fetch("{{ url('/') }}/api/update_data_form_yellows" + "/" + sos_id + "/" + column + "/" + data)
             .then(response => response.text())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 
 
         });
@@ -2052,51 +1970,119 @@ input:focus {
 		switch(mileage_location){
 			case 'km_create_sos_to_go_to_help':
 				mileage = document.getElementById("km_create_sos_to_go_to_help").value;
+				div_id_next = "div_btn_to_the_scene" ; 
 			break;
 			case 'km_to_the_scene_to_leave_the_scene':
 				mileage = document.getElementById("km_to_the_scene_to_leave_the_scene").value;
+				div_id_next = "div_event_level" ; 
 			break;
 			case 'km_hospital':
 				mileage = document.getElementById("km_hospital").value;
+				div_id_next = "div_operating_base" ; 
 			break;
 			case 'km_operating_base':
 				mileage = document.getElementById("km_operating_base").value;
+				div_id_next = "" ;
 			break;
 		}
 
-		
-	fetch("{{ url('/') }}/api/update_mileage_officer" + "/" + sos_id + "/" + mileage + "/" + location)
-		.then(response => response.json())
-		.then(result => {
-			// console.log(result);
-			// if (result === 'Updated successfully') {
-			// 	document.querySelector('#tag_a_switch_standby').click();
-			// }
-			document.querySelector('#mileage_gotohelp').classList.add('d-none');
 
-			// console.log(result['km_create_sos_to_go_to_help'])
-			if (result['km_create_sos_to_go_to_help'] && !result['km_to_the_scene_to_leave_the_scene'] && !result['km_hospital']) {
-				document.querySelector('#div_km_create_sos_to_go_to_help').classList.add('d-none');
-				document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.remove('d-none');
-				document.querySelector('#div_gotohelp').classList.remove('d-none');
-			}else if (result['km_create_sos_to_go_to_help'] && result['km_to_the_scene_to_leave_the_scene'] && !result['km_hospital'] ) {
-				document.querySelector('#div_gotohelp').classList.add('d-none');
-				document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.add('d-none');
-				document.querySelector('#div_km_hospital').classList.remove('d-none');
-				document.querySelector('#div_event_level').classList.remove('d-none');
-			}else if (result['km_create_sos_to_go_to_help'] && result['km_to_the_scene_to_leave_the_scene'] && result['km_hospital']) {
-				document.querySelector('#div_operating_base').classList.remove('d-none');
-				document.querySelector('#div_gotohelp').classList.add('d-none');
-				document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.add('d-none');
-				document.querySelector('#km_hospital').classList.add('d-none');
-				document.querySelector('#div_km_hospital').classList.add('d-none');
-				document.querySelector('#div_km_operating_base').classList.remove('d-none');
-				
+		if (!mileage) {
+
+			alert('ทำแจ้งเตือนให้ใส่เลขหน่อย');
+
+		}else{
+
+			fetch("{{ url('/') }}/api/update_mileage_officer" + "/" + sos_id + "/" + mileage + "/" + location)
+				.then(response => response.json())
+				.then(result => {
+					// console.log(result);
+
+					// if (result === 'Updated successfully') {
+					// 	document.querySelector('#tag_a_switch_standby').click();
+					// }
+				});
+
+			switch(mileage_location){
+				case 'km_create_sos_to_go_to_help':
+					document.querySelector('#div_km_create_sos_to_go_to_help').classList.add('d-none') ; 
+					document.querySelector('#' + div_id_next).classList.remove('d-none');
+
+					// เปิดปุ่มถัดไป
+					document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
+					document.querySelector('#title_div_mileage').innerHTML = 'ถึงที่เกิดเหตุ' ; // หัวข้อเลข กม. รถ
+					document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.remove('d-none') ; // input เลข 
+
+					document.querySelector('#menu_3').style = "bottom: -4.5rem" ;
+				break;
+				case 'km_to_the_scene_to_leave_the_scene':
+					update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');
+
+					// เปิดปุ่มถัดไป
+					document.querySelector('#div_mileage').classList.add('d-none');
+					document.querySelector('#' + div_id_next).classList.remove('d-none');
+
+					document.querySelector('#menu_3').style = "bottom: -2rem" ;
+				break;
+				case 'km_hospital':
+					update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ถึงโรงพยาบาล');
+
+					// เปิดปุ่มถัดไป
+					document.querySelector('#' + div_id_next).classList.remove('d-none');
+					document.querySelector('#div_km_operating_base').classList.remove('d-none');
+
+					document.querySelector('#div_km_hospital').classList.add('d-none');
+				break;
+				case 'km_operating_base':
+					// เปิดปุ่มถัดไป
+					document.querySelector('#div_operating_base').classList.add('d-none');
+					document.querySelector('#div_mileage').classList.add('d-none');
+
+					officer_to_the_operating_base('{{ $data_sos->id }}');
+				break;
 			}
-
-
-	});
+		}
 	}
+
+	function click_edit_level_officer(){
+
+		show_data_menu(3);
+		document.querySelector('#menu_3').style = "bottom: -2rem" ;
+
+		document.querySelector('#div_mileage').classList.add('d-none');
+		document.querySelector('#div_add_rc_black_text').classList.add('d-none');
+		document.querySelector('#div_select_treatment').classList.add('d-none');
+		document.querySelector('#div_btn_to_the_scene').classList.add('d-none');
+		document.querySelector('#div_to_hospital').classList.add('d-none');
+		document.querySelector('#div_operating_base').classList.add('d-none');
+
+		document.querySelector('#div_event_level').classList.remove('d-none');
+
+	}
+
+</script>
+
+<!-- MAP SUCCESS -->
+<script>
+	function open_map_status_success() {
+
+        let m_numZoom = parseFloat('17');
+
+        map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
+            center: {lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
+            zoom: m_numZoom,
+        });
+
+        // หมุดที่เกิดเหตุ 
+        if (sos_marker) {
+            sos_marker.setMap(null);
+        }
+        sos_marker = new google.maps.Marker({
+            position: {lat: parseFloat(sos_lo_lat) , lng: parseFloat(sos_lo_lng) },
+            map: map_show_case,
+            icon: image_sos,
+        });
+    }
 </script>
 
 
