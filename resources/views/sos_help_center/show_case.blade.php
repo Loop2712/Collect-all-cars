@@ -1207,6 +1207,8 @@ input:focus {
         start_page();
         show_event_level();
 
+        console.log(status_sos);
+
         if (status_sos != "เสร็จสิ้น") {
         	getLocation();
         	timer_check_send_update_officer();
