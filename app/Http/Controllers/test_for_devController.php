@@ -70,7 +70,7 @@ class test_for_devController extends Controller
             'name' => $groupName
         ]);
 
-        
+        echo $response ;
 
     }
 
