@@ -52,6 +52,10 @@ class test_for_devController extends Controller
 
         $accessToken = env('CHANNEL_ACCESS_TOKEN');
 
+        if (empty($accessToken)) {
+            die('Error: Please set the CHANNEL_ACCESS_TOKEN in your .env file.');
+        }
+
         $members = [
             'U912994894c449f2237f73f18b5703e89',
             'Uf0a0825f324fcd74fa014b6a80d0b24a'
@@ -68,9 +72,18 @@ class test_for_devController extends Controller
             'groupName' => $groupName
         ]);
 
-        $groupId = $response->json()['groupId'];
+        if ($response->ok()) {
+            $groupId = $response->json()['groupId'];
+            echo "Group created with ID: $groupId";
+        } else {
+            if (isset($response->json()['message'])) {
+                $errorMessage = $response->json()['message'];
+                echo "Error: $errorMessage";
+            } else {
+                echo "Unknown error occurred.";
+            }
+        }
 
-        echo $groupId ;
 
 
     }
