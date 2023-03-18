@@ -59,7 +59,7 @@ class test_for_devController extends Controller
             ],
             'json' => [
                 'groupName' => $groupName,
-                'userIds' => ['U912994894c449f2237f73f18b5703e89'] // Optional: add initial members to the group
+                'memberIds' => ['U912994894c449f2237f73f18b5703e89', 'Uf0a0825f324fcd74fa014b6a80d0b24a'] // Optional: add initial members to the group
             ]
         ]);
 
