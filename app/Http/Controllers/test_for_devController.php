@@ -18,6 +18,9 @@ use App\Models\Data_1669_operating_officer;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Mail_proposal;
 
+use GuzzleHttp\Client;
+
+
 class test_for_devController extends Controller
 {
     public function main_test()
@@ -44,6 +47,39 @@ class test_for_devController extends Controller
     public function main_test_blade(){
 
         return view('test_for_dev.main_test_blade'); 
+    }
+
+    // Create a new Line group
+    function createLineGroup($groupName) {
+        $client = new Client();
+        $response = $client->post('https://api.line.me/v2/bot/group', [
+            'headers' => [
+                'Authorization' => 'Bearer ' .env('CHANNEL_ACCESS_TOKEN'),
+                'Content-Type' => 'application/json'
+            ],
+            'json' => [
+                'groupName' => $groupName,
+                'userIds' => ['U912994894c449f2237f73f18b5703e89', 'Uf0a0825f324fcd74fa014b6a80d0b24a'] // Optional: add initial members to the group
+            ]
+        ]);
+
+        return json_decode((string) $response->getBody(), true);
+    }
+
+
+    public function test_create_group_line_by_laravel(){
+
+        // Example usage
+        $groupName = "ทดสอบสร้างกลุ่มไลน์ AUTO";
+
+        $result = $this->createLineGroup($groupName);
+
+        if(isset($result['groupId'])) {
+            echo "Group created with ID: " . $result['groupId'];
+        } else {
+            echo "Error creating group: " . $result['message'];
+        }
+
     }
 
     public function reset_count_sos_1669()
