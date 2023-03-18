@@ -52,39 +52,25 @@ class test_for_devController extends Controller
 
         $accessToken = env('CHANNEL_ACCESS_TOKEN');
 
-        if (empty($accessToken)) {
-            die('Error: Please set the CHANNEL_ACCESS_TOKEN in your .env file.');
-        }
-
-        $members = [
-            'U912994894c449f2237f73f18b5703e89',
-            'Uf0a0825f324fcd74fa014b6a80d0b24a'
-        ];
+        $groupId = 'C1a5c0ec202e2f1b738608d84c9216a6c';
 
         $pictureUrl = 'https://www.viicheck.com/img/stickerline/PNG/21.png';
-        $groupName = 'Test creating a line group with Laravel';
+        $groupName = 'เปลี่ยนชื่อ';
+        // สำหรับทดสอบ ViiCHECK
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $accessToken
-        ])->post('https://api.line.me/v2/bot/group', [
-            'members' => $members,
-            'pictureUrl' => $pictureUrl,
-            'groupName' => $groupName
+        ])->put("https://api-data.line.me/v2/bot/group/{$groupId}/picture/url", [
+            'pictureUrl' => $pictureUrl
         ]);
 
-        if ($response->ok()) {
-            $groupId = $response->json()['groupId'];
-            echo "Group created with ID: $groupId";
-        } else {
-            if (isset($response->json()['message'])) {
-                $errorMessage = $response->json()['message'];
-                echo "Error: $errorMessage";
-            } else {
-                echo "Unknown error occurred.";
-            }
-        }
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $accessToken
+        ])->put("https://api.line.me/v2/bot/group/{$groupId}/name", [
+            'name' => $groupName
+        ]);
 
-
+        
 
     }
 
