@@ -68,32 +68,9 @@ class test_for_devController extends Controller
             'groupName' => $groupName
         ]);
 
-        if ($response->ok()) {
-            $groupId = $response->json()['groupId'];
-            echo "Group created with ID: $groupId";
-        } else {
-            $errorCode = $response->json()['error']['code'];
-            $errorMessage = $response->json()['error']['message'];
-            echo "Error $errorCode: $errorMessage";
-        }
+        $groupId = $response->json()['groupId'];
 
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $accessToken
-        ])->post("https://api.line.me/v2/bot/group/{$groupId}/members", [
-            'members' => $members
-        ]);
-
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $accessToken
-        ])->put("https://api-data.line.me/v2/bot/group/{$groupId}/picture/url", [
-            'pictureUrl' => $pictureUrl
-        ]);
-
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $accessToken
-        ])->put("https://api.line.me/v2/bot/group/{$groupId}/name", [
-            'name' => $groupName
-        ]);
+        echo $groupId ;
 
 
     }
