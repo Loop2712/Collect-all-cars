@@ -18,8 +18,7 @@ use App\Models\Data_1669_operating_officer;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Mail_proposal;
 
-use GuzzleHttp\Client;
-
+use Illuminate\Support\Facades\Http;
 
 class test_for_devController extends Controller
 {
@@ -49,36 +48,46 @@ class test_for_devController extends Controller
         return view('test_for_dev.main_test_blade'); 
     }
 
-    // Create a new Line group
-    function createLineGroup($groupName) {
-        $client = new Client();
-        $response = $client->post('https://api.line.me/v2/bot/group', [
-            'headers' => [
-                'Authorization' => 'Bearer ' .env('CHANNEL_ACCESS_TOKEN'),
-                'Content-Type' => 'application/json'
-            ],
-            'json' => [
-                'groupName' => $groupName,
-                'memberIds' => ['U912994894c449f2237f73f18b5703e89', 'Uf0a0825f324fcd74fa014b6a80d0b24a'] // Optional: add initial members to the group
-            ]
-        ]);
-
-        return json_decode((string) $response->getBody(), true);
-    }
-
-
     public function test_create_group_line_by_laravel(){
 
-        // Example usage
-        $groupName = "ทดสอบสร้างกลุ่มไลน์ AUTO";
+        $accessToken = env('CHANNEL_ACCESS_TOKEN');
 
-        $result = $this->createLineGroup($groupName);
+        $members = [
+            'U912994894c449f2237f73f18b5703e89',
+            'Uf0a0825f324fcd74fa014b6a80d0b24a'
+        ];
 
-        if(isset($result['groupId'])) {
-            echo "Group created with ID: " . $result['groupId'];
-        } else {
-            echo "Error creating group: " . $result['message'];
-        }
+        $pictureUrl = 'https://www.viicheck.com/img/stickerline/PNG/21.png';
+        $groupName = 'Test creating a line group with Laravel';
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $accessToken
+        ])->post('https://api.line.me/v2/bot/group', [
+            'members' => $members,
+            'pictureUrl' => $pictureUrl,
+            'groupName' => $groupName
+        ]);
+
+        $groupId = $response->json()['groupId'];
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $accessToken
+        ])->post("https://api.line.me/v2/bot/group/{$groupId}/members", [
+            'members' => $members
+        ]);
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $accessToken
+        ])->put("https://api-data.line.me/v2/bot/group/{$groupId}/picture/url", [
+            'pictureUrl' => $pictureUrl
+        ]);
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $accessToken
+        ])->put("https://api.line.me/v2/bot/group/{$groupId}/name", [
+            'name' => $groupName
+        ]);
+
 
     }
 
