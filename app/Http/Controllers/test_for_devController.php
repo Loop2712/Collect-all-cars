@@ -68,7 +68,14 @@ class test_for_devController extends Controller
             'groupName' => $groupName
         ]);
 
-        $groupId = $response->json()['groupId'];
+        if ($response->ok()) {
+            $groupId = $response->json()['groupId'];
+            echo "Group created with ID: $groupId";
+        } else {
+            $errorCode = $response->json()['error']['code'];
+            $errorMessage = $response->json()['error']['message'];
+            echo "Error $errorCode: $errorMessage";
+        }
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $accessToken
