@@ -1723,7 +1723,6 @@ input:focus {
 					document.querySelector('#tag_i_edit_level_officer').classList.add('d-none');
 					document.querySelector('#btn_menu_3').classList.add('d-none');
 					document.querySelector('#btn_menu_4').classList.add('d-none');
-					show_data_menu(1);
 				}
 
 				document.querySelector('#div_add_rc_black_text').classList.add('d-none');
@@ -1856,6 +1855,7 @@ input:focus {
 	function update_event_level_rc(level , sos_id){
 
         text_event_level = level ;
+        event_level_by_officers = level ;
 
         let class_color_old = document.querySelector('#text_level_by_officers').classList[4] ;
         document.querySelector('#text_level_by_officers').classList.remove(class_color_old);
@@ -1971,18 +1971,22 @@ input:focus {
 			case 'km_create_sos_to_go_to_help':
 				mileage = document.getElementById("km_create_sos_to_go_to_help").value;
 				div_id_next = "div_btn_to_the_scene" ; 
+				km_go_to_help = mileage ;
 			break;
 			case 'km_to_the_scene_to_leave_the_scene':
 				mileage = document.getElementById("km_to_the_scene_to_leave_the_scene").value;
 				div_id_next = "div_event_level" ; 
+				km_to_the_scene = mileage ;
 			break;
 			case 'km_hospital':
 				mileage = document.getElementById("km_hospital").value;
 				div_id_next = "div_operating_base" ; 
+				km_hospital = mileage ;
 			break;
 			case 'km_operating_base':
 				mileage = document.getElementById("km_operating_base").value;
 				div_id_next = "" ;
+				km_operating_base = mileage ;
 			break;
 		}
 
