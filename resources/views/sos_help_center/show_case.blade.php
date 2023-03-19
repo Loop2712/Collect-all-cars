@@ -1371,45 +1371,69 @@ input:focus {
     }
 
     function watchPosition_officer(){
+    	
     	if (navigator.geolocation) {
-		  	const watchId = navigator.geolocation.watchPosition(
-		    	function(position) {
-		      		// Retrieve latitude and longitude from the position object
-		      		let latitude = position.coords.latitude;
-		      		let longitude = position.coords.longitude;
+  const watchId = navigator.geolocation.watchPosition(
+    function(position) {
+      // Retrieve latitude and longitude from the position object
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
 
-		      		// Set the officer marker position
-		      		if (officer_marker) {
-	        			officer_marker.setMap(null);
-		      		}
-			    	officer_marker = new google.maps.Marker({
-				        position: {lat: parseFloat(latitude), lng: parseFloat(longitude)},
-				        map: map_show_case,
-				        icon: image_operating_unit_general,
-				    });
+      // staff pins
+      if (officer_marker) {
+        officer_marker.setMap(null);
+      }
+      officer_marker = new google.maps.Marker({
+        position: {lat: parseFloat(latitude), lng: parseFloat(longitude)},
+        map: map_show_case,
+        icon: image_operating_unit_general,
+      });
 
-				    // Set the map heading
-				    let currentHeading = 0;
-			      	navigator.geolocation.watchHeading(
-				        function(heading) {
-				          	currentHeading = heading.heading || heading.magneticHeading;
-				          	map_show_case.setHeading(currentHeading);
-				        },
-				        function(error) {
-				          	alert(error);
-				        }
-			      	);
+      // Check heading
+      let currentHeading = 0;
+      navigator.geolocation.watchHeading(
+        (heading) => {
+          currentHeading = heading.heading || heading.magneticHeading;
+          map_show_case.setHeading(currentHeading);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
 
-		      	// Your other code...
+      if (check_send_update_location_officer == "send_update_location_officer") {
+        func_send_update_location_officer(latitude, longitude);
+      }
 
-		    	},
-		    	function(error) {
-		      		console.log(`Error: ${error.message}`);
-		    	}
-		  	);
-		} else {
-		  console.log("Geolocation is not supported by this browser");
-		}
+      setTimeout(function() {
+        let bounds = new google.maps.LatLngBounds();
+
+        bounds.extend(officer_marker.getPosition());
+        bounds.extend(sos_marker.getPosition());
+
+        let mapHeight = document.getElementById("map_show_case").clientHeight;
+        let topPadding = mapHeight * 0.15;
+        let bottomPadding = mapHeight * 0.25;
+        let verticalPadding = topPadding + bottomPadding;
+
+        map_show_case.fitBounds(bounds, {
+          top: topPadding,
+          bottom: bottomPadding,
+        });
+      }, 1000); // wait 1 second (1000 milliseconds) before calculating map size and fitBounds
+
+      setTimeout(function() {
+        map_show_case.setZoom(map_show_case.getZoom() - 0.5);
+      }, 1000);
+    },
+    function(error) {
+      console.log(`Error: ${error.message}`);
+    }
+  );
+} else {
+  console.log("Geolocation is not supported by this browser");
+}
+
 
     }
 
