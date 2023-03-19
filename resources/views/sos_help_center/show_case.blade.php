@@ -1396,7 +1396,7 @@ input:focus {
 				          	map_show_case.setHeading(currentHeading);
 				        },
 				        function(error) {
-				          	console.error(error);
+				          	alert(error);
 				        }
 			      	);
 
