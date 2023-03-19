@@ -593,7 +593,7 @@ input:focus {
 		<button class="btn w-25 btn_menu" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-file-pen"></i></button>
 		<button class="btn w-25 btn_menu" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-solid fa-messages-question"></i></button>
 		<button class="btn w-25 btn_menu btn-danger" id="btn_menu_3" onclick="show_data_menu(3);"><i class="fa-regular fa-truck-medical"></i></button>
-		<button class="btn w-25 btn_menu" id="btn_menu_4" onclick="show_data_menu(4);"><i class="fa-duotone fa-map"></i></button>
+		<button class="btn w-25 btn_menu" id="btn_menu_4" onclick="show_data_menu(4);get_Directions_API(officer_marker, sos_marker);"><i class="fa-duotone fa-map"></i></button>
 	</div>
 
 
@@ -880,7 +880,7 @@ input:focus {
 		<menu class="col-12" id="ask_travel_guide">
 			<button class="card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
 				<center>
-					<span class="btn btn-info btn-sm" onclick="get_Directions_API(officer_marker, sos_marker);">
+					<span class="btn btn-info btn-sm" >
 						การแนะนำเส้นทางและเวลา
 					</span>
 				</center>
@@ -900,12 +900,20 @@ input:focus {
 				<span class="d-none" id="speak_to_user"></span>
 			</button>
 		</menu>
-		<menu class="col-8">
+		<menu class="col-10">
 			<button class="card-body p-3 main-shadow btn btn-sm text-start font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;font-size: 15px;">
-				ระยะทาง : <span id="text_distance"></span> <br> ถึงเวลาประมาณ : <span id="text_duration"></span>
+				ระยะทาง : <span id="text_distance"></span> <br> ถึงประมาณ : <span id="text_duration"></span>
 			</button>
 		</menu>
-		<menu class="col-4 pl-0">
+		<menu class="col-2 pl-0">
+			<button class="card-body p-3 main-shadow btn btn-sm text-start font-weight-bold mb-0 h5 btn-light text-center" style="width:100%;border-radius: 20px 20px 20px 20px;background-color: white;font-size: 15px;">
+				<!-- <i class="fa-solid fa-location-dot-slash"></i> -->
+				<i class="fa-solid fa-location-dot-slash"></i>
+				<br>
+				<span id="span_show_text_get_dir">ปิด</span>
+			</button>
+		</menu>
+		<menu class="col-4 pl-0 d-none">
 			<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 notranslate" style="width:100%;border-radius: 25px 25px 25px 25px;font-size: 15px;"  target="bank">
 				<img src="{{ asset('/img/icon/icon-google-map.png') }}" width="20" alt=""><br>Google 
 			</a>
@@ -1203,7 +1211,6 @@ input:focus {
 
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-
         start_page();
         show_event_level();
 
@@ -1256,6 +1263,7 @@ input:focus {
             map: map_show_case,
             icon: image_operating_unit_general,
         });
+
 
 		// get_Directions_API(officer_marker, sos_marker);
 
@@ -1364,7 +1372,7 @@ input:focus {
 
 
     function watchPosition_officer(){
-
+			        
     	if (navigator.geolocation) {
 		  	const watchId = navigator.geolocation.watchPosition(
 			    function(position) {
@@ -1412,7 +1420,7 @@ input:focus {
 			        if (check_get_dir == "Yes") {
 			        	distance_check(latitude,longitude);
 			        }
-
+					  	
 			    },
 			    function(error) {
 			      console.log(`Error: ${error.message}`);
@@ -1421,6 +1429,16 @@ input:focus {
 
 		} else {
 		  console.log("Geolocation is not supported by this browser");
+		}
+
+		if (navigator.geolocation && navigator.geolocation.watchHeading) {
+		  	let currentOrientation = 0;
+			window.addEventListener("deviceorientation", (event) => {
+			  	currentOrientation = event.alpha || 0;
+			  	map_show_case.setHeading(currentOrientation);
+			});
+		} else {
+		  	console.log("watchHeading is not supported by this browser");
 		}
 
     }
@@ -1471,7 +1489,8 @@ input:focus {
 	    	currentLatitude, currentLongitude, stepLatitude, stepLongitude
 	  	);
 	  	
-	  	runLoop(distance);
+	  	document.querySelector('#text_distance_step').innerHTML = distance.toFixed(2) ;
+	  	// runLoop(distance);
 
 	}
 
