@@ -91,8 +91,6 @@ class test_for_devController extends Controller
                 ]);
 
         }
-        echo "Updated >> count_sos << successfully";
-        echo "<br>";
 
         $for_gen_code = DB::table('sos_1669_province_codes')
             ->where('for_gen_code', '!=' , null )
@@ -110,10 +108,7 @@ class test_for_devController extends Controller
 
         }
 
-        echo "Updated >> for_gen_code << successfully";
-        echo "<br>";
-
-        exit();
+        return "OK" ;
     }
 
     public function test_table()

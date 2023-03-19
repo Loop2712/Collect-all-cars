@@ -534,11 +534,17 @@
 								</li>
 								<li> 
 									<a href="#" onclick="reset_count_sos_1669();">
-										<i class="fa-solid fa-repeat"></i> reset count sos 1669
+										<i class="fa-solid fa-repeat"></i> reset count 1669
 									</a>
+								</li>
+								<li class="d-none" id="spinner_of_reset_count_sos_1669">
+									<div class="spinner-border text-success" role="status" ></div>
+									<span class="text-white">Loading...</span>
 								</li>
 							</ul>
 						</li>
+						
+
 					@endif
 				@endif
 				<!-- END FOR DEV -->
@@ -2054,10 +2060,17 @@
     }
 
     function reset_count_sos_1669(){
+
+    	document.querySelector('#spinner_of_reset_count_sos_1669').classList.remove('d-none');
+
     	fetch("{{ url('/') }}/reset_count_sos_1669/")
             .then(response => response.text())
             .then(result => {
-                console.log(result);
+                // console.log(result);
+                if (result == "OK") {
+    				document.querySelector('#spinner_of_reset_count_sos_1669').classList.add('d-none');
+                }
+
             });
     }
 
