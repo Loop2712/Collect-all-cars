@@ -172,6 +172,7 @@
                             <h4 id="h4_name_partner" class="logo-text" style="font-family: 'Baloo Bhaijaan 2', cursive;
                             font-family: 'Prompt', sans-serif;"></h4>
                         </a>
+                        <span class="d-none" id="span_sub_partner" style="margin-left: 5px;"></span>
                     </div>
                 <div class="toggle-icon ms-auto">
                     <i class='bx bx-first-page'></i>
@@ -1333,6 +1334,8 @@
     {
     	let user_organization = document.querySelector('#user_organization').value ;
     	// console.log(user_organization);
+    	let user_sub_organization = "{{ Auth::user()->sub_organization }}" ;
+    	// console.log(user_sub_organization);
 
     	fetch("{{ url('/') }}/api/check_data_partner/" + user_organization)
             .then(response => response.json())
@@ -1344,6 +1347,7 @@
 		        setTimeout(function() {
 		        	if (result[0]['class_color_menu'] !== "other"){
 			    		document.querySelector('#sidebarcolor' + result[0]['class_color_menu'] ).click();
+                		document.querySelector('#span_sub_partner').classList.add('text-white');
 		        	}
 		        }, delayInMilliseconds);
                 
@@ -1353,6 +1357,11 @@
                 document.querySelector('#class_color_menu').value = result[0]['class_color_menu'];
                 document.querySelector('#div_color_navbar').style = "background: " + result[0]['color_navbar'] + ";" ;
                 document.querySelector('#div_switcher').style = "background: " + result[0]['color_navbar'] + ";" ;
+
+                if (user_sub_organization) {
+                	document.querySelector('#span_sub_partner').innerHTML = user_sub_organization ;
+                	document.querySelector('#span_sub_partner').classList.remove('d-none');
+                }
 
 		});
 
