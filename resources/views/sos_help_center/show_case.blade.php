@@ -1370,78 +1370,110 @@ input:focus {
         timer_check_send_update_officer();
     }
 
-
     function watchPosition_officer(){
-			        
     	if (navigator.geolocation) {
 		  	const watchId = navigator.geolocation.watchPosition(
-			    function(position) {
-			      	// Retrieve latitude and longitude from the position object
-			      	let latitude = position.coords.latitude;
-			      	let longitude = position.coords.longitude;
+		    	function(position) {
+		      		// Retrieve latitude and longitude from the position object
+		      		let latitude = position.coords.latitude;
+		      		let longitude = position.coords.longitude;
 
-			      	// console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-			      	// console.log(seconds_officer);
-			      	// console.log(check_send_update_location_officer);
+		      		// Set the officer marker position
+		      		if (officer_marker) {
+	        			officer_marker.setMap(null);
+		      		}
+			    	officer_marker = new google.maps.Marker({
+				        position: {lat: parseFloat(latitude), lng: parseFloat(longitude)},
+				        map: map_show_case,
+				        icon: image_operating_unit_general,
+				    });
 
-			      	// หมุดเจ้าหน้าที่
-			        if (officer_marker) {
-			            officer_marker.setMap(null);
-			        }
-			        officer_marker = new google.maps.Marker({
-			            position: {lat: parseFloat(latitude) , lng: parseFloat(longitude) },
-			            map: map_show_case,
-			            icon: image_operating_unit_general,
-			        });
+				    // Set the map heading
+				    let currentHeading = 0;
+			      	navigator.geolocation.watchHeading(
+				        function(heading) {
+				          	currentHeading = heading.heading || heading.magneticHeading;
+				          	map_show_case.setHeading(currentHeading);
+				        },
+				        function(error) {
+				          	console.error(error);
+				        }
+			      	);
 
-			      	if (check_send_update_location_officer == 'send_update_location_officer') {
-			      		func_send_update_location_officer(latitude , longitude);
-			      	}
+		      	// Your other code...
 
-			      	setTimeout(function() {
-			            let bounds = new google.maps.LatLngBounds();
-
-			                bounds.extend(officer_marker.getPosition());
-			                bounds.extend(sos_marker.getPosition());
-
-			            let mapHeight = document.getElementById("map_show_case").clientHeight;
-			            let topPadding = mapHeight * 0.15;
-			            let bottomPadding = mapHeight * 0.25;
-			            let verticalPadding = topPadding + bottomPadding;
-
-			            map_show_case.fitBounds(bounds, { top: topPadding, bottom: bottomPadding });
-			   			// console.log('fitBounds in watchPosition_officer');
-			        }, 1000); // รอ 1 วินาที (1000 มิลลิวินาที) ก่อนคำนวณขนาดแผนที่และ fitBounds
-
-			        setTimeout(function() {
-			        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
-			        }, 1000);
-
-			        if (check_get_dir == "Yes") {
-			        	distance_check(latitude,longitude);
-			        }
-					  	
-			    },
-			    function(error) {
-			      console.log(`Error: ${error.message}`);
-			    }
+		    	},
+		    	function(error) {
+		      		console.log(`Error: ${error.message}`);
+		    	}
 		  	);
-
 		} else {
 		  console.log("Geolocation is not supported by this browser");
 		}
 
-		if (navigator.geolocation && navigator.geolocation.watchHeading) {
-		  	let currentOrientation = 0;
-			window.addEventListener("deviceorientation", (event) => {
-			  	currentOrientation = event.alpha || 0;
-			  	map_show_case.setHeading(currentOrientation);
-			});
-		} else {
-		  	console.log("watchHeading is not supported by this browser");
-		}
-
     }
+
+    // function OLD_watchPosition_officer(){
+			        
+    // 	if (navigator.geolocation) {
+	// 	  	const watchId = navigator.geolocation.watchPosition(
+	// 		    function(position) {
+	// 		      	// Retrieve latitude and longitude from the position object
+	// 		      	let latitude = position.coords.latitude;
+	// 		      	let longitude = position.coords.longitude;
+
+	// 		      	// console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+	// 		      	// console.log(seconds_officer);
+	// 		      	// console.log(check_send_update_location_officer);
+
+	// 		      	// หมุดเจ้าหน้าที่
+	// 		        if (officer_marker) {
+	// 		            officer_marker.setMap(null);
+	// 		        }
+	// 		        officer_marker = new google.maps.Marker({
+	// 		            position: {lat: parseFloat(latitude) , lng: parseFloat(longitude) },
+	// 		            map: map_show_case,
+	// 		            icon: image_operating_unit_general,
+	// 		        });
+
+	// 		      	if (check_send_update_location_officer == 'send_update_location_officer') {
+	// 		      		func_send_update_location_officer(latitude , longitude);
+	// 		      	}
+
+	// 		      	setTimeout(function() {
+	// 		            let bounds = new google.maps.LatLngBounds();
+
+	// 		                bounds.extend(officer_marker.getPosition());
+	// 		                bounds.extend(sos_marker.getPosition());
+
+	// 		            let mapHeight = document.getElementById("map_show_case").clientHeight;
+	// 		            let topPadding = mapHeight * 0.15;
+	// 		            let bottomPadding = mapHeight * 0.25;
+	// 		            let verticalPadding = topPadding + bottomPadding;
+
+	// 		            map_show_case.fitBounds(bounds, { top: topPadding, bottom: bottomPadding });
+	// 		   			// console.log('fitBounds in watchPosition_officer');
+	// 		        }, 1000); // รอ 1 วินาที (1000 มิลลิวินาที) ก่อนคำนวณขนาดแผนที่และ fitBounds
+
+	// 		        setTimeout(function() {
+	// 		        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
+	// 		        }, 1000);
+
+	// 		        if (check_get_dir == "Yes") {
+	// 		        	distance_check(latitude,longitude);
+	// 		        }
+					  	
+	// 		    },
+	// 		    function(error) {
+	// 		      console.log(`Error: ${error.message}`);
+	// 		    }
+	// 	  	);
+
+	// 	} else {
+	// 	  console.log("Geolocation is not supported by this browser");
+	// 	}
+
+    // }
 
     function func_send_update_location_officer(lat_officer , lng_officer) {
 
