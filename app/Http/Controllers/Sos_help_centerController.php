@@ -1194,6 +1194,7 @@ class Sos_help_centerController extends Controller
                     ])
                 ->update([
                         'rc' => $level,
+                        'rc_black_text' => null,
                     ]);
         }else{
             DB::table('sos_1669_form_yellows')

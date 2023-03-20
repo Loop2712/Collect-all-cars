@@ -441,11 +441,11 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   /* Change the percentage here to make it faster */
   10% {
-    transform: translateY(210px);
+    transform: translateY(225px);
   }
   /* Change the percentage here to make it stay down for longer */
   90% {
-    transform: translateY(210px);
+    transform: translateY(255px);
   }
   /* Keep this at the end */
  100% {
@@ -1334,6 +1334,11 @@ input:focus {
 	        if (status === 'OK') {
 	            directionsDisplay.setDirections(response);
 	            	// console.log(response);
+
+	            setTimeout(function() {
+		        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
+		        }, 1000);
+
 	            // ระยะทาง
 	            let text_distance = response.routes[0].legs[0].distance.text ;
 	            document.querySelector('#text_distance').innerHTML = text_distance ;
@@ -1343,29 +1348,27 @@ input:focus {
 
                 steps_travel = response.routes[0].legs[0].steps;
 
-                let distance_step = steps_travel[0].distance.text ; // ระยะทางก่อนเปลี่ยน
-                let instructions_step = steps_travel[0].instructions ; // คำอธิบาย
-                let maneuver = steps_travel[0].maneuver ; // วิธีเปลี่ยนเส้นทาง
+                // let distance_step = steps_travel[0].distance.text ; // ระยะทางก่อนเปลี่ยน
+                // let instructions_step = steps_travel[0].instructions ; // คำอธิบาย
+                // let maneuver = steps_travel[0].maneuver ; // วิธีเปลี่ยนเส้นทาง
 
-                // document.querySelector('#img_maneuver').src = "{{ asset('/img/traffic sign/new-image.png') }}" ;
-                document.querySelector('#text_instructions').innerHTML = instructions_step ;
-                document.querySelector('#text_distance_step').innerHTML = distance_step ;
+                // // document.querySelector('#img_maneuver').src = "{{ asset('/img/traffic sign/new-image.png') }}" ;
+                // document.querySelector('#text_instructions').innerHTML = instructions_step ;
+                // document.querySelector('#text_distance_step').innerHTML = distance_step ;
 
-                element_text_instructions = document.querySelector('#text_instructions');
-				textContent_text_instructions = element_text_instructions.textContent.trim();
+                // element_text_instructions = document.querySelector('#text_instructions');
+				// textContent_text_instructions = element_text_instructions.textContent.trim();
 
-				setTimeout(function() {
-			        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
-			        }, 1000);
+				
 
-				setTimeout(function() {
-					message_speech = "อีก " + distance_step + " " + textContent_text_instructions ;
-					viicheck_speech(message_speech);
-		        }, 2000);
+				// setTimeout(function() {
+				// 	message_speech = "อีก " + distance_step + " " + textContent_text_instructions ;
+				// 	viicheck_speech(message_speech);
+		        // }, 2000);
 
-				// ลบ array ตัวแรกออก
-                steps_travel_arr = steps_travel ;
-                drop_arr_start = steps_travel_arr.shift();
+				// // ลบ array ตัวแรกออก
+                // steps_travel_arr = steps_travel ;
+                // drop_arr_start = steps_travel_arr.shift();
 
                 check_get_dir = "Yes" ;
 
@@ -1453,9 +1456,6 @@ input:focus {
 
 			        setTimeout(function() {
 			        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
-			        	let rd_setHeading = Math.floor(Math.random() * 100);
-			        	map_show_case.setHeading(rd_setHeading);
-			        	console.log("setHeading = " + rd_setHeading)
 			        }, 1000);
 
 			        if (check_get_dir == "Yes") {
@@ -1508,10 +1508,10 @@ input:focus {
 		const currentLatitude = latitude ; // User's current latitude
 		const currentLongitude = longitude ; // User's current longitude
 
-		console.log(steps_travel_arr);
+		console.log(steps_travel);
 
-      	let stepLatitude = steps_travel_arr[0].end_location.lat();
-      	let stepLongitude = steps_travel_arr[0].end_location.lng();
+      	let stepLatitude = steps_travel[0].end_location.lat();
+      	let stepLongitude = steps_travel[0].end_location.lng();
       	// console.log("End Lat: " + stepLatitude);
       	// console.log("End Lng: " + stepLongitude);
 
@@ -1521,6 +1521,7 @@ input:focus {
 	  	);
 	  	
 	  	document.querySelector('#text_distance_step').innerHTML = distance.toFixed(2) ;
+
 	  	// runLoop(distance);
 
 	}
@@ -1536,7 +1537,7 @@ input:focus {
 	  	if (distance <= 0.05) {
 		    console.log(">>>>>>>>> --------------------------- <<<<<<<<<");
 
-		    document.querySelector('#speak_to_user').innerHTML = steps_travel_arr[0].instructions ;
+		    document.querySelector('#speak_to_user').innerHTML = steps_travel[0].instructions ;
 		    let span_speak_to_user = document.querySelector('#speak_to_user') ;
 		    let text_speak_to_user = span_speak_to_user.textContent.trim();
 
@@ -1546,12 +1547,12 @@ input:focus {
 		    console.log(">>>>>>>>> --------------------------- <<<<<<<<<");
 
 		    // ลบตัวแรกออก
-		    drop_steps_travel_arr = steps_travel_arr.shift();
+		    drop_steps_travel_arr = steps_travel.shift();
 
 		    // เพิ่มไปยัง div แนะนำเส้นทาง
-		    let distance_step = steps_travel_arr[0].distance.text ; // ระยะทางก่อนเปลี่ยน
-            let instructions_step = steps_travel_arr[0].instructions ; // คำอธิบาย
-            let maneuver = steps_travel_arr[0].maneuver ; // วิธีเปลี่ยนเส้นทาง
+		    let distance_step = steps_travel[0].distance.text ; // ระยะทางก่อนเปลี่ยน
+            let instructions_step = steps_travel[0].instructions ; // คำอธิบาย
+            let maneuver = steps_travel[0].maneuver ; // วิธีเปลี่ยนเส้นทาง
 
             // document.querySelector('#img_maneuver').src = "{{ asset('/img/traffic sign/new-image.png') }}" ;
             document.querySelector('#text_instructions').innerHTML = instructions_step ;
@@ -1561,7 +1562,7 @@ input:focus {
 			textContent_text_instructions = element_text_instructions.textContent.trim(); // ดึงข้อความและตัดช่องว่างด้านหน้าและด้านหลังด้วย method trim()
 
 
-		    if (steps_travel_arr[0].instructions && distance > 1) {
+		    if (steps_travel[0].instructions && distance > 1) {
 
 		      	console.log("หัวข้อการนำทางต่อไป = " + textContent_text_instructions + "  ระยะใหม่ : " + distance);
 		      	viicheck_speech("ขับต่อไปอีก " + distance + "เมตร จากนั้น " + textContent_text_instructions);
@@ -1933,6 +1934,11 @@ input:focus {
 				input_rc_black_text = document.querySelector('#rc_black_text').value;
 			break;
 		}
+
+		let class_drop = document.querySelector('#show_level_by_officers').classList[3] ;
+        // console.log(class_drop);
+
+		document.querySelector('#show_level_by_officers').classList.remove(class_drop) ;
 		document.querySelector('#show_level_by_officers').classList.add(class_color_officers) ;
 
 		if (text_event_level != "rc_black_text") {
@@ -2077,20 +2083,26 @@ input:focus {
 				case 'km_to_the_scene_to_leave_the_scene':
 					update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');
 
-					// เปิดปุ่มถัดไป
-					document.querySelector('#div_mileage').classList.add('d-none');
-					document.querySelector('#' + div_id_next).classList.remove('d-none');
+					setTimeout(function() {
+			        	// เปิดปุ่มถัดไป
+						document.querySelector('#div_mileage').classList.add('d-none');
+						document.querySelector('#' + div_id_next).classList.remove('d-none');
 
-					document.querySelector('#menu_3').style = "bottom: -2rem" ;
+						document.querySelector('#menu_3').style = "bottom: -2rem" ;
+			        }, 1000);
+					
 				break;
 				case 'km_hospital':
 					update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ถึงโรงพยาบาล');
 
-					// เปิดปุ่มถัดไป
-					document.querySelector('#' + div_id_next).classList.remove('d-none');
-					document.querySelector('#div_km_operating_base').classList.remove('d-none');
+					setTimeout(function() {
+			        	// เปิดปุ่มถัดไป
+						document.querySelector('#' + div_id_next).classList.remove('d-none');
+						document.querySelector('#div_km_operating_base').classList.remove('d-none');
 
-					document.querySelector('#div_km_hospital').classList.add('d-none');
+						document.querySelector('#div_km_hospital').classList.add('d-none');
+			        }, 1000);
+					
 				break;
 				case 'km_operating_base':
 					// เปิดปุ่มถัดไป
