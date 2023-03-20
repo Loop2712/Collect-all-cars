@@ -1713,7 +1713,7 @@ class LineMessagingAPI extends Model
             ];
          
             $context_1669  = stream_context_create($opts_1669);
-            $url_1669 = "https://api.line.me/v2/bot/message/reply";
+            $url_1669 = "https://api.line.me/v2/bot/message/push";
             $result_1669 = file_get_contents($url_1669, false, $context_1669);
 
             //SAVE LOG
