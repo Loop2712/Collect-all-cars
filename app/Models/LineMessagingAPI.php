@@ -1698,8 +1698,7 @@ class LineMessagingAPI extends Model
             $messages_1669 = [ json_decode($string_json_1669, true) ];
         
             $body_1669 = [
-                // "to" => $to_user,
-                "replyToken" => $event["replyToken"],
+                "to" => $to_user,
                 "messages" => $messages_1669,
             ];
 
@@ -1715,7 +1714,6 @@ class LineMessagingAPI extends Model
          
             $context_1669  = stream_context_create($opts_1669);
             $url_1669 = "https://api.line.me/v2/bot/message/reply";
-            // $url_1669 = "https://api.line.me/v2/bot/message/push";
             $result_1669 = file_get_contents($url_1669, false, $context_1669);
 
             //SAVE LOG
