@@ -1255,7 +1255,7 @@ input:focus {
         if (status_sos != "เสร็จสิ้น") {
         	getLocation();
         	timer_check_send_update_officer();
-        	watchPosition_officer();
+        	// watchPosition_officer();
         }else{
         	open_map_status_success();
         }
