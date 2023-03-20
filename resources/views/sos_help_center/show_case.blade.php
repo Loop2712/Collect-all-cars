@@ -1459,9 +1459,9 @@ input:focus {
 			   		// 	// console.log('fitBounds in watchPosition_officer');
 			        // }, 1000);
 
-			        setTimeout(function() {
-			        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
-			        }, 1000);
+			        // setTimeout(function() {
+			        // 	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
+			        // }, 1000);
 
 			        // --------------------------------- จบ กำหนดค่า MAP --------------------------------- //
 
