@@ -1284,6 +1284,7 @@ input:focus {
         map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
             center: {lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
             // zoom: m_numZoom,
+            heading: 140,
         });
 
         // หมุดที่เกิดเหตุ 
@@ -1471,6 +1472,8 @@ input:focus {
 		// STOP watchId_start_market_officer
 		console.log("STOP watchId_start_market_officer");
 		navigator.geolocation.clearWatch(watchId_start_market_officer);
+
+		// ----------------------------------------------------------------------------
 
     	if (navigator.geolocation) {
 		  	var watchId_officer = navigator.geolocation.watchPosition(
