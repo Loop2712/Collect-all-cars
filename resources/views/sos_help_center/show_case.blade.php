@@ -1314,7 +1314,7 @@ input:focus {
 		});
 
 		// สร้างเส้นทาง
-		// get_Directions_API(officer_marker, sos_marker);
+		get_Directions_API(officer_marker, sos_marker);
 		// SET หมุดเจ้าหน้าที่
 		set_watchPosition_officer_marker();
 
