@@ -918,24 +918,110 @@
 							$check_vehicle_type_4 = "" ;
 							$check_vehicle_type_5 = "" ;
 							$check_vehicle_type_6 = "" ;
+
+							$text_vehicle_type = "ยังไม่ได้เลือก" ;
+
 							if( !empty($data_form_yellow->vehicle_type) ){
 								if( $data_form_yellow->vehicle_type == 'รถ' ){
 									$check_vehicle_type_1 = "checked";
+									$text_vehicle_type = "รถ" ;
 								}else if ( $data_form_yellow->vehicle_type == 'อากาศยาน' ){
 									$check_vehicle_type_2 = "checked";
+									$text_vehicle_type = "อากาศยาน" ;
 								}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๑' ){
 									$check_vehicle_type_3 = "checked";
+									$text_vehicle_type = "เรือ ป.๑" ;
 								}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๒' ){
 									$check_vehicle_type_4 = "checked";
+									$text_vehicle_type = "เรือ ป.๒" ;
 								}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๓' ){
 									$check_vehicle_type_5 = "checked";
+									$text_vehicle_type = "เรือ ป.๓" ;
 								}else if ( $data_form_yellow->vehicle_type == 'เรือประเภทอื่นๆ' ){
 									$check_vehicle_type_6 = "checked";
+									$text_vehicle_type = "เรือประเภทอื่นๆ" ;
 								}
 							}
 						@endphp
-						
+
 						<div class="row">
+							<div class="col-md-4">
+								<label for="" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" id="operation_unit_name" name="operation_unit_name" value="{{ isset($data_form_yellow->operation_unit_name) ? $data_form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ" readonly>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<label for="phone_user" class="form-label"><b>ชื่อชุดปฏิบัติการ</b></label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-users-medical"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" id="action_set_name" name="action_set_name" value="{{ isset($data_form_yellow->action_set_name) ? $data_form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ" readonly>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<label for="" class="form-label"><b>&nbsp;</b></label>
+								<span id="btn_select_unit_in_no5" class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();select_level();" style="width:100%;" >
+                                    <i class="fa-solid fa-hospital-user"></i> เลือกหน่วยแพทย์
+								</span>
+							</div>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col-md-4 mb-2">
+								<label  class="form-label m-0">
+									<b>
+										ชนิดยานพาหนะ<sup>(๗)</sup>
+									</b>
+								</label>
+							</div>
+							<div class="col-md-4 mb-2">
+								<label  class="form-label m-0">
+									<b>
+										ประเภทชุดปฏิบัติการ
+									</b>
+								</label>
+							</div>
+							<div class="col-12 col-md-4">
+								<!--  -->
+							</div>
+							@php
+								$check_operating_suit_type_1 = "" ;
+								$check_operating_suit_type_2 = "" ;
+								$check_operating_suit_type_3 = "" ;
+								$check_operating_suit_type_4 = "" ;
+
+								$text_operating_suit_type = "ยังไม่ได้เลือก" ;
+
+								if( !empty($data_form_yellow->operating_suit_type) ){
+									if( $data_form_yellow->operating_suit_type == 'FR' ){
+										$check_operating_suit_type_1 = "checked";
+										$text_operating_suit_type = "FR" ;
+									}else if ( $data_form_yellow->operating_suit_type == 'BLS' ){
+										$check_operating_suit_type_2 = "checked";
+										$text_operating_suit_type = "BLS" ;
+									}else if ( $data_form_yellow->operating_suit_type == 'ILS' ){
+										$check_operating_suit_type_3 = "checked";
+										$text_operating_suit_type = "ILS" ;
+									}else if ( $data_form_yellow->operating_suit_type == 'ALS' ){
+										$check_operating_suit_type_4 = "checked";
+										$text_operating_suit_type = "ALS" ;
+									}
+								}
+							@endphp
+							<div class="col-12 col-md-4">
+								<label>
+									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+										<b>{{ $text_vehicle_type }}</b>
+									</div>
+								</label>
+							</div>
+							<div class="col-12 col-md-4">
+								<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+									<b>{{ $text_operating_suit_type }}</b>
+								</div>
+							</div>
+						</div>
+
+						<div class="row d-none">
 							<div class="col-md-12 mb-2">
 								<label  class="form-label m-0">
 									<b>
@@ -999,23 +1085,7 @@
 									</b>
 								</label>
 							</div>	
-							@php
-								$check_operating_suit_type_1 = "" ;
-								$check_operating_suit_type_2 = "" ;
-								$check_operating_suit_type_3 = "" ;
-								$check_operating_suit_type_4 = "" ;
-								if( !empty($data_form_yellow->operating_suit_type) ){
-									if( $data_form_yellow->operating_suit_type == 'FR' ){
-										$check_operating_suit_type_1 = "checked";
-									}else if ( $data_form_yellow->operating_suit_type == 'BLS' ){
-										$check_operating_suit_type_2 = "checked";
-									}else if ( $data_form_yellow->operating_suit_type == 'ILS' ){
-										$check_operating_suit_type_3 = "checked";
-									}else if ( $data_form_yellow->operating_suit_type == 'ALS' ){
-										$check_operating_suit_type_4 = "checked";
-									}
-								}
-							@endphp
+							
 							<div class="col-12 col-md-3 col-lg-3">
 								<label>
 									<input type="radio" {{ $check_operating_suit_type_1 }} data-operating_suit_type="FR" name="operating_suit_type" value="FR"  class="card-input-element d-none" >
@@ -1049,9 +1119,9 @@
 								</label>
 							</div>
 
-							<div class="col-md-12"></div>
+							<!-- <div class="col-md-12"></div> -->
 
-							<div class="col-md-4">
+							<!-- <div class="col-md-4">
 								<label for="" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
 									<input type="text" class="form-control border-start-0 radius-2" id="operation_unit_name" name="operation_unit_name" value="{{ isset($data_form_yellow->operation_unit_name) ? $data_form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ" readonly>
@@ -1068,7 +1138,9 @@
 								<span id="btn_select_unit_in_no5" class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();select_level();" style="width:100%;" >
                                     <i class="fa-solid fa-hospital-user"></i> เลือกหน่วยแพทย์
 								</span>
-							</div>
+							</div> -->
+
+
 							<hr class="mt-2">
 							<div class="col-12 mt-2">
 								<div class="table-responsive">
@@ -2432,21 +2504,21 @@
 			"symptom" : symptom_value,
 			"symptom_other" : symptom_other.value,
 			"idc" : idc_value,
-			"vehicle_type" : vehicle_type_value,
-			"operating_suit_type" : operating_suit_type_value,
-			"operation_unit_name" : operation_unit_name.value,
-			"action_set_name" : action_set_name.value,
-			"time_create_sos" : time_create_sos.value,
-			"time_command" : time_command.value,
-			"time_go_to_help" : time_go_to_help.value,
-			"time_to_the_scene" : time_to_the_scene.value,
-			"time_leave_the_scene" : time_leave_the_scene.value,
-			"time_hospital" : time_hospital.value,
-			"time_to_the_operating_base" : time_to_the_operating_base.value,
-			"km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
-			"km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
-			"km_hospital" : km_hospital.value,
-			"km_operating_base" : km_operating_base.value,
+			// "vehicle_type" : vehicle_type_value,
+			// "operating_suit_type" : operating_suit_type_value,
+			// "operation_unit_name" : operation_unit_name.value,
+			// "action_set_name" : action_set_name.value,
+			// "time_create_sos" : time_create_sos.value,
+			// "time_command" : time_command.value,
+			// "time_go_to_help" : time_go_to_help.value,
+			// "time_to_the_scene" : time_to_the_scene.value,
+			// "time_leave_the_scene" : time_leave_the_scene.value,
+			// "time_hospital" : time_hospital.value,
+			// "time_to_the_operating_base" : time_to_the_operating_base.value,
+			// "km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
+			// "km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
+			// "km_hospital" : km_hospital.value,
+			// "km_operating_base" : km_operating_base.value,
 			"rc" : rc_value,
 			"rc_black_text" : rc_black_text.value,
 			"treatment" : treatment_value,
