@@ -1270,56 +1270,95 @@ input:focus {
 	  	}
 	}
 
-    function open_map_show_case(position) {
+	function open_map_show_case(position) {
+  start_officer_lat = position.coords.latitude;
+  start_officer_lng = position.coords.longitude;
+  let m_numZoom = parseFloat('15');
+  
+  map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
+    center: { lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
+    // zoom: m_numZoom,
+  });
+  
+  // scene pins
+  if (sos_marker) {
+    sos_marker.setMap(null);
+  }
+  sos_marker = new google.maps.Marker({
+    position: { lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
+    map: map_show_case,
+    icon: image_sos,
+  });
+  
+  // staff pins
+  if (officer_marker) {
+    officer_marker.setMap(null);
+  }
+  officer_marker = new google.maps.Marker({
+    position: { lat: parseFloat(start_officer_lat), lng: parseFloat(start_officer_lng) },
+    map: map_show_case,
+    icon: image_operating_unit_general,
+  });
 
-    	start_officer_lat = position.coords.latitude ;
-		start_officer_lng = position.coords.longitude ;
+  // Set map heading
+  if (position.coords.heading) {
+    map_show_case.setHeading(position.coords.heading);
+    map_show_case.setTilt(45); // Set a 45 degree tilt to show 3D view
+  }
+
+  const resetButton = document.getElementById("reset-button");
+  resetButton.addEventListener("click", function () {
+    map_show_case.setCenter(officer_marker.getPosition());
+    map_show_case.setZoom(19);
+  });
+
+  // get_Directions_API(officer_marker, sos_marker);
+}
+
+
+    // function open_map_show_case(position) {
+
+    // 	start_officer_lat = position.coords.latitude ;
+	// 	start_officer_lng = position.coords.longitude ;
     	
-        let m_numZoom = parseFloat('15');
+    //     let m_numZoom = parseFloat('15');
 
-        map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
-            center: {lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
-            // zoom: m_numZoom,
-        });
+    //     map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
+    //         center: {lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
+    //         // zoom: m_numZoom,
+    //     });
 
-        // หมุดที่เกิดเหตุ 
-        if (sos_marker) {
-            sos_marker.setMap(null);
-        }
-        sos_marker = new google.maps.Marker({
-            position: {lat: parseFloat(sos_lo_lat) , lng: parseFloat(sos_lo_lng) },
-            map: map_show_case,
-            icon: image_sos,
-        });
+    //     // หมุดที่เกิดเหตุ 
+    //     if (sos_marker) {
+    //         sos_marker.setMap(null);
+    //     }
+    //     sos_marker = new google.maps.Marker({
+    //         position: {lat: parseFloat(sos_lo_lat) , lng: parseFloat(sos_lo_lng) },
+    //         map: map_show_case,
+    //         icon: image_sos,
+    //     });
 
-        // หมุดเจ้าหน้าที่
-        if (officer_marker) {
-            officer_marker.setMap(null);
-        }
-        officer_marker = new google.maps.Marker({
-            position: {lat: parseFloat(start_officer_lat) , lng: parseFloat(start_officer_lng) },
-            map: map_show_case,
-            icon: image_operating_unit_general,
-        });
-
-
-        const resetButton = document.getElementById("reset-button");
-		resetButton.addEventListener("click", function() {
-		    map_show_case.setCenter(officer_marker.getPosition());
-		    map_show_case.setZoom(19);
-		});
-
-		window.addEventListener("deviceorientation", function(event) {
-		  	let alpha = event.alpha; // represents the compass direction the device is facing in degrees
-		  	let heading = alpha ? alpha : map_show_case.getHeading(); // use alpha value if available, else use current map heading
-		  	map_show_case.setHeading(heading);
-		  	console.log(heading);
-		});
+    //     // หมุดเจ้าหน้าที่
+    //     if (officer_marker) {
+    //         officer_marker.setMap(null);
+    //     }
+    //     officer_marker = new google.maps.Marker({
+    //         position: {lat: parseFloat(start_officer_lat) , lng: parseFloat(start_officer_lng) },
+    //         map: map_show_case,
+    //         icon: image_operating_unit_general,
+    //     });
 
 
-		// get_Directions_API(officer_marker, sos_marker);
+    //     const resetButton = document.getElementById("reset-button");
+	// 	resetButton.addEventListener("click", function() {
+	// 	    map_show_case.setCenter(officer_marker.getPosition());
+	// 	    map_show_case.setZoom(19);
+	// 	});
 
-    }
+
+	// 	// get_Directions_API(officer_marker, sos_marker);
+
+    // }
 
     // <!-- --------------- ระยะทาง(เสียเงิน) --------------- -->
 	function get_Directions_API(markerA, markerB) {
