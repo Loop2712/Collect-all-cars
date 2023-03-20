@@ -633,7 +633,7 @@ input:focus {
 		<button class="btn w-25 btn_menu" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-file-pen"></i></button>
 		<button class="btn w-25 btn_menu" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-solid fa-messages-question"></i></button>
 		<button class="btn w-25 btn_menu btn-danger" id="btn_menu_3" onclick="show_data_menu(3);"><i class="fa-regular fa-truck-medical"></i></button>
-		<button class="btn w-25 btn_menu" id="btn_menu_4" onclick="show_data_menu(4);get_Directions_API(officer_marker, sos_marker);"><i class="fa-duotone fa-map"></i></button>
+		<button class="btn w-25 btn_menu" id="btn_menu_4" onclick="show_data_menu(4);"><i class="fa-duotone fa-map"></i></button>
 	</div>
 
 
@@ -944,7 +944,7 @@ input:focus {
 						ถึงเวลาประมาณ <br>
 						<span id="text_duration"></span>
 					</div>
-					<div class="col-2">
+					<div class="col-2" onclick="watchPosition_officer();">
 						<i class="fa-solid fa-location-dot-slash"></i><br>
 						<span id="span_show_text_get_dir">ปิด</span>
 					</div>
@@ -1248,6 +1248,8 @@ input:focus {
 	const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
 	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
 
+	var watchId_start_market_officer ;
+
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         start_page();
@@ -1256,7 +1258,7 @@ input:focus {
         if (status_sos != "เสร็จสิ้น") {
         	getLocation();
         	timer_check_send_update_officer();
-        	watchPosition_officer();
+        	// watchPosition_officer();
         }else{
         	open_map_status_success();
         }
@@ -1272,6 +1274,7 @@ input:focus {
 	}
 
     function open_map_show_case(position) {
+		console.log("open_map_show_case");
 
     	start_officer_lat = position.coords.latitude ;
 		start_officer_lng = position.coords.longitude ;
@@ -1309,8 +1312,55 @@ input:focus {
 		    map_show_case.setZoom(19);
 		});
 
-		// get_Directions_API(officer_marker, sos_marker);
+		// สร้างเส้นทาง
+		get_Directions_API(officer_marker, sos_marker);
+		// SET หมุดเจ้าหน้าที่
+		set_watchPosition_officer_marker();
 
+    }
+
+    function set_watchPosition_officer_marker(){
+    	if (navigator.geolocation) {
+
+		  	watchId_start_market_officer = navigator.geolocation.watchPosition(
+
+			    function(position) {
+			    	latitude_officer_marker = position.coords.latitude ;
+					longitude_officer_marker = position.coords.longitude ;
+			    	// หมุดเจ้าหน้าที่
+			        const newPosition = new google.maps.LatLng(parseFloat(latitude_officer_marker), parseFloat(longitude_officer_marker));
+    				officer_marker.setPosition(newPosition);
+					console.log("SET หมุดเจ้าหน้าที่");
+
+					// รอ 1 วินาที (1000 มิลลิวินาที) ก่อนคำนวณขนาดแผนที่และ fitBounds
+			      	setTimeout(function() {
+			            let bounds = new google.maps.LatLngBounds();
+
+			                bounds.extend(officer_marker.getPosition());
+			                bounds.extend(sos_marker.getPosition());
+
+			            let mapHeight = document.getElementById("map_show_case").clientHeight;
+			            let topPadding = mapHeight * 0.15;
+			            let bottomPadding = mapHeight * 0.25;
+			            let verticalPadding = topPadding + bottomPadding;
+
+			            map_show_case.fitBounds(bounds, { top: topPadding, bottom: bottomPadding });
+			   			// console.log('fitBounds in watchPosition_officer');
+			        }, 1000);
+
+			        setTimeout(function() {
+			        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
+			        }, 1000);
+
+			        if (check_send_update_location_officer == 'send_update_location_officer') {
+			      		func_send_update_location_officer(latitude_officer_marker , longitude_officer_marker);
+			      	}
+
+			    }
+
+			);
+
+		}
     }
 
     // <!-- --------------- ระยะทาง(เสียเงิน) --------------- -->
@@ -1417,9 +1467,13 @@ input:focus {
     }
 
     function watchPosition_officer(){
-			        
+
+		// STOP watchId_start_market_officer
+		console.log("STOP watchId_start_market_officer");
+		navigator.geolocation.clearWatch(watchId_start_market_officer);
+
     	if (navigator.geolocation) {
-		  	const watchId = navigator.geolocation.watchPosition(
+		  	var watchId_officer = navigator.geolocation.watchPosition(
 			    function(position) {
 
 			    	// --------------------------------- กำหนดค่า MAP --------------------------------- //
@@ -1430,6 +1484,7 @@ input:focus {
 			      	// หมุดเจ้าหน้าที่
 			        const newPosition = new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude));
     				officer_marker.setPosition(newPosition);
+    				console.log("SET officer_marker ใน watchPosition_officer");
 
     				if (position.coords.heading) {
     					console.log(position.coords.heading);
@@ -1442,26 +1497,6 @@ input:focus {
 
 					map_show_case.setZoom(19);
 					map_show_case.setCenter(officer_marker.getPosition())
-
-					// รอ 1 วินาที (1000 มิลลิวินาที) ก่อนคำนวณขนาดแผนที่และ fitBounds
-			      	// setTimeout(function() {
-			        //     let bounds = new google.maps.LatLngBounds();
-
-			        //         bounds.extend(officer_marker.getPosition());
-			        //         bounds.extend(sos_marker.getPosition());
-
-			        //     let mapHeight = document.getElementById("map_show_case").clientHeight;
-			        //     let topPadding = mapHeight * 0.15;
-			        //     let bottomPadding = mapHeight * 0.25;
-			        //     let verticalPadding = topPadding + bottomPadding;
-
-			        //     map_show_case.fitBounds(bounds, { top: topPadding, bottom: bottomPadding });
-			   		// 	// console.log('fitBounds in watchPosition_officer');
-			        // }, 1000);
-
-			        // setTimeout(function() {
-			        // 	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
-			        // }, 1000);
 
 			        // --------------------------------- จบ กำหนดค่า MAP --------------------------------- //
 
@@ -1496,6 +1531,8 @@ input:focus {
             .then(result => {
                 // console.log(result);
                 // console.log(result['status']);
+
+                console.log("send_update_location_officer");
 
                 let sos_lat = result['lat'] ;
                 let sos_lng = result['lng'] ;
