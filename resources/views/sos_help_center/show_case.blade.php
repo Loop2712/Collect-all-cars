@@ -923,6 +923,8 @@ input:focus {
 				<i class="fa-solid fa-volume-high"></i>
 			</span>
 
+			<button id="reset-button">reset-button</button>
+
     		<button class="btn_route_guide card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
 				<img id="img_maneuver" class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
 				<span id="text_instructions" class="text-center"></span>
@@ -1301,6 +1303,20 @@ input:focus {
         });
 
 
+        const resetButton = document.getElementById("reset-button");
+		resetButton.addEventListener("click", function() {
+		    map_show_case.setCenter(officer_marker.getPosition());
+		    map_show_case.setZoom(19);
+		});
+
+		window.addEventListener("deviceorientation", function(event) {
+		  	let alpha = event.alpha; // represents the compass direction the device is facing in degrees
+		  	let heading = alpha ? alpha : map_show_case.getHeading(); // use alpha value if available, else use current map heading
+		  	map_show_case.setHeading(heading);
+		  	console.log(heading);
+		});
+
+
 		// get_Directions_API(officer_marker, sos_marker);
 
     }
@@ -1414,6 +1430,8 @@ input:focus {
 		  	const watchId = navigator.geolocation.watchPosition(
 			    function(position) {
 
+			    	// --------------------------------- กำหนดค่า MAP --------------------------------- //
+
 			      	let latitude = position.coords.latitude;
 			      	let longitude = position.coords.longitude;
 
@@ -1421,9 +1439,11 @@ input:focus {
 			        const newPosition = new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude));
     				officer_marker.setPosition(newPosition);
 
-			      	if (check_send_update_location_officer == 'send_update_location_officer') {
-			      		func_send_update_location_officer(latitude , longitude);
-			      	}
+    				// Calculate the heading from markerB to markerA
+			      	// const heading = google.maps.geometry.spherical.computeHeading(officer_marker.getPosition());
+
+			      	// Set the map's heading to the user's heading
+			      	// map_show_case.setHeading(heading);
 
 			      	setTimeout(function() {
 			            let bounds = new google.maps.LatLngBounds();
@@ -1443,6 +1463,12 @@ input:focus {
 			        setTimeout(function() {
 			        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
 			        }, 1000);
+
+			        // --------------------------------- จบ กำหนดค่า MAP --------------------------------- //
+
+			      	if (check_send_update_location_officer == 'send_update_location_officer') {
+			      		func_send_update_location_officer(latitude , longitude);
+			      	}
 
 			        if (check_get_dir == "Yes") {
 			        	distance_check(latitude,longitude);
