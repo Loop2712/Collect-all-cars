@@ -1440,20 +1440,24 @@ input:focus {
     					document.querySelector('#set_heading').innerHTML = " ไม่มี heading " ;
 					}
 
-			      	setTimeout(function() {
-			            let bounds = new google.maps.LatLngBounds();
+					map_show_case.setZoom(19);
+					map_show_case.setCenter(officer_marker.getPosition())
 
-			                bounds.extend(officer_marker.getPosition());
-			                bounds.extend(sos_marker.getPosition());
+					// รอ 1 วินาที (1000 มิลลิวินาที) ก่อนคำนวณขนาดแผนที่และ fitBounds
+			      	// setTimeout(function() {
+			        //     let bounds = new google.maps.LatLngBounds();
 
-			            let mapHeight = document.getElementById("map_show_case").clientHeight;
-			            let topPadding = mapHeight * 0.15;
-			            let bottomPadding = mapHeight * 0.25;
-			            let verticalPadding = topPadding + bottomPadding;
+			        //         bounds.extend(officer_marker.getPosition());
+			        //         bounds.extend(sos_marker.getPosition());
 
-			            map_show_case.fitBounds(bounds, { top: topPadding, bottom: bottomPadding });
-			   			// console.log('fitBounds in watchPosition_officer');
-			        }, 1000); // รอ 1 วินาที (1000 มิลลิวินาที) ก่อนคำนวณขนาดแผนที่และ fitBounds
+			        //     let mapHeight = document.getElementById("map_show_case").clientHeight;
+			        //     let topPadding = mapHeight * 0.15;
+			        //     let bottomPadding = mapHeight * 0.25;
+			        //     let verticalPadding = topPadding + bottomPadding;
+
+			        //     map_show_case.fitBounds(bounds, { top: topPadding, bottom: bottomPadding });
+			   		// 	// console.log('fitBounds in watchPosition_officer');
+			        // }, 1000);
 
 			        setTimeout(function() {
 			        	map_show_case.setZoom(map_show_case.getZoom() - 0.5 );
