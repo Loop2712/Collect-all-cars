@@ -924,6 +924,7 @@ input:focus {
 			</span>
 
 			<button id="reset-button">reset-button</button>
+			<span id="set_heading"></span>
 
     		<button class="btn_route_guide card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
 				<img id="img_maneuver" class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
@@ -1255,7 +1256,7 @@ input:focus {
         if (status_sos != "เสร็จสิ้น") {
         	getLocation();
         	timer_check_send_update_officer();
-        	// watchPosition_officer();
+        	watchPosition_officer();
         }else{
         	open_map_status_success();
         }
@@ -1270,95 +1271,47 @@ input:focus {
 	  	}
 	}
 
-	function open_map_show_case(position) {
-  start_officer_lat = position.coords.latitude;
-  start_officer_lng = position.coords.longitude;
-  let m_numZoom = parseFloat('15');
-  
-  map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
-    center: { lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
-    // zoom: m_numZoom,
-  });
-  
-  // scene pins
-  if (sos_marker) {
-    sos_marker.setMap(null);
-  }
-  sos_marker = new google.maps.Marker({
-    position: { lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
-    map: map_show_case,
-    icon: image_sos,
-  });
-  
-  // staff pins
-  if (officer_marker) {
-    officer_marker.setMap(null);
-  }
-  officer_marker = new google.maps.Marker({
-    position: { lat: parseFloat(start_officer_lat), lng: parseFloat(start_officer_lng) },
-    map: map_show_case,
-    icon: image_operating_unit_general,
-  });
+    function open_map_show_case(position) {
 
-  // Set map heading
-  if (position.coords.heading) {
-    map_show_case.setHeading(position.coords.heading);
-    map_show_case.setTilt(45); // Set a 45 degree tilt to show 3D view
-  }
-
-  const resetButton = document.getElementById("reset-button");
-  resetButton.addEventListener("click", function () {
-    map_show_case.setCenter(officer_marker.getPosition());
-    map_show_case.setZoom(19);
-  });
-
-  // get_Directions_API(officer_marker, sos_marker);
-}
-
-
-    // function open_map_show_case(position) {
-
-    // 	start_officer_lat = position.coords.latitude ;
-	// 	start_officer_lng = position.coords.longitude ;
+    	start_officer_lat = position.coords.latitude ;
+		start_officer_lng = position.coords.longitude ;
     	
-    //     let m_numZoom = parseFloat('15');
+        let m_numZoom = parseFloat('15');
 
-    //     map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
-    //         center: {lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
-    //         // zoom: m_numZoom,
-    //     });
+        map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
+            center: {lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
+            // zoom: m_numZoom,
+        });
 
-    //     // หมุดที่เกิดเหตุ 
-    //     if (sos_marker) {
-    //         sos_marker.setMap(null);
-    //     }
-    //     sos_marker = new google.maps.Marker({
-    //         position: {lat: parseFloat(sos_lo_lat) , lng: parseFloat(sos_lo_lng) },
-    //         map: map_show_case,
-    //         icon: image_sos,
-    //     });
+        // หมุดที่เกิดเหตุ 
+        if (sos_marker) {
+            sos_marker.setMap(null);
+        }
+        sos_marker = new google.maps.Marker({
+            position: {lat: parseFloat(sos_lo_lat) , lng: parseFloat(sos_lo_lng) },
+            map: map_show_case,
+            icon: image_sos,
+        });
 
-    //     // หมุดเจ้าหน้าที่
-    //     if (officer_marker) {
-    //         officer_marker.setMap(null);
-    //     }
-    //     officer_marker = new google.maps.Marker({
-    //         position: {lat: parseFloat(start_officer_lat) , lng: parseFloat(start_officer_lng) },
-    //         map: map_show_case,
-    //         icon: image_operating_unit_general,
-    //     });
+        // หมุดเจ้าหน้าที่
+        if (officer_marker) {
+            officer_marker.setMap(null);
+        }
+        officer_marker = new google.maps.Marker({
+            position: {lat: parseFloat(start_officer_lat) , lng: parseFloat(start_officer_lng) },
+            map: map_show_case,
+            icon: image_operating_unit_general,
+        });
 
+        const resetButton = document.getElementById("reset-button");
+		resetButton.addEventListener("click", function() {
+		    map_show_case.setCenter(officer_marker.getPosition());
+		    map_show_case.setZoom(19);
+		});
 
-    //     const resetButton = document.getElementById("reset-button");
-	// 	resetButton.addEventListener("click", function() {
-	// 	    map_show_case.setCenter(officer_marker.getPosition());
-	// 	    map_show_case.setZoom(19);
-	// 	});
+		// get_Directions_API(officer_marker, sos_marker);
 
-
-	// 	// get_Directions_API(officer_marker, sos_marker);
-
-    // }
+    }
 
     // <!-- --------------- ระยะทาง(เสียเงิน) --------------- -->
 	function get_Directions_API(markerA, markerB) {
@@ -1478,11 +1431,14 @@ input:focus {
 			        const newPosition = new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude));
     				officer_marker.setPosition(newPosition);
 
-    				// Calculate the heading from markerB to markerA
-			      	// const heading = google.maps.geometry.spherical.computeHeading(officer_marker.getPosition());
-
-			      	// Set the map's heading to the user's heading
-			      	// map_show_case.setHeading(heading);
+    				if (position.coords.heading) {
+    					console.log(position.coords.heading);
+    					document.querySelector('#set_heading').innerHTML = position.coords.heading ;
+					    map_show_case.setHeading(position.coords.heading);
+					    map_show_case.setTilt(45); // Set a 45 degree tilt to show 3D view
+					}else{
+    					document.querySelector('#set_heading').innerHTML = " ไม่มี heading " ;
+					}
 
 			      	setTimeout(function() {
 			            let bounds = new google.maps.LatLngBounds();
