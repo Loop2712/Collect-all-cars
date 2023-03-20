@@ -945,11 +945,11 @@ input:focus {
 						<span id="text_duration"></span>
 					</div>
 					<div class="col-3 notranslate text-center" > <!-- onclick="watchPosition_officer();" -->
-						<!-- <i class="fa-solid fa-location-dot-slash"></i><br>
-						<span id="span_show_text_get_dir">soon</span> -->
-						<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" target="bank">
+						<i class="fa-solid fa-location-dot-slash"></i><br>
+						<span id="span_show_text_get_dir">soon</span>
+						<!-- <a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" target="bank">
 							<img src="{{ asset('/img/icon/icon-google-map.png') }}" width="20" alt=""><br>MAP
-						</a>
+						</a> -->
 					</div>
 				</div>
 			</button>
@@ -1286,8 +1286,6 @@ input:focus {
 
         map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
             center: {lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
-            // zoom: m_numZoom,
-            heading: 140,
         });
 
         // หมุดที่เกิดเหตุ 
