@@ -1309,6 +1309,8 @@ input:focus {
 		    map_show_case.setZoom(19);
 		});
 
+		map_show_case.getStreetView().setVisible(true);
+
 		// get_Directions_API(officer_marker, sos_marker);
 
     }
