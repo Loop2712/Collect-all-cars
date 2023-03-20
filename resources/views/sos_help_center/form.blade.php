@@ -159,7 +159,30 @@
     </div>
 </div>
 
+<style>
+    .gg-travel-guide{
+        display: flex;
+        flex-wrap: wrap;
+    }.gg-travel-guide-img{
+        width: 10%;
+    }.gg-travel-guide-text{
+        width: 90%;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        padding: 0 0 0 2rem;
+    }.gg-travel-guide-bottom {
+        width:88%;  
+        border-bottom: 1px solid #000; 
+        line-height:0.1em; 
+        margin:10px 0 20px; 
 
+    } 
+    .gg-travel-guide-bottom span { 
+        background:#fff; 
+        padding:0 10px; 
+    }
+</style>
 <!-- Modal steps_travel -->
 <div class="modal fade" id="modal_steps_travel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -169,6 +192,19 @@
                 <i class="fa-sharp fa-solid fa-circle-xmark btn" data-dismiss="modal" aria-label="Close"></i>
             </div>
             <div class="modal-body">
+                <!-- <div class="row gg-travel-guide">
+                    <div class=" gg-travel-guide-img">
+                        <img src="{{ url('/img/traffic sign/33.png') }}" width="70" height="70" >
+                    </div>
+
+                    <div class="gg-travel-guide-text">asd</div>
+
+                    <div class="d-flex justify-content-end">
+                        <div class="gg-travel-guide-bottom">
+                            <span></span>
+                        </div>
+                    </div>
+                </div> -->
                 <div class="row" id="div_steps_travel" style="font-size: 20px !important;">
                     <!-- ข้อมูลแนะนำการเดินทาง -->
                 </div>
@@ -325,7 +361,27 @@
                         .nav-pills-danger.nav-pills .nav-link:hover{
                         color: #fff;
                         }
-
+                        .box-idc-rc{
+                            border-radius: 15px 15px 0 0 ;
+                            padding: 5px;
+                            font-weight: bolder;
+                            margin: 15 0;
+                        }.idc-rc-green{
+                            background-color: #dff7e1;
+                            color: #4ccc39;
+                        }.idc-rc-yellow{
+                            background-color: #fff8e4;
+                            color: #ffc207;
+                        }.idc-rc-normal{
+                            background-color: #c9d3ff;
+                            color: #0d3aff;
+                        }.idc-rc-black{
+                            background-color: #c5c6c8;
+                            color: #000000;
+                        }.idc-rc-red{
+                            background-color: #fbe0e0;
+                            color: #e62e2e;
+                        }
                     </style>
                     <ul class="nav nav-pills m-3" role="tablist">
                         <li id="btn_operation" class="nav-item nav-pills nav-pills-purple m-2 d-none" role="presentation">
@@ -496,22 +552,49 @@
                                 @endphp
                                 <div class="col-12">
                                     <br>
-                                    <button style="position:absolute;top: 6%;left: 1%;border-radius: 0px 20px 20px 0px; width:45%;" class="btn btn-sm btn-info main-shadow main-radius float-start">
+                                    <span style="position:absolute;top: 6%;left: 1%;border-radius: 0px 10px 10px 0px; width:45%;" class="btn-sm btn-info main-shadow main-radius float-start">
                                         @if(!empty($data_officer->vehicle_type))
                                             <b>{{ $data_officer->vehicle_type }}</b>
                                         @else
                                             ...
                                         @endif
-                                    </button>
-                                    <button style="position:absolute;top: 6%;right: 1%;border-radius: 20px 0px 0px 20px; width:45%;" class="btn btn-sm btn-{{ $color_btn_level }} main-shadow main-radius float-end">
+                                    </span>
+                                    <span style="position:absolute;top: 6%;right: 1%;border-radius: 10px 0px 0px 10px; width:45%;" class="btn-sm btn-{{ $color_btn_level }} main-shadow main-radius float-end">
                                         @if(!empty($data_officer->level))
                                             <b>{{ $data_officer->level }}</b>
                                         @else
                                             ...
                                         @endif
-                                    </button>
+                                    </span>
                                 </div>
-                                <div class="col-12 col-md-3 mt-2">
+                                <div class="d-flex justify-content-center col-12">
+                                    @if(!empty($sos_help_center->officers_user->photo))
+                                        <img src="{{ url('storage')}}/{{ $sos_help_center->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
+                                    @else
+                                        <img src="{{ url('/img/stickerline/Flex/12.png') }}" width="80" height="80"  class="rounded-circle shadow">
+                                    @endif
+                                </div>
+                                <div class="d-flex justify-content-center col-12">
+                                    @if(!empty($sos_help_center->officers_user->name))
+                                        <h5 class="m-0">{{ $sos_help_center->officers_user->name }}</h5>
+                                    @endif
+                                </div>
+                                <div class="d-flex justify-content-center col-12">
+                                    @if(!empty($sos_help_center->officers_user->sub_organization))
+                                        <p>{{ str_replace("_"," ",$sos_help_center->officers_user->sub_organization) }}</p>
+                                    @endif
+                                </div>
+                                <div class="d-flex justify-content-center col-12 p-0">
+                                    @if(!empty($sos_help_center->officers_user->phone))
+                                        <a href="tel:{{ $sos_help_center->officers_user->phone }}" style="width:90%;" class="btn btn-outline-success radius-15">
+                                            <i class="fa-solid fa-phone"></i> {{ $sos_help_center->officers_user->phone }}
+                                        </a>
+                                    @else
+                                        <br>ไม่ได้ระบุ
+                                    @endif
+                                </div>
+
+                                <!-- <div class="col-12 col-md-3 mt-2">
                                     @if(!empty($sos_help_center->officers_user->photo))
                                         <img src="{{ url('storage')}}/{{ $sos_help_center->officers_user->photo }}" width="80" height="80" class="rounded-circle shadow">
                                     @else
@@ -537,7 +620,7 @@
                                         <br>ไม่ได้ระบุ
                                     @endif
                                     
-                                </div>
+                                </div> -->
                             </div>
                             <!-- //// END PHP //// -->
 
@@ -608,7 +691,8 @@
                                     </span>
 
                                     @if($sos_help_center->status != 'เสร็จสิ้น')
-                                        <span id="h4_show_distance" class="">
+                                    <span id="text_duration" class="text-warning"></span> (<span id="show_distance" ></span>) ● <span id="text_arrivalTime"></span>
+                                        <!-- <span id="h4_show_distance" class="">
                                             <i class="fa-duotone fa-road"></i> ระยะทาง :  <b><span id="show_distance" class="text-warning"></span></b>
                                         </span>
                                         &nbsp;&nbsp;
@@ -618,22 +702,36 @@
                                         &nbsp;&nbsp;
                                         <span>
                                             <i class="fa-solid fa-circle-check"></i> เวลาถึงโดยประมาณ :  <b><span id="text_arrivalTime" class="text-warning"></span></b>
-                                        </span>
+                                        </span> -->
                                     @endif
                                 </h4>
                             </div>
                             <hr>
-                            <div class="row text-center">
+                            <!-- <div class="row text-center">
                                 <div class="col-6">
                                     <p>การให้รหัสความรุนแรง (IDC) : <span id="show_idc" class="btn btn-sm px-5 radius-30 d-none"></span></p>
                                 </div>
                                 <div class="col-6">
                                     <p>รหัสความรุนแรง ณ จุดเกิดเหตุ (RC): <span id="show_rc" class="btn btn-sm px-5 radius-30 d-none"></span></p>
                                 </div>
+                            </div> -->
+
+                            <div class="row text-center">
+                                <div class="col-6 " >
+                                    <div class="box-idc-rc"  id="show_idc">
+                                        <!-- การให้รหัสความรุนแรง (IDC) <br> ดำ -->
+                                    </div>
+                                </div>
+                                <div class="col-6" >
+                                    <div class=" box-idc-rc" id="show_rc">
+                                        <!-- รหัสความรุนแรง ณ จุดเกิดเหตุ (RC) <br> แดง(วิกฤติ) -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <span class="btn btn-danger main-shadow main-radius" style="position: absolute;top: 17.5%;right: 6.5%;z-index: 9999;" data-toggle="modal" data-target="#modal_steps_travel">
+                        
+                        <div class="col-12" style="position: relative;">
+                            <span class="btn btn-danger main-shadow main-radius" style="position: absolute;top: 0.5rem;right: 5rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" data-toggle="modal" data-target="#modal_steps_travel">
                                 แนะนำการเดินทาง
                             </span>
                             <div id="map_go_to_help"></div>
@@ -812,29 +910,34 @@
     .div_alert{
   position: fixed;
   /* position: absolute; */
-  top: -13%;
+  top: -30%;
   /* top: 55%; */
-  left: 0;
   width: 100%;
+  left: 0;
   text-align: center;
   font-family: 'Kanit', sans-serif;
   z-index: 9999;
   display: flex;
   justify-content: center;
 }
-.div_alert i{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 70px;
-    max-width: 70px;
-    height: 50px;
-    background-color: #ffddde;
-    border-radius: 50%;
-    color: #ff5757;
-    font-size: 1.5rem;
-    margin-left: 1.5rem;
+@media only screen and (max-width: 600px) {
+    .alert-child{
+        width: 90%;
+        font-size: 1.2rem;
+    }
+}
+@media only screen and (min-width: 600px) {
+    .alert-child{
+        width: 90%;
+        font-size: 1.4rem;
+    }
+}
 
+@media only screen and (min-width: 768px) {
+    .alert-child{
+        width: 40%;
+        font-size: 1.4rem;
+    }
 }
 
 .up-down {
@@ -848,11 +951,11 @@
   }
   /* Change the percentage here to make it faster */
   10% {
-    transform: translateY(125px);
+    transform: translateY(230px);
   }
   /* Change the percentage here to make it stay down for longer */
   90% {
-    transform: translateY(150px);
+    transform: translateY(230px);
   }
   /* Keep this at the end */
  100% {
@@ -866,23 +969,43 @@
     justify-content: space-between;
     border-radius: 15px;
     height: 5rem;
-    width: 50%;
     padding:20px 10px;
 }.text-alert{
     color: #fff;
    float: left;
+   padding: 0;
+   margin: 0;
+}.alert-icon{
+    width: 100%;
+    height: 100%;
+    background-color: #ffddde;
+    border-radius: 50%;
+    color: #ff5757;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    max-width: 70px;
+    height: 60px;
+   
+    font-size: 1.5rem;
+    margin-left: 1rem;
+
 }
 </style>
+
+
 <div id="alert_phone" class=" div_alert " role="alert">
     <div class="alert-child">
         <div >
-            <h4 class="d-block  text-alert">ขออภัยค่ะ ตำแหน่งที่ท่านเลือก ไม่อยู่ในพื้นที่ของท่านค่ะ</h4>
+            <p class="d-block  text-alert">ขออภัยค่ะ ตำแหน่งที่ท่านเลือก ไม่อยู่ในพื้นที่ของท่านค่ะ</p>
         </div>
-        <i class="fa-solid fa-xmark"></i>
+        <div class="alert-icon">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        
     </div>
-   
 </div>
-
 <!-- ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ - ห้ามลบ - ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ -->
 <div class="item sos-map bg-white d-none">
 
@@ -1023,24 +1146,24 @@
                 rc_old = start_result['rc'] ;
                 if (rc_old) {
                     document.querySelector('#show_rc').classList.remove('d-none');
-                    document.querySelector('#show_rc').innerHTML = rc_old ;
+                    document.querySelector('#show_rc').innerHTML = "รหัสความรุนแรง ณ จุดเกิดเหตุ (RC) <br>" + rc_old ;
 
                     let start_class_text_show_rc ;
                     switch(start_result['rc']) {
                         case 'ดำ':
-                            start_class_text_show_rc = "btn-dark";
+                            start_class_text_show_rc = "idc-rc-black";
                         break;
                         case 'ขาว(ทั่วไป)':
-                            start_class_text_show_rc = "btn-light";
+                            start_class_text_show_rc = "idc-rc-normal";
                         break;
                         case 'เขียว(ไม่รุนแรง)':
-                            start_class_text_show_rc = "btn-success";
+                            start_class_text_show_rc = "idc-rc-green";
                         break;
                         case 'เหลือง(เร่งด่วน)':
-                            start_class_text_show_rc = "btn-warning";
+                            start_class_text_show_rc = "idc-rc-yellow";
                         break;
                         case 'แดง(วิกฤติ)':
-                            start_class_text_show_rc = "btn-danger";
+                            start_class_text_show_rc = "idc-rc-red";
                         break;
                     }
                     document.querySelector('#show_rc').classList.add(start_class_text_show_rc);
@@ -1048,24 +1171,24 @@
 
                 if (start_result['idc']) {
                     document.querySelector('#show_idc').classList.remove('d-none');
-                    document.querySelector('#show_idc').innerHTML = start_result['idc'] ;
+                    document.querySelector('#show_idc').innerHTML = "การให้รหัสความรุนแรง (IDC) <br>" + start_result['idc'] ;
 
                     let start_class_text_show_idc ;
                     switch(start_result['idc']) {
                         case 'ดำ':
-                            start_class_text_show_idc = "btn-dark";
+                            start_class_text_show_idc = "idc-rc-black";
                         break;
                         case 'ขาว(ทั่วไป)':
-                            start_class_text_show_idc = "btn-light";
+                            start_class_text_show_idc = "idc-rc-normal";
                         break;
                         case 'เขียว(ไม่รุนแรง)':
-                            start_class_text_show_idc = "btn-success";
+                            start_class_text_show_idc = "idc-rc-green";
                         break;
                         case 'เหลือง(เร่งด่วน)':
-                            start_class_text_show_idc = "btn-warning";
+                            start_class_text_show_idc = "idc-rc-yellow";
                         break;
                         case 'แดง(วิกฤติ)':
-                            start_class_text_show_idc = "btn-danger";
+                            start_class_text_show_idc = "idc-rc-red";
                         break;
                     }
                     document.querySelector('#show_idc').classList.add(start_class_text_show_idc);
@@ -1322,20 +1445,75 @@
                     let No_step = i + 1 ; // ข้อที่
                     let distance_step = steps_travel[i].distance.text ; // ระยะทางก่อนเปลี่ยน
                     let instructions_step = steps_travel[i].instructions ; // คำอธิบาย
-                    let maneuver = steps_travel[i].maneuver ; // วิธีเปลี่ยนเส้นทาง
+                    let maneuver = steps_travel[i].maneuver;
+                    
+                    
+                    console.log(i + "-" + steps_travel[i].maneuver);
+                    
+                    if (maneuver) {
 
+                        maneuver = steps_travel[i].maneuver ; // วิธีเปลี่ยนเส้นทาง
+                    }else{
+                        if (instructions_step.includes("มุ่งหน้าทาง") || instructions_step.includes("ขับต่อไป")){
+                            maneuver = "straight" ;
+                        }
+                        if (instructions_step.includes("ขวาหักศอก")){
+
+                            maneuver = "sharp-right-turn" ;
+                        }
+                        if (instructions_step.includes("หักศอก")){
+                            if (instructions_step.includes("ซ้าย")){
+                                maneuver = "sharp-left-turn" ;
+                            }
+                            if (instructions_step.includes("ขวา")){
+                                maneuver = "sharp-right-turn" ;
+                            }
+                        }
+
+                        if (instructions_step.includes("เบี่ยง")){
+                            
+                            if (instructions_step.includes("ซ้าย")){
+                                maneuver = "deviate-left" ;
+                            }
+                            if (instructions_step.includes("ขวา")){
+                                maneuver = "deviate-right" ;
+                            }
+                        }
+
+                        if (instructions_step.includes("ตัดเข้าไปยัง")){
+                            maneuver = "merge" ;
+                        }
+                       
+                    }
+
+                    
+                    
                     let steps_travel_html = 
-                        '<div class="col-2">'+
-                            maneuver +
+                    '<div class="row gg-travel-guide">'+
+                        '<div class=" gg-travel-guide-img">'+
+                            '<img src="{{ url("/") }}/img/traffic sign/' + maneuver + '.png" width="70" height="70" >'+
                         '</div>'+
-                        '<div class="col-8">'+
-                            instructions_step +
+                        '<div class="gg-travel-guide-text">' + 
+                        '<div>' + i + "." + instructions_step + '</div>' +
                         '</div>'+
-                        '<div class="col-2">'+
-                            distance_step +
+                        '<div class="d-flex justify-content-end py-3">'+
+                        '    <div class="gg-travel-guide-bottom">'+
+                        '        <span>' + distance_step + '</span>'+
+                        '    </div>'+
                         '</div>'+
-                        '<hr>'
-                    ;
+                    '</div>';
+                    // let steps_travel_html = 
+                    //     '<div class="col-2">'+
+                    //         maneuver +
+                    //     '</div>'+
+                    //     '<div class="col-8">'+
+                    //         instructions_step +
+                    //     '</div>'+
+                    //     '<div class="col-2">'+
+                    //         instructions_step +
+                    //     '</div>'+
+                    //     '<hr>'
+                    // ;
 
                     div_steps_travel.insertAdjacentHTML('beforeend', steps_travel_html); // แทรกล่างสุด
                 }
