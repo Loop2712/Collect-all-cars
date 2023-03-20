@@ -1434,7 +1434,7 @@ input:focus {
     				if (position.coords.heading) {
     					console.log(position.coords.heading);
     					document.querySelector('#set_heading').innerHTML = position.coords.heading ;
-					    map_show_case.setHeading(position.coords.heading);
+					    map_show_case.setHeading(parseFloat(position.coords.heading));
 					    map_show_case.setTilt(45); // Set a 45 degree tilt to show 3D view
 					}else{
     					document.querySelector('#set_heading').innerHTML = " ไม่มี heading " ;
