@@ -182,12 +182,13 @@ class LoginController extends Controller
     public function handleLineCallback(Request $request)
     {
         // $user = Socialite::driver('line')->user();
+        $user = Socialite::driver('line')->stateless()->user();
 
-        try {
-            $user = Socialite::driver('line')->user();
-        } catch (InvalidStateException $e) {
-            $user = Socialite::driver('line')->stateless()->user();
-        }
+        // try {
+        //     $user = Socialite::driver('line')->user();
+        // } catch (InvalidStateException $e) {
+        //     $user = Socialite::driver('line')->stateless()->user();
+        // }
 
         // echo "<pre>";
         // print_r($user);
