@@ -909,14 +909,14 @@ input:focus {
 
 
 	<!-- ////////////////////////////////////////// MENU 4 MAP ////////////////////////////////////////// -->
-	<div id="menu_4" class="row data-menu show-data-menu d-none " style="bottom: -2rem">
+	<div id="menu_4" class="row data-menu show-data-menu d-none " style="bottom: -0rem">
 		@php
 			$gg_lat_mail = '@' . $data_sos->lat ;
 			$gg_lat = $data_sos->lat ;
 			$lng = $data_sos->lng ;
 		@endphp
 
-		<menu class="col-12" id="show_travel_guide">
+		<menu class="col-12 d-none" id="show_travel_guide">
 			<span id="btn_open_or_close_viicheck_speak" class="float-right btn" 
 			onclick="check_click_btn_open_or_close_viicheck_speak();" 
 			style="position: absolute;top: -60%;right: 5%;border-radius: 25px 25px 25px 25px;background-color: white;">
@@ -936,7 +936,7 @@ input:focus {
 		<menu class="col-12">
 			<button class="card-body p-3 main-shadow btn btn-sm text-start font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 20px 20px 20px 20px;background-color: white;font-size: 15px;">
 				<div class="row">
-					<div class="col-5">
+					<div class="col-4">
 						ระยะทาง <br>
 						<span id="text_distance"></span>
 					</div>
@@ -944,9 +944,12 @@ input:focus {
 						ถึงเวลาประมาณ <br>
 						<span id="text_duration"></span>
 					</div>
-					<div class="col-2" onclick="watchPosition_officer();">
-						<i class="fa-solid fa-location-dot-slash"></i><br>
-						<span id="span_show_text_get_dir">ปิด</span>
+					<div class="col-3 notranslate text-center" > <!-- onclick="watchPosition_officer();" -->
+						<!-- <i class="fa-solid fa-location-dot-slash"></i><br>
+						<span id="span_show_text_get_dir">soon</span> -->
+						<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" target="bank">
+							<img src="{{ asset('/img/icon/icon-google-map.png') }}" width="20" alt=""><br>MAP
+						</a>
 					</div>
 				</div>
 			</button>
@@ -1368,7 +1371,7 @@ input:focus {
 	function get_Directions_API(markerA, markerB) {
 		// console.log( "get_Directions_API" );
 
-		document.querySelector('#show_travel_guide').classList.remove('d-none');
+		// document.querySelector('#show_travel_guide').classList.remove('d-none');
 
 		if (directionsDisplay) {
 	        directionsDisplay.setMap(null);
@@ -1489,12 +1492,15 @@ input:focus {
     				officer_marker.setPosition(newPosition);
     				console.log("SET officer_marker ใน watchPosition_officer");
 
+    				// setHeading
     				if (position.coords.heading) {
     					console.log(position.coords.heading);
     					document.querySelector('#set_heading').innerHTML = position.coords.heading ;
 					    map_show_case.setHeading(parseFloat(position.coords.heading));
 					    map_show_case.setTilt(45); // Set a 45 degree tilt to show 3D view
 
+					    // let map_show_case_rotate = document.querySelector('#map_show_case');
+  						// 	map_show_case_rotate.style.transform = "rotate("+parseFloat(position.coords.heading)+"deg) translate(50px, 50px) scale(1.5)";
 					}else{
     					document.querySelector('#set_heading').innerHTML = " ไม่มี heading " ;
 					}
