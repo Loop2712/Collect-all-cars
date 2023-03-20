@@ -1501,7 +1501,7 @@ input:focus {
     					document.querySelector('#set_heading').innerHTML = " ไม่มี heading " ;
 					}
 
-					map_show_case.setZoom(19);
+					map_show_case.setZoom(17);
 					map_show_case.setCenter(officer_marker.getPosition())
 
 			        // --------------------------------- จบ กำหนดค่า MAP --------------------------------- //
