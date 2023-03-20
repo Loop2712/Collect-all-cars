@@ -590,7 +590,7 @@ input:focus {
     </div>
 </div>
 
-	<div id="map_show_case">
+	<div id="map_show_case" >
 		<div class="sry-open-location">
 			<img src="{{ asset('/img/more/sorry-no-text.png') }}" />
 			<center>
@@ -1494,6 +1494,9 @@ input:focus {
     					document.querySelector('#set_heading').innerHTML = position.coords.heading ;
 					    map_show_case.setHeading(parseFloat(position.coords.heading));
 					    map_show_case.setTilt(45); // Set a 45 degree tilt to show 3D view
+
+					    let map_show_case_rotate = document.querySelector('#map_show_case');
+  							map_show_case_rotate.style.transform = "rotate("+parseFloat(position.coords.heading)+"deg) translate(50px, 50px) scale(1.5)";
 					}else{
     					document.querySelector('#set_heading').innerHTML = " ไม่มี heading " ;
 					}
