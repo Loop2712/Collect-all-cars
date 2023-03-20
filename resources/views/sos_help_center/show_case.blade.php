@@ -397,37 +397,42 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 </style>
 
 <style>
-    .div_alert{
+  .div_alert{
   position: fixed;
   /* position: absolute; */
-  top: -13%;
+  top: -30%;
   /* top: 55%; */
-  left: 0;
   width: 100%;
+  left: 0;
   text-align: center;
   font-family: 'Kanit', sans-serif;
   z-index: 9999;
   display: flex;
   justify-content: center;
 }
-.div_alert i{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 70px;
-    max-width: 70px;
-    height: 50px;
-    background-color: #ffddde;
-    border-radius: 50%;
-    color: #ff5757;
-    font-size: 1.5rem;
-    margin-left: 1.5rem;
+@media only screen and (max-width: 600px) {
+    .alert-child{
+        width: 90%;
+        font-size: 1.2rem;
+    }
+}
+@media only screen and (min-width: 600px) {
+    .alert-child{
+        width: 90%;
+        font-size: 1.4rem;
+    }
+}
 
+@media only screen and (min-width: 768px) {
+    .alert-child{
+        width: 40%;
+        font-size: 1.4rem;
+    }
 }
 
 .up-down {
   animation-name: slideDownAndUp;
-  animation-duration: 1s;
+  animation-duration: 5s;
 }
 
 @keyframes slideDownAndUp {
@@ -436,11 +441,11 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   /* Change the percentage here to make it faster */
   10% {
-    transform: translateY(125px);
+    transform: translateY(210px);
   }
   /* Change the percentage here to make it stay down for longer */
   90% {
-    transform: translateY(150px);
+    transform: translateY(210px);
   }
   /* Keep this at the end */
  100% {
@@ -454,11 +459,28 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     justify-content: space-between;
     border-radius: 15px;
     height: 5rem;
-    width: 90%;
     padding:20px 10px;
 }.text-alert{
     color: #fff;
    float: left;
+   padding: 0;
+   margin: 0;
+}.alert-icon{
+    width: 100%;
+    height: 100%;
+    background-color: #ffddde;
+    border-radius: 50%;
+    color: #ff5757;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    max-width: 70px;
+    height: 60px;
+   
+    font-size: 1.5rem;
+    margin-left: 1rem;
+
 }
 .card-car-mileage{
 			border-radius: 15px;
@@ -548,6 +570,24 @@ input:focus {
         <i class="fa-solid fa-xmark"></i>
     </div>
    
+</div>
+<div id="alert_phone" class=" div_alert " role="alert">
+    <div class="alert-child">
+        <div >
+            <p class="d-block  text-alert">กรุณากรอกข้อมูล </p> 
+			<span class="d-block  text-alert">
+				<span>
+					เลข กม.รถ
+				</span>
+				<span id="text-alert"></span>
+			</span>
+			
+        </div>
+        <div class="alert-icon">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        
+    </div>
 </div>
 
 	<div id="map_show_case">
@@ -660,25 +700,25 @@ input:focus {
 
 					<div class="form-car-mileage pr-1 d-none" id="div_km_create_sos_to_go_to_help">
 						<input class="input-car-mileage" placeholder="เลข กม. รถ ออกจากฐาน" id="km_create_sos_to_go_to_help" name="km_create_sos_to_go_to_help" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_create_sos_to_go_to_help ) ? $data_sos->form_yellow->km_create_sos_to_go_to_help : ''}}">
-						<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_create_sos_to_go_to_help')"><i class="fa-solid fa-paper-plane-top"></i></a>
+						<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_create_sos_to_go_to_help' ,'ออกจากฐาน')"><i class="fa-solid fa-paper-plane-top"></i></a>
 					</div>
 
 					<div class="form-car-mileage pr-1 d-none" id="div_km_to_the_scene_to_leave_the_scene">
-						<input class="input-car-mileage " placeholder="เลข กม. รถ ถึงที่เกิดเหตุ" id="km_to_the_scene_to_leave_the_scene" name="km_to_the_scene_to_leave_the_scene" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_to_the_scene_to_leave_the_scene ) ? $data_sos->form_yellow->km_to_the_scene_to_leave_the_scene : ''}}">
+						<input class="input-car-mileage  bg-transparent" placeholder="เลข กม. รถ ถึงที่เกิดเหตุ" id="km_to_the_scene_to_leave_the_scene" name="km_to_the_scene_to_leave_the_scene" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_to_the_scene_to_leave_the_scene ) ? $data_sos->form_yellow->km_to_the_scene_to_leave_the_scene : ''}}">
 						<!-- <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button">
 							<i class="fa-solid fa-paper-plane-top"></i>
 						</a> -->
 					</div>
 
 					<div class="form-car-mileage pr-1 d-none" id="div_km_hospital">
-						<input class="input-car-mileage " placeholder="เลข กม. รถ ถึงโรงพยาบาล" id="km_hospital" name="km_hospital" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_hospital ) ? $data_sos->form_yellow->km_hospital : ''}}">
+						<input class="input-car-mileage  bg-transparent" placeholder="เลข กม. รถ ถึงโรงพยาบาล" id="km_hospital" name="km_hospital" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_hospital ) ? $data_sos->form_yellow->km_hospital : ''}}">
 						<!-- <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button">
 							<i class="fa-solid fa-paper-plane-top"></i>
 						</a> -->
 					</div>
 
 					<div class="form-car-mileage pr-1 d-none" id="div_km_operating_base">
-						<input class="input-car-mileage " placeholder="เลข กม. รถ ถึงฐาน" id="km_operating_base" name="km_operating_base" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_operating_base ) ? $data_sos->form_yellow->km_operating_base : ''}}">
+						<input class="input-car-mileage  bg-transparent" placeholder="เลข กม. รถ ถึงฐาน" id="km_operating_base" name="km_operating_base" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_operating_base ) ? $data_sos->form_yellow->km_operating_base : ''}}">
 						<!-- <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" >
 							<i class="fa-solid fa-paper-plane-top"></i>
 						</a> -->
@@ -720,19 +760,18 @@ input:focus {
 		</div>
 		<!-- -------------------------------------------  จบ เลือกสถานะการณ์  ---------------------------------------------------- -->
 
-
 		<!-- -------------------------------------------  เพิ่มเติมสถานะการสีดำ  ---------------------------------------------------- -->
-		<div id="div_add_rc_black_text" class="d-none row  data-menu show-data-menu"  style="margin-top:-45%">
+		<label for="rc_black_text" id="div_add_rc_black_text" class="d-none row  data-menu show-data-menu"  style="margin-top:-45%">
 			<div class="card-body p-3 main-shadow" style="border-radius: 15px;">
-				<div class="d-flex align-items-center div-text-status">
+				<div class="d-flex align-items-center div-text-status" >
 					<p class="mb-0">สถานะการณ์ : ดำ</p>
-					<input class="input-car-mileage" placeholder="ใส่รหัส" id="rc_black_text" name="rc_black_text" required="" type="text" value="{{ isset( $data_sos->form_yellow->rc_black_text ) ? $data_sos->form_yellow->rc_black_text : ''}}">
+					<input class="input-car-mileage" style="border-radius: 5px; border:#000 1px solid; padding: 10px;margin: 0 10px;" placeholder="โปรดระบุรหัส" id="rc_black_text"  name="rc_black_text" required="" type="text" value="{{ isset( $data_sos->form_yellow->rc_black_text ) ? $data_sos->form_yellow->rc_black_text : ''}}">
 					<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_event_level_rc('rc_black_text','{{ $data_sos->id }}');">
 						<i class="fa-solid fa-paper-plane-top"></i>
 					</a>
 				</div>
 			</div>
-		</div>
+		</label>
 		<!-- ------------------------------------------- จบ เพิ่มเติมสถานะการสีดำ  ---------------------------------------------------- -->
 
 
@@ -837,7 +876,7 @@ input:focus {
 		<div id="div_btn_to_the_scene" class="d-none" style="margin-top:-5%">
 			<menu class="col-12 " >
 				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" 
-					onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_to_the_scene_to_leave_the_scene')">
+					onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_to_the_scene_to_leave_the_scene' ,'ถึงที่เกิดเหตุ')">
 						<i class="fa-sharp fa-solid fa-location-crosshairs"></i> ถึงที่เกิดเหตุ 
 				</button>
 			</menu>
@@ -847,7 +886,7 @@ input:focus {
 		<div id="div_to_hospital" class="d-none"  style="margin-top:-5%">
 			<menu class="col-12 " >
 				<button class="btn btn-primary main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
-				onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_hospital')">
+				onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_hospital' ,'ถึงโรงพยาบาล')">
 					ถึงโรงพยาบาล
 				</button>
 			</menu>
@@ -857,7 +896,7 @@ input:focus {
 		<div id="div_operating_base" class="d-none"  style="margin-top: -5%">
 			<menu class="col-12 " >
 				<button id="btn_operating_base" class="btn btn-success main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;" 
-				onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_operating_base'); ">
+				onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_operating_base' ,'กลับถึงฐาน'); ">
 					กลับถึงฐาน
 				</button>
 			</menu>
@@ -1974,7 +2013,7 @@ input:focus {
 		}
 	}
 
-	function update_mileage_officer(sos_id , location){
+	function update_mileage_officer(sos_id , location ,title){
 
 		mileage_location = location ;
 
@@ -2003,8 +2042,13 @@ input:focus {
 
 
 		if (!mileage) {
+			document.querySelector('#text-alert').innerHTML = title ;
+			document.querySelector('#alert_phone').classList.add('up-down');
+			const animated = document.querySelector('.up-down');
+			animated.onanimationend = () => {
+				document.querySelector('#alert_phone').classList.remove('up-down');
+			};
 
-			alert('ทำแจ้งเตือนให้ใส่เลขหน่อย');
 
 		}else{
 
