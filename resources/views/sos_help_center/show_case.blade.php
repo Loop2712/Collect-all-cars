@@ -1310,7 +1310,7 @@ input:focus {
         const resetButton = document.getElementById("reset-button");
 		resetButton.addEventListener("click", function() {
 		    map_show_case.setCenter(officer_marker.getPosition());
-		    map_show_case.setZoom(19);
+		    map_show_case.setZoom(17);
 		});
 
 		// สร้างเส้นทาง
@@ -1495,8 +1495,6 @@ input:focus {
 					    map_show_case.setHeading(parseFloat(position.coords.heading));
 					    map_show_case.setTilt(45); // Set a 45 degree tilt to show 3D view
 
-					    let map_show_case_rotate = document.querySelector('#map_show_case');
-  							map_show_case_rotate.style.transform = "rotate("+parseFloat(position.coords.heading)+"deg) translate(50px, 50px) scale(1.5)";
 					}else{
     					document.querySelector('#set_heading').innerHTML = " ไม่มี heading " ;
 					}
