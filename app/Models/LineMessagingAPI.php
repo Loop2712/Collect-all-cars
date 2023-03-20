@@ -1684,6 +1684,45 @@ class LineMessagingAPI extends Model
             "content" => "reply Success",
         ];
         MyLog::create($data);
+
+        // ---- //// ส่ง เมนู สพฉ //// ---- //
+        $data_user = User::where('provider_id' , $event["source"]['userId'])->first();
+        if ($message_type == "other" && $data_user->organization == "สพฉ") {
+
+            $template_path_1669 = storage_path('../public/json/text_success.json');   
+            $string_json_1669 = file_get_contents($template_path_1669);
+            $string_json_1669 = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","https://www.viicheck.com/officers/switch_standby_login?openExternalBrowser=1",$string_json_1669);
+
+            $messages_1669 = [ json_decode($string_json_1669, true) ];
+        
+            $body_1669 = [
+                "replyToken" => $event["replyToken"],
+                "messages" => $messages_1669,
+            ];
+
+            $opts_1669 = [
+                'http' =>[
+                    'method'  => 'POST',
+                    'header'  => "Content-Type: application/json \r\n".
+                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                    'content' => json_encode($body_1669, JSON_UNESCAPED_UNICODE),
+                    //'timeout' => 60
+                ]
+            ];
+         
+            $context_1669  = stream_context_create($opts_1669);
+            $url_1669 = "https://api.line.me/v2/bot/message/reply";
+            $result_1669 = file_get_contents($url_1669, false, $context_1669);
+
+            //SAVE LOG
+            $data_1669 = [
+                "title" => "ส่งเมนู สพฉ หลัง อื่นๆ ",
+                "content" => $data_user->id,
+            ];
+            MyLog::create($data_1669);
+
+        }
+
         return $result;
 
     }
