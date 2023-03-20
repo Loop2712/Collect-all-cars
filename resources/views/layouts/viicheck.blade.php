@@ -475,13 +475,13 @@
         </li>
         </ul>
         @if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
-        <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;margin-top: 6px;" width="40" src="{{ Auth::user()->avatar }}">
+        <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;margin-top: 5px;" width="40" src="{{ Auth::user()->avatar }}">
         @endif
         @if(!empty(Auth::user()->photo))
         <div class="mobile-nav-toggle">
           <div class="row ">
             <div class=" col-3" style="margin-left:-30px;padding:0px;">
-              <img class=" main-shadow main-radius" style="margin-right: 15px;margin-top: 6px;" width="40" src="{{ url('storage')}}/{{ Auth::user()->photo }}">
+              <img class=" main-shadow main-radius" style="margin-right: 15px;margin-top: 5px;" width="40" src="{{ url('storage')}}/{{ Auth::user()->photo }}">
             </div>
             <div class="mobile-nav-toggle col-9 d-flex align-items-center" style="margin-left:30px;padding:0px;">
               <span style="font-size:15px;"><i class="bi bi-chevron-down"></i></span>
@@ -490,7 +490,7 @@
         </div>
         @endif
         @if(empty(Auth::user()->avatar) and empty(Auth::user()->photo))
-        <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;margin-top: 6px;" width="40" src="{{ url('/img/icon/user.png') }}">
+        <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;margin-top: 5px;" width="40" src="{{ url('/img/icon/user.png') }}">
         @endif
       </nav>
       @endguest
