@@ -1687,16 +1687,18 @@ class LineMessagingAPI extends Model
 
         // ---- //// ส่ง เมนู สพฉ //// ---- //
         $data_user = User::where('provider_id' , $event["source"]['userId'])->first();
+        $to_user = $data_user->provider_id ;
         if ($message_type == "other" && $data_user->organization == "สพฉ") {
 
             $template_path_1669 = storage_path('../public/json/text_success.json');   
             $string_json_1669 = file_get_contents($template_path_1669);
+
             $string_json_1669 = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","https://www.viicheck.com/officers/switch_standby_login?openExternalBrowser=1",$string_json_1669);
 
             $messages_1669 = [ json_decode($string_json_1669, true) ];
         
             $body_1669 = [
-                "replyToken" => $event["replyToken"],
+                "to" => $to_user,
                 "messages" => $messages_1669,
             ];
 
@@ -1711,7 +1713,8 @@ class LineMessagingAPI extends Model
             ];
          
             $context_1669  = stream_context_create($opts_1669);
-            $url_1669 = "https://api.line.me/v2/bot/message/reply";
+            // $url_1669 = "https://api.line.me/v2/bot/message/reply";
+            $url_1669 = "https://api.line.me/v2/bot/message/push";
             $result_1669 = file_get_contents($url_1669, false, $context_1669);
 
             //SAVE LOG
