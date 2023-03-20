@@ -916,16 +916,7 @@ input:focus {
 			$lng = $data_sos->lng ;
 		@endphp
 
-		<menu class="col-12" id="ask_travel_guide">
-			<button class="card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
-				<center>
-					<span class="btn btn-info btn-sm" >
-						การแนะนำเส้นทางและเวลา
-					</span>
-				</center>
-			</button>
-		</menu>
-		<menu class="col-12 d-none" id="show_travel_guide">
+		<menu class="col-12" id="show_travel_guide">
 			<span id="btn_open_or_close_viicheck_speak" class="float-right btn" 
 			onclick="check_click_btn_open_or_close_viicheck_speak();" 
 			style="position: absolute;top: -60%;right: 5%;border-radius: 25px 25px 25px 25px;background-color: white;">
@@ -939,19 +930,25 @@ input:focus {
 				<span class="d-none" id="speak_to_user"></span>
 			</button>
 		</menu>
-		<menu class="col-10">
-			<button class="card-body p-3 main-shadow btn btn-sm text-start font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;font-size: 15px;">
-				ระยะทาง : <span id="text_distance"></span> <br> ถึงประมาณ : <span id="text_duration"></span>
+		<menu class="col-12">
+			<button class="card-body p-3 main-shadow btn btn-sm text-start font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 20px 20px 20px 20px;background-color: white;font-size: 15px;">
+				<div class="row">
+					<div class="col-5">
+						ระยะทาง <br>
+						<span id="text_distance"></span>
+					</div>
+					<div class="col-5">
+						ถึงเวลาประมาณ <br>
+						<span id="text_duration"></span>
+					</div>
+					<div class="col-2">
+						<i class="fa-solid fa-location-dot-slash"></i><br>
+						<span id="span_show_text_get_dir">ปิด</span>
+					</div>
+				</div>
 			</button>
 		</menu>
-		<menu class="col-2 pl-0">
-			<button class="card-body p-3 main-shadow btn btn-sm text-start font-weight-bold mb-0 h5 btn-light text-center" style="width:100%;border-radius: 20px 20px 20px 20px;background-color: white;font-size: 15px;">
-				<!-- <i class="fa-solid fa-location-dot-slash"></i> -->
-				<i class="fa-solid fa-location-dot-slash"></i>
-				<br>
-				<span id="span_show_text_get_dir">ปิด</span>
-			</button>
-		</menu>
+		<!-- GOOGLE MAP LINK -->
 		<menu class="col-4 pl-0 d-none">
 			<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 notranslate" style="width:100%;border-radius: 25px 25px 25px 25px;font-size: 15px;"  target="bank">
 				<img src="{{ asset('/img/icon/icon-google-map.png') }}" width="20" alt=""><br>Google 
@@ -1312,7 +1309,6 @@ input:focus {
 	function get_Directions_API(markerA, markerB) {
 		// console.log( "get_Directions_API" );
 
-		document.querySelector('#ask_travel_guide').classList.add('d-none');
 		document.querySelector('#show_travel_guide').classList.remove('d-none');
 
 		if (directionsDisplay) {
@@ -1426,14 +1422,17 @@ input:focus {
 			      	// console.log(check_send_update_location_officer);
 
 			      	// หมุดเจ้าหน้าที่
-			        if (officer_marker) {
-			            officer_marker.setMap(null);
-			        }
-			        officer_marker = new google.maps.Marker({
-			            position: {lat: parseFloat(latitude) , lng: parseFloat(longitude) },
-			            map: map_show_case,
-			            icon: image_operating_unit_general,
-			        });
+			        // if (officer_marker) {
+			        //     officer_marker.setMap(null);
+			        // }
+			        // officer_marker = new google.maps.Marker({
+			        //     position: {lat: parseFloat(latitude) , lng: parseFloat(longitude) },
+			        //     map: map_show_case,
+			        //     icon: image_operating_unit_general,
+			        // });
+
+			        const newPosition = new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude));
+    				officer_marker.setPosition(newPosition);
 
 			      	if (check_send_update_location_officer == 'send_update_location_officer') {
 			      		func_send_update_location_officer(latitude , longitude);

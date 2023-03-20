@@ -189,10 +189,10 @@ class LoginController extends Controller
             $user = Socialite::driver('line')->stateless()->user();
         }
 
-        // echo "<pre>";
-        // print_r($user);
-        // echo "<pre>";
-        // exit();
+        echo "<pre>";
+        print_r($user);
+        echo "<pre>";
+        exit();
 
         $by_api = $request->session()->get('by_api');
 
