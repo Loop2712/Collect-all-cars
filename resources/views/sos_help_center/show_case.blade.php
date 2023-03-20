@@ -1413,24 +1413,11 @@ input:focus {
     	if (navigator.geolocation) {
 		  	const watchId = navigator.geolocation.watchPosition(
 			    function(position) {
-			      	// Retrieve latitude and longitude from the position object
+
 			      	let latitude = position.coords.latitude;
 			      	let longitude = position.coords.longitude;
 
-			      	// console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-			      	// console.log(seconds_officer);
-			      	// console.log(check_send_update_location_officer);
-
 			      	// หมุดเจ้าหน้าที่
-			        // if (officer_marker) {
-			        //     officer_marker.setMap(null);
-			        // }
-			        // officer_marker = new google.maps.Marker({
-			        //     position: {lat: parseFloat(latitude) , lng: parseFloat(longitude) },
-			        //     map: map_show_case,
-			        //     icon: image_operating_unit_general,
-			        // });
-
 			        const newPosition = new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude));
     				officer_marker.setPosition(newPosition);
 

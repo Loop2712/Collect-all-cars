@@ -333,12 +333,21 @@
         <div class="col-6 d-block d-lg-none">
           <a href="{{URL::to('/')}}"><img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
         </div>
+        <div class="col-6 d-block d-lg-none">
+          @if(Auth::check())
+          <a class="notranslate" href="{{ url('/sos_map/create') }}" style="font-size: 18px;position: absolute;bottom: 1%;">
+            <span class="btn btn-danger main-shadow main-radius">
+              SOS <i class="fa-solid fa-truck-medical"></i>
+            </span>
+          </a>
+          @endif
+        </div>
       </div>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       @guest
       <a href="{{ url('/sos_map/create') }}" style="margin-right:10px" class="appointment-btn scrollto order-last order-lg-1">
-        <span class="d-block d-md-inline">SOS</span>
+        <span class="d-block d-md-inline">SOS &nbsp;<i class="fa-solid fa-truck-medical"></i></span>
       </a>
       <a  id="tag_a_login_viicheck" href="{{ route('login') }}?redirectTo={{ url()->full() }}" style="margin-right:10px" class="appointment-btn scrollto order-last order-lg-1">
         <span class="d-block d-md-inline">เข้าสู่ระบบ</span>
@@ -387,6 +396,11 @@
           </li>
           
           @if(Auth::check())
+          <a class="notranslate d-none d-lg-block" href="{{ url('/sos_map/create') }}" style="font-size: 18px;margin-left: 10px;">
+            <span class="btn btn-danger main-shadow main-radius">
+              SOS <i class="fa-solid fa-truck-medical"></i>
+            </span>
+          </a>
           <input id="status_user" type="hidden" name="" value="{{ Auth::user()->status }}">
           <input id="status_id" type="hidden" name="" value="{{ Auth::user()->id }}">
           <li class="dropdown">
@@ -461,13 +475,13 @@
         </li>
         </ul>
         @if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
-        <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ Auth::user()->avatar }}">
+        <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;margin-top: 6px;" width="40" src="{{ Auth::user()->avatar }}">
         @endif
         @if(!empty(Auth::user()->photo))
         <div class="mobile-nav-toggle">
           <div class="row ">
             <div class=" col-3" style="margin-left:-30px;padding:0px;">
-              <img class=" main-shadow main-radius" width="35" src="{{ url('storage')}}/{{ Auth::user()->photo }}">
+              <img class=" main-shadow main-radius" style="margin-right: 15px;margin-top: 6px;" width="40" src="{{ url('storage')}}/{{ Auth::user()->photo }}">
             </div>
             <div class="mobile-nav-toggle col-9 d-flex align-items-center" style="margin-left:30px;padding:0px;">
               <span style="font-size:15px;"><i class="bi bi-chevron-down"></i></span>
@@ -476,7 +490,7 @@
         </div>
         @endif
         @if(empty(Auth::user()->avatar) and empty(Auth::user()->photo))
-        <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ url('/img/icon/user.png') }}">
+        <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;margin-top: 6px;" width="40" src="{{ url('/img/icon/user.png') }}">
         @endif
       </nav>
       @endguest
