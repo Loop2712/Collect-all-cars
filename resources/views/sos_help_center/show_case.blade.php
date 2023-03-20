@@ -1277,7 +1277,7 @@ input:focus {
 	}
 
     function open_map_show_case(position) {
-		console.log("open_map_show_case");
+		// console.log("open_map_show_case");
 
     	start_officer_lat = position.coords.latitude ;
 		start_officer_lng = position.coords.longitude ;
@@ -1334,7 +1334,7 @@ input:focus {
 			    	// หมุดเจ้าหน้าที่
 			        const newPosition = new google.maps.LatLng(parseFloat(latitude_officer_marker), parseFloat(longitude_officer_marker));
     				officer_marker.setPosition(newPosition);
-					console.log("SET หมุดเจ้าหน้าที่");
+					// console.log("SET หมุดเจ้าหน้าที่");
 
 					// รอ 1 วินาที (1000 มิลลิวินาที) ก่อนคำนวณขนาดแผนที่และ fitBounds
 			      	setTimeout(function() {
@@ -1473,7 +1473,7 @@ input:focus {
     function watchPosition_officer(){
 
 		// STOP watchId_start_market_officer
-		console.log("STOP watchId_start_market_officer");
+		// console.log("STOP watchId_start_market_officer");
 		navigator.geolocation.clearWatch(watchId_start_market_officer);
 
 		// ----------------------------------------------------------------------------
@@ -1490,11 +1490,11 @@ input:focus {
 			      	// หมุดเจ้าหน้าที่
 			        const newPosition = new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude));
     				officer_marker.setPosition(newPosition);
-    				console.log("SET officer_marker ใน watchPosition_officer");
+    				// console.log("SET officer_marker ใน watchPosition_officer");
 
     				// setHeading
     				if (position.coords.heading) {
-    					console.log(position.coords.heading);
+    					// console.log(position.coords.heading);
     					document.querySelector('#set_heading').innerHTML = position.coords.heading ;
 					    map_show_case.setHeading(parseFloat(position.coords.heading));
 					    map_show_case.setTilt(45); // Set a 45 degree tilt to show 3D view
@@ -1520,12 +1520,12 @@ input:focus {
 					  	
 			    },
 			    function(error) {
-			      console.log(`Error: ${error.message}`);
+			      // console.log(`Error: ${error.message}`);
 			    }
 		  	);
 
 		} else {
-		  console.log("Geolocation is not supported by this browser");
+		  // console.log("Geolocation is not supported by this browser");
 		}
 
     }
@@ -1542,7 +1542,7 @@ input:focus {
                 // console.log(result);
                 // console.log(result['status']);
 
-                console.log("send_update_location_officer");
+                // console.log("send_update_location_officer");
 
                 let sos_lat = result['lat'] ;
                 let sos_lng = result['lng'] ;
@@ -1561,12 +1561,12 @@ input:focus {
 	}
 
 	function distance_check(latitude,longitude){
-        console.log("distance_check");
+        // console.log("distance_check");
 
 		const currentLatitude = latitude ; // User's current latitude
 		const currentLongitude = longitude ; // User's current longitude
 
-		console.log(steps_travel);
+		// console.log(steps_travel);
 
       	let stepLatitude = steps_travel[0].end_location.lat();
       	let stepLongitude = steps_travel[0].end_location.lng();
@@ -1590,10 +1590,10 @@ input:focus {
 
 	function runLoop(distance) {
 
-		console.log("ระยะทางที่เหลือ => " + distance);
+		// console.log("ระยะทางที่เหลือ => " + distance);
 
 	  	if (distance <= 0.05) {
-		    console.log(">>>>>>>>> --------------------------- <<<<<<<<<");
+		    // console.log(">>>>>>>>> --------------------------- <<<<<<<<<");
 
 		    document.querySelector('#speak_to_user').innerHTML = steps_travel[0].instructions ;
 		    let span_speak_to_user = document.querySelector('#speak_to_user') ;
@@ -1601,8 +1601,8 @@ input:focus {
 
 		    viicheck_speech(text_speak_to_user);
 
-		    console.log(">>>>>>>>>  แจ้งผู้ใช้ให้เปลี่ยนเส้นทาง " + text_speak_to_user + "  <<<<<<<<<");
-		    console.log(">>>>>>>>> --------------------------- <<<<<<<<<");
+		    // console.log(">>>>>>>>>  แจ้งผู้ใช้ให้เปลี่ยนเส้นทาง " + text_speak_to_user + "  <<<<<<<<<");
+		    // console.log(">>>>>>>>> --------------------------- <<<<<<<<<");
 
 		    // ลบตัวแรกออก
 		    drop_steps_travel_arr = steps_travel.shift();
@@ -1622,12 +1622,12 @@ input:focus {
 
 		    if (steps_travel[0].instructions && distance > 1) {
 
-		      	console.log("หัวข้อการนำทางต่อไป = " + textContent_text_instructions + "  ระยะใหม่ : " + distance);
+		      	// console.log("หัวข้อการนำทางต่อไป = " + textContent_text_instructions + "  ระยะใหม่ : " + distance);
 		      	viicheck_speech("ขับต่อไปอีก " + distance + "เมตร จากนั้น " + textContent_text_instructions);
 
 		    }else {
 
-	      		console.log("ถึงปลายทางของท่านแล้ว");
+	      		// console.log("ถึงปลายทางของท่านแล้ว");
 		      	viicheck_speech("ถึงปลายทางของท่านแล้ว");
 
 		    }
@@ -1637,7 +1637,7 @@ input:focus {
 	    	worked_500 = false;
 	  	} else {
 		    if (distance <= 0.1 && !worked_100) {
-		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent_text_instructions);
+		      	// console.log("------------- >>>>> Speak อีก " + distance + " " + textContent_text_instructions);
 		      	viicheck_speech(" อีก 100 เมตร " + textContent_text_instructions);
 
 		     	worked_100 = true;
@@ -1645,14 +1645,14 @@ input:focus {
 		      	worked_500 = true;
 		    }
 		    if (distance <= 0.3 && !worked_300) {
-		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent_text_instructions);
+		      	// console.log("------------- >>>>> Speak อีก " + distance + " " + textContent_text_instructions);
 		      	viicheck_speech(" อีก 300 เมตร " + textContent_text_instructions);
 
 		      	worked_300 = true;
 		      	worked_500 = true;
 		    }
 		    if (distance <= 0.5 && !worked_500) {
-		      	console.log("------------- >>>>> Speak อีก " + distance + " " + textContent_text_instructions);
+		      	// console.log("------------- >>>>> Speak อีก " + distance + " " + textContent_text_instructions);
 		      	viicheck_speech(" อีก 500 เมตร " + textContent_text_instructions);
 		      	worked_500 = true;
 		    }
