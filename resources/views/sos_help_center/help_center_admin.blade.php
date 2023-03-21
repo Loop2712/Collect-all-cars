@@ -297,13 +297,13 @@
                     <div class="col-4">
                         <div class="card p-3 radius-10" >
                             <p class="m-0">จำนวนทั้งหมด</p>
-                            <h5>{{$count_data}} รายการ</h5>
+                            <h5><span id="span_count_data">{{ $count_data }}</span> รายการ</h5>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="card p-3 radius-10" >
                             <p class="m-0">เวลาโดยเฉลี่ย</p>
-                            <h5>5นาที / เคส</h5>
+                            <h5> ... นาที / เคส</h5>
                         </div>
                     </div>
                 </div>

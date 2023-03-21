@@ -2041,6 +2041,10 @@
 
         // console.log(div_text_html);
 
+	    let span_count_data = document.querySelector('#span_count_data').textContent;
+	    // console.log(span_count_data);
+	    document.querySelector('#span_count_data').innerHTML = parseFloat(span_count_data) + 1 ;
+
     }
 
     function tetetetfttfg(){
