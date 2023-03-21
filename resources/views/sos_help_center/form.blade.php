@@ -1448,19 +1448,18 @@
                     let maneuver = steps_travel[i].maneuver;
                     
                     
-                    console.log(i + "-" + steps_travel[i].maneuver);
+                    // console.log(i + "-" + steps_travel[i].maneuver);
                     
                     if (maneuver) {
-
                         maneuver = steps_travel[i].maneuver ; // วิธีเปลี่ยนเส้นทาง
                     }else{
                         if (instructions_step.includes("มุ่งหน้าทาง") || instructions_step.includes("ขับต่อไป")){
                             maneuver = "straight" ;
                         }
                         if (instructions_step.includes("ขวาหักศอก")){
-
                             maneuver = "sharp-right-turn" ;
                         }
+
                         if (instructions_step.includes("หักศอก")){
                             if (instructions_step.includes("ซ้าย")){
                                 maneuver = "sharp-left-turn" ;
@@ -1494,7 +1493,7 @@
                             '<img src="{{ url("/") }}/img/traffic sign/' + maneuver + '.png" width="70" height="70" >'+
                         '</div>'+
                         '<div class="gg-travel-guide-text">' + 
-                        '<div>' + i + "." + instructions_step + '</div>' +
+                        '<div>' + instructions_step + '</div>' +
                         '</div>'+
                         '<div class="d-flex justify-content-end py-3">'+
                         '    <div class="gg-travel-guide-bottom">'+
