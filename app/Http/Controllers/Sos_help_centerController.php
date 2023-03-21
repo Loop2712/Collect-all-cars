@@ -256,10 +256,9 @@ class Sos_help_centerController extends Controller
     function switch_standby_login(Request $request){
 
         $requestData = $request->all();
-        $officer = $requestData['officer'] ;
 
-        if ( !empty($officer) ) {
-            $redirectTo = 'officers/switch_standby/?officer=' . $officer;
+        if ( !empty($requestData['officer']) ) {
+            $redirectTo = 'officers/switch_standby/?officer=' . $requestData['officer'];
         }else{
             $redirectTo = 'officers/switch_standby/' ;
         }
@@ -270,7 +269,7 @@ class Sos_help_centerController extends Controller
         }else{
             return redirect('/login/line?redirectTo=' . $redirectTo);
         }
-        
+
         // if(Auth::check()){
         //     return redirect('officers/switch_standby');
         // }else{
