@@ -1291,5 +1291,19 @@ class Sos_help_centerController extends Controller
         
         return $requestData;
     }
+    
+    public function sos_help_officer_yellow($id)
+    {
+        $sos_help_center = Sos_help_center::where('id' ,  $id)->first();
+        $data_user = Auth::user();
+        $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id',$id)->first();
+
+        // if ($data_sos->helper_id == $data_user->id) {
+            return view('sos_help_officer.officer_form_yellow', compact('sos_help_center' ,'data_form_yellow'));
+        // }else{
+        //     return redirect('404');
+        // }
+        
+    }
 
 }

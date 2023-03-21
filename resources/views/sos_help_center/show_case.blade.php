@@ -641,7 +641,7 @@ input:focus {
 	<div class="row data-menu show-data-menu d-none" id="menu_1" style="bottom: -1rem">
 		
 		<menu class="col-12 " >
-			<a href="#" class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" >
+			<a href="{{ url('/officer_form_yellow/'.$data_sos->id.'#step-1' ) }}" class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" >
 				แก้ไขข้อมูล ฟอร์มเหลือง
 			</a>
 		</menu>
