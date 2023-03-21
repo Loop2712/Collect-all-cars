@@ -253,12 +253,23 @@ class Sos_help_centerController extends Controller
         return $polygon_provinces ;
     }
 
-    function switch_standby_login(){
+    function switch_standby_login(Request $request){
+
+        $requestData = $request->all();
+        $officer = $requestData['officer'] ;
+
+        $redirectTo = 'officers/switch_standby/?officer=' . $officer;
+
         if(Auth::check()){
-            return redirect('officers/switch_standby');
+            return redirect('officers/switch_standby/?officer=' . $officer);
         }else{
-            return redirect('/login/line?redirectTo=officers/switch_standby');
+            return redirect('/login/line?redirectTo=' . $redirectTo);
         }
+        // if(Auth::check()){
+        //     return redirect('officers/switch_standby');
+        // }else{
+        //     return redirect('/login/line?redirectTo=officers/switch_standby');
+        // }
     }
 
     function switch_standby(Request $request){
