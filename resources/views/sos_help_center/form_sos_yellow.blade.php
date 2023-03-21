@@ -1877,7 +1877,7 @@
 				  			// console.log(key + " ==>> ข้อมูลเปลี่ยน");
 				  			// console.log(start_data_arr[key] + " เปลี่ยนเป็น " + data_new_5vi[key]);
 
-					        if( key === 'operation_unit_name' || key === 'action_set_name' || key === 'time_create_sos' || key === 'time_command' || key === 'time_go_to_help' || key === 'time_to_the_scene' || key === 'time_leave_the_scene' || key === 'time_hospital' || key === 'time_to_the_operating_base' || key === 'km_create_sos_to_go_to_help' || key === 'km_to_the_scene_to_leave_the_scene' || key === 'km_hospital' || key === 'km_operating_base'  ){
+					        if( key === 'operation_unit_name' || key === 'action_set_name' || key === 'time_create_sos' || key === 'time_command' || key === 'time_go_to_help' || key === 'time_to_the_scene' || key === 'time_leave_the_scene' || key === 'time_hospital' || key === 'time_to_the_operating_base' || key === 'km_create_sos_to_go_to_help' || key === 'km_to_the_scene_to_leave_the_scene' || key === 'km_hospital' || key === 'km_operating_base' ){
 
 					        	document.querySelector('#'+key).value = value ;
 
@@ -1900,7 +1900,7 @@
 									tag_i_vehicle_type.setAttribute('class', "fa-solid fa-truck-medical");
 								}else if(value === 'อากาศยาน'){
 									tag_i_vehicle_type.setAttribute('class', "fa-sharp fa-solid fa-plane");
-								}else if(value === 'เรือ ป.๑' || value === 'เรือ ป.๒' || value === 'เรือ ป.๓' || value === 'เรือประเภทอื่นๆ' || ){
+								}else if(value === 'เรือ ป.๑' || value === 'เรือ ป.๒' || value === 'เรือ ป.๓' || value === 'เรือประเภทอื่นๆ' ){
 									tag_i_vehicle_type.setAttribute('class', "fa-duotone fa-ship");
 								}
 
