@@ -1,11 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.partners.theme_partner_new')
 
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Create New Data_1669_operating_unit</div>
                     <div class="card-body">

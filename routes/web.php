@@ -213,6 +213,8 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 Route::get('sos_help_center/reply_select/{sos_id}', 'Sos_help_centerController@reply_select');
 Route::get('officers/switch_standby_login', 'Sos_help_centerController@switch_standby_login');
 Route::get('officers/switch_standby', 'Sos_help_centerController@switch_standby');
+Route::get('add_new_officers/{area}', 'Sos_help_centerController@add_new_officers');
+
 
 //partner
 // Route::middleware(['auth', 'role:partner'])->group(function () {

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Data_1669_operating_unit;
+use App\Models\Data_1669_operating_officer;
 use Illuminate\Http\Request;
 
 class Data_1669_operating_unitController extends Controller
@@ -70,7 +71,9 @@ class Data_1669_operating_unitController extends Controller
     {
         $data_1669_operating_unit = Data_1669_operating_unit::findOrFail($id);
 
-        return view('data_1669_operating_unit.show', compact('data_1669_operating_unit'));
+        $data_officer = Data_1669_operating_officer::where('operating_unit_id' , $id)->get();
+
+        return view('data_1669_operating_unit.show', compact('data_1669_operating_unit','data_officer'));
     }
 
     /**
