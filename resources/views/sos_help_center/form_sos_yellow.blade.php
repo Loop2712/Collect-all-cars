@@ -912,19 +912,17 @@
 						</div>
 						<hr>
 
-						<div class="row">
-							<div class="col-md-4">
-								<label for="" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
-								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" id="operation_unit_name" name="operation_unit_name" value="{{ isset($data_form_yellow->operation_unit_name) ? $data_form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ" readonly>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<label for="phone_user" class="form-label"><b>ชื่อชุดปฏิบัติการ</b></label>
-								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-users-medical"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" id="action_set_name" name="action_set_name" value="{{ isset($data_form_yellow->action_set_name) ? $data_form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ" readonly>
-								</div>
-							</div>
+						@php
+							if( empty($data_form_yellow->operation_unit_name) ){
+								$class_no_operating_unit = "" ;
+								$class_has_an_operating_unit = "d-none" ;
+							}
+							else{
+								$class_no_operating_unit = "d-none" ;
+								$class_has_an_operating_unit = "" ;
+							}
+						@endphp
+						<div class="row {{ $class_no_operating_unit }}" id="no_operating_unit">
 							<div class="col-md-4">
 								<label for="" class="form-label"><b>&nbsp;</b></label>
 								<span id="btn_select_unit_in_no5" class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();select_level();" style="width:100%;" >
@@ -932,25 +930,22 @@
 								</span>
 							</div>
 						</div>
+						
 
-						<div class="row mt-3">
-							<div class="col-md-4 mb-2">
-								<label  class="form-label m-0">
-									<b>
-										ชนิดยานพาหนะ<sup>(๗)</sup>
-									</b>
-								</label>
+						<div class="row {{ $class_has_an_operating_unit }}" id="has_an_operating_unit">
+							<div class="col-12 col-md-3">
+								<label for="" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" id="operation_unit_name" name="operation_unit_name" value="{{ isset($data_form_yellow->operation_unit_name) ? $data_form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ" readonly>
+								</div>
 							</div>
-							<div class="col-md-4 mb-2">
-								<label  class="form-label m-0">
-									<b>
-										ประเภทชุดปฏิบัติการ
-									</b>
-								</label>
+							<div class="col-12 col-md-3">
+								<label for="phone_user" class="form-label"><b>ชื่อชุดปฏิบัติการ</b></label>
+								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-users-medical"></i></span>
+									<input type="text" class="form-control border-start-0 radius-2" id="action_set_name" name="action_set_name" value="{{ isset($data_form_yellow->action_set_name) ? $data_form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ" readonly>
+								</div>
 							</div>
-							<div class="col-12 col-md-4">
-								<!--  -->
-							</div>
+
 							<!-- vehicle_type -->
 							@php
 								$check_checked = "" ;
@@ -1004,27 +999,31 @@
 										$check_checked_operating = "checked";
 										$text_operating = "FR" ;
 										$value_operating = "FR" ;
-										$color_operating = "" ;
+										$color_operating = "success" ;
 									}else if ( $data_form_yellow->operating_suit_type == 'BLS' ){
 										$check_checked_operating = "checked";
 										$text_operating = "BLS" ;
 										$value_operating = "BLS" ;
-										$color_operating = "" ;
+										$color_operating = "warning" ;
 									}else if ( $data_form_yellow->operating_suit_type == 'ILS' ){
 										$check_checked_operating = "checked";
 										$text_operating = "ILS" ;
 										$value_operating = "ILS" ;
-										$color_operating = "" ;
+										$color_operating = "danger" ;
 									}else if ( $data_form_yellow->operating_suit_type == 'ALS' ){
 										$check_checked_operating = "checked";
 										$text_operating = "ALS" ;
 										$value_operating = "ALS" ;
-										$color_operating = "" ;
+										$color_operating = "danger" ;
 									}
 								}
 
 							@endphp
-							<div class="col-12 col-md-4">
+
+							<div class="col-12 col-md-3">
+								<label  class="form-label mb-2">
+									<b>ชนิดยานพาหนะ<sup>(๗)</sup></b>
+								</label>
 								<label>
 									<input type="radio" {{ $check_checked }} name="vehicle_type" data-vehicle_type="{{ $value_vehicle_type }}" value="{{ $value_vehicle_type }}"  class="card-input-element d-none" disabled>
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
@@ -1032,12 +1031,18 @@
 									</div>
 								</label>
 							</div>
-							<div class="col-12 col-md-4">
-								<input type="radio" {{ $check_checked_operating }} data-operating_suit_type="{{ $value_operating }}" name="operating_suit_type" value="{{ $value_operating }}"  class="card-input-element d-none" >
-								<div class="card card-body {{ $color_operating }} d-flex flex-row justify-content-between align-items-center">
-									<b>{{ $text_operating }}</b>
-								</div>
+							<div class="col-12 col-md-3">
+								<label class="form-label mb-2">
+									<b>ประเภทชุดปฏิบัติการ</b>
+								</label>
+								<label>
+									<input type="radio" {{ $check_checked_operating }} data-operating_suit_type="{{ $value_operating }}" name="operating_suit_type" value="{{ $value_operating }}" class="card-input-{{ $color_operating }} card-input-element d-none" disabled>
+									<div class="card card-body  d-flex flex-row justify-content-between align-items-center">
+										<b>{{ $text_operating }}</b>
+									</div>
+								</label>
 							</div>
+
 						</div>
 
 						<div class="row mt-3">
@@ -1077,7 +1082,7 @@
 								<br>
 								<input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" step="2" value="{{ isset($data_form_yellow->time_to_the_operating_base) ? $data_form_yellow->time_to_the_operating_base : ''}}" readonly>
 							</div>
-							<div class="col-12 col-md-10 mt-3">
+							<div class="col-12 col-md-3 mt-3">
 								<!--  -->
 							</div>
 
