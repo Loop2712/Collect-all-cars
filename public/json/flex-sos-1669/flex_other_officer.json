@@ -1,0 +1,371 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+        "type": "bubble",
+        "size": "giga",
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "image",
+              "url": "https://www.viicheck.com/img/flex/1669/flex_other_officer.png",
+              "size": "full",
+              "aspectRatio": "2900:3400",
+              "aspectMode": "cover"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "ข้อมูลของคุณ",
+                      "weight": "bold",
+                      "size": "xs",
+                      "color": "#ffffff",
+                      "wrap": true,
+                      "align": "center",
+                      "maxLines": 2
+                    }
+                  ],
+                  "position": "absolute",
+                  "width": "55%",
+                  "offsetTop": "10%",
+                  "offsetStart": "5%",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "height": "40%"
+                }
+              ],
+              "position": "absolute",
+              "width": "45%",
+              "height": "25%",
+              "offsetTop": "15%",
+              "offsetStart": "4%",
+              "action": {
+                "type": "message",
+                "label": "action",
+                "text": "ข้อมูลของคุณ"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "ถาม",
+                      "weight": "bold",
+                      "size": "sm",
+                      "color": "#ffffff",
+                      "wrap": true,
+                      "align": "center",
+                      "maxLines": 2
+                    }
+                  ],
+                  "position": "absolute",
+                  "width": "35%",
+                  "offsetTop": "8%",
+                  "offsetStart": "59%",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "height": "28%"
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "ตอบ",
+                      "weight": "bold",
+                      "size": "sm",
+                      "color": "#ffffff",
+                      "wrap": true,
+                      "align": "center",
+                      "maxLines": 2
+                    }
+                  ],
+                  "position": "absolute",
+                  "width": "35%",
+                  "offsetTop": "45%",
+                  "offsetStart": "39%",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "height": "26%"
+                }
+              ],
+              "position": "absolute",
+              "width": "45%",
+              "height": "25%",
+              "offsetTop": "15%",
+              "offsetStart": "51%",
+              "action": {
+                "type": "uri",
+                "label": "action",
+                "uri": "https://www.viicheck.com/faq"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "ติดต่อ",
+                      "weight": "bold",
+                      "size": "sm",
+                      "color": "#ffffff",
+                      "wrap": true,
+                      "align": "center",
+                      "maxLines": 2
+                    }
+                  ],
+                  "position": "absolute",
+                  "width": "100%",
+                  "offsetTop": "78%",
+                  "alignItems": "center",
+                  "justifyContent": "center"
+                }
+              ],
+              "position": "absolute",
+              "width": "45%",
+              "height": "24%",
+              "offsetTop": "42%",
+              "offsetStart": "4%",
+              "action": {
+                "type": "message",
+                "label": "ติดต่อ",
+                "text": "ติดต่อ"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "Language",
+                      "weight": "bold",
+                      "size": "sm",
+                      "color": "#ffffff",
+                      "wrap": false,
+                      "align": "center"
+                    }
+                  ],
+                  "position": "absolute",
+                  "width": "100%",
+                  "offsetTop": "78%",
+                  "alignItems": "center",
+                  "justifyContent": "center"
+                }
+              ],
+              "position": "absolute",
+              "width": "45%",
+              "height": "24%",
+              "offsetTop": "42%",
+              "offsetStart": "51%",
+              "action": {
+                "type": "message",
+                "label": "language",
+                "text": "language"
+              }
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "box",
+                      "layout": "horizontal",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "เปิดสถานะ",
+                          "weight": "bold",
+                          "size": "xxs",
+                          "color": "#273d90",
+                          "wrap": false,
+                          "align": "center"
+                        }
+                      ],
+                      "position": "absolute",
+                      "width": "75%",
+                      "height": "15%",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "offsetBottom": "8%"
+                    }
+                  ],
+                  "position": "absolute",
+                  "width": "30.5%",
+                  "offsetTop": "5.5%",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "height": "90%",
+                  "offsetStart": "2%",
+                  "action": {
+                    "type": "uri",
+                    "label": "เจ้าหน้าที่เปิดสถานะ",
+                    "uri": "https://www.viicheck.com/officers/switch_standby_login?openExternalBrowser=1"
+                  }
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "box",
+                      "layout": "horizontal",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "การช่วยเหลือ",
+                          "weight": "bold",
+                          "size": "xxs",
+                          "color": "#273d90",
+                          "wrap": false,
+                          "align": "center"
+                        }
+                      ],
+                      "position": "absolute",
+                      "width": "75%",
+                      "height": "15%",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "offsetBottom": "8%"
+                    }
+                  ],
+                  "position": "absolute",
+                  "width": "30.5%",
+                  "offsetTop": "5.5%",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "height": "90%",
+                  "offsetStart": "34%",
+                  "action": {
+                    "type": "message",
+                    "label": "ดูเคสการช่วยเหลือ",
+                    "text": "Soon"
+                  }
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "box",
+                      "layout": "horizontal",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "แก้ไขข้อมูล",
+                          "weight": "bold",
+                          "size": "sm",
+                          "color": "#273d90",
+                          "wrap": true,
+                          "align": "center",
+                          "maxLines": 3
+                        }
+                      ],
+                      "position": "absolute",
+                      "width": "55%",
+                      "height": "100%",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "offsetStart": "1%"
+                    }
+                  ],
+                  "position": "absolute",
+                  "width": "29%",
+                  "offsetTop": "5%",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "offsetEnd": "4.5%",
+                  "height": "44.5%",
+                  "action": {
+                    "type": "uri",
+                    "label": "เจ้าหน้าที่แก้ไขข้อมูล",
+                    "uri": "https://www.viicheck.com/officers/switch_standby_login?openExternalBrowser=1&officer=edit"
+                  }
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                    {
+                      "type": "box",
+                      "layout": "horizontal",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "แจ้งปัญหา",
+                          "weight": "bold",
+                          "size": "sm",
+                          "color": "#273d90",
+                          "wrap": true,
+                          "align": "center",
+                          "maxLines": 3
+                        }
+                      ],
+                      "position": "absolute",
+                      "width": "55%",
+                      "height": "100%",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "offsetStart": "1%"
+                    }
+                  ],
+                  "position": "absolute",
+                  "width": "29%",
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "offsetEnd": "4.5%",
+                  "height": "44.5%",
+                  "offsetBottom": "5%",
+                  "action": {
+                    "type": "message",
+                    "label": "เจ้าหน้าที่แจ้งปัญหา",
+                    "text": "Soon"
+                  }
+                }
+              ],
+              "position": "absolute",
+              "width": "95%",
+              "height": "30%",
+              "offsetTop": "68%",
+              "offsetStart": "3%",
+              "action": {
+                "type": "uri",
+                "label": "เจ้าหน้าที่แก้ไขข้อมูล",
+                "uri": "http://linecorp.com/"
+              }
+            }
+          ],
+          "position": "relative",
+          "paddingAll": "0px"
+        }
+      }
+}
