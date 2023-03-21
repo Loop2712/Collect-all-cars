@@ -2752,7 +2752,7 @@
 		let no5_distance_to = 0 ;
 	
 		no5_distance_to = parseFloat(num_km_2) - parseFloat(num_km_1) ;
-		total_distance = total_distance + no5_distance_to ;
+		total_distance =  parseFloat(total_distance) +  parseFloat(no5_distance_to) ;
 
 		if (parseFloat(num_km_1) === 0 || parseFloat(num_km_2) === 0) {
 			document.querySelector('#text_distance_to').innerHTML = '0' ;
@@ -2765,7 +2765,7 @@
 		let distance_to_hospital = 0 ;
 
 		distance_to_hospital = parseFloat(num_km_3) - parseFloat(num_km_2) ;
-		total_distance = total_distance + distance_to_hospital ;
+		total_distance =  parseFloat(total_distance) +  parseFloat(distance_to_hospital) ;
 
 		if (parseFloat(num_km_2) === 0 || parseFloat(num_km_3) === 0) {
 			document.querySelector('#text_distance_to_hospital').innerHTML = '0' ;
@@ -2790,7 +2790,7 @@
 
 		document.querySelector('#title_1_return_distance').innerHTML = text_title_1 ;
 		return_distance = parseFloat(num_km_4) - parseFloat(num_title_1) ;
-		total_distance = total_distance + return_distance ;
+		total_distance =  parseFloat(total_distance) +  parseFloat(return_distance) ;
 
 		if (parseFloat(num_title_1) === 0 || parseFloat(num_km_4) === 0) {
 			document.querySelector('#text_return_distance').innerHTML = '0' ;
@@ -2799,7 +2799,7 @@
 		}
 		// ------------------------------- จบ รวมระยะทางกลับ ---------------------------------------//
 
-		document.querySelector('#total_distance').innerHTML = total_distance.toFixed(2) ;
+		document.querySelector('#total_distance').innerHTML =  parseFloat(total_distance).toFixed(2) ;
 		
 		time_in_no5();
 	}
