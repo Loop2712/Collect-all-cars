@@ -222,21 +222,45 @@ class LineMessagingAPI extends Model
                     "รพ.สัตว์",
                     "ลงทะเบียน",
                     "petland",
+                    "เปิดสถานะ",
+                    "การช่วยเหลือ",
+                    "แก้ไขข้อมูล",
+                    "แจ้งปัญหา",
                 ];
 
                 $data_topic = $this->language_for_user($data_Text_topic, $event["source"]['userId']);
 
-                $template_path = storage_path('../public/json/flex-other_new.json');   
-                $string_json = file_get_contents($template_path);
+                $data_user = User::where('provider_id' , $event["source"]['userId'])->first();
+
+                // ---- //// ส่ง เมนู สพฉ //// ---- //
+                if ($message_type == "other" && $data_user->organization == "สพฉ") {
+
+                    $template_path_1669 = storage_path('../public/json/flex-sos-1669/flex_other_officer.json');   
+                    $string_json_1669 = file_get_contents($template_path_1669);
+
+                    $string_json = str_replace("เปิดสถานะ",$data_topic[9],$string_json);
+                    $string_json = str_replace("การช่วยเหลือ",$data_topic[10],$string_json);
+                    $string_json = str_replace("แก้ไขข้อมูล",$data_topic[11],$string_json);
+                    $string_json = str_replace("แจ้งปัญหา",$data_topic[12],$string_json);
+
+                }else{
+
+                    $template_path = storage_path('../public/json/flex-other_new.json');   
+                    $string_json = file_get_contents($template_path);
+
+                    $string_json = str_replace("ตามหาสัตว์เลี้ยง",$data_topic[4],$string_json);
+                    $string_json = str_replace("ชุมชน",$data_topic[5],$string_json);
+                    $string_json = str_replace("รพ.สัตว์",$data_topic[6],$string_json);
+                    $string_json = str_replace("ลงทะเบียน",$data_topic[7],$string_json);
+                    $string_json = str_replace("petland",$data_topic[8],$string_json);
+
+                }
+
                 $string_json = str_replace("ข้อมูลของคุณ",$data_topic[0],$string_json);
                 $string_json = str_replace("ถาม",$data_topic[1],$string_json);
                 $string_json = str_replace("ตอบ",$data_topic[2],$string_json);
                 $string_json = str_replace("ติดต่อ",$data_topic[3],$string_json);
-                $string_json = str_replace("ตามหาสัตว์เลี้ยง",$data_topic[4],$string_json);
-                $string_json = str_replace("ชุมชน",$data_topic[5],$string_json);
-                $string_json = str_replace("รพ.สัตว์",$data_topic[6],$string_json);
-                $string_json = str_replace("ลงทะเบียน",$data_topic[7],$string_json);
-                $string_json = str_replace("petland",$data_topic[8],$string_json);
+               
 
                 $messages = [ json_decode($string_json, true) ]; 
                 break;
@@ -1684,46 +1708,6 @@ class LineMessagingAPI extends Model
             "content" => "reply Success",
         ];
         MyLog::create($data);
-
-        // ---- //// ส่ง เมนู สพฉ //// ---- //
-        $data_user = User::where('provider_id' , $event["source"]['userId'])->first();
-        $to_user = $data_user->provider_id ;
-        if ($message_type == "other" && $data_user->organization == "สพฉ") {
-
-            $template_path_1669 = storage_path('../public/json/text_success.json');   
-            $string_json_1669 = file_get_contents($template_path_1669);
-
-            $string_json_1669 = str_replace("ระบบได้รับการตอบกลับของท่านแล้ว ขอบคุณค่ะ","https://www.viicheck.com/officers/switch_standby_login?openExternalBrowser=1",$string_json_1669);
-
-            $messages_1669 = [ json_decode($string_json_1669, true) ];
-        
-            $body_1669 = [
-                "to" => $to_user,
-                "messages" => $messages_1669,
-            ];
-
-            $opts_1669 = [
-                'http' =>[
-                    'method'  => 'POST',
-                    'header'  => "Content-Type: application/json \r\n".
-                                'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                    'content' => json_encode($body_1669, JSON_UNESCAPED_UNICODE),
-                    //'timeout' => 60
-                ]
-            ];
-         
-            $context_1669  = stream_context_create($opts_1669);
-            $url_1669 = "https://api.line.me/v2/bot/message/push";
-            $result_1669 = file_get_contents($url_1669, false, $context_1669);
-
-            //SAVE LOG
-            $data_1669 = [
-                "title" => "ส่งเมนู สพฉ หลัง อื่นๆ ",
-                "content" => $data_user->id,
-            ];
-            MyLog::create($data_1669);
-
-        }
 
         return $result;
 
