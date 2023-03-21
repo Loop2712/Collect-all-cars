@@ -194,7 +194,7 @@
 									<a href="{{ url('/manage_user_partner') }}"><i class='fas fa-users-cog'></i> รายชื่อทั้งหมด</a>
 								</li>
 								<li>
-									<a href="#"><i class="fa-solid fa-user-plus"></i> เพิ่มผู้ใช้</a>
+									<a href="{{ url('/data_1669_operating_unit') }}"><i class="fa-solid fa-user-plus"></i> หน่วยแพทย์ </a>
 								</li>
 							</ul>
 						</li>

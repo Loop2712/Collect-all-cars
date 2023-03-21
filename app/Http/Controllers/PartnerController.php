@@ -363,6 +363,7 @@ class PartnerController extends Controller
             ->get();
 
         $partners = $data_user->organization ;
+        $sub_partners = $data_user->sub_organization ;
 
         $type_user = $requestData['type_user'];
         $name = $requestData['name'];
@@ -384,6 +385,7 @@ class PartnerController extends Controller
             $user->organization = $partners;
             $user->creator = $data_user->id;
             $user->status = "active";
+            $user->sub_organization = $sub_partners;
 
             $user->save();
 

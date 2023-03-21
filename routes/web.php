@@ -197,6 +197,8 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('help_center_admin', 'Sos_help_centerController@help_center_admin');
 	Route::get('sos_help_center/reply_select_2/{sos_id}', 'Sos_help_centerController@reply_select_2');
 	Route::get('sos_help_center/{sos_id}/show_case', 'Sos_help_centerController@show_case_sos');
+	Route::resource('data_1669_operating_unit', 'Data_1669_operating_unitController');
+
 	
 
 	// ------- CONDO -------
@@ -426,7 +428,6 @@ Route::resource('partner_premium', 'Partner_premiumController');
 
 Route::resource('sub_organization', 'Sub_organizationController');
 Route::resource('sos_1669_form_yellow', 'Sos_1669_form_yellowController');
-Route::resource('data_1669_operating_unit', 'Data_1669_operating_unitController');
 Route::resource('data_1669_operating_officer', 'Data_1669_operating_officerController');
 
 Route::get('index_send_mail_proposal', 'test_for_devController@index_send_mail_proposal');
