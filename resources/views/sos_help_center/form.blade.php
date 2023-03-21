@@ -538,7 +538,7 @@
                                                 $color_btn_level = 'success' ;
                                             break;
                                             case 'BLS':
-                                                $color_btn_level = 'warning text-white' ;
+                                                $color_btn_level = 'warning' ;
                                             break;
                                             case 'ILS':
                                                 $color_btn_level = 'danger' ;
@@ -734,7 +734,7 @@
                         </div>
                         
                         <div class="col-12" style="position: relative;">
-                            <span class="btn btn-danger main-shadow main-radius" style="position: absolute;top: 0.5rem;right: 5rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" data-toggle="modal" data-target="#modal_steps_travel">
+                            <span id="span_btn_steps_travel" class="btn btn-danger main-shadow main-radius d-none" style="position: absolute;top: 0.5rem;right: 5rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" data-toggle="modal" data-target="#modal_steps_travel">
                                 แนะนำการเดินทาง
                             </span>
                             <div id="map_go_to_help"></div>
@@ -1147,14 +1147,17 @@
 
                 status_old = start_result['status_sos'] ;
                 rc_old = start_result['rc'] ;
-                if (rc_old) {
-                    document.querySelector('#show_rc').classList.remove('d-none');
-                    document.querySelector('#show_rc').innerHTML = "รหัสความรุนแรง ณ จุดเกิดเหตุ (RC) <br>" + rc_old ;
 
+                if (rc_old) {
+                    
                     let start_class_text_show_rc ;
+                    let rc_black_text_old = "" ;
+
                     switch(start_result['rc']) {
                         case 'ดำ':
                             start_class_text_show_rc = "idc-rc-black";
+                            rc_black_text_old = " : " + start_result['rc_black_text'] ;
+                            rc_old =  rc_old + rc_black_text_old ;
                         break;
                         case 'ขาว(ทั่วไป)':
                             start_class_text_show_rc = "idc-rc-normal";
@@ -1169,6 +1172,10 @@
                             start_class_text_show_rc = "idc-rc-red";
                         break;
                     }
+
+                    document.querySelector('#show_rc').classList.remove('d-none');
+                    document.querySelector('#show_rc').innerHTML = "รหัสความรุนแรง ณ จุดเกิดเหตุ (RC) <br>" + rc_old + rc_black_text_old ;
+
                     document.querySelector('#show_rc').classList.add(start_class_text_show_rc);
                 }
 
@@ -1239,6 +1246,9 @@
                         start_bounds.extend(start_myPlace);
                         start_bounds.extend(start_Item_1);
                     map_go_to_help.fitBounds(start_bounds);
+
+                    document.querySelector('#span_btn_steps_travel').classList.remove('d-none');
+
                 }
 
 
@@ -1264,13 +1274,12 @@
 
                     if (result['rc'] != rc_old) {
 
-                        document.querySelector('#show_rc').classList.remove('d-none');
-                        document.querySelector('#show_rc').innerHTML = result['rc'] ;
-
                         let class_text_show_rc ;
+                        let rc_black_text_old = "" ;
                         switch(result['rc']) {
                             case 'ดำ':
                                 class_text_show_rc = "btn-dark";
+                                rc_black_text_old = " : " + result['rc_black_text'] ;
                             break;
                             case 'ขาว(ทั่วไป)':
                                 class_text_show_rc = "btn-light";
@@ -1285,12 +1294,19 @@
                                 class_text_show_rc = "btn-danger";
                             break;
                         }
+
+                        if ( document.querySelector('#show_rc').classList[1] ) {
+                            document.querySelector('#show_rc').classList.remove( document.querySelector('#show_rc').classList[1] );
+                        }
+
+                        document.querySelector('#show_rc').classList.remove('d-none');
+                        document.querySelector('#show_rc').innerHTML = "รหัสความรุนแรง ณ จุดเกิดเหตุ (RC) <br>" + result['rc'] + rc_black_text_old ;
                         document.querySelector('#show_rc').classList.add(class_text_show_rc);
 
                         // let img_stk = '{{ url("/") }}/img/stickerline/PNG/37.2.png' ;
                         // alerts_status(img_stk , , 'rc');
                         
-                        rc_old = result['rc'] ;
+                        rc_old = result['rc'] + rc_black_text_old ;
                     }
 
                     document.querySelector('#show_status').innerHTML = result['status_sos'] ;
@@ -1318,6 +1334,7 @@
 
                     if (result['status_sos'] === 'เสร็จสิ้น') {
                         // document.querySelector('#h4_show_distance').classList.add('d-none');
+                        document.querySelector('#span_btn_steps_travel').classList.add('d-none');
                         myStop_reface_map_go_to();
                     }else{
                         // document.querySelector('#show_distance').innerHTML = result['distance'].toFixed(2) ;

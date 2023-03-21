@@ -1070,6 +1070,7 @@ class Sos_help_centerController extends Controller
         // FORM YELLOWS
         $form_yellows = DB::table('sos_1669_form_yellows')->where('id' , $sos_id)->first();
         $data['rc'] = $form_yellows->rc ;
+        $data['rc_black_text'] = $form_yellows->rc_black_text ;
         $data['idc'] = $form_yellows->idc ;
 
         return $data ;

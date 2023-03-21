@@ -1516,7 +1516,7 @@
                         fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id)
                             .then(response => response.json())
                             .then(result_2 => {
-                                console.log(result_2);
+                                // console.log(result_2);
 
                                 // ADD DATA level
                                 let data_level_operating_unit = document.querySelector('#data_level_operating_unit');
