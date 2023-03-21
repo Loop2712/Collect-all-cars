@@ -320,11 +320,11 @@ input:checked + .slider:before {
 	</div>	
 </div>
 <div class="menubar show-menubar">
-	<button class="btn w-25 btn_menu btn-danger" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-light-emergency-on"></i></button>
+	<button class="btn w-25 btn_menu" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-light-emergency-on"></i></button>
 	<button class="btn w-25 btn_menu" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-solid fa-user-pen"></i></button>
 </div>
 
-<div class="row data-menu show-data-menu" id="menu_1" style="bottom:10%">
+<div class="row data-menu show-data-menu d-none" id="menu_1" style="bottom:10%">
 	<menu class="col-12" id="div_switch">
 		<div id="show_level_by_officers" class="card-body p-3 main-shadow bg-white" style="border-radius: 15px;">
 			<div class="d-flex align-items-center">
@@ -615,6 +615,7 @@ input:checked + .slider:before {
 	var lng ;
 
 	document.addEventListener('DOMContentLoaded', (event) => {
+		check_user_open();
 		let status_officers = '{{ $data_standby->status }}' ;
 
 		let switch_standby = document.querySelector('#switch_standby');
@@ -818,6 +819,23 @@ input:checked + .slider:before {
 			}).catch(function(error){
 				// console.error(error);
 			});
+		}
+	</script>
+	<script>
+		function check_user_open() {
+			const queryString = window.location.search;
+			const urlOfficers = new URLSearchParams(queryString);
+
+			if (urlOfficers.has('officer')) {
+				const officer = urlOfficers.get('officer');
+				if (officer === 'edit') {
+					document.querySelector('#btn_menu_2').classList.add('btn-danger');
+					document.querySelector('#menu_2').classList.remove('d-none');
+				} 
+			}else{
+					document.querySelector('#btn_menu_1').classList.add('btn-danger');
+					document.querySelector('#menu_1').classList.remove('d-none');
+			}
 		}
 	</script>
 @endsection
