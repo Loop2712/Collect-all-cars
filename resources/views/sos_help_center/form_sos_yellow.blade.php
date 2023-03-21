@@ -1880,8 +1880,6 @@
             .then(response => response.json())
             .then(data_new_5vi => {
 
-            	let color_operating  = [];
-
             	if (start_data_arr) {
             		for (const [key, value] of Object.entries(data_new_5vi)) {
 				  		// console.log(key);
@@ -1905,33 +1903,35 @@
 								document.querySelector('#no_operating_unit').classList.add('d-none')  ;
 								document.querySelector('#has_an_operating_unit').classList.remove('d-none')  ;
 
-								document.querySelector('input[name="'+key+'"]').value = value ;
-								document.querySelector('input[name="'+key+'"]').checked = true ;
-								inputElement.setAttribute('data-'+key , value);
+								let input_Element_key = document.querySelector('input[name="'+key+'"]');
 
-								document.querySelector('#text_show_' + key).innerHTML = value ;
+									input_Element_key.value = value ;
+									input_Element_key.checked = true ;
+									inputElement.setAttribute('data-'+key , value);
+
+									document.querySelector('#text_show_' + key).innerHTML = value ;
 
 								// ถ้า KEY = vehicle_type
-								
+								let tag_i_vehicle_type = document.querySelector('#tag_i_vehicle_type');
 								if (value === 'รถ') {
-									document.querySelector('#tag_i_vehicle_type').setAttribute('class', "fa-solid fa-truck-medical");
+									tag_i_vehicle_type.setAttribute('class', "fa-solid fa-truck-medical");
 								}else if(value === 'อากาศยาน'){
-									document.querySelector('#tag_i_vehicle_type').setAttribute('class', "fa-sharp fa-solid fa-plane");
+									tag_i_vehicle_type.setAttribute('class', "fa-sharp fa-solid fa-plane");
 								}else if(value === 'เรือ ป.๑' || value === 'เรือ ป.๒' || value === 'เรือ ป.๓' || value === 'เรือประเภทอื่นๆ' ){
-									document.querySelector('#tag_i_vehicle_type').setAttribute('class', "fa-duotone fa-ship");
+									tag_i_vehicle_type.setAttribute('class', "fa-duotone fa-ship");
 								}
 
 								// ถ้า KEY = operating_suit_type
-								
+								let color_operating ;
 								if (value === "FR") {
-									color_operating[key] = "success" ;
+									color_operating = "success" ;
 								}else if(value === "BLS"){
-									color_operating[key] = "warning" ;
+									color_operating = "warning" ;
 								}else if(value === "ILS" || value === "ALS"){
-									color_operating[key] = "danger" ;
+									color_operating = "danger" ;
 								}
 
-								inputElement.setAttribute('class', "card-input-"+color_operating[key]+" card-input-element d-none");
+								inputElement.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
 								
 
 				  			}else if (key === 'lat' || key === 'lng') {
