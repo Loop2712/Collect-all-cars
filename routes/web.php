@@ -198,7 +198,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('sos_help_center/reply_select_2/{sos_id}', 'Sos_help_centerController@reply_select_2');
 	Route::get('sos_help_center/{sos_id}/show_case', 'Sos_help_centerController@show_case_sos');
 	Route::resource('data_1669_operating_unit', 'Data_1669_operating_unitController');
-	Route::get('register_new_officer', 'Sos_help_centerController@register_new_officer');
+	
 
 	
 
@@ -215,7 +215,7 @@ Route::get('sos_help_center/reply_select/{sos_id}', 'Sos_help_centerController@r
 Route::get('officers/switch_standby_login', 'Sos_help_centerController@switch_standby_login');
 Route::get('officers/switch_standby', 'Sos_help_centerController@switch_standby');
 Route::get('add_new_officers/{operating_unit_id}', 'Sos_help_centerController@add_new_officers');
-
+Route::get('register_new_officer', 'Sos_help_centerController@register_new_officer');
 
 //partner
 // Route::middleware(['auth', 'role:partner'])->group(function () {
