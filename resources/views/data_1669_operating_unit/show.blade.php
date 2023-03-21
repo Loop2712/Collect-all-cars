@@ -41,7 +41,7 @@
                 <br>
                 <br>
                 <div class="input-group">
-                    <input type="text" class="form-control" name="copy_link_add_officer" id="copy_link_add_officer" value="{{ url('/add_new_officers' . '/' . Auth::user()->sub_organization) }}" aria-label="Dollar amount (with dot and two decimal places)">
+                    <input type="text" class="form-control" name="copy_link_add_officer" id="copy_link_add_officer" value="{{ url('/add_new_officers' . '/' .  $data_1669_operating_unit->id  ) }}" aria-label="Dollar amount (with dot and two decimal places)">
                     <!-- <span class="input-group-text"></span> -->
                     <span class="input-group-text btn" onclick="CopyToClipboard('copy_link_add_officer')">Copy</span>
                 </div>

@@ -1,13 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.viicheck')
 
 @section('content')
+<br><br><br><br><br><br><br>
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
-
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Create New Data_1669_operating_officer</div>
+                    <div class="card-header">Create New officer</div>
                     <div class="card-body">
                         <a href="{{ url('/data_1669_operating_officer') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />

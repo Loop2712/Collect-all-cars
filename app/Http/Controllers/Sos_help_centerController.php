@@ -1306,4 +1306,27 @@ class Sos_help_centerController extends Controller
         
     }
 
+    function add_new_officers($operating_unit_id){
+
+        if(Auth::check()){
+            return redirect('register_new_officer/?operating_unit_id=' . $operating_unit_id);
+        }else{
+            return redirect('/login/line?redirectTo=register_new_officer/?operating_unit_id=' . $operating_unit_id);
+        }
+
+    }
+
+    function register_new_officer(Request $request){
+
+        $requestData = $request->all();
+
+        $operating_unit_id = $requestData['operating_unit_id'] ;
+
+        $data_unit = Data_1669_operating_unit::where('id' , $operating_unit_id)->first();
+
+        $name_area =  $data_unit->area ;
+
+        return view('data_1669_operating_officer.create', compact('operating_unit_id', 'name_area'));
+    }
+
 }

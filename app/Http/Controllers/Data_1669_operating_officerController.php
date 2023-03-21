@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Data_1669_operating_officer;
 use Illuminate\Http\Request;
@@ -57,6 +58,19 @@ class Data_1669_operating_officerController extends Controller
         $requestData = $request->all();
         
         Data_1669_operating_officer::create($requestData);
+
+        if (!empty($requestData['name_area'])) {
+
+            DB::table('users')
+            ->where([ 
+                    ['id', $requestData['user_id']],
+                ])
+            ->update([
+                    'organization' => "สพฉ",
+                    'sub_organization' => $requestData['name_area'],
+                ]);
+
+        }
 
         return redirect('data_1669_operating_officer')->with('flash_message', 'Data_1669_operating_officer added!');
     }
