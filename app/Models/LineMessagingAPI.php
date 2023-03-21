@@ -236,7 +236,7 @@ class LineMessagingAPI extends Model
                 if ($message_type == "other" && $data_user->organization == "สพฉ") {
 
                     $template_path = storage_path('../public/json/flex-sos-1669/flex_other_officer.json');   
-                    $string_json = file_get_contents($template_path_1669);
+                    $string_json = file_get_contents($template_path);
 
                     $string_json = str_replace("เปิดสถานะ",$data_topic[9],$string_json);
                     $string_json = str_replace("การช่วยเหลือ",$data_topic[10],$string_json);
