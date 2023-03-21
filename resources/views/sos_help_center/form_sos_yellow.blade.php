@@ -2764,10 +2764,12 @@
 		// ------------------------------- ระยะ ที่เกิดเหตุ ถึง รพ ---------------------------------------//
 		let distance_to_hospital = 0 ;
 
-		distance_to_hospital = parseFloat(num_km_3) - parseFloat(num_km_2) ;
-		total_distance =  parseFloat(total_distance) +  parseFloat(distance_to_hospital) ;
+		if (num_km_3) {
+			distance_to_hospital = parseFloat(num_km_3) - parseFloat(num_km_2) ;
+			total_distance =  parseFloat(total_distance) +  parseFloat(distance_to_hospital) ;
+		}
 
-		if (parseFloat(num_km_2) === 0 || parseFloat(num_km_3) === 0) {
+		if (!num_km_3 && parseFloat(num_km_2) === 0 || parseFloat(num_km_3) === 0) {
 			document.querySelector('#text_distance_to_hospital').innerHTML = '0' ;
 		}else{
 			document.querySelector('#text_distance_to_hospital').innerHTML = distance_to_hospital.toFixed(2) ;
