@@ -626,28 +626,31 @@
 
                             <!-- //// JAVA SCRIPT //// -->
                             <div id="data_officers_by_js" class="p-4 border radius-15 row d-none">
+
                                 <div class="col-12">
                                     <br>
-                                    <button id="data_vehicle_type_operating_unit" style="position:absolute;top: 6%;left: 1%;border-radius: 0px 20px 20px 0px; width:45%;" class="btn btn-sm btn-info main-shadow main-radius float-start">
-                                        <!-- ... -->
-                                    </button>
-                                    <button id="data_level_operating_unit" style="position:absolute;top: 6%;right: 1%;border-radius: 20px 0px 0px 20px; width:45%;" class="btn btn-sm  main-shadow main-radius float-end">
-                                        <!-- ... -->
-                                    </button>
+                                    <span id="data_vehicle_type_operating_unit" style="position:absolute;top: 6%;left: 1%;border-radius: 0px 10px 10px 0px; width:45%;" class="btn-sm btn-info main-shadow main-radius float-start font-weight-bold">
+                                        <!--  -->
+                                    </span>
+                                    <span id="data_level_operating_unit" style="position:absolute;top: 6%;right: 1%;border-radius: 10px 0px 0px 10px; width:45%;" class="btn-sm main-shadow main-radius float-end font-weight-bold">
+                                        <!--  -->
+                                    </span>
                                 </div>
-                                <div class="col-12 col-md-3 mt-2">
+                                <div class="d-flex justify-content-center col-12">
                                     <img id="data_img_officers" src="{{ url('/img/stickerline/Flex/12.png') }}" width="80" height="80" class="rounded-circle shadow">
                                 </div>
-                                <div class="col-12 col-md-9 mt-3">
-                                    <h5 id="data_name_officers"></h5>
+                                <div class="d-flex justify-content-center col-12">
+                                    <h5 class="m-0" id="data_name_officers"></h5>
+                                </div>
+                                <div class="d-flex justify-content-center col-12">
                                     <p id="data_sub_organization_officers"></p>
                                 </div>
-                                <div class="col-12 col-md-12 mt-3">
-                                    เบอร์เจ้าหน้าที่
+                                <div class="d-flex justify-content-center col-12 p-0">
                                     <a id="data_phone_officers" href="" style="width:90%;" class="btn btn-outline-success radius-15">
                                         <i class="fa-solid fa-phone"></i>
                                     </a>
                                 </div>
+
                             </div>
                             <!-- //// END JAVA SCRIPT //// -->
 
