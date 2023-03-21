@@ -1091,7 +1091,7 @@
 							<div class="col-12 col-md-6 mt-3">
 								<label>รวมเวลา ออกจากฐาน - ที่เกิดเหตุ</label>
 								<br>
-								Response time = <b><span id="time_zone_1" class="text-dark">...</span></b>
+								<b><span id="time_zone_1" class="text-dark">...</span></b>
 							</div>
 							<div class="col-12 col-md-6 mt-3">
 								<label>รวมเวลา ออกจากที่เกิดเหตุ - ฐาน</label>
@@ -1880,7 +1880,9 @@
 					        if( key === 'operation_unit_name' || key === 'action_set_name' || key === 'time_create_sos' || key === 'time_command' || key === 'time_go_to_help' || key === 'time_to_the_scene' || key === 'time_leave_the_scene' || key === 'time_hospital' || key === 'time_to_the_operating_base' || key === 'km_create_sos_to_go_to_help' || key === 'km_to_the_scene_to_leave_the_scene' || key === 'km_hospital' || key === 'km_operating_base' ){
 
 					        	document.querySelector('#'+key).value = value ;
-
+					        	
+							}else if(key === 'rc' || key === 'treatment' || key === 'sub_treatment'){
+								edit_form_yellow(key , value , null);
 							}else if (key === 'vehicle_type' || key === 'operating_suit_type') {
 
 								document.querySelector('#no_operating_unit').classList.add('d-none')  ;
@@ -1915,11 +1917,12 @@
 								}
 
 								inputElement.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
-
+								
 
 				  			}else if (key === 'lat' || key === 'lng') {
 				  				// console.log("สั่งบันทึก lat lng >> " + key)
         						check_go_to(null);
+        						
 				  			}else{
 				  				// แจ้งเตือนข้อมูลเปลี่ยนแปลง
 	        					alet_new_data('form_yellow' ,key , value , start_data_arr[key]);
@@ -1927,6 +1930,10 @@
 				  		}
 					}
             	}
+
+            	setTimeout(function() {
+			        check_color_btn(null);
+		        }, 1000);
             });
     }
 
@@ -1941,7 +1948,7 @@
 		data_arr[key] = value ;
 
 		//  radio
-		if (key === 'be_notified' || key === 'idc' || key === 'vehicle_type' || key === 'operating_suit_type' || key === 'rc' || key === 'treatment' || key === 'sub_treatment' || key === 'owner_registration') {
+		if (key === 'be_notified' || key === 'idc' || key === 'rc' || key === 'treatment' || key === 'sub_treatment' || key === 'owner_registration') {
 			console.log("radio");
 			if (value === null) {
 
@@ -2003,7 +2010,9 @@
 
 		// send_save_data(null);
 		// btn_save_data();
-
+		setTimeout(function() {
+	        check_color_btn(null);
+        }, 1000);
     }
 
     function check_lat_lng(){
