@@ -334,7 +334,7 @@
           <a href="{{URL::to('/')}}"><img width="70%" src="{{ asset('/img/logo/VII-check-LOGO-W-v1.png') }}"></a>
         </div>
         <div class="col-6 d-block d-lg-none">
-          @if(Auth::check())
+          @if(Auth::check() && url()->full() != url('/sos_map/create'))
           <a class="notranslate" href="{{ url('/sos_map/create') }}" style="font-size: 18px;position: absolute;bottom: 1%;">
             <span class="btn btn-danger main-shadow main-radius">
               SOS <i class="fa-solid fa-truck-medical"></i>

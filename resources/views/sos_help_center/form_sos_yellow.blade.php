@@ -1021,235 +1021,104 @@
 							</div>
 						</div>
 
-						<div class="row d-none">
-							<div class="col-md-12 mb-2">
-								<label  class="form-label m-0">
-									<b>
-										ชนิดยานพาหนะ<sup>(๗)</sup>
-									</b>
-								</label>
-							</div>	
-							<div class="col-12 col-md-3 col-lg-3">
-								<label>
-									<input type="radio" {{ $check_vehicle_type_1 }} name="vehicle_type" data-vehicle_type="รถ" value="รถ"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-										<b>รถ</b>
-									</div>
-								</label>
+						<div class="row mt-3">
+							<hr>
+							<div class="col-12 col-md-3 mt-3">
+								<label>รับแจ้ง</label>
+								<br>
+								<input class="form-control" type="time" name="time_create_sos" id="time_create_sos" step="2" value="{{ isset($data_form_yellow->time_create_sos) ? $data_form_yellow->time_create_sos : ''}}" readonly>
 							</div>
-							<div class="col-12 col-md-3 col-lg-3">
-								<label>
-									<input type="radio" {{ $check_vehicle_type_2 }} name="vehicle_type" data-vehicle_type="อากาศยาน" value="อากาศยาน"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-										<b>อากาศยาน</b>
-									</div>
-								</label>
+							<div class="col-12 col-md-3 mt-3">
+								<label>สั่งการ</label>
+								<br>
+								<input class="form-control" type="time" name="time_command" id="time_command" step="2" value="{{ isset($data_form_yellow->time_command) ? $data_form_yellow->time_command : ''}}" readonly>
 							</div>
-							<div class="col-12 col-md-3 col-lg-3">
-								<label>
-									<input type="radio" {{ $check_vehicle_type_3 }} name="vehicle_type" data-vehicle_type="เรือ ป.๑" value="เรือ ป.๑"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-										<b>เรือ ป.๑</b>
-									</div>
-								</label>
+							<div class="col-12 col-md-3 mt-3">
+								<label>ออกจากฐาน</label>
+								<br>
+								<input class="form-control" type="time" name="time_go_to_help" id="time_go_to_help" step="2" value="{{ isset($data_form_yellow->time_go_to_help) ? $data_form_yellow->time_go_to_help : ''}}" readonly>
 							</div>
-							<div class="col-12 col-md-3 col-lg-3">
-								<label>
-									<input type="radio" {{ $check_vehicle_type_4 }} name="vehicle_type" data-vehicle_type="เรือ ป.๒" value="เรือ ป.๒"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-										<b>เรือ ป.๒</b>
-									</div>
-								</label>
+							<div class="col-12 col-md-3 mt-3">
+								<label>ถึงที่เกิดเหตุ</label>
+								<br>
+								<input class="form-control" type="time" name="time_to_the_scene" id="time_to_the_scene" step="2" value="{{ isset($data_form_yellow->time_to_the_scene) ? $data_form_yellow->time_to_the_scene : ''}}" readonly>
 							</div>
-							<div class="col-12 col-md-3 col-lg-3">
-								<label>
-									<input type="radio" {{ $check_vehicle_type_5 }} name="vehicle_type" data-vehicle_type="เรือ ป.๓" value="เรือ ป.๓"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-										<b>เรือ ป.๓</b>
-									</div>
-								</label>
+							<div class="col-12 col-md-3 mt-3">
+								<label>ออกจากที่เกิดเหตุ</label>
+								<br>
+								<input class="form-control" type="time" name="time_leave_the_scene" id="time_leave_the_scene" step="2" value="{{ isset($data_form_yellow->time_leave_the_scene) ? $data_form_yellow->time_leave_the_scene : ''}}" readonly>
 							</div>
-							<div class="col-12 col-md-3 col-lg-3">
-								<label>
-									<input type="radio" {{ $check_vehicle_type_6 }} name="vehicle_type" data-vehicle_type="เรือประเภทอื่นๆ" value="เรือประเภทอื่นๆ"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-										<b>เรือประเภทอื่นๆ</b>
-									</div>
-								</label>
+							<div class="col-12 col-md-3 mt-3">
+								<label>ถึง รพ.</label>
+								<br>
+								<input class="form-control" type="time" name="time_hospital" id="time_hospital" step="2" value="{{ isset($data_form_yellow->time_hospital) ? $data_form_yellow->time_hospital : ''}}" readonly>
 							</div>
-
-							<div class="col-md-12 mb-2 mt-2">
-								<label  class="form-label mt-2">
-									<b>
-										ประเภทชุดปฏิบัติการ
-									</b>
-								</label>
-							</div>	
-							
-							<div class="col-12 col-md-3 col-lg-3">
-								<label>
-									<input type="radio" {{ $check_operating_suit_type_1 }} data-operating_suit_type="FR" name="operating_suit_type" value="FR"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center" onclick="check_show_btn_form_color('FR');">
-										<b>FR</b>
-									</div>
-								</label>
+							<div class="col-12 col-md-3 mt-3">
+								<label>ถึงฐาน</label>
+								<br>
+								<input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" step="2" value="{{ isset($data_form_yellow->time_to_the_operating_base) ? $data_form_yellow->time_to_the_operating_base : ''}}" readonly>
 							</div>
-							<div class="col-12 col-md-3 col-lg-3">
-								<label>
-									<input type="radio" {{ $check_operating_suit_type_2 }} data-operating_suit_type="BLS" name="operating_suit_type" value="BLS"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center" onclick="check_show_btn_form_color('BLS');">
-										<b>BLS</b>
-									</div>
-								</label>
+							<div class="col-12 col-md-10 mt-3">
+								<!--  -->
 							</div>
-							<div class="col-12 col-md-3 col-lg-3">
-								<label>
-									<input type="radio" {{ $check_operating_suit_type_3 }} data-operating_suit_type="ILS" name="operating_suit_type" value="ILS"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center" onclick="check_show_btn_form_color('ILS');">
-										<b>ILS</b>
-									</div>
-								</label>
-							</div>
-							<div class="col-12 col-md-3 col-lg-3">
-								<label>
-									<input type="radio" {{ $check_operating_suit_type_4 }} data-operating_suit_type="ALS" name="operating_suit_type" value="ALS"  class="card-input-element d-none" >
-									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center" onclick="check_show_btn_form_color('ALS');">
-										<b>ALS</b>
-									</div>
-								</label>
-							</div>
-
-							<!-- <div class="col-md-12"></div> -->
-
-							<!-- <div class="col-md-4">
-								<label for="" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
-								<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" id="operation_unit_name" name="operation_unit_name" value="{{ isset($data_form_yellow->operation_unit_name) ? $data_form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ" readonly>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<label for="phone_user" class="form-label"><b>ชื่อชุดปฏิบัติการ</b></label>
-								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-users-medical"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" id="action_set_name" name="action_set_name" value="{{ isset($data_form_yellow->action_set_name) ? $data_form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ" readonly>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<label for="" class="form-label"><b>&nbsp;</b></label>
-								<span id="btn_select_unit_in_no5" class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();select_level();" style="width:100%;" >
-                                    <i class="fa-solid fa-hospital-user"></i> เลือกหน่วยแพทย์
-								</span>
-							</div> -->
-
 
 							<hr class="mt-2">
-							<div class="col-12 mt-2">
-								<div class="table-responsive">
-									<!--Table-->
-									<table class="table  table-bordered border-secondary ">
-										<thead>
-											<tr>
-											<th scope="col"></th>
-											<th scope="col">รับแจ้ง</th>
-											<th scope="col">สั่งการ</th>
-											<th scope="col">ออกจากฐาน</th>
-											<th scope="col">ถึงที่เกิดเหตุ</th>
-											<th scope="col">ออกจากที่เกิดเหตุ</th>
-											<th scope="col">ถึง รพ.</th>
-											<th scope="col">ถึงฐาน</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<th scope="row" style="vertical-align: middle;">
-													เวลา (น.)
-												</th>
-												<td>
-													<input class="form-control" type="time" name="time_create_sos" id="time_create_sos" step="2" value="{{ isset($data_form_yellow->time_create_sos) ? $data_form_yellow->time_create_sos : ''}}">
-												</td>
-												<td>
-													<input class="form-control" type="time" name="time_command" id="time_command" step="2" value="{{ isset($data_form_yellow->time_command) ? $data_form_yellow->time_command : ''}}">
-												</td>
-												<td>
-													<input class="form-control" type="time" name="time_go_to_help" id="time_go_to_help" step="2" value="{{ isset($data_form_yellow->time_go_to_help) ? $data_form_yellow->time_go_to_help : ''}}">
-												</td>
-												<td>
-													<input class="form-control" type="time" name="time_to_the_scene" id="time_to_the_scene" step="2" value="{{ isset($data_form_yellow->time_to_the_scene) ? $data_form_yellow->time_to_the_scene : ''}}">
-												</td>
-												<td>
-													<input class="form-control" type="time" name="time_leave_the_scene" id="time_leave_the_scene" step="2" value="{{ isset($data_form_yellow->time_leave_the_scene) ? $data_form_yellow->time_leave_the_scene : ''}}">
-												</td>
-												<td>
-													<input class="form-control" type="time" name="time_hospital" id="time_hospital" step="2" value="{{ isset($data_form_yellow->time_hospital) ? $data_form_yellow->time_hospital : ''}}">
-												</td>
-												<td>
-													<input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" step="2" value="{{ isset($data_form_yellow->time_to_the_operating_base) ? $data_form_yellow->time_to_the_operating_base : ''}}">
-												</td>
-											</tr>
-											<tr>
-												<th scope="row">
-													รวมเวลา (นาที)
-												</th>
-												<td colspan="4" style="text-align: center;">
-													Response time = <b><span id="time_zone_1" class="text-dark">...</span></b>
-												</td>
-												<td style="background-color:#D3D3D3;">
-													<!--  -->
-												</td>
-												<td colspan="2" style="text-align: center;">
-													<b><span id="time_zone_2" class="text-dark">...</span></b>
-												</td>
-											</tr>
-											<tr>
-												<th scope="row" style="vertical-align: middle;">
-													เลข กม.
-												</th>
-												<td colspan="2" style="background-color:#D3D3D3;">
-													<!--  -->
-												</td>
-												<td>
-													<input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : ''}}" onchange="distance_in_no5();">
-												</td>
-												<td colspan="2">
-													<input class="form-control" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : ''}}" onchange="distance_in_no5();">
-												</td>
-												<td>
-													<input class="form-control"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : ''}}" onchange="distance_in_no5();">
-												</td>
-												<td>
-													<input class="form-control" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : ''}}" onchange="distance_in_no5();">
-												</td>
-											</tr>
-											<tr>
-												<th rowspan="2" style="vertical-align: middle;">
-													ระยะทาง (กม.)
-												</th>
-												<td rowspan="2" colspan="2" style="background-color:#D3D3D3;">
-													<!--  -->
-												</td>
-												<td  style="vertical-align: middle;text-align: center;" rowspan="2" colspan="2">
-													รวมระยะทางไป <b><span id="text_distance_to" class="text-dark"></span></b> กม.
-												</td>
-												<td colspan="2" style="text-align: center;">
-													ระยะทางไป รพ. <b><span id="text_distance_to_hospital" class="text-dark"></span></b> กม.
-												</td>
-												<td style="background-color:#D3D3D3;">
-													<!--  -->
-												</td>
-											</tr>
-											<tr>
-												<td style="background-color:#D3D3D3;">
-													<!--  -->
-												</td>
-												<td colspan="2" style="text-align: center;">
-													ระยะทางกลับ <b><span id="text_return_distance" class="text-dark"></span></b> กม.
-												</td>
-											</tr>
-										</tbody>
-									</table>
-									<!--Table-->
-									</div>
-								</div>
+
+							<div class="col-12 col-md-6 mt-3">
+								<label>รวมเวลา ออกจากฐาน - ที่เกิดเหตุ</label>
+								<br>
+								Response time = <b><span id="time_zone_1" class="text-dark">...</span></b>
+							</div>
+							<div class="col-12 col-md-6 mt-3">
+								<label>รวมเวลา ออกจากที่เกิดเหตุ - ฐาน</label>
+								<br>
+								<b><span id="time_zone_2" class="text-dark">...</span></b>
+							</div>
+
+							<hr class="mt-2">
+
+							<div class="col-12 col-md-3 mt-3">
+								<label>เลข กม. ออกจากฐาน</label>
+								<br>
+								<input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : ''}}" onchange="distance_in_no5();" readonly>
+							</div>
+							<div class="col-12 col-md-3 mt-3">
+								<label>เลข กม. ถึงที่เกิดเหตุ</label>
+								<br>
+								<input class="form-control" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : ''}}" onchange="distance_in_no5();" readonly>
+							</div>
+							<div class="col-12 col-md-3 mt-3">
+								<label>เลข กม. ถึง รพ.</label>
+								<br>
+								<input class="form-control"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : ''}}" onchange="distance_in_no5();"readonly>
+							</div>
+							<div class="col-12 col-md-3 mt-3">
+								<label>เลข กม. ถึง ถึงฐาน</label>
+								<br>
+								<input class="form-control" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : ''}}" onchange="distance_in_no5();" readonly>
+							</div>
+
+							<hr class="mt-2">
+
+							<div class="col-12 col-md-4 mt-3">
+								<label>ระยะทาง ออกจากฐาน - ที่เกิดเหตุ</label>
+								<br>
+								<b><span id="text_distance_to" class="text-dark"></span></b> กม.
+							</div>
+							<div class="col-12 col-md-4 mt-3">
+								<label>ระยะทาง ที่เกิดเหตุ - รพ.</label>
+								<br>
+								<b><span id="text_distance_to_hospital" class="text-dark"></span></b> กม.
+							</div>
+							<div class="col-12 col-md-4 mt-3">
+								<label>ระยะทาง รพ. - ฐาน</label>
+								<br>
+								<b><span id="text_return_distance" class="text-dark"></span></b> กม.
+							</div>
+
 						</div>
+
+						
 					</div>
 					
 					<!---------------------------------- ข้อ 6  ---------------------------------->
@@ -2504,21 +2373,21 @@
 			"symptom" : symptom_value,
 			"symptom_other" : symptom_other.value,
 			"idc" : idc_value,
-			// "vehicle_type" : vehicle_type_value,
-			// "operating_suit_type" : operating_suit_type_value,
-			// "operation_unit_name" : operation_unit_name.value,
-			// "action_set_name" : action_set_name.value,
-			// "time_create_sos" : time_create_sos.value,
-			// "time_command" : time_command.value,
-			// "time_go_to_help" : time_go_to_help.value,
-			// "time_to_the_scene" : time_to_the_scene.value,
-			// "time_leave_the_scene" : time_leave_the_scene.value,
-			// "time_hospital" : time_hospital.value,
-			// "time_to_the_operating_base" : time_to_the_operating_base.value,
-			// "km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
-			// "km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
-			// "km_hospital" : km_hospital.value,
-			// "km_operating_base" : km_operating_base.value,
+			"vehicle_type" : vehicle_type_value,
+			"operating_suit_type" : operating_suit_type_value,
+			"operation_unit_name" : operation_unit_name.value,
+			"action_set_name" : action_set_name.value,
+			"time_create_sos" : time_create_sos.value,
+			"time_command" : time_command.value,
+			"time_go_to_help" : time_go_to_help.value,
+			"time_to_the_scene" : time_to_the_scene.value,
+			"time_leave_the_scene" : time_leave_the_scene.value,
+			"time_hospital" : time_hospital.value,
+			"time_to_the_operating_base" : time_to_the_operating_base.value,
+			"km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
+			"km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
+			"km_hospital" : km_hospital.value,
+			"km_operating_base" : km_operating_base.value,
 			"rc" : rc_value,
 			"rc_black_text" : rc_black_text.value,
 			"treatment" : treatment_value,
