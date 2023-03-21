@@ -1922,16 +1922,16 @@
 								// }
 
 								// ถ้า KEY = operating_suit_type
-								let color_operating ;
-								if (value === "FR") {
-									color_operating = "success" ;
-								}else if(value === "BLS"){
-									color_operating = "warning" ;
-								}else if(value === "ILS" || value === "ALS"){
-									color_operating = "danger" ;
-								}
+								// let color_operating ;
+								// if (value === "FR") {
+								// 	color_operating = "success" ;
+								// }else if(value === "BLS"){
+								// 	color_operating = "warning" ;
+								// }else if(value === "ILS" || value === "ALS"){
+								// 	color_operating = "danger" ;
+								// }
 
-								input_Element_key.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
+								// input_Element_key.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
 								
 
 				  			}else if (key === 'lat' || key === 'lng') {
