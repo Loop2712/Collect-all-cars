@@ -1167,7 +1167,7 @@ class Sos_help_centerController extends Controller
 
                 DB::table('sos_1669_form_yellows')
                     ->where([ ['sos_help_center_id', $sos_id],])
-                    ->update(['sub_treatment' => $reason,]);
+                    ->update(['time_leave_the_scene' => $date_now,'sub_treatment' => $reason,]);
             }
 
         }

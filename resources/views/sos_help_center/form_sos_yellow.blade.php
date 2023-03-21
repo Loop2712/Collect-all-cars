@@ -1027,7 +1027,7 @@
 								<label>
 									<input type="radio" {{ $check_checked }} name="vehicle_type" data-vehicle_type="{{ $value_vehicle_type }}" value="{{ $value_vehicle_type }}"  class="card-input-element d-none" disabled>
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-										<b><i class="{{ $class_vehicle_type }}"></i> &nbsp;&nbsp; {{ $text_vehicle_type }}</b> 
+										<b id="text_show_vehicle_type"><i id="tag_i_vehicle_type" class="{{ $class_vehicle_type }}"></i> &nbsp;&nbsp; {{ $text_vehicle_type }}</b> 
 									</div>
 								</label>
 							</div>
@@ -1038,7 +1038,7 @@
 								<label>
 									<input type="radio" {{ $check_checked_operating }} data-operating_suit_type="{{ $value_operating }}" name="operating_suit_type" value="{{ $value_operating }}" class="card-input-{{ $color_operating }} card-input-element d-none" disabled>
 									<div class="card card-body  d-flex flex-row justify-content-between align-items-center">
-										<b>{{ $text_operating }}</b>
+										<b id="text_show_operating_suit_type">{{ $text_operating }}</b>
 									</div>
 								</label>
 							</div>
@@ -1877,7 +1877,47 @@
 				  			// console.log(key + " ==>> ข้อมูลเปลี่ยน");
 				  			// console.log(start_data_arr[key] + " เปลี่ยนเป็น " + data_new_5vi[key]);
 
-				  			if (key === 'lat' || key === 'lng') {
+					        if( key === 'operation_unit_name' || key === 'action_set_name' || key === 'time_create_sos' || key === 'time_command' || key === 'time_go_to_help' || key === 'time_to_the_scene' || key === 'time_leave_the_scene' || key === 'time_hospital' || key === 'time_to_the_operating_base' || key === 'km_create_sos_to_go_to_help' || key === 'km_to_the_scene_to_leave_the_scene' || key === 'km_hospital' || key === 'km_operating_base'  ){
+
+					        	document.querySelector('#'+key).value = value ;
+
+							}else if (key === 'vehicle_type' || key === 'operating_suit_type') {
+
+								document.querySelector('#no_operating_unit').classList.add('d-none')  ;
+								document.querySelector('#has_an_operating_unit').classList.remove('d-none')  ;
+
+								let input_Element_key = document.querySelector('input[name="'+key+'"]');
+
+									input_Element_key.value = value ;
+									input_Element_key.checked = true ;
+									inputElement.setAttribute('data-'+key , value);
+
+									document.querySelector('#text_show_' + key).innerHTML = value ;
+
+								// ถ้า KEY = vehicle_type
+								let tag_i_vehicle_type = document.querySelector('#tag_i_vehicle_type');
+								if (value === 'รถ') {
+									tag_i_vehicle_type.setAttribute('class', "fa-solid fa-truck-medical");
+								}else if(value === 'อากาศยาน'){
+									tag_i_vehicle_type.setAttribute('class', "fa-sharp fa-solid fa-plane");
+								}else if(value === 'เรือ ป.๑' || value === 'เรือ ป.๒' || value === 'เรือ ป.๓' || value === 'เรือประเภทอื่นๆ' || ){
+									tag_i_vehicle_type.setAttribute('class', "fa-duotone fa-ship");
+								}
+
+								// ถ้า KEY = operating_suit_type
+								let color_operating ;
+								if (value === "FR") {
+									color_operating = "success" ;
+								}else if(value === "BLS"){
+									color_operating = "warning" ;
+								}else if(value === "ILS" || value === "ALS"){
+									color_operating = "danger" ;
+								}
+
+								inputElement.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
+
+
+				  			}else if (key === 'lat' || key === 'lng') {
 				  				// console.log("สั่งบันทึก lat lng >> " + key)
         						check_go_to(null);
 				  			}else{
