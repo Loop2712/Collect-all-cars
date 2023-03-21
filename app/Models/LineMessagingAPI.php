@@ -245,7 +245,7 @@ class LineMessagingAPI extends Model
 
                 }else{
 
-                    $template_path = storage_path('../public/json/flex-other_new.json');   
+                    $template_path = storage_path('../public/json/flex-sos-1669/flex_other_officer.json');   
                     $string_json = file_get_contents($template_path);
 
                     $string_json = str_replace("ตามหาสัตว์เลี้ยง",$data_topic[4],$string_json);
