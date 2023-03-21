@@ -911,38 +911,6 @@
 							<h5 class="mb-0 text-primary">การสั่งการ (โดยการเห็นชอบของหัวหน้าศูนย์ฯ)</h5>
 						</div>
 						<hr>
-						@php
-							$check_vehicle_type_1 = "" ;
-							$check_vehicle_type_2 = "" ;
-							$check_vehicle_type_3 = "" ;
-							$check_vehicle_type_4 = "" ;
-							$check_vehicle_type_5 = "" ;
-							$check_vehicle_type_6 = "" ;
-
-							$text_vehicle_type = "ยังไม่ได้เลือก" ;
-
-							if( !empty($data_form_yellow->vehicle_type) ){
-								if( $data_form_yellow->vehicle_type == 'รถ' ){
-									$check_vehicle_type_1 = "checked";
-									$text_vehicle_type = "รถ" ;
-								}else if ( $data_form_yellow->vehicle_type == 'อากาศยาน' ){
-									$check_vehicle_type_2 = "checked";
-									$text_vehicle_type = "อากาศยาน" ;
-								}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๑' ){
-									$check_vehicle_type_3 = "checked";
-									$text_vehicle_type = "เรือ ป.๑" ;
-								}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๒' ){
-									$check_vehicle_type_4 = "checked";
-									$text_vehicle_type = "เรือ ป.๒" ;
-								}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๓' ){
-									$check_vehicle_type_5 = "checked";
-									$text_vehicle_type = "เรือ ป.๓" ;
-								}else if ( $data_form_yellow->vehicle_type == 'เรือประเภทอื่นๆ' ){
-									$check_vehicle_type_6 = "checked";
-									$text_vehicle_type = "เรือประเภทอื่นๆ" ;
-								}
-							}
-						@endphp
 
 						<div class="row">
 							<div class="col-md-4">
@@ -983,40 +951,91 @@
 							<div class="col-12 col-md-4">
 								<!--  -->
 							</div>
+							<!-- vehicle_type -->
 							@php
-								$check_operating_suit_type_1 = "" ;
-								$check_operating_suit_type_2 = "" ;
-								$check_operating_suit_type_3 = "" ;
-								$check_operating_suit_type_4 = "" ;
+								$check_checked = "" ;
+								$text_vehicle_type = "ยังไม่ได้เลือก" ;
+								$value_vehicle_type = "" ;
+								$class_vehicle_type = "" ;
 
-								$text_operating_suit_type = "ยังไม่ได้เลือก" ;
-
-								if( !empty($data_form_yellow->operating_suit_type) ){
-									if( $data_form_yellow->operating_suit_type == 'FR' ){
-										$check_operating_suit_type_1 = "checked";
-										$text_operating_suit_type = "FR" ;
-									}else if ( $data_form_yellow->operating_suit_type == 'BLS' ){
-										$check_operating_suit_type_2 = "checked";
-										$text_operating_suit_type = "BLS" ;
-									}else if ( $data_form_yellow->operating_suit_type == 'ILS' ){
-										$check_operating_suit_type_3 = "checked";
-										$text_operating_suit_type = "ILS" ;
-									}else if ( $data_form_yellow->operating_suit_type == 'ALS' ){
-										$check_operating_suit_type_4 = "checked";
-										$text_operating_suit_type = "ALS" ;
+								if( !empty($data_form_yellow->vehicle_type) ){
+									if( $data_form_yellow->vehicle_type == 'รถ' ){
+										$check_checked = "checked";
+										$text_vehicle_type = 'รถ' ;
+										$value_vehicle_type = "รถ" ;
+										$class_vehicle_type = "fa-solid fa-truck-medical" ;
+									}else if ( $data_form_yellow->vehicle_type == 'อากาศยาน' ){
+										$check_checked = "checked";
+										$text_vehicle_type = "อากาศยาน" ;
+										$value_vehicle_type = "อากาศยาน" ;
+										$class_vehicle_type = "fa-sharp fa-solid fa-plane" ;
+									}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๑' ){
+										$check_checked = "checked";
+										$text_vehicle_type = "เรือ ป.๑" ;
+										$value_vehicle_type = "เรือ ป.๑" ;
+										$class_vehicle_type = "fa-duotone fa-ship" ;
+									}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๒' ){
+										$check_checked = "checked";
+										$text_vehicle_type = "เรือ ป.๒" ;
+										$value_vehicle_type = "เรือ ป.๒" ;
+										$class_vehicle_type = "fa-duotone fa-ship" ;
+									}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๓' ){
+										$check_checked = "checked";
+										$text_vehicle_type = "เรือ ป.๓" ;
+										$value_vehicle_type = "เรือ ป.๓" ;
+										$class_vehicle_type = "fa-duotone fa-ship" ;
+									}else if ( $data_form_yellow->vehicle_type == 'เรือประเภทอื่นๆ' ){
+										$check_checked = "checked";
+										$text_vehicle_type = "เรือประเภทอื่นๆ" ;
+										$value_vehicle_type = "เรือประเภทอื่นๆ" ;
+										$class_vehicle_type = "fa-duotone fa-ship" ;
 									}
 								}
 							@endphp
+							<!-- operating_suit -->
+							@php
+								$check_checked_operating = "" ;
+								$text_operating = "ยังไม่ได้เลือก" ;
+								$value_operating = "" ;
+								$color_operating = "bg-light" ;
+
+								if( !empty($data_form_yellow->operating_suit_type) ){
+									if( $data_form_yellow->operating_suit_type == 'FR' ){
+										$check_checked_operating = "checked";
+										$text_operating = "FR" ;
+										$value_operating = "FR" ;
+										$color_operating = "" ;
+									}else if ( $data_form_yellow->operating_suit_type == 'BLS' ){
+										$check_checked_operating = "checked";
+										$text_operating = "BLS" ;
+										$value_operating = "BLS" ;
+										$color_operating = "" ;
+									}else if ( $data_form_yellow->operating_suit_type == 'ILS' ){
+										$check_checked_operating = "checked";
+										$text_operating = "ILS" ;
+										$value_operating = "ILS" ;
+										$color_operating = "" ;
+									}else if ( $data_form_yellow->operating_suit_type == 'ALS' ){
+										$check_checked_operating = "checked";
+										$text_operating = "ALS" ;
+										$value_operating = "ALS" ;
+										$color_operating = "" ;
+									}
+								}
+
+							@endphp
 							<div class="col-12 col-md-4">
 								<label>
+									<input type="radio" {{ $check_checked }} name="vehicle_type" data-vehicle_type="{{ $value_vehicle_type }}" value="{{ $value_vehicle_type }}"  class="card-input-element d-none" disabled>
 									<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-										<b>{{ $text_vehicle_type }}</b>
+										<b><i class="{{ $class_vehicle_type }}"></i> &nbsp;&nbsp; {{ $text_vehicle_type }}</b> 
 									</div>
 								</label>
 							</div>
 							<div class="col-12 col-md-4">
-								<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-									<b>{{ $text_operating_suit_type }}</b>
+								<input type="radio" {{ $check_checked_operating }} data-operating_suit_type="{{ $value_operating }}" name="operating_suit_type" value="{{ $value_operating }}"  class="card-input-element d-none" >
+								<div class="card card-body {{ $color_operating }} d-flex flex-row justify-content-between align-items-center">
+									<b>{{ $text_operating }}</b>
 								</div>
 							</div>
 						</div>
