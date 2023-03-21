@@ -1907,7 +1907,7 @@
 
 									input_Element_key.value = value ;
 									input_Element_key.checked = true ;
-									inputElement.setAttribute('data-'+key , value);
+									input_Element_key.setAttribute('data-'+key , value);
 
 									document.querySelector('#text_show_' + key).innerHTML = value ;
 
@@ -1931,7 +1931,7 @@
 									color_operating = "danger" ;
 								}
 
-								inputElement.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
+								input_Element_key.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
 								
 
 				  			}else if (key === 'lat' || key === 'lng') {
