@@ -1088,15 +1088,25 @@
 
 							<hr class="mt-2">
 
-							<div class="col-12 col-md-6 mt-3">
-								<label>รวมเวลา ออกจากฐาน - ที่เกิดเหตุ</label>
+							<div class="col-12 col-md-3 mt-3">
+								<label>รวมเวลา รับแจ้ง - ที่เกิดเหตุ</label>
 								<br>
 								<b><span id="time_zone_1" class="text-dark">...</span></b>
 							</div>
-							<div class="col-12 col-md-6 mt-3">
-								<label>รวมเวลา ออกจากที่เกิดเหตุ - ฐาน</label>
+							<div class="col-12 col-md-3 mt-3">
+								<label>รวมเวลา ออกจากที่เกิดเหตุ - รพ.</label>
 								<br>
 								<b><span id="time_zone_2" class="text-dark">...</span></b>
+							</div>
+							<div class="col-12 col-md-3 mt-3">
+								<label>รวมเวลา ออกจาก<span id="title_1_time_zone_3"></span> - ฐาน</label>
+								<br>
+								<b><span id="time_zone_3" class="text-dark">...</span></b>
+							</div>
+							<div class="col-12 col-md-3 mt-3">
+								<label>รวมเวลา</label>
+								<br>
+								<b><span id="time_zone_all" class="text-dark">...</span></b>
 							</div>
 
 							<hr class="mt-2">
@@ -1124,17 +1134,17 @@
 
 							<hr class="mt-2">
 
-							<div class="col-12 col-md-4 mt-3">
+							<div class="col-12 col-md-4 mt-3 text-center">
 								<label>ระยะทาง ออกจากฐาน - ที่เกิดเหตุ</label>
 								<br>
 								<b><span id="text_distance_to" class="text-dark"></span></b> กม.
 							</div>
-							<div class="col-12 col-md-4 mt-3">
+							<div class="col-12 col-md-4 mt-3 text-center">
 								<label>ระยะทาง ที่เกิดเหตุ - รพ.</label>
 								<br>
 								<b><span id="text_distance_to_hospital" class="text-dark"></span></b> กม.
 							</div>
-							<div class="col-12 col-md-4 mt-3">
+							<div class="col-12 col-md-4 mt-3 text-center">
 								<label>ระยะทาง รพ. - ฐาน</label>
 								<br>
 								<b><span id="text_return_distance" class="text-dark"></span></b> กม.
@@ -2541,6 +2551,8 @@
 		let time_to_the_operating_base = document.querySelector('[name="time_to_the_operating_base"]');
 		// ------------------------------------------------------------------------------------------------//
 
+		let all_time ;
+
 		// ---------------------- TIME ZONE 1 ---------------------- //
 		let zone1_time1 ;
 		let zone1_time2 ;
@@ -2585,6 +2597,9 @@
 			if (zone1_tiem_all != 0) {
 				document.querySelector('#time_zone_1').innerHTML = zone1_tiem_all ;
 			}
+
+			let min_1_to_sec = zone1_Time_min * 60 ;
+			all_time = min_1_to_sec + zone1_Time_Seconds ;
 		}
 
 		// ---------------------- TIME ZONE 2 ---------------------- //
@@ -2592,12 +2607,13 @@
 		let zone2_time2 ;
 
 		// time 1
-		if (time_hospital.value) {
-			zone2_time1 = time_hospital.value;
+		if (time_leave_the_scene.value) {
+			zone2_time1 = time_leave_the_scene.value;
 		}
+		
 		// time 2
-		if (time_to_the_operating_base.value) {
-			zone2_time2 = time_to_the_operating_base.value;
+		if (time_hospital.value) {
+			zone2_time2 = time_hospital.value;
 		}
 
 		if (zone2_time1 && zone2_time2) {
@@ -2625,7 +2641,78 @@
 			if (zone2_tiem_all != 0) {
 				document.querySelector('#time_zone_2').innerHTML = zone2_tiem_all ;
 			}
+
+			let min_2_to_sec = zone2_Time_min * 60 ;
+			all_time = all_time + (min_2_to_sec + zone2_Time_Seconds) ;
 		}
+
+		// ---------------------- TIME ZONE 3 ---------------------- //
+		let zone3_time1 ;
+		let zone3_time2 ;
+
+		let title_1_zone3 ;
+		// time 1
+		if (time_hospital.value) {
+			zone3_time1 = time_hospital.value;
+			title_1_zone3 = " รพ." ;
+		}else if(time_leave_the_scene.value && !time_hospital.value){
+			zone3_time1 = time_leave_the_scene.value;
+			title_1_zone3 = "ที่เกิดเหตุ" ;
+		}
+
+		document.querySelector('#title_1_time_zone_3').innerHTML = title_1_zone3 ;
+		
+		// time 2
+		if (time_to_the_operating_base.value) {
+			zone3_time2 = time_to_the_operating_base.value;
+		}
+
+		if (zone3_time1 && zone3_time2) {
+			// Extract the hours, minutes, and seconds from the two times
+			let [zone3_hours1, zone3_minutes1, zone3_seconds1] = zone3_time1.split(":");
+			let [zone3_hours2, zone3_minutes2, zone3_seconds2] = zone3_time2.split(":");
+			// Convert the hours, minutes, and seconds to the total number of seconds
+			let zone3_totalSeconds1 = parseInt(zone3_hours1) * 3600 + parseInt(zone3_minutes1) * 60 + parseInt(zone3_seconds1);
+			let zone3_totalSeconds2 = parseInt(zone3_hours2) * 3600 + parseInt(zone3_minutes2) * 60 + parseInt(zone3_seconds2);
+			// Calculate the time difference in seconds
+			let zone3_TotalSeconds = zone3_totalSeconds2 - zone3_totalSeconds1;
+				// console.log('TotalSeconds >> ' + TotalSeconds);
+			let zone3_Time_min =  Math.floor(zone3_TotalSeconds / 60);
+				// console.log('Time_min >> ' + Time_min);
+			let zone3_Time_Seconds = zone3_TotalSeconds - (zone3_Time_min*60);
+				// console.log('Time_Seconds >> ' + Time_Seconds);
+			let zone3_tiem_all;
+			if (zone3_Time_Seconds === 0) {
+				zone3_tiem_all = zone3_Time_min + " นาที" ;
+			}else{
+				zone3_tiem_all = zone3_Time_min + " นาที " + zone3_Time_Seconds + " วินาที";
+			}
+			// console.log('ระยะห่าง >> ' + zone3_tiem_all + " นาที");
+
+			if (zone3_tiem_all != 0) {
+				document.querySelector('#time_zone_3').innerHTML = zone3_tiem_all ;
+			}
+
+			let min_3_to_sec = zone3_Time_min * 60 ;
+			all_time = all_time + (min_3_to_sec + zone3_Time_Seconds) ;
+		}
+
+		// ---------------------- TIME ZONE ALL ---------------------- //
+
+		// Convert seconds to hours, minutes, and seconds
+		let hours_all_time = Math.floor(all_time / 3600);
+		let minutes_all_time = Math.floor((all_time % 3600) / 60);
+		let seconds_all_time = Math.floor(all_time % 60);
+
+		// Create a string to display the time in the desired format
+		let text_all_time = '';
+		if (hours_all_time > 0) {
+		  text_all_time += `${hours_all_time} ชั่วโมง${hours_all_time > 1 ? '' : ''} `;
+		}
+		text_all_time += `${minutes_all_time} นาที${minutes_all_time > 1 ? '' : ''} `;
+		text_all_time += `${seconds_all_time} วินาที${seconds_all_time > 1 ? '' : ''}`;
+
+		document.querySelector('#time_zone_all').innerHTML = text_all_time ;
 
 	}
 
