@@ -258,13 +258,19 @@ class Sos_help_centerController extends Controller
         $requestData = $request->all();
         $officer = $requestData['officer'] ;
 
-        $redirectTo = 'officers/switch_standby/?officer=' . $officer;
+        if ( !empty($officer) ) {
+            $redirectTo = 'officers/switch_standby/?officer=' . $officer;
+        }else{
+            $redirectTo = 'officers/switch_standby/' ;
+        }
 
+        
         if(Auth::check()){
-            return redirect('officers/switch_standby/?officer=' . $officer);
+            return redirect($redirectTo);
         }else{
             return redirect('/login/line?redirectTo=' . $redirectTo);
         }
+        
         // if(Auth::check()){
         //     return redirect('officers/switch_standby');
         // }else{
