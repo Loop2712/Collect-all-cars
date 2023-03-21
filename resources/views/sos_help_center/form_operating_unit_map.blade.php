@@ -1526,7 +1526,7 @@
                                         color_btn_level = 'btn-success' ;
                                     break;
                                     case 'BLS':
-                                        color_btn_level = 'btn-warning text-white' ;
+                                        color_btn_level = 'btn-warning' ;
                                     break;
                                     case 'ILS':
                                         color_btn_level = 'btn-danger' ;
