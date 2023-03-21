@@ -1914,11 +1914,11 @@
 								// ถ้า KEY = vehicle_type
 								let tag_i_vehicle_type = document.querySelector('#tag_i_vehicle_type');
 								if (value === 'รถ') {
-									tag_i_vehicle_type.setAttribute('class', "fa-solid fa-truck-medical");
+									tag_i_vehicle_type.setAttribute('class', "fa-solidfa-truck-medical");
 								}else if(value === 'อากาศยาน'){
-									tag_i_vehicle_type.setAttribute('class', "fa-sharp fa-solid fa-plane");
+									tag_i_vehicle_type.setAttribute('class', "fa-sharpfa-solid fa-plane");
 								}else if(value === 'เรือ ป.๑' || value === 'เรือ ป.๒' || value === 'เรือ ป.๓' || value === 'เรือประเภทอื่นๆ' ){
-									tag_i_vehicle_type.setAttribute('class', "fa-duotone fa-ship");
+									tag_i_vehicle_type.setAttribute('class', "fa-duotonefa-ship");
 								}
 
 								// ถ้า KEY = operating_suit_type
@@ -1931,7 +1931,7 @@
 									color_operating = "danger" ;
 								}
 
-								input_Element_key.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
+								input_Element_key.setAttribute('class', "card-input-"+color_operating+"card-input-elementd-none");
 								
 
 				  			}else if (key === 'lat' || key === 'lng') {
