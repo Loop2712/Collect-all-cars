@@ -2799,12 +2799,8 @@
 		}
 		// ------------------------------- จบ รวมระยะทางกลับ ---------------------------------------//
 
-		if (total_distance) {
-			document.querySelector('#total_distance').innerHTML = total_distance.toFixed(2) ;
-		}else{
-			document.querySelector('#total_distance').innerHTML = '0' ;
-		}
-
+		document.querySelector('#total_distance').innerHTML = total_distance.toFixed(2) ;
+		
 		time_in_no5();
 	}
 </script>
