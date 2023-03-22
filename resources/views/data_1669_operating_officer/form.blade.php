@@ -1,7 +1,7 @@
-<div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-    <label for="name" class="control-label">{{ 'Name' }}</label>
-    <input class="form-control" name="name" type="text" id="name" value="{{ isset($data_1669_operating_officer->name) ? $data_1669_operating_officer->name : ''}}" >
-    {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+<div class="form-group {{ $errors->has('name_officer') ? 'has-error' : ''}}">
+    <label for="name_officer" class="control-label">{{ 'name_officer' }}</label>
+    <input class="form-control" name="name_officer" type="text" id="name_officer" value="{{ isset($data_1669_operating_officer->name) ? $data_1669_operating_officer->name : ''}}" >
+    {!! $errors->first('name_officer', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="d-none form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
     <label for="lat" class="control-label">{{ 'Lat' }}</label>
@@ -25,9 +25,32 @@
 </div>
 <div class="form-group {{ $errors->has('area') ? 'has-error' : ''}}">
     <label for="area" class="control-label">{{ 'User Id' }}</label>
-    <input class="form-control" name="area" type="text" id="area" value="{{ $name_area }}" readonly>
+    <input class="form-control" name="name_area" type="text" id="area" value="{{ $name_area }}" readonly>
 </div>
 
+<div class="form-group {{ $errors->has('level') ? 'has-error' : ''}}">
+    <label for="level" class="control-label">{{ 'ระดับ' }}</label>
+    <select name="level" class="form-control" >
+        <option value="" selected > - กรุณาเลือกระดับ - </option>    
+        <option value="FR">FR</option>                                 
+        <option value="BLS">BLS</option>                                 
+        <option value="ILS">ILS</option>                                 
+        <option value="ALS">ALS</option>                                 
+
+    </select>
+</div>
+<div class="form-group {{ $errors->has('vehicle_type') ? 'has-error' : ''}}">
+    <label for="vehicle_type" class="control-label">{{ 'ยานพาหนะ' }}</label>
+    <select name="vehicle_type"  class="form-control" >
+        <option value="" selected > - กรุณาเลือกยานพาหนะ - </option>   
+        <option value="รถยนต์">รถยนต์</option>        
+        <option value="อากาศยานต์">อากาศยานต์</option>   
+        <option value="เรือ ป.1">เรือ ป.1</option>     
+        <option value="เรือ ป.2">เรือ ป.2</option>                                 
+        <option value="เรือ ป.3">เรือ ป.3</option>                                 
+        <option value="เรืออื่นๆ">เรืออื่นๆ</option>      
+    </select>
+</div>
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">

@@ -59,20 +59,20 @@ class Data_1669_operating_officerController extends Controller
         
         Data_1669_operating_officer::create($requestData);
 
-        if (!empty($requestData['name_area'])) {
+       
 
-            DB::table('users')
-            ->where([ 
-                    ['id', $requestData['user_id']],
-                ])
-            ->update([
-                    'organization' => "สพฉ",
-                    'sub_organization' => $requestData['name_area'],
-                ]);
+        DB::table('users')
+        ->where([ 
+                ['id', $requestData['user_id']],
+            ])
+        ->update([
+                'organization' => "สพฉ",
+                'sub_organization' => $requestData['name_area'],
+            ]);
 
-        }
+       
 
-        return redirect('data_1669_operating_officer')->with('flash_message', 'Data_1669_operating_officer added!');
+            return view('return_line');
     }
 
     /**
