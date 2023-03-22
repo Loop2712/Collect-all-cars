@@ -28,7 +28,7 @@
     <input class="form-control" name="name_area" type="text" id="area" value="{{ $name_area }}" readonly>
 </div>
 
-<div class="form-group {{ $errors->has('level') ? 'has-error' : ''}}">
+<div class="notranslate form-group {{ $errors->has('level') ? 'has-error' : ''}}">
     <label for="level" class="control-label">{{ 'ระดับ' }}</label>
     <select name="level" class="form-control" >
         <option value="" selected > - กรุณาเลือกระดับ - </option>    
@@ -39,16 +39,16 @@
 
     </select>
 </div>
-<div class="form-group {{ $errors->has('vehicle_type') ? 'has-error' : ''}}">
+<div class="notranslate form-group {{ $errors->has('vehicle_type') ? 'has-error' : ''}}">
     <label for="vehicle_type" class="control-label">{{ 'ยานพาหนะ' }}</label>
     <select name="vehicle_type"  class="form-control" >
         <option value="" selected > - กรุณาเลือกยานพาหนะ - </option>   
-        <option value="รถยนต์">รถยนต์</option>        
-        <option value="อากาศยานต์">อากาศยานต์</option>   
+        <option value="รถ">รถ</option>        
+        <option value="อากาศยาน">อากาศยาน</option>   
         <option value="เรือ ป.1">เรือ ป.1</option>     
         <option value="เรือ ป.2">เรือ ป.2</option>                                 
         <option value="เรือ ป.3">เรือ ป.3</option>                                 
-        <option value="เรืออื่นๆ">เรืออื่นๆ</option>      
+        <option value="เรือประเภทอื่นๆ">เรือประเภทอื่นๆ</option>      
     </select>
 </div>
 
