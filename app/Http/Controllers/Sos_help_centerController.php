@@ -1281,7 +1281,7 @@ class Sos_help_centerController extends Controller
 
         DB::table('data_1669_operating_officers')
         ->where([ 
-                ['id', $requestData['id']],
+                ['user_id', $requestData['id']],
             ])
         ->update([
                 'name_officer' => $requestData['name_officer'],
