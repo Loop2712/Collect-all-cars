@@ -9,9 +9,6 @@
                     <div class="card-header">Create New officer</div>
                     <div class="card-body">
                        
-                        <br />
-                        <br />
-
                         @if ($errors->any())
                             <ul class="alert alert-danger">
                                 @foreach ($errors->all() as $error)
