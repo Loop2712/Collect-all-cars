@@ -81,6 +81,30 @@ class ImageController extends Controller
 
     }
 
+    function save_qr_code_add_officer()
+    {
+
+        $json = file_get_contents("php://input");
+        $data = json_decode($json, true);
+
+        $url = $data['url'];
+        $name_unit = $data['name_unit'];
+
+        $img = storage_path("app/public")."/1669" . "/" . 'qr_code_add_officer_' . $name_unit . '.png';
+
+        // Save image
+        file_put_contents($img, file_get_contents($url));
+
+        $qr_code = Image::make( $img );
+        //logo viicheck
+        $logo_viicheck = Image::make(public_path('img/logo/logo-2.png'));
+        $logo_viicheck->resize(80,80);
+        $qr_code->insert($logo_viicheck,'center')->save();
+
+        return "1669" . "/" . 'qr_code_add_officer_' . $name_unit . '.png';
+
+    }
+
     function create_img_check_in()
     {
         $json = file_get_contents("php://input");

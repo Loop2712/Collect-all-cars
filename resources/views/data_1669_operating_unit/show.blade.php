@@ -33,9 +33,9 @@
           </div>
           <div class="modal-body">
             <center>
-                <img width="50%" src="{{ asset('/img/QR-CODE/1669/qrcode_add_officer_กาญจนบุรี.png') }}">
+                <img id="img_qr_code" width="50%" src="">
                 <br><br>
-                <a href="{{ asset('/img/QR-CODE/1669/qrcode_add_officer_กาญจนบุรี.png') }}" download >
+                <a id="img_qr_code_downloada"  href="" download >
                     <span class="btn btn-success"><i class="fa-solid fa-download"></i> ดาวน์โหลด QR-CODE</span>
                 </a>
                 <br>
@@ -54,7 +54,39 @@
     <script>
         function gen_qr_code_add_officer(){
 
-            document.querySelector('#btn_modal_confirm_create').click();
+            let url = "" ;
+
+            url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/add_new_officers" + "/" + "{{ $data_1669_operating_unit->id }}" + "&chs=500x500&choe=UTF-8" ;
+            console.log(url);
+
+            let data = {
+                'url' : url,
+                'name_unit' : "{{ $data_1669_operating_unit->name }}",
+            };
+
+            fetch("{{ url('/') }}/api/save_qr_code_add_officer", {
+                method: 'post',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (response){
+                return response.text();
+            }).then(function(text){
+                // console.log(text);
+                let url_img = "{{ url('storage') }}/" + text;
+
+                document.querySelector('#img_qr_code').setAttribute('src' , url_img);
+                document.querySelector('#img_qr_code_downloada').setAttribute('href' , url_img);
+                document.querySelector('#btn_modal_confirm_create').click();
+
+            }).catch(function(error){
+                // console.error(error);
+            });
+
+            
+
+
         }
 
         function CopyToClipboard(containerid) {
