@@ -14,6 +14,8 @@ use SebastianBergmann\Environment\Console;
 use App\Models\Data_1669_operating_officer;
 use App\Models\Data_1669_operating_unit;
 use App\Models\Mylog;
+use App\Models\Partner;
+use App\Models\Time_zone;
 use App\User;
 
 use \Carbon\Carbon;
@@ -196,7 +198,7 @@ class Sos_help_centerController extends Controller
         $data_user = Auth::user();
         $sub_organization = $data_user->sub_organization;
 
-        $count_data = Sos_help_center::count();
+        // $count_data = Sos_help_center::count();
 
         if ($sub_organization == "ศูนย์ใหญ่") {
             if (!empty($keyword)) {
@@ -209,6 +211,10 @@ class Sos_help_centerController extends Controller
             } else {
                 $data_sos = Sos_help_center::latest()->paginate($perPage);
             }
+
+            $polygon_provinces = DB::table('province_ths')
+                ->where('polygon' , '!=' , null)
+                ->get();
         }else{
              if (!empty($keyword)) {
                 $data_sos = Sos_help_center::where('id', 'LIKE', "%$keyword%")
@@ -221,9 +227,14 @@ class Sos_help_centerController extends Controller
             } else {
                 $data_sos = Sos_help_center::where('notify', 'LIKE', "%$sub_organization%")->orderBy('created_at' , 'DESC')->paginate($perPage);
             }
+
+            $polygon_provinces = DB::table('province_ths')
+                ->where('polygon' , '!=' , null)
+                ->where('province_name' , $sub_organization)
+                ->get();
         }
         
-        return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos' ,'count_data'));
+        return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos','polygon_provinces'));
 
     }
 
@@ -251,6 +262,29 @@ class Sos_help_centerController extends Controller
         }
 
         return $polygon_provinces ;
+    }
+
+    function draw_area_select($province_name){
+        $polygon_provinces = DB::table('province_ths')
+            ->where('polygon' , '!=' , null)
+            ->where('province_name' , $province_name)
+            ->get();
+
+        return $polygon_provinces ;
+    }
+
+    function marker_area_select($province_name){
+        // $data_sos = Sos_help_center::where('notify', 'LIKE', "%$province_name%")
+        //     ->orderBy('created_at' , 'DESC')
+        //     ->get();
+        
+        $data_sos = DB::table('sos_help_centers')
+            ->join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+            ->select('sos_help_centers.*', 'sos_1669_form_yellows.be_notified', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text')
+            ->where('sos_help_centers.notify', 'like', "%$province_name%")
+            ->get();
+
+        return $data_sos ;
     }
 
     function switch_standby_login(Request $request){
@@ -1327,6 +1361,58 @@ class Sos_help_centerController extends Controller
         $name_area =  $data_unit->area ;
 
         return view('data_1669_operating_officer.create', compact('operating_unit_id', 'name_area'));
+    }
+
+    public function all_name_user_partner(Request $request)
+    {
+        $data_user = Auth::user();
+        $sub_organization = $data_user->sub_organization ;
+
+        $data_partners = Partner::where("name", $data_user->organization)
+            ->where("name_area", null)
+            ->get();
+
+        foreach ($data_partners as $data_partner) {
+            $name_partner = $data_partner->name ;
+        }
+
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        if ($sub_organization == "ศูนย์ใหญ่"){
+
+            if (!empty($keyword)) {
+                $all_user = User::Where('organization', $name_partner)
+                    ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
+                    ->Where('name', 'LIKE', "%$keyword%")
+                    ->latest()->paginate($perPage);
+            } else {
+                $all_user = User::Where('organization', $name_partner)
+                    ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
+                    ->latest()->paginate($perPage);
+            }
+
+        }else{
+
+            if (!empty($keyword)) {
+                $all_user = User::Where('organization', $name_partner)
+                    ->Where('sub_organization', 'LIKE', "%$sub_organization%")
+                    ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
+                    ->Where('name', 'LIKE', "%$keyword%")
+                    ->latest()->paginate($perPage);
+            } else {
+                $all_user = User::Where('organization', $name_partner)
+                    ->Where('sub_organization', 'LIKE', "%$sub_organization%")
+                    ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
+                    ->latest()->paginate($perPage);
+            }
+
+        }
+
+        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+
+        return view('sos_help_center.manage_user.all_name_user_partner', compact('data_partners','all_user','data_time_zone'));
     }
 
 }

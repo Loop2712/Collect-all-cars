@@ -105,28 +105,34 @@
                 <div class="sticky">
                     <div id="map" style="border-radius:25px"></div>
 
-                    <h6 class="mt-3">
-                        <i class="fa-solid fa-circle" style="color: #006400;"></i> เปิดให้บริการ
-                        <i class="fa-solid fa-circle" style="color: #696969;"></i> ยังไม่เปิดบริการ
-                        <i class="fa-solid fa-circle" style="color: #FF4500;"></i> พื้นที่ทดสอบ
-                    </h6>
+                    @if( Auth::user()->sub_organization == "ศูนย์ใหญ่")
+                        <h6 class="mt-3">
+                            <i class="fa-solid fa-circle" style="color: #006400;"></i> เปิดให้บริการ
+                            <i class="fa-solid fa-circle" style="color: #696969;"></i> ยังไม่เปิดบริการ
+                            <i class="fa-solid fa-circle" style="color: #FF4500;"></i> พื้นที่ทดสอบ
+                        </h6>
+                    @endif
 
                     <a style="background-color: green;" type="button" class="btn text-white btn-reset" onclick="initMap();">
                         <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
                     </a>
-
-                    <div class="btn-group btn-area">
-                        <button type="button" class="btn btn-info text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            เลือกพื้นที่
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">พื้นที่ 1</a>
-                            <a class="dropdown-item" href="#">พื้นที่ 2</a>
-                            <a class="dropdown-item" href="#">พื้นที่ 3</a>
-                            <a class="dropdown-item" href="#">พื้นที่ 4</a>
-                            <a class="dropdown-item" href="#">พื้นที่ 5</a>
+                    @if( Auth::user()->sub_organization == "ศูนย์ใหญ่")
+                        <div class="btn-group btn-area">
+                            <button type="button" class="btn btn-info text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                เลือกพื้นที่
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" onclick="click_select_area_map('ทั้งหมด');">
+                                    ทั้งหมด
+                                </a>
+                                @foreach($polygon_provinces as $item)
+                                    <a class="dropdown-item btn" onclick="click_select_area_map('{{ $item->province_name }}');">
+                                        {{ $item->province_name }}
+                                    </a>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
             <div class="col-12 col-md-9 col-lg-9 m-0">
@@ -291,19 +297,91 @@
                     <div class="col-4  ">
                         <div class="card p-3 radius-10 ">
                             <p class="m-0">พื้นที่</p>
-                            <h5><span class="text-info">ทั้งหมด</span></h5>
+                            @if( Auth::user()->sub_organization != "ศูนย์ใหญ่")
+                                <h5><span class="text-info">{{ Auth::user()->sub_organization }}</span></h5>
+                            @else
+                                <h5><span class="text-info" id="span_text_show_area">ทั้งหมด</span></h5>
+                            @endif
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="card p-3 radius-10" >
                             <p class="m-0">จำนวนทั้งหมด</p>
-                            <h5><span id="span_count_data">{{ $count_data }}</span> รายการ</h5>
+                            <h5><span id="span_count_data">{{ count($data_sos) }}</span> รายการ</h5>
                         </div>
                     </div>
+
+                    <!-- เวลาโดยเฉลี่ย -->
+                    @php
+                        $count_success = 0 ;
+                        $all_time = 0 ;
+
+                        foreach($data_sos as $sos){
+
+                            if($sos->status == "เสร็จสิ้น"){
+
+                                $count_success = $count_success + 1 ;
+
+                                if($sos->time_create_sos){
+                                    $zone1_time1 = $sos->time_create_sos  ;
+                                }
+
+                                if($sos->time_command){
+                                    $zone1_time2 = $sos->time_command  ;
+                                }
+                                if($sos->time_go_to_help){
+                                    $zone1_time2 = $sos->time_go_to_help  ;
+                                }
+                                if($sos->time_to_the_scene){
+                                    $zone1_time2 = $sos->time_to_the_scene  ;
+                                }
+                                if($sos->time_leave_the_scene){
+                                    $zone1_time2 = $sos->time_leave_the_scene  ;
+                                }
+                                if($sos->time_hospital){
+                                    $zone1_time2 = $sos->time_hospital  ;
+                                }
+
+                                list($zone1_hours1, $zone1_minutes1, $zone1_seconds1) = explode(':', $zone1_time1);
+                                list($zone1_hours2, $zone1_minutes2, $zone1_seconds2) = explode(':', $zone1_time2);
+
+
+                                $zone1_totalSeconds1 = intval($zone1_hours1) * 3600 + intval($zone1_minutes1) * 60 + intval($zone1_seconds1);
+                                $zone1_totalSeconds2 = intval($zone1_hours2) * 3600 + intval($zone1_minutes2) * 60 + intval($zone1_seconds2);
+
+                                $zone1_TotalSeconds = $zone1_totalSeconds2 - $zone1_totalSeconds1;
+
+                                $zone1_Time_min = floor($zone1_TotalSeconds / 60);
+                                $zone1_Time_Seconds = $zone1_TotalSeconds - ($zone1_Time_min * 60);
+
+                                $min_1_to_sec = $zone1_Time_min * 60 ;
+                                $all_time = $all_time + $min_1_to_sec + $zone1_Time_Seconds ;
+
+                            }
+                        }
+
+                        $hours_all_time = floor($all_time / 3600);
+                        $minutes_all_time = floor(($all_time % 3600) / 60);
+                        $seconds_all_time = floor($all_time % 60);
+
+                        $text_all_time = '';
+                        if ($hours_all_time > 0) {
+                          $text_all_time .= "{$hours_all_time} ชั่วโมง".($hours_all_time > 1 ? '' : '')." ";
+                        }
+                        $text_all_time .= "{$minutes_all_time} นาที".($minutes_all_time > 1 ? '' : '')." ";
+                        $text_all_time .= "{$seconds_all_time} วินาที".($seconds_all_time > 1 ? '' : '');
+                          
+                        $show_min_average_per_case = $text_all_time;
+                        
+
+                    @endphp
+
                     <div class="col-4">
                         <div class="card p-3 radius-10" >
-                            <p class="m-0">เวลาโดยเฉลี่ย</p>
-                            <h5> ... นาที / เคส</h5>
+                            <p class="m-0">เวลาโดยเฉลี่ย (เสร็จสิ้น)</p>
+                            <h5> <b><span id="span_min_average_per_case">
+                                {{ $show_min_average_per_case }}</span></b> นาที / เคส (<span id="span_count_success_average">{{ $count_success }}</span>)
+                            </h5>
                         </div>
                     </div>
                 </div>
@@ -879,6 +957,220 @@
                 }
         });
 
+    }
+
+    function click_select_area_map(province_name){
+
+        document.querySelector('#span_text_show_area').innerHTML = province_name ;
+
+        if(province_name == "ทั้งหมด"){
+
+            initMap();
+
+            document.querySelector('#div_body_help').classList.add('d-none');
+
+            let div_body_help = document.querySelector('#div_body_help');
+                div_body_help.innerHTML = "" ;
+
+            document.querySelector('#data_help').classList.remove('d-none');
+            document.querySelector('#span_count_data').innerHTML = "{{ count($data_sos) }}";
+
+            document.querySelector('#span_min_average_per_case').innerHTML = "{{ $show_min_average_per_case }}" ;
+            document.querySelector('#span_count_success_average').innerHTML = "{{ $count_success }}" ;
+
+        }else{
+
+            if (marker) {
+                marker.setMap(null);
+            }
+
+            let all_draw_area_select = [] ;
+            fetch("{{ url('/') }}/api/draw_area_select/" + province_name)
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                    let bounds = new google.maps.LatLngBounds();
+
+                    for (let ii = 0; ii < result.length; ii++) {
+                        for (let xx = 0; xx < JSON.parse(result[ii]['polygon']).length; xx++) {
+
+                            all_draw_area_select.push(JSON.parse(result[ii]['polygon'])[xx]);
+
+                            bounds.extend(all_draw_area_select[xx]);
+                        }
+                    }
+
+                    map = new google.maps.Map(document.getElementById("map"), {
+                        // center: {lat: m_lat, lng: m_lng },
+                        // zoom: m_numZoom,
+                    });
+                    map.fitBounds(bounds);
+
+
+                    for (let xi = 0; xi < result.length; xi++) {
+
+                        let color_poly = [] ;
+
+                        if (result[xi]['sos_1669_show'] == 'show') {
+                            color_poly[xi] = '#006400' ;
+                        }else if (result[xi]['sos_1669_show'] == 'test'){
+                            color_poly[xi] = '#FF4500' ;
+                        }else if (result[xi]['sos_1669_show'] == 'no'){
+                            color_poly[xi] = '#696969' ;
+                        }
+
+                        // วาดแยกแต่ละพื้นที่
+                        let draw_area_other = new google.maps.Polygon({
+                            paths: JSON.parse(result[xi]['polygon']),
+                            strokeColor: color_poly[xi],
+                            strokeOpacity: 0.8,
+                            strokeWeight: 1,
+                            fillColor: color_poly[xi],
+                            fillOpacity: 0.25,
+                            zIndex:10,
+                        });
+                        draw_area_other.setMap(map);
+
+                    }
+            });
+
+            fetch("{{ url('/') }}/api/marker_area_select/" + province_name)
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                    document.querySelector('#div_body_help').classList.remove('d-none');
+
+                    let div_body_help = document.querySelector('#div_body_help');
+                        div_body_help.innerHTML = "" ;
+
+                    document.querySelector('#data_help').classList.add('d-none');
+                    document.querySelector('#span_count_data').innerHTML = result.length;
+
+                    let all_time = 0 ;
+                    let count_all_time = 0 ;
+
+                    for (var xxi = 0; xxi < result.length; xxi++) {
+
+                        marker = new google.maps.Marker({
+                            position: {lat: parseFloat( result[xxi]['lat'] ) , lng: parseFloat( result[xxi]['lng'] ) },
+                            map: map,
+                            icon: image_sos,
+                        });
+
+                        let div_data_add = document.createElement("div");
+                        let id_div_data_add = document.createAttribute("id");
+                            id_div_data_add.value = "data_id_" + result[xxi]['id'];
+                            div_data_add.setAttributeNode(id_div_data_add);
+                        let class_div_data_add = document.createAttribute("class");
+                            class_div_data_add.value = "col-6";
+                            div_data_add.setAttributeNode(class_div_data_add);
+                        div_body_help.appendChild(div_data_add);
+
+                        let data_html = [] ;
+                            data_html['id'] = result[xxi]['id'] ;
+                            data_html['lat'] = result[xxi]['lat'] ;
+                            data_html['lng'] = result[xxi]['lng'] ;
+                            data_html['name_user'] = result[xxi]['name_user'] ;
+                            data_html['phone_user'] = result[xxi]['phone_user'] ;
+                            data_html['photo_sos'] = result[xxi]['photo_sos'] ;
+                            data_html['operating_code'] = result[xxi]['operating_code'] ;
+                            data_html['created_at'] = result[xxi]['created_at'] ;
+                            data_html['status'] = result[xxi]['status'] ;
+                            data_html['remark_status'] = result[xxi]['remark_status'] ;
+                            data_html['address'] = result[xxi]['address'] ;
+                            data_html['organization_helper'] = result[xxi]['organization_helper'] ;
+                            data_html['name_helper'] = result[xxi]['name_helper'] ;
+
+                            data_html['be_notified'] = result[xxi]['be_notified'] ;
+                            data_html['idc'] = result[xxi]['idc'] ;
+                            data_html['rc'] = result[xxi]['rc'] ;
+                            data_html['rc_black_text'] = result[xxi]['rc_black_text'] ;
+
+                        let div_data_help_center = gen_html_div_data_sos_1669(data_html);
+
+                        document.querySelector('#data_id_' + result[xxi]['id']).innerHTML = div_data_help_center ;
+
+
+                        if (result[xxi]['status'] == "เสร็จสิ้น"){
+
+                            count_all_time = count_all_time + 1 ;
+                            // ---------------------- TIME  ---------------------- //
+                            let time1 ;
+                            let time2 ;
+
+                            // time 1
+                            if (result[xxi]['time_create_sos']) {
+                                time1 = result[xxi]['time_create_sos'] ;
+                            }
+                            // time 2
+                            if (result[xxi]['time_command'] ) {
+                                time2 = result[xxi]['time_command'] ;
+                            }
+                            if (result[xxi]['time_go_to_help']) {
+                                time2 = result[xxi]['time_go_to_help'] ;
+                            }
+                            if (result[xxi]['time_to_the_scene']) {
+                                time2 = result[xxi]['time_to_the_scene'] ;
+                            }
+                            if (result[xxi]['time_leave_the_scene']) {
+                                time2 = result[xxi]['time_leave_the_scene'] ;
+                            }
+                            if (result[xxi]['time_hospital']) {
+                                time2 = result[xxi]['time_hospital'] ;
+                            }
+
+                            if (time1 && time2) {
+
+                                time1 = time1.split(" ")[1];
+                                time2 = time2.split(" ")[1];
+
+                                // Extract the hours, minutes, and seconds from the two times
+                                let [zone1_hours1, zone1_minutes1, zone1_seconds1] = time1.split(":");
+                                let [zone1_hours2, zone1_minutes2, zone1_seconds2] = time2.split(":");
+                                // Convert the hours, minutes, and seconds to the total number of seconds
+                                let zone1_totalSeconds1 = parseInt(zone1_hours1) * 3600 + parseInt(zone1_minutes1) * 60 + parseInt(zone1_seconds1);
+                                let zone1_totalSeconds2 = parseInt(zone1_hours2) * 3600 + parseInt(zone1_minutes2) * 60 + parseInt(zone1_seconds2);
+                                // Calculate the time difference in seconds
+                                let zone1_TotalSeconds = zone1_totalSeconds2 - zone1_totalSeconds1;
+                                    // console.log('TotalSeconds >> ' + TotalSeconds);
+                                let zone1_Time_min =  Math.floor(zone1_TotalSeconds / 60);
+                                    // console.log('Time_min >> ' + Time_min);
+                                let zone1_Time_Seconds = zone1_TotalSeconds - (zone1_Time_min*60);
+                                    // console.log('Time_Seconds >> ' + Time_Seconds);
+
+                                let min_1_to_sec = zone1_Time_min * 60 ;
+                                all_time = all_time + min_1_to_sec + zone1_Time_Seconds ;
+                            }
+
+                            
+
+                        }
+
+                    }
+
+                    // ---------------------- TIME ALL ---------------------- //
+
+                    // Convert seconds to hours, minutes, and seconds
+                    let hours_all_time = Math.floor(all_time / 3600);
+                    let minutes_all_time = Math.floor((all_time % 3600) / 60);
+                    let seconds_all_time = Math.floor(all_time % 60);
+
+                    // Create a string to display the time in the desired format
+                    let text_all_time = '';
+                    if (hours_all_time > 0) {
+                      text_all_time += `${hours_all_time} ชั่วโมง${hours_all_time > 1 ? '' : ''} `;
+                    }
+                    text_all_time += `${minutes_all_time} นาที${minutes_all_time > 1 ? '' : ''} `;
+                    text_all_time += `${seconds_all_time} วินาที${seconds_all_time > 1 ? '' : ''}`;
+
+                    document.querySelector('#span_min_average_per_case').innerHTML = text_all_time ;
+                    document.querySelector('#span_count_success_average').innerHTML = count_all_time ;
+            });
+
+        }
+        
     }
 
 </script>
