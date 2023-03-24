@@ -3,7 +3,7 @@
 
 @section('content')
  
-    <div class="card radius-10 d-xxxx d-lg-block" >
+    <div class="card radius-10 d-none d-lg-block" >
         <div class="card-header border-bottom-0 bg-transparent">
             <div class="row mt-2">
                 <div class="col-12">
@@ -136,14 +136,14 @@
     
 <!-- --------------------------------- แสดงเฉพาะคอม ------------------------------- -->
                     <!-- Button trigger modal -->
-                        <button id="btn_modal_confirm_create" class="btn d-xxxx" data-toggle="modal" data-target="#exampleModal">
+                        <button id="btn_modal_confirm_create" class="btn d-none" data-toggle="modal" data-target="#exampleModal">
                         </button>
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
-                              <div class="modal-header d-xxxx">
+                              <div class="modal-header d-none">
                                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
@@ -159,9 +159,24 @@
                                     <input type="radio" name="type" onclick="document.querySelector('#type_user_partner').value = 'partner'; type_user_partner('partner');"> เจ้าหน้าที่
                                 </center>
                                 <hr>
-                                <div id="div_data_officer_partner" class="row d-xxxx">
-                                    <div class="col-12 d-xxxx">
+                                <div id="div_data_officer_partner" class="row d-none">
+                                    <div class="col-12 d-none">
                                         <input class="form-control" type="text" name="type_user_partner" id="type_user_partner" readonly>
+                                    </div>
+                                    <div class="col-12">
+                                        @if($sub_organization != "ศูนย์ใหญ่")
+                                            <input class="form-control d-none" type="text" name="sub_organization" id="sub_organization" value="{{ $sub_organization }}" readonly>
+                                        @else
+                                            <label  class="control-label" style="font-size:17px;"><b>เลือกพื้นที่</b> </label>
+                                            <span class="text-secondary">(default = ศูนย์ใหญ่)</span>
+                                            <select class="form-control" name="sub_organization" id="sub_organization">
+                                                <option value="ศูนย์ใหญ่" selected>เลือกพื้นที่</option>
+                                                <option value="ศูนย์ใหญ่">ศูนย์ใหญ่</option>
+                                                @foreach($polygon_provinces as $item_op)
+                                                    <option value="{{ $item_op->province_name }}">{{ $item_op->province_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        @endif
                                     </div>
                                     <div class="col-12" style="margin-top:15px;">
                                         <label  class="control-label" style="font-size:17px;"><b>ชื่อเจ้าหน้าที่</b> </label>
@@ -179,8 +194,8 @@
                                     </div>
                                 </div>
                               </div>
-                              <div id="div_submit_create_user_partner" class="modal-footer d-xxxx">
-                                <a id="btn_link_creat" class="d-xxxx" >btn_link_creat</a>
+                              <div id="div_submit_create_user_partner" class="modal-footer d-none">
+                                <a id="btn_link_creat" class="d-none" >btn_link_creat</a>
 
                                 <button style="width:20%;" type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
                                 <a style="width:20%;" id="btn_modal" class="btn btn-primary text-white" onclick="creat_officer_partner();">
@@ -390,13 +405,13 @@
 
     function type_user_partner(type_user)
     {
-        document.querySelector('#div_submit_create_user_partner').classList.remove('d-xxxx');
-        document.querySelector('#div_data_officer_partner').classList.remove('d-xxxx');
+        document.querySelector('#div_submit_create_user_partner').classList.remove('d-none');
+        document.querySelector('#div_data_officer_partner').classList.remove('d-none');
 
     }
     function type_user_partner_m(type_user)
     {
-        document.querySelector('#div_submit_create_user_partner_m').classList.remove('d-xxxx');
+        document.querySelector('#div_submit_create_user_partner_m').classList.remove('d-none');
 
     }
 
@@ -405,6 +420,7 @@
         let type_user_partner = document.querySelector('#type_user_partner').value;
         let name_officer = document.querySelector('#name_officer').value;
         let user_name_officer = document.querySelector('#user_name_officer').value;
+        let sub_organization = document.querySelector('#sub_organization').value ;
 
         if (!name_officer) {
             document.querySelector('#name_officer').focus();
@@ -417,7 +433,7 @@
 
             let btn_link_creat = document.querySelector('#btn_link_creat');
             let a_href = document.createAttribute("href");
-                a_href.value = "{{ url('/create_user_partner') }}?type_user=" + type_user_partner + "&name=" + name_officer + "&user_name=" + user_name_officer;
+                a_href.value = "{{ url('/create_user_partner') }}?type_user=" + type_user_partner + "&name=" + name_officer + "&user_name=" + user_name_officer + "&sub_organization=" + sub_organization;
             btn_link_creat.setAttributeNode(a_href); 
 
             document.querySelector('#btn_link_creat').click();

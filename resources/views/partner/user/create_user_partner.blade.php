@@ -82,7 +82,7 @@
                         <button class="btn btn-sm btn-outline-secondary" onclick="CopyToClipboard('userpass')">
                             <i class="fas fa-copy"></i> copy
                         </button>
-                        <a style="float:right;" id="go_back" href="{{ url('/manage_user_partner') }}" class="btn btn-sm btn-outline-warning d-none">
+                        <a style="float:right;" id="go_back" onclick="window.history.back();" class="btn btn-sm btn-outline-warning d-none">
                             <i class="fa-solid fa-arrow-left"></i> ย้อนกลับ
                         </a>
                     </div>
@@ -99,7 +99,7 @@
                     </div>
                     <div id="go_back" class="col-12 d-">
                         <br>
-                        <a href="{{ url('/manage_user_partner') }}" class="btn btn-sm btn-outline-warning">
+                        <a onclick="window.history.back();" class="btn btn-sm btn-outline-warning">
                             <i class="fa-solid fa-arrow-left"></i> ย้อนกลับ
                         </a>
                     </div>

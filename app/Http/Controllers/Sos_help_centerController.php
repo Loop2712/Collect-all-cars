@@ -1411,8 +1411,12 @@ class Sos_help_centerController extends Controller
 
         $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
 
+        $polygon_provinces = DB::table('province_ths')
+                ->where('polygon' , '!=' , null)
+                ->get();
 
-        return view('sos_help_center.manage_user.all_name_user_partner', compact('data_partners','all_user','data_time_zone'));
+
+        return view('sos_help_center.manage_user.all_name_user_partner', compact('data_partners','all_user','data_time_zone','sub_organization','polygon_provinces'));
     }
 
 }

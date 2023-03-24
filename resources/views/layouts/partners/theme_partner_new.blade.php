@@ -190,14 +190,22 @@
 								</div>
 								<div class="menu-title">การจัดการผู้ใช้</div>
 							</a>
-							<ul>
-								<li>
-									<a href="{{ url('/all_name_user_partner') }}"><i class='fas fa-users-cog'></i> สมาชิกศูนย์สั่งการ</a>
-								</li>
-								<li>
-									<a href="{{ url('/data_1669_operating_unit') }}"><i class="fa-solid fa-user-plus"></i> หน่วยแพทย์ </a>
-								</li>
-							</ul>
+							@if(Auth::user()->organization == "สพฉ" )
+								<ul>
+									<li>
+										<a href="{{ url('/all_name_user_partner') }}"><i class='fas fa-users-cog'></i> สมาชิกศูนย์สั่งการ</a>
+									</li>
+									<li>
+										<a href="{{ url('/data_1669_operating_unit') }}"><i class="fa-solid fa-user-plus"></i> หน่วยแพทย์ </a>
+									</li>
+								</ul>
+							@else
+								<ul>
+									<li>
+										<a href="{{ url('/manage_user_partner') }}"><i class='fas fa-users-cog'></i> สมาชิก</a>
+									</li>
+								</ul>
+							@endif
 						</li>
 					@endif
 				@endif

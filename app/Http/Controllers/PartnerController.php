@@ -299,11 +299,11 @@ class PartnerController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $all_user = User::Where('name', 'LIKE', "%$keyword%")
-                ->Where('organization', $name_partner)
+            $all_user = User::Where('organization', $name_partner)->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
+                ->Where('name', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $all_user = User::Where('organization', $name_partner)
+            $all_user = User::Where('organization', $name_partner)->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
                 ->latest()->paginate($perPage);
         }
 
@@ -363,7 +363,13 @@ class PartnerController extends Controller
             ->get();
 
         $partners = $data_user->organization ;
-        $sub_partners = $data_user->sub_organization ;
+
+        if (!empty($requestData['sub_organization'])){
+            $sub_partners = $requestData['sub_organization'] ;
+        }else{
+            $sub_partners = $data_user->sub_organization ;
+        }
+        
 
         $type_user = $requestData['type_user'];
         $name = $requestData['name'];
