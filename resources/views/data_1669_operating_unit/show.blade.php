@@ -334,7 +334,7 @@
             let url = "" ;
 
             url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/add_new_officers" + "/" + "{{ $data_1669_operating_unit->id }}" + "&chs=500x500&choe=UTF-8" ;
-            console.log(url);
+            // console.log(url);
 
             let data = {
                 'url' : url,
@@ -352,7 +352,8 @@
             }).then(function(text){
                 // console.log(text);
                 let url_img = "{{ url('storage') }}/" + text;
-
+                console.log(url_img);
+                    
                 document.querySelector('#img_qr_code').setAttribute('src' , url_img);
                 document.querySelector('#img_qr_code_downloada').setAttribute('href' , url_img);
                 document.querySelector('#btn_modal_confirm_create').click();
