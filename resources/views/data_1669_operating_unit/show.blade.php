@@ -60,7 +60,27 @@
                     <!-- <span class="input-group-text"></span> -->
                     <span class="input-group-text btn" onclick="CopyToClipboard('copy_link_add_officer')">Copy</span>
                 </div>
+                <div class="mt-3">
+                    <button id="share-line-btn" onclick="shareOnLine();">Share on Line</button>
+                    <button id="share-fb-btn" onclick="shareOnFacebook();">Share on Facebook</button>
+                </div>
             </center>
+            <script>
+
+                function shareOnFacebook() {
+                    let shareUrl = document.getElementById("copy_link_add_officer").value;
+                    let fbUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareUrl);
+                    window.open(fbUrl);
+                }
+
+                function shareOnLine() {
+                    let shareUrl = document.getElementById("copy_link_add_officer").value;
+                    let lineUrl = "https://line.me/R/msg/text/" + encodeURIComponent(shareUrl);
+                    window.open(lineUrl);
+                }
+
+
+            </script>
           </div>
 
         </div>
