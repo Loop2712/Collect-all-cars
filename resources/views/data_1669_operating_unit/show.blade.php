@@ -75,16 +75,19 @@
                                                 {{ $item->name_officer }}
                                             </td>
                                             <td>
-                                                <style>
-                                                    #map_standby_{{ $item->id }} {
-                                                        height: calc(15vh);
-                                                    }
-                                                </style>
-                                                <div id="map_standby_{{ $item->id }}"></div>
-                                                <!-- {{ $item->lat }},{{ $item->lng }} -->
+                                                @if( $item->status == "Standby")
+                                                    <style>
+                                                        #map_standby_{{ $item->id }} {
+                                                            height: calc(15vh);
+                                                        }
+                                                    </style>
+                                                    <div id="map_standby_{{ $item->id }}"></div>
+                                                    <!-- {{ $item->lat }},{{ $item->lng }} -->
+                                                @endif
                                             </td>
                                             <td>
                                                 @php
+                                                    $color_level = "" ;
                                                     switch($item->level) {
                                                         case 'FR':
                                                             $color_level = "success";
@@ -132,6 +135,8 @@
                                             </td>
                                             <td>
                                                 @php
+                                                    $text_status = "" ;
+                                                    $text_status = "" ;
                                                     switch($item->status) {
                                                         case 'Standby':
                                                             $color_status = "success";
@@ -352,8 +357,8 @@
             }).then(function(text){
                 // console.log(text);
                 let url_img = "{{ url('storage') }}/" + text;
-                console.log(url_img);
-                    
+                // console.log(url_img);
+
                 document.querySelector('#img_qr_code').setAttribute('src' , url_img);
                 document.querySelector('#img_qr_code_downloada').setAttribute('href' , url_img);
                 document.querySelector('#btn_modal_confirm_create').click();
