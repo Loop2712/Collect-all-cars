@@ -51,68 +51,140 @@
       </div>
     </div>
 
-    <script>
-        function gen_qr_code_add_officer(){
-
-            let url = "" ;
-
-            url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/add_new_officers" + "/" + "{{ $data_1669_operating_unit->id }}" + "&chs=500x500&choe=UTF-8" ;
-            console.log(url);
-
-            let data = {
-                'url' : url,
-                'name_unit' : "{{ $data_1669_operating_unit->name }}",
-            };
-
-            fetch("{{ url('/') }}/api/save_qr_code_add_officer", {
-                method: 'post',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(function (response){
-                return response.text();
-            }).then(function(text){
-                // console.log(text);
-                let url_img = "{{ url('storage') }}/" + text;
-
-                document.querySelector('#img_qr_code').setAttribute('src' , url_img);
-                document.querySelector('#img_qr_code_downloada').setAttribute('href' , url_img);
-                document.querySelector('#btn_modal_confirm_create').click();
-
-            }).catch(function(error){
-                // console.error(error);
-            });
-
-            
-
-
-        }
-
-        function CopyToClipboard(containerid) {
-          if (document.selection) {
-            var range = document.body.createTextRange();
-            range.moveToElementText(document.getElementById(containerid));
-            range.select().createTextRange();
-            document.execCommand("copy");
-          } else if (window.getSelection) {
-            var range = document.createRange();
-            range.selectNode(document.getElementById(containerid));
-            window.getSelection().addRange(range);
-            document.execCommand("copy");
-            alert("คัดลอก ข้อความแล้ว");
-            window.location.replace("{{url('/view_new_user')}}");
-          }
-        }
-
-    </script>
-
     <div class="card-body">
 
-        <h4>รายชื่อสมาชิก</h4>
-        <div class="card">
-            <div class="card-body">
-                <div class="table-responsive">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example2555" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>ชื่อเจ้าหน้าที่</th>
+                                        <th>พื้นที่ที่พร้อมช่วยเหลือ</th>
+                                        <th>ระดับ</th>
+                                        <th>ประเภท</th>
+                                        <th>สถานะ</th>
+                                        <th>ไปช่วยเหลือแล้ว(ครั้ง)</th>
+                                        <th>ปฏิเสธการช่วยเหลือ(ครั้ง)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($data_officer as $item)
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">
+                                                {{ $item->name_officer }}
+                                            </td>
+                                            <td>
+                                                <style>
+                                                    #map_standby_{{ $item->id }} {
+                                                        height: calc(15vh);
+                                                    }
+                                                </style>
+                                                <div id="map_standby_{{ $item->id }}"></div>
+                                                <!-- {{ $item->lat }},{{ $item->lng }} -->
+                                            </td>
+                                            <td>
+                                                @php
+                                                    switch($item->level) {
+                                                        case 'FR':
+                                                            $color_level = "success";
+                                                        break;
+                                                        case 'BLS':
+                                                            $color_level = "warning";
+                                                        break;
+                                                        case 'ILS':
+                                                            $color_level = "danger";
+                                                        break;
+                                                        case 'ALS':
+                                                            $color_level = "danger";
+                                                        break;
+                                                    }
+                                                @endphp
+                                                <center>
+                                                    <span class="btn btn-sm btn-{{ $color_level }} main-shadow main-radius" style="width: 100%;">
+                                                        {{ $item->level }}
+                                                    </span>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                @php
+                                                    $class_vehicle_type = "" ;
+
+                                                    if( $item->vehicle_type == 'รถ' ){
+                                                        $class_vehicle_type = "fa-solid fa-truck-medical" ;
+                                                    }else if ( $item->vehicle_type == 'อากาศยาน' ){
+                                                        $class_vehicle_type = "fa-sharp fa-solid fa-plane" ;
+                                                    }else if ( $item->vehicle_type == 'เรือ ป.1' ){
+                                                        $class_vehicle_type = "fa-duotone fa-ship" ;
+                                                    }else if ( $item->vehicle_type == 'เรือ ป.2' ){
+                                                        $class_vehicle_type = "fa-duotone fa-ship" ;
+                                                    }else if ( $item->vehicle_type == 'เรือ ป.3' ){
+                                                        $class_vehicle_type = "fa-duotone fa-ship" ;
+                                                    }else if ( $item->vehicle_type == 'เรือประเภทอื่นๆ' ){
+                                                        $class_vehicle_type = "fa-duotone fa-ship" ;
+                                                    }
+                                                @endphp
+                                                <center>
+                                                    <span class="btn btn-sm btn-info main-shadow main-radius text-white" style="width: 100%;">
+                                                        <i id="tag_i_vehicle_type" class="{{ $class_vehicle_type }}"></i> {{ $item->vehicle_type }}
+                                                    </span>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                @php
+                                                    switch($item->status) {
+                                                        case 'Standby':
+                                                            $color_status = "success";
+                                                            $text_status = "พร้อมช่วยเหลือ" ;
+                                                        break;
+                                                        case 'Not_ready':
+                                                            $color_status = "danger";
+                                                            $text_status = "ยังไม่พร้อม" ;
+                                                        break;
+                                                        case 'Helping':
+                                                            $color_status = "warning";
+                                                            $text_status = "กำลังช่วยเหลือ" ;
+                                                        break;
+                                                    }
+                                                @endphp
+                                                <center>
+                                                    <span class="text-{{ $color_status }}" style="font-size: 18px;">
+                                                        <b>{{ $text_status }}</b>
+                                                    </span>
+                                                </center>
+                                            </td>
+                                            <td>
+                                                @if( !empty($item->go_to_help) )
+                                                    {{ $item->go_to_help }}
+                                                @else
+                                                    0
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @php
+                                                    $count_refuse = 0 ;
+                                                    if(!empty($item->refuse)){
+                                                        $refuse_exp = explode(",",$item->refuse) ;
+                                                        $count_refuse = count($refuse_exp);
+                                                    }
+                                                @endphp
+
+                                                {{ $count_refuse }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <!-- <div class="table-responsive">
                     <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap5">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
@@ -190,12 +262,126 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div> -->
 
 
     </div>
 </div>
+
+<script>
+        
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+        open_map_standby_all();
+        
+        var table = $('#example2555').DataTable( {
+            
+            lengthChange: false,
+            buttons: [ 'copy', 'excel', 'pdf', 'print']
+        } );
+     
+        table.buttons().container()
+            .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
+
+  });
+</script>
+
+<!-- VIICHECK MAP ใช้จริงใช้อันนี้ -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
+<script>
+    var map_standby = [] ;
+    var marker = [] ;
+    const image_operating_unit_red = "{{ url('/img/icon/operating_unit/แดง.png') }}";
+    const image_operating_unit_yellow = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
+    const image_operating_unit_green = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
+    const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
+
+    function open_map_standby_all(){
+
+        @foreach($data_officer as $item)
+            map_standby['{{ $item->id }}'] = new google.maps.Map(document.getElementById("map_standby_{{ $item->id }}"), {
+                center: { lat: parseFloat("{{ $item->lat }}"),lng: parseFloat("{{ $item->lng }}") },
+                zoom: 14 ,
+            });
+
+            switch("{{ $item->level }}") {
+                case 'FR':
+                    icon_marker = image_operating_unit_green;
+                break;
+                case 'BLS':
+                    icon_marker = image_operating_unit_yellow;
+                break;
+                case 'ILS':
+                    icon_marker = image_operating_unit_red;
+                break;
+                case 'ALS':
+                    icon_marker = image_operating_unit_red;
+                break;
+            }
+
+            marker['{{ $item->id }}'] = new google.maps.Marker({
+                position: {lat: parseFloat("{{ $item->lat }}") , lng: parseFloat("{{ $item->lng }}") },
+                map: map_standby['{{ $item->id }}'],
+                icon: icon_marker,
+            });
+        @endforeach
+    }
+</script>
+
+ <script>
+        function gen_qr_code_add_officer(){
+
+            let url = "" ;
+
+            url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/add_new_officers" + "/" + "{{ $data_1669_operating_unit->id }}" + "&chs=500x500&choe=UTF-8" ;
+            console.log(url);
+
+            let data = {
+                'url' : url,
+                'name_unit' : "{{ $data_1669_operating_unit->name }}",
+            };
+
+            fetch("{{ url('/') }}/api/save_qr_code_add_officer", {
+                method: 'post',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (response){
+                return response.text();
+            }).then(function(text){
+                // console.log(text);
+                let url_img = "{{ url('storage') }}/" + text;
+
+                document.querySelector('#img_qr_code').setAttribute('src' , url_img);
+                document.querySelector('#img_qr_code_downloada').setAttribute('href' , url_img);
+                document.querySelector('#btn_modal_confirm_create').click();
+
+            }).catch(function(error){
+                // console.error(error);
+            });
+
+            
+
+
+        }
+
+        function CopyToClipboard(containerid) {
+          if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(containerid));
+            range.select().createTextRange();
+            document.execCommand("copy");
+          } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(containerid));
+            window.getSelection().addRange(range);
+            document.execCommand("copy");
+            alert("คัดลอก ข้อความแล้ว");
+            window.location.replace("{{url('/view_new_user')}}");
+          }
+        }
+
+    </script>
 
 @endsection

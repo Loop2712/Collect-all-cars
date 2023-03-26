@@ -25,7 +25,10 @@
 								<thead>
 									<tr>
 										<th>ชื่อ</th>
-										<th>พื้นที่</th>
+                                        <th>พื้นที่</th>
+                                        <th>จำนวนสมาชิก</th>
+                                        <th>จำนวนออกปฏิบัติการรวม</th>
+										<th>คะแนนเฉลี่ยสมาชิก</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -34,6 +37,22 @@
                                         <tr>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->area }}</td>
+                                            <td>
+                                                @php
+                                                    $data_officer = App\Models\Data_1669_operating_officer::where('operating_unit_id' ,$item->id)->get();
+
+                                                    $count_data_officer = count($data_officer);
+                                                    $count_all_go_to_help = 0 ;
+
+                                                    foreach($data_officer as $iii){
+                                                        $count_all_go_to_help = $count_all_go_to_help + (int)$iii->go_to_help ;
+                                                    }
+                                                @endphp
+
+                                                {{ $count_data_officer }}
+                                            </td>
+                                            <td>{{ $count_all_go_to_help }}</td>
+                                            <td>...</td>
                                             <td>
                                                 <a href="{{ url('/data_1669_operating_unit/' . $item->id) }}" title="View Data_1669_operating_unit">
                                                     <button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> รายละเอียด</button>
@@ -46,13 +65,6 @@
                                     @endforeach
 
 								</tbody>
-								<tfoot>
-									<tr>
-										<th>ชื่อ</th>
-										<th>พื้นที่</th>
-										<th>Action</th>
-									</tr>
-								</tfoot>
 							</table>
 						</div>
             </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Data_1669_operating_unit;
 use App\Models\Data_1669_operating_officer;
@@ -21,14 +23,33 @@ class Data_1669_operating_unitController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
-        if (!empty($keyword)) {
-            $data_1669_operating_unit = Data_1669_operating_unit::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('area', 'LIKE', "%$keyword%")
-                ->orWhere('level', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $data_1669_operating_unit = Data_1669_operating_unit::latest()->paginate($perPage);
+        $data_user = Auth::user();
+        $sub_organization = $data_user->sub_organization ;
+
+        if ($sub_organization != "ศูนย์ใหญ่"){
+
+            if (!empty($keyword)) {
+                $data_1669_operating_unit = Data_1669_operating_unit::where('area' , $sub_organization)
+                    ->where('name', 'LIKE', "%$keyword%")
+                    ->orWhere('area', 'LIKE', "%$keyword%")
+                    ->orWhere('level', 'LIKE', "%$keyword%")
+                    ->latest()->paginate($perPage);
+            } else {
+                $data_1669_operating_unit = Data_1669_operating_unit::where('area' , $sub_organization)->latest()->paginate($perPage);
+            }
+
+        }else{
+            if (!empty($keyword)) {
+                $data_1669_operating_unit = Data_1669_operating_unit::where('name', 'LIKE', "%$keyword%")
+                    ->orWhere('area', 'LIKE', "%$keyword%")
+                    ->orWhere('level', 'LIKE', "%$keyword%")
+                    ->latest()->paginate($perPage);
+            } else {
+                $data_1669_operating_unit = Data_1669_operating_unit::latest()->paginate($perPage);
+            }
         }
+
+        
 
         return view('data_1669_operating_unit.index', compact('data_1669_operating_unit'));
     }
@@ -40,7 +61,14 @@ class Data_1669_operating_unitController extends Controller
      */
     public function create()
     {
-        return view('data_1669_operating_unit.create');
+        $data_user = Auth::user();
+        $sub_organization = $data_user->sub_organization ;
+
+        $polygon_provinces = DB::table('province_ths')
+                ->where('polygon' , '!=' , null)
+                ->get();
+
+        return view('data_1669_operating_unit.create', compact('sub_organization','polygon_provinces'));
     }
 
     /**
@@ -69,11 +97,26 @@ class Data_1669_operating_unitController extends Controller
      */
     public function show($id)
     {
+        $data_user = Auth::user();
+        $sub_organization = $data_user->sub_organization ;
+
         $data_1669_operating_unit = Data_1669_operating_unit::findOrFail($id);
 
         $data_officer = Data_1669_operating_officer::where('operating_unit_id' , $id)->get();
+        $area = $data_1669_operating_unit->area ;
 
-        return view('data_1669_operating_unit.show', compact('data_1669_operating_unit','data_officer'));
+        if ($sub_organization != "ศูนย์ใหญ่"){
+
+            if ($sub_organization != $area){
+                return redirect('404');
+            }else{
+                return view('data_1669_operating_unit.show', compact('data_1669_operating_unit','data_officer'));
+            }
+
+        }else{
+            return view('data_1669_operating_unit.show', compact('data_1669_operating_unit','data_officer'));
+        }
+
     }
 
     /**
