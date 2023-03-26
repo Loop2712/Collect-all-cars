@@ -60,7 +60,7 @@
                     <!-- <span class="input-group-text"></span> -->
                     <span class="input-group-text btn" onclick="CopyToClipboard('copy_link_add_officer')">Copy</span>
                 </div>
-                <div class="mt-3">
+                <div class="mt-3 d-none">
                     <button id="share-line-btn" onclick="shareOnLine();">Share on Line</button>
                     <button id="share-fb-btn" onclick="shareOnFacebook();">Share on Facebook</button>
                 </div>
