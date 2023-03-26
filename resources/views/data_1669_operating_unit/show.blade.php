@@ -6,6 +6,7 @@
 <div class="card radius-10 d-none d-lg-block">
     <div class="card-header border-bottom-0 bg-transparent">
         <div class="d-flex align-items-center">
+
             <div class="col-12 mt-3">
                 <span class="font-weight-bold h4 mb-0">
                     ข้อมูลหน่วยแพทย์ {{ $data_1669_operating_unit->name }}
@@ -31,7 +32,21 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+
+          <div id="content_load" class="modal-body text-center">
+                <img class="mt-3" width="60%" src="{{ url('/img/icon/cars.gif') }}">
+                <br>
+                <center style="margin-top:15px;">
+                  <div class="bouncing-loader">
+                    <span style="font-family: 'Kanit', sans-serif;"> <b>กำลังโหลด โปรดรอสักครู่</b> </span>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                </center>
+          </div>
+
+          <div id="content_qr_code" class="modal-body d-none">
             <center>
                 <img id="img_qr_code" width="50%" src="">
                 <br><br>
@@ -47,6 +62,7 @@
                 </div>
             </center>
           </div>
+
         </div>
       </div>
     </div>
@@ -336,6 +352,8 @@
  <script>
         function gen_qr_code_add_officer(){
 
+            document.querySelector('#btn_modal_confirm_create').click();
+
             let url = "" ;
 
             url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/add_new_officers" + "/" + "{{ $data_1669_operating_unit->id }}" + "&chs=500x500&choe=UTF-8" ;
@@ -361,7 +379,9 @@
 
                 document.querySelector('#img_qr_code').setAttribute('src' , url_img);
                 document.querySelector('#img_qr_code_downloada').setAttribute('href' , url_img);
-                document.querySelector('#btn_modal_confirm_create').click();
+
+                document.querySelector('#content_qr_code').classList.remove('d-none');
+                document.querySelector('#content_load').classList.add('d-none');
 
             }).catch(function(error){
                 // console.error(error);
