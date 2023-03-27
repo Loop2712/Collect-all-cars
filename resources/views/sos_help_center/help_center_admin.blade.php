@@ -357,6 +357,8 @@
                                 $min_1_to_sec = $zone1_Time_min * 60 ;
                                 $all_time = $all_time + $min_1_to_sec + $zone1_Time_Seconds ;
 
+                                $all_time = $all_time / $count_success ;
+                                
                             }   
                             
 
