@@ -359,7 +359,6 @@
 
                             }   
                             
-                            $all_time = $all_time / $count_success ;
 
                         }
 
