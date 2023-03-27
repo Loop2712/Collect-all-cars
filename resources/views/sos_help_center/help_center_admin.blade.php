@@ -360,6 +360,8 @@
                             }
                         }
 
+                        $all_time = $all_time / $count_success ;
+
                         $hours_all_time = floor($all_time / 3600);
                         $minutes_all_time = floor(($all_time % 3600) / 60);
                         $seconds_all_time = floor($all_time % 60);
