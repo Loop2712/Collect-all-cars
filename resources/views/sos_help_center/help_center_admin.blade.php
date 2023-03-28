@@ -113,10 +113,15 @@
                         </h6>
                     @endif
 
-                    <a style="background-color: green;" type="button" class="btn text-white btn-reset" onclick="initMap();">
-                        <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
-                    </a>
+                    @if( Auth::user()->sub_organization != "ศูนย์ใหญ่")
+                        <a style="background-color: green;" type="button" class="btn text-white btn-reset" onclick="initMap();">
+                            <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
+                        </a>
+                    @endif
                     @if( Auth::user()->sub_organization == "ศูนย์ใหญ่")
+                        <a style="background-color: green;" type="button" class="btn text-white btn-reset" onclick="click_select_area_map('ทั้งหมด');">
+                            <i class="fas fa-sync-alt"></i> คืนค่าแผนที่
+                        </a>
                         <div class="btn-group btn-area">
                             <button type="button" class="btn btn-info text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 เลือกพื้นที่
@@ -224,7 +229,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <button type="button" class="btn btn-more dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!-- <button type="button" class="btn btn-more dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     รายละเอียด
                                 </button>
                                 <div class="dropdown-menu">
@@ -233,7 +238,7 @@
                                 </div>
                                 <button class="btn btn-more">
                                     <i class="fa-regular fa-circle-info"></i>
-                                </button>
+                                </button> -->
                             </div>
                     </div>
                 </div>
@@ -1209,7 +1214,7 @@
         clearTimeout(delayTimer);
         
         // Start a new delay timer of 2 seconds before executing data_help_center()
-        delayTimer = setTimeout(delay_2_seconds, 1500);
+        delayTimer = setTimeout(delay_2_seconds, 1000);
     }
 
     function delay_2_seconds(){
@@ -1245,7 +1250,7 @@
         fetch("{{ url('/') }}/api/data_help_center/?id=" + search_by_id + "&name=" + search_by_name + "&helper=" + search_by_helper + "&organization=" + search_by_organization + "&date=" + search_by_date + "&time1=" + search_by_time1 + "&time2=" + search_by_time2 + "&search=" + search_data)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 if (result) {
                     for (var xxi = 0; xxi < result.length; xxi++) {

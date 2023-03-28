@@ -777,8 +777,7 @@ class Sos_help_centerController extends Controller
             $time_search_2 = $time2;
         }
 
-
-        
+        // ค้นหาขั้นสูง
         $data = DB::table('sos_help_centers');
         
         if ($id) {
@@ -804,18 +803,10 @@ class Sos_help_centerController extends Controller
             $keyword = null;
         }
 
-        if (!empty($keyword)) {
-            
-            /////////////////////////////////////
-            //// ---------- อันเดิม ---------- ////
-            ////////////////////////////////////
-            // $data_sos = Sos_help_center::where('operating_code', 'LIKE', "%$keyword%")
-            //     ->orWhere('name_user', 'LIKE', "%$keyword%")
-            //     ->orWhere('photo_sos', 'LIKE', "%$keyword%")
-            //     ->orWhere('organization_helper', 'LIKE', "%$keyword%")
-            //     ->orWhere('name_helper', 'LIKE', "%$keyword%")
-            //     ->latest()->paginate($perPage);
+        // --------------------------------------------------------------------------------------------------------------------
 
+        if (!empty($keyword)) {
+            // ค้นหาจาหช่องค้นหา
             $data_sos = DB::table('sos_help_centers')
                 ->join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
                 ->select('sos_help_centers.*', 'sos_1669_form_yellows.be_notified', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text')
@@ -829,6 +820,7 @@ class Sos_help_centerController extends Controller
 
         }
         else {
+            // ค้นหาขั้นสูง
             $data_sos = $data->latest()->paginate($perPage);
         }
         
