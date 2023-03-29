@@ -197,6 +197,10 @@ class Sos_help_centerController extends Controller
         
         $data_user = Auth::user();
         $sub_organization = $data_user->sub_organization;
+        $organization = $data_user->organization;
+
+        $data_partners = Partner::where('name', $organization)->where('name_area', null)->first();
+        $color_theme = $data_partners->color_navbar ;
 
         // $count_data = Sos_help_center::count();
 
@@ -215,6 +219,7 @@ class Sos_help_centerController extends Controller
             $polygon_provinces = DB::table('province_ths')
                 ->where('polygon' , '!=' , null)
                 ->get();
+
         }else{
              if (!empty($keyword)) {
                 $data_sos = Sos_help_center::where('id', 'LIKE', "%$keyword%")
@@ -234,7 +239,7 @@ class Sos_help_centerController extends Controller
                 ->get();
         }
         
-        return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos','polygon_provinces'));
+        return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos','polygon_provinces','color_theme'));
 
     }
 
@@ -753,17 +758,39 @@ class Sos_help_centerController extends Controller
 
     function search_data_help_center(Request $request)
     {
-        
-        $keyword = $request->get('search');
-        $perPage = 25;
+        $requestData = $request->all();
 
-        $id     = $request->get('id');
-        $name     = $request->get('name');
-        $helper     = $request->get('helper');
-        $organization     = $request->get('organization');
-        $date     = $request->get('date');
-        $time1 = date($request->get('time1'));
-        $time2 = date($request->get('time2'));
+        $keyword = $requestData['data_search'];
+
+        $id = $requestData['data_id'];
+
+        if (!$id && $keyword){
+            $id = $keyword ;
+        }
+
+        $data_search_be_notified = $requestData['data_search_be_notified'];
+        $data_search_status = $requestData['data_search_status'];
+        $data_rangeOne_officer_rating = $requestData['data_rangeOne_officer_rating'];
+        $data_rangeTwo_officer_rating = $requestData['data_rangeTwo_officer_rating'];
+
+        $name = $requestData['data_name'];
+        $data_search_phone_sos = $requestData['data_search_phone_sos'];
+
+        $helper = $requestData['data_helper'];
+        $organization = $requestData['data_organization'];
+
+        $search_P = $requestData['search_P'];
+        $search_A = $requestData['search_A'];
+        $search_T = $requestData['search_T'];
+
+        $date = $requestData['data_date'];
+        $time1 = date($requestData['data_time1']);
+        $time2 = date($requestData['data_time2']);
+
+        $data_search_idc = $requestData['data_search_idc'];
+        $data_search_rc = $requestData['data_search_rc'];
+
+        $sub_organization = $requestData['sub_organization'];
 
         if (empty($time1) ) {
             $time_search_1 = date('00:00');
@@ -778,53 +805,110 @@ class Sos_help_centerController extends Controller
         }
 
         // ค้นหาขั้นสูง
-        $data = DB::table('sos_help_centers');
+        $data = DB::table('sos_help_centers')
+                ->join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+                ->select('sos_help_centers.*', 'sos_1669_form_yellows.be_notified', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text');
         
         if ($id) {
-            $data->where('operating_code', "%$id%");
+            $data->where('sos_help_centers.operating_code','LIKE', "%$id%");
             $keyword = null;
-        }if ($name) {
-            $data->where('name_user','LIKE', "%$name%");
+        }
+        if ($name) {
+            $data->where('sos_help_centers.name_user','LIKE', "%$name%");
             $keyword = null;
         }  
         if ($helper) {
-            $data->where('name_helper', $helper);
+            $data->where('sos_help_centers.name_helper','LIKE', "%$helper%");
             $keyword = null;
         }if ($organization) {
-            $data->where('organization_helper', $organization);
+            $data->where('sos_help_centers.organization_helper','LIKE', "%$organization%");
             $keyword = null;
         }if ($date) {
-            $data->whereDate('created_at', $date);
+            $data->whereDate('sos_help_centers.created_at', $date);
             $keyword = null;
         }
         
         if ($time1 || $time2) {
-            $data->whereTime('created_at', '>=', $time_search_1)->whereTime('created_at', '<=', $time_search_2);
+            $data->whereTime('sos_help_centers.created_at', '>=', $time_search_1)->whereTime('sos_help_centers.created_at', '<=', $time_search_2);
             $keyword = null;
+        }
+
+        $rangeOne = "" ;
+        $rangeTwo = "" ;
+
+        if ($data_rangeOne_officer_rating > $data_rangeTwo_officer_rating){
+            $rangeOne = $data_rangeTwo_officer_rating ;
+            $rangeTwo = $data_rangeOne_officer_rating ;
+        }else{
+            $rangeOne = $data_rangeOne_officer_rating ;
+            $rangeTwo = $data_rangeTwo_officer_rating ;
+        }
+          
+        if ( $data_rangeOne_officer_rating || $data_rangeTwo_officer_rating){
+            $data->whereBetween('sos_help_centers.score_total', [$rangeOne, $rangeTwo] );
+            $keyword = null;
+        }
+        if ($data_search_be_notified) {
+            $data->where('sos_1669_form_yellows.be_notified', $data_search_be_notified);
+            $keyword = null;
+        } 
+        if ($data_search_status) {
+            $data->where('sos_help_centers.status', $data_search_status);
+            $keyword = null;
+        } 
+        if ($data_search_phone_sos) {
+            $data->where('sos_help_centers.phone_user','LIKE', "%$data_search_phone_sos%");
+            $keyword = null;
+        } 
+        if ($search_P) {
+            $data->where('sos_help_centers.address','LIKE', "%$search_P%");
+            $keyword = null;
+        } 
+        if ($search_A) {
+            $data->where('sos_help_centers.address','LIKE', "%$search_A%");
+            $keyword = null;
+        } 
+        if ($search_T) {
+            $data->where('sos_help_centers.address','LIKE', "%$search_T%");
+            $keyword = null;
+        } 
+        if ($data_search_idc) {
+            $data->where('sos_1669_form_yellows.idc','LIKE', "%$data_search_idc%");
+            $keyword = null;
+        } 
+        if ($data_search_rc) {
+            $data->where('sos_1669_form_yellows.rc','LIKE', "%$data_search_rc%");
+            $keyword = null;
+        } 
+
+        // ค้นหาเฉาะรหัส
+        $data_not_empty_keyword = DB::table('sos_help_centers');
+
+        if ($sub_organization == "ศูนย์ใหญ่"){
+            $data_not_empty_keyword->where('notify', "!=" , null);
+            $data->where('sos_help_centers.notify', "!=" , null);
+        }else{
+            $data_not_empty_keyword->where('notify', 'LIKE', "%$sub_organization%");
+            $data->where('sos_help_centers.notify', 'LIKE', "%$sub_organization%");
         }
 
         // --------------------------------------------------------------------------------------------------------------------
 
         if (!empty($keyword)) {
             // ค้นหาจาหช่องค้นหา
-            $data_sos = DB::table('sos_help_centers')
+            $data_sos = $data_not_empty_keyword
                 ->join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
                 ->select('sos_help_centers.*', 'sos_1669_form_yellows.be_notified', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text')
                 ->where(function($query) use ($keyword) {
-                    $query->where('sos_help_centers.operating_code', 'like', "%$keyword%")
-                          ->orWhere('sos_help_centers.name_user', 'like', "%$keyword%")
-                          ->orWhere('sos_help_centers.organization_helper', 'like', "%$keyword%")
-                          ->orWhere('sos_help_centers.name_helper', 'like', "%$keyword%");
+                    $query->where('sos_help_centers.operating_code', 'like', "%$keyword%");
                 })
                 ->get();
-
         }
         else {
             // ค้นหาขั้นสูง
-            $data_sos = $data->latest()->paginate($perPage);
+            $data_sos = $data->latest()->get();
         }
         
-
         return $data_sos ;
     }
 

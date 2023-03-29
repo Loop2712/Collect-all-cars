@@ -2100,6 +2100,8 @@
 
     function gen_html_div_data_sos_1669(result){
 
+    	// console.log(result);
+
     	// วันที่ / เวลา
         const date = new Date(result['created_at']);
 
@@ -2204,33 +2206,33 @@
     	switch(result['idc']) {
 			case 'แดง(วิกฤติ)':
 			    html_idc = 	'<button class="btn-status-crisis btn-status col-6" style="border-radius:0 0 0 20px;">'+
-			                        'สถานะการณ์<br>(วิกฤติ)'+
+			                        '<b>สถานะการณ์  ( IDC )<br>(วิกฤติ)</b>'+
 			                    '</button>' ;
 			break;
 			case 'ขาว(ทั่วไป)':
 			    html_idc = 	'<button class="btn-status-normal btn-status col-6" style="border-radius:0 0 0 20px;">'+
-			                        'สถานะการณ์<br>(ทั่วไป)'+
+			                        '<b>สถานะการณ์  ( IDC )<br>(ทั่วไป)</b>'+
 			                    '</button>' ;
 			break;
 			case 'เหลือง(เร่งด่วน)':
 			    html_idc = 	'<button class="btn-status-hurry btn-status col-6" style="border-radius:0 0 0 20px;">'+
-			                        'สถานะการณ์<br>(เร่งด่วน)'+
+			                        '<b>สถานะการณ์  ( IDC )<br>(เร่งด่วน)</b>'+
 			                    '</button>' ;
 			break;
 			case 'ดำ(รับบริการสาธารณสุขอื่น)':
 			    html_idc = 	'<button class="btn-status-other btn-status col-6" style="border-radius:0 0 0 20px;">'+
-			                        'สถานะการณ์<br>(รับบริการอื่นๆ)'+
+			                        '<b>สถานะการณ์  ( IDC )<br>(รับบริการอื่นๆ)</b>'+
 			                    '</button>' ;
 			break;
 			case 'เขียว(ไม่รุนแรง)':
 			    html_idc = 	'<button class="btn-status-weak btn-status col-6" style="border-radius:0 0 0 20px;">'+
-			                        'สถานะการณ์<br>(ไม่รุนแรง)'+
+			                        '<b>สถานะการณ์  ( IDC )<br>(ไม่รุนแรง)</b>'+
 			                    '</button>' ;
 			break;
 
 			default:
 				html_idc =	'<button class="btn-status-normal btn-status col-6" style="border-width: 0px;border-radius:0 0 0 20px;">'+
-				               'สถานะการณ์<br>ไม่ได้ระบุ'+
+				               '<b>สถานะการณ์  ( IDC )<br>ไม่ได้ระบุ</b>'+
 				            '</button>' ;
 		}
 
@@ -2238,37 +2240,56 @@
     	switch(result['rc']) {
 			case 'แดง(วิกฤติ)':
 			    html_rc = 	'<button class="btn-status-crisis btn-status col-6" style="border-radius:0 0 20px 0;">'+
-		                        'สถานะการณ์<br>(วิกฤติ)'+
+		                        '<b>สถานะการณ์ ( RC )<br>(วิกฤติ)</b>'+
 		                    '</button>' ;
 			break;
 			case 'ขาว(ทั่วไป)':
 			    html_rc = 	'<button class="btn-status-normal btn-status col-6" style="border-radius:0 0 20px 0;">'+
-		                        'สถานะการณ์<br>(ทั่วไป)'+
+		                        '<b>สถานะการณ์ ( RC )<br>(ทั่วไป)</b>'+
 		                    '</button>' ;
 			break;
 			case 'เหลือง(เร่งด่วน)':
 			    html_rc = 	'<button class="btn-status-hurry btn-status col-6" style="border-radius:0 0 20px 0;">'+
-		                        'สถานะการณ์<br>(เร่งด่วน)'+
+		                        '<b>สถานะการณ์ ( RC )<br>(เร่งด่วน)</b>'+
 		                    '</button>' ;
 			break;
 			case 'ดำ(รับบริการสาธารณสุขอื่น)':
 			    html_rc = 	'<button class="btn-status-other btn-status col-6" style="border-radius:0 0 20px 0;">'+
-		                        'สถานะการณ์<br>('+result['rc_black_text']+')'+
+		                        '<b>สถานะการณ์ ( RC )<br>('+result['rc_black_text']+')</b>'+
 		                    '</button>' ;
 			break;
 			case 'เขียว(ไม่รุนแรง)':
 			    html_rc = 	'<button class="btn-status-weak btn-status col-6" style="border-radius:0 0 20px 0;">'+
-		                        'สถานะการณ์<br>(ไม่รุนแรง)'+
+		                        '<b>สถานะการณ์ ( RC )<br>(ไม่รุนแรง)</b>'+
 		                    '</button>' ;
 			break;
 
 			default:
 				html_rc =	'<button class="btn-status-normal btn-status col-6" style="border-width: 0px;border-radius:0 0 20px 0;">'+
-				                'สถานะการณ์<br>ไม่ได้ระบุ'+
+				                '<b>สถานะการณ์ ( RC )<br>ไม่ได้ระบุ</b>'+
 				            '</button>' ;
 		}
 
-        
+		let grade = result['score_total'] ;
+		let rounded_grade = Math.ceil(result['score_total']) ;
+		let html_star = '' ;
+
+		for(let i = 1 ; i <= 5 ; i++){
+			if (i <= rounded_grade){
+				if (i < rounded_grade){
+					html_star = html_star + '<i class="fa-solid fa-star text-warning"></i>' ;
+				}else{
+					if( grade - i + 1 >= 0.5){
+						html_star = html_star + '<i class="fa-solid fa-star text-warning"></i>' ;
+					}else{
+						html_star = html_star + '<i class="fa-solid fa-star-half-stroke text-warning"></i>' ;
+					}
+				}
+			}else{
+				html_star = html_star + '<i class="fa-regular fa-star text-warning"></i>' ;
+			}
+		}
+
     	let text_html = 
 
 	    	`
@@ -2277,9 +2298,14 @@
                     <div class="card card-sos shadow"  id="text_html_id_`+result['id']+`">
                         <div class="sos-header">
                             <div>
-                                <button style="position:absolute;top: 0px;left: 0px;border-radius: 0px 20px 20px 0px;" class="btn btn-sm btn-`+color_be_notified+` main-shadow main-radius">
-                                    <b>`+result['be_notified']+`</b>
-                                </button>
+                            	<div style="position:absolute;top: 0px;left: 0px;">
+	                                <button style="border-radius: 0px 20px 20px 0px;" class="btn btn-sm btn-`+color_be_notified+` main-shadow main-radius">
+	                                    <b>`+result['be_notified']+`</b>
+	                                </button>
+	                                <button class="btn btn-sm">
+	                                	`+html_star+`
+	                                </button>
+	                            </div>
                                 <br>
                                 <h4 class="mt-2 m-0 p-0 data-overflow">
                                     รหัส <b class="text-dark">`+result['operating_code']+`</b>
