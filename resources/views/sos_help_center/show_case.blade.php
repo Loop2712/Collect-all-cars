@@ -3,6 +3,7 @@
 @section('content')
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <style>
 	div , span ,body,h1,h2,h3,h4,h5 ,h6{
 		font-family: 'Kanit', sans-serif !important;
@@ -991,6 +992,30 @@ input:focus {
 
 <a id="tag_a_switch_standby" href="{{ url('/officers/switch_standby') }}" class="d-none"></a>
 
+<style>
+	.active-li1 {
+  background-color: red !important;
+  color: white !important;
+}
+
+.active-li2 {
+  background-color: green !important;
+  color: white !important;
+}
+
+.inactive-li1 {
+  background-color: white !important;
+  color: red !important;
+}
+
+.inactive-li2 {
+  background-color: white !important;
+  color: green !important;
+}
+
+
+</style>
+
 <!-- Button trigger modal -->
 <button id="btn_modal_add_photo_sos" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_add_photo_sos">
   Launch static backdrop modal
@@ -1005,52 +1030,124 @@ input:focus {
           			<span aria-hidden="true"><i class="fa-solid fa-xmark-large"></i></span>
         		</button>
       		</div>
+
       		<form method="POST" action="{{ url('/sos_help_center/' . $data_sos->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
            		{{ method_field('PATCH') }}
         		{{ csrf_field() }}
       			<div class="modal-body text-center">
 					<div class="col-12">
-						<label class="col-12" style="padding:0px;" for="photo_sos_by_officers" >
-							<div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
-								@if(empty($data_sos->photo_sos_by_officers))
-									<div class="form-group p-3"id="add_select_img">
-										<input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
-										<div  class="text-center">
-											<center>
-												<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
-											</center>
-											<br>
-											<h3 class="text-center m-0">
-												<b>กรุณาเลือกรูป "คลิก"</b> 
-											</h3>
-										</div>
-										
-									</div>
-									<img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_sos_by_officers" />
-								@else
-									<div class="form-group p-3 d-none" id="add_select_img">
-										<input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
-										<div  class="text-center">
-											<center>
-												<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
-											</center>
-											<br>
-											<h3 class="text-center m-0">
-												<b>กรุณาเลือกรูป "คลิก"</b> 
-											</h3>
-										</div>
-										
-									</div>
-									<img class="full_img" style="padding:0px ;" width="100%" alt="your image" src="{{ url('storage')}}/{{ $data_sos->photo_sos_by_officers }}" id="show_photo_sos_by_officers" />
-									
-								@endif
-								<div class="child">
-									<span>เลือกรูป</span>
-								</div>
-							</div>
-						</label>
-					</div>
+						
+						<div class="row text-center">
+							<ul class="nav mb-3" role="tablist">
+							  	<li class="nav-item col-6" role="presentation" >
+							    	<a class="nav-link active" id="li1"data-bs-toggle="pill" href="#danger-pills-photo_sos" role="tab" aria-selected="true">
+							      		<div class="d-flex align-items-center">
+							        		<div class="tab-icon"><i class="bx bxs-home font-18 me-1"></i></div>
+							        		<div class="tab-title">สถานที่เกิดเหตุ</div>
+							      		</div>
+							    	</a>
+							  	</li>
+							  	<li class="nav-item col-6" role="presentation" >
+							    	<a class="nav-link" id="li2" data-bs-toggle="pill" href="#danger-pills-success" role="tab" aria-selected="false">
+								      	<div class="d-flex align-items-center">
+									        <div class="tab-icon"><i class="bx bxs-user-pin font-18 me-1"></i></div>
+									        <div class="tab-title">ภาพถ่ายเสร็จสิ้น</div>
+								      	</div>
+							    	</a>
+							  	</li>
+							</ul>
+						</div>
 
+						<div class="tab-content" id="danger-pills-tabContent" style="border-color: red;">
+							<!-- สถานที่เกิดเหตุ -->
+							<div class="tab-pane fade active show" id="danger-pills-photo_sos" role="tabpanel" style="border:solid #db2d2e ;border-radius:25px;padding: 15px;">
+								<label class="col-12" style="padding:0px;" for="photo_sos_by_officers" >
+									<div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
+										@if(empty($data_sos->photo_sos_by_officers))
+											<div class="form-group p-3"id="add_select_img">
+												<input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
+												<div  class="text-center">
+													<center>
+														<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
+													</center>
+													<br>
+													<h4 class="text-center m-0">
+														<b>เลือก<u>รูปสถานที่เกิดเหตุ</u> "คลิก"</b> 
+													</h4>
+												</div>
+												
+											</div>
+											<img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_sos_by_officers" />
+										@else
+											<div class="form-group p-3 d-none" id="add_select_img">
+												<input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
+												<div  class="text-center">
+													<center>
+														<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
+													</center>
+													<br>
+													<h3 class="text-center m-0">
+														<b>กรุณาเลือกรูป "คลิก"</b> 
+													</h3>
+												</div>
+												
+											</div>
+											<img class="full_img" style="padding:0px ;" width="100%" alt="your image" src="{{ url('storage')}}/{{ $data_sos->photo_sos_by_officers }}" id="show_photo_sos_by_officers" />
+											
+										@endif
+										<div class="child">
+											<span>เลือกรูป</span>
+										</div>
+									</div>
+									<textarea class="form-control mt-3" id="remark_photo_sos" name="remark_photo_sos" rows="3" placeholder="หมายเหตุ">{{ isset( $data_sos->remark_photo_sos ) ? $data_sos->remark_photo_sos : ''}}</textarea>
+								</label>
+							</div>
+							<!-- ภาพถ่ายเสร็จสิ้น -->
+							<div class="tab-pane fade" id="danger-pills-success" role="tabpanel" style="border:solid green ;border-radius:25px;padding: 15px;">
+								<label class="col-12" style="padding:0px;" for="photo_succeed" >
+									<div class="fill parent" style="border:dotted green ;border-radius:25px;padding:0px;object-fit: cover;">
+										@if(empty($data_sos->photo_succeed))
+											<div class="form-group p-3"id="add_select_img_photo_suceed">
+												<input class="form-control d-none" name="photo_succeed" style="margin:20px 0px 10px 0px;" type="file" id="photo_succeed" value="{{ isset($data_sos->photo_succeed) ? $data_sos->photo_succeed : ''}}" accept="image/*" onchange="document.getElementById('show_photo_succeed').src = window.URL.createObjectURL(this.files[0]);check_add_img_succeed();">
+												<div  class="text-center">
+													<center>
+														<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/20.png') }}" class="card-img-top center" style="padding: 10px;">
+													</center>
+													<br>
+													<h4 class="text-center m-0">
+														<b>เลือก<u>รูปภาพเสร็จสิ้น</u> "คลิก"</b> 
+													</h4>
+												</div>
+												
+											</div>
+											<img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_succeed" />
+										@else
+											<div class="form-group p-3 d-none" id="add_select_img_photo_succeed">
+												<input class="form-control d-none" name="photo_succeed" style="margin:20px 0px 10px 0px;" type="file" id="photo_succeed" value="{{ isset($data_sos->photo_succeed) ? $data_sos->photo_succeed : ''}}" accept="image/*" onchange="document.getElementById('show_photo_succeed').src = window.URL.createObjectURL(this.files[0]);check_add_img_succeed();">
+												<div  class="text-center">
+													<center>
+														<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/20.png') }}" class="card-img-top center" style="padding: 10px;">
+													</center>
+													<br>
+													<h3 class="text-center m-0">
+														<b>กรุณาเลือกรูป "คลิก"</b> 
+													</h3>
+												</div>
+												
+											</div>
+											<img class="full_img" style="padding:0px ;" width="100%" alt="your image" src="{{ url('storage')}}/{{ $data_sos->photo_succeed }}" id="show_photo_succeed" />
+											
+										@endif
+										<div class="child">
+											<span>เลือกรูป</span>
+										</div>
+									</div>
+									<textarea class="form-control mt-3" id="remark_helper" name="remark_helper" rows="3" placeholder="หมายเหตุ">{{ isset( $data_sos->remark_helper ) ? $data_sos->remark_helper : ''}}</textarea>
+								</label>
+							</div>
+						</div>
+					</div>
+					<input name="form_blade" class="d-none" value="form_modal_photo_sos">
 	            	<div class="form-group d-none">
 				        <input id="btn_submit_form_photo" class="btn btn-primary" type="submit">
 				    </div>
@@ -1064,6 +1161,35 @@ input:focus {
     	</div>
   	</div>
 </div>
+
+<script>
+	const li1 = document.getElementById("li1");
+	const li2 = document.getElementById("li2");
+
+	// Set initial active state
+	li1.classList.add("active-li1");
+	li2.classList.add("inactive-li2");
+
+	// Add click listeners to LI elements
+	li1.addEventListener("click", () => {
+	  li1.classList.add("active-li1");
+	  li1.classList.add("text-white");
+	  li1.classList.remove("inactive-li1");
+	  li2.classList.add("inactive-li2");
+	  li2.classList.remove("active-li2");
+	  li2.classList.remove("text-white");
+	});
+
+	li2.addEventListener("click", () => {
+	  li2.classList.add("text-white");
+	  li2.classList.add("active-li2");
+	  li2.classList.remove("inactive-li2");
+	  li1.classList.add("inactive-li1");
+	  li1.classList.remove("active-li1");
+	  li1.classList.remove("text-white");
+	});
+
+</script>
 
 <style>
 	.menu-profile-header{
@@ -1258,6 +1384,8 @@ input:focus {
         start_page();
         show_event_level();
 
+        document.querySelector('#btn_modal_add_photo_sos').click();
+
         if (status_sos != "เสร็จสิ้น") {
         	getLocation();
         	timer_check_send_update_officer();
@@ -1315,7 +1443,7 @@ input:focus {
 		});
 
 		// สร้างเส้นทาง
-		get_Directions_API(officer_marker, sos_marker);
+		// get_Directions_API(officer_marker, sos_marker);
 		// SET หมุดเจ้าหน้าที่
 		set_watchPosition_officer_marker();
 
@@ -2220,6 +2348,12 @@ input:focus {
 		document.getElementById('photo_sos_by_officers').classList.add('d-none');
 		document.getElementById('show_photo_sos_by_officers').classList.remove('d-none');
 
+	}
+
+	function check_add_img_succeed(){
+		document.getElementById('add_select_img_photo_succeed').classList.add('d-none')
+		document.getElementById('photo_succeed').classList.add('d-none');
+		document.getElementById('show_photo_succeed').classList.remove('d-none');
 	}
 </script>
 

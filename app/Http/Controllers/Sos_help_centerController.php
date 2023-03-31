@@ -165,15 +165,25 @@ class Sos_help_centerController extends Controller
             $requestData['photo_sos_by_officers'] = $request->file('photo_sos_by_officers')
                 ->store('uploads', 'public');
         }
+        if ($request->hasFile('photo_succeed')) {
+            $requestData['photo_succeed'] = $request->file('photo_succeed')
+                ->store('uploads', 'public');
+        }
 
         $sos_help_center = Sos_help_center::findOrFail($id);
         $sos_help_center->update($requestData);
         
-        if (!empty($requestData['photo_sos_by_officers'])) {
+        if ( !empty($requestData['form_blade']) && $requestData['form_blade'] == "form_modal_photo_sos") {
             return redirect('sos_help_center/' . $id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
         }else{
             return redirect('sos_help_center/' . $id . '/edit')->with('flash_message', 'Sos_help_center updated!');
         }
+        
+        // if (!empty($requestData['photo_sos_by_officers']) or !empty($requestData['photo_succeed'])) {
+        //     return redirect('sos_help_center/' . $id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
+        // }else{
+        //     return redirect('sos_help_center/' . $id . '/edit')->with('flash_message', 'Sos_help_center updated!');
+        // }
     }
     /**
      * Remove the specified resource from storage.
