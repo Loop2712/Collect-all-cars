@@ -1057,7 +1057,7 @@ input:focus {
 							    	<a class="nav-link" id="li2" data-bs-toggle="pill" href="#danger-pills-success" role="tab" aria-selected="false">
 								      	<div class="">
 									        <div class="tab-icon d-block"><i class="fa-regular fa-house-medical-circle-check font-18 me-1"></i></div>
-									        <div class="tab-title d-block">ภาพถ่ายเสร็จสิ้น</div>
+									        <div class="tab-title d-block">เสร็จสิ้น</div>
 								      	</div>
 							    	</a>
 							  	</li>
