@@ -994,26 +994,24 @@ input:focus {
 
 <style>
 	.active-li1 {
-  background-color: red !important;
-  color: white !important;
-}
+	  background-color: red !important;
+	  color: white !important;
+	}
 
-.active-li2 {
-  background-color: green !important;
-  color: white !important;
-}
+	.active-li2 {
+	  background-color: green !important;
+	  color: white !important;
+	}
 
-.inactive-li1 {
-  background-color: white !important;
-  color: red !important;
-}
+	.inactive-li1 {
+	  background-color: white !important;
+	  color: red !important;
+	}
 
-.inactive-li2 {
-  background-color: white !important;
-  color: green !important;
-}
-
-
+	.inactive-li2 {
+	  background-color: white !important;
+	  color: green !important;
+	}
 </style>
 
 <!-- Button trigger modal -->
@@ -1040,7 +1038,7 @@ input:focus {
 						<div class="row text-center">
 							<ul class="nav mb-3" role="tablist">
 							  	<li class="nav-item col-6" role="presentation" >
-							    	<a class="nav-link active" id="li1"data-bs-toggle="pill" href="#danger-pills-photo_sos" role="tab" aria-selected="true">
+							    	<a class="nav-link active" id="li1" data-bs-toggle="pill" href="#danger-pills-photo_sos" role="tab" aria-selected="true">
 							      		<div class="d-flex align-items-center">
 							        		<div class="tab-icon"><i class="bx bxs-home font-18 me-1"></i></div>
 							        		<div class="tab-title">สถานที่เกิดเหตุ</div>
