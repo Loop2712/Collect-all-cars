@@ -4,6 +4,16 @@
 @section('content')
 
 <style>
+    .btn-outline-delete{
+        color: #db2d2e !important;
+        border: none !important;
+        padding: .5rem 1rem !important;
+        border-radius: 5px !important;
+    }.btn-outline-delete:hover{
+        background-color: #db2d2e !important;
+        color: #fff !important;
+
+    }
     div {
         font-family: 'Mitr', sans-serif;
     }
@@ -91,7 +101,7 @@
         top: 1rem;
         right: 1rem;
         z-index: 99;
-    }option:checked { display:none; }
+    }
 </style>
 <div class="card radius-10 d-none d-lg-block">
     <div class="card-header border-bottom-0 bg-transparent">
@@ -107,7 +117,7 @@
                     </button>
                 </a>
                 <button style="margin-left: 10px;margin-right: 10px;" type="button" class="btn btn-white radius-10 float-end ms-auto" data-toggle="modal" data-target="#exampleModal">
-                    <i class='bx bx-user-plus'></i>สร้างบัญชีผู่ใช้ใหม่
+                    <i class='bx bx-user-plus'></i>สร้างบัญชีผู้ใช้ใหม่
                 </button>
 
                 <!-- <button  type="button" class="d-none btn btn-dark radius-10 float-end ms-auto" >
@@ -121,6 +131,13 @@
                         @endforeach
                     </select>
                 @endif
+
+                <select style="margin-left: 10px;margin-right: 10px;" name="search_status" id="search_status"  class="btn btn-white radius-10 float-end ms-auto" onchange="search_all_name_user_partner()">
+                    <option value="" selected>เลือกสถานะ</option>
+                    <option value="admin-partner">แอดมิน</option>
+                    <option value="partner">เจ้าหน้าที่</option>
+
+                </select>
                 
                 <div style="margin-left: 10px;margin-right: 10px;" class=" float-end ms-auto">
                         <div class="input-group"> 
@@ -222,22 +239,10 @@
                                         @break
                                     @endswitch
                                 </td> -->
-                                <style>
-                                .btn-outline-delete{
-                                    color: #db2d2e;
-                                    border: none;
-                                    padding: .5rem 1rem;
-                                    border-radius: 5px;
-                                }.btn-outline-delete:hover{
-                                    background-color: #db2d2e;
-                                    color: #fff;
-
-                                }
-                                </style>
                         <td class="text-center">
                             @if($item->role != 'admin-partner')
                             <button class="btn-outline-delete" onclick="cancel_membership('{{ $item->id }}');">
-                                <i class="fa-solid fa-trash-can"></i>
+                                <i class="fa-solid fa-trash-can"></i> ยกเลิกสถานะ
                             </button>
                             @else
                             <!--  -->
@@ -315,15 +320,28 @@
                         @if($sub_organization != "ศูนย์ใหญ่")
                         <input class="form-control d-none" type="text" name="sub_organization" id="sub_organization" value="{{ $sub_organization }}" readonly>
                         @else
-                        <label class="control-label" style="font-size:17px;"><b>เลือกพื้นที่</b> </label>
-                        <span class="text-secondary">(default = ศูนย์ใหญ่)</span>
-                        <select class="form-control" name="sub_organization" id="sub_organization">
-                            <option value="all" selected>เลือกพื้นที่อิอิ</option>
-                            <option value="ศูนย์ใหญ่">ศูนย์ใหญ่</option>
-                            @foreach($polygon_provinces as $item_op)
-                            <option value="{{ $item_op->province_name }}">{{ $item_op->province_name }}</option>
-                            @endforeach
-                        </select>
+                        <div class="col-12 mb-3">
+                            <div class="input-group">
+                             <span class="input-group-text bg-transparent"><i class="fa-solid fa-location-dot"></i></span>
+                                <select class="form-select border-start-0" name="sub_organization" id="sub_organization">
+                                    <span class="input-group-text bg-transparent"><i class="fa-duotone fa-signature"></i></span>
+                                    <option value="ศูนย์ใหญ่">ศูนย์ใหญ่</option>
+                                    @foreach($polygon_provinces as $item_op)
+                                    <option value="{{ $item_op->province_name }}">{{ $item_op->province_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <!-- <label class="control-label" style="font-size:17px;">เลือกพื้นที่</label>
+                            <div class="input-group"> <span class="input-group-text bg-transparent"><i class="fa-duotone fa-signature"></i></span>
+                                <select class="form-control border-start-0" name="sub_organization" id="sub_organization">
+                                    <span class="input-group-text bg-transparent"><i class="fa-duotone fa-signature"></i></span>
+                                    <option value="ศูนย์ใหญ่">ศูนย์ใหญ่</option>
+                                    @foreach($polygon_provinces as $item_op)
+                                    <option value="{{ $item_op->province_name }}">{{ $item_op->province_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div> -->
+                        </div>
                         @endif
                     </div>
                     <!-- <div class="col-12" style="margin-top:15px;">
@@ -346,9 +364,18 @@
                             <input class="form-control" type="text" name="user_name_officer" id="user_name_officer">
                         </div>
                     </div> -->
+                    <style>
+                        .nav-pill-danger{
+                            color:#db2d2e;
+                    } .nav-pill-danger:hover{
+                            color:#fff;
+                            background-color: #db2d2e;
+                    } 
+                    </style>
+                   
                     <div class="col-12 mt-3">
                         <label for="user_name_officer" class="form-label">Username</label>
-                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="fa-duotone fa-user"></i></span>
+                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="fa-solid fa-user"></i></span>
                             <input type="text" class="form-control border-start-0"  name="user_name_officer" id="user_name_officer" placeholder="Username ที่ใช้ในการเข้าสู่ระบบ">
                         </div>
                     </div>
@@ -388,7 +415,7 @@
                     </div>
                 </form>
                 <div class="d-flex justify-content-end">
-                    <button type="button" class="btn btn-white radius-10" data-toggle="modal" data-target="#exampleModal"><i class='bx bx-user-plus'></i>สร้างบัญชีผู่ใช้ใหม่</button>
+                    <button type="button" class="btn btn-white radius-10" data-toggle="modal" data-target="#exampleModal"><i class='bx bx-user-plus'></i>สร้างบัญชีผู้ใช้ใหม่</button>
                 </div>
             </div>
         </div>
@@ -613,6 +640,8 @@
        
         let normal_search = document.querySelector('#normal_search').value;
         let search_area = document.querySelector('#search_area').value;
+        let search_status = document.querySelector('#search_status').value;
+
         
         // alert(search_area);
         switch (normal_search) {
@@ -626,7 +655,7 @@
         user_id = {{ auth()->id() }};
         // setTimeout(() => {
        
-        fetch("{{ url('/') }}/api/search_all_name_user_partner/?search=" + normal_search + "&id=" + user_id + "&area=" + search_area)
+        fetch("{{ url('/') }}/api/search_all_name_user_partner/?search=" + normal_search + "&id=" + user_id + "&area=" + search_area + "&status=" + search_status)
             .then(response => response.json())
             .then(result => {
                 console.log(result);
@@ -691,7 +720,7 @@
                     let btn_cancle_role;
                     if (result[xxiv]['role'] != 'admin-partner') {
                         btn_cancle_role = `<button class="btn-outline-delete btn" onclick="cancel_membership('`+ result[xxiv]['id'] +`');">
-                                                <i class="fa-solid fa-trash-can"></i>
+                                                <i class="fa-solid fa-trash-can"></i> ยกเลิกสถานะ
                                             </button>`
                     }else{
                         btn_cancle_role =""

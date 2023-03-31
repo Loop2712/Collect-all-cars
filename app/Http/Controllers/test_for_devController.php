@@ -283,43 +283,44 @@ class test_for_devController extends Controller
         foreach ($data_partners as $data_partner) {
             $name_partner = $data_partner->name ;
         }
-
-
-
         $keyword = $request->get('search');
         $data_search_area = $request->get('area');
+        $data_search_status = $request->get('status');
 
-        
 
-        $perPage = 25;
+
+        $perPage = 25 ;
 
 
         if ($sub_organization == "ศูนย์ใหญ่"){
 
             // $data = User::where('organization', $name_partner);
             $data = DB::table('users')
-            ->join('users as creator', 'users.creator', '=', 'creator.id')
+            ->leftJoin('users as creator', 'users.creator', '=', 'creator.id')
             ->select('users.*', 'creator.name as creator_name')
             ->where('users.organization', $name_partner);
-
             
 
             if ($keyword) {
                 $data->where(function ($query) use ($keyword) {
                     $query->where('users.name', 'like', '%'.$keyword.'%')
                         ->orWhere('users.type', 'like', '%'.$keyword.'%')
-                        ->orWhere('users.role', 'like', '%'.$keyword.'%')
-                        ->orWhere('users.phone', 'like', '%'.$keyword.'%');
-                })
-                ->orderByRaw("CASE WHEN users.role = 'admin-partner' THEN 0 ELSE 1 END, users.name ASC, users.created_at desc");
+                        ->orWhere('users.phone', 'like', '%'.$keyword.'%')
+                        ->orWhere('creator.name', 'like', '%'.$keyword.'%');
+                });
+                
             }
 
             if ($data_search_area) {
                 $data->where('users.sub_organization', 'like', '%'.$data_search_area.'%');
             }
 
+            if ($data_search_status) {
+                $data->where('users.role', $data_search_status);
+            }
+            
            
-            $search_all_user = $data->latest('users.created_at')->get();
+            $search_all_user = $data->orderByRaw("CASE WHEN users.role = 'admin-partner' THEN 0 ELSE 1 END, users.name ASC, users.created_at desc")->latest('users.created_at')->get();
 
         
         } else {
