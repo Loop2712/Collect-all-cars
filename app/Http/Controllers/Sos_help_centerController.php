@@ -1443,6 +1443,7 @@ class Sos_help_centerController extends Controller
     {
         $data_user = Auth::user();
         $sub_organization = $data_user->sub_organization ;
+        $organization = $data_user->organization ;
 
         $data_partners = Partner::where("name", $data_user->organization)
             ->where("name_area", null)
@@ -1454,6 +1455,11 @@ class Sos_help_centerController extends Controller
 
         $keyword = $request->get('search');
         $perPage = 25;
+
+        
+    $area_user = User::where("organization", $organization)
+            ->groupBy('sub_organization')
+            ->get();
 
         if ($sub_organization == "ศูนย์ใหญ่"){
 
@@ -1467,6 +1473,7 @@ class Sos_help_centerController extends Controller
                     ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
                     ->latest()->paginate($perPage);
             }
+            
 
         }else{
 
@@ -1492,7 +1499,7 @@ class Sos_help_centerController extends Controller
                 ->get();
 
 
-        return view('sos_help_center.manage_user.all_name_user_partner', compact('data_partners','all_user','data_time_zone','sub_organization','polygon_provinces'));
+        return view('sos_help_center.manage_user.all_name_user_partner', compact('area_user' ,'data_partners','all_user','data_time_zone','sub_organization','polygon_provinces'));
     }
 
 }
