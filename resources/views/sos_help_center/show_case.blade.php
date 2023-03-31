@@ -996,21 +996,29 @@ input:focus {
 	.active-li1 {
 	  background-color: red !important;
 	  color: white !important;
+	  outline: solid 2px red;
+	  border-radius: 5px;
 	}
 
 	.active-li2 {
 	  background-color: green !important;
 	  color: white !important;
+	  outline: solid 2px green;
+	  border-radius: 5px;
 	}
 
 	.inactive-li1 {
 	  background-color: white !important;
 	  color: red !important;
+	  outline: solid 2px red;
+	  border-radius: 5px;
 	}
 
 	.inactive-li2 {
 	  background-color: white !important;
 	  color: green !important;
+	  outline: solid 2px green;
+	  border-radius: 5px;
 	}
 </style>
 
@@ -1039,17 +1047,17 @@ input:focus {
 							<ul class="nav mb-3" role="tablist">
 							  	<li class="nav-item col-6" role="presentation" >
 							    	<a class="nav-link active" id="li1" data-bs-toggle="pill" href="#danger-pills-photo_sos" role="tab" aria-selected="true">
-							      		<div class="d-flex align-items-center">
-							        		<div class="tab-icon"><i class="bx bxs-home font-18 me-1"></i></div>
-							        		<div class="tab-title">สถานที่เกิดเหตุ</div>
+							      		<div class="">
+							        		<div class="tab-icon d-block"><i class="fa-solid fa-car-burst font-18 me-1"></i></div>
+							        		<div class="tab-title d-block">สถานที่เกิดเหตุ</div>
 							      		</div>
 							    	</a>
 							  	</li>
 							  	<li class="nav-item col-6" role="presentation" >
 							    	<a class="nav-link" id="li2" data-bs-toggle="pill" href="#danger-pills-success" role="tab" aria-selected="false">
-								      	<div class="d-flex align-items-center">
-									        <div class="tab-icon"><i class="bx bxs-user-pin font-18 me-1"></i></div>
-									        <div class="tab-title">ภาพถ่ายเสร็จสิ้น</div>
+								      	<div class="">
+									        <div class="tab-icon d-block"><i class="fa-regular fa-house-medical-circle-check font-18 me-1"></i></div>
+									        <div class="tab-title d-block">ภาพถ่ายเสร็จสิ้น</div>
 								      	</div>
 							    	</a>
 							  	</li>

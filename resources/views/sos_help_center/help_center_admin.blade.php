@@ -786,7 +786,7 @@
                                         <p class="mb-0 text-white">เวลาโดยเฉลี่ย (เสร็จสิ้น)</p>
                                         <h5 class="mb-0 text-white"> 
                                             <b><span id="span_min_average_per_case">
-                                            {{ $show_min_average_per_case }}</span></b> นาที / เคส (<span id="span_count_success_average">{{ $count_success }}</span>)
+                                            {{ $show_min_average_per_case }}</span></b> / เคส (<span id="span_count_success_average">{{ $count_success }}</span>)
                                         </h5>
                                     </div>
                                     <div class="ms-auto text-white">
