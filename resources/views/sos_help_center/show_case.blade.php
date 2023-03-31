@@ -1384,8 +1384,6 @@ input:focus {
         start_page();
         show_event_level();
 
-        document.querySelector('#btn_modal_add_photo_sos').click();
-
         if (status_sos != "เสร็จสิ้น") {
         	getLocation();
         	timer_check_send_update_officer();
@@ -1443,7 +1441,7 @@ input:focus {
 		});
 
 		// สร้างเส้นทาง
-		// get_Directions_API(officer_marker, sos_marker);
+		get_Directions_API(officer_marker, sos_marker);
 		// SET หมุดเจ้าหน้าที่
 		set_watchPosition_officer_marker();
 
