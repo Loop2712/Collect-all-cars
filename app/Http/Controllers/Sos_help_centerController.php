@@ -1514,6 +1514,18 @@ class Sos_help_centerController extends Controller
 
     function rate_case($sos_id){
 
+        $redirectTo = 'sos_help_center/' . $sos_id . "/give_rate_case" ;
+
+        if(Auth::check()){
+            return redirect('sos_help_center/' . $sos_id . '/give_rate_case');
+        }else{
+            return redirect('/login/line?redirectTo=' . $redirectTo);
+        }
+
+    }
+
+    function give_rate_case($sos_id){
+        
         $data_user = Auth::user();
         $data_sos_help_center = Sos_help_center::where('id' , $sos_id)->first();
 
