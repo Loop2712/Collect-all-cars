@@ -1512,4 +1512,92 @@ class Sos_help_centerController extends Controller
         return view('sos_help_center.manage_user.all_name_user_partner', compact('area_user' ,'data_partners','all_user','data_time_zone','sub_organization','polygon_provinces'));
     }
 
+    function rate_case($sos_id){
+
+        $data_user = Auth::user();
+        $data_sos_help_center = Sos_help_center::where('id' , $sos_id)->first();
+
+        if (!empty($data_sos_help_center->score_impression)) {
+            $score = "Yes" ; 
+        }else{
+            $score = "No" ;
+        }
+
+        return view('sos_help_center.rate_case', compact('data_user','data_sos_help_center','score'));
+    }
+
+    public function submit_score_1669($sos_id , $score_1 , $score_2 , $total_score , $comment_help)
+    {
+        $data_sos = Sos_help_center::findOrFail($sos_id);
+
+        if ($comment_help == 'null') {
+            $comment_help = null ;
+        }
+
+        if (empty($data_sos->score_impression)) {
+            DB::table('sos_help_centers')
+                ->where('id', $sos_id)
+                ->update([
+                    'score_impression' => $score_1,
+                    'score_period' => $score_2,
+                    'score_total' => number_format($total_score,2),
+                    'comment_help' => $comment_help,
+            ]);
+        }
+    }
+
+    function send_flex_help_complete($sos_id){
+
+        $data_sos = Sos_help_center::where('id' , $sos_id)->first();
+        $data_user_sos = User::where('id' ,$data_sos->user_id)->first();
+
+        $template_path = storage_path('../public/json/flex-sos-1669/flex_help_complete.json');   
+        $string_json = file_get_contents($template_path);
+
+        $date_now = date("Y-m-d");
+        $time_now = date("H:i:s");
+
+        $time_ex = explode(":",$data_form_yellow->time_create_sos);
+        
+        // วัน เวลา
+        $string_json = str_replace("xx มกราคม xxxx",$date_now,$string_json);
+        $string_json = str_replace("xx:xx",$time_ex[0].":".$time_ex[1],$string_json);
+
+        $string_json = str_replace("ตัวอย่าง","การช่วยเหลือเสร็จสิ้น",$string_json);
+        $string_json = str_replace("NAME_USER_SOS",$data_sos->name_user,$string_json);
+        $string_json = str_replace("NAME_OFFICER",$data_sos->name_helper,$string_json);
+
+        $string_json = str_replace("SOS_ID",$sos_id,$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $data_user_sos->provider_id,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        //SAVE LOG
+        $data = [
+            "title" => "Send flex_help_complete to",
+            "content" => "ID : " . $data_user_sos->id . " / NAME : " . $data_user_sos->name,
+        ];
+
+        MyLog::create($data);
+
+    }
+
 }

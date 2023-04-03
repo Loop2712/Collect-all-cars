@@ -1,0 +1,119 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "size": "giga",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/img/flex/1669/help%20complete.png",
+        "size": "full",
+        "aspectRatio": "2500:3500",
+        "aspectMode": "cover"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "NAME_USER_SOS",
+            "color": "#881111",
+            "wrap": false,
+            "size": "lg",
+            "weight": "bold"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "49%",
+        "offsetStart": "29%",
+        "width": "63%",
+        "justifyContent": "center",
+        "alignItems": "flex-start"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "NAME_OFFICER",
+            "color": "#2E3A8F",
+            "wrap": false,
+            "size": "lg",
+            "weight": "bold"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "63%",
+        "offsetStart": "29%",
+        "width": "63%",
+        "justifyContent": "center",
+        "alignItems": "flex-start"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "xx มกราคม xxxx",
+            "color": "#2E3A8F",
+            "wrap": false,
+            "size": "lg",
+            "weight": "bold"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "74.5%",
+        "offsetStart": "17%",
+        "width": "63%",
+        "justifyContent": "center",
+        "alignItems": "flex-start"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "xx:xx น.",
+            "color": "#2E3A8F",
+            "wrap": false,
+            "size": "lg",
+            "weight": "bold"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "74.5%",
+        "offsetStart": "68%",
+        "width": "63%",
+        "justifyContent": "center",
+        "alignItems": "flex-start"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [],
+        "position": "absolute",
+        "offsetTop": "86%",
+        "offsetStart": "8.5%",
+        "width": "83%",
+        "alignItems": "flex-end",
+        "justifyContent": "center",
+        "height": "9%",
+        "action": {
+          "type": "uri",
+          "uri": "https://www.viicheck.com/sos_help_center/SOS_ID/rate_case"
+        }
+      }
+    ],
+    "position": "relative",
+    "paddingAll": "0px"
+  }
+}
+}

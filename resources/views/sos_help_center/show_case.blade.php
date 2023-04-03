@@ -2071,6 +2071,12 @@ input:focus {
 
                 	document.querySelector('#div_to_hospital').classList.add('d-none');
 
+                	fetch("{{ url('/') }}/api/send_flex_help_complete" + "/" + sos_id )
+			            .then(response => response.text())
+			            .then(result => {
+			                // console.log(result);
+			        });
+
                 }else if(status_sos === "ออกจากที่เกิดเหตุ"){
 
                 	document.querySelector('#show_remark_status').innerHTML = '' ;

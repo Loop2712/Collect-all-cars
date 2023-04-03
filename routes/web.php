@@ -198,6 +198,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('sos_help_center/reply_select_2/{sos_id}', 'Sos_help_centerController@reply_select_2');
 	Route::get('sos_help_center/{sos_id}/show_case', 'Sos_help_centerController@show_case_sos');
 	Route::resource('data_1669_operating_unit', 'Data_1669_operating_unitController');
+	Route::get('sos_help_center/{sos_id}/rate_case', 'Sos_help_centerController@rate_case');
 	
 	Route::get('all_name_user_partner', 'Sos_help_centerController@all_name_user_partner');
 
