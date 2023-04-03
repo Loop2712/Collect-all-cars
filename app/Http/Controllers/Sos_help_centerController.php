@@ -1550,6 +1550,7 @@ class Sos_help_centerController extends Controller
 
         $data_sos = Sos_help_center::where('id' , $sos_id)->first();
         $data_user_sos = User::where('id' ,$data_sos->user_id)->first();
+        $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id' , $sos_id)->first();
 
         $template_path = storage_path('../public/json/flex-sos-1669/flex_help_complete.json');   
         $string_json = file_get_contents($template_path);
