@@ -2274,21 +2274,26 @@
 		let rounded_grade = Math.ceil(result['score_total']) ;
 		let html_star = '' ;
 
-		for(let i = 1 ; i <= 5 ; i++){
-			if (i <= rounded_grade){
-				if (i < rounded_grade){
-					html_star = html_star + '<i class="fa-solid fa-star text-warning"></i>' ;
-				}else{
-					if( grade - i + 1 >= 0.5){
+		if (result['score_total']){
+			for(let i = 1 ; i <= 5 ; i++){
+				if (i <= rounded_grade){
+					if (i < rounded_grade){
 						html_star = html_star + '<i class="fa-solid fa-star text-warning"></i>' ;
 					}else{
-						html_star = html_star + '<i class="fa-solid fa-star-half-stroke text-warning"></i>' ;
+						if( grade - i + 1 >= 0.5){
+							html_star = html_star + '<i class="fa-solid fa-star text-warning"></i>' ;
+						}else{
+							html_star = html_star + '<i class="fa-solid fa-star-half-stroke text-warning"></i>' ;
+						}
 					}
+				}else{
+					html_star = html_star + '<i class="fa-regular fa-star text-warning"></i>' ;
 				}
-			}else{
-				html_star = html_star + '<i class="fa-regular fa-star text-warning"></i>' ;
 			}
+		}else{
+			html_star = '<span class="text-secondary">ไม่มีการประเมิน</span>' ;
 		}
+		
 
     	let text_html = 
 
@@ -2301,9 +2306,6 @@
                             	<div style="position:absolute;top: 0px;left: 0px;">
 	                                <button style="border-radius: 0px 20px 20px 0px;" class="btn btn-sm btn-`+color_be_notified+` main-shadow main-radius">
 	                                    <b>`+result['be_notified']+`</b>
-	                                </button>
-	                                <button class="btn btn-sm">
-	                                	`+html_star+`
 	                                </button>
 	                            </div>
                                 <br>
@@ -2318,6 +2320,10 @@
                                 </p>
                             </div>
                             <div>
+                            	<span class="float-end h6">
+	                               	`+html_star+`
+	                            </span>
+	                            <br>
                                 `+html_status+`
                                 <br>
                                 <p class="mt-3 data-overflow">
@@ -2326,7 +2332,7 @@
                             </div>
                         </div> 
                         
-                        <hr>
+                        <hr style="margin-top: -5px;">
 
                         <div class="sos-username">
                             <div class="row">
