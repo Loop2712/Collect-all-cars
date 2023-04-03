@@ -382,7 +382,7 @@
                                 </button>
                                 &nbsp;&nbsp;&nbsp;
                                 <button type="button" class="btn btn-primary px-5" onclick="clear_search_data_help();">
-                                    🤔 ฝากหาที่วางปุ่มเคลียค้นหาด้วย
+                                    เคลียค้นหา
                                 </button>
                             </div>
                         </div>
@@ -863,13 +863,26 @@
                                                     <button style="border-radius: 0px 20px 20px 0px;" class="btn btn-sm btn-{{ $color_be_notified }} main-shadow main-radius">
                                                         <b>{{ $item->form_yellow->be_notified }}</b>
                                                     </button>
-
+                                                </div>
+                                                <br>
+                                                <h4 class="mt-2 m-0 p-0 data-overflow">
+                                                    รหัส <b class="text-dark">{{$item->operating_code}}</b>
+                                                </h4>
+                                                <p class="m-0 mt-1 data-overflow">
+                                                    {{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }}
+                                                </p>
+                                                <p class="m-0 mt-1 data-overflow">
+                                                    {{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <span class="float-end h6">
                                                     @php
                                                         $grade = $item->score_total; 
                                                         $rounded_grade = ceil($grade);
                                                     @endphp
 
-                                                    <button class="btn btn-sm">
+                                                    @if(!empty($item->score_total))
                                                         @for ($i = 1; $i <= 5; $i++)
                                                             @if ($i <= $rounded_grade)
                                                                 @if ($i < $rounded_grade)
@@ -885,20 +898,11 @@
                                                                 <i class="fa-regular fa-star text-warning"></i>
                                                             @endif
                                                         @endfor
-                                                    </button>
-                                                </div>
+                                                    @else
+                                                        <span class="text-secondary">ไม่มีการประเมิน</span>
+                                                    @endif
+                                                </span>
                                                 <br>
-                                                <h4 class="mt-2 m-0 p-0 data-overflow">
-                                                    รหัส <b class="text-dark">{{$item->operating_code}}</b>
-                                                </h4>
-                                                <p class="m-0 data-overflow">
-                                                    {{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }}
-                                                </p>
-                                                <p class="m-0 data-overflow">
-                                                    {{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}
-                                                </p>
-                                            </div>
-                                            <div>
                                                 @switch($item->status)
                                                     @case('รับแจ้งเหตุ')
                                                         <button class="float-end btn-request btn-status main-shadow main-radius">
@@ -932,7 +936,7 @@
                                                     @break
                                                 @endswitch
                                                 <br>
-                                                <p class="mt-3 data-overflow">
+                                                <p class="mt-4 data-overflow">
                                                     @if(!empty($item->address))
                                                         @php
                                                             $address_ex = explode("/",$item->address);
@@ -949,7 +953,7 @@
                                             </div>
                                         </div> 
                                         
-                                        <hr>
+                                        <hr style="margin-top: -5px;">
 
                                         <div class="sos-username">
                                             <div class="row">
