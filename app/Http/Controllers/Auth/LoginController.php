@@ -108,7 +108,8 @@ class LoginController extends Controller
     // Facebook callback
     public function handleFacebookCallback(Request $request)
     {
-        $user = Socialite::driver('facebook')->user();
+        // $user = Socialite::driver('facebook')->user();
+        $user = Socialite::driver('facebook')->stateless()->user();
         // print_r($user);
         $this->_registerOrLoginUser($user,"facebook",null,null, null);
 
