@@ -37,6 +37,8 @@
 
 </div>
 
+<img src="https://www.viicheck.com/img/poster/Poster%20sos%201669%20(User).png" class="d-none">
+
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=768325378190737"></script>
 <script>
     window.fbAsyncInit = function() {
