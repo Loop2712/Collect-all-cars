@@ -51,7 +51,7 @@ Route::get('login/line/tu_sos', 'Auth\LoginController@redirectToLine_TU_SOS');
 Route::get('login/line/check_in', 'Auth\LoginController@redirectToLine_check_in'); //?check_in_at=
 
 // facebook_messenger_api
-// Route::get('/facebook_messenger_api', 'API\facebook_messenger_api@facebook');
+Route::get('/facebook_messenger_api', 'API\facebook_messenger_api@facebook');
 // WhatsApp_messenger_api
 Route::get('/whatsapp_messenger_api', 'API\facebook_messenger_api@whatsapp');
 
