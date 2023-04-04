@@ -31,6 +31,10 @@ Route::get('/test_pdf_blade', function () {
     return view('/report/PDF/test_export_pdf');
 });
 
+Route::get('/return_line', function () {
+    return view('/return_line');
+});
+
 
 // Google login
 Route::get('login/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
