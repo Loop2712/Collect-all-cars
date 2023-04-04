@@ -37,7 +37,7 @@
 
 </div>
 
-<img src="https://www.viicheck.com/img/poster/Poster%20sos%201669%20(User).png" class="d-none">
+<img src="https://www.viicheck.com/img/poster/Poster%20sos%201669%20(User).png" class="d-">
 
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=768325378190737"></script>
 <script>
@@ -56,8 +56,7 @@
         // ลิงก์ที่ต้องการแชร์
         let url = 'https://page.line.me/702ytkls';
         // รูปภาพที่ต้องการแชร์
-        let imageUrl = "{{ url('/img/flex/1669/thank_submit_score.png') }}";
-        // let imageUrl = 'https://www.viicheck.com/img/poster/Poster%20sos%201669%20(User).png';
+        let imageUrl = 'https://www.viicheck.com/img/poster/Poster%20sos%201669%20(User).png';
         // หัวข้อที่ต้องการแชร์
         let title = 'วีเช็ค ร่วมกับ สพฉ.(1669)';
 
