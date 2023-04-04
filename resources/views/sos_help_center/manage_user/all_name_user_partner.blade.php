@@ -613,9 +613,9 @@
         } else if (!user_name_officer) {
             document.querySelector('#user_name_officer').focus();
         } else {
-            console.log(type_user_partner);
-            console.log(name_officer);
-            console.log(user_name_officer);
+            // console.log(type_user_partner);
+            // console.log(name_officer);
+            // console.log(user_name_officer);
 
             let btn_link_creat = document.querySelector('#btn_link_creat');
             let a_href = document.createAttribute("href");
@@ -666,7 +666,7 @@
                 
                 for (var xxiv = 0; xxiv < result.length; xxiv++) {
 
-                    console.log(result[xxiv]['id']);
+                    // console.log(result[xxiv]['id']);
 
                     let admin_type;
                     switch (result[xxiv]['type']) {
