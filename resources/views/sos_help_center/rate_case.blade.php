@@ -39,6 +39,17 @@
 
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=768325378190737"></script>
 <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '768325378190737',
+            cookie: true,
+            xfbml: true,
+            version: 'v11.0'
+        });
+
+        FB.AppEvents.logPageView();
+    };
+
     function shareOnFacebook() {
         // ลิงก์ที่ต้องการแชร์
         let url = 'https://page.line.me/702ytkls';
@@ -51,11 +62,11 @@
 
         // เรียกใช้ API ของ Facebook เพื่อแชร์หน้าเว็บไซต์
         FB.ui({
-            method: 'feed',
-            name: title,
-            link: url,
+            method: 'share',
+            href: url,
+            quote: title,
+            hashtag: '#วีเช็ค #1669 #สพฉ #วีเช็คช่วยเหลือคนไทยฟรี',
             picture: imageUrl,
-            caption: '#วีเช็ค #1669 #สพฉ #วีเช็คช่วยเหลือคนไทยฟรี',
             description: description
         });
     }
