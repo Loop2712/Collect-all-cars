@@ -54,7 +54,7 @@
         // ลิงก์ที่ต้องการแชร์
         let url = 'https://page.line.me/702ytkls';
         // รูปภาพที่ต้องการแชร์
-        let imageUrl = 'https://www.viicheck.com/img/poster/Poster%20sos%201669%20(User).png';
+        let imageUrl = 'https://www.viicheck.com/img/poster/test_facebook.png';
         // หัวข้อที่ต้องการแชร์
         let title = 'วีเช็ค ร่วมกับ สพฉ.(1669)';
 
