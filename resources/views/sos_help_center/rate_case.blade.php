@@ -3,10 +3,6 @@
 @section('content')
 <br><br><br><br><br><br>
 
-<!-- <head>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=470120060837271"></script>
-</head> -->
-
 @section('meta')
 <meta charset="UTF-8">
 <meta name="description" content="HVAC Template">
@@ -25,6 +21,9 @@
 <meta property="og:description"   content="ให้การขอความช่วยเหลือเป็นเรื่องง่าย เพียงกดปุ่ม SOS.." />
 <meta property="og:image"         content="https://www.viicheck.com/img/poster/Poster%20sos%201669%20(User).png" />
 @endsection
+
+@section('content')
+<br>
 
 <div class="col">
 
