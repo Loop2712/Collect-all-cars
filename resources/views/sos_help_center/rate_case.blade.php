@@ -10,7 +10,7 @@
 <div class="col">
 
     <!-- Button trigger modal -->
-    <button id="btn_thank_submit_score" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_thank_submit_score"></button>
+    <button id="btn_thank_submit_score" type="button" class="btn btn-primary d-" data-toggle="modal" data-target="#modal_thank_submit_score">dcdcd</button>
 
     <!-- Modal -->
     <div class="modal fade" id="modal_thank_submit_score" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

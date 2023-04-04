@@ -279,6 +279,8 @@
 
 <body class="bg-white">
 
+  <!-- ============== COOKIE ============== -->
+
   <!-- ======= Top Bar ======= -->
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-between">
