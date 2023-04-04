@@ -56,7 +56,7 @@
                                 fjs.parentNode.insertBefore(js, fjs);
                             }(document, 'script', 'facebook-jssdk'));</script>
 
-                            <div class="fb-share-button" data-href="{{ url('/news') .'/'. $news_share->id }}" data-layout="button_count"></div>
+                            <div class="fb-share-button" data-href="{{ url('/')}}" data-layout="button_count"></div>
                             <hr>
                         </div>
                 </div>
