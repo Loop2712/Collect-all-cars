@@ -108,7 +108,7 @@
         "height": "9%",
         "action": {
           "type": "uri",
-          "uri": "https://www.viicheck.com/sos_help_center/SOS_ID/rate_case?openexternalbrowser=1"
+          "uri": "https://www.viicheck.com/sos_help_center/SOS_ID/rate_case?openExternalBrowser=1"
         }
       }
     ],
