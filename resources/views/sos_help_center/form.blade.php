@@ -47,6 +47,225 @@
   margin-top: 5px;
   white-space: normal !important;
 }*/
+.masonry:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.masonry .grid-sizer,
+.masonry_block {
+  width: 100%;
+}
+
+.masonry_block {
+  float: left;
+  padding: 20px 20px;
+  border-radius: 25px;
+}
+
+.masonry-folio {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 1px 4px 15px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+}
+
+.masonry_thum img {
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  border-radius: 1rem;
+  height: 15rem;
+  width: 100%;
+  object-fit: cover;
+
+}
+
+.masonry_thum a {
+  display: block;
+}
+
+.masonry_thum a::before {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.8);
+  content: "";
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  z-index: 1;
+  border-radius: 1rem;
+}
+
+.masonry_thum a::after {
+  display: block;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  z-index: 1;
+  border-radius: 1rem;
+  border-top: 1px solid #d7dce1;
+    border-left: 3px solid #d7dce1;
+}
+
+.masonry_text {
+  position: absolute;
+  left: 0;
+  bottom: 8rem;
+  padding: 0 1.5rem;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translate3d(0, 100%, 0);
+  -ms-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.masonry_title {
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin: 0 0 0.3rem 0;
+}
+
+.masonry_cat {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
+  font-weight: 200;
+  line-height: 1.714;
+  margin-bottom: 0;
+}
+
+.masonry_caption {
+  display: none;
+}
+
+.masonry_project-link {
+  display: block;
+  color: #ffffff;
+  text-align: center;
+  z-index: 500;
+  top: 3rem;
+  left: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translate3d(0, -100%, 0);
+  -ms-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+}
+
+.masonry_project-link::before {
+  display: in-line;
+  position: relative;
+  top: -2.5rem;
+  left: 50%;
+}
+
+.masonry_project-link:hover,
+.masonry_project-link:focus,
+.masonry_project-link:active {
+  font-size: 1.1rem;
+  color: #ffffff;
+  -webkit-transform: translate3d(0, 100%, 0);
+  -ms-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  display: block;
+  background-color: transparent;
+}
+
+/* on hover 
+ * ----------------------------------------------- */
+.masonry-folio:hover .masonry_thum a::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.masonry-folio:hover .masonry_thum a::after {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.masonry-folio:hover .masonry_thum img {
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.masonry-folio:hover .masonry_project-link,
+.masonry-folio:hover .masonry_text {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.masonry_project-link:hover a {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 992px) {
+  .s-works {
+    padding-top: 15rem;
+    padding-bottom: 15rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .masonry_title,
+  .masonry_cat {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .s-works {
+    padding-top: 12rem;
+  }
+
+  .masonry-wrap {
+    padding: 0 35px;
+  }
+
+  .masonry_block {
+    float: none;
+    width: 100%;
+  }
+
+  .masonry_title,
+  .masonry_cat {
+    font-size: 1.4rem;
+  }
+}
+
 </style> 
 
 <!-- TEST alet_new_data -->
@@ -117,7 +336,7 @@
         </div>
     </div>
 </div>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
 <!-- Modal View Image -->
 <div class="modal fade" id="see_img_sos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -130,7 +349,93 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
+                <div class="container">
+                <div class="row mt-1">
+                    <div class="col-lg-6">
+
+                        <div class="masonry_block">
+                            <div class="masonry-folio">
+                                <div class="masonry_thum">
+
+                                    @if( !empty($sos_help_center->photo_sos))
+                                        <img src="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos }}" class="img-fluid" alt="image" / >
+                                        <a href="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos }}" class="glightbox" data-gallery="edu-gallery"></a>
+                                    @else
+                                        <img src="https://www.viicheck.com/img/stickerline/PNG/17.png" class="img-fluid" alt="image" / >
+
+                                        <a href="https://www.viicheck.com/img/stickerline/PNG/17.png" class="glightbox" data-gallery="edu-gallery"></a>
+                                    @endif
+
+                                    @if( !empty($sos_help_center->photo_sos_by_officers))
+                                        <a href="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos_by_officers }}" class="glightbox" data-gallery="edu-gallery"></a>
+                                    @else
+                                        <a href="https://www.viicheck.com/img/stickerline/PNG/49.png" class="glightbox" data-gallery="edu-gallery"></a>
+                                    @endif
+                                    
+                                </div>
+
+                                <div class="masonry_text">
+                                    @if( !empty($sos_help_center->photo_sos))
+                                        <h3 class="masonry_title">รูปภาพจากผู้ใช้</h3>
+                                        <p class="masonry_cat">เพิ่มโดย {{ $sos_help_center->name_user }}</p>
+                                    @else
+                                        <h3 class="masonry_title">รูปภาพจากผู้ใช้</h3>
+                                        <p class="masonry_cat">ผู้ใช้ไม่ได้เพิ่มรูปภาพ</p>
+                                    @endif
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end masonry_block -->
+
+                    <div class="col-lg-6">
+                        <div class="masonry_block">
+                            <div class="masonry-folio">
+                                <div class="masonry_thum">
+
+                                    @if( !empty($sos_help_center->photo_sos_by_officers))
+                                        <img src="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos_by_officers }}" class="img-fluid" alt="image" />
+                                        
+                                        <a href="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos_by_officers }}" class="glightbox" data-gallery="edu-gallery2"></a>
+                                    @else
+                                        <img src="https://www.viicheck.com/img/stickerline/PNG/49.png" class="img-fluid" alt="image" / >
+
+                                        <a href="https://www.viicheck.com/img/stickerline/PNG/49.png" class="glightbox" data-gallery="edu-gallery2"></a>
+                                    @endif
+
+                                    @if( !empty($sos_help_center->photo_sos))
+                                        <a href="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos }}" class="glightbox" data-gallery="edu-gallery2"></a>
+                                    @else
+                                        <a href="https://www.viicheck.com/img/stickerline/PNG/17.png" class="glightbox" data-gallery="edu-gallery2"></a>
+                                    @endif
+                                    
+                                </div>
+
+                                <div class="masonry_text">
+                                    @if( !empty($sos_help_center->photo_sos_by_officers) )
+                                        <h3 class="masonry_title">รูปภาพจากเจ้าหน้าที่</h3>
+                                        <p class="masonry_cat">เพิ่มโดย {{ $sos_help_center->name_helper }}</p>
+                                    @else
+                                        <h3 class="masonry_title">รูปภาพจากเจ้าหน้าที่</h3>
+                                        <p class="masonry_cat">เจ้าหน้าที่ไม่ได้เพิ่มรูปภาพ</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end masonry_block -->
+                    </div>
+                    @if(!empty($sos_help_center->commemt_help))
+                        <div class="col-12">
+                            <h4>ข้อเสนอแนะจากเจ้าหน้าที่</h4>
+                            <p style="text-indent: 2rem;">
+                                {{$sos_help_center->commemt_help}}
+                            </p>
+                        </div>
+                    @endif
+                </div>
+                </div>
+                <!-- <div class="row">
                     <div class="col-md-6 text-center">
                         @if( !empty($sos_help_center->photo_sos) )
                             <img src="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos }}" class="img-fluid rounded shadow-lg hover-zoom" style="width: 80%; cursor: pointer;" alt="Picture from Users">
@@ -149,7 +454,7 @@
                         
                         <p style="margin-top: 20px;">รูปภาพจากเจ้าหน้าที่</p>
                    </div>
-                </div>
+                </div> -->
             </div>
             <div class="modal-footer d-none">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -158,7 +463,40 @@
         </div>
     </div>
 </div>
+<!-- partial -->
+<script src='https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js'></script>
+<script src='https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js'></script>
+<script src='https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js'></script>
+<script>
+    var masonryFolio = function () {
+  var containerBricks = $(".masonry");
 
+  containerBricks.imagesLoaded(function () {
+    containerBricks.masonry({
+      itemSelector: ".masonry_block",
+      resize: true
+    });
+  });
+};
+
+/* glightbox
+ */
+var glightbox = GLightbox({
+  loop: true,
+  selector: ".glightbox",
+  openEffect: "zoom",
+  closeEffect: "fade",
+  startAt: 0,
+  closeOnOutsideClick: false,
+  zoomable: true,
+  height: "auto",
+  width: "100vw",
+  height: "100vh"
+  
+});
+
+feather.replace();
+</script>
 <style>
     .gg-travel-guide{
         display: flex;
