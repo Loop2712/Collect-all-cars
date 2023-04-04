@@ -658,7 +658,7 @@
         fetch("{{ url('/') }}/api/search_all_name_user_partner/?search=" + normal_search + "&id=" + user_id + "&area=" + search_area + "&status=" + search_status)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 let tbody_data_admin = document.querySelector('#tbody_data_admin');
                 tbody_data_admin.innerHTML = "" ;
                 
