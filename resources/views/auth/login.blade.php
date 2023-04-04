@@ -83,22 +83,22 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            <!-- <br> -->
-                                            <div class="row d-none">
-                                                <div class="col-12 main-shadow main-radius" style="background-color: #007BFF;">
-                                                    <a href="{{ route('login.facebook') }}">
-                                                        <button style="padding-top: 10px; padding-bottom: 10px;color: #ffff;" type="button" class="btn">
-                                                            <img width="15%" class="main-shadow" style="border-radius: 20px;background-color: #ffff;" src="{{ asset('/img/icon_login/icon-fb.png') }}">&nbsp; Login FACEBOOK
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                            </div>
                                             <br>
                                             <div class="row">
                                                 <div class="col-12 main-shadow main-radius" style="background-color: #DC3545;">
                                                     <a href="{{ route('login.google') }}?redirectTo={{ request('redirectTo') }}">
                                                         <button style="padding-top: 10px; padding-bottom: 10px;color: #ffff;" type="button" class="btn">
                                                             <img width="15%" class="main-shadow" style="border-radius: 20px;background-color: #ffff;" src="{{ asset('/img/icon_login/icon-gg.png') }}">&nbsp;&nbsp; Login GOOGLE&nbsp;
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row d-">
+                                                <div class="col-12 main-shadow main-radius" style="background-color: #007BFF;">
+                                                    <a href="{{ route('login.facebook') }}">
+                                                        <button style="padding-top: 10px; padding-bottom: 10px;color: #ffff;" type="button" class="btn">
+                                                            <img width="15%" class="main-shadow" style="border-radius: 20px;background-color: #ffff;" src="{{ asset('/img/icon_login/icon-fb.png') }}">&nbsp; Login FACEBOOK
                                                         </button>
                                                     </a>
                                                 </div>
