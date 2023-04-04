@@ -5,6 +5,12 @@
 
 <head>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=470120060837271"></script>
+
+    <meta property="og:url"           content="https://page.line.me/702ytkls" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="วีเช็ค ร่วมกับ สพฉ.(1669)" />
+    <meta property="og:description"   content="ให้การขอความช่วยเหลือเป็นเรื่องง่าย เพียงกดปุ่ม SOS.." />
+    <meta property="og:image"         content="https://www.viicheck.com/img/poster/Poster%20sos%201669%20(User).png" />
 </head>
 
 <div class="col">
