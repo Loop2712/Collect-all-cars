@@ -65,8 +65,7 @@
             method: 'share',
             href: url,
             quote: title,
-            // hashtag: '#วีเช็คช่วยเหลือคนไทยฟรี',
-            hashtag: '#วีเช็ค #สพฉ #วีเช็คช่วยเหลือคนไทยฟรี',
+            hashtag: '#วีเช็คช่วยเหลือคนไทยฟรี',
             picture: imageUrl,
             description: description
         });
