@@ -5,13 +5,26 @@
 
 <head>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=470120060837271"></script>
-
-    <meta property="og:url"           content="https://page.line.me/702ytkls" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="วีเช็ค ร่วมกับ สพฉ.(1669)" />
-    <meta property="og:description"   content="ให้การขอความช่วยเหลือเป็นเรื่องง่าย เพียงกดปุ่ม SOS.." />
-    <meta property="og:image"         content="https://www.viicheck.com/img/poster/Poster%20sos%201669%20(User).png" />
 </head>
+
+@section('meta')
+<meta charset="UTF-8">
+<meta name="description" content="HVAC Template">
+<meta name="keywords" content="HVAC, unica, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
+<!-- CSRF Token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<title>วีเช็ค ร่วมกับ สพฉ.(1669)</title>
+
+<meta property="og:url"           content="https://page.line.me/702ytkls" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="วีเช็ค ร่วมกับ สพฉ.(1669)" />
+<meta property="og:description"   content="ให้การขอความช่วยเหลือเป็นเรื่องง่าย เพียงกดปุ่ม SOS.." />
+<meta property="og:image"         content="https://www.viicheck.com/img/poster/Poster%20sos%201669%20(User).png" />
+@endsection
 
 <div class="col">
 
@@ -32,6 +45,20 @@
                     <button style="position: absolute;bottom: 9.5%;left: 14%;width: 50%;height: 7%;" type="button" class="btn" onclick="shareOnFacebook();">
                         <!-- แบ่งปันเรื่องราวดีๆ -->
                     </button>
+                    <div class="col-12 col-md-12">
+                            <br>
+                            <div id="fb-root"></div>
+                            <script>(function(d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (d.getElementById(id)) return;
+                                js = d.createElement(s); js.id = id;
+                                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }(document, 'script', 'facebook-jssdk'));</script>
+
+                            <div class="fb-share-button" data-href="{{ url('/news') .'/'. $news_share->id }}" data-layout="button_count"></div>
+                            <hr>
+                        </div>
                 </div>
             </div>
         </div>
