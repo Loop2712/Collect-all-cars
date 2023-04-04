@@ -3,9 +3,9 @@
 @section('content')
 <br><br><br><br><br><br>
 
-<head>
+<!-- <head>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=470120060837271"></script>
-</head>
+</head> -->
 
 @section('meta')
 <meta charset="UTF-8">
