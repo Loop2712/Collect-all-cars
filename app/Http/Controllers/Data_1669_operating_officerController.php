@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Data_1669_operating_officer;
 use Illuminate\Http\Request;
+use App\User;
 
 class Data_1669_operating_officerController extends Controller
 {
@@ -59,19 +60,34 @@ class Data_1669_operating_officerController extends Controller
         
         Data_1669_operating_officer::create($requestData);
 
-        DB::table('users')
-        ->where([ 
-                ['id', $requestData['user_id']],
-            ])
-        ->update([
-                'role' => "partner",
-                'organization' => "สพฉ",
-                'sub_organization' => $requestData['name_area'],
-            ]);
+        $data_user_officer = User::where('id' , $requestData['user_id'])->first();
 
-       
+        if (!empty($data_user_officer->role)){
 
-            return view('return_line');
+            DB::table('users')
+                ->where([ 
+                        ['id', $requestData['user_id']],
+                    ])
+                ->update([
+                        'organization' => "สพฉ",
+                        'sub_organization' => $requestData['name_area'],
+                    ]);
+
+        }else{
+
+            DB::table('users')
+                ->where([ 
+                        ['id', $requestData['user_id']],
+                    ])
+                ->update([
+                        'role' => "partner",
+                        'organization' => "สพฉ",
+                        'sub_organization' => $requestData['name_area'],
+                    ]);
+
+        }
+
+        return view('return_line');
     }
 
     /**
