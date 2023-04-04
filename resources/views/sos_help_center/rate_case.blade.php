@@ -52,7 +52,7 @@
 
     function shareOnFacebook() {
         // ลิงก์ที่ต้องการแชร์
-        let url = 'https://page.line.me/702ytkls';
+        let url = 'https://www.viicheck.com/img/poster/test_facebook.png';
         // รูปภาพที่ต้องการแชร์
         let imageUrl = 'https://www.viicheck.com/img/poster/test_facebook.png';
         // หัวข้อที่ต้องการแชร์
