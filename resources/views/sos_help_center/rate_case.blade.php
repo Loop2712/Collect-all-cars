@@ -3,6 +3,15 @@
 @section('content')
 <br><br><br><br><br><br>
 
+<head>
+    <meta property="og:url"           content="https://page.line.me/702ytkls" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="วีเช็ค ร่วมกับ สพฉ.(1669)" />
+    <meta property="og:description"   content="ให้การขอความช่วยเหลือเป็นเรื่องง่าย เพียงกดปุ่ม SOS.." />
+    <meta property="og:image"         content="https://www.viicheck.com/img/poster/Poster%20sos%201669%20(User).png" />
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=768325378190737"></script>
+</head>
+
 <div class="col">
 
     <!-- Button trigger modal -->
@@ -34,17 +43,21 @@
         // ลิงก์ที่ต้องการแชร์
         let url = 'https://www.viicheck.com';
         // รูปภาพที่ต้องการแชร์
-        let imageUrl = 'https://www.viicheck.com/img/more/Service-Viicheck%20ver3.png';
+        let imageUrl = 'https://www.viicheck.com/img/poster/Poster%20sos%201669%20(User).png';
         // หัวข้อที่ต้องการแชร์
-        let title = 'สพฉ. ร่วมกับวีเช็ค';
+        let title = 'วีเช็ค ร่วมกับ สพฉ.(1669)';
+
+        let description = 'ให้การขอความช่วยเหลือเป็นเรื่องง่าย เพียงกดปุ่ม SOS..' ;
 
         // เรียกใช้ API ของ Facebook เพื่อแชร์หน้าเว็บไซต์
         FB.ui({
-            method: 'share',
-            href: url,
-            title: title,
+            method: 'feed',
+            name: title,
+            link: url,
             picture: imageUrl,
-        }, function(response){});
+            caption: '#วีเช็ค #1669 #สพฉ #วีเช็คช่วยเหลือคนไทยฟรี',
+            description: description
+        });
     }
 </script>
 
