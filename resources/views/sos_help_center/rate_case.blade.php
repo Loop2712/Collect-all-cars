@@ -30,6 +30,16 @@
 
     <!-- Button trigger modal -->
     <button id="btn_thank_submit_score" type="button" class="btn btn-primary d-" data-toggle="modal" data-target="#modal_thank_submit_score">dcdcd</button>
+    <div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+
+                    <div class="fb-share-button" data-href="{{ url('/')}}" data-layout="button_count"></div>
 
     <!-- Modal -->
     <div class="modal fade" id="modal_thank_submit_score" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -45,20 +55,6 @@
                     <button style="position: absolute;bottom: 9.5%;left: 14%;width: 50%;height: 7%;" type="button" class="btn" onclick="shareOnFacebook();">
                         <!-- แบ่งปันเรื่องราวดีๆ -->
                     </button>
-                    <div class="col-12 col-md-12">
-                            <br>
-                            <div id="fb-root"></div>
-                            <script>(function(d, s, id) {
-                                var js, fjs = d.getElementsByTagName(s)[0];
-                                if (d.getElementById(id)) return;
-                                js = d.createElement(s); js.id = id;
-                                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
-                                fjs.parentNode.insertBefore(js, fjs);
-                            }(document, 'script', 'facebook-jssdk'));</script>
-
-                            <div class="fb-share-button" data-href="{{ url('/')}}" data-layout="button_count"></div>
-                            <hr>
-                        </div>
                 </div>
             </div>
         </div>
