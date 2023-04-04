@@ -31,8 +31,8 @@ Route::get('/test_pdf_blade', function () {
     return view('/report/PDF/test_export_pdf');
 });
 
-Route::get('/return_line', function () {
-    return view('/return_line');
+Route::get('/share_1669', function () {
+    return view('share_to_facebook/share_1669');
 });
 
 
