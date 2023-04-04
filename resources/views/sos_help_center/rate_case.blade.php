@@ -3,64 +3,54 @@
 @section('content')
 <br><br><br><br><br><br>
 
-@section('meta')
-<meta charset="UTF-8">
-<meta name="description" content="HVAC Template">
-<meta name="keywords" content="HVAC, unica, creative, html">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
-<!-- CSRF Token -->
-<meta name="csrf-token" content="{{ csrf_token() }}">
-
-<title>สพฉ. ร่วมกับ วีเช็ค</title>
-
-<meta property="og:url"           content="https://lin.ee/xnFKMfc" />
-<meta property="og:type"          content="website" />
-<meta property="og:title"         content="รวดเร็ว ปลอดภัย อุ่นใจ ใช้วีเช็ค" />
-<meta property="og:description"   content="สพฉ. ร่วมกับ วีเช็ค" />
-<meta property="og:image"         content="{{ url('/img/flex/1669/thank_submit_score.png') }}" />
-@endsection
+<head>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=470120060837271"></script>
+</head>
 
 <div class="col">
+
     <!-- Button trigger modal -->
-    <button id="btn_thank_submit_score" type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#modal_thank_submit_score"></button>
+    <button id="btn_thank_submit_score" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_thank_submit_score"></button>
+
     <!-- Modal -->
-    <div class="modal fade" id="modal_thank_submit_score" tabindex="-1" aria-labelledby="thank_submit_scoreLabel" style="display: none;" aria-hidden="true"  data-backdrop="static" data-keyboard="false" >
+    <div class="modal fade" id="modal_thank_submit_score" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header d-none">
-                    <h5 class="modal-title" id="thank_submit_scoreLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img class="" style="width: 98%;" 
-                    src="{{ url('/img/flex/1669/thank_submit_score.png') }}">
+                <div class="modal-body">
+                    <img class="" style="width: 98%;" src="{{ url('/img/flex/1669/thank_submit_score.png') }}">
                 </div>
                 <div class="notranslate">
                     <button style="position: absolute;bottom: 9.5%;right: 13%;width: 20%;height: 7%;" type="button" class="btn" onclick="document.getElementById('a_line').click();">
                         <!-- เสร็จสิ้น -->
                     </button>
-                    <button style="position: absolute;bottom: 9.5%;left: 14%;width: 50%;height: 7%;" type="button" class="btn">
+                    <button style="position: absolute;bottom: 9.5%;left: 14%;width: 50%;height: 7%;" type="button" class="btn" onclick="shareOnFacebook();">
                         <!-- แบ่งปันเรื่องราวดีๆ -->
                     </button>
-                    <div class="d-none" >
-                        <div id="fb-root"></div>
-                        <script>(function(d, s, id) {
-                            var js, fjs = d.getElementsByTagName(s)[0];
-                            if (d.getElementById(id)) return;
-                            js = d.createElement(s); js.id = id;
-                            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));</script>
-
-                        <div class="fb-share-button" data-href="https://lin.ee/xnFKMfc" data-layout="button_count"></div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
+
+<script>
+    function shareOnFacebook() {
+        // ลิงก์ที่ต้องการแชร์
+        let url = 'https://www.viicheck.com';
+        // รูปภาพที่ต้องการแชร์
+        let imageUrl = 'https://www.viicheck.com/img/more/Service-Viicheck%20ver3.png';
+        // หัวข้อที่ต้องการแชร์
+        let title = 'สพฉ. ร่วมกับวีเช็ค';
+
+        // เรียกใช้ API ของ Facebook เพื่อแชร์หน้าเว็บไซต์
+        FB.ui({
+            method: 'share',
+            href: url,
+            title: title,
+            picture: imageUrl,
+        }, function(response){});
+    }
+</script>
 
 
 <input type="hidden" name="score_old" id="score_old" value="{{ $score }}">

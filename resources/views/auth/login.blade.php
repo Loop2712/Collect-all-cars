@@ -83,8 +83,8 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            <br>
-                                            <div class="row">
+                                            <!-- <br> -->
+                                            <div class="row d-none">
                                                 <div class="col-12 main-shadow main-radius" style="background-color: #007BFF;">
                                                     <a href="{{ route('login.facebook') }}">
                                                         <button style="padding-top: 10px; padding-bottom: 10px;color: #ffff;" type="button" class="btn">
