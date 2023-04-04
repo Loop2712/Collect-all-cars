@@ -280,8 +280,11 @@
 <body class="bg-white">
 
   <!-- ============== COOKIE ============== -->
-
-  <!-- ======= Top Bar ======= -->
+<!-- Cookie Consent by https://www.cookiewow.com --> 
+<script type="text/javascript" src="https://cookiecdn.com/cwc.js"></script> 
+<script id="cookieWow" type="text/javascript" src="https://cookiecdn.com/configs/B9xBa3fozaLCfhakLM3pgqtW" data-cwcid="B9xBa3fozaLCfhakLM3pgqtW"></script>
+  
+<!-- ======= Top Bar ======= -->
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-between">
       <div class="contact-info d-flex align-items-center">
