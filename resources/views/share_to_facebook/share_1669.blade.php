@@ -21,7 +21,10 @@
 </head>
 
 <body>
-    <img width="100%" src="https://www.viicheck.com/img/poster/test_facebook.png">
+	<a class="d-none" id="btn_addline" href="https://lin.ee/xnFKMfc">
+	    <button type="button" class="btn btn-success"></button>
+	</a>
+    <img class="d-none" width="100%" src="https://www.viicheck.com/img/poster/test_facebook.png">
 	<script>
 	    document.addEventListener('DOMContentLoaded', (event) => {
 	        // console.log("START"); 
