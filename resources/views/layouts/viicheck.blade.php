@@ -1240,6 +1240,8 @@
                 <br>
                 <span class="text-dark">•<span>
                 <a class="link" href="{{ url('/terms_of_service') }}" target="_blank">ข้อกำหนดและเงื่อนไขการใช้บริการ</a>
+                <br>
+                <a class="cwc-banner-show-settings link text-danger">Cookie Settings</a>
               </div>
             </div>
           </div>
@@ -1251,8 +1253,11 @@
     <!-- คอม -->
     <div class="text-center d-none d-lg-block" style="background-color: #F1F7FD;padding:0px 25px 25px 25px">
       <span class="text-dark">WWW.ViiCHECK.com</span> <span class="text-dark">•<span>
-          <a class="link" href="{{ url('/privacy_policy') }}" target="_blank">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</a> <span class="text-dark">•<span>
-              <a class="link" href="{{ url('/terms_of_service') }}" target="_blank">ข้อกำหนดและเงื่อนไขการใช้บริการ</a>
+      <a class="link" href="{{ url('/privacy_policy') }}" target="_blank">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</a> 
+      <span class="text-dark">•<span>
+      <a class="link" href="{{ url('/terms_of_service') }}" target="_blank">ข้อกำหนดและเงื่อนไขการใช้บริการ</a>
+      <span class="text-dark">•<span>
+      <a class="cwc-banner-show-settings link text-danger">Cookie Settings</a>
     </div>
     <!-- Grid container -->
 
