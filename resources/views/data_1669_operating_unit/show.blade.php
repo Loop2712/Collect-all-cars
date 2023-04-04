@@ -424,7 +424,7 @@
             window.getSelection().addRange(range);
             document.execCommand("copy");
             alert("คัดลอก ข้อความแล้ว");
-            window.location.replace("{{url('/view_new_user')}}");
+            // window.location.replace("{{url('/view_new_user')}}");
           }
         }
 

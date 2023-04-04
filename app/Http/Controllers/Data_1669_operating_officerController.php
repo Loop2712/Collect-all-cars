@@ -59,13 +59,12 @@ class Data_1669_operating_officerController extends Controller
         
         Data_1669_operating_officer::create($requestData);
 
-       
-
         DB::table('users')
         ->where([ 
                 ['id', $requestData['user_id']],
             ])
         ->update([
+                'role' => "partner",
                 'organization' => "สพฉ",
                 'sub_organization' => $requestData['name_area'],
             ]);
