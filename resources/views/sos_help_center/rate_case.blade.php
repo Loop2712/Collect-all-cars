@@ -27,15 +27,17 @@
                     <button style="position: absolute;bottom: 9.5%;right: 13%;width: 20%;height: 7%;" type="button" class="btn" onclick="document.getElementById('a_line').click();">
                         <!-- เสร็จสิ้น -->
                     </button>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.viicheck.com%2Fshare_1669" style="position: absolute;bottom: 9.5%;left: 14%;width: 50%;height: 7%;" type="button" class="btn" onclick="shareOnFacebook();">
+                    <button style="position: absolute;bottom: 9.5%;left: 14%;width: 50%;height: 7%;" type="button" class="btn" onclick="document.querySelector('#tag_a_share').click();">
                         <!-- แบ่งปันเรื่องราวดีๆ -->
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
 </div>
+
+<a id="tag_a_share" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.viicheck.com%2Fshare_1669" class="btn d-none"></a>
 
 <input type="hidden" name="score_old" id="score_old" value="{{ $score }}">
     <div class="container" style="font-family: 'Mitr', sans-serif;">
