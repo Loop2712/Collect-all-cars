@@ -37,11 +37,11 @@
 
 </div>
 
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId={{ env('FACEBOOK_CLIENT_ID') }}"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=768325378190737"></script>
 <script>
     window.fbAsyncInit = function() {
         FB.init({
-            appId: "{{ env('FACEBOOK_CLIENT_ID') }}",
+            appId: '768325378190737',
             cookie: true,
             xfbml: true,
             version: 'v11.0'
