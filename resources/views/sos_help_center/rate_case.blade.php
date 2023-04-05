@@ -14,7 +14,7 @@
 <div class="col">
 
     <!-- Button trigger modal -->
-    <button id="btn_thank_submit_score" type="button" class="btn btn-primary d-" data-toggle="modal" data-target="#modal_thank_submit_score">dcdcd</button>
+    <button id="btn_thank_submit_score" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_thank_submit_score"></button>
     
     <!-- Modal -->
     <div class="modal fade" id="modal_thank_submit_score" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -161,7 +161,7 @@
                     </div>
                 </div>
                 <center>
-                    <button type="button" class="btn btn-primary" style="border-radius: 50px;width: 60%;" onclick="submit_score('{{ $data_sos_help_center->id }}');">
+                    <button id="btn_submit_score" type="button" class="btn btn-primary" style="border-radius: 50px;width: 60%;" onclick="submit_score('{{ $data_sos_help_center->id }}');" disabled="true">
                         ให้คะแนน
                     </button>
                 </center>
@@ -221,6 +221,20 @@
 
             total_score.value = (parseFloat(score_1.value) + parseFloat(score_2.value)) / 2;
 
+            check_score_true();
+
+        }
+
+        function check_score_true(){
+
+            let score_1 = document.querySelector('#score_1');
+            let score_2 = document.querySelector('#score_2');
+
+            if (score_1.value && score_2.value){
+                document.querySelector('#btn_submit_score').disabled = false ;
+            }else{
+                document.querySelector('#btn_submit_score').disabled = true ;
+            }
         }
 
         function submit_score( sos_id ){
