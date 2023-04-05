@@ -52,7 +52,8 @@
 
     function shareOnFacebook() {
         
-        let url = 'https://www.viicheck.com/share_1669';
+        // let url = 'https://www.viicheck.com/share_1669';
+        let url = 'https://page.line.me/702ytkls';
         let imageUrl = 'https://www.viicheck.com/img/poster/test_facebook.png';
         let title = 'วีเช็ค ร่วมกับ สพฉ.(1669)';
         let description = 'ให้การขอความช่วยเหลือเป็นเรื่องง่าย เพียงกดปุ่ม SOS..' ;
