@@ -52,8 +52,8 @@
 
     function shareOnFacebook() {
 
-        // let url = 'https://www.viicheck.com/share_1669';
-        let url = 'https://www.mithcare.com';
+        let url = 'https://www.viicheck.com/share_1669';
+        // let url = 'https://www.mithcare.com';
         let imageUrl = 'https://www.viicheck.com/img/poster/test_facebook.jpg';
         let title = 'วีเช็ค ร่วมกับ สพฉ.(1669)';
         let description = 'ให้การขอความช่วยเหลือเป็นเรื่องง่าย เพียงกดปุ่ม SOS..' ;
