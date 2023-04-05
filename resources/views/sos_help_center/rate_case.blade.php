@@ -37,7 +37,7 @@
 
 </div>
 
-<a id="tag_a_share" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.viicheck.com%2Fshare_1669" class="btn d-none"></a>
+<a id="tag_a_share" href="https://www.facebook.com/sharer/sharer.php?u=https://www.viicheck.com/share_1669" class="btn d-none"></a>
 
 <input type="hidden" name="score_old" id="score_old" value="{{ $score }}">
     <div class="container" style="font-family: 'Mitr', sans-serif;">
