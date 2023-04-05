@@ -27,49 +27,15 @@
                     <button style="position: absolute;bottom: 9.5%;right: 13%;width: 20%;height: 7%;" type="button" class="btn" onclick="document.getElementById('a_line').click();">
                         <!-- เสร็จสิ้น -->
                     </button>
-                    <button style="position: absolute;bottom: 9.5%;left: 14%;width: 50%;height: 7%;" type="button" class="btn" onclick="shareOnFacebook();">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.viicheck.com%2Fshare_1669" style="position: absolute;bottom: 9.5%;left: 14%;width: 50%;height: 7%;" type="button" class="btn" onclick="shareOnFacebook();">
                         <!-- แบ่งปันเรื่องราวดีๆ -->
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
 </div>
-
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=768325378190737"></script>
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId: '768325378190737',
-            cookie: true,
-            xfbml: true,
-            version: 'v11.0'
-        });
-
-        FB.AppEvents.logPageView();
-    };
-
-    function shareOnFacebook() {
-
-        let url = 'https://www.viicheck.com/share_1669';
-        // let url = 'https://www.mithcare.com';
-        let imageUrl = 'https://www.viicheck.com/img/poster/test_facebook.jpg';
-        let title = 'วีเช็ค ร่วมกับ สพฉ.(1669)';
-        let description = 'ให้การขอความช่วยเหลือเป็นเรื่องง่าย เพียงกดปุ่ม SOS..' ;
-
-        // เรียกใช้ API ของ Facebook เพื่อแชร์หน้าเว็บไซต์
-        FB.ui({
-            method: 'share',
-            href: url,
-            quote: title,
-            hashtag: '#วีเช็คช่วยเหลือคนไทยฟรี',
-            picture: imageUrl,
-            description: description
-        });
-    }
-</script>
-
 
 <input type="hidden" name="score_old" id="score_old" value="{{ $score }}">
     <div class="container" style="font-family: 'Mitr', sans-serif;">

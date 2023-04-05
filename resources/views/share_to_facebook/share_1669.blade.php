@@ -18,6 +18,7 @@
 	<meta property="og:title"         content="วีเช็ค ร่วมกับ สพฉ.(1669)" />
 	<meta property="og:description"   content="ให้การขอความช่วยเหลือเป็นเรื่องง่าย เพียงกดปุ่ม SOS.." />
 	<meta property="og:image"         content="https://www.viicheck.com/img/poster/test_facebook.jpg" />
+	<meta property="og:hashtags"      content="วีเช็ค, สพฉ, 1669, วีเช็คช่วยเหลือคนไทยฟรี" />
 </head>
 
 <body>
