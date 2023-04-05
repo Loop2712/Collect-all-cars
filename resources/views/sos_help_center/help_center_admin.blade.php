@@ -1,6 +1,7 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <style>
     div{
@@ -10,12 +11,12 @@
         position: relative;
     }.btn-reset{
         position: absolute;
-        bottom: 5%;
-        left: 5%;
+        bottom: 4rem;
+        left: 1rem;
     }.btn-area{
         position: absolute;
-        bottom: 12%;
-        left: 5%;
+        bottom: 7rem;
+        left: 1rem;
     }.btn-new-help{
         background-color: #881111;
         color: white;
@@ -317,7 +318,162 @@
         -webkit-transition: border .3s;
         -o-transition: border .3s;
         transition: border .3s;
+    }#div_search{
+        padding: 1rem .2rem;
+        border-radius:15px ;background-color: #fff;
+        margin: 0;
     }
+    .card-search{
+        padding: 0rem 1rem;
+        
+        
+        overflow-x: hidden; /* Hide horizontal scrollbar */
+        overflow-y: scroll;
+        height: 80vh;
+        width: 100%;
+    }
+    .card-search::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: 0;
+        background-color: #F5F5F5;
+    }
+
+    .card-search::-webkit-scrollbar
+    {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+
+    .card-search::-webkit-scrollbar-thumb
+    {
+        background-color: #5b667b;
+        border-radius: 10px;
+    }.idc-screch {
+        position: relative;
+        font-size: 14px;
+        }
+
+        .idc-screch .radio {
+        flex: 1 1 auto;
+        text-align: center;
+        }
+
+        .idc-screch .radio input {
+        display: none;
+        }
+
+        .idc-screch .radio .name {
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem;
+        border: none;
+        padding: .5rem 0rem;
+        color: rgba(51, 65, 85, 1);
+        transition: all .15s ease-in-out;
+        }
+
+        .idc-screch .radio input:checked + .name{
+            font-weight: 600;
+            padding:  .5rem 1rem;
+        } 
+
+        .idc-screch .radio .redio-success:hover {
+            background-color: #3ac47d;
+            color: #fff;
+            padding:  .5rem .5rem;
+
+        }
+        .idc-screch .radio .redio-danger:hover{
+            background-color: #d92550;
+            color: #fff;
+            padding:  .5rem .5rem;
+        }
+        .idc-screch .radio .redio-wrinning:hover {
+            background-color: #f7b924;
+            color: #000;
+            padding:  .5rem .5rem;
+        }
+        .idc-screch .radio .redio-dark:hover {
+            background-color: #343a40;
+            color: #fff;
+            padding:  .5rem .5rem;
+        }
+        .idc-screch .radio .redio-normal:hover {
+            background-color: #3f6ad8;
+            color: #fff;
+            padding:  .5rem .5rem;
+        }.idc-screch .radio .redio-all:hover {
+            background-color: #794c8a;
+            color: #fff;
+            padding:  .5rem .5rem;
+        }
+
+
+        .idc-screch .radio input:checked + .redio-all {
+            background-color: #794c8a;
+            color: #fff;
+        }
+        .idc-screch .radio input:checked + .redio-success {
+            background-color: #3ac47d;
+            color: #fff;
+        }
+        .idc-screch .radio input:checked + .redio-danger{
+            background-color: #d92550;
+            color: #fff;
+        }
+        .idc-screch .radio input:checked + .redio-wrinning {
+            background-color: #f7b924;
+            color: #000;
+        }
+        .idc-screch .radio input:checked + .redio-dark {
+            background-color: #343a40;
+            color: #fff;
+        }
+        .idc-screch .radio input:checked + .redio-normal {
+            background-color: #3f6ad8;
+            color: #fff;
+        }
+        .owl-nav{
+            display: flex;
+            justify-content: space-between;
+        }
+        /* .owl-next ,.owl-prev{
+            background-color: #881111 !important;
+            width: 1rem !important;
+            font-size: 1rem !important;
+            color: #fff !important;
+            height: 1rem !important;
+            border-radius: 50% !important;
+        } */
+        .owl-stage {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-box;
+            display: box;
+        }
+        @media (min-width:1281px) {  
+                .owl-carousel .owl-nav{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+            
+                }
+                .owl-carousel .owl-nav .owl-prev{
+                    background-color: #000000;
+                    border-radius: 50%;
+                    margin-left: -10px;
+                    margin-top: -3.3rem;
+                }
+                .owl-carousel .owl-nav .owl-next{
+                    background-color: #000000;
+                    border-radius: 50%;
+                    margin-right: -10px;
+                    margin-top: -3.3rem;
+                    
+            }
+        }
 
 
 </style>
@@ -326,7 +482,7 @@
     <div class="item col-12">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-12 div-map">
-                <div class="sticky">
+                <div class="sticky" id="div_map">
                     <div id="map" style="border-radius:25px"></div>
 
                     @if( Auth::user()->sub_organization == "ศูนย์ใหญ่")
@@ -363,6 +519,206 @@
                         </div>
                     @endif
                 </div>
+                <div class="sticky main-shadow d-none" id="div_search">
+                    <div class="card-search ">
+                        <h5>ทั่วไป</h5>
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="text" id="id" name="id" value="" class="form-control" placeholder="รหัสเคส" oninput="search_data_help();"> 
+                            </div>
+                            <div class="col-6 mt-3">
+                                <select class="form-control" id="search_be_notified" name="search_be_notified" oninput="search_data_help();">
+                                    <option value="" selected>ช่องทางรับแจ้งเหตุ</option>
+                                    <option value="แพลตฟอร์มวีเช็ค">แพลตฟอร์มวีเช็ค</option>
+                                    <option value="โทรศัพท์หมายเลข ๑๖๖๙">โทรศัพท์หมายเลข ๑๖๖๙</option>
+                                    <option value="โทรศัพท์หมายเลข ๑๖๖๙ (second call)">โทรศัพท์หมายเลข ๑๖๖๙ (second call)</option>
+                                    <option value="โทรศัพท์หมายเลขอื่นๆ">โทรศัพท์หมายเลขอื่นๆ</option>
+                                    <option value="วิทยุสื่อสาร">วิทยุสื่อสาร</option>
+                                    <option value="วิธีอื่นๆ">วิธีอื่นๆ</option>
+                                </select>
+                            </div>
+                            <div class="col-6 mt-3">
+                                <select class="form-control" id="search_status" name="search_status" oninput="search_data_help();">
+                                    <option value="" selected>สถานะ</option>
+                                    <option value="รับแจ้งเหตุ">รับแจ้งเหตุ</option>
+                                    <option value="สั่งการ">สั่งการ</option>
+                                    <option value="ออกจากฐาน">ออกจากฐาน</option>
+                                    <option value="ถึงที่เกิดเหตุ">ถึงที่เกิดเหตุ</option>
+                                    <option value="ออกจากที่เกิดเหตุ">ออกจากที่เกิดเหตุ</option>
+                                    <option value="เสร็จสิ้น">เสร็จสิ้น</option>
+                                </select>
+                            </div>
+                            <div class="col-12 mt-3" style="position: relative; margin-bottom: 3rem;">
+                                <span class="">คะแนน</span>
+                                <section  class="range-slider container mt-5" oninput="search_data_help();">
+                                    <span class="output outputOne"></span>
+                                    <span class="output outputTwo"></span>
+                                    <span class="full-range"></span>
+                                    <span class="incl-range"></span>
+                                    <input name="rangeOne_officer_rating" id="rangeOne_officer_rating" value="0" min="0" max="5" step="1" type="range">
+                                    <input name="rangeTwo_officer_rating" id="rangeTwo_officer_rating" value="5" min="0" max="5" step="1" type="range">
+                                </section>
+                            </div>
+                        </div>
+
+                        <h5 class="mt-4">ข้อมูลผู้ขอความช่วยเหลือ</h5>
+                        <div class="row">
+                            <div class="col-12">                                   
+                                 <input type="text" id="name" name="name" value="" class="form-control" placeholder="ชื่อผู้ขอความช่วยเหลือ" oninput="search_data_help();">
+                                </div>
+                            <div class="col-12 mt-3">
+                                <input type="text" id="search_phone_sos" name="search_phone_sos" value="" class="form-control" placeholder="เบอรโทรผู้ขอความช่วยเหลือ" oninput="search_data_help();">
+                            </div>
+                        </div>
+
+
+                        <h5 class="mt-4">ข้อมูลองค์กร</h5>
+                        <div class="row">
+                            <div class="col-12">                                   
+                                <input type="text" id="organization" name="organization" value="" class="form-control" placeholder="หน่วยงาน" oninput="search_data_help();">
+                            </div>
+                            <div class="col-12 mt-3">
+                                <input type="text" id="helper" name="helper" value="" class="form-control" placeholder="เจ้าหน้าที่" oninput="search_data_help();">
+                            </div>
+                        </div>
+
+                        <h5 class="mt-4">พื้นที่</h5>
+                        <div class="row">
+                            <div class="col-4 px-1">
+                                @if( Auth::user()->sub_organization == "ศูนย์ใหญ่")
+                                    <select class="form-control" id="search_P" name="search_P" oninput="search_data_help();show_location_A();">
+                                        <option value="" selected>จังหวัด</option>
+                                        @foreach($polygon_provinces as $province)
+                                            <option value="{{ $province->province_name }}" >
+                                                {{ $province->province_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                @else
+                                    <input type="text" id="search_P" name="search_P" value="" class="form-control d-none" readonly>
+                                    <input type="text" id="search_P_for_sub" value="{{ Auth::user()->sub_organization }}" class="form-control" readonly>
+                                @endif
+                            </div>
+                            <div class="col-4 px-1">
+                                <select class="form-control" id="search_A" name="search_A" oninput="search_data_help();show_location_T();">
+                                    <option value="" selected>อำเภอ</option>
+                                </select>
+                            </div>
+                            <div class="col-4 px-1">
+                                <select class="form-control" id="search_T" name="search_T" oninput="search_data_help();">
+                                    <option value="" selected>ตำบล</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <h5 class="mt-4">วันที่</h5>
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="date" name="date" id="date" value="" class="form-control datepicker" aria-haspopup="true"  oninput="search_data_help();">
+                            </div>
+                            <div class="col-5 mt-3" style="padding-right: 0;">
+                                <input type="time" name="time1" id="time1" value="" class="form-control datepicker " aria-haspopup="true"  oninput="search_data_help();">
+                            </div>
+                            <div class="col-2 mt-3 d-flex align-items-center text-center">
+                                <div class="justify-content-center col-12">
+                                    -
+                                </div>
+                            </div>
+                            <div class="col-5 mt-3" style="padding-left: 0;">
+                                <input type="time" name="time2" id="time2" value="" class="form-control datepicker " aria-haspopup="true"  oninput="search_data_help();">
+                            </div>
+                        </div>
+
+                        <h5 class="mt-4">IDC</h5>
+                        <div class="idc-screch px-2">
+                            <div class="owl-carousel-search owl-carousel owl-theme">
+                                <div class="item">
+                                    <label class="radio">
+                                        <input type="radio"  checked="" data-idc="ทั้งหมด" name="search_idc" value="" onchange="search_data_help();">
+                                        <span class="name redio-all">ทั้งหมด</span>
+                                    </label>
+                                </div>
+                                <div class="item">
+                                    <label class="radio">
+                                        <input type="radio"  data-idc="แดง(วิกฤติ)" name="search_idc" value="แดง(วิกฤติ)"  onchange="search_data_help();" >
+                                        <span class="name redio-danger">วิกฤติ</span>
+                                    </label>
+                                </div>
+                                <div class="item">
+                                    <label class="radio">
+                                        <input type="radio" data-idc="เหลือง(เร่งด่วน)" name="search_idc" value="เหลือง(เร่งด่วน)"   onchange="search_data_help();">
+                                        <span class="name redio-wrinning">เร่งด่วน</span>
+                                    </label>
+                                </div>
+                                <div class="item">
+                                    <label class="radio">
+                                        <input type="radio" data-idc="เขียว(ไม่รุนแรง)" name="search_idc" value="เขียว(ไม่รุนแรง)"   onchange="search_data_help();">
+                                        <span class="name redio-success">ไม่รุนแรง</span>
+                                    </label>
+                                </div>
+                                <div class="item">
+                                    <label class="radio">
+                                        <input type="radio" data-idc="ขาว(ทั่วไป)" name="search_idc" value="ขาว(ทั่วไป)"  onchange="search_data_help();">
+                                        <span class="name redio-normal">ทั่วไป</span>
+                                    </label>
+                                </div>
+                                <div class="item">
+                                    <label class="radio">
+                                        <input type="radio"  data-idc="ดำ(รับบริการสาธารณสุขอื่น)" name="search_idc" value="ดำ(รับบริการสาธารณสุขอื่น)" onchange="search_data_help();">
+                                        <span class="name redio-dark">ดำ</span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <h5 class="mt-4">RC</h5>
+                        <div class="idc-screch px-2">
+                            <div class="owl-carousel-search owl-carousel owl-theme">
+                                <div class="item">
+                                    <label class="radio">
+                                        <input type="radio"  data-idc="ทั้งหมด" name="search_rc" class="check" value="" onchange="search_data_help();" checked="checked">
+                                        <span class="name redio-all">ทั้งหมด</span>
+                                    </label>
+                                </div>
+                                <div class="item">
+                                    <label class="radio">
+                                        <input type="radio"  data-idc="แดง(วิกฤติ)" name="search_rc" value="แดง(วิกฤติ)"  onchange="search_data_help();" >
+                                        <span class="name redio-danger">วิกฤติ</span>
+                                    </label>
+                                </div>
+                                <div class="item">
+                                    <label class="radio">
+                                        <input type="radio" data-idc="เหลือง(เร่งด่วน)" name="search_rc" value="เหลือง(เร่งด่วน)"   onchange="search_data_help();">
+                                        <span class="name redio-wrinning">เร่งด่วน</span>
+                                    </label>
+                                </div>
+                                <div class="item">
+                                    <label class="radio">
+                                        <input type="radio" data-idc="เขียว(ไม่รุนแรง)" name="search_rc" value="เขียว(ไม่รุนแรง)"   onchange="search_data_help();">
+                                        <span class="name redio-success">ไม่รุนแรง</span>
+                                    </label>
+                                </div>
+                                <div class="item">
+                                    <label class="radio">
+                                        <input type="radio" data-idc="ขาว(ทั่วไป)" name="search_rc" value="ขาว(ทั่วไป)"  onchange="search_data_help();">
+                                        <span class="name redio-normal">ทั่วไป</span>
+                                    </label>
+                                </div>
+                                <div class="item">
+                                    <label class="radio">
+                                        <input type="radio"  data-idc="ดำ(รับบริการสาธารณสุขอื่น)" name="search_rc" value="ดำ(รับบริการสาธารณสุขอื่น)" onchange="search_data_help();">
+                                        <span class="name redio-dark">ดำ</span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="w-100 btn btn-primary btn-md btn-block d-block" onclick="clear_search_data_help();">ล้างการค้นหา</button>
+                        
+                    </div>
+                </div>
             </div>
             <div class="col-12 col-md-9 col-lg-9 m-0">
                 <div class="card p-4 m-0" style="border: 2px solid {{ $color_theme }};">
@@ -371,18 +727,14 @@
                             <button class="btn btn-new-help" onclick="create_new_sos_help_center();">การช่วยเหลือใหม่</button>
                         </div>  
                         <div>
-                            <div class="input-group input-group-lg">
+                            <div class="input-group input-group-md">
                                 <input type="text" class="form-control border-end-0" id="search" name="search" placeholder="ค้นหา รหัสเคส" oninput="search_data_help();">
                                 <span class="input-group-text bg-transparent">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </span>
                                 &nbsp;&nbsp;&nbsp;
-                                <button type="button" class="btn btn-primary px-5" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                <button type="button" class="btn btn-primary" onclick="document.querySelector('#div_map').classList.toggle('d-none');document.querySelector('#div_search').classList.toggle('d-none');">
                                     <i class="fa-solid fa-filter-list"></i> ค้นหาขั้นสูง
-                                </button>
-                                &nbsp;&nbsp;&nbsp;
-                                <button type="button" class="btn btn-primary px-5" onclick="clear_search_data_help();">
-                                    เคลียค้นหา
                                 </button>
                             </div>
                         </div>
@@ -855,6 +1207,8 @@
                                                         $color_be_notified = 'danger' ;
                                                     }else if($item->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙' or $item->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)'){
                                                         $color_be_notified = 'info text-white' ;
+                                                    }else if($item->form_yellow->be_notified == 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า'){
+                                                        $color_be_notified = 'danger' ;
                                                     }else{
                                                         $color_be_notified = 'secondary' ;
                                                     }
@@ -1333,6 +1687,30 @@
     }
     
 </style>
+<script>
+   $(function() {
+  // Owl Carousel
+  var owl = $(".owl-carousel-search");
+  owl.owlCarousel({
+    margin: 10,
+    loop: false,
+    nav: true,
+    autoWidth:true,
+    items:4,
+    dots:false,
+    responsive:{
+    0:{
+     items:1,
+     autoWidth:false 
+    },
+    768:{
+     items:3
+    }
+   } 
+  });
+});
+
+</script>
 <script>
 
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -2051,7 +2429,7 @@
                     location_A.innerHTML = "";
 
                 let option_selected = document.createElement("option");
-                    option_selected.text = "- ค้นหา อำเภอ -";
+                    option_selected.text = "อำเภอ";
                     option_selected.value = "";
                     option_selected.selected = true;
                     location_A.add(option_selected);
@@ -2091,7 +2469,7 @@
                     location_T.innerHTML = "";
 
                 let option_start = document.createElement("option");
-                    option_start.text = "- ค้นหา ตำบล -";
+                    option_start.text = "ตำบล";
                     option_start.value = "";
                     option_start.selected = true;
                     location_T.add(option_start);
@@ -2106,4 +2484,5 @@
 
     }
 </script>
+
 @endsection
