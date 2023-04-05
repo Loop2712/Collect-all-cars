@@ -2,6 +2,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="row">
 	<div class="col-xl-12 mx-auto">
+		
 		<div class="card-body">
             <style>
             	
@@ -92,6 +93,7 @@
 			<!-- SmartWizard html -->
 			
 			<div id="smartwizard">
+				
 				<ul class="nav">
 					<!-- <li class="nav-item">
 						<button style="position: relative;z-index: 999999;border-radius: 50px;" class="btn btn-info shadow" id="prev-btn-form-yellow" type="button"><i class="fa-solid fa-chevron-left"></i></button>
@@ -300,6 +302,8 @@
 							opacity: 0;
 					}.tab-content{
 						height: 100%;
+						max-height:100% !important;
+						min-height: 100% !important;
 					}.input_code_black::placeholder{
 						text-align: center; 
 					}
@@ -357,10 +361,176 @@
 						font-size: 18px;
 						font-weight: bold;
 					}
+					.timeline-offilcer{
+						background-color: #fff;
+						border-radius: 1.5rem;
+						padding: 1.5rem;
+						display: block;
+						position: relative;
+					}.timeline-detail-offilcer{
+						position: relative;
+						display: flex;
+						margin-top: 2rem;
+						align-items: center;
+					}.timeline-detail-offilcer i{
+						font-size: 1.5rem;
+						padding: 0 .7rem;
+					}.timeline-header{
+						font-size: 1.1rem;	
+						font-weight: bold;
+						font-family: 'Mitr', sans-serif;
+						position: relative;
+						
+					}
+					.timeline-detail-offilcer::before{
+						content: "";
+						width: 0.3rem;
+						height: 100%;
+						border-radius: 50rem;
+						position: absolute;
+						top: 1.8rem;
+						left: calc(4.6rem - 1px);
+						background-color: #e9ecef;
+						
+					}
+					.timeline-green{
+						color: #3ac47d;
+					}
+					.timeline-purple{
+						color: #5E17EB;
+					}.timeline-yellow{
+						color: #f7b924;
+					}.timeline-red{
+						color: #e15173;
+					}.timeline-blue{
+						color: #3f6ad8;
+					}.timeline-brown{
+						color: #874c48;
+					}.timeline-lightblue{
+						color: #16aaff;
+					}.timeline-orange{
+						color: #f58611;
+					}
+					.timeline-detail-status{
+						position: relative;
+						padding-left: calc(7.3rem - 1px);
+					}li span {
+						position: relative;
+						left: -9px;
+					}.card-detail-officer img{
+						border-radius: 15px 15px 0 0;
+						opacity: 1 !important;
+					}.card-detail-officer{
+						border-radius: 15px !important;
+						position: sticky;
+					}
+					.profile-data-officer::before {    
+						content: "";
+						background-image: url("{{ asset('/img/more/blurry-gradient2.svg') }}");
+						background-size: cover;
+						position: absolute;
+						top: 0px;
+						right: 0px;
+						bottom: 0px;
+						left: 0px;
+						opacity: 0.75;
+						border-radius: 1rem 1rem 0 0;
+
+					}
+					.footer-detail-officer{
+						top: 3.5rem;
+						background-color: #fff;
+						padding: 1rem;
+						-webkit-transition: all 0.1s ease-in-out;
+						-moz-transition: all 0.1s ease-in-out;
+						-ms-transition: all 0.1s ease-in-out;
+						-o-transition: all 0.1s ease-in-out;
+						transition: all 0.1s ease-in-out;
+						-webkit-transform: scale(1);
+						-moz-transform: scale(1);
+						-ms-transform: scale(1);
+						-o-transform: scale(1);
+						transform: scale(1); 
+						
+					}
+					.footer-detail-officer:hover{
+						background-color: #525f7f;
+						color: #fff;
+					}
+					.footer-detail-officer:hover i{
+						-webkit-transition: all 0.1s ease-in-out;
+						-moz-transition: all 0.1s ease-in-out;
+						-ms-transition: all 0.1s ease-in-out;
+						-o-transition: all 0.1s ease-in-out;
+						transition: all 0.1s ease-in-out;
+						-webkit-transform: scale(1.2);
+						-moz-transform: scale(1.2);
+						-ms-transform: scale(1.2);
+						-o-transform: scale(1.2);
+						transform: scale(1.2); 		
+					}
+					
+					.footer-detail-officer:hover .h3{
+						-webkit-transition: all 0.1s ease-in-out;
+						-moz-transition: all 0.1s ease-in-out;
+						-ms-transition: all 0.1s ease-in-out;
+						-o-transition: all 0.1s ease-in-out;
+						transition: all 0.1s ease-in-out;
+						-webkit-transform: scale(1.2);
+						-moz-transform: scale(1.2);
+						-ms-transform: scale(1.2);
+						-o-transform: scale(1.2);
+						transform: scale(1.2); 		
+					}
+
+					.profile-officer{
+						position: relative;
+						opacity: 1 !important;
+						width: 4rem;
+						height: 4rem;
+					}
+					.profile-data-officer{
+						position: relative;
+						opacity: 1 !important;
+						width: 100%;
+						font-family: 'Mitr', sans-serif;
+						color: #fff;
+						padding: 1rem 0;
+					}.text-name-officer{
+						position: relative;
+						font-size:1rem;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						width: 100%;
+					}.icon-data-officer{
+						font-size: 2rem;
+					}
+
+					.operating-unit{
+						margin-top: 1px;
+					}
+
+					.operating-unit-danger{
+						color: #d92550 !important;
+					}
+					.operating-unit-danger:hover{
+						color: #fff !important;
+						background-color: #d92550 !important;
+					}
+					.operating-unit-success{
+						color: #3ac47d !important;
+					}
+					.operating-unit-success:hover{
+						color: #fff !important;
+						background-color: #3ac47d !important;
+
+					}
 				</style>
 			
 
 				<div class="tab-content">
+					
 					<!---------------------------------- ข้อ 1  ---------------------------------->
 					<div id="step-1" class="tab-pane" role="tabpanel" aria-labelledby="step-1">
 						<div class="card-title d-flex align-items-center">
@@ -368,7 +538,7 @@
 							</div>
 							<h5 class="mb-0 text-primary">ข้อมูลทั่วไป</h5>
 						</div>
-						<hr>
+						<hr> 
 						<div class="row">
 							<div class="col-md-12">
 								<label  class="form-label m-0">รับแจ้งเหตุทาง</label>
@@ -903,6 +1073,96 @@
 					</div>
 
 					<!---------------------------------- ข้อ 5  ---------------------------------->
+					@php
+						if( empty($data_form_yellow->operation_unit_name) ){
+							$class_no_operating_unit = "" ;
+							$class_has_an_operating_unit = "d-none" ;
+						}
+						else{
+							$class_no_operating_unit = "d-none" ;
+							$class_has_an_operating_unit = "" ;
+						}
+					@endphp
+					@php
+						$check_checked = "" ;
+						$text_vehicle_type = "ยังไม่ได้เลือก" ;
+						$value_vehicle_type = "" ;
+						$class_vehicle_type = "" ;
+
+						if( !empty($data_form_yellow->vehicle_type) ){
+							if( $data_form_yellow->vehicle_type == 'รถ' ){
+								$check_checked = "checked";
+								$text_vehicle_type = 'รถ' ;
+								$value_vehicle_type = "รถ" ;
+								$class_vehicle_type = "fa-solid fa-truck-medical" ;
+							}else if ( $data_form_yellow->vehicle_type == 'อากาศยาน' ){
+								$check_checked = "checked";
+								$text_vehicle_type = "อากาศยาน" ;
+								$value_vehicle_type = "อากาศยาน" ;
+								$class_vehicle_type = "fa-sharp fa-solid fa-plane" ;
+							}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๑' ){
+								$check_checked = "checked";
+								$text_vehicle_type = "เรือ ป.๑" ;
+								$value_vehicle_type = "เรือ ป.๑" ;
+								$class_vehicle_type = "fa-duotone fa-ship" ;
+							}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๒' ){
+								$check_checked = "checked";
+								$text_vehicle_type = "เรือ ป.๒" ;
+								$value_vehicle_type = "เรือ ป.๒" ;
+								$class_vehicle_type = "fa-duotone fa-ship" ;
+							}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๓' ){
+								$check_checked = "checked";
+								$text_vehicle_type = "เรือ ป.๓" ;
+								$value_vehicle_type = "เรือ ป.๓" ;
+								$class_vehicle_type = "fa-duotone fa-ship" ;
+							}else if ( $data_form_yellow->vehicle_type == 'เรือประเภทอื่นๆ' ){
+								$check_checked = "checked";
+								$text_vehicle_type = "เรือประเภทอื่นๆ" ;
+								$value_vehicle_type = "เรือประเภทอื่นๆ" ;
+								$class_vehicle_type = "fa-duotone fa-ship" ;
+							}
+						}
+					@endphp
+					<!-- operating_suit -->
+					@php
+						$check_checked_operating = "" ;
+						$text_operating = "ยังไม่ได้เลือก" ;
+						$value_operating = "" ;
+						$color_operating = "bg-light" ;
+						$text_detail_operating = "ยังไม่ได้เลือก" ;
+
+						if( !empty($data_form_yellow->operating_suit_type) ){
+							if( $data_form_yellow->operating_suit_type == 'FR' ){
+								$check_checked_operating = "checked";
+								$text_operating = "FR" ;
+								$value_operating = "FR" ;
+								$color_operating = "success" ;
+								$text_detail_operating = "ระดับเบื้องต้น" ;
+							}else if ( $data_form_yellow->operating_suit_type == 'BLS' ){
+								$check_checked_operating = "checked";
+								$text_operating = "BLS" ;
+								$value_operating = "BLS" ;
+								$color_operating = "warning" ;
+								$text_detail_operating = "ระดับต้น" ;
+
+							}else if ( $data_form_yellow->operating_suit_type == 'ILS' ){
+								$check_checked_operating = "checked";
+								$text_operating = "ILS" ;
+								$value_operating = "ILS" ;
+								$color_operating = "danger" ;
+								$text_detail_operating = "ระดับกลาง" ;
+
+							}else if ( $data_form_yellow->operating_suit_type == 'ALS' ){
+								$check_checked_operating = "checked";
+								$text_operating = "ALS" ;
+								$value_operating = "ALS" ;
+								$color_operating = "danger" ;
+								$text_detail_operating = "ระดับสูง" ;
+
+							}
+						}
+
+					@endphp
 					<div id="step-5" class="tab-pane" role="tabpanel" aria-labelledby="step-5">
 						<div class="card-title d-flex align-items-center">
 							<div>
@@ -911,17 +1171,253 @@
 							<h5 class="mb-0 text-primary">การสั่งการ (โดยการเห็นชอบของหัวหน้าศูนย์ฯ)</h5>
 						</div>
 						<hr>
+							
+						<div class="row {{ $class_no_operating_unit }}" id="no_operating_unit">
+							<div class="col-md-4">
+								<label for="" class="form-label"><b>&nbsp;</b></label>
+								<span id="btn_select_unit_in_no5" class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();select_level();" style="width:100%;" >
+                                    <i class="fa-solid fa-hospital-user"></i> เลือกหน่วยแพทย์
+								</span>
+							</div>
+						</div>
+						
+						<div class="row {{$class_has_an_operating_unit}}" >
+							<div class="col-5 ">
+								<div class="card-detail-officer main-shadow sticky">
+									<div class="profile-data-officer text-center">
+											@if(!empty($data_officer->user->photo))
+												<img  style="opacity: 1 !important;" src="{{ url('storage')}}/{{ $data_officer->user->photo }}" class="rounded-circle shadow profile-officer">
+											@else
+												<img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/12.png') }}"  class="rounded-circle shadow profile-officer">
+											@endif
+											<p  class="d-block m-0 text-center text-name-officer">
+												{{ isset($data_form_yellow->action_set_name) ? $data_form_yellow->action_set_name : ''}}
+											</p>
+											<p  style="font-size:1rem;font-weight: 100;" class=" text-name-officer d-block m-0 text-center">{{$data_form_yellow->operation_unit_name}}</p>
+									</div>
+									
+									<div class="row"  >
+										<div class="col-12 col-md-6 col-lg-6 pl-0" style="padding-right:0;border-right: #dee2e6 1px solid;">
+											<div class="footer-detail-officer text-center font-weight-bold d-block" style=" border-radius:0 0 0 15px; outline: 1px 1px 1px 1px solid #000;outline-style: l;">
+													<i class="mt-1 icon-data-officer d-block {{$class_vehicle_type}}"></i>
 
-						@php
-							if( empty($data_form_yellow->operation_unit_name) ){
-								$class_no_operating_unit = "" ;
-								$class_has_an_operating_unit = "d-none" ;
-							}
-							else{
-								$class_no_operating_unit = "d-none" ;
-								$class_has_an_operating_unit = "" ;
-							}
-						@endphp
+													<span class="d-block p-0">
+														{{ isset($value_vehicle_type) ? $value_vehicle_type : 'ไม่ได้เลือก'}}
+													</span>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 col-lg-6 pr-0"  style="padding-left:0">
+											<div class="footer-detail-officer operating-unit operating-unit-{{$color_operating}} text-center"style=" ;border-radius:0 0 15px;">
+												<span class="m-0 p-0 h3 d-block">{{$text_operating}}</span>
+												<span class="d-block">{{$text_detail_operating }}</span>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+							<div class="col-7 timeline-offilcer">
+								<div class="timeline-detail-offilcer mt-0">
+									<span>
+										@if(!empty($data_form_yellow->time_create_sos))
+										&nbsp;&nbsp;{{ (\Carbon\Carbon::parse($data_form_yellow->time_create_sos))->format('h:i น.') }}
+										@else
+											ไม่ได้แจ้ง
+										@endif
+									</span>
+									<i class="fa-solid fa-circle-dot timeline-purple"></i>
+									<span class="timeline-header timeline-purple">
+										รับแจ้งเหตุ
+									</span>
+								</div>
+
+								<div class="timeline-detail-offilcer">
+									<span>
+										@if(!empty($data_form_yellow->time_command))
+										&nbsp;&nbsp;{{ (\Carbon\Carbon::parse($data_form_yellow->time_command))->format('h:i น.') }}
+										@else
+											ไม่ได้แจ้ง
+										@endif
+									</span>
+									<i class="fa-solid fa-circle-dot timeline-yellow"></i>
+									<span class="timeline-header timeline-yellow">
+										สั่งการ
+									</span>
+								</div>
+
+								<div class="timeline-detail-offilcer d-block">
+									<div class="d-flex align-items-center">
+										<span>
+											@if(!empty($data_form_yellow->time_go_to_help))
+												&nbsp;&nbsp;{{ (\Carbon\Carbon::parse($data_form_yellow->time_go_to_help))->format('h:i น.') }}
+											@else
+												ไม่ได้แจ้ง
+											@endif
+										</span>
+										<i class="fa-solid fa-circle-dot timeline-green"></i>
+										<span class="timeline-header timeline-green">
+											ออกจากฐาน
+										</span>
+									</div>
+									<ul class="timeline-detail-status m-0 mt-2">
+										<li>
+											<span>เลขกิโลเมตร
+												<span class="timeline-green m-0 p-0" style="left: 0 !important;"> <b> ออกจากฐาน </b></span> 
+												<b class="timeline-red">{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : 'ไม่ได้ระบุ'}} กม.</b>
+											</span>
+										</li>
+									</ul>
+								</div>
+
+								<div class="timeline-detail-offilcer d-block">
+									<div class="d-flex align-items-center">
+										<span>
+											@if(!empty($data_form_yellow->time_to_the_scene))
+												&nbsp;&nbsp;{{ (\Carbon\Carbon::parse($data_form_yellow->time_to_the_scene))->format('h:i น.') }}
+											@else
+												ไม่ได้แจ้ง
+											@endif
+											
+										</span>
+										<i class="fa-solid fa-circle-dot timeline-blue"></i>
+										<span class="timeline-header timeline-blue">
+											ถึงที่เกิดเหตุ
+										</span>
+									</div>
+									<ul class="timeline-detail-status m-0 mt-2">
+										<li>
+											<span>เลขกิโลเมตร
+												<span class="timeline-blue m-0 p-0" style="left: 0 !important;"> <b> ถึงที่เกิดเหตุ </b></span> 
+												<b class="timeline-red">{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : 'ไม่ได้ระบุ'}} กม.</b>
+											</span>
+										</li>
+										<li>
+											<span>
+												ระยะทาง
+												<span class="timeline-green m-0 p-0" style="left: 0 !important;">  <b> ออกจากฐาน </b></span> 
+													ถึง
+												<span class="timeline-blue m-0 p-0" style="left: 0 !important;"> <b> ที่เกิดเหตุ </b></span> 
+												<b class="timeline-red" id="text_distance_to_hospital"></b> <b class="timeline-red">กม.</b>
+											</span>
+										</li>
+										<li>
+											<span>
+												ใช้เวลา
+												<span class="timeline-purple m-0 p-0" style="left: 0 !important;">  <b> รับแจ้งเหตุ</span> 
+													ถึง
+												<span class="timeline-blue m-0 p-0" style="left: 0 !important;"> <b> ออกจากฐาน</span> 
+												<b class="timeline-red" id="time_zone_1"></b>
+											</span>
+										</li>
+									</ul>
+								</div>
+								
+								<div class="timeline-detail-offilcer">
+									<span>
+										@if(!empty($data_form_yellow->time_leave_the_scene))
+											&nbsp;&nbsp;{{(\Carbon\Carbon::parse($data_form_yellow->time_leave_the_scene))->format('h:i น.')}}
+										@else
+											ไม่ได้แจ้ง
+										@endif
+									</span>
+									<i class="fa-solid fa-circle-dot timeline-lightblue"></i>
+									<span class="timeline-header timeline-lightblue">
+										ออกจากที่เกิดเหตุ
+									</span>
+								</div>
+
+								<div class="timeline-detail-offilcer d-block">
+									<div class="d-flex align-items-center">
+										<span>
+											@if(!empty($data_form_yellow->time_hospital))
+												&nbsp;&nbsp;{{ (\Carbon\Carbon::parse($data_form_yellow->time_hospital))->format('h:i น.') }}
+											@else
+												ไม่ได้แจ้ง
+											@endif
+										</span>
+										<i class="fa-solid fa-circle-dot timeline-brown"></i>
+										<span class="timeline-header timeline-brown">
+											ถึงโรงพยาบาล
+										</span>
+									</div>
+									<ul class="timeline-detail-status m-0 mt-2">
+										<li>
+											<span>เลขกิโลเมตร
+												<span class="timeline-brown m-0 p-0" style="left: 0 !important;"> <b>ถึงโรงพยาบาล</b></span> 
+												<b class="timeline-red">{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : 'ไม่ได้ระบุ'}} กม.</b>
+											</span>
+										</li>
+										<li>
+											<span>
+												ระยะทาง
+												<span class="timeline-blue m-0 p-0" style="left: 0 !important;">  <b>ที่เกิดเหตุ</b></span> 
+													ถึง
+												<span class="timeline-brown m-0 p-0" style="left: 0 !important;"> <b>โรงพยาบาล</b></span> 
+												<b class="timeline-red" id="text_distance_to_hospital"></b> <b class="timeline-red" id="text_distance_to_hospital">กม.</b>
+											</span>
+										</li>
+										<li>
+											<span>
+												ใช้เวลา
+												<span class="timeline-lightblue m-0 p-0 " style="left: 0 !important;"> <b>ออกจากที่เกิดเหตุ</b> </span> 
+													ถึง
+												<span class="timeline-brown m-0 p-0 " style="left: 0 !important;"> <b>โรงพยาบาล</b> </span> 
+												<b class="timeline-red" id="time_zone_2"></b>
+											</span>
+										</li>
+									</ul>
+								</div>
+
+								<div class="timeline-detail-offilcer d-block">
+									<div class="d-flex align-items-center">
+										<span>
+											@if(!empty($data_form_yellow->time_to_the_operating_base))
+												&nbsp;&nbsp;{{ (\Carbon\Carbon::parse($data_form_yellow->time_to_the_operating_base))->format('h:i น.') }}
+											@else
+												ไม่ได้แจ้ง
+											@endif
+										</span>
+										<i class="fa-solid fa-circle-dot timeline-orange"></i>
+										<span class="timeline-header timeline-orange">
+											ถึงฐาน
+										</span>
+									</div>
+									<ul class="timeline-detail-status m-0 mt-2">
+										<li>
+											<span>เลขกิโลเมตร
+												<span class="timeline-orange m-0 p-0" style="left: 0 !important;"> <b>ถึงฐาน</b></span> 
+												<b class="timeline-red">{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : 'ไม่ได้ระบุ'}} กม.</b>
+											</span>
+										</li>
+										<li>
+											<span>
+												ระยะทาง
+												<span class="timeline-brown m-0 p-0" style="left: 0 !important;">  <b id="title_1_return_distance"></b></span> 
+													ถึง
+												<span class="timeline-orange m-0 p-0" style="left: 0 !important;"> <b>ฐาน</b></span> 
+												<b class="timeline-red" id="text_return_distance"></b> <b class="timeline-red" >กม.</b>
+											</span>
+										</li>
+										<li>
+											<span>
+												ใช้เวลา
+												<span class="timeline-brown m-0 p-0 " style="left: 0 !important;"> <b>โรงพยาบาล</b> </span> 
+													ถึง
+												<span class="timeline-orange m-0 p-0 " style="left: 0 !important;"> <b>ฐาน</b> </span> 
+												<b class="timeline-red" id="time_zone_3"></b>
+											</span>
+										</li>
+									</ul>
+								</div>
+								<br><br>
+								<span class="timeline-header m-0 p-0 " style="left: 0 !important;"> <b>รวม</b> ใช้เวลา <b class="timeline-red" id="time_zone_all"></b> เป็นระยะทางทั้งหมด <b class="timeline-red" id="total_distance"></b> <b class="timeline-red">กม.</b> </span> 
+
+							</div>
+						</div>
+						
+						<div class="d-none">
+
+						
 						<div class="row {{ $class_no_operating_unit }}" id="no_operating_unit">
 							<div class="col-md-4">
 								<label for="" class="form-label"><b>&nbsp;</b></label>
@@ -946,79 +1442,7 @@
 								</div>
 							</div>
 
-							<!-- vehicle_type -->
-							@php
-								$check_checked = "" ;
-								$text_vehicle_type = "ยังไม่ได้เลือก" ;
-								$value_vehicle_type = "" ;
-								$class_vehicle_type = "" ;
-
-								if( !empty($data_form_yellow->vehicle_type) ){
-									if( $data_form_yellow->vehicle_type == 'รถ' ){
-										$check_checked = "checked";
-										$text_vehicle_type = 'รถ' ;
-										$value_vehicle_type = "รถ" ;
-										$class_vehicle_type = "fa-solid fa-truck-medical" ;
-									}else if ( $data_form_yellow->vehicle_type == 'อากาศยาน' ){
-										$check_checked = "checked";
-										$text_vehicle_type = "อากาศยาน" ;
-										$value_vehicle_type = "อากาศยาน" ;
-										$class_vehicle_type = "fa-sharp fa-solid fa-plane" ;
-									}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๑' ){
-										$check_checked = "checked";
-										$text_vehicle_type = "เรือ ป.๑" ;
-										$value_vehicle_type = "เรือ ป.๑" ;
-										$class_vehicle_type = "fa-duotone fa-ship" ;
-									}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๒' ){
-										$check_checked = "checked";
-										$text_vehicle_type = "เรือ ป.๒" ;
-										$value_vehicle_type = "เรือ ป.๒" ;
-										$class_vehicle_type = "fa-duotone fa-ship" ;
-									}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๓' ){
-										$check_checked = "checked";
-										$text_vehicle_type = "เรือ ป.๓" ;
-										$value_vehicle_type = "เรือ ป.๓" ;
-										$class_vehicle_type = "fa-duotone fa-ship" ;
-									}else if ( $data_form_yellow->vehicle_type == 'เรือประเภทอื่นๆ' ){
-										$check_checked = "checked";
-										$text_vehicle_type = "เรือประเภทอื่นๆ" ;
-										$value_vehicle_type = "เรือประเภทอื่นๆ" ;
-										$class_vehicle_type = "fa-duotone fa-ship" ;
-									}
-								}
-							@endphp
-							<!-- operating_suit -->
-							@php
-								$check_checked_operating = "" ;
-								$text_operating = "ยังไม่ได้เลือก" ;
-								$value_operating = "" ;
-								$color_operating = "bg-light" ;
-
-								if( !empty($data_form_yellow->operating_suit_type) ){
-									if( $data_form_yellow->operating_suit_type == 'FR' ){
-										$check_checked_operating = "checked";
-										$text_operating = "FR" ;
-										$value_operating = "FR" ;
-										$color_operating = "success" ;
-									}else if ( $data_form_yellow->operating_suit_type == 'BLS' ){
-										$check_checked_operating = "checked";
-										$text_operating = "BLS" ;
-										$value_operating = "BLS" ;
-										$color_operating = "warning" ;
-									}else if ( $data_form_yellow->operating_suit_type == 'ILS' ){
-										$check_checked_operating = "checked";
-										$text_operating = "ILS" ;
-										$value_operating = "ILS" ;
-										$color_operating = "danger" ;
-									}else if ( $data_form_yellow->operating_suit_type == 'ALS' ){
-										$check_checked_operating = "checked";
-										$text_operating = "ALS" ;
-										$value_operating = "ALS" ;
-										$color_operating = "danger" ;
-									}
-								}
-
-							@endphp
+							
 
 							<div class="col-12 col-md-3">
 								<label  class="form-label mb-2">
@@ -1154,10 +1578,8 @@
 								<br>
 								<b><span id="total_distance" class="text-dark"></span></b> กม.
 							</div>
-
 						</div>
-
-						
+						</div>						
 					</div>
 					
 					<!---------------------------------- ข้อ 6  ---------------------------------->
@@ -2593,7 +3015,9 @@
 				// console.log('Time_Seconds >> ' + Time_Seconds);
 			let zone1_tiem_all;
 			if (zone1_Time_Seconds === 0) {
-				zone1_tiem_all = zone1_Time_min + " นาที" ; ;
+				zone1_tiem_all = zone1_Time_min + " นาที" ; 
+			}else if(zone1_Time_min === 0){
+				zone1_tiem_all = zone1_Time_Seconds + " วินาที" ; 
 			}else{
 				zone1_tiem_all = zone1_Time_min + " นาที " + zone1_Time_Seconds + " วินาที";
 			}
@@ -2638,6 +3062,8 @@
 			let zone2_tiem_all;
 			if (zone2_Time_Seconds === 0) {
 				zone2_tiem_all = zone2_Time_min + " นาที" ;
+			}else if(zone2_Time_min === 0){
+				zone2_tiem_all = zone2_Time_Seconds + " วินาที" ; 
 			}else{
 				zone2_tiem_all = zone2_Time_min + " นาที " + zone2_Time_Seconds + " วินาที";
 			}
@@ -2689,6 +3115,8 @@
 			let zone3_tiem_all;
 			if (zone3_Time_Seconds === 0) {
 				zone3_tiem_all = zone3_Time_min + " นาที" ;
+			}else if(zone3_Time_min === 0){
+				zone3_tiem_all = zone3_Time_Seconds + " วินาที" ; 
 			}else{
 				zone3_tiem_all = zone3_Time_min + " นาที " + zone3_Time_Seconds + " วินาที";
 			}
