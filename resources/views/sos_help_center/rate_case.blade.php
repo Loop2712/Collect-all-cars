@@ -51,13 +51,9 @@
     };
 
     function shareOnFacebook() {
-        // ลิงก์ที่ต้องการแชร์
         let url = 'https://www.viicheck.com/share_1669';
-        // รูปภาพที่ต้องการแชร์
         let imageUrl = 'https://www.viicheck.com/img/poster/test_facebook.png';
-        // หัวข้อที่ต้องการแชร์
         let title = 'วีเช็ค ร่วมกับ สพฉ.(1669)';
-
         let description = 'ให้การขอความช่วยเหลือเป็นเรื่องง่าย เพียงกดปุ่ม SOS..' ;
 
         // เรียกใช้ API ของ Facebook เพื่อแชร์หน้าเว็บไซต์
