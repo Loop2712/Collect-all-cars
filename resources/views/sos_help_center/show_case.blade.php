@@ -2071,11 +2071,19 @@ input:focus {
 
                 	document.querySelector('#div_to_hospital').classList.add('d-none');
 
-                	fetch("{{ url('/') }}/api/send_flex_help_complete" + "/" + sos_id )
-			            .then(response => response.text())
-			            .then(result => {
-			                // console.log(result);
-			        });
+                	if ( reason == "ส่งต่อชุดปฏิบัติการระดับสูงกว่า" ){
+                		fetch("{{ url('/') }}/api/forward_operation" + "/" + sos_id )
+				            .then(response => response.text())
+				            .then(result => {
+				                console.log(result);
+				        });
+                	}else{
+	                	fetch("{{ url('/') }}/api/send_flex_help_complete" + "/" + sos_id )
+				            .then(response => response.text())
+				            .then(result => {
+				                // console.log(result);
+				        });
+				    }
 
                 }else if(status_sos === "ออกจากที่เกิดเหตุ"){
 

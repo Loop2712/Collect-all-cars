@@ -1613,4 +1613,126 @@ class Sos_help_centerController extends Controller
 
     }
 
+    function forward_operation($sos_id){
+
+        $requestData = [] ;
+
+        $data_user = Auth::user();
+        $data_sos_help_center = Sos_help_center::where('id' , $sos_id)->first();
+
+        $time_create_sos = Carbon::now();
+
+        if(!empty($data_sos_help_center->address)){
+
+            $address_old = $data_sos_help_center->address ;
+            $address_old = explode("/",$address_old);
+
+            $province_name = $address_old[0] ;
+            $district_name = $address_old[1] ;
+            $sub_district_name = $address_old[2] ;
+
+            $requestData['address'] = $province_name."/".$district_name."/".$sub_district_name ;
+
+        }else{
+            $requestData['address'] = '' ;
+        }
+
+        $requestData['lat'] = $data_sos_help_center->lat ;
+        $requestData['lng'] = $data_sos_help_center->lng ;
+        $requestData['name_user'] = $data_sos_help_center->name_user ;
+        $requestData['phone_user'] = $data_sos_help_center->phone_user ;
+        $requestData['user_id'] = $data_sos_help_center->user_id ;
+        $requestData['forward_operation_from'] = $data_sos_help_center->id ;
+        $requestData['photo_sos'] = $data_sos_help_center->photo_sos ;
+        $requestData['create_by'] = "forward_operation_from - " . $data_sos_help_center->id;
+        $requestData['notify'] = $province_name;
+        $requestData['status'] = 'รับแจ้งเหตุ';
+        $requestData['time_create_sos'] = $time_create_sos;
+        
+        Sos_help_center::create($requestData);
+
+        $sos_help_center_last = Sos_help_center::latest()->first();
+
+        $requestData['sos_help_center_id'] = $sos_help_center_last->id ;
+
+        $requestData['be_notified'] = "ส่งต่อชุดปฏิบัติการระดับสูงกว่า" ;
+        $requestData['name_user'] = $data_sos_help_center->form_yellow->name_user ;
+        $requestData['phone_user'] = $data_sos_help_center->form_yellow->phone_user ;
+        $requestData['lat'] = $data_sos_help_center->form_yellow->lat ;
+        $requestData['lng'] = $data_sos_help_center->form_yellow->lng ;
+        $requestData['location_sos'] = $data_sos_help_center->form_yellow->location_sos ;
+        $requestData['symptom'] = $data_sos_help_center->form_yellow->symptom ;
+        $requestData['symptom_other'] = $data_sos_help_center->form_yellow->symptom_other ;
+        $requestData['idc'] = $data_sos_help_center->form_yellow->rc ;
+
+        Sos_1669_form_yellow::create($requestData);
+
+        // รหัส
+        $date_Y = date("y");
+        $date_m = date("m");
+
+        $sos_1669_province_codes = DB::table('sos_1669_province_codes')
+            ->where('province_name' , "LIKE"  , "%$province_name%")
+            ->where('district_name' , "LIKE" , "%$district_name%")
+            ->get();
+
+        $count_sos_area = 0 ;
+        $count_for_gen_code = 0 ;
+
+        foreach ($sos_1669_province_codes as $item) {
+            $province_code = $item->district_code ;
+            // count_sos
+            $old_count_sos = $item->count_sos ;
+            $count_sos_area = $count_sos_area + (int)$old_count_sos ;
+            // for gen code
+            $old_for_gen_code = $item->for_gen_code ;
+            // $count_for_gen_code = $count_for_gen_code + (int)$old_for_gen_code ;
+        }
+
+        $sum_count_sos_area = $count_sos_area + 1 ;
+        // $sum_for_gen_code = $count_for_gen_code + 1 ;
+        $sum_for_gen_code = (int)$old_for_gen_code + 1 ;
+
+         DB::table('sos_1669_province_codes')
+            ->where([ 
+                    ['district_code', $province_code],
+                ])
+            ->update([
+                    'for_gen_code' => $sum_for_gen_code,
+                ]);
+
+        $id_code = str_pad($sum_for_gen_code, 4, "0", STR_PAD_LEFT);
+        $operating_code = $date_Y.$date_m . "-" . $province_code . "-" . $id_code ;
+        // จบรหัส
+
+        DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $sos_help_center_last->id],
+                ])
+            ->update([
+                    'operating_code' => $operating_code,
+                ]);
+
+        $data_old_count_sos =  DB::table('sos_1669_province_codes')
+            ->where('province_name' , "LIKE" , "%$province_name%")
+            ->where('district_name' , "LIKE" , "%$district_name%")
+            ->where('sub_district_name' , "LIKE" , "%$sub_district_name%")
+            ->first();
+
+        $update_count_sos = (int)$data_old_count_sos->count_sos + 1 ;
+        // $update_for_gen_code = (int)$data_old_count_sos->for_gen_code + 1 ;
+
+        DB::table('sos_1669_province_codes')
+            ->where([ 
+                    ['id', $data_old_count_sos->id],
+                ])
+            ->update([
+                    'count_sos' => $update_count_sos,
+                    // 'for_gen_code' => $update_for_gen_code,
+                ]);
+
+        return $requestData['sos_help_center_id'] ;
+
+    }
+
 }
