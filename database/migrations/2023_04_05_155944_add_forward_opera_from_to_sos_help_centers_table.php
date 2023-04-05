@@ -16,6 +16,7 @@ class AddForwardOperaFromToSosHelpCentersTable extends Migration
         Schema::table('sos_help_centers', function (Blueprint $table) {
             $table->string('command_by')->nullable();
             $table->string('forward_operation_from')->nullable();
+            $table->string('forward_operation_to')->nullable();
         });
     }
 

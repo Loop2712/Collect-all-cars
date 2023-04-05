@@ -1653,6 +1653,15 @@ class Sos_help_centerController extends Controller
 
         $sos_help_center_last = Sos_help_center::latest()->first();
 
+        // Update ตัวเก่าว่าส่งต่อปฏิบัติการไปที่ใด
+        DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $data_sos_help_center->id],
+                ])
+            ->update([
+                    'forward_operation_to' => $sos_help_center_last->id,
+                ]);
+
         $requestData['sos_help_center_id'] = $sos_help_center_last->id ;
 
         $requestData['be_notified'] = "ส่งต่อชุดปฏิบัติการระดับสูงกว่า" ;
