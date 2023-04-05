@@ -22,6 +22,13 @@
 </head>
 
 <body>
+
+	<style>
+		.d-none{
+			display: none !important;
+		}
+	</style>
+
 	<a class="d-none" id="btn_addline" href="https://lin.ee/xnFKMfc">
 	    <button type="button" class="btn btn-success"></button>
 	</a>
