@@ -37,11 +37,12 @@
 
 </div>
 
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=768325378190737"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId={{ env('FACEBOOK_CLIENT_ID') }}"></script>
 <script>
+
     window.fbAsyncInit = function() {
         FB.init({
-            appId: '768325378190737',
+            appId: "{{ env('FACEBOOK_CLIENT_ID') }}",
             cookie: true,
             xfbml: true,
             version: 'v11.0'
@@ -51,13 +52,10 @@
     };
 
     function shareOnFacebook() {
-        // ลิงก์ที่ต้องการแชร์
-        let url = 'https://www.viicheck.com/share_1669';
-        // รูปภาพที่ต้องการแชร์
-        let imageUrl = 'https://www.viicheck.com/img/poster/test_facebook.png';
-        // หัวข้อที่ต้องการแชร์
-        let title = 'วีเช็ค ร่วมกับ สพฉ.(1669)';
 
+        let url = 'https://www.viicheck.com/share_1669';
+        let imageUrl = 'https://www.viicheck.com/img/poster/1669_share_facebook.png';
+        let title = 'วีเช็ค ร่วมกับ สพฉ.(1669)';
         let description = 'ให้การขอความช่วยเหลือเป็นเรื่องง่าย เพียงกดปุ่ม SOS..' ;
 
         // เรียกใช้ API ของ Facebook เพื่อแชร์หน้าเว็บไซต์
