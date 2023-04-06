@@ -1197,7 +1197,7 @@
 
                 <div class="row" id="data_help">
                         @foreach($data_sos as $item)
-                            <a class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}">
+                            <a id="card_data_sos_id_{{ $item->id }}" class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}">
                                 <div >
                                     <div class="card card-sos shadow">
                                         <div class="sos-header">
@@ -1208,7 +1208,7 @@
                                                     }else if($item->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙' or $item->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)'){
                                                         $color_be_notified = 'info text-white' ;
                                                     }else if($item->form_yellow->be_notified == 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า'){
-                                                        $color_be_notified = 'danger' ;
+                                                        $color_be_notified = 'warning' ;
                                                     }else{
                                                         $color_be_notified = 'secondary' ;
                                                     }
@@ -1223,10 +1223,80 @@
                                                     รหัส <b class="text-dark">{{$item->operating_code}}</b>
                                                 </h4>
                                                 <p class="m-0 mt-1 data-overflow">
-                                                    {{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }}
+                                                    {{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }} &nbsp;&nbsp;{{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}
                                                 </p>
                                                 <p class="m-0 mt-1 data-overflow">
-                                                    {{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}
+                                                    <!-- เวลาของแต่ละเคส -->
+                                                    @php
+                                                        $total_time = 0 ;
+
+                                                        if($item->status == "เสร็จสิ้น"){
+
+                                                            if($item->time_create_sos){
+                                                                $zone1_time1 = $item->time_create_sos  ;
+                                                            }
+
+                                                            if($item->time_command){
+                                                                $zone1_time2 = $item->time_command  ;
+                                                            }
+                                                            if($item->time_go_to_help){
+                                                                $zone1_time2 = $item->time_go_to_help  ;
+                                                            }
+                                                            if($item->time_to_the_scene){
+                                                                $zone1_time2 = $item->time_to_the_scene  ;
+                                                            }
+                                                            if($item->time_leave_the_scene){
+                                                                $zone1_time2 = $item->time_leave_the_scene  ;
+                                                            }
+                                                            if($item->time_hospital){
+                                                                $zone1_time2 = $sos->time_hospital  ;
+                                                            }
+
+                                                            list($zone1_hours1, $zone1_minutes1, $zone1_seconds1) = explode(':', $zone1_time1);
+                                                            list($zone1_hours2, $zone1_minutes2, $zone1_seconds2) = explode(':', $zone1_time2);
+
+
+                                                            $zone1_totalSeconds1 = intval($zone1_hours1) * 3600 + intval($zone1_minutes1) * 60 + intval($zone1_seconds1);
+                                                            $zone1_totalSeconds2 = intval($zone1_hours2) * 3600 + intval($zone1_minutes2) * 60 + intval($zone1_seconds2);
+
+                                                            $zone1_TotalSeconds = $zone1_totalSeconds2 - $zone1_totalSeconds1;
+
+                                                            $zone1_Time_min = floor($zone1_TotalSeconds / 60);
+                                                            $zone1_Time_Seconds = $zone1_TotalSeconds - ($zone1_Time_min * 60);
+
+                                                            $min_1_to_sec = $zone1_Time_min * 60 ;
+                                                            $total_time = $total_time + $min_1_to_sec + $zone1_Time_Seconds ;
+                                                            
+                                                        }   
+
+                                                        $hours_all_time = floor($total_time / 3600);
+                                                        $minutes_all_time = floor(($total_time % 3600) / 60);
+                                                        $seconds_all_time = floor($total_time % 60);
+
+                                                        $text_total_time = '';
+                                                        if ($hours_all_time > 0) {
+                                                          $text_total_time .= "{$hours_all_time} ชั่วโมง".($hours_all_time > 1 ? '' : '')." ";
+                                                        }
+                                                        $text_total_time .= "{$minutes_all_time} นาที".($minutes_all_time > 1 ? '' : '')." ";
+                                                        $text_total_time .= "{$seconds_all_time} วินาที".($seconds_all_time > 1 ? '' : '');
+                                                          
+                                                        $show_min_case = $text_total_time;
+
+                                                        // ตรวจสอบว่าเกิน 8 หรือ 12 หรือไม่
+
+                                                        if($total_time < 480){
+                                                            $bg_show_min_case = "text-success";
+                                                        }else if($total_time >= 480 && $total_time < 720){
+                                                            $bg_show_min_case = "text-warning";
+                                                        }else if($total_time >= 720){
+                                                            $bg_show_min_case = "text-danger";
+                                                        }
+                                                        
+
+                                                    @endphp
+                                                    @if($item->status == "เสร็จสิ้น")
+                                                        ใช้เวลารวม : <span class="{{ $bg_show_min_case }}">{{ $show_min_case }}</span>
+                                                    @endif
                                                 </p>
                                             </div>
                                             <div>
@@ -1377,6 +1447,92 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!-- เคสนี้ส่งต่อ "ไปที่" ใด -->
+                                        @if(!empty($item->forward_operation_to))
+                                        <hr class="p-0 m-0" style="margin-bottom:0 ;">
+
+                                        <div class="sos-helper div-tooltip" onclick="event.preventDefault(); window.open('{{ url('/sos_help_center/' . $item->forward_operation_to . '/edit') }}', '_blank', 'width=1600,height=1200'); ">
+                                            <span class="tooltip" style="font-size: 0.95em;">
+                                                <center><i class="fa-solid fa-eye"></i> คลิกเพื่อดูเคสที่ส่งต่อ</center>
+                                            </span>
+                                            <div class="row">
+                                                <div class="col-6 p-0 helper helper-border">
+                                                    <div class="row">
+                                                        <div class="col-4 text-center d-flex align-items-center icon-organization">
+                                                            <i class="fa-sharp fa-solid fa-share-from-square"></i>
+                                                        </div>
+                                                        <div class="col-8 m-0  pt-2 "style="padding-left:5px">
+                                                            <p class="p-0 m-0 color-darkgrey data-overflow topic">
+                                                                <b>เคสนี้ถูกส่งต่อไปที่</b>
+                                                            </p>
+                                                            <h6 class="p-0 m-0 color-dark data-overflow">
+                                                                <b>{{ $item->forwardOperation_to->operating_code }}</b>
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 p-0 helper">
+                                                    <div class="row">
+                                                        <div class="col-4 text-center d-flex align-items-center icon-organization">
+                                                            <i class="fa-solid fa-circle-exclamation"></i>
+                                                        </div>
+                                                        <div class="col-8 m-0  pt-2 "style="padding-left:5px">
+                                                            <p class="p-0 m-0 color-darkgrey data-overflow topic">
+                                                                <b>สถานะของเคสที่ส่งต่อ</b>
+                                                            </p>
+                                                            <h6 class="p-0 m-0 color-dark data-overflow">
+                                                                <b>{{ $item->forwardOperation_to->status }}</b>
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
+
+                                        <!-- เคสนี้ส่งต่อ "มาจาก" ที่ใด -->
+                                        @if(!empty($item->forward_operation_from))
+                                        <hr class="p-0 m-0" style="margin-bottom:0 ;">
+
+                                        <div class="sos-helper div-tooltip" onclick="event.preventDefault(); window.open('{{ url('/sos_help_center/' . $item->forward_operation_from . '/edit') }}', '_blank', 'width=1600,height=1200'); ">
+                                            <span class="tooltip" style="font-size: 0.95em;">
+                                                <center><i class="fa-solid fa-eye"></i> คลิกเพื่อดูเคสก่อนหน้า</center>
+                                            </span>
+                                            <div class="row">
+                                                <div class="col-6 p-0 helper helper-border">
+                                                    <div class="row">
+                                                        <div class="col-4 text-center d-flex align-items-center icon-organization">
+                                                            <i class="fa-sharp fa-solid fa-share-from-square"></i>
+                                                        </div>
+                                                        <div class="col-8 m-0  pt-2 "style="padding-left:5px">
+                                                            <p class="p-0 m-0 color-darkgrey data-overflow topic">
+                                                                <b>เคสนี้รับการส่งต่อมาจาก</b>
+                                                            </p>
+                                                            <h6 class="p-0 m-0 color-dark data-overflow">
+                                                                <b>{{ $item->forwardOperation_from->operating_code }}</b>
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 p-0 helper">
+                                                    <div class="row">
+                                                        <div class="col-4 text-center d-flex align-items-center icon-organization">
+                                                            <i class="fa-sharp fa-regular fa-user-police-tie"></i>
+                                                        </div>
+                                                        <div class="col-8 m-0  pt-2 "style="padding-left:5px">
+                                                            <p class="p-0 m-0 color-darkgrey data-overflow topic">
+                                                                <b>เจ้าหน้าที่ผู้ส่งต่อ</b>
+                                                            </p>
+                                                            <h6 class="p-0 m-0 color-dark data-overflow">
+                                                                <b>{{ $item->forwardOperation_from->name_helper }}</b>
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
 
                                         <hr class="p-0 m-0" style="margin-bottom:0 ;">
 

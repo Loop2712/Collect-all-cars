@@ -2124,7 +2124,7 @@
     	}else if(result['be_notified'] == 'โทรศัพท์หมายเลข ๑๖๖๙' || result['be_notified'] == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)'){
     		color_be_notified = 'info text-white' ;
     	}else if (result['be_notified'] == 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า') {
-    		color_be_notified = 'danger' ;
+    		color_be_notified = 'warning' ;
     	}else{
     		color_be_notified = 'secondary' ;
     	}

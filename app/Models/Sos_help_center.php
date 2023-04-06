@@ -43,4 +43,16 @@ class Sos_help_center extends Model
         return $this->belongsTo('App\User', 'helper_id' , 'id'); 
     }
 
+
+
+    // เชื่อมกับตัวเอง
+    public function forwardOperation_to()
+    {
+        return $this->belongsTo(Sos_help_center::class, 'forward_operation_to');
+    }
+    public function forwardOperation_from()
+    {
+        return $this->belongsTo(Sos_help_center::class, 'forward_operation_from');
+    }
+
 }
