@@ -3270,9 +3270,9 @@
 		// console.log(time_total_help.length);
 		let sum_time_total_help = 0 ;
 
-		for (let i = 0; i < time_total_help.length; i++) {
-		  	sum_time_total_help += time_total_help[i] ;
-		}
+		time_total_help.forEach(
+			element => sum_time_total_help += element
+		);
 
 		let hours_time_total_help = Math.floor(sum_time_total_help / 3600);
 		let minutes_time_total_help = Math.floor((sum_time_total_help % 3600) / 60);
@@ -3294,9 +3294,9 @@
 
 		let sum_time_go_to_help_to_base = 0 ;
 
-		for (let ii = 0; ii < time_go_to_help_to_base.length; ii++) {
-		  	sum_time_go_to_help_to_base += time_go_to_help_to_base[ii] ;
-		}
+		time_go_to_help_to_base.forEach(
+			element_2 => sum_time_go_to_help_to_base += element_2
+		);
 
 		let hours_time_go_to_help_to_base = Math.floor(sum_time_go_to_help_to_base / 3600);
 		let minutes_time_go_to_help_to_base = Math.floor((sum_time_go_to_help_to_base % 3600) / 60);
