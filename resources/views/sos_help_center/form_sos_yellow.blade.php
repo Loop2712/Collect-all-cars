@@ -1197,6 +1197,7 @@
 						</div>
 						
 						<div class="row {{$class_has_an_operating_unit}}" id="has_an_operating_unit">
+							<!-- /// Data Officer /// -->
 							<div class="col-5 ">
 								<div class="card-detail-officer main-shadow sticky">
 
@@ -1234,12 +1235,13 @@
 									
 								</div>
 							</div>
+							<!-- /// Timelime /// -->
 							<div class="col-7 timeline-offilcer">
 
-								<div class="timeline-detail-offilcer mt-0">
+								<div id="div_create_sos" class="timeline-detail-offilcer mt-0 d-">
 									<span>
 										@if(!empty($data_form_yellow->time_create_sos))
-										&nbsp;&nbsp;{{ (\Carbon\Carbon::parse($data_form_yellow->time_create_sos))->format('h:i น.') }}
+											{{ (\Carbon\Carbon::parse($data_form_yellow->time_create_sos))->format('h:i น.') }}
 										@else
 											ไม่ได้แจ้ง
 										@endif
@@ -1250,25 +1252,39 @@
 									</span>
 								</div>
 
-								<div class="timeline-detail-offilcer">
-									<span>
-										@if(!empty($data_form_yellow->time_command))
-										&nbsp;&nbsp;{{ (\Carbon\Carbon::parse($data_form_yellow->time_command))->format('h:i น.') }}
-										@else
-											ไม่ได้แจ้ง
-										@endif
-									</span>
-									<i class="fa-solid fa-circle-dot timeline-yellow"></i>
-									<span class="timeline-header timeline-yellow">
-										สั่งการ
-									</span>
+								<div id="div_time_command" class="timeline-detail-offilcer d-block d-">
+									<div class="d-flex align-items-center">
+										<span>
+											@if(!empty($data_form_yellow->time_command))
+												{{ (\Carbon\Carbon::parse($data_form_yellow->time_command))->format('h:i น.') }}
+											@else
+												ไม่ได้แจ้ง
+											@endif
+										</span>
+										<i class="fa-solid fa-circle-dot timeline-yellow"></i>
+										<span class="timeline-header timeline-yellow">
+											สั่งการ
+										</span>
+									</div>
+									<ul class="timeline-detail-status m-0 mt-2">
+										<li>
+											<span>
+												ใช้เวลา
+												<span class="timeline-purple m-0 p-0" style="left: 0 !important;">  <b> รับแจ้งเหตุ </b></span> 
+												ถึง
+												<span class="timeline-yellow m-0 p-0" style="left: 0 !important;"> <b> สั่งการ </b></span> 
+												&nbsp;:&nbsp;
+												<b class="timeline-red" id="time_create_to_command">...</b>
+											</span>
+										</li>
+									</ul>
 								</div>
 
-								<div class="timeline-detail-offilcer d-block">
+								<div id="div_time_go_to_help" class="timeline-detail-offilcer d-block d-">
 									<div class="d-flex align-items-center">
 										<span>
 											@if(!empty($data_form_yellow->time_go_to_help))
-												&nbsp;&nbsp;{{ (\Carbon\Carbon::parse($data_form_yellow->time_go_to_help))->format('h:i น.') }}
+												{{ (\Carbon\Carbon::parse($data_form_yellow->time_go_to_help))->format('h:i น.') }}
 											@else
 												ไม่ได้แจ้ง
 											@endif
@@ -1280,19 +1296,30 @@
 									</div>
 									<ul class="timeline-detail-status m-0 mt-2">
 										<li>
-											<span>เลขกิโลเมตร
-												<span class="timeline-green m-0 p-0" style="left: 0 !important;">
-													<b> ออกจากฐาน </b>
-												</span> 
+											<span>
+												เลขกิโลเมตร
+												<span class="timeline-green m-0 p-0" style="left: 0 !important;"> <b> ออกจากฐาน </b> </span> 
+												&nbsp;:&nbsp;
 												<b class="timeline-red">
 													{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : 'ไม่ได้ระบุ'}} กม.
 												</b>
+												<input class="form-control d-none" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : ''}}" onchange="distance_in_no5();" readonly>
+											</span>
+										</li>
+										<li>
+											<span>
+												ใช้เวลา
+												<span class="timeline-yellow m-0 p-0" style="left: 0 !important;"> <b> สั่งการ </b></span> 
+												ถึง
+												<span class="timeline-green m-0 p-0" style="left: 0 !important;">  <b> ออกจากฐาน </b></span> 
+												&nbsp;:&nbsp;
+												<b class="timeline-red" id="time_command_to_go_to_help">...</b>
 											</span>
 										</li>
 									</ul>
 								</div>
 
-								<div class="timeline-detail-offilcer d-block">
+								<div id="div_time_to_the_scene" class="timeline-detail-offilcer d-block d-">
 
 									<div class="d-flex align-items-center">
 										<span>
@@ -1312,49 +1339,67 @@
 											<span>
 												เลขกิโลเมตร
 												<span class="timeline-blue m-0 p-0" style="left: 0 !important;"> <b> ถึงที่เกิดเหตุ </b></span> 
+												&nbsp;:&nbsp;
 												<b class="timeline-red">{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : 'ไม่ได้ระบุ'}} กม.</b>
+												<input class="form-control d-none" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : ''}}" onchange="distance_in_no5();" readonly>
 											</span>
 										</li>
 										<li>
 											<span>
 												ระยะทาง
 												<span class="timeline-green m-0 p-0" style="left: 0 !important;">  <b> ออกจากฐาน </b></span> 
-													ถึง
-												<span class="timeline-blue m-0 p-0" style="left: 0 !important;"> <b> ที่เกิดเหตุ </b></span> 
-												<b class="timeline-red" id="text_distance_to_hospital"></b> <b class="timeline-red">กม.</b>
+												ถึง
+												<span class="timeline-blue m-0 p-0" style="left: 0 !important;"> <b> ที่เกิดเหตุ </b></span>
+												&nbsp;:&nbsp;
+												<b class="timeline-red" id="distance_go_to_help_to_scene"></b> <b class="timeline-red">กม.</b>
 											</span>
 										</li>
 										<li>
 											<span>
 												ใช้เวลา
-												<span class="timeline-purple m-0 p-0" style="left: 0 !important;">  <b> รับแจ้งเหตุ </b></span> 
-													ถึง
-												<span class="timeline-blue m-0 p-0" style="left: 0 !important;"> <b> ออกจากฐาน </b></span> 
-												<b class="timeline-red" id="time_zone_1"></b>
+												<span class="timeline-green m-0 p-0" style="left: 0 !important;">  <b> ออกจากฐาน </b></span> 
+												ถึง
+												<span class="timeline-blue m-0 p-0" style="left: 0 !important;"> <b> ที่เกิดเหตุ </b></span> 
+												&nbsp;:&nbsp;
+												<b class="timeline-red" id="time_go_to_help_to_scene">...</b>
 											</span>
 										</li>
 									</ul>
 								</div>
 								
-								<div class="timeline-detail-offilcer">
-									<span>
-										@if(!empty($data_form_yellow->time_leave_the_scene))
-											&nbsp;&nbsp;{{(\Carbon\Carbon::parse($data_form_yellow->time_leave_the_scene))->format('h:i น.')}}
-										@else
-											ไม่ได้แจ้ง
-										@endif
-									</span>
-									<i class="fa-solid fa-circle-dot timeline-lightblue"></i>
-									<span class="timeline-header timeline-lightblue">
-										ออกจากที่เกิดเหตุ
-									</span>
+								<div id="div_time_leave_the_scene" class="timeline-detail-offilcer d-block d-">
+									<div class="d-flex align-items-center">
+										<span>
+											@if(!empty($data_form_yellow->time_leave_the_scene))
+												{{(\Carbon\Carbon::parse($data_form_yellow->time_leave_the_scene))->format('h:i น.')}}
+											@else
+												ไม่ได้แจ้ง
+											@endif
+										</span>
+										<i class="fa-solid fa-circle-dot timeline-lightblue"></i>
+										<span class="timeline-header timeline-lightblue">
+											ออกจากที่เกิดเหตุ
+										</span>
+									</div>
+									<ul class="timeline-detail-status m-0 mt-2">
+										<li>
+											<span>
+												ใช้เวลา
+												<span class="timeline-blue m-0 p-0" style="left: 0 !important;">  <b> จากที่เกิดเหตุ </b></span> 
+												ถึง
+												<span class="timeline-lightblue m-0 p-0" style="left: 0 !important;"> <b> ออกจากที่เกิดเหตุ </b></span> 
+												&nbsp;:&nbsp;
+												<b class="timeline-red" id="time_scene_to_leave_scene">...</b>
+											</span>
+										</li>
+									</ul>
 								</div>
 
-								<div class="timeline-detail-offilcer d-block">
+								<div id="div_time_hospital" class="timeline-detail-offilcer d-block d-">
 									<div class="d-flex align-items-center">
 										<span>
 											@if(!empty($data_form_yellow->time_hospital))
-												&nbsp;&nbsp;{{ (\Carbon\Carbon::parse($data_form_yellow->time_hospital))->format('h:i น.') }}
+												{{ (\Carbon\Carbon::parse($data_form_yellow->time_hospital))->format('h:i น.') }}
 											@else
 												ไม่ได้แจ้ง
 											@endif
@@ -1369,35 +1414,39 @@
 											<span>
 												เลขกิโลเมตร
 												<span class="timeline-brown m-0 p-0" style="left: 0 !important;"> <b>ถึงโรงพยาบาล</b></span> 
+												&nbsp;:&nbsp;
 												<b class="timeline-red">{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : 'ไม่ได้ระบุ'}} กม.</b>
+												<input class="form-control d-none"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : ''}}" onchange="distance_in_no5();"readonly>
 											</span>
 										</li>
 										<li>
 											<span>
 												ระยะทาง
-												<span class="timeline-blue m-0 p-0" style="left: 0 !important;">  <b>ที่เกิดเหตุ</b></span> 
-													ถึง
-												<span class="timeline-brown m-0 p-0" style="left: 0 !important;"> <b>โรงพยาบาล</b></span> 
-												<b class="timeline-red" id="text_distance_to_hospital">กม.</b>
+												<span class="timeline-lightblue m-0 p-0" style="left: 0 !important;">  <b> ออกจากที่เกิดเหตุ </b></span> 
+												ถึง
+												<span class="timeline-brown m-0 p-0" style="left: 0 !important;"> <b> โรงพยาบาล </b></span>
+												&nbsp;:&nbsp;
+												<b class="timeline-red" id="distance_leave_scene_to_hospital"></b> <b class="timeline-red">กม.</b>
 											</span>
 										</li>
 										<li>
 											<span>
 												ใช้เวลา
-												<span class="timeline-lightblue m-0 p-0 " style="left: 0 !important;"> <b>ออกจากที่เกิดเหตุ</b> </span> 
-													ถึง
-												<span class="timeline-brown m-0 p-0 " style="left: 0 !important;"> <b>โรงพยาบาล</b> </span> 
-												<b class="timeline-red" id="time_zone_2"></b>
+												<span class="timeline-lightblue m-0 p-0" style="left: 0 !important;">  <b> ออกจากที่เกิดเหตุ </b></span> 
+												ถึง
+												<span class="timeline-brown m-0 p-0" style="left: 0 !important;"> <b> โรงพยาบาล </b></span> 
+												&nbsp;:&nbsp;
+												<b class="timeline-red" id="time_leave_scene_to_hospital">...</b>
 											</span>
 										</li>
 									</ul>
 								</div>
 
-								<div class="timeline-detail-offilcer d-block">
+								<div id="div_time_to_the_operating_base" class="timeline-detail-offilcer d-block d-">
 									<div class="d-flex align-items-center">
 										<span>
 											@if(!empty($data_form_yellow->time_to_the_operating_base))
-												&nbsp;&nbsp;{{ (\Carbon\Carbon::parse($data_form_yellow->time_to_the_operating_base))->format('h:i น.') }}
+												{{ (\Carbon\Carbon::parse($data_form_yellow->time_to_the_operating_base))->format('h:i น.') }}
 											@else
 												ไม่ได้แจ้ง
 											@endif
@@ -1412,32 +1461,66 @@
 											<span>
 												เลขกิโลเมตร
 												<span class="timeline-orange m-0 p-0" style="left: 0 !important;"> <b>ถึงฐาน</b></span> 
+												&nbsp;:&nbsp;
 												<b class="timeline-red">{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : 'ไม่ได้ระบุ'}} กม.</b>
+												<input class="form-control d-none" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : ''}}" onchange="distance_in_no5();" readonly>
 											</span>
 										</li>
 										<li>
 											<span>
 												ระยะทาง
-												<span class="timeline-brown m-0 p-0" style="left: 0 !important;">  <b id="title_1_return_distance"></b></span> 
-													ถึง
-												<span class="timeline-orange m-0 p-0" style="left: 0 !important;"> <b>ฐาน</b></span> 
-												<b class="timeline-red" id="text_return_distance"></b> <b class="timeline-red" >กม.</b>
+												<span class="timeline-brown m-0 p-0" style="left: 0 !important;">
+													<b id="title_1_return_distance"></b>
+												</span> 
+												ถึง
+												<span class="timeline-orange m-0 p-0" style="left: 0 !important;">
+													<b>ฐาน</b>
+												</span> 
+												&nbsp;:&nbsp;
+												<b class="timeline-red" id="text_distance_title_1"></b> <b class="timeline-red" >กม.</b>
 											</span>
 										</li>
 										<li>
 											<span>
 												ใช้เวลา
-												<span class="timeline-brown m-0 p-0 " style="left: 0 !important;"> <b>โรงพยาบาล</b> </span> 
-													ถึง
-												<span class="timeline-orange m-0 p-0 " style="left: 0 !important;"> <b>ฐาน</b> </span> 
-												<b class="timeline-red" id="time_zone_3"></b>
+												<span class="timeline-brown m-0 p-0 " style="left: 0 !important;">
+													<b id="text_time_title_2"></b>
+												</span> 
+												ถึง
+												<span class="timeline-orange m-0 p-0 " style="left: 0 !important;">
+													<b>ฐาน</b>
+												</span> 
+												&nbsp;:&nbsp;
+												<b class="timeline-red" id="time_title_2">...</b>
 											</span>
 										</li>
 									</ul>
 								</div>
 
 								<br><br>
-								<span class="timeline-header m-0 p-0 " style="left: 0 !important;"><b>รวม</b> ใช้เวลา <b class="timeline-red" id="time_zone_all"></b> เป็นระยะทางทั้งหมด <b class="timeline-red" id="total_distance"></b> <b class="timeline-red">กม.</b> </span> 
+								<div id="sum_time_and_distance" class="d-">
+									<span class="timeline-header m-0 p-0 " style="left: 0 !important;">
+										<b>รวม</b> ใช้เวลาในการช่วยเหลือ &nbsp;:&nbsp; <b class="timeline-red" id="time_total_help"></b> 
+									</span>
+									<hr>
+									<span>
+										ใช้เวลา 
+										<span class="timeline-header timeline-green">
+											ออกจากฐาน
+										</span>
+										ถึง 
+										<span class="timeline-header timeline-orange">
+											กลับถึงฐาน
+										</span>
+										&nbsp;:&nbsp;
+										<b class="timeline-red" id="time_go_to_help_to_base">...</b>
+										<br>
+										เป็นระยะทางทั้งหมด
+										&nbsp;:&nbsp;
+										<b class="timeline-red" id="distance_total_help"></b>
+										<b class="timeline-red">กม.</b>
+									</span>
+								</div>
 
 							</div>
 						</div>
@@ -1498,17 +1581,8 @@
 							<label>ถึงฐาน</label>
 							<input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" step="2" value="{{ isset($data_form_yellow->time_to_the_operating_base) ? $data_form_yellow->time_to_the_operating_base : ''}}" readonly>
 
-							<label>เลข กม. ออกจากฐาน</label>
-							<input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : ''}}" onchange="distance_in_no5();" readonly>
-
-							<label>เลข กม. ถึงที่เกิดเหตุ</label>
-							<input class="form-control" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : ''}}" onchange="distance_in_no5();" readonly>
-
-							<label>เลข กม. ถึง รพ.</label>
-							<input class="form-control"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : ''}}" onchange="distance_in_no5();"readonly>
-
-							<label>เลข กม. ถึง ถึงฐาน</label>
-							<input class="form-control" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : ''}}" onchange="distance_in_no5();" readonly>
+							
+							
 						</div>	
 						<!------------------------------- end for calculating ---------------------------->
 
@@ -2910,177 +2984,336 @@
 		let time_to_the_operating_base = document.querySelector('[name="time_to_the_operating_base"]');
 		// ------------------------------------------------------------------------------------------------//
 
-		let all_time ;
+		if (time_create_sos.value){
+			document.querySelector('#div_create_sos').classList.remove('d-none');
+		}
+		if (time_command.value){
+			document.querySelector('#div_time_command').classList.remove('d-none');
+		}
+		if (time_go_to_help.value){
+			document.querySelector('#div_time_go_to_help').classList.remove('d-none');
+		}
+		if (time_to_the_scene.value){
+			document.querySelector('#div_time_to_the_scene').classList.remove('d-none');
+		}
+		if (time_leave_the_scene.value){
+			document.querySelector('#div_time_leave_the_scene').classList.remove('d-none');
+		}
+		if (time_hospital.value){
+			document.querySelector('#div_time_hospital').classList.remove('d-none');
+		}
+		if (time_to_the_operating_base.value){
+			document.querySelector('#div_time_to_the_operating_base').classList.remove('d-none');
+		}
+		if (time_leave_the_scene.value || time_hospital.value){
+			document.querySelector('#sum_time_and_distance').classList.remove('d-none');
+		}
 
-		// ---------------------- TIME ZONE 1 ---------------------- //
-		let zone1_time1 ;
-		let zone1_time2 ;
+		// ------------------------------------------------------------------------------------------------//
 
-		// time 1
-		if (time_create_sos.value) {
-			zone1_time1 = time_create_sos.value;
-		}
-		// time 2
-		if (time_command.value) {
-			zone1_time2 = time_command.value;
-		}
-		if (time_go_to_help.value) {
-			zone1_time2 = time_go_to_help.value;
-		}
-		if (time_to_the_scene.value) {
-			zone1_time2 = time_to_the_scene.value;
-		}
+		let time_total_help = [] ;
+		let time_go_to_help_to_base = [] ;
 
-		if (zone1_time1 && zone1_time2) {
+		// ---------------------- รับแจ้งเหตุ ถึง สั่งการ ---------------------- //
+		let calculate_time_create = time_create_sos.value;
+		let calculate_time_command = time_command.value;
+
+		if (calculate_time_create && calculate_time_command) {
 			// Extract the hours, minutes, and seconds from the two times
-			let [zone1_hours1, zone1_minutes1, zone1_seconds1] = zone1_time1.split(":");
-			let [zone1_hours2, zone1_minutes2, zone1_seconds2] = zone1_time2.split(":");
+			let [create_to_command_hours1, create_to_command_minutes1, create_to_command_seconds1] = calculate_time_create.split(":");
+			let [create_to_command_hours2, create_to_command_minutes2, create_to_command_seconds2] = calculate_time_command.split(":");
 			// Convert the hours, minutes, and seconds to the total number of seconds
-			let zone1_totalSeconds1 = parseInt(zone1_hours1) * 3600 + parseInt(zone1_minutes1) * 60 + parseInt(zone1_seconds1);
-			let zone1_totalSeconds2 = parseInt(zone1_hours2) * 3600 + parseInt(zone1_minutes2) * 60 + parseInt(zone1_seconds2);
+			let create_to_command_totalSeconds1 = parseInt(create_to_command_hours1) * 3600 + parseInt(create_to_command_minutes1) * 60 + parseInt(create_to_command_seconds1);
+			let create_to_command_totalSeconds2 = parseInt(create_to_command_hours2) * 3600 + parseInt(create_to_command_minutes2) * 60 + parseInt(create_to_command_seconds2);
 			// Calculate the time difference in seconds
-			let zone1_TotalSeconds = zone1_totalSeconds2 - zone1_totalSeconds1;
+			let create_to_command_TotalSeconds = create_to_command_totalSeconds2 - create_to_command_totalSeconds1;
 				// console.log('TotalSeconds >> ' + TotalSeconds);
-			let zone1_Time_min =  Math.floor(zone1_TotalSeconds / 60);
+			let create_to_command_Time_min =  Math.floor(create_to_command_TotalSeconds / 60);
 				// console.log('Time_min >> ' + Time_min);
-			let zone1_Time_Seconds = zone1_TotalSeconds - (zone1_Time_min*60);
+			let create_to_command_Time_Seconds = create_to_command_TotalSeconds - (create_to_command_Time_min*60);
 				// console.log('Time_Seconds >> ' + Time_Seconds);
-			let zone1_tiem_all;
-			if (zone1_Time_Seconds === 0) {
-				zone1_tiem_all = zone1_Time_min + " นาที" ; 
-			}else if(zone1_Time_min === 0){
-				zone1_tiem_all = zone1_Time_Seconds + " วินาที" ; 
+			let time_create_to_command;
+
+			if (create_to_command_Time_Seconds === 0) {
+				time_create_to_command = create_to_command_Time_min + " นาที" ; 
+			}else if(create_to_command_Time_min === 0){
+				time_create_to_command = create_to_command_Time_Seconds + " วินาที" ; 
 			}else{
-				zone1_tiem_all = zone1_Time_min + " นาที " + zone1_Time_Seconds + " วินาที";
+				time_create_to_command = create_to_command_Time_min + " นาที " + create_to_command_Time_Seconds + " วินาที";
 			}
-			// console.log('ระยะห่าง >> ' + zone1_tiem_all + " นาที");
+			// console.log('ระยะห่าง >> ' + time_create_to_command + " นาที");
 
-			if (zone1_tiem_all != 0) {
-				document.querySelector('#time_zone_1').innerHTML = zone1_tiem_all ;
+			if (time_create_to_command != 0) {
+				document.querySelector('#time_create_to_command').innerHTML = time_create_to_command ;
 			}
 
-			let min_1_to_sec = zone1_Time_min * 60 ;
-			all_time = min_1_to_sec + zone1_Time_Seconds ;
+			let min_create_to_command_to_sec = create_to_command_Time_min * 60 ;
+			time_total_help[0] = min_create_to_command_to_sec + create_to_command_Time_Seconds ;
+		}
+		// ---------------------- จบ รับแจ้งเหตุ ถึง สั่งการ ---------------------- //
+
+		// ---------------------- สั่งการ ถึง ออกจากฐาน ---------------------- //
+		let calculate_time_go_to_help = time_go_to_help.value;
+
+		if (calculate_time_command && calculate_time_go_to_help) {
+			// Extract the hours, minutes, and seconds from the two times
+			let [command_to_go_to_help_hours1, command_to_go_to_help_minutes1, command_to_go_to_help_seconds1] = calculate_time_command.split(":");
+			let [command_to_go_to_help_hours2, command_to_go_to_help_minutes2, command_to_go_to_help_seconds2] = calculate_time_go_to_help.split(":");
+			// Convert the hours, minutes, and seconds to the total number of seconds
+			let command_to_go_to_help_totalSeconds1 = parseInt(command_to_go_to_help_hours1) * 3600 + parseInt(command_to_go_to_help_minutes1) * 60 + parseInt(command_to_go_to_help_seconds1);
+			let command_to_go_to_help_totalSeconds2 = parseInt(command_to_go_to_help_hours2) * 3600 + parseInt(command_to_go_to_help_minutes2) * 60 + parseInt(command_to_go_to_help_seconds2);
+			// Calculate the time difference in seconds
+			let command_to_go_to_help_TotalSeconds = command_to_go_to_help_totalSeconds2 - command_to_go_to_help_totalSeconds1;
+				// console.log('TotalSeconds >> ' + TotalSeconds);
+			let command_to_go_to_help_Time_min =  Math.floor(command_to_go_to_help_TotalSeconds / 60);
+				// console.log('Time_min >> ' + Time_min);
+			let command_to_go_to_help_Time_Seconds = command_to_go_to_help_TotalSeconds - (command_to_go_to_help_Time_min*60);
+				// console.log('Time_Seconds >> ' + Time_Seconds);
+			let time_command_to_go_to_help;
+
+			if (command_to_go_to_help_Time_Seconds === 0) {
+				time_command_to_go_to_help = command_to_go_to_help_Time_min + " นาที" ; 
+			}else if(command_to_go_to_help_Time_min === 0){
+				time_command_to_go_to_help = command_to_go_to_help_Time_Seconds + " วินาที" ; 
+			}else{
+				time_command_to_go_to_help = command_to_go_to_help_Time_min + " นาที " + command_to_go_to_help_Time_Seconds + " วินาที";
+			}
+			// console.log('ระยะห่าง >> ' + time_command_to_go_to_help + " นาที");
+
+			if (time_command_to_go_to_help != 0) {
+				document.querySelector('#time_command_to_go_to_help').innerHTML = time_command_to_go_to_help ;
+			}
+
+			let min_command_to_go_to_help_to_sec = command_to_go_to_help_Time_min * 60 ;
+			time_total_help[1] = min_command_to_go_to_help_to_sec + command_to_go_to_help_Time_Seconds ;
+		}
+		// ---------------------- จบ สั่งการ ถึง ออกจากฐาน ---------------------- //
+
+
+		// ---------------------- ออกจากฐาน ถึง ที่เกิดเหตุ ---------------------- //
+		let calculate_time_to_the_scene = time_to_the_scene.value;
+
+		if (calculate_time_go_to_help && calculate_time_to_the_scene) {
+			// Extract the hours, minutes, and seconds from the two times
+			let [go_to_help_to_scene_hours1, go_to_help_to_scene_minutes1, go_to_help_to_scene_seconds1] = calculate_time_go_to_help.split(":");
+			let [go_to_help_to_scene_hours2, go_to_help_to_scene_minutes2, go_to_help_to_scene_seconds2] = calculate_time_to_the_scene.split(":");
+			// Convert the hours, minutes, and seconds to the total number of seconds
+			let go_to_help_to_scene_totalSeconds1 = parseInt(go_to_help_to_scene_hours1) * 3600 + parseInt(go_to_help_to_scene_minutes1) * 60 + parseInt(go_to_help_to_scene_seconds1);
+			let go_to_help_to_scene_totalSeconds2 = parseInt(go_to_help_to_scene_hours2) * 3600 + parseInt(go_to_help_to_scene_minutes2) * 60 + parseInt(go_to_help_to_scene_seconds2);
+			// Calculate the time difference in seconds
+			let go_to_help_to_scene_TotalSeconds = go_to_help_to_scene_totalSeconds2 - go_to_help_to_scene_totalSeconds1;
+				// console.log('TotalSeconds >> ' + TotalSeconds);
+			let go_to_help_to_scene_Time_min =  Math.floor(go_to_help_to_scene_TotalSeconds / 60);
+				// console.log('Time_min >> ' + Time_min);
+			let go_to_help_to_scene_Time_Seconds = go_to_help_to_scene_TotalSeconds - (go_to_help_to_scene_Time_min*60);
+				// console.log('Time_Seconds >> ' + Time_Seconds);
+			let time_go_to_help_to_scene;
+
+			if (go_to_help_to_scene_Time_Seconds === 0) {
+				time_go_to_help_to_scene = go_to_help_to_scene_Time_min + " นาที" ; 
+			}else if(go_to_help_to_scene_Time_min === 0){
+				time_go_to_help_to_scene = go_to_help_to_scene_Time_Seconds + " วินาที" ; 
+			}else{
+				time_go_to_help_to_scene = go_to_help_to_scene_Time_min + " นาที " + go_to_help_to_scene_Time_Seconds + " วินาที";
+			}
+			// console.log('ระยะห่าง >> ' + time_go_to_help_to_scene + " นาที");
+
+			if (time_go_to_help_to_scene != 0) {
+				document.querySelector('#time_go_to_help_to_scene').innerHTML = time_go_to_help_to_scene ;
+			}
+
+			let min_go_to_help_to_scene_to_sec = go_to_help_to_scene_Time_min * 60 ;
+			time_total_help[2] = min_go_to_help_to_scene_to_sec + go_to_help_to_scene_Time_Seconds ;
+
+			time_go_to_help_to_base[0] = min_go_to_help_to_scene_to_sec + go_to_help_to_scene_Time_Seconds ;
+		}
+		// ---------------------- จบ ออกจากฐาน ถึง ที่เกิดเหตุ ---------------------- //
+
+
+		// ---------------------- ที่เกิดเหตุ ถึง ออกจากที่เกิดเหตุ ---------------------- //
+		let calculate_time_leave_the_scene = time_leave_the_scene.value;
+
+		if (calculate_time_to_the_scene && calculate_time_leave_the_scene) {
+			// Extract the hours, minutes, and seconds from the two times
+			let [scene_to_leave_scene_hours1, scene_to_leave_scene_minutes1, scene_to_leave_scene_seconds1] = calculate_time_to_the_scene.split(":");
+			let [scene_to_leave_scene_hours2, scene_to_leave_scene_minutes2, scene_to_leave_scene_seconds2] = calculate_time_leave_the_scene.split(":");
+			// Convert the hours, minutes, and seconds to the total number of seconds
+			let scene_to_leave_scene_totalSeconds1 = parseInt(scene_to_leave_scene_hours1) * 3600 + parseInt(scene_to_leave_scene_minutes1) * 60 + parseInt(scene_to_leave_scene_seconds1);
+			let scene_to_leave_scene_totalSeconds2 = parseInt(scene_to_leave_scene_hours2) * 3600 + parseInt(scene_to_leave_scene_minutes2) * 60 + parseInt(scene_to_leave_scene_seconds2);
+			// Calculate the time difference in seconds
+			let scene_to_leave_scene_TotalSeconds = scene_to_leave_scene_totalSeconds2 - scene_to_leave_scene_totalSeconds1;
+				// console.log('TotalSeconds >> ' + TotalSeconds);
+			let scene_to_leave_scene_Time_min =  Math.floor(scene_to_leave_scene_TotalSeconds / 60);
+				// console.log('Time_min >> ' + Time_min);
+			let scene_to_leave_scene_Time_Seconds = scene_to_leave_scene_TotalSeconds - (scene_to_leave_scene_Time_min*60);
+				// console.log('Time_Seconds >> ' + Time_Seconds);
+			let time_scene_to_leave_scene;
+
+			if (scene_to_leave_scene_Time_Seconds === 0) {
+				time_scene_to_leave_scene = scene_to_leave_scene_Time_min + " นาที" ; 
+			}else if(scene_to_leave_scene_Time_min === 0){
+				time_scene_to_leave_scene = scene_to_leave_scene_Time_Seconds + " วินาที" ; 
+			}else{
+				time_scene_to_leave_scene = scene_to_leave_scene_Time_min + " นาที " + scene_to_leave_scene_Time_Seconds + " วินาที";
+			}
+			// console.log('ระยะห่าง >> ' + time_scene_to_leave_scene + " นาที");
+
+			if (time_scene_to_leave_scene != 0) {
+				document.querySelector('#time_scene_to_leave_scene').innerHTML = time_scene_to_leave_scene ;
+			}
+
+			let min_scene_to_leave_scene_to_sec = scene_to_leave_scene_Time_min * 60 ;
+			time_total_help[3] = min_scene_to_leave_scene_to_sec + scene_to_leave_scene_Time_Seconds ;
+
+			time_go_to_help_to_base[1] = min_scene_to_leave_scene_to_sec + scene_to_leave_scene_Time_Seconds ;
+		}
+		// ---------------------- จบ ที่เกิดเหตุ ถึง ออกจากที่เกิดเหตุ ---------------------- //
+
+
+		// ---------------------- ออกจากที่เกิดเหตุ ถึง โรงพยาบาล ---------------------- //
+		let calculate_time_hospital = time_hospital.value;
+
+		if (calculate_time_leave_the_scene && calculate_time_hospital) {
+			// Extract the hours, minutes, and seconds from the two times
+			let [leave_scene_to_hospital_hours1, leave_scene_to_hospital_minutes1, leave_scene_to_hospital_seconds1] = calculate_time_leave_the_scene.split(":");
+			let [leave_scene_to_hospital_hours2, leave_scene_to_hospital_minutes2, leave_scene_to_hospital_seconds2] = calculate_time_hospital.split(":");
+			// Convert the hours, minutes, and seconds to the total number of seconds
+			let leave_scene_to_hospital_totalSeconds1 = parseInt(leave_scene_to_hospital_hours1) * 3600 + parseInt(leave_scene_to_hospital_minutes1) * 60 + parseInt(leave_scene_to_hospital_seconds1);
+			let leave_scene_to_hospital_totalSeconds2 = parseInt(leave_scene_to_hospital_hours2) * 3600 + parseInt(leave_scene_to_hospital_minutes2) * 60 + parseInt(leave_scene_to_hospital_seconds2);
+			// Calculate the time difference in seconds
+			let leave_scene_to_hospital_TotalSeconds = leave_scene_to_hospital_totalSeconds2 - leave_scene_to_hospital_totalSeconds1;
+				// console.log('TotalSeconds >> ' + TotalSeconds);
+			let leave_scene_to_hospital_Time_min =  Math.floor(leave_scene_to_hospital_TotalSeconds / 60);
+				// console.log('Time_min >> ' + Time_min);
+			let leave_scene_to_hospital_Time_Seconds = leave_scene_to_hospital_TotalSeconds - (leave_scene_to_hospital_Time_min*60);
+				// console.log('Time_Seconds >> ' + Time_Seconds);
+			let time_leave_scene_to_hospital;
+
+			if (leave_scene_to_hospital_Time_Seconds === 0) {
+				time_leave_scene_to_hospital = leave_scene_to_hospital_Time_min + " นาที" ; 
+			}else if(leave_scene_to_hospital_Time_min === 0){
+				time_leave_scene_to_hospital = leave_scene_to_hospital_Time_Seconds + " วินาที" ; 
+			}else{
+				time_leave_scene_to_hospital = leave_scene_to_hospital_Time_min + " นาที " + leave_scene_to_hospital_Time_Seconds + " วินาที";
+			}
+			// console.log('ระยะห่าง >> ' + time_leave_scene_to_hospital + " นาที");
+
+			if (time_leave_scene_to_hospital != 0) {
+				document.querySelector('#time_leave_scene_to_hospital').innerHTML = time_leave_scene_to_hospital ;
+			}
+
+			let min_leave_scene_to_hospital_to_sec = leave_scene_to_hospital_Time_min * 60 ;
+			time_total_help[4] = min_leave_scene_to_hospital_to_sec + leave_scene_to_hospital_Time_Seconds ;
+
+			time_go_to_help_to_base[2] = min_leave_scene_to_hospital_to_sec + leave_scene_to_hospital_Time_Seconds ;
+		}
+		// ---------------------- จบ ออกจากที่เกิดเหตุ ถึง โรงพยาบาล ---------------------- //
+
+
+		// ---------------------- เวลากลับฐาน ---------------------- //
+		let calculate_go_to_base_from ;
+		let text_time_title_2 ;
+		let class_color_title_2 ;
+
+		if (calculate_time_hospital){
+			calculate_go_to_base_from = calculate_time_hospital ;
+			text_time_title_2 = "รพ." ;
+			class_color_title_2 = "timeline-brown" ;
+		}else if(calculate_time_leave_the_scene){
+			calculate_go_to_base_from = calculate_time_leave_the_scene ;
+			text_time_title_2 = "ออกจากที่เกิดเหตุ" ;
+			class_color_title_2 = "timeline-lightblue" ;
 		}
 
-		// ---------------------- TIME ZONE 2 ---------------------- //
-		let zone2_time1 ;
-		let zone2_time2 ;
+		document.querySelector('#text_time_title_2').innerHTML = text_time_title_2 ;
+		document.querySelector('#text_time_title_2').classList.add(class_color_title_2) ;
 
-		// time 1
-		if (time_leave_the_scene.value) {
-			zone2_time1 = time_leave_the_scene.value;
+		let calculate_time_to_the_operating_base = time_to_the_operating_base.value;
+
+		if (calculate_go_to_base_from && calculate_time_to_the_operating_base) {
+			// Extract the hours, minutes, and seconds from the two times
+			let [time_title_2_hours1, time_title_2_minutes1, time_title_2_seconds1] = calculate_go_to_base_from.split(":");
+			let [time_title_2_hours2, time_title_2_minutes2, time_title_2_seconds2] = calculate_time_to_the_operating_base.split(":");
+			// Convert the hours, minutes, and seconds to the total number of seconds
+			let time_title_2_totalSeconds1 = parseInt(time_title_2_hours1) * 3600 + parseInt(time_title_2_minutes1) * 60 + parseInt(time_title_2_seconds1);
+			let time_title_2_totalSeconds2 = parseInt(time_title_2_hours2) * 3600 + parseInt(time_title_2_minutes2) * 60 + parseInt(time_title_2_seconds2);
+			// Calculate the time difference in seconds
+			let time_title_2_TotalSeconds = time_title_2_totalSeconds2 - time_title_2_totalSeconds1;
+				// console.log('TotalSeconds >> ' + TotalSeconds);
+			let time_title_2_Time_min =  Math.floor(time_title_2_TotalSeconds / 60);
+				// console.log('Time_min >> ' + Time_min);
+			let time_title_2_Time_Seconds = time_title_2_TotalSeconds - (time_title_2_Time_min*60);
+				// console.log('Time_Seconds >> ' + Time_Seconds);
+			let time_time_title_2;
+
+			if (time_title_2_Time_Seconds === 0) {
+				time_time_title_2 = time_title_2_Time_min + " นาที" ; 
+			}else if(time_title_2_Time_min === 0){
+				time_time_title_2 = time_title_2_Time_Seconds + " วินาที" ; 
+			}else{
+				time_time_title_2 = time_title_2_Time_min + " นาที " + time_title_2_Time_Seconds + " วินาที";
+			}
+			// console.log('ระยะห่าง >> ' + time_time_title_2 + " นาที");
+
+			if (time_time_title_2 != 0) {
+				document.querySelector('#time_title_2').innerHTML = time_time_title_2 ;
+			}
+
+			let min_time_title_2_to_sec = time_title_2_Time_min * 60 ;
+			time_go_to_help_to_base[3] = min_time_title_2_to_sec + time_title_2_Time_Seconds ;
 		}
+		// ---------------------- จบ เวลาทางกลับฐาน ---------------------- //
 		
-		// time 2
-		if (time_hospital.value) {
-			zone2_time2 = time_hospital.value;
+
+		// ---------------------- TIME time_total_help ---------------------- //
+
+		// console.log(time_total_help.length);
+		let sum_time_total_help = 0 ;
+
+		for (let i = 0; i < time_total_help.length; i++) {
+		  	sum_time_total_help += time_total_help[i] ;
 		}
 
-		if (zone2_time1 && zone2_time2) {
-			// Extract the hours, minutes, and seconds from the two times
-			let [zone2_hours1, zone2_minutes1, zone2_seconds1] = zone2_time1.split(":");
-			let [zone2_hours2, zone2_minutes2, zone2_seconds2] = zone2_time2.split(":");
-			// Convert the hours, minutes, and seconds to the total number of seconds
-			let zone2_totalSeconds1 = parseInt(zone2_hours1) * 3600 + parseInt(zone2_minutes1) * 60 + parseInt(zone2_seconds1);
-			let zone2_totalSeconds2 = parseInt(zone2_hours2) * 3600 + parseInt(zone2_minutes2) * 60 + parseInt(zone2_seconds2);
-			// Calculate the time difference in seconds
-			let zone2_TotalSeconds = zone2_totalSeconds2 - zone2_totalSeconds1;
-				// console.log('TotalSeconds >> ' + TotalSeconds);
-			let zone2_Time_min =  Math.floor(zone2_TotalSeconds / 60);
-				// console.log('Time_min >> ' + Time_min);
-			let zone2_Time_Seconds = zone2_TotalSeconds - (zone2_Time_min*60);
-				// console.log('Time_Seconds >> ' + Time_Seconds);
-			let zone2_tiem_all;
-			if (zone2_Time_Seconds === 0) {
-				zone2_tiem_all = zone2_Time_min + " นาที" ;
-			}else if(zone2_Time_min === 0){
-				zone2_tiem_all = zone2_Time_Seconds + " วินาที" ; 
-			}else{
-				zone2_tiem_all = zone2_Time_min + " นาที " + zone2_Time_Seconds + " วินาที";
-			}
-			// console.log('ระยะห่าง >> ' + zone2_tiem_all + " นาที");
+		let hours_time_total_help = Math.floor(sum_time_total_help / 3600);
+		let minutes_time_total_help = Math.floor((sum_time_total_help % 3600) / 60);
+		let seconds_time_total_help = Math.floor(sum_time_total_help % 60);
 
-			if (zone2_tiem_all != 0) {
-				document.querySelector('#time_zone_2').innerHTML = zone2_tiem_all ;
-			}
+		let text_time_total_help = '';
 
-			let min_2_to_sec = zone2_Time_min * 60 ;
-			all_time = all_time + (min_2_to_sec + zone2_Time_Seconds) ;
+		if (hours_time_total_help > 0) {
+		  text_time_total_help += `${hours_time_total_help} ชั่วโมง${hours_time_total_help > 1 ? '' : ''} `;
+		}
+		text_time_total_help += `${minutes_time_total_help} นาที${minutes_time_total_help > 1 ? '' : ''} `;
+		text_time_total_help += `${seconds_time_total_help} วินาที${seconds_time_total_help > 1 ? '' : ''}`;
+
+		document.querySelector('#time_total_help').innerHTML = text_time_total_help ;
+		// ---------------------- END TIME time_total_help ---------------------- //
+
+
+		// ---------------------- TIME time_go_to_help_to_base ---------------------- //
+
+		let sum_time_go_to_help_to_base = 0 ;
+
+		for (let ii = 0; ii < time_go_to_help_to_base.length; ii++) {
+		  	sum_time_go_to_help_to_base += time_go_to_help_to_base[ii] ;
 		}
 
-		// ---------------------- TIME ZONE 3 ---------------------- //
-		let zone3_time1 ;
-		let zone3_time2 ;
+		let hours_time_go_to_help_to_base = Math.floor(sum_time_go_to_help_to_base / 3600);
+		let minutes_time_go_to_help_to_base = Math.floor((sum_time_go_to_help_to_base % 3600) / 60);
+		let seconds_time_go_to_help_to_base = Math.floor(sum_time_go_to_help_to_base % 60);
 
-		let title_1_zone3 ;
-		// time 1
-		if (time_hospital.value) {
-			zone3_time1 = time_hospital.value;
-			title_1_zone3 = " รพ." ;
-		}else if(time_leave_the_scene.value && !time_hospital.value){
-			zone3_time1 = time_leave_the_scene.value;
-			title_1_zone3 = "ที่เกิดเหตุ" ;
+		let text_time_go_to_help_to_base = '';
+
+		if (hours_time_go_to_help_to_base > 0) {
+		  text_time_go_to_help_to_base += `${hours_time_go_to_help_to_base} ชั่วโมง${hours_time_go_to_help_to_base > 1 ? '' : ''} `;
 		}
+		text_time_go_to_help_to_base += `${minutes_time_go_to_help_to_base} นาที${minutes_time_go_to_help_to_base > 1 ? '' : ''} `;
+		text_time_go_to_help_to_base += `${seconds_time_go_to_help_to_base} วินาที${seconds_time_go_to_help_to_base > 1 ? '' : ''}`;
 
-		document.querySelector('#title_1_time_zone_3').innerHTML = title_1_zone3 ;
+		document.querySelector('#time_go_to_help_to_base').innerHTML = text_time_go_to_help_to_base ;
+		// ---------------------- ENDTIME time_go_to_help_to_base ---------------------- //
+
 		
-		// time 2
-		if (time_to_the_operating_base.value) {
-			zone3_time2 = time_to_the_operating_base.value;
-		}
-
-		if (zone3_time1 && zone3_time2) {
-			// Extract the hours, minutes, and seconds from the two times
-			let [zone3_hours1, zone3_minutes1, zone3_seconds1] = zone3_time1.split(":");
-			let [zone3_hours2, zone3_minutes2, zone3_seconds2] = zone3_time2.split(":");
-			// Convert the hours, minutes, and seconds to the total number of seconds
-			let zone3_totalSeconds1 = parseInt(zone3_hours1) * 3600 + parseInt(zone3_minutes1) * 60 + parseInt(zone3_seconds1);
-			let zone3_totalSeconds2 = parseInt(zone3_hours2) * 3600 + parseInt(zone3_minutes2) * 60 + parseInt(zone3_seconds2);
-			// Calculate the time difference in seconds
-			let zone3_TotalSeconds = zone3_totalSeconds2 - zone3_totalSeconds1;
-				// console.log('TotalSeconds >> ' + TotalSeconds);
-			let zone3_Time_min =  Math.floor(zone3_TotalSeconds / 60);
-				// console.log('Time_min >> ' + Time_min);
-			let zone3_Time_Seconds = zone3_TotalSeconds - (zone3_Time_min*60);
-				// console.log('Time_Seconds >> ' + Time_Seconds);
-			let zone3_tiem_all;
-			if (zone3_Time_Seconds === 0) {
-				zone3_tiem_all = zone3_Time_min + " นาที" ;
-			}else if(zone3_Time_min === 0){
-				zone3_tiem_all = zone3_Time_Seconds + " วินาที" ; 
-			}else{
-				zone3_tiem_all = zone3_Time_min + " นาที " + zone3_Time_Seconds + " วินาที";
-			}
-			// console.log('ระยะห่าง >> ' + zone3_tiem_all + " นาที");
-
-			if (zone3_tiem_all != 0) {
-				document.querySelector('#time_zone_3').innerHTML = zone3_tiem_all ;
-			}
-
-			let min_3_to_sec = zone3_Time_min * 60 ;
-			all_time = all_time + (min_3_to_sec + zone3_Time_Seconds) ;
-		}
-
-		// ---------------------- TIME ZONE ALL ---------------------- //
-
-		// Convert seconds to hours, minutes, and seconds
-		let hours_all_time = Math.floor(all_time / 3600);
-		let minutes_all_time = Math.floor((all_time % 3600) / 60);
-		let seconds_all_time = Math.floor(all_time % 60);
-
-		// Create a string to display the time in the desired format
-		let text_all_time = '';
-		if (hours_all_time > 0) {
-		  text_all_time += `${hours_all_time} ชั่วโมง${hours_all_time > 1 ? '' : ''} `;
-		}
-		text_all_time += `${minutes_all_time} นาที${minutes_all_time > 1 ? '' : ''} `;
-		text_all_time += `${seconds_all_time} วินาที${seconds_all_time > 1 ? '' : ''}`;
-
-		if (seconds_all_time) {
-			document.querySelector('#time_zone_all').innerHTML = text_all_time ;
-		}
-
 	}
 
 	function distance_in_no5(){
@@ -3089,7 +3322,7 @@
 		let num_km_3 = 0 ;
 		let num_km_4 = 0 ;
 
-		let total_distance = 0 ;
+		let distance_total_help = 0 ;
 
 		let km_create_sos_to_go_to_help = document.querySelector('#km_create_sos_to_go_to_help');
 		if (km_create_sos_to_go_to_help.value) {
@@ -3109,35 +3342,36 @@
 		}
 
 		// ------------------------------- รวมระยะ ออกจากฐาน ถึง ที่เกิดเหตุ ---------------------------------------//
-		let no5_distance_to = 0 ;
+		let distance_go_to_help_to_scene = 0 ;
 	
-		no5_distance_to = parseFloat(num_km_2) - parseFloat(num_km_1) ;
-		total_distance =  parseFloat(total_distance) +  parseFloat(no5_distance_to) ;
+		distance_go_to_help_to_scene = parseFloat(num_km_2) - parseFloat(num_km_1) ;
+		distance_total_help =  parseFloat(distance_total_help) +  parseFloat(distance_go_to_help_to_scene) ;
 
 		if (parseFloat(num_km_1) === 0 || parseFloat(num_km_2) === 0) {
-			document.querySelector('#text_distance_to').innerHTML = '0' ;
+			document.querySelector('#distance_go_to_help_to_scene').innerHTML = '0' ;
 		}else{
-			document.querySelector('#text_distance_to').innerHTML = no5_distance_to.toFixed(2) ;
+			document.querySelector('#distance_go_to_help_to_scene').innerHTML = distance_go_to_help_to_scene.toFixed(2) ;
 		}
 		// ------------------------------- จบ รวมระยะ ออกจากฐาน ถึง ที่เกิดเหตุ ---------------------------------------//
 
+
 		// ------------------------------- ระยะ ที่เกิดเหตุ ถึง รพ ---------------------------------------//
-		let distance_to_hospital = 0 ;
+		let distance_leave_scene_to_hospital = 0 ;
 
 		if (num_km_3) {
-			distance_to_hospital = parseFloat(num_km_3) - parseFloat(num_km_2) ;
-			total_distance =  parseFloat(total_distance) +  parseFloat(distance_to_hospital) ;
+			distance_leave_scene_to_hospital = parseFloat(num_km_3) - parseFloat(num_km_2) ;
+			distance_total_help =  parseFloat(distance_total_help) +  parseFloat(distance_leave_scene_to_hospital) ;
 		}
 
 		if (!num_km_3 && parseFloat(num_km_2) === 0 || parseFloat(num_km_3) === 0) {
-			document.querySelector('#text_distance_to_hospital').innerHTML = '0' ;
+			document.querySelector('#distance_leave_scene_to_hospital').innerHTML = '0' ;
 		}else{
-			document.querySelector('#text_distance_to_hospital').innerHTML = distance_to_hospital.toFixed(2) ;
+			document.querySelector('#distance_leave_scene_to_hospital').innerHTML = distance_leave_scene_to_hospital.toFixed(2) ;
 		}
 		// ------------------------------- จบ ที่เกิดเหตุ ถึง รพ ---------------------------------------//
 
 		// ------------------------------- รวมระยะทางกลับ ---------------------------------------//
-		let return_distance = 0 ;
+		let text_distance_title_1 = 0 ;
 
 		let num_title_1 ;
 		let text_title_1 ;
@@ -3151,17 +3385,18 @@
 		}
 
 		document.querySelector('#title_1_return_distance').innerHTML = text_title_1 ;
-		return_distance = parseFloat(num_km_4) - parseFloat(num_title_1) ;
-		total_distance =  parseFloat(total_distance) +  parseFloat(return_distance) ;
+		text_distance_title_1 = parseFloat(num_km_4) - parseFloat(num_title_1) ;
+		distance_total_help =  parseFloat(distance_total_help) +  parseFloat(text_distance_title_1) ;
 
 		if (parseFloat(num_title_1) === 0 || parseFloat(num_km_4) === 0) {
-			document.querySelector('#text_return_distance').innerHTML = '0' ;
+			document.querySelector('#text_distance_title_1').innerHTML = '0' ;
 		}else{
-			document.querySelector('#text_return_distance').innerHTML = return_distance.toFixed(2) ;
+			document.querySelector('#text_distance_title_1').innerHTML = text_distance_title_1.toFixed(2) ;
 		}
 		// ------------------------------- จบ รวมระยะทางกลับ ---------------------------------------//
 
-		document.querySelector('#total_distance').innerHTML =  parseFloat(total_distance).toFixed(2) ;
+
+		document.querySelector('#distance_total_help').innerHTML =  parseFloat(distance_total_help).toFixed(2) ;
 		
 		time_in_no5();
 	}
