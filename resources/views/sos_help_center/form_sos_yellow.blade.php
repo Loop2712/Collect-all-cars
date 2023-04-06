@@ -2984,30 +2984,30 @@
 		let time_to_the_operating_base = document.querySelector('[name="time_to_the_operating_base"]');
 		// ------------------------------------------------------------------------------------------------//
 
-		if (time_create_sos.value){
-			document.querySelector('#div_create_sos').classList.remove('d-none');
-		}
-		if (time_command.value){
-			document.querySelector('#div_time_command').classList.remove('d-none');
-		}
-		if (time_go_to_help.value){
-			document.querySelector('#div_time_go_to_help').classList.remove('d-none');
-		}
-		if (time_to_the_scene.value){
-			document.querySelector('#div_time_to_the_scene').classList.remove('d-none');
-		}
-		if (time_leave_the_scene.value){
-			document.querySelector('#div_time_leave_the_scene').classList.remove('d-none');
-		}
-		if (time_hospital.value){
-			document.querySelector('#div_time_hospital').classList.remove('d-none');
-		}
-		if (time_to_the_operating_base.value){
-			document.querySelector('#div_time_to_the_operating_base').classList.remove('d-none');
-		}
-		if (time_leave_the_scene.value || time_hospital.value){
-			document.querySelector('#sum_time_and_distance').classList.remove('d-none');
-		}
+		// if (time_create_sos.value){
+		// 	document.querySelector('#div_create_sos').classList.remove('d-none');
+		// }
+		// if (time_command.value){
+		// 	document.querySelector('#div_time_command').classList.remove('d-none');
+		// }
+		// if (time_go_to_help.value){
+		// 	document.querySelector('#div_time_go_to_help').classList.remove('d-none');
+		// }
+		// if (time_to_the_scene.value){
+		// 	document.querySelector('#div_time_to_the_scene').classList.remove('d-none');
+		// }
+		// if (time_leave_the_scene.value){
+		// 	document.querySelector('#div_time_leave_the_scene').classList.remove('d-none');
+		// }
+		// if (time_hospital.value){
+		// 	document.querySelector('#div_time_hospital').classList.remove('d-none');
+		// }
+		// if (time_to_the_operating_base.value){
+		// 	document.querySelector('#div_time_to_the_operating_base').classList.remove('d-none');
+		// }
+		// if (time_leave_the_scene.value || time_hospital.value){
+		// 	document.querySelector('#sum_time_and_distance').classList.remove('d-none');
+		// }
 
 		// ------------------------------------------------------------------------------------------------//
 
