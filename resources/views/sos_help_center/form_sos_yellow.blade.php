@@ -1443,171 +1443,74 @@
 						</div>
 						
 
-						<!------------------------------- อันเก่า ---------------------------->
+						<!------------------------------- for calculating ---------------------------->
 						<div class="d-none">
-						
-							<div class="row {{ $class_no_operating_unit }}" > <!-- id="no_operating_unit" -->
-								<div class="col-md-4">
-									<label for="" class="form-label"><b>&nbsp;</b></label>
-									<span id="btn_select_unit_in_no5" class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();select_level();" style="width:100%;" >
-	                                    <i class="fa-solid fa-hospital-user"></i> เลือกหน่วยแพทย์
-									</span>
-								</div>
-							</div>
-						
-
-							<div class="row {{ $class_has_an_operating_unit }}" > <!-- id="has_an_operating_unit" -->
-								<div class="col-12 col-md-3">
-									<label for="" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
-									<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
-										<input type="text" class="form-control border-start-0 radius-2" id="operation_unit_name" name="operation_unit_name" value="{{ isset($data_form_yellow->operation_unit_name) ? $data_form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ" readonly>
-									</div>
-								</div>
-								<div class="col-12 col-md-3">
-									<label for="phone_user" class="form-label"><b>ชื่อชุดปฏิบัติการ</b></label>
-									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-users-medical"></i></span>
-										<input type="text" class="form-control border-start-0 radius-2" id="action_set_name" name="action_set_name" value="{{ isset($data_form_yellow->action_set_name) ? $data_form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ" readonly>
-									</div>
-								</div>
-
-								
-
-								<div class="col-12 col-md-3">
-									<label  class="form-label mb-2">
-										<b>ชนิดยานพาหนะ<sup>(๗)</sup></b>
-									</label>
-									<label>
-										<input type="radio" {{ $check_checked }} name="vehicle_type" data-vehicle_type="{{ $value_vehicle_type }}" value="{{ $value_vehicle_type }}"  class="card-input-element d-none" disabled>
-										<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-											<b id="text_show_vehicle_type"><i id="tag_i_vehicle_type" class="{{ $class_vehicle_type }}"></i> &nbsp;&nbsp; {{ $text_vehicle_type }}</b> 
-										</div>
-									</label>
-								</div>
-								<div class="col-12 col-md-3">
-									<label class="form-label mb-2">
-										<b>ประเภทชุดปฏิบัติการ</b>
-									</label>
-									<label>
-										<input type="radio" {{ $check_checked_operating }} data-operating_suit_type="{{ $value_operating }}" name="operating_suit_type" value="{{ $value_operating }}" class="card-input-{{ $color_operating }} card-input-element d-none" disabled>
-										<div class="card card-body  d-flex flex-row justify-content-between align-items-center">
-											<b id="text_show_operating_suit_type">{{ $text_operating }}</b>
-										</div>
-									</label>
-								</div>
+							<label for="" class="form-label"><b>ชื่อหน่วยปฏิบัติการ</b></label>
+							<div class="input-group">
+								<span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user-nurse"></i></span>
+								<input type="text" class="form-control border-start-0 radius-2" id="operation_unit_name" name="operation_unit_name" value="{{ isset($data_form_yellow->operation_unit_name) ? $data_form_yellow->operation_unit_name : ''}}" placeholder="ชื่อหน่วยปฏิบัติการ" readonly>
 							</div>
 
-							<div class="row mt-3">
-								<hr>
-								<div class="col-12 col-md-3 mt-3">
-									<label>รับแจ้ง</label>
-									<br>
-									<input class="form-control" type="time" name="time_create_sos" id="time_create_sos" step="2" value="{{ isset($data_form_yellow->time_create_sos) ? $data_form_yellow->time_create_sos : ''}}" readonly>
-								</div>
-								<div class="col-12 col-md-3 mt-3">
-									<label>สั่งการ</label>
-									<br>
-									<input class="form-control" type="time" name="time_command" id="time_command" step="2" value="{{ isset($data_form_yellow->time_command) ? $data_form_yellow->time_command : ''}}" readonly>
-								</div>
-								<div class="col-12 col-md-3 mt-3">
-									<label>ออกจากฐาน</label>
-									<br>
-									<input class="form-control" type="time" name="time_go_to_help" id="time_go_to_help" step="2" value="{{ isset($data_form_yellow->time_go_to_help) ? $data_form_yellow->time_go_to_help : ''}}" readonly>
-								</div>
-								<div class="col-12 col-md-3 mt-3">
-									<label>ถึงที่เกิดเหตุ</label>
-									<br>
-									<input class="form-control" type="time" name="time_to_the_scene" id="time_to_the_scene" step="2" value="{{ isset($data_form_yellow->time_to_the_scene) ? $data_form_yellow->time_to_the_scene : ''}}" readonly>
-								</div>
-								<div class="col-12 col-md-3 mt-3">
-									<label>ออกจากที่เกิดเหตุ</label>
-									<br>
-									<input class="form-control" type="time" name="time_leave_the_scene" id="time_leave_the_scene" step="2" value="{{ isset($data_form_yellow->time_leave_the_scene) ? $data_form_yellow->time_leave_the_scene : ''}}" readonly>
-								</div>
-								<div class="col-12 col-md-3 mt-3">
-									<label>ถึง รพ.</label>
-									<br>
-									<input class="form-control" type="time" name="time_hospital" id="time_hospital" step="2" value="{{ isset($data_form_yellow->time_hospital) ? $data_form_yellow->time_hospital : ''}}" readonly>
-								</div>
-								<div class="col-12 col-md-3 mt-3">
-									<label>ถึงฐาน</label>
-									<br>
-									<input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" step="2" value="{{ isset($data_form_yellow->time_to_the_operating_base) ? $data_form_yellow->time_to_the_operating_base : ''}}" readonly>
-								</div>
-								<div class="col-12 col-md-3 mt-3">
-									<!--  -->
-								</div>
-
-								<hr class="mt-2">
-
-								<div class="col-12 col-md-3 mt-3">
-									<label>รวมเวลา รับแจ้ง - ที่เกิดเหตุ</label>
-									<br>
-									<b><span id="time_zone_1" class="text-dark">...</span></b>
-								</div>
-								<div class="col-12 col-md-3 mt-3">
-									<label>รวมเวลา ออกจากที่เกิดเหตุ - รพ.</label>
-									<br>
-									<b><span id="time_zone_2" class="text-dark">...</span></b>
-								</div>
-								<div class="col-12 col-md-3 mt-3">
-									<label>รวมเวลา ออกจาก<span id="title_1_time_zone_3"></span> - ฐาน</label>
-									<br>
-									<b><span id="time_zone_3" class="text-dark">...</span></b>
-								</div>
-								<div class="col-12 col-md-3 mt-3">
-									<label>รวมเวลา</label>
-									<br>
-									<b><span id="time_zone_all" class="text-dark">...</span></b>
-								</div>
-
-								<hr class="mt-2">
-
-								<div class="col-12 col-md-3 mt-3">
-									<label>เลข กม. ออกจากฐาน</label>
-									<br>
-									<input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : ''}}" onchange="distance_in_no5();" readonly>
-								</div>
-								<div class="col-12 col-md-3 mt-3">
-									<label>เลข กม. ถึงที่เกิดเหตุ</label>
-									<br>
-									<input class="form-control" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : ''}}" onchange="distance_in_no5();" readonly>
-								</div>
-								<div class="col-12 col-md-3 mt-3">
-									<label>เลข กม. ถึง รพ.</label>
-									<br>
-									<input class="form-control"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : ''}}" onchange="distance_in_no5();"readonly>
-								</div>
-								<div class="col-12 col-md-3 mt-3">
-									<label>เลข กม. ถึง ถึงฐาน</label>
-									<br>
-									<input class="form-control" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : ''}}" onchange="distance_in_no5();" readonly>
-								</div>
-
-								<hr class="mt-2">
-
-								<div class="col-12 col-md-3 mt-3 text-center">
-									<label>ระยะทาง ออกจากฐาน - ที่เกิดเหตุ</label>
-									<br>
-									<b><span id="text_distance_to" class="text-dark"></span></b> กม.
-								</div>
-								<div class="col-12 col-md-3 mt-3 text-center">
-									<label>ระยะทาง ที่เกิดเหตุ - รพ.</label>
-									<br>
-									<b><span id="text_distance_to_hospital" class="text-dark"></span></b> กม.
-								</div>
-								<div class="col-12 col-md-3 mt-3 text-center">
-									<label>ระยะทาง<span id="title_1_return_distance"></span> - ฐาน</label>
-									<br>
-									<b><span id="text_return_distance" class="text-dark"></span></b> กม.
-								</div>
-								<div class="col-12 col-md-3 mt-3 text-center">
-									<label>รวม</label>
-									<br>
-									<b><span id="total_distance" class="text-dark"></span></b> กม.
-								</div>
+							<label for="phone_user" class="form-label"><b>ชื่อชุดปฏิบัติการ</b></label>
+							<div class="input-group">
+								<span class="input-group-text bg-white radius-1"><i class="fa-solid fa-users-medical"></i></span>
+								<input type="text" class="form-control border-start-0 radius-2" id="action_set_name" name="action_set_name" value="{{ isset($data_form_yellow->action_set_name) ? $data_form_yellow->action_set_name : ''}}" placeholder="ชื่อชุดปฏิบัติการ" readonly>
 							</div>
 
+							<label  class="form-label mb-2">
+								<b>ชนิดยานพาหนะ<sup>(๗)</sup></b>
+							</label>
+							<label>
+								<input type="radio" {{ $check_checked }} name="vehicle_type" data-vehicle_type="{{ $value_vehicle_type }}" value="{{ $value_vehicle_type }}"  class="card-input-element d-none" disabled>
+								<div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+									<b id="text_show_vehicle_type"><i id="tag_i_vehicle_type" class="{{ $class_vehicle_type }}"></i> &nbsp;&nbsp; {{ $text_vehicle_type }}</b> 
+								</div>
+							</label>
+
+							<label class="form-label mb-2">
+								<b>ประเภทชุดปฏิบัติการ</b>
+							</label>
+							<label>
+								<input type="radio" {{ $check_checked_operating }} data-operating_suit_type="{{ $value_operating }}" name="operating_suit_type" value="{{ $value_operating }}" class="card-input-{{ $color_operating }} card-input-element d-none" disabled>
+								<div class="card card-body  d-flex flex-row justify-content-between align-items-center">
+									<b id="text_show_operating_suit_type">{{ $text_operating }}</b>
+								</div>
+							</label>
+
+							<label>รับแจ้ง</label>
+							<input class="form-control" type="time" name="time_create_sos" id="time_create_sos" step="2" value="{{ isset($data_form_yellow->time_create_sos) ? $data_form_yellow->time_create_sos : ''}}" readonly>
+							
+							<label>สั่งการ</label>
+							<input class="form-control" type="time" name="time_command" id="time_command" step="2" value="{{ isset($data_form_yellow->time_command) ? $data_form_yellow->time_command : ''}}" readonly>
+					
+							<label>ออกจากฐาน</label>
+							<input class="form-control" type="time" name="time_go_to_help" id="time_go_to_help" step="2" value="{{ isset($data_form_yellow->time_go_to_help) ? $data_form_yellow->time_go_to_help : ''}}" readonly>
+
+							<label>ถึงที่เกิดเหตุ</label>
+							<input class="form-control" type="time" name="time_to_the_scene" id="time_to_the_scene" step="2" value="{{ isset($data_form_yellow->time_to_the_scene) ? $data_form_yellow->time_to_the_scene : ''}}" readonly>
+
+							<label>ออกจากที่เกิดเหตุ</label>
+							<input class="form-control" type="time" name="time_leave_the_scene" id="time_leave_the_scene" step="2" value="{{ isset($data_form_yellow->time_leave_the_scene) ? $data_form_yellow->time_leave_the_scene : ''}}" readonly>
+
+							<label>ถึง รพ.</label>
+							<input class="form-control" type="time" name="time_hospital" id="time_hospital" step="2" value="{{ isset($data_form_yellow->time_hospital) ? $data_form_yellow->time_hospital : ''}}" readonly>
+
+							<label>ถึงฐาน</label>
+							<input class="form-control" type="time" name="time_to_the_operating_base" id="time_to_the_operating_base" step="2" value="{{ isset($data_form_yellow->time_to_the_operating_base) ? $data_form_yellow->time_to_the_operating_base : ''}}" readonly>
+
+							<label>เลข กม. ออกจากฐาน</label>
+							<input class="form-control" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : ''}}" onchange="distance_in_no5();" readonly>
+
+							<label>เลข กม. ถึงที่เกิดเหตุ</label>
+							<input class="form-control" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : ''}}" onchange="distance_in_no5();" readonly>
+
+							<label>เลข กม. ถึง รพ.</label>
+							<input class="form-control"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : ''}}" onchange="distance_in_no5();"readonly>
+
+							<label>เลข กม. ถึง ถึงฐาน</label>
+							<input class="form-control" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : ''}}" onchange="distance_in_no5();" readonly>
 						</div>	
+						<!------------------------------- end for calculating ---------------------------->
 
 					</div>
 					
