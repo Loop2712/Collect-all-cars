@@ -2986,31 +2986,31 @@
 
 		if (time_create_sos.value){
 			document.querySelector('#div_create_sos').classList.remove('d-none');
-			document.querySelector('#time_title_create').innerHTML = time_create_sos.value ;
+			// document.querySelector('#time_title_create').innerHTML = time_create_sos.value ;
 		}
 		if (time_command.value){
 			document.querySelector('#div_time_command').classList.remove('d-none');
-			document.querySelector('#time_title_command').innerHTML = time_command.value ;
+			// document.querySelector('#time_title_command').innerHTML = time_command.value ;
 		}
 		if (time_go_to_help.value){
 			document.querySelector('#div_time_go_to_help').classList.remove('d-none');
-			document.querySelector('#time_title_go_to_help').innerHTML = time_go_to_help.value ;
+			// document.querySelector('#time_title_go_to_help').innerHTML = time_go_to_help.value ;
 		}
 		if (time_to_the_scene.value){
 			document.querySelector('#div_time_to_the_scene').classList.remove('d-none');
-			document.querySelector('#time_title_scene').innerHTML = time_to_the_scene.value ;
+			// document.querySelector('#time_title_scene').innerHTML = time_to_the_scene.value ;
 		}
 		if (time_leave_the_scene.value){
 			document.querySelector('#div_time_leave_the_scene').classList.remove('d-none');
-			document.querySelector('#time_title_leave_scene').innerHTML = time_leave_the_scene.value ;
+			// document.querySelector('#time_title_leave_scene').innerHTML = time_leave_the_scene.value ;
 		}
 		if (time_hospital.value){
 			document.querySelector('#div_time_hospital').classList.remove('d-none');
-			document.querySelector('#time_title_hospital').innerHTML = time_hospital.value ;
+			// document.querySelector('#time_title_hospital').innerHTML = time_hospital.value ;
 		}
 		if (time_to_the_operating_base.value){
 			document.querySelector('#div_time_to_the_operating_base').classList.remove('d-none');
-			document.querySelector('#time_title_operating_base').innerHTML = time_to_the_operating_base.value ;
+			// document.querySelector('#time_title_operating_base').innerHTML = time_to_the_operating_base.value ;
 		}
 		if (time_leave_the_scene.value || time_hospital.value){
 			document.querySelector('#sum_time_and_distance').classList.remove('d-none');
