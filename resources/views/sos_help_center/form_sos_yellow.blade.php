@@ -1444,7 +1444,7 @@
 						
 
 						<!------------------------------- อันเก่า ---------------------------->
-						<div class="d-">
+						<div class="d-none">
 						
 							<div class="row {{ $class_no_operating_unit }}" > <!-- id="no_operating_unit" -->
 								<div class="col-md-4">
