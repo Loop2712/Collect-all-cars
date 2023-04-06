@@ -1283,6 +1283,7 @@ class Sos_help_centerController extends Controller
                             'status' => $status,
                             'remark_status' => $reason,
                             'time_sos_success' => $date_now,
+                            'time_leave_the_scene' => $date_now,
                     ]);
 
                 DB::table('sos_1669_form_yellows')
