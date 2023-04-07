@@ -2988,32 +2988,32 @@
 		}
 		if (time_command.value){
 			document.querySelector('#div_time_command').classList.remove('d-none');
-			document.querySelector('#title_time_command').innerHTML = time_command.value;
+			document.querySelector('#title_time_command').innerHTML = time_command.value.slice(0, 5) + " น.";
 			tab_content_h100();
 		}
 		if (time_go_to_help.value){
 			document.querySelector('#div_time_go_to_help').classList.remove('d-none');
-			document.querySelector('#title_time_go_to_help').innerHTML = time_go_to_help.value;
+			document.querySelector('#title_time_go_to_help').innerHTML = time_go_to_help.value.slice(0, 5) + " น.";
 			tab_content_h100();
 		}
 		if (time_to_the_scene.value){
 			document.querySelector('#div_time_to_the_scene').classList.remove('d-none');
-			document.querySelector('#title_time_to_the_scene').innerHTML = time_to_the_scene.value;
+			document.querySelector('#title_time_to_the_scene').innerHTML = time_to_the_scene.value.slice(0, 5) + " น.";
 			tab_content_h100();
 		}
 		if (time_leave_the_scene.value){
 			document.querySelector('#div_time_leave_the_scene').classList.remove('d-none');
-			document.querySelector('#title_time_leave_the_scene').innerHTML = time_leave_the_scene.value;
+			document.querySelector('#title_time_leave_the_scene').innerHTML = time_leave_the_scene.value.slice(0, 5) + " น.";
 			tab_content_h100();
 		}
 		if (time_hospital.value){
 			document.querySelector('#div_time_hospital').classList.remove('d-none');
-			document.querySelector('#title_time_hospital').innerHTML = time_hospital.value;
+			document.querySelector('#title_time_hospital').innerHTML = time_hospital.value.slice(0, 5) + " น.";
 			tab_content_h100();
 		}
 		if (time_to_the_operating_base.value){
 			document.querySelector('#div_time_to_the_operating_base').classList.remove('d-none');
-			document.querySelector('#title_time_to_the_operating_base').innerHTML = time_to_the_operating_base.value;
+			document.querySelector('#title_time_to_the_operating_base').innerHTML = time_to_the_operating_base.value.slice(0, 5) + " น.";
 			tab_content_h100();
 		}
 		if (time_leave_the_scene.value || time_hospital.value){
@@ -3338,22 +3338,22 @@
 		let km_create_sos_to_go_to_help = document.querySelector('#km_create_sos_to_go_to_help');
 		if (km_create_sos_to_go_to_help.value) {
 			num_km_1 = km_create_sos_to_go_to_help.value ;
-			document.querySelector('#show_kilometer_go_to_help').innerHTML = num_km_1 ;
+			document.querySelector('#show_kilometer_go_to_help').innerHTML = num_km_1 + " กม." ;
 		}
 		let km_to_the_scene_to_leave_the_scene = document.querySelector('#km_to_the_scene_to_leave_the_scene');
 		if (km_to_the_scene_to_leave_the_scene.value) {
 			num_km_2 = km_to_the_scene_to_leave_the_scene.value ;
-			document.querySelector('#show_kilometer_the_scene').innerHTML = num_km_2 ;
+			document.querySelector('#show_kilometer_the_scene').innerHTML = num_km_2 + " กม." ;
 		}
 		let km_hospital = document.querySelector('#km_hospital');
 		if (km_hospital.value) {
 			num_km_3 = km_hospital.value ;
-			document.querySelector('#show_kilometer_hospital').innerHTML = num_km_3 ;
+			document.querySelector('#show_kilometer_hospital').innerHTML = num_km_3 + " กม." ;
 		}
 		let km_operating_base = document.querySelector('#km_operating_base');
 		if (km_operating_base.value) {
 			num_km_4 = km_operating_base.value ;
-			document.querySelector('#show_kilometer_operating_base').innerHTML = num_km_4 ;
+			document.querySelector('#show_kilometer_operating_base').innerHTML = num_km_4 + " กม." ;
 		}
 
 		// ------------------------------- รวมระยะ ออกจากฐาน ถึง ที่เกิดเหตุ ---------------------------------------//
