@@ -152,6 +152,12 @@
 							<span class="tooltip">เพิ่มเติม</span>
 						</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link danger position div_detail page_number" href="#step-10" onclick="go_to_form_data('10');"  id="form_data_10" page="number_9"> 
+							<strong>10</strong>
+							<span class="tooltip">หลอก</span>
+						</a>
+					</li>
 					<!-- <li class="nav-item">
 						<button class="btn btn-info text-white"style="position: relative;z-index: 999999;border-radius: 50px;" id="next-btn-form-yellow" type="button"><i class="fa-solid fa-chevron-right"></i></button>
 
@@ -2189,6 +2195,8 @@
 							</div>
 						</div>
 					</div>
+					<div id="step-10" class="tab-pane d-none" role="tabpanel" aria-labelledby="step-10">
+					</div>
 				</div>
 				<div class="row  m-0 p-0">
 					<div class="d-flex justify-content-end my-3 float-end">
@@ -2989,6 +2997,11 @@
 		if (time_command.value){
 			document.querySelector('#div_time_command').classList.remove('d-none');
 			document.querySelector('#title_time_command').innerHTML = time_command.value;
+
+			document.querySelector('#step-10').click();
+			setTimeout(function() {
+		        document.querySelector('#step-5').click();
+	        }, 500);
 		}
 		if (time_go_to_help.value){
 			document.querySelector('#div_time_go_to_help').classList.remove('d-none');
