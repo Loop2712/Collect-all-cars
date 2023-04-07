@@ -1324,7 +1324,7 @@
 									<div class="d-flex align-items-center">
 										<span>
 											@if(!empty($data_form_yellow->time_to_the_scene))
-												&nbsp;&nbsp;{{ (\Carbon\Carbon::parse($data_form_yellow->time_to_the_scene))->format('h:i น.') }}
+												{{ (\Carbon\Carbon::parse($data_form_yellow->time_to_the_scene))->format('h:i น.') }}
 											@else
 												ไม่ได้แจ้ง
 											@endif
@@ -2328,39 +2328,32 @@
 								edit_form_yellow(key , value , null);
 							}else if (key === 'vehicle_type' || key === 'operating_suit_type') {
 
-								document.querySelector('#no_operating_unit').classList.add('d-none')  ;
-								document.querySelector('#has_an_operating_unit').classList.remove('d-none')  ;
+								// console.log(data_new_5vi[key]);
 
-								let input_Element_key = document.querySelector('input[name="'+key+'"]');
+								if (data_new_5vi[key]){
+									document.querySelector('#no_operating_unit').classList.add('d-none')  ;
+									document.querySelector('#has_an_operating_unit').classList.remove('d-none')  ;
 
-									input_Element_key.value = value ;
-									input_Element_key.checked = true ;
-									input_Element_key.setAttribute('data-'+key , value);
+									let input_Element_key = document.querySelector('input[name="'+key+'"]');
 
-									document.querySelector('#text_show_' + key).innerHTML = value ;
+										input_Element_key.value = value ;
+										input_Element_key.checked = true ;
+										input_Element_key.setAttribute('data-'+key , value);
 
-								// // ถ้า KEY = vehicle_type
-								// let tag_i_vehicle_type = document.querySelector('#tag_i_vehicle_type');
-								// if (value === 'รถ') {
-								// 	tag_i_vehicle_type.setAttribute('class', "fa-solid fa-truck-medical");
-								// }else if(value === 'อากาศยาน'){
-								// 	tag_i_vehicle_type.setAttribute('class', "fa-sharp fa-solid fa-plane");
-								// }else if(value === 'เรือ ป.๑' || value === 'เรือ ป.๒' || value === 'เรือ ป.๓' || value === 'เรือประเภทอื่นๆ' ){
-								// 	tag_i_vehicle_type.setAttribute('class', "fa-duotone fa-ship");
-								// }
+										document.querySelector('#text_show_' + key).innerHTML = value ;
 
-								// ถ้า KEY = operating_suit_type
-								let color_operating ;
-								if (value === "FR") {
-									color_operating = "success" ;
-								}else if(value === "BLS"){
-									color_operating = "warning" ;
-								}else if(value === "ILS" || value === "ALS"){
-									color_operating = "danger" ;
+									// ถ้า KEY = operating_suit_type
+									let color_operating ;
+									if (value === "FR") {
+										color_operating = "success" ;
+									}else if(value === "BLS"){
+										color_operating = "warning" ;
+									}else if(value === "ILS" || value === "ALS"){
+										color_operating = "danger" ;
+									}
+
+									input_Element_key.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
 								}
-
-								input_Element_key.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
-								
 
 				  			}else if (key === 'lat' || key === 'lng') {
 				  				// console.log("สั่งบันทึก lat lng >> " + key)
