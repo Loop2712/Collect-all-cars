@@ -2363,7 +2363,7 @@
             div_body_help.innerHTML = "" ;
 
         document.querySelector('#data_help').classList.add('d-none');
-        let all_time = 0 ;
+        let all_time = [] ;
         let count_all_time = 0 ;
 
         fetch("{{ url('/') }}/api/data_help_center?" + new URLSearchParams(data_arr))
@@ -2456,9 +2456,8 @@
                                     // console.log('Time_Seconds >> ' + Time_Seconds);
 
                                 let min_1_to_sec = zone1_Time_min * 60 ;
-                                all_time = all_time + min_1_to_sec + zone1_Time_Seconds ;
 
-                                all_time = all_time / count_all_time ;
+                                all_time[result[xxi]['id']] = min_1_to_sec + zone1_Time_Seconds ;
 
                             }
 
@@ -2468,10 +2467,18 @@
 
                     // ---------------------- TIME ALL ---------------------- //
 
+                    let sum_time_total_help = 0 ;
+
+                    all_time.forEach(
+                        element => sum_time_total_help += element
+                    );
+
+                    let sum_time_total_help = Math.floor(sum_time_total_help / count_all_time);
+
                     // Convert seconds to hours, minutes, and seconds
-                    let hours_all_time = Math.floor(all_time / 3600);
-                    let minutes_all_time = Math.floor((all_time % 3600) / 60);
-                    let seconds_all_time = Math.floor(all_time % 60);
+                    let hours_all_time = Math.floor(sum_time_total_help / 3600);
+                    let minutes_all_time = Math.floor((sum_time_total_help % 3600) / 60);
+                    let seconds_all_time = Math.floor(sum_time_total_help % 60);
 
                     // Create a string to display the time in the desired format
                     let text_all_time = '';
@@ -2488,11 +2495,11 @@
                      // ตรวจสอบว่าเกิน 8 หรือ 12 หรือไม่
                     let bg_average ;
 
-                    if(all_time < 480){
+                    if(sum_time_total_help < 480){
                         bg_average = "bg-gradient-Ohhappiness";
-                    }else if(all_time >= 480 && all_time < 720){
+                    }else if(sum_time_total_help >= 480 && sum_time_total_help < 720){
                         bg_average = "bg-gradient-kyoto";
-                    }else if(all_time >= 720){
+                    }else if(sum_time_total_help >= 720){
                         bg_average = "bg-gradient-burning";
                     }
 
