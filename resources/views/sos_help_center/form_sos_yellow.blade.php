@@ -152,12 +152,6 @@
 							<span class="tooltip">เพิ่มเติม</span>
 						</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link danger position div_detail page_number" href="#step-10" onclick="go_to_form_data('10');"  id="form_data_10" page="number_9"> 
-							<strong>10</strong>
-							<span class="tooltip">หลอก</span>
-						</a>
-					</li>
 					<!-- <li class="nav-item">
 						<button class="btn btn-info text-white"style="position: relative;z-index: 999999;border-radius: 50px;" id="next-btn-form-yellow" type="button"><i class="fa-solid fa-chevron-right"></i></button>
 
@@ -2195,8 +2189,6 @@
 							</div>
 						</div>
 					</div>
-					<div id="step-10" class="tab-pane d-none" role="tabpanel" aria-labelledby="step-10">
-					</div>
 				</div>
 				<div class="row  m-0 p-0">
 					<div class="d-flex justify-content-end my-3 float-end">
@@ -2997,51 +2989,26 @@
 		if (time_command.value){
 			document.querySelector('#div_time_command').classList.remove('d-none');
 			document.querySelector('#title_time_command').innerHTML = time_command.value;
-
-			document.querySelector('#form_data_10').click();
-			setTimeout(function() {
-		        document.querySelector('#form_data_5').click();
-	        }, 500);
 		}
 		if (time_go_to_help.value){
 			document.querySelector('#div_time_go_to_help').classList.remove('d-none');
 			document.querySelector('#title_time_go_to_help').innerHTML = time_go_to_help.value;
-			document.querySelector('#form_data_10').click();
-			setTimeout(function() {
-		        document.querySelector('#form_data_5').click();
-	        }, 500);
 		}
 		if (time_to_the_scene.value){
 			document.querySelector('#div_time_to_the_scene').classList.remove('d-none');
 			document.querySelector('#title_time_to_the_scene').innerHTML = time_to_the_scene.value;
-			document.querySelector('#form_data_10').click();
-			setTimeout(function() {
-		        document.querySelector('#form_data_5').click();
-	        }, 500);
 		}
 		if (time_leave_the_scene.value){
 			document.querySelector('#div_time_leave_the_scene').classList.remove('d-none');
 			document.querySelector('#title_time_leave_the_scene').innerHTML = time_leave_the_scene.value;
-			document.querySelector('#form_data_10').click();
-			setTimeout(function() {
-		        document.querySelector('#form_data_5').click();
-	        }, 500);
 		}
 		if (time_hospital.value){
 			document.querySelector('#div_time_hospital').classList.remove('d-none');
 			document.querySelector('#title_time_hospital').innerHTML = time_hospital.value;
-			document.querySelector('#form_data_10').click();
-			setTimeout(function() {
-		        document.querySelector('#form_data_5').click();
-	        }, 500);
 		}
 		if (time_to_the_operating_base.value){
 			document.querySelector('#div_time_to_the_operating_base').classList.remove('d-none');
 			document.querySelector('#title_time_to_the_operating_base').innerHTML = time_to_the_operating_base.value;
-			document.querySelector('#form_data_10').click();
-			setTimeout(function() {
-		        document.querySelector('#form_data_5').click();
-	        }, 500);
 		}
 		if (time_leave_the_scene.value || time_hospital.value){
 			document.querySelector('#sum_time_and_distance').classList.remove('d-none');
