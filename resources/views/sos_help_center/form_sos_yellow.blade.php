@@ -1238,7 +1238,7 @@
 							<!-- /// Timelime /// -->
 							<div class="col-7 timeline-offilcer">
 
-								<div id="div_create_sos" class="timeline-detail-offilcer mt-0 d-">
+								<div id="div_create_sos" class="timeline-detail-offilcer mt-0">
 									<span id="time_title_create">
 										@if(!empty($data_form_yellow->time_create_sos))
 											{{ (\Carbon\Carbon::parse($data_form_yellow->time_create_sos))->format('h:i น.') }}
@@ -1252,7 +1252,7 @@
 									</span>
 								</div>
 
-								<div id="div_time_command" class="timeline-detail-offilcer d-block d-">
+								<div id="div_time_command" class="timeline-detail-offilcer d-block d-none">
 									<div class="d-flex align-items-center">
 										<span id="title_time_command">
 											@if(!empty($data_form_yellow->time_command))
@@ -1280,7 +1280,7 @@
 									</ul>
 								</div>
 
-								<div id="div_time_go_to_help" class="timeline-detail-offilcer d-block d-">
+								<div id="div_time_go_to_help" class="timeline-detail-offilcer d-block d-none">
 									<div class="d-flex align-items-center">
 										<span id="title_time_go_to_help">
 											@if(!empty($data_form_yellow->time_go_to_help))
@@ -1300,7 +1300,7 @@
 												เลขกิโลเมตร
 												<span class="timeline-green m-0 p-0" style="left: 0 !important;"> <b> ออกจากฐาน </b> </span> 
 												&nbsp;:&nbsp;
-												<b class="timeline-red">
+												<b class="timeline-red" id="show_kilometer_go_to_help">
 													{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : 'ไม่ได้ระบุ'}} กม.
 												</b>
 												<input class="form-control d-none" type="number" min="0" name="km_create_sos_to_go_to_help" id="km_create_sos_to_go_to_help" value="{{ isset($data_form_yellow->km_create_sos_to_go_to_help) ? $data_form_yellow->km_create_sos_to_go_to_help : ''}}" onchange="distance_in_no5();" readonly>
@@ -1319,7 +1319,7 @@
 									</ul>
 								</div>
 
-								<div id="div_time_to_the_scene" class="timeline-detail-offilcer d-block d-">
+								<div id="div_time_to_the_scene" class="timeline-detail-offilcer d-block d-none">
 
 									<div class="d-flex align-items-center">
 										<span id="title_time_to_the_scene">
@@ -1340,7 +1340,9 @@
 												เลขกิโลเมตร
 												<span class="timeline-blue m-0 p-0" style="left: 0 !important;"> <b> ถึงที่เกิดเหตุ </b></span> 
 												&nbsp;:&nbsp;
-												<b class="timeline-red">{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : 'ไม่ได้ระบุ'}} กม.</b>
+												<b class="timeline-red" id="show_kilometer_the_scene">
+													{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : 'ไม่ได้ระบุ'}} กม.
+												</b>
 												<input class="form-control d-none" type="number"min="0" name="km_to_the_scene_to_leave_the_scene" id="km_to_the_scene_to_leave_the_scene" value="{{ isset($data_form_yellow->km_to_the_scene_to_leave_the_scene) ? $data_form_yellow->km_to_the_scene_to_leave_the_scene : ''}}" onchange="distance_in_no5();" readonly>
 											</span>
 										</li>
@@ -1367,7 +1369,7 @@
 									</ul>
 								</div>
 								
-								<div id="div_time_leave_the_scene" class="timeline-detail-offilcer d-block d-">
+								<div id="div_time_leave_the_scene" class="timeline-detail-offilcer d-block d-none">
 									<div class="d-flex align-items-center">
 										<span id="title_time_leave_the_scene">
 											@if(!empty($data_form_yellow->time_leave_the_scene))
@@ -1395,7 +1397,7 @@
 									</ul>
 								</div>
 
-								<div id="div_time_hospital" class="timeline-detail-offilcer d-block d-">
+								<div id="div_time_hospital" class="timeline-detail-offilcer d-block d-none">
 									<div class="d-flex align-items-center">
 										<span id="title_time_hospital">
 											@if(!empty($data_form_yellow->time_hospital))
@@ -1415,7 +1417,9 @@
 												เลขกิโลเมตร
 												<span class="timeline-brown m-0 p-0" style="left: 0 !important;"> <b>ถึงโรงพยาบาล</b></span> 
 												&nbsp;:&nbsp;
-												<b class="timeline-red">{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : 'ไม่ได้ระบุ'}} กม.</b>
+												<b class="timeline-red" id="show_kilometer_hospital">
+													{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : 'ไม่ได้ระบุ'}} กม.
+												</b>
 												<input class="form-control d-none"type="number" min="0" name="km_hospital" id="km_hospital" value="{{ isset($data_form_yellow->km_hospital) ? $data_form_yellow->km_hospital : ''}}" onchange="distance_in_no5();"readonly>
 											</span>
 										</li>
@@ -1442,7 +1446,7 @@
 									</ul>
 								</div>
 
-								<div id="div_time_to_the_operating_base" class="timeline-detail-offilcer d-block d-">
+								<div id="div_time_to_the_operating_base" class="timeline-detail-offilcer d-block d-none">
 									<div class="d-flex align-items-center">
 										<span id="title_time_to_the_operating_base">
 											@if(!empty($data_form_yellow->time_to_the_operating_base))
@@ -1462,7 +1466,9 @@
 												เลขกิโลเมตร
 												<span class="timeline-orange m-0 p-0" style="left: 0 !important;"> <b>ถึงฐาน</b></span> 
 												&nbsp;:&nbsp;
-												<b class="timeline-red">{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : 'ไม่ได้ระบุ'}} กม.</b>
+												<b class="timeline-red" id="show_kilometer_operating_base">
+													{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : 'ไม่ได้ระบุ'}} กม.
+												</b>
 												<input class="form-control d-none" type="number" min="0" name="km_operating_base" id="km_operating_base" value="{{ isset($data_form_yellow->km_operating_base) ? $data_form_yellow->km_operating_base : ''}}" onchange="distance_in_no5();" readonly>
 											</span>
 										</li>
@@ -1498,7 +1504,7 @@
 								</div>
 
 								<br><br>
-								<div id="sum_time_and_distance" class="d-">
+								<div id="sum_time_and_distance" class="d-none">
 									<span class="timeline-header m-0 p-0 " style="left: 0 !important;">
 										<b>รวม</b> ใช้เวลาในการช่วยเหลือ &nbsp;:&nbsp; <b class="timeline-red" id="time_total_help"></b> 
 									</span>
@@ -3326,18 +3332,22 @@
 		let km_create_sos_to_go_to_help = document.querySelector('#km_create_sos_to_go_to_help');
 		if (km_create_sos_to_go_to_help.value) {
 			num_km_1 = km_create_sos_to_go_to_help.value ;
+			document.querySelector('#show_kilometer_go_to_help').innerHTML = num_km_1 ;
 		}
 		let km_to_the_scene_to_leave_the_scene = document.querySelector('#km_to_the_scene_to_leave_the_scene');
 		if (km_to_the_scene_to_leave_the_scene.value) {
 			num_km_2 = km_to_the_scene_to_leave_the_scene.value ;
+			document.querySelector('#show_kilometer_the_scene').innerHTML = num_km_2 ;
 		}
 		let km_hospital = document.querySelector('#km_hospital');
 		if (km_hospital.value) {
 			num_km_3 = km_hospital.value ;
+			document.querySelector('#show_kilometer_hospital').innerHTML = num_km_3 ;
 		}
 		let km_operating_base = document.querySelector('#km_operating_base');
 		if (km_operating_base.value) {
 			num_km_4 = km_operating_base.value ;
+			document.querySelector('#show_kilometer_operating_base').innerHTML = num_km_4 ;
 		}
 
 		// ------------------------------- รวมระยะ ออกจากฐาน ถึง ที่เกิดเหตุ ---------------------------------------//
