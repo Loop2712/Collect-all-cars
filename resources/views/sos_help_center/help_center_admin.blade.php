@@ -2473,7 +2473,7 @@
                         element => sum_time_total_help += element
                     );
 
-                    let sum_time_total_help = Math.floor(sum_time_total_help / count_all_time);
+                    sum_time_total_help = Math.floor(sum_time_total_help / count_all_time);
 
                     // Convert seconds to hours, minutes, and seconds
                     let hours_all_time = Math.floor(sum_time_total_help / 3600);
