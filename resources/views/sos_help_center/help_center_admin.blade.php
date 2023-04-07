@@ -474,7 +474,34 @@
                     
             }
         }
+        .close{
+            animation: close 1s ease 0s 1 normal forwards;
+        }
+        @keyframes close {
+            0% {
+                opacity: 1;
+                transform: translateX(0);
+            }
 
+            100% {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            
+        }
+        .open{
+            animation: open 1s ease 0s 1 normal forwards;
+        }
+
+        @keyframes open {
+            0% {
+                transform: translateX(-100px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
 
 </style>
 
@@ -482,7 +509,7 @@
     <div class="item col-12">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-12 div-map">
-                <div class="sticky" id="div_map">
+                <div class="sticky open" id="div_map">
                     <div id="map" style="border-radius:25px"></div>
 
                     @if( Auth::user()->sub_organization == "ศูนย์ใหญ่")
@@ -519,7 +546,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="sticky main-shadow d-none" id="div_search">
+                <div class="sticky main-shadow d-none close" id="div_search">
                     <div class="card-search ">
                         <h5>ทั่วไป</h5>
                         <div class="row">
@@ -733,7 +760,7 @@
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </span>
                                 &nbsp;&nbsp;&nbsp;
-                                <button type="button" class="btn btn-primary" onclick="document.querySelector('#div_map').classList.toggle('d-none');document.querySelector('#div_search').classList.toggle('d-none');">
+                                <button type="button" class="btn btn-primary" onclick="swip_div_map_search()">
                                     <i class="fa-solid fa-filter-list"></i> ค้นหาขั้นสูง
                                 </button>
                             </div>
@@ -2640,5 +2667,23 @@
 
     }
 </script>
+<script>
+    function swip_div_map_search(){
+        let div_map = document.getElementById('div_map');
+        let div_search = document.getElementById('div_search');
 
+        div_map.classList.toggle("open"); 
+        div_map.classList.toggle("close");
+
+        div_search.classList.toggle("open"); 
+        div_search.classList.toggle("close");
+
+        setTimeout(() => {
+                document.querySelector('#div_map').classList.toggle('d-none');
+        document.querySelector('#div_search').classList.toggle('d-none');
+        }, 1000);
+        
+    }
+    
+</script>
 @endsection
