@@ -2516,7 +2516,15 @@
 
     }
 
+    var old_bg_average = "{{ $bg_average }}" ;
+
     function clear_search_data_help(){
+
+        let class_div_card_average = document.querySelector('#div_card_average').classList;
+            // console.log(class_div_card_average);
+        let class_num = parseInt(class_div_card_average.length) - 1 ;
+        document.querySelector('#div_card_average').classList.remove(class_div_card_average[class_num]);
+        document.querySelector('#div_card_average').classList.add(old_bg_average);
 
         document.querySelector('#search').value = "";
 
