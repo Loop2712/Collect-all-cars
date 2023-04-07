@@ -2466,48 +2466,63 @@
                     }
 
                     // ---------------------- TIME ALL ---------------------- //
+                    if(count_all_time != 0){
 
-                    let sum_time_total_help = 0 ;
+                        let sum_time_total_help = 0 ;
 
-                    all_time.forEach(
-                        element => sum_time_total_help += element
-                    );
+                        all_time.forEach(
+                            element => sum_time_total_help += element
+                        );
 
-                    sum_time_total_help = Math.floor(sum_time_total_help / count_all_time);
+                        sum_time_total_help = Math.floor(sum_time_total_help / count_all_time);
 
-                    // Convert seconds to hours, minutes, and seconds
-                    let hours_all_time = Math.floor(sum_time_total_help / 3600);
-                    let minutes_all_time = Math.floor((sum_time_total_help % 3600) / 60);
-                    let seconds_all_time = Math.floor(sum_time_total_help % 60);
+                        // Convert seconds to hours, minutes, and seconds
+                        let hours_all_time = Math.floor(sum_time_total_help / 3600);
+                        let minutes_all_time = Math.floor((sum_time_total_help % 3600) / 60);
+                        let seconds_all_time = Math.floor(sum_time_total_help % 60);
 
-                    // Create a string to display the time in the desired format
-                    let text_all_time = '';
-                    if (hours_all_time > 0) {
-                      text_all_time += `${hours_all_time} ชั่วโมง${hours_all_time > 1 ? '' : ''} `;
+                        // Create a string to display the time in the desired format
+                        let text_all_time = '';
+                        if (hours_all_time > 0) {
+                          text_all_time += `${hours_all_time} ชั่วโมง${hours_all_time > 1 ? '' : ''} `;
+                        }
+                        text_all_time += `${minutes_all_time} นาที${minutes_all_time > 1 ? '' : ''} `;
+                        text_all_time += `${seconds_all_time} วินาที${seconds_all_time > 1 ? '' : ''}`;
+
+                        document.querySelector('#span_count_data').innerHTML = result.length;
+                        document.querySelector('#span_min_average_per_case').innerHTML = text_all_time ;
+                        document.querySelector('#span_count_success_average').innerHTML = count_all_time ;
+
+                         // ตรวจสอบว่าเกิน 8 หรือ 12 หรือไม่
+                        let bg_average ;
+
+                        if(sum_time_total_help < 480){
+                            bg_average = "bg-gradient-Ohhappiness";
+                        }else if(sum_time_total_help >= 480 && sum_time_total_help < 720){
+                            bg_average = "bg-gradient-kyoto";
+                        }else if(sum_time_total_help >= 720){
+                            bg_average = "bg-gradient-burning";
+                        }
+
+                        let class_div_card_average = document.querySelector('#div_card_average').classList;
+                            // console.log(class_div_card_average);
+                        let class_num = parseInt(class_div_card_average.length) - 1 ;
+                        document.querySelector('#div_card_average').classList.remove(class_div_card_average[class_num]);
+                        document.querySelector('#div_card_average').classList.add(bg_average);
+
+                    }else{
+                        document.querySelector('#span_count_data').innerHTML = '';
+                        document.querySelector('#span_min_average_per_case').innerHTML = "ไม่มีข้อมูล" ;
+                        document.querySelector('#span_count_success_average').innerHTML = '' ;
+
+                        let class_div_card_average = document.querySelector('#div_card_average').classList;
+                            // console.log(class_div_card_average);
+                        let class_num = parseInt(class_div_card_average.length) - 1 ;
+                        document.querySelector('#div_card_average').classList.remove(class_div_card_average[class_num]);
+                        document.querySelector('#div_card_average').classList.add('bg-gradient-moonlit');
                     }
-                    text_all_time += `${minutes_all_time} นาที${minutes_all_time > 1 ? '' : ''} `;
-                    text_all_time += `${seconds_all_time} วินาที${seconds_all_time > 1 ? '' : ''}`;
+                    // ---------------------- END TIME ALL ---------------------- //
 
-                    document.querySelector('#span_count_data').innerHTML = result.length;
-                    document.querySelector('#span_min_average_per_case').innerHTML = text_all_time ;
-                    document.querySelector('#span_count_success_average').innerHTML = count_all_time ;
-
-                     // ตรวจสอบว่าเกิน 8 หรือ 12 หรือไม่
-                    let bg_average ;
-
-                    if(sum_time_total_help < 480){
-                        bg_average = "bg-gradient-Ohhappiness";
-                    }else if(sum_time_total_help >= 480 && sum_time_total_help < 720){
-                        bg_average = "bg-gradient-kyoto";
-                    }else if(sum_time_total_help >= 720){
-                        bg_average = "bg-gradient-burning";
-                    }
-
-                    let class_div_card_average = document.querySelector('#div_card_average').classList;
-                        // console.log(class_div_card_average);
-                    let class_num = parseInt(class_div_card_average.length) - 1 ;
-                    document.querySelector('#div_card_average').classList.remove(class_div_card_average[class_num]);
-                    document.querySelector('#div_card_average').classList.add(bg_average);
                 }   
 
                 
