@@ -1254,7 +1254,7 @@
 
 								<div id="div_time_command" class="timeline-detail-offilcer d-block d-">
 									<div class="d-flex align-items-center">
-										<span>
+										<span id="title_time_command">
 											@if(!empty($data_form_yellow->time_command))
 												{{ (\Carbon\Carbon::parse($data_form_yellow->time_command))->format('h:i น.') }}
 											@else
@@ -1282,7 +1282,7 @@
 
 								<div id="div_time_go_to_help" class="timeline-detail-offilcer d-block d-">
 									<div class="d-flex align-items-center">
-										<span>
+										<span id="title_time_go_to_help">
 											@if(!empty($data_form_yellow->time_go_to_help))
 												{{ (\Carbon\Carbon::parse($data_form_yellow->time_go_to_help))->format('h:i น.') }}
 											@else
@@ -1322,7 +1322,7 @@
 								<div id="div_time_to_the_scene" class="timeline-detail-offilcer d-block d-">
 
 									<div class="d-flex align-items-center">
-										<span>
+										<span id="title_time_to_the_scene">
 											@if(!empty($data_form_yellow->time_to_the_scene))
 												{{ (\Carbon\Carbon::parse($data_form_yellow->time_to_the_scene))->format('h:i น.') }}
 											@else
@@ -1369,7 +1369,7 @@
 								
 								<div id="div_time_leave_the_scene" class="timeline-detail-offilcer d-block d-">
 									<div class="d-flex align-items-center">
-										<span>
+										<span id="title_time_leave_the_scene">
 											@if(!empty($data_form_yellow->time_leave_the_scene))
 												{{(\Carbon\Carbon::parse($data_form_yellow->time_leave_the_scene))->format('h:i น.')}}
 											@else
@@ -1397,7 +1397,7 @@
 
 								<div id="div_time_hospital" class="timeline-detail-offilcer d-block d-">
 									<div class="d-flex align-items-center">
-										<span>
+										<span id="title_time_hospital">
 											@if(!empty($data_form_yellow->time_hospital))
 												{{ (\Carbon\Carbon::parse($data_form_yellow->time_hospital))->format('h:i น.') }}
 											@else
@@ -1444,7 +1444,7 @@
 
 								<div id="div_time_to_the_operating_base" class="timeline-detail-offilcer d-block d-">
 									<div class="d-flex align-items-center">
-										<span>
+										<span id="title_time_to_the_operating_base">
 											@if(!empty($data_form_yellow->time_to_the_operating_base))
 												{{ (\Carbon\Carbon::parse($data_form_yellow->time_to_the_operating_base))->format('h:i น.') }}
 											@else
@@ -2977,30 +2977,36 @@
 		let time_to_the_operating_base = document.querySelector('[name="time_to_the_operating_base"]');
 		// ------------------------------------------------------------------------------------------------//
 
-		// if (time_create_sos.value){
-		// 	document.querySelector('#div_create_sos').classList.remove('d-none');
-		// }
-		// if (time_command.value){
-		// 	document.querySelector('#div_time_command').classList.remove('d-none');
-		// }
-		// if (time_go_to_help.value){
-		// 	document.querySelector('#div_time_go_to_help').classList.remove('d-none');
-		// }
-		// if (time_to_the_scene.value){
-		// 	document.querySelector('#div_time_to_the_scene').classList.remove('d-none');
-		// }
-		// if (time_leave_the_scene.value){
-		// 	document.querySelector('#div_time_leave_the_scene').classList.remove('d-none');
-		// }
-		// if (time_hospital.value){
-		// 	document.querySelector('#div_time_hospital').classList.remove('d-none');
-		// }
-		// if (time_to_the_operating_base.value){
-		// 	document.querySelector('#div_time_to_the_operating_base').classList.remove('d-none');
-		// }
-		// if (time_leave_the_scene.value || time_hospital.value){
-		// 	document.querySelector('#sum_time_and_distance').classList.remove('d-none');
-		// }
+		if (time_create_sos.value){
+			document.querySelector('#div_create_sos').classList.remove('d-none');
+		}
+		if (time_command.value){
+			document.querySelector('#div_time_command').classList.remove('d-none');
+			document.querySelector('#title_time_command').innerHTML = time_command.value;
+		}
+		if (time_go_to_help.value){
+			document.querySelector('#div_time_go_to_help').classList.remove('d-none');
+			document.querySelector('#title_time_go_to_help').innerHTML = time_go_to_help.value;
+		}
+		if (time_to_the_scene.value){
+			document.querySelector('#div_time_to_the_scene').classList.remove('d-none');
+			document.querySelector('#title_time_to_the_scene').innerHTML = time_to_the_scene.value;
+		}
+		if (time_leave_the_scene.value){
+			document.querySelector('#div_time_leave_the_scene').classList.remove('d-none');
+			document.querySelector('#title_time_leave_the_scene').innerHTML = time_leave_the_scene.value;
+		}
+		if (time_hospital.value){
+			document.querySelector('#div_time_hospital').classList.remove('d-none');
+			document.querySelector('#title_time_hospital').innerHTML = time_hospital.value;
+		}
+		if (time_to_the_operating_base.value){
+			document.querySelector('#div_time_to_the_operating_base').classList.remove('d-none');
+			document.querySelector('#title_time_to_the_operating_base').innerHTML = time_to_the_operating_base.value;
+		}
+		if (time_leave_the_scene.value || time_hospital.value){
+			document.querySelector('#sum_time_and_distance').classList.remove('d-none');
+		}
 
 		// ------------------------------------------------------------------------------------------------//
 
