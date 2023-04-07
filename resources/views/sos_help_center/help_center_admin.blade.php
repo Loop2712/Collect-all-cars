@@ -1081,7 +1081,7 @@
                     <!-- เวลาโดยเฉลี่ย -->
                     @php
                         $count_success = 0 ;
-                        $all_time = 0 ;
+                        $all_time = [] ;
 
                         foreach($data_sos as $sos){
 
@@ -1122,19 +1122,22 @@
                                 $zone1_Time_Seconds = $zone1_TotalSeconds - ($zone1_Time_min * 60);
 
                                 $min_1_to_sec = $zone1_Time_min * 60 ;
-                                $all_time = $all_time + $min_1_to_sec + $zone1_Time_Seconds ;
+                                $all_time[$count_success] = $min_1_to_sec + $zone1_Time_Seconds ;
 
-                                $all_time = $all_time / $count_success ;
-                                
                             }   
                             
 
                         }
 
+                        $sum_time_total_help = 0 ;
 
-                        $hours_all_time = floor($all_time / 3600);
-                        $minutes_all_time = floor(($all_time % 3600) / 60);
-                        $seconds_all_time = floor($all_time % 60);
+                        foreach($all_time as $element){
+                            $sum_time_total_help += $element ;
+                        }
+
+                        $hours_all_time = floor($sum_time_total_help / 3600);
+                        $minutes_all_time = floor(($sum_time_total_help % 3600) / 60);
+                        $seconds_all_time = floor($sum_time_total_help % 60);
 
                         $text_all_time = '';
                         if ($hours_all_time > 0) {
@@ -1147,11 +1150,11 @@
 
                         // ตรวจสอบว่าเกิน 8 หรือ 12 หรือไม่
 
-                        if($all_time < 480){
+                        if($sum_time_total_help < 480){
                             $bg_average = "bg-gradient-Ohhappiness";
-                        }else if($all_time >= 480 && $all_time < 720){
+                        }else if($sum_time_total_help >= 480 && $sum_time_total_help < 720){
                             $bg_average = "bg-gradient-kyoto";
-                        }else if($all_time >= 720){
+                        }else if($sum_time_total_help >= 720){
                             $bg_average = "bg-gradient-burning";
                         }
                         
