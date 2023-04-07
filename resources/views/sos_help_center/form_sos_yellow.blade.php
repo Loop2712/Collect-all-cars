@@ -3285,6 +3285,16 @@
 			element => sum_time_total_help += element
 		);
 
+		let class_sum_time_total_help ;
+
+		if(sum_time_total_help < 480){
+            class_sum_time_total_help = "text-success";
+        }else if(sum_time_total_help >= 480 && sum_time_total_help < 720){
+            class_sum_time_total_help = "text-warning";
+        }else if(sum_time_total_help >= 720){
+            class_sum_time_total_help = "text-danger";
+        }
+
 		let hours_time_total_help = Math.floor(sum_time_total_help / 3600);
 		let minutes_time_total_help = Math.floor((sum_time_total_help % 3600) / 60);
 		let seconds_time_total_help = Math.floor(sum_time_total_help % 60);
@@ -3298,6 +3308,7 @@
 		text_time_total_help += `${seconds_time_total_help} วินาที${seconds_time_total_help > 1 ? '' : ''}`;
 
 		document.querySelector('#time_total_help').innerHTML = text_time_total_help ;
+		document.querySelector('#time_total_help').classList.add(class_sum_time_total_help);
 		// ---------------------- END TIME time_total_help ---------------------- //
 
 
