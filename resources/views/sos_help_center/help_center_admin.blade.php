@@ -1135,7 +1135,11 @@
                             $sum_time_total_help += $element ;
                         }
 
-                        $sum_time_total_help = $sum_time_total_help / $count_success ;
+                        if($count_success != 0){
+                            $sum_time_total_help = $sum_time_total_help / $count_success ;
+                        }else{
+                            $sum_time_total_help = $sum_time_total_help / 1 ;
+                        }
 
                         $hours_all_time = floor($sum_time_total_help / 3600);
                         $minutes_all_time = floor(($sum_time_total_help % 3600) / 60);

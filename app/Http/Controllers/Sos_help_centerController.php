@@ -1745,4 +1745,17 @@ class Sos_help_centerController extends Controller
 
     }
 
+    function sos_1669_command_by($sos_id , $admin_id){
+
+        DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $sos_id],
+                ])
+            ->update([
+                    'command_by' => $admin_id,
+                ]);
+
+        return "OK" ;
+    }
+
 }

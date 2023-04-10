@@ -1926,7 +1926,7 @@
             image: photo_sos,
 		    imageWidth: 200,
 		    maxWidth: '50rem',
-            timeout: 10000,
+            timeout: 50000,
             title: 'การขอความช่วยเหลือใหม่ !!',
             titleColor: 'red',
 		    titleSize: '35',
@@ -1947,9 +1947,9 @@
 		    theme: 'light', // dark
             buttons: [
             [
-                '<span class="h3" style="margin-right:20px;"><button class="btn btn-info text-white"><i class="fa-solid fa-file-spreadsheet"></i> ดูข้อมูล</button></span>',
+                '<span class="h3" style="margin-right:20px;"><button class="btn btn-info text-white"><i class="fa-solid fa-file-spreadsheet")"></i> รับเคส</button></span>',
                 function (instance, toast) {
-                	click_tag_a_new_sos1669(result['id']);
+                	sos_1669_command_by("{{ Auth::user()->id }}" , result['id']);
                   	instance.hide({
                     	transitionOut: 'fadeOutUp'
                   	}, toast);
@@ -1965,9 +1965,17 @@
 	            }
 	        ],
           	[
-	            '<span class="h3"><button class="btn btn-success"><i class="fa-solid fa-phone"></i> โทร</button></span',
+	            '<span class="h3" style="margin-right:20px;"><button class="btn btn-success"><i class="fa-solid fa-phone"></i> โทร</button></span',
 	            function (instance, toast) {
 	            	click_tag_a_tel_user_1669(result['phone_user'])
+	                instance.hide({
+	                transitionOut: 'fadeOutUp'
+	              }, toast);
+	            }
+	        ],
+	        [
+	            '<span class="h3"><button class="btn btn-secondary"><i class="fa-solid fa-video"></i> video call (soon)</button></span',
+	            function (instance, toast) {
 	                instance.hide({
 	                transitionOut: 'fadeOutUp'
 	              }, toast);
@@ -2055,6 +2063,22 @@
 	    let span_count_data = document.querySelector('#span_count_data').textContent;
 	    // console.log(span_count_data);
 	    document.querySelector('#span_count_data').innerHTML = parseFloat(span_count_data) + 1 ;
+
+    }
+
+    function sos_1669_command_by(admin_id , sos_id){
+    	console.log('command_by >> ' + admin_id);
+    	console.log('sos_id >> ' + sos_id);
+
+    	fetch("{{ url('/') }}/api/sos_1669_command_by" + "/" + sos_id + "/" + admin_id)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                if (result == "OK") {
+    				click_tag_a_new_sos1669(sos_id);
+                }
+
+            });
 
     }
 
