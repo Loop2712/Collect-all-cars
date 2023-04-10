@@ -1423,6 +1423,14 @@
         // console.log("operating_unit_id >> " + operating_unit_id);
         // console.log("user_id >> " + user_id);
 
+        let admin_id = "{{ Auth::user()->id }}" ;
+
+        fetch("{{ url('/') }}/api/sos_1669_command_by" + "/" + sos_id + "/" + admin_id)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+            });
+
         fetch("{{ url('/') }}/api/send_data_sos_to_operating_unit" + "/" + sos_id + "/" + operating_unit_id + "/" + user_id + "/" + distance)
             .then(response => response.text())
             .then(result => {
