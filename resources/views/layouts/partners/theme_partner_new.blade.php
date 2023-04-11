@@ -2003,7 +2003,7 @@
             image: photo_sos,
 		    imageWidth: 200,
 		    maxWidth: '50rem',
-            timeout: 100000,
+            timeout: 10000,
             title: text_title,
             titleColor: 'red',
 		    titleSize: '35',
