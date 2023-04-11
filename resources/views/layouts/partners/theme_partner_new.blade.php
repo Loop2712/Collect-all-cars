@@ -166,7 +166,7 @@
 		  	animation-duration: 10s;
 		  	animation-timing-function: linear;
 		  	animation-iteration-count: infinite;
-		  	background-image: url("https://www.viicheck.com/img/icon/sos_warning.svg");
+		  	background-image: url("https://www.viicheck.com/img/icon/sos_warning.gif") !important;
 		}
 
 		@keyframes change-bordercolors {
