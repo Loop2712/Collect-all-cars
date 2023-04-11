@@ -159,6 +159,30 @@
 		  100% {border-color: red;}
 		}
 
+		.iziToast_forward {
+		  	border: 10px solid yellow;
+		  	animation: change-bordercolors;
+		  	animation-play-state: running;
+		  	animation-duration: 10s;
+		  	animation-timing-function: linear;
+		  	animation-iteration-count: infinite;
+		  	background-image: url("https://www.viicheck.com/img/icon/sos_warning.svg");
+		}
+
+		@keyframes change-bordercolors {
+		  0% { border-color: yellow; }
+		  10% { border-color: red; }
+		  20% { border-color: yellow; }
+		  30% { border-color: red; }
+		  40% { border-color: yellow; }
+		  50% { border-color: red; }
+		  60% { border-color: yellow; }
+		  70% { border-color: red; }
+		  80% { border-color: yellow; }
+		  90% { border-color: red; }
+		  100% { border-color: yellow; }
+		}
+
 	</style>
 </head>
 
@@ -1910,7 +1934,7 @@
 
 	function alet_new_sos_1669(result) {
 
-        // console.log(result);
+        console.log(result);
 		// console.log(result['name_user']);
         // console.log(result['phone_user']);
         // console.log(result['photo_sos']);
@@ -1922,21 +1946,37 @@
         	photo_sos = "https://www.viicheck.com/img/stickerline/PNG/21.png" ;
         }
 
+        let text_title = '';
+        let text_message = '';
+
+        if (result['forward_operation_from']){
+        	text_title = 'การส่งต่อหน่วยปฏิบัติการ' ;
+        	text_message = '<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
+		            			'ชื่อผู้ขอความช่วยเหลือ : '+ result['name_user'] +
+		            		'</p>'+
+		            		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">'+
+		            			'เบอร์โทร : '+ result['phone_user'] +
+		            		'</p>' ;
+        }else{
+        	text_title = "การขอความช่วยเหลือใหม่ !!" ;
+        	text_message = '<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
+		            			'ชื่อผู้ขอความช่วยเหลือ : '+ result['name_user'] +
+		            		'</p>'+
+		            		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">'+
+		            			'เบอร์โทร : '+ result['phone_user'] +
+		            		'</p>' ;
+        }
+
         iziToast.show({
             image: photo_sos,
 		    imageWidth: 200,
 		    maxWidth: '50rem',
-            timeout: 50000,
-            title: 'การขอความช่วยเหลือใหม่ !!',
+            timeout: 100000,
+            title: text_title,
             titleColor: 'red',
 		    titleSize: '35',
 		    titleLineHeight: '50',
-            message: '<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
-            			'ชื่อผู้ขอความช่วยเหลือ : '+ result['name_user'] +
-            		'</p>'+
-            		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">'+
-            			'เบอร์โทร : '+ result['phone_user'] +
-            		'</p>',
+            message: text_message,
             messageSize: '20',
             messageLineHeight: '35',
             position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
@@ -1947,7 +1987,7 @@
 		    theme: 'light', // dark
             buttons: [
             [
-                '<span class="h3" style="margin-right:20px;"><button class="btn btn-info text-white"><i class="fa-solid fa-file-spreadsheet")"></i> รับเคส</button></span>',
+                '<span class="h3" style="margin-right:20px;"><button class="btn btn-info text-white"><i class="fa-solid fa-radar fa-beat-fade text-danger"></i> รับเคส</button></span>',
                 function (instance, toast) {
                 	sos_1669_command_by("{{ Auth::user()->id }}" , result['id']);
                   	instance.hide({
@@ -1998,6 +2038,14 @@
 					});
 
 				let iziToast_opened = document.querySelector('.iziToast');
+
+				if (result['forward_operation_from']){
+					// let iziToast_capsule = document.querySelector('.iziToast-body');
+					let divElements_opened = document.querySelector('.iziToast-cover');
+						divElements_opened.classList.add('iziToast_forward');
+		        }
+				
+
 				let bg_color = tag_progressbar.querySelector('.bg-color-progressbar');
 
 				iziToast_opened.addEventListener('mouseenter', () => {
@@ -2009,7 +2057,7 @@
 				});
 
                 let audio_alet_new_sos_1669 = new Audio("{{ asset('sound/Alarm Clock.mp3') }}");
-                    audio_alet_new_sos_1669.play();
+                    // audio_alet_new_sos_1669.play();
             }
         
         });
@@ -2086,7 +2134,7 @@
 
     	let result = [] ;
 
-    	result['id'] = "1" ;
+    	result['id'] = "2" ;
     	result['lat'] = "13.1515" ;
     	result['lng'] = "100.15153" ;
     	result['name_user'] = "BBENZ" ;
@@ -2103,6 +2151,7 @@
         result['idc'] = 'เขียว(ไม่รุนแรง)' ;
         result['rc'] = 'ดำ(รับบริการสาธารณสุขอื่น)' ;
         result['rc_black_text'] = 'เมารถ' ;
+        result['forward_operation_from'] = '1' ;
 
         alet_new_sos_1669(result);
     }
