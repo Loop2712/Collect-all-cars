@@ -126,15 +126,20 @@ class Sos_help_centerController extends Controller
     public function edit($id)
     {
         $sos_help_center = Sos_help_center::findOrFail($id);
+
+        $data_forword_form = Sos_help_center::where('id',$sos_help_center->forward_operation_from)->first();
+
+        $data_forword_to = Sos_help_center::where('id',$sos_help_center->forward_operation_to)->first();
+
+
         $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id',$id)->first();
 
         $all_provinces = DB::table('districts')
-            ->where('province' , '!=' , null)
-            ->groupBy('province')
             ->orderBy('province' , 'ASC')
             ->get();
 
         return view('sos_help_center.edit', compact('sos_help_center','all_provinces','data_form_yellow'));
+        return view('sos_help_center.edit', compact('data_forword_form', 'data_forword_to' , 'sos_help_center','all_provinces','data_form_yellow'));
     }
 
     /**

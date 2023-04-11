@@ -389,7 +389,7 @@
 						border-radius: 50rem;
 						position: absolute;
 						top: 1.8rem;
-						left: calc(4.6rem - 1px);
+						left: calc(4.3rem - 1px);
 						background-color: #e9ecef;
 						
 					}

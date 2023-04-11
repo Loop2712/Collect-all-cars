@@ -802,9 +802,121 @@ feather.replace();
         </div>
     </div>
 </div>
+<style>
+   .forword-card{
+    background-color: #db2d2e;
+   }
+
+.forword-header {
+  display: flex;
+  align-items: center;
+  grid-gap: 1rem;
+  gap: 1rem;
+}
+
+.forword-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: #fff;
+  padding: 0.5rem;
+  color: #db2d2e;
+}
+
+.forword-icon svg {
+  height: 1rem;
+  width: 1rem;
+}
+
+.forword-alert {
+  font-weight: 600;
+  font-family: 'Mitr', sans-serif;
+    font-size: 1rem;
+  color: #fff;
+  margin: 0;
+}
+
+.forword-message {
+  margin-top: 1rem;
+  color: #fff;
+}
+
+.forword-actions {
+  margin-top: 1rem;
+}
+
+.forword-actions a {
+  text-decoration: none;
+}
+
+.read-forword {
+  display: inline-block;
+  border-radius: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+}
+
+.read-forword {
+  background-color: #fff;
+  color: #db2d2e;
+}
+.read-forword:hover {
+  background-color: #e6e7e9;
+  color: #db2d2e;
+}
+</style>
 <div class="row">
+    
     <div class="col-12 col-md-3 col-lg-3">
         <div class="sticky">
+            @if(!empty($sos_help_center->forward_operation_from) or ($sos_help_center->forward_operation_to))
+            <div class="card forword-card radius-10 p-3">
+                <div class="forword-header">
+                    <span class="forword-icon">
+                        <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" fill-rule="evenodd"></path>
+                        </svg>
+                    </span>
+                    <p class="forword-alert">เคสนี้มีการส่งต่อ!</p>
+                </div>
+
+                <p class="forword-message">
+                    @if(!empty($sos_help_center->forward_operation_from))
+                        รหัสเคสนี้ถูกส่งต่อมาจาก <br><b>{{$data_forword_form->operating_code }}</b>
+                    @endif
+                    
+                    @if(!empty($sos_help_center->forward_operation_to))
+                        รหัสเคสนี้ถูกส่งต่อไปยัง <br><b>{{$data_forword_to->operating_code }}</b>
+                    @endif
+                </p>
+
+                <div class="forword-actions">
+                    @if(!empty($sos_help_center->forward_operation_from))
+                        <a class="read-forword" onmouseover="add_animation_icon()" onmouseout="add_animation_icon()" href="{{ url('/sos_help_center/' . $data_forword_form->id . '/edit') }}">
+                            <i class="fa-regular fa-message-arrow-up-right"></i> ดูเคสที่ส่งมา
+                        </a>
+                    @endif
+                    
+                    @if(!empty($sos_help_center->forward_operation_to))
+                        <a class="read-forword" onmouseover="add_animation_icon()" onmouseout="add_animation_icon()" href="{{ url('/sos_help_center/' . $data_forword_to->id . '/edit') }}">
+                            <i class="fa-regular fa-message-arrow-up-right"></i> ดูเคสที่ส่งต่อ
+                        </a>
+                    @endif
+                </div>
+            </div>
+                
+            <script>
+                    function add_animation_icon(){
+                        document.querySelector('.fa-message-arrow-up-right').classList.toggle('fa-bounce')
+                    }
+            </script>
+            @endif
             <div class="card radius-10 p-3">
                 <h3><b>ข้อมูลผู้แจ้งเหตุ</b></h3>
                 <span>
