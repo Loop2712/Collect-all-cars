@@ -803,8 +803,11 @@ feather.replace();
     </div>
 </div>
 <style>
-   .forword-card{
+   .forword-card-danger{
     background-color: #db2d2e;
+   }
+   .forword-card-info{
+    background-color: #0dcaf0;
    }
 
 .forword-header {
@@ -825,7 +828,7 @@ feather.replace();
   color: #db2d2e;
 }
 
-.forword-icon svg {
+.forword-icon i {
   height: 1rem;
   width: 1rem;
 }
@@ -876,36 +879,41 @@ feather.replace();
     <div class="col-12 col-md-3 col-lg-3">
         <div class="sticky">
             @if(!empty($sos_help_center->forward_operation_from) or ($sos_help_center->forward_operation_to))
-            <div class="card forword-card radius-10 p-3">
+            @php
+              if( !empty($sos_help_center->forward_operation_from) ){
+                $card_color = "danger";
+              }else{
+                $card_color = "info";
+              }
+            @endphp
+            <div class="card forword-card-{{ $card_color }} radius-10 p-3">
                 <div class="forword-header">
                     <span class="forword-icon">
-                        <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path clip-rule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" fill-rule="evenodd"></path>
-                        </svg>
+                        <i class="fa-solid fa-bullhorn fa-beat text-{{ $card_color }}"></i>
                     </span>
-                    <p class="forword-alert">เคสนี้มีการส่งต่อ!</p>
+                    <p class="forword-alert">ปฏิบัติการนี้มีการส่งต่อ!</p>
                 </div>
 
                 <p class="forword-message">
                     @if(!empty($sos_help_center->forward_operation_from))
-                        รหัสเคสนี้ถูกส่งต่อมาจาก <br><b>{{$data_forword_form->operating_code }}</b>
+                        รหัสปฏิบัติการนี้ถูกส่งต่อมาจาก <br><b>{{$data_forword_form->operating_code }}</b>
                     @endif
                     
                     @if(!empty($sos_help_center->forward_operation_to))
-                        รหัสเคสนี้ถูกส่งต่อไปยัง <br><b>{{$data_forword_to->operating_code }}</b>
+                        รหัสปฏิบัติการนี้ถูกส่งต่อไปยัง <br><b>{{$data_forword_to->operating_code }}</b>
                     @endif
                 </p>
 
                 <div class="forword-actions">
                     @if(!empty($sos_help_center->forward_operation_from))
-                        <a class="read-forword" onmouseover="add_animation_icon()" onmouseout="add_animation_icon()" href="{{ url('/sos_help_center/' . $data_forword_form->id . '/edit') }}">
-                            <i class="fa-regular fa-message-arrow-up-right"></i> ดูเคสที่ส่งมา
+                        <a class="read-forword text-{{ $card_color }}" onmouseover="add_animation_icon()" onmouseout="add_animation_icon()" href="{{ url('/sos_help_center/' . $data_forword_form->id . '/edit') }}">
+                            <i class="fa-regular fa-message-arrow-up-right text-{{ $card_color }}"></i> ดูปฏิบัติการที่ส่งมา
                         </a>
                     @endif
                     
                     @if(!empty($sos_help_center->forward_operation_to))
-                        <a class="read-forword" onmouseover="add_animation_icon()" onmouseout="add_animation_icon()" href="{{ url('/sos_help_center/' . $data_forword_to->id . '/edit') }}">
-                            <i class="fa-regular fa-message-arrow-up-right"></i> ดูเคสที่ส่งต่อ
+                        <a class="read-forword text-{{ $card_color }}" onmouseover="add_animation_icon()" onmouseout="add_animation_icon()" href="{{ url('/sos_help_center/' . $data_forword_to->id . '/edit') }}">
+                            <i class="fa-regular fa-message-arrow-up-right text-{{ $card_color }}"></i> ดูปฏิบัติการที่ส่งต่อ
                         </a>
                     @endif
                 </div>

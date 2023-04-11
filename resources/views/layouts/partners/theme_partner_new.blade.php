@@ -1934,7 +1934,7 @@
 
 	function alet_new_sos_1669(result) {
 
-        console.log(result);
+        // console.log(result);
 		// console.log(result['name_user']);
         // console.log(result['phone_user']);
         // console.log(result['photo_sos']);
@@ -1948,15 +1948,47 @@
 
         let text_title = '';
         let text_message = '';
+        
 
         if (result['forward_operation_from']){
-        	text_title = 'การส่งต่อหน่วยปฏิบัติการ' ;
-        	text_message = '<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
-		            			'ชื่อผู้ขอความช่วยเหลือ : '+ result['name_user'] +
-		            		'</p>'+
-		            		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">'+
-		            			'เบอร์โทร : '+ result['phone_user'] +
-		            		'</p>' ;
+        	
+            let old_operating_code = '';
+	    	let old_rc = '';
+	    	let class_old_rc = '';
+            
+            old_operating_code = result['old_operating_code'];
+			old_rc = result['old_rc'];
+
+			if (old_rc == "แดง(วิกฤติ)"){
+				class_old_rc = 'text-danger';
+			}
+			if (old_rc == "เหลือง(เร่งด่วน)"){
+				class_old_rc = 'text-warning';
+			}
+			if (old_rc == "เขียว(ไม่รุนแรง)"){
+				class_old_rc = 'text-success';
+			}
+			if (old_rc == "ขาว(ทั่วไป)"){
+				class_old_rc = 'text-info';
+			}
+			if (old_rc == "ดำ(รับบริการสาธารณสุขอื่น)"){
+				class_old_rc = 'text-dark';
+			}
+
+            text_title = 'การส่งต่อหน่วยปฏิบัติการ' ;
+            text_message = 	'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
+	            			'ส่งต่อมาจากรหัสปฏิบัติการ : '+ old_operating_code +
+	            		'</p>'+
+	            		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
+	            			'ระดับปฏิบัติการ : <b><span class="'+ class_old_rc + '">' + old_rc + '</span></b>' +
+	            		'</p>'+
+    					'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
+	            			'ชื่อผู้ขอความช่วยเหลือ : '+ result['name_user'] +
+	            		'</p>'+
+	            		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">'+
+	            			'เบอร์โทร : '+ result['phone_user'] +
+	            		'</p>';
+
         }else{
         	text_title = "การขอความช่วยเหลือใหม่ !!" ;
         	text_message = '<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
@@ -1964,7 +1996,7 @@
 		            		'</p>'+
 		            		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">'+
 		            			'เบอร์โทร : '+ result['phone_user'] +
-		            		'</p>' ;
+		            		'</p>';
         }
 
         iziToast.show({
@@ -2057,7 +2089,7 @@
 				});
 
                 let audio_alet_new_sos_1669 = new Audio("{{ asset('sound/Alarm Clock.mp3') }}");
-                    // audio_alet_new_sos_1669.play();
+                    audio_alet_new_sos_1669.play();
             }
         
         });
@@ -2115,8 +2147,8 @@
     }
 
     function sos_1669_command_by(admin_id , sos_id){
-    	console.log('command_by >> ' + admin_id);
-    	console.log('sos_id >> ' + sos_id);
+    	// console.log('command_by >> ' + admin_id);
+    	// console.log('sos_id >> ' + sos_id);
 
     	fetch("{{ url('/') }}/api/sos_1669_command_by" + "/" + sos_id + "/" + admin_id)
             .then(response => response.text())

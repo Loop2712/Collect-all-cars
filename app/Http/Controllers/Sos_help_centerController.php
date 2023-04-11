@@ -138,7 +138,6 @@ class Sos_help_centerController extends Controller
             ->orderBy('province' , 'ASC')
             ->get();
 
-        return view('sos_help_center.edit', compact('sos_help_center','all_provinces','data_form_yellow'));
         return view('sos_help_center.edit', compact('data_forword_form', 'data_forword_to' , 'sos_help_center','all_provinces','data_form_yellow'));
     }
 
@@ -509,6 +508,14 @@ class Sos_help_centerController extends Controller
             $check_data->idc = $data_form_yellow->idc;
             $check_data->rc = $data_form_yellow->rc;
             $check_data->rc_black_text = $data_form_yellow->rc_black_text;
+
+            if (!empty($check_data->forward_operation_from)){
+                $data_old = Sos_help_center::where('id' , $check_data->forward_operation_from)->first();
+                $data_form_yellow_old = Sos_1669_form_yellow::where('sos_help_center_id',$data_old->id)->first();
+
+                $check_data->old_rc = $data_form_yellow_old->rc;
+                $check_data->old_operating_code = $data_old->operating_code;
+            }
 
             return $check_data ;
         }else{
