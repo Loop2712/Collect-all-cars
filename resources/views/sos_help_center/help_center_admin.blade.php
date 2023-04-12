@@ -1268,24 +1268,24 @@
 
                                                         if($item->status == "เสร็จสิ้น"){
 
-                                                            if($item->time_create_sos){
-                                                                $zone1_time1 = $item->time_create_sos  ;
+                                                            if($item->form_yellow->time_create_sos){
+                                                                $zone1_time1 = $item->form_yellow->time_create_sos  ;
                                                             }
 
-                                                            if($item->time_command){
-                                                                $zone1_time2 = $item->time_command  ;
+                                                            if($item->form_yellow->time_command){
+                                                                $zone1_time2 = $item->form_yellow->time_command  ;
                                                             }
-                                                            if($item->time_go_to_help){
-                                                                $zone1_time2 = $item->time_go_to_help  ;
+                                                            if($item->form_yellow->time_go_to_help){
+                                                                $zone1_time2 = $item->form_yellow->time_go_to_help  ;
                                                             }
-                                                            if($item->time_to_the_scene){
-                                                                $zone1_time2 = $item->time_to_the_scene  ;
+                                                            if($item->form_yellow->time_to_the_scene){
+                                                                $zone1_time2 = $item->form_yellow->time_to_the_scene  ;
                                                             }
-                                                            if($item->time_leave_the_scene){
-                                                                $zone1_time2 = $item->time_leave_the_scene  ;
+                                                            if($item->form_yellow->time_leave_the_scene){
+                                                                $zone1_time2 = $item->form_yellow->time_leave_the_scene  ;
                                                             }
-                                                            if($item->time_hospital){
-                                                                $zone1_time2 = $sos->time_hospital  ;
+                                                            if($item->form_yellow->time_hospital){
+                                                                $zone1_time2 = $item->form_yellow->time_hospital  ;
                                                             }
 
                                                             list($zone1_hours1, $zone1_minutes1, $zone1_seconds1) = explode(':', $zone1_time1);
