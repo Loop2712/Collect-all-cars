@@ -978,7 +978,8 @@
             let level_start = document.querySelector('#input_select_level').value;
             let vehicle_type_start = document.querySelector('#input_vehicle_type').value;
 
-            location_operating_unit(m_lat, m_lng, level_start ,vehicle_type_start);
+            console.log('open_map');
+            location_operating_unit(m_lat, m_lng, level_start ,vehicle_type_start,'open_map');
 
         } else {
             document.querySelector('#map_operating_unit').classList.add('d-none');
@@ -988,12 +989,23 @@
     }
 
 
-    function location_operating_unit(m_lat, m_lng, level ,vehicle_type) {
+    function location_operating_unit(m_lat, m_lng, level ,vehicle_type, check_click) {
         // console.log("level >> " + level);
         // console.log("vehicle_type >> " + vehicle_type);
-
         level = level.toLowerCase();
-        set_active_btn_menu_select(level , vehicle_type);
+
+        let check_forward = "{{ $sos_help_center->forward_operation_from }}";
+        let forward_level = "{{ $sos_help_center->form_yellow->idc }}";
+
+        if (check_forward && check_click == "open_map"){
+            console.log(check_forward);
+            console.log(forward_level);
+
+            set_active_btn_menu_select_forward(forward_level);
+
+        }else{
+            set_active_btn_menu_select(level , vehicle_type);
+        }
 
         // ------------------------------------------------------------------------------------------
         let data_arr = [];
@@ -1280,7 +1292,7 @@
         let vehicle_type = document.querySelector('#input_vehicle_type').value;
 
         level = level.toLowerCase();
-        set_active_btn_menu_select(level , vehicle_type);
+        // set_active_btn_menu_select(level , vehicle_type);
         // ------------------------------------------------------------------------------
 
         document.querySelector('#card_data_operating').innerHTML = "";
@@ -1320,7 +1332,8 @@
             m_numZoom = parseFloat('6');
         }
 
-        location_operating_unit(m_lat, m_lng, level, vehicle_type);
+        console.log('select_level');
+        location_operating_unit(m_lat, m_lng, level, vehicle_type,'select_level');
 
     }
 
@@ -1416,6 +1429,34 @@
             break;
         }
         document.querySelector('.menu-select-vehicle-' + text_vehicle_type).classList.add("vehicle-" + text_vehicle_type + "-active");
+    }
+
+    function set_active_btn_menu_select_forward(forward_level){
+        //  LEVEL
+        document.querySelector('.menu-select-lv-all').classList.remove("all-active");
+        document.querySelector('.menu-select-lv-fr').classList.remove("fr-active");
+        document.querySelector('.menu-select-lv-bls').classList.remove("bls-active");
+        document.querySelector('.menu-select-lv-ils').classList.remove("ils-active");
+        document.querySelector('.menu-select-lv-als').classList.remove("als-active");
+
+        if (forward_level == "เขียว(ไม่รุนแรง)"){
+            document.querySelector('.menu-select-lv-' + "fr").classList.add("fr" + "-active");
+            document.querySelector('.menu-select-lv-' + "bls").classList.add("bls" + "-active");
+            document.querySelector('.menu-select-lv-' + "ils").classList.add("ils" + "-active");
+            document.querySelector('.menu-select-lv-' + "als").classList.add("als" + "-active");
+        }
+        else if (forward_level == "เหลือง(เร่งด่วน)"){
+            document.querySelector('.menu-select-lv-' + "bls").classList.add("bls" + "-active");
+            document.querySelector('.menu-select-lv-' + "ils").classList.add("ils" + "-active");
+            document.querySelector('.menu-select-lv-' + "als").classList.add("als" + "-active");
+        }
+        else if (forward_level == "แดง(วิกฤติ)"){
+            document.querySelector('.menu-select-lv-' + "als").classList.add("als" + "-active");
+        }else{
+            document.querySelector('.menu-select-lv-all').classList.remove("all-active");
+        }
+
+
     }
 
     function send_data_sos_tooperating_unit(sos_id, operating_unit_id, user_id, distance) {

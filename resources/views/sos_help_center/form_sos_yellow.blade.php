@@ -1190,7 +1190,7 @@
 						<div class="row {{ $class_no_operating_unit }}" id="no_operating_unit">
 							<div class="col-md-4">
 								<label for="" class="form-label"><b>&nbsp;</b></label>
-								<span id="btn_select_unit_in_no5" class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();select_level();" style="width:100%;" >
+								<span id="btn_select_unit_in_no5" class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();" style="width:100%;" > <!-- select_level(); -->
                                     <i class="fa-solid fa-hospital-user"></i> เลือกหน่วยแพทย์
 								</span>
 							</div>
