@@ -388,7 +388,7 @@
               <a class="nav-link scrollto" href="{{ url('/faq') }}">
                 <li>
                     <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/18.png') }}">&nbsp;
-                    <b>Q&A</b>
+                    <b>FAQ</b>
                 </li>
               </a>
               <!-- <a class="nav-link scrollto" href="#">
