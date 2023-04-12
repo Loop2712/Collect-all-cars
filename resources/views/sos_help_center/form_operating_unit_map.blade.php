@@ -978,7 +978,7 @@
             let level_start = document.querySelector('#input_select_level').value;
             let vehicle_type_start = document.querySelector('#input_vehicle_type').value;
 
-            console.log('open_map');
+            // console.log('open_map');
             location_operating_unit(m_lat, m_lng, level_start ,vehicle_type_start,'open_map');
 
         } else {
@@ -997,24 +997,27 @@
         let check_forward = "{{ $sos_help_center->forward_operation_from }}";
         let forward_level = "{{ $sos_help_center->form_yellow->idc }}";
 
+        if (forward_level){
+            forward_level = forward_level ;
+        }else{
+            forward_level = "null" ;
+        }
+
         if (check_forward && check_click == "open_map"){
-            console.log(check_forward);
-            console.log(forward_level);
-
             set_active_btn_menu_select_forward(forward_level);
-
         }else{
             set_active_btn_menu_select(level , vehicle_type);
+            forward_level = "null" ;
         }
 
         // ------------------------------------------------------------------------------------------
         let data_arr = [];
         let text_data_arr = [];
 
-        fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level + "/" + vehicle_type)
+        fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level + "/" + vehicle_type + "/" + forward_level)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 for (var i = 0; i < result.length; i++) {
 
@@ -1332,7 +1335,7 @@
             m_numZoom = parseFloat('6');
         }
 
-        console.log('select_level');
+        // console.log('select_level');
         location_operating_unit(m_lat, m_lng, level, vehicle_type,'select_level');
 
     }
@@ -1451,6 +1454,7 @@
             document.querySelector('.menu-select-lv-' + "als").classList.add("als" + "-active");
         }
         else if (forward_level == "แดง(วิกฤติ)"){
+            document.querySelector('.menu-select-lv-' + "ils").classList.add("ils" + "-active");
             document.querySelector('.menu-select-lv-' + "als").classList.add("als" + "-active");
         }else{
             document.querySelector('.menu-select-lv-all').classList.remove("all-active");
