@@ -275,6 +275,9 @@
   <button class="btn btn-default" onclick="alet_new_data('เหลือง' , 'name_user' ,'Bdd' , 'B451')">ทดสอบแจ้งเตือนบันทึกข้อมูล</button>
 </div> -->
 
+
+<span id="jubvbk" ss="btn btn-sm btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation"></span>
+
 <!-- Modal -->
 <div class="modal fade" id="modal_mapMarkLocation" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -288,8 +291,47 @@
             <div class="modal-body">
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-8">
-                            <div class="row">
+
+                        <div class="col-9">
+                          <div class="row">
+                            <div class="col-4">
+                              <center>
+                                <button id="btn_search_by_district" type="button" class="btn btn-success" style="width: 100%;" onclick="click_select_search_by('district');">
+                                    <!-- fa-beat-fade -->
+                                    <i id="tag_i_search_by_district" class="fa-sharp fa-solid fa-map-location-dot fa-beat-fade"></i> ค้นหาด้วยตำบล
+                                </button>
+                              </center>
+                            </div>
+                            <div class="col-4">
+                              <center>
+                                <button id="btn_search_by_LatLong" type="button" class="btn btn-outline-success" style="width: 100%;" onclick="click_select_search_by('LatLong');">
+                                    <!-- fa-beat-fade -->
+                                    <i id="tag_i_search_by_LatLong" class="fa-sharp fa-regular fa-location-dot"></i> ค้นหาด้วย Lat,Long
+                                </button>
+                              </center>
+                            </div>
+                            <div class="col-4">
+                              <center>
+                                <button id="btn_search_by_place" type="button" class="btn btn-outline-success" style="width: 100%;" onclick="click_select_search_by('place');">
+                                    <!-- fa-beat-fade -->
+                                    <i id="tag_i_search_by_place" class="fa-solid fa-house-building"></i> ค้นหาด้วยชื่อสถานที่
+                                </button>
+                              </center>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-3">
+                          <center>
+                              <button type="button" class="btn btn-warning text-white" style="width: 100%;" onclick="re_mapMarkLocation();">
+                                  <i class="fa-solid fa-repeat"></i> คืนค่าการค้นหา
+                              </button>
+                          </center>
+                        </div>
+
+                        <div class="col-9 mt-3">
+                            <!-- จังหวัด อำเภอ ตำบล -->
+                            <div class="row" id="div_search_by_district">
                                 <div class="col-4">
                                     <select name="location_P" id="location_P" class="form-control" onchange="show_amphoe();">
                                         <option class="location_P_start" value="" selected > - เลือกจังหวัด - </option>
@@ -309,21 +351,34 @@
                                     </select>
                                 </div>
                             </div>
+                            <!-- จบ จังหวัด อำเภอ ตำบล -->
+
+                            <!-- ค้นหาด้วย Lat,Long -->
+                            <div class="row d-none" id="div_search_by_LatLong">
+                              <div class="col-12">
+                                <input class="form-control" id="input_search_by_latlong" placeholder="ค้นหาด้วย Lat,Long เช่น 13.7248936,100.4930264" value="" oninput="search_by_latlong();">
+                                <span id="span_show_errorLatLong" class="text-danger mt-2 d-none"></span>
+                              </div>
+                            </div>
+                            <!-- จบ ค้นหาด้วย Lat,Long -->
+
+                            <!-- ค้นหาด้วยชื่อสถานที่ -->
+                            <div class="row d-none" id="div_search_by_place">
+                              <div class="col-12">
+                                <input class="form-control" id="input_search_by_place" placeholder="ค้นหาด้วยชื่อสถานที่ เช่น ศูนย์ราชการ" value="">
+                              </div>
+                            </div>
+                            <!-- จบ ค้นหาด้วยชื่อสถานที่ -->
                         </div>
-                        <div class="col-2">
-                            <center>
-                                <button  type="button" class="btn btn-warning text-white" style="width: 80%;" onclick="re_mapMarkLocation();">
-                                    <i class="fa-solid fa-repeat"></i> คืนค่า
-                                </button>
-                            </center>
+
+                        <div class="col-3 mt-3">
+                          <center>
+                              <button id="span_submit_locations_sos" type="button" class="btn btn-info text-white" style="width: 100%;">
+                                  <i class="fa-solid fa-circle-check"></i> ยืนยัน
+                              </button>
+                          </center>
                         </div>
-                        <div class="col-2">
-                            <center>
-                                <button id="span_submit_locations_sos" type="button" class="btn btn-info text-white" style="width: 100%;">
-                                    <i class="fa-solid fa-circle-check"></i> ยืนยัน
-                                </button>
-                            </center>
-                        </div>
+                        
                     </div>
                 </div>
                 <hr>
@@ -2032,6 +2087,8 @@ feather.replace();
         setTimeout(function() {
             document.querySelector('#form_data_1').click();
         }, 1000);
+
+        document.querySelector('#jubvbk').click();
     });
 
 
@@ -2253,6 +2310,93 @@ feather.replace();
         zoom_map(location_P.value , location_A.value , location_T.value) ;
     }
 
+    let delayTimer;
+
+    function search_by_latlong(){
+        // Clear any pending delay timer
+        clearTimeout(delayTimer);
+        
+        // Start a new delay timer of 2 seconds before executing data_help_center()
+        delayTimer = setTimeout(search_by_latlong_2sec, 2000);
+    }
+
+    function search_by_latlong_2sec(){
+
+        document.querySelector('#span_show_errorLatLong').classList.add('d-none');
+
+        let all_lat_lng = [];
+        let text_lat ;
+        let text_lng ;
+
+        let input_search_by_latlong = document.querySelector("#input_search_by_latlong");
+        let latlong = input_search_by_latlong.value.split(',');
+
+        if (latlong[0] && latlong[1]){
+
+          text_lat = latlong[0];
+          text_lng = latlong[1];
+          // console.log("text_lat >> " + text_lat);
+          // console.log("text_lng >> " + text_lng);
+
+          all_lat_lng.push( JSON.parse('{"lat":'+parseFloat(text_lat)+',"lng":'+parseFloat(text_lng)+'}') ) ;
+
+          let bounds = new google.maps.LatLngBounds();
+
+          for (let vc = 0; vc < all_lat_lng.length; vc++) {
+              bounds.extend(all_lat_lng[vc]);
+          }
+
+          mapMarkLocation = new google.maps.Map(document.getElementById("mapMarkLocation"), {
+              center: all_lat_lng[0],
+              zoom: 13,
+          });
+
+          // Create the initial InfoWindow.
+          let infoWindow = new google.maps.InfoWindow({
+              // content: "คลิกที่แผนที่เพื่อรับโลเคชั่น",
+              // position: myLatlng,
+          });
+
+          infoWindow.open(mapMarkLocation);
+          // Configure the click listener.
+          mapMarkLocation.addListener("click", (mapsMouseEvent) => {
+              // Close the current InfoWindow.
+              infoWindow.close();
+              // Create a new InfoWindow.
+              infoWindow = new google.maps.InfoWindow({
+                  // position: mapsMouseEvent.latLng,
+              });
+
+              infoWindow.setContent(
+                  JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+              );
+
+              let text_content = infoWindow.content ;
+                  // console.log(text_content)
+
+              const contentArr = text_content.split(",");
+              const lat_Arr = contentArr[0].split(":");
+                  let marker_lat = lat_Arr[1];
+              const lng_Arr = contentArr[1].split(":");
+                  let marker_lng = lng_Arr[1].replace("\n}", "");
+
+              // console.log(marker_lat)
+              // console.log(marker_lng)
+              add_marker(marker_lat , marker_lng);
+              
+              infoWindow.open(mapMarkLocation);
+
+          });
+
+        }else{
+          // console.log('ค้นหา ' + input_search_by_latlong.value + ' ไม่พบ');
+          document.querySelector('#span_show_errorLatLong').classList.remove('d-none');
+          document.querySelector('#span_show_errorLatLong').innerHTML = 'ค้นหา ' + input_search_by_latlong.value + ' ไม่พบ' ;
+
+        } 
+        
+    }
+
     function zoom_map(province , amphoe , district){
 
         if (!province) {
@@ -2341,6 +2485,13 @@ feather.replace();
     }
 
     function re_mapMarkLocation(){
+
+        let input_search_by_latlong = document.querySelector('#input_search_by_latlong');
+            input_search_by_latlong.value = "" ;
+        let input_search_by_place = document.querySelector('#input_search_by_place');
+            input_search_by_place.value = "" ;
+
+        click_select_search_by('district');
 
         let location_P = document.querySelector("#location_P");
         let location_P_start = document.querySelector(".location_P_start");
@@ -2863,6 +3014,38 @@ feather.replace();
         check_go_to(null);
         let audio_dont_save_data = new Audio("{{ asset('sound/ปฏิเสธ.mp3') }}");
             audio_dont_save_data.play();
+    }
+
+    function click_select_search_by(search_by){
+
+      // div ค้นหา
+      document.querySelector('#div_search_by_district').classList.add('d-none');
+      document.querySelector('#div_search_by_LatLong').classList.add('d-none');
+      document.querySelector('#div_search_by_place').classList.add('d-none');
+
+      document.querySelector('#div_search_by_' + search_by).classList.remove('d-none');
+      // จบ div ค้นหา
+
+      // btn เลือก
+      document.querySelector('#btn_search_by_district').classList.remove('btn-success');
+      document.querySelector('#btn_search_by_LatLong').classList.remove('btn-success');
+      document.querySelector('#btn_search_by_place').classList.remove('btn-success');
+      document.querySelector('#btn_search_by_district').classList.add('btn-outline-success');
+      document.querySelector('#btn_search_by_LatLong').classList.add('btn-outline-success');
+      document.querySelector('#btn_search_by_place').classList.add('btn-outline-success');
+
+      document.querySelector('#btn_search_by_' + search_by).classList.remove('btn-outline-success');
+      document.querySelector('#btn_search_by_' + search_by).classList.add('btn-success');
+      // จบ btn เลือก
+
+      // tag_i
+      document.querySelector('#tag_i_search_by_district').classList.remove('fa-beat-fade');
+      document.querySelector('#tag_i_search_by_LatLong').classList.remove('fa-beat-fade');
+      document.querySelector('#tag_i_search_by_place').classList.remove('fa-beat-fade');
+
+      document.querySelector('#tag_i_search_by_' + search_by).classList.add('fa-beat-fade');
+      // จบ tag_i
+
     }
 
     function change_key_to_text_key(key){
