@@ -1361,7 +1361,7 @@
                                                 </div>
                                                 <div>
                                                     <a class="icon-forward-operation" href="#" onclick="event.preventDefault(); window.open('www.viicheck.com', '_blank', 'width=1600,height=1200'); ">
-                                                        <i id="icon_forward_operation_{{$item->id}}" class=" fa-regular fa-chevrons-right" onmouseover="toggleAnimation('icon_forward_operation_{{$item->id}}', 'fa-beat')"></i>
+                                                        <i id="icon_forward_operation_{$item->id}" class=" fa-regular fa-chevrons-right" onmouseover="toggleAnimation('icon_forward_operation_{$item->id}', 'fa-beat')"></i>
                                                     </a>
                                                     
                                             </div>

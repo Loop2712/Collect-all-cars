@@ -429,6 +429,9 @@ Route::get('reset_count_sos_1669', 'test_for_devController@reset_count_sos_1669'
 Route::get('text_sp', 'test_for_devController@text_sp');
 Route::get('test_table', 'test_for_devController@test_table');
 Route::get('test_create_group_line_by_laravel', 'test_for_devController@test_create_group_line_by_laravel');
+Route::get('/Places_Search_Box', function () {
+    return view('/test_for_dev/Places_Search_Box');
+});
 
 Route::get('/modal_loading', function () {
     return view('layouts/modal_loading');

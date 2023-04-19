@@ -268,15 +268,95 @@
 
 </style> 
 
+<style>
+    
+    #description {
+      font-family: Roboto;
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    #infowindow-content .title {
+      font-weight: bold;
+    }
+
+    #infowindow-content {
+      display: none;
+    }
+
+    #map #infowindow-content {
+      display: inline;
+    }
+
+    .pac-card {
+      background-color: #fff;
+      border: 0;
+      border-radius: 2px;
+      box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+      margin: 10px;
+      padding: 0 0.5em;
+      font: 400 18px Roboto, Arial, sans-serif;
+      overflow: hidden;
+      font-family: Roboto;
+      padding: 0;
+    }
+
+    #pac-container {
+      padding-bottom: 12px;
+      margin-right: 12px;
+    }
+
+    .pac-container{
+      position: fixed; !important;
+      z-index: 99999999 !important;
+    }
+
+    .pac-controls {
+      display: inline-block;
+      padding: 5px 11px;
+    }
+
+    .pac-controls label {
+      font-family: Roboto;
+      font-size: 13px;
+      font-weight: 300;
+    }
+
+    #pac-input {
+      background-color: #fff;
+      font-family: Roboto;
+      font-size: 15px;
+      font-weight: 300;
+      margin-left: 12px;
+      padding: 0 11px 0 13px;
+      text-overflow: ellipsis;
+      width: 400px;
+    }
+
+    #pac-input:focus {
+      border-color: #4d90fe;
+    }
+
+    #title {
+      color: #fff;
+      background-color: #4d90fe;
+      font-size: 25px;
+      font-weight: 500;
+      padding: 6px 12px;
+    }
+
+    #target {
+      width: 345px;
+    }
+
+  </style>
+
 <!-- TEST alet_new_data -->
 <!-- <div class="container">
   <button class="btn btn-default" onclick="alet_new_data('เหลือง' , 'name_user' ,'TNK' , 'B')">ทดสอบแจ้งเตือนบันทึกข้อมูล</button>
   <button class="btn btn-default" onclick="alet_new_data('เหลือง' , 'name_user' ,'b' , 'Bdd')">ทดสอบแจ้งเตือนบันทึกข้อมูล</button>
   <button class="btn btn-default" onclick="alet_new_data('เหลือง' , 'name_user' ,'Bdd' , 'B451')">ทดสอบแจ้งเตือนบันทึกข้อมูล</button>
 </div> -->
-
-
-<span id="jubvbk" ss="btn btn-sm btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation"></span>
 
 <!-- Modal -->
 <div class="modal fade" id="modal_mapMarkLocation" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -296,9 +376,17 @@
                           <div class="row">
                             <div class="col-4">
                               <center>
-                                <button id="btn_search_by_district" type="button" class="btn btn-success" style="width: 100%;" onclick="click_select_search_by('district');">
+                                <button id="btn_search_by_place" type="button" class="btn btn-success" style="width: 100%;" onclick="click_select_search_by('place');">
                                     <!-- fa-beat-fade -->
-                                    <i id="tag_i_search_by_district" class="fa-sharp fa-solid fa-map-location-dot fa-beat-fade"></i> ค้นหาด้วยตำบล
+                                    <i id="tag_i_search_by_place" class="fa-solid fa-house-building fa-beat-fade"></i> ค้นหาด้วยชื่อสถานที่
+                                </button>
+                              </center>
+                            </div>
+                            <div class="col-4">
+                              <center>
+                                <button id="btn_search_by_district" type="button" class="btn btn-outline-success" style="width: 100%;" onclick="click_select_search_by('district');">
+                                    <!-- fa-beat-fade -->
+                                    <i id="tag_i_search_by_district" class="fa-sharp fa-solid fa-map-location-dot"></i> ค้นหาด้วยตำบล
                                 </button>
                               </center>
                             </div>
@@ -307,14 +395,6 @@
                                 <button id="btn_search_by_LatLong" type="button" class="btn btn-outline-success" style="width: 100%;" onclick="click_select_search_by('LatLong');">
                                     <!-- fa-beat-fade -->
                                     <i id="tag_i_search_by_LatLong" class="fa-sharp fa-regular fa-location-dot"></i> ค้นหาด้วย Lat,Long
-                                </button>
-                              </center>
-                            </div>
-                            <div class="col-4">
-                              <center>
-                                <button id="btn_search_by_place" type="button" class="btn btn-outline-success" style="width: 100%;" onclick="click_select_search_by('place');">
-                                    <!-- fa-beat-fade -->
-                                    <i id="tag_i_search_by_place" class="fa-solid fa-house-building"></i> ค้นหาด้วยชื่อสถานที่
                                 </button>
                               </center>
                             </div>
@@ -331,7 +411,7 @@
 
                         <div class="col-9 mt-3">
                             <!-- จังหวัด อำเภอ ตำบล -->
-                            <div class="row" id="div_search_by_district">
+                            <div class="row d-none" id="div_search_by_district">
                                 <div class="col-4">
                                     <select name="location_P" id="location_P" class="form-control" onchange="show_amphoe();">
                                         <option class="location_P_start" value="" selected > - เลือกจังหวัด - </option>
@@ -363,9 +443,10 @@
                             <!-- จบ ค้นหาด้วย Lat,Long -->
 
                             <!-- ค้นหาด้วยชื่อสถานที่ -->
-                            <div class="row d-none" id="div_search_by_place">
-                              <div class="col-12">
-                                <input class="form-control" id="input_search_by_place" placeholder="ค้นหาด้วยชื่อสถานที่ เช่น ศูนย์ราชการ" value="">
+                            <div class="row" id="div_search_by_place">
+                              <div class="col-12" id="id_tee_ja_sai">
+                                <!-- <input class="form-control" id="input_search_by_place" placeholder="ค้นหาด้วยชื่อสถานที่ เช่น ศูนย์ราชการ" value=""> -->
+                                <input id="pac-input" class="controls form-control" placeholder="ค้นหาด้วยชื่อสถานที่ เช่น ศูนย์ราชการ" >
                               </div>
                             </div>
                             <!-- จบ ค้นหาด้วยชื่อสถานที่ -->
@@ -384,7 +465,10 @@
                 <hr>
                 <div style="padding-right:15px;margin-top: 5px;">
                     <div class="card">
-                        <div id="mapMarkLocation"></div>
+                        <div id="mapMarkLocation" class="d-none"></div>
+                        <div id="map_places" class=""></div>
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
+
                     </div>
                 </div>
             </div>
@@ -1613,13 +1697,16 @@ feather.replace();
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 
-
 <style type="text/css">
     #map {
       height: calc(40vh);
     }
 
     #mapMarkLocation {
+      height: calc(65vh);
+    }
+
+    #map_places {
       height: calc(65vh);
     }
 
@@ -2088,7 +2175,6 @@ feather.replace();
             document.querySelector('#form_data_1').click();
         }, 1000);
 
-        document.querySelector('#jubvbk').click();
     });
 
 
@@ -2807,6 +2893,38 @@ feather.replace();
 
     }
 
+    function click_select_search_by(search_by){
+
+      // div ค้นหา
+      document.querySelector('#div_search_by_district').classList.add('d-none');
+      document.querySelector('#div_search_by_LatLong').classList.add('d-none');
+      document.querySelector('#div_search_by_place').classList.add('d-none');
+
+      document.querySelector('#div_search_by_' + search_by).classList.remove('d-none');
+      // จบ div ค้นหา
+
+      // btn เลือก
+      document.querySelector('#btn_search_by_district').classList.remove('btn-success');
+      document.querySelector('#btn_search_by_LatLong').classList.remove('btn-success');
+      document.querySelector('#btn_search_by_place').classList.remove('btn-success');
+      document.querySelector('#btn_search_by_district').classList.add('btn-outline-success');
+      document.querySelector('#btn_search_by_LatLong').classList.add('btn-outline-success');
+      document.querySelector('#btn_search_by_place').classList.add('btn-outline-success');
+
+      document.querySelector('#btn_search_by_' + search_by).classList.remove('btn-outline-success');
+      document.querySelector('#btn_search_by_' + search_by).classList.add('btn-success');
+      // จบ btn เลือก
+
+      // tag_i
+      document.querySelector('#tag_i_search_by_district').classList.remove('fa-beat-fade');
+      document.querySelector('#tag_i_search_by_LatLong').classList.remove('fa-beat-fade');
+      document.querySelector('#tag_i_search_by_place').classList.remove('fa-beat-fade');
+
+      document.querySelector('#tag_i_search_by_' + search_by).classList.add('fa-beat-fade');
+      // จบ tag_i
+
+    }
+
 </script>
 
 <script>
@@ -2824,6 +2942,88 @@ feather.replace();
         };
 
     }
+</script>
+
+<script>
+let map_places = new google.maps.Map(document.getElementById("map_places"), {
+      center: {lat: 12.870032, lng: 100.992541 },
+      zoom: 6,
+      mapTypeId: "roadmap",
+    });
+  function initAutocomplete() {
+
+    let addressInputElement = $('#id_tee_ja_sai');
+    addressInputElement.on('focus', function () {
+      let pacContainer = $('#pac-input');
+      $(addressInputElement.parent()).append(pacContainer);
+    })
+
+    
+    // Create the search box and link it to the UI element.
+    const input = document.getElementById("pac-input");
+    const searchBox = new google.maps.places.SearchBox(input);
+
+    map_places.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    // Bias the SearchBox results towards current map's viewport.
+    map_places.addListener("bounds_changed", () => {
+      searchBox.setBounds(map_places.getBounds());
+    });
+
+    let markers_places = [];
+
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener("places_changed", () => {
+      const places = searchBox.getPlaces();
+
+      if (places.length == 0) {
+        return;
+      }
+
+      // Clear out the old markers_places.
+      markers_places.forEach((marker) => {
+        marker.setMap(null);
+      });
+      markers_places = [];
+
+      // For each place, get the icon, name and location.
+      const bounds = new google.maps.LatLngBounds();
+
+      places.forEach((place) => {
+        if (!place.geometry || !place.geometry.location) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+
+        const icon = {
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25),
+        };
+
+        // Create a marker for each place.
+        markers_places.push(
+          new google.maps.Marker({
+            map_places,
+            icon,
+            title: place.name,
+            position: place.geometry.location,
+          })
+        );
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      map_places.fitBounds(bounds);
+    });
+  }
+
+  window.initAutocomplete = initAutocomplete;
 </script>
 
 
@@ -3014,38 +3214,6 @@ feather.replace();
         check_go_to(null);
         let audio_dont_save_data = new Audio("{{ asset('sound/ปฏิเสธ.mp3') }}");
             audio_dont_save_data.play();
-    }
-
-    function click_select_search_by(search_by){
-
-      // div ค้นหา
-      document.querySelector('#div_search_by_district').classList.add('d-none');
-      document.querySelector('#div_search_by_LatLong').classList.add('d-none');
-      document.querySelector('#div_search_by_place').classList.add('d-none');
-
-      document.querySelector('#div_search_by_' + search_by).classList.remove('d-none');
-      // จบ div ค้นหา
-
-      // btn เลือก
-      document.querySelector('#btn_search_by_district').classList.remove('btn-success');
-      document.querySelector('#btn_search_by_LatLong').classList.remove('btn-success');
-      document.querySelector('#btn_search_by_place').classList.remove('btn-success');
-      document.querySelector('#btn_search_by_district').classList.add('btn-outline-success');
-      document.querySelector('#btn_search_by_LatLong').classList.add('btn-outline-success');
-      document.querySelector('#btn_search_by_place').classList.add('btn-outline-success');
-
-      document.querySelector('#btn_search_by_' + search_by).classList.remove('btn-outline-success');
-      document.querySelector('#btn_search_by_' + search_by).classList.add('btn-success');
-      // จบ btn เลือก
-
-      // tag_i
-      document.querySelector('#tag_i_search_by_district').classList.remove('fa-beat-fade');
-      document.querySelector('#tag_i_search_by_LatLong').classList.remove('fa-beat-fade');
-      document.querySelector('#tag_i_search_by_place').classList.remove('fa-beat-fade');
-
-      document.querySelector('#tag_i_search_by_' + search_by).classList.add('fa-beat-fade');
-      // จบ tag_i
-
     }
 
     function change_key_to_text_key(key){
