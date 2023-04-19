@@ -2893,6 +2893,9 @@ feather.replace();
 
     function click_select_search_by(search_by){
 
+      // map_places
+      // mapMarkLocation
+
       // div ค้นหา
       document.querySelector('#div_search_by_district').classList.add('d-none');
       document.querySelector('#div_search_by_LatLong').classList.add('d-none');
@@ -2946,9 +2949,6 @@ feather.replace();
 
   function initAutocomplete() {
 
-    
-    console.log('start initAutocomplete');
-
     let map_places = new google.maps.Map(document.getElementById("map_places"), {
       center: {lat: 12.870032, lng: 100.992541 },
       zoom: 6,
@@ -2958,7 +2958,6 @@ feather.replace();
     // Create the search box and link it to the UI element.
     
     const searchBox = new google.maps.places.SearchBox(input);
-
     
     // Bias the SearchBox results towards current map's viewport.
     map_places.addListener("bounds_changed", () => {
@@ -2973,7 +2972,7 @@ feather.replace();
       const places = searchBox.getPlaces();
         
       if (places.length == 0) {
-        console.log('start1');
+        // console.log('start1');
         return;
       }
 
