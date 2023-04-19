@@ -2945,20 +2945,14 @@ feather.replace();
 </script>
 
 <script>
-let map_places = new google.maps.Map(document.getElementById("map_places"), {
+
+  function initAutocomplete() {
+
+    let map_places = new google.maps.Map(document.getElementById("map_places"), {
       center: {lat: 12.870032, lng: 100.992541 },
       zoom: 6,
       mapTypeId: "roadmap",
     });
-  function initAutocomplete() {
-
-    let addressInputElement = $('#id_tee_ja_sai');
-    addressInputElement.on('focus', function () {
-      let pacContainer = $('#pac-input');
-      $(addressInputElement.parent()).append(pacContainer);
-    })
-
-    
     // Create the search box and link it to the UI element.
     const input = document.getElementById("pac-input");
     const searchBox = new google.maps.places.SearchBox(input);
