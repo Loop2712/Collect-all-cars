@@ -1224,16 +1224,407 @@
 
             <!-- <hr style="border: 2px solid {{ $color_theme }};border-radius: 30%;"> -->
 
-
+                        <style>
+                            .card-data-sos{
+                                padding: 1rem;
+                                display: flex !important;
+                                
+                            }.card-header-sos{
+                                display: inline;
+                            }.card-header-sos span{
+                                font-size: 1.2rem;
+                            }
+                            
+                            .card-main-sos{
+                                display: flex !important;
+                                margin-top: .8rem;
+                                justify-content: space-between;
+                            }.card-main-sos img{
+                                width: 5rem;
+                                height: 6rem;
+                                object-fit: cover;
+                                background-color: #626c80;
+                                padding: .5rem;
+                                border-radius: .5rem;
+                            }
+                            .card-user-sos{
+                                display: inline-flex !important;
+                            }.data-user-sos{
+                                margin: 0 1rem;
+                            }.idc-rc-sos button{
+                                display: block;
+                                justify-content: center;
+                            }
+                            .rate-time{
+                                margin-top: 1rem;
+                                display: flex;
+                                justify-content: space-between;
+                            }.forward_operation{
+                                display: flex;
+                                justify-content: end;
+                                align-items: center;
+                                margin-top: 1rem;
+                            }.icon-forward-operation{
+                                background-color: #db2d2e;
+                                padding: 1rem 1.2rem;
+                                border-radius: 50%;
+                            }
+                            .icon-forward-operation i{
+                                color: #fff;
+                                border-radius: 50%;
+                            }
+                        </style>
             <div class="col-12">
                  <!-- div_data_help -->
                  <div id="div_body_help" class="row">
                 </div>
 
-
                 <div class="row" id="data_help">
+                       
                         @foreach($data_sos as $item)
-                            <a id="card_data_sos_id_{{ $item->id }}" class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}">
+
+                            <div class="col-12">
+                                <a id="card_data_sos_id_{{ $item->id }}" class="a_data_user data-show" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}">
+                                    <div class="card card-data-sos card-sos shadow">
+                                        <div class="card-header-sos">
+                                            <span><b> {{$item->operating_code}}</b></span>
+
+
+                                            @php
+                                                 $img_user = \App\User::find($item->user_id);
+
+                                                if($item->form_yellow->be_notified == 'แพลตฟอร์มวีเช็ค'){
+                                                    $color_be_notified = 'danger' ;
+                                                }else if($item->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙' or $item->form_yellow->be_notified == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)'){
+                                                    $color_be_notified = 'info text-white' ;
+                                                }else if($item->form_yellow->be_notified == 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า'){
+                                                    $color_be_notified = 'warning' ;
+                                                }else{
+                                                    $color_be_notified = 'secondary' ;
+                                                }
+                                            @endphp
+                                            <span class="mx-3">
+                                                @if(!empty($item->form_yellow->be_notified))
+                                                <button class="btn-{{ $color_be_notified }} btn-status  main-shadow main-radius">
+                                                    {{ $item->form_yellow->be_notified }}
+                                                </button>
+                                                @endif
+                                                @switch($item->status)
+                                                    @case('รับแจ้งเหตุ')
+                                                        <button class="btn-request btn-status main-shadow main-radius">
+                                                            รับแจ้งเหตุ
+                                                        </button>
+                                                    @break
+                                                    @case('รอการยืนยัน')
+                                                        <button class="btn-order btn-status main-shadow main-radius">
+                                                            สั่งการ
+                                                        </button>
+                                                    @break
+                                                    @case('ออกจากฐาน')
+                                                        <button class="btn-leave btn-status main-shadow main-radius">
+                                                            ออกจากฐาน
+                                                        </button>
+                                                    @break
+                                                    @case('ถึงที่เกิดเหตุ')
+                                                        <button class="btn-to btn-status main-shadow main-radius">
+                                                            ถึงที่เกิดเหตุ
+                                                        </button>
+                                                    @break
+                                                    @case('ออกจากที่เกิดเหตุ')
+                                                        <button class="btn-leave-the-scene btn-status main-shadow main-radius">
+                                                            ออกจากที่เกิดเหตุ
+                                                        </button>
+                                                    @break
+                                                    @case('เสร็จสิ้น')
+                                                        <button class="btn-hospital btn-status main-shadow main-radius" >
+                                                            เสร็จสิ้น ({{ $item->remark_status }})
+                                                        </button>
+                                                    @break
+                                                @endswitch
+                                            </span>
+                                           
+                                        </div>
+                                        
+                                        <div class="card-main-sos">
+                                            <div class="card-user-sos">
+                                                @if ($img_user)
+                                                <img  src="{{ url('storage')}}/{{ $img_user->photo }}" alt="">
+                                                @else
+                                                <img  src="{{ url('/img/stickerline/PNG/37.2.png') }}" alt="">
+                                                @endif
+                                                <div class="data-user-sos">
+                                                    <h6 class=" p-0 m-0 color-dark data-overflow">
+                                                        <b>
+                                                            @if(!empty($item->name_user))
+                                                                {{ $item->name_user }}
+                                                            @else
+                                                                ไม่ทราบชื่อ
+                                                            @endif
+                                                        </b>
+                                                    </h6>
+
+                                                    <p class="mt-1 p-0 m-0 color-dark data-overflow">
+                                                        @if(!empty($item->address))
+                                                            @php
+                                                                $address_ex = explode("/",$item->address);
+                                                            @endphp
+                                                            <span>
+                                                                {{ $address_ex[0] }}
+                                                                {{ $address_ex[1] }} {{ $address_ex[2] }}
+                                                            </span>
+                                                        @else
+                                                            <span>ไม่มีข้อมูลที่อยู่</span>
+                                                        @endif
+                                                    </p>
+
+                                                    <p class="mt-1 p-0 m-0 color-dark data-overflow">
+                                                        @if(!empty($item->phone_user))
+                                                            {{ $item->phone_user }}
+                                                        @else
+                                                            ไม่ได้ระบุเบอร์
+                                                        @endif
+                                                    </p>
+
+                                                
+                                                    <p class="mt-1 p-0 m-0 color-dark data-overflow">
+                                                        @if(!empty($item->name_helper))
+                                                            ช่วยเหลือโดย {{ $item->name_helper }}
+                                                        @else
+                                                            ไม่ทราบชื่อ
+                                                        @endif
+                                                        ●
+                                                        @if(!empty($item->organization_helper))
+                                                             {{ $item->organization_helper }}
+                                                        @else
+                                                            ไม่ทราบหน่วยงาน
+                                                        @endif
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="idc-rc-sos">
+                                                <center>
+                                                    <!-- IDC -->
+                                                    @if(!empty($item->form_yellow->idc))
+                                                        @switch($item->form_yellow->idc)
+                                                            @case('แดง(วิกฤติ)')
+                                                                <button class="btn-status-crisis btn-status px-3">
+                                                                    <b>IDC<br>(วิกฤติ)</b>
+                                                                </button>
+                                                            @break
+                                                            @case('ขาว(ทั่วไป)')
+                                                                <button class="btn-status-normal btn-status px-3">
+                                                                    <b>IDC<br>(ทั่วไป)</b>
+                                                                </button>
+                                                            @break
+                                                            @case('เหลือง(เร่งด่วน)')
+                                                                <button class="btn-status-hurry btn-status px-3">
+                                                                    <b>IDC<br>(เร่งด่วน)</b>
+                                                                </button>
+                                                            @break
+                                                            @case('ดำ(รับบริการสาธารณสุขอื่น)')
+                                                                <button class="btn-status-other btn-status px-3">
+                                                                    <b>IDC<br>(รับบริการอื่นๆ)</b>
+                                                                </button>
+                                                            @break
+                                                            @case('เขียว(ไม่รุนแรง)')
+                                                                <button class="btn-status-weak btn-status px-3">
+                                                                    <b>IDC<br>(ไม่รุนแรง)</b>
+                                                                </button>
+                                                            @break
+                                                        @endswitch
+                                                    @else
+                                                        <button class="btn-status-normal btn-status px-3">
+                                                            <b>IDC<br>ไม่ได้ระบุ</b>
+                                                        </button>
+                                                    @endif
+                                                    <!-- RC -->
+                                                    @if(!empty($item->form_yellow->rc))
+                                                        @switch($item->form_yellow->rc)
+                                                            @case('แดง(วิกฤติ)')
+                                                                <button class="btn-status-crisis btn-status px-3 mt-1 ">
+                                                                    <b>RC<br>(วิกฤติ)</b>
+                                                                </button>
+                                                            @break
+                                                            @case('ขาว(ทั่วไป)')
+                                                                <button class="btn-status-normal btn-status px-3 mt-1 ">
+                                                                    <b>RC<br>(ทั่วไป)</b>
+                                                                </button>
+                                                            @break
+                                                            @case('เหลือง(เร่งด่วน)')
+                                                                <button class="btn-status-hurry btn-status px-3 mt-1 ">
+                                                                    <b>RC<br>(เร่งด่วน)</b>
+                                                                </button>
+                                                            @break
+                                                            @case('ดำ')
+                                                                <button class="btn-status-other btn-status px-3 mt-1 ">
+                                                                    <b>RC<br>({{ $item->form_yellow->rc_black_text }})</b>
+                                                                </button>
+                                                            @break
+                                                            @case('เขียว(ไม่รุนแรง)')
+                                                                <button class="btn-status-weak btn-status px-3 mt-1 ">
+                                                                    <b>RC<br>(ไม่รุนแรง)</b>
+                                                                </button>
+                                                            @break
+                                                        @endswitch
+                                                    @else
+                                                        <button class="btn-status-normal btn-status px-3 mt-1 ">
+                                                            <b>RC<br>ไม่ได้ระบุ</b>
+                                                        </button>
+                                                    @endif
+                                                </center> 
+                                            </div>
+                                        </div>
+                                        <div class="rate-time">
+                                            <div>
+                                                @php
+                                                    $total_time = 0 ;
+
+                                                    if($item->status == "เสร็จสิ้น"){
+
+                                                        if($item->form_yellow->time_create_sos){
+                                                            $zone1_time1 = $item->form_yellow->time_create_sos  ;
+                                                        }
+
+                                                        if($item->form_yellow->time_command){
+                                                            $zone1_time2 = $item->form_yellow->time_command  ;
+                                                        }
+                                                        if($item->form_yellow->time_go_to_help){
+                                                            $zone1_time2 = $item->form_yellow->time_go_to_help  ;
+                                                        }
+                                                        if($item->form_yellow->time_to_the_scene){
+                                                            $zone1_time2 = $item->form_yellow->time_to_the_scene  ;
+                                                        }
+                                                        if($item->form_yellow->time_leave_the_scene){
+                                                            $zone1_time2 = $item->form_yellow->time_leave_the_scene  ;
+                                                        }
+                                                        if($item->form_yellow->time_hospital){
+                                                            $zone1_time2 = $item->form_yellow->time_hospital  ;
+                                                        }
+
+                                                        list($zone1_hours1, $zone1_minutes1, $zone1_seconds1) = explode(':', $zone1_time1);
+                                                        list($zone1_hours2, $zone1_minutes2, $zone1_seconds2) = explode(':', $zone1_time2);
+
+
+                                                        $zone1_totalSeconds1 = intval($zone1_hours1) * 3600 + intval($zone1_minutes1) * 60 + intval($zone1_seconds1);
+                                                        $zone1_totalSeconds2 = intval($zone1_hours2) * 3600 + intval($zone1_minutes2) * 60 + intval($zone1_seconds2);
+
+                                                        $zone1_TotalSeconds = $zone1_totalSeconds2 - $zone1_totalSeconds1;
+
+                                                        $zone1_Time_min = floor($zone1_TotalSeconds / 60);
+                                                        $zone1_Time_Seconds = $zone1_TotalSeconds - ($zone1_Time_min * 60);
+
+                                                        $min_1_to_sec = $zone1_Time_min * 60 ;
+                                                        $total_time = $total_time + $min_1_to_sec + $zone1_Time_Seconds ;
+                                                        
+                                                    }   
+
+                                                    $hours_all_time = floor($total_time / 3600);
+                                                    $minutes_all_time = floor(($total_time % 3600) / 60);
+                                                    $seconds_all_time = floor($total_time % 60);
+
+                                                    $text_total_time = '';
+                                                    if ($hours_all_time > 0) {
+                                                        $text_total_time .= "{$hours_all_time} ชั่วโมง".($hours_all_time > 1 ? '' : '')." ";
+                                                    }
+                                                    $text_total_time .= "{$minutes_all_time} นาที".($minutes_all_time > 1 ? '' : '')." ";
+                                                    $text_total_time .= "{$seconds_all_time} วินาที".($seconds_all_time > 1 ? '' : '');
+                                                        
+                                                    $show_min_case = $text_total_time;
+
+                                                    // ตรวจสอบว่าเกิน 8 หรือ 12 หรือไม่
+
+                                                    if($total_time < 480){
+                                                        $bg_show_min_case = "text-success";
+                                                    }else if($total_time >= 480 && $total_time < 720){
+                                                        $bg_show_min_case = "text-warning";
+                                                    }else if($total_time >= 720){
+                                                        $bg_show_min_case = "text-danger";
+                                                    }
+                                                    
+
+                                                @endphp
+                                                @if($item->status == "เสร็จสิ้น")
+                                                    ใช้เวลารวม : <span class="{{ $bg_show_min_case }}">{{ $show_min_case }}</span>
+                                                @endif
+
+                                                @php
+                                                    $grade = $item->score_total; 
+                                                    $rounded_grade = ceil($grade);
+                                                @endphp
+                                                
+                                                @if(!empty($item->score_total))
+                                                    @for ($i = 1; $i <= 5; $i++)
+                                                        @if ($i <= $rounded_grade)
+                                                            @if ($i < $rounded_grade)
+                                                                <i class="fa-solid fa-star text-warning"></i>
+                                                            @else
+                                                                @if ($grade - $i + 1 >= 0.75)
+                                                                    <i class="fa-solid fa-star text-warning"></i>
+                                                                @elseif ($grade - $i + 1 >= 0.25)
+                                                                    <i class="fa-solid fa-star-half-stroke text-warning"></i> 
+                                                                @else
+                                                                    <i class="fa-regular fa-star text-warning"></i>
+                                                                @endif
+                                                            @endif
+                                                        @else
+                                                            <i class="fa-regular fa-star text-warning"></i>
+                                                        @endif
+                                                    @endfor
+                                                @else
+                                                    <span class="text-secondary">ไม่มีการประเมิน</span>
+                                                @endif
+                                            </div>
+                                            <div>{{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }} &nbsp;&nbsp;{{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}</div>
+                                        </div>
+                                    </a>
+                                        
+                                        @if(!empty($item->forward_operation_to) || $item->forward_operation_from)
+                                            <div class="forward_operation">
+                                                <!-- เคสนี้ส่งต่อ "ไปที่" ใด -->
+                                                @if(!empty($item->forward_operation_to))
+                                                    <div class="text-end mx-3"> 
+                                                            เคสถูกส่งต่อไปที่ <b>{{ $item->forwardOperation_to->operating_code }}</b>  <br>
+                                                            สถานะของเคสที่ส่งต่อ <b>{{ $item->forwardOperation_to->status }}</b> 
+                                                        </div>
+                                                        <div>
+                                                            <a class="icon-forward-operation" href="#" onclick="event.preventDefault(); window.open('{{ url('/sos_help_center/' . $item->forward_operation_to . '/edit') }}', '_blank', 'width=1600,height=1200'); ">
+                                                                <i id="icon_forward_operation_{{$item->id}}" class=" fa-regular fa-chevrons-right" onmouseover="toggleAnimation('icon_forward_operation_{{$item->id}}', 'fa-beat')"></i>
+                                                            </a>
+                                                            
+                                                    </div>
+                                                @endif
+                                                <!-- เคสนี้ส่งต่อ "มาจาก" ที่ใด -->
+                                                @if(!empty($item->forward_operation_from))
+                                                    <div class="text-end mx-3"> 
+                                                        เคสถูกส่งต่อมาจาก <b>{{ $item->forwardOperation_from->operating_code }}</b>  <br>
+                                                        โดย <b>{{ $item->forwardOperation_from->name_helper }}</b> 
+                                                    </div>
+                                                    <div>
+                                                        <a class="icon-forward-operation" href="#" onclick="event.preventDefault(); window.open('{{ url('/sos_help_center/' . $item->forward_operation_from . '/edit') }}', '_blank', 'width=1600,height=1200'); ">
+                                                            <i id="icon_forward_operation_{{$item->id}}" class=" fa-regular fa-chevrons-right" onmouseover="toggleAnimation('icon_forward_operation_{{$item->id}}', 'fa-beat')"></i>
+                                                        </a>
+                                                        
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        @endif
+                                    </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <!-- <a id="card_data_sos_id_{{ $item->id }}" class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}">
                                 <div >
                                     <div class="card card-sos shadow">
                                         <div class="sos-header">
@@ -1262,7 +1653,7 @@
                                                     {{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }} &nbsp;&nbsp;{{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}
                                                 </p>
                                                 <p class="m-0 mt-1 data-overflow">
-                                                    <!-- เวลาของแต่ละเคส -->
+                                                    เวลาของแต่ละเคส
                                                     @php
                                                         $total_time = 0 ;
 
@@ -1484,7 +1875,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- เคสนี้ส่งต่อ "ไปที่" ใด -->
+                                        เคสนี้ส่งต่อ "ไปที่" ใด
                                         @if(!empty($item->forward_operation_to))
                                         <hr class="p-0 m-0" style="margin-bottom:0 ;">
 
@@ -1527,7 +1918,7 @@
                                         </div>
                                         @endif
 
-                                        <!-- เคสนี้ส่งต่อ "มาจาก" ที่ใด -->
+                                        เคสนี้ส่งต่อ "มาจาก" ที่ใด
                                         @if(!empty($item->forward_operation_from))
                                         <hr class="p-0 m-0" style="margin-bottom:0 ;">
 
@@ -1574,7 +1965,7 @@
 
                                         <div class="sos-helper m-0 p-0">
                                             <div class="row m-0 p-0">
-                                                <!-- IDC -->
+                                                IDC
                                                 @if(!empty($item->form_yellow->idc))
                                                     @switch($item->form_yellow->idc)
                                                         @case('แดง(วิกฤติ)')
@@ -1608,7 +1999,7 @@
                                                         <b>สถานะการณ์ ( IDC )<br>ไม่ได้ระบุ</b>
                                                     </button>
                                                 @endif
-                                                <!-- RC -->
+                                                RC
                                                 @if(!empty($item->form_yellow->rc))
                                                     @switch($item->form_yellow->rc)
                                                         @case('แดง(วิกฤติ)')
@@ -1644,11 +2035,9 @@
                                                 @endif
                                             </div>
                                         </div>
-
-
                                     </div>
                                 </div>
-                            </a>
+                            </a> -->
                         @endforeach
                         <div class="pagination-wrapper"> {!! $data_sos->appends(['search' => Request::get('search')])->render() !!} </div>
                         <style>
