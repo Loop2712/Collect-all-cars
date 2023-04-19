@@ -327,10 +327,8 @@
       font-family: Roboto;
       font-size: 15px;
       font-weight: 300;
-      margin-left: 12px;
-      padding: 0 11px 0 13px;
       text-overflow: ellipsis;
-      width: 400px;
+      width: 100%;
     }
 
     #pac-input:focus {
@@ -446,7 +444,7 @@
                             <div class="row" id="div_search_by_place">
                               <div class="col-12" id="id_tee_ja_sai">
                                 <!-- <input class="form-control" id="input_search_by_place" placeholder="ค้นหาด้วยชื่อสถานที่ เช่น ศูนย์ราชการ" value=""> -->
-                                <input id="pac-input" class="controls form-control" placeholder="ค้นหาด้วยชื่อสถานที่ เช่น ศูนย์ราชการ" >
+                                <input id="pac-input" class="controls form-control  "  type="text"placeholder="ค้นหาด้วยชื่อสถานที่ เช่น ศูนย์ราชการ" >
                               </div>
                             </div>
                             <!-- จบ ค้นหาด้วยชื่อสถานที่ -->
@@ -2948,16 +2946,20 @@ feather.replace();
 
   function initAutocomplete() {
 
+    
+    console.log('start initAutocomplete');
+
     let map_places = new google.maps.Map(document.getElementById("map_places"), {
       center: {lat: 12.870032, lng: 100.992541 },
       zoom: 6,
       mapTypeId: "roadmap",
     });
+    
     // Create the search box and link it to the UI element.
-    const input = document.getElementById("pac-input");
+    
     const searchBox = new google.maps.places.SearchBox(input);
 
-    map_places.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    
     // Bias the SearchBox results towards current map's viewport.
     map_places.addListener("bounds_changed", () => {
       searchBox.setBounds(map_places.getBounds());
@@ -2969,8 +2971,9 @@ feather.replace();
     // more details for that place.
     searchBox.addListener("places_changed", () => {
       const places = searchBox.getPlaces();
-
+        
       if (places.length == 0) {
+        console.log('start1');
         return;
       }
 
@@ -3013,11 +3016,28 @@ feather.replace();
           bounds.extend(place.geometry.location);
         }
       });
-      map_places.fitBounds(bounds);
+
+        map_places.fitBounds(bounds);
+
+        // var container = document.getElementById('id_tee_ja_sai');
+
+        // container.appendChild(input);
+        // map_places.controls[google.maps.ControlPosition.TOP_LEFT].push(container);
+      
+
+       
     });
   }
 
-  window.initAutocomplete = initAutocomplete;
+    window.initAutocomplete = initAutocomplete;
+
+
+    var input = document.getElementById("pac-input");
+    var container = document.getElementById('id_tee_ja_sai');
+        
+    container.appendChild(input);
+    map_places.controls[google.maps.ControlPosition.TOP_LEFT].push(container);
+ 
 </script>
 
 
