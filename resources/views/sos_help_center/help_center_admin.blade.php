@@ -1282,7 +1282,7 @@
                 <div class="row" id="data_help">
 
                         <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
-                        <div class="col-12">
+                        <div class="col-12 d-none">
                                 <a iclass="a_data_user data-show" >
                                     <div class="card card-data-sos card-sos shadow">
                                         <div class="card-header-sos">
