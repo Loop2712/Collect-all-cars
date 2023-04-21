@@ -465,7 +465,7 @@
                     <div class="card">
                         <div id="mapMarkLocation" class="d-none"></div>
                         <div id="map_places" class=""></div>
-                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&callback=initAutocomplete&libraries=places&v=weekly&language=th" defer></script>
 
                     </div>
                 </div>
@@ -2179,6 +2179,7 @@ feather.replace();
     const image = "{{ url('/img/icon/operating_unit/sos.png') }}";
     var markers = [] ;
     let marker  ;
+    let new_marker_places ;
     var sos_markers = [] ;
     let sos_marker  ;
     var sos_operating_markers = [] ;
@@ -2220,6 +2221,10 @@ feather.replace();
         if (lat.value && lng.value) {
             if (marker) {
                 marker.setMap(null);
+            }
+
+            if (new_marker_places){
+              new_marker_places.setMap(null);
             }
 
             marker = new google.maps.Marker({
@@ -2308,6 +2313,10 @@ feather.replace();
     function add_marker(marker_lat , marker_lng){
         if (marker) {
             marker.setMap(null);
+        }
+
+        if (new_marker_places){
+          new_marker_places.setMap(null);
         }
 
         marker = new google.maps.Marker({
@@ -2691,7 +2700,7 @@ feather.replace();
         geocoder
             .geocode({ location: latlng })
             .then((response) => {
-                console.log(response);
+                // console.log(response);
                 
                 let district_P ;
                 let district_A ;
@@ -2776,7 +2785,7 @@ feather.replace();
                         "amphoe" : district_A,
                         "tambon" : district_T,
                     }
-                    console.log(data_sos_1669);
+                    // console.log(data_sos_1669);
 
                     formData.append('id', data_sos_1669.id);
                     formData.append('changwat', data_sos_1669.changwat);
@@ -2896,6 +2905,14 @@ feather.replace();
       // map_places
       // mapMarkLocation
 
+      if (search_by === "place"){
+          document.querySelector('#map_places').classList.remove('d-none');
+          document.querySelector('#mapMarkLocation').classList.add('d-none');
+      }else{
+          document.querySelector('#map_places').classList.add('d-none');
+          document.querySelector('#mapMarkLocation').classList.remove('d-none');
+      }
+      
       // div ค้นหา
       document.querySelector('#div_search_by_district').classList.add('d-none');
       document.querySelector('#div_search_by_LatLong').classList.add('d-none');
@@ -2978,7 +2995,7 @@ feather.replace();
 
       // Clear out the old markers_places.
       markers_places.forEach((marker) => {
-        marker.setMap(null);
+        markers_places.setMap(null);
       });
       markers_places = [];
 
@@ -3000,14 +3017,23 @@ feather.replace();
         };
 
         // Create a marker for each place.
-        markers_places.push(
-          new google.maps.Marker({
-            map_places,
-            icon,
-            title: place.name,
-            position: place.geometry.location,
-          })
-        );
+        // markers_places.push(
+        //   new google.maps.Marker({
+        //     map: map_places,
+        //     icon: image,
+        //     title: place.name,
+        //     position: place.geometry.location,
+        //   })
+        // );
+
+        const geocoder = new google.maps.Geocoder();
+        const infowindow = new google.maps.InfoWindow();
+
+        const search_place_lat = place.geometry.location.lat();
+        const search_place_lng = place.geometry.location.lng();
+
+        geocodeLatLng_places(geocoder, map_places, infowindow , search_place_lat , search_place_lng);
+
         if (place.geometry.viewport) {
           // Only geocodes have viewport.
           bounds.union(place.geometry.viewport);
@@ -3016,26 +3042,76 @@ feather.replace();
         }
       });
 
-        map_places.fitBounds(bounds);
-
-        // var container = document.getElementById('id_tee_ja_sai');
-
-        // container.appendChild(input);
-        // map_places.controls[google.maps.ControlPosition.TOP_LEFT].push(container);
-      
-
+      map_places.fitBounds(bounds);
        
     });
+
+    // Add a listener for click event on the map_places
+    google.maps.event.addListener(map_places, 'click', function(event) {
+      // Get the clicked location
+      const clickedLocation = event.latLng;
+
+      if (marker){
+        marker.setMap(null);
+      }
+
+      if (new_marker_places){
+        new_marker_places.setMap(null);
+      }
+
+      // Create a marker_places at the clicked location
+      new_marker_places = new google.maps.Marker({
+        position: clickedLocation,
+        map: map_places,
+        icon: image,
+      });
+      
+      // Set the lat and lng of the clicked location to the input fields
+      let place_lat = clickedLocation.lat();
+      let place_lng = clickedLocation.lng();
+
+      // console.log(place_lat);
+      // console.log(place_lng);
+
+      document.querySelector('#lat').value = place_lat ;
+      document.querySelector('#lng').value = place_lng ;
+
+    });
+
   }
 
-    window.initAutocomplete = initAutocomplete;
+  window.initAutocomplete = initAutocomplete;
 
-
-    var input = document.getElementById("pac-input");
-    var container = document.getElementById('id_tee_ja_sai');
+  var input = document.getElementById("pac-input");
+  var container = document.getElementById('id_tee_ja_sai');
         
-    container.appendChild(input);
-    map_places.controls[google.maps.ControlPosition.TOP_LEFT].push(container);
+  container.appendChild(input);
+  map_places.controls[google.maps.ControlPosition.TOP_LEFT].push(container);
+
+  function geocodeLatLng_places(geocoder, map, infowindow , place_lat , place_lng) {
+
+    const latlng = {
+        lat: parseFloat(place_lat),
+        lng: parseFloat(place_lng),
+    };
+    geocoder
+        .geocode({ location: latlng })
+        .then((response) => {
+            if (response.results[0]) {
+                map.setZoom(15);
+                const marker = new google.maps.Marker({
+                  position: latlng,
+                  map: map,
+                });
+                infowindow.setContent(response.results[0].formatted_address);
+                infowindow.open(map, marker);
+
+            } else {
+                window.alert("No results found");
+            }
+        })
+        .catch((e) => window.alert("Geocoder failed due to: " + e));
+  }
  
 </script>
 
