@@ -2128,7 +2128,13 @@
 
         let text_html = gen_html_div_data_sos_1669(result);
 
-        data_help.insertAdjacentHTML('afterbegin', text_html); // แทรกบนสุด
+        let div_card_mook_up = document.querySelector('#div_card_mook_up');
+        console.log(div_card_mook_up);
+        
+        data_help.insertAdjacentHTML('afterbegin', div_card_mook_up.outerHTML); // แทรกบนสุด
+
+
+        // data_help.insertAdjacentHTML('afterbegin', text_html); // แทรกบนสุด
         // data_help.insertAdjacentHTML('beforeend', '<p>1</p>'); // แทรกล่างสุด
 
         let div_text_html = document.querySelector('#text_html_id_'+result['id']);
