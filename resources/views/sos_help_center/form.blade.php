@@ -1403,6 +1403,9 @@ feather.replace();
                             <span id="span_btn_steps_travel" class="btn btn-danger main-shadow main-radius d-none" style="position: absolute;top: 0.5rem;right: 5rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" data-toggle="modal" data-target="#modal_steps_travel">
                                 แนะนำการเดินทาง
                             </span>
+                            <span class="btn btn-sm btn-danger"  style="position: absolute;top: 0.5rem;left: 13rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#see_img_sos">
+                                <i class="fa-duotone fa-images"></i>รูปภาพ 
+                            </span>
                             <div id="map_go_to_help"></div>
                         </div>
                     </div>
