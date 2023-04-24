@@ -2626,7 +2626,7 @@
                             data_html['rc'] = result[xxi]['rc'] ;
                             data_html['rc_black_text'] = result[xxi]['rc_black_text'] ;
 
-                        let div_data_help_center = gen_html_div_data_sos_1669(data_html);
+                        let div_data_help_center = new_gen_html_div_data_sos_1669(data_html);
 
                         document.querySelector('#data_id_' + result[xxi]['id']).innerHTML = div_data_help_center ;
 
@@ -2892,7 +2892,7 @@
                             data_html['rc_black_text'] = result[xxi]['rc_black_text'] ;
                             data_html['score_total'] = result[xxi]['score_total'] ;
 
-                        let div_data_help_center = gen_html_div_data_sos_1669(data_html);
+                        let div_data_help_center = new_gen_html_div_data_sos_1669(data_html);
 
                         document.querySelector('#data_id_' + result[xxi]['id']).innerHTML = div_data_help_center ;
 
