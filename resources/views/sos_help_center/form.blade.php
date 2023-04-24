@@ -60,7 +60,7 @@
 
 .masonry_block {
   float: left;
-  padding: 20px 20px;
+  padding: 20px 0px;
   border-radius: 25px;
 }
 
@@ -74,8 +74,7 @@
 .masonry_thum img {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  border-radius: 1rem;
-  height: 15rem;
+  height: 13rem;
   width: 100%;
   object-fit: cover;
 
@@ -129,7 +128,7 @@
 .masonry_text {
   position: absolute;
   left: 0;
-  bottom: 8rem;
+  top: 2rem;
   padding: 0 1.5rem;
   z-index: 2;
   opacity: 0;
@@ -207,7 +206,6 @@
 
 .masonry-folio:hover .masonry_thum a::after {
   opacity: 1;
-  visibility: visible;
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
@@ -477,7 +475,7 @@
 
 <!-- Modal View Image -->
 <div class="modal fade" id="see_img_sos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">รูปภาพการขอความช่วยเหลือ</h5>
@@ -488,27 +486,38 @@
             <div class="modal-body">
                 <div class="container">
                 <div class="row mt-1">
-                    <div class="col-lg-6">
+                    <div class="col-12 col-md-6 col-lg-4">
 
                         <div class="masonry_block">
                             <div class="masonry-folio">
                                 <div class="masonry_thum">
 
                                     @if( !empty($sos_help_center->photo_sos))
-                                        <img src="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos }}" class="img-fluid" alt="image" / >
-                                        <a href="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos }}" class="glightbox" data-gallery="edu-gallery"></a>
+                                        <img src="{{ url('storage')}}/{{ $sos_help_center->photo_sos }}" class="img-fluid" alt="image" / >
+                                        <a href="{{ url('storage')}}/{{ $sos_help_center->photo_sos }}" class="glightbox" data-gallery="edu-gallery"></a>
                                     @else
                                         <img src="https://www.viicheck.com/img/stickerline/PNG/17.png" class="img-fluid" alt="image" / >
-
                                         <a href="https://www.viicheck.com/img/stickerline/PNG/17.png" class="glightbox" data-gallery="edu-gallery"></a>
                                     @endif
 
                                     @if( !empty($sos_help_center->photo_sos_by_officers))
-                                        <a href="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos_by_officers }}" class="glightbox" data-gallery="edu-gallery"></a>
+                                        <a href="{{ url('storage')}}/{{ $sos_help_center->photo_sos_by_officers }}" class="glightbox" data-gallery="edu-gallery"></a>
                                     @else
                                         <a href="https://www.viicheck.com/img/stickerline/PNG/49.png" class="glightbox" data-gallery="edu-gallery"></a>
                                     @endif
-                                    
+
+                                    @if( !empty($sos_help_center->photo_succeed))
+                                        <a href="{{ url('storage')}}/{{ $sos_help_center->photo_succeed }}" class="glightbox" data-gallery="edu-gallery"></a>
+                                    @else
+                                        <a href="https://www.viicheck.com/img/stickerline/PNG/49.png" class="glightbox" data-gallery="edu-gallery"></a>
+                                    @endif
+
+                                    <!-- @if( !empty($sos_help_center->comment_help) )
+                                        <div class="comment-sos">
+                                            <strong>ความคิดเห็นจากผู้ใช้</strong>
+                                            <p class="p-0 m-0">{{$sos_help_center->comment_help}}</p>
+                                        </div>
+                                    @endif -->
                                 </div>
 
                                 <div class="masonry_text">
@@ -521,20 +530,21 @@
                                     @endif
                                     
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
                     <!-- end masonry_block -->
 
-                    <div class="col-lg-6">
+                    <div class="col-12 col-md-6 col-lg-4">
                         <div class="masonry_block">
                             <div class="masonry-folio">
                                 <div class="masonry_thum">
 
                                     @if( !empty($sos_help_center->photo_sos_by_officers))
-                                        <img src="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos_by_officers }}" class="img-fluid" alt="image" />
+                                        <img src="{{ url('storage')}}/{{ $sos_help_center->photo_sos_by_officers }}" class="img-fluid" alt="image" />
                                         
-                                        <a href="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos_by_officers }}" class="glightbox" data-gallery="edu-gallery2"></a>
+                                        <a href="{{ url('storage')}}/{{ $sos_help_center->photo_sos_by_officers }}" class="glightbox" data-gallery="edu-gallery2"></a>
                                     @else
                                         <img src="https://www.viicheck.com/img/stickerline/PNG/49.png" class="img-fluid" alt="image" / >
 
@@ -542,19 +552,38 @@
                                     @endif
 
                                     @if( !empty($sos_help_center->photo_sos))
-                                        <a href="https://www.viicheck.com/storage/{{ $sos_help_center->photo_sos }}" class="glightbox" data-gallery="edu-gallery2"></a>
+                                        <a href="{{ url('storage')}}/{{ $sos_help_center->photo_sos }}" class="glightbox" data-gallery="edu-gallery2"></a>
                                     @else
                                         <a href="https://www.viicheck.com/img/stickerline/PNG/17.png" class="glightbox" data-gallery="edu-gallery2"></a>
                                     @endif
+
+                                    @if( !empty($sos_help_center->photo_succeed))
+                                        <a href="{{ url('storage')}}/{{ $sos_help_center->photo_succeed }}" class="glightbox" data-gallery="edu-gallery2"></a>
+                                    @else
+                                        <a href="https://www.viicheck.com/img/stickerline/PNG/49.png" class="glightbox" data-gallery="edu-gallery2"></a>
+                                    @endif
                                     
+                                    <style>
+                                        .comment-sos{
+                                            padding: .5rem;
+                                            background-color:#30344c ;
+                                            color: #909ce4;
+                                        }
+                                    </style>
+                                    @if( !empty($sos_help_center->comment_help) )
+                                        <div class="comment-sos">
+                                            <strong>คำแนะนำขณะเกิดเหตุ</strong>
+                                            <p class="p-0 m-0">{{$sos_help_center->comment_help}}</p>
+                                        </div>
+                                    @endif
                                 </div>
 
                                 <div class="masonry_text">
                                     @if( !empty($sos_help_center->photo_sos_by_officers) )
-                                        <h3 class="masonry_title">รูปภาพจากเจ้าหน้าที่</h3>
+                                        <h3 class="masonry_title">รูปภาพที่เกิดเหตุ</h3>
                                         <p class="masonry_cat">เพิ่มโดย {{ $sos_help_center->name_helper }}</p>
                                     @else
-                                        <h3 class="masonry_title">รูปภาพจากเจ้าหน้าที่</h3>
+                                        <h3 class="masonry_title">รูปภาพที่เกิดเหตุ</h3>
                                         <p class="masonry_cat">เจ้าหน้าที่ไม่ได้เพิ่มรูปภาพ</p>
                                     @endif
                                 </div>
@@ -562,14 +591,56 @@
                         </div>
                         <!-- end masonry_block -->
                     </div>
-                    @if(!empty($sos_help_center->commemt_help))
-                        <div class="col-12">
-                            <h4>ข้อเสนอแนะจากเจ้าหน้าที่</h4>
-                            <p style="text-indent: 2rem;">
-                                {{$sos_help_center->commemt_help}}
-                            </p>
+
+                    
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="masonry_block">
+                            <div class="masonry-folio">
+                                <div class="masonry_thum">
+                                     @if( !empty($sos_help_center->photo_succeed))
+                                        <img src="{{ url('storage')}}/{{ $sos_help_center->photo_succeed }}" class="img-fluid" alt="image" />
+                                        
+                                        <a href="{{ url('storage')}}/{{ $sos_help_center->photo_succeed }}" class="glightbox" data-gallery="edu-gallery3"></a>
+                                    @else
+                                        <img src="https://www.viicheck.com/img/stickerline/PNG/49.png" class="img-fluid" alt="image" / >
+
+                                        <a href="https://www.viicheck.com/img/stickerline/PNG/49.png" class="glightbox" data-gallery="edu-gallery3"></a>
+                                    @endif
+                                    
+                                    @if( !empty($sos_help_center->photo_sos_by_officers))
+                                        <a href="{{ url('storage')}}/{{ $sos_help_center->photo_sos_by_officers }}" class="glightbox" data-gallery="edu-gallery3"></a>
+                                    @else
+                                        <a href="https://www.viicheck.com/img/stickerline/PNG/17.png" class="glightbox" data-gallery="edu-gallery3"></a>
+                                    @endif
+
+
+                                    @if( !empty($sos_help_center->photo_sos))
+                                        <a href="{{ url('storage')}}/{{ $sos_help_center->photo_sos }}" class="glightbox" data-gallery="edu-gallery3"></a>
+                                    @else
+                                        <a href="https://www.viicheck.com/img/stickerline/PNG/17.png" class="glightbox" data-gallery="edu-gallery3"></a>
+                                    @endif
+                                </div>
+
+                                <div class="masonry_text">
+                                    @if( !empty($sos_help_center->photo_succeed) )
+                                        <h3 class="masonry_title">รูปภาพเสร็จสิ้น</h3>
+                                        <p class="masonry_cat">เพิ่มโดย {{ $sos_help_center->name_helper }}</p>
+                                    @else
+                                        <h3 class="masonry_title">รูปภาพเสร็จสิ้น</h3>
+                                        <p class="masonry_cat">เจ้าหน้าที่ไม่ได้เพิ่มรูปภาพ</p>
+                                    @endif
+                                </div>
+
+                                @if(!empty($sos_help_center->comment_help) )
+                                    <div class="comment-sos">
+                                        <strong>ข้อเสนอแนะจากเจ้าหน้าที่</strong>
+                                        <p class="p-0 m-0">{{$sos_help_center->comment_help}}</p>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-                    @endif
+                        <!-- end masonry_block -->
+                    </div>
                 </div>
                 </div>
                 <!-- <div class="row">

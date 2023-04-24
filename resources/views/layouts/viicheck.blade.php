@@ -1593,6 +1593,17 @@
     }
   
 </script>
+
+<script>
+    function toggleAnimation(elementId, animationClass) {
+        var element = document.getElementById(elementId);
+        element.classList.add(animationClass);
+
+        element.addEventListener('mouseleave', function() {
+            this.classList.remove(animationClass);
+        });
+    }
+</script>
 </body>
 
 </html>
