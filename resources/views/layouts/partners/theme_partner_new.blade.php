@@ -2128,15 +2128,9 @@
 
         // let text_html = gen_html_div_data_sos_1669(result);
 
-        let div_card_mook_up = document.querySelector('.div_card_mook_up');
+        let text_html = new_gen_html_div_data_sos_1669(result);
 
-		let new_div_data_sos = div_card_mook_up.cloneNode(true);
-        	new_div_data_sos.setAttribute('id', 'mook_up_id_'+result['id'] );
-        	new_div_data_sos.setAttribute('class', 'col-12' );
-
-        new_div_data_sos = new_gen_html_div_data_sos_1669(result,new_div_data_sos);
-
-        data_help.insertAdjacentHTML('afterbegin', new_div_data_sos.outerHTML); // แทรกบนสุด
+        data_help.insertAdjacentHTML('afterbegin', text_html); // แทรกบนสุด
 
 
         // data_help.insertAdjacentHTML('afterbegin', text_html); // แทรกบนสุด
@@ -2214,7 +2208,13 @@
             });
     }
 
-    function new_gen_html_div_data_sos_1669(result,new_div_data_sos){
+    function new_gen_html_div_data_sos_1669(result){
+
+    	let div_card_mook_up = document.querySelector('.div_card_mook_up');
+
+		let new_div_data_sos = div_card_mook_up.cloneNode(true);
+        	new_div_data_sos.setAttribute('id', 'mook_up_id_'+result['id'] );
+        	new_div_data_sos.setAttribute('class', 'col-12' );
 
     	// operating_code
     	new_div_data_sos.querySelector('[mock_up_mark="operating_code"]').innerHTML = result['operating_code'];
@@ -2409,7 +2409,7 @@
         new_div_data_sos.querySelector('[mock_up_mark="grade"]').insertAdjacentHTML('afterbegin', html_star); // แทรกบนสุด
 
 
-		return new_div_data_sos ;
+		return new_div_data_sos.outerHTML ;
     }
 
     function gen_html_div_data_sos_1669(result){

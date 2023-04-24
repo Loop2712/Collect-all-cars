@@ -1373,9 +1373,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
-                       
+                        <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
+
                         @foreach($data_sos as $item)
 
                             <div class="col-12">
@@ -2135,84 +2134,88 @@
                             </a> -->
                         @endforeach
                         <div class="pagination-wrapper"> {!! $data_sos->appends(['search' => Request::get('search')])->render() !!} </div>
-                        <style>
-                            .btn-request{
-                                color: white;
-                                background-color: #881111;
-                            }.btn-order{
-                                color: white;
-                                background-color: #8C52FF;
-                            }.btn-leave{
-                                color: white;
-                                background-color: #EF671D;
-                            }.btn-to{
-                                color: white;
-                                background-color: #25548F;
-                            }.btn-status-other{
-                                color: white;
-                                background-color: #000000;
-                            }.btn-status-normal{
-                                color: black;
-                                background-color:#ffffff ;
-                                border: #000000 1px solid;
-                            }.btn-status-weak{
-                                color: black;
-                                background-color: #15FC25;
-                            }
-                            .btn-status-hurry{
-                                color: black;
-                                background-color: #FCB315;
-                            }
-                            .btn-status-crisis{
-                                color: white;
-                                background-color: #FF0000;
-                            }
-                            .btn-leave-the-scene{
-                                color: white;
-                                background-color:#1877F2 ;
-                            }
-                            .btn-hospital{
-                                color: white;
-                                background-color: #00B900;
-                            }
-                        </style>
-                        <div class="col-12 d-none">
-                            <h1>สถานะต่างๆ</h1>
-                            <hr>
-                            <button class=" btn-request btn-status">
-                                รับแจ้งเหตุ
-                            </button>
-                            <button class=" btn-order btn-status">
-                                สั่งการ
-                            </button>
-                            <button class="btn-leave btn-status">
-                                ออกจากฐาน
-                            </button>
-                            <button class="btn-to btn-status">
-                                ถึงที่เกิดเหตุ
-                            </button>
-                            <button class="btn-status-other btn-status">
-                                สถานะการณ์<br>(รับบริการอื่นๆ)
-                            </button>
-                            <button class="btn-status-normal btn-status">
-                                สถานะการณ์<br>(ทั่วไป)
-                            </button>
-                            <button class="btn-status-weak btn-status">
-                                สถานะการณ์<br>(ไม่รุนแรง)
-                            </button>
-                            <button class="btn-status-hurry btn-status">
-                                สถานะการณ์<br>(เร่งด่วน)
-                            </button>
-                            <button class="btn-status-crisis btn-status">
-                                สถานะการณ์<br>(วิกฤติ)
-                            </button>
-                            <button class="btn-leave-the-scene btn-status">
-                                ออกจากที่เกิดเหตุ
-                            </button>
-                            <button class="btn-hospital btn-status" >
-                                ถึง รพ.
-                            </button>
-                        </div>
+
+                    </div>
+                       
+                    <style>
+                        .btn-request{
+                            color: white;
+                            background-color: #881111;
+                        }.btn-order{
+                            color: white;
+                            background-color: #8C52FF;
+                        }.btn-leave{
+                            color: white;
+                            background-color: #EF671D;
+                        }.btn-to{
+                            color: white;
+                            background-color: #25548F;
+                        }.btn-status-other{
+                            color: white;
+                            background-color: #000000;
+                        }.btn-status-normal{
+                            color: black;
+                            background-color:#ffffff ;
+                            border: #000000 1px solid;
+                        }.btn-status-weak{
+                            color: black;
+                            background-color: #15FC25;
+                        }
+                        .btn-status-hurry{
+                            color: black;
+                            background-color: #FCB315;
+                        }
+                        .btn-status-crisis{
+                            color: white;
+                            background-color: #FF0000;
+                        }
+                        .btn-leave-the-scene{
+                            color: white;
+                            background-color:#1877F2 ;
+                        }
+                        .btn-hospital{
+                            color: white;
+                            background-color: #00B900;
+                        }
+                    </style>
+                    <div class="col-12 d-none">
+                        <h1>สถานะต่างๆ</h1>
+                        <hr>
+                        <button class=" btn-request btn-status">
+                            รับแจ้งเหตุ
+                        </button>
+                        <button class=" btn-order btn-status">
+                            สั่งการ
+                        </button>
+                        <button class="btn-leave btn-status">
+                            ออกจากฐาน
+                        </button>
+                        <button class="btn-to btn-status">
+                            ถึงที่เกิดเหตุ
+                        </button>
+                        <button class="btn-status-other btn-status">
+                            สถานะการณ์<br>(รับบริการอื่นๆ)
+                        </button>
+                        <button class="btn-status-normal btn-status">
+                            สถานะการณ์<br>(ทั่วไป)
+                        </button>
+                        <button class="btn-status-weak btn-status">
+                            สถานะการณ์<br>(ไม่รุนแรง)
+                        </button>
+                        <button class="btn-status-hurry btn-status">
+                            สถานะการณ์<br>(เร่งด่วน)
+                        </button>
+                        <button class="btn-status-crisis btn-status">
+                            สถานะการณ์<br>(วิกฤติ)
+                        </button>
+                        <button class="btn-leave-the-scene btn-status">
+                            ออกจากที่เกิดเหตุ
+                        </button>
+                        <button class="btn-hospital btn-status" >
+                            ถึง รพ.
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -2602,7 +2605,7 @@
                             id_div_data_add.value = "data_id_" + result[xxi]['id'];
                             div_data_add.setAttributeNode(id_div_data_add);
                         let class_div_data_add = document.createAttribute("class");
-                            class_div_data_add.value = "col-6";
+                            class_div_data_add.value = "col-12";
                             div_data_add.setAttributeNode(class_div_data_add);
                         div_body_help.appendChild(div_data_add);
 
@@ -2867,7 +2870,7 @@
                             id_div_data_add.value = "data_id_" + result[xxi]['id'];
                             div_data_add.setAttributeNode(id_div_data_add);
                         let class_div_data_add = document.createAttribute("class");
-                            class_div_data_add.value = "col-6";
+                            class_div_data_add.value = "col-12";
                             div_data_add.setAttributeNode(class_div_data_add);
                         div_body_help.appendChild(div_data_add);
 
