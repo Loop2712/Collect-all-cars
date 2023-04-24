@@ -1281,17 +1281,17 @@
                     <div class="row" id="data_help">
 
                         <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
-                        <div id="div_card_mook_up" class="col-12 d-none">
-                            <a iclass="a_data_user data-show" >
+                        <div class="div_card_mook_up col-12 d-">
+                            <a class="a_data_user data-show" href="{{ url('/') }}">
                                 <div class="card card-data-sos card-sos shadow">
                                     <div class="card-header-sos">
-                                        <span><b> 123456789</b></span>
+                                        <span><b mock_up_mark="operating_code"> 123456789</b></span>
                                         <span class="mx-3">
-                                            <button class="btn-danger btn-status  main-shadow main-radius">
+                                            <button mock_up_mark="be_notified" class=" btn-status  main-shadow main-radius">
                                             แพลตฟอร์มวีเช็ค
                                             </button>
 
-                                            <button class="btn-request btn-status main-shadow main-radius">
+                                            <button mock_up_mark="status" class=" btn-status main-shadow main-radius">
                                                 รับแจ้งเหตุ
                                             </button>
                                         </span>
@@ -1303,22 +1303,22 @@
                                             
                                             <div class="data-user-sos">
                                                 <h6 class=" p-0 m-0 color-dark data-overflow">
-                                                    <b>
+                                                    <b mock_up_mark="name_user">
                                                         Teerasak
                                                     </b>
                                                 </h6>
 
-                                                <p class="mt-1 p-0 m-0 color-dark data-overflow">
+                                                <p class="mt-1 p-0 m-0 color-dark data-overflow" mock_up_mark="address">
                                                     ท่าช้าง เมือง นครนายก
                                                 </p>
 
-                                                <p class="mt-1 p-0 m-0 color-dark data-overflow">
+                                                <p class="mt-1 p-0 m-0 color-dark data-overflow" mock_up_mark="phone_user">
                                                     0812345678
                                                 </p>
 
                                             
-                                                <p class="mt-1 p-0 m-0 color-dark data-overflow">
-                                                        ช่วยเหลือโดย Thanakron
+                                                <p class="mt-1 p-0 m-0 color-dark data-overflow" mock_up_mark="helper">
+                                                    ช่วยเหลือโดย Thanakron
                                                     ●
                                                     ViiCHECK
                                                 </p>
@@ -1328,39 +1328,50 @@
                                         <div class="idc-rc-sos">
                                             <center>
                                                 <!-- IDC -->
-                                                <button class="btn-status-weak btn-status px-3">
-                                                    <b>IDC<br>(ไม่รุนแรง)</b>
+                                                <button class=" btn-status px-3" mock_up_mark="btn_IDC">
+                                                    <b>IDC<br><span mock_up_mark="text_IDC">(ไม่รุนแรง)</span></b>
                                                 </button>
                                                 <!-- RC -->
-                                                <button class="btn-status-hurry btn-status px-3 mt-1 ">
-                                                    <b>RC<br>(เร่งด่วน)</b>
+                                                <button class=" btn-status px-3 mt-1 " mock_up_mark="btn_RC">
+                                                    <b>RC<br><span mock_up_mark="text_RC">(ไม่รุนแรง)</span></b>
                                                 </button>
                                             </center> 
                                         </div>
                                     </div>
                                     <div class="rate-time">
-                                        <div>
-                                            ใช้เวลารวม : <span >5นาที 38วิ</span>
-                                            <i class="fa-solid fa-star text-warning"></i>
-                                            <i class="fa-solid fa-star-half-stroke text-warning"></i> 
-                                            <i class="fa-regular fa-star text-warning"></i>
+                                        <div mock_up_mark="grade">
+                                            <!-- grade -->
                                         </div>
-                                        <div>วันที่ 1 มกราคม 2565 &nbsp;&nbsp;18.56 น.</div>
+                                        <div mock_up_mark="date_time">วันที่ &nbsp;&nbsp;เวลา</div>
                                     </div>
+                                </a>
+                                <div class="forward_operation">
+
                                     <div class="forward_operation">
                                         <!-- เคสนี้ส่งต่อ "ไปที่" ใด -->
                                         <div class="text-end mx-3"> 
-                                            เคสถูกส่งต่อไปที่ <b>23456789</b>  <br>
-                                            สถานะของเคสที่ส่งต่อ <b>เสร็จสิ้น</b> 
+                                            เคสถูกส่งต่อไปที่ <b mock_up_mark="forward_operation_to"></b> <br>
+                                            สถานะของเคสที่ส่งต่อ <b mock_up_mark="forward_operation_to_status"></b> 
                                         </div>
                                         <div>
-                                            <a class="icon-forward-operation" href="#" onclick="event.preventDefault(); window.open('www.viicheck.com', '_blank', 'width=1600,height=1200'); ">
+                                            <a class="icon-forward-operation" href="#" onclick="event.preventDefault(); window.open('{ url('/sos_help_center/' . $item->forward_operation_to . '/edit') }', '_blank', 'width=1600,height=1200'); ">
+                                                <i id="icon_forward_operation_{$item->id}" class=" fa-regular fa-chevrons-right" onmouseover="toggleAnimation('icon_forward_operation_{$item->id}', 'fa-beat')"></i>
+                                            </a>
+                                        </div>
+                                        <!-- เคสนี้ส่งต่อ "มาจาก" ที่ใด -->
+                                        <div class="text-end mx-3"> 
+                                            เคสถูกส่งต่อมาจาก <b mock_up_mark="forward_operation_from"></b> <br>
+                                            โดย <b mock_up_mark="forward_operation_from_status"></b> 
+                                        </div>
+                                        <div>
+                                            <a class="icon-forward-operation" href="#" onclick="event.preventDefault(); window.open('{ url('/sos_help_center/' . $item->forward_operation_from . '/edit') }', '_blank', 'width=1600,height=1200'); ">
                                                 <i id="icon_forward_operation_{$item->id}" class=" fa-regular fa-chevrons-right" onmouseover="toggleAnimation('icon_forward_operation_{$item->id}', 'fa-beat')"></i>
                                             </a>
                                         </div>
                                     </div>
+
                                 </div>
-                            </a>
+                            </div>
                         </div>
                     </div>
                     <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->

@@ -2126,23 +2126,28 @@
 
         let data_help = document.querySelector('#data_help');
 
-        let text_html = gen_html_div_data_sos_1669(result);
+        // let text_html = gen_html_div_data_sos_1669(result);
 
-        let div_card_mook_up = document.querySelector('#div_card_mook_up');
-        console.log(div_card_mook_up);
-        
-        data_help.insertAdjacentHTML('afterbegin', div_card_mook_up.outerHTML); // แทรกบนสุด
+        let div_card_mook_up = document.querySelector('.div_card_mook_up');
+
+		let new_div_data_sos = div_card_mook_up.cloneNode(true);
+        	new_div_data_sos.setAttribute('id', 'mook_up_id_'+result['id'] );
+        	new_div_data_sos.setAttribute('class', 'col-12' );
+
+        new_div_data_sos = new_gen_html_div_data_sos_1669(result,new_div_data_sos);
+
+        data_help.insertAdjacentHTML('afterbegin', new_div_data_sos.outerHTML); // แทรกบนสุด
 
 
         // data_help.insertAdjacentHTML('afterbegin', text_html); // แทรกบนสุด
         // data_help.insertAdjacentHTML('beforeend', '<p>1</p>'); // แทรกล่างสุด
 
-        let div_text_html = document.querySelector('#text_html_id_'+result['id']);
-			div_text_html.classList.add('border-color-change-color');
+   //      let div_text_html = document.querySelector('#text_html_id_'+result['id']);
+			// div_text_html.classList.add('border-color-change-color');
 
-	        setTimeout(function() {
-	            div_text_html.classList.remove('border-color-change-color');
-	        }, 10000);
+	  //       setTimeout(function() {
+	  //           div_text_html.classList.remove('border-color-change-color');
+	  //       }, 10000);
 
         // console.log(div_text_html);
 
@@ -2183,10 +2188,10 @@
         result['created_at'] = '2023-03-12T03:42:05.000000Z' ;
         result['status'] = 'รับแจ้งเหตุ' ;
         result['remark_status'] = 'ถึง รพ.' ;
-        result['address'] = 'พระนครศรีอยุธยา/พระนครศรีอยุธยา/คลองสวนพลู' ;
+        result['address'] = 'พระนครศรีอยุธยา/บางปะอิน/บ้านกรด' ;
         result['organization_helper'] = 'วีเช็ค' ;
         result['name_helper'] = 'จิตใจดี ชอบช่วยเหลือ' ;
-        result['idc'] = 'เขียว(ไม่รุนแรง)' ;
+        result['idc'] = '' ;
         result['rc'] = 'ดำ(รับบริการสาธารณสุขอื่น)' ;
         result['rc_black_text'] = 'เมารถ' ;
         result['forward_operation_from'] = '1' ;
@@ -2207,6 +2212,204 @@
                 }
 
             });
+    }
+
+    function new_gen_html_div_data_sos_1669(result,new_div_data_sos){
+
+    	// operating_code
+    	new_div_data_sos.querySelector('[mock_up_mark="operating_code"]').innerHTML = result['operating_code'];
+
+    	// be_notified
+    	let color_be_notified ;
+    	if (result['be_notified'] == 'แพลตฟอร์มวีเช็ค') {
+    		color_be_notified = 'btn-danger' ;
+    	}else if(result['be_notified'] == 'โทรศัพท์หมายเลข ๑๖๖๙' || result['be_notified'] == 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)'){
+    		color_be_notified = 'btn-info' ;
+    	}else if (result['be_notified'] == 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า') {
+    		color_be_notified = 'btn-warning' ;
+    	}else{
+    		color_be_notified = 'btn-secondary' ;
+    	}
+		new_div_data_sos.querySelector('[mock_up_mark="be_notified"]').innerHTML = result['be_notified'];
+		new_div_data_sos.querySelector('[mock_up_mark="be_notified"]').classList.add(color_be_notified);
+
+		// status
+		let html_status ;
+    	switch(result['status']) {
+			case 'รับแจ้งเหตุ':
+			    html_status = 	'btn-request';
+			break;
+			case 'รอการยืนยัน':
+			    html_status = 	'btn-order';
+		    break;
+		    case 'ออกจากฐาน':
+			    html_status = 	'btn-leave';
+		    break;
+		    case 'ถึงที่เกิดเหตุ':
+			    html_status = 	'btn-to';
+		    break;
+		    case 'ออกจากที่เกิดเหตุ':
+			    html_status = 	'btn-leave-the-scene';
+		    break;
+		    case 'เสร็จสิ้น':
+			    html_status = 	'btn-hospital';
+		    break;
+		}
+		new_div_data_sos.querySelector('[mock_up_mark="status"]').innerHTML = result['status'];
+		new_div_data_sos.querySelector('[mock_up_mark="status"]').classList.add(html_status);
+
+		// name_user
+		let name_user ;
+    	if (result['name_user']) {
+    		name_user = result['name_user'] ;
+    	}else{
+    		name_user = 'ไม่ทราบชื่อ' ;
+    	}
+		new_div_data_sos.querySelector('[mock_up_mark="name_user"]').innerHTML = name_user;
+
+		// address
+		let html_address ;
+
+		if (result['address']) {
+            let address_ex = result['address'].split("/");
+            html_address = 	address_ex[0] + ' ' + address_ex[1] + ' ' + address_ex[2] ;
+    	}else{
+    		html_address = 'ไม่มีข้อมูล' ;
+    	}
+		new_div_data_sos.querySelector('[mock_up_mark="address"]').innerHTML = html_address;
+
+		// phone_user
+		let phone_user ;
+    	if (result['phone_user']) {
+    		phone_user = result['phone_user'] ;
+    	}else{
+    		phone_user = 'ไม่ได้ระบุ' ;
+    	}
+		new_div_data_sos.querySelector('[mock_up_mark="phone_user"]').innerHTML = phone_user;
+
+		// helper
+		let name_helper ;
+    	if (result['name_helper']) {
+    		name_helper = result['name_helper'] ;
+    	}else{
+    		name_helper = 'ไม่ทราบชื่อ' ;
+    	}
+
+		let organization_helper ;
+    	if (result['organization_helper']) {
+    		organization_helper = result['organization_helper'] ;
+    	}else{
+    		organization_helper = 'ไม่ทราบหน่วยงาน' ;
+    	}
+		new_div_data_sos.querySelector('[mock_up_mark="helper"]').innerHTML = 'ช่วยเหลือโดย ' + name_helper + ' ● ' + organization_helper;
+
+		// IDC , RC
+		let btn_idc ;
+		let text_idc ;
+    	switch(result['idc']) {
+			case 'แดง(วิกฤติ)':
+			    btn_idc = 	'btn-status-crisis';
+			    text_idc = '(วิกฤติ)';
+			break;
+			case 'ขาว(ทั่วไป)':
+			    btn_idc = 	'btn-status-normal';
+				text_idc = '(ทั่วไป)';
+			break;
+			case 'เหลือง(เร่งด่วน)':
+			    btn_idc = 	'btn-status-hurry';
+				text_idc = '(เร่งด่วน)';
+			break;
+			case 'ดำ(รับบริการสาธารณสุขอื่น)':
+			    btn_idc = 	'btn-status-other';
+				text_idc = '(รับบริการอื่นๆ)';
+			break;
+			case 'เขียว(ไม่รุนแรง)':
+			    btn_idc = 	'btn-status-weak';
+				text_idc = '(ไม่รุนแรง)';
+			break;
+
+			default:
+				btn_idc =	'btn-status-normal';
+				text_idc = '(ไม่ได้ระบุ)';
+		}
+		new_div_data_sos.querySelector('[mock_up_mark="text_IDC"]').innerHTML = text_idc;
+		new_div_data_sos.querySelector('[mock_up_mark="btn_IDC"]').classList.add(btn_idc);
+
+		let btn_rc ;
+		let text_rc ;
+    	switch(result['rc']) {
+			case 'แดง(วิกฤติ)':
+			    btn_rc = 	'btn-status-crisis';
+			    text_rc = '(วิกฤติ)';
+			break;
+			case 'ขาว(ทั่วไป)':
+			    btn_rc = 	'btn-status-normal';
+				text_rc = '(ทั่วไป)';
+			break;
+			case 'เหลือง(เร่งด่วน)':
+			    btn_rc = 	'btn-status-hurry';
+				text_rc = '(เร่งด่วน)';
+			break;
+			case 'ดำ(รับบริการสาธารณสุขอื่น)':
+			    btn_rc = 	'btn-status-other';
+				text_rc = '(รับบริการอื่นๆ)';
+			break;
+			case 'เขียว(ไม่รุนแรง)':
+			    btn_rc = 	'btn-status-weak';
+				text_rc = '(ไม่รุนแรง)';
+			break;
+
+			default:
+				btn_rc =	'btn-status-normal';
+				text_rc = '(ไม่ได้ระบุ)';
+		}
+		new_div_data_sos.querySelector('[mock_up_mark="text_RC"]').innerHTML = text_rc;
+		new_div_data_sos.querySelector('[mock_up_mark="btn_RC"]').classList.add(btn_rc);
+
+		// date_time
+    	const date = new Date(result['created_at']);
+
+		const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
+		const dateFormatter = new Intl.DateTimeFormat('th-TH', options);
+		const date_created = dateFormatter.format(date);
+
+		const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: false };
+		const timeFormatter = new Intl.DateTimeFormat('th-TH', timeOptions);
+		const time_created = timeFormatter.format(date);
+
+		new_div_data_sos.querySelector('[mock_up_mark="date_time"]').innerHTML = date_created + '  ' + 'เวลา ' + time_created;
+
+
+		// grade
+		let grade = result['score_total'] ;
+		let rounded_grade = Math.ceil(result['score_total']) ;
+		let html_star = '' ;
+
+		if (result['score_total']){
+			for(let i = 1 ; i <= 5 ; i++){
+				if (i <= rounded_grade){
+					if (i < rounded_grade){
+						html_star = html_star + '<i class="fa-solid fa-star text-warning"></i>' ;
+					}else{
+						if( grade - i + 1 >= 0.75){
+							html_star = html_star + '<i class="fa-solid fa-star text-warning"></i>' ;
+						}else if(grade - i + 1 >= 0.25){
+							html_star = html_star + '<i class="fa-solid fa-star-half-stroke text-warning"></i>' ;
+						}else{
+							html_star = html_star + '<i class="fa-regular fa-star text-warning"></i>' ;
+						}
+					}
+				}else{
+					html_star = html_star + '<i class="fa-regular fa-star text-warning"></i>' ;
+				}
+			}
+		}else{
+			html_star = '<span class="text-secondary"></span>' ;
+		}
+        new_div_data_sos.querySelector('[mock_up_mark="grade"]').insertAdjacentHTML('afterbegin', html_star); // แทรกบนสุด
+
+
+		return new_div_data_sos ;
     }
 
     function gen_html_div_data_sos_1669(result){
@@ -2535,6 +2738,16 @@
     }
         
 
+</script>
+<script>
+    function toggleAnimation(elementId, animationClass) {
+        var element = document.getElementById(elementId);
+        element.classList.add(animationClass);
+
+        element.addEventListener('mouseleave', function() {
+            this.classList.remove(animationClass);
+        });
+    }
 </script>
 
 <a id="tag_a_new_sos1669" class="d-none"></a>
