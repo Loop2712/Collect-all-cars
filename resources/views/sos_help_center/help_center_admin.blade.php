@@ -1281,7 +1281,7 @@
                     <div class="row" id="data_help">
 
                         <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
-                        <div class="div_card_mook_up col-12 d-">
+                        <div class="div_card_mook_up col-12 d-none">
                             <a class="a_data_user data-show" href="{{ url('/') }}">
                                 <div class="card card-data-sos card-sos shadow">
                                     <div class="card-header-sos">
