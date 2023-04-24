@@ -631,10 +631,10 @@
                                     @endif
                                 </div>
 
-                                @if(!empty($sos_help_center->comment_help) )
+                                @if(!empty($sos_help_center->remark_helper) )
                                     <div class="comment-sos">
                                         <strong>ข้อเสนอแนะจากเจ้าหน้าที่</strong>
-                                        <p class="p-0 m-0">{{$sos_help_center->comment_help}}</p>
+                                        <p class="p-0 m-0">{{$sos_help_center->remark_helper}}</p>
                                     </div>
                                 @endif
                             </div>
