@@ -1281,7 +1281,7 @@
                     <div class="row" id="data_help">
 
                         <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
-                        <div id="div_card_mook_up" class="col-12 d-">
+                        <div id="div_card_mook_up" class="col-12 d-none">
                             <a iclass="a_data_user data-show" >
                                 <div class="card card-data-sos card-sos shadow">
                                     <div class="card-header-sos">
