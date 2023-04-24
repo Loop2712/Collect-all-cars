@@ -570,10 +570,10 @@
                                             color: #909ce4;
                                         }
                                     </style>
-                                    @if( !empty($sos_help_center->comment_help) )
+                                    @if( !empty($sos_help_center->remark_photo_sos) )
                                         <div class="comment-sos">
                                             <strong>คำแนะนำขณะเกิดเหตุ</strong>
-                                            <p class="p-0 m-0">{{$sos_help_center->comment_help}}</p>
+                                            <p class="p-0 m-0">{{$sos_help_center->remark_photo_sos}}</p>
                                         </div>
                                     @endif
                                 </div>
