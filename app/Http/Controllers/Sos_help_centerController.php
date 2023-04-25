@@ -829,7 +829,8 @@ class Sos_help_centerController extends Controller
         // ค้นหาขั้นสูง
         $data = DB::table('sos_help_centers')
                 ->join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
-                ->select('sos_help_centers.*', 'sos_1669_form_yellows.be_notified', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text');
+                ->leftJoin('users', 'sos_help_centers.user_id', '=', 'users.id')
+                ->select('sos_help_centers.*', 'sos_1669_form_yellows.be_notified', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text','users.photo as photo_user');
         
         if ($id) {
             $data->where('sos_help_centers.operating_code','LIKE', "%$id%");
@@ -920,7 +921,8 @@ class Sos_help_centerController extends Controller
             // ค้นหาจาหช่องค้นหา
             $data_sos = $data_not_empty_keyword
                 ->join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
-                ->select('sos_help_centers.*', 'sos_1669_form_yellows.be_notified', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text')
+                ->leftJoin('users', 'sos_help_centers.user_id', '=', 'users.id')
+                ->select('sos_help_centers.*', 'sos_1669_form_yellows.be_notified', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text','users.photo as photo_user')
                 ->where(function($query) use ($keyword) {
                     $query->where('sos_help_centers.operating_code', 'like', "%$keyword%");
                 })
@@ -1799,6 +1801,14 @@ class Sos_help_centerController extends Controller
                 ]);
 
         return "OK" ;
+    }
+
+    function get_forward_operation($forward_id){
+
+        $data = Sos_help_center::where('id' , $forward_id)->first();
+
+        return $data ;
+
     }
 
 }

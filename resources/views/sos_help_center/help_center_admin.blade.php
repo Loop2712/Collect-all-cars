@@ -1282,7 +1282,7 @@
 
                         <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
                         <div class="div_card_mook_up col-12 d-none">
-                            <a class="a_data_user data-show" href="{{ url('/') }}">
+                            <a mock_up_mark="link_data_sos" class="a_data_user data-show">
                                 <div class="card card-data-sos card-sos shadow">
                                     <div class="card-header-sos">
                                         <span><b mock_up_mark="operating_code"> 123456789</b></span>
@@ -1299,7 +1299,7 @@
                                         
                                     <div class="card-main-sos">
                                         <div class="card-user-sos">
-                                            <img  src="{{ url('/img/stickerline/PNG/37.2.png') }}" alt="">
+                                            <img mock_up_mark="photo_user" src="{{ url('/img/stickerline/PNG/37.2.png') }}" alt="">
                                             
                                             <div class="data-user-sos">
                                                 <h6 class=" p-0 m-0 color-dark data-overflow">
@@ -1345,32 +1345,35 @@
                                         <div mock_up_mark="date_time">วันที่ &nbsp;&nbsp;เวลา</div>
                                     </div>
                                 </a>
-                                <div class="forward_operation">
+                                <div class="forward_operation forward_operation_to d-none">
 
-                                    <div class="forward_operation">
-                                        <!-- เคสนี้ส่งต่อ "ไปที่" ใด -->
-                                        <div class="text-end mx-3"> 
-                                            เคสถูกส่งต่อไปที่ <b mock_up_mark="forward_operation_to"></b> <br>
-                                            สถานะของเคสที่ส่งต่อ <b mock_up_mark="forward_operation_to_status"></b> 
-                                        </div>
-                                        <div>
-                                            <a class="icon-forward-operation" href="#" onclick="event.preventDefault(); window.open('{ url('/sos_help_center/' . $item->forward_operation_to . '/edit') }', '_blank', 'width=1600,height=1200'); ">
-                                                <i id="icon_forward_operation_{$item->id}" class=" fa-regular fa-chevrons-right" onmouseover="toggleAnimation('icon_forward_operation_{$item->id}', 'fa-beat')"></i>
-                                            </a>
-                                        </div>
-                                        <!-- เคสนี้ส่งต่อ "มาจาก" ที่ใด -->
-                                        <div class="text-end mx-3"> 
-                                            เคสถูกส่งต่อมาจาก <b mock_up_mark="forward_operation_from"></b> <br>
-                                            โดย <b mock_up_mark="forward_operation_from_status"></b> 
-                                        </div>
-                                        <div>
-                                            <a class="icon-forward-operation" href="#" onclick="event.preventDefault(); window.open('{ url('/sos_help_center/' . $item->forward_operation_from . '/edit') }', '_blank', 'width=1600,height=1200'); ">
-                                                <i id="icon_forward_operation_{$item->id}" class=" fa-regular fa-chevrons-right" onmouseover="toggleAnimation('icon_forward_operation_{$item->id}', 'fa-beat')"></i>
-                                            </a>
-                                        </div>
+                                    <!-- เคสนี้ส่งต่อ "ไปที่" ใด -->
+                                    <div class="text-end mx-3"> 
+                                        เคสถูกส่งต่อไปที่ <b mock_up_mark="forward_operation_to_code"></b> <br>
+                                        สถานะของเคสที่ส่งต่อ <b mock_up_mark="forward_operation_to_status"></b> 
+                                    </div>
+                                    <div>
+                                        <a mock_up_mark="forward_operation_to_link" class="icon-forward-operation" href="#">
+                                            <i mock_up_mark="forward_operation_to_tag_i" class=" fa-regular fa-chevrons-right"></i>
+                                        </a>
                                     </div>
 
                                 </div>
+                                <div class="forward_operation forward_operation_from d-none">
+
+                                    <!-- เคสนี้ส่งต่อ "มาจาก" ที่ใด -->
+                                    <div class="text-end mx-3"> 
+                                        เคสถูกส่งต่อมาจาก <b mock_up_mark="forward_operation_from_code"></b> <br>
+                                        โดย <b mock_up_mark="forward_operation_from_name_helper"></b> 
+                                    </div>
+                                    <div>
+                                        <a mock_up_mark="forward_operation_from_link" class="icon-forward-operation" href="#">
+                                            <i mock_up_mark="forward_operation_from_tag_i" class=" fa-regular fa-chevrons-right"></i>
+                                        </a>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                         <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
@@ -1484,7 +1487,7 @@
                                                         @if(!empty($item->name_helper))
                                                             ช่วยเหลือโดย {{ $item->name_helper }}
                                                         @else
-                                                            ไม่ทราบชื่อ
+                                                            ช่วยเหลือโดย ไม่ทราบชื่อ
                                                         @endif
                                                         ●
                                                         @if(!empty($item->organization_helper))
@@ -1529,7 +1532,7 @@
                                                         @endswitch
                                                     @else
                                                         <button class="btn-status-normal btn-status px-3">
-                                                            <b>IDC<br>ไม่ได้ระบุ</b>
+                                                            <b>IDC<br>(ไม่ได้ระบุ)</b>
                                                         </button>
                                                     @endif
                                                     <!-- RC -->
@@ -1563,7 +1566,7 @@
                                                         @endswitch
                                                     @else
                                                         <button class="btn-status-normal btn-status px-3 mt-1 ">
-                                                            <b>RC<br>ไม่ได้ระบุ</b>
+                                                            <b>RC<br>(ไม่ได้ระบุ)</b>
                                                         </button>
                                                     @endif
                                                 </center> 
@@ -1639,35 +1642,39 @@
 
                                                 @endphp
                                                 @if($item->status == "เสร็จสิ้น")
+
                                                     ใช้เวลารวม : <span class="{{ $bg_show_min_case }}">{{ $show_min_case }}</span>
+
+                                                    @php
+                                                        $grade = $item->score_total; 
+                                                        $rounded_grade = ceil($grade);
+                                                    @endphp
+                                                    
+                                                    @if(!empty($item->score_total))
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            @if ($i <= $rounded_grade)
+                                                                @if ($i < $rounded_grade)
+                                                                    <i class="fa-solid fa-star text-warning"></i>
+                                                                @else
+                                                                    @if ($grade - $i + 1 >= 0.75)
+                                                                        <i class="fa-solid fa-star text-warning"></i>
+                                                                    @elseif ($grade - $i + 1 >= 0.25)
+                                                                        <i class="fa-solid fa-star-half-stroke text-warning"></i> 
+                                                                    @else
+                                                                        <i class="fa-regular fa-star text-warning"></i>
+                                                                    @endif
+                                                                @endif
+                                                            @else
+                                                                <i class="fa-regular fa-star text-warning"></i>
+                                                            @endif
+                                                        @endfor
+                                                    @else
+                                                        <span class="text-secondary">ไม่มีการประเมิน</span>
+                                                    @endif
+
                                                 @endif
 
-                                                @php
-                                                    $grade = $item->score_total; 
-                                                    $rounded_grade = ceil($grade);
-                                                @endphp
                                                 
-                                                @if(!empty($item->score_total))
-                                                    @for ($i = 1; $i <= 5; $i++)
-                                                        @if ($i <= $rounded_grade)
-                                                            @if ($i < $rounded_grade)
-                                                                <i class="fa-solid fa-star text-warning"></i>
-                                                            @else
-                                                                @if ($grade - $i + 1 >= 0.75)
-                                                                    <i class="fa-solid fa-star text-warning"></i>
-                                                                @elseif ($grade - $i + 1 >= 0.25)
-                                                                    <i class="fa-solid fa-star-half-stroke text-warning"></i> 
-                                                                @else
-                                                                    <i class="fa-regular fa-star text-warning"></i>
-                                                                @endif
-                                                            @endif
-                                                        @else
-                                                            <i class="fa-regular fa-star text-warning"></i>
-                                                        @endif
-                                                    @endfor
-                                                @else
-                                                    <span class="text-secondary">ไม่มีการประเมิน</span>
-                                                @endif
                                             </div>
                                             <div>{{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }} &nbsp;&nbsp;{{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}</div>
                                         </div>
@@ -2579,7 +2586,8 @@
             fetch("{{ url('/') }}/api/marker_area_select/" + province_name)
                 .then(response => response.json())
                 .then(result => {
-                    // console.log(result);
+                    console.log('marker_area_select');
+                    console.log(result);
 
                     document.querySelector('#div_body_help').classList.remove('d-none');
 
@@ -2628,6 +2636,16 @@
                             data_html['idc'] = result[xxi]['idc'] ;
                             data_html['rc'] = result[xxi]['rc'] ;
                             data_html['rc_black_text'] = result[xxi]['rc_black_text'] ;
+
+                            data_html['time_create_sos'] = result[xxi]['time_create_sos'] ;
+                            data_html['time_command'] = result[xxi]['time_command'] ;
+                            data_html['time_go_to_help'] = result[xxi]['time_go_to_help'] ;
+                            data_html['time_to_the_scene'] = result[xxi]['time_to_the_scene'] ;
+                            data_html['time_leave_the_scene'] = result[xxi]['time_leave_the_scene'] ;
+                            data_html['time_hospital'] = result[xxi]['time_hospital'] ;
+
+                            data_html['forward_operation_to'] = result[xxi]['forward_operation_to'] ;
+                            data_html['forward_operation_from'] = result[xxi]['forward_operation_from'] ;
 
                         let div_data_help_center = new_gen_html_div_data_sos_1669(data_html);
 
@@ -2860,7 +2878,8 @@
         fetch("{{ url('/') }}/api/data_help_center?" + new URLSearchParams(data_arr))
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                // console.log("data_help_center");
+                console.log(result);
 
                 if (result) {
                     for (var xxi = 0; xxi < result.length; xxi++) {
@@ -2895,9 +2914,59 @@
                             data_html['rc_black_text'] = result[xxi]['rc_black_text'] ;
                             data_html['score_total'] = result[xxi]['score_total'] ;
 
-                        let div_data_help_center = new_gen_html_div_data_sos_1669(data_html);
+                            data_html['time_create_sos'] = result[xxi]['time_create_sos'] ;
+                            data_html['time_command'] = result[xxi]['time_command'] ;
+                            data_html['time_go_to_help'] = result[xxi]['time_go_to_help'] ;
+                            data_html['time_to_the_scene'] = result[xxi]['time_to_the_scene'] ;
+                            data_html['time_leave_the_scene'] = result[xxi]['time_leave_the_scene'] ;
+                            data_html['time_hospital'] = result[xxi]['time_hospital'] ;
 
-                        document.querySelector('#data_id_' + result[xxi]['id']).innerHTML = div_data_help_center ;
+                            data_html['forward_operation_to'] = result[xxi]['forward_operation_to'] ;
+                            data_html['forward_operation_from'] = result[xxi]['forward_operation_from'] ;
+                            data_html['photo_user'] = result[xxi]['photo_user'] ;
+
+                        let result_id = result[xxi]['id'] ;
+
+                        if(result[xxi]['forward_operation_to']){
+
+                            fetch("{{ url('/') }}/api/get_forward_operation/" + result[xxi]['forward_operation_to'] )
+                                .then(response => response.json())
+                                .then(result_forward => {
+                                    // console.log("result_forward");
+                                    // console.log(result_forward);
+
+                                    data_html['forward_operation_to_code'] = result_forward['operating_code'];
+                                    data_html['forward_operation_to_status'] = result_forward['status'];
+                                    data_html['forward_operation_to_name_helper'] = result_forward['name_helper'];
+
+                                    let div_data_help_center = new_gen_html_div_data_sos_1669(data_html);
+                                    document.querySelector('#data_id_' + result_id).innerHTML = div_data_help_center ;
+                                });
+
+                        }else if(result[xxi]['forward_operation_from']){
+
+                            fetch("{{ url('/') }}/api/get_forward_operation/" + result[xxi]['forward_operation_from'] )
+                                .then(response => response.json())
+                                .then(result_forward => {
+                                    // console.log("result_forward");
+                                    // console.log(result_forward);
+
+                                    data_html['forward_operation_from_code'] = result_forward['operating_code'];
+                                    data_html['forward_operation_from_status'] = result_forward['status'];
+                                    data_html['forward_operation_from_name_helper'] = result_forward['name_helper'];
+
+                                    let div_data_help_center = new_gen_html_div_data_sos_1669(data_html);
+                                    document.querySelector('#data_id_' + result_id).innerHTML = div_data_help_center ;
+                                });
+
+                        }else{
+                            let div_data_help_center = new_gen_html_div_data_sos_1669(data_html);
+                            document.querySelector('#data_id_' + result_id).innerHTML = div_data_help_center ;
+                        }
+
+                        // console.log("data_html");
+                        // console.log(data_html);
+
 
                         if (result[xxi]['status'] == "เสร็จสิ้น"){
 

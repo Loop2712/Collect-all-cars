@@ -246,6 +246,7 @@ Route::get('/send_flex_help_complete/{sos_id}', 'Sos_help_centerController@send_
 Route::get('/search_all_name_user_partner', 'test_for_devController@search_all_name_user_partner');
 Route::get('/forward_operation/{sos_id}', 'Sos_help_centerController@forward_operation');
 Route::get('/sos_1669_command_by/{sos_id}/{admin_id}', 'Sos_help_centerController@sos_1669_command_by');
+Route::get('/get_forward_operation/{forward_id}', 'Sos_help_centerController@get_forward_operation');
 
     // SOS HELP CENTER FORM USER 
     Route::get('/check_unit_cf_sos_form_user/{sos_id}', 'Sos_help_centerController@check_unit_cf_sos_form_user');

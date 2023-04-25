@@ -2136,12 +2136,12 @@
         // data_help.insertAdjacentHTML('afterbegin', text_html); // แทรกบนสุด
         // data_help.insertAdjacentHTML('beforeend', '<p>1</p>'); // แทรกล่างสุด
 
-   //      let div_text_html = document.querySelector('#text_html_id_'+result['id']);
-			// div_text_html.classList.add('border-color-change-color');
+        let div_text_html = document.querySelector('#text_html_id_'+result['id']);
+			div_text_html.classList.add('border-color-change-color');
 
-	  //       setTimeout(function() {
-	  //           div_text_html.classList.remove('border-color-change-color');
-	  //       }, 10000);
+	        setTimeout(function() {
+	            div_text_html.classList.remove('border-color-change-color');
+	        }, 10000);
 
         // console.log(div_text_html);
 
@@ -2188,7 +2188,8 @@
         result['idc'] = '' ;
         result['rc'] = 'ดำ(รับบริการสาธารณสุขอื่น)' ;
         result['rc_black_text'] = 'เมารถ' ;
-        result['forward_operation_from'] = '1' ;
+        result['forward_operation_to'] = '6' ;
+        result['forward_operation_from'] = null ;
 
         alet_new_sos_1669(result);
     }
@@ -2210,11 +2211,21 @@
 
     function new_gen_html_div_data_sos_1669(result){
 
+    	// console.log(result);
+
     	let div_card_mook_up = document.querySelector('.div_card_mook_up');
 
 		let new_div_data_sos = div_card_mook_up.cloneNode(true);
         	new_div_data_sos.setAttribute('id', 'mook_up_id_'+result['id'] );
         	new_div_data_sos.setAttribute('class', 'col-12' );
+
+    	let card_data_sos = new_div_data_sos.querySelector('.card-data-sos');
+        	card_data_sos.setAttribute('id', 'text_html_id_'+result['id'] );
+
+
+    	// a_data_user
+    	card_data_sos.querySelector('[mock_up_mark="link_data_sos"]').setAttribute('id', 'card_data_sos_id_' + result['id'] );
+    	card_data_sos.querySelector('[mock_up_mark="link_data_sos"]').setAttribute('href', "{{ url('/sos_help_center') }}/" + result['id'] + "/edit");
 
     	// operating_code
     	new_div_data_sos.querySelector('[mock_up_mark="operating_code"]').innerHTML = result['operating_code'];
@@ -2257,6 +2268,11 @@
 		}
 		new_div_data_sos.querySelector('[mock_up_mark="status"]').innerHTML = result['status'];
 		new_div_data_sos.querySelector('[mock_up_mark="status"]').classList.add(html_status);
+
+		// photo_user
+		if (result['photo_user']){
+			new_div_data_sos.querySelector('[mock_up_mark="photo_user"]').setAttribute('src', "{{ url('/storage') }}/" + result['photo_user']);
+		}
 
 		// name_user
 		let name_user ;
@@ -2379,35 +2395,151 @@
 
 		new_div_data_sos.querySelector('[mock_up_mark="date_time"]').innerHTML = date_created + '  ' + 'เวลา ' + time_created;
 
+		// status == เสร็จสิ้น >> show_min_case / grade
+        if(result['status'] == "เสร็จสิ้น"){
+        	
+        	// grade
+			let grade = result['score_total'] ;
+			let rounded_grade = Math.ceil(result['score_total']) ;
+			let html_star = '' ;
 
-		// grade
-		let grade = result['score_total'] ;
-		let rounded_grade = Math.ceil(result['score_total']) ;
-		let html_star = '' ;
-
-		if (result['score_total']){
-			for(let i = 1 ; i <= 5 ; i++){
-				if (i <= rounded_grade){
-					if (i < rounded_grade){
-						html_star = html_star + '<i class="fa-solid fa-star text-warning"></i>' ;
-					}else{
-						if( grade - i + 1 >= 0.75){
+			if (result['score_total']){
+				for(let i = 1 ; i <= 5 ; i++){
+					if (i <= rounded_grade){
+						if (i < rounded_grade){
 							html_star = html_star + '<i class="fa-solid fa-star text-warning"></i>' ;
-						}else if(grade - i + 1 >= 0.25){
-							html_star = html_star + '<i class="fa-solid fa-star-half-stroke text-warning"></i>' ;
 						}else{
-							html_star = html_star + '<i class="fa-regular fa-star text-warning"></i>' ;
+							if( grade - i + 1 >= 0.75){
+								html_star = html_star + '<i class="fa-solid fa-star text-warning"></i>' ;
+							}else if(grade - i + 1 >= 0.25){
+								html_star = html_star + '<i class="fa-solid fa-star-half-stroke text-warning"></i>' ;
+							}else{
+								html_star = html_star + '<i class="fa-regular fa-star text-warning"></i>' ;
+							}
 						}
+					}else{
+						html_star = html_star + '<i class="fa-regular fa-star text-warning"></i>' ;
 					}
-				}else{
-					html_star = html_star + '<i class="fa-regular fa-star text-warning"></i>' ;
 				}
+			}else{
+				html_star = '<span class="text-secondary">ไม่มีการประเมิน</span>' ;
 			}
-		}else{
-			html_star = '<span class="text-secondary"></span>' ;
-		}
-        new_div_data_sos.querySelector('[mock_up_mark="grade"]').insertAdjacentHTML('afterbegin', html_star); // แทรกบนสุด
+	        new_div_data_sos.querySelector('[mock_up_mark="grade"]').insertAdjacentHTML('afterbegin', html_star);
 
+        	// show_min_case
+        	let total_time = 0;
+
+			let zone1_time1 = "";
+			let zone1_time2 = "";
+
+			if (result['time_create_sos']) {
+				zone1_time1 = result['time_create_sos'];
+			}
+
+			if (result['time_command']) {
+				zone1_time2 = result['time_command'];
+			}
+
+			if (result['time_go_to_help']) {
+			    zone1_time2 = result['time_go_to_help'];
+			}
+
+			if (result['time_to_the_scene']) {
+			    zone1_time2 = result['time_to_the_scene'];
+			}
+
+			if (result['time_leave_the_scene']) {
+				zone1_time2 = result['time_leave_the_scene'];
+			}
+
+			if (result['time_hospital']) {
+			    zone1_time2 = result['time_hospital'];
+			}
+
+			zone1_time1 = zone1_time1.split(" ")[1];
+            zone1_time2 = zone1_time2.split(" ")[1];
+
+			const [zone1_hours1, zone1_minutes1, zone1_seconds1] = zone1_time1.split(":");
+			const [zone1_hours2, zone1_minutes2, zone1_seconds2] = zone1_time2.split(":");
+
+			const zone1_totalSeconds1 =
+			    parseInt(zone1_hours1) * 3600 +
+			    parseInt(zone1_minutes1) * 60 +
+			    parseInt(zone1_seconds1);
+			const zone1_totalSeconds2 =
+			    parseInt(zone1_hours2) * 3600 +
+			    parseInt(zone1_minutes2) * 60 +
+			    parseInt(zone1_seconds2);
+
+			const zone1_TotalSeconds = zone1_totalSeconds2 - zone1_totalSeconds1;
+
+			const zone1_Time_min = Math.floor(zone1_TotalSeconds / 60);
+			const zone1_Time_Seconds = zone1_TotalSeconds - zone1_Time_min * 60;
+
+			const min_1_to_sec = zone1_Time_min * 60;
+			  	total_time = total_time + min_1_to_sec + zone1_Time_Seconds;
+
+			const hours_all_time = Math.floor(total_time / 3600);
+			const minutes_all_time = Math.floor((total_time % 3600) / 60);
+			const seconds_all_time = Math.floor(total_time % 60);
+
+			let text_total_time = "";
+			if (hours_all_time > 0) {
+			  text_total_time += `${hours_all_time} ชั่วโมง${hours_all_time > 1 ? "" : ""} `;
+			}
+			text_total_time += `${minutes_all_time} นาที${
+			  minutes_all_time > 1 ? "" : ""
+			} `;
+			text_total_time += `${seconds_all_time} วินาที${seconds_all_time > 1 ? "" : ""}`;
+
+			let show_min_case = text_total_time;
+
+			// check if it's more than 8 or 12
+
+			let bg_show_min_case;
+			if (total_time < 480) {
+			  bg_show_min_case = "text-success";
+			} else if (total_time >= 480 && total_time < 720) {
+			  bg_show_min_case = "text-warning";
+			} else if (total_time >= 720) {
+			  bg_show_min_case = "text-danger";
+			}
+
+
+        	let html_show_min_case = 'ใช้เวลารวม : <span class="' + bg_show_min_case + '">' + show_min_case + '</span>' ;
+        	new_div_data_sos.querySelector('[mock_up_mark="grade"]').insertAdjacentHTML('afterbegin', html_show_min_case);
+        }
+        
+        // forward_operation_to เคสนี้ส่งต่อ "ไปที่" ใด
+        if (result['forward_operation_to']){
+
+		    new_div_data_sos.querySelector('.forward_operation_to').classList.remove('d-none');
+	        
+	        new_div_data_sos.querySelector('[mock_up_mark="forward_operation_to_code"]').innerHTML = result['forward_operation_to_code'];
+	        new_div_data_sos.querySelector('[mock_up_mark="forward_operation_to_status"]').innerHTML = result['forward_operation_to_status'];
+
+	        let url_window_open = "{{ url('/') }}" + "/sos_help_center/"+result['forward_operation_to']+"/edit" ;
+	        	// console.log(url_window_open);
+	        new_div_data_sos.querySelector('[mock_up_mark="forward_operation_to_link"]').setAttribute('onclick', "event.preventDefault(); window.open('"+url_window_open+"', '_blank', 'width=1600,height=1200');" );
+			new_div_data_sos.querySelector('[mock_up_mark="forward_operation_to_tag_i"]').setAttribute('id', "icon_forward_operation_" + result['forward_operation_to']);
+			new_div_data_sos.querySelector('[mock_up_mark="forward_operation_to_tag_i"]').setAttribute('onmouseover', "toggleAnimation('icon_forward_operation_"+result['forward_operation_to']+"', 'fa-beat')");
+
+			// console.log(new_div_data_sos);
+        }
+        // forward_operation_from เคสนี้ส่งต่อ "มาจาก" ที่ใด
+		if (result['forward_operation_from']){
+        	
+        	new_div_data_sos.querySelector('.forward_operation_from').classList.remove('d-none');
+	        
+	        new_div_data_sos.querySelector('[mock_up_mark="forward_operation_from_code"]').innerHTML = result['forward_operation_from_code'];
+	        new_div_data_sos.querySelector('[mock_up_mark="forward_operation_from_name_helper"]').innerHTML = result['forward_operation_from_name_helper'];
+
+	        let url_window_open = "{{ url('/') }}" + "/sos_help_center/"+result['forward_operation_from']+"/edit" ;
+	        	// console.log(url_window_open);
+	        new_div_data_sos.querySelector('[mock_up_mark="forward_operation_from_link"]').setAttribute('onclick', "event.preventDefault(); window.open('"+url_window_open+"', '_blank', 'width=1600,height=1200');" );
+			new_div_data_sos.querySelector('[mock_up_mark="forward_operation_from_tag_i"]').setAttribute('id', "icon_forward_operation_" + result['forward_operation_from']);
+			new_div_data_sos.querySelector('[mock_up_mark="forward_operation_from_tag_i"]').setAttribute('onmouseover', "toggleAnimation('icon_forward_operation_"+result['forward_operation_from']+"', 'fa-beat')");
+        }
 
 		return new_div_data_sos.outerHTML ;
     }
