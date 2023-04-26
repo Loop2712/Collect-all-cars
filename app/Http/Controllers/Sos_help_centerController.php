@@ -301,6 +301,7 @@ class Sos_help_centerController extends Controller
             ->join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
             ->select('sos_help_centers.*', 'sos_1669_form_yellows.be_notified', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text')
             ->where('sos_help_centers.notify', 'like', "%$province_name%")
+            ->orderBy('id' , 'DESC')
             ->get();
 
         return $data_sos ;

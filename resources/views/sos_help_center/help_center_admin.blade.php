@@ -1089,24 +1089,24 @@
 
                                 $count_success = $count_success + 1 ;
 
-                                if($sos->time_create_sos){
-                                    $zone1_time1 = $sos->time_create_sos  ;
+                                if($sos->form_yellow->time_create_sos){
+                                    $zone1_time1 = $sos->form_yellow->time_create_sos  ;
                                 }
 
-                                if($sos->time_command){
-                                    $zone1_time2 = $sos->time_command  ;
+                                if($sos->form_yellow->time_command){
+                                    $zone1_time2 = $sos->form_yellow->time_command  ;
                                 }
-                                if($sos->time_go_to_help){
-                                    $zone1_time2 = $sos->time_go_to_help  ;
+                                if($sos->form_yellow->time_go_to_help){
+                                    $zone1_time2 = $sos->form_yellow->time_go_to_help  ;
                                 }
-                                if($sos->time_to_the_scene){
-                                    $zone1_time2 = $sos->time_to_the_scene  ;
+                                if($sos->form_yellow->time_to_the_scene){
+                                    $zone1_time2 = $sos->form_yellow->time_to_the_scene  ;
                                 }
-                                if($sos->time_leave_the_scene){
-                                    $zone1_time2 = $sos->time_leave_the_scene  ;
+                                if($sos->form_yellow->time_leave_the_scene){
+                                    $zone1_time2 = $sos->form_yellow->time_leave_the_scene  ;
                                 }
-                                if($sos->time_hospital){
-                                    $zone1_time2 = $sos->time_hospital  ;
+                                if($sos->form_yellow->time_hospital){
+                                    $zone1_time2 = $sos->form_yellow->time_hospital  ;
                                 }
 
                                 list($zone1_hours1, $zone1_minutes1, $zone1_seconds1) = explode(':', $zone1_time1);
@@ -1123,9 +1123,8 @@
 
                                 $min_1_to_sec = $zone1_Time_min * 60 ;
                                 $all_time[$count_success] = $min_1_to_sec + $zone1_Time_Seconds ;
+                            } 
 
-                            }   
-                            
 
                         }
 
@@ -1388,7 +1387,7 @@
 
 
                                             @php
-                                                 $img_user = \App\User::find($item->user_id);
+                                                $img_user = \App\User::find($item->user_id);
 
                                                 if($item->form_yellow->be_notified == 'แพลตฟอร์มวีเช็ค'){
                                                     $color_be_notified = 'danger' ;
@@ -1445,9 +1444,13 @@
                                         <div class="card-main-sos">
                                             <div class="card-user-sos">
                                                 @if ($img_user)
-                                                <img  src="{{ url('storage')}}/{{ $img_user->photo }}" alt="">
+                                                    @if ($img_user->photo)
+                                                    <img  src="{{ url('storage')}}/{{ $img_user->photo }}" alt="">
+                                                    @else
+                                                    <img  src="{{ url('/img/stickerline/PNG/37.2.png') }}" alt="">
+                                                    @endif
                                                 @else
-                                                <img  src="{{ url('/img/stickerline/PNG/37.2.png') }}" alt="">
+                                                    <img  src="{{ url('/img/stickerline/PNG/37.2.png') }}" alt="">
                                                 @endif
                                                 <div class="data-user-sos">
                                                     <h6 class=" p-0 m-0 color-dark data-overflow">
@@ -1615,6 +1618,7 @@
                                                         $total_time = $total_time + $min_1_to_sec + $zone1_Time_Seconds ;
                                                         
                                                     }   
+
 
                                                     $hours_all_time = floor($total_time / 3600);
                                                     $minutes_all_time = floor(($total_time % 3600) / 60);
@@ -2586,8 +2590,8 @@
             fetch("{{ url('/') }}/api/marker_area_select/" + province_name)
                 .then(response => response.json())
                 .then(result => {
-                    console.log('marker_area_select');
-                    console.log(result);
+                    // console.log('marker_area_select');
+                    // console.log(result);
 
                     document.querySelector('#div_body_help').classList.remove('d-none');
 
@@ -2636,6 +2640,7 @@
                             data_html['idc'] = result[xxi]['idc'] ;
                             data_html['rc'] = result[xxi]['rc'] ;
                             data_html['rc_black_text'] = result[xxi]['rc_black_text'] ;
+                            data_html['score_total'] = result[xxi]['score_total'] ;
 
                             data_html['time_create_sos'] = result[xxi]['time_create_sos'] ;
                             data_html['time_command'] = result[xxi]['time_command'] ;
@@ -2646,11 +2651,46 @@
 
                             data_html['forward_operation_to'] = result[xxi]['forward_operation_to'] ;
                             data_html['forward_operation_from'] = result[xxi]['forward_operation_from'] ;
+                            data_html['photo_user'] = result[xxi]['photo_user'] ;
 
-                        let div_data_help_center = new_gen_html_div_data_sos_1669(data_html);
+                        let result_id = result[xxi]['id'] ;
 
-                        document.querySelector('#data_id_' + result[xxi]['id']).innerHTML = div_data_help_center ;
+                        if(result[xxi]['forward_operation_to']){
 
+                            fetch("{{ url('/') }}/api/get_forward_operation/" + result[xxi]['forward_operation_to'] )
+                                .then(response => response.json())
+                                .then(result_forward => {
+                                    // console.log("result_forward");
+                                    // console.log(result_forward);
+
+                                    data_html['forward_operation_to_code'] = result_forward['operating_code'];
+                                    data_html['forward_operation_to_status'] = result_forward['status'];
+                                    data_html['forward_operation_to_name_helper'] = result_forward['name_helper'];
+
+                                    let div_data_help_center = new_gen_html_div_data_sos_1669(data_html);
+                                    document.querySelector('#data_id_' + result_id).innerHTML = div_data_help_center ;
+                                });
+
+                        }else if(result[xxi]['forward_operation_from']){
+
+                            fetch("{{ url('/') }}/api/get_forward_operation/" + result[xxi]['forward_operation_from'] )
+                                .then(response => response.json())
+                                .then(result_forward => {
+                                    // console.log("result_forward");
+                                    // console.log(result_forward);
+
+                                    data_html['forward_operation_from_code'] = result_forward['operating_code'];
+                                    data_html['forward_operation_from_status'] = result_forward['status'];
+                                    data_html['forward_operation_from_name_helper'] = result_forward['name_helper'];
+
+                                    let div_data_help_center = new_gen_html_div_data_sos_1669(data_html);
+                                    document.querySelector('#data_id_' + result_id).innerHTML = div_data_help_center ;
+                                });
+
+                        }else{
+                            let div_data_help_center = new_gen_html_div_data_sos_1669(data_html);
+                            document.querySelector('#data_id_' + result_id).innerHTML = div_data_help_center ;
+                        }
 
                         if (result[xxi]['status'] == "เสร็จสิ้น"){
 
@@ -2879,7 +2919,7 @@
             .then(response => response.json())
             .then(result => {
                 // console.log("data_help_center");
-                console.log(result);
+                // console.log(result);
 
                 if (result) {
                     for (var xxi = 0; xxi < result.length; xxi++) {
