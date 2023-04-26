@@ -306,7 +306,7 @@
                                 
                                 <input class="d-none" type="text" name="text_img" id="text_img" value="">
                                 <canvas class="d-none"  id="canvas" width="266" height="400" ></canvas>
-                                <img class="d-none take-photo" style="object-fit: contain;" src=""  id="photo2">
+                                <img class="d-none take-photo"  src=""  id="photo2">
 
                                 <div class="add-img" id="add_img">
                                     <img src="{{ asset('/img/icon/image.png') }}" class="img-car-parking" alt="" >
