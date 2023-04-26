@@ -296,6 +296,7 @@
                                 border-radius: 15px;
                                 height: 20rem;
                                 position: relative;
+                                outline: #db2d2e 1px solid;
                             }
                             </style>
                             <div class="col-12 mt-3 d-flex justify-content-center" style="position: relative;">
