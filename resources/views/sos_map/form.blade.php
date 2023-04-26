@@ -1046,7 +1046,7 @@
             photo2.classList.remove('d-none');
 
             let context = canvas.getContext('2d');
-                context.drawImage(video, 0, 0,266,400);
+                context.drawImage(video, 0, 0,300,400);
                 // context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
             photo2.setAttribute('src',canvas.toDataURL('image/png'));
