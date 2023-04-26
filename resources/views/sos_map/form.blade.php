@@ -48,7 +48,7 @@
     <input type="text" id="condo_id" name="condo_id" value="{{ $condo_id }}">
 
     <div class="form-group"> 
-        <input class="btn btn-primary" id="btn_submit" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+        <input class="btn btn-primary" id="btn_submit" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
     </div>
 </div>
 
@@ -216,141 +216,236 @@
 
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="max-height: calc(100%);overflow-y: auto;">
-          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-            @if(!empty($user))
-              <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">สวัสดีคุณ <br>
-                    <b style="color:blue;" id="text_name">{{ $user->name }}</b>
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="stop();">
-                  <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
-                </button>
-              </div>
-              <div class="modal-body text-center">
-                <div id="div_data_phone">
-                    <img width="50%" src="{{ asset('/img/stickerline/PNG/7.png') }}">
-                    <br><br>
-                    โปรดยืนยันหมายเลขโทรศัพท์ของคุณ
-                    <br>
-                    <input type="hidden" name="" id="input_phone_url" value="{{ url()->full() }}">
-                    <div style="margin-top:10px;">
-                        <b>
-                            <span style="font-size:22px;color: blue;" id="text_phone">
-                                @if(!empty($user->phone)){{ $user->phone }}@endif
-                            </span>
-                            @if(!empty($user->phone))
-                                <i style="font-size:25px;" class="fas fa-edit" onclick="document.querySelector('#input_phone').classList.remove('d-none');"></i>
-                            @endif
-                        </b>
-                    </div>
-                    
-                    @if(!empty($user->phone))
-                        <!-- <span style="font-size:22px;" id="not_empty_phone">{{ $user->phone }}</span> -->
-                        <input style="margin-top:15px;" class="form-control d-none text-center"  type="phone" id="input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์"  oninput="edit_phone();">
-                    @endif
-
-                    @if(empty($user->phone))
-                        <input style="margin-top:15px;" class="form-control text-center"  type="phone" id="input_not_phone" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone();">
-                    @endif
-                    <hr>
-                </div>
-
-                <div class="row">
-                    <div class="col-12">
-                        <h6 style="margin-top:4px;" class="control-label " data-toggle="collapse" data-target="#div_photo" aria-expanded="false" aria-controls="div_photo" 
-                            onclick="if(document.getElementById('div_cam').style.display=='none'){
-                                document.getElementById('div_cam').style.display='',
-                                document.querySelector('#i_down').classList.add('d-none'),
-                                document.querySelector('#i_up').classList.remove('d-none'),
-                                document.querySelector('#div_data_phone').classList.add('d-none'),
-                                capture_registration();
-                            }else{
-                                document.getElementById('div_cam') .style.display='none',
-                                document.querySelector('#i_down').classList.remove('d-none'),
-                                document.querySelector('#i_up').classList.add('d-none'),
-                                document.querySelector('#div_data_phone').classList.remove('d-none'),
-                                stop();
-                            }">
-
-                            ถ่ายภาพเพื่อระบุตำแหน่งที่ชัดเจน &nbsp;
-                            <br><br>
-                            <a class="align-self-end text-white btn-primary btn-circle">
-                                <i id="i_down" class="fas fa-camera"></i>
-                                <i id="i_up" class="fas fa-chevron-up d-none"></i>
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content" style="border-radius: 1rem;">
+                    @if(!empty($user))
+                        <div class="modal-body text-center" >
+                            <a class="close btn-close-modal-sos-1669"  type="button"  data-dismiss="modal" aria-label="Close">
+                                <i class="fa-solid fa-xmark"></i>
                             </a>
-                            <br>
-                            <br>
-                            <span id="text_add_img" class="text-danger d-none">กรุณาเพิ่มภาพถ่าย</span>
-                            <!-- <i id="i_down" style="font-size: 20px;" class="fas fa-camera text-info"></i>
-                            <i id="i_up" style="font-size: 20px" class="fas fa-arrow-alt-circle-up text-info d-none"></i> -->
-                        </h6>
-                        <div class="collapse" id="div_photo">
-                            <div style="margin-top:15px;" class="control-label" data-toggle="collapse" data-target="#img_ex" aria-expanded="false" aria-controls="img_ex" >
-                                ตัวอย่างการถ่ายภาพ <i class="fas fa-angle-down"></i>
-                            </div>
-                            <img id="img_ex" class="collapse" style="filter: backscale(50%);margin-top:15px;" width="100%" src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}">
-                            <div class="col-12" id="div_cam" style="display:none;margin-top:17px;">
-                                <div class="d-flex justify-content-center bg-light"> 
-                                   
-                                    <video width="100%" height="100%" autoplay="true" id="videoElement"></video>
-                                    <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture();">
-                                        <i class="fas fa-camera"></i>
-                                    </a>
+                            <div class="col-12">
+                                <div class="text-center h4 user-name">
+                                    สวัสดีคุณ {{ $user->name }}
                                 </div>
-                            </div>
-
-                            <input class="d-none" type="text" name="text_img" id="text_img" value="">
-
-                            <div style="margin-top:15px;" id="show_img" class="">
-                                <canvas class="d-none"  id="canvas" width="266" height="400" ></canvas>
-                                <img class="d-none" src="" width="266" height="400"  id="photo2">
-
-                                <div id="btn_check_time" class="row d-none" style="margin-top:15px;">
-                                    <div class="col-12">
-                                        <p class="btn btn-sm btn-danger" onclick="document.querySelector('#btn_check_time').classList.add('d-none'),capture_registration();">
-                                            <i class="fas fa-undo"></i> ถ่ายใหม่
-                                        </p>
+                                <div class="text-center h6 mt-3">
+                                    โปรดตรวจสอบเบอร์โทรของท่านให้ถูกต้อง 
+                                </div>
+                                <div id="div_data_phone" class="mt-3">
+                                    <div class="phone-user">
+                                        @if(!empty($user->phone))
+                                            <span id="phone_user">{{ substr_replace(substr_replace($user->phone, '-', 3, 0), '-', 7, 0) }}</span>
+                                            <input style="width: 60%;" class="text-center d-none"  type="phone" id="input_phone" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="edit_phone();">
+                                            <a class="btn-phone btn ml-3" onclick="
+                                                    document.querySelector('#input_phone').classList.remove('d-none');
+                                                    document.querySelector('#phone_user').classList.add('d-none'); 
+                                                    document.querySelector('#input_phone').focus();">
+                                                แก้ไข
+                                            </a>
+                                        @else
+                                            <input style="width: 60%;"  class="form-control text-center"  type="phone" id="input_not_phone" value="" required placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="add_phone();">
+                                        @endif
                                     </div>
                                 </div>
                             </div>
+                            <style>
+                                
+                                .img-car-parking{
+                                    width: 100%;
+                                    object-fit: cover;
+                                    border-radius: 15px;
+                                    height: 20rem;
+                                    position: relative;
+                                }.text-camera{
+                                    position: absolute;
+                                    top:.5rem;
+                                    background-color: #fff;
+                                    padding: 2px 10px;
+                                    border-radius: 15px;
+
+                                }.add-img{
+                                    border-radius: 15px !important;
+                                    background-color: #fff;
+                                    border: 1px solid #07375D;
+
+                                    width: 100%;
+                                    height: 20rem;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }.add-img img{
+                                    width: 12rem;
+                                    object-fit: contain;
+                                }.alt-image{
+                                    top:-2.5rem !important;
+                                }.slide-top{
+                                    animation: slide-top 1s ease 0s 1 normal forwards;
+                                }
+                                @keyframes slide-top {
+                                0% {
+                                    transform: translateY(0);
+                                }
+
+                                100% {
+                                    transform: translateY(-2rem);
+                                }
+                                
+                            }
+                            .take-photo{
+                                width: 100%;
+                                object-fit: cover;
+                                border-radius: 15px;
+                                height: 20rem;
+                                position: relative;
+                            }
+                            </style>
+                            <div class="col-12 mt-3 d-flex justify-content-center" style="position: relative;">
+                                <!-- <img class="collapse" style="filter: backscale(50%);margin-top:15px;" width="100%" src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}"> -->
+                                <img id="ex_img"src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}" class="img-car-parking d-none" alt="" >
+                                <video style="outline: #db2d2e 1px solid;" class="d-none" width="100%" height="100%" autoplay="true" id="videoElement"></video>
+                                
+                                <input class="d-none" type="text" name="text_img" id="text_img" value="">
+                                <canvas class="d-none"  id="canvas" width="266" height="400" ></canvas>
+                                <img class="d-none take-photo" style="object-fit: contain;" src=""  id="photo2">
+
+                                <div class="add-img" id="add_img">
+                                    <img src="{{ asset('/img/icon/image.png') }}" class="img-car-parking" alt="" >
+                                </div>
+<!--                                 
+                                <div class="add-img d-none" >
+                                    <img src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}" class="img-car-parking" alt="" >
+                                </div> -->
+
+                                <span class="text-camera text-gps">
+                                    ถ่ายภาพเพื่อระบุตำแหน่งที่ชัดเจน 
+                                </span>
+                                <span class="text-camera btn btn-show-ex-img" style="background-color: #780908;color: #fff; padding:.5rem;top:2.5rem" onclick="show_ex_img()">
+                                    <i class="fa-solid fa-image"></i> <i class="fa-solid fa-image-slash d-none"></i> &nbsp; ดูภาพตัวอย่าง
+                                </span>
+
+                                <!-- เปิดกล้อง -->
+                                <a class="align-self-end text-white btn-primary btn-circle btn-show-camera" style="position: absolute; margin-bottom:10px" onclick="capture_registration();">
+                                    <i class="fas fa-camera"></i>
+                                </a>
+
+                                <!-- ถ่าย -->
+                                <a class="align-self-end text-white btn-primary btn-circle d-none btn-take-photo" style="position: absolute; margin-bottom:10px" onclick="capture();">
+                                    <i class="fas fa-camera"></i>
+                                </a>
+
+                                <!-- ถ่ายใหม่ -->
+                                <a class="align-self-end text-white btn-primary btn-circle d-none btn-retake-photo" style="position: absolute; margin-bottom:10px" onclick="document.querySelector('.btn-retake-photo').classList.add('d-none'),capture_registration();">
+                                    <i class="fa-regular fa-arrow-rotate-right"></i>
+                                </a>
+                                <script>
+                                    function show_ex_img() {
+                                        document.querySelector('#add_img').classList.toggle('d-none');
+                                        document.querySelector('#ex_img').classList.toggle('d-none');
+                                        document.querySelector('.fa-image').classList.toggle('d-none');
+                                        document.querySelector('.fa-image-slash').classList.toggle('d-none');
+                                        document.querySelector('.btn-show-ex-img').classList.toggle('slide-top');
+                                        document.querySelector('.text-gps').classList.toggle('d-none');
+                                    }
+                                </script>
+                                
+                            </div>
+                            <span id="text_add_img" class="text-danger d-none">กรุณาเพิ่มภาพถ่าย</span>
+                            <div class="d-none form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
+                                <input class="form-control" name="photo" type="text" id="photo" value="{{ isset($sos_map->photo) ? $sos_map->photo : '' }}" >
+                                {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
+                            </div>
+
+                            <div class="px-2">
+                                <button id="btn_help_area" type="button" style="border-radius: 1rem; padding:.7rem; margin-top: .8rem;" class="btn btn-primary btn-block" onclick="confirm_phone();">
+                                    ยืนยัน
+                                </button>
+                            </div>
+                            
+                            <!-- <div class="row">
+                                <div class="col-12">
+                                    <h6 style="margin-top:4px;" class="control-label " data-toggle="collapse" data-target="#div_photo" aria-expanded="false" aria-controls="div_photo" 
+                                        onclick="if(document.getElementById('div_cam').style.display=='none'){
+                                            document.getElementById('div_cam').style.display='',
+                                            document.querySelector('#i_down').classList.add('d-none'),
+                                            document.querySelector('#i_up').classList.remove('d-none'),
+                                            document.querySelector('#div_data_phone').classList.add('d-none'),
+                                            capture_registration();
+                                        }else{
+                                            document.querySelector('#i_down').classList.remove('d-none'),
+                                            document.querySelector('#i_up').classList.add('d-none'),
+                                            document.querySelector('#div_data_phone').classList.remove('d-none'),
+                                            stop();
+                                        }"> -->
+<!-- 
+                                        ถ่ายภาพเพื่อระบุตำแหน่งที่ชัดเจน &nbsp;
+                                        <br><br>
+                                        <a class="align-self-end text-white btn-primary btn-circle">
+                                            <i id="i_down" class="fas fa-camera"></i>
+                                            <i id="i_up" class="fas fa-chevron-up d-none"></i>
+                                        </a>
+                                        <br>
+                                        <br> -->
+                                        <!-- <span id="text_add_img" class="text-danger d-none">กรุณาเพิ่มภาพถ่าย</span> -->
+                                        <!-- <i id="i_down" style="font-size: 20px;" class="fas fa-camera text-info"></i>
+                                        <i id="i_up" style="font-size: 20px" class="fas fa-arrow-alt-circle-up text-info d-none"></i> -->
+                                    <!-- </h6> -->
+                                    <!-- <div class="collapse" id="div_photo">
+                                        <div style="margin-top:15px;" class="control-label" data-toggle="collapse" data-target="#img_ex" aria-expanded="false" aria-controls="img_ex" >
+                                            ตัวอย่างการถ่ายภาพ <i class="fas fa-angle-down"></i>
+                                        </div>
+                                        <img id="img_ex" class="collapse" style="filter: backscale(50%);margin-top:15px;" width="100%" src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}">
+                                        <div class="col-12" id="div_cam" style="display:none;margin-top:17px;">
+                                            <div class="d-flex justify-content-center bg-light"> 
+                                            
+                                                <video width="100%" height="150%" autoplay="true" id="videoElement"></video>
+                                                <a class="align-self-end text-white btn-primary btn-circle" style="position: absolute; margin-bottom:10px" onclick="capture();">
+                                                    <i class="fas fa-camera"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <input class="d-none" type="text" name="text_img" id="text_img" value="">
+
+                                        <div style="margin-top:15px;" id="show_img" class="">
+                                            <canvas class="d-none"  id="canvas" width="266" height="400" ></canvas>
+                                            <img class="d-none" src="" width="266" height="400"  id="photo2">
+
+                                            <div id="btn_check_time" class="row d-none" style="margin-top:15px;">
+                                                <div class="col-12">
+                                                    <p class="btn btn-sm btn-danger" onclick="document.querySelector('#btn_check_time').classList.add('d-none'),capture_registration();">
+                                                        <i class="fas fa-undo"></i> ถ่ายใหม่
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    
+                                <!-- </div>
+                            </div> -->
+
                         </div>
-                        <div class="d-none form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
-                            <input class="form-control" name="photo" type="text" id="photo" value="{{ isset($sos_map->photo) ? $sos_map->photo : '' }}" >
-                            {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
-                        </div>
+                        <!-- <div class="modal-footer"> -->
+                            <!-- @if(!empty($user->phone))
+                                <button type="button" class="btn btn-secondary" onclick="
+                                    document.querySelector('#input_phone').classList.remove('d-none');">
+                                    แก้ไข
+                                </button>
+                            @endif
+
+                            @if(empty($user->phone))
+                                <button type="button" class="btn btn-secondary" onclick="
+                                    document.querySelector('#input_not_phone').classList.remove('d-none');">
+                                    แก้ไข
+                                </button>
+                            @endif -->
+                            
+
+                        <!-- </div> -->
+                    @endif
                     </div>
-                </div>
-
-              </div>
-              <div class="modal-footer">
-                <!-- @if(!empty($user->phone))
-                    <button type="button" class="btn btn-secondary" onclick="
-                        document.querySelector('#input_phone').classList.remove('d-none');">
-                        แก้ไข
-                    </button>
-                @endif
-
-                @if(empty($user->phone))
-                    <button type="button" class="btn btn-secondary" onclick="
-                        document.querySelector('#input_not_phone').classList.remove('d-none');">
-                        แก้ไข
-                    </button>
-                @endif -->
-
-                <button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="confirm_phone();">
-                    ยืนยัน
-                </button>
-
-              </div>
-            @endif
             </div>
-          </div>
         </div>
     </div>
 </div>
-
-
 <!-- Button trigger modal -->
 <span id="btn_modal_sos_1669" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_sos_1669">
     ทดสอบ 1669
@@ -881,13 +976,23 @@
         var canvas = document.querySelector("#canvas");
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
-        var div_cam = document.querySelector("#div_cam");
-            div_cam.classList.remove('d-none');
+
+        document.querySelector('.btn-show-ex-img').classList.add('d-none');
+        document.querySelector('.text-gps').classList.add('d-none');
+        document.querySelector('#add_img').classList.add('d-none');
+        document.querySelector('#ex_img').classList.add('d-none');
+        document.querySelector('#videoElement').classList.remove('d-none');
+
+        document.querySelector('.btn-show-camera').classList.add('d-none');
+        document.querySelector('.btn-take-photo').classList.remove('d-none');
+        // var div_cam = document.querySelector("#div_cam");
+        //     div_cam.classList.remove('d-none');
             
             photo2.classList.add('d-none');
 
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
+        //   navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } }) 
           // { video: true }
           // { video: { facingMode: { exact: "environment" } } }
             .then(function (stream) {
@@ -932,19 +1037,27 @@
         var photo2 = document.querySelector("#photo2");
         var canvas = document.querySelector("#canvas");
 
-        var div_cam = document.querySelector("#div_cam");
-            div_cam.classList.add('d-none');
+        document.querySelector('#videoElement').classList.add('d-none');
+        document.querySelector('.btn-take-photo').classList.add('d-none');
+        document.querySelector('.btn-retake-photo').classList.remove('d-none');
+        // var div_cam = document.querySelector("#div_cam");
+        //     div_cam.classList.add('d-none');
 
             photo2.classList.remove('d-none');
 
             let context = canvas.getContext('2d');
-                context.drawImage(video, 0, 0,266,400);
+                // context.drawImage(video, 0, 0,266,400);
+                context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
             photo2.setAttribute('src',canvas.toDataURL('image/png'));
             text_img.value = canvas.toDataURL('image/png');
 
-        document.querySelector('#btn_check_time').classList.remove('d-none');
+
+        // document.querySelector('#btn_check_time').classList.remove('d-none');
         document.querySelector('#btn_help_area').disabled = false;
+
+        
+        
         
     }
 
@@ -1300,12 +1413,16 @@
             // console.log(text_phone.innerHTML);
     }
 
-    function check_add_img(){
-        document.getElementById('add_select_img').classList.add('d-none')
-        document.getElementById('photo_sos_1669').classList.add('d-none');
-        document.getElementById('show_photo_sos_1669').classList.remove('d-none');
-
+    function edit_phone() {
+        let phone = document.querySelector("#input_phone");
+        let text_phone = document.querySelector("#text_phone");
+        let input_phone = document.querySelector("#input_phone");
+            text_phone.innerHTML = input_phone.value ;
+            phone.value = input_phone.value ;
+            // console.log(text_phone_1669.innerHTML);
     }
+
+  
 
     function check_unit_cf_sos(sos_id){
         reface_check_unit_cf_sos = setInterval(function() {
