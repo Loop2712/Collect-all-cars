@@ -297,6 +297,13 @@
                                 height: 20rem;
                                 position: relative;
                                 outline: #db2d2e 1px solid;
+                            }.btn-cancel-take-photo{
+                                padding: .5rem;
+                                border-radius: .5rem;
+                                width: 4rem;
+                                position: absolute; 
+                                margin-bottom:13px;
+                                left:2rem;
                             }
                             </style>
                             <div class="col-12 mt-3 d-flex justify-content-center" style="position: relative;">
@@ -332,6 +339,11 @@
                                 <a class="align-self-end text-white btn-primary btn-circle d-none btn-take-photo" style="position: absolute; margin-bottom:10px" onclick="capture();">
                                     <i class="fas fa-camera"></i>
                                 </a>
+
+                                <a class="align-self-end text-white btn-danger d-none btn-cancel-take-photo" onclick=" stop();">
+                                    <i class="fa-duotone fa-camera-slash"></i>
+                                </a>
+
 
                                 <!-- ถ่ายใหม่ -->
                                 <a class="align-self-end text-white btn-primary btn-circle d-none btn-retake-photo" style="position: absolute; margin-bottom:10px" onclick="document.querySelector('.btn-retake-photo').classList.add('d-none'),capture_registration();">
@@ -978,6 +990,8 @@
         var text_img = document.querySelector("#text_img");
         var context = canvas.getContext('2d');
 
+        document.querySelector('.btn-cancel-take-photo').classList.remove('d-none');
+
         document.querySelector('.btn-show-ex-img').classList.add('d-none');
         document.querySelector('.text-gps').classList.add('d-none');
         document.querySelector('#add_img').classList.add('d-none');
@@ -1013,6 +1027,27 @@
     }
 
     function stop(e) {
+
+        document.querySelector('.text-gps').classList.remove('d-none');
+        document.querySelector('.btn-show-ex-img').classList.remove('d-none');
+        document.querySelector('.btn-show-ex-img').classList.remove('slide-top');
+        document.querySelector('.btn-show-camera').classList.remove('d-none');
+        document.querySelector('#add_img').classList.remove('d-none');
+        document.querySelector('#videoElement').classList.add('d-none');
+        document.querySelector('.btn-cancel-take-photo').classList.add('d-none');
+
+        // document.querySelector('.btn-take-photo').classList.add('d-none');
+        document.querySelector('.btn-show-camera').classList.remove('d-none');  
+    
+        if (document.querySelector('.btn-take-photo').classList.contains('d-none')) {
+            document.querySelector('.btn-retake-photo').classList.add('d-none');
+            document.querySelector('#photo2').classList.add('d-none');
+        } else{
+            document.querySelector('.btn-take-photo').classList.add('d-none');
+            
+        }
+
+
         var video = document.querySelector("#videoElement");
         var photo2 = document.querySelector("#photo2");
         var canvas = document.querySelector("#canvas");
@@ -1028,6 +1063,8 @@
           }
 
           video.srcObject = null;
+
+          
     }
 
     function capture() {
