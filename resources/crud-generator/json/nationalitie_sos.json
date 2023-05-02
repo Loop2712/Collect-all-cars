@@ -1,0 +1,92 @@
+{
+    "fields": [
+        {
+            "name": "lat",
+            "type": "string"
+        },
+        {
+            "name": "lng",
+            "type": "string"
+        },
+        {
+            "name": "name_user",
+            "type": "string"
+        },
+        {
+            "name": "phone_user",
+            "type": "string"
+        },
+        {
+            "name": "id_user",
+            "type": "integer"
+        },
+        {
+            "name": "nationalities_user",
+            "type": "string"
+        },
+        {
+            "name": "language_user",
+            "type": "string"
+        },
+        {
+            "name": "organization_helper",
+            "type": "string"
+        },
+        {
+            "name": "name_helper",
+            "type": "string"
+        },
+        {
+            "name": "phone_helper",
+            "type": "string"
+        },
+        {
+            "name": "id_helper",
+            "type": "integer"
+        },
+        {
+            "name": "organization_other",
+            "type": "string"
+        },
+        {
+            "name": "id_data_sos",
+            "type": "integer"
+        },
+        {
+            "name": "detail_sos",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "name_officer",
+            "type": "string"
+        },
+        {
+            "name": "phone_officer",
+            "type": "string"
+        },
+        {
+            "name": "id_officer",
+            "type": "integer"
+        },
+        {
+            "name": "score_impression_officer",
+            "type": "integer"
+        },
+        {
+            "name": "score_period_officer",
+            "type": "integer"
+        },
+        {
+            "name": "score_total_officer",
+            "type": "float"
+        },
+        {
+            "name": "comment_officer",
+            "type": "string"
+        }
+    ]
+}
