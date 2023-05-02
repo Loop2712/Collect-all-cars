@@ -6,9 +6,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Create New Nationality</div>
+                    <div class="card-header">Create New Nationalitie_officer</div>
                     <div class="card-body">
-                        <a href="{{ url('/nationality') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/nationalitie_officers') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -20,10 +20,10 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/nationality') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/nationalitie_officers') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            @include ('nationality.form', ['formMode' => 'create'])
+                            @include ('nationalitie_officers.form', ['formMode' => 'create'])
 
                         </form>
 

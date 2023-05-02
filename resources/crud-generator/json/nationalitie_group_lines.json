@@ -1,0 +1,24 @@
+{
+    "fields": [
+        {
+            "name": "groupId",
+            "type": "string"
+        },
+        {
+            "name": "groupName",
+            "type": "string"
+        },
+        {
+            "name": "pictureUrl",
+            "type": "string"
+        },
+        {
+            "name": "language",
+            "type": "string"
+        },
+        {
+            "name": "id_nationalitie",
+            "type": "string"
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "name_officer",
+            "type": "string"
+        },
+        {
+            "name": "phone_officer",
+            "type": "string"
+        },
+        {
+            "name": "photo_officer",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "integer"
+        },
+        {
+            "name": "group_line_id",
+            "type": "integer"
+        },
+        {
+            "name": "all_case",
+            "type": "string"
+        },
+        {
+            "name": "score_per_case",
+            "type": "float"
+        }
+    ]
+}

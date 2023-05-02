@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Models\Nationality;
+use App\Models\Nationalitie_officer;
 use Illuminate\Http\Request;
 
-class NationalityController extends Controller
+class Nationalitie_officersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,21 +21,19 @@ class NationalityController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $nationality = Nationality::where('country', 'LIKE', "%$keyword%")
-                ->orWhere('nationality', 'LIKE', "%$keyword%")
-                ->orWhere('nationality_noun', 'LIKE', "%$keyword%")
-                ->orWhere('language', 'LIKE', "%$keyword%")
+            $nationalitie_officers = Nationalitie_officer::where('name_officer', 'LIKE', "%$keyword%")
+                ->orWhere('phone_officer', 'LIKE', "%$keyword%")
+                ->orWhere('photo_officer', 'LIKE', "%$keyword%")
+                ->orWhere('user_id', 'LIKE', "%$keyword%")
+                ->orWhere('group_line_id', 'LIKE', "%$keyword%")
+                ->orWhere('all_case', 'LIKE', "%$keyword%")
+                ->orWhere('score_per_case', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $nationality = Nationality::latest()->paginate($perPage);
+            $nationalitie_officers = Nationalitie_officer::latest()->paginate($perPage);
         }
 
-        $group_nationality = Nationality::where('language','!=',null)
-            ->groupBy('language')
-            ->orderBy('language','ASC')
-            ->get();
-
-        return view('nationality.index', compact('nationality','group_nationality'));
+        return view('nationalitie_officers.index', compact('nationalitie_officers'));
     }
 
     /**
@@ -45,7 +43,7 @@ class NationalityController extends Controller
      */
     public function create()
     {
-        return view('nationality.create');
+        return view('nationalitie_officers.create');
     }
 
     /**
@@ -60,9 +58,9 @@ class NationalityController extends Controller
         
         $requestData = $request->all();
         
-        Nationality::create($requestData);
+        Nationalitie_officer::create($requestData);
 
-        return redirect('nationality')->with('flash_message', 'Nationality added!');
+        return redirect('nationalitie_officers')->with('flash_message', 'Nationalitie_officer added!');
     }
 
     /**
@@ -74,9 +72,9 @@ class NationalityController extends Controller
      */
     public function show($id)
     {
-        $nationality = Nationality::findOrFail($id);
+        $nationalitie_officer = Nationalitie_officer::findOrFail($id);
 
-        return view('nationality.show', compact('nationality'));
+        return view('nationalitie_officers.show', compact('nationalitie_officer'));
     }
 
     /**
@@ -88,9 +86,9 @@ class NationalityController extends Controller
      */
     public function edit($id)
     {
-        $nationality = Nationality::findOrFail($id);
+        $nationalitie_officer = Nationalitie_officer::findOrFail($id);
 
-        return view('nationality.edit', compact('nationality'));
+        return view('nationalitie_officers.edit', compact('nationalitie_officer'));
     }
 
     /**
@@ -106,10 +104,10 @@ class NationalityController extends Controller
         
         $requestData = $request->all();
         
-        $nationality = Nationality::findOrFail($id);
-        $nationality->update($requestData);
+        $nationalitie_officer = Nationalitie_officer::findOrFail($id);
+        $nationalitie_officer->update($requestData);
 
-        return redirect('nationality')->with('flash_message', 'Nationality updated!');
+        return redirect('nationalitie_officers')->with('flash_message', 'Nationalitie_officer updated!');
     }
 
     /**
@@ -121,8 +119,8 @@ class NationalityController extends Controller
      */
     public function destroy($id)
     {
-        Nationality::destroy($id);
+        Nationalitie_officer::destroy($id);
 
-        return redirect('nationality')->with('flash_message', 'Nationality deleted!');
+        return redirect('nationalitie_officers')->with('flash_message', 'Nationalitie_officer deleted!');
     }
 }

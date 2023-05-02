@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Nationality extends Model
+class Nationalitie_officer extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'nationalities';
+    protected $table = 'nationalitie_officers';
 
     /**
     * The database primary key value.
@@ -25,7 +25,7 @@ class Nationality extends Model
      *
      * @var array
      */
-    protected $fillable = ['country', 'nationality', 'nationality_noun', 'language','group_line_id','name_group_line','status'];
+    protected $fillable = ['name_officer', 'phone_officer', 'photo_officer', 'user_id', 'group_line_id', 'all_case', 'score_per_case'];
 
     
 }

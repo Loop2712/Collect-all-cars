@@ -179,11 +179,47 @@
               </div>
             </div>
 
+            <!-- SOS nationalitie -->
+            <div class="dropdown">
+              <li class="dropdown" id="sos_nationalitie" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="#">
+                <i class="fa-solid fa-earth-americas" style="color: #008800;"></i>
+                  <span class="nav-link-text">SOS nationalitie</span><span>&nbsp;&nbsp;<i class="fas fa-caret-down"></i></span>
+                </a>
+              </li>
+              <div class="dropdown-menu" aria-labelledby="sos_nationalitie">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/nationalitie_sos') }}">
+                    <i class="fa-solid fa-light-emergency-on" style="color: #ff0000;"></i>
+                    <span class="nav-link-text">การขอความช่วยเหลือ</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/nationality') }}">
+                    <i class="fa-regular fa-flag-usa" style="color: #ff6600;"></i>
+                    <span class="nav-link-text">สัญชาติ</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/nationalitie_group_lines') }}">
+                    <i class="fa-brands fa-line" style="color: #50b300;"></i>
+                    <span class="nav-link-text">กลุ่มไลน์</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/nationalitie_officers') }}">
+                    <i class="fa-solid fa-user-pilot-tie" style="color: #ddf000;"></i>
+                    <span class="nav-link-text">เจ้าหน้าที่</span>
+                  </a>
+                </li>
+              </div>
+            </div>
+
             <!-- Partner -->
             <div class="dropdown">
               <li class="dropdown" id="partner_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <a id="partner_menu_url" class="nav-link" href="#">
-                  <i class="fas fa-hands-helping text-success"></i>
+                  <i class="fas fa-hands-helping" style="color: #55eeaa;"></i>
                   <span class="nav-link-text">Partner</span><span>&nbsp;&nbsp;<i class="fas fa-caret-down"></i></span>&nbsp;&nbsp;
                 </a>
               </li>

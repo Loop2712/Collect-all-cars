@@ -147,11 +147,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::resource('name_-university', 'Name_UniversityController');
 	Route::resource('disease', 'DiseaseController');
 	Route::get('/check_in/admin_gallery', 'Check_inController@admin_gallery');
-	Route::resource('nationality', 'NationalityController');
 
 	Route::resource('mylog_condo', 'Mylog_condoController');
 	Route::resource('partner_condo', 'Partner_condoController');
 	Route::resource('user_condo', 'User_condoController');
+
+	// sos nationalitie
+	Route::resource('nationality', 'NationalityController');
+	Route::resource('nationalitie_sos', 'Nationalitie_sosController');
+	Route::resource('nationalitie_group_lines', 'Nationalitie_group_linesController');
+	Route::resource('nationalitie_officers', 'Nationalitie_officersController');
 
 });
 // END ADMIN VIICHECK
@@ -452,5 +457,3 @@ Route::resource('sos_1669_province_code', 'Sos_1669_province_codeController');
 
 
 Route::get('officer_form_yellow/{sos_id}', 'Sos_help_centerController@sos_help_officer_yellow');
-
-Route::resource('nationalitie_sos', 'Nationalitie_sosController');

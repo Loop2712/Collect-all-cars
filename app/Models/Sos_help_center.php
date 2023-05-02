@@ -25,7 +25,7 @@ class Sos_help_center extends Model
      *
      * @var array
      */
-    protected $fillable = ['lat', 'lng', 'photo_sos', 'name_user', 'phone_user', 'user_id', 'organization_helper', 'name_helper', 'partner_id', 'helper_id', 'score_impression', 'score_period', 'score_total', 'comment_help', 'photo_succeed', 'remark_helper', 'notify', 'status','create_by','time_create_sos','time_command','time_go_to_help','time_to_the_scene','time_leave_the_scene','time_hospital','time_to_the_operating_base','remark_status','operating_code','photo_sos_by_officers','wait','refuse','time_sos_success','address','remark_photo_sos','command_by','forward_operation_from','forward_operation_to'];
+    protected $fillable = ['lat', 'lng', 'photo_sos', 'name_user', 'phone_user', 'user_id', 'organization_helper', 'name_helper', 'partner_id', 'helper_id', 'score_impression', 'score_period', 'score_total', 'comment_help', 'photo_succeed', 'remark_helper', 'notify', 'status','create_by','time_create_sos','time_command','time_go_to_help','time_to_the_scene','time_leave_the_scene','time_hospital','time_to_the_operating_base','remark_status','operating_code','photo_sos_by_officers','wait','refuse','time_sos_success','address','remark_photo_sos','command_by','forward_operation_from','forward_operation_to','nationalities_id'];
 
     public function form_yellow(){
         return $this->hasOne('App\Models\Sos_1669_form_yellow', 'sos_help_center_id');

@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Models\Nationality;
+use App\Models\Nationalitie_group_line;
 use Illuminate\Http\Request;
 
-class NationalityController extends Controller
+class Nationalitie_group_linesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,21 +21,17 @@ class NationalityController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $nationality = Nationality::where('country', 'LIKE', "%$keyword%")
-                ->orWhere('nationality', 'LIKE', "%$keyword%")
-                ->orWhere('nationality_noun', 'LIKE', "%$keyword%")
+            $nationalitie_group_lines = Nationalitie_group_line::where('groupId', 'LIKE', "%$keyword%")
+                ->orWhere('groupName', 'LIKE', "%$keyword%")
+                ->orWhere('pictureUrl', 'LIKE', "%$keyword%")
                 ->orWhere('language', 'LIKE', "%$keyword%")
+                ->orWhere('id_nationalitie', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $nationality = Nationality::latest()->paginate($perPage);
+            $nationalitie_group_lines = Nationalitie_group_line::latest()->paginate($perPage);
         }
 
-        $group_nationality = Nationality::where('language','!=',null)
-            ->groupBy('language')
-            ->orderBy('language','ASC')
-            ->get();
-
-        return view('nationality.index', compact('nationality','group_nationality'));
+        return view('nationalitie_group_lines.index', compact('nationalitie_group_lines'));
     }
 
     /**
@@ -45,7 +41,7 @@ class NationalityController extends Controller
      */
     public function create()
     {
-        return view('nationality.create');
+        return view('nationalitie_group_lines.create');
     }
 
     /**
@@ -60,9 +56,9 @@ class NationalityController extends Controller
         
         $requestData = $request->all();
         
-        Nationality::create($requestData);
+        Nationalitie_group_line::create($requestData);
 
-        return redirect('nationality')->with('flash_message', 'Nationality added!');
+        return redirect('nationalitie_group_lines')->with('flash_message', 'Nationalitie_group_line added!');
     }
 
     /**
@@ -74,9 +70,9 @@ class NationalityController extends Controller
      */
     public function show($id)
     {
-        $nationality = Nationality::findOrFail($id);
+        $nationalitie_group_line = Nationalitie_group_line::findOrFail($id);
 
-        return view('nationality.show', compact('nationality'));
+        return view('nationalitie_group_lines.show', compact('nationalitie_group_line'));
     }
 
     /**
@@ -88,9 +84,9 @@ class NationalityController extends Controller
      */
     public function edit($id)
     {
-        $nationality = Nationality::findOrFail($id);
+        $nationalitie_group_line = Nationalitie_group_line::findOrFail($id);
 
-        return view('nationality.edit', compact('nationality'));
+        return view('nationalitie_group_lines.edit', compact('nationalitie_group_line'));
     }
 
     /**
@@ -106,10 +102,10 @@ class NationalityController extends Controller
         
         $requestData = $request->all();
         
-        $nationality = Nationality::findOrFail($id);
-        $nationality->update($requestData);
+        $nationalitie_group_line = Nationalitie_group_line::findOrFail($id);
+        $nationalitie_group_line->update($requestData);
 
-        return redirect('nationality')->with('flash_message', 'Nationality updated!');
+        return redirect('nationalitie_group_lines')->with('flash_message', 'Nationalitie_group_line updated!');
     }
 
     /**
@@ -121,8 +117,8 @@ class NationalityController extends Controller
      */
     public function destroy($id)
     {
-        Nationality::destroy($id);
+        Nationalitie_group_line::destroy($id);
 
-        return redirect('nationality')->with('flash_message', 'Nationality deleted!');
+        return redirect('nationalitie_group_lines')->with('flash_message', 'Nationalitie_group_line deleted!');
     }
 }
