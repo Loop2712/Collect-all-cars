@@ -374,6 +374,7 @@
     @yield('content')
     
   </div>
+
   <!-- Argon Scripts -->
   <!-- Core -->
   <script src="{{ asset('admin/vendor/jquery/dist/jquery.min.js')}}"></script>
@@ -386,7 +387,7 @@
   <script src="{{ asset('admin/vendor/chart.js/dist/Chart.extension.js')}}"></script>
   <!-- Argon JS -->
   <script src="{{ asset('admin/js/argon.js?v=1.2.0')}}"></script>
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
   <script>
         document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");

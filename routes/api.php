@@ -251,3 +251,7 @@ Route::get('/get_forward_operation/{forward_id}', 'Sos_help_centerController@get
     // SOS HELP CENTER FORM USER 
     Route::get('/check_unit_cf_sos_form_user/{sos_id}', 'Sos_help_centerController@check_unit_cf_sos_form_user');
     Route::get('/check_location_officer/{sos_id}', 'Sos_help_centerController@check_location_officer');
+
+// SOS nationalities
+Route::get('/nationalities/send_pass_code_to_line/{language}/{id_guoup_line}', 'Nationalitie_group_linesController@send_pass_code_to_line');
+Route::get('/nationalities/create_new_sos_group_line/{language}/{id_guoup_line}', 'Nationalitie_group_linesController@create_new_sos_group_line');

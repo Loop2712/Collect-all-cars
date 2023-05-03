@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Nationality;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NationalityController extends Controller
 {
@@ -18,24 +19,38 @@ class NationalityController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $select_search_language = $request->get('select_search_language');
 
-        if (!empty($keyword)) {
-            $nationality = Nationality::where('country', 'LIKE', "%$keyword%")
+        $data_nationality = DB::table('nationalities');
+
+        if (!empty($keyword) && !empty($select_search_language)) {
+
+            $data_nationality->where('language', 'LIKE', "%$select_search_language%")
+                ->where('country', 'LIKE', "%$keyword%")
+                ->orWhere('nationality', 'LIKE', "%$keyword%")
+                ->orWhere('nationality_noun', 'LIKE', "%$keyword%");
+
+        }else if ( !empty($select_search_language) && empty($keyword) ) {
+
+            $data_nationality->where('language', 'LIKE', "%$select_search_language%");
+
+        }else if( !empty($keyword) && empty($select_search_language) ){
+
+            $data_nationality->where('country', 'LIKE', "%$keyword%")
                 ->orWhere('nationality', 'LIKE', "%$keyword%")
                 ->orWhere('nationality_noun', 'LIKE', "%$keyword%")
-                ->orWhere('language', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $nationality = Nationality::latest()->paginate($perPage);
+                ->orWhere('language', 'LIKE', "%$keyword%");
+
         }
+
+        $nationality = $data_nationality->latest()->get();
 
         $group_nationality = Nationality::where('language','!=',null)
             ->groupBy('language')
             ->orderBy('language','ASC')
             ->get();
 
-        return view('nationality.index', compact('nationality','group_nationality'));
+        return view('nationality.index', compact('nationality','group_nationality','select_search_language'));
     }
 
     /**
