@@ -148,8 +148,78 @@
                             
                         </span> -->
 
-                        <!-- /////// BTN SOS 1669 /////// -->
-                        <span id="btn_ask_1669" class="mail-shadow btn btn-md btn-block d-none"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
+
+                        @if(Auth::user()->nationalitie == 'Thai' || empty(Auth::user()->nationalitie))
+                                <!-- /////// BTN SOS 1669 /////// -->
+                            <span id="btn_ask_1669" class="main-shadow btn btn-md btn-block d-none"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
+                                <div class="d-flex">
+                                    <div class="col-3 p-0 d-flex align-items-center">
+                                        <div class="justify-content-center col-12 p-0">
+                                            <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center col-9 text-center">
+                                        <div class="justify-content-center col-12">
+                                            <b>
+                                                <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน</span>
+                                                <span class="d-block" style="color: #ffffff;">(1669)</span>
+                                            </b>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </span>
+                            <!-- /////// END BTN SOS 1669 /////// -->
+
+                            <span  class="main-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
+                                <div class="d-flex">
+                                    <div class="col-3 p-0 d-flex align-items-center">
+                                        <div class="justify-content-center col-12 p-0">
+                                            <img src="{{ asset('/img/logo-partner/logo 250x250/chalie-2.2.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center col-9 text-center">
+                                        <div class="justify-content-center col-12">
+                                            <b>
+                                                <span class="d-block">ช่วยเหลือทั่วไป</span>
+                                                <span class="d-block">(ชาลีกรุงเทพ)</span>
+                                            </b>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </span>
+                        @else
+                            <!-- ////////////////////////////////// BTN nationalitie /////////////////////////////////////// -->
+                            @if(!empty(Auth::user()->nationalitie) )
+                                @php
+                                    $user_nationalitie = App\Models\Nationality::where('nationality' , Auth::user()->nationalitie)->first();
+                                @endphp
+                            @endif
+                            <span id="btn_ask_1669" class="main-shadow btn btn-md btn-block d-none"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0e4242;" >
+                                <div class="d-flex">
+                                    <div class="col-3 p-0 d-flex align-items-center">
+                                        <div class="justify-content-center col-12 p-0">
+                                            <img src="{{ url('/img/national-flag/flag_full_name' . '/' . $user_nationalitie->country ) . '.png'}}" width="70%" style="border-radius:.2rem"> 
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center col-9 text-center">
+                                        <div class="justify-content-center col-12">
+                                            <b>
+                                                <span class="d-block" style="color: #ffffff;text-transform: capitalize;">request for help</span>
+                                                <span class="d-block" style="color: #ffffff;text-transform: capitalize;"> {{$user_nationalitie->country}} Embassy</span>
+                                            </b>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </span>
+                            <!-- ////////////////////////////////// BTN nationalitie /////////////////////////////////////// -->
+                        @endif                        
+                        <a id="btn_tel_1669" class="mail-shadow btn btn-md btn-block d-none"  onclick="save_sos_content('1669','1669');"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" >
                             <div class="d-flex">
                                 <div class="col-3 p-0 d-flex align-items-center">
                                     <div class="justify-content-center col-12 p-0">
@@ -159,38 +229,14 @@
                                 <div class="d-flex align-items-center col-9 text-center">
                                     <div class="justify-content-center col-12">
                                         <b>
-                                            <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน</span>
-                                            <span class="d-block" style="color: #ffffff;">(1669)</span>
+                                            <span class="d-block" style="color: #ffffff;">Emergency Services</span>
+                                            <span class="d-block" style="color: #ffffff;">📞 1669</span>
                                         </b>
                                         
                                     </div>
-                                    
                                 </div>
                             </div>
-                        </span>
-                        <!-- /////// END BTN SOS 1669 /////// -->
-
-                        <span  class="mail-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
-                            <div class="d-flex">
-                                <div class="col-3 p-0 d-flex align-items-center">
-                                    <div class="justify-content-center col-12 p-0">
-                                        <img src="{{ asset('/img/logo-partner/logo 250x250/chalie-2.2.png') }}" width="70%" style="border:white solid 3px;border-radius:50%"> 
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center col-9 text-center">
-                                    <div class="justify-content-center col-12">
-                                        <b>
-                                            <span class="d-block">ช่วยเหลือทั่วไป</span>
-                                            <span class="d-block">(ชาลีกรุงเทพ)</span>
-                                        </b>
-                                        
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </span>
-
-                        
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1047,6 +1093,11 @@
             
         }
 
+        if (document.querySelector('#text_add_img').classList.contains('d-none')) {
+            document.querySelector('#btn_help_area').disabled = false;
+        } else{
+            document.querySelector('#btn_help_area').disabled = true;
+        }
 
         var video = document.querySelector("#videoElement");
         var photo2 = document.querySelector("#photo2");
@@ -1255,6 +1306,7 @@
                             break;
                         }else{
                             btn_ask_1669.classList.add('d-none');
+                            document.querySelector('btn_tel_16699').classList.remove('d-none');
                         }
 
                         if (  check_organization == 'สพฉ' && check_role == 'admin-partner' || check_role == 'partner' ) {
@@ -1262,6 +1314,7 @@
                             break;
                         }else{
                             btn_ask_1669.classList.add('d-none');
+                            document.querySelector('btn_tel_16699').classList.remove('d-none');
                         }
 
                     }
