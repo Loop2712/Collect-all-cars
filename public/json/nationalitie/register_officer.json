@@ -1,0 +1,75 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "size": "mega",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "มีการเลือกใช้กลุ่ม",
+            "color": "#ffffff66",
+            "size": "sm"
+          },
+          {
+            "type": "text",
+            "text": "<NAMEGROUPLINE>",
+            "color": "#ffffff",
+            "size": "xl",
+            "flex": 4,
+            "weight": "bold"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "กับภาษา",
+            "color": "#ffffff66",
+            "size": "sm"
+          },
+          {
+            "type": "text",
+            "text": "<language>",
+            "color": "#ffffff",
+            "size": "xl",
+            "flex": 4,
+            "weight": "bold"
+          }
+        ]
+      }
+    ],
+    "paddingAll": "20px",
+    "backgroundColor": "#0367D3",
+    "spacing": "md",
+    "height": "154px",
+    "paddingTop": "22px"
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "ลงทะเบียนเจ้าหน้าที่",
+          "uri": "http://linecorp.com/"
+        },
+        "style": "primary",
+        "height": "sm"
+      }
+    ]
+  }
+}
+}

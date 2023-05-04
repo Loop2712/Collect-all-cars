@@ -327,9 +327,28 @@ class LineApiController extends Controller
         $provider_id = $event['joined']['members'][0]['userId'];
         $group_id = $event['source']['groupId'];
 
+        $channelAccessToken = env('CHANNEL_ACCESS_TOKEN');
+
+        $url = "https://api.line.me/v2/bot/profile/" . $provider_id;
+
+        $headers = array(
+            "Authorization: Bearer " . $channelAccessToken,
+        );
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        $data_response = json_decode($response, true);
+
+        $name_user_form_line = $data_response["displayName"];
+
         $data = [
-            "title" => "บันทึก memberJoined",
-            "content" => $provider_id,
+            "title" => "Name User",
+            "content" => $name_user_form_line,
         ];
         MyLog::create($data);
     }
