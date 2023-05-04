@@ -43,6 +43,9 @@ class LineApiController extends Controller
             case "join" :
                 $this->save_group_line($event);
                 break;
+            case "memberJoined" :
+                $this->check_memberJoined($event);
+                break;
             case "follow" :
                 $this->user_follow_line($event);
                 DB::table('users')
@@ -317,6 +320,18 @@ class LineApiController extends Controller
         $line = new LineMessagingAPI();
         $line->send_HelloLinegroup($event,$save_name_group);
 
+    }
+
+    public function check_memberJoined($event)
+    {
+        $provider_id = $event['joined']['members']['userId'];
+        $group_id = $event['source']['groupId'];
+
+        $data = [
+            "title" => "บันทึก memberJoined",
+            "content" => $provider_id,
+        ];
+        MyLog::create($data);
     }
 
     public function user_follow_line($event)
