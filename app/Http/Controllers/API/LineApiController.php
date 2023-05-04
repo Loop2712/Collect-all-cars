@@ -17,6 +17,8 @@ use App\User;
 use App\Models\Sos_help_center;
 use App\Models\Data_1669_operating_officer;
 use App\Models\Data_1669_operating_unit;
+use App\Models\Nationalitie_group_line;
+use App\Models\Nationalitie_officer;
 
 class LineApiController extends Controller
 {
@@ -327,14 +329,14 @@ class LineApiController extends Controller
         $provider_id = $event['joined']['members'][0]['userId'];
         $group_id = $event['source']['groupId'];
 
+        $data_user = User::where('provider_id',$provider_id)->first();
+
+        // หาชื่อ user จากไลน์
         $channelAccessToken = env('CHANNEL_ACCESS_TOKEN');
-
         $url = "https://api.line.me/v2/bot/profile/" . $provider_id;
-
         $headers = array(
             "Authorization: Bearer " . $channelAccessToken,
         );
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -343,14 +345,57 @@ class LineApiController extends Controller
         curl_close($ch);
 
         $data_response = json_decode($response, true);
-
         $name_user_form_line = $data_response["displayName"];
+        // จบ หาชื่อ user จากไลน์
 
-        $data = [
-            "title" => "Name User",
-            "content" => $name_user_form_line,
-        ];
-        MyLog::create($data);
+        $check_group_line = Nationalitie_group_line::where('groupId' , $group_id)->first();
+
+        if ( !empty($check_group_line->id) ){
+
+            $check_officer = Nationalitie_officer::where('group_line_id' , $check_group_line->id)
+                ->where('user_id' , $data_user->id)
+                ->first();
+
+            if ( empty($check_officer->id) ){
+                // ส่งไลน์ให้ลงทะเบียน
+                $template_path = storage_path('../public/json/nationalitie/register_officer_by_join_new.json');
+                $string_json = file_get_contents($template_path);
+
+                $string_json = str_replace("<name_user>",$name_user_form_line,$string_json);
+                $string_json = str_replace("<language>",$language,$string_json);
+
+                $messages = [ json_decode($string_json, true) ];
+
+                $body = [
+                    "to" => $group_id,
+                    "messages" => $messages,
+                ];
+
+                $opts = [
+                    'http' =>[
+                        'method'  => 'POST',
+                        'header'  => "Content-Type: application/json \r\n".
+                                    'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                        'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                        //'timeout' => 60
+                    ]
+                ];
+                                    
+                $context  = stream_context_create($opts);
+                $url = "https://api.line.me/v2/bot/message/push";
+                $result = file_get_contents($url, false, $context);
+
+                // SAVE LOG
+                $data_save_log = [
+                    "title" => "send flex register_officer",
+                    "content" => "to >> " . $group_id,
+                ];
+                MyLog::create($data_save_log);
+            }
+
+        }
+
+        
     }
 
     public function user_follow_line($event)
