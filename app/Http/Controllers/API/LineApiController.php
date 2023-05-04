@@ -350,7 +350,7 @@ class LineApiController extends Controller
         // SAVE LOG
         $data_save_log_1 = [
             "title" => "name user",
-            "content" => "to >> " . $name_user_form_line,
+            "content" => $name_user_form_line,
         ];
         MyLog::create($data_save_log_1);
         // จบ หาชื่อ user จากไลน์
