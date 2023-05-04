@@ -346,6 +346,13 @@ class LineApiController extends Controller
 
         $data_response = json_decode($response, true);
         $name_user_form_line = $data_response["displayName"];
+
+        // SAVE LOG
+        $data_save_log_1 = [
+            "title" => "name user",
+            "content" => "to >> " . $name_user_form_line,
+        ];
+        MyLog::create($data_save_log_1);
         // จบ หาชื่อ user จากไลน์
 
         $check_group_line = Nationalitie_group_line::where('groupId' , $group_id)->first();
