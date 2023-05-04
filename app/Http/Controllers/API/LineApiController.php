@@ -324,7 +324,7 @@ class LineApiController extends Controller
 
     public function check_memberJoined($event)
     {
-        $provider_id = $event['joined']['members']['userId'];
+        $provider_id = $event['joined']['members'][0]['userId'];
         $group_id = $event['source']['groupId'];
 
         $data = [
