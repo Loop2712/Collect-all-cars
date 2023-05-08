@@ -9,7 +9,7 @@ use App\Models\Nationalitie_group_line;
 use Illuminate\Http\Request;
 use App\Models\Nationality;
 use App\Models\Group_line;
-use App\Models\MyLog;
+use App\Models\Mylog;
 use Illuminate\Support\Facades\DB;
 
 class Nationalitie_group_linesController extends Controller
