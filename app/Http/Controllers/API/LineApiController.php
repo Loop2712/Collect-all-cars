@@ -330,6 +330,7 @@ class LineApiController extends Controller
         $group_id = $event['source']['groupId'];
 
         $data_user = User::where('provider_id',$provider_id)->first();
+        $data_groupline = Nationalitie_group_line::where('groupId',$group_id)->first();
 
         // หาชื่อ user จากไลน์
         $channelAccessToken = env('CHANNEL_ACCESS_TOKEN');
@@ -346,13 +347,6 @@ class LineApiController extends Controller
 
         $data_response = json_decode($response, true);
         $name_user_form_line = $data_response["displayName"];
-
-        // SAVE LOG
-        $data_save_log_1 = [
-            "title" => "group_id",
-            "content" => $group_id,
-        ];
-        MyLog::create($data_save_log_1);
         // จบ หาชื่อ user จากไลน์
 
         $check_group_line = Nationalitie_group_line::where('groupId' , $group_id)->first();
@@ -369,7 +363,7 @@ class LineApiController extends Controller
                 $string_json = file_get_contents($template_path);
 
                 $string_json = str_replace("<name_user>",$name_user_form_line,$string_json);
-                $string_json = str_replace("<language>",$language,$string_json);
+                $string_json = str_replace("<language>",$data_groupline->language,$string_json);
 
                 $messages = [ json_decode($string_json, true) ];
 
