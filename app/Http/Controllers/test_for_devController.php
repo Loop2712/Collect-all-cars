@@ -25,24 +25,84 @@ class test_for_devController extends Controller
 {
     public function main_test()
     {
-        $date_now = date("Y-m-d");
-        $date_add_1 = date("Y-m-d", strtotime($date_now . ' +1 day'));
+        $provider_id = $event['joined']['members'][0]['userId'];
+        $group_id = $event['source']['groupId'];
 
-        echo "date_now >> " . $date_now;
-        echo "<br>";
-        echo "date_add_1 >> " . $date_add_1;
-        echo "<br>";
+        $data_user = User::where('provider_id',$provider_id)->first();
 
-        $data = DB::table('ads_contents')
-                    ->whereDate('created_at', '>=' , $date_now )
-                    ->whereDate('created_at', '<=' , $date_add_1 )
-                    ->get();
+        // หาชื่อ user จากไลน์
+        $channelAccessToken = env('CHANNEL_ACCESS_TOKEN');
+        $url = "https://api.line.me/v2/bot/profile/" . $provider_id;
+        $headers = array(
+            "Authorization: Bearer " . $channelAccessToken,
+        );
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
 
-        echo "<pre>";
-        print_r($data);
-        echo "<pre>";
-        exit();
+        $data_response = json_decode($response, true);
+        $name_user_form_line = $data_response["displayName"];
+
+        // SAVE LOG
+        $data_save_log_1 = [
+            "title" => "name user",
+            "content" => $name_user_form_line,
+        ];
+        MyLog::create($data_save_log_1);
+        // จบ หาชื่อ user จากไลน์
+
+        $check_group_line = Nationalitie_group_line::where('groupId' , $group_id)->first();
+
+        if ( !empty($check_group_line->id) ){
+
+            $check_officer = Nationalitie_officer::where('group_line_id' , $check_group_line->id)
+                ->where('user_id' , $data_user->id)
+                ->first();
+
+            if ( empty($check_officer->id) ){
+                // ส่งไลน์ให้ลงทะเบียน
+                $template_path = storage_path('../public/json/nationalitie/register_officer_by_join_new.json');
+                $string_json = file_get_contents($template_path);
+
+                $string_json = str_replace("<name_user>",$name_user_form_line,$string_json);
+                $string_json = str_replace("<language>",$language,$string_json);
+
+                $messages = [ json_decode($string_json, true) ];
+
+                $body = [
+                    "to" => $group_id,
+                    "messages" => $messages,
+                ];
+
+                $opts = [
+                    'http' =>[
+                        'method'  => 'POST',
+                        'header'  => "Content-Type: application/json \r\n".
+                                    'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                        'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                        //'timeout' => 60
+                    ]
+                ];
+                                    
+                $context  = stream_context_create($opts);
+                $url = "https://api.line.me/v2/bot/message/push";
+                $result = file_get_contents($url, false, $context);
+
+                // SAVE LOG
+                $data_save_log = [
+                    "title" => "send flex register_officer",
+                    "content" => "to >> " . $group_id,
+                ];
+                MyLog::create($data_save_log);
+            }
+
+        }
     }
+
+    
 
     public function main_test_blade(){
 

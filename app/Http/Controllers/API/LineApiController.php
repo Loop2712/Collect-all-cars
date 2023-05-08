@@ -349,8 +349,8 @@ class LineApiController extends Controller
 
         // SAVE LOG
         $data_save_log_1 = [
-            "title" => "name user",
-            "content" => $name_user_form_line,
+            "title" => "group_id",
+            "content" => $group_id,
         ];
         MyLog::create($data_save_log_1);
         // จบ หาชื่อ user จากไลน์
