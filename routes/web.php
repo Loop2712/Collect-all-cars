@@ -275,6 +275,11 @@ Route::middleware(['auth'])->group(function () {
 	// SOS 1669
 	Route::get('sos_help_center/{sos_id}/show_user', 'Sos_help_centerController@show_user_sos');
 
+	// sos nationalitie
+	Route::get('nationalitie_sos/login_register_officer/{group_line_id}', 'Nationalitie_officersController@login_register_officer');
+	Route::get('nationalitie_sos/register_officer/{group_line_id}', 'Nationalitie_officersController@register_officer');
+
+
 });
 
 Route::get('/edit_act_login/{car_id}', 'Register_carController@edit_act_login');
