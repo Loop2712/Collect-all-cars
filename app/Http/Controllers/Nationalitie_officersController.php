@@ -7,6 +7,9 @@ use App\Http\Requests;
 
 use App\Models\Nationalitie_officer;
 use Illuminate\Http\Request;
+use App\Models\Nationalitie_group_line;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class Nationalitie_officersController extends Controller
 {
@@ -57,7 +60,11 @@ class Nationalitie_officersController extends Controller
     {
         
         $requestData = $request->all();
-        
+
+        if ($request->hasFile('photo_officer')) {
+            $requestData['photo_officer'] = $request->file('photo_officer')->store('uploads', 'public');
+        }
+
         Nationalitie_officer::create($requestData);
 
         return redirect('nationalitie_officers')->with('flash_message', 'Nationalitie_officer added!');
@@ -122,5 +129,37 @@ class Nationalitie_officersController extends Controller
         Nationalitie_officer::destroy($id);
 
         return redirect('nationalitie_officers')->with('flash_message', 'Nationalitie_officer deleted!');
+    }
+
+    public function login_register_officer($group_line_id)
+    {
+        $redirectTo = 'nationalitie_sos/register_officer/' . $group_line_id;
+
+        if(Auth::check()){
+            return redirect('nationalitie_sos/register_officer/' . $group_line_id);
+        }else{
+            return redirect('/login/line?redirectTo=' . $redirectTo);
+        }
+    }
+
+    public function register_officer($group_line_id)
+    {
+        $user_id = Auth::user()->id;
+
+        $data_user = User::where('id',$user_id)->first();
+        $data_groupline = Nationalitie_group_line::where('id' , $group_line_id)->first();
+
+        $data_officer_old = Nationalitie_officer::where('user_id' , $user_id)
+            ->where('group_line_id',$group_line_id)
+            ->first();
+
+        $check_officer_old = "" ;
+        if ( !empty($data_officer_old->id) ){
+            $check_officer_old = "Yes" ;
+        }else{
+            $check_officer_old = "No" ;
+        }
+
+        return view('nationalitie_officers.register_officer', compact('user_id' , 'group_line_id' , 'data_user' , 'data_groupline','check_officer_old'));
     }
 }
