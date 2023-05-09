@@ -457,3 +457,12 @@ Route::resource('sos_1669_province_code', 'Sos_1669_province_codeController');
 
 
 Route::get('officer_form_yellow/{sos_id}', 'Sos_help_centerController@sos_help_officer_yellow');
+
+
+
+
+
+Route::get('/mockup_video_call', function () {
+    return view('nationalitie_sos/mockup_video_call');
+});
+
