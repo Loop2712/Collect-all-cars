@@ -187,6 +187,11 @@
         .detail-sos {
             height: 9rem !important;
         }
+
+        #divLocation,
+        #closeBtnForm {
+            display: none;
+        }
     }
 
     @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -346,6 +351,11 @@
         .btn-location {
             display: none !important;
         }
+
+        #divLocation,
+        #closeBtnForm {
+            display: none;
+        }
     }
 
     @media screen and (max-width: 768px) {
@@ -384,7 +394,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            width: 7rem;
+            width: 100% !important;
             color: #fff;
         }
 
@@ -398,6 +408,7 @@
         .video-detail-box {
             display: flex;
             align-items: center;
+            width: 100% !important;
         }
 
         .video-body {
@@ -487,28 +498,11 @@
             /* กำหนดเครื่องหมาย ellipsis เมื่อเกิน 3 บรรทัด */
         }
 
-        .video-form {
 
-
-
-            display: none;
-
-
-            position: absolute;
-            bottom: 2rem;
-            background-color: #000;
-            right: 1rem;
-            width: calc(100% - 73%);
-            border-radius: 1rem;
-            padding: 1rem;
-            color: #fff;
-            height: calc(100% - 53%);
-        }
 
         .divRadio {
             margin-top: 1rem;
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
             justify-content: center;
         }
@@ -524,6 +518,84 @@
             background-color: #fff !important;
             color: #000 !important;
             padding: .2rem 1rem !important;
+        }
+
+        #divLocation {
+            display: none;
+            position: fixed;
+            top: 28%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 93%;
+            background-color: #fff;
+            border-radius: 1rem;
+            text-align: center;
+            padding: 20px 20px 40px 20px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            background: #000;
+            touch-action: none;
+            /* ป้องกันการลาก div แล้วขยับหน้าเว็บ */
+            z-index: 99999999;
+        }
+
+        #divLocation p,
+        #divForm p {
+            margin-bottom: .2rem;
+            color: #fff;
+        }
+
+        #closeBtn,
+        #closeBtnForm {
+            position: absolute;
+            top: .5rem;
+            right: .5rem;
+        }
+
+        .drag {
+            position: absolute;
+            width: 50px !important;
+            height: 8px !important;
+            border-radius: 25px !important;
+            background-color: rgba(255, 255, 255, 0.3) !important;
+            padding: 0 !important;
+            bottom: 5px !important;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .dragForm {
+            position: absolute;
+            width: 50px !important;
+            height: 8px !important;
+            border-radius: 25px !important;
+            background-color: rgba(255, 255, 255, 0.3) !important;
+            padding: 0 !important;
+            top: 10px !important;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999999999;
+        }
+
+        #divForm {
+            display: none;
+            position: fixed;
+            bottom: -4%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 93%;
+            background-color: #fff;
+            border-radius: 1rem;
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            background: #000;
+            touch-action: none;
+            /* ป้องกันการลาก div แล้วขยับหน้าเว็บ */
+            z-index: 999999999;
+        }
+
+        #divForm textarea {
+            height: 6rem;
         }
     }
 
@@ -676,45 +748,26 @@
         }
     }
 
-    #open-btn {
-        padding: 10px 20px;
-        background-color: #333;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-bottom: 20px;
-    }
-
-    #my-div {
-        position: fixed;
-        bottom: -20%;
-        left: 0;
+    .div-submit {
+        display: flex;
+        padding: 1rem 0;
         width: 100%;
-        height: 20%;
-        background-color: #fff;
-        transition: bottom 0.3s ease-in-out;
-        z-index: 9999;
+        justify-content: flex-end !important;
     }
 
-    .drag-btn {
-        position: absolute;
-        top: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 30px;
-        height: 30px;
-        background-color: #333;
-        border-radius: 50%;
-        cursor: pointer;
+    .div-submit input {
+        width: 100%;
+        border-radius: .5rem;
+
     }
 
-    .content {
-        padding: 20px;
+    .div-submit button {
+        padding: .5rem 1.5rem;
+        margin-left: .5rem;
     }
 
-    #my-div.active {
-        bottom: 0;
+    .radio input:not(:checked)+.input-other+.input-other {
+        display: none;
     }
 </style>
 
@@ -730,23 +783,24 @@
                 <p>Teerasak Senarak(MOCKUP)</p>
                 <small>081-234-5678(MOCKUP)</small>
             </span>
-            <button id="open-btn">Open</button>
-            <div id="my-div">
-                <div class="drag-btn"></div>
-                <div class="content">This is my div content</div>
+            <div id="divLocation">
+                <p>ตำแหน่ง : 1 หมู่1 ตำบลท่าช้าง อ.เมือง จ.นครนายก(MOCKUP)</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2990.274257380938!2d-70.56068388481569!3d41.45496659976631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e52963ac45bbcb%3A0xf05e8d125e82af10!2sDos%20Mas!5e0!3m2!1sen!2sus!4v1671220374408!5m2!1sen!2sus" width="100%" height="100rem" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <button class="btn text-white" id="closeBtn"><i class="fa-solid fa-xmark"></i></button>
+                <button class="drag btn"></button>
             </div>
-
+            <button class="btn btn-location float-right" id="btn-location">
+                <i class="fa-sharp fa-solid fa-location-dot"></i> location
+            </button>
         </div>
+    </div>
 
-    </div>
-    <button class="btn btn-location float-right">
-        <i class="fa-sharp fa-solid fa-location-dot"></i> location
-    </button>
-    </div>
     <div class="video-body">
         <div class="video-local"></div>
 
         <div class="video-remote"></div>
+
+
 
         <div class="video-menu">
             <button class="btn ">
@@ -757,7 +811,7 @@
                 <i class="fa-duotone fa-video"></i>
             </button>
             <button class="btn ">
-                <i class="fa-regular fa-arrow-up-from-square"></i>
+                <i class="fa-solid fa-chevron-up" id="btnShowForm"></i>
             </button>
             <button class="btn btn-exit">
                 <i class="fa-solid fa-x"></i>
@@ -765,60 +819,20 @@
         </div>
     </div>
 
-    <script>
-        const openBtn = document.getElementById("open-btn");
-        const myDiv = document.getElementById("my-div");
-        const dragBtn = document.querySelector(".drag-btn");
-
-        let startY;
-        let currentY;
-        let dragOffset = 0;
-        let isDragging = false;
-
-        openBtn.addEventListener("click", function() {
-            if (!myDiv.classList.contains("active")) {
-                myDiv.classList.add("active");
-            }
-        });
-
-        dragBtn.addEventListener("touchstart", function(e) {
-            startY = e.changedTouches[0].clientY;
-            isDragging = true;
-        });
-
-        document.addEventListener("touchmove", function(e) {
-            if (!isDragging) return;
-            currentY = e.changedTouches[0].clientY;
-            dragOffset = currentY - startY;
-            if (dragOffset < 0) dragOffset = 0;
-            myDiv.style.bottom = -dragOffset + "px";
-
-        });
-
-        document.addEventListener("touchend", function(e) {
-            isDragging = false;
-
-            if (dragOffset > myDiv.offsetHeight / 2) {
-                myDiv.classList.remove("active");
-                myDiv.style.bottom = "-20%";
-                dragOffset = 0;
-            } else {
-                myDiv.style.bottom = "0";
-                myDiv.classList.add("active");
-
-                dragOffset = myDiv.offsetHeight;
-            }
-
-        });
-    </script>
     <div class="video-user-location">
+
         <p>
-            ตำแหน่ง : 1 หมู่1 ตำบลท่าช้าง อ.เมือง จ.นครนายก(MOCKUP)
+            ตำแหน่ง : 1 หมู่3 ตำบลท่าช้าง อ.เมือง จ.นครนายก(MOCKUP)
         </p>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2990.274257380938!2d-70.56068388481569!3d41.45496659976631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e52963ac45bbcb%3A0xf05e8d125e82af10!2sDos%20Mas!5e0!3m2!1sen!2sus!4v1671220374408!5m2!1sen!2sus" width="100%" height="200rem" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
-    <div class="video-form">
+
+    <div class="video-form" id="divForm">
+
+        <button class="dragForm btn"></button>
+        <button class="btn text-white" id="closeBtnForm"><i class="fa-solid fa-xmark"></i></button>
+
         <textarea class="form-control detail-sos" placeholder="กรอกรายละเอียดการขอความช่วยเหลือ"></textarea>
         <div class="divRadio">
             <label class="radio">
@@ -838,30 +852,6 @@
             </label>
 
         </div>
-
-        <style>
-            .div-submit {
-                display: flex;
-                padding: 1rem 0;
-                width: 100%;
-                justify-content: flex-end !important;
-            }
-
-            .div-submit input {
-                width: 100%;
-                border-radius: .5rem;
-
-            }
-
-            .div-submit button {
-                padding: .5rem 1.5rem;
-                margin-left: .5rem;
-            }
-
-            .radio input:not(:checked)+.input-other+.input-other {
-                display: none;
-            }
-        </style>
         <div class="div-submit">
             <input type="text" class="input-other d-none" placeholder="กรอกรายละเอียด">
             <button class="btn btn-success btn-submit-officer">ยืนยัน</button>
@@ -897,52 +887,58 @@
 </script>
 
 <script>
-    // หา element ต่าง ๆ ที่จำเป็น
+    // Find necessary elements
     const videoBody = document.querySelector(".video-body");
     const videoRemote = document.querySelector(".video-remote");
 
-    // ปรับสไตล์ของ video-remote เพื่อให้สามารถลากเปลี่ยนตำแหน่งได้
+    // Adjust style of video-remote to make it draggable
     videoRemote.style.position = "absolute";
     videoRemote.style.cursor = "move";
     videoRemote.style.transition = "transform 0.3s ease-in-out";
-    // กำหนดตำแหน่งเริ่มต้นของ videoRemote
+
+    // Set initial position of videoRemote
     let pos1 = 0,
         pos2 = 0,
         pos3 = 0,
         pos4 = 0;
-    videoRemote.onmousedown = dragMouseDown;
+
+    // Add event listeners for both mouse and touch events
+    videoRemote.addEventListener('mousedown', dragMouseDown);
+    videoRemote.addEventListener('touchstart', dragMouseDown);
 
     function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
 
-        // กำหนดตำแหน่งเริ่มต้น
-        pos3 = e.clientX;
-        pos4 = e.clientY;
+        // Get initial position
+        pos3 = e.clientX || e.touches[0].clientX;
+        pos4 = e.clientY || e.touches[0].clientY;
 
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
+        document.addEventListener('mouseup', closeDragElement);
+        document.addEventListener('touchend', closeDragElement);
+        document.addEventListener('mousemove', elementDrag);
+        document.addEventListener('touchmove', elementDrag);
     }
 
     function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
 
-        // คำนวณตำแหน่งใหม่ของ videoRemote
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
+        // Calculate new position of videoRemote
+        pos1 = pos3 - (e.clientX || e.touches[0].clientX);
+        pos2 = pos4 - (e.clientY || e.touches[0].clientY);
+        pos3 = e.clientX || e.touches[0].clientX;
+        pos4 = e.clientY || e.touches[0].clientY;
         videoRemote.style.top = (videoRemote.offsetTop - pos2) + "px";
         videoRemote.style.left = (videoRemote.offsetLeft - pos1) + "px";
 
-        // เพิ่ม animation
+        // Add animation
         videoRemote.style.transition = "transform 4s ease-out";
         videoRemote.style.transform = "translate3d(0, 0, 0)";
     }
 
     function closeDragElement() {
-        // คำนวณตำแหน่งสุดท้ายของ videoRemote
+        // Calculate final position of videoRemote
         const videoBodyRect = videoBody.getBoundingClientRect();
         const videoRemoteRect = videoRemote.getBoundingClientRect();
         const videoBodyTop = videoBodyRect.top;
@@ -954,10 +950,11 @@
         const videoRemoteRight = videoRemoteRect.right;
         const videoRemoteBottom = videoRemoteRect.bottom;
 
-        const offset = 15; // ระยะห่างจากขอบ 5px
+        const offset = 15; // Distance from edge 5px
 
         if (videoRemoteRight + offset > videoBodyRight) {
-            videoRemote.style.left = videoBody.offsetWidth - videoRemote.offsetWidth - offset + "px";
+            videoRemote.style.left =
+                videoBody.offsetWidth - videoRemote.offsetWidth - offset + "px";
         }
 
         if (videoRemoteLeft - offset < videoBodyLeft) {
@@ -969,41 +966,72 @@
         }
 
         if (videoRemoteBottom + offset > videoBodyBottom) {
-            videoRemote.style.top = videoBody.offsetHeight - videoRemote.offsetHeight - offset + "px";
+            videoRemote.style.top =
+                videoBody.offsetHeight - videoRemote.offsetHeight - offset + "px";
         }
 
-        // ตรวจสอบว่า videoRemote อยู่นอกขอบเขตของ videoBody และเลื่อนไปชิดขอบตามทิศทาง
-        if (videoRemoteRight <= videoBodyRight + offset && videoRemoteLeft >= videoBodyLeft - offset && videoRemoteTop >= videoBodyTop - offset && videoRemoteBottom <= videoBodyBottom + offset) {
-            // ตรวจสอบว่า videoRemote อยู่ทางซ้ายหรือขวาของ videoBody และเลื่อนไปชิดขอบตามทิศทาง
-            if (videoRemoteLeft - videoBodyLeft < videoBodyRight - videoRemoteRight) {
-                videoRemote.style.left = offset + "px";
+        // Check if the position of the remote is within the boundaries of the body and move it to the closest edge in the direction it is being dragged
+        if (
+            (videoRemoteRight <= (videoBodyRight + offset)) &&
+            (videoRemoteLeft >= (videoBodyLeft - offset)) &&
+            (videoRemoteTop >= (videoBodyTop - offset)) &&
+            (videoRemoteBottom <= (videoBodyBottom + offset))
+        ) {
+            // Check if the remote is on the left or right side of the body and move it to the closest edge in that direction
+            if ((videoRemoteLeft - videoBodyLeft) < (videoBodyRight - videoRemoteRight)) {
+                // Remote is on left side of body
+                // Move remote to left edge of body
+                videoRemote.style.left = offset + 'px';
             } else {
-                videoRemote.style.left = videoBody.offsetWidth - videoRemote.offsetWidth - offset + "px";
-            }
+                // Remote is on right side of body
+                // Move remote to right edge of body
+                let rightEdgePosition =
+                    (videoBody.offsetWidth -
+                        (videoRemote.offsetWidth + offset));
+                rightEdgePosition += 'px';
 
-            // ตรวจสอบว่า videoRemote อยู่ทางบนหรือล่างของ videoBody และเลื่อนไปชิดขอบตามทิศทาง
-            if (videoRemoteTop - videoBodyTop < videoBodyBottom - videoRemoteBottom) {
-                videoRemote.style.top = offset + "px";
-            } else {
-                videoRemote.style.top = videoBody.offsetHeight - videoRemote.offsetHeight - offset + "px";
+                let leftEdgePosition =
+                    (offset);
+
+                leftEdgePosition += ' px';
+
             }
         }
 
-        document.onmouseup = null;
-        document.onmousemove = null;
-        // reset ค่า animation เป็นเวลา 0s
+        if ((videoRemoteTop - videoBodyTop) < (videoBodyBottom - videoRemoteBottom)) {
+            // Remote is on top side of body
+            // Move remote to top edge of body
+            videoRemote.style.top = offset + 'px';
+        } else {
+            // Remote is on bottom side of body
+            // Move remote to bottom edge of body
+            let bottomEdgePosition =
+                (videoBody.offsetHeight -
+                    (videoRemote.offsetHeight + offset));
+            bottomEdgePosition += 'px';
+            videoRemote.style.top = bottomEdgePosition;
+        }
+
+
+        document.removeEventListener('mouseup', closeDragElement);
+        document.removeEventListener('touchend', closeDragElement);
+        document.removeEventListener('mousemove', elementDrag);
+        document.removeEventListener('touchmove', elementDrag);
+
+        // Reset animation time to 0s
         videoRemote.style.transition = "transform 0s";
     }
 
-
-    // คำนวณตำแหน่งที่อยู่ใกล้ที่สุดของขอบของ div.video-body
+    // Calculate closest position to edge of div.video-body
     const videoBodyRect = videoBody.getBoundingClientRect();
     const minOffsetX = videoBodyRect.left + window.pageXOffset;
-    const maxOffsetX = videoBodyRect.right - videoRemote.offsetWidth + window.pageXOffset;
+    const maxOffsetX =
+        videoBodyRect.right - videoRemote.offsetWidth + window.pageXOffset;
     const minOffsetY = videoBodyRect.top + window.pageYOffset;
-    const maxOffsetY = videoBodyRect.bottom - videoRemote.offsetHeight + window.pageYOffset;
+    const maxOffsetY =
+        videoBodyRect.bottom - videoRemote.offsetHeight + window.pageYOffset;
 
-    // เลื่อน div.video-remote ไปยังตำแหน่งที่อยู่ใกล้ที่สุดของขอบ div.video-body
+    // Move div.video-remote to closest position to edge of div.video-body
     let newOffsetX = parseInt(videoRemote.style.left);
     let newOffsetY = parseInt(videoRemote.style.top);
     if (newOffsetX < minOffsetX) {
@@ -1018,7 +1046,170 @@
     if (newOffsetY > maxOffsetY) {
         newOffsetY = maxOffsetY;
     }
-    videoRemote.style.left = newOffsetX + 'px';
-    videoRemote.style.top = newOffsetY + 'px';
+    videoRemote.style.left = newOffsetX + "px";
+    videoRemote.style.top = newOffsetY + "px";
+</script>
+
+<script>
+    const btn_location = document.getElementById("btn-location");
+    const divLocation = document.getElementById("divLocation");
+    const closeBtn = document.getElementById("closeBtn");
+    let isShown = false;
+
+    btn_location.addEventListener("click", () => {
+        if (!isShown) {
+            divLocation.style.display = "block";
+            divLocation.style.opacity = "0";
+            divLocation.style.transform = "translate(-50%, -50%) translateY(-50vh)";
+            divLocation.style.transition = "transform 0.3s, opacity 0.3s";
+            setTimeout(() => {
+                divLocation.style.opacity = "1";
+                divLocation.style.transform = "translate(-50%, -50%)";
+            }, 10);
+            isShown = true;
+        } else {
+            divLocation.style.opacity = "0";
+            divLocation.style.transform = "translate(-50%, -50%) translateY(-50vh)";
+            setTimeout(() => {
+                divLocation.style.display = "none";
+            }, 300);
+            isShown = false;
+        }
+    });
+
+    closeBtn.addEventListener("click", () => {
+        divLocation.style.opacity = "0";
+        divLocation.style.transform = "translate(-50%, -50%) translateY(-50vh)";
+        setTimeout(() => {
+            divLocation.style.display = "none";
+        }, 300);
+        isShown = false;
+    });
+
+    let isDragging = false;
+    let startX, startY, currentX, currentY, diffX, diffY;
+
+    divLocation.addEventListener("touchstart", (e) => {
+        // ตรวจสอบว่าปุ่มถูกคลิกหรือไม่
+        if (e.target.classList.contains("drag")) {
+            // เริ่มการเลื่อน
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        }
+    });
+
+    divLocation.addEventListener("touchmove", (e) => {
+        if (isDragging) {
+            currentX = e.touches[0].clientX;
+            currentY = e.touches[0].clientY;
+            diffX = currentX - startX;
+            diffY = currentY - startY;
+            if (diffY <= 0) {
+                divLocation.style.transform = `translate(-50%, -50%) translateY(${diffY}px)`;
+            } else {
+                divLocation.style.transform = `translate(-50%, -50%)`;
+            }
+        }
+    });
+
+    divLocation.addEventListener("touchend", (e) => {
+        if (isDragging) {
+            const threshold = 100;
+            if (Math.abs(diffY) > threshold) {
+                divLocation.style.opacity = "0";
+                divLocation.style.transform = "translate(-50%, -50%) translateY(-100vh)";
+                setTimeout(() => {
+                    divLocation.style.display = "none";
+                }, 300);
+                isShown = false;
+            } else {
+                divLocation.style.transform = `translate(-50%, -50%)`;
+            }
+        }
+        isDragging = false;
+    });
+</script>
+
+<script>
+    const btnShowForm = document.getElementById("btnShowForm");
+    const divForm = document.getElementById("divForm");
+    const closeBtnForm = document.getElementById("closeBtnForm");
+    let isShownForm = false;
+
+    btnShowForm.addEventListener("click", () => {
+        if (!isShownForm) {
+            divForm.style.display = "block";
+            divForm.style.opacity = "0";
+            divForm.style.transform = "translate(-50%, -50%) translateY(50vh)";
+            divForm.style.transition = "transform 0.3s, opacity 0.3s";
+            setTimeout(() => {
+                divForm.style.opacity = "1";
+                divForm.style.transform = "translate(-50%, -50%)";
+            }, 10);
+            isShownForm = true;
+        } else {
+            divForm.style.opacity = "0";
+            divForm.style.transform = "translate(-50%, -50%) translateY(50vh)";
+            setTimeout(() => {
+                divForm.style.display = "none";
+            }, 300);
+            isShownForm = false;
+        }
+    });
+
+    closeBtnForm.addEventListener("click", () => {
+        divForm.style.opacity = "0";
+        divForm.style.transform = "translate(-50%, -50%) translateY(50vh)";
+        setTimeout(() => {
+            divForm.style.display = "none";
+        }, 300);
+        isShownForm = false;
+    });
+
+    let isDraggingForm = false;
+    let startXForm, startYForm, currentXForm, currentYForm, diffXForm, diffYForm;
+
+    divForm.addEventListener("touchstart", (e) => {
+        // ตรวจสอบว่าปุ่มถูกคลิกหรือไม่
+        if (e.target.classList.contains("dragForm")) {
+            // เริ่มการเลื่อน
+            isDraggingForm = true;
+            startXForm = e.touches[0].clientX;
+            startYForm = e.touches[0].clientY;
+        }
+    });
+
+    divForm.addEventListener("touchmove", (e) => {
+        if (isDraggingForm) {
+            currentXForm = e.touches[0].clientX;
+            currentYForm = e.touches[0].clientY;
+            diffXForm = currentXForm - startXForm;
+            diffYForm = currentYForm - startYForm;
+            if (diffYForm >= 0) {
+                divForm.style.transform = `translate(-50%, -50%) translateY(${diffYForm}px)`;
+            } else {
+                divForm.style.transform = `translate(-50%, -50%)`;
+
+            }
+        }
+    });
+
+    divForm.addEventListener("touchend", (e) => {
+        if (isDraggingForm) {
+            const threshold = 100;
+            if (Math.abs(diffYForm) > threshold) {
+                divForm.style.opacity = "0";
+                divForm.style.transform = "translate(-50%, -50%) translateY(100vh)";
+                setTimeout(() => {
+                    divForm.style.display = "none";
+                }, 300);
+                isShownForm = false;
+            } else {
+                divForm.style.transform = `translate(-50%, -50%)`;
+            }
+        }
+        isDraggingForm = false;
+    });
 </script>
 @endsection
