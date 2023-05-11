@@ -17,6 +17,7 @@ use App\Models\Mylog;
 use App\Models\Partner;
 use App\Models\Time_zone;
 use App\User;
+use App\Models\Data_1669_officer_command;
 
 use \Carbon\Carbon;
 
@@ -1521,13 +1522,18 @@ class Sos_help_centerController extends Controller
         if ($sub_organization == "ศูนย์ใหญ่"){
 
             if (!empty($keyword)) {
-                $all_user = User::Where('organization', $name_partner)
-                    ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
-                    ->Where('name', 'LIKE', "%$keyword%")
+                // $all_user = User::Where('organization', $name_partner)
+                //     ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
+                //     ->Where('name', 'LIKE', "%$keyword%")
+                //     ->latest()->paginate($perPage);
+                $all_user = Data_1669_officer_command::orderByRaw("CASE WHEN officer_role = 'admin-partner' THEN 0 ELSE 1 END, name_officer_command ASC")
+                    ->Where('name_officer_command', 'LIKE', "%$keyword%")
                     ->latest()->paginate($perPage);
             } else {
-                $all_user = User::Where('organization', $name_partner)
-                    ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
+                // $all_user = User::Where('organization', $name_partner)
+                //     ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
+                //     ->latest()->paginate($perPage);
+                $all_user = Data_1669_officer_command::orderByRaw("CASE WHEN officer_role = 'admin-partner' THEN 0 ELSE 1 END, name_officer_command ASC")
                     ->latest()->paginate($perPage);
             }
             
@@ -1535,15 +1541,23 @@ class Sos_help_centerController extends Controller
         }else{
 
             if (!empty($keyword)) {
-                $all_user = User::Where('organization', $name_partner)
-                    ->Where('sub_organization', 'LIKE', "%$sub_organization%")
-                    ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
-                    ->Where('name', 'LIKE', "%$keyword%")
+                // $all_user = User::Where('organization', $name_partner)
+                //     ->Where('sub_organization', 'LIKE', "%$sub_organization%")
+                //     ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
+                //     ->Where('name', 'LIKE', "%$keyword%")
+                //     ->latest()->paginate($perPage);
+                $all_user = Data_1669_officer_command::Where('area', 'LIKE', "%$sub_organization%")
+                    ->orderByRaw("CASE WHEN officer_role = 'admin-partner' THEN 0 ELSE 1 END, number ASC")
+                    ->Where('name_officer_command', 'LIKE', "%$keyword%")
                     ->latest()->paginate($perPage);
             } else {
-                $all_user = User::Where('organization', $name_partner)
-                    ->Where('sub_organization', 'LIKE', "%$sub_organization%")
-                    ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
+                // $all_user = User::Where('organization', $name_partner)
+                //     ->Where('sub_organization', 'LIKE', "%$sub_organization%")
+                //     ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
+                //     ->latest()->paginate($perPage);
+
+                $all_user = Data_1669_officer_command::Where('area', 'LIKE', "%$sub_organization%")
+                    ->orderByRaw("CASE WHEN officer_role = 'admin-partner' THEN 0 ELSE 1 END, number ASC")
                     ->latest()->paginate($perPage);
             }
 

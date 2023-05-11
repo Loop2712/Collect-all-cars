@@ -1,0 +1,33 @@
+{
+    "fields": [
+        {
+            "name": "name_officer_command",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "area",
+            "type": "string"
+        },
+        {
+            "name": "officer_role",
+            "type": "string"
+        },
+        {
+            "name": "number",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "creator",
+            "type": "string"
+        }
+
+    ]
+}

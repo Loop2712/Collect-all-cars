@@ -69,6 +69,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Data_1669_operating_officer', 'user_id' ,'id');
     }
 
+    public function officer_command(){
+        return $this->hasMany('App\Models\Data_1669_officer_command', 'user_id' ,'id');
+    }
+
     // public function sell(){
     //     return $this->hasMany('App\Sell', 'user_id'); 
     // }   

@@ -211,8 +211,8 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('sos_help_center/{sos_id}/give_rate_case', 'Sos_help_centerController@give_rate_case');
 	
 	Route::get('all_name_user_partner', 'Sos_help_centerController@all_name_user_partner');
+	Route::resource('data_1669_officer_command', 'Data_1669_officer_commandController');
 
-	
 
 	// ------- CONDO -------
 	Route::resource('parcel', 'ParcelController');
@@ -470,4 +470,5 @@ Route::get('officer_form_yellow/{sos_id}', 'Sos_help_centerController@sos_help_o
 Route::get('/mockup_video_call', function () {
     return view('nationalitie_sos/mockup_video_call');
 });
+
 

@@ -27,6 +27,7 @@ use App\county;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Time_zone;
 use App\Models\Check_in;
+use App\Models\Data_1669_officer_command;
 use App\Models\Disease;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -396,6 +397,33 @@ class PartnerController extends Controller
             $user->save();
 
             $user_old = "No" ;
+
+            if ($partners == "สพฉ"){
+
+                $last_user = User::latest()->first();
+                $last_officer_1669 = Data_1669_officer_command::where('area',$sub_partners)->get();
+
+                $last_num_officer = "0";
+                foreach ($last_officer_1669 as $check_officer){
+                    if ( intval($check_officer->number) > intval($last_num_officer) ){
+                        $last_num_officer = intval($check_officer->number);
+                    }
+                }
+
+                $new_officer = [];
+
+                $new_officer['name_officer_command'] = $name;
+                $new_officer['user_id'] = $last_user->id;
+                $new_officer['area'] = $sub_partners;
+                $new_officer['officer_role'] = $type_user;
+                $new_officer['number'] = intval($last_num_officer) + 1 ;
+                $new_officer['status'] = null;
+                $new_officer['creator'] = $data_user->id;
+
+                Data_1669_officer_command::create($new_officer);
+
+            }
+
         }else{
             $user_old = "Yes" ;
         }

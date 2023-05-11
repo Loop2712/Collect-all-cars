@@ -141,7 +141,7 @@
                 
                 <div style="margin-left: 10px;margin-right: 10px;" class=" float-end ms-auto">
                         <div class="input-group"> 
-                            <input type="text" class="form-control border-end-0"  name="normal_search" id="normal_search" placeholder="พิมพ์ในช่องเพื่อค้นหา" oninput="search_all_name_user_partner();">
+                            <input type="text" class="form-control border-end-0"  name="normal_search" id="normal_search" placeholder="ค้นหาจากชื่อเจ้าหน้าที่.." oninput="search_all_name_user_partner();">
                             <span class="input-group-text bg-transparent"><i class="fa-solid fa-magnifying-glass"></i></span>
                         </div>
                     <!-- <div class="input-group form-inline">
@@ -164,11 +164,16 @@
             <table class="table mb-0 align-middle">
                 <thead>
                     <tr class="text-center">
-                        <th>ชื่อ</th>
-                        <th>ประเภท</th>
-                        <th>เบอร์</th>
-                        <th>สถานะ</th>
+                        <th>
+                            ลำดับ &nbsp;
+                            <span class="btn btn-sm btn-outline-info main-shadow main-radius">
+                                <i class="fa-duotone fa-repeat"></i>
+                            </span>
+                        </th>
+                        <!-- <th>ตำแหน่ง</th> -->
+                        <th>เจ้าหน้าที่</th>
                         <th>พื้นที่</th>
+                        <th>สถานะ</th>
                         <th>ผู้สร้าง</th>
                         <!-- <th>การใช้งาน</th> -->
                         <th></th>
@@ -177,56 +182,76 @@
                 <tbody id="tbody_data_admin">
                     @foreach($all_user as $item)
                     <tr>
+                        <td class="text-center">
+                            @if(!empty($item->number))
+                                <span>
+                                    <i class="fa-solid fa-circle-{{ $item->number }}" style="color: #24e9e0;font-size: 25px;"></i>
+                                </span>
+                            @endif
+                            <br>
+                            @switch($item->officer_role)
+                                @case('partner')
+                                    เจ้าหน้าที่
+                                @break
+                                @case('admin-partner')
+                                    <b>แอดมิน</b>
+                                @break
+                                @case(null)
+                                    พนักงาน
+                                @break
+                            @endswitch
+                        </td>
+                        <!-- <td class="text-center">
+                            
+                        </td> -->
                         <td>
-                            <span style="font-size: 15px;"><a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span>&nbsp;&nbsp;{{ $item->name }}
+                            <center>
+                                <span style="font-size: 15px;">
+                                    <a target="break" href="{{ url('/').'/profile/'.$item->id }}">
+                                        <i class="far fa-eye text-primary"></i>
+                                    </a>
+                                </span>
+                                &nbsp;&nbsp;<b style="font-size: 18px;">{{ $item->name_officer_command }}</b>
+                                <br>
+                                {{ $item->user->phone }}
+                            </center>
                         </td>
                         <td class="text-center">
-                            @switch($item->type)
-                            @case('line')
-                            <i class="fab fa-line text-success"></i>
-                            @break
-                            @case('facebook')
-                            <i class="fab fa-facebook-square text-primary"></i>
-                            @break
-                            @case('google')
-                            <i class="fab fa-google text-danger"></i>
-                            @break
-                            @case(null)
-                            <i class="bx bx-globe" style="color: #5F9EA0"></i>
-                            @break
-                            @endswitch
-                        </td>
-                        <td class="text-center">{{ $item->phone }}</td>
-                        <td class="text-center">
-                            @switch($item->role)
-                            @case('partner')
-                            เจ้าหน้าที่
-                            @break
-                            @case('admin-partner')
-                            <b>แอดมิน</b>
-                            @break
-                            @case(null)
-                            พนักงาน
-                            @break
-                            @endswitch
-                        </td>
-                        <td class="text-center">
-                            @if(!empty($item->sub_organization))
-                            <span>{{ $item->sub_organization }}</span>
+                            @if(!empty($item->area))
+                                <span>{{ $item->area }}</span>
                             @endif
                         </td>
                         <td class="text-center">
+                            @switch($item->status)
+                                @case('Standby')
+                                    <b><i class="fa-solid fa-circle-check" style="color: #2cb706;font-size: 25px;"></i></b>
+                                    <br>
+                                    พร้อมช่วยเหลือ
+                                @break
+                                @case('Helping')
+                                    <b><i class="fa-regular fa-hourglass-clock" style="color: #ff881a;font-size: 25px;"></i></b>
+                                    <br>
+                                    กำลังช่วยเหลือ
+                                @break
+                                @default
+                                    <b><i class="fa-duotone fa-circle-exclamation" style="font-size: 25px;"></i></b>
+                                    <br>
+                                    ไม่อยู่
+                                @break
+                            @endswitch
+                        </td>
+                        <td class="text-center">
                             @if(!empty($item->creator))
-                            @php
-                            $user_creator = App\User::where('id', $item->creator)->first();
-                            @endphp
-                            <a href="{{ url('/profile/' . $item->creator) }}" target="bank">
-                                <i class="far fa-eye text-primary"></i>
-                            </a>
-                            <br>
-                            {{ $user_creator->name }}
+                                @php
+                                    $user_creator = App\User::where('id', $item->creator)->first();
+                                @endphp
+                                <a href="{{ url('/profile/' . $item->creator) }}" target="bank">
+                                    <i class="far fa-eye text-primary"></i>
+                                </a>
+                                <br>
+                                {{ $user_creator->name }}
                             @else
-                            <img src="{{ asset('/img/logo/logo_x-icon_2.png') }}" style="width:50px;" class="img-radius">
+                                <img src="{{ asset('/img/logo/logo_x-icon_2.png') }}" style="width:50px;" class="img-radius">
                             @endif
                         </td>
                         <!-- <td class="text-center">
@@ -639,8 +664,14 @@
     function search_all_name_user_partner() {
        
         let normal_search = document.querySelector('#normal_search').value;
-        let search_area = document.querySelector('#search_area').value;
         let search_status = document.querySelector('#search_status').value;
+        let search_area = "" ;
+
+        if ( '{{ auth()->user()->sub_organization }}' == "ศูนย์ใหญ่" ){
+            search_area = document.querySelector('#search_area').value;
+        }else{
+            search_area = '{{ auth()->user()->sub_organization }}';
+        }
 
         
         // alert(search_area);
