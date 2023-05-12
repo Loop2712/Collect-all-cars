@@ -247,6 +247,7 @@ Route::get('/search_all_name_user_partner', 'test_for_devController@search_all_n
 Route::get('/forward_operation/{sos_id}', 'Sos_help_centerController@forward_operation');
 Route::get('/sos_1669_command_by/{sos_id}/{admin_id}', 'Sos_help_centerController@sos_1669_command_by');
 Route::get('/get_forward_operation/{forward_id}', 'Sos_help_centerController@get_forward_operation');
+Route::post('/update_number_officer/data_1669_officer_commands', 'Sos_help_centerController@update_number_officer');
 
     // SOS HELP CENTER FORM USER 
     Route::get('/check_unit_cf_sos_form_user/{sos_id}', 'Sos_help_centerController@check_unit_cf_sos_form_user');

@@ -1569,8 +1569,30 @@ class Sos_help_centerController extends Controller
                 ->where('polygon' , '!=' , null)
                 ->get();
 
+        $count_officer = count($all_user);
 
-        return view('sos_help_center.manage_user.all_name_user_partner', compact('area_user' ,'data_partners','all_user','data_time_zone','sub_organization','polygon_provinces'));
+
+        return view('sos_help_center.manage_user.all_name_user_partner', compact('area_user' ,'data_partners','all_user','data_time_zone','sub_organization','polygon_provinces','count_officer'));
+    }
+
+    function update_number_officer(Request $request){
+
+        $requestData = $request->all();
+
+        DB::table('data_1669_officer_commands')
+            ->where('id', $requestData['id_new_number'])
+            ->update([
+                'number' => $requestData['int_new_number'],
+        ]);
+
+        DB::table('data_1669_officer_commands')
+            ->where('id', $requestData['id_old_number'])
+            ->update([
+                'number' => $requestData['int_old_number'],
+        ]);
+
+        return 'OK' ;
+        
     }
 
     function rate_case($sos_id){

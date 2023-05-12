@@ -102,7 +102,321 @@
         right: 1rem;
         z-index: 99;
     }
+    .text-nocopy {
+      -webkit-user-select: none;   
+      -moz-user-select: none;     
+      -ms-user-select: none;   
+      user-select: none;          
+    }
 </style>
+
+<!-- Modal change number officer -->
+<div class="text-nocopy modal fade" id="modal_change_number_officer" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="change_number_officerLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="change_number_officerLabel">
+                    เปลี่ยนลำดับของเจ้าหน้าที่ศูนย์สั่งการ : {{ $sub_organization }}
+                </h5>
+                <button type="button" class="close btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @foreach($all_user as $item)
+                <div class="card main-shadow main-radius" style="padding: 10px;">
+                    <div class="row">
+                        <div class="col-3 text-center">
+                            <style>
+                                .profile-image {
+                                    width: 75px; /* ปรับขนาดตามที่คุณต้องการ */
+                                    height: 75px; /* ปรับขนาดตามที่คุณต้องการ */
+                                    object-fit: cover; /* ปรับขนาดภาพให้เต็มพื้นที่องค์ประกอบ */
+                                    border-radius: 50%; /* ทำให้รูปเป็นวงกลม */
+                                    border-style: solid;
+                                    border-width: 3px;
+                                    border-color: lightblue;
+                                }
+
+                                @keyframes slideOutRight {
+                                  0% {
+                                    transform: translateX(0);
+                                    opacity: 1;
+                                  }
+                                  100% {
+                                    transform: translateX(100px); /* ปรับค่าที่ต้องการให้เหมาะสม */
+                                    opacity: 0;
+                                  }
+                                }
+
+                                .slide-out-right {
+                                  animation: slideOutRight 0.3s forwards;
+                                }
+
+                                @keyframes slideInLeft {
+                                  0% {
+                                    transform: translateX(-100px); /* ปรับค่าที่ต้องการให้เหมาะสม */
+                                    opacity: 0;
+                                  }
+                                  100% {
+                                    transform: translateX(0);
+                                    opacity: 1;
+                                  }
+                                }
+
+                                .slide-in-left {
+                                  animation: slideInLeft 0.3s forwards;
+                                }
+
+
+                            </style>
+                            @if(!empty($item->user->photo))
+                                <img class="profile-image" src="{{ url('/storage') .'/'. $item->user->photo  }}">
+                            @else
+                                <img class="profile-image" src="{{ url('/partner/images/user/avatar-1.jpg') }}">
+                            @endif
+                        </div>
+                        <div class="col-7 mt-3">
+                            <div class="row">
+                                <div class="col-8">
+                                   
+                                    <h5>{{ $item->id }} : <b>{{ $item->name_officer_command }}</b></h5>
+                                    <span>
+                                        @switch($item->officer_role)
+                                            @case('partner')
+                                                (เจ้าหน้าที่)
+                                            @break
+                                            @case('admin-partner')
+                                                (<b>แอดมิน</b>)
+                                            @break
+                                            @case(null)
+                                                (พนักงาน)
+                                            @break
+                                        @endswitch
+                                    </span>
+                                </div>
+                                <div id="div_change_number_officer_{{ $item->id }}" class="col-4" style="font-size: 20px;">
+                                    
+                                    @if(!empty($item->number))
+                                        <i id="drop_number_{{ $item->id }}" class="fa-sharp fa-solid fa-caret-left" onclick="click_slide_icon('drop','{{ $item->number }}','{{ $item->id }}');"></i>&nbsp;&nbsp;
+                                        <i id="tag_icon_{{ $item->id }}" dataNumber="{{ $item->number }}" class="fa-solid fa-circle-{{ $item->number }}" style="color: #20ccee;"></i>&nbsp;&nbsp;
+                                        <i id="add_number_{{ $item->id }}" class="fa-sharp fa-solid fa-caret-right" onclick="click_slide_icon('add','{{ $item->number }}','{{ $item->id }}');"></i>
+                                    @else
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <i id="tag_icon_{{ $item->id }}" class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                                    @endif
+
+                                    <div id="mock_change_icon" class="d-none">
+                                        <i mark="drop_number" class="fa-sharp fa-solid fa-caret-left"></i>&nbsp;&nbsp;
+                                        <i mark="tag_icon" class="fa-solid fa-circle-1" style="color: #20ccee;"></i>&nbsp;&nbsp;
+                                        <i mark="add_number" class="fa-sharp fa-solid fa-caret-right" ></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2 mt-3 text-center">
+                            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                เลือก
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <span class="dropdown-item" onclick="click_select_num_officer('','{{ $item->id }}','{{ $item->number }}');">
+                                    ว่าง
+                                </span>
+                                @for ($i = 1; $i <= $count_officer; $i++) 
+                                    <span class="dropdown-item" onclick="click_select_num_officer('{{ $i }}','{{ $item->id }}','{{ $item->number }}');">
+                                        ลำดับที่ {{ $i }}
+                                    </span>
+                                @endfor
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                <script>
+                    function click_slide_icon(type , number , id){
+
+                        let count_officer = '{{ $count_officer }}' ;
+                        // console.log(count_officer);
+
+                        let new_number = 0 ;
+                        if (type === 'add'){
+                            new_number = parseInt(number) + 1 ;
+                            if (new_number > count_officer){
+                                new_number = 1 ;
+                            }
+                        }else{
+                            new_number = parseInt(number) - 1 ;
+                            if (new_number < 1){
+                                new_number = count_officer ;
+                            }
+                        }
+
+                        // ค้นหาเจ้าของ number เดิม เพื่อเปลี่ยนสลับกัน
+                        let owner_old_number = document.querySelector('[dataNumber="'+new_number+'"]');
+
+                        // tag icon ที่เลือก
+                        const circleIcon = document.querySelector('#tag_icon_'+id);
+
+                        circleIcon.classList.remove('slide-in-left');
+                        circleIcon.classList.add('slide-out-right');
+
+                        setTimeout(function() {
+                            circleIcon.classList.remove('slide-out-right');
+                            circleIcon.classList.add('slide-in-left');
+                        }, 500);
+                        
+                        circleIcon.classList.replace('fa-circle-'+number, 'fa-circle-'+new_number.toString());
+                        circleIcon.setAttribute('dataNumber',new_number);
+
+                        const btn_drop_number = document.querySelector('#drop_number_'+id);
+                        const btn_add_number = document.querySelector('#add_number_'+id);
+
+                        btn_drop_number.setAttribute('onclick',"click_slide_icon('drop',"+new_number+","+id+");");
+                        btn_add_number.setAttribute('onclick',"click_slide_icon('add',"+new_number+","+id+");");
+
+                        // ค้นหาเจ้าของ number เดิม เพื่อเปลี่ยนสลับกัน
+                        let id_tag_old_number = "" ;
+                        if (owner_old_number){
+
+                            owner_old_number.classList.remove('slide-in-left');
+                            owner_old_number.classList.add('slide-out-right');
+
+                            setTimeout(function() {
+                                owner_old_number.classList.remove('slide-out-right');
+                                owner_old_number.classList.add('slide-in-left');
+                            }, 500);
+
+                            owner_old_number.classList.replace('fa-circle-'+new_number, 'fa-circle-'+number.toString());
+                            owner_old_number.setAttribute('dataNumber',number);
+
+                            id_tag_old_number = owner_old_number.id.split('_')[2];
+
+                            let btn_drop_old_number = document.querySelector('#drop_number_'+id_tag_old_number);
+                            let btn_add_old_number = document.querySelector('#add_number_'+id_tag_old_number);
+                            btn_drop_old_number.setAttribute('onclick',"click_slide_icon('drop',"+number+","+id_tag_old_number+");");
+                            btn_add_old_number.setAttribute('onclick',"click_slide_icon('add',"+number+","+id_tag_old_number+");");
+                        }
+
+                        let data_arr = [];
+
+                        data_arr = {
+                            "id_new_number" : id.toString(),
+                            "int_new_number" : new_number.toString(),
+                            "id_old_number" : id_tag_old_number.toString(),
+                            "int_old_number" : number.toString(),
+                        }
+
+                        // console.log(data_arr);
+
+                        // ส่งข้อมูลไปอัพเดท DB
+                        fetch("{{ url('/') }}/api/update_number_officer/data_1669_officer_commands", {
+                            method: 'post',
+                            body: JSON.stringify(data_arr),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }).then(function (response){
+                            // return response.text();
+                        }).then(function(data){
+                            // console.log(data);
+                        }).catch(function(error){
+                            // console.error(error);
+                        });
+
+                    }
+
+                    function click_select_num_officer(new_number , id , old_number){
+                        console.log(new_number);
+
+                        let owner_old_number = document.querySelector('[dataNumber="'+new_number+'"]');
+
+                        if (!new_number){
+                            let text_i_empty = '&nbsp;&nbsp;&nbsp;&nbsp;'+
+                            '<i id="tag_icon_'+id+'" class="fa-sharp fa-solid fa-circle-exclamation"></i>';
+
+                            document.querySelector('#div_change_number_officer_'+id).innerHTML = text_i_empty ;
+
+                        }else{
+
+                            let mock_change_icon = document.querySelector('#mock_change_icon');
+                            let change_icon = mock_change_icon.cloneNode(true);
+                                change_icon.classList.remove('d-none');
+                                change_icon.setAttribute('id','');
+
+                            let i_drop_number = change_icon.querySelector('[mark="drop_number"]');
+                                i_drop_number.setAttribute('id','drop_number_'+id);
+                                i_drop_number.setAttribute('onclick',"click_slide_icon('drop',"+new_number+","+id+");");
+
+                            let tag_icon = change_icon.querySelector('[mark="tag_icon"]');
+                                tag_icon.setAttribute('id','tag_icon_'+id);
+                                tag_icon.setAttribute('dataNumber',new_number);
+                                tag_icon.setAttribute('class',"fa-solid fa-circle-"+new_number);
+
+                            let i_add_number = change_icon.querySelector('[mark="add_number"]');
+                                i_add_number.setAttribute('id','add_number_'+id);
+                                i_add_number.setAttribute('onclick',"click_slide_icon('add',"+new_number+","+id+");");
+
+                            console.log("------------------------------------");
+                            console.log(change_icon);
+
+                            let text_html = change_icon.outerHTML ;
+                            document.querySelector('#div_change_number_officer_'+id).innerHTML = text_html ;
+                        }
+
+                        // ค้นหาเจ้าของ number เดิม เพื่อเปลี่ยนสลับกัน
+                        let id_tag_old_number = "" ;
+                        if (owner_old_number){
+
+                            id_tag_old_number = owner_old_number.id.split('_')[2];
+
+                            if (!old_number){
+                                let text_i_empty = '&nbsp;&nbsp;&nbsp;&nbsp;'+
+                                '<i id="tag_icon_'+id_tag_old_number+'" class="fa-sharp fa-solid fa-circle-exclamation"></i>';
+
+                                document.querySelector('#div_change_number_officer_'+id_tag_old_number).innerHTML = text_i_empty ;
+
+                            }else{
+
+                                owner_old_number.classList.remove('slide-in-left');
+                                owner_old_number.classList.add('slide-out-right');
+
+                                setTimeout(function() {
+                                    owner_old_number.classList.remove('slide-out-right');
+                                    owner_old_number.classList.add('slide-in-left');
+                                }, 500);
+
+                                owner_old_number.classList.replace('fa-circle-'+new_number, 'fa-circle-'+old_number.toString());
+                                owner_old_number.setAttribute('dataNumber',old_number);
+
+                                let btn_drop_old_number = document.querySelector('#drop_number_'+id_tag_old_number);
+                                let btn_add_old_number = document.querySelector('#add_number_'+id_tag_old_number);
+                                btn_drop_old_number.setAttribute('onclick',"click_slide_icon('drop',"+old_number+","+id_tag_old_number+");");
+                                btn_add_old_number.setAttribute('onclick',"click_slide_icon('add',"+old_number+","+id_tag_old_number+");");
+                            }
+                        }
+
+                        let data_arr = [];
+
+                        data_arr = {
+                            "id_new_number" : id.toString(),
+                            "int_new_number" : new_number.toString(),
+                            "id_old_number" : id_tag_old_number.toString(),
+                            "int_old_number" : old_number.toString(),
+                        }
+
+                        console.log(data_arr);
+                    }
+
+                </script>
+            </div>
+            <div class="modal-footer d-none">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="card radius-10 d-none d-lg-block">
     <div class="card-header border-bottom-0 bg-transparent">
         <div class="row mt-2">
@@ -166,9 +480,11 @@
                     <tr class="text-center">
                         <th>
                             ลำดับ &nbsp;
-                            <span class="btn btn-sm btn-outline-info main-shadow main-radius">
-                                <i class="fa-duotone fa-repeat"></i>
-                            </span>
+                            @if(Auth::user()->role == "admin-partner")
+                                <span class="btn btn-sm btn-outline-info main-shadow main-radius" data-toggle="modal" data-target="#modal_change_number_officer">
+                                    <i class="fa-duotone fa-repeat"></i>
+                                </span>
+                            @endif
                         </th>
                         <!-- <th>ตำแหน่ง</th> -->
                         <th>เจ้าหน้าที่</th>
