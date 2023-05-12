@@ -2904,17 +2904,44 @@
         
 
 </script>
+
 <script>
     function toggleAnimation(elementId, animationClass) {
         var element = document.getElementById(elementId);
         element.classList.add(animationClass);
 
-        element.addEventListener('mouseleave', function() {
+        element.addEventListener('mouseout', function() {
             this.classList.remove(animationClass);
         });
     }
 </script>
 
+<script>
+function toggleAnimation() {
+  var animationClass = this.dataset.animationClass;
+  var iconElement = this.querySelector('i');
+
+  iconElement.classList.add(animationClass);
+
+  this.addEventListener('mouseleave', function() {
+    iconElement.classList.remove(animationClass);
+  });
+
+  var parentElement = this.parentElement;
+
+  parentElement.addEventListener('mouseenter', function() {
+    iconElement.classList.remove(animationClass);
+  });
+
+  parentElement.addEventListener('mouseleave', function() {
+    iconElement.classList.remove(animationClass);
+  });
+}
+
+document.querySelectorAll('.btn').forEach(function(button) {
+  button.addEventListener('mouseenter', toggleAnimation);
+});
+</script>
 <a id="tag_a_new_sos1669" class="d-none"></a>
 <a id="tag_a_go_to_map" class="d-none" target="bank"></a>
 <a id="tag_a_tel_user_1669" class="d-none"></a>

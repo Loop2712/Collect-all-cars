@@ -792,7 +792,7 @@ feather.replace();
     }
     .menu-header{
         background-color: transparent;
-        padding: 20px 25px;
+        padding: 20px 0px 20px 20px;
         position: relative;
     }#map{
         border-radius: 10px;
@@ -830,188 +830,7 @@ feather.replace();
     .hover-zoom:hover {
       transform: scale(2.5);
     }
-
-</style>
-<div>
-    <div class="card radius-10">
-        <div class="row d-flex justify-content-between">
-            <div class="col-md-6 col-lg-6 col-12 menu-header bg-transparent d-inline">
-                <h6 class=" font-weight-bold m-0 p-0">รหัสปฏิบัติการ</h6>
-                <h3><b><u id="text_u_operating_code">{{ $sos_help_center->operating_code }}</u></b></h3>
-            </div>
-            <div class="col-md-6 col-lg-6 col-12  d-flex justify-content-end">
-                <div class="d-flex align-items-center">
-                    <!-- <button type="button" class="btn btn-warning m-2" onclick="click_select_btn('form_yellow');">
-                        <i class="fa-solid fa-files-medical"></i> <br> แบบฟอร์มเหลือง
-                    </button>
-                    <button type="button" class="btn btn-info m-2" onclick="click_select_btn('operating_unit');">
-                        <i class="fa-solid fa-hospital-user"></i> <br> แบบฟอร์มฟ้า
-                    </button>
-                    <button type="button" class="btn btn-success m-2" onclick="click_select_btn('operating_unit');">
-                    <i class="fa-solid fa-hospital-user"></i> <br> แบบฟอร์มเขียว
-                    </button>
-                    <button type="button" class="btn m-2 " style="background-color:#fa93f0;" onclick="click_select_btn('operating_unit');">
-                    <i class="fa-solid fa-hospital-user"></i> <br> แบบฟอร์มชมพู
-                    </button>
-                    <button id="btn_select_operating_unit" disabled  type="button" class="btn btn-secondary m-2" onclick="click_select_btn('operating_unit');">
-                        <i class="fa-solid fa-truck-medical"></i> <br> เลือกหน่วยแพทย์
-                    </button> -->
-                    <style>
-                        .nav-pills-success.nav-pills .nav-link{
-                        color: #29cc39;
-                        }
-                        .nav-pills-success.nav-pills .nav-link:hover{
-                        color: #fff;
-                        }
-
-                        .nav-pills-warning.nav-pills .nav-link{
-                        color: #ffc107;
-                        }
-                        .nav-pills-warning.nav-pills .nav-link:hover{
-                        color: #000;
-                        }
-
-                        .nav-pills-info.nav-pills .nav-link{
-                        color: #0dcaf0;
-                        }
-                        .nav-pills-info.nav-pills .nav-link:hover{
-                        color: #fff;
-                        }
-
-                        .nav-pills-pink.nav-pills .nav-link{
-                        color: #fa93f0;
-                        }
-                        .nav-pills-pink.nav-pills .nav-link:hover{
-                        color: #fff;
-                        }
-
-                        .nav-pills-secondary.nav-pills .nav-link{
-                        color: #fff;
-                        }
-                        .nav-pills-secondary.nav-pills .nav-link:hover{
-                        color: #fff;
-                        }
-
-                        .nav-pills-purple.nav-pills .nav-link{
-                        color: #7b2bec;
-                        border: 1px solid #7b2bec;
-                        }
-                        .nav-pills-purple.nav-pills .nav-link:hover{
-                            background-color: #7b2bec;
-                        color: #fff;
-                        }
-
-                        .nav-pills-danger.nav-pills .nav-link{
-                        color: #db2d2e;
-                        }
-                        .nav-pills-danger.nav-pills .nav-link:hover{
-                        color: #fff;
-                        }
-                        .box-idc-rc{
-                            border-radius: 15px 15px 0 0 ;
-                            padding: 5px;
-                            font-weight: bolder;
-                            margin: 15 0;
-                        }.idc-rc-green{
-                            background-color: #dff7e1;
-                            color: #4ccc39;
-                        }.idc-rc-yellow{
-                            background-color: #fff8e4;
-                            color: #ffc207;
-                        }.idc-rc-normal{
-                            background-color: #c9d3ff;
-                            color: #0d3aff;
-                        }.idc-rc-black{
-                            background-color: #c5c6c8;
-                            color: #000000;
-                        }.idc-rc-red{
-                            background-color: #fbe0e0;
-                            color: #e62e2e;
-                        }
-                    </style>
-                    <ul class="nav nav-pills m-3" role="tablist">
-                        <li id="btn_operation" class="nav-item nav-pills nav-pills-purple m-2 d-none" role="presentation">
-                            <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="check_go_to(null);reface_map_go_to_help();Stop_reface_check_form_yellow();">
-                                <div class="d-flex align-items-center">
-                                    <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
-                                    </div>
-                                    <div class="tab-title">การดำเนินการ</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li id="btn_form_yellow" class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
-                            <!-- <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#form_data_1').click();">
-                                <div class="d-flex align-items-center">
-                                    <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
-                                    </div>
-                                    <div class="tab-title">แบบฟอร์มเหลือง</div>
-                                </div>
-                            </a> -->
-                            <a class="nav-link btn-outline-warning btn active" href="{{ url('/sos_help_center') . '/' . $sos_help_center->id . '/edit' }}" >
-                                <div class="d-flex align-items-center">
-                                    <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
-                                    </div>
-                                    <div class="tab-title">แบบฟอร์มเหลือง</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li id="btn_form_blue" class="nav-item nav-pills nav-pills-info m-2 d-none" role="presentation">
-                            <a class="nav-link  btn-outline-info btn" data-bs-toggle="pill" href="#form-blue" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_blue_1').click();">
-                                <div class="d-flex align-items-center">
-                                    <div class="tab-icon">
-                                        <i class="fa-solid fa-hospital-user"></i>
-                                    </div>
-                                    <div class="tab-title">แบบฟอร์มฟ้า</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li id="btn_form_green" class="nav-item  nav-pills nav-pills-success m-2 d-none" role="presentation">
-                            <a class="nav-link btn-outline-success btn" data-bs-toggle="pill" href="#form-green" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_green_1').click();">
-                                <div class="d-flex align-items-center">
-                                    <div class="tab-icon">
-                                        <i class="fa-solid fa-hospital-user"></i>
-                                    </div>
-                                    <div class="tab-title">แบบฟอร์มเขียว</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li id="btn_form_pink" class="nav-item nav-pills nav-pills-pink m-2 d-none" role="presentation">
-                            <a class="nav-link btn-outline-pink btn" data-bs-toggle="pill" href="#form-pink" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_pink_1').click();">
-                                <div class="d-flex align-items-center">
-                                    <div class="tab-icon">
-                                        <i class="fa-solid fa-hospital-user"></i>
-                                    </div>
-                                    <div class="tab-title">แบบฟอร์มชมพู</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li id="btn_select_operating_unit" class="nav-item nav-pills nav-pills-danger m-2 " role="presentation">
-                            <a id="tag_a_open_map_operating_unit" class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="open_map_operating_unit();"> <!-- select_level(); -->
-                                <div class="d-flex align-items-center">
-                                    <div class="tab-icon">
-                                        <i class="fa-solid fa-hospital-user"></i>
-                                    </div>
-                                    <div class="tab-title">เลือกหน่วยแพทย์</div>
-                                </div>
-                            </a>
-                        </li>
-                        <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 d-" role="presentation">
-                            <a class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#meet_sos" role="tab" aria-selected="false">
-                                <div class="d-flex align-items-center">
-                                    <div class="tab-icon">
-                                        <i class="fa-solid fa-hospital-user"></i>
-                                    </div>
-                                    <div class="tab-title">Meet (soon)</div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<style>
-   .forword-card-danger{
+    .forword-card-danger{
     background-color: #db2d2e;
    }
    .forword-card-info{
@@ -1080,12 +899,119 @@ feather.replace();
 .read-forword:hover {
   background-color: #e6e7e9;
   color: #db2d2e;
+}  .nav-pills-success.nav-pills .nav-link{
+    color: #29cc39;
 }
-</style>
-<div class="row">
+.nav-pills-success.nav-pills .nav-link:hover{
+color: #fff;
+}
+
+.nav-pills-warning.nav-pills .nav-link{
+color: #ffc107;
+}
+.nav-pills-warning.nav-pills .nav-link:hover{
+color: #000;
+}
+
+.nav-pills-info.nav-pills .nav-link{
+color: #0dcaf0;
+}
+.nav-pills-info.nav-pills .nav-link:hover{
+color: #fff;
+}
+
+.nav-pills-pink.nav-pills .nav-link{
+color: #fa93f0;
+}
+.nav-pills-pink.nav-pills .nav-link:hover{
+color: #fff;
+}
+
+.nav-pills-secondary.nav-pills .nav-link{
+color: #fff;
+}
+.nav-pills-secondary.nav-pills .nav-link:hover{
+color: #fff;
+}
+
+.nav-pills-purple.nav-pills .nav-link{
+color: #7b2bec;
+border: 1px solid #7b2bec;
+}
+.nav-pills-purple.nav-pills .nav-link:hover{
+    background-color: #7b2bec;
+color: #fff;
+}
+
+.nav-pills-danger.nav-pills .nav-link{
+color: #db2d2e;
+}
+.nav-pills-danger.nav-pills .nav-link:hover{
+color: #fff;
+}
+.box-idc-rc{
+    border-radius: 15px 15px 0 0 ;
+    padding: 5px;
+    font-weight: bolder;
+    margin: 15 0;
+}.idc-rc-green{
+    background-color: #dff7e1;
+    color: #4ccc39;
+}.idc-rc-yellow{
+    background-color: #fff8e4;
+    color: #ffc207;
+}.idc-rc-normal{
+    background-color: #c9d3ff;
+    color: #0d3aff;
+}.idc-rc-black{
+    background-color: #c5c6c8;
+    color: #000000;
+}.idc-rc-red{
+    background-color: #fbe0e0;
+    color: #e62e2e;
+}
+
+/* total width */
+.sticky::-webkit-scrollbar {
+    background-color:#fff;
+    width:16px
+}
+
+/* background of the scrollbar except button or resizer */
+.sticky::-webkit-scrollbar-track {
+    background-color:#fff;
+    transition: all .15s ease-in-out;
+}
+.sticky::-webkit-scrollbar-track:hover {
+    background-color:#f4f4f4;
+
+}
+
+/* scrollbar itself */
+.sticky::-webkit-scrollbar-thumb {
+    background-color:#babac0;
+    border-radius:16px;
+    border:5px solid #fff;
+    transition: all .15s ease-in-out;
+}
+.sticky::-webkit-scrollbar-thumb:hover {
     
-    <div class="col-12 col-md-3 col-lg-3">
-        <div class="sticky">
+    cursor: -webkit-grab !important; 
+    cursor: grab !important;
+    background-color:#a0a0a5;
+    border:4px solid #f4f4f4;
+    transition: all .15s ease-in-out;
+
+}
+
+/* set button(top and bottom of the scrollbar) */
+.sticky::-webkit-scrollbar-button {display:none}
+</style>
+
+<div class="row" >
+    
+    <div class="col-12 col-md-3 col-lg-3" >
+        <div class="sticky" style="overflow: auto;">
             @if(!empty($sos_help_center->forward_operation_from) or ($sos_help_center->forward_operation_to))
             @php
               if( !empty($sos_help_center->forward_operation_from) ){
@@ -1133,7 +1059,7 @@ feather.replace();
                     }
             </script>
             @endif
-            <div class="card radius-10 p-3">
+            <div class="card radius-10 p-3" >
                 <h3><b>ข้อมูลผู้แจ้งเหตุ</b></h3>
                 <span>
                     ชื่อ/รหัสผู้แจ้งเหตุ
@@ -1148,8 +1074,57 @@ feather.replace();
                 <h4>
                     <u id="u_phone_user">{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}</u>
                 </h4>
+                    <style>
+                        .btnVideoCall{
+                            background-color: #1e3f57;
+                            color: #fff;
+                            outline: #1e3f57 1px solid;
+                            transition: all .15s ease-in-out;
+                        }
+                        .btnVideoCall:is(:hover ,:focus){
+                            outline-offset: 2px !important;
+                            color: #fff !important;
+
+                        }.fade-slide {
+                            animation-duration: 0.5s;
+                            animation-timing-function: ease-in-out;
+                        }
+
+                            .fade-slide.fade-out {
+                            animation-name: fadeOutDown;
+                        }
+
+                            .fade-slide.fade-in {
+                            animation-name: fadeInUp;
+                        }
+
+                        @keyframes fadeOutDown {
+                            0% {
+                                opacity: 1;
+                                transform: translate(0, 0);
+                            }
+                            100% {
+                                opacity: 0;
+                                transform: translate(0, 20px);
+                            }
+                        }
+
+                        @keyframes fadeInUp {
+                            0% {
+                                opacity: 0;
+                                transform: translate(0, 20px);
+                            }
+                            100% {
+                                opacity: 1;
+                                transform: translate(0, 0);
+                            }
+                        }
+                    </style>
+                <button id="btnVideoCall" class="btn btnVideoCall" data-animation-class="fa-bounce">
+                    <i id="iconVideoCall" class="fa-duotone fa-video-plus"> </i> Video Call
+                </button>
             </div>
-            <div class="card radius-10 p-3" id="div_detail_sos">
+            <div class="card radius-10 p-3 fade-slide" id="div_detail_sos">
                 <div class="row d-flex justify-content-between">
                     <div class="col h6 d-flex align-items-center">
                         <b>จุดเกิดเหตุ</b>
@@ -1168,6 +1143,288 @@ feather.replace();
                     <a id="go_to_maps" href="" target="bank"></a>
                 </div>
             </div>
+            
+
+            <style>
+                .video-body {
+                position: relative;
+                width: calc(100%);
+            }
+
+        .video-local {
+            display: flex;
+            margin-top: 1.5rem;
+            height: 20rem;
+            outline: #000 .1rem solid;
+            border-radius: 1rem;
+            width: 98%;
+            background-color: #ff0000;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='600' y1='25' x2='600' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0000'/%3E%3Cstop offset='1' stop-color='%23E0F'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='650' y1='25' x2='650' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0019'/%3E%3Cstop offset='1' stop-color='%23ce00f3'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='700' y1='25' x2='700' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0031'/%3E%3Cstop offset='1' stop-color='%23b000e6'/%3E%3C/linearGradient%3E%3ClinearGradient id='d' gradientUnits='userSpaceOnUse' x1='750' y1='25' x2='750' y2='777'%3E%3Cstop offset='0' stop-color='%23ff004a'/%3E%3Cstop offset='1' stop-color='%239400da'/%3E%3C/linearGradient%3E%3ClinearGradient id='e' gradientUnits='userSpaceOnUse' x1='800' y1='25' x2='800' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0063'/%3E%3Cstop offset='1' stop-color='%237a00ce'/%3E%3C/linearGradient%3E%3ClinearGradient id='f' gradientUnits='userSpaceOnUse' x1='850' y1='25' x2='850' y2='777'%3E%3Cstop offset='0' stop-color='%23ff007c'/%3E%3Cstop offset='1' stop-color='%236200c1'/%3E%3C/linearGradient%3E%3ClinearGradient id='g' gradientUnits='userSpaceOnUse' x1='900' y1='25' x2='900' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0094'/%3E%3Cstop offset='1' stop-color='%234d00b5'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' gradientUnits='userSpaceOnUse' x1='950' y1='25' x2='950' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00ad'/%3E%3Cstop offset='1' stop-color='%233900a8'/%3E%3C/linearGradient%3E%3ClinearGradient id='i' gradientUnits='userSpaceOnUse' x1='1000' y1='25' x2='1000' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00c6'/%3E%3Cstop offset='1' stop-color='%2328009c'/%3E%3C/linearGradient%3E%3ClinearGradient id='j' gradientUnits='userSpaceOnUse' x1='1050' y1='25' x2='1050' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00df'/%3E%3Cstop offset='1' stop-color='%23180090'/%3E%3C/linearGradient%3E%3ClinearGradient id='k' gradientUnits='userSpaceOnUse' x1='1100' y1='25' x2='1100' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00f7'/%3E%3Cstop offset='1' stop-color='%230b0083'/%3E%3C/linearGradient%3E%3ClinearGradient id='l' gradientUnits='userSpaceOnUse' x1='1150' y1='25' x2='1150' y2='777'%3E%3Cstop offset='0' stop-color='%23E0F'/%3E%3Cstop offset='1' stop-color='%23007'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg %3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' x='100' width='1100' height='800'/%3E%3Crect fill='url(%23c)' x='200' width='1000' height='800'/%3E%3Crect fill='url(%23d)' x='300' width='900' height='800'/%3E%3Crect fill='url(%23e)' x='400' width='800' height='800'/%3E%3Crect fill='url(%23f)' x='500' width='700' height='800'/%3E%3Crect fill='url(%23g)' x='600' width='600' height='800'/%3E%3Crect fill='url(%23h)' x='700' width='500' height='800'/%3E%3Crect fill='url(%23i)' x='800' width='400' height='800'/%3E%3Crect fill='url(%23j)' x='900' width='300' height='800'/%3E%3Crect fill='url(%23k)' x='1000' width='200' height='800'/%3E%3Crect fill='url(%23l)' x='1100' width='100' height='800'/%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
+            background-size: cover;
+            margin-left: 1%;
+        }
+
+        .video-remote {
+            width: 4rem;
+            height: 4rem;
+            background-color: #009e6b;
+            outline: #009e6b .3rem solid;
+            border-radius: .5rem;
+            position: absolute;
+            top: 5%;
+            right: calc(100% - 95%);
+        }
+        .video-menu {
+            display: flex;
+            width: calc(100%);
+            /* outline: #000 1rem solid; */
+            border-radius: 1rem;
+            position: absolute;
+            /* bottom: -20%; */
+            margin-top: 1rem;
+            justify-content: space-around;
+            background-color: #000;
+            height: 4rem !important;
+            align-items: center;
+        }
+
+        .video-menu button {
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            color: #fff;
+            width: 3rem !important;
+            height: 3rem !important;
+            /* outline:#fff 1px solid; */
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+        }.video-menu button i{
+            font-size: 1rem !important;
+        }
+        .btn-exit{
+            background-color: #db2d2e !important;
+        }
+        /* *{
+            outline: #000 1px solid;
+        } */
+            </style>
+            <div id="divVideoCall" class="video-body fade-slide"style="display: none;">
+                <div class="video-local"></div>
+
+                <div class="video-remote"></div>
+
+
+
+                <div class="video-menu">
+                    <button class=" ">
+                        <i class="fa-duotone fa-microphone"></i>
+                    </button>
+
+                    <button class=" ">
+                        <i class="fa-duotone fa-video"></i>
+                    </button>
+                    <!-- <button class=" ">
+                        <i class="fa-solid fa-chevron-up" id="btnShowForm"></i>
+                    </button> -->
+                    <button class=" btn-exit" >
+                        <i class="fa-solid fa-x"></i>
+                    </button>
+                </div>
+            </div>
+
+
+            <script>
+                // Find necessary elements
+                const videoBody = document.querySelector(".video-body");
+                const videoRemote = document.querySelector(".video-remote");
+
+                // Adjust style of video-remote to make it draggable
+                videoRemote.style.position = "absolute";
+                videoRemote.style.cursor = "move";
+                videoRemote.style.transition = "transform 0.3s ease-in-out";
+
+                // Set initial position of videoRemote
+                let pos1 = 0,
+                    pos2 = 0,
+                    pos3 = 0,
+                    pos4 = 0;
+
+                // Add event listeners for both mouse and touch events
+                videoRemote.addEventListener('mousedown', dragMouseDown);
+                videoRemote.addEventListener('touchstart', dragMouseDown);
+
+                function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+
+                    // Get initial position
+                    pos3 = e.clientX || e.touches[0].clientX;
+                    pos4 = e.clientY || e.touches[0].clientY;
+
+                    document.addEventListener('mouseup', closeDragElement);
+                    document.addEventListener('touchend', closeDragElement);
+                    document.addEventListener('mousemove', elementDrag);
+                    document.addEventListener('touchmove', elementDrag);
+                }
+
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+
+                    // Calculate new position of videoRemote
+                    pos1 = pos3 - (e.clientX || e.touches[0].clientX);
+                    pos2 = pos4 - (e.clientY || e.touches[0].clientY);
+                    pos3 = e.clientX || e.touches[0].clientX;
+                    pos4 = e.clientY || e.touches[0].clientY;
+                    videoRemote.style.top = (videoRemote.offsetTop - pos2) + "px";
+                    videoRemote.style.left = (videoRemote.offsetLeft - pos1) + "px";
+
+                    // Add animation
+                    videoRemote.style.transition = "transform 4s ease-out";
+                    videoRemote.style.transform = "translate3d(0, 0, 0)";
+                }
+
+                function closeDragElement() {
+                    // Calculate final position of videoRemote
+                    const videoBodyRect = videoBody.getBoundingClientRect();
+                    const videoRemoteRect = videoRemote.getBoundingClientRect();
+                    const videoBodyTop = videoBodyRect.top;
+                    const videoBodyLeft = videoBodyRect.left;
+                    const videoBodyRight = videoBodyRect.right;
+                    const videoBodyBottom = videoBodyRect.bottom;
+                    const videoRemoteTop = videoRemoteRect.top;
+                    const videoRemoteLeft = videoRemoteRect.left;
+                    const videoRemoteRight = videoRemoteRect.right;
+                    const videoRemoteBottom = videoRemoteRect.bottom;
+
+                    const offset = 15; // Distance from edge 5px
+
+                    if (videoRemoteRight + offset > videoBodyRight) {
+                        videoRemote.style.left =
+                            videoBody.offsetWidth - videoRemote.offsetWidth - offset + "px";
+                    }
+
+                    if (videoRemoteLeft - offset < videoBodyLeft) {
+                        videoRemote.style.left = offset + "px";
+                    }
+
+                    if (videoRemoteTop - offset < videoBodyTop) {
+                        videoRemote.style.top = offset + "px";
+                    }
+
+                    if (videoRemoteBottom + offset > videoBodyBottom) {
+                        videoRemote.style.top =
+                            videoBody.offsetHeight - videoRemote.offsetHeight - offset + "px";
+                    }
+
+                    // Check if the position of the remote is within the boundaries of the body and move it to the closest edge in the direction it is being dragged
+                    if (
+                        (videoRemoteRight <= (videoBodyRight + offset)) &&
+                        (videoRemoteLeft >= (videoBodyLeft - offset)) &&
+                        (videoRemoteTop >= (videoBodyTop - offset)) &&
+                        (videoRemoteBottom <= (videoBodyBottom + offset))
+                    ) {
+                        // Check if the remote is on the left or right side of the body and move it to the closest edge in that direction
+                        if ((videoRemoteLeft - videoBodyLeft) < (videoBodyRight - videoRemoteRight)) {
+                            // Remote is on left side of body
+                            // Move remote to left edge of body
+                            videoRemote.style.left = offset + 'px';
+                        } else {
+                            // Remote is on right side of body
+                            // Move remote to right edge of body
+                            let rightEdgePosition =
+                                (videoBody.offsetWidth -
+                                    (videoRemote.offsetWidth + offset));
+                            rightEdgePosition += 'px';
+
+                            let leftEdgePosition =
+                                (offset);
+
+                            leftEdgePosition += ' px';
+
+                        }
+                    }
+
+                    if ((videoRemoteTop - videoBodyTop) < (videoBodyBottom - videoRemoteBottom)) {
+                        // Remote is on top side of body
+                        // Move remote to top edge of body
+                        videoRemote.style.top = offset + 'px';
+                    } else {
+                        // Remote is on bottom side of body
+                        // Move remote to bottom edge of body
+                        let bottomEdgePosition =
+                            (videoBody.offsetHeight -
+                                (videoRemote.offsetHeight + offset));
+                        bottomEdgePosition += 'px';
+                        videoRemote.style.top = bottomEdgePosition;
+                    }
+
+
+                    document.removeEventListener('mouseup', closeDragElement);
+                    document.removeEventListener('touchend', closeDragElement);
+                    document.removeEventListener('mousemove', elementDrag);
+                    document.removeEventListener('touchmove', elementDrag);
+
+                    // Reset animation time to 0s
+                    videoRemote.style.transition = "transform 0s";
+                }
+
+                // Calculate closest position to edge of div.video-body
+                const videoBodyRect = videoBody.getBoundingClientRect();
+                const minOffsetX = videoBodyRect.left + window.pageXOffset;
+                const maxOffsetX =
+                    videoBodyRect.right - videoRemote.offsetWidth + window.pageXOffset;
+                const minOffsetY = videoBodyRect.top + window.pageYOffset;
+                const maxOffsetY =
+                    videoBodyRect.bottom - videoRemote.offsetHeight + window.pageYOffset;
+
+                // Move div.video-remote to closest position to edge of div.video-body
+                let newOffsetX = parseInt(videoRemote.style.left);
+                let newOffsetY = parseInt(videoRemote.style.top);
+                if (newOffsetX < minOffsetX) {
+                    newOffsetX = minOffsetX;
+                }
+                if (newOffsetX > maxOffsetX) {
+                    newOffsetX = maxOffsetX;
+                }
+                if (newOffsetY < minOffsetY) {
+                    newOffsetY = minOffsetY;
+                }
+                if (newOffsetY > maxOffsetY) {
+                    newOffsetY = maxOffsetY;
+                }
+                videoRemote.style.left = newOffsetX + "px";
+                videoRemote.style.top = newOffsetY + "px";
+            </script>
+
+            <script>
+            let btnVideoCall = document.getElementById('btnVideoCall');
+            let divSosMap = document.getElementById('div_detail_sos');
+            let divVideoCall = document.getElementById('divVideoCall');
+
+            btnVideoCall.addEventListener('click', function() {
+            if (divSosMap.style.display === 'none') {
+                divSosMap.classList.remove('fade-out');
+                divSosMap.classList.add('fade-in');
+                divSosMap.style.display = 'block';
+
+                divVideoCall.classList.remove('fade-in');
+                divVideoCall.classList.add('fade-out');
+                divVideoCall.style.display = 'none';
+            } else {
+                divSosMap.classList.remove('fade-in');
+                divSosMap.classList.add('fade-out');
+                divSosMap.style.display = 'none';
+
+                divVideoCall.classList.remove('fade-out');
+                divVideoCall.classList.add('fade-in');
+                divVideoCall.style.display = 'block';
+            }
+            });
+            </script>
             <div class="card radius-10 p-3 d-none" id="div_data_operating">
                 <!-- div_data_operating -->
                 <h3>
@@ -1412,6 +1669,114 @@ feather.replace();
                 </div>
             </div>
 
+            <!-- ////////////////////////////////////// cardHeader ////////////////////////////////////// -->
+         
+           
+            <div class="card radius-10">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-md-6 col-lg-4 col-12  menu-header bg-transparent d-inline">
+                        <h6 class=" font-weight-bold m-0 p-0">รหัสปฏิบัติการ</h6>
+                        <h3><b><u id="text_u_operating_code">{{ $sos_help_center->operating_code }}</u></b></h3>
+                    </div>
+                    <div class="col-md-6 col-lg-8 col-12  d-flex justify-content-end">
+                        <div class="d-flex align-items-center">
+                            <!-- <button type="button" class="btn btn-warning m-2" onclick="click_select_btn('form_yellow');">
+                                <i class="fa-solid fa-files-medical"></i> <br> แบบฟอร์มเหลือง
+                            </button>
+                            <button type="button" class="btn btn-info m-2" onclick="click_select_btn('operating_unit');">
+                                <i class="fa-solid fa-hospital-user"></i> <br> แบบฟอร์มฟ้า
+                            </button>
+                            <button type="button" class="btn btn-success m-2" onclick="click_select_btn('operating_unit');">
+                            <i class="fa-solid fa-hospital-user"></i> <br> แบบฟอร์มเขียว
+                            </button>
+                            <button type="button" class="btn m-2 " style="background-color:#fa93f0;" onclick="click_select_btn('operating_unit');">
+                            <i class="fa-solid fa-hospital-user"></i> <br> แบบฟอร์มชมพู
+                            </button>
+                            <button id="btn_select_operating_unit" disabled  type="button" class="btn btn-secondary m-2" onclick="click_select_btn('operating_unit');">
+                                <i class="fa-solid fa-truck-medical"></i> <br> เลือกหน่วยแพทย์
+                            </button> -->
+                            <ul class="nav nav-pills m-3" role="tablist">
+                                <li id="btn_operation" class="nav-item nav-pills nav-pills-purple m-2 d-none" role="presentation">
+                                    <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="check_go_to(null);reface_map_go_to_help();Stop_reface_check_form_yellow();">
+                                        <div class="d-flex align-items-center">
+                                            <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
+                                            </div>
+                                            <div class="tab-title">การดำเนินการ</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li id="btn_form_yellow" class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
+                                    <!-- <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#form_data_1').click();">
+                                        <div class="d-flex align-items-center">
+                                            <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
+                                            </div>
+                                            <div class="tab-title">แบบฟอร์มเหลือง</div>
+                                        </div>
+                                    </a> -->
+                                    <a class="nav-link btn-outline-warning btn active" href="{{ url('/sos_help_center') . '/' . $sos_help_center->id . '/edit' }}">
+                                        <div class="d-flex align-items-center">
+                                            <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
+                                            </div>
+                                            <div class="tab-title">แบบฟอร์มเหลือง</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li id="btn_form_blue" class="nav-item nav-pills nav-pills-info m-2 d-none" role="presentation">
+                                    <a class="nav-link  btn-outline-info btn" data-bs-toggle="pill" href="#form-blue" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_blue_1').click();">
+                                        <div class="d-flex align-items-center">
+                                            <div class="tab-icon">
+                                                <i class="fa-solid fa-hospital-user"></i>
+                                            </div>
+                                            <div class="tab-title">แบบฟอร์มฟ้า</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li id="btn_form_green" class="nav-item  nav-pills nav-pills-success m-2 d-none" role="presentation">
+                                    <a class="nav-link btn-outline-success btn" data-bs-toggle="pill" href="#form-green" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_green_1').click();">
+                                        <div class="d-flex align-items-center">
+                                            <div class="tab-icon">
+                                                <i class="fa-solid fa-hospital-user"></i>
+                                            </div>
+                                            <div class="tab-title">แบบฟอร์มเขียว</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li id="btn_form_pink" class="nav-item nav-pills nav-pills-pink m-2 d-none" role="presentation">
+                                    <a class="nav-link btn-outline-pink btn" data-bs-toggle="pill" href="#form-pink" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_pink_1').click();">
+                                        <div class="d-flex align-items-center">
+                                            <div class="tab-icon">
+                                                <i class="fa-solid fa-hospital-user"></i>
+                                            </div>
+                                            <div class="tab-title">แบบฟอร์มชมพู</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li id="btn_select_operating_unit" class="nav-item nav-pills nav-pills-danger m-2 " role="presentation">
+                                    <a id="tag_a_open_map_operating_unit" class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="open_map_operating_unit();"> <!-- select_level(); -->
+                                        <div class="d-flex align-items-center">
+                                            <div class="tab-icon">
+                                                <i class="fa-solid fa-hospital-user"></i>
+                                            </div>
+                                            <div class="tab-title">เลือกหน่วยแพทย์</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 d-" role="presentation">
+                                    <a class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#meet_sos" role="tab" aria-selected="false">
+                                        <div class="d-flex align-items-center">
+                                            <div class="tab-icon">
+                                                <i class="fa-solid fa-hospital-user"></i>
+                                            </div>
+                                            <div class="tab-title">Meet (soon)</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ////////////////////////////////////// cardHeader ////////////////////////////////////// -->
             <!--------------------------------- form yellow --------------------------------->
             <div class="tab-pane fade show active" id="form_yellow" role="tabpanel">
                 <div class="card radius-10 p-3 yellow-form">
