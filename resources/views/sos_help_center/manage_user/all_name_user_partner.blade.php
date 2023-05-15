@@ -180,7 +180,7 @@
                             <div class="row">
                                 <div class="col-8">
                                    
-                                    <h5>{{ $item->id }} : <b>{{ $item->name_officer_command }}</b></h5>
+                                    <h5>{{ $item->name_officer_command }}</b></h5>
                                     <span>
                                         @switch($item->officer_role)
                                             @case('partner')
@@ -219,11 +219,11 @@
                                 เลือก
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <span class="dropdown-item" onclick="click_select_num_officer('','{{ $item->id }}','{{ $item->number }}');">
+                                <span class="dropdown-item dd_item_{{ $item->id }}" item="0" onclick="click_select_num_officer('','{{ $item->id }}','{{ $item->number }}');">
                                     ว่าง
                                 </span>
                                 @for ($i = 1; $i <= $count_officer; $i++) 
-                                    <span class="dropdown-item" onclick="click_select_num_officer('{{ $i }}','{{ $item->id }}','{{ $item->number }}');">
+                                    <span class="dropdown-item dd_item_{{ $item->id }}" item="{{ $i }}" onclick="click_select_num_officer('{{ $i }}','{{ $item->id }}','{{ $item->number }}');">
                                         ลำดับที่ {{ $i }}
                                     </span>
                                 @endfor
@@ -232,182 +232,6 @@
                     </div>
                 </div>
                 @endforeach
-                <script>
-                    function click_slide_icon(type , number , id){
-
-                        let count_officer = '{{ $count_officer }}' ;
-                        // console.log(count_officer);
-
-                        let new_number = 0 ;
-                        if (type === 'add'){
-                            new_number = parseInt(number) + 1 ;
-                            if (new_number > count_officer){
-                                new_number = 1 ;
-                            }
-                        }else{
-                            new_number = parseInt(number) - 1 ;
-                            if (new_number < 1){
-                                new_number = count_officer ;
-                            }
-                        }
-
-                        // ค้นหาเจ้าของ number เดิม เพื่อเปลี่ยนสลับกัน
-                        let owner_old_number = document.querySelector('[dataNumber="'+new_number+'"]');
-
-                        // tag icon ที่เลือก
-                        const circleIcon = document.querySelector('#tag_icon_'+id);
-
-                        circleIcon.classList.remove('slide-in-left');
-                        circleIcon.classList.add('slide-out-right');
-
-                        setTimeout(function() {
-                            circleIcon.classList.remove('slide-out-right');
-                            circleIcon.classList.add('slide-in-left');
-                        }, 500);
-                        
-                        circleIcon.classList.replace('fa-circle-'+number, 'fa-circle-'+new_number.toString());
-                        circleIcon.setAttribute('dataNumber',new_number);
-
-                        const btn_drop_number = document.querySelector('#drop_number_'+id);
-                        const btn_add_number = document.querySelector('#add_number_'+id);
-
-                        btn_drop_number.setAttribute('onclick',"click_slide_icon('drop',"+new_number+","+id+");");
-                        btn_add_number.setAttribute('onclick',"click_slide_icon('add',"+new_number+","+id+");");
-
-                        // ค้นหาเจ้าของ number เดิม เพื่อเปลี่ยนสลับกัน
-                        let id_tag_old_number = "" ;
-                        if (owner_old_number){
-
-                            owner_old_number.classList.remove('slide-in-left');
-                            owner_old_number.classList.add('slide-out-right');
-
-                            setTimeout(function() {
-                                owner_old_number.classList.remove('slide-out-right');
-                                owner_old_number.classList.add('slide-in-left');
-                            }, 500);
-
-                            owner_old_number.classList.replace('fa-circle-'+new_number, 'fa-circle-'+number.toString());
-                            owner_old_number.setAttribute('dataNumber',number);
-
-                            id_tag_old_number = owner_old_number.id.split('_')[2];
-
-                            let btn_drop_old_number = document.querySelector('#drop_number_'+id_tag_old_number);
-                            let btn_add_old_number = document.querySelector('#add_number_'+id_tag_old_number);
-                            btn_drop_old_number.setAttribute('onclick',"click_slide_icon('drop',"+number+","+id_tag_old_number+");");
-                            btn_add_old_number.setAttribute('onclick',"click_slide_icon('add',"+number+","+id_tag_old_number+");");
-                        }
-
-                        let data_arr = [];
-
-                        data_arr = {
-                            "id_new_number" : id.toString(),
-                            "int_new_number" : new_number.toString(),
-                            "id_old_number" : id_tag_old_number.toString(),
-                            "int_old_number" : number.toString(),
-                        }
-
-                        // console.log(data_arr);
-
-                        // ส่งข้อมูลไปอัพเดท DB
-                        fetch("{{ url('/') }}/api/update_number_officer/data_1669_officer_commands", {
-                            method: 'post',
-                            body: JSON.stringify(data_arr),
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        }).then(function (response){
-                            // return response.text();
-                        }).then(function(data){
-                            // console.log(data);
-                        }).catch(function(error){
-                            // console.error(error);
-                        });
-
-                    }
-
-                    function click_select_num_officer(new_number , id , old_number){
-                        console.log(new_number);
-
-                        let owner_old_number = document.querySelector('[dataNumber="'+new_number+'"]');
-
-                        if (!new_number){
-                            let text_i_empty = '&nbsp;&nbsp;&nbsp;&nbsp;'+
-                            '<i id="tag_icon_'+id+'" class="fa-sharp fa-solid fa-circle-exclamation"></i>';
-
-                            document.querySelector('#div_change_number_officer_'+id).innerHTML = text_i_empty ;
-
-                        }else{
-
-                            let mock_change_icon = document.querySelector('#mock_change_icon');
-                            let change_icon = mock_change_icon.cloneNode(true);
-                                change_icon.classList.remove('d-none');
-                                change_icon.setAttribute('id','');
-
-                            let i_drop_number = change_icon.querySelector('[mark="drop_number"]');
-                                i_drop_number.setAttribute('id','drop_number_'+id);
-                                i_drop_number.setAttribute('onclick',"click_slide_icon('drop',"+new_number+","+id+");");
-
-                            let tag_icon = change_icon.querySelector('[mark="tag_icon"]');
-                                tag_icon.setAttribute('id','tag_icon_'+id);
-                                tag_icon.setAttribute('dataNumber',new_number);
-                                tag_icon.setAttribute('class',"fa-solid fa-circle-"+new_number);
-
-                            let i_add_number = change_icon.querySelector('[mark="add_number"]');
-                                i_add_number.setAttribute('id','add_number_'+id);
-                                i_add_number.setAttribute('onclick',"click_slide_icon('add',"+new_number+","+id+");");
-
-                            console.log("------------------------------------");
-                            console.log(change_icon);
-
-                            let text_html = change_icon.outerHTML ;
-                            document.querySelector('#div_change_number_officer_'+id).innerHTML = text_html ;
-                        }
-
-                        // ค้นหาเจ้าของ number เดิม เพื่อเปลี่ยนสลับกัน
-                        let id_tag_old_number = "" ;
-                        if (owner_old_number){
-
-                            id_tag_old_number = owner_old_number.id.split('_')[2];
-
-                            if (!old_number){
-                                let text_i_empty = '&nbsp;&nbsp;&nbsp;&nbsp;'+
-                                '<i id="tag_icon_'+id_tag_old_number+'" class="fa-sharp fa-solid fa-circle-exclamation"></i>';
-
-                                document.querySelector('#div_change_number_officer_'+id_tag_old_number).innerHTML = text_i_empty ;
-
-                            }else{
-
-                                owner_old_number.classList.remove('slide-in-left');
-                                owner_old_number.classList.add('slide-out-right');
-
-                                setTimeout(function() {
-                                    owner_old_number.classList.remove('slide-out-right');
-                                    owner_old_number.classList.add('slide-in-left');
-                                }, 500);
-
-                                owner_old_number.classList.replace('fa-circle-'+new_number, 'fa-circle-'+old_number.toString());
-                                owner_old_number.setAttribute('dataNumber',old_number);
-
-                                let btn_drop_old_number = document.querySelector('#drop_number_'+id_tag_old_number);
-                                let btn_add_old_number = document.querySelector('#add_number_'+id_tag_old_number);
-                                btn_drop_old_number.setAttribute('onclick',"click_slide_icon('drop',"+old_number+","+id_tag_old_number+");");
-                                btn_add_old_number.setAttribute('onclick',"click_slide_icon('add',"+old_number+","+id_tag_old_number+");");
-                            }
-                        }
-
-                        let data_arr = [];
-
-                        data_arr = {
-                            "id_new_number" : id.toString(),
-                            "int_new_number" : new_number.toString(),
-                            "id_old_number" : id_tag_old_number.toString(),
-                            "int_old_number" : old_number.toString(),
-                        }
-
-                        console.log(data_arr);
-                    }
-
-                </script>
             </div>
             <div class="modal-footer d-none">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -570,19 +394,9 @@
                                 <img src="{{ asset('/img/logo/logo_x-icon_2.png') }}" style="width:50px;" class="img-radius">
                             @endif
                         </td>
-                        <!-- <td class="text-center">
-                                    @switch($item->status)
-                                        @case('active')
-                                            <a href="#" class="btn btn-sm btn-success radius-30" ><i class="bx bx-check-double"></i>Active</a>
-                                        @break
-                                        @case('expired')
-                                            <a href="#" class="btn btn-sm btn-danger radius-30" ><i class="fadeIn animated bx bx-x"></i>Expired</a>
-                                        @break
-                                    @endswitch
-                                </td> -->
                         <td class="text-center">
                             @if($item->role != 'admin-partner')
-                            <button class="btn-outline-delete" onclick="cancel_membership('{{ $item->id }}');">
+                            <button class="btn-outline-delete" onclick="cancel_membership('{{ $item->user_id }}');">
                                 <i class="fa-solid fa-trash-can"></i> ยกเลิกสถานะ
                             </button>
                             @else
@@ -737,6 +551,7 @@
 </div>
 </div>
 <!-- --------------------------------- สิ้นสุดแสดงเฉพาะคอม ------------------------------- -->
+
 <!------------------------------------------------ mobile---------------------------------------------- -->
 <div class="container-fluid card radius-10 d-block d-lg-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
     <div class="row">
@@ -837,6 +652,7 @@
         </div>
     </div>
 </div>
+
 <!------------------------------------------- Modal จัดการผู้ใช้ ------------------------------------------->
 <div class="modal fade" id="Partner_user" tabindex="-1" role="dialog" aria-labelledby="Partner_userTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -972,7 +788,7 @@
         fetch("{{ url('/') }}/api/cancel_membership/" + user_id)
             .then(response => response.text())
             .then(result => {
-                // console.log(result);
+                console.log(result);
                 window.location.reload(true);
             });
     }
@@ -1109,6 +925,265 @@
             });
         // }, 2000);
     }
+</script>
+
+<script>
+    function click_slide_icon(type , number , id){
+
+        let count_officer = '{{ $count_officer }}' ;
+        // console.log(count_officer);
+
+        let new_number = 0 ;
+        if (type === 'add'){
+            new_number = parseInt(number) + 1 ;
+            if (new_number > count_officer){
+                new_number = 1 ;
+            }
+        }else{
+            new_number = parseInt(number) - 1 ;
+            if (new_number < 1){
+                new_number = count_officer ;
+            }
+        }
+
+        // ค้นหาเจ้าของ number เดิม เพื่อเปลี่ยนสลับกัน
+        let owner_old_number = document.querySelector('[dataNumber="'+new_number+'"]');
+
+        // tag icon ที่เลือก
+        const circleIcon = document.querySelector('#tag_icon_'+id);
+
+        circleIcon.classList.remove('slide-in-left');
+        circleIcon.classList.add('slide-out-right');
+
+        setTimeout(function() {
+            circleIcon.classList.remove('slide-out-right');
+            circleIcon.classList.add('slide-in-left');
+        }, 500);
+        
+        circleIcon.classList.replace('fa-circle-'+number, 'fa-circle-'+new_number.toString());
+        circleIcon.setAttribute('dataNumber',new_number);
+
+        const btn_drop_number = document.querySelector('#drop_number_'+id);
+        const btn_add_number = document.querySelector('#add_number_'+id);
+
+        btn_drop_number.setAttribute('onclick',"click_slide_icon('drop',"+new_number+","+id+");");
+        btn_add_number.setAttribute('onclick',"click_slide_icon('add',"+new_number+","+id+");");
+
+        // ค้นหาเจ้าของ number เดิม เพื่อเปลี่ยนสลับกัน
+        let id_tag_old_number = "" ;
+        if (owner_old_number){
+
+            owner_old_number.classList.remove('slide-in-left');
+            owner_old_number.classList.add('slide-out-right');
+
+            setTimeout(function() {
+                owner_old_number.classList.remove('slide-out-right');
+                owner_old_number.classList.add('slide-in-left');
+            }, 500);
+
+            owner_old_number.classList.replace('fa-circle-'+new_number, 'fa-circle-'+number.toString());
+            owner_old_number.setAttribute('dataNumber',number);
+
+            id_tag_old_number = owner_old_number.id.split('_')[2];
+
+            let btn_drop_old_number = document.querySelector('#drop_number_'+id_tag_old_number);
+            let btn_add_old_number = document.querySelector('#add_number_'+id_tag_old_number);
+            btn_drop_old_number.setAttribute('onclick',"click_slide_icon('drop',"+number+","+id_tag_old_number+");");
+            btn_add_old_number.setAttribute('onclick',"click_slide_icon('add',"+number+","+id_tag_old_number+");");
+        }
+
+        // เปลี่ยน dropdown_item สลับกัน
+        let dd_item_old = document.querySelectorAll('.dd_item_'+id);
+
+        for (let i_old = 0; i_old < dd_item_old.length; i_old++) {
+            // console.log(dd_item_old[i_old]);
+            // console.log( dd_item_old[i_old].getAttribute('item') );
+            if (i_old == 0){
+                i_old_c = '';
+            }else{
+                i_old_c = i_old;
+            }
+            dd_item_old[i_old].setAttribute('onclick', "click_select_num_officer('"+i_old_c+"','"+id+"','"+new_number+"');");
+        }
+
+        let dd_item_new = document.querySelectorAll('.dd_item_'+id_tag_old_number);
+
+        for (let i_new = 0; i_new < dd_item_new.length; i_new++) {
+            // console.log(dd_item_new[i_new]);
+            // console.log( dd_item_new[i_new].getAttribute('item') );
+            if (i_new == 0){
+                i_new_c = '';
+            }else{
+                i_new_c = i_new;
+            }
+            dd_item_new[i_new].setAttribute('onclick', "click_select_num_officer('"+i_new_c+"','"+id_tag_old_number+"','"+number+"');");
+        }
+
+        let data_arr = [];
+
+        data_arr = {
+            "id_new_number" : id.toString(),
+            "int_new_number" : new_number.toString(),
+            "id_old_number" : id_tag_old_number.toString(),
+            "int_old_number" : number.toString(),
+        }
+
+        // console.log(data_arr);
+
+        // ส่งข้อมูลไปอัพเดท DB
+        fetch("{{ url('/') }}/api/update_number_officer/data_1669_officer_commands", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            // return response.text();
+        }).then(function(data){
+            // console.log(data);
+        }).catch(function(error){
+            // console.error(error);
+        });
+
+    }
+
+    function click_select_num_officer(new_number , id , old_number){
+        // console.log(new_number);
+
+        let owner_old_number = document.querySelector('[dataNumber="'+new_number+'"]');
+
+        // เพิ่มตัวเลขใหม่เข้าไป
+        if (!new_number){
+            let text_i_empty = '&nbsp;&nbsp;&nbsp;&nbsp;'+
+            '<i id="tag_icon_'+id+'" class="fa-sharp fa-solid fa-circle-exclamation"></i>';
+
+            document.querySelector('#div_change_number_officer_'+id).innerHTML = text_i_empty ;
+        }else{
+
+            let mock_change_icon = document.querySelector('#mock_change_icon');
+            let change_icon = mock_change_icon.cloneNode(true);
+                change_icon.classList.remove('d-none');
+                change_icon.setAttribute('id','');
+
+            let i_drop_number = change_icon.querySelector('[mark="drop_number"]');
+                i_drop_number.setAttribute('id','drop_number_'+id);
+                i_drop_number.setAttribute('onclick',"click_slide_icon('drop',"+new_number+","+id+");");
+
+            let tag_icon = change_icon.querySelector('[mark="tag_icon"]');
+                tag_icon.setAttribute('id','tag_icon_'+id);
+                tag_icon.setAttribute('dataNumber',new_number);
+                tag_icon.setAttribute('class',"fa-solid fa-circle-"+new_number+" slide-in-left");
+
+            let i_add_number = change_icon.querySelector('[mark="add_number"]');
+                i_add_number.setAttribute('id','add_number_'+id);
+                i_add_number.setAttribute('onclick',"click_slide_icon('add',"+new_number+","+id+");");
+
+            // console.log("------------------------------------");
+            // console.log(change_icon);
+
+            let text_html = change_icon.outerHTML ;
+            document.querySelector('#div_change_number_officer_'+id).innerHTML = text_html ;
+
+            
+            tag_icon.classList.remove('slide-in-left');
+            tag_icon.classList.add('slide-out-right');
+
+            setTimeout(function() {
+                tag_icon.classList.remove('slide-out-right');
+                tag_icon.classList.add('slide-in-left');
+            }, 500);
+
+        }
+
+
+        // ค้นหาเจ้าของ number เดิม เพื่อเปลี่ยนสลับกัน
+        let id_tag_old_number = "" ;
+        if (owner_old_number){
+
+            id_tag_old_number = owner_old_number.id.split('_')[2];
+
+            if (!old_number){
+                let text_i_empty = '&nbsp;&nbsp;&nbsp;&nbsp;'+
+                '<i id="tag_icon_'+id_tag_old_number+'" class="fa-sharp fa-solid fa-circle-exclamation"></i>';
+
+                document.querySelector('#div_change_number_officer_'+id_tag_old_number).innerHTML = text_i_empty ;
+
+            }else{
+
+                owner_old_number.classList.remove('slide-in-left');
+                owner_old_number.classList.add('slide-out-right');
+
+                setTimeout(function() {
+                    owner_old_number.classList.remove('slide-out-right');
+                    owner_old_number.classList.add('slide-in-left');
+                }, 500);
+
+                owner_old_number.classList.replace('fa-circle-'+new_number, 'fa-circle-'+old_number.toString());
+                owner_old_number.setAttribute('dataNumber',old_number);
+
+                let btn_drop_old_number = document.querySelector('#drop_number_'+id_tag_old_number);
+                let btn_add_old_number = document.querySelector('#add_number_'+id_tag_old_number);
+                btn_drop_old_number.setAttribute('onclick',"click_slide_icon('drop',"+old_number+","+id_tag_old_number+");");
+                btn_add_old_number.setAttribute('onclick',"click_slide_icon('add',"+old_number+","+id_tag_old_number+");");
+            }
+        }
+
+        // เปลี่ยน dropdown_item สลับกัน
+        let dd_item_old = document.querySelectorAll('.dd_item_'+id);
+        // console.log(dd_item_old)
+
+        for (let i_old = 0; i_old < dd_item_old.length; i_old++) {
+            // console.log(dd_item_old[i_old]);
+            // console.log( dd_item_old[i_old].getAttribute('item') );
+            if (i_old == 0){
+                i_old_c = '';
+            }else{
+                i_old_c = i_old;
+            }
+            dd_item_old[i_old].setAttribute('onclick', "click_select_num_officer('"+i_old_c+"','"+id+"','"+new_number+"');");
+        }
+
+        let dd_item_new = document.querySelectorAll('.dd_item_'+id_tag_old_number);
+        // console.log(dd_item_new)
+
+        for (let i_new = 0; i_new < dd_item_new.length; i_new++) {
+            // console.log(dd_item_new[i_new]);
+            // console.log( dd_item_new[i_new].getAttribute('item') );
+            if (i_new == 0){
+                i_new_c = '';
+            }else{
+                i_new_c = i_new;
+            }
+            dd_item_new[i_new].setAttribute('onclick', "click_select_num_officer('"+i_new_c+"','"+id_tag_old_number+"','"+old_number+"');");
+        }
+
+        let data_arr = [];
+
+        data_arr = {
+            "id_new_number" : id.toString(),
+            "int_new_number" : new_number.toString(),
+            "id_old_number" : id_tag_old_number.toString(),
+            "int_old_number" : old_number.toString(),
+        }
+
+        // console.log(data_arr);
+        
+        // ส่งข้อมูลไปอัพเดท DB
+        fetch("{{ url('/') }}/api/update_number_officer/data_1669_officer_commands", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            // return response.text();
+        }).then(function(data){
+            // console.log(data);
+        }).catch(function(error){
+            // console.error(error);
+        });
+    }
+
 </script>
 
 @endsection

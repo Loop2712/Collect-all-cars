@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use App\Models\Data_1669_officer_command;
 
 class Manage_userController extends Controller
 {
@@ -108,6 +109,12 @@ class Manage_userController extends Controller
 
     function cancel_membership($user_id)
     {
+        $data_user = User::where('id' , $user_id)->first();
+
+        if ($data_user->organization == "สพฉ"){
+            Data_1669_officer_command::where('user_id' , $user_id)->delete();
+        }
+
         DB::table('users')
             ->where('id', $user_id)
             ->update([
