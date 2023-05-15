@@ -305,9 +305,11 @@
                         <th>
                             ลำดับ &nbsp;
                             @if(Auth::user()->role == "admin-partner")
+                                @if($sub_organization != "ศูนย์ใหญ่")
                                 <span class="btn btn-sm btn-outline-info main-shadow main-radius" data-toggle="modal" data-target="#modal_change_number_officer">
                                     <i class="fa-duotone fa-repeat"></i>
                                 </span>
+                                @endif
                             @endif
                         </th>
                         <!-- <th>ตำแหน่ง</th> -->
@@ -557,99 +559,7 @@
 <div class="container-fluid card radius-10 d-block d-lg-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
     <div class="row">
         <div class="card-header border-bottom-0 bg-transparent">
-            <div class="col-12" style="margin-top:10px">
-                <div>
-                    <h5 class="font-weight-bold mb-0">จัดการผู้ใช้ / Manage users</h5>
-                </div>
-                <form method="GET" action="{{ url('/manage_user_partner') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right ms-auto" role="search">
-                    <div class="input-group">
-                        <input type="text" class="form-control ps-5 radius-30" name="search" placeholder="ค้นหา..." value="{{ request('search') }}">
-                        <span class="input-group-append">
-                            <button class="btn " type="submit" style="border-color:#D2D7DC;border-style: solid;border-width: 1px 1px 1px 1px;border-radius: 0px 30px 30px 0px">
-                                <i class="bx bx-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                </form>
-                <div class="d-flex justify-content-end">
-                    <button type="button" class="btn btn-white radius-10" data-toggle="modal" data-target="#exampleModal"><i class='bx bx-user-plus'></i>สร้างบัญชีผู้ใช้ใหม่</button>
-                </div>
-            </div>
-        </div>
-        <div class="card-body" style="padding: 0px 10px 0px 10px;">
-            @foreach($all_user as $item)
-                @foreach($data_partners as $data_partner)
-                @endforeach
-            <div class="card col-12 d-block d-lg-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
-                <center>
-                    <div class="row col-12 card-body border border-bottom-0" style="padding:15px 0px 15px 0px ;border-radius: 25px;margin-bottom: -2px;">
-                        <div class="col-2 align-self-center" style="vertical-align: middle;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}">
-                            @switch($item->type)
-                            @case('line')
-                            <i class="bx bx-line text-success"></i>
-                            @break
-                            @case('facebook')
-                            <i class="bx bx-facebook-oval text-primary"></i>
-                            @break
-                            @case('google')
-                            <i class="lni lni-google text-danger"></i>
-                            @break
-                            @case(null)
-                            <i class="bx bx-globe" style="color: #5F9EA0"></i>
-                            @break
-                            @endswitch
-                        </div>
-                        <div class="col-8" style="margin-bottom:0px;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}">
-                            <h5 style="margin-bottom:0px; margin-top:0px; ">
-                                <a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span>&nbsp;&nbsp;
-                                {{ $item->name }}
-                                @switch($item->ranking)
-                                @case('Gold')
-                                <img width="20" src="{{ url('/img/ranking/gold.png') }}"> Gold
-                                @break
-                                @case('Silver')
-                                <img width="20" src="{{ url('/img/ranking/silver.png') }}"> Silver
-                                @break
-                                @case('Bronze')
-                                <img width="20" src="{{ url('/img/ranking/bronze.png') }}"> Bronze
-                                @break
-                                @endswitch
-
-                            </h5>
-                        </div>
-                        <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}">
-                            <i class="fas fa-angle-down"></i>
-                        </div>
-                        <div class="col-12 collapse" id="Line_{{ $item->id }}">
-                            <hr>
-                            <p style="font-size:18px;padding:0px"> เบอร์ : {{ $item->phone }} </p>
-                            <hr>
-                            <p style="font-size:18px;padding:0px"> สถานะ : {{ $item->role }} </p>
-                            <hr>
-                            <p style="font-size:18px;padding:0px"> การใช้งาน :
-                                @switch($item->status)
-                                @case('active')
-                                <a href="#" class="btn btn-sm btn-success radius-30"><i class="bx bx-check-double"></i>Active</a>
-                                @break
-                                @case('expired')
-                                <a href="#" class="btn btn-sm btn-danger radius-30"><i class="fadeIn animated bx bx-x"></i>Expired</a>
-                                @break
-                                @endswitch
-                            </p>
-                            @if(!empty($item->creator))
-                            <hr>
-                            <p style="font-size:18px;padding:0px">ผู้ลงทะเบียน <br>
-                                <a href="{{ url('/profile/' . $item->creator) }}" target="bank">
-                                    <i class="far fa-eye text-primary"></i> {{$item->creator}}
-                                </a>
-                            </p>
-                            @endif
-                        </div>
-                    </div>
-                </center>
-            </div>
-            @endforeach
-            <div class="pagination-wrapper"> {!! $all_user->appends(['search' => Request::get('search')])->render() !!} </div>
+            <h4>ระบบนี้สามารถใช้งานได้บนโหมด PC เท่านั้น</h4>
         </div>
     </div>
 </div>

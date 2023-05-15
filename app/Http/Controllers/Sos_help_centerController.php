@@ -1526,14 +1526,14 @@ class Sos_help_centerController extends Controller
                 //     ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
                 //     ->Where('name', 'LIKE', "%$keyword%")
                 //     ->latest()->paginate($perPage);
-                $all_user = Data_1669_officer_command::orderByRaw("CASE WHEN officer_role = 'admin-partner' THEN 0 ELSE 1 END, name_officer_command ASC")
+                $all_user = Data_1669_officer_command::orderByRaw("CASE WHEN officer_role = 'admin-partner' THEN 0 ELSE 1 END, number ASC")
                     ->Where('name_officer_command', 'LIKE', "%$keyword%")
                     ->latest()->paginate($perPage);
             } else {
                 // $all_user = User::Where('organization', $name_partner)
                 //     ->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
                 //     ->latest()->paginate($perPage);
-                $all_user = Data_1669_officer_command::orderByRaw("CASE WHEN officer_role = 'admin-partner' THEN 0 ELSE 1 END, name_officer_command ASC")
+                $all_user = Data_1669_officer_command::orderByRaw("CASE WHEN officer_role = 'admin-partner' THEN 0 ELSE 1 END, number ASC")
                     ->latest()->paginate($perPage);
             }
             
@@ -1890,7 +1890,7 @@ class Sos_help_centerController extends Controller
             }
             
            
-            $search_all_user = $data->orderByRaw("CASE WHEN users.role = 'admin-partner' THEN 0 ELSE 1 END, users.name ASC, users.created_at desc")->latest('users.created_at')->get();
+            $search_all_user = $data->orderByRaw("CASE WHEN data_1669_officer_commands.officer_role = 'admin-partner' THEN 0 ELSE 1 END, data_1669_officer_commands.number ASC")->latest('users.created_at')->get();
 
         
         } else {
@@ -1918,7 +1918,7 @@ class Sos_help_centerController extends Controller
                 });
             }
         
-            $search_all_user = $data->orderByRaw("CASE WHEN data_1669_officer_commands.officer_role = 'admin-partner' THEN 0 ELSE 1 END, data_1669_officer_commands.name_officer_command ASC")->latest()->get();
+            $search_all_user = $data->orderByRaw("CASE WHEN data_1669_officer_commands.officer_role = 'admin-partner' THEN 0 ELSE 1 END, data_1669_officer_commands.number ASC")->latest()->get();
         }
         
         return $search_all_user; 
