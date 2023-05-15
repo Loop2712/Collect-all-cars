@@ -279,7 +279,7 @@
                 
                 <div style="margin-left: 10px;margin-right: 10px;" class=" float-end ms-auto">
                         <div class="input-group"> 
-                            <input type="text" class="form-control border-end-0"  name="normal_search" id="normal_search" placeholder="ค้นหาจากชื่อเจ้าหน้าที่.." oninput="search_all_name_user_partner();">
+                            <input type="text" class="form-control border-end-0"  name="normal_search" id="normal_search" placeholder="ค้นหา.. ชื่อ สถานะ ตำแหน่ง" oninput="search_all_name_user_partner();">
                             <span class="input-group-text bg-transparent"><i class="fa-solid fa-magnifying-glass"></i></span>
                         </div>
                     <!-- <div class="input-group form-inline">
@@ -411,6 +411,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- --------------------------------- แสดงเฉพาะคอม ------------------------------- -->
 <!-- Button trigger modal -->
@@ -815,40 +816,28 @@
                 normal_search = "admin-partner";
             break;
         }
-        user_id = {{ auth()->id() }};
-        // setTimeout(() => {
-       
+
+        user_id = '{{ auth()->id() }}';
+
+        // console.log(" user_id >> " + user_id);
+        // console.log(" search_area >> " + search_area);
+        // console.log(" normal_search >> " + normal_search);
+        // console.log(" search_status >> " + search_status);
+
         fetch("{{ url('/') }}/api/search_all_name_user_partner/?search=" + normal_search + "&id=" + user_id + "&area=" + search_area + "&status=" + search_status)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
+
                 let tbody_data_admin = document.querySelector('#tbody_data_admin');
                 tbody_data_admin.innerHTML = "" ;
-                
-
                 
                 for (var xxiv = 0; xxiv < result.length; xxiv++) {
 
                     // console.log(result[xxiv]['id']);
 
-                    let admin_type;
-                    switch (result[xxiv]['type']) {
-                        case 'line':
-                            admin_type = `<i class="fab fa-line text-success"></i>`;
-                            break;
-                        case 'facebook':
-                            admin_type = `<i class="fab fa-facebook-square text-primary"></i>`;
-                            break;
-                        case 'google':
-                            admin_type = `<i class="fab fa-google text-danger"></i>`;
-                            break;
-                        default:
-                            admin_type = `<i class="bx bx-globe" style="color: #5F9EA0"></i>`;
-                            break;
-                    }
-
                     let admin_role;
-                    switch (result[xxiv]['role']) {
+                    switch (result[xxiv]['officer_role']) {
                         case 'partner':
                             admin_role = `เจ้าหน้าที่`;
                         break;
@@ -860,70 +849,87 @@
                         break;
                     }
 
-                    let name_creator;
-                    if (result[xxiv]['creator_name']) {
-                        name_creator = `   <a href="{{ url('/').'/profile/'}} ` + result[xxiv]['creator'] + `" target="bank">
-                                                <i class="far fa-eye text-primary"></i>
-                                            </a>
-                                            <br>
-                                            ` + result[xxiv]['creator_name']  + `
-                                        `;
-                    } else {
-                        name_creator =`<img src="{{ asset('/img/logo/logo_x-icon_2.png') }}" style="width:50px;" class="img-radius">`;
+                    let status_officers ;
+                    switch (result[xxiv]['status']) {
+                        case 'Standby':
+                            status_officers = `<b><i class="fa-solid fa-circle-check" style="color: #2cb706;font-size: 25px;"></i></b>
+                                        <br>
+                                        พร้อมช่วยเหลือ`;
+                        break;
+                        case 'Helping':
+                            status_officers = `<b><i class="fa-regular fa-hourglass-clock" style="color: #ff881a;font-size: 25px;"></i></b>
+                                        <br>
+                                        กำลังช่วยเหลือ`;
+                        break;
+                        case null :
+                            status_officers = `<b><i class="fa-duotone fa-circle-exclamation" style="font-size: 25px;"></i></b>
+                                        <br>
+                                        ไม่อยู่`;
+                        break;
                     }
 
-                    let phone_admin;
-                    if (result[xxiv]['phone']) {
-                        phone_admin = result[xxiv]['phone'];
+                    let creator_name ;
+                    if (result[xxiv]['creator_name']){
+                        creator_name = `<a href="{{ url('/profile/') }}/`+ result[xxiv]['creator'] +`" target="bank">
+                                    <i class="far fa-eye text-primary"></i>
+                                    </a>
+                                    <br>
+                                    `+ result[xxiv]['creator_name'] ;
                     }else{
-                        phone_admin = "";
-
+                        creator_name = `<img src="{{ asset('/img/logo/logo_x-icon_2.png') }}" style="width:50px;" class="img-radius">`;
                     }
-                    
-                    let btn_cancle_role;
-                    if (result[xxiv]['role'] != 'admin-partner') {
-                        btn_cancle_role = `<button class="btn-outline-delete btn" onclick="cancel_membership('`+ result[xxiv]['id'] +`');">
-                                                <i class="fa-solid fa-trash-can"></i> ยกเลิกสถานะ
-                                            </button>`
+
+                    let phone_user ;
+                    if (result[xxiv]['phone']){
+                        phone_user = result[xxiv]['phone'];
                     }else{
-                        btn_cancle_role =""
+                        phone_user = '';
                     }
-
-                    
-
 
                     let div_data_help_center = 
-                    `<tr>
-                        <td>
-                            <span style="font-size: 15px;"><a target="break" href="{{ url('/').'/profile/'}} ` + result[xxiv]['id'] + `"><i class="far fa-eye text-primary"></i></a></span>&nbsp;&nbsp;`+ result[xxiv]['name'] +`
-                        </td>
-                        <td class="text-center">
-                            `+ admin_type+`
-                        </td>
-                        <td class="text-center">
-                            `+ phone_admin +`
-                        </td > 
-                        <td class="text-center"> 
-                            `+ admin_role +`
-                        </td>
-                        <td class="text-center">
-                            `+ result[xxiv]['sub_organization'] +`
-                        </td>
-                        <td class="text-center">
-                            `+ name_creator +`
-                        </td>
-                        <td>
-                        `+ btn_cancle_role +`
-                        </td>
-                    </tr>
-                    `
+                    `<tbody>
+                        <tr>
+                            <td class="text-center">
+                                <span>
+                                    <i class="fa-solid fa-circle-`+ result[xxiv]['number'] +`" style="color: #24e9e0;font-size: 25px;"></i>
+                                </span>
+                                <br>
+                                `+ admin_role +`
+                            </td>
+                            <td>
+                                <center>
+                                    <span style="font-size: 15px;">
+                                        <a target="break" href="{{ url('/').'/profile/'}}`+ result[xxiv]['user_id'] +`">
+                                            <i class="far fa-eye text-primary"></i>
+                                        </a>
+                                    </span>
+                                    &nbsp;&nbsp;<b style="font-size: 18px;">`+ result[xxiv]['name_officer_command'] +`</b>
+                                    <br>
+                                    `+ phone_user +`
+                                </center>
+                            </td>
+                            <td class="text-center">
+                                `+ result[xxiv]['area'] +`
+                            </td>
+                            <td class="text-center">
+                                `+ status_officers +`
+                            </td>
+                            <td class="text-center">
+                                `+ creator_name +`
+                            </td>
+                            <td class="text-center">
+                                <button class="btn-outline-delete" onclick="cancel_membership('`+ result[xxiv]['user_id'] +`');">
+                                    <i class="fa-solid fa-trash-can"></i> ยกเลิกสถานะ
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>`;
 
                     tbody_data_admin.innerHTML += div_data_help_center ;
 
                 }
 
             });
-        // }, 2000);
     }
 </script>
 

@@ -1848,4 +1848,81 @@ class Sos_help_centerController extends Controller
 
     }
 
+    public function search_all_name_user_partner(Request $request)
+    {
+        $user_id = $request->get('id');
+        $data_search_area = $request->get('area');
+        $keyword = $request->get('search');
+        $data_search_status = $request->get('status');
+
+        $data_user = User::Where('id', $user_id)->first();
+        $name_partner = $data_user->organization ;
+
+        if ($data_user->sub_organization == "ศูนย์ใหญ่"){
+
+            // $data = User::where('organization', $name_partner);
+            
+            $data = DB::table('data_1669_officer_commands')
+                ->leftJoin('users', 'data_1669_officer_commands.user_id', '=', 'users.id')
+                ->leftJoin('users as creator', 'data_1669_officer_commands.creator', '=', 'creator.id')
+                ->select('data_1669_officer_commands.*', 'users.phone', 'creator.name as creator_name')
+                ->where('users.organization', $name_partner);
+            
+
+            if (!empty($keyword)) {
+                $data->where(function ($query) use ($keyword) {
+                    $query->where('data_1669_officer_commands.officer_role', 'like', '%'.$keyword.'%')
+                          ->orWhere('data_1669_officer_commands.name_officer_command', 'like', '%'.$keyword.'%')
+                          ->orWhere('data_1669_officer_commands.status', 'like', '%'.$keyword.'%')
+                          ->orWhere('data_1669_officer_commands.area', 'like', '%'.$keyword.'%');
+                });
+                
+            }
+
+            if ( !empty($data_search_area) ){
+                $data->where('data_1669_officer_commands.area', $data_search_area);
+            }
+
+            if (!empty($data_search_status)) {
+                $data->where(function ($query) use ($data_search_status) {
+                    $query->where('data_1669_officer_commands.officer_role', $data_search_status);
+                });
+            }
+            
+           
+            $search_all_user = $data->orderByRaw("CASE WHEN users.role = 'admin-partner' THEN 0 ELSE 1 END, users.name ASC, users.created_at desc")->latest('users.created_at')->get();
+
+        
+        } else {
+        
+            // $data = Data_1669_officer_command::where('area', '=', $data_search_area);
+
+            $data = DB::table('data_1669_officer_commands')
+                ->leftJoin('users', 'data_1669_officer_commands.user_id', '=', 'users.id')
+                ->leftJoin('users as creator', 'data_1669_officer_commands.creator', '=', 'creator.id')
+                ->select('data_1669_officer_commands.*', 'users.phone', 'creator.name as creator_name')
+                ->where('data_1669_officer_commands.area', $data_search_area);
+
+        
+            if (!empty($keyword)) {
+                $data->where(function ($query) use ($keyword) {
+                    $query->where('data_1669_officer_commands.officer_role', 'like', '%'.$keyword.'%')
+                          ->orWhere('data_1669_officer_commands.name_officer_command', 'like', '%'.$keyword.'%')
+                          ->orWhere('data_1669_officer_commands.status', 'like', '%'.$keyword.'%');
+                });
+            }
+
+            if (!empty($data_search_status)) {
+                $data->where(function ($query) use ($data_search_status) {
+                    $query->where('data_1669_officer_commands.officer_role', $data_search_status);
+                });
+            }
+        
+            $search_all_user = $data->orderByRaw("CASE WHEN data_1669_officer_commands.officer_role = 'admin-partner' THEN 0 ELSE 1 END, data_1669_officer_commands.name_officer_command ASC")->latest()->get();
+        }
+        
+        return $search_all_user; 
+
+    }
+
 }

@@ -243,7 +243,7 @@ Route::get('/update_last_check_ask_for_help_1669/{sos_id}', 'Sos_help_centerCont
 Route::get('/get_lat_lng_area_sub_organization/{name_area}', 'Sos_help_centerController@get_lat_lng_area_sub_organization');
 Route::get('/submit_score_1669/{sos_id}/{score_1}/{score_2}/{total_score}/{comment_help}', 'Sos_help_centerController@submit_score_1669');
 Route::get('/send_flex_help_complete/{sos_id}', 'Sos_help_centerController@send_flex_help_complete');
-Route::get('/search_all_name_user_partner', 'test_for_devController@search_all_name_user_partner');
+Route::get('/search_all_name_user_partner', 'Sos_help_centerController@search_all_name_user_partner');
 Route::get('/forward_operation/{sos_id}', 'Sos_help_centerController@forward_operation');
 Route::get('/sos_1669_command_by/{sos_id}/{admin_id}', 'Sos_help_centerController@sos_1669_command_by');
 Route::get('/get_forward_operation/{forward_id}', 'Sos_help_centerController@get_forward_operation');
