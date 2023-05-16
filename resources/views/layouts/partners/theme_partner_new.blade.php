@@ -194,6 +194,125 @@
 		}
 
 	</style>
+	<!-- for sos -->
+	<style>
+        .owl-nav {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .owl-stage {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-box;
+            display: box;
+            padding-top: 1rem;
+        }
+
+        .owl-carousel .owl-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+        .owlOfficer .owl-nav .owl-prev {
+            background-color: #000000;
+            border-radius: 50%;
+            margin-left: -10px;
+            margin-top: -5.5rem;
+        }
+
+        .owlOfficer .owl-nav .owl-next {
+            background-color: #000000;
+            border-radius: 50%;
+            margin-right: -30px!important;
+            margin-top: -5.5rem;
+
+        }
+
+        .owlItemOfficer {
+            -webkit-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            transition: all 0.2s;
+            padding: .5rem;
+
+        }
+
+        .owlItemOfficer:hover {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin-top: -.25rem;
+            margin-bottom: .25rem;
+            -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .owlItemOfficer {
+            display: flex;
+            align-items: center;
+            padding: .5rem 1rem;
+        }
+
+        .owlNameOfficer {
+            color: #000000;
+            font-family: 'Mitr', sans-serif;
+        }
+
+        .owl-next span,
+        .owl-prev span {
+            font-size: 2rem;
+        }
+
+        .badgeImg {
+            position: relative;
+            display: inline-block;
+        }
+
+        .badgeOnImg {
+            position: absolute;
+            color: #fff;
+            background-color: #f5424e;
+            font-size: 10px;
+            padding: 1px 5px;
+            border-radius: 8px;
+            top: -5px;
+            right: -5px;
+        }
+
+        .headerOwl {
+            display: block;
+            height: 18px;
+            border-bottom: solid 1px #000;
+            text-align: left;
+        }
+
+        .headerOwl span {
+            display: inline-block;
+            background-color: #fff;
+            padding: 0 10px;
+            font-family: 'Mitr', sans-serif;
+        }
+
+        .headerCardOfficer {
+            font-family: 'Mitr', sans-serif;
+        }
+
+        .cardAlertOfficer {
+            padding: 1rem;
+        }
+
+        .iziToast-buttons{
+        	width: 100% !important;
+        }
+
+        /*.iziToast-texts{
+        	width: 100% !important;
+        }*/
+
+
+
+        
+    </style>
 </head>
 
 <body>
@@ -1921,12 +2040,15 @@
 		// console.log('สพฉ');
 
 		let sub_organization =  '{{ Auth::user()->sub_organization }}' ;
+		let user_id =  '{{ Auth::user()->id }}' ;
             // console.log(sub_organization);
+            // console.log(user_id);
 
-		fetch("{{ url('/') }}/api/check_ask_for_help_1669/" + sub_organization)
+		fetch("{{ url('/') }}/api/check_ask_for_help_1669/" + sub_organization + '/' + user_id)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
+                result['admin_id'] = user_id ;
 
 				if (result[0] != "ไม่มีข้อมูล") {
 
@@ -1981,6 +2103,9 @@
         // console.log(result['phone_user']);
         // console.log(result['photo_sos']);
 
+        // iziToast-body
+        // iziToast-texts
+
         let photo_sos ;
         if (result['photo_sos']) {
         	photo_sos = "https://www.viicheck.com/storage" + "/" + result['photo_sos'];
@@ -1990,7 +2115,41 @@
 
         let text_title = '';
         let text_message = '';
+        let data_text_sos = '';
+        let html_officer_Standby = '';
+
+        fetch("{{ url('/') }}/api/search_officer_Standby" + '/' + result['admin_id'])
+            .then(response => response.json())
+            .then(officer_Standby => {
+                // console.log(officer_Standby);
+
+                for(let item of officer_Standby){
+
+                	let photo_officer ;
+
+                	if (item['photo']){
+                		photo_officer = "{{ url('/storage') }}/" + item['photo'];
+                	}else{
+                		photo_officer = "{{ url('/img/stickerline/Flex/12.png') }}" ;
+                	}
+
+                	html_officer_Standby = html_officer_Standby + 
+	                	`<a class="item owlItemOfficer btn" onclick="Forward_notify('`+item['id']+`','`+result['id']+`')">
+	                        <div class="badgeImg">
+	                            <img style="opacity: 1 !important;" src="`+photo_officer+`" class="rounded-circle" width="46" height="46">
+	                        </div>
+	                        <span class="owlNameOfficer" style="margin-left: 10px;">
+	                        	`+item['name_officer_command']+`
+	                        	<br>
+	                        	<span style="font-size:15px;color:gray;">ลำดับที่ `+item['number']+`</span>
+	                        </span>
+	                    </a>` ;
+
+                }
+
+            });
         
+        // console.log(html_officer_Standby);
 
         if (result['forward_operation_from']){
         	
@@ -2018,163 +2177,189 @@
 			}
 
             text_title = 'การส่งต่อหน่วยปฏิบัติการ' ;
-            text_message = 	'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
+            data_text_sos = 	'<br><br><p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
 	            			'ส่งต่อมาจากรหัสปฏิบัติการ : '+ old_operating_code +
-	            		'</p>'+
-	            		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
-	            			'ระดับปฏิบัติการ : <b><span class="'+ class_old_rc + '">' + old_rc + '</span></b>' +
-	            		'</p>'+
-    					'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
-	            			'ชื่อผู้ขอความช่วยเหลือ : '+ result['name_user'] +
-	            		'</p>'+
-	            		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">'+
-	            			'เบอร์โทร : '+ result['phone_user'] +
-	            		'</p>';
+		            		'</p>'+
+		            		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
+		            			'ระดับปฏิบัติการ : <b><span class="'+ class_old_rc + '">' + old_rc + '</span></b>' +
+		            		'</p>'+
+	    					'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
+		            			'ชื่อผู้ขอความช่วยเหลือ : '+ result['name_user'] +
+		            		'</p>'+
+		            		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">'+
+		            			'เบอร์โทร : '+ result['phone_user'] +
+		            		'</p>';
 
         }else{
         	text_title = "การขอความช่วยเหลือใหม่ !!" ;
-        	// text_message = '<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
-		       //      			'ชื่อผู้ขอความช่วยเหลือ : '+ result['name_user'] +
-		       //      		'</p>'+
-		       //      		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">'+
-		       //      			'เบอร์โทร : '+ result['phone_user'] +
-		       //      		'</p>';
 
-		    text_message = `<div class="card" style="width:100%">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">
-                                        ชื่อผู้ขอความช่วยเหลือ : TNK
-                                    </p>
-                                    <p class="mt-2" style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                                        เบอร์โทร : 0998823219
-                                    </p>
-                                </h5>
-                                <hr>
-                                <div style="border: 1px solid #FF0000;background-color: #ffcfd5;padding: 10px;">
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <span class="my-1">
-                                                <center>
-                                                    เลือกส่งต่อ
-                                                </center>
-                                            </span>
-                                        </div>
-                                        <div class="col-7">
-                                            <img src="{{ url('/storage/uploads/bafsebUo0X5xVqzdXfG3sYWZFXGLznqYrwlnQM4c.jpg') }}" class="profile-circle">
-                                            &nbsp;&nbsp;
-                                            <img src="{{ url('/storage/uploads/bafsebUo0X5xVqzdXfG3sYWZFXGLznqYrwlnQM4c.jpg') }}" class="profile-circle">
-                                        </div>
-                                        <div class="col-3 text-center">
-                                            <div class="mt-2 btn btn-success bg-success" style="width: 80%;">
-                                                <h5 class="my-1" style="color: #fff!important;">
-                                                    <center>
-                                                        <i class="fa-sharp fa-solid fa-radar fa-beat-fade"></i> รับเคส
-                                                    </center>
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>`;
+        	data_text_sos = '<br><br><p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
+		            			'ชื่อผู้ขอความช่วยเหลือ : '+ result['name_user'] +
+		            		'</p>'+
+		            		'<p class="mt-2" style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">'+
+		            			'เบอร์โทร : '+ result['phone_user'] +
+		            		'</p>';
         }
 
-        iziToast.show({
-            image: photo_sos,
-		    imageWidth: 200,
-		    maxWidth: '50rem',
-            timeout: 10000,
-            title: text_title,
-            titleColor: 'red',
-		    titleSize: '35',
-		    titleLineHeight: '50',
-            message: text_message,
-            messageSize: '20',
-            messageLineHeight: '35',
-            position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
-            progressBarColor: 'red',
-            // progressBarColor: 'linear-gradient(to right,  rgba(255,5,9,1) 0%,rgba(252,120,5,1) 25%,rgba(255,255,5,1) 50%,rgba(0,255,29,1) 100%)',
-		    progressBarEasing: 'linear',
-            backgroundColor: '#ffffff',
-		    theme: 'light', // dark
-            buttons: [
-            // [
-            //     '<span class="h3" style="margin-right:20px;"><button class="btn btn-info text-white"><i class="fa-solid fa-radar fa-beat-fade text-danger"></i> รับเคส</button></span>',
-            //     function (instance, toast) {
-            //     	sos_1669_command_by("{{ Auth::user()->id }}" , result['id']);
-            //       	instance.hide({
-            //         	transitionOut: 'fadeOutUp'
-            //       	}, toast);
-            //     }
-            // ],
-          	[
-	            '<span class="h3" style="margin-right:20px;"><button class="btn btn-danger"><i class="fa-regular fa-map-location-dot"></i> ดูแผนที่</button></span><img src="{{ url("/storage/uploads/bafsebUo0X5xVqzdXfG3sYWZFXGLznqYrwlnQM4c.jpg") }}" class="profile-circle">',
-	            function (instance, toast) {
-	            	click_tag_a_go_to_map(result['lat'],result['lng']);
-	                instance.hide({
-	                transitionOut: 'fadeOutUp'
-	              }, toast);
-	            }
-	        ],
-          	[
-	            '<span class="h3" style="margin-right:20px;"><button class="btn btn-success"><i class="fa-solid fa-phone"></i> โทร</button></span>',
-	            function (instance, toast) {
-	            	click_tag_a_tel_user_1669(result['phone_user'])
-	                instance.hide({
-	                transitionOut: 'fadeOutUp'
-	              }, toast);
-	            }
-	        ],
-	        [
-	            '<span class="h3"><button class="btn btn-secondary"><i class="fa-solid fa-video"></i> video call (soon)</button></span>',
-	            function (instance, toast) {
-	                instance.hide({
-	                transitionOut: 'fadeOutUp'
-	              }, toast);
-	            }
-	        ]
-            ],onClosed: function asdfa(instance, toast, closedBy){
-                // if (closedBy === 'timeout') {
-                // 	// 
-                // }
+        setTimeout(function() {
+      
+	        text_message = `<div class="cardAlertOfficer" style="width:100%">
+	                                <h5 class="headerCardOfficer">
+	                                    `+data_text_sos+`
+	                                </h5>
+	                                <p class="headerOwl">
+	                                    <span>ส่งต่อเคสนี้ไปยัง</span>
+	                                </p>
+	                                <div class="owl-carousel owlOfficer owl-theme">
 
-                add_data_new_sos1669_to_div(result);
-               
-            },onOpening: function () {
-                // console.log(pass);
-                let tag_progressbar = document.querySelector('.iziToast-progressbar');
-                let divElements = tag_progressbar.querySelectorAll('div');
-					divElements.forEach((div) => {
-						// console.log(div)
-					  	div.classList.add('bg-color-progressbar');
+	                                 	`+html_officer_Standby+`
+	                                    
+	                                </div>
+
+	                        </div>`;
+
+	        iziToast.show({
+	            image: photo_sos,
+			    imageWidth: 200,
+			    maxWidth: '50rem',
+	            timeout: 10000,
+	            // timeout: 5000000,
+	            title: text_title,
+	            titleColor: 'red',
+			    titleSize: '35',
+			    titleLineHeight: '50',
+	            message: text_message,
+	            messageSize: '20',
+	            messageLineHeight: '35',
+	            position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+	            progressBarColor: 'red',
+	            // progressBarColor: 'linear-gradient(to right,  rgba(255,5,9,1) 0%,rgba(252,120,5,1) 25%,rgba(255,255,5,1) 50%,rgba(0,255,29,1) 100%)',
+			    progressBarEasing: 'linear',
+	            backgroundColor: '#ffffff',
+			    theme: 'light', // dark
+			    drag: false,
+			    overlay:true,
+			    close:false,
+			    closeOnEscape:true,
+	            buttons: [
+	            [
+	                '<span class="h3" style="margin-right:20px;"><button class="btn btn-info text-white"><i class="fa-solid fa-radar fa-beat-fade text-danger"></i> รับเคส</button></span>',
+	                function (instance, toast) {
+	                	sos_1669_command_by("{{ Auth::user()->id }}" , result['id']);
+	                  	instance.hide({
+	                    	transitionOut: 'fadeOutUp'
+	                  	}, toast);
+	                }
+	            ],
+	          	[
+		            '<span class="h3" style="margin-right:20px;"><button class="btn btn-danger"><i class="fa-regular fa-map-location-dot"></i> ดูแผนที่</button></span>',
+		            function (instance, toast) {
+		            	click_tag_a_go_to_map(result['lat'],result['lng']);
+		                instance.hide({
+		                transitionOut: 'fadeOutUp'
+		              }, toast);
+		            }
+		        ],
+	         //  	[
+		        //     '<span class="h3" style="margin-right:20px;"><button class="btn btn-success"><i class="fa-solid fa-phone"></i> โทร</button></span>',
+		        //     function (instance, toast) {
+		        //     	click_tag_a_tel_user_1669(result['phone_user'])
+		        //         instance.hide({
+		        //         transitionOut: 'fadeOutUp'
+		        //       }, toast);
+		        //     }
+		        // ],
+		        [
+		            '<span id="btn_close_iziToast" class="h3 float-end float-right"><button class="btn btn-secondary"><i class="fa-solid fa-xmark"></i> ปิด</button></span>',
+		            function (instance, toast) {
+		                instance.hide({
+		                transitionOut: 'fadeOutUp'
+		              }, toast);
+		            }
+		        ]
+	            ],onClosed: function asdfa(instance, toast, closedBy){
+	                // if (closedBy === 'timeout') {
+	                // 	// 
+	                // }
+
+	                add_data_new_sos1669_to_div(result);
+	               
+	            },onOpening: function () {
+	                // console.log(pass);
+	                let tag_progressbar = document.querySelector('.iziToast-progressbar');
+	                let divElements = tag_progressbar.querySelectorAll('div');
+						divElements.forEach((div) => {
+							// console.log(div)
+						  	div.classList.add('bg-color-progressbar');
+						});
+
+					let iziToast_opened = document.querySelector('.iziToast');
+
+					if (result['forward_operation_from']){
+						// let iziToast_capsule = document.querySelector('.iziToast-body');
+						let divElements_opened = document.querySelector('.iziToast-cover');
+							divElements_opened.classList.add('iziToast_forward');
+			        }
+
+			        document.querySelector('.iziToast-texts').setAttribute('class' , '');
+			        document.querySelector('.iziToast-message').setAttribute('class' , 'slideIn');
+
+			        $(function() {
+				        // Owl Carousel
+				        var owl = $(".owlOfficer");
+				        owl.owlCarousel({
+				            margin: 10,
+				            loop: false,
+				            nav: true,
+				            autoWidth: true,
+				            items: 4,
+				            dots: false,
+				            responsive: {
+				                0: {
+				                    items: 1,
+				                    autoWidth: false
+				                },
+				                768: {
+				                    items: 2
+				                }
+				            }
+				        });
+				    });
+					
+
+					let bg_color = tag_progressbar.querySelector('.bg-color-progressbar');
+
+					iziToast_opened.addEventListener('mouseenter', () => {
+					  bg_color.style.animationPlayState = 'paused';
 					});
 
-				let iziToast_opened = document.querySelector('.iziToast');
+					iziToast_opened.addEventListener('mouseleave', () => {
+					  bg_color.style.animationPlayState = 'running';
+					});
 
-				if (result['forward_operation_from']){
-					// let iziToast_capsule = document.querySelector('.iziToast-body');
-					let divElements_opened = document.querySelector('.iziToast-cover');
-						divElements_opened.classList.add('iziToast_forward');
-		        }
-				
+	                let audio_alet_new_sos_1669 = new Audio("{{ asset('sound/Alarm Clock.mp3') }}");
+	                    audio_alet_new_sos_1669.play();
+	            }
+	        
+	        });
 
-				let bg_color = tag_progressbar.querySelector('.bg-color-progressbar');
+		}, 1000);
 
-				iziToast_opened.addEventListener('mouseenter', () => {
-				  bg_color.style.animationPlayState = 'paused';
-				});
+    }
 
-				iziToast_opened.addEventListener('mouseleave', () => {
-				  bg_color.style.animationPlayState = 'running';
-				});
+    function Forward_notify(officer_command_id , sos_id){
 
-                let audio_alet_new_sos_1669 = new Audio("{{ asset('sound/Alarm Clock.mp3') }}");
-                    audio_alet_new_sos_1669.play();
-            }
-        
-        });
+    	// console.log("ส่งต่อ notify To >> " + officer_command_id) ;
+
+    	fetch("{{ url('/') }}/api/Forward_notify" + "/" + officer_command_id + '/' + sos_id)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                if (result == "OK") {
+    				document.querySelector('#btn_close_iziToast').click();
+                }
+
+            });
 
     }
 
@@ -2272,6 +2457,7 @@
         result['rc_black_text'] = 'เมารถ' ;
         result['forward_operation_to'] = '6' ;
         result['forward_operation_from'] = null ;
+        result['admin_id'] = 4 ;
 
         alet_new_sos_1669(result);
     }

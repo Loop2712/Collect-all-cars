@@ -1223,272 +1223,139 @@
 
             <!-- <hr style="border: 2px solid {{ $color_theme }};border-radius: 30%;"> -->
 
-                        <style>
-                            .card-data-sos{
-                                padding: 1rem;
-                                display: flex !important;
-                                
-                            }.card-header-sos{
-                                display: inline;
-                            }.card-header-sos span{
-                                font-size: 1.2rem;
-                            }
-                            
-                            .card-main-sos{
-                                display: flex !important;
-                                margin-top: .8rem;
-                                justify-content: space-between;
-                            }.card-main-sos img{
-                                width: 5rem;
-                                height: 6rem;
-                                object-fit: cover;
-                                background-color: #626c80;
-                                padding: .5rem;
-                                border-radius: .5rem;
-                            }
-                            .card-user-sos{
-                                display: inline-flex !important;
-                            }.data-user-sos{
-                                margin: 0 1rem;
-                            }.idc-rc-sos button{
-                                display: block;
-                                justify-content: center;
-                            }
-                            .rate-time{
-                                margin-top: 1rem;
-                                display: flex;
-                                justify-content: space-between;
-                            }.forward_operation{
-                                display: flex;
-                                justify-content: end;
-                                align-items: center;
-                                margin-top: 1rem;
-                            }.icon-forward-operation{
-                                background-color: #db2d2e;
-                                padding: 1rem 1.2rem;
-                                border-radius: 50%;
-                            }
-                            .icon-forward-operation i{
-                                color: #fff;
-                                border-radius: 50%;
-                            }
-                        </style>
+            <style>
+                .card-data-sos{
+                    padding: 1rem;
+                    display: flex !important;
+                    
+                }.card-header-sos{
+                    display: inline;
+                }.card-header-sos span{
+                    font-size: 1.2rem;
+                }
+                
+                .card-main-sos{
+                    display: flex !important;
+                    margin-top: .8rem;
+                    justify-content: space-between;
+                }.card-main-sos img{
+                    width: 5rem;
+                    height: 6rem;
+                    object-fit: cover;
+                    background-color: #626c80;
+                    padding: .5rem;
+                    border-radius: .5rem;
+                }
+                .card-user-sos{
+                    display: inline-flex !important;
+                }.data-user-sos{
+                    margin: 0 1rem;
+                }.idc-rc-sos button{
+                    display: block;
+                    justify-content: center;
+                }
+                .rate-time{
+                    margin-top: 1rem;
+                    display: flex;
+                    justify-content: space-between;
+                }.forward_operation{
+                    display: flex;
+                    justify-content: end;
+                    align-items: center;
+                    margin-top: 1rem;
+                }.icon-forward-operation{
+                    background-color: #db2d2e;
+                    padding: 1rem 1.2rem;
+                    border-radius: 50%;
+                }
+                .icon-forward-operation i{
+                    color: #fff;
+                    border-radius: 50%;
+                }
+            </style>
             <div class="col-12">
                  <!-- div_data_help -->
                 <div id="div_body_help" class="row"></div>
 
                     <div class="row" id="data_help">
 
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                    <style>
-                        .owl-nav {
-                            display: flex;
-                            justify-content: space-between;
-                        }
-
-                        .owl-stage {
-                            display: -webkit-box;
-                            display: -moz-box;
-                            display: -ms-box;
-                            display: box;
-                            padding-top: 1rem;
-                        }
-
-                        .owl-carousel .owl-nav {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-
-                        }
-
-                        .owl-carousel .owl-nav .owl-prev {
-                            background-color: #000000;
-                            border-radius: 50%;
-                            margin-left: -10px;
-                            margin-top: -5.5rem;
-                        }
-
-                        .owl-carousel .owl-nav .owl-next {
-                            background-color: #000000;
-                            border-radius: 50%;
-                            margin-right: -10px;
-                            margin-top: -5.5rem;
-
-                        }
-
-                        .owlItemOfficer {
-                            -webkit-transition: all 0.2s;
-                            -o-transition: all 0.2s;
-                            transition: all 0.2s;
-                            padding: .5rem;
-
-                        }
-
-                        .owlItemOfficer:hover {
-                            background-color: #f8f9fa;
-                            border-radius: 10px;
-                            margin-top: -.25rem;
-                            margin-bottom: .25rem;
-                            -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
-                            box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
-                        }
-
-                        .owlItemOfficer {
-                            display: flex;
-                            align-items: center;
-                            padding: .5rem 1rem;
-                        }
-
-                        .owlNameOfficer {
-                            color: #000000;
-                            font-family: 'Mitr', sans-serif;
-                        }
-
-                        .owl-next span,
-                        .owl-prev span {
-                            font-size: 2rem;
-                        }
-
-                        .badgeImg {
-                            position: relative;
-                            display: inline-block;
-                        }
-
-                        .badgeOnImg {
-                            position: absolute;
-                            color: #fff;
-                            background-color: #f5424e;
-                            font-size: 8px;
-                            padding: 1px 5px;
-                            border-radius: 8px;
-                            top: -5px;
-                            right: -5px;
-                        }
-
-                        .headerOwl {
-                            display: block;
-                            height: 10px;
-                            border-bottom: solid 1px #000;
-                            text-align: left;
-                        }
-
-                        .headerOwl span {
-                            display: inline-block;
-                            background-color: #fff;
-                            padding: 0 10px;
-                            font-family: 'Mitr', sans-serif;
-                        }
-
-                        .headerCardOfficer {
-                            font-family: 'Mitr', sans-serif;
-                        }
-
-                        .cardAlertOfficer {
-                            padding: 1rem;
-                        }
-                    </style>
-                    <div class="card cardAlertOfficer" style="width:100%">
-                        <div class="card-body">
-                            <h5 class="headerCardOfficer">
-                                <p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">
-                                    ชื่อผู้ขอความช่วยเหลือ : TNK
+                    
+                        <!-- <div class="card cardAlertOfficer" style="width:80%">
+                            <div class="card-body">
+                                <h5 class="headerCardOfficer">
+                                    <p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">
+                                        ชื่อผู้ขอความช่วยเหลือ : TNK
+                                    </p>
+                                    <p class="mt-2" style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                                        เบอร์โทร : 0998823219
+                                    </p>
+                                </h5>
+                                <p class="headerOwl">
+                                    <span>ส่งต่อเคสนี้ไปยัง</span>
                                 </p>
-                                <p class="mt-2" style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                                    เบอร์โทร : 0998823219
-                                </p>
-                            </h5>
-                            <p class="headerOwl">
-                                <span>ส่งต่อเคสนี้ไปยัง</span>
-                            </p>
-                            <div class="owl-carousel owlOfficer owl-theme">
-                                <a class="item owlItemOfficer">
-                                    <div class="badgeImg">
-                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/12.png') }}" class="rounded-circle" width="46" height="46">
-                                        <div class="badgeOnImg">NO.1</div>
-                                    </div>
-                                    <span class="owlNameOfficer">Teerasak</span>
-                                </a>
-                                <a class="item owlItemOfficer">
-                                    <div class="badgeImg">
-                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/1.png') }}" class="rounded-circle" width="46" height="46">
-                                        <div class="badgeOnImg">NO.2</div>
-                                    </div>
-                                    <span class="owlNameOfficer">ThanaKron</span>
-                                </a>
-                                <a class="item owlItemOfficer">
-                                    <div class="badgeImg">
-                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/2.png') }}" class="rounded-circle" width="46" height="46">
-                                        <div class="badgeOnImg">NO.3</div>
-                                    </div>
-                                    <span class="owlNameOfficer">Teerasak</span>
-                                </a>
-                                <a class="item owlItemOfficer">
-                                    <div class="badgeImg">
-                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/3.png') }}" class="rounded-circle" width="46" height="46">
-                                        <div class="badgeOnImg">NO.4</div>
-                                    </div>
-                                    <span class="owlNameOfficer">ThanaKron</span>
-                                </a>
-                                <a class="item owlItemOfficer">
-                                    <div class="badgeImg">
-                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/4.png') }}" class="rounded-circle" width="46" height="46">
-                                        <div class="badgeOnImg">NO.5</div>
-                                    </div>
-                                    <span class="owlNameOfficer">Teerasak</span>
-                                </a>
-                                <a class="item owlItemOfficer">
-                                    <div class="badgeImg">
-                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/5.png') }}" class="rounded-circle" width="46" height="46">
-                                        <div class="badgeOnImg">NO.6</div>
-                                    </div>
-                                    <span class="owlNameOfficer">ThanaKron</span>
-                                </a>
-                                <a class="item owlItemOfficer">
-                                    <div class="badgeImg">
-                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/4.png') }}" class="rounded-circle" width="46" height="46">
-                                        <div class="badgeOnImg">NO.7</div>
-                                    </div>
-                                    <span class="owlNameOfficer">Teerasak</span>
-                                </a>
-                                <a class="item owlItemOfficer">
-                                    <div class="badgeImg">
-                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/5.png') }}" class="rounded-circle" width="46" height="46">
-                                        <div class="badgeOnImg">NO.8</div>
-                                    </div>
-                                    <span class="owlNameOfficer">ThanaKron</span>
-                                </a>
+                                <div class="owl-carousel owlOfficer owl-theme">
+                                    <a class="item owlItemOfficer">
+                                        <div class="badgeImg">
+                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/12.png') }}" class="rounded-circle" width="46" height="46">
+                                            <div class="badgeOnImg">NO.1</div>
+                                        </div>
+                                        <span class="owlNameOfficer">Teerasak</span>
+                                    </a>
+                                    <a class="item owlItemOfficer">
+                                        <div class="badgeImg">
+                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/1.png') }}" class="rounded-circle" width="46" height="46">
+                                            <div class="badgeOnImg">NO.2</div>
+                                        </div>
+                                        <span class="owlNameOfficer">ThanaKron</span>
+                                    </a>
+                                    <a class="item owlItemOfficer">
+                                        <div class="badgeImg">
+                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/2.png') }}" class="rounded-circle" width="46" height="46">
+                                            <div class="badgeOnImg">NO.3</div>
+                                        </div>
+                                        <span class="owlNameOfficer">Teerasak</span>
+                                    </a>
+                                    <a class="item owlItemOfficer">
+                                        <div class="badgeImg">
+                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/3.png') }}" class="rounded-circle" width="46" height="46">
+                                            <div class="badgeOnImg">NO.4</div>
+                                        </div>
+                                        <span class="owlNameOfficer">ThanaKron</span>
+                                    </a>
+                                    <a class="item owlItemOfficer">
+                                        <div class="badgeImg">
+                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/4.png') }}" class="rounded-circle" width="46" height="46">
+                                            <div class="badgeOnImg">NO.5</div>
+                                        </div>
+                                        <span class="owlNameOfficer">Teerasak</span>
+                                    </a>
+                                    <a class="item owlItemOfficer">
+                                        <div class="badgeImg">
+                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/5.png') }}" class="rounded-circle" width="46" height="46">
+                                            <div class="badgeOnImg">NO.6</div>
+                                        </div>
+                                        <span class="owlNameOfficer">ThanaKron</span>
+                                    </a>
+                                    <a class="item owlItemOfficer">
+                                        <div class="badgeImg">
+                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/4.png') }}" class="rounded-circle" width="46" height="46">
+                                            <div class="badgeOnImg">NO.7</div>
+                                        </div>
+                                        <span class="owlNameOfficer">Teerasak</span>
+                                    </a>
+                                    <a class="item owlItemOfficer">
+                                        <div class="badgeImg">
+                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/5.png') }}" class="rounded-circle" width="46" height="46">
+                                            <div class="badgeOnImg">NO.8</div>
+                                        </div>
+                                        <span class="owlNameOfficer">ThanaKron</span>
+                                    </a>
+                                </div>
+
                             </div>
+                        </div> -->
 
-                        </div>
-                    </div>
-
-                    <script>
-                        $(function() {
-                            // Owl Carousel
-                            var owl = $(".owlOfficer");
-                            owl.owlCarousel({
-                                margin: 10,
-                                loop: false,
-                                nav: true,
-                                autoWidth: true,
-                                items: 4,
-                                dots: false,
-                                responsive: {
-                                    0: {
-                                        items: 1,
-                                        autoWidth: false
-                                    },
-                                    768: {
-                                        items: 3
-                                    }
-                                }
-                            });
-                        });
-                    </script>
-
-
-
-
+                    
                         <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
                         <div class="div_card_mook_up col-12 d-none">
                             <a mock_up_mark="link_data_sos" class="a_data_user data-show">

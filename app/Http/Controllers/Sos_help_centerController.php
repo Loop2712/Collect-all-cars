@@ -414,8 +414,15 @@ class Sos_help_centerController extends Controller
             $requestData['photo_sos'] = $path ;
         }
 
+        // ค้นหาเจ้าหน้าที่ที่พร้อมและเลขน้อยที่สุด
+        $data_officer_command = Data_1669_officer_command::where('status' , 'Standby')
+            ->where('number','!=',null)
+            ->where('area' , $province_name)
+            ->orderBy('number' , 'ASC')
+            ->first();
+
         $requestData['create_by'] = "user - " . $requestData['user_id'];
-        $requestData['notify'] = $province_name;
+        $requestData['notify'] = $data_officer_command->id .' - '.$province_name;
         $requestData['status'] = 'รับแจ้งเหตุ';
         $requestData['time_create_sos'] = $time_create_sos;
         $requestData['address'] = $province_name."/".$district_name."/".$sub_district_name ;
@@ -496,11 +503,16 @@ class Sos_help_centerController extends Controller
         return $requestData['sos_help_center_id'] ;
     }
 
-    function check_ask_for_help_1669($sub_organization){
+    function check_ask_for_help_1669($sub_organization,$user_id){
 
         $data = [] ;
 
-        $check_data = Sos_help_center::where('notify' , $sub_organization)->first();
+        // ค้นหาเจ้าหน้าที่ที่พร้อมและเลขน้อยที่สุด
+        $data_officer_command = Data_1669_officer_command::where('user_id' , $user_id)
+            ->where('area' , $sub_organization)
+            ->first();
+
+        $check_data = Sos_help_center::where('notify' , $data_officer_command->id.' - '.$sub_organization)->first();
         
         if ($check_data) {
 
@@ -1827,14 +1839,71 @@ class Sos_help_centerController extends Controller
 
     }
 
+    function search_officer_Standby($admin_id){
+
+        $data_admin = User::where('id' , $admin_id)->first();
+
+        // $Standby_officer = Data_1669_officer_command::where('status','Standby')
+        //     ->where('user_id','!=' , $admin_id)
+        //     ->where('number','!=' , null)
+        //     ->where('area', $data_admin->sub_organization)
+        //     ->get();
+
+         $Standby_officer = DB::table('data_1669_officer_commands')
+                ->leftJoin('users', 'data_1669_officer_commands.user_id', '=', 'users.id')
+                ->select('data_1669_officer_commands.*', 'users.photo')
+                ->where('data_1669_officer_commands.status','Standby')
+                ->where('data_1669_officer_commands.user_id','!=' , $admin_id)
+                ->where('data_1669_officer_commands.number','!=' , null)
+                ->where('data_1669_officer_commands.area', $data_admin->sub_organization)
+                ->orderBy('number' , 'ASC')
+                ->get();
+
+        return $Standby_officer ;
+
+    }
+
+    function Forward_notify($officer_command_id , $sos_id){
+
+        $data_officer_command = Data_1669_officer_command::where('id',$officer_command_id)->first();
+        
+        DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $sos_id],
+                ])
+            ->update([
+                    'notify' => $data_officer_command->id .' - '.$data_officer_command->area,
+                ]);
+
+        return 'OK' ;
+    }
+
     function sos_1669_command_by($sos_id , $admin_id){
+
+        $data_sos = Sos_help_center::where('id' , $sos_id)->first();
+        $area_noti = $data_sos->notify ;
+        $area_ep = explode(" - ",$area_noti) ;
+        $area = $area_ep[2] ;
+
+        $data_officer_command = Data_1669_officer_command::where('user_id',$admin_id)
+            ->where('area',$area)
+            ->first();
 
         DB::table('sos_help_centers')
             ->where([ 
                     ['id', $sos_id],
                 ])
             ->update([
-                    'command_by' => $admin_id,
+                    'command_by' => $data_officer_command->id,
+                ]);
+
+        DB::table('data_1669_officer_commands')
+            ->where([ 
+                    ['user_id', $admin_id],
+                    ['area', $area],
+                ])
+            ->update([
+                    'status' => 'Helping',
                 ]);
 
         return "OK" ;

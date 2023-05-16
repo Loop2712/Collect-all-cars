@@ -238,7 +238,7 @@ Route::get('/draw_area_select/{province_name}', 'Sos_help_centerController@draw_
 Route::get('/marker_area_select/{province_name}', 'Sos_help_centerController@marker_area_select');
 Route::post('/edit_data_officer_Standby', 'Sos_help_centerController@edit_data_officer_Standby');
 Route::post('/update_code_sos_1669', 'Sos_help_centerController@update_code_sos_1669');
-Route::get('/check_ask_for_help_1669/{sub_organization}', 'Sos_help_centerController@check_ask_for_help_1669');
+Route::get('/check_ask_for_help_1669/{sub_organization}/{user_id}', 'Sos_help_centerController@check_ask_for_help_1669');
 Route::get('/update_last_check_ask_for_help_1669/{sos_id}', 'Sos_help_centerController@update_last_check_ask_for_help_1669');
 Route::get('/get_lat_lng_area_sub_organization/{name_area}', 'Sos_help_centerController@get_lat_lng_area_sub_organization');
 Route::get('/submit_score_1669/{sos_id}/{score_1}/{score_2}/{total_score}/{comment_help}', 'Sos_help_centerController@submit_score_1669');
@@ -248,6 +248,8 @@ Route::get('/forward_operation/{sos_id}', 'Sos_help_centerController@forward_ope
 Route::get('/sos_1669_command_by/{sos_id}/{admin_id}', 'Sos_help_centerController@sos_1669_command_by');
 Route::get('/get_forward_operation/{forward_id}', 'Sos_help_centerController@get_forward_operation');
 Route::post('/update_number_officer/data_1669_officer_commands', 'Sos_help_centerController@update_number_officer');
+Route::get('/search_officer_Standby/{admin_id}', 'Sos_help_centerController@search_officer_Standby');
+Route::get('/Forward_notify/{officer_command_id}/{sos_id}', 'Sos_help_centerController@Forward_notify');
 
     // SOS HELP CENTER FORM USER 
     Route::get('/check_unit_cf_sos_form_user/{sos_id}', 'Sos_help_centerController@check_unit_cf_sos_form_user');
