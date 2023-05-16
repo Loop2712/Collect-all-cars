@@ -1279,45 +1279,215 @@
 
                     <div class="row" id="data_help">
 
-                        <div class="card" style="width:50%">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">
-                                        ชื่อผู้ขอความช่วยเหลือ : TNK
-                                    </p>
-                                    <p class="mt-2" style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                                        เบอร์โทร : 0998823219
-                                    </p>
-                                </h5>
-                                <hr>
-                                <div style="border: 1px solid #FF0000;background-color: #ffcfd5;padding: 10px;">
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <span class="my-1">
-                                                <center>
-                                                    เลือกส่งต่อ
-                                                </center>
-                                            </span>
-                                        </div>
-                                        <div class="col-7">
-                                            <img src="{{ url('/storage/uploads/bafsebUo0X5xVqzdXfG3sYWZFXGLznqYrwlnQM4c.jpg') }}" class="profile-circle">
-                                            &nbsp;&nbsp;
-                                            <img src="{{ url('/storage/uploads/bafsebUo0X5xVqzdXfG3sYWZFXGLznqYrwlnQM4c.jpg') }}" class="profile-circle">
-                                        </div>
-                                        <div class="col-3 text-center">
-                                            <div class="mt-2 btn btn-success bg-success" style="width: 80%;">
-                                                <h5 class="my-1" style="color: #fff!important;">
-                                                    <center>
-                                                        <i class="fa-sharp fa-solid fa-radar fa-beat-fade"></i> รับเคส
-                                                    </center>
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                    <style>
+                        .owl-nav {
+                            display: flex;
+                            justify-content: space-between;
+                        }
 
+                        .owl-stage {
+                            display: -webkit-box;
+                            display: -moz-box;
+                            display: -ms-box;
+                            display: box;
+                            padding-top: 1rem;
+                        }
+
+                        .owl-carousel .owl-nav {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                        }
+
+                        .owl-carousel .owl-nav .owl-prev {
+                            background-color: #000000;
+                            border-radius: 50%;
+                            margin-left: -10px;
+                            margin-top: -5.5rem;
+                        }
+
+                        .owl-carousel .owl-nav .owl-next {
+                            background-color: #000000;
+                            border-radius: 50%;
+                            margin-right: -10px;
+                            margin-top: -5.5rem;
+
+                        }
+
+                        .owlItemOfficer {
+                            -webkit-transition: all 0.2s;
+                            -o-transition: all 0.2s;
+                            transition: all 0.2s;
+                            padding: .5rem;
+
+                        }
+
+                        .owlItemOfficer:hover {
+                            background-color: #f8f9fa;
+                            border-radius: 10px;
+                            margin-top: -.25rem;
+                            margin-bottom: .25rem;
+                            -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
+                            box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
+                        }
+
+                        .owlItemOfficer {
+                            display: flex;
+                            align-items: center;
+                            padding: .5rem 1rem;
+                        }
+
+                        .owlNameOfficer {
+                            color: #000000;
+                            font-family: 'Mitr', sans-serif;
+                        }
+
+                        .owl-next span,
+                        .owl-prev span {
+                            font-size: 2rem;
+                        }
+
+                        .badgeImg {
+                            position: relative;
+                            display: inline-block;
+                        }
+
+                        .badgeOnImg {
+                            position: absolute;
+                            color: #fff;
+                            background-color: #f5424e;
+                            font-size: 8px;
+                            padding: 1px 5px;
+                            border-radius: 8px;
+                            top: -5px;
+                            right: -5px;
+                        }
+
+                        .headerOwl {
+                            display: block;
+                            height: 10px;
+                            border-bottom: solid 1px #000;
+                            text-align: left;
+                        }
+
+                        .headerOwl span {
+                            display: inline-block;
+                            background-color: #fff;
+                            padding: 0 10px;
+                            font-family: 'Mitr', sans-serif;
+                        }
+
+                        .headerCardOfficer {
+                            font-family: 'Mitr', sans-serif;
+                        }
+
+                        .cardAlertOfficer {
+                            padding: 1rem;
+                        }
+                    </style>
+                    <div class="card cardAlertOfficer" style="width:100%">
+                        <div class="card-body">
+                            <h5 class="headerCardOfficer">
+                                <p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">
+                                    ชื่อผู้ขอความช่วยเหลือ : TNK
+                                </p>
+                                <p class="mt-2" style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                                    เบอร์โทร : 0998823219
+                                </p>
+                            </h5>
+                            <p class="headerOwl">
+                                <span>ส่งต่อเคสนี้ไปยัง</span>
+                            </p>
+                            <div class="owl-carousel owlOfficer owl-theme">
+                                <a class="item owlItemOfficer">
+                                    <div class="badgeImg">
+                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/12.png') }}" class="rounded-circle" width="46" height="46">
+                                        <div class="badgeOnImg">NO.1</div>
+                                    </div>
+                                    <span class="owlNameOfficer">Teerasak</span>
+                                </a>
+                                <a class="item owlItemOfficer">
+                                    <div class="badgeImg">
+                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/1.png') }}" class="rounded-circle" width="46" height="46">
+                                        <div class="badgeOnImg">NO.2</div>
+                                    </div>
+                                    <span class="owlNameOfficer">ThanaKron</span>
+                                </a>
+                                <a class="item owlItemOfficer">
+                                    <div class="badgeImg">
+                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/2.png') }}" class="rounded-circle" width="46" height="46">
+                                        <div class="badgeOnImg">NO.3</div>
+                                    </div>
+                                    <span class="owlNameOfficer">Teerasak</span>
+                                </a>
+                                <a class="item owlItemOfficer">
+                                    <div class="badgeImg">
+                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/3.png') }}" class="rounded-circle" width="46" height="46">
+                                        <div class="badgeOnImg">NO.4</div>
+                                    </div>
+                                    <span class="owlNameOfficer">ThanaKron</span>
+                                </a>
+                                <a class="item owlItemOfficer">
+                                    <div class="badgeImg">
+                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/4.png') }}" class="rounded-circle" width="46" height="46">
+                                        <div class="badgeOnImg">NO.5</div>
+                                    </div>
+                                    <span class="owlNameOfficer">Teerasak</span>
+                                </a>
+                                <a class="item owlItemOfficer">
+                                    <div class="badgeImg">
+                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/5.png') }}" class="rounded-circle" width="46" height="46">
+                                        <div class="badgeOnImg">NO.6</div>
+                                    </div>
+                                    <span class="owlNameOfficer">ThanaKron</span>
+                                </a>
+                                <a class="item owlItemOfficer">
+                                    <div class="badgeImg">
+                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/4.png') }}" class="rounded-circle" width="46" height="46">
+                                        <div class="badgeOnImg">NO.7</div>
+                                    </div>
+                                    <span class="owlNameOfficer">Teerasak</span>
+                                </a>
+                                <a class="item owlItemOfficer">
+                                    <div class="badgeImg">
+                                        <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/5.png') }}" class="rounded-circle" width="46" height="46">
+                                        <div class="badgeOnImg">NO.8</div>
+                                    </div>
+                                    <span class="owlNameOfficer">ThanaKron</span>
+                                </a>
                             </div>
+
                         </div>
+                    </div>
+
+                    <script>
+                        $(function() {
+                            // Owl Carousel
+                            var owl = $(".owlOfficer");
+                            owl.owlCarousel({
+                                margin: 10,
+                                loop: false,
+                                nav: true,
+                                autoWidth: true,
+                                items: 4,
+                                dots: false,
+                                responsive: {
+                                    0: {
+                                        items: 1,
+                                        autoWidth: false
+                                    },
+                                    768: {
+                                        items: 3
+                                    }
+                                }
+                            });
+                        });
+                    </script>
+
+
+
 
                         <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
                         <div class="div_card_mook_up col-12 d-none">
@@ -1734,7 +1904,7 @@
                                                         </div>
                                                         <div>
                                                             <a class="icon-forward-operation" href="#" onclick="event.preventDefault(); window.open('{{ url('/sos_help_center/' . $item->forward_operation_to . '/edit') }}', '_blank', 'width=1600,height=1200'); ">
-                                                                <i id="icon_forward_operation_{{$item->id}}" class=" fa-regular fa-chevrons-right" onmouseover="toggleAnimation('icon_forward_operation_{{$item->id}}', 'fa-beat')"></i>
+                                                                <i id="icon_forward_operation_{{$item->id}}" class=" fa-regular fa-chevrons-right" data-animation-class="fa-beat"></i>
                                                             </a>
                                                             
                                                     </div>
@@ -1747,7 +1917,7 @@
                                                     </div>
                                                     <div>
                                                         <a class="icon-forward-operation" href="#" onclick="event.preventDefault(); window.open('{{ url('/sos_help_center/' . $item->forward_operation_from . '/edit') }}', '_blank', 'width=1600,height=1200'); ">
-                                                            <i id="icon_forward_operation_{{$item->id}}" class=" fa-regular fa-chevrons-right" onmouseover="toggleAnimation('icon_forward_operation_{{$item->id}}', 'fa-beat')"></i>
+                                                            <i id="icon_forward_operation_{{$item->id}}" class=" fa-regular fa-chevrons-right" data-animation-class="fa-beat"></i>
                                                         </a>
                                                         
                                                     </div>
