@@ -1761,6 +1761,16 @@ color: #fff;
                                         </div>
                                     </a>
                                 </li>
+                                <li class="nav-item nav-pills nav-pills-danger m-2 ">
+                                    <a  class="nav-link btn-outline-danger btn" data-toggle="modal" data-target="#Modal-Mass-casualty-incident"> 
+                                        <div class="d-flex align-items-center">
+                                            <div class="tab-icon">
+                                                <i class="fa-solid fa-hospital-user"></i>
+                                            </div>
+                                            <div class="tab-title">อุบัติเหตุร่วม</div>
+                                        </div>
+                                    </a>
+                                </li>
                                 <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 d-" role="presentation">
                                     <a class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#meet_sos" role="tab" aria-selected="false">
                                         <div class="d-flex align-items-center">
@@ -1777,6 +1787,32 @@ color: #fff;
                 </div>
             </div>
             <!-- ////////////////////////////////////// cardHeader ////////////////////////////////////// -->
+
+
+
+
+            <!-- ///////////////////////////////////////// Modal อุบัติเหตุร่วม /////////////////////////////////////////////////// -->
+            <div class="modal fade" id="Modal-Mass-casualty-incident" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ///////////////////////////////////////// Modal อุบัติเหตุร่วม /////////////////////////////////////////////////// -->
+
             <!--------------------------------- form yellow --------------------------------->
             <div class="tab-pane fade show active" id="form_yellow" role="tabpanel">
                 <div class="card radius-10 p-3 yellow-form">

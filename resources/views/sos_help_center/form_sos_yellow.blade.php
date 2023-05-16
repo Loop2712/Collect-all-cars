@@ -58,7 +58,9 @@
 				    100% {
 				        box-shadow: inset 0px 0px 0px 60px #fff
 				    }
-				}
+				}.hidden {
+  display: none !important;
+}
             </style>
 			<!-- <br />
 			<p>
@@ -1878,17 +1880,68 @@
 						</div>
 					</div>
 					
+					<style>
+						.btnAddPatient{
+							float: right !important;
+							padding: 8pt 15pt 7pt 7pt;
+							font-size: 12pt;
+							background-color: #2a915c;
+							color: #fff;
+							border-radius: .4rem;
+						}.btnAddPatient i{
+							font-size: 10pt;
+						}.cardTitle{
+							width: 100% !important;
+							display: flex !important;
+							justify-content: space-between;
+
+						}.patientTitle{
+							display: flex;
+							align-items: center;
+						}
+						.btnDelPatient{
+							float: right !important;
+							padding: 8pt 15pt 7pt 7pt;
+							font-size: 12pt;
+							background-color: #db2d2e;
+							color: #fff;
+							border-radius: .4rem;
+						}
+					</style>
+					@php	
+						if(empty($data_form_yellow->patient_name_2 )){
+							$dataPatient2 = "hidden";
+						}else {
+							$dataPatient2 = "";
+						}
+
+						if(empty($data_form_yellow->patient_name_3 )){
+							$dataPatient3 = "hidden";
+						}else {
+							$dataPatient3 = "";
+						}
+					@endphp
 					<!---------------------------------- ข้อ 8  ---------------------------------->
 					<div id="step-8" class="tab-pane" role="tabpanel" aria-labelledby="step-8">
-						<div class="card-title d-flex align-items-center">
-							<div><i class="fa-duotone fa-user-group me-1 font-22 text-primary"></i>
+						<div class="cardTitle ">
+							<div class="patientTitle">
+								<i class="fa-duotone fa-user-group me-1 font-22 text-primary"></i>
+								<h5 class="mb-0 text-primary"><b> ชื่อผู้ป่วย</b></h5>
 							</div>
-							
-							<h5 class="mb-0 text-primary"><b> ชื่อผู้ป่วย</b></h5>
+
+							<div>
+								<button id="delete-btn" onclick="deleteFieldsets(); tab_content_h100();" class="{{$dataPatient2}} btnDelPatient btn">
+									ลบ
+								</button>
+								<button id="add-btn" class="float-right btn btnAddPatient" onclick="tab_content_h100();showFieldsets();">
+									<i class="fa-solid fa-plus"></i>เพิ่มผู้ป่วย
+								</button>
+							</div>
 						</div>
 						<hr>
+						
 						<!-- ----------------------------------------------- ผู้ป่วย 1 ------------------------------------------------------------- -->
-						<fieldset class="rounded-3 p-3 field-user">
+						<fieldset id="fieldset1" class="rounded-3 p-3 field-user">
 							<legend class="float-none w-auto px-3">ผู้ป่วย ๑</legend>
 							<div class="row">
 								<div class="col-12 col-md-4 col-lg-4">
@@ -1932,12 +1985,12 @@
 							</div>
 						</fieldset>
 						
-
-						<fieldset class="rounded-3 p-3 field-user mt-4">
-							<legend class="float-none w-auto px-3">ผู้ป่วย ๒</legend>
+						
+						<fieldset id="fieldset2" class=" {{$dataPatient2}} dataPatient rounded-3 p-3 field-user mt-4">
+							<legend class="float-none w-auto px-3">ผู้ป่วย ๒ </legend>
 							<div class="row">
 								<div class="col-12 col-md-4 col-lg-4">
-									<label for="" class="form-label">ผู้ป่วย ๑. ชื่อ-สกุล</label>
+									<label for="" class="form-label">ผู้ป่วย ๒. ชื่อ-สกุล</label>
 									<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user"></i></span>
 										<input type="text" class="form-control border-start-0 radius-2" name="patient_name_2" id="patient_name_2" value="{{ isset($data_form_yellow->patient_name_2) ? $data_form_yellow->patient_name_2 : ''}}" placeholder="ชื่อ-สกุล">
 									</div>
@@ -1975,8 +2028,55 @@
 									</div>
 								</div>
 							</div>
+							<!-- <button type="button" class="btn btn-danger float-end mt-3" onclick="deleteDiv(this)">ลบผู้ป่วย ๒</button> -->
 						</fieldset>
-
+						
+  	
+						<fieldset id="fieldset3" class="{{$dataPatient3}} dataPatient rounded-3 p-3 field-user mt-4">
+							<legend class="float-none w-auto px-3">ผู้ป่วย ๓</legend>
+							<div class="row">
+								<div class="col-12 col-md-4 col-lg-4">
+									<label for="" class="form-label">ผู้ป่วย ๓. ชื่อ-สกุล</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1" ><i class="fa-solid fa-user"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="patient_name_3" id="patient_name_3" value="{{ isset($data_form_yellow->patient_name_3) ? $data_form_yellow->patient_name_3 : ''}}" placeholder="ชื่อ-สกุล">
+									</div>
+								</div>
+								<div class="col-12 col-md-2 col-lg-2">
+									<label for="phone_user" class="form-label">อายุ (ปี)</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-input-numeric"></i></span>
+										<input  type="number" min="1" class="form-control border-start-0 radius-2" name="patient_age_3" id="patient_age_3" value="{{ isset($data_form_yellow->patient_age_3) ? $data_form_yellow->patient_age_3 : ''}}" placeholder="อายุ">
+									</div>
+								</div>
+								<div class="col-12 col-md-3 col-lg-3">
+									<label for="phone_user" class="form-label">HN</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card-clip"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2"  name="patient_hn_3" id="patient_hn_3" value="{{ isset($data_form_yellow->patient_hn_3) ? $data_form_yellow->patient_hn_3 : ''}}" placeholder="รหัสผู้ป่วย">
+									</div>
+								</div>
+								<div class="col-12 col-md-3 col-lg-3">
+									<label for="phone_user" class="form-label">เลขประจำตัวประชาชน</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-id-card"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2"name="patient_vn_3" id="patient_vn_3" value="{{ isset($data_form_yellow->patient_vn_3) ? $data_form_yellow->patient_vn_3 : ''}}" placeholder="เลขประจำตัวประชาชน">
+									</div>
+								</div>
+								<div class="col-12 mt-3"></div>
+								
+								<div class="col-12 col-md-6 col-lg-6">
+									<label for="phone_user" class="form-label">นำส่งที่จังหวัด</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-map-location-dot"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_province_3" id="delivered_province_3" value="{{ isset($data_form_yellow->delivered_province_3) ? $data_form_yellow->delivered_province_3 : ''}}" placeholder="จังหวัดที่นำส่ง">
+									</div>
+								</div>
+								<div class="col-12 col-md-6 col-lg-6">
+									<label for="phone_user" class="form-label">นำส่ง รพ.</label>
+									<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-hospital"></i></span>
+										<input type="text" class="form-control border-start-0 radius-2" name="delivered_hospital_3" id="delivered_hospital_3" value="{{ isset($data_form_yellow->delivered_hospital_3) ? $data_form_yellow->delivered_hospital_3 : ''}}" placeholder="โรงพยาบาลที่นำส่ง">
+									</div>
+								</div>
+								
+							</div>
+							<!-- <button type="button" class="btn btn-danger float-end mt-3" onclick="deleteDiv(this)">ลบผู้ป่วย ๓</button> -->
+						</fieldset>
 						@php
 
 							$check_submission_criteria_1 ="";$check_submission_criteria_2 ="";$check_submission_criteria_3 ="";$check_submission_criteria_4 ="";$check_submission_criteria_5 ="";
@@ -3547,3 +3647,100 @@
 	}
 
 </script>
+
+ <script>
+function showFieldsets() {
+  var addBtn = document.getElementById('add-btn');
+  var deleteBtn = document.getElementById('delete-btn');
+  var fieldset2 = document.getElementById('fieldset2');
+  var fieldset3 = document.getElementById('fieldset3');
+  
+  if (fieldset2.classList.contains('hidden')) {
+    fieldset2.classList.remove('hidden');
+    deleteBtn.classList.remove('hidden');
+    addBtn.classList.remove('hidden');
+  } else if (fieldset3.classList.contains('hidden')) {
+    fieldset3.classList.remove('hidden');
+    deleteBtn.classList.remove('hidden');
+    addBtn.classList.add('hidden');
+  }
+}
+
+
+function deleteFieldsets() {
+  var addBtn = document.getElementById('add-btn');
+  var deleteBtn = document.getElementById('delete-btn');
+  var fieldset2 = document.getElementById('fieldset2');
+  var fieldset3 = document.getElementById('fieldset3');
+  
+  if (!fieldset3.classList.contains('hidden')) {
+	let patient_name_3 = document.getElementById('patient_name_3');
+    let patient_age_3 = document.getElementById('patient_age_3');
+    let patient_hn_3 = document.getElementById('patient_hn_3');
+    let patient_vn_3 = document.getElementById('patient_vn_3');
+    let delivered_province_3 = document.getElementById('delivered_province_3');
+    let delivered_hospital_3 = document.getElementById('delivered_hospital_3');
+    if (patient_name_3.value !== '' || patient_age_3.value !== '' || patient_hn_3.value !== '' || patient_vn_3.value !== '' || delivered_province_3.value !== '' || delivered_hospital_3.value !== '') {
+      if (confirm('ผู้ป่วย ๓ มีข้อมูลอยู่ต้องการลบใช่หรือไม่?')) {
+        fieldset3.classList.add('hidden');
+        patient_name_3.value = '';
+        patient_age_3.value = '';
+        patient_hn_3.value = '';
+        patient_vn_3.value = '';
+        delivered_province_3.value = '';
+        delivered_hospital_3.value = '';
+      }
+    } else {
+      fieldset3.classList.add('hidden');
+    }
+    
+    // if (fieldset2.classList.contains('hidden') && fieldset3.classList.contains('hidden')) {
+    //   deleteBtn.classList.add('hidden');
+    //   addBtn.classList.remove('hidden');
+    // }
+
+	if (fieldset2.classList.contains('hidden') && fieldset3.classList.contains('hidden')) {
+    addBtn.classList.remove('hidden');
+    deleteBtn.classList.add('hidden');
+	} else if (fieldset3.classList.contains('hidden')) {
+		deleteBtn.classList.remove('hidden');
+		addBtn.classList.remove('hidden');
+	}
+
+    
+    return;
+  }
+  
+  if (!fieldset2.classList.contains('hidden')) {
+    let patient_name_2 = document.getElementById('patient_name_2');
+    let patient_age_2 = document.getElementById('patient_age_2');
+    let patient_hn_2 = document.getElementById('patient_hn_2');
+    let patient_vn_2 = document.getElementById('patient_vn_2');
+    let delivered_province_2 = document.getElementById('delivered_province_2');
+    let delivered_hospital_2 = document.getElementById('delivered_hospital_2');
+    
+    if (patient_name_2.value !== '' || patient_age_2.value !== '' || patient_hn_2.value !== '' || patient_vn_2.value !== '' || delivered_province_2.value !== '' || delivered_hospital_2.value !== '') {
+      if (confirm('ผู้ป่วย ๒ มีข้อมูลอยู่ต้องการลบใช่หรือไม่?')) {
+        fieldset2.classList.add('hidden');
+        patient_name_2.value = '';
+        patient_age_2.value = '';
+        patient_hn_2.value = '';
+        patient_vn_2.value = '';
+        delivered_province_2.value = '';
+        delivered_hospital_2.value = '';
+      }
+    } else {
+      fieldset2.classList.add('hidden');
+    }
+    
+    if (fieldset2.classList.contains('hidden') && fieldset3.classList.contains('hidden')) {
+      deleteBtn.classList.add('hidden');
+      addBtn.classList.remove('hidden');
+    } else if (fieldset3.classList.contains('hidden')) {
+      addBtn.classList.remove('hidden'); 
+    }
+    
+    return;
+  }
+}
+  </script>

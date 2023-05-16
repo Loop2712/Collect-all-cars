@@ -471,4 +471,6 @@ Route::get('/mockup_video_call', function () {
     return view('nationalitie_sos/mockup_video_call');
 });
 
-
+Route::get('user_video_call/sos_help_center', function () {
+    return view('sos_help_center/user_video_call');
+});
