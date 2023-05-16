@@ -1279,6 +1279,46 @@
 
                     <div class="row" id="data_help">
 
+                        <div class="card" style="width:50%">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">
+                                        ชื่อผู้ขอความช่วยเหลือ : TNK
+                                    </p>
+                                    <p class="mt-2" style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                                        เบอร์โทร : 0998823219
+                                    </p>
+                                </h5>
+                                <hr>
+                                <div style="border: 1px solid #FF0000;background-color: #ffcfd5;padding: 10px;">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span class="my-1">
+                                                <center>
+                                                    เลือกส่งต่อ
+                                                </center>
+                                            </span>
+                                        </div>
+                                        <div class="col-7">
+                                            <img src="{{ url('/storage/uploads/bafsebUo0X5xVqzdXfG3sYWZFXGLznqYrwlnQM4c.jpg') }}" class="profile-circle">
+                                            &nbsp;&nbsp;
+                                            <img src="{{ url('/storage/uploads/bafsebUo0X5xVqzdXfG3sYWZFXGLznqYrwlnQM4c.jpg') }}" class="profile-circle">
+                                        </div>
+                                        <div class="col-3 text-center">
+                                            <div class="mt-2 btn btn-success bg-success" style="width: 80%;">
+                                                <h5 class="my-1" style="color: #fff!important;">
+                                                    <center>
+                                                        <i class="fa-sharp fa-solid fa-radar fa-beat-fade"></i> รับเคส
+                                                    </center>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                         <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
                         <div class="div_card_mook_up col-12 d-none">
                             <a mock_up_mark="link_data_sos" class="a_data_user data-show">

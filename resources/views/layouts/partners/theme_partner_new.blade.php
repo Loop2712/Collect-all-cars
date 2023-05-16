@@ -71,6 +71,16 @@
             border-radius: 5px;
         }
 
+        .profile-circle {
+            width: 75px; /* ปรับขนาดตามที่คุณต้องการ */
+            height: 75px; /* ปรับขนาดตามที่คุณต้องการ */
+            object-fit: cover; /* ปรับขนาดภาพให้เต็มพื้นที่องค์ประกอบ */
+            border-radius: 50%; /* ทำให้รูปเป็นวงกลม */
+            border-style: solid;
+            border-width: 3px;
+            border-color: lightblue;
+        }
+
 		.notify_alert{
           animation-name: notify_alert;
           color: red;
@@ -2023,12 +2033,52 @@
 
         }else{
         	text_title = "การขอความช่วยเหลือใหม่ !!" ;
-        	text_message = '<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
-		            			'ชื่อผู้ขอความช่วยเหลือ : '+ result['name_user'] +
-		            		'</p>'+
-		            		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">'+
-		            			'เบอร์โทร : '+ result['phone_user'] +
-		            		'</p>';
+        	// text_message = '<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">'+
+		       //      			'ชื่อผู้ขอความช่วยเหลือ : '+ result['name_user'] +
+		       //      		'</p>'+
+		       //      		'<p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">'+
+		       //      			'เบอร์โทร : '+ result['phone_user'] +
+		       //      		'</p>';
+
+		    text_message = `<div class="card" style="width:100%">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">
+                                        ชื่อผู้ขอความช่วยเหลือ : TNK
+                                    </p>
+                                    <p class="mt-2" style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                                        เบอร์โทร : 0998823219
+                                    </p>
+                                </h5>
+                                <hr>
+                                <div style="border: 1px solid #FF0000;background-color: #ffcfd5;padding: 10px;">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span class="my-1">
+                                                <center>
+                                                    เลือกส่งต่อ
+                                                </center>
+                                            </span>
+                                        </div>
+                                        <div class="col-7">
+                                            <img src="{{ url('/storage/uploads/bafsebUo0X5xVqzdXfG3sYWZFXGLznqYrwlnQM4c.jpg') }}" class="profile-circle">
+                                            &nbsp;&nbsp;
+                                            <img src="{{ url('/storage/uploads/bafsebUo0X5xVqzdXfG3sYWZFXGLznqYrwlnQM4c.jpg') }}" class="profile-circle">
+                                        </div>
+                                        <div class="col-3 text-center">
+                                            <div class="mt-2 btn btn-success bg-success" style="width: 80%;">
+                                                <h5 class="my-1" style="color: #fff!important;">
+                                                    <center>
+                                                        <i class="fa-sharp fa-solid fa-radar fa-beat-fade"></i> รับเคส
+                                                    </center>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>`;
         }
 
         iziToast.show({
@@ -2050,17 +2100,17 @@
             backgroundColor: '#ffffff',
 		    theme: 'light', // dark
             buttons: [
-            [
-                '<span class="h3" style="margin-right:20px;"><button class="btn btn-info text-white"><i class="fa-solid fa-radar fa-beat-fade text-danger"></i> รับเคส</button></span>',
-                function (instance, toast) {
-                	sos_1669_command_by("{{ Auth::user()->id }}" , result['id']);
-                  	instance.hide({
-                    	transitionOut: 'fadeOutUp'
-                  	}, toast);
-                }
-            ],
+            // [
+            //     '<span class="h3" style="margin-right:20px;"><button class="btn btn-info text-white"><i class="fa-solid fa-radar fa-beat-fade text-danger"></i> รับเคส</button></span>',
+            //     function (instance, toast) {
+            //     	sos_1669_command_by("{{ Auth::user()->id }}" , result['id']);
+            //       	instance.hide({
+            //         	transitionOut: 'fadeOutUp'
+            //       	}, toast);
+            //     }
+            // ],
           	[
-	            '<span class="h3" style="margin-right:20px;"><button class="btn btn-danger"><i class="fa-regular fa-map-location-dot"></i> ดูแผนที่</button></span',
+	            '<span class="h3" style="margin-right:20px;"><button class="btn btn-danger"><i class="fa-regular fa-map-location-dot"></i> ดูแผนที่</button></span><img src="{{ url("/storage/uploads/bafsebUo0X5xVqzdXfG3sYWZFXGLznqYrwlnQM4c.jpg") }}" class="profile-circle">',
 	            function (instance, toast) {
 	            	click_tag_a_go_to_map(result['lat'],result['lng']);
 	                instance.hide({
@@ -2069,7 +2119,7 @@
 	            }
 	        ],
           	[
-	            '<span class="h3" style="margin-right:20px;"><button class="btn btn-success"><i class="fa-solid fa-phone"></i> โทร</button></span',
+	            '<span class="h3" style="margin-right:20px;"><button class="btn btn-success"><i class="fa-solid fa-phone"></i> โทร</button></span>',
 	            function (instance, toast) {
 	            	click_tag_a_tel_user_1669(result['phone_user'])
 	                instance.hide({
@@ -2078,7 +2128,7 @@
 	            }
 	        ],
 	        [
-	            '<span class="h3"><button class="btn btn-secondary"><i class="fa-solid fa-video"></i> video call (soon)</button></span',
+	            '<span class="h3"><button class="btn btn-secondary"><i class="fa-solid fa-video"></i> video call (soon)</button></span>',
 	            function (instance, toast) {
 	                instance.hide({
 	                transitionOut: 'fadeOutUp'
