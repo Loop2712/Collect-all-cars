@@ -1934,7 +1934,7 @@ class Sos_help_centerController extends Controller
             $data = DB::table('data_1669_officer_commands')
                 ->leftJoin('users', 'data_1669_officer_commands.user_id', '=', 'users.id')
                 ->leftJoin('users as creator', 'data_1669_officer_commands.creator', '=', 'creator.id')
-                ->select('data_1669_officer_commands.*', 'users.phone', 'creator.name as creator_name')
+                ->select('data_1669_officer_commands.*', 'users.phone', 'creator.name as creator_name'  ,'creator.photo as creator_photo')
                 ->where('users.organization', $name_partner);
             
 
@@ -1969,7 +1969,7 @@ class Sos_help_centerController extends Controller
             $data = DB::table('data_1669_officer_commands')
                 ->leftJoin('users', 'data_1669_officer_commands.user_id', '=', 'users.id')
                 ->leftJoin('users as creator', 'data_1669_officer_commands.creator', '=', 'creator.id')
-                ->select('data_1669_officer_commands.*', 'users.phone', 'creator.name as creator_name')
+                ->select('data_1669_officer_commands.*', 'users.phone', 'creator.name as creator_name'  ,'creator.photo as creator_photo')
                 ->where('data_1669_officer_commands.area', $data_search_area);
 
         

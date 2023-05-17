@@ -107,6 +107,59 @@
       -moz-user-select: none;     
       -ms-user-select: none;   
       user-select: none;          
+    }.customers-list {
+        height: auto !important;
+    }
+    .badge-offline {
+        background-color: #817e81;
+        font-size: 11px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%; 
+        
+    }
+
+
+    .badge-online {
+        background-color: #11c77c;
+        font-size: 11px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%; animation-name: wave;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        
+    }
+    .badge-online + .textStatusOffilcer{
+        color: #11c77c;
+    }
+    @keyframes wave {
+        0% {box-shadow: 0 0 0px 0px rgb(17, 199, 124 , 0.5);}
+        100% {box-shadow: 0 0 0px 10px rgba(245, 66, 78, 0);}
+    }
+
+    .badge-busy {
+        background-color: #f5424e;
+        font-size: 11px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%; animation-name: busy;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        
+    }
+    .badge-busy + .textStatusOffilcer{
+        color: #f5424e;
+    }
+    @keyframes busy {
+        0% {box-shadow: 0 0 0px 0px rgb(245, 66, 78 ,0.5);}
+        100% {box-shadow: 0 0 0px 10px rgba(245, 66, 78, 0);}
+    }
+
+    .textStatusOffilcer{
+        margin-left: 0.7rem;
     }
 </style>
 
@@ -118,7 +171,7 @@
                 <h5 class="modal-title" id="change_number_officerLabel">
                     เปลี่ยนลำดับของเจ้าหน้าที่ศูนย์สั่งการ : {{ $sub_organization }}
                 </h5>
-                <button type="button" class="close btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close btn btn-outline-secondary" data-dismiss="modal" aria-label="Close" onclick="search_all_name_user_partner();">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -317,7 +370,7 @@
                         <th>พื้นที่</th>
                         <th>สถานะ</th>
                         <th>ผู้สร้าง</th>
-                        <!-- <th>การใช้งาน</th> -->
+                        <th>จัดการ</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -325,12 +378,6 @@
                     @foreach($all_user as $item)
                     <tr>
                         <td class="text-center">
-                            @if(!empty($item->number))
-                                <span>
-                                    <i class="fa-solid fa-circle-{{ $item->number }}" style="color: #24e9e0;font-size: 25px;"></i>
-                                </span>
-                            @endif
-                            <br>
                             @switch($item->officer_role)
                                 @case('partner')
                                     เจ้าหน้าที่
@@ -342,21 +389,35 @@
                                     พนักงาน
                                 @break
                             @endswitch
+                            
+                            @if(!empty($item->number))
+                                <span class="font-weight-bold">
+                                   - {{ $item->number }}
+                                </span>
+                            @endif
+                            
                         </td>
                         <!-- <td class="text-center">
                             
                         </td> -->
                         <td>
-                            <center>
-                                <span style="font-size: 15px;">
-                                    <a target="break" href="{{ url('/').'/profile/'.$item->id }}">
-                                        <i class="far fa-eye text-primary"></i>
-                                    </a>
-                                </span>
-                                &nbsp;&nbsp;<b style="font-size: 18px;">{{ $item->name_officer_command }}</b>
-                                <br>
-                                {{ $item->user->phone }}
-                            </center>
+                            <div class="customers-list  ">
+                                <a target="break" href="{{ url('/').'/profile/'.$item->id }}" class="customers-list-item d-flex align-items-center p-2 cursor-pointer">
+                                    <div class="">
+                                        @if(!empty($item->user->photo))
+                                            <img src="{{ url('/storage') .'/'. $item->user->photo  }}"  class="rounded-circle" width="46" height="46" alt="">
+                                        @else
+                                            <img src="{{ url('/partner/images/user/avatar-1.jpg') }}"  class="rounded-circle" width="46" height="46" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="ms-2">
+                                        <h6 class="mb-1 font-14">{{ $item->name_officer_command }}</h6>
+                                        @if(!empty($item->user->phone))
+                                        <p class="mb-0 font-13 text-secondary">{{ substr_replace(substr_replace($item->user->phone, '-', 3, 0), '-', 7, 0) }}</p>
+                                        @endif
+                                    </div>
+                                </a>
+                            </div>
                         </td>
                         <td class="text-center">
                             @if(!empty($item->area))
@@ -365,6 +426,26 @@
                         </td>
                         <td class="text-center">
                             @switch($item->status)
+                                @case('Standby')
+                                    <div class="d-flex align-items-center  justify-content-center">
+                                        <div class="badge-online"></div> 
+                                        <span class="textStatusOffilcer" >พร้อมช่วยเหลือ</span> 
+                                    </div>
+                                @break
+                                @case('Helping')
+                                    <div class="d-flex align-items-center  justify-content-center">
+                                        <div class="badge-busy"></div> 
+                                        <span class="textStatusOffilcer">กำลังช่วยเหลือ</span> 
+                                    </div>
+                                @break
+                                @default
+                                    <div class="d-flex align-items-center  justify-content-center">
+                                        <div class="badge-offline"></div> 
+                                        <span class="textStatusOffilcer">ไม่อยู่</span> 
+                                    </div>
+                                @break
+                            @endswitch
+                            <!-- @switch($item->status)
                                 @case('Standby')
                                     <b><i class="fa-solid fa-circle-check" style="color: #2cb706;font-size: 25px;"></i></b>
                                     <br>
@@ -380,13 +461,32 @@
                                     <br>
                                     ไม่อยู่
                                 @break
-                            @endswitch
+                            @endswitch -->
                         </td>
                         <td class="text-center">
+                            @php
+                                $user_creator = App\User::where('id', $item->creator)->first();
+                            @endphp
                             @if(!empty($item->creator))
-                                @php
-                                    $user_creator = App\User::where('id', $item->creator)->first();
-                                @endphp
+                            <div class="customers-list  ">
+                                <a target="break" href="{{ url('/profile/' . $item->creator) }}" class="customers-list-item d-flex align-items-center p-2 cursor-pointer">
+                                    <div class="">
+                                        @if(!empty($user_creator->photo))
+                                            <img src="{{ url('/storage') .'/'. $user_creator->photo  }}"  class="rounded-circle" width="46" height="46" alt="">
+                                        @else
+                                            <img src="{{ url('/partner/images/user/avatar-1.jpg') }}"  class="rounded-circle" width="46" height="46" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="ms-2">
+                                        <h6 class="mb-1 font-14">{{ $user_creator->name }}</h6>
+                                    </div>
+                                </a>
+                            </div>
+                            @else
+                                <img src="{{ asset('/img/logo/logo_x-icon_2.png') }}" style="width:50px;" class="img-radius">
+                            @endif
+                            <!-- @if(!empty($item->creator))
+                                
                                 <a href="{{ url('/profile/' . $item->creator) }}" target="bank">
                                     <i class="far fa-eye text-primary"></i>
                                 </a>
@@ -394,7 +494,7 @@
                                 {{ $user_creator->name }}
                             @else
                                 <img src="{{ asset('/img/logo/logo_x-icon_2.png') }}" style="width:50px;" class="img-radius">
-                            @endif
+                            @endif -->
                         </td>
                         <td class="text-center">
                             @if($item->role != 'admin-partner')
@@ -762,78 +862,109 @@
                     let status_officers ;
                     switch (result[xxiv]['status']) {
                         case 'Standby':
-                            status_officers = `<b><i class="fa-solid fa-circle-check" style="color: #2cb706;font-size: 25px;"></i></b>
-                                        <br>
-                                        พร้อมช่วยเหลือ`;
+                            status_officers = `<div class="d-flex align-items-center  justify-content-center">
+                                                <div class="badge-online"></div> 
+                                                <span class="textStatusOffilcer">พร้อมช่วยเหลือ</span> 
+                                            </div>`;
                         break;
                         case 'Helping':
-                            status_officers = `<b><i class="fa-regular fa-hourglass-clock" style="color: #ff881a;font-size: 25px;"></i></b>
-                                        <br>
-                                        กำลังช่วยเหลือ`;
+                            status_officers = ` <div class="d-flex align-items-center  justify-content-center">
+                                                    <div class="badge-busy"></div> 
+                                                    <span class="textStatusOffilcer" style="color: #f5424e;">กำลังช่วยเหลือ</span> 
+                                                </div>`;
                         break;
                         case null :
-                            status_officers = `<b><i class="fa-duotone fa-circle-exclamation" style="font-size: 25px;"></i></b>
-                                        <br>
-                                        ไม่อยู่`;
+                            status_officers = ` <div class="d-flex align-items-center  justify-content-center">
+                                                    <div class="badge-offline"></div> 
+                                                    <span class="textStatusOffilcer">ไม่อยู่</span> 
+                                                </div>`;
                         break;
                     }
 
                     let creator_name ;
+
                     if (result[xxiv]['creator_name']){
-                        creator_name = `<a href="{{ url('/profile/') }}/`+ result[xxiv]['creator'] +`" target="bank">
-                                    <i class="far fa-eye text-primary"></i>
+                        creator_name =  `<div class="customers-list  ">
+                                    <a target="break" href="{{ url('/profile/') }}/`+ result[xxiv]['creator'] +`" target="bank" class="customers-list-item d-flex align-items-center p-2 cursor-pointer">
+                                        <div class="">
+                                            @if(!empty($user_creator->photo))
+                                                <img src="{{ url('/storage') .'/'. $user_creator->photo  }}"  class="rounded-circle" width="46" height="46" alt="">
+                                            @else
+                                                <img src="{{ url('/partner/images/user/avatar-1.jpg') }}"  class="rounded-circle" width="46" height="46" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="ms-2">
+                                            <h6 class="mb-1 font-14">`+ result[xxiv]['creator_name'] +`</h6>
+                                        </div>
                                     </a>
-                                    <br>
-                                    `+ result[xxiv]['creator_name'] ;
+                                </div>`;
                     }else{
                         creator_name = `<img src="{{ asset('/img/logo/logo_x-icon_2.png') }}" style="width:50px;" class="img-radius">`;
                     }
 
                     let phone_user ;
                     if (result[xxiv]['phone']){
-                        phone_user = result[xxiv]['phone'];
+                        phone_user = result[xxiv]['phone'].substr(0, 3) + '-' + result[xxiv]['phone'].substr(3, 4) + '-' + result[xxiv]['phone'].substr(7);
                     }else{
                         phone_user = '';
                     }
 
+                    let photo_user ;
+                    if (result[xxiv]['photo']){
+                        photo_user = `<img src="{{ url('/profile/') }}/`+ result[xxiv]['photo'] +`"  class="rounded-circle" width="46" height="46" alt="">`;
+                    }else{
+                        photo_user = `<img src='{{ url('/partner/images/user/avatar-1.jpg') }}'  class="rounded-circle" width="46" height="46" alt="">`;
+                    }
+
+                    let number_officer;
+                    if (result[xxiv]['number']) {
+                        number_officer =    "-" + result[xxiv]['number'];
+                    } else {
+                        number_officer ="";
+                    }
+
                     let div_data_help_center = 
-                    `<tbody>
-                        <tr>
-                            <td class="text-center">
-                                <span>
-                                    <i class="fa-solid fa-circle-`+ result[xxiv]['number'] +`" style="color: #24e9e0;font-size: 25px;"></i>
-                                </span>
-                                <br>
-                                `+ admin_role +`
-                            </td>
-                            <td>
-                                <center>
-                                    <span style="font-size: 15px;">
-                                        <a target="break" href="{{ url('/').'/profile/'}}`+ result[xxiv]['user_id'] +`">
-                                            <i class="far fa-eye text-primary"></i>
-                                        </a>
-                                    </span>
-                                    &nbsp;&nbsp;<b style="font-size: 18px;">`+ result[xxiv]['name_officer_command'] +`</b>
-                                    <br>
-                                    `+ phone_user +`
-                                </center>
-                            </td>
-                            <td class="text-center">
-                                `+ result[xxiv]['area'] +`
-                            </td>
-                            <td class="text-center">
-                                `+ status_officers +`
-                            </td>
-                            <td class="text-center">
-                                `+ creator_name +`
-                            </td>
-                            <td class="text-center">
-                                <button class="btn-outline-delete" onclick="cancel_membership('`+ result[xxiv]['user_id'] +`');">
-                                    <i class="fa-solid fa-trash-can"></i> ยกเลิกสถานะ
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>`;
+`
+                    <tbody id="tbody_data_admin">
+                    <tr>
+                        <td class="text-center">
+                           `+ admin_role +`
+                           `+ number_officer +`
+                        </td>
+                        <td>
+                            <div class="customers-list  ">
+                                <a target="break" href="{{ url('/').'/profile/'}}`+ result[xxiv]['user_id'] +`" class="customers-list-item d-flex align-items-center p-2 cursor-pointer">
+                                    <div class="">
+                                       `+photo_user+`
+                                    </div>
+                                    <div class="ms-2">
+                                        <h6 class="mb-1 font-14">`+ result[xxiv]['name_officer_command'] +`</h6>
+                                        `+phone_user+`
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            `+ result[xxiv]['area'] +`
+                        </td>
+                        <td class="text-center">
+                            `+ status_officers +`
+                        </td>
+                        <td class="text-center">
+                            `+ creator_name +`
+                        </td>
+                        <td class="text-center">
+                            <button class="btn-outline-delete" onclick="cancel_membership('`+ result[xxiv]['user_id'] +`');">
+                                <i class="fa-solid fa-trash-can"></i> ยกเลิกสถานะ
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                `
+
+
+
+                   ;
 
                     tbody_data_admin.innerHTML += div_data_help_center ;
 
