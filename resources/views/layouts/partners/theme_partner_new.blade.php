@@ -309,6 +309,52 @@
         	width: 100% !important;
         }*/
 
+        
+        /*แจ้งเตือน SOS ยังไม่ได้ดำเนินการ*/
+        .notification-count {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background-color: red;
+  color: white;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fc6d6d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 99999;
+  right: 4%;
+  animation: border-flash 1s infinite;
+}
+
+@keyframes border-flash {
+  0% {
+    box-shadow: 0 0 0 2px white;
+  }
+  50% {
+    box-shadow: 0 0 0 2px red;
+  }
+  100% {
+    box-shadow: 0 0 0 2px white;
+  }
+}
+
 
 
         
@@ -316,6 +362,40 @@
 </head>
 
 <body>
+	<!-- ///// แจ้งเตือน SOS ยังไม่ได้ดำเนินการ ///// -->
+	<div class="notification-icon d-none" data-toggle="modal" data-target="#modal_show_sos_wait">
+	  	<span class="notification-count text-danger">
+	  		<span class="text-white" id="show_count_sos_wait">0</span>
+	  	</span>
+	  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
+	</div>
+
+	<div class="text-nocopy modal" id="modal_show_sos_wait" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_show_sos_wait" aria-hidden="true">
+	    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="Label_show_sos_wait">
+	                    ... : 
+	                </h5>
+	                <button type="button" class="close btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">
+	                    <span aria-hidden="true">&times;</span>
+	                </button>
+	            </div>
+	            <div class="modal-body">
+	            	<div class="row" id="modal_show_sos_wait_body">
+	                	<!-- แสดงผล -->
+	            	</div>
+	            </div>
+	            <div class="modal-footer d-none">
+	                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	                <button type="button" class="btn btn-primary">Understood</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<!-- ///// จบ แจ้งเตือน SOS ยังไม่ได้ดำเนินการ ///// -->
+
+
 	<!--wrapper-->
 	<div class="wrapper">
 		<!--sidebar wrapper -->
@@ -1096,31 +1176,175 @@
 		<header style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
 			<div id="div_color_navbar" class="topbar d-flex align-items-center header_nav-background" style="">
 				<nav class="navbar navbar-expand ">
-					<div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
+					<div class="mobile-toggle-menu">
+						<i class='bx bx-menu'></i>
 					</div>
 					<div class="top-menu-left d-none d-lg-block">
 						<ul class="nav">
-						  <li class="nav-item">
-							<a class="nav-link" href="tel:020277856"><i class='bx bx-phone'></i>
-                            </a>
-						  </li>
-                          <li class="nav-item" style="margin-top:-3px;margin-left:-10px;">
-                            <a class="nav-link" href="tel:020277856">
-                                <span  style="font-size:15px;margin-top:15px;">02-0277856</span> 
-                            </a>
-						  </li>
-						  <li class="nav-item">
-							<a class="nav-link" href="mailto:contact.viicheck@gmail.com"><i class='bx bx-envelope'></i>
-                            </a>
-						  </li>
-                          <li class="nav-item" style="margin-top:-3px;margin-left:-10px;">
-                            <a class="nav-link" href="mailto:contact.viicheck@gmail.com">
-                                <span style="font-size:15px;">contact.viicheck@gmail.com</span>
-                            </a>
-						  </li>
-					  </ul>
-					 </div>
-					 <div class="search-bar flex-grow-1 header-notifications-list header-message-list">
+						  	<li class="nav-item">
+								<a class="nav-link" href="tel:020277856">
+									<i class='bx bx-phone'></i>
+                            	</a>
+						  	</li>
+                          	<li class="nav-item" style="margin-top:-3px;margin-left:-10px;">
+                            	<a class="nav-link" href="tel:020277856">
+                                	<span  style="font-size:15px;margin-top:15px;">02-0277856</span> 
+                            	</a>
+						  	</li>
+						  	<li class="nav-item">
+								<a class="nav-link" href="mailto:contact.viicheck@gmail.com">
+									<i class='bx bx-envelope'></i>
+                            	</a>
+						  	</li>
+                          	<li class="nav-item" style="margin-top:-3px;margin-left:-10px;">
+                            	<a class="nav-link" href="mailto:contact.viicheck@gmail.com">
+                                	<span style="font-size:15px;">contact.viicheck@gmail.com</span>
+                            	</a>
+						  	</li>
+					  	</ul>
+				 	</div>
+				 	<div>
+				 		<!-- switch officer 1669 -->
+						@if(Auth::user()->organization == "สพฉ" )
+							<style>
+								.toggle-switch {
+								  position: relative;
+								  display: inline-block;
+								  width: 80px;
+								  height: 40px;
+								  cursor: pointer;
+								}
+
+								.toggle-switch input[type="checkbox"] {
+								  display: none;
+								}
+
+								.toggle-switch-background {
+								  position: absolute;
+								  top: 0;
+								  left: 0;
+								  width: 100%;
+								  height: 100%;
+								  background-color: #ddd;
+								  border-radius: 20px;
+								  box-shadow: inset 0 0 0 2px #ccc;
+								  transition: background-color 0.3s ease-in-out;
+								}
+
+								.toggle-switch-handle {
+								  position: absolute;
+								  top: 5px;
+								  left: 5px;
+								  width: 30px;
+								  height: 30px;
+								  background-color: #fff;
+								  border-radius: 50%;
+								  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+								  transition: transform 0.3s ease-in-out;
+								}
+
+								.toggle-switch::before {
+								  content: "";
+								  position: absolute;
+								  top: -25px;
+								  right: -35px;
+								  font-size: 12px;
+								  font-weight: bold;
+								  color: #aaa;
+								  text-shadow: 1px 1px #fff;
+								  transition: color 0.3s ease-in-out;
+								}
+
+								.toggle-switch input[type="checkbox"]:checked + .toggle-switch-handle {
+								  transform: translateX(45px);
+								  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 0 3px #05c46b;
+								}
+
+								.toggle-switch input[type="checkbox"]:checked + .toggle-switch-background {
+								  background-color: #05c46b;
+								  box-shadow: inset 0 0 0 2px #04b360;
+								}
+
+								.toggle-switch input[type="checkbox"]:checked + .toggle-switch:before {
+								  content: "On";
+								  color: #05c46b;
+								  right: -15px;
+								}
+
+								.toggle-switch input[type="checkbox"]:checked + .toggle-switch-background .toggle-switch-handle {
+								  transform: translateX(40px);
+								}
+
+							</style>
+
+							<label class="toggle-switch">
+							  <input type="checkbox" id="checkbox_switch_officer_1669" onclick="click_switch_officer_1669();">
+							  <div class="toggle-switch-background">
+							    <div class="toggle-switch-handle"></div>
+							  </div>
+							</label>
+							<span id="show_text_status_officer">
+								<!-- แสดง status -->
+							</span>
+
+
+							<script>
+
+								document.addEventListener('DOMContentLoaded', (event) => {
+							        // console.log("START");
+							        fetch("{{ url('/') }}/api/check_status_officer_1669" + '/' + '{{ Auth::user()->id }}' + '/' + '{{ Auth::user()->sub_organization }}')
+							            .then(response => response.json())
+							            .then(result => {
+							            	// console.log(result)
+							            	change_switch_officer_to(result['status']);
+							        });
+							        
+							    });
+
+								function click_switch_officer_1669(){
+									let switch_officer = document.querySelector('#checkbox_switch_officer_1669');
+									// console.log(switch_officer.checked);
+
+									if (switch_officer.checked){
+							            change_switch_officer_to('Standby');
+									}else{
+							            change_switch_officer_to('');
+									}
+								}
+
+								function change_switch_officer_to(change_to){
+
+									if (change_to == 'Standby'){
+										document.querySelector('#checkbox_switch_officer_1669').checked = true ;
+										document.querySelector('.toggle-switch-background').setAttribute('style' ,
+										'background-color: #05c46b;box-shadow: inset 0 0 0 2px #04b360;');
+										document.querySelector('#show_text_status_officer').innerHTML = 'พร้อมช่วยเหลือ' ;
+									}else if(change_to == 'Helping'){
+										document.querySelector('#checkbox_switch_officer_1669').checked = false ;
+										document.querySelector('.toggle-switch-background').setAttribute('style' ,
+										'background-color: #fac516;box-shadow: inset 0 0 0 2px #ffde70;');
+										document.querySelector('#show_text_status_officer').innerHTML = 'กำลังช่วยเหลือ' ;
+									}else{
+										document.querySelector('#checkbox_switch_officer_1669').checked = false ;
+										document.querySelector('.toggle-switch-background').setAttribute('style' ,
+										'background-color: #ddd;box-shadow: inset 0 0 0 2px #ccc;');
+										document.querySelector('#show_text_status_officer').innerHTML = 'ไม่อยู่' ;
+										change_to = 'null' ;
+									}
+
+									fetch("{{ url('/') }}/api/change_status_officer_to" + '/' + '{{ Auth::user()->id }}' + '/' + '{{ Auth::user()->sub_organization }}' + '/' + change_to)
+							            .then(response => response.text())
+							            .then(result => {
+							            	// console.log(result)
+							        });
+
+								}
+							</script>
+
+						@endif
+						<!-- END switch officer 1669 -->
+				 	</div>
+					<div class="search-bar flex-grow-1 header-notifications-list header-message-list">
 						<div class="position-relative search-bar-box">
 							<input type="text" class="form-control search-control" placeholder="Type to search..."> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>
 							<span class="position-absolute top-50 search-close translate-middle-y"><i class='bx bx-x'></i></span>
@@ -2035,6 +2259,8 @@
 
 <!-- SOS 1669 -->
 <script>
+
+	var count_sos_wait = 0 ;
 	
 	function check_ask_for_help_1669(){
 		// console.log('สพฉ');
@@ -2050,7 +2276,9 @@
                 // console.log(result);
                 result['admin_id'] = user_id ;
 
-				if (result[0] != "ไม่มีข้อมูล") {
+				if (result['check_data'] != "ไม่มีข้อมูล") {
+
+					document.querySelector('.notification-icon').classList.add('d-none');
 
 					if(result['forward_operation_to']){
 
@@ -2091,6 +2319,54 @@
 			            .then(result => {
 			                // console.log(result);
 			            });
+				}else{
+
+					if (count_sos_wait != result['count_sos_wait']){
+
+						count_sos_wait = result['count_sos_wait'] ;
+
+						document.querySelector('#show_count_sos_wait').innerHTML = result['count_sos_wait'] ;
+						document.querySelector('.notification-icon').classList.remove('d-none');
+
+						document.querySelector('#modal_show_sos_wait_body').innerHTML = '';
+
+						let text_data_sos_html = '' ;
+						for (let i_wait = 0; i_wait < result['count_sos_wait']; i_wait++) {
+						  	// console.log(result[i_wait]['id']);
+
+						  	let photo_sos ;
+						  	if (result[i_wait]['photo_sos']){
+						  		photo_sos = `{{ url('/storage') .'/'. `+ result[i_wait]['photo_sos'] +`  }}`;
+						  	}else{
+						  		photo_sos = `{{ url('/img/stickerline/PNG/21.png') }}` ;
+						  	}
+
+						  	text_data_sos_html = text_data_sos_html + 
+						  		`<div class="col-2">
+						  			<center>
+						  				<img src="`+ photo_sos +`"  class="rounded-circle" width="60" height="60" alt="">
+						  			</center>
+						  		</div>
+						  		<div class="col-5">
+	                            	ชื่อผู้ขอความช่วยเหลือ : `+ result[i_wait]['name_user'] +` <br>
+	                            	เบอร์โทร : `+ result[i_wait]['phone_user'] +`
+	                            </div>
+	                            <div class="col-3">
+	                            	เวลา : `+ result[i_wait]['created_at'] +`
+	                            </div>
+	                            <div class="col-2">
+	                            	<center>
+	                                	<span class="btn btn-success" style="width80%;" onclick="sos_1669_command_by('{{ Auth::user()->id }}' , `+ result[i_wait]['id'] +`);">
+	                                		สั่งการ
+	                                	</span>
+	                                </center>
+	                            </div>
+	                            <hr class="mt-2">`;
+						}
+
+	        			document.querySelector('#modal_show_sos_wait_body').insertAdjacentHTML('beforeend', text_data_sos_html);
+	        		}
+
 				}
             });
 
@@ -2144,6 +2420,8 @@
 	                        	<span style="font-size:15px;color:gray;">ลำดับที่ `+item['number']+`</span>
 	                        </span>
 	                    </a>` ;
+
+
 
                 }
 
@@ -2427,6 +2705,13 @@
             .then(result => {
                 // console.log(result);
                 if (result == "OK") {
+                	
+                	fetch("{{ url('/') }}/api/change_status_officer_to" + '/' + '{{ Auth::user()->id }}' + '/' + '{{ Auth::user()->sub_organization }}' + '/' + 'Helping')
+				            .then(response => response.text())
+				            .then(result => {
+				            	// console.log(result)
+				        });
+
     				click_tag_a_new_sos1669(sos_id);
                 }
 

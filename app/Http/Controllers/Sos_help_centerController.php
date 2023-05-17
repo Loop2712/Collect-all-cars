@@ -531,9 +531,15 @@ class Sos_help_centerController extends Controller
                 $check_data->old_operating_code = $data_old->operating_code;
             }
 
+            $check_data['check_data'] = "มีข้อมูล" ;
+
             return $check_data ;
         }else{
-            $data[0] = "ไม่มีข้อมูล" ;
+
+            $data = Sos_help_center::where('command_by' , null)->get();
+
+            $data['count_sos_wait'] = count($data) ;
+            $data['check_data'] = "ไม่มีข้อมูล" ;
             return $data ;
         }
     }
@@ -551,6 +557,34 @@ class Sos_help_centerController extends Controller
                 ]);
 
         return "Updated successfully" ;
+    }
+
+    function check_status_officer_1669($officer_command_id , $sub_organization){
+
+        $data_officer_command = Data_1669_officer_command::where('user_id' , $officer_command_id)
+            ->where('area' , $sub_organization)
+            ->first();
+
+        return $data_officer_command ;
+    }
+
+    function change_status_officer_to($officer_command_id , $sub_organization , $change_to){
+
+        if ($change_to == 'null'){
+            $change_to = null ;
+        }
+
+        DB::table('data_1669_officer_commands')
+            ->where([ 
+                    ['user_id', $officer_command_id],
+                    ['area', $sub_organization],
+                ])
+            ->update([
+                    'status' => $change_to,
+                ]);
+
+        return 'OK' ;
+
     }
 
     function update_code_sos_1669(Request $request)
@@ -1883,7 +1917,9 @@ class Sos_help_centerController extends Controller
         $data_sos = Sos_help_center::where('id' , $sos_id)->first();
         $area_noti = $data_sos->notify ;
         $area_ep = explode(" - ",$area_noti) ;
-        $area = $area_ep[2] ;
+        $area_count_ep = count($area_ep);
+        $index_of_area = $area_count_ep - 1 ;
+        $area = $area_ep[$index_of_area] ;
 
         $data_officer_command = Data_1669_officer_command::where('user_id',$admin_id)
             ->where('area',$area)
