@@ -904,7 +904,7 @@
 
                     let phone_user ;
                     if (result[xxiv]['phone']){
-                        phone_user = result[xxiv]['phone'].substr(0, 3) + '-' + result[xxiv]['phone'].substr(3, 4) + '-' + result[xxiv]['phone'].substr(7);
+                        phone_user = `<p class="mb-0 font-13 text-secondary">`+result[xxiv]['phone'].substr(0, 3) + '-' + result[xxiv]['phone'].substr(3, 4) + '-' + result[xxiv]['phone'].substr(7)+`</p>`;
                     }else{
                         phone_user = '';
                     }
@@ -918,7 +918,7 @@
 
                     let number_officer;
                     if (result[xxiv]['number']) {
-                        number_officer =    "-" + result[xxiv]['number'];
+                        number_officer =    "- " + result[xxiv]['number'];
                     } else {
                         number_officer ="";
                     }
