@@ -463,14 +463,18 @@
 <body>
 	<!-- ///// แจ้งเตือน SOS ยังไม่ได้ดำเนินการ ///// -->
 	<div class="notification_group">
-		<div id="div_noti_wait" class="notification-icon d-none float-end notification-danger" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
+	<button data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">asdas</button>
+
+
+
+		<div id="div_noti_wai" class="notification-icon d-none float-end notification-danger" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
 		  	<span class="notification-count count-danger">
 		  		<span class="text-white" id="show_count_sos_wait">0</span>
 		  	</span>
 		  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
 		</div>
 
-		<div id="div_noti_helping" class="notification-icon d-none float-end notification-primary" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('helping');">
+		<div id="div_noti_helpin" class="notification-icon d-none float-end notification-primary" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('helping');">
 		  	<span class="notification-count count-blue">
 		  		<span class="text-white" id="show_count_sos_helping">0</span>
 		  	</span>
