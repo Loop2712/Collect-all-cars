@@ -461,37 +461,20 @@
 <body>
 	<!-- ///// แจ้งเตือน SOS ยังไม่ได้ดำเนินการ ///// -->
 	<div class="notification_group">
-		<div class="notification-icon d-none float-end notification-danger" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
-		  	<span id="show_num_count_wait" class="notification-count count-danger">
+		<div id="div_noti_wait" class="notification-icon d-none float-end notification-danger" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
+		  	<span class="notification-count count-danger">
 		  		<span class="text-white" id="show_count_sos_wait">0</span>
 		  	</span>
 		  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
 		</div>
 
-		<div class="notification-icon d-none float-end notification-primary" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
-		  	<span id="show_num_count_helping" class="notification-count count-blue">
+		<div id="div_noti_helping" class="notification-icon d-none float-end notification-primary" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('helping');">
+		  	<span class="notification-count count-blue">
 		  		<span class="text-white" id="show_count_sos_helping">0</span>
 		  	</span>
 		  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
 		</div>
 	</div>
-	
-	<!-- <div class="notification_group">
-		<div class="notification-icon-wait d- float-end" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
-		  	<span id="show_num_count_wait" class="notification-count">
-		  		<span class="text-white" id="show_count_sos_wait">0</span>
-		  	</span>
-
-		  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
-		</div>
-
-		<div class="notification-icon-helping d- float-end" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
-			<span id="show_num_count_helping" class="countWaiting">
-				<span class="text-white" id="show_count_sos_helping">0</span>
-		  	</span>
-		  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
-		</div>
-	</div> -->
 
 <!-- Modal -->
 <div class="modal fade" id="modal_show_sos_wait" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -2641,7 +2624,7 @@
 
 					count_sos_Helping = result['count_sos_Helping'] ;
 
-					document.querySelector('#show_num_count_helping').classList.add('d-none');
+					document.querySelector('#div_noti_helping').classList.add('d-none')
 					document.querySelector('#notiStatusOfficer').classList.add('d-none');
 
 					document.querySelector('#wait_data').innerHTML = '' ;
@@ -2659,7 +2642,7 @@
 
 						if (result['count_sos_Helping'] > 0){
 
-							document.querySelector('#show_num_count_helping').classList.remove('d-none');
+							document.querySelector('#div_noti_helping').classList.remove('d-none')
 							document.querySelector('#notiStatusOfficer').classList.remove('d-none');
 
 							document.querySelector('#wait_data').innerHTML = '' ;
@@ -2740,9 +2723,10 @@
 				}else{
 
 					if ( result['count_sos_wait'] == 0 ){
-						document.querySelector('#show_num_count_wait').classList.add('d-none');
+						document.querySelector('#div_noti_wait').classList.add('d-none');
+						document.querySelector('#modal_show_sos_wait_body').innerHTML = '';
 					}else{
-						document.querySelector('#show_num_count_wait').classList.remove('d-none');
+						document.querySelector('#div_noti_wait').classList.remove('d-none');
 					}
 
 					if (count_sos_wait != result['count_sos_wait']){
