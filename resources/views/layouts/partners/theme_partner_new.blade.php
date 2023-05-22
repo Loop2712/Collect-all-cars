@@ -423,15 +423,21 @@
 
 <body>
 	<!-- ///// แจ้งเตือน SOS ยังไม่ได้ดำเนินการ ///// -->
-	<div class="notification-icon d-none" data-toggle="modal" data-target="#modal_show_sos_wait">
-	  	<span class="notification-count text-danger">
-	  		<span class="text-white" id="show_count_sos_wait">0</span>
-	  	</span>
+	<div class="notification-icon">
+		<div class="notification-icon-wait d- float-end" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
+		  	<span id="show_num_count_wait" class="notification-count">
+		  		<span class="text-white" id="show_count_sos_wait">0</span>
+		  	</span>
 
-		<!-- <span class="countWaiting text-danger">
-			<span class="text-white" id="show_count_sos_wait">0</span>
-	  	</span> -->
-	  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
+		  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
+		</div>
+
+		<div class="notification-icon-helping d- float-end" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
+			<span id="show_num_count_helping" class="countWaiting">
+				<span class="text-white" id="show_count_sos_helping">0</span>
+		  	</span>
+		  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
+		</div>
 	</div>
 
 <!-- Modal -->
@@ -441,21 +447,23 @@
 			<div class="modal-body">
 				<div class="card-body">
 					<ul class="nav nav-tabs mb-0" role="tablist">
-						<li class="nav-item nav-wait-officer col-6" role="presentation">
-							<a class="nav-link active " data-bs-toggle="tab" href="#modal_show_sos_wait_body" role="tab" aria-selected="true">
+						<li class="nav-item nav-wait-data col-6" role="presentation">
+							<a id="li_show_helping" class="nav-link" data-bs-toggle="tab" href="#wait_data" role="tab" aria-selected="false">
 								<div class="d-flex align-items-center">
-									<div class="tab-icon"><i class="bx bx-comment-detail font-18 me-1"></i>
+									<div class="tab-icon">
+										<i class="bx bx-bookmark-alt font-18 me-1"></i>
 									</div>
-									<div class="tab-title"> เคสรอสั่งการ </div>
+									<div class="tab-title">เคสที่ดำเนินการอยู่</div>
 								</div>
 							</a>
 						</li>
-						<li class="nav-item nav-wait-data col-6" role="presentation">
-							<a class="nav-link" data-bs-toggle="tab" href="#wait-data" role="tab" aria-selected="false">
+						<li class="nav-item nav-wait-officer col-6" role="presentation">
+							<a id="li_show_wait" class="nav-link active " data-bs-toggle="tab" href="#modal_show_sos_wait_body" role="tab" aria-selected="true">
 								<div class="d-flex align-items-center">
-									<div class="tab-icon"><i class="bx bx-bookmark-alt font-18 me-1"></i>
+									<div class="tab-icon">
+										<i class="bx bx-comment-detail font-18 me-1"></i>
 									</div>
-									<div class="tab-title">เคสที่ดำเนินการอยู่</div>
+									<div class="tab-title"> เคสรอสั่งการ </div>
 								</div>
 							</a>
 						</li>
@@ -464,44 +472,11 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<div class="tab-content pt-3">
-						<div class="tab-pane fade active show" id="modal_show_sos_wait_body" role="tabpanel">
-							
+						<div class="tab-pane fade active" id="modal_show_sos_wait_body" role="tabpanel">
+							<!-- รอสั่งการ -->
 						</div>
-						<div class="tab-pane fade" id="wait-data" role="tabpanel">
-						<div class="userSosWait d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
-								<div class="">
-									<img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/21.png" class="rounded-circle" width="46" height="46" alt="">
-								</div>
-								<div class="ms-2">
-									<h6 class="mb-1 font-14">lucky 
-									<span class="badge badge-pill bg-light-primary text-primary" id="time-diff-0">2305-2601-0009</span></h6>
-									<p class="mb-0 font-13 text-secondary">เจ้าหน้าที่เบนซ์ ● VIICHECK</p>
-									<p class="mb-0 font-13 text-secondary">081-234-567822</p>
-								</div>
-								<div class="list-inline d-flex  ms-auto"> 
-									<a  class="btnSosWait"  data-bs-toggle="dropdown" aria-expanded="true">รายละเอียด</a>
-									<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" style="margin: 0px; position: absolute; inset: 0px auto auto 0px; transform: translate(-53px, 38px);" data-popper-placement="bottom-end">	
-										<a class="dropdown-item text-danger" href="javascript:;">ชื่อ</a>
-										<a class="dropdown-item text-danger" href="javascript:;">อาการ</a>
-										<a class="dropdown-item text-danger" href="javascript:;">รหัสความรุนแรง</a>
-										<a class="dropdown-item text-danger" href="javascript:;">การปฎิบัติการ</a>
-										<a class="dropdown-item text-danger" href="javascript:;">ชื่อ</a>
-										<a class="dropdown-item text-danger" href="javascript:;">อาการ</a>
-										<a class="dropdown-item text-danger" href="javascript:;">รหัสความรุนแรง</a>
-										<a class="dropdown-item text-danger" href="javascript:;">การปฎิบัติการ</a><a class="dropdown-item text-danger" href="javascript:;">ชื่อ</a>
-										<a class="dropdown-item text-danger" href="javascript:;">อาการ</a>
-										<a class="dropdown-item text-danger" href="javascript:;">รหัสความรุนแรง</a>
-										<a class="dropdown-item text-danger" href="javascript:;">การปฎิบัติการ</a><a class="dropdown-item text-danger" href="javascript:;">ชื่อ</a>
-										<a class="dropdown-item text-danger" href="javascript:;">อาการ</a>
-										<a class="dropdown-item text-danger" href="javascript:;">รหัสความรุนแรง</a>
-										<a class="dropdown-item text-danger" href="javascript:;">การปฎิบัติการ</a><a class="dropdown-item text-danger" href="javascript:;">ชื่อ</a>
-										<a class="dropdown-item text-danger" href="javascript:;">อาการ</a>
-										<a class="dropdown-item text-danger" href="javascript:;">รหัสความรุนแรง</a>
-										<a class="dropdown-item text-danger" href="javascript:;">การปฎิบัติการ</a>
-										<!-- <div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a> -->
-									</div>
-								</div>
-								</div>
+						<div class="tab-pane fade" id="wait_data" role="tabpanel">
+							<!-- เคสที่ดำเนินการอยู่ -->
 						</div>
 					</div>
 				</div>
@@ -1347,7 +1322,8 @@
 					  	</ul>
 				 	</div>
 
-					 <style>
+					@if(Auth::user()->organization == "สพฉ" )
+					<style>
 
 					.tabsStatusOfficer {
 						display: flex;
@@ -1500,24 +1476,25 @@
 					</style>
 
 					<div class="containerStatusofficer ms-auto">
-					<div class="tabsStatusOfficer">
-						<input type="radio" id="officerHelping" name="tabsStatusOfficer"  onclick="click_switch_officer_1669();">
-						<label class="tabOfficer radio-1" for="officerHelping" data-toggle="modal" data-target="#modal_show_sos_wait">
-							ช่วยเหลือ
-							<span id="notiStatusOfficer" class="notiStatusOfficer">
-								<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-							</span>
-						</label>
+						<div class="tabsStatusOfficer">
+							<!-- ปุ่ม modal -->
+							<input type="radio" id="officerHelping" name="tabsStatusOfficer"  onclick="click_switch_officer_1669();">
+							<label class="tabOfficer radio-1" for="officerHelping">
+								ช่วยเหลือ
+								<span id="notiStatusOfficer" class="notiStatusOfficer">
+									<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+								</span>
+							</label>
 
-						<input type="radio" id="officerStandby" name="tabsStatusOfficer" onclick="click_switch_officer_1669();">
-						<label class="tabOfficer radio-2" for="officerStandby">พร้อม</label>
+							<input type="radio" id="officerStandby" name="tabsStatusOfficer" onclick="click_switch_officer_1669();">
+							<label class="tabOfficer radio-2" for="officerStandby">พร้อม</label>
 
-						<input type="radio" id="officerNAN" name="tabsStatusOfficer" onclick="click_switch_officer_1669();">
-						<label class="tabOfficer radio-3" for="officerNAN">ไม่พร้อม</label>
-						<span class="glider"></span>
+							<input type="radio" id="officerNAN" name="tabsStatusOfficer" onclick="click_switch_officer_1669();">
+							<label class="tabOfficer radio-3" for="officerNAN">ไม่พร้อม</label>
+							<span class="glider"></span>
+						</div>
 					</div>
-					
-					</div>
+					@endif
 				 	
 				 		<!-- switch officer 1669 -->
 						@if(Auth::user()->organization == "สพฉ" )
@@ -2583,6 +2560,7 @@
 <script>
 
 	var count_sos_wait = 0 ;
+	var count_sos_Helping = 0 ;
 	
 	function check_ask_for_help_1669(){
 		// console.log('สพฉ');
@@ -2595,12 +2573,77 @@
 		fetch("{{ url('/') }}/api/check_ask_for_help_1669/" + sub_organization + '/' + user_id)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
                 result['admin_id'] = user_id ;
+
+                // แสดงผลกระดิ่งล่างขวา
+                if ( result['count_sos_Helping'] != 0 || result['count_sos_wait'] != 0 ){
+					document.querySelector('.notification-icon').classList.remove('d-none');
+                }else if( result['count_sos_Helping'] == 0 && result['count_sos_wait'] == 0 ){
+					document.querySelector('.notification-icon').classList.add('d-none');
+                }
+                // จบ แสดงผลกระดิ่งล่างขวา
+                
+				if (result['count_sos_Helping'] == 0){
+
+					count_sos_Helping = result['count_sos_Helping'] ;
+
+					document.querySelector('#show_num_count_helping').classList.add('d-none');
+					document.querySelector('#notiStatusOfficer').classList.add('d-none');
+
+					document.querySelector('#wait_data').innerHTML = '' ;
+
+				}else{
+
+
+					if (count_sos_Helping != result['count_sos_Helping']){
+
+						count_sos_Helping = result['count_sos_Helping'] ;
+
+						// เคสที่กำลังดำเนินการ
+						document.querySelector('#notiStatusOfficer').innerHTML = result['count_sos_Helping'] ;
+						document.querySelector('#show_count_sos_helping').innerHTML = result['count_sos_Helping'] ;
+
+						if (result['count_sos_Helping'] > 0){
+
+							document.querySelector('#show_num_count_helping').classList.remove('d-none');
+							document.querySelector('#notiStatusOfficer').classList.remove('d-none');
+
+							document.querySelector('#wait_data').innerHTML = '' ;
+
+							for (let i_Helping = 0; i_Helping < result['count_sos_Helping']; i_Helping++) {
+								let text_Helping_html = `
+									<div class="userSosWait d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+										<div class="">
+											<img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/21.png" class="rounded-circle" width="46" height="46" alt="">
+										</div>
+										<div class="ms-2">
+											<h6 class="mb-1 font-14">lucky 
+											<span class="badge badge-pill bg-light-primary text-primary" >2305-2601-0009</span></h6>
+											<p class="mb-0 font-13 text-secondary">เจ้าหน้าที่เบนซ์ ● VIICHECK</p>
+											<p class="mb-0 font-13 text-secondary">081-234-567822</p>
+										</div>
+										<div class="list-inline d-flex  ms-auto"> 
+											<span class="btn btn-danger main-shadow main-radius">
+												รับแจ้งเหตุ
+											<span>
+										</div>
+									</div>
+								`;
+
+								$('#wait_data').append(text_Helping_html);
+							}
+
+						}
+					}
+
+				}
+
+				
 
 				if (result['check_data'] != "ไม่มีข้อมูล") {
 
-					document.querySelector('.notification-icon').classList.add('d-none');
+					// document.querySelector('.notification-icon').classList.add('d-none');
 
 					if(result['forward_operation_to']){
 
@@ -2643,14 +2686,18 @@
 			            });
 				}else{
 
+					if ( result['count_sos_wait'] == 0 ){
+						document.querySelector('#show_num_count_wait').classList.add('d-none');
+					}else{
+						document.querySelector('#show_num_count_wait').classList.remove('d-none');
+					}
+
 					if (count_sos_wait != result['count_sos_wait']){
 
 						count_sos_wait = result['count_sos_wait'] ;
 
-						
+						// เคสที่รอการช่วยเหลือ
 						document.querySelector('#show_count_sos_wait').innerHTML = result['count_sos_wait'] ;
-						document.querySelector('#notiStatusOfficer').innerHTML = result['count_sos_wait'] ;
-						document.querySelector('.notification-icon').classList.remove('d-none');
 
 						document.querySelector('#modal_show_sos_wait_body').innerHTML = '';
 						let now = new Date();
@@ -2720,6 +2767,27 @@
             });
 
 	}
+
+
+	function click_show_data_sos_hepl_wait(type){
+
+		// console.log(type);
+
+		if (type === 'wait'){
+			document.querySelector('#li_show_helping').classList.remove('active');
+			document.querySelector('#li_show_wait').classList.add('active');
+
+			document.querySelector('#wait_data').classList.remove('show', 'active');
+			document.querySelector('#modal_show_sos_wait_body').classList.add('show', 'active');
+		}else{
+			document.querySelector('#li_show_helping').classList.add('active');
+			document.querySelector('#li_show_wait').classList.remove('active');
+
+			document.querySelector('#modal_show_sos_wait_body').classList.remove('show' , 'active');
+			document.querySelector('#wait_data').classList.add('show' , 'active');
+		}
+	}
+
 
 
 	function alet_new_sos_1669(result) {

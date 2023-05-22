@@ -345,11 +345,16 @@ class Sos_help_centerController extends Controller
         $time_create_sos = Carbon::now();
         $data_user = User::where('id' , $user_id)->first();
 
+        $data_officer_command = Data_1669_officer_command::where('user_id',$user_id)
+            ->where('area',$data_user->sub_organization)
+            ->first();
+
         $requestData = [] ;
         $requestData['create_by'] = "admin - " . $user_id;
         $requestData['notify'] = 'none - ' . $data_user->sub_organization ;
         $requestData['status'] = 'รับแจ้งเหตุ';
         $requestData['time_create_sos'] = $time_create_sos;
+        $requestData['command_by'] = $data_officer_command->id;
         
         Sos_help_center::create($requestData);
 
@@ -371,6 +376,14 @@ class Sos_help_centerController extends Controller
                 ])
             ->update([
                     'operating_code' => $operating_code,
+                ]);
+
+        DB::table('data_1669_officer_commands')
+            ->where([ 
+                    ['id', $data_officer_command->id],
+                ])
+            ->update([
+                    'status' => 'Helping',
                 ]);
         
         return $sos_help_center_last->id ;
@@ -513,6 +526,9 @@ class Sos_help_centerController extends Controller
             ->first();
 
         $check_data = Sos_help_center::where('notify' , $data_officer_command->id.' - '.$sub_organization)->first();
+        $sos_Helping = Sos_help_center::where('command_by' , $data_officer_command->id)
+            ->where('status' , '!=' , 'เสร็จสิ้น')
+            ->get();
         
         if ($check_data) {
 
@@ -532,6 +548,8 @@ class Sos_help_centerController extends Controller
             }
 
             $check_data['check_data'] = "มีข้อมูล" ;
+            $check_data['count_sos_Helping'] = count($sos_Helping) ;
+            $check_data['data_sos_Helping'] = $sos_Helping ;
 
             return $check_data ;
         }else{
@@ -539,7 +557,10 @@ class Sos_help_centerController extends Controller
             $data = Sos_help_center::where('command_by' , null)->get();
 
             $data['count_sos_wait'] = count($data) ;
+            $data['count_sos_Helping'] = count($sos_Helping) ;
+            $data['data_sos_Helping'] = $sos_Helping ;
             $data['check_data'] = "ไม่มีข้อมูล" ;
+
             return $data ;
         }
     }
