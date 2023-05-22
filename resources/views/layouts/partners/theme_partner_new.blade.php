@@ -192,7 +192,39 @@
 		  90% { border-color: red; }
 		  100% { border-color: yellow; }
 		}
+		.userSosWait {
+			-webkit-transition: all 0.2s;
+			-o-transition: all 0.2s;
+			transition: all 0.2s;
+			padding: .5rem;
 
+		}
+
+		.userSosWait:hover {
+			background-color: #f8f9fa;
+			border-radius: 10px;
+			margin-top: -.25rem;
+			margin-bottom: .25rem;
+			-webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
+			box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
+		}.btnSosWait{
+			outline: 1px solid #dee2e6;
+			border-radius: .375rem;
+			background-color: #fff;
+			padding:  .5rem 1rem;
+			color: #2b2a2a;
+			font-family: 'Mitr', sans-serif;
+			transition: all .15s ease-in-out;
+
+
+		}
+		.btnSosWait:hover{
+			border: 1px solid #dee2e6;
+			background-color: #2b2a2a;
+			color: #fff;
+			outline-offset: .1rem;
+
+		}
 	</style>
 	<!-- for sos -->
 	<style>
@@ -343,6 +375,21 @@
   animation: border-flash 1s infinite;
 }
 
+.countWaiting{
+	position: absolute;
+	top: -12px;
+  left: -12px;
+  background-color: blue;
+  color: white;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @keyframes border-flash {
   0% {
     box-shadow: 0 0 0 2px white;
@@ -355,7 +402,20 @@
   }
 }
 
-
+.nav-wait-officer .nav-link.active {
+		border-color: red red #fff !important;
+        font-family: 'Mitr', sans-serif;
+		color: red !important;
+	}.nav-wait-data .nav-link.active {
+		border-color: blue blue #fff !important;
+        font-family: 'Mitr', sans-serif;
+		color: blue !important;
+	}
+	.btnCloseModal{
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	}
 
         
     </style>
@@ -367,23 +427,101 @@
 	  	<span class="notification-count text-danger">
 	  		<span class="text-white" id="show_count_sos_wait">0</span>
 	  	</span>
+
+		<!-- <span class="countWaiting text-danger">
+			<span class="text-white" id="show_count_sos_wait">0</span>
+	  	</span> -->
 	  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
 	</div>
 
-	<div class="text-nocopy modal" id="modal_show_sos_wait" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_show_sos_wait" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="modal_show_sos_wait" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="card-body">
+					<ul class="nav nav-tabs mb-0" role="tablist">
+						<li class="nav-item nav-wait-officer col-6" role="presentation">
+							<a class="nav-link active " data-bs-toggle="tab" href="#modal_show_sos_wait_body" role="tab" aria-selected="true">
+								<div class="d-flex align-items-center">
+									<div class="tab-icon"><i class="bx bx-comment-detail font-18 me-1"></i>
+									</div>
+									<div class="tab-title"> เคสรอสั่งการ </div>
+								</div>
+							</a>
+						</li>
+						<li class="nav-item nav-wait-data col-6" role="presentation">
+							<a class="nav-link" data-bs-toggle="tab" href="#wait-data" role="tab" aria-selected="false">
+								<div class="d-flex align-items-center">
+									<div class="tab-icon"><i class="bx bx-bookmark-alt font-18 me-1"></i>
+									</div>
+									<div class="tab-title">เคสที่ดำเนินการอยู่</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<button type="button" class="btnCloseModal btn" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<div class="tab-content pt-3">
+						<div class="tab-pane fade active show" id="modal_show_sos_wait_body" role="tabpanel">
+							
+						</div>
+						<div class="tab-pane fade" id="wait-data" role="tabpanel">
+						<div class="userSosWait d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+								<div class="">
+									<img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/21.png" class="rounded-circle" width="46" height="46" alt="">
+								</div>
+								<div class="ms-2">
+									<h6 class="mb-1 font-14">lucky 
+									<span class="badge badge-pill bg-light-primary text-primary" id="time-diff-0">2305-2601-0009</span></h6>
+									<p class="mb-0 font-13 text-secondary">เจ้าหน้าที่เบนซ์ ● VIICHECK</p>
+									<p class="mb-0 font-13 text-secondary">081-234-567822</p>
+								</div>
+								<div class="list-inline d-flex  ms-auto"> 
+									<a  class="btnSosWait"  data-bs-toggle="dropdown" aria-expanded="true">รายละเอียด</a>
+									<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end" style="margin: 0px; position: absolute; inset: 0px auto auto 0px; transform: translate(-53px, 38px);" data-popper-placement="bottom-end">	
+										<a class="dropdown-item text-danger" href="javascript:;">ชื่อ</a>
+										<a class="dropdown-item text-danger" href="javascript:;">อาการ</a>
+										<a class="dropdown-item text-danger" href="javascript:;">รหัสความรุนแรง</a>
+										<a class="dropdown-item text-danger" href="javascript:;">การปฎิบัติการ</a>
+										<a class="dropdown-item text-danger" href="javascript:;">ชื่อ</a>
+										<a class="dropdown-item text-danger" href="javascript:;">อาการ</a>
+										<a class="dropdown-item text-danger" href="javascript:;">รหัสความรุนแรง</a>
+										<a class="dropdown-item text-danger" href="javascript:;">การปฎิบัติการ</a><a class="dropdown-item text-danger" href="javascript:;">ชื่อ</a>
+										<a class="dropdown-item text-danger" href="javascript:;">อาการ</a>
+										<a class="dropdown-item text-danger" href="javascript:;">รหัสความรุนแรง</a>
+										<a class="dropdown-item text-danger" href="javascript:;">การปฎิบัติการ</a><a class="dropdown-item text-danger" href="javascript:;">ชื่อ</a>
+										<a class="dropdown-item text-danger" href="javascript:;">อาการ</a>
+										<a class="dropdown-item text-danger" href="javascript:;">รหัสความรุนแรง</a>
+										<a class="dropdown-item text-danger" href="javascript:;">การปฎิบัติการ</a><a class="dropdown-item text-danger" href="javascript:;">ชื่อ</a>
+										<a class="dropdown-item text-danger" href="javascript:;">อาการ</a>
+										<a class="dropdown-item text-danger" href="javascript:;">รหัสความรุนแรง</a>
+										<a class="dropdown-item text-danger" href="javascript:;">การปฎิบัติการ</a>
+										<!-- <div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a> -->
+									</div>
+								</div>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<!-- <div class="text-nocopy modal" id="modal_show_sos_wait" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_show_sos_wait" aria-hidden="true">
 	    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <h5 class="modal-title" id="Label_show_sos_wait">
 	                    ... : 
 	                </h5>
-	                <button type="button" class="close btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">
+	                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">
 	                    <span aria-hidden="true">&times;</span>
 	                </button>
 	            </div>
 	            <div class="modal-body">
 	            	<div class="row" id="modal_show_sos_wait_body">
-	                	<!-- แสดงผล -->
 	            	</div>
 	            </div>
 	            <div class="modal-footer d-none">
@@ -392,7 +530,7 @@
 	            </div>
 	        </div>
 	    </div>
-	</div>
+	</div> -->
 	<!-- ///// จบ แจ้งเตือน SOS ยังไม่ได้ดำเนินการ ///// -->
 
 
@@ -734,6 +872,11 @@
 								</li>
 								<li> 
 									<a href="#">
+										<i class="fa-solid fa-clock"></i> รอข้อมูล
+									</a>
+								</li>
+								<li> 
+									<a href="#">
 										<i class="fa-solid fa-chart-pie"></i> วิเคราะห์ข้อมูล (soon)
 									</a>
 								</li>
@@ -793,7 +936,7 @@
 				<!-- END FOR DEV -->
 
 				<br>
-
+				
 				<!------------------------------------------------------------------- menu เก่า ------------------------------------------------------------------->
 				<!-- ----------------- Admin -------------------- -->
 				<!-- @if(Auth::check())
@@ -1175,7 +1318,7 @@
 		<!--start header -->
 		<header style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
 			<div id="div_color_navbar" class="topbar d-flex align-items-center header_nav-background" style="">
-				<nav class="navbar navbar-expand ">
+				<nav class="navbar navbar-expand d-flex">
 					<div class="mobile-toggle-menu">
 						<i class='bx bx-menu'></i>
 					</div>
@@ -1203,7 +1346,179 @@
 						  	</li>
 					  	</ul>
 				 	</div>
-				 	<div>
+
+					 <style>
+
+					.tabsStatusOfficer {
+						display: flex;
+						position: relative;
+						background-color: #fff;
+						box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
+						padding: 0.75rem;
+						border-radius: .5rem;
+						width: 20rem;
+					}
+
+					.tabsStatusOfficer * {
+						z-index: 2;
+						font-family: 'Mitr', sans-serif;
+					}
+
+					.containerStatusofficer input[type="radio"] {
+						display: none;
+					}
+					.containerStatusofficer{
+						margin-right: 0px;
+					}
+
+					/* .containerStatusofficer * {
+						outline: #000 1px solid;
+					} */
+					.tabOfficer {
+						position: relative;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						height: 30px;
+						width: 30%;
+						font-size: .8rem;
+						color: black;
+						font-weight: 500;
+						border-radius: .5rem;
+						cursor: pointer;
+						transition: color 0.15s ease-in;
+					}
+
+					.notiStatusOfficer {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						width:  30%;
+						height: .8rem;
+						position: absolute;
+						top: -5px;
+						right: 0;
+						font-size: 10px;
+						margin-left: 0.75rem;
+						border-radius: .5rem;
+						margin: 0px;
+						background-color: #e6eef9;
+						transition: 0.15s ease-in;
+					}
+
+					.containerStatusofficer input[type="radio"]:checked+.radio-1 {
+						color: blue;
+					}
+
+					.containerStatusofficer input[type="radio"]:checked+.radio-2 {
+						color: #11c77c;
+					}
+					.containerStatusofficer input[type="radio"]:checked+.radio-3{
+						color: #817e81;
+					}
+
+
+					.containerStatusofficer input[type="radio"]:checked+label>.notiStatusOfficer {
+						background-color: #0000ff;
+						color: #fff;
+						margin: 0px;
+					}
+
+					.containerStatusofficer input[id="officerHelping"]:checked~.glider {
+						transform: translateX(0);
+						background-color: rgb(0, 0, 255 , 0.2);
+					}
+
+					.containerStatusofficer input[id="officerStandby"]:checked~.glider {
+						transform: translateX(100%);
+						background-color: rgb(17, 199, 124 , 0.2);
+					}
+
+					.containerStatusofficer input[id="officerNAN"]:checked~.glider {
+						transform: translateX(200%);
+						background-color: rgb(129, 126, 129 , 0.2);
+					}
+
+					.glider {
+						position: absolute;
+						display: flex;
+						height: 30px;
+						width:27.5%;
+						z-index: 1;
+						border-radius: .5rem;
+						transition: 0.25s ease-out;
+					}
+
+					@media (max-width: 700px) {
+
+						.tabsStatusOfficer {
+							transform: scale(0.6);
+						}
+					}
+
+					/* @media (max-width: 10px) {
+
+					.tabsStatusOfficer {
+						display: none;
+					}
+					} */
+					.lds-ring {
+						display: inline-block;
+						position: relative;
+						width: 10px;
+						height: 10px;
+					}
+					.lds-ring div {
+					box-sizing: border-box;
+					display: block;
+					position: absolute;
+					width: 8px;
+					height: 8px;
+					/* margin: 8px; */
+					border: .3px solid #fff;
+					border-radius: 50%;
+					animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+					border-color: #000 transparent transparent transparent;
+					}
+					.lds-ring div:nth-child(1) {
+					animation-delay: -0.45s;
+					}
+					.lds-ring div:nth-child(2) {
+					animation-delay: -0.3s;
+					}
+					.lds-ring div:nth-child(3) {
+					animation-delay: -0.15s;
+					}
+					@keyframes lds-ring {
+					0% {
+						transform: rotate(0deg);
+					}
+					100% {
+						transform: rotate(360deg);
+					}
+					}
+					</style>
+
+					<div class="containerStatusofficer ms-auto">
+					<div class="tabsStatusOfficer">
+						<input type="radio" id="officerHelping" name="tabsStatusOfficer"  onclick="click_switch_officer_1669();">
+						<label class="tabOfficer radio-1" for="officerHelping" data-toggle="modal" data-target="#modal_show_sos_wait">
+							ช่วยเหลือ
+							<span id="notiStatusOfficer" class="notiStatusOfficer">
+								<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+							</span>
+						</label>
+
+						<input type="radio" id="officerStandby" name="tabsStatusOfficer" onclick="click_switch_officer_1669();">
+						<label class="tabOfficer radio-2" for="officerStandby">พร้อม</label>
+
+						<input type="radio" id="officerNAN" name="tabsStatusOfficer" onclick="click_switch_officer_1669();">
+						<label class="tabOfficer radio-3" for="officerNAN">ไม่พร้อม</label>
+						<span class="glider"></span>
+					</div>
+					
+					</div>
+				 	
 				 		<!-- switch officer 1669 -->
 						@if(Auth::user()->organization == "สพฉ" )
 							<style>
@@ -1276,18 +1591,16 @@
 								}
 
 							</style>
-
-							<label class="toggle-switch">
-							  <input type="checkbox" id="checkbox_switch_officer_1669" onclick="click_switch_officer_1669();">
-							  <div class="toggle-switch-background">
-							    <div class="toggle-switch-handle"></div>
-							  </div>
-							</label>
-							<span id="show_text_status_officer">
-								<!-- แสดง status -->
-							</span>
-
-
+							<!-- <div class="ms-auto">
+								<label class="toggle-switch">
+								<input type="checkbox" id="checkbox_switch_officer_1669" onclick="click_switch_officer_1669();">
+								<div class="toggle-switch-background">
+									<div class="toggle-switch-handle"></div>
+								</div>
+								</label>
+								<span id="show_text_status_officer">
+								</span>
+							</div> -->
 							<script>
 
 								document.addEventListener('DOMContentLoaded', (event) => {
@@ -1302,11 +1615,15 @@
 							    });
 
 								function click_switch_officer_1669(){
-									let switch_officer = document.querySelector('#checkbox_switch_officer_1669');
-									// console.log(switch_officer.checked);
+									let switch_officer = document.querySelector('#officerStandby');
+									let officer_helping = document.querySelector('#officerHelping');
 
-									if (switch_officer.checked){
+								
+									if (switch_officer.checked) {
 							            change_switch_officer_to('Standby');
+										
+									} else if (officer_helping.checked){
+							            change_switch_officer_to('Helping');
 									}else{
 							            change_switch_officer_to('');
 									}
@@ -1315,20 +1632,20 @@
 								function change_switch_officer_to(change_to){
 
 									if (change_to == 'Standby'){
-										document.querySelector('#checkbox_switch_officer_1669').checked = true ;
-										document.querySelector('.toggle-switch-background').setAttribute('style' ,
-										'background-color: #05c46b;box-shadow: inset 0 0 0 2px #04b360;');
-										document.querySelector('#show_text_status_officer').innerHTML = 'พร้อมช่วยเหลือ' ;
+										document.querySelector('#officerStandby').checked = true ;
+										// document.querySelector('.toggle-switch-background').setAttribute('style' ,
+										// 'background-color: #05c46b;box-shadow: inset 0 0 0 2px #04b360;');
+										// document.querySelector('#show_text_status_officer').innerHTML = 'พร้อมช่วยเหลือ' ;
 									}else if(change_to == 'Helping'){
-										document.querySelector('#checkbox_switch_officer_1669').checked = false ;
-										document.querySelector('.toggle-switch-background').setAttribute('style' ,
-										'background-color: #fac516;box-shadow: inset 0 0 0 2px #ffde70;');
-										document.querySelector('#show_text_status_officer').innerHTML = 'กำลังช่วยเหลือ' ;
+										document.querySelector('#officerHelping').checked = true ;
+										// document.querySelector('.toggle-switch-background').setAttribute('style' ,
+										// 'background-color: #fac516;box-shadow: inset 0 0 0 2px #ffde70;');
+										// document.querySelector('#show_text_status_officer').innerHTML = 'กำลังช่วยเหลือ' ;
 									}else{
-										document.querySelector('#checkbox_switch_officer_1669').checked = false ;
-										document.querySelector('.toggle-switch-background').setAttribute('style' ,
-										'background-color: #ddd;box-shadow: inset 0 0 0 2px #ccc;');
-										document.querySelector('#show_text_status_officer').innerHTML = 'ไม่อยู่' ;
+										document.querySelector('#officerNAN').setAttribute("checked", "") ;
+										// document.querySelector('.toggle-switch-background').setAttribute('style' ,
+										// 'background-color: #ddd;box-shadow: inset 0 0 0 2px #ccc;');
+										// document.querySelector('#show_text_status_officer').innerHTML = 'ไม่อยู่' ;
 										change_to = 'null' ;
 									}
 
@@ -1343,18 +1660,23 @@
 
 						@endif
 						<!-- END switch officer 1669 -->
-				 	</div>
+				 	
+
+
 					<div class="search-bar flex-grow-1 header-notifications-list header-message-list">
 						<div class="position-relative search-bar-box">
 							<input type="text" class="form-control search-control" placeholder="Type to search..."> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>
 							<span class="position-absolute top-50 search-close translate-middle-y"><i class='bx bx-x'></i></span>
 						</div>
 					</div>
-					<div class="top-menu ms-auto">
-					</div>
+					<!-- <div class="top-menu ms-auto">
+					</div> -->
+
+
+
 					 <div class="user-box dropdown">
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        @if(!empty(Auth::user()->photo))
+                        	@if(!empty(Auth::user()->photo))
                                 <img alt="" style="width:60px;" class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ Auth::user()->photo }}" data-original-title="Usuario"> 
                             @else
                                 <img src="{{ asset('/partner/images/user/avatar-1.jpg') }}" style="width:60px;" class="img-radius" alt="User-Profile-Image">
@@ -2325,52 +2647,80 @@
 
 						count_sos_wait = result['count_sos_wait'] ;
 
+						
 						document.querySelector('#show_count_sos_wait').innerHTML = result['count_sos_wait'] ;
+						document.querySelector('#notiStatusOfficer').innerHTML = result['count_sos_wait'] ;
 						document.querySelector('.notification-icon').classList.remove('d-none');
 
 						document.querySelector('#modal_show_sos_wait_body').innerHTML = '';
+						let now = new Date();
 
-						let text_data_sos_html = '' ;
+
 						for (let i_wait = 0; i_wait < result['count_sos_wait']; i_wait++) {
-						  	// console.log(result[i_wait]['id']);
+							let photo_sos ;
+							if (result[i_wait]['photo_sos']){
+								photo_sos = `{{ url('/storage') .'/'. `+ result[i_wait]['photo_sos'] +`  }}`;
+							} else {
+								photo_sos = `{{ url('/img/stickerline/PNG/21.png') }}` ;
+							}
 
-						  	let photo_sos ;
-						  	if (result[i_wait]['photo_sos']){
-						  		photo_sos = `{{ url('/storage') .'/'. `+ result[i_wait]['photo_sos'] +`  }}`;
-						  	}else{
-						  		photo_sos = `{{ url('/img/stickerline/PNG/21.png') }}` ;
-						  	}
+							let phone_sos ;
+							if (result[i_wait]['phone_user']){
+								phone_sos = result[i_wait]['phone_user'].substr(0, 3) + '-' + result[i_wait]['phone_user'].substr(3, 3) + '-' + result[i_wait]['phone_user'].substr(6)
+							} else {
+								phone_sos = `ไม่มีเบอร์ติดต่อ` ;
+							}
 
-						  	text_data_sos_html = text_data_sos_html + 
-						  		`<div class="col-2">
-						  			<center>
-						  				<img src="`+ photo_sos +`"  class="rounded-circle" width="60" height="60" alt="">
-						  			</center>
-						  		</div>
-						  		<div class="col-5">
-	                            	ชื่อผู้ขอความช่วยเหลือ : `+ result[i_wait]['name_user'] +` <br>
-	                            	เบอร์โทร : `+ result[i_wait]['phone_user'] +`
-	                            </div>
-	                            <div class="col-3">
-	                            	เวลา : `+ result[i_wait]['created_at'] +`
-	                            </div>
-	                            <div class="col-2">
-	                            	<center>
-	                                	<span class="btn btn-success" style="width80%;" onclick="sos_1669_command_by('{{ Auth::user()->id }}' , `+ result[i_wait]['id'] +`);">
-	                                		สั่งการ
-	                                	</span>
-	                                </center>
-	                            </div>
-	                            <hr class="mt-2">`;
+							let createdAt = new Date(result[i_wait]['created_at']);
+
+							let timeDiffInMinutes = Math.floor((now - createdAt) / 1000 / 60);
+							let hours = Math.floor(timeDiffInMinutes / 60);
+							let minutes = timeDiffInMinutes % 60;
+
+							let formattedTimeDiff = hours > 0 ? hours + " ชั่วโมง " + minutes + " นาที" : minutes + " นาที";
+
+							let text_data_sos_html = `
+								<div class="userSosWait d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+								<div class="">
+									<img src="`+ photo_sos +`" class="rounded-circle" width="46" height="46" alt="" />
+								</div>
+								<div class="ms-2">
+									<h6 class="mb-1 font-14">`+ result[i_wait]['name_user'] +` 
+									<span class="badge badge-pill bg-light-danger text-danger" id="time-diff-`+ i_wait +`">`+ formattedTimeDiff +`</span></h6>
+									<p class="mb-0 font-13 text-secondary">`+ phone_sos + result[i_wait]['id'] +`</p>
+								</div>
+								<div class="list-inline d-flex  ms-auto"> 
+									<a onclick="sos_1669_command_by('{{ Auth::user()->id }}' , `+ result[i_wait]['id'] +`);" class="btnSosWait">สั่งการ</a>
+								</div>
+								</div>
+							`;
+
+							// append the html to the container
+							$('#modal_show_sos_wait_body').append(text_data_sos_html);
+
+							// update the time difference every minute
+							setInterval(() => {
+								let now = new Date();
+								let createdAt = new Date(result[i_wait]['created_at']);
+								let timeDiffInMinutes = Math.floor((now - createdAt) / 1000 / 60);
+								let hours = Math.floor(timeDiffInMinutes / 60);
+								let minutes = timeDiffInMinutes % 60;
+
+								let formattedTimeDiff = hours > 0 ? hours + " ชั่วโมง " + minutes + " นาที" : minutes + " นาที";
+
+								// update the text of the time difference element
+								$('#time-diff-' + i_wait).text(formattedTimeDiff);
+							}, 60000); // update every minute
 						}
 
-	        			document.querySelector('#modal_show_sos_wait_body').insertAdjacentHTML('beforeend', text_data_sos_html);
+	        			
 	        		}
 
 				}
             });
 
 	}
+
 
 	function alet_new_sos_1669(result) {
 

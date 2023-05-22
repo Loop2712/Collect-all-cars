@@ -28,19 +28,31 @@
     }
 
     .up_down {
-        animation: up-down 2s cubic-bezier(0.87, 0, 0.13, 1) 0s 2 alternate-reverse both;
+        animation-name: slideDownAndUp;
+        animation-duration:3s;
     }
 
-    @keyframes up-down {
+    @keyframes slideDownAndUp {
         0% {
-            opacity: 1;
-            transform: translateY(23vh);
+            transform: translateY(0);
         }
-
+        10% {
+            transform: translateY(100px);
+        }
+        90% {
+            transform: translateY(100px);
+        }
         100% {
-            opacity: 0;
-            transform: translateY(0px);
+            transform: translateY(0);
         }
+    }
+
+*{
+    font-family: 'Mitr', sans-serif;
+}
+    
+    #userpass{
+        resize: none;
     }
 </style>
 <div id="alert_copy" class="div_alert" role="alert">
@@ -51,14 +63,44 @@
 
 <br>
     <div class="card radius-10 " >
-        <div class="card-header border-bottom-0 bg-transparent">
-            <div class="d-flex align-items-center">
-                <div>
-                    <h5 class="font-weight-bold mb-0">บัญชีผู้ใช้ {{ $partners }}</h5>
+       
+        @if($user_old == "No") 
+
+            <div class="row g-0">
+                <div class="col-lg-5 border-end">
+                    <div class="card-body">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" width="130" alt="">
+                            </div>
+                            <h4 class="mt-5 font-weight-bold">สร้างบัญชีสำเร็จ</h4>
+                            <p class="text-muted">คุณได้สร้างบัญชีใหม่เรียบร้อยแล้ว! สามารถเข้าสู่ระบบด้วยชื่อผู้ใช้และรหัสผ่านของคุณ</p>
+                            <div class="mb-3 mt-5">
+                                <label class="form-label">ชื่อผู้ใช้และรหัสผ่าน</label>
+                                <input class="form-control" type="hidden" name="username" id="username" value="{{ $username }}" readonly="">
+                                <input class="form-control" type="hidden" name="password" id="password" value="{{ $password }}" readonly="">
+                                <textarea class="form-control " name="userpass" id="userpass" readonly></textarea>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn btn-primary" onclick="CopyToClipboard('userpass')">คัดลอก</button> 
+                                <a class="btn btn-light" onclick="window.history.back();"><i class="bx bx-arrow-back mr-1"></i>ย้อนกลับ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 d-flex align-items-center justify-content-center p-5">
+                    <img src="{{ asset('/img/more/success.svg') }}" class="img-fluid" width="70%" height="70%" alt="...">
                 </div>
             </div>
-        </div>
-        @if($user_old == "No")
+
+
+            <!-- <div class="card-header border-bottom-0 bg-transparent">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h5 class="font-weight-bold mb-0">บัญชีผู้ใช้ {{ $partners }}</h5>
+                    </div>
+                </div>
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 col-md-6">
@@ -73,7 +115,7 @@
                 <br>
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <textarea class="form-control" name="userpass" id="userpass" cols="20" rows="3" readonly></textarea>
+                        <textarea class="form-control" name="userpass" id="userpass" readonly></textarea>
                     </div>
                 </div>
                 <br>
@@ -88,15 +130,8 @@
                     </div>
                 </div>
             </div>
-        @else
-
-        
-
             <div class="card-body">
                 <div class="row">
-                    <div class="col-12">
-                        มีผู้ใช้นี้อยู่แล้ว
-                    </div>
                     <div id="go_back" class="col-12 d-">
                         <br>
                         <a onclick="window.history.back();" class="btn btn-sm btn-outline-warning">
@@ -104,7 +139,30 @@
                         </a>
                     </div>
                 </div>
+            </div> -->
+        @else
+            <div class="row g-0 py-5">
+                <div class="col col-xl-5 d-flex align-items-center">
+                    <div class="card-body p-4 ">
+                        <h1 class="display-1">
+                            <span class="text-primary">E</span><span class="text-danger">R</span><span class="text-success">R</span><span class="text-primary">O</span><span class="text-danger">R</span>
+                        </h1>
+                        @php
+                            $name = request()->query('name');
+                        @endphp
+                        <h2 class="font-weight-bold display-4">การสร้างไม่สำเร็จ</h2>
+                            <p>ไม่สามารถสร้างบัญชี <b>{{$name}}</b> ได้
+                            <br>เนื่องจากมีบัญชีนี้อยู่ในระบบแล้ว.
+                        <div class="mt-5"> <a href="{{ url('/partner_index') }}" class="btn btn-primary btn-lg px-md-5 radius-30">หน้าหลัก</a>
+                            <a onclick="window.history.back();" class="btn btn-outline-dark btn-lg ms-3 px-md-5 radius-30">ย้อนกลับ</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-7">
+                    <img src="{{ asset('/img/more/create_user.svg') }}" class="img-fluid" alt="">
+                </div>
             </div>
+            <!--end row-->
         @endif
     </div>
 <script>
