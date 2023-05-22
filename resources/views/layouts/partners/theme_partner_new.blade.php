@@ -343,64 +343,7 @@
 
         
         /*แจ้งเตือน SOS ยังไม่ได้ดำเนินการ*/
-        .notification-count {
-  position: absolute;
-  top: -12px;
-  right: -12px;
-  background-color: red;
-  color: white;
-  width: 24px;
-  height: 24px;
-  font-size: 16px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.notification-icon {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #fc6d6d;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 99999;
-  right: 4%;
-  animation: border-flash 1s infinite;
-}
-
-.countWaiting{
-	position: absolute;
-	top: -12px;
-  left: -12px;
-  background-color: blue;
-  color: white;
-  width: 24px;
-  height: 24px;
-  font-size: 16px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@keyframes border-flash {
-  0% {
-    box-shadow: 0 0 0 2px white;
-  }
-  50% {
-    box-shadow: 0 0 0 2px red;
-  }
-  100% {
-    box-shadow: 0 0 0 2px white;
-  }
-}
+      
 
 .nav-wait-officer .nav-link.active {
 		border-color: red red #fff !important;
@@ -417,13 +360,123 @@
 		right: 5px;
 	}
 
-        
+
+	
+
+
+/* 
+.countWaiting{
+	position: absolute;
+	top: -12px;
+  left: -12px;
+  background-color: blue;
+  color: white;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+@keyframes border-flash-danger {
+  0% {
+    box-shadow: 0 0 0 2px white;
+  }
+  50% {
+    box-shadow: 0 0 0 2px red;
+  }
+  100% {
+    box-shadow: 0 0 0 2px white;
+  }
+}
+
+@keyframes border-flash-blue {
+  0% {
+    box-shadow: 0 0 0 2px white;
+  }
+  50% {
+    box-shadow: 0 0 0 2px blue;
+  }
+  100% {
+    box-shadow: 0 0 0 2px white;
+  }
+}
+        .notification_group{
+			position: fixed;
+			bottom: 20px;
+  			right: 60px;
+			float: right;
+			z-index: 99999;
+
+		}
+		.notification-icon {
+			position: relative;
+			margin-right: 10px;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			z-index: 99999;
+			/* animation: border-flash 1s infinite; */
+		}
+		.notification-count {
+			position: absolute;
+			top: -12px;
+			right: -12px;
+			/* background-color: red; */
+			color: white;
+			width: 24px;
+			height: 24px;
+			font-size: 16px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.count-danger{
+			background-color: red;
+		}
+
+		.count-blue{
+			background-color: blue;
+		}
+
+		.notification-danger{
+			background-color: #fc6d6d; 
+			animation: border-flash-danger 1s infinite;
+		}
+		.notification-primary{
+			background-color: #4e73ff;
+			animation: border-flash-blue 1s infinite;
+		}
+
     </style>
 </head>
 
 <body>
 	<!-- ///// แจ้งเตือน SOS ยังไม่ได้ดำเนินการ ///// -->
-	<div class="notification-icon">
+	<div class="notification_group">
+		<div class="notification-icon d-none float-end notification-danger" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
+		  	<span id="show_num_count_wait" class="notification-count count-danger">
+		  		<span class="text-white" id="show_count_sos_wait">0</span>
+		  	</span>
+		  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
+		</div>
+
+		<div class="notification-icon d-none float-end notification-primary" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
+		  	<span id="show_num_count_helping" class="notification-count count-blue">
+		  		<span class="text-white" id="show_count_sos_helping">0</span>
+		  	</span>
+		  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
+		</div>
+	</div>
+	
+	<!-- <div class="notification_group">
 		<div class="notification-icon-wait d- float-end" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
 		  	<span id="show_num_count_wait" class="notification-count">
 		  		<span class="text-white" id="show_count_sos_wait">0</span>
@@ -438,7 +491,7 @@
 		  	</span>
 		  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
 		</div>
-	</div>
+	</div> -->
 
 <!-- Modal -->
 <div class="modal fade" id="modal_show_sos_wait" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

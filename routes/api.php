@@ -260,3 +260,8 @@ Route::get('/change_status_officer_to/{officer_command_id}/{sub_organization}/{c
 // SOS nationalities
 Route::get('/nationalities/send_pass_code_to_line/{language}/{id_guoup_line}', 'Nationalitie_group_linesController@send_pass_code_to_line');
 Route::get('/nationalities/create_new_sos_group_line/{language}/{id_guoup_line}', 'Nationalitie_group_linesController@create_new_sos_group_line');
+
+
+
+Route::get('/video_call', 'AgoraController@token');
+
