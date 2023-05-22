@@ -1370,6 +1370,10 @@
                                             <button mock_up_mark="status" class=" btn-status main-shadow main-radius">
                                                 รับแจ้งเหตุ
                                             </button>
+                                            <!-- command_by -->
+                                            <!-- <button class="btn btn-sm btn-info text-white main-shadow main-radius float-end">
+                                                สั่งการโดย : <text mock_up_mark="name_command_by"></text>
+                                            </button> -->
                                         </span>
                                     </div>
                                         
@@ -1514,6 +1518,12 @@
                                                         </button>
                                                     @break
                                                 @endswitch
+                                                <!-- command_by -->
+                                                @if(!empty($item->command_by))
+                                                <button class="btn btn-sm btn-info text-white main-shadow main-radius float-end">
+                                                    สั่งการโดย : <text>{{ $item->officers_command_by->name_officer_command }}</text>
+                                                </button>
+                                                @endif
                                             </span>
                                            
                                         </div>

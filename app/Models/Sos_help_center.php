@@ -43,6 +43,10 @@ class Sos_help_center extends Model
         return $this->belongsTo('App\User', 'helper_id' , 'id'); 
     }
 
+    public function officers_command_by(){
+        return $this->belongsTo('App\Models\Data_1669_officer_command', 'command_by' , 'id'); 
+    }
+
 
 
     // เชื่อมกับตัวเอง

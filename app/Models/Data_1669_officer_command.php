@@ -30,5 +30,9 @@ class Data_1669_officer_command extends Model
     public function user(){
         return $this->belongsTo('App\User', 'user_id', 'id'); 
     }
+
+    public function sos_help_center(){
+        return $this->hasMany('App\Models\Sos_help_center', 'command_by');
+    }
     
 }
