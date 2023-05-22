@@ -453,6 +453,8 @@
 		.notification-primary{
 			background-color: #4e73ff;
 			animation: border-flash-blue 1s infinite;
+		}.badge-pill{
+			font-size: .8rem;
 		}
 
     </style>
@@ -510,9 +512,70 @@
 					<div class="tab-content pt-3">
 						<div class="tab-pane fade active" id="modal_show_sos_wait_body" role="tabpanel">
 							<!-- รอสั่งการ -->
+
+							<div class="userSosWait d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+								<div class="mr-5">
+									<img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/21.png" class="imgSos" width="70" height="70" alt="" />
+								</div>
+								<div class="ms-2">
+									<h6 class="mb-1 font-14">lucky</h6>
+									<p class="mb-0 font-13 text-secondary">081-234-5678</p>
+									<span class="badge badge-pill bg-light-danger text-danger " > <span>ผ่านมาแล้ว</span> <span>15 นาที</span></span>
+								</div>
+								<div class="list-inline d-flex  ms-auto"> 
+									<a onclick="sos_1669_command_by('{{ Auth::user()->id }}' , `+ result[i_wait]['id'] +`);" class="btnSosWait">สั่งการ</a>
+								</div>
+							</div>
 						</div>
 						<div class="tab-pane fade" id="wait_data" role="tabpanel">
 							<!-- เคสที่ดำเนินการอยู่ -->
+
+							<style>
+								.mr{
+									margin-right: .5rem	!important;
+								}.pl{
+									padding-left: .5rem !important;
+								}.imgSos{
+									border-radius: 5px;
+									object-fit: cover;
+									margin-right: .7rem;
+								}
+							</style>
+							<div class="userSosWait d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+								<div class="mr-5">
+									<img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/21.png" class="imgSos" width="70" height="70" alt="" />
+								</div>
+								
+								<div class="w-100 pl">
+									<div class="d-flex align-items-center">
+										<h6	h6 class="d-flex align-items-center mr"> 2050-1553-1551</h6>
+										<span class="badge badge-pill bg-light-danger text-danger mr" > IDC <br> เขียว </span>
+										<span class="badge badge-pill bg-light-danger text-danger mr" > RC <br> แดง </span>
+										<span class="badge badge-pill bg-light-danger text-danger ms-auto" > ออกจากฐาน </span>
+									</div>
+
+									<div class="d-flex align-items-center row">
+										<div class="col-6 border-right">
+											<h6 class="mb-1 font-14">ข้อมูลผู้ขอความช่วยเหลือ</h6>
+											<p class="mb-0 font-13 text-secondary">lucky</p>
+											<p class="mb-0 font-13 text-secondary">081-234-5678</p>
+
+										</div>
+										<div class="col-6"> 
+											<div class="w-100">
+												<span class="mb-1 font-14 h5">ข้อมูลหน่วยแพทย์</span>
+												<div class="float-end">
+													<span class="badge badge-pill bg-light-danger text-danger mr" > aa </span>
+													<span class="badge badge-pill bg-light-danger text-danger" > aa </span>
+												</div>
+											</div>
+											<p class="mb-0 font-13 text-secondary">ชื่อเจ้าหน้าที่ : Thanakorn</p>
+											<p class="mb-0 font-13 text-secondary">หน่วยแพทย์ : วีเช็ค</p>
+										</div>
+									</div>
+								</div>
+								
+							</div>
 						</div>
 					</div>
 				</div>
