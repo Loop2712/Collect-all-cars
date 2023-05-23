@@ -526,9 +526,17 @@ class Sos_help_centerController extends Controller
             ->first();
 
         $check_data = Sos_help_center::where('notify' , $data_officer_command->id.' - '.$sub_organization)->first();
-        $sos_Helping = Sos_help_center::where('command_by' , $data_officer_command->id)
-            ->where('status' , '!=' , 'เสร็จสิ้น')
-            ->get();
+
+        // $sos_Helping = Sos_help_center::where('command_by' , $data_officer_command->id)
+        //     ->where('status' , '!=' , 'เสร็จสิ้น')
+        //     ->get();
+
+        $sos_Helping = DB::table('sos_help_centers')
+                ->join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+                ->where('sos_help_centers.command_by' , $data_officer_command->id)
+                ->where('sos_help_centers.status' , '!=' , 'เสร็จสิ้น')
+                ->select('sos_help_centers.*', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text','sos_1669_form_yellows.vehicle_type','sos_1669_form_yellows.operating_suit_type')
+                ->get();
         
         if ($check_data) {
 

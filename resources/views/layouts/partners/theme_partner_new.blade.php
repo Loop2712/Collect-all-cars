@@ -463,22 +463,23 @@
 <body>
 	<!-- ///// แจ้งเตือน SOS ยังไม่ได้ดำเนินการ ///// -->
 	<div class="notification_group">
-	<button data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">asdas</button>
 
+		<!-- <button data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">asdas</button> -->
 
-
-		<div id="div_noti_wai" class="notification-icon d-none float-end notification-danger" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
+		<!-- div_noti_wait -->
+		<div id="div_noti_wait" class="notification-icon d-none float-end notification-danger" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('wait');">
 		  	<span class="notification-count count-danger">
 		  		<span class="text-white" id="show_count_sos_wait">0</span>
 		  	</span>
 		  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
 		</div>
-
-		<div id="div_noti_helpin" class="notification-icon d-none float-end notification-primary" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('helping');">
+		<!-- div_noti_helping -->
+		<div id="div_noti_helping" class="notification-icon d-none float-end notification-primary" data-toggle="modal" data-target="#modal_show_sos_wait" onclick="click_show_data_sos_hepl_wait('helping');">
 		  	<span class="notification-count count-blue">
 		  		<span class="text-white" id="show_count_sos_helping">0</span>
 		  	</span>
-		  	<i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i>
+		  	<!-- <i class="fa-solid fa-light-emergency-on fa-shake text-white" style="font-size: 18px;"></i> -->
+		  	<i class="fa-duotone fa-spinner fa-spin-pulse text-white" style="font-size: 18px;"></i>
 		</div>
 	</div>
 
@@ -517,6 +518,7 @@
 						<div class="tab-pane fade active" id="modal_show_sos_wait_body" role="tabpanel">
 							<!-- รอสั่งการ -->
 
+							<!-- Mock up รอสั่งการ -->
 							<div class="userSosWait d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
 								<div class="mr-5">
 									<img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/21.png" class="imgSos" width="70" height="70" alt="" />
@@ -530,21 +532,26 @@
 									<a onclick="sos_1669_command_by('{{ Auth::user()->id }}' , `+ result[i_wait]['id'] +`);" class="btnSosWait">สั่งการ</a>
 								</div>
 							</div>
+							<!-- END Mock up รอสั่งการ -->
+
 						</div>
+						<style>
+							.mr{
+								margin-right: .5rem	!important;
+							}.pl{
+								padding-left: .5rem !important;
+							}.imgSos{
+								border-radius: 5px;
+								object-fit: cover;
+								margin-right: .7rem;
+							}
+						</style>
+
 						<div class="tab-pane fade" id="wait_data" role="tabpanel">
 							<!-- เคสที่ดำเนินการอยู่ -->
 
-							<style>
-								.mr{
-									margin-right: .5rem	!important;
-								}.pl{
-									padding-left: .5rem !important;
-								}.imgSos{
-									border-radius: 5px;
-									object-fit: cover;
-									margin-right: .7rem;
-								}
-							</style>
+							
+							<!-- Mock up เคสที่ดำเนินการอยู่ -->
 							<div class="userSosWait d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
 								<div class="mr-5">
 									<img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/21.png" class="imgSos" width="70" height="70" alt="" />
@@ -558,7 +565,7 @@
 										<span class="badge badge-pill bg-light-danger text-danger ms-auto" > ออกจากฐาน </span>
 									</div>
 
-									<div class="d-flex align-items-center row">
+									<div class="d-flex align-items-center row mt-2">
 										<div class="col-6 border-right">
 											<h6 class="mb-1 font-14">ข้อมูลผู้ขอความช่วยเหลือ</h6>
 											<p class="mb-0 font-13 text-secondary">lucky</p>
@@ -580,6 +587,8 @@
 								</div>
 								
 							</div>
+							<!-- END Mock up เคสที่ดำเนินการอยู่ -->
+
 						</div>
 					</div>
 				</div>
@@ -2676,7 +2685,7 @@
 		fetch("{{ url('/') }}/api/check_ask_for_help_1669/" + sub_organization + '/' + user_id)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 result['admin_id'] = user_id ;
 
                 // แสดงผลกระดิ่งล่างขวา
@@ -2709,28 +2718,223 @@
 
 						if (result['count_sos_Helping'] > 0){
 
+                			console.log(result['data_sos_Helping']);
+
 							document.querySelector('#div_noti_helping').classList.remove('d-none')
 							document.querySelector('#notiStatusOfficer').classList.remove('d-none');
 
 							document.querySelector('#wait_data').innerHTML = '' ;
 
 							for (let i_Helping = 0; i_Helping < result['count_sos_Helping']; i_Helping++) {
+
+								let photo_sos_helping ;
+								if (result['data_sos_Helping'][i_Helping]['photo_sos']){
+									photo_sos_helping = `{{ url('/storage') .'/'. `+ result['data_sos_Helping'][i_Helping]['photo_sos'] +`  }}`;
+								} else {
+									photo_sos_helping = `{{ url('/img/stickerline/PNG/21.png') }}` ;
+								}
+
+								let phone_sos_helping ;
+								if (result['data_sos_Helping'][i_Helping]['phone_user']){
+									phone_sos_helping = result['data_sos_Helping'][i_Helping]['phone_user'].substr(0, 3) + '-' + result['data_sos_Helping'][i_Helping]['phone_user'].substr(3, 3) + '-' + result['data_sos_Helping'][i_Helping]['phone_user'].substr(6)
+								} else {
+									phone_sos_helping = `ไม่มีเบอร์ติดต่อ` ;
+								}
+
+								let color_idc_helping ;
+								switch(result['data_sos_Helping'][i_Helping]['idc']) {
+								  	case 'แดง(วิกฤติ)':
+								    	color_idc_helping = 'danger' ;
+								    break;
+								    case 'เหลือง(เร่งด่วน)':
+								    	color_idc_helping = 'warning' ;
+								    break;
+								    case 'เขียว(ไม่รุนแรง)':
+								    	color_idc_helping = 'success' ;
+								    break;
+								    case 'ขาว(ทั่วไป)':
+								    	color_idc_helping = 'secondary' ;
+								    break;
+								    case 'ดำ(รับบริการสาธารณสุขอื่น)':
+								    	color_idc_helping = 'black' ;
+								    break;
+								  	default:
+								    	color_idc_helping = 'info' ;
+								    	result['data_sos_Helping'][i_Helping]['idc'] = 'ยังไม่ประเมิน' ;
+								}
+
+								let color_rc_helping ;
+								switch(result['data_sos_Helping'][i_Helping]['rc']) {
+								  	case 'แดง(วิกฤติ)':
+								    	color_rc_helping = 'danger' ;
+								    break;
+								    case 'เหลือง(เร่งด่วน)':
+								    	color_rc_helping = 'warning' ;
+								    break;
+								    case 'เขียว(ไม่รุนแรง)':
+								    	color_rc_helping = 'success' ;
+								    break;
+								    case 'ขาว(ทั่วไป)':
+								    	color_rc_helping = 'secondary' ;
+								    break;
+								    case 'ดำ(รับบริการสาธารณสุขอื่น)':
+								    	color_rc_helping = 'black' ;
+								    break;
+								  	default:
+								    	color_rc_helping = 'info' ;
+								    	result['data_sos_Helping'][i_Helping]['rc'] = 'ยังไม่ประเมิน' ;
+								}
+
+								let color_status_helping ;
+								switch(result['data_sos_Helping'][i_Helping]['status']) {
+								  	case 'รับแจ้งเหตุ':
+								    	color_status_helping = 'btn-request' ;
+								    break;
+								    case 'รอการยืนยัน':
+								    	color_status_helping = 'btn-order' ;
+								    break;
+								    case 'ออกจากฐาน':
+								    	color_status_helping = 'btn-leave' ;
+								    break;
+								    case 'ถึงที่เกิดเหตุ':
+								    	color_status_helping = 'btn-to' ;
+								    break;
+								    case 'ออกจากที่เกิดเหตุ':
+								    	color_status_helping = 'btn-leave-the-scene' ;
+								    break;
+								    case 'เสร็จสิ้น':
+								    	color_status_helping = 'btn-hospital' ;
+								    break;
+
+								  	default:
+								    	color_status_helping = 'secondary' ;
+								    	result['data_sos_Helping'][i_Helping]['status'] = 'ไม่ได้ระบุ' ;
+								}
+
+								let name_helper_helping ;
+								if (result['data_sos_Helping'][i_Helping]['name_helper']){
+									name_helper_helping = result['data_sos_Helping'][i_Helping]['name_helper'] ;
+								}else{
+									name_helper_helping = 'ไม่ได้ระบุ' ;
+								}
+
+								let organization_helper_helping ;
+								if (result['data_sos_Helping'][i_Helping]['organization_helper']){
+									organization_helper_helping = result['data_sos_Helping'][i_Helping]['organization_helper'] ;
+								}else{
+									organization_helper_helping = 'ไม่ได้ระบุ' ;
+								}
+
+								let operating_suit_type_helping ;
+								let color_operating_suit_type ;
+								switch(result['data_sos_Helping'][i_Helping]['operating_suit_type']) {
+								  	case 'FR':
+								    	color_operating_suit_type = 'success' ;
+								    	operating_suit_type_helping = result['data_sos_Helping'][i_Helping]['operating_suit_type']
+								    break;
+								    case 'BLS':
+								    	color_operating_suit_type = 'warning' ;
+								    	operating_suit_type_helping = result['data_sos_Helping'][i_Helping]['operating_suit_type']
+								    break;
+								    case 'ILS':
+								    	color_operating_suit_type = 'danger' ;
+								    	operating_suit_type_helping = result['data_sos_Helping'][i_Helping]['operating_suit_type']
+								    break;
+								    case 'ALS':
+								    	color_operating_suit_type = 'danger' ;
+								    	operating_suit_type_helping = result['data_sos_Helping'][i_Helping]['operating_suit_type']
+								    break;
+
+								  	default:
+								    	color_operating_suit_type = 'secondary' ;
+								    	operating_suit_type_helping = 'ไม่ได้ระบุ' ;
+								}
+
+								let vehicle_type_helping ;
+								switch(result['data_sos_Helping'][i_Helping]['vehicle_type']) {
+								  	case 'รถ':
+								    	vehicle_type_helping = `<i class="fa-solid fa-car"></i> ` + result['data_sos_Helping'][i_Helping]['vehicle_type']
+								    break;
+								    case 'อากาศยาน':;
+								    	vehicle_type_helping = `<i class="fa-solid fa-helicopter"></i> ` + result['data_sos_Helping'][i_Helping]['vehicle_type']
+								    break;
+								    case 'เรือ ป.๑':
+								    	vehicle_type_helping = `<i class="fa-duotone fa-ship"></i> ` + result['data_sos_Helping'][i_Helping]['vehicle_type']
+								    break;
+								    case 'เรือ ป.๒':
+								    	vehicle_type_helping = `<i class="fa-duotone fa-ship"></i> ` + result['data_sos_Helping'][i_Helping]['vehicle_type']
+								    break;
+								    case 'เรือ ป.๓':
+								    	vehicle_type_helping = `<i class="fa-duotone fa-ship"></i> ` + result['data_sos_Helping'][i_Helping]['vehicle_type']
+								    break;
+								    case 'เรืออื่นๆ':
+								    	vehicle_type_helping = `<i class="fa-duotone fa-ship"></i> ` + result['data_sos_Helping'][i_Helping]['vehicle_type']
+								    break;
+
+								  	default:
+								    	vehicle_type_helping = 'ไม่ได้ระบุ' ;
+								}
+
+
 								let text_Helping_html = `
 									<div class="userSosWait d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
-										<div class="">
-											<img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/21.png" class="rounded-circle" width="46" height="46" alt="">
+										<div class="mr-5">
+											<img src="`+ photo_sos_helping +`" class="imgSos" width="70" height="70" alt="" />
 										</div>
-										<div class="ms-2">
-											<h6 class="mb-1 font-14">lucky 
-											<span class="badge badge-pill bg-light-primary text-primary" >2305-2601-0009</span></h6>
-											<p class="mb-0 font-13 text-secondary">เจ้าหน้าที่เบนซ์ ● VIICHECK</p>
-											<p class="mb-0 font-13 text-secondary">081-234-567822</p>
+										
+										<div class="w-100 pl">
+											<div class="d-flex align-items-center">
+												<h5	h6 class="d-flex align-items-center mr">
+													<b>`+ result['data_sos_Helping'][i_Helping]['operating_code'] +`</b>
+												</h5>
+												&nbsp;&nbsp;
+												<span class="badge badge-pill bg-light-`+ color_idc_helping +` text-`+ color_idc_helping +` mr" >
+													IDC 
+													<br> 
+													`+ result['data_sos_Helping'][i_Helping]['idc'] +` 
+												</span>
+												&nbsp;&nbsp;
+												<span class="badge badge-pill bg-light-`+ color_rc_helping +` text-`+ color_rc_helping +` mr" > 
+													RC 
+													<br> 
+													`+ result['data_sos_Helping'][i_Helping]['rc'] +` 
+												</span>
+												<span class="badge badge-pill `+ color_status_helping +`  ms-auto" > 
+													`+ result['data_sos_Helping'][i_Helping]['status'] +` 
+												</span>
+											</div>
+
+											<div class="d-flex align-items-center row mt-2">
+												<div class="col-6 border-right">
+													<h6 class="mb-1 font-14">ข้อมูลผู้ขอความช่วยเหลือ</h6>
+													<p class="mb-0 font-13 text-secondary">
+														`+ result['data_sos_Helping'][i_Helping]['name_user'] +` 
+													</p>
+													<p class="mb-0 font-13 text-secondary">`+ phone_sos_helping +`</p>
+
+												</div>
+												<div class="col-6"> 
+													<div class="w-100">
+														<span class="mb-1 font-14 h5">ข้อมูลหน่วยแพทย์</span>
+														<div class="float-end">
+															<span class="badge badge-pill bg-light-`+ color_operating_suit_type +` text-`+ color_operating_suit_type +` mr" > 
+																`+ operating_suit_type_helping +`
+															</span>
+															<span class="badge badge-pill bg-light-info text-info" > 
+																`+ vehicle_type_helping +`
+															</span>
+														</div>
+													</div>
+													<p class="mb-0 font-13 text-secondary">
+														ชื่อเจ้าหน้าที่ : `+ name_helper_helping +` 
+													</p>
+													<p class="mb-0 font-13 text-secondary">
+														หน่วยแพทย์ : `+ organization_helper_helping +`
+													</p>
+												</div>
+											</div>
 										</div>
-										<div class="list-inline d-flex  ms-auto"> 
-											<span class="btn btn-danger main-shadow main-radius">
-												รับแจ้งเหตุ
-											<span>
-										</div>
+										
 									</div>
 								`;
 
@@ -2830,19 +3034,40 @@
 
 							let formattedTimeDiff = hours > 0 ? hours + " ชั่วโมง " + minutes + " นาที" : minutes + " นาที";
 
+							// let text_data_sos_html = `
+							// 	<div class="userSosWait d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+							// 	<div class="">
+							// 		<img src="`+ photo_sos +`" class="rounded-circle" width="46" height="46" alt="" />
+							// 	</div>
+							// 	<div class="ms-2">
+							// 		<h6 class="mb-1 font-14">`+ result[i_wait]['name_user'] +` 
+							// 			<span class="badge badge-pill bg-light-danger text-danger" id="time-diff-`+ i_wait +`">
+							// 				`+ formattedTimeDiff +`
+							// 			</span>
+							// 		</h6>
+							// 		<p class="mb-0 font-13 text-secondary">`+ phone_sos + result[i_wait]['id'] +`</p>
+							// 	</div>
+							// 	<div class="list-inline d-flex  ms-auto"> 
+							// 		<a onclick="sos_1669_command_by('{{ Auth::user()->id }}' , `+ result[i_wait]['id'] +`);" class="btnSosWait">สั่งการ</a>
+							// 	</div>
+							// 	</div>
+							// `;
+
 							let text_data_sos_html = `
 								<div class="userSosWait d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
-								<div class="">
-									<img src="`+ photo_sos +`" class="rounded-circle" width="46" height="46" alt="" />
-								</div>
-								<div class="ms-2">
-									<h6 class="mb-1 font-14">`+ result[i_wait]['name_user'] +` 
-									<span class="badge badge-pill bg-light-danger text-danger" id="time-diff-`+ i_wait +`">`+ formattedTimeDiff +`</span></h6>
-									<p class="mb-0 font-13 text-secondary">`+ phone_sos + result[i_wait]['id'] +`</p>
-								</div>
-								<div class="list-inline d-flex  ms-auto"> 
-									<a onclick="sos_1669_command_by('{{ Auth::user()->id }}' , `+ result[i_wait]['id'] +`);" class="btnSosWait">สั่งการ</a>
-								</div>
+									<div class="mr-5">
+										<img src="`+ photo_sos +`" class="imgSos" width="70" height="70" alt="" />
+									</div>
+									<div class="ms-2">
+										<h6 class="mb-1 font-14">`+ result[i_wait]['name_user'] +` </h6>
+										<p class="mb-0 font-13 text-secondary">`+ phone_sos +`</p>
+										<span class="badge badge-pill bg-light-danger text-danger " >
+											<span>ผ่านมาแล้ว</span> <span id="time-diff-`+ i_wait +`">`+ formattedTimeDiff +`</span>
+										</span>
+									</div>
+									<div class="list-inline d-flex  ms-auto"> 
+										<a onclick="sos_1669_command_by('{{ Auth::user()->id }}' , `+ result[i_wait]['id'] +`);" class="btnSosWait">สั่งการ</a>
+									</div>
 								</div>
 							`;
 
