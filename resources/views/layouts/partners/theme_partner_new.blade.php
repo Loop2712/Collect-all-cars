@@ -1909,13 +1909,13 @@
 			</div>
 			<hr/>
 			<hr/>
-			<h6 type="button" class="mb-0" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+			<h6 type="button" class="mb-0" data-toggle="collapse" data-target="#collapse_set_group_line" aria-expanded="false" aria-controls="collapse_set_group_line">
 				<i class="fab fa-line text-success" style="font-size: 25px;"></i> ตั้งค่ากลุ่มไลน์
-				<a type="button" style="float:right;" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+				<a type="button" style="float:right;" data-toggle="collapse" data-target="#collapse_set_group_line" aria-expanded="false" aria-controls="collapse_set_group_line">
                 <i class="fas fa-sort-down"></i>
             </a>
 			</h6>
-            <div class="collapse" id="collapseExample">
+            <div class="collapse" id="collapse_set_group_line">
             	<br>
                 <ul id="ul_group_line" class="list-group">
                 	
@@ -2150,7 +2150,12 @@
 		        	}
 		        }, delayInMilliseconds);
                 
-                document.querySelector('#h4_name_partner').innerHTML = result[0]['name'];
+                if (result[0]['name'] === "สพฉ"){
+                	document.querySelector('#h4_name_partner').innerHTML = "ศูนย์สั่งการ";
+                }else{
+                	document.querySelector('#h4_name_partner').innerHTML = result[0]['name'];
+                }
+
                 document.querySelector('#color_of_partner').value = result[0]['name'];
                 document.querySelector('#check_name_partner').value = result[0]['name'];
                 document.querySelector('#class_color_menu').value = result[0]['class_color_menu'];
