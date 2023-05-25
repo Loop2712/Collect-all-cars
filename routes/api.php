@@ -250,8 +250,10 @@ Route::get('/get_forward_operation/{forward_id}', 'Sos_help_centerController@get
 Route::post('/update_number_officer/data_1669_officer_commands', 'Sos_help_centerController@update_number_officer');
 Route::get('/search_officer_Standby/{admin_id}', 'Sos_help_centerController@search_officer_Standby');
 Route::get('/Forward_notify/{officer_command_id}/{sos_id}', 'Sos_help_centerController@Forward_notify');
-Route::get('/check_status_officer_1669/{officer_command_id}/{sub_organization}', 'Sos_help_centerController@check_status_officer_1669');
+Route::get('/check_status_officer_1669/{officer_command_id}/{sub_organization}','Sos_help_centerController@check_status_officer_1669');
 Route::get('/change_status_officer_to/{officer_command_id}/{sub_organization}/{change_to}', 'Sos_help_centerController@change_status_officer_to');
+Route::get('/create_joint_sos_1669', 'Sos_help_centerController@create_joint_sos_1669');
+
 
     // SOS HELP CENTER FORM USER 
     Route::get('/check_unit_cf_sos_form_user/{sos_id}', 'Sos_help_centerController@check_unit_cf_sos_form_user');

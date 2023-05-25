@@ -139,7 +139,9 @@ class Sos_help_centerController extends Controller
             ->orderBy('province' , 'ASC')
             ->get();
 
-        return view('sos_help_center.edit', compact('data_forword_form', 'data_forword_to' , 'sos_help_center','all_provinces','data_form_yellow'));
+        $sos_1669_id = $id ;
+
+        return view('sos_help_center.edit', compact('data_forword_form', 'data_forword_to' , 'sos_help_center','all_provinces','data_form_yellow','sos_1669_id'));
     }
 
     /**
@@ -2056,6 +2058,137 @@ class Sos_help_centerController extends Controller
         }
         
         return $search_all_user; 
+
+    }
+
+    function create_joint_sos_1669(Request $request){
+
+        $requestData = $request->all();
+
+        $sos_1669_id = $requestData['sos_1669_id'];
+        $list = $requestData['list'];
+
+        $list_arr = explode("_" , $list) ;
+
+        $data_sos_main = Sos_help_center::where('id', $sos_1669_id)->first();
+        $data_sos_main_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $sos_1669_id)->first();
+        
+        $new_sos_by_joint = [] ;
+        $new_sos_by_joint['lat'] = $data_sos_main->lat ;
+        $new_sos_by_joint['lng'] = $data_sos_main->lng ;
+
+        $new_sos_by_joint['photo_sos'] = $data_sos_main->photo_sos ;
+        $new_sos_by_joint['name_user'] = $data_sos_main->name_user ;
+        $new_sos_by_joint['phone_user'] = $data_sos_main->phone_user ;
+        $new_sos_by_joint['user_id'] = $data_sos_main->user_id ;
+        $new_sos_by_joint['status'] = 'รอการยืนยัน' ;
+        $new_sos_by_joint['create_by'] = 'joint_with - sos_id ' . $sos_1669_id;
+        $new_sos_by_joint['time_create_sos'] = $data_sos_main->time_create_sos ;
+        $new_sos_by_joint['command_by'] = $data_sos_main->command_by ;
+        $new_sos_by_joint['address'] = $data_sos_main->address ;
+
+        $address_ep = explode("/" , $data_sos_main->address) ;
+        $province_name = $address_ep[0];
+        $district_name = $address_ep[1];
+
+        // สร้างเคส sos ร่วมทั้งหมด
+        $count_new_create_sos = count($list_arr) - 1 ;
+
+        $id_of_new_sos = array() ;
+        array_push($id_of_new_sos , (int)$sos_1669_id);
+
+        for ($i = 0; $i < (int)$count_new_create_sos; $i++){
+
+            // สร้างรหัส
+            $date_Y = date("y");
+            $date_m = date("m");
+
+            $sos_1669_province_codes = DB::table('sos_1669_province_codes')
+                ->where('province_name' , "LIKE"  , "%$province_name%")
+                ->where('district_name' , "LIKE" , "%$district_name%")
+                ->get();
+                $count_sos_area = 0 ;
+                $count_for_gen_code = 0 ;
+
+            foreach ($sos_1669_province_codes as $item) {
+                $province_code = $item->district_code ;
+                // count_sos
+                $old_count_sos = $item->count_sos ;
+                $count_sos_area = $count_sos_area + (int)$old_count_sos ;
+                // for gen code
+                $old_for_gen_code = $item->for_gen_code ;
+                // $count_for_gen_code = $count_for_gen_code + (int)$old_for_gen_code ;
+            }
+
+            $sum_count_sos_area = $count_sos_area + 1 ;
+            // $sum_for_gen_code = $count_for_gen_code + 1 ;
+            $sum_for_gen_code = (int)$old_for_gen_code + 1 ;
+
+            DB::table('sos_1669_province_codes')
+                ->where([ 
+                        ['district_code', $province_code],
+                    ])
+                ->update([
+                        'for_gen_code' => $sum_for_gen_code,
+                    ]);
+
+            $id_code = str_pad($sum_for_gen_code, 4, "0", STR_PAD_LEFT);
+            $operating_code = $date_Y.$date_m . "-" . $province_code . "-" . $id_code ;
+
+            $new_sos_by_joint['operating_code'] = $operating_code ;
+            // จบสร้างรหัส
+
+            $sos_help_center_last = "" ;
+            Sos_help_center::create($new_sos_by_joint);
+
+            sleep(1);
+            $sos_help_center_last = Sos_help_center::latest()->first();
+
+            $new_sos_by_joint['sos_help_center_id'] = $sos_help_center_last->id ;
+            $new_sos_by_joint['be_notified'] = $data_sos_main_yellow->be_notified ;
+            $new_sos_by_joint['location_sos'] = $data_sos_main_yellow->location_sos ;
+            $new_sos_by_joint['idc'] = $data_sos_main_yellow->idc ;
+
+            array_push($id_of_new_sos , $sos_help_center_last->id);
+
+            Sos_1669_form_yellow::create($new_sos_by_joint);
+
+        }
+
+        // ดำเนินการส่งข้อมูลให้หน่วยแพทย์ตามเคส และอัพเดทเคสทั้งหมดให้มี joint_case ร่วมกัน
+        for ($xi = 0; $xi < count($id_of_new_sos); $xi++){
+
+            if ($xi == 0){
+
+                DB::table('sos_help_centers')
+                ->where([ 
+                        [ 'id', $id_of_new_sos[$xi] ],
+                    ])
+                ->update([
+                        'status' => 'รอการยืนยัน',
+                        'joint_case' => $id_of_new_sos,
+                    ]);
+
+            }else{
+
+                DB::table('sos_help_centers')
+                ->where([ 
+                        [ 'id', $id_of_new_sos[$xi] ],
+                    ])
+                ->update([
+                        'joint_case' => $id_of_new_sos,
+                    ]);
+
+            }
+
+            // ส่งไลน์ให้หน่วยอแพทย์ตามเคส และอัพเดทข้อมูลหน่วยแพทย์เข้า sos_help_center
+            // 
+            
+        }
+
+
+        return $id_of_new_sos;
+        // return implode(" / ",$id_of_new_sos);
 
     }
 

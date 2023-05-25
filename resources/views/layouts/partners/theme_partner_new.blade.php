@@ -2723,7 +2723,7 @@
 
 						if (result['count_sos_Helping'] > 0){
 
-                			console.log(result['data_sos_Helping']);
+                			// console.log(result['data_sos_Helping']);
 
 							document.querySelector('#div_noti_helping').classList.remove('d-none')
 							document.querySelector('#notiStatusOfficer').classList.remove('d-none');
@@ -4191,24 +4191,26 @@
 
 <script>
 function toggleAnimation() {
-  var animationClass = this.dataset.animationClass;
-  var iconElement = this.querySelector('i');
+  	var animationClass = this.dataset.animationClass;
+  	var iconElement = this.querySelector('i');
 
-  iconElement.classList.add(animationClass);
+  	if (iconElement){
+	  	iconElement.classList.add(animationClass);
 
-  this.addEventListener('mouseleave', function() {
-    iconElement.classList.remove(animationClass);
-  });
+		this.addEventListener('mouseleave', function() {
+		    iconElement.classList.remove(animationClass);
+		});
 
-  var parentElement = this.parentElement;
+		var parentElement = this.parentElement;
 
-  parentElement.addEventListener('mouseenter', function() {
-    iconElement.classList.remove(animationClass);
-  });
+		parentElement.addEventListener('mouseenter', function() {
+		    iconElement.classList.remove(animationClass);
+		});
 
-  parentElement.addEventListener('mouseleave', function() {
-    iconElement.classList.remove(animationClass);
-  });
+		parentElement.addEventListener('mouseleave', function() {
+		    iconElement.classList.remove(animationClass);
+		});
+	}
 }
 
 document.querySelectorAll('.btn').forEach(function(button) {

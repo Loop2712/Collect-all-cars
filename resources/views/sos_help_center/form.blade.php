@@ -1762,7 +1762,7 @@ color: #fff;
                                     </a>
                                 </li>
                                 <li class="nav-item nav-pills nav-pills-danger m-2 ">
-                                    <a  class="nav-link btn-outline-danger btn" data-toggle="modal" data-target="#Modal-Mass-casualty-incident"> 
+                                    <a  class="nav-link btn-outline-danger btn" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="open_map_joint_sos_1669();"> 
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
                                                 <i class="fa-solid fa-hospital-user"></i>
@@ -1788,30 +1788,7 @@ color: #fff;
             </div>
             <!-- ////////////////////////////////////// cardHeader ////////////////////////////////////// -->
 
-
-
-
-            <!-- ///////////////////////////////////////// Modal อุบัติเหตุร่วม /////////////////////////////////////////////////// -->
-            <div class="modal fade" id="Modal-Mass-casualty-incident" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                    </div>
-                </div>
-            </div>
-            <!-- ///////////////////////////////////////// Modal อุบัติเหตุร่วม /////////////////////////////////////////////////// -->
+            @include ('sos_help_center.form_joint_sos')
 
             <!--------------------------------- form yellow --------------------------------->
             <div class="tab-pane fade show active" id="form_yellow" role="tabpanel">
@@ -2192,6 +2169,10 @@ color: #fff;
     }
 
     #mapTest {
+      height: calc(80vh);
+    }
+
+    #map_joint_sos_1669{
       height: calc(80vh);
     }
 </style>
