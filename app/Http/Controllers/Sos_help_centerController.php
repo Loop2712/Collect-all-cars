@@ -2160,21 +2160,6 @@ class Sos_help_centerController extends Controller
         // ดำเนินการส่งข้อมูลให้หน่วยแพทย์ตามเคส และอัพเดทเคสทั้งหมดให้มี joint_case ร่วมกัน
         for ($xi = 0; $xi < count($id_of_new_sos); $xi++){
 
-            // if ($xi == 0){
-
-            //     DB::table('sos_help_centers')
-            //     ->where([ 
-            //             [ 'id', $id_of_new_sos[$xi] ],
-            //         ])
-            //     ->update([
-            //             'status' => 'รอการยืนยัน',
-            //             'joint_case' => $id_of_new_sos,
-            //         ]);
-
-            // }else{
-
-            // }
-
             DB::table('sos_help_centers')
                 ->where([ 
                         [ 'id', $id_of_new_sos[$xi] ],
@@ -2191,14 +2176,43 @@ class Sos_help_centerController extends Controller
             $operating_unit_id = $list_arr_ep[2] ;
 
             // ส่งไลน์ให้หน่วยอแพทย์ตามเคส และอัพเดทข้อมูลหน่วยแพทย์เข้า sos_help_center
-            $this->send_data_sos_to_operating_unit( $sos_id, $operating_unit_id, $user_id , $distance);
+            // $this->send_data_sos_to_operating_unit( $sos_id, $operating_unit_id, $user_id , $distance);
             
         }
 
-
-        return $id_of_new_sos;
+        return "OK";
         // return implode(" / ",$id_of_new_sos);
 
+    }
+
+    function check_sos_joint_case(Request $request){
+
+        $requestData = $request->all();
+        $sos_1669_id = $requestData['sos_1669_id'];
+
+        $sos_help_center = Sos_help_center::where('id' , $sos_1669_id)->first();
+
+        $sos_joint_case = $sos_help_center->joint_case ;
+        $arr_joint_case = json_decode($sos_joint_case, true);
+
+        $Data_arr = [];
+
+        for ($xi = 0; $xi < count($arr_joint_case); $xi++){
+
+            $sos_by_case = Sos_help_center::where('id' , $arr_joint_case[$xi])->first();
+            $arr_by_case = [];
+
+            $arr_by_case['id'] = $sos_by_case->id;
+            $arr_by_case['status'] = $sos_by_case->status;
+            $arr_by_case['wait'] = $sos_by_case->wait;
+            $arr_by_case['operating_code'] = $sos_by_case->operating_code;
+            $arr_by_case['time_command'] = $sos_by_case->time_command;
+
+            $Data_arr[$xi] = $arr_by_case ;
+
+        }
+
+        return $Data_arr ;
     }
 
 }

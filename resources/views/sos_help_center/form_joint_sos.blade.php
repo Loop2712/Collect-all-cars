@@ -2,6 +2,7 @@
 <div class="modal fade" id="Modal-Mass-casualty-incident" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
+            <button id="btn_close_casualty_incident" type="button" class="close d-none" data-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-8">
@@ -127,7 +128,8 @@
                                     <h5>
                                         ทั้งหมด : <b><span id="show_count_select_operating">0</span></b> หน่วยปฏิบัติการ
                                     </h5>
-                                    <span class="mt-3 btn btn-primary main-shadow main-radius" style="width: 60%;"
+                                    <p id="show_error_noselect" class="text-danger d-none">กรุณาเลือกหน่วยแพทย์</p>
+                                    <span id="btn_send_data_joint_sos" class="mt-3 btn btn-primary main-shadow main-radius" style="width: 60%;"
                                     onclick="send_data_joint_sos('{{ $sos_1669_id }}');">
                                         ยืนยัน
                                     </span>
@@ -142,6 +144,33 @@
     </div>
 </div>
 <!-- //////////////////// END Modal อุบัติเหตุร่วม //////////////////// -->
+
+
+<!-- //////////////////// Modal แสดงเจ้าหน้าที่ ที่เลือก //////////////////// -->
+<!-- Button trigger modal -->
+<button id="btn_open_modal_show_officer_joint" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_show_officer_joint">
+    Modal แสดงเจ้าหน้าที่ ที่เลือก
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_show_officer_joint" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_show_officer_joint" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <button id="btn_close_modal_show_officer_joint" type="button" class="close d-none" data-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body">
+                <div id="show_officer_joint_content" class="row">
+                    <!-- Modal แสดงเจ้าหน้าที่ ที่เลือก -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- //////////////////// END Modal แสดงเจ้าหน้าที่ ที่เลือก //////////////////// -->
 
 <script>
     
@@ -452,6 +481,7 @@
     function select_joint_sos_officer(select_id , distance , operating_unit_id){
 
         // console.log(select_id);
+        document.querySelector('#show_error_noselect').classList.add('d-none');
 
         let list_joint_sos_officer = document.querySelector('#list_joint_sos_officer') ;
         let check_checkbox = document.querySelector('#select_joint_sos_officer_' + select_id).checked;
@@ -493,41 +523,101 @@
 
     function send_data_joint_sos(sos_1669_id){
 
-        console.log("sos_1669_id >> " + sos_1669_id);
+        // console.log("sos_1669_id >> " + sos_1669_id);
 
         let list_joint_sos_officer = document.querySelector('#list_joint_sos_officer');
-            console.log(list_joint_sos_officer.value);
+            // console.log(list_joint_sos_officer.value);
 
-        let list = list_joint_sos_officer.value.replaceAll(',' , '_');
-            console.log(list);
+        if(list_joint_sos_officer.value){
 
-        fetch("{{ url('/') }}/api/create_joint_sos_1669" + "?sos_1669_id=" + sos_1669_id + "&list=" + list)
-            .then(response => response.text())
-            .then(result => {
-                console.log(result);
+            document.querySelector('#show_error_noselect').classList.add('d-none');
+            document.querySelector('#btn_send_data_joint_sos').innerHTML = 'ยืนยัน ' + `<i class="fa-duotone fa-spinner fa-spin-pulse"></i>` ;
+            let list = list_joint_sos_officer.value.replaceAll(',' , '_');
+                // console.log(list);
 
-            });
+            fetch("{{ url('/') }}/api/create_joint_sos_1669" + "?sos_1669_id=" + sos_1669_id + "&list=" + list)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
 
-        // let formData = new FormData();
-        // let data_sos = {
-        //     "sos_1669_id" : sos_1669_id,
-        //     "list" : list,
-        // }
-        // // console.log(data_sos_1669);
+                    if (result == "OK"){
+                        document.querySelector('#btn_close_casualty_incident').click();
+                        document.querySelector('#btn_open_modal_show_officer_joint').click();
+                        document.querySelector('#btn_send_data_joint_sos').innerHTML = 'ยืนยัน';
+                        document.querySelector('#list_joint_sos_officer').value = '';
+                        document.querySelector('#btn_select_case_sos_joint').classList.add('d-none');
+                        document.querySelector('#btn_select_operating_unit').classList.add('d-none');
+                        document.querySelector('#btn_show_wait_officer_joint').classList.remove('d-none');
+                        show_wait_officer_joint();
+                    }
 
-        // formData.append('sos_1669_id', data_sos.sos_1669_id);
-        // formData.append('list', data_sos.list);
+                });
+        }else{
+            document.querySelector('#show_error_noselect').classList.remove('d-none');
+        }
+    }
 
-        // fetch("{{ url('/') }}/api/create_joint_sos_1669", {
-        //         method: 'POST',
-        //         body: formData
-        //     }).then(function (response){
-        //         return response.text();
-        //     }).then(function(data){
-        //         console.log(data);
-        //     }).catch(function(error){
-        //         // console.error(error);
-        //     });
+    function show_wait_officer_joint(){
+
+        let sos_id = '{{ $sos_help_center->id }}' ;
+
+        fetch("{{ url('/') }}/api/check_sos_joint_case" + "?sos_1669_id=" + sos_id)
+          .then(response => response.json())
+          .then(result => {
+                // console.log(result);
+                let class_col ;
+                if (result.length <= 2){
+                    class_col = 'col-6' ;
+                }else if (result.length >= 3 && result.length < 4){
+                    class_col = 'col-4' ;
+                }else{
+                    class_col = 'col-3' ;
+                }
+
+                let show_officer_joint_content = document.querySelector('#show_officer_joint_content');
+                    show_officer_joint_content.innerHTML = '' ;
+
+                for(let item of result){
+
+                    let html_of_result = '' ;
+
+                    console.log(item.id);
+                    console.log(item.status);
+                    console.log(item.wait);
+                    console.log(item.operating_code);
+                    console.log(item.time_command);
+                    console.log('--------------------');
+
+                    // // `+ xxx +`
+                    html_of_result = `
+                        <div class="`+ class_col +`">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3>`+ item.operating_code +`</h3>
+                                </div>
+                                <div class="col-3">
+                                    รูปเจ้าหน้าที่
+                                </div>
+                                <div class="col-9">
+                                    ชื่อเจ้าหน้าที่ : `+ item.wait +`
+                                    <br>
+                                    หน่วยแพทย์ : ...
+                                </div>
+                                <div class="col-12">
+                                    สถานะ : `+ item.status +`
+                                </div>
+                                <div class="col-12">
+                                    <span class="btn btn-sm btn-danger">ผ่านมาแล้ว : `+ item.time_command +`</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    show_officer_joint_content.insertAdjacentHTML('beforeend', html_of_result); // แทรกล่างสุด
+
+                }
+
+          });
 
     }
 

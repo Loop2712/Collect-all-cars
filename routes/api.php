@@ -253,6 +253,7 @@ Route::get('/Forward_notify/{officer_command_id}/{sos_id}', 'Sos_help_centerCont
 Route::get('/check_status_officer_1669/{officer_command_id}/{sub_organization}','Sos_help_centerController@check_status_officer_1669');
 Route::get('/change_status_officer_to/{officer_command_id}/{sub_organization}/{change_to}', 'Sos_help_centerController@change_status_officer_to');
 Route::get('/create_joint_sos_1669', 'Sos_help_centerController@create_joint_sos_1669');
+Route::get('/check_sos_joint_case', 'Sos_help_centerController@check_sos_joint_case');
 
 
     // SOS HELP CENTER FORM USER 

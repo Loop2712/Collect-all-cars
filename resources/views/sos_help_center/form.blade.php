@@ -949,6 +949,19 @@ color: #db2d2e;
 .nav-pills-danger.nav-pills .nav-link:hover{
 color: #fff;
 }
+
+.nav-pills-orange.nav-pills .nav-link{
+color: #ff9317;
+}
+.nav-pills-orange.nav-pills .nav-link:hover{
+  background-color: #ff9317;
+  color: #fff;
+}
+.btn-outline-orange {
+    color: #ff9317;
+    border-color: #ff9317;
+}
+
 .box-idc-rc{
     border-radius: 15px 15px 0 0 ;
     padding: 5px;
@@ -1761,13 +1774,23 @@ color: #fff;
                                         </div>
                                     </a>
                                 </li>
-                                <li class="nav-item nav-pills nav-pills-danger m-2 ">
-                                    <a  class="nav-link btn-outline-danger btn" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="open_map_joint_sos_1669();"> 
+                                <li id="btn_select_case_sos_joint" class="nav-item nav-pills nav-pills-orange m-2 ">
+                                    <a  class="nav-link btn-outline-orange btn" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="open_map_joint_sos_1669();"> 
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
                                                 <i class="fa-solid fa-hospital-user"></i>
                                             </div>
                                             <div class="tab-title">อุบัติเหตุร่วม</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li id="btn_show_wait_officer_joint" class="nav-item nav-pills nav-pills-info m-2 d-none" onclick="show_wait_officer_joint();">
+                                    <a  class="nav-link btn-outline-info btn" data-toggle="modal" data-target="#modal_show_officer_joint"> 
+                                        <div class="d-flex align-items-center">
+                                            <div class="tab-icon">
+                                                <i class="fa-duotone fa-spinner fa-spin-pulse"></i>
+                                            </div>
+                                            <div class="tab-title">กำลังรอเจ้าหน้าที่</div>
                                         </div>
                                     </a>
                                 </li>
@@ -2625,6 +2648,8 @@ color: #fff;
         check_show_btn_form_color(null);
         check_show_btn_select_unit();
         // click_select_btn('operating_unit');
+        check_sos_joint_case();
+
         setTimeout(function() {
             document.querySelector('#form_data_1').click();
         }, 1000);
@@ -3337,6 +3362,45 @@ color: #fff;
                 document.querySelector('#btn_form_pink').classList.add('d-none');
             break;
         }
+
+    }
+
+    function check_sos_joint_case(){
+
+      let sos_id = '{{ $sos_help_center->id }}' ;
+      let joint_case = '{{ $sos_help_center->joint_case }}' ;
+
+      if (joint_case){
+
+        document.querySelector('#btn_select_operating_unit').classList.add('d-none');
+        document.querySelector('#btn_select_case_sos_joint').classList.add('d-none');
+
+        fetch("{{ url('/') }}/api/check_sos_joint_case" + "?sos_1669_id=" + sos_id)
+          .then(response => response.json())
+          .then(result => {
+              // console.log(result);
+
+              for(let item of result){
+
+                  // console.log(item.id);
+                  // console.log(item.status);
+                  // console.log('--------------------');
+
+                  if (item.status === 'รอการยืนยัน' ||item.status === 'ปฏิเสธ' ){
+                      document.querySelector('#btn_show_wait_officer_joint').classList.remove('d-none');
+                      break;
+                  }
+
+              }
+
+          });
+
+      }else{
+        // console.log('case no joint');
+        document.querySelector('#btn_select_operating_unit').classList.remove('d-none');
+      }
+
+      
 
     }
 

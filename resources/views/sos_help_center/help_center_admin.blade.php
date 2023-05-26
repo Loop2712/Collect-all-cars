@@ -1201,7 +1201,6 @@
                                         <div class="card-header-sos">
                                             <span><b> {{$item->operating_code}}</b></span>
 
-
                                             @php
                                                 $img_user = \App\User::find($item->user_id);
 
@@ -1216,11 +1215,35 @@
                                                 }
                                             @endphp
                                             <span class="mx-3">
-                                                @if(!empty($item->form_yellow->be_notified))
-                                                <button class="btn-{{ $color_be_notified }} btn-status  main-shadow main-radius">
-                                                    {{ $item->form_yellow->be_notified }}
-                                                </button>
+                                                <!-- อุบัติเหตุร่วม -->
+                                                @php
+                                                    if(!empty($item->joint_case)){
+                                                        $arr_joint_case = json_decode($item->joint_case, true);
+                                                        $count_joint_case = count($arr_joint_case);
+
+                                                        if($count_joint_case >= 2){
+                                                            $html_joint_case = 'อุบัติเหตุร่วม';
+                                                        }else{
+                                                            $html_joint_case = 'อุบัติเหตุหมู่';
+                                                        }
+                                                    }
+
+                                                @endphp
+
+                                                @if($item->joint_case)
+                                                    <button class="btn-status-hurry btn-status main-shadow main-radius" >
+                                                        {{ $html_joint_case }}
+                                                    </button>
                                                 @endif
+
+                                                <!-- รับแจ้งเหตุ -->
+                                                @if(!empty($item->form_yellow->be_notified))
+                                                    <button class="btn-{{ $color_be_notified }} btn-status  main-shadow main-radius">
+                                                        {{ $item->form_yellow->be_notified }}
+                                                    </button>
+                                                @endif
+
+                                                <!-- สถานะ -->
                                                 @switch($item->status)
                                                     @case('รับแจ้งเหตุ')
                                                         <button class="btn-request btn-status main-shadow main-radius">
@@ -1253,6 +1276,7 @@
                                                         </button>
                                                     @break
                                                 @endswitch
+
                                                 <!-- command_by -->
                                                 @if(!empty($item->command_by))
                                                 <button class="btn btn-sm btn-info text-white main-shadow main-radius float-end">
