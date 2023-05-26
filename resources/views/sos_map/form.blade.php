@@ -1257,7 +1257,7 @@
         fetch("{{ url('/') }}/api/draw_area_help_center/" + "ศูนย์ใหญ่")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 // alert('>> นอก for <<');
 
@@ -1285,7 +1285,7 @@
                             }
                             
                             if ( inside_1669([ lat, lng ], area_arr) ) {
-                                console.log('You inside area 1669!!');
+                                // console.log('You inside area 1669!!');
                                 btn_ask_1669.classList.remove('d-none');
                                 document.querySelector('#btn_tel_1669').classList.add('d-none');
                                 break;
