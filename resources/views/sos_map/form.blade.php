@@ -1263,7 +1263,7 @@
 
                 for (let ii = 0; ii < result.length; ii++) {
 
-                    // console.log(result[ii]['sos_1669_show']);
+                    console.log(result[ii]['sos_1669_show']);
 
                     if (result[ii]['sos_1669_show'] == 'show') {
 
