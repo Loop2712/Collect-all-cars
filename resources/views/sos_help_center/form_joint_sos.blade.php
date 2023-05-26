@@ -117,7 +117,7 @@
                            
                             <input class="d-none" type="text" name="joint_sos_input_vehicle_type" id="joint_sos_input_vehicle_type" value="{{ isset($data_form_yellow->vehicle_type) ? $data_form_yellow->vehicle_type : 'all'}}" >
 
-                            <input class="d-none" type="text" id="list_joint_sos_officer" >
+                            <input class="d-" type="text" id="list_joint_sos_officer" >
 
                             <div class="data-officer p-3 mb-3 ps ps--active-y" id="joint_sos_card_data_operating">
                                 <!-- ข้อมูลหน่วยแพทย์ในพื้นที่ -->
@@ -274,7 +274,7 @@
 
                     let checked_officer ;
 
-                    if (list_arr.includes(result[i]['id'].toString())) {
+                    if (list_arr.includes( result[i]['user_id'].toString() +'-'+ result[i]['distance'].toFixed(2) +'-'+ result[i]['operating_unit_id'] )) {
                         checked_officer = 'checked' ;
                         // console.log('มีค่า '+result[i]['id']+' ในอาร์เรย์');
                     } else {
@@ -288,7 +288,7 @@
                                 <div class="row">
                                     <div class="col-2">
                                         <div class="d-flex align-items-center">
-                                            <input type="checkbox" `+ checked_officer +` name="select_joint_sos_officer" id="select_joint_sos_officer_`+ result[i]['id'] +`" value="`+ result[i]['id'] +`" onclick="select_joint_sos_officer('`+ result[i]['id'] +`');">
+                                            <input type="checkbox" `+ checked_officer +` name="select_joint_sos_officer" id="select_joint_sos_officer_`+ result[i]['user_id'] +`" value="`+ result[i]['id'] +`" onclick="select_joint_sos_officer('`+ result[i]['user_id'] +`','`+ result[i]['distance'].toFixed(2) +`','`+ result[i]['operating_unit_id'] +`');">
                                         </div>
                                     </div>
                                     <div class="col-10 data-officer-item d-flex align-items-center p-2 cursor-pointer">
@@ -449,7 +449,7 @@
 
     }
 
-    function select_joint_sos_officer(select_id){
+    function select_joint_sos_officer(select_id , distance , operating_unit_id){
 
         // console.log(select_id);
 
@@ -461,16 +461,16 @@
         if (check_checkbox){
             // true
             if (list_joint_sos_officer.value){
-                list_joint_sos_officer.value = list_joint_sos_officer.value + ',' + select_id ;
+                list_joint_sos_officer.value = list_joint_sos_officer.value + ',' + select_id +'-'+ distance +'-'+ operating_unit_id ;
             }else{
-                list_joint_sos_officer.value = select_id ;
+                list_joint_sos_officer.value = select_id +'-'+ distance +'-'+ operating_unit_id ;
             }
 
         }else{
             // false
             arr_id = list_joint_sos_officer.value.split(',');
 
-            let index = arr_id.indexOf(select_id.toString());
+            let index = arr_id.indexOf(select_id.toString() +'-'+ distance +'-'+ operating_unit_id);
 
             if (index !== -1) {
                 // ลบค่าออกจากตัวแปร values

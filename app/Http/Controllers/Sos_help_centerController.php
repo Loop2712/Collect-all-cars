@@ -2158,31 +2158,38 @@ class Sos_help_centerController extends Controller
         // ดำเนินการส่งข้อมูลให้หน่วยแพทย์ตามเคส และอัพเดทเคสทั้งหมดให้มี joint_case ร่วมกัน
         for ($xi = 0; $xi < count($id_of_new_sos); $xi++){
 
-            if ($xi == 0){
+            // if ($xi == 0){
 
-                DB::table('sos_help_centers')
+            //     DB::table('sos_help_centers')
+            //     ->where([ 
+            //             [ 'id', $id_of_new_sos[$xi] ],
+            //         ])
+            //     ->update([
+            //             'status' => 'รอการยืนยัน',
+            //             'joint_case' => $id_of_new_sos,
+            //         ]);
+
+            // }else{
+
+            // }
+
+            DB::table('sos_help_centers')
                 ->where([ 
                         [ 'id', $id_of_new_sos[$xi] ],
                     ])
                 ->update([
-                        'status' => 'รอการยืนยัน',
                         'joint_case' => $id_of_new_sos,
                     ]);
 
-            }else{
+            $list_arr_ep = explode("-" , $list_arr[$xi]) ;
 
-                DB::table('sos_help_centers')
-                ->where([ 
-                        [ 'id', $id_of_new_sos[$xi] ],
-                    ])
-                ->update([
-                        'joint_case' => $id_of_new_sos,
-                    ]);
-
-            }
+            $sos_id = $id_of_new_sos[$xi];
+            $user_id = $list_arr_ep[0];
+            $distance = $list_arr_ep[1] ;
+            $operating_unit_id = $list_arr_ep[2] ;
 
             // ส่งไลน์ให้หน่วยอแพทย์ตามเคส และอัพเดทข้อมูลหน่วยแพทย์เข้า sos_help_center
-            // 
+            $this->send_data_sos_to_operating_unit( $sos_id, $operating_unit_id, $user_id , $distance);
             
         }
 
