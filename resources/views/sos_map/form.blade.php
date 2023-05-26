@@ -1257,13 +1257,14 @@
         fetch("{{ url('/') }}/api/draw_area_help_center/" + "ศูนย์ใหญ่")
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 // alert('>> นอก for <<');
 
                 for (let ii = 0; ii < result.length; ii++) {
 
-                    console.log(result[ii]['sos_1669_show']);
+                    // console.log('>>> ' + result[ii]['province_name']);
+                    // console.log(result[ii]['sos_1669_show']);
 
                     if (result[ii]['sos_1669_show'] == 'show') {
 
@@ -1284,8 +1285,9 @@
                             }
                             
                             if ( inside_1669([ lat, lng ], area_arr) ) {
-                                // console.log('You inside area 1669!!');
+                                console.log('You inside area 1669!!');
                                 btn_ask_1669.classList.remove('d-none');
+                                document.querySelector('#btn_tel_1669').classList.add('d-none');
                                 break;
                             }else{
                                 // console.log('You NO inside ');
@@ -1296,17 +1298,17 @@
                     }else{
 
                         // alert('>> else 775 ' + result[ii]['sos_1669_show'] + " <<");
+                        document.querySelector('#btn_tel_1669').classList.remove('d-none');
 
                         let check_user_id = '{{ Auth::user()->id }}' ;
                         let check_role = '{{ Auth::user()->role }}' ;
                         let check_organization = '{{ Auth::user()->organization }}' ;
 
-                        if ( check_user_id == '1' || check_user_id == '64' || check_user_id == '2' || check_user_id == '11003631') { // check_user_id == '64' ||
+                        if ( check_user_id == '1' || check_user_id == '64' || check_user_id == '2') { // check_user_id == '64' ||
                             btn_ask_1669.classList.remove('d-none');
                             break;
                         }else{
                             btn_ask_1669.classList.add('d-none');
-                            document.querySelector('btn_tel_16699').classList.remove('d-none');
                         }
 
                         if (  check_organization == 'สพฉ' && check_role == 'admin-partner' || check_role == 'partner' ) {
@@ -1314,7 +1316,6 @@
                             break;
                         }else{
                             btn_ask_1669.classList.add('d-none');
-                            document.querySelector('btn_tel_16699').classList.remove('d-none');
                         }
 
                     }

@@ -2091,6 +2091,8 @@ class Sos_help_centerController extends Controller
         $province_name = $address_ep[0];
         $district_name = $address_ep[1];
 
+        $new_sos_by_joint['notify'] = 'none - ' . $province_name ;
+
         // สร้างเคส sos ร่วมทั้งหมด
         $count_new_create_sos = count($list_arr) - 1 ;
 

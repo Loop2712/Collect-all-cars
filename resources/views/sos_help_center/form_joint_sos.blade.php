@@ -117,7 +117,7 @@
                            
                             <input class="d-none" type="text" name="joint_sos_input_vehicle_type" id="joint_sos_input_vehicle_type" value="{{ isset($data_form_yellow->vehicle_type) ? $data_form_yellow->vehicle_type : 'all'}}" >
 
-                            <input class="d-" type="text" id="list_joint_sos_officer" >
+                            <input class="d-none" type="text" id="list_joint_sos_officer" >
 
                             <div class="data-officer p-3 mb-3 ps ps--active-y" id="joint_sos_card_data_operating">
                                 <!-- ข้อมูลหน่วยแพทย์ในพื้นที่ -->
