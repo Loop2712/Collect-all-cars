@@ -2198,6 +2198,10 @@ color: #ff9317;
     #map_joint_sos_1669{
       height: calc(80vh);
     }
+    
+    #map_new_select_officer{
+      height: calc(80vh);
+    }
 </style>
 
 <!-- MAP GO TO HELP -->

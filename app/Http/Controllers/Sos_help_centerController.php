@@ -2207,6 +2207,35 @@ class Sos_help_centerController extends Controller
             $arr_by_case['wait'] = $sos_by_case->wait;
             $arr_by_case['operating_code'] = $sos_by_case->operating_code;
             $arr_by_case['time_command'] = $sos_by_case->time_command;
+            $arr_by_case['joint_case'] = $sos_by_case->joint_case;
+
+            if ($arr_by_case['status'] == "ปฏิเสธ"){
+
+                $arr_refuse = $sos_by_case->refuse;
+                $refuse_ep = explode("," , $arr_refuse) ;
+                $refuse_last = $refuse_ep[count($refuse_ep)-1];
+
+                $data_officer = Data_1669_operating_officer::where('user_id' , $refuse_last)->first();
+                
+            }else if($arr_by_case['status'] == "รอการยืนยัน"){
+
+                $data_officer = Data_1669_operating_officer::where('user_id' , $sos_by_case->wait)->first();
+
+            }else{
+
+                $data_officer = Data_1669_operating_officer::where('user_id' , $sos_by_case->helper_id)->first();
+
+            }
+
+            $data_operating = Data_1669_operating_unit::where('id' , $data_officer->operating_unit_id)->first();
+
+            $arr_by_case['name_wait_officer'] = $data_officer->name_officer;
+            $arr_by_case['name_wait_phone'] = $data_officer->user->phone;
+            $arr_by_case['name_wait_photo'] = $data_officer->user->photo;
+            $arr_by_case['name_wait_level'] = $data_officer->level;
+            $arr_by_case['name_wait_vehicle_type'] = $data_officer->vehicle_type;
+            $arr_by_case['name_wait_operating'] = $data_operating->name;
+            
 
             $Data_arr[$xi] = $arr_by_case ;
 
