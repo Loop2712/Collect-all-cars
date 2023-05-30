@@ -2176,7 +2176,7 @@ class Sos_help_centerController extends Controller
             $operating_unit_id = $list_arr_ep[2] ;
 
             // ส่งไลน์ให้หน่วยอแพทย์ตามเคส และอัพเดทข้อมูลหน่วยแพทย์เข้า sos_help_center
-            // $this->send_data_sos_to_operating_unit( $sos_id, $operating_unit_id, $user_id , $distance);
+            $this->send_data_sos_to_operating_unit( $sos_id, $operating_unit_id, $user_id , $distance);
             
         }
 
