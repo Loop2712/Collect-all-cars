@@ -2244,4 +2244,19 @@ class Sos_help_centerController extends Controller
         return $Data_arr ;
     }
 
+    function send_data_new_select_officer(Request $request){
+
+        $requestData = $request->all();
+        $sos_id = $requestData['sos_id'];
+        $user_id = $requestData['officer_id'];
+        $operating_unit_id = $requestData['operating_unit_id'];
+        $distance = $requestData['distance'];
+
+        // ส่งไลน์ให้หน่วยอแพทย์ตามเคส และอัพเดทข้อมูลหน่วยแพทย์เข้า sos_help_center
+        $this->send_data_sos_to_operating_unit( $sos_id, $operating_unit_id, $user_id , $distance);
+
+        return 'OK';
+
+    }
+
 }
