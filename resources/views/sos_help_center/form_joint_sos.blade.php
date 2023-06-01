@@ -1592,7 +1592,8 @@
                     document.querySelector('#btn_send_new_select_officer_sos_id_'+ sos_id).innerHTML = `
                         <i class="fa-solid fa-check fa-beat"></i> ส่งข้อมูลเรียบร้อยแล้ว
                     `;
-                    document.querySelector('#btn_send_new_select_officer_sos_id_'+ sos_id).setAttribute('class' , 'mt-3 btn btn-success main-shadow main-radius')
+                    document.querySelector('#btn_send_new_select_officer_sos_id_'+ sos_id).setAttribute('class' , 'mt-3 btn btn-success main-shadow main-radius');
+                    document.querySelector('#btn_send_new_select_officer_sos_id_'+ sos_id).setAttribute('onclick' , '');
                 }
             });
 
