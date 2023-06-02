@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="en">
 
 <head>
@@ -12,7 +12,7 @@
   <link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
   <!-- Favicons -->
   <!-- icon -->
-  <link href="https://kit-pro.fontawesome.com/releases/v6.3.0/css/pro.min.css" rel="stylesheet">
+  <link href="https://kit-pro.fontawesome.com/releases/v6.4.0/css/pro.min.css" rel="stylesheet">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -1191,7 +1191,6 @@
   <!-- --------------------------------------------- -->
 
   <input class="d-none" type="text" name="full_url" id="full_url" value="{{ url()->full() }}">
-
   @yield('content')
   <!-- ======= Footer WEB ======= -->
   <footer class="text-center text-white mt-3" style="background-color: #F1F7FD;padding-top:10px;">
@@ -1316,7 +1315,7 @@
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script> -->
 
   <!-- snow -->
-  <script src="{{ asset('js/PureSnow.js')}}"></script>
+  <!-- <script src="{{ asset('js/PureSnow.js')}}"></script> -->
 
   <script type="text/javascript">
     var comboGoogleTradutor = 'null'; //Varialvel global
