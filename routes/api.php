@@ -265,6 +265,8 @@ Route::get('/send_data_new_select_officer', 'Sos_help_centerController@send_data
 Route::get('/nationalities/send_pass_code_to_line/{language}/{id_guoup_line}', 'Nationalitie_group_linesController@send_pass_code_to_line');
 Route::get('/nationalities/create_new_sos_group_line/{language}/{id_guoup_line}', 'Nationalitie_group_linesController@create_new_sos_group_line');
 
+// show user
+Route::get('/data_officer_go_to_help/{sos_id}', 'Sos_help_centerController@data_officer_go_to_help');
 
 
 Route::get('/video_call', 'AgoraController@token');

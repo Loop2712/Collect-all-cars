@@ -1255,6 +1255,31 @@ class Sos_help_centerController extends Controller
         return view('sos_help_center.show_user', compact('data_sos','data_user'));
     }
 
+    public function data_officer_go_to_help($sosid)
+    {   
+        $data_sos = Sos_help_center::findOrFail($sosid);
+        if ($data_sos->joint_case) {
+            $data_sos_new = Sos_help_center::join('users', 'sos_help_centers.helper_id', '=', 'users.id')
+            ->join('data_1669_operating_officers', 'sos_help_centers.helper_id', '=', 'data_1669_operating_officers.user_id')
+            ->select('users.photo as officerPhoto', 'sos_help_centers.*', 'data_1669_operating_officers.lat as latOfficer', 'data_1669_operating_officers.lng as lngOfficer')
+            ->whereIn('sos_help_centers.id', json_decode($data_sos->joint_case))
+            ->orderBy('sos_help_centers.id' , 'ASC')
+            ->get();
+
+        } else {
+            $data_sos_new = Sos_help_center::where('id', $data_sos->id)->get();
+
+            $data_sos_new = Sos_help_center::join('users', 'sos_help_centers.helper_id', '=', 'users.id')
+            ->join('data_1669_operating_officers', 'sos_help_centers.helper_id', '=', 'data_1669_operating_officers.user_id')
+            ->select('users.photo as officerPhoto', 'sos_help_centers.*', 'data_1669_operating_officers.lat as latOfficer', 'data_1669_operating_officers.lng as lngOfficer')
+            ->where('sos_help_centers.id',$data_sos->id)
+            ->get();
+        }
+
+        return $data_sos_new ;
+
+    }
+
     function check_location_officer($sos_id)
     {
         $data_sos = Sos_help_center::findOrFail($sos_id);
@@ -1267,7 +1292,7 @@ class Sos_help_centerController extends Controller
 
         $data = [] ;
         $data['status'] = $data_sos->status ;
-
+        $data['name_officer'] = $data_officer->name_officer ;
         $data['officer_lat'] = $data_officer->lat ;
         $data['officer_lng'] = $data_officer->lng ;
 

@@ -2,296 +2,454 @@
 
 @section('content')
 <style>
-	body, html {
-  height: 100%;
-  width: 100%;
-}
+	body,
+	html {
+		height: 100%;
+		width: 100%;
+	}
 
-	body,div , span ,body,h1,h2,h3,h4,h5 ,h6{
+	body,
+	div,
+	span,
+	body,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		font-family: 'Kanit', sans-serif !important;
 	}
+
 	#map_show_user {
 		position: relative;
-		width: 100% !important; 
-		height: 70%!important; 
-
-    }
-	#topbar{
-		display: none !important;
-	} header{
-		display: none !important;
-	}
-	footer{
-		display: none !important;
-
-	}.gmnoprint{
-		display: none;
+		width: 100% !important;
+		height: 70% !important;
 
 	}
-	
-	.gm-style-cc{
+
+	#topbar {
+		display: none !important;
+	}
+
+	header {
+		display: none !important;
+	}
+
+	footer {
+		display: none !important;
+
+	}
+
+	.gmnoprint {
+		display: none;
+
+	}
+
+	.gm-style-cc {
 		display: none;
 	}
-	.gm-fullscreen-control{
+
+	.gm-fullscreen-control {
 		display: none;
 	}
-	.gm-svpc{
+
+	.gm-svpc {
 		display: none;
 	}
-	.sry-open-location-text{
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  margin: 0;
-  padding: 0;
-  color: black;
-  width: 80%;
-}
-	.sry-open-location img{
-	margin-top: 30%;
-	width: 100%;
-  object-fit: cover; 
-  height: 100%;
-}.sry-open-location p{
-	font-size: clamp(12px, 5vw, 20px) !important;
-}[alt="google"] {
-    display: none !important;
-}.bordertest {
+
+	.sry-open-location-text {
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		margin: 0;
+		padding: 0;
+		color: black;
+		width: 80%;
+	}
+
+	.sry-open-location img {
+		margin-top: 30%;
+		width: 100%;
+		object-fit: cover;
+		height: 100%;
+	}
+
+	.sry-open-location p {
+		font-size: clamp(12px, 5vw, 20px) !important;
+	}
+
+	[alt="google"] {
+		display: none !important;
+	}
+
+	.bordertest {
 		position: absolute;
 		top: 63.3%;
-    height:60px;
-    width:100%;
-/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+28,000000+38,000000+49,000000+49&0+0,0.65+53,0.65+61,0.65+76,0.65+91 */
-/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,ffffff+41&0+4,1+55 */
-/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDxzdG9wIG9mZnNldD0iNDElIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjAuNzMiLz4KICAgIDxzdG9wIG9mZnNldD0iNTUlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
-background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,0) 4%, rgba(255,255,255,0.73) 41%, rgba(255,255,255,1) 55%); /* FF3.6-15 */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(4%,rgba(255,255,255,0)), color-stop(41%,rgba(255,255,255,0.73)), color-stop(55%,rgba(255,255,255,1))); /* Chrome4-9,Safari4-5 */
-background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 4%,rgba(255,255,255,0.73) 41%,rgba(255,255,255,1) 55%); /* Chrome10-25,Safari5.1-6 */
-background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 4%,rgba(255,255,255,0.73) 41%,rgba(255,255,255,1) 55%); /* Opera 11.10-11.50 */
-background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 4%,rgba(255,255,255,0.73) 41%,rgba(255,255,255,1) 55%); /* IE10 preview */
-background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 4%,rgba(255,255,255,0.73) 41%,rgba(255,255,255,1) 55%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-8 */
+		height: 60px;
+		width: 100%;
+		/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+28,000000+38,000000+49,000000+49&0+0,0.65+53,0.65+61,0.65+76,0.65+91 */
+		/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+		/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,ffffff+41&0+4,1+55 */
+		/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+		background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjAiLz4KICAgIDxzdG9wIG9mZnNldD0iNDElIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjAuNzMiLz4KICAgIDxzdG9wIG9mZnNldD0iNTUlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+		background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 4%, rgba(255, 255, 255, 0.73) 41%, rgba(255, 255, 255, 1) 55%);
+		/* FF3.6-15 */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(4%, rgba(255, 255, 255, 0)), color-stop(41%, rgba(255, 255, 255, 0.73)), color-stop(55%, rgba(255, 255, 255, 1)));
+		/* Chrome4-9,Safari4-5 */
+		background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 4%, rgba(255, 255, 255, 0.73) 41%, rgba(255, 255, 255, 1) 55%);
+		/* Chrome10-25,Safari5.1-6 */
+		background: -o-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 4%, rgba(255, 255, 255, 0.73) 41%, rgba(255, 255, 255, 1) 55%);
+		/* Opera 11.10-11.50 */
+		background: -ms-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 4%, rgba(255, 255, 255, 0.73) 41%, rgba(255, 255, 255, 1) 55%);
+		/* IE10 preview */
+		background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 4%, rgba(255, 255, 255, 0.73) 41%, rgba(255, 255, 255, 1) 55%);
+		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#ffffff', GradientType=0);
+		/* IE6-8 */
 
-}.logo-viichek{
-	position: absolute;
-	z-index: 99;
-	top: 1%;
-	left: 3%;
-	width: 80px;
-}#text_distance{
-	font-size: 3rem;
-	font-weight: bolder;
-	color: #808080;
-	margin: 5px 0 0 10px;
-}#text_duration ,#time_duration{
-	font-size: 1.5rem;
-	font-weight: bolder;
-	color: #808080;
-	margin: -5px 0 0 10px;
-}hr{
-	margin:15px 0 15px 10px;
-	width: 70px;
-}.box-organization_helper{
-	margin: 0 0 0 10px;
-	width: 100%;
-}.box-organization_helper p{
-	color: #808080;
-	font-size: 1.3rem;
-	white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 90%;
-}.box-data-helper{
-	position: absolute;
-	display: flex;
-	align-items: center;
-	width: 100%;
-	height: 35%;
-	bottom: 0;
-}.box-data-helper div{
-	width: 100%;
-}#text_distance_km{
-	font-size: 1.2em;
-	color: #808080;
-
-}.centered{
-	width: 70px !important;
-}.open-location-pls{
-	position: absolute;
-	display: flex;
-	align-items: center;
-	justify-items: center;
-	width: 100%;
-	height: 35%;
-	bottom: 0;
-	margin: auto;
-	padding: auto;
-}.close-data{
-	animation: slide-hide 1s ease 0s 1 normal forwards;
-}
-
-@keyframes slide-hide {
-	0% {
-		opacity: 1;
-		transform: translateX(0);
 	}
 
-	100% {
-		opacity: 0;
-		transform: translateX(-100px);
-	}
-}.show-data{
-	animation: show-data 1s ease 0s 1 normal forwards;
-}
-
-@keyframes show-data {
-	0% {
-		opacity: 0;
-		transform: translateX(100px);
+	.logo-viichek {
+		position: absolute;
+		z-index: 99;
+		top: 1%;
+		left: 3%;
+		width: 80px;
 	}
 
-	100% {
-		opacity: 1 !important;
-		transform: translateX(0);
+	.distanceOfficer {
+		font-size: 3rem;
+		font-weight: bolder;
+		color: #808080;
+		margin: 5px 0 0 10px;
 	}
-}.officer-arrive{
-	z-index: 999999;
-}
+
+	.distanceKmOfficer {
+		font-size: 1em;
+		color: #808080;
+	}
+
+	.durationOfficer {
+		font-size: 1.4rem;
+		font-weight: bolder;
+		color: #808080;
+		margin: -5px 0 0 10px;
+	}
+
+	hr {
+		margin: 15px 0 15px 10px;
+		width: 70px;
+	}
+
+	.box-organization_helper {
+		margin: 0 0 0 10px;
+		width: 100%;
+	}
+
+	.box-organization_helper p {
+		color: #808080;
+		font-size: 1.3rem;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: 90%;
+	}
+
+	.box-data-helper {
+		/* position: absolute; */
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 35%;
+		bottom: 0;
+	}
+
+	.box-data-helper div {
+		width: 100%;
+	}
+
+	
+
+	.centered {
+		width: 70px !important;
+	}
+
+	.open-location-pls {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		justify-items: center;
+		width: 100%;
+		height: 35%;
+		bottom: 0;
+		margin: auto;
+		padding: auto;
+	}
+
+	.close-data {
+		animation: slide-hide 1s ease 0s 1 normal forwards;
+	}
+
+	@keyframes slide-hide {
+		0% {
+			opacity: 1;
+			transform: translateX(0);
+		}
+
+		100% {
+			opacity: 0;
+			transform: translateX(-100px);
+		}
+	}
+
+	.show-data {
+		animation: show-data 1s ease 0s 1 normal forwards;
+	}
+
+	@keyframes show-data {
+		0% {
+			opacity: 0;
+			transform: translateX(100px);
+		}
+
+		100% {
+			opacity: 1 !important;
+			transform: translateX(0);
+		}
+	}
+
+	.officer-arrive {
+		z-index: 999999;
+	}
 </style>
 
 <style>
 	.pl {
-  display: block;
-  width: 5.375em;
-  height: 5.375em;
-}
+		display: block;
+		width: 5.375em;
+		height: 5.375em;
+	}
 
-.pl__arrows,
-.pl__ring-rotate,
-.pl__ring-stroke,
-.pl__tick {
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
+	.pl__arrows,
+	.pl__ring-rotate,
+	.pl__ring-stroke,
+	.pl__tick {
+		animation-duration: 2s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+	}
 
-.pl__arrows {
-  animation-name: arrows42;
-  transform: rotate(45deg);
-  transform-origin: 16px 52px;
-}
+	.pl__arrows {
+		animation-name: arrows42;
+		transform: rotate(45deg);
+		transform-origin: 16px 52px;
+	}
 
-.pl__ring-rotate,
-.pl__ring-stroke {
-  transform-origin: 80px 80px;
-}
+	.pl__ring-rotate,
+	.pl__ring-stroke {
+		transform-origin: 80px 80px;
+	}
 
-.pl__ring-rotate {
-  animation-name: ringRotate42;
-}
+	.pl__ring-rotate {
+		animation-name: ringRotate42;
+	}
 
-.pl__ring-stroke {
-  animation-name: ringStroke42;
-  transform: rotate(-45deg);
-}
+	.pl__ring-stroke {
+		animation-name: ringStroke42;
+		transform: rotate(-45deg);
+	}
 
-.pl__tick {
-  animation-name: tick42;
-}
+	.pl__tick {
+		animation-name: tick42;
+	}
 
-.pl__tick:nth-child(2) {
-  animation-delay: -1.75s;
-}
+	.pl__tick:nth-child(2) {
+		animation-delay: -1.75s;
+	}
 
-.pl__tick:nth-child(3) {
-  animation-delay: -1.5s;
-}
+	.pl__tick:nth-child(3) {
+		animation-delay: -1.5s;
+	}
 
-.pl__tick:nth-child(4) {
-  animation-delay: -1.25s;
-}
+	.pl__tick:nth-child(4) {
+		animation-delay: -1.25s;
+	}
 
-.pl__tick:nth-child(5) {
-  animation-delay: -1s;
-}
+	.pl__tick:nth-child(5) {
+		animation-delay: -1s;
+	}
 
-.pl__tick:nth-child(6) {
-  animation-delay: -0.75s;
-}
+	.pl__tick:nth-child(6) {
+		animation-delay: -0.75s;
+	}
 
-.pl__tick:nth-child(7) {
-  animation-delay: -0.5s;
-}
+	.pl__tick:nth-child(7) {
+		animation-delay: -0.5s;
+	}
 
-.pl__tick:nth-child(8) {
-  animation-delay: -0.25s;
-}
+	.pl__tick:nth-child(8) {
+		animation-delay: -0.25s;
+	}
 
-/* Animations */
-@keyframes arrows42 {
-  from {
-    transform: rotate(45deg);
-  }
+	/* Animations */
+	@keyframes arrows42 {
+		from {
+			transform: rotate(45deg);
+		}
 
-  to {
-    transform: rotate(405deg);
-  }
-}
+		to {
+			transform: rotate(405deg);
+		}
+	}
 
-@keyframes ringRotate42 {
-  from {
-    transform: rotate(0);
-  }
+	@keyframes ringRotate42 {
+		from {
+			transform: rotate(0);
+		}
 
-  to {
-    transform: rotate(720deg);
-  }
-}
+		to {
+			transform: rotate(720deg);
+		}
+	}
 
-@keyframes ringStroke42 {
-  from,
-	to {
-    stroke-dashoffset: 452;
-    transform: rotate(-45deg);
-  }
+	@keyframes ringStroke42 {
 
-  50% {
-    stroke-dashoffset: 169.5;
-    transform: rotate(-180deg);
-  }
-}
+		from,
+		to {
+			stroke-dashoffset: 452;
+			transform: rotate(-45deg);
+		}
 
-@keyframes tick42 {
-  from,
-	3%,
-	47%,
-	to {
-    stroke-dashoffset: -12;
-  }
+		50% {
+			stroke-dashoffset: 169.5;
+			transform: rotate(-180deg);
+		}
+	}
 
-  14%,
-	36% {
-    stroke-dashoffset: 0;
-  }
-}.text-organization{
-	font-size: 1rem !important;
-}
+	@keyframes tick42 {
+
+		from,
+		3%,
+		47%,
+		to {
+			stroke-dashoffset: -12;
+		}
+
+		14%,
+		36% {
+			stroke-dashoffset: 0;
+		}
+	}
+
+	.text-organization {
+		font-size: 1rem !important;
+	}
 </style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
 <img class="logo-viichek" src="{{ asset('/img/logo/logo-viicheck-outline.png') }}" />
 <div id="map_show_user">
 	<div class="sry-open-location">
 		<img src="{{ asset('/img/more/sorry-no-text.png') }}" />
 		<center>
-			<p class="sry-open-location-text h4" style="top: 45%;">ขออภัยค่ะ</p>	
+			<p class="sry-open-location-text h4" style="top: 45%;">ขออภัยค่ะ</p>
 			<p class="sry-open-location-text h5" style="top: 55%;">ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ</p>
 		</center>
-	</div>	
+	</div>
 </div>
-	<div class="bordertest"></div>
 
-	<div class="container box-data-helper d-none">
+<div class="bordertest"></div>
+
+
+<style>
+	.home-demo .item {
+		background: #ff3f4d;
+	}
+
+	.home-demo h2 {
+		color: #FFF;
+		text-align: center;
+		padding: 5rem 0;
+		margin: 0;
+		font-style: italic;
+		font-weight: 300;
+	}
+
+	.owl-next,
+	.owl-prev {
+		position: absolute;
+		top: 45%;
+	}
+
+	.owl-next span {
+		padding: 10;
+
+	}
+
+	.owl-prev span {
+		padding: 10;
+
+	}
+
+	.owl-prev {
+		padding: 15px;
+		left: 0;
+	}
+
+	.owl-next {
+		right: 0;
+	}
+
+	/* .owl-nav {
+		
+
+	} */
+
+	.owl-dots {
+		position: absolute;
+		bottom: 0px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+
+	}
+
+	.owl-dot span {
+		width: 7px !important;
+		height: 7px !important;
+	}
+
+	.carousalOfficerSOS {
+		position: absolute;
+		bottom: 5px;
+	}
+
+	.badge-wrap {
+		min-width: 70px !important;
+	}
+</style>
+<div class="owl-carousel owl-theme carousalOfficerSOS d-none" id="divDataOfficer"></div>
+<script>
+	$(function() {
+		// Owl Carousel
+		var owl = $(".carousalOfficerSOS");
+		owl.owlCarousel({
+			items: 1,
+			margin: 10,
+			loop: false,
+			nav: true,
+			dots: true,
+		});
+	});
+</script>
+
+<!-- <div class="container box-data-helper d-none">
 		<div>
 			<span class="d-block" >
 				<span id="text_distance"></span>
@@ -313,32 +471,28 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 					</div>
 				</div>
 				<div class="flex-grow-1 ms-3 box-organization_helper">
-					<!-- <p class="mb-0 ">
-						<span class="badge badge-pill bg-light-danger pl-0">{{ $data_sos->name_helper }}</span>
-					</p> -->
 					<p class="font-weight-bold mb-0 notranslate">{{ $data_sos->name_helper }}</p>
-					<!-- <p class="text-secondary mb-0">online</p> -->
 					<p class="font-weight-bold mb-0 notranslate text-organization">{{ $data_sos->organization_helper }}</p>
 					
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
-	<div class="container bg-white officer-arrive w-100 d-none" style="bottom: -4.5%;">
-		<div class="w-100 text-center">
-			<img  src="{{ asset('/img/stickerline/PNG/34.png') }}" width="80"  alt="">
-			<br>
-			<h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #808080;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">สวัสดีคุณ {{ $data_user->name }}</h5>
-			<h6 class="mb-0 notranslate mt-1" style="color: #808080;">เจ้าหน้าที่มาถึงแล้ว</h6> 
-			<a href="https://lin.ee/y3gA8A3" class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">เสร็จสิ้น</a>		
-		</div>
+<div class="container bg-white officer-arrive w-100 d-none" style="bottom: -4.5%;">
+	<div class="w-100 text-center">
+		<img src="{{ asset('/img/stickerline/PNG/34.png') }}" width="80" alt="">
+		<br>
+		<h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #808080;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">สวัสดีคุณ {{ $data_user->name }}</h5>
+		<h6 class="mb-0 notranslate mt-1" style="color: #808080;">เจ้าหน้าที่มาถึงแล้ว</h6>
+		<a href="https://lin.ee/y3gA8A3" class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">เสร็จสิ้น</a>
 	</div>
+</div>
 
-	<div class="container bg-white open-location-pls w-100" style="bottom: 5%;height:25% !important;">
-		<div class="w-100 text-center" style="margin-top: -25%;">
-			<div class="d-flex justify-content-center">
-				<svg class="pl" viewBox="0 0 160 160" width="160px" height="160px" xmlns="http://www.w3.org/2000/svg">
+<div class="container bg-white open-location-pls w-100 d-none" style="bottom: 5%;height:25% !important;">
+	<div class="w-100 text-center" style="margin-top: -25%;">
+		<div class="d-flex justify-content-center">
+			<svg class="pl" viewBox="0 0 160 160" width="160px" height="160px" xmlns="http://www.w3.org/2000/svg">
 				<defs>
 					<linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
 						<stop offset="0%" stop-color="#000"></stop>
@@ -351,7 +505,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 						<rect x="28" y="28" width="104" height="104" fill="url(#grad)"></rect>
 					</mask>
 				</defs>
-				
+
 				<g>
 					<g class="pl__ring-rotate">
 						<circle class="pl__ring-stroke" cx="80" cy="80" r="72" fill="none" stroke="hsl(223,90%,55%)" stroke-width="16" stroke-dasharray="452.39 452.39" stroke-dashoffset="452" stroke-linecap="round" transform="rotate(-45,80,80)"></circle>
@@ -362,7 +516,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 						<circle class="pl__ring-stroke" cx="80" cy="80" r="72" fill="none" stroke="hsl(193,90%,55%)" stroke-width="16" stroke-dasharray="452.39 452.39" stroke-dashoffset="452" stroke-linecap="round" transform="rotate(-45,80,80)"></circle>
 					</g>
 				</g>
-				
+
 				<g>
 					<g stroke-width="4" stroke-dasharray="12 12" stroke-dashoffset="12" stroke-linecap="round" transform="translate(80,80)">
 						<polyline class="pl__tick" stroke="hsl(223,10%,90%)" points="0,2 0,14" transform="rotate(-135,0,0) translate(0,40)"></polyline>
@@ -387,7 +541,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 						<polyline class="pl__tick" stroke="hsl(223,90%,80%)" points="0,2 0,14" transform="rotate(180,0,0) translate(0,40)"></polyline>
 					</g>
 				</g>
-				
+
 				<g>
 					<g transform="translate(64,28)">
 						<g class="pl__arrows" transform="rotate(45,16,52)">
@@ -405,15 +559,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 					</g>
 				</g>
 			</svg>
-			</div>
-			<br>
-			<h5 style="margin-top: -45%;" class="font-weight-bold mb-0 notranslate">กรุณาเปิดตำแหน่งที่ตั้งด้วยค่ะ</h5>		
-			<span style="bottom: -20%;border-radius:10px" class="sry-open-location-text btn btn-md btn-warning main-shadow main-radius p-2" onclick="window.location.reload(true);">
-				<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
-			</span>
 		</div>
+		<br>
+		<h5 style="margin-top: -45%;" class="font-weight-bold mb-0 notranslate">กรุณาเปิดตำแหน่งที่ตั้งด้วยค่ะ</h5>
+		<span style="bottom: -20%;border-radius:10px" class="sry-open-location-text btn btn-md btn-warning main-shadow main-radius p-2" onclick="window.location.reload(true);">
+			<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
+		</span>
 	</div>
-	<!-- <div id="" class="col-12 ">
+</div>
+<!-- <div id="" class="col-12 ">
 		<h3 class="text-center text-info">
 			<b>เจ้าหน้าที่กำลังเดินทางมา</b>
 		</h3>
@@ -430,7 +584,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 		<hr style="width:80%;">
 	</center> -->
 
-	<!-- <div class="col-12 ">
+<!-- <div class="col-12 ">
 		<h3 class="text-center text-info">
 			<b>ข้อมูลเจ้าหน้าที่</b>
 		</h3>
@@ -702,158 +856,285 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         </div>
     </div>
 </div> -->
-	
+
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 <script>
+	var officer_lng
+	var officer_lat
+	var officer_id
+	var loop_officer_id ;
 
-		const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
-	  const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
-		const image_empty = "{{ url('/img/icon/flag_empty.png') }}";
+	document.addEventListener('DOMContentLoaded', (event) => {
+		setTimeout(() => {
+			getDataOfficerGoToHelp();
+		}, 1000);
 
-		var officer_marker ;
-		var sos_marker ;
+		// console.log("START");
+	});
 
-		var service;
-		var directionsDisplay;
 
-		var sos_lat = '{{ $data_sos->lat }}' ;
-	  var sos_lng = '{{ $data_sos->lng }}' ;
+	function getDataOfficerGoToHelp() {
 
-	  var officer_lat = '{{ $data_sos->operating_officer->lat }}' ;
-	  var officer_lng = '{{ $data_sos->operating_officer->lng }}' ;
 
-		var time_to_the_scene ;
+		fetch("{{ url('/') }}/api/data_officer_go_to_help" + "/" + '{{ $data_sos->id }}')
+			.then(response => response.json())
+			.then(result => {
+				console.log(result);
+				var dataOfficer = '';
+				result.forEach(data_sos => {
+					// สร้างสตริง HTML ด้วยข้อมูลในแต่ละรายการ
 
-		document.addEventListener('DOMContentLoaded', (event) => {
-	        // console.log("START");
-	        initMap();
-	  });
+					if (!officer_id) {
+						officer_id = data_sos.id; // เก็บค่า officer_lat จากข้อมูลคนแรก
+					}
 
-    function initMap() {
+					if (!loop_officer_id) {
+						loop_officer_id = data_sos.id; // เก็บค่า officer_lat จากข้อมูลคนแรก
+					}
+					
+					if (!officer_lng) {
+						officer_lng = data_sos.lngOfficer; // เก็บค่า officer_lat จากข้อมูลคนแรก
+					}if (!officer_lat) {
+						officer_lat = data_sos.latOfficer;
+					}
 
-				document.querySelector(".box-data-helper").classList.remove('d-none');
-				document.querySelector(".open-location-pls").classList.add('d-none');
+					let photoOfficer;
+					if (data_sos.officerPhoto) {
+						photoOfficer = '{{ url("/storage") }}' + '/' + data_sos.officerPhoto;
+					} else {
+						photoOfficer = `{{ url('/img/stickerline/PNG/21.png') }}`;
+					}
+					dataOfficer += `<div class="item">
+										<div class="container box-data-helper-` + data_sos.id + ` d-non">
+											<div>
+												<span class="d-block">
+													<span class="distanceOfficer" id="text_distance_` + data_sos.id + `"></span>
+													<span class="distanceKmOfficer" id="text_distance_km_` + data_sos.id + `"></span>
+												</span>
+												<div class="d-block">
+													<span class="durationOfficer" id="text_duration_` + data_sos.id + `"></span>
+													<span class="durationOfficer" id="time_duration_` + data_sos.id + `"></span>
+												</div>
+												<hr>
+												<div class="d-flex align-items-center ml-2">
+													<div class="centered">
+														<div class="badge-wrap">
+															<img id="img_profile" src="` + photoOfficer + `" width="70" height="70" class="rounded-circle" alt="">
+														</div>
+													</div>
+													<div class="flex-grow-1 ms-3 box-organization_helper">
+														<p class="font-weight-bold mb-0 notranslate">` + data_sos.name_helper + `</p>
+														<p class="font-weight-bold mb-0 notranslate text-organization">` + data_sos.organization_helper + `</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>`
+					// เคลียร์ข้อมูลใน Owl Carousel
+					var owl = $(".carousalOfficerSOS");
+					owl.trigger('replace.owl.carousel', dataOfficer);
+					owl.trigger('refresh.owl.carousel');
 
-        map_show_user = new google.maps.Map(document.getElementById("map_show_user"), {
-            center: {lat: parseFloat(sos_lat) , lng: parseFloat(sos_lng) },
-            zoom: 15
-        });
 
-        if (officer_marker) {
-            officer_marker.setMap(null);
-        }
-        officer_marker = new google.maps.Marker({
-            position: {lat: parseFloat(officer_lat) , lng: parseFloat(officer_lng) },
-            map: map_show_user,
-            icon: image_operating_unit_general,
-        });
+				});
+				$(document).ready(function() {
+					var owl = $(".carousalOfficerSOS");
 
-        // หมุด SOS
-        if (sos_marker) {
-            sos_marker.setMap(null);
-        }
-        sos_marker = new google.maps.Marker({
-            position: {lat: parseFloat(sos_lat) , lng: parseFloat(sos_lng) },
-            map: map_show_user,
-            icon: image_sos,
-        });
+					owl.on('changed.owl.carousel', function(event) {
+						var currentSlide = event.item.index;
 
-				get_Directions_API(officer_marker, sos_marker);
+						var currentData = result[currentSlide]; // เข้าถึงข้อมูลใน result ที่ตรงกับสไลด์ปัจจุบัน
+						officer_lng = currentData.lngOfficer; // เก็บค่า officer_lat จากข้อมูลคนแรก
+						officer_lat = currentData.latOfficer;
 
-    }
+						loop_officer_id = currentData.id;
+						// // แสดงข้อมูลที่ต้องการใน alert
+						// alert("ข้อมูล: " + currentData.id);
+						// alert("ข้อมูล: " + officer_lat);
+						initMap(currentData.id);
+					});
+				});
+				
 
+				initMap(officer_id);//เปิดด้วย
+
+			});
+
+
+	}
+</script>
+
+
+
+
+<script>
+	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
+	const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
+	const image_empty = "{{ url('/img/icon/flag_empty.png') }}";
+
+	var officer_marker;
+	var sos_marker;
+
+	var service;
+	var directionsDisplay;
+
+	var sos_lat = '{{ $data_sos->lat }}';
+	var sos_lng = '{{ $data_sos->lng }}';
+
+	// var officer_lat = '{{ $data_sos->operating_officer->lat }}';
+	// var officer_lng = '{{ $data_sos->operating_officer->lng }}';
+
+	var time_to_the_scene;
+
+	function initMap(officer_id) {
+		
+		document.querySelector("#divDataOfficer").classList.remove('d-none');
+		document.querySelector(".open-location-pls").classList.add('d-none');
+
+		map_show_user = new google.maps.Map(document.getElementById("map_show_user"), {
+			center: {
+				lat: parseFloat(sos_lat),
+				lng: parseFloat(sos_lng)
+			},
+			zoom: 15
+		});
+
+		if (officer_marker) {
+			officer_marker.setMap(null);
+		}
+		officer_marker = new google.maps.Marker({
+			position: {
+				lat: parseFloat(officer_lat),
+				lng: parseFloat(officer_lng)
+			},
+			map: map_show_user,
+			icon: image_operating_unit_general,
+		});
+
+		// หมุด SOS
+		if (sos_marker) {
+			sos_marker.setMap(null);
+		}
+		sos_marker = new google.maps.Marker({
+			position: {
+				lat: parseFloat(sos_lat),
+				lng: parseFloat(sos_lng)
+			},
+			map: map_show_user,
+			icon: image_sos,
+		});
+		get_Directions_API(officer_marker, sos_marker ,officer_id);
+
+	}
 </script>
 
 <script>
-
-	function get_Directions_API(markerA, markerB) {
+	function get_Directions_API(markerA, markerB,officer_id) {
 
 		if (directionsDisplay) {
-	        directionsDisplay.setMap(null);
+			directionsDisplay.setMap(null);
 		}
 
 		service = new google.maps.DirectionsService();
 		directionsDisplay = new google.maps.DirectionsRenderer({
-		    draggable: false,
-		    map: map_show_user,
-		    suppressMarkers: true, // suppress the default markers
+			draggable: false,
+			map: map_show_user,
+			suppressMarkers: true, // suppress the default markers
 		});
 
-	    service.route({
-	        origin: markerA.getPosition(),
-	        destination: markerB.getPosition(),
-	        travelMode: 'DRIVING'
-	    }, function(response, status) {
-	        if (status === 'OK') {
-	            directionsDisplay.setDirections(response);
-	            	// console.log(response);
+		service.route({
+			origin: markerA.getPosition(),
+			destination: markerB.getPosition(),
+			travelMode: 'DRIVING'
+		}, function(response, status) {
+			if (status === 'OK') {
+				directionsDisplay.setDirections(response);
+				// console.log(response);
+				
+				
+				// ระยะทาง
+				let text_distance = response.routes[0].legs[0].distance.text;
+				// console.log(text_distance);
+				let text_distance_sp = text_distance.split(' ');
+				
+				document.querySelector("#text_distance_" + officer_id).innerHTML = text_distance_sp[0];
 
-	            // ระยะทาง
-	            let text_distance = response.routes[0].legs[0].distance.text ;
-	            	// console.log(text_distance);
-							let text_distance_sp = text_distance.split(' ');
-	            	document.querySelector('#text_distance').innerHTML = text_distance_sp[0] ;
-								document.querySelector('#text_distance_km').innerHTML = text_distance_sp[1] ;
-	            // เวลา
-	            let text_duration = response.routes[0].legs[0].duration.text ;
-	            	// console.log(text_duration);
-	            	document.querySelector('#text_duration').innerHTML = text_duration ;
+				document.querySelector("#text_distance_km_" + officer_id).innerHTML = text_distance_sp[1];
 
-							let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value) ;
-                		document.querySelector('#time_duration').innerHTML = "ถึงเวลา " + text_arrivalTime;
-	            	
-							loop_check_location_officer();
-	            
-	            // document.querySelector('#div_distance_and_duration').classList.remove('d-none');
-	        } else {
-	            window.alert('Directions request failed due to ' + status);
-	        }
-	    });
+				
+				// เวลา
+				let text_duration = response.routes[0].legs[0].duration.text;
+				// console.log(text_duration);
+				
+				document.querySelector("#text_duration_" + officer_id).innerHTML = text_duration;
+
+				let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value);
+				document.querySelector("#time_duration_" + officer_id).innerHTML = "ถึงเวลา " + text_arrivalTime;
+				
+				loop_check_location_officer();
+
+				// document.querySelector('#div_distance_and_duration').classList.remove('d-none');
+			} else {
+				window.alert('Directions request failed due to ' + status);
+			}
+		});
 
 	}
 
-	function loop_check_location_officer(){
+	function loop_check_location_officer() {
+		
 		loop_check_officer = setInterval(function() {
-			check_location_officer();
-        }, 5000);
+			// console.log(loop_officer_id);
+			check_location_officer(loop_officer_id);
+		}, 5000);
 	}
 
 	function Stop_loop_check_officer() {
-        clearInterval(loop_check_officer);
-    }
-
-	function check_location_officer(){
-
-		fetch("{{ url('/') }}/api/check_location_officer" + "/" + '{{ $data_sos->id }}')
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                // console.log(result['officer_lat']);
-                // console.log(result['officer_lng']);
-
-              if (result['status'] != "ถึงที่เกิดเหตุ") {
-
-              	const newPosition = new google.maps.LatLng(parseFloat(result['officer_lat']), parseFloat(result['officer_lng']));
-    						officer_marker.setPosition(newPosition);
-
-    						let bounds = new google.maps.LatLngBounds();
-										bounds.extend(new google.maps.LatLng(parseFloat(sos_lat), parseFloat(sos_lng)));
-										bounds.extend(new google.maps.LatLng(parseFloat(result['officer_lat']), parseFloat(result['officer_lng'])));
-
-								map_show_user.fitBounds(bounds);
-
-              }else{
-                	Stop_loop_check_officer();
-                	// document.querySelector('#btn_modal_officer_to_the_scene').click();
-									document.querySelector('.box-data-helper').classList.add('close-data');
-									document.querySelector('.officer-arrive').classList.remove('d-none');
-									document.querySelector('.officer-arrive').classList.add('show-data');
-                }
-        });
-
+		clearInterval(loop_check_officer);
 	}
 
+	function check_location_officer(officer_id) {
+		
+		fetch("{{ url('/') }}/api/check_location_officer" + "/" + officer_id)
+			.then(response => response.json())
+			.then(result => {
+				console.log(result);
+				// console.log(result['officer_lat']);
+				// console.log(result['officer_lng']);
+
+				if (result['status'] != "ถึงที่เกิดเหตุ") {
+
+					const newPosition = new google.maps.LatLng(parseFloat(result['officer_lat']), parseFloat(result['officer_lng']));
+					officer_marker.setPosition(newPosition);
+
+					let bounds = new google.maps.LatLngBounds();
+					bounds.extend(new google.maps.LatLng(parseFloat(sos_lat), parseFloat(sos_lng)));
+					bounds.extend(new google.maps.LatLng(parseFloat(result['officer_lat']), parseFloat(result['officer_lng'])));
+
+					map_show_user.fitBounds(bounds);
+
+				} else {
+					Stop_loop_check_officer();
+					// document.querySelector('#btn_modal_officer_to_the_scene').click();
+					document.querySelector('.box-data-helper-'+officer_id).innerHTML = 
+					`<div class="container bg-white officer-arrive w-100" style="bottom: -4.5%;">
+						<div class="w-100 text-center">
+							<img src="{{ asset('/img/stickerline/PNG/34.png') }}" style="object-fit: contain;" width="80" height="80" alt="">
+							<br>
+							<h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #808080;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">สวัสดีคุณ {{ $data_user->name }}</h5>
+							<h6 class="mb-0 notranslate mt-1" style="color: #808080;">เจ้าหน้าที่`+result['name_officer']+`มาถึงแล้ว</h6>
+							<a href="https://lin.ee/y3gA8A3" class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">เสร็จสิ้น</a>
+						</div>
+					</div>`;
+
+
+					// document.querySelector('.officer-arrive').classList.remove('d-none');
+					// document.querySelector('.officer-arrive').classList.add('show-data');
+				}
+			});
+
+	}
 </script>
 
 @endsection
