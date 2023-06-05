@@ -1026,19 +1026,40 @@
 <script src="{{ asset('Agora_Web_SDK_FULL/AgoraRTC_N-4.17.0.js') }}"></script>
 
 <script>
-  var option = {
-    // Pass your App ID here.
-    appId: '03039c40792e46bdbe46c16b1a338303',
-    appCertificate: 'cf9986c91db74f16879deead4a34dd03',
-    channel: 'Viicheck',
-    uid: '{{ Auth::user()->id }}',
-    // uname: '{{ Auth::user()->name }}',
 
-    token: "007eJxTYJA8nBywRO3pGkOTg88Vj0/jnzI7QOdQELcEfwSPYLdyurACg4GxgbFlsomBuaVRqolZUkoSkEw2NEsyTDQ2tgDKxdeVpjQEMjK4hUqxMDJAIIjPwRCWmZmckZqczcAAAHwwG7g=",
-  };
+var option;
+let sos_1669_id = '{{ $sos_id }}';
 
+let appId = '{{ env("AGORA_APP_ID") }}';
+let appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
 
+document.addEventListener('DOMContentLoaded', (event) => {
 
+  option = {
+          // Pass your App ID here.
+          appId: appId,
+          appCertificate: appCertificate,
+          channel: 'sos_1669_id_' + sos_1669_id,
+          uid: '{{ Auth::user()->id }}',
+          // uname: '{{ Auth::user()->name }}',
+
+          token: "",
+        };
+
+  fetch("{{ url('/') }}/api/video_call" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' )
+    .then(response => response.text())
+    .then(result => {
+        console.log("GET Token success");
+        console.log(result);
+
+        option['token'] = result;
+
+    });
+
+    startBasicCall();
+});
+
+  
   const channelName = "Viicheck";
 
   let channelParameters = {
@@ -1057,6 +1078,8 @@
 
   async function startBasicCall() {
     // Create an instance of the Agora Engine
+
+    console.log(option);
 
     const agoraEngine = AgoraRTC.createClient({
       mode: "rtc",
@@ -1409,6 +1432,8 @@
     window.onload = function() {
       // Listen to the Join button click event.
       document.getElementById("join").onclick = async function() {
+        console.log("--- Onclick >> JOIN ---");
+        console.log(option.channel);
         // Join a channel.
         await agoraEngine.join(option.appId, option.channel, option.token, option.uid);
         // Create a local audio track from the audio sampled by a microphone.
@@ -1442,7 +1467,7 @@
       }
     }
   }
-  startBasicCall();
+
   // Remove the video stream from the container.
   function removeVideoDiv(elementId) {
     console.log("Removing " + elementId + "Div");

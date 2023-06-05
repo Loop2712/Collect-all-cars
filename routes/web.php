@@ -478,8 +478,6 @@ Route::get('/mockup_video_call', function () {
 Route::group(['middleware' => ['auth']], function () {
 	// index
     Route::get('user_video_call/sos_help_center', 'AgoraController@index');
-    // token
-	Route::post('/agora/token', 'AgoraController@token');
     // ไม่ทราบ
 	Route::post('/agora/call-user', 'AgoraController@callUser');
 });

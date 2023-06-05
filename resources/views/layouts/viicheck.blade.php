@@ -1599,21 +1599,23 @@
       var animationClass = this.dataset.animationClass;
       var iconElement = this.querySelector('i');
 
+      if (iconElement){
       iconElement.classList.add(animationClass);
 
-      this.addEventListener('mouseleave', function() {
-        iconElement.classList.remove(animationClass);
-      });
+        this.addEventListener('mouseleave', function() {
+          iconElement.classList.remove(animationClass);
+        });
 
-      var parentElement = this.parentElement;
+        var parentElement = this.parentElement;
 
-      parentElement.addEventListener('mouseenter', function() {
-        iconElement.classList.remove(animationClass);
-      });
+        parentElement.addEventListener('mouseenter', function() {
+          iconElement.classList.remove(animationClass);
+        });
 
-      parentElement.addEventListener('mouseleave', function() {
-        iconElement.classList.remove(animationClass);
-      });
+        parentElement.addEventListener('mouseleave', function() {
+          iconElement.classList.remove(animationClass);
+        });
+      }
     }
 
   document.querySelectorAll('.btn').forEach(function(button) {

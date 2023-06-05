@@ -11,7 +11,7 @@ class RtcTokenBuilder
 
     // appID: The App ID issued to you by Agora. Apply for a new App ID from
     //        Agora Dashboard if it is missing from your kit. See Get an App ID.
-    // appCertificate:  Certificate of the application that you registered in
+    // appCertificate:	Certificate of the application that you registered in
     //                  the Agora Dashboard. See Get an App Certificate.
     // channelName:Unique channel name for the AgoraRTC session in the string format
     // uid: User ID. A 32-bit unsigned integer with a value ranging from
@@ -30,7 +30,7 @@ class RtcTokenBuilder
 
     // appID: The App ID issued to you by Agora. Apply for a new App ID from
     //        Agora Dashboard if it is missing from your kit. See Get an App ID.
-    // appCertificate:  Certificate of the application that you registered in
+    // appCertificate:	Certificate of the application that you registered in
     //                  the Agora Dashboard. See Get an App Certificate.
     // channelName:Unique channel name for the AgoraRTC session in the string format
     // userAccount: The user account.
