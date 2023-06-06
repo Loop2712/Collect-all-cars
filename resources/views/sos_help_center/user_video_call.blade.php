@@ -36,10 +36,23 @@
 
   @media screen and (min-width: 768px) and (max-width: 1023px) {
 
-    .video-detail-officer-box,
     .hrNew,
     #join {
       display: none;
+    }
+    .video-detail-officer-box{
+      display: flex;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 80%;
+    }
+    .video-detail-officer-box *{
+      margin: 0;
+      color: #fff;
+    }
+    .video-detail-box{
+      display: none !important;
     }
 
     /* CSS สำหรับหน้าจอแท็บเล็ต */
@@ -191,10 +204,23 @@
   @media screen and (max-width: 768px) {
 
     /* CSS สำหรับหน้าจอมือถือ */
-    .video-detail-officer-box,
     .hrNew,
     #join {
       display: none;
+    }
+    .video-detail-officer-box{
+      display: flex;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 80%;
+    }
+    .video-detail-officer-box *{
+      margin: 0;
+      color: #fff;
+    }
+    .video-detail-box{
+      display: none !important;
     }
 
     .video-call {
@@ -884,14 +910,18 @@
   <div class="video-header">
     <div class="video-detail-officer-box">
       <div class="d-flex justify-content-center">
-        <img class="imgOfficer" width="500" height="500" src="{{ asset('/img/stickerline/PNG/2.png') }}" />
+        @if(!empty($data_officer_command->user->photo))
+          <img class="imgOfficer" width="500" height="500" src="{{ url('storage')}}/{{ $data_officer_command->user->photo }}" />
+        @else
+          <img class="imgOfficer" width="500" height="500" src="{{ url('/img/stickerline/flex/12.png') }}" />
+        @endif
       </div>
       <span class="video-officer-detail">
-        <p>THANAKORN(MOCKUP)</p>
-        <small>081-234-5678(MOCKUP)</small>
+        <p>เจ้าหน้าที่ : {{ $data_officer_command->name_officer_command }}</p>
+        <small>{{ $data_officer_command->user->phone }}</small>
       </span>
       <span class="video-officer-detail">
-        เจ้าหน้าที่ศูนย์สั่งการ นครนายก
+        เจ้าหน้าที่ศูนย์สั่งการ {{ $data_officer_command->area }}
       </span>
       
       <button class="btn btn-success" id="join">join</button>
@@ -899,15 +929,22 @@
     </div>
     <div class="box-pc-user">
       <div class="video-detail-box">
-        <img src="{{ asset('/img/stickerline/PNG/1.png') }}" />
+        @if(!empty($user->photo))
+          <img src="{{ url('/storage') }}/{{ $user->photo }}" />
+        @else
+          <img src="{{ url('/img/stickerline/flex/12.png') }}" />
+        @endif
         <span class="video-user-detail">
-          <p>TEERASAK(MOCKUP)</p>
-          <small>081-234-5678(MOCKUP)</small>
+          <p>{{ $user->name }}</p>
+          <small>{{ $user->phone }}</small>
           
         </span>
       </div>
       <hr class="hrNew">
       <div class="video-menu">
+        <a id="go_to_show_user" class="d-none" href="">
+            Go To SHOW USER
+        </a>
         <div class="btnGroup">
           <button class="btn" id="btnMic">
             <i class="fa-duotone fa-microphone"></i>
@@ -1053,6 +1090,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         console.log(result);
 
         option['token'] = result;
+
+        setTimeout(() => {
+            document.getElementById("join").click();
+        }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
 
     });
 
@@ -1461,9 +1502,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
         removeVideoDiv(localPlayerContainer.id);
         // Leave the channel
         await agoraEngine.leave();
-        console.log("You left the channel");
+        // console.log("You left the channel");
+        let go_to_show_user = document.querySelector('#go_to_show_user');
+        let go_to_show_user_href = document.createAttribute("href");
+            go_to_show_user_href.value = '{{ url("/") }}/sos_help_center/'+'{{ $sos_id }}'+'/show_user' ;
+            go_to_show_user.setAttributeNode(go_to_show_user_href);
+
+          setTimeout(function() {
+              document.querySelector('#go_to_show_user').click();
+          }, 1000);
         // Refresh the page for reuse
-        window.location.reload();
+        // window.location.reload();
       }
     }
   }

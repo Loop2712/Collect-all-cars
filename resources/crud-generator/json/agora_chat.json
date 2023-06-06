@@ -1,0 +1,36 @@
+{
+    "fields": [
+        {
+            "name": "room_for",
+            "type": "string"
+        },
+        {
+            "name": "time_start",
+            "type": "datetime"
+        },
+        {
+            "name": "member_in_room",
+            "type": "string"
+        },
+        {
+            "name": "total_timemeet",
+            "type": "integer"
+        },
+        {
+            "name": "amount_meet",
+            "type": "integer"
+        },
+        {
+            "name": "detail",
+            "type": "string"
+        },
+        {
+            "name": "sos_id",
+            "type": "string"
+        },
+        {
+            "name": "consult_doctor_id",
+            "type": "string"
+        }
+    ]
+}

@@ -18,6 +18,7 @@ use App\Models\Partner;
 use App\Models\Time_zone;
 use App\User;
 use App\Models\Data_1669_officer_command;
+use App\Models\Agora_chat;
 
 use \Carbon\Carbon;
 
@@ -759,6 +760,12 @@ class Sos_help_centerController extends Controller
 
     function check_unit_cf_sos_form_user($sos_id){
         $data_sos = Sos_help_center::where('id',$sos_id)->first();
+
+        if (!empty($data_sos->command_by)){
+            $data_officer_command = DB::table('data_1669_officer_commands')->where('id' , $data_sos->command_by)->first();
+            $data_sos['name_officer_command'] = $data_officer_command->name_officer_command;
+        }
+        
         return $data_sos ;
     }
 
@@ -2282,6 +2289,27 @@ class Sos_help_centerController extends Controller
 
         return 'OK';
 
+    }
+
+    function check_officer_command_in_call($sos_id){
+
+        $data_sos = Sos_help_center::where('id' , $sos_id)->first();
+        $data_agora = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
+
+        $check_officer_command = '';
+
+        if ($data_agora){
+            $check_officer_command = $data_agora ;
+        }else{
+            $data_create = [];
+            $data_create['room_for'] = 'user_sos_1669';
+            $data_create['sos_id'] = $sos_id;
+
+            Agora_chat::create($data_create);
+            $check_officer_command = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
+        }
+
+        return $check_officer_command ;
     }
 
 }

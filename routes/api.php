@@ -255,6 +255,7 @@ Route::get('/change_status_officer_to/{officer_command_id}/{sub_organization}/{c
 Route::get('/create_joint_sos_1669', 'Sos_help_centerController@create_joint_sos_1669');
 Route::get('/check_sos_joint_case', 'Sos_help_centerController@check_sos_joint_case');
 Route::get('/send_data_new_select_officer', 'Sos_help_centerController@send_data_new_select_officer');
+Route::get('/check_officer_command_in_call/{sos_id}', 'Sos_help_centerController@check_officer_command_in_call');
 
 
     // SOS HELP CENTER FORM USER 

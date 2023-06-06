@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\Data_1669_officer_command;
+use App\Models\Sos_help_center;
 
 // use App\Classes\AgoraDynamicKey\RtcTokenBuilder;
 use App\Events\MakeAgoraCall;
@@ -15,12 +18,12 @@ class AgoraController extends Controller
     public function index(Request $request)
     {
         $sos_id = $request->sos_id;
+        $user = Auth::user();
 
-        // fetch all users apart from the authenticated user
-        // $users = User::where('id', '<>', Auth::id())->get();
+        $data_sos = Sos_help_center::where('sos_help_centers.id', $sos_id)->first();
+        $data_officer_command = Data_1669_officer_command::where('id',$data_sos->command_by)->first();
 
-
-        return view('sos_help_center/user_video_call', compact('sos_id'));
+        return view('sos_help_center/user_video_call', compact('sos_id','user','data_sos','data_officer_command'));
         
     }
 

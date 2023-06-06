@@ -72,6 +72,9 @@
             <div id="location_users">
 
             </div>
+            <div>
+                <span>Area supervisor</span>
+            </div>
             <div class="col-12 p-3 mb-5 rounded " >
                 <div class="row">
                     <div class="col-12 mt-2" id="location_user">
@@ -112,6 +115,7 @@
                                 </div>
                             </div>
                         </a>
+                        <hr>
                     </div>
                     
                     <div class="col-12 order-3">
@@ -704,17 +708,20 @@
             <div id="div_wait_unit" class="d-none">
                 <div class="modal-body">
                     <div class="col-12 mt-5 d-flex justify-content-center">
-                        <div class="spinner-border" role="status"> 
+                        <div id="wait_unit_spinner" class="spinner-border" role="status"> 
                             <span class="visually-hidden">Loading...</span>
                         </div>
+                        <div id="wait_unit_img_success" class="d-none"> 
+                            <img src="{{ url('/img/stickerline/PNG/27.png') }}" class="img-fluid" >
+                        </div>
                     </div>
-                    <h3 class="text-center text-info mt-5">
-                        <b>เจ้าหน้าที่ได้รับข้อมูลแล้ว</b>
+                    <h3 id="text_h3_wait_unit" class="text-center text-info mt-5">
+                        <b>กำลังรอเจ้าหน้าที่</b>
                     </h3>
-                    <h4 class="text-center mt-2">
+                    <!-- <h4 class="text-center mt-2">
                         กำลังค้นหาหน่วยแพทย์
-                    </h4>
-                    <h5 class="text-center mt-">
+                    </h4> -->
+                    <h5 id="text_h5_wait_unit" class="text-center mt-">
                         โปรดรอสักครู่...
                     </h5>
                 </div>
@@ -1531,22 +1538,103 @@
         fetch("{{ url('/') }}/api/check_unit_cf_sos_form_user" + "/" + sos_id)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
                 
-                if (result['status'] === "ออกจากฐาน") {
-                    
+                if (result['command_by']){
+
                     myStop_reface_check_unit_cf_sos();
+                    loop_check_officer_command_in_call(sos_id);
 
-                    let go_to_show_user = document.querySelector('#go_to_show_user');
-                    let go_to_show_user_href = document.createAttribute("href");
-                        go_to_show_user_href.value = '{{ url("/") }}/sos_help_center/'+sos_id+'/show_user' ;
-                        go_to_show_user.setAttributeNode(go_to_show_user_href);
+                    document.querySelector('#text_h3_wait_unit').innerHTML = "เจ้าหน้าที่รับเรื่องแล้ว"
+                    document.querySelector('#text_h5_wait_unit').innerHTML = "เจ้าหน้าที่ : "+result['name_officer_command'];
 
-                    setTimeout(function() {
-                        document.querySelector('#go_to_show_user').click();
-                    }, 1000);
+                    let btn_html_video_call = `
+                        <br>
+                        <a id="btn_join_video_call" href="{{ url('/') }}/user_video_call/sos_help_center?sos_id=`+result['id']+`" class="btn btn-info main-radius main-shadow mt-3">
+                            Video Call
+                        </a>
+                    `;
+                    document.querySelector('#text_h5_wait_unit').insertAdjacentHTML('beforeend', btn_html_video_call); // แทรกล่างสุด
+
+                    document.querySelector('#wait_unit_spinner').classList.add('d-none');
+                    document.querySelector('#wait_unit_img_success').classList.remove('d-none');
                 }
+
+                // if (result['status'] === "ออกจากฐาน") {
+                    
+                //     myStop_reface_check_unit_cf_sos();
+
+                //     let go_to_show_user = document.querySelector('#go_to_show_user');
+                //     let go_to_show_user_href = document.createAttribute("href");
+                //         go_to_show_user_href.value = '{{ url("/") }}/sos_help_center/'+sos_id+'/show_user' ;
+                //         go_to_show_user.setAttributeNode(go_to_show_user_href);
+
+                //     setTimeout(function() {
+                //         // document.querySelector('#go_to_show_user').click();
+                //         document.querySelector('#go_to_show_user').classList.remove('d-none');
+                //     }, 1000);
+                // }
         });
+    }
+
+    function loop_check_officer_command_in_call(sos_id) {
+        check_officer_command = setInterval(function() {
+            check_officer_command_in_call(sos_id);
+        }, 1500);
+    }
+
+    function myStop_check_officer_command_in_call() {
+        clearInterval(check_officer_command);
+    }
+
+    var audio_ringtone = new Audio("{{ asset('sound/ringtone-126505.mp3') }}");
+    var isPlaying_ringtone = false;
+
+    function check_officer_command_in_call(sos_id){
+
+        fetch("{{ url('/') }}/api/check_officer_command_in_call" + "/" + sos_id)
+            .then(response => response.json())
+            .then(result => {
+                console.log("check_officer_command_in_call");
+                console.log(result);
+
+                if (result['member_in_room']){
+
+                    myStop_check_officer_command_in_call();
+
+                    let html_btn_join_video_call = `
+                        <br><br>
+                        <span class="text-danger mt-3">เจ้าหน้าที่อยู่ในสายแล้ว</span>
+                        <br><br>
+                        <span class="btn btn-sm btn-secondary" style="width:60;" onclick="stop_ringtone();">
+                            <i class="fa-solid fa-volume-slash"></i>
+                        </span>
+                    `;
+
+                    document.querySelector('#btn_join_video_call').innerHTML = 
+                    `<i class="fa-solid fa-phone-volume fa-bounce"></i> &nbsp;&nbsp; Video Call`;
+                    document.querySelector('#text_h5_wait_unit').insertAdjacentHTML('beforeend', html_btn_join_video_call); // แทรกล่างสุด
+
+                    play_ringtone();
+                    
+                }
+
+            });
+
+    }
+
+    function play_ringtone() {
+      if (!isPlaying_ringtone) {
+        audio_ringtone.loop = true;
+        audio_ringtone.play();
+        isPlaying_ringtone = true;
+      }
+    }
+
+    function stop_ringtone() {
+      audio_ringtone.pause();
+      audio_ringtone.currentTime = 0;
+      isPlaying_ringtone = false;
     }
 
     
