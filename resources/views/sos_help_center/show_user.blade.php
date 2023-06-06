@@ -995,6 +995,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 			},
 			zoom: 15
 		});
+		console.log(officer_marker);
 
 		if (officer_marker) {
 			officer_marker.setMap(null);
