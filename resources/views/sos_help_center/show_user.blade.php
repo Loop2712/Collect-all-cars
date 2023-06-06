@@ -1035,14 +1035,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 		if (officer_id) {
 			get_Directions_API(officer_marker, sos_marker ,officer_id);
 		} else {
-			document.querySelector('.box-data-helper-'+officer_id).innerHTML = 
-				`<div class="container bg-white officer-arrive w-100" style="bottom: -4.5%;">
-					<div class="w-100 text-center">
-						<img src="{{ asset('/img/stickerline/PNG/34.png') }}" style="object-fit: contain;" width="80" height="80" alt="">
-						<br>
-						<h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #808080;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">สวัสดีคุณ {{ $data_user->name }} โปรดรอสักครู่</h5>
-						<h6 class="mb-0 notranslate mt-1" style="color: #808080;">กำลังค้นหาหน่วยแพทย์ที่ใกล้คุณ</h6>
-						<a href="{{ url('/') }}/user_video_call/sos_help_center?sos_id={{ $data_sos->id }}" class="btn-outline-primary btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">ติดต่อเจ้าหน้าที่</a>
+			document.querySelector('.carousalOfficerSOS').innerHTML = 
+				`<div class="item"></div>
+					<div class="container bg-white officer-arrive w-100" style="bottom: -4.5%;">
+						<div class="w-100 text-center">
+							<img src="{{ asset('/img/stickerline/PNG/34.png') }}" style="object-fit: contain;" width="80" height="80" alt="">
+							<br>
+							<h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #808080;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">สวัสดีคุณ {{ $data_user->name }} โปรดรอสักครู่</h5>
+							<h6 class="mb-0 notranslate mt-1" style="color: #808080;">กำลังค้นหาหน่วยแพทย์ที่ใกล้คุณ</h6>
+							<a href="{{ url('/') }}/user_video_call/sos_help_center?sos_id={{ $data_sos->id }}" class="btn-outline-primary btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">ติดต่อเจ้าหน้าที่</a>
+						</div>
 					</div>
 				</div>`;
 				
