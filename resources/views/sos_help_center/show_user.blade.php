@@ -982,9 +982,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	var sos_lat = '{{ $data_sos->lat }}';
 	var sos_lng = '{{ $data_sos->lng }}';
 
-	// var officer_lat = '{{ $data_sos->operating_officer->lat }}';
-	// var officer_lng = '{{ $data_sos->operating_officer->lng }}';
-
 	var time_to_the_scene;
 
 	function initMap(officer_id) {
@@ -1099,7 +1096,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 		fetch("{{ url('/') }}/api/check_location_officer" + "/" + officer_id)
 			.then(response => response.json())
 			.then(result => {
-				console.log(result);
+				// console.log(result);
 				// console.log(result['officer_lat']);
 				// console.log(result['officer_lng']);
 
