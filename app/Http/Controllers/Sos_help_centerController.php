@@ -1306,6 +1306,14 @@ class Sos_help_centerController extends Controller
         return $data ;
     }
 
+    function check_status_officer($sos_id)
+    {
+        $data_sos = Sos_help_center::findOrFail($sos_id);
+        
+        return $data_sos ;
+    }
+
+
     function get_current_officer_location($sos_id){
 
         $data_sos = Sos_help_center::findOrFail($sos_id);
