@@ -1042,9 +1042,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 				loop_check_status_officer();
 		}
 	}
-	
+	var check_status_officer;
+
 	function loop_check_status_officer() {
-		let check_status_officer = setInterval(function() {
+		check_status_officer = setInterval(function() {
 			let sos_id =	'{{ $data_sos->id }}';
 			func_check_status_officer(sos_id);
 		}, 2000);
