@@ -1024,7 +1024,7 @@ color: #ff9317;
 <div class="row" >
     
     <div class="col-12 col-md-3 col-lg-3" >
-        <div class="sticky" style="overflow: auto;">
+        <div class="sticky" style="overflow: auto;height: 100%;">
             @if(!empty($sos_help_center->forward_operation_from) or ($sos_help_center->forward_operation_to))
             @php
               if( !empty($sos_help_center->forward_operation_from) ){
@@ -1167,7 +1167,7 @@ color: #ff9317;
         .video-local {
             display: flex;
             margin-top: 1.5rem;
-            height: 20rem;
+            height: 24rem;
             outline: #000 .1rem solid;
             border-radius: 1rem;
             width: 98%;
@@ -1763,6 +1763,27 @@ color: #ff9317;
                                             <div class="tab-title">แบบฟอร์มชมพู</div>
                                         </div>
                                     </a>
+                                </li>
+                                <style>
+                                    .btnGroupOperating{
+                                        border-radius: 8px !important;
+                                        height: 100% !important;
+                                    }.btnOperating:hover {
+                                        cursor: context-menu !important;
+                                        
+                                    }.btnOperating:focus{
+                                        border: #e7eaf3 1px solid !important;
+                                        box-shadow: none;
+                                    }
+                                </style>
+                                <li id="btn_select_operating_unit" class="nav-item nav-pills nav-pills-danger m-2 " role="presentation">
+                                    <div class="btnGroupOperating">
+                                        <div class="btn-group btnGroupOperating">
+                                            <button type="button" class="btn btn-white btnOperating">เลือกหน่วยแพทย์</button>
+                                            <button type="button" class="btn btn-primary">เดียว</button>
+                                            <button type="button" class="btn btn-danger">ร่วม</button>
+                                        </div>
+                                    </div>
                                 </li>
                                 <li id="btn_select_operating_unit" class="nav-item nav-pills nav-pills-danger m-2 " role="presentation">
                                     <a id="tag_a_open_map_operating_unit" class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="open_map_operating_unit();"> <!-- select_level(); -->
