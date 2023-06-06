@@ -995,11 +995,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 			},
 			zoom: 15
 		});
-		console.log(officer_marker);
+		
 
 		if (officer_marker) {
 			officer_marker.setMap(null);
 		}
+
 		officer_marker = new google.maps.Marker({
 			position: {
 				lat: parseFloat(officer_lat),
@@ -1021,9 +1022,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 			map: map_show_user,
 			icon: image_sos,
 		});
-		
 
-		if (officer_marker) {
+		console.log("=================officer_marker==============");
+		console.log(officer_marker);
+
+		console.log("=================officer_id==============");
+		console.log(officer_id);
+
+		console.log("=================sos_marker==============");
+		console.log(sos_marker);
+
+		if (officer_id) {
 			get_Directions_API(officer_marker, sos_marker ,officer_id);
 		} else {
 			document.querySelector('.box-data-helper-'+officer_id).innerHTML = 
