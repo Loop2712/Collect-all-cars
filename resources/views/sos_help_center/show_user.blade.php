@@ -1023,15 +1023,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 			icon: image_sos,
 		});
 
-		console.log("=================officer_marker==============");
-		console.log(officer_marker);
-
-		console.log("=================officer_id==============");
-		console.log(officer_id);
-
-		console.log("=================sos_marker==============");
-		console.log(sos_marker);
-
 		if (officer_id) {
 			get_Directions_API(officer_marker, sos_marker ,officer_id);
 		} else {
@@ -1067,8 +1058,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 		fetch("{{ url('/') }}/api/check_status_officer" + "/" + sos_id)
 			.then(response => response.json())
 			.then(result => {
-				console.log(result);
+				// console.log(result);
+				if (result.helper_id) {
+					Stop_loop_check_status_officer();
+					document.querySelector('.carousalOfficerSOS').innerHTML = '';
 
+					get_Directions_API(officer_marker, sos_marker , result.helper_id);
+				}
 			});
 	}
 
