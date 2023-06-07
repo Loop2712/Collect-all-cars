@@ -22,6 +22,10 @@
     margin-left: 1%;
 }
 
+.video-remote div {
+  border-radius:1rem !important;
+}
+
 .video-remote {
     width: 4rem;
     height: 4rem;
