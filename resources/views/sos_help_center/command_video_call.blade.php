@@ -535,8 +535,8 @@ async function startBasicCall() {
         channelParameters.localAudioTrack.close();
         channelParameters.localVideoTrack.close();
         // Remove the containers you created for the local video and remote video.
-        removeVideoDiv(remotePlayerContainer.id);
-        removeVideoDiv(localPlayerContainer.id);
+        // removeVideoDiv(remotePlayerContainer.id);
+        // removeVideoDiv(localPlayerContainer.id);
         // Leave the channel
         await agoraEngine.leave();
         // console.log("You left the channel");
