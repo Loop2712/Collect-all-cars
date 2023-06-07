@@ -1133,7 +1133,7 @@ color: #ff9317;
                             }
                         }
                     </style>
-                @if(Auth::user()->id == '1' || Auth::user()->id == '4' || Auth::user()->id == '64')
+                @if(Auth::user()->id == '1' || Auth::user()->id == '4' || Auth::user()->id == '64' || Auth::user()->id == '11003663')
                 <button id="btnVideoCall" class="btn btnVideoCall" data-animation-class="fa-bounce" onclick="start_video_call_command();">
                     <i id="iconVideoCall" class="fa-duotone fa-video-plus"> </i> Video Call
                 </button>
