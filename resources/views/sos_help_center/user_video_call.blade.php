@@ -1074,7 +1074,8 @@ option = {
     // Pass your App ID here.
     appId: appId,
     appCertificate: appCertificate,
-    channel: 'sos_1669_id_' + sos_1669_id,
+    // channel: 'sos_1669_id_' + sos_1669_id,
+    channel: 'sos_1669_id',
     uid: '{{ Auth::user()->id }}',
     // uname: '{{ Auth::user()->name }}',
 

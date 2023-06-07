@@ -35,7 +35,8 @@ class AgoraController extends Controller
         $data_user = User::where('id' ,$request->user_id)->first();
 
         $user = $data_user->id;
-        $channelName = 'sos_1669_id_' . $request->sos_1669_id;
+        // $channelName = 'sos_1669_id_' . $request->sos_1669_id;
+        $channelName = 'sos_1669_id';
 
         $role = RtcTokenBuilder::RoleAttendee;
         $expireTimeInSeconds = 600;
