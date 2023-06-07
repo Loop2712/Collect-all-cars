@@ -212,7 +212,6 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	
 	Route::get('all_name_user_partner', 'Sos_help_centerController@all_name_user_partner');
 	Route::resource('data_1669_officer_command', 'Data_1669_officer_commandController');
-    Route::get('command_video_call/sos_help_center', 'AgoraController@command_video_call');
 
 
 	// ------- CONDO -------

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Data_1669_officer_command;
 use App\Models\Sos_help_center;
+use App\Models\Agora_chat;
 
 // use App\Classes\AgoraDynamicKey\RtcTokenBuilder;
 use App\Events\MakeAgoraCall;
@@ -58,8 +59,52 @@ class AgoraController extends Controller
         broadcast(new MakeAgoraCall($data))->toOthers();
     }
 
-    function command_video_call(Request $request)
+    function join_room(Request $request)
     {
+        $sos_id = $request->sos_1669_id;
+        $user_id = $request->user_id;
+        $type = $request->type;
 
+        $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
+
+        if ( !empty($agora_chat->member_in_room) ){
+            if($type == 'command_join'){
+                $data_update = $agora_chat->member_in_room;
+
+                $data_array = json_decode($data_update, true);
+                $data_array['command'] = $user_id;
+
+                // แปลงกลับเป็น JSON
+                $data_update = json_encode($data_array);
+            }else{
+                $data_update = $agora_chat->member_in_room;
+
+                $data_array = json_decode($data_update, true);
+                $data_array['user'] = $user_id;
+
+                // แปลงกลับเป็น JSON
+                $data_update = json_encode($data_array);
+            }
+        }else{
+            $data_update = [];
+            if($type == 'command_join'){
+                $data_update['command'] = $user_id ;
+                $data_update['user'] = '' ; 
+            }else{
+                $data_update['user'] = $user_id ;
+                $data_update['command'] = '' ; 
+            }
+        }
+
+        DB::table('agora_chats')
+            ->where([ 
+                    ['sos_id', $sos_id],
+                    ['room_for', 'user_sos_1669'],
+                ])
+            ->update([
+                    'member_in_room' => $data_update,
+                ]);
+
+        return $data_update ;
     }
 }

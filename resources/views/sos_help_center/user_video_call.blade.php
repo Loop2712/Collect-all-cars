@@ -1474,8 +1474,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     window.onload = function() {
       // Listen to the Join button click event.
       document.getElementById("join").onclick = async function() {
-        console.log("--- Onclick >> JOIN ---");
-        console.log(option.channel);
+        // console.log("--- Onclick >> JOIN ---");
+        // console.log(option.channel);
         // Join a channel.
         await agoraEngine.join(option.appId, option.channel, option.token, option.uid);
         // Create a local audio track from the audio sampled by a microphone.
@@ -1488,7 +1488,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
         await agoraEngine.publish([channelParameters.localAudioTrack, channelParameters.localVideoTrack]);
         // Play the local video track.
         channelParameters.localVideoTrack.play(localPlayerContainer);
-        console.log("publish success!");
+        // console.log("publish success!");
+
+        // >>> UPDATE Member in room agora chat <<< //
+        fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=user_join')
+          .then(response => response.json())
+          .then(result => {
+              // console.log(result);
+          });
 
       }
 
