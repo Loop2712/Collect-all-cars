@@ -1,5 +1,24 @@
 
 <style>
+
+@keyframes border-flash-danger {
+  0% {
+    box-shadow: 0 0 0 5px #B22222;
+  }
+  50% {
+    box-shadow: 0 0 0 5px #ffffff;
+  }
+  100% {
+    box-shadow: 0 0 0 5px #B22222;
+  }
+}
+
+.video-call-in-room{
+  background-color: #ffffff;
+  color: green;
+  animation: border-flash-danger 1.5s infinite;
+}
+
 .video-body {
     position: relative;
     width: calc(100%);
@@ -120,16 +139,49 @@
 } */
     </style>
 
+    @php
+      $user_in_room = '';
+      $data_member_in_room = $agora_chat->member_in_room;
+
+      $data_array = json_decode($data_member_in_room, true);
+      $check_user = $data_array['user'];
+
+      if( !empty($check_user) ){
+        $user_in_room = App\User::where('id' , $check_user)->first();
+      }
+
+    @endphp
+
     <div id="divVideoCall" class="video-body fade-slide"style="display: none;">
 
         <div class="video-local">
 
-          <div class="show_whene_video_no_active " style="position:absolute;top:25%;">
-            <center>
-              <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 50%;">
-              <br><br>
-              <h5>ไม่มีผู้ใช้อยู่ในการสนทนา</h5>
-            </center>
+          <div id="show_whene_video_no_active" style="position:absolute;top:25%;">
+            @if( empty($user_in_room) )
+            <!-- ไม่มีผู้ใช้อยู่ในการสนทนา -->
+            <div>
+              <center>
+                <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 50%;">
+                <br><br>
+                <h5>ไม่มีผู้ใช้อยู่ในการสนทนา</h5>
+              </center>
+            </div>
+            @else
+            <!-- ผู้ใช้ กำลังรอ -->
+            <div>
+              <center>
+                @if(!empty($user_in_room->photo))
+                <img src="{{ url('storage')}}/{{ $user_in_room->photo }}" style="width: 50%;border-radius: 20%;" class="main-shadow main-radius">
+                @else
+                <img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 50%;border-radius: 20%;" class="main-shadow main-radius">
+                @endif
+                <br><br>
+                <h5>คุณ : {{ $user_in_room->name }}</h5>
+                <h5 class="mt-3 text-danger">ผู้ใช้ กำลังรอ..</h5>
+              </center>
+            </div>
+            @endif
+
           </div>
 
           <div class="containerbtnRemote">
@@ -142,8 +194,12 @@
 
         <div class="video-menu">
 
-              <span class="btn btn-success" id="command_join" style="background-color: green !important;">
+              <span class="btn btn-success" id="command_join">
                   <i class="fa-solid fa-phone-volume"></i> เริ่มต้นการสนทนา
+              </span>
+
+              <span id="btn_close_audio_ringtone" class="btn btn-secondary d-none" onclick="stop_ringtone();">
+                  <i class="fa-solid fa-volume-slash"></i>
               </span>
 
               <button id="btnMic" class="btn-active d-none">
@@ -165,7 +221,95 @@
 <script src="{{ asset('Agora_Web_SDK_FULL/AgoraRTC_N-4.17.0.js') }}"></script>
 
 <script>
+
+var audio_ringtone = new Audio("{{ asset('sound/ringtone-126505.mp3') }}");
+var isPlaying_ringtone = false;
+
+function play_ringtone() {
+  if (!isPlaying_ringtone) {
+    audio_ringtone.loop = true;
+    audio_ringtone.play();
+    isPlaying_ringtone = true;
+  }
+}
+
+function stop_ringtone() {
+  audio_ringtone.pause();
+  audio_ringtone.currentTime = 0;
+  isPlaying_ringtone = false;
+}
   
+
+document.addEventListener('DOMContentLoaded', (event) => {
+
+  let user_in_room = '{{ $user_in_room }}';
+  
+  if(user_in_room){
+    document.querySelector('#command_join').innerHTML = 
+    `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; เริ่มต้นการสนทนา`;
+    document.querySelector('#command_join').classList.add('video-call-in-room');
+    document.querySelector('#command_join').classList.remove('btn-success');
+    document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+
+    document.querySelector('#btnVideoCall').click();
+
+    play_ringtone();
+
+  }else{
+
+    loop_check_user_in_room();
+
+  }
+
+
+});
+
+function loop_check_user_in_room() {
+
+    check_user_in_room = setInterval(function() {
+
+      // console.log('loop_check_user_in_room');
+
+      fetch("{{ url('/') }}/api/check_user_in_room" + "?sos_1669_id=" + sos_1669_id)
+        .then(response => response.text())
+        .then(result => {
+            // console.log(result);
+
+            if(result){
+              document.querySelector('#command_join').innerHTML = 
+              `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; เริ่มต้นการสนทนา`;
+              document.querySelector('#command_join').classList.add('video-call-in-room');
+              document.querySelector('#command_join').classList.remove('btn-success');
+              document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+
+              let btnVideoCall_sty = document.querySelector('#divVideoCall').getAttribute('style');
+                // console.log(btnVideoCall_sty);
+
+              if(btnVideoCall_sty == "display: none;"){
+                document.querySelector('#btnVideoCall').click();
+              }
+
+              // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
+              create_html_user_in_room();
+
+              play_ringtone();
+              myStop_check_user_in_room();
+            }
+        });
+      
+    }, 3000);
+}
+
+function myStop_check_user_in_room() {
+    clearInterval(check_user_in_room);
+}
+
+function create_html_user_in_room(){
+
+  console.log('create_html_user_in_room');
+
+}
+
 var option;
 var sos_1669_id = '{{ $sos_id }}';
 
@@ -252,7 +396,14 @@ async function startBasicCall() {
   agoraEngine.on("user-published", async (user, mediaType) => {
       // Subscribe to the remote user when the SDK triggers the "user-published" event.
       await agoraEngine.subscribe(user, mediaType);
+      console.log("+++++++++++===========+++++++++++");
+      console.log("+++++++++++===========+++++++++++");
+      console.log("+++++++++++===========+++++++++++");
+      console.log(user.uid);
       console.log("subscribe success");
+      console.log("+++++++++++===========+++++++++++");
+      console.log("+++++++++++===========+++++++++++");
+      console.log("+++++++++++===========+++++++++++");
 
       remotePlayerContainer.classList.remove('d-none');
       btnVideoRemote.classList.remove('d-none');
@@ -405,14 +556,18 @@ async function startBasicCall() {
         // Play the local video track.
         channelParameters.localVideoTrack.play(localPlayerContainer);
         // console.log("publish success!");
-
+        stop_ringtone();
         fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_join')
           .then(response => response.json())
           .then(result => {
               // console.log(result);
           });
 
+        document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
+        document.querySelector('#command_join').classList.add('btn-success');
         document.querySelector('#command_join').classList.add('d-none');
+        document.querySelector('#command_join').classList.remove('video-call-in-room');
+        document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
         document.querySelector('#btnMic').classList.remove('d-none');
         document.querySelector('#btnVideo').classList.remove('d-none');
         document.querySelector('#leave').classList.remove('d-none');
@@ -435,6 +590,7 @@ async function startBasicCall() {
 
         document.querySelector('#leave').classList.add('d-none');
         document.querySelector('#command_join').classList.remove('d-none');
+        document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
         document.querySelector('#btnMic').classList.add('d-none');
         document.querySelector('#btnVideo').classList.add('d-none');
         document.querySelector('#btnVideoCall').click();

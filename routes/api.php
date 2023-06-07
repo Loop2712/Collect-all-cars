@@ -273,4 +273,5 @@ Route::get('/data_officer_go_to_help/{sos_id}', 'Sos_help_centerController@data_
 
 Route::get('/video_call', 'AgoraController@token');
 Route::get('/join_room', 'AgoraController@join_room');
+Route::get('/check_user_in_room', 'AgoraController@check_user_in_room');
 

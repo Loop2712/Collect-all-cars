@@ -1160,7 +1160,14 @@ color: #ff9317;
             </div>
             
             <!-- VIDEO CALL -->
-            @include('sos_help_center.command_video_call', ['sos_id' => $sos_1669_id , 'app_id' => env("AGORA_APP_ID") , 'appCertificate' => env("AGORA_APP_CERTIFICATE")])
+            @include('sos_help_center.command_video_call', 
+              [
+              'sos_id' => $sos_1669_id ,
+              'app_id' => env("AGORA_APP_ID") ,
+              'appCertificate' => env("AGORA_APP_CERTIFICATE"),
+              'agora_chat' => $agora_chat
+              ]
+            )
             <!-- END VIDEO CALL -->
 
             <div class="card radius-10 p-3 d-none" id="div_data_operating">

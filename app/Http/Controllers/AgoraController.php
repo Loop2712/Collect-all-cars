@@ -59,6 +59,24 @@ class AgoraController extends Controller
         broadcast(new MakeAgoraCall($data))->toOthers();
     }
 
+    function check_user_in_room(Request $request)
+    {
+        $sos_id = $request->sos_1669_id;
+        $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
+
+        $user_in_room = '';
+        $data_member_in_room = $agora_chat->member_in_room;
+
+        $data_array = json_decode($data_member_in_room, true);
+        $check_user = $data_array['user'];
+
+        if( !empty($check_user) ){
+            $user_in_room = User::where('id' , $check_user)->first();
+        }
+
+        return $user_in_room ;
+    }
+
     function join_room(Request $request)
     {
         $sos_id = $request->sos_1669_id;
