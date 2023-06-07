@@ -430,9 +430,8 @@ async function startBasicCall() {
         // Leave the channel
         await agoraEngine.leave();
         // console.log("You left the channel");
-
-        document.querySelector('#btnMic').setAttribute('class', '');
-        document.querySelector('#btnVideo').setAttribute('class', '');
+        document.querySelector('#btnMic').setAttribute('class', 'btn-active');
+        document.querySelector('#btnVideo').setAttribute('class', 'btn-active');
 
         document.querySelector('#leave').classList.add('d-none');
         document.querySelector('#command_join').classList.remove('d-none');
