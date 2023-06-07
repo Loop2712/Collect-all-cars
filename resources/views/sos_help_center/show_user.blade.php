@@ -879,7 +879,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 		fetch("{{ url('/') }}/api/data_officer_go_to_help" + "/" + '{{ $data_sos->id }}')
 			.then(response => response.json())
 			.then(result => {
-				console.log(result);
+				// console.log(result);
 				var dataOfficer = '';
 				result.forEach(data_sos => {
 					// สร้างสตริง HTML ด้วยข้อมูลในแต่ละรายการ

@@ -29,8 +29,8 @@ class AgoraController extends Controller
 
     public function token(Request $request)
     {
-        $appID = env('AGORA_APP_ID');
-        $appCertificate = env('AGORA_APP_CERTIFICATE');
+        $appID = $request->appId;
+        $appCertificate = $request->appCertificate;
 
         $data_user = User::where('id' ,$request->user_id)->first();
 
@@ -55,5 +55,10 @@ class AgoraController extends Controller
         $data['from'] = Auth::id();
 
         broadcast(new MakeAgoraCall($data))->toOthers();
+    }
+
+    function command_video_call(Request $request)
+    {
+
     }
 }

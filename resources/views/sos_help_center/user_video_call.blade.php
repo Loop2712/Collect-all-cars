@@ -1070,20 +1070,20 @@ let sos_1669_id = '{{ $sos_id }}';
 let appId = '{{ env("AGORA_APP_ID") }}';
 let appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
 
+option = {
+    // Pass your App ID here.
+    appId: appId,
+    appCertificate: appCertificate,
+    channel: 'sos_1669_id_' + sos_1669_id,
+    uid: '{{ Auth::user()->id }}',
+    // uname: '{{ Auth::user()->name }}',
+
+    token: "",
+  };
+
 document.addEventListener('DOMContentLoaded', (event) => {
 
-  option = {
-          // Pass your App ID here.
-          appId: appId,
-          appCertificate: appCertificate,
-          channel: 'sos_1669_id_' + sos_1669_id,
-          uid: '{{ Auth::user()->id }}',
-          // uname: '{{ Auth::user()->name }}',
-
-          token: "",
-        };
-
-  fetch("{{ url('/') }}/api/video_call" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' )
+  fetch("{{ url('/') }}/api/video_call" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&appCertificate=' + appCertificate  + '&appId=' + appId)
     .then(response => response.text())
     .then(result => {
         console.log("GET Token success");

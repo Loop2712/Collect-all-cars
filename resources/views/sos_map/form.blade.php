@@ -1538,7 +1538,7 @@
         fetch("{{ url('/') }}/api/check_unit_cf_sos_form_user" + "/" + sos_id)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 
                 if (result['command_by']){
 
@@ -1595,8 +1595,8 @@
         fetch("{{ url('/') }}/api/check_officer_command_in_call" + "/" + sos_id)
             .then(response => response.json())
             .then(result => {
-                console.log("check_officer_command_in_call");
-                console.log(result);
+                // console.log("check_officer_command_in_call");
+                // console.log(result);
 
                 if (result['member_in_room']){
 
