@@ -152,7 +152,7 @@
         if( !empty($check_user) ){
           $user_in_room = App\User::where('id' , $check_user)->first();
         }
-        
+
       }
 
     @endphp
@@ -538,7 +538,7 @@ async function startBasicCall() {
         btnVideo.classList.remove('btn-active');
         isMuteVideo = true;
 
-        alertNoti('<i class="fa-solid fa-video-slash"></i>', 'กล้องปิดอยู่');
+        // alertNoti('<i class="fa-solid fa-video-slash"></i>', 'กล้องปิดอยู่');
 
       } else {
         channelParameters.localVideoTrack.setEnabled(true);
@@ -554,7 +554,7 @@ async function startBasicCall() {
         btnVideo.classList.add('btn-active');
         isMuteVideo = false;
 
-        alertNoti('<i class="fa-solid fa-video"></i>', 'กล้องเปิดอยู่');
+        // alertNoti('<i class="fa-solid fa-video"></i>', 'กล้องเปิดอยู่');
 
       }
     }
@@ -607,6 +607,9 @@ async function startBasicCall() {
               }
 
           });
+
+        btnMic.innerHTML = '<i class="fa-solid fa-microphone"></i>';
+        btnVideo.innerHTML = '<i class="fa-solid fa-video"></i>';
 
         document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
         document.querySelector('#command_join').classList.add('btn-success');
