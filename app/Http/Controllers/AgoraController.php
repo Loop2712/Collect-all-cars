@@ -123,6 +123,18 @@ class AgoraController extends Controller
                     'member_in_room' => $data_update,
                 ]);
 
-        return $data_update ;
+        $agora_chat_last = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
+
+        $user_in_room = '';
+        $data_member_in_room = $agora_chat_last->member_in_room;
+
+        $data_array_last = json_decode($data_member_in_room, true);
+        $check_user = $data_array_last['user'];
+
+        if( !empty($check_user) ){
+            $user_in_room = User::where('id' , $check_user)->first();
+        }
+
+        return $user_in_room ;
     }
 }

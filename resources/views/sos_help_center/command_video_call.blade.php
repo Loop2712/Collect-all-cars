@@ -141,13 +141,18 @@
 
     @php
       $user_in_room = '';
-      $data_member_in_room = $agora_chat->member_in_room;
 
-      $data_array = json_decode($data_member_in_room, true);
-      $check_user = $data_array['user'];
+      if(!empty($agora_chat->member_in_room)){
 
-      if( !empty($check_user) ){
-        $user_in_room = App\User::where('id' , $check_user)->first();
+        $data_member_in_room = $agora_chat->member_in_room;
+
+        $data_array = json_decode($data_member_in_room, true);
+        $check_user = $data_array['user'];
+
+        if( !empty($check_user) ){
+          $user_in_room = App\User::where('id' , $check_user)->first();
+        }
+        
       }
 
     @endphp
@@ -157,30 +162,31 @@
         <div class="video-local">
 
           <div id="show_whene_video_no_active" style="position:absolute;top:25%;">
-            @if( empty($user_in_room) )
-            <!-- ไม่มีผู้ใช้อยู่ในการสนทนา -->
-            <div>
-              <center>
-                <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 50%;">
-                <br><br>
-                <h5>ไม่มีผู้ใช้อยู่ในการสนทนา</h5>
-              </center>
-            </div>
-            @else
-            <!-- ผู้ใช้ กำลังรอ -->
-            <div>
-              <center>
-                @if(!empty($user_in_room->photo))
-                <img src="{{ url('storage')}}/{{ $user_in_room->photo }}" style="width: 50%;border-radius: 20%;" class="main-shadow main-radius">
-                @else
-                <img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 50%;border-radius: 20%;" class="main-shadow main-radius">
-                @endif
-                <br><br>
-                <h5>คุณ : {{ $user_in_room->name }}</h5>
-                <h5 class="mt-3 text-danger">ผู้ใช้ กำลังรอ..</h5>
-              </center>
-            </div>
-            @endif
+
+              @if( empty($user_in_room) )
+              <!-- ไม่มีผู้ใช้อยู่ในการสนทนา -->
+              <div>
+                <center>
+                  <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 50%;">
+                  <br><br>
+                  <h5>ไม่มีผู้ใช้อยู่ในการสนทนา</h5>
+                </center>
+              </div>
+              @else
+              <!-- ผู้ใช้ กำลังรอ -->
+              <div>
+                <center>
+                  @if(!empty($user_in_room->photo))
+                  <img src="{{ url('storage')}}/{{ $user_in_room->photo }}" style="width: 50%;border-radius: 20%;" class="main-shadow main-radius">
+                  @else
+                  <img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 50%;border-radius: 20%;" class="main-shadow main-radius">
+                  @endif
+                  <br><br>
+                  <h5>คุณ : {{ $user_in_room->name }}</h5>
+                  <h5 class="mt-3 text-danger">ผู้ใช้ กำลังรอ..</h5>
+                </center>
+              </div>
+              @endif
 
           </div>
 
@@ -271,7 +277,7 @@ function loop_check_user_in_room() {
       // console.log('loop_check_user_in_room');
 
       fetch("{{ url('/') }}/api/check_user_in_room" + "?sos_1669_id=" + sos_1669_id)
-        .then(response => response.text())
+        .then(response => response.json())
         .then(result => {
             // console.log(result);
 
@@ -290,7 +296,7 @@ function loop_check_user_in_room() {
               }
 
               // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
-              create_html_user_in_room();
+              create_html_user_in_room(result , 'wait');
 
               play_ringtone();
               myStop_check_user_in_room();
@@ -304,9 +310,43 @@ function myStop_check_user_in_room() {
     clearInterval(check_user_in_room);
 }
 
-function create_html_user_in_room(){
+function create_html_user_in_room(data , type){
 
-  console.log('create_html_user_in_room');
+  // console.log('create_html_user_in_room');
+  // console.log(data);
+
+  document.querySelector('#show_whene_video_no_active').innerHTML = '';
+
+  let html_img ;
+  if (data['photo']){
+      html_img = `<img src="{{ url('storage')}}/`+data['photo']+`" style="width: 50%;border-radius: 20%;" class="main-shadow main-radius">`;
+  }else{
+      html_img = `<img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 50%;border-radius: 20%;" class="main-shadow main-radius">`;
+  }
+
+  let html_show_status ;
+  if (type == 'wait'){
+      html_show_status = 'ผู้ใช้ กำลังรอ..' ;
+  }else if(type == 'in_room'){
+      html_show_status = 'ผู้ใช้ ปิดกล้อง' ;
+  }else if(type == 'out'){
+    html_show_status = 'ไม่มีผู้ใช้อยู่ในการสนทนา' ;
+    html_img = `<img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 50%;">`;
+  }
+
+  let html = `
+      <div>
+        <center>
+          `+html_img+`
+          <br><br>
+          <h5>คุณ : `+data['name']+`</h5>
+          <h5 class="mt-3 text-danger">`+html_show_status+`</h5>
+        </center>
+      </div>
+      `;
+  
+
+  document.querySelector('#show_whene_video_no_active').insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
 }
 
@@ -560,7 +600,12 @@ async function startBasicCall() {
         fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_join')
           .then(response => response.json())
           .then(result => {
-              // console.log(result);
+              console.log(result);
+
+              if(result){
+                create_html_user_in_room(result , 'in_room');
+              }
+
           });
 
         document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
