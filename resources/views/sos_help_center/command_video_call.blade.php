@@ -329,12 +329,25 @@ function loop_check_user_in_room() {
                 document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
               }
 
-              myStop_check_user_in_room();
+              // myStop_check_user_in_room();
+            }else{
+
+              stop_ringtone();
+              document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
+
+              document.querySelector('#command_join').innerHTML = 
+              `<i class="fa-solid fa-phone-volume"></i> เริ่มต้นการสนทนา`;
+              document.querySelector('#command_join').classList.remove('video-call-in-room');
+              document.querySelector('#command_join').classList.add('btn-success');
+
+              // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
+              create_html_user_in_room(result['data'] , 'out');
+
             }
 
         });
       
-    }, 3000);
+    }, 4000);
 }
 
 function myStop_check_user_in_room() {
