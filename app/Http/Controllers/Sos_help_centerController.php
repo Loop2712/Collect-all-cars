@@ -2250,7 +2250,8 @@ class Sos_help_centerController extends Controller
             $arr_by_case['operating_code'] = $sos_by_case->operating_code;
             $arr_by_case['time_command'] = $sos_by_case->time_command;
             $arr_by_case['joint_case'] = $sos_by_case->joint_case;
-
+            $arr_by_case['helper_id'] = $sos_by_case->helper_id;
+            
             if ($arr_by_case['status'] == "ปฏิเสธ"){
 
                 $arr_refuse = $sos_by_case->refuse;

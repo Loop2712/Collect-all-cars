@@ -371,8 +371,8 @@
             }
 
             .level {
-                width: 46px;
-                height: 46px;
+                width: 38px !important;
+                height: 38px !important;
                 padding: 10px;
                 border-radius: 50%;
                 font-size: 13px;
@@ -405,7 +405,7 @@
 
             
             
-            .menu-select-lv-all{
+            .menu-select-one-lv-all ,.menu-select-lv-all{
                 background-color: #fff!important;
                 color: #8833ff !important;
                 border: #8833ff 1px solid !important;
@@ -416,7 +416,7 @@
                 color: #ffffff !important;
             }
 
-            .menu-select-lv-fr{
+            .menu-select-one-lv-fr ,.menu-select-lv-fr{
                 background-color: #fff!important;
                 color: #24b333 !important;
                 border: #24b333 1px solid !important;
@@ -427,7 +427,7 @@
                 color: #ffffff !important;
             }
 
-            .menu-select-lv-bls{
+            .menu-select-one-lv-bls ,.menu-select-lv-bls{
                background-color: #fff!important;
                 color: #fac831 !important;
                 border: #fac831 1px solid !important;
@@ -438,7 +438,7 @@
                 color: #ffffff !important;
             }
 
-            .menu-select-lv-ils{
+            .menu-select-one-lv-ils ,.menu-select-lv-ils{
                 background-color: #fff!important;
                 color: #faa507 !important;
                 border: #faa507 1px solid !important;
@@ -449,7 +449,7 @@
                 color: #ffffff !important;
             }
 
-            .menu-select-lv-als{
+            .menu-select-one-lv-als ,.menu-select-lv-als{
                 background-color: #fff!important;
                 color: #ce1124 !important;
                 border: #ce1124 1px solid !important;
@@ -547,7 +547,7 @@
                             <div class="chat-tab-menu ">
                                 <ul class="nav nav-pills nav-justified">
                                     <li class="nav-item">
-                                        <a class="nav-link  menu-select-lv-all" href="javascript:;" 
+                                        <a class="nav-link  menu-select-one-lv-all all-active" href="javascript:;" 
                                         onclick="document.querySelector('#input_select_level').value = 'all';select_level();">
                                             <div class="font-24">ALL
                                             </div>
@@ -556,7 +556,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link  menu-select-lv-fr" href="javascript:;" 
+                                        <a class="nav-link  menu-select-one-lv-fr" href="javascript:;" 
                                         onclick="document.querySelector('#input_select_level').value = 'fr';select_level()">
                                             <div class="font-24">FR
                                                 </div>
@@ -566,7 +566,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link menu-select-lv-bls" href="javascript:;" 
+                                        <a class="nav-link menu-select-one-lv-bls" href="javascript:;" 
                                         onclick="document.querySelector('#input_select_level').value = 'bls';select_level()">
                                             <div class="font-24">BLS
                                             </div>
@@ -575,7 +575,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link menu-select-lv-ils" href="javascript:;" 
+                                        <a class="nav-link menu-select-one-lv-ils" href="javascript:;" 
                                         onclick="document.querySelector('#input_select_level').value = 'ils';select_level()">
                                             <div class="font-24">ILS
                                             </div>
@@ -584,7 +584,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link menu-select-lv-als" href="javascript:;" 
+                                        <a class="nav-link menu-select-one-lv-als" href="javascript:;" 
                                         onclick="document.querySelector('#input_select_level').value = 'als';select_level()">
                                             <div class="font-24">ALS
                                             </div>
@@ -1389,13 +1389,14 @@
 
     function set_active_btn_menu_select(level , vehicle_type){
         //  LEVEL
-        document.querySelector('.menu-select-lv-all').classList.remove("all-active");
-        document.querySelector('.menu-select-lv-fr').classList.remove("fr-active");
-        document.querySelector('.menu-select-lv-bls').classList.remove("bls-active");
-        document.querySelector('.menu-select-lv-ils').classList.remove("ils-active");
-        document.querySelector('.menu-select-lv-als').classList.remove("als-active");
+        
+        document.querySelector('.menu-select-one-lv-all').classList.remove("all-active");
+        document.querySelector('.menu-select-one-lv-fr').classList.remove("fr-active");
+        document.querySelector('.menu-select-one-lv-bls').classList.remove("bls-active");
+        document.querySelector('.menu-select-one-lv-ils').classList.remove("ils-active");
+        document.querySelector('.menu-select-one-lv-als').classList.remove("als-active");
 
-        document.querySelector('.menu-select-lv-' + level).classList.add(level + "-active");
+        document.querySelector('.menu-select-one-lv-' + level).classList.add(level + "-active");
 
         // VEHICLE TYPE
         document.querySelector('.menu-select-vehicle-all').classList.remove("vehicle-all-active");
@@ -1435,29 +1436,30 @@
     }
 
     function set_active_btn_menu_select_forward(forward_level){
+        
         //  LEVEL
-        document.querySelector('.menu-select-lv-all').classList.remove("all-active");
-        document.querySelector('.menu-select-lv-fr').classList.remove("fr-active");
-        document.querySelector('.menu-select-lv-bls').classList.remove("bls-active");
-        document.querySelector('.menu-select-lv-ils').classList.remove("ils-active");
-        document.querySelector('.menu-select-lv-als').classList.remove("als-active");
+        document.querySelector('.menu-select-one-lv-all').classList.remove("all-active");
+        document.querySelector('.menu-select-one-lv-fr').classList.remove("fr-active");
+        document.querySelector('.menu-select-one-lv-bls').classList.remove("bls-active");
+        document.querySelector('.menu-select-one-lv-ils').classList.remove("ils-active");
+        document.querySelector('.menu-select-one-lv-als').classList.remove("als-active");
 
         if (forward_level == "เขียว(ไม่รุนแรง)"){
-            document.querySelector('.menu-select-lv-' + "fr").classList.add("fr" + "-active");
-            document.querySelector('.menu-select-lv-' + "bls").classList.add("bls" + "-active");
-            document.querySelector('.menu-select-lv-' + "ils").classList.add("ils" + "-active");
-            document.querySelector('.menu-select-lv-' + "als").classList.add("als" + "-active");
+            document.querySelector('.menu-select-one-lv-' + "fr").classList.add("fr" + "-active");
+            document.querySelector('.menu-select-one-lv-' + "bls").classList.add("bls" + "-active");
+            document.querySelector('.menu-select-one-lv-' + "ils").classList.add("ils" + "-active");
+            document.querySelector('.menu-select-one-lv-' + "als").classList.add("als" + "-active");
         }
         else if (forward_level == "เหลือง(เร่งด่วน)"){
-            document.querySelector('.menu-select-lv-' + "bls").classList.add("bls" + "-active");
-            document.querySelector('.menu-select-lv-' + "ils").classList.add("ils" + "-active");
-            document.querySelector('.menu-select-lv-' + "als").classList.add("als" + "-active");
+            document.querySelector('.menu-select-one-lv-' + "bls").classList.add("bls" + "-active");
+            document.querySelector('.menu-select-one-lv-' + "ils").classList.add("ils" + "-active");
+            document.querySelector('.menu-select-one-lv-' + "als").classList.add("als" + "-active");
         }
         else if (forward_level == "แดง(วิกฤติ)"){
-            document.querySelector('.menu-select-lv-' + "ils").classList.add("ils" + "-active");
-            document.querySelector('.menu-select-lv-' + "als").classList.add("als" + "-active");
+            document.querySelector('.menu-select-one-lv-' + "ils").classList.add("ils" + "-active");
+            document.querySelector('.menu-select-one-lv-' + "als").classList.add("als" + "-active");
         }else{
-            document.querySelector('.menu-select-lv-all').classList.remove("all-active");
+            document.querySelector('.menu-select-one-lv-all').classList.remove("all-active");
         }
 
 
