@@ -347,7 +347,7 @@ function loop_check_user_in_room() {
 
         });
       
-    }, 4000);
+    }, 5000);
 }
 
 function myStop_check_user_in_room() {
