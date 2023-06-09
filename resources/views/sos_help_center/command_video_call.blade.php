@@ -299,7 +299,8 @@ function loop_check_user_in_room() {
 
     check_user_in_room = setInterval(function() {
 
-      // console.log('loop_check_user_in_room');
+      console.log('loop_check_user_in_room');
+      console.log("แจ้งเตือนคนเข้าห้อง >> " + check_command_in_room);
 
       fetch("{{ url('/') }}/api/check_user_in_room" + "?sos_1669_id=" + sos_1669_id)
         .then(response => response.json())
