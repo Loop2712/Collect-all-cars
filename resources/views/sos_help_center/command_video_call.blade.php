@@ -549,7 +549,7 @@ async function startBasicCall() {
         btnMicRemote.classList.add('d-none');
         remotePlayerContainer.classList.remove('d-none')
         document.querySelector('.video-remote').innerHTML = '' ;
-        loop_check_user_in_room();
+        // loop_check_user_in_room();
 
       });
 
