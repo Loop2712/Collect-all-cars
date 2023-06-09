@@ -294,6 +294,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 var check_command_in_room = false ;
+var check_first_play_ringtone = 0 ;
 
 function loop_check_user_in_room() {
 
@@ -327,8 +328,13 @@ function loop_check_user_in_room() {
                 audio_in_room.play();
                 check_command_in_room = false ;
               }else{
-                play_ringtone();
-                document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+
+                if( check_first_play_ringtone == 0 ){
+                  play_ringtone();
+                  document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+                  check_first_play_ringtone = 1 ;
+                }
+
               }
 
               // myStop_check_user_in_room();
@@ -564,6 +570,7 @@ async function startBasicCall() {
         btnMicRemote.classList.add('d-none');
         remotePlayerContainer.classList.remove('d-none')
         document.querySelector('.video-remote').innerHTML = '' ;
+        check_first_play_ringtone = 0 ;
         // loop_check_user_in_room();
 
       });
@@ -626,6 +633,7 @@ async function startBasicCall() {
         // console.log("--- Onclick >> JOIN ---");
         // console.log(option.channel);
         check_command_in_room = true ;
+        check_first_play_ringtone = 1 ;
         // Join a channel.
         await agoraEngine.join(option.appId, option.channel, option.token, option.uid);
         // Create a local audio track from the audio sampled by a microphone.
