@@ -64,14 +64,18 @@ class AgoraController extends Controller
         $sos_id = $request->sos_1669_id;
         $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
 
-        $user_in_room = '';
-        $data_member_in_room = $agora_chat->member_in_room;
+        $user_in_room = [];
+        $user_in_room['data'] = 'ไม่มีข้อมูล';
 
-        $data_array = json_decode($data_member_in_room, true);
-        $check_user = $data_array['user'];
+        if( !empty($agora_chat->member_in_room) ){
+            $data_member_in_room = $agora_chat->member_in_room;
 
-        if( !empty($check_user) ){
-            $user_in_room = User::where('id' , $check_user)->first();
+            $data_array = json_decode($data_member_in_room, true);
+            $check_user = $data_array['user'];
+
+            if( !empty($check_user) ){
+                $user_in_room['data'] = User::where('id' , $check_user)->first();
+            }
         }
 
         return $user_in_room ;
@@ -125,16 +129,87 @@ class AgoraController extends Controller
 
         $agora_chat_last = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
 
-        $user_in_room = '';
-        $data_member_in_room = $agora_chat_last->member_in_room;
+        $check_data_array = [];
+        $check_data_array['data'] = 'ไม่มีข้อมูล' ;
 
-        $data_array_last = json_decode($data_member_in_room, true);
-        $check_user = $data_array_last['user'];
+        if( !empty($agora_chat_last->member_in_room) ){
 
-        if( !empty($check_user) ){
-            $user_in_room = User::where('id' , $check_user)->first();
+            $data_member_in_room = $agora_chat_last->member_in_room;
+            $check_data_array['data'] = json_decode($data_member_in_room, true);
+
+            $check_user = $check_data_array['data']['user'];
+
+            if( !empty($check_user) ){
+                $check_data_array['data_user'] = User::where('id' , $check_user)->first();
+            }
         }
 
-        return $user_in_room ;
+        return $check_data_array ;
+    }
+
+    function left_room(Request $request)
+    {
+        $sos_id = $request->sos_1669_id;
+        $user_id = $request->user_id;
+        $type = $request->type;
+
+        $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
+
+        if($type == 'command_left'){
+            $data_old = $agora_chat->member_in_room;
+
+            $data_array = json_decode($data_old, true);
+
+            if( !empty($data_array['user']) ){
+                $data_array['command'] = '';
+                // แปลงกลับเป็น JSON
+                $data_update = json_encode($data_array);
+            }else{
+                $data_update = null;
+            }
+            
+        }else{
+            $data_old = $agora_chat->member_in_room;
+
+            $data_array = json_decode($data_old, true);
+
+            if( !empty($data_array['command']) ){
+                $data_array['user'] = '';
+                // แปลงกลับเป็น JSON
+                $data_update = json_encode($data_array);
+            }else{
+                $data_update = null;
+            }
+            
+        }
+
+        DB::table('agora_chats')
+            ->where([ 
+                    ['sos_id', $sos_id],
+                    ['room_for', 'user_sos_1669'],
+                ])
+            ->update([
+                    'member_in_room' => $data_update,
+                ]);
+
+        $agora_chat_last = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
+
+        $check_data_array = [];
+        $check_data_array['data'] = 'ไม่มีข้อมูล' ;
+
+        if( !empty($agora_chat_last->member_in_room) ){
+
+            $data_member_in_room = $agora_chat_last->member_in_room;
+            $check_data_array['data'] = json_decode($data_member_in_room, true);
+
+            $check_user = $check_data_array['data']['user'];
+
+            if( !empty($check_user) ){
+                $check_data_array['data_user'] = User::where('id' , $check_user)->first();
+            }
+        }
+
+        return $check_data_array ;
+
     }
 }

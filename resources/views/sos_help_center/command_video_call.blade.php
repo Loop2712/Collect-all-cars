@@ -228,6 +228,29 @@
 
 <script>
 
+var option;
+var sos_1669_id = '{{ $sos_id }}';
+
+var appId = '{{ $app_id }}';
+var appCertificate = '{{ $appCertificate }}';
+
+const channelName = "Viicheck";
+
+var channelParameters = {
+  // A variable to hold a local audio track.
+  localAudioTrack: null,
+  // A variable to hold a local video track.
+  localVideoTrack: null,
+  // A variable to hold a remote audio track.
+  remoteAudioTrack: null,
+  // A variable to hold a remote video track.
+  remoteVideoTrack: null,
+  // A variable to hold the remote user id.s
+  remoteUid: null,
+};
+
+
+var audio_in_room = new Audio("{{ asset('sound/announcement-sound-21466.mp3') }}");
 var audio_ringtone = new Audio("{{ asset('sound/ringtone-126505.mp3') }}");
 var isPlaying_ringtone = false;
 
@@ -270,6 +293,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 });
 
+var check_command_in_room = false ;
+
 function loop_check_user_in_room() {
 
     check_user_in_room = setInterval(function() {
@@ -281,12 +306,11 @@ function loop_check_user_in_room() {
         .then(result => {
             // console.log(result);
 
-            if(result){
+            if(result['data'] != 'ไม่มีข้อมูล'){
               document.querySelector('#command_join').innerHTML = 
               `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; เริ่มต้นการสนทนา`;
               document.querySelector('#command_join').classList.add('video-call-in-room');
               document.querySelector('#command_join').classList.remove('btn-success');
-              document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
 
               let btnVideoCall_sty = document.querySelector('#divVideoCall').getAttribute('style');
                 // console.log(btnVideoCall_sty);
@@ -296,11 +320,18 @@ function loop_check_user_in_room() {
               }
 
               // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
-              create_html_user_in_room(result , 'wait');
+              create_html_user_in_room(result['data'] , 'wait');
 
-              play_ringtone();
+              if( check_command_in_room ){
+                audio_in_room.play();
+              }else{
+                play_ringtone();
+                document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+              }
+
               myStop_check_user_in_room();
             }
+
         });
       
     }, 3000);
@@ -312,7 +343,7 @@ function myStop_check_user_in_room() {
 
 function create_html_user_in_room(data , type){
 
-  // console.log('create_html_user_in_room');
+  console.log('create_html_user_in_room');
   // console.log(data);
 
   document.querySelector('#show_whene_video_no_active').innerHTML = '';
@@ -325,13 +356,28 @@ function create_html_user_in_room(data , type){
   }
 
   let html_show_status ;
+  let class_h5 ;
   if (type == 'wait'){
+
+      class_h5 = '' ;
       html_show_status = 'ผู้ใช้ กำลังรอ..' ;
+
   }else if(type == 'in_room'){
+
+      class_h5 = '' ;
       html_show_status = 'ผู้ใช้ ปิดกล้อง' ;
+
   }else if(type == 'out'){
+
+    class_h5 = 'd-none' ;
     html_show_status = 'ไม่มีผู้ใช้อยู่ในการสนทนา' ;
     html_img = `<img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 50%;">`;
+
+  }else if(type == 'end but in_room'){
+
+    class_h5 = '' ;
+    html_show_status = 'ผู้ใช้ อยู่ในสาย..' ;
+
   }
 
   let html = `
@@ -339,7 +385,7 @@ function create_html_user_in_room(data , type){
         <center>
           `+html_img+`
           <br><br>
-          <h5>คุณ : `+data['name']+`</h5>
+          <h5 class="`+class_h5+`">คุณ : `+data['name']+`</h5>
           <h5 class="mt-3 text-danger">`+html_show_status+`</h5>
         </center>
       </div>
@@ -349,27 +395,6 @@ function create_html_user_in_room(data , type){
   document.querySelector('#show_whene_video_no_active').insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
 }
-
-var option;
-var sos_1669_id = '{{ $sos_id }}';
-
-var appId = '{{ $app_id }}';
-var appCertificate = '{{ $appCertificate }}';
-
-const channelName = "Viicheck";
-
-var channelParameters = {
-  // A variable to hold a local audio track.
-  localAudioTrack: null,
-  // A variable to hold a local video track.
-  localVideoTrack: null,
-  // A variable to hold a remote audio track.
-  remoteAudioTrack: null,
-  // A variable to hold a remote video track.
-  remoteVideoTrack: null,
-  // A variable to hold the remote user id.s
-  remoteUid: null,
-};
 
 function start_video_call_command(){
 
@@ -583,6 +608,8 @@ async function startBasicCall() {
       document.getElementById("command_join").onclick = async function() {
         // console.log("--- Onclick >> JOIN ---");
         // console.log(option.channel);
+
+        check_command_in_room = true ;
         // Join a channel.
         await agoraEngine.join(option.appId, option.channel, option.token, option.uid);
         // Create a local audio track from the audio sampled by a microphone.
@@ -600,10 +627,10 @@ async function startBasicCall() {
         fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_join')
           .then(response => response.json())
           .then(result => {
-              console.log(result);
+              // console.log(result);
 
-              if(result){
-                create_html_user_in_room(result , 'in_room');
+              if(result['data']['user']){
+                create_html_user_in_room(result['data_user'] , 'in_room');
               }
 
           });
@@ -624,6 +651,9 @@ async function startBasicCall() {
 
       // Listen to the Leave button click event.
       document.getElementById('leave').onclick = async function() {
+
+        check_command_in_room = false ;
+
         // Destroy the local audio and video tracks.
         channelParameters.localAudioTrack.close();
         channelParameters.localVideoTrack.close();
@@ -646,6 +676,19 @@ async function startBasicCall() {
         btnMicRemote.classList.add('d-none');
         document.querySelector('.video-remote').classList.add('d-none');
         // window.location.reload();
+
+        fetch("{{ url('/') }}/api/left_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_left')
+          .then(response => response.json())
+          .then(result => {
+              // console.log(result);
+
+              if(result['data']['user']){
+                create_html_user_in_room(result['data_user'] , 'end but in_room');
+              }else{
+                create_html_user_in_room(result['data'] , 'out');
+              }
+
+          });
       }
 
 }
