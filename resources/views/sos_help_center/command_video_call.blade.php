@@ -343,7 +343,7 @@ function myStop_check_user_in_room() {
 
 function create_html_user_in_room(data , type){
 
-  console.log('create_html_user_in_room');
+  // console.log('create_html_user_in_room');
   // console.log(data);
 
   document.querySelector('#show_whene_video_no_active').innerHTML = '';
@@ -548,7 +548,9 @@ async function startBasicCall() {
         btnVideoRemote.classList.add('d-none');
         btnMicRemote.classList.add('d-none');
         remotePlayerContainer.classList.remove('d-none')
-        
+        document.querySelector('.video-remote').innerHTML = '' ;
+        loop_check_user_in_room();
+
       });
 
     });
