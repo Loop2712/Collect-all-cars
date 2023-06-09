@@ -1516,6 +1516,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             go_to_show_user_href.value = '{{ url("/") }}/sos_help_center/'+'{{ $sos_id }}'+'/show_user' ;
             go_to_show_user.setAttributeNode(go_to_show_user_href);
 
+        fetch("{{ url('/') }}/api/left_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=user_left')
+          .then(response => response.json())
+          .then(result => {
+              // console.log(result);
+          });
+
           setTimeout(function() {
               document.querySelector('#go_to_show_user').click();
           }, 1000);
