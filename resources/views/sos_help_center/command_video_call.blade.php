@@ -624,8 +624,6 @@ async function startBasicCall() {
       document.getElementById("command_join").onclick = async function() {
         // console.log("--- Onclick >> JOIN ---");
         // console.log(option.channel);
-
-        check_command_in_room = true ;
         // Join a channel.
         await agoraEngine.join(option.appId, option.channel, option.token, option.uid);
         // Create a local audio track from the audio sampled by a microphone.
@@ -647,6 +645,8 @@ async function startBasicCall() {
 
               if(result['data']['user']){
                 create_html_user_in_room(result['data_user'] , 'in_room');
+              }else{
+                check_command_in_room = true ;
               }
 
           });
