@@ -654,6 +654,14 @@
     border-radius: 50%;
     color: #000 !important;
   }
+
+  .card_show_h6_wait_command{
+      height: 3.5rem!important;
+      width: 100%!important;
+      position: absolute;
+      top: 0px;
+      z-index: 99999;
+    }
 </style>
 
 
@@ -1003,17 +1011,33 @@
   </div>
 
   <div class="video-body">
+
     <div class="video-local">
+
+      <div id="card_show_h6_wait_command" class="card card_show_h6_wait_command d-none">
+        <div class="alert border-0 border-start border-5 border-warning alert-dismissible fade show py-2">
+          <div class="d-flex align-items-center">
+            <div class="font-35 text-warning" id="show_icon_h6_wait_command">
+               <i class="fa-duotone fa-loader fa-spin-pulse"></i>
+            </div>
+            <div class="ms-3">
+              <h6 class="mt-2 d-" id="show_h6_wait_command">
+                กรุณารอเจ้าหน้าที่สักครู่..
+              </h6>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="document.querySelector('#card_show_h6_wait_command').classList.add('d-none');"></button>
+        </div>
+      </div>
+
+
       <div class="containerbtnRemote">
         <button id="btnVideoRemote" class="btn btnRemote d-none"><i class="fas fa-video-slash"></i></button>
         <button id="btnMicRemote" class="btn btnRemote d-none"><i class="fa-duotone fa-microphone-slash"></i></button>
       </div>
+
     </div>
 
-    <div class="col-12 text-center">
-      <br>
-      <h6 class="d-none" id="show_h6_wait_command">กรุณารอเจ้าหน้าที่สักครู่.. <i class="fa-duotone fa-loader fa-spin-pulse"></i></h6>
-    </div>
 
     <div class="video-remote d-none"></div>
 
@@ -1113,66 +1137,112 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
   
-  const channelName = "Viicheck";
+const channelName = "Viicheck";
 
-  let channelParameters = {
-    // A variable to hold a local audio track.
-    localAudioTrack: null,
-    // A variable to hold a local video track.
-    localVideoTrack: null,
-    // A variable to hold a remote audio track.
-    remoteAudioTrack: null,
-    // A variable to hold a remote video track.
-    remoteVideoTrack: null,
-    // A variable to hold the remote user id.s
-    remoteUid: null,
-  };
+let channelParameters = {
+  // A variable to hold a local audio track.
+  localAudioTrack: null,
+  // A variable to hold a local video track.
+  localVideoTrack: null,
+  // A variable to hold a remote audio track.
+  remoteAudioTrack: null,
+  // A variable to hold a remote video track.
+  remoteVideoTrack: null,
+  // A variable to hold the remote user id.s
+  remoteUid: null,
+};
 
 
-  var check_command_in_room ;
-  var audio_in_room = new Audio("{{ asset('sound/announcement-sound-21466.mp3') }}");
-  var check_play_audio_in_room = 'ห้ามเล่น' ;
-  var command_entered_room = 'no' ;
+var check_command_in_room ;
+var audio_in_room = new Audio("{{ asset('sound/announcement-sound-21466.mp3') }}");
+var check_play_audio_in_room = 'ห้ามเล่น' ;
+var command_entered_room = 'no' ;
+var check_start_countdown_user_out_room = 'no' ;
 
-  function loop_check_command_in_room() {
+function loop_check_command_in_room() {
 
-    check_command_in_room = setInterval(function() {
+  check_command_in_room = setInterval(function() {
 
-      fetch("{{ url('/') }}/api/check_command_in_room" + "?sos_1669_id=" + sos_1669_id)
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
+    fetch("{{ url('/') }}/api/check_command_in_room" + "?sos_1669_id=" + sos_1669_id)
+      .then(response => response.json())
+      .then(result => {
+          console.log(result);
 
-            if (result['data'] != 'ไม่มีข้อมูล'){
-              command_entered_room = 'yes' ;
-              document.querySelector('#show_h6_wait_command').classList.add('d-none');
+          if (result['data'] != 'ไม่มีข้อมูล'){
 
-              if (check_play_audio_in_room == 'เล่น'){
-                audio_in_room.play();
-                check_play_audio_in_room = 'ห้ามเล่น';
-              }
+            myStop_countdown_user_out_room();
 
-            }else{
+            command_entered_room = 'yes' ;
+            document.querySelector('#show_h6_wait_command').classList.add('d-none');
+            document.querySelector('#card_show_h6_wait_command').classList.add('d-none');
 
-              document.querySelector('#show_h6_wait_command').classList.remove('d-none');
-
-              if (command_entered_room == 'yes'){
-                document.querySelector('#show_h6_wait_command').innerHTML = 
-                  `<i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp;เจ้าหน้าที่ออกจากการสนทนา`;
-              }
-
-              check_play_audio_in_room = 'เล่น';
-
+            if (check_play_audio_in_room == 'เล่น'){
+              audio_in_room.play();
+              check_play_audio_in_room = 'ห้ามเล่น';
             }
 
-        });
+          }else{
 
-    }, 5000);
+            document.querySelector('#show_h6_wait_command').classList.remove('d-none');
+            document.querySelector('#card_show_h6_wait_command').classList.remove('d-none');
+            check_play_audio_in_room = 'เล่น';
 
-  }
+            // ถ้าเจ้าหน้าที่เข้ามาแล้วออก
+            if (command_entered_room == 'yes'){
+              command_entered_room = 'no' ;
+              document.querySelector('#show_h6_wait_command').innerHTML = 
+                ` เจ้าหน้าที่ออกจากการสนทนาแล้ว
+                  <br>
+                  กำลังนำคุณออกจากการสนทนา <b class="text-danger">(<span id="countdown_user_out_room"></span>)</b>
+                `;
+              document.querySelector('#card_show_h6_wait_command').setAttribute('style','height: 4.5rem!important;')
+              document.querySelector('#show_icon_h6_wait_command').innerHTML = 
+                `<i class="fa-solid fa-arrow-right-from-bracket"></i>`;
 
-  function myStop_check_command_in_room() {
+              if(check_start_countdown_user_out_room == 'no'){
+                check_start_countdown_user_out_room = 'yes';
+                start_countdown_user_out_room();
+              }
+            }
+
+          }
+
+      });
+
+  }, 5000);
+
+}
+
+function myStop_check_command_in_room() {
     clearInterval(check_command_in_room);
+}
+
+function myStop_countdown_user_out_room() {
+    clearInterval(check_countdown_user_out_room);
+    start_countdown = 10 ;
+    check_start_countdown_user_out_room = 'no';
+}
+
+var check_countdown_user_out_room ;
+var start_countdown = 10 ;
+
+function start_countdown_user_out_room(){
+
+  let countdown_user_out_room = document.querySelector('#countdown_user_out_room');
+
+  check_countdown_user_out_room = setInterval(function() {
+
+      // console.log(start_countdown);
+      countdown_user_out_room.innerHTML = start_countdown.toString() ;
+      start_countdown = start_countdown - 1 ;
+
+      if (start_countdown < 0){
+        myStop_countdown_user_out_room();
+        document.querySelector('#leave').click();
+      }
+
+  }, 1000);
+
 }
 
 
@@ -1410,6 +1480,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
       await agoraEngine.subscribe(user, mediaType);
       console.log("subscribe success");
 
+      command_entered_room = 'in_room' ;
+      document.querySelector('#card_show_h6_wait_command').classList.add('d-none');
+      document.querySelector('#show_h6_wait_command').classList.add('d-none');
       remotePlayerContainer.classList.remove('d-none');
 
       // Subscribe and play the remote video in the container If the remote user publishes a video track.
@@ -1473,6 +1546,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         channelParameters.localVideoTrack.play(localPlayerContainer);
         userJoinRoom = false;
         // alert('มีคนออก');
+        command_entered_room = 'yes' ;
+
       });
 
 
