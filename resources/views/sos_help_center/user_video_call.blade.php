@@ -45,7 +45,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: 80%;
+      width: 100%;
     }
     .video-detail-officer-box *{
       margin: 0;
@@ -213,7 +213,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: 80%;
+      width: 100%;
     }
     .video-detail-officer-box *{
       margin: 0;
@@ -549,6 +549,11 @@
 
   .btn-disabled {
     background-color: #db2d2e !important;
+    color: #fff !important;
+  }
+
+.btn-active {
+    background-color: green !important;
     color: #fff !important;
   }
 
@@ -916,6 +921,7 @@
           <img class="imgOfficer" width="500" height="500" src="{{ url('/img/stickerline/flex/12.png') }}" />
         @endif
       </div>
+      &nbsp;&nbsp;&nbsp;
       <span class="video-officer-detail">
         <p>เจ้าหน้าที่ : {{ $data_officer_command->name_officer_command }}</p>
         <small>{{ $data_officer_command->user->phone }}</small>
@@ -946,13 +952,12 @@
             Go To SHOW USER
         </a>
         <div class="btnGroup">
-          <button class="btn" id="btnMic">
+
+          <button class="btn btn-active" id="btnMic">
             <i class="fa-duotone fa-microphone"></i>
-
-
           </button>
-          <span class="containerbtnDevice d-non">
 
+          <span class="containerbtnDevice d-none">
             <div class="btn-group btnGroupVideoCall">
               <button class="btnDevice btn dropdown-toggle" type="button" data-bs-toggle='dropdown' aria-expanded="false" style=" width: 20px !important;height: 20px !important; padding: 0 !important;"><i class="fa-solid fa-chevron-down fa-2xs"></i></button>
 
@@ -960,20 +965,21 @@
                 <h6 class="dropdown-header">อุปกรณ์รับข้อมูล</h6>
                 <div id="audio-device-list"></div>
                 <!-- <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
-                            <div id="video-device-list"></div> -->
+                <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
+                <div id="video-device-list"></div> -->
               </div>
-
             </div>
           </span>
+
         </div>
        
         <div class="btnGroup">
-          <button class="btn" id="btnVideo">
+
+          <button class="btn btn-active" id="btnVideo">
             <i class="fas fa-video"></i>
           </button>
-          <span class="containerbtnDevice d-non">
 
+          <span class="containerbtnDevice d-none">
             <div class="btn-group btnGroupVideoCall">
               <button class="btnDevice btn dropdown-toggle" type="button" data-bs-toggle='dropdown' aria-expanded="false" style=" width: 20px !important;height: 20px !important; padding: 0 !important;"><i class="fa-solid fa-chevron-down fa-2xs"></i></button>
 
@@ -988,7 +994,7 @@
 
 
         <button class="btn btn-exit" id="leave">
-          <i class="fa-solid fa-x"></i>
+            <i class="fa-solid fa-phone-xmark"></i>
         </button>
       </div>
     </div>
@@ -1002,6 +1008,11 @@
         <button id="btnVideoRemote" class="btn btnRemote d-none"><i class="fas fa-video-slash"></i></button>
         <button id="btnMicRemote" class="btn btnRemote d-none"><i class="fa-duotone fa-microphone-slash"></i></button>
       </div>
+    </div>
+
+    <div class="col-12 text-center">
+      <br>
+      <h6 class="d-none" id="show_h6_wait_command">กรุณารอเจ้าหน้าที่สักครู่.. <i class="fa-duotone fa-loader fa-spin-pulse"></i></h6>
     </div>
 
     <div class="video-remote d-none"></div>
@@ -1116,6 +1127,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // A variable to hold the remote user id.s
     remoteUid: null,
   };
+
+
+  var check_command_in_room ;
+  var audio_in_room = new Audio("{{ asset('sound/announcement-sound-21466.mp3') }}");
+  var check_play_audio_in_room = 'ห้ามเล่น' ;
+  var command_entered_room = 'no' ;
+
+  function loop_check_command_in_room() {
+
+    check_command_in_room = setInterval(function() {
+
+      fetch("{{ url('/') }}/api/check_command_in_room" + "?sos_1669_id=" + sos_1669_id)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);
+
+            if (result['data'] != 'ไม่มีข้อมูล'){
+              command_entered_room = 'yes' ;
+              document.querySelector('#show_h6_wait_command').classList.add('d-none');
+
+              if (check_play_audio_in_room == 'เล่น'){
+                audio_in_room.play();
+                check_play_audio_in_room = 'ห้ามเล่น';
+              }
+
+            }else{
+
+              document.querySelector('#show_h6_wait_command').classList.remove('d-none');
+
+              if (command_entered_room == 'yes'){
+                document.querySelector('#show_h6_wait_command').innerHTML = 
+                  `<i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp;เจ้าหน้าที่ออกจากการสนทนา`;
+              }
+
+              check_play_audio_in_room = 'เล่น';
+
+            }
+
+        });
+
+    }, 5000);
+
+  }
+
+  function myStop_check_command_in_room() {
+    clearInterval(check_command_in_room);
+}
+
 
 
   async function startBasicCall() {
@@ -1426,6 +1485,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Update the button text.
         btnVideo.innerHTML = '<i class="fa-solid fa-video-slash"></i>';
         btnVideo.classList.add('btn-disabled');
+        btnVideo.classList.remove('btn-active');
         isMuteVideo = true;
 
         alertNoti('<i class="fa-solid fa-video-slash"></i>', 'กล้องปิดอยู่');
@@ -1441,6 +1501,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
         btnVideo.innerHTML = '<i class="fa-solid fa-video"></i>';
         btnVideo.classList.remove('btn-disabled');
+        btnVideo.classList.add('btn-active');
         isMuteVideo = false;
 
         alertNoti('<i class="fa-solid fa-video"></i>', 'กล้องเปิดอยู่');
@@ -1456,6 +1517,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Update the button text.
         btnMic.innerHTML = '<i class="fa-solid fa-microphone-slash"></i>';
         btnMic.classList.add('btn-disabled');
+        btnMic.classList.remove('btn-active');
         isMuteAudio = true;
         alertNoti('<i class="fa-solid fa-microphone-slash"></i>', 'ไมโครโฟนปิดอยู่');
       } else {
@@ -1464,6 +1526,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Update the button text.
         btnMic.innerHTML = '<i class="fa-solid fa-microphone"></i>';
         btnMic.classList.remove('btn-disabled');
+        btnMic.classList.add('btn-active');
         isMuteAudio = false;
         alertNoti('<i class="fa-solid fa-microphone"></i>', 'ไมโครโฟนเปิดอยู่');
       }
@@ -1495,6 +1558,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
           .then(response => response.json())
           .then(result => {
               // console.log(result);
+              // ตรวจสอบว่ามีเจ้าหน้าที่ เข้ามาในห้องหรือไม่
+              loop_check_command_in_room();
           });
 
       }

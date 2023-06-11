@@ -81,6 +81,29 @@ class AgoraController extends Controller
         return $user_in_room ;
     }
 
+    function check_command_in_room(Request $request){
+
+        $sos_id = $request->sos_1669_id;
+        $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
+
+        $command_in_room = [];
+        $command_in_room['data'] = 'ไม่มีข้อมูล';
+
+        if( !empty($agora_chat->member_in_room) ){
+            $data_member_in_room = $agora_chat->member_in_room;
+
+            $data_array = json_decode($data_member_in_room, true);
+            $check_command = $data_array['command'];
+
+            if( !empty($check_command) ){
+                $command_in_room['data'] = Data_1669_officer_command::where('user_id' , $check_command)->first();
+            }
+        }
+
+        return $command_in_room ;
+
+    }
+
     function join_room(Request $request)
     {
         $sos_id = $request->sos_1669_id;
@@ -90,6 +113,7 @@ class AgoraController extends Controller
         $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
 
         if ( !empty($agora_chat->member_in_room) ){
+            // มีข้อมูล ใน member_in_room
             if($type == 'command_join'){
                 $data_update = $agora_chat->member_in_room;
 
@@ -107,7 +131,11 @@ class AgoraController extends Controller
                 // แปลงกลับเป็น JSON
                 $data_update = json_encode($data_array);
             }
+
+            $update_time_start = $agora_chat->time_start ;
+
         }else{
+            // ไม่มีข้อมูล ใน member_in_room
             $data_update = [];
             if($type == 'command_join'){
                 $data_update['command'] = $user_id ;
@@ -116,6 +144,8 @@ class AgoraController extends Controller
                 $data_update['user'] = $user_id ;
                 $data_update['command'] = '' ; 
             }
+
+            $update_time_start = date("Y-m-d H:i:s");
         }
 
         DB::table('agora_chats')
@@ -125,6 +155,7 @@ class AgoraController extends Controller
                 ])
             ->update([
                     'member_in_room' => $data_update,
+                    'time_start' => $update_time_start,
                 ]);
 
         $agora_chat_last = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
@@ -183,6 +214,22 @@ class AgoraController extends Controller
             
         }
 
+        if($data_update == null){
+            $update_time_start = null ;
+
+            $date_now = date("Y-m-d H:i:s");
+            $time_start = $agora_chat->time_start ;
+
+            $time_start_seconds = strtotime($time_start);
+            $date_now_seconds = strtotime($date_now);
+            $seconds_passed =  (int)$date_now_seconds - (int)$time_start_seconds ;
+
+            $update_total_timemeet = (int)$agora_chat->total_timemeet + (int)$seconds_passed ;
+        }else{
+            $update_time_start = $agora_chat->time_start ;
+            $update_total_timemeet = $agora_chat->total_timemeet ;
+        }
+
         DB::table('agora_chats')
             ->where([ 
                     ['sos_id', $sos_id],
@@ -190,6 +237,8 @@ class AgoraController extends Controller
                 ])
             ->update([
                     'member_in_room' => $data_update,
+                    'time_start' => $update_time_start,
+                    'total_timemeet' => $update_total_timemeet,
                 ]);
 
         $agora_chat_last = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();

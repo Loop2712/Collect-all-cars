@@ -1543,7 +1543,7 @@
                 if (result['command_by']){
 
                     myStop_reface_check_unit_cf_sos();
-                    loop_check_officer_command_in_call(sos_id);
+                    loop_check_officer_command_in_call(sos_id , result['name_officer_command']);
 
                     document.querySelector('#text_h3_wait_unit').innerHTML = "เจ้าหน้าที่รับเรื่องแล้ว"
                     document.querySelector('#text_h5_wait_unit').innerHTML = "เจ้าหน้าที่ : "+result['name_officer_command'];
@@ -1577,10 +1577,10 @@
         });
     }
 
-    function loop_check_officer_command_in_call(sos_id) {
+    function loop_check_officer_command_in_call(sos_id , name_officer_command) {
         check_officer_command = setInterval(function() {
-            check_officer_command_in_call(sos_id);
-        }, 1500);
+            check_officer_command_in_call(sos_id , name_officer_command);
+        }, 4000);
     }
 
     function myStop_check_officer_command_in_call() {
@@ -1589,35 +1589,71 @@
 
     var audio_ringtone = new Audio("{{ asset('sound/ringtone-126505.mp3') }}");
     var isPlaying_ringtone = false;
+    var check_create_btn_join_video_call_1 = true ;
+    var check_create_btn_join_video_call_2 = true ;
+    var mute_check = 'เปิด' ;
 
-    function check_officer_command_in_call(sos_id){
+    function check_officer_command_in_call(sos_id , name_officer_command){
 
         fetch("{{ url('/') }}/api/check_officer_command_in_call" + "/" + sos_id)
             .then(response => response.json())
             .then(result => {
                 // console.log("check_officer_command_in_call");
-                // console.log(result);
-
+                
+                // มี เจ้าหน้าที่อยู่ในสาย
                 if (result['member_in_room']){
 
-                    myStop_check_officer_command_in_call();
+                    // console.log("มี เจ้าหน้าที่ในสาย");
+                    // console.log(result);
 
-                    let html_btn_join_video_call = `
-                        <br><br>
-                        <span class="text-danger mt-3">เจ้าหน้าที่อยู่ในสายแล้ว</span>
-                        <br><br>
-                        <span class="btn btn-sm btn-secondary" style="width:60;" onclick="stop_ringtone();">
-                            <i class="fa-solid fa-volume-slash"></i>
-                        </span>
-                    `;
+                    // ตรวจสอบสร้างการแจ้งเตือนสายเรียกเข้า
+                    if (check_create_btn_join_video_call_1){
+                        let html_btn_join_video_call = `
+                            <br><br>
+                            <span class="text-danger mt-3">เจ้าหน้าที่อยู่ในสายแล้ว</span>
+                            <br><br>
+                            <span class="btn btn-sm btn-secondary" style="width:60;" onclick="func_mute_audio();">
+                                <i class="fa-solid fa-volume-slash"></i>
+                            </span>
+                        `;
 
-                    document.querySelector('#btn_join_video_call').innerHTML = 
-                    `<i class="fa-solid fa-phone-volume fa-bounce"></i> &nbsp;&nbsp; Video Call`;
-                    document.querySelector('#text_h5_wait_unit').insertAdjacentHTML('beforeend', html_btn_join_video_call); // แทรกล่างสุด
+                        document.querySelector('#btn_join_video_call').innerHTML = 
+                        `<i class="fa-solid fa-phone-volume fa-bounce"></i> &nbsp;&nbsp; Video Call`;
+                        document.querySelector('#text_h5_wait_unit').insertAdjacentHTML('beforeend', html_btn_join_video_call); // แทรกล่างสุด
 
-                    play_ringtone();
+                        check_create_btn_join_video_call_1 = false ;
+                        check_create_btn_join_video_call_2 = true ;
+                    }
+
+                    if(mute_check == 'เปิด'){
+                        play_ringtone();
+                    }
                     
+                }else{
+                    // ไม่มี เจ้าหน้าที่ในสาย
+                    // console.log("ไม่มี เจ้าหน้าที่ในสาย");
+                    // console.log(result);
+
+                    if(check_create_btn_join_video_call_2){
+                        document.querySelector('#text_h5_wait_unit').innerHTML = "เจ้าหน้าที่ : "+name_officer_command;
+                        let btn_html_video_call = `
+                            <br>
+                            <a id="btn_join_video_call" href="{{ url('/') }}/user_video_call/sos_help_center?sos_id=`+sos_id+`" class="btn btn-info main-radius main-shadow mt-3">
+                                Video Call
+                            </a>
+                        `;
+                        document.querySelector('#text_h5_wait_unit').insertAdjacentHTML('beforeend', btn_html_video_call); // แทรกล่างสุด
+
+                        check_create_btn_join_video_call_1 = true ;
+                        check_create_btn_join_video_call_2 = false ;
+                    }
+                    stop_ringtone();
+                    mute_check = 'เปิด' ;
+
                 }
+
+                // console.log("==========================");
+
 
             });
 
@@ -1628,6 +1664,7 @@
         audio_ringtone.loop = true;
         audio_ringtone.play();
         isPlaying_ringtone = true;
+        mute_check = 'ปิด' ;
       }
     }
 
@@ -1635,6 +1672,11 @@
       audio_ringtone.pause();
       audio_ringtone.currentTime = 0;
       isPlaying_ringtone = false;
+    }
+
+    function func_mute_audio(){
+        mute_check = 'ปิด' ;
+        stop_ringtone();
     }
 
     

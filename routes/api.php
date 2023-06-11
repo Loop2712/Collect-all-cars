@@ -275,4 +275,5 @@ Route::get('/video_call', 'AgoraController@token');
 Route::get('/join_room', 'AgoraController@join_room');
 Route::get('/left_room', 'AgoraController@left_room');
 Route::get('/check_user_in_room', 'AgoraController@check_user_in_room');
+Route::get('/check_command_in_room', 'AgoraController@check_command_in_room');
 
