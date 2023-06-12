@@ -169,9 +169,14 @@ class AgoraController extends Controller
             $check_data_array['data'] = json_decode($data_member_in_room, true);
 
             $check_user = $check_data_array['data']['user'];
+            $check_command = $check_data_array['data']['command'];
 
             if( !empty($check_user) ){
                 $check_data_array['data_user'] = User::where('id' , $check_user)->first();
+            }
+
+            if( !empty($check_command) ){
+                $check_data_array['data_command'] = User::where('id' , $check_command)->first();
             }
         }
 
@@ -252,9 +257,14 @@ class AgoraController extends Controller
             $check_data_array['data'] = json_decode($data_member_in_room, true);
 
             $check_user = $check_data_array['data']['user'];
+            $check_command = $check_data_array['data']['command'];
 
             if( !empty($check_user) ){
                 $check_data_array['data_user'] = User::where('id' , $check_user)->first();
+            }
+
+            if( !empty($check_command) ){
+                $check_data_array['data_command'] = User::where('id' , $check_command)->first();
             }
         }
 

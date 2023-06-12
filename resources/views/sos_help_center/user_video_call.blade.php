@@ -1038,8 +1038,16 @@
         </div>
       </div>
 
-      <div id="show_whene_video_no_active" class="d-none" style="position:absolute;top:35%;">
+      <div id="show_whene_video_no_active" class="" style="position:absolute;top:35%;">
           <!-- แสดงผลต่างๆ เมื่ออีกฝั่งอยู่ในสายแต่ ปิด กล้อง -->
+          <div>
+            <center>
+              <br><br>
+              <h3>
+                <i class="fa-duotone fa-spinner fa-spin-pulse" style="font-size: 30px;--fa-primary-color: #1cc41f; --fa-secondary-color: #55d357;"></i>
+              </h3>
+            </center>
+          </div>
       </div>
 
 
@@ -1585,6 +1593,8 @@ function start_countdown_user_out_room(){
         btnMicRemote.classList.add('d-none');
         remotePlayerContainer.classList.remove('d-none')
         document.querySelector('.video-remote').innerHTML = '' ;
+        document.querySelector('.video-remote').classList.add('d-none') ;
+
 
       });
 
@@ -1664,89 +1674,116 @@ function start_countdown_user_out_room(){
 
         // console.log("publish success!");
 
-        setTimeout(function() {
-            console.log('========================================');
-            console.log('>>>>>> Get User <<<<<<');
-            console.log('========================================');
-
-            // console.log(agoraEngine);
-            // console.log(agoraEngine['remoteUsers']);
-            console.log(agoraEngine['remoteUsers'][0]);
-            // console.log(agoraEngine['remoteUsers']['length']);
-            let show_whene_video_no_active = document.querySelector('#show_whene_video_no_active');
-                show_whene_video_no_active.innerHTML = '' ;
-
-            if( agoraEngine['remoteUsers'][0] ){
-
-              if( agoraEngine['remoteUsers']['length'] != 0 ){
-                for(let c_uid = 0; c_uid < agoraEngine['remoteUsers']['length']; c_uid++){
-                  // console.log('USER_ID ==>> ' + agoraEngine['remoteUsers'][c_uid]['uid']);
-                  // console.log('กล้อง ==>> ' + agoraEngine['remoteUsers'][c_uid]['_video_added_']);
-                  // console.log('ไมค์ ==>> ' + agoraEngine['remoteUsers'][c_uid]['_audio_added_']);
-
-                  if(!agoraEngine['remoteUsers'][c_uid]['_video_added_']){
-                    // กล้องปิด
-                    channelParameters.localVideoTrack.setEnabled(true);
-                    channelParameters.localVideoTrack.play(remotePlayerContainer);
-                    btnVideoRemote.classList.remove('d-none');
-                    btnMicRemote.classList.remove('d-none');
-                    document.querySelector('.video-remote').classList.remove('d-none');
-                    let html_command_video_close = `
-                      <div>
-                        <center>
-                          <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 50%;">
-                          <br><br>
-                          <h5>เจ้าหน้าที่ปิดกล้อง</h5>
-                          <br>
-                          <p>เจ้าหน้า : </p>
-                        </center>
-                      </div>
-                    `;
-                  }else{
-                    channelParameters.localVideoTrack.play(localPlayerContainer);
-                  }
-
-                }
-              }
-
-            }else{
-              setTimeout(function() {
-                if( agoraEngine['remoteUsers']['length'] != 0 ){
-                  for(let c_uid = 0; c_uid < agoraEngine['remoteUsers']['length']; c_uid++){
-                    // console.log('USER_ID ==>> ' + agoraEngine['remoteUsers'][c_uid]['uid']);
-                    // console.log('ไมค์ ==>> ' + agoraEngine['remoteUsers'][c_uid]['_audio_added_']);
-                    // console.log('กล้อง ==>> ' + agoraEngine['remoteUsers'][c_uid]['_video_added_']);
-                    
-                    if(!agoraEngine['remoteUsers'][c_uid]['_video_added_']){
-                      // กล้องปิด
-                      channelParameters.localVideoTrack.setEnabled(true);
-                      channelParameters.localVideoTrack.play(remotePlayerContainer);
-                      btnVideoRemote.classList.remove('d-none');
-                      btnMicRemote.classList.remove('d-none');
-                      document.querySelector('.video-remote').classList.remove('d-none');
-                    }else{
-                      channelParameters.localVideoTrack.play(localPlayerContainer);
-                    }
-
-                  }
-                }else{
-                      channelParameters.localVideoTrack.play(localPlayerContainer);
-                }
-              }, 1000);
-            }
-
-
-        }, 2000);
-      
         // >>> UPDATE Member in room agora chat <<< //
         fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=user_join')
           .then(response => response.json())
           .then(result => {
               // console.log(result);
-              // ตรวจสอบว่ามีเจ้าหน้าที่ เข้ามาในห้องหรือไม่
-              loop_check_command_in_room();
-          });
 
+              let data_command = result['data_command'];
+
+              setTimeout(function() {
+                  console.log('========================================');
+                  console.log('>>>>>> Get User <<<<<<');
+                  console.log('========================================');
+
+                  // console.log(agoraEngine);
+                  // console.log(agoraEngine['remoteUsers']);
+                  console.log(agoraEngine['remoteUsers'][0]);
+                  // console.log(agoraEngine['remoteUsers']['length']);
+                  let show_whene_video_no_active = document.querySelector('#show_whene_video_no_active');
+
+                  if( agoraEngine['remoteUsers'][0] ){
+
+                    if( agoraEngine['remoteUsers']['length'] != 0 ){
+
+                      show_whene_video_no_active.innerHTML = '' ;
+
+                      for(let c_uid = 0; c_uid < agoraEngine['remoteUsers']['length']; c_uid++){
+                        // console.log('USER_ID ==>> ' + agoraEngine['remoteUsers'][c_uid]['uid']);
+                        // console.log('กล้อง ==>> ' + agoraEngine['remoteUsers'][c_uid]['_video_added_']);
+                        // console.log('ไมค์ ==>> ' + agoraEngine['remoteUsers'][c_uid]['_audio_added_']);
+
+                        if(!agoraEngine['remoteUsers'][c_uid]['_video_added_']){
+                          // กล้องปิด
+                          channelParameters.localVideoTrack.setEnabled(true);
+                          channelParameters.localVideoTrack.play(remotePlayerContainer);
+                          btnVideoRemote.classList.remove('d-none');
+                          btnMicRemote.classList.remove('d-none');
+                          document.querySelector('.video-remote').classList.remove('d-none');
+
+                          let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
+
+                          let html_command_video_close = `
+                            <div>
+                              <center>
+                                <img src="`+img_command+`" style="width: 50%;">
+                                <br><br>
+                                <h5>เจ้าหน้าที่ปิดกล้อง</h5>
+                                <br>
+                                <p>เจ้าหน้าที่ : `+data_command['name']+`</p>
+                              </center>
+                            </div>
+                          `;
+
+                          show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
+                        }
+
+                      }
+                    }
+
+                  }else{
+                    setTimeout(function() {
+                      if( agoraEngine['remoteUsers']['length'] != 0 ){
+
+                        show_whene_video_no_active.innerHTML = '' ;
+
+                        for(let c_uid = 0; c_uid < agoraEngine['remoteUsers']['length']; c_uid++){
+                          // console.log('USER_ID ==>> ' + agoraEngine['remoteUsers'][c_uid]['uid']);
+                          // console.log('ไมค์ ==>> ' + agoraEngine['remoteUsers'][c_uid]['_audio_added_']);
+                          // console.log('กล้อง ==>> ' + agoraEngine['remoteUsers'][c_uid]['_video_added_']);
+                          
+                          if(!agoraEngine['remoteUsers'][c_uid]['_video_added_']){
+                            // กล้องปิด
+                            channelParameters.localVideoTrack.setEnabled(true);
+                            channelParameters.localVideoTrack.play(remotePlayerContainer);
+                            btnVideoRemote.classList.remove('d-none');
+                            btnMicRemote.classList.remove('d-none');
+                            document.querySelector('.video-remote').classList.remove('d-none');
+
+                            let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
+
+                            let html_command_video_close = `
+                              <div>
+                                <center>
+                                  <img src="`+img_command+`" style="width: 50%;">
+                                  <br><br>
+                                  <h5>เจ้าหน้าที่ปิดกล้อง</h5>
+                                  <br>
+                                  <p>เจ้าหน้าที่ : `+data_command['name']+`</p>
+                                </center>
+                              </div>
+                            `;
+
+                            show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
+
+                          }
+
+                        }
+                      }else{
+                          channelParameters.localVideoTrack.play(localPlayerContainer);
+                      }
+                    }, 1000);
+                  }
+              }, 2000);
+
+
+              // ตรวจสอบ เจ้าหน้าที่ อยู่ในห้อง
+              setTimeout(function() {
+                loop_check_command_in_room();
+              }, 1000);
+          });
+              
       }
 
       // Listen to the Leave button click event.
