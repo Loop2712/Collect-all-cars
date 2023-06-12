@@ -40,7 +40,7 @@ class AgoraController extends Controller
         $channelName = 'sos_1669_id';
 
         $role = RtcTokenBuilder::RoleAttendee;
-        $expireTimeInSeconds = 600;
+        $expireTimeInSeconds = 1200;
         $currentTimestamp = now()->getTimestamp();
         $privilegeExpiredTs = $currentTimestamp + $expireTimeInSeconds;
 

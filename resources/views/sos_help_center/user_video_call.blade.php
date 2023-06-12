@@ -284,8 +284,7 @@
       outline: #000 .3rem solid;
       border-radius: 1rem;
       width: 100%;
-      background-color: #ff0000;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='600' y1='25' x2='600' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0000'/%3E%3Cstop offset='1' stop-color='%23E0F'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='650' y1='25' x2='650' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0019'/%3E%3Cstop offset='1' stop-color='%23ce00f3'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='700' y1='25' x2='700' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0031'/%3E%3Cstop offset='1' stop-color='%23b000e6'/%3E%3C/linearGradient%3E%3ClinearGradient id='d' gradientUnits='userSpaceOnUse' x1='750' y1='25' x2='750' y2='777'%3E%3Cstop offset='0' stop-color='%23ff004a'/%3E%3Cstop offset='1' stop-color='%239400da'/%3E%3C/linearGradient%3E%3ClinearGradient id='e' gradientUnits='userSpaceOnUse' x1='800' y1='25' x2='800' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0063'/%3E%3Cstop offset='1' stop-color='%237a00ce'/%3E%3C/linearGradient%3E%3ClinearGradient id='f' gradientUnits='userSpaceOnUse' x1='850' y1='25' x2='850' y2='777'%3E%3Cstop offset='0' stop-color='%23ff007c'/%3E%3Cstop offset='1' stop-color='%236200c1'/%3E%3C/linearGradient%3E%3ClinearGradient id='g' gradientUnits='userSpaceOnUse' x1='900' y1='25' x2='900' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0094'/%3E%3Cstop offset='1' stop-color='%234d00b5'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' gradientUnits='userSpaceOnUse' x1='950' y1='25' x2='950' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00ad'/%3E%3Cstop offset='1' stop-color='%233900a8'/%3E%3C/linearGradient%3E%3ClinearGradient id='i' gradientUnits='userSpaceOnUse' x1='1000' y1='25' x2='1000' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00c6'/%3E%3Cstop offset='1' stop-color='%2328009c'/%3E%3C/linearGradient%3E%3ClinearGradient id='j' gradientUnits='userSpaceOnUse' x1='1050' y1='25' x2='1050' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00df'/%3E%3Cstop offset='1' stop-color='%23180090'/%3E%3C/linearGradient%3E%3ClinearGradient id='k' gradientUnits='userSpaceOnUse' x1='1100' y1='25' x2='1100' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00f7'/%3E%3Cstop offset='1' stop-color='%230b0083'/%3E%3C/linearGradient%3E%3ClinearGradient id='l' gradientUnits='userSpaceOnUse' x1='1150' y1='25' x2='1150' y2='777'%3E%3Cstop offset='0' stop-color='%23E0F'/%3E%3Cstop offset='1' stop-color='%23007'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg %3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' x='100' width='1100' height='800'/%3E%3Crect fill='url(%23c)' x='200' width='1000' height='800'/%3E%3Crect fill='url(%23d)' x='300' width='900' height='800'/%3E%3Crect fill='url(%23e)' x='400' width='800' height='800'/%3E%3Crect fill='url(%23f)' x='500' width='700' height='800'/%3E%3Crect fill='url(%23g)' x='600' width='600' height='800'/%3E%3Crect fill='url(%23h)' x='700' width='500' height='800'/%3E%3Crect fill='url(%23i)' x='800' width='400' height='800'/%3E%3Crect fill='url(%23j)' x='900' width='300' height='800'/%3E%3Crect fill='url(%23k)' x='1000' width='200' height='800'/%3E%3Crect fill='url(%23l)' x='1100' width='100' height='800'/%3E%3C/g%3E%3C/svg%3E");
+      background-color: #D3D3D3;
       background-attachment: fixed;
       background-size: cover;
     }
@@ -609,22 +608,32 @@
     margin-right: .5rem;
   }
 
-  .btnRemote {
+  .btnRemote-open {
     padding: 0 !important;
+    font-size: 12px !important;
+    position: relative;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    font-size: 13px !important;
-    background-color: #db2d2e;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    background-color: green;
     color: #fff;
-
   }
 
-  .btnRemote:hover {
-
-    background-color: #db2d2e;
+  .btnRemote-close {
+    padding: 0 !important;
+    font-size: 12px !important;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    background-color: red;
     color: #fff;
-
   }
 
   .containerbtnRemote {
@@ -750,8 +759,7 @@
       width: 100%;
       /* outline: #000 .3rem solid; */
       border-radius: 0rem;
-      background-color: #ff0000;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='600' y1='25' x2='600' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0000'/%3E%3Cstop offset='1' stop-color='%23E0F'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='650' y1='25' x2='650' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0019'/%3E%3Cstop offset='1' stop-color='%23ce00f3'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='700' y1='25' x2='700' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0031'/%3E%3Cstop offset='1' stop-color='%23b000e6'/%3E%3C/linearGradient%3E%3ClinearGradient id='d' gradientUnits='userSpaceOnUse' x1='750' y1='25' x2='750' y2='777'%3E%3Cstop offset='0' stop-color='%23ff004a'/%3E%3Cstop offset='1' stop-color='%239400da'/%3E%3C/linearGradient%3E%3ClinearGradient id='e' gradientUnits='userSpaceOnUse' x1='800' y1='25' x2='800' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0063'/%3E%3Cstop offset='1' stop-color='%237a00ce'/%3E%3C/linearGradient%3E%3ClinearGradient id='f' gradientUnits='userSpaceOnUse' x1='850' y1='25' x2='850' y2='777'%3E%3Cstop offset='0' stop-color='%23ff007c'/%3E%3Cstop offset='1' stop-color='%236200c1'/%3E%3C/linearGradient%3E%3ClinearGradient id='g' gradientUnits='userSpaceOnUse' x1='900' y1='25' x2='900' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0094'/%3E%3Cstop offset='1' stop-color='%234d00b5'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' gradientUnits='userSpaceOnUse' x1='950' y1='25' x2='950' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00ad'/%3E%3Cstop offset='1' stop-color='%233900a8'/%3E%3C/linearGradient%3E%3ClinearGradient id='i' gradientUnits='userSpaceOnUse' x1='1000' y1='25' x2='1000' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00c6'/%3E%3Cstop offset='1' stop-color='%2328009c'/%3E%3C/linearGradient%3E%3ClinearGradient id='j' gradientUnits='userSpaceOnUse' x1='1050' y1='25' x2='1050' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00df'/%3E%3Cstop offset='1' stop-color='%23180090'/%3E%3C/linearGradient%3E%3ClinearGradient id='k' gradientUnits='userSpaceOnUse' x1='1100' y1='25' x2='1100' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00f7'/%3E%3Cstop offset='1' stop-color='%230b0083'/%3E%3C/linearGradient%3E%3ClinearGradient id='l' gradientUnits='userSpaceOnUse' x1='1150' y1='25' x2='1150' y2='777'%3E%3Cstop offset='0' stop-color='%23E0F'/%3E%3Cstop offset='1' stop-color='%23007'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg %3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' x='100' width='1100' height='800'/%3E%3Crect fill='url(%23c)' x='200' width='1000' height='800'/%3E%3Crect fill='url(%23d)' x='300' width='900' height='800'/%3E%3Crect fill='url(%23e)' x='400' width='800' height='800'/%3E%3Crect fill='url(%23f)' x='500' width='700' height='800'/%3E%3Crect fill='url(%23g)' x='600' width='600' height='800'/%3E%3Crect fill='url(%23h)' x='700' width='500' height='800'/%3E%3Crect fill='url(%23i)' x='800' width='400' height='800'/%3E%3Crect fill='url(%23j)' x='900' width='300' height='800'/%3E%3Crect fill='url(%23k)' x='1000' width='200' height='800'/%3E%3Crect fill='url(%23l)' x='1100' width='100' height='800'/%3E%3C/g%3E%3C/svg%3E");
+      background-color: #D3D3D3;
       background-attachment: fixed;
       background-size: cover;
     }
@@ -962,7 +970,7 @@
         <div class="btnGroup">
 
           <button class="btn btn-active" id="btnMic">
-            <i class="fa-duotone fa-microphone"></i>
+            <i class="fa-solid fa-microphone"></i>
           </button>
 
           <span class="containerbtnDevice d-none">
@@ -1030,16 +1038,22 @@
         </div>
       </div>
 
+      <div id="show_whene_video_no_active" class="d-none" style="position:absolute;top:35%;">
+          <!-- แสดงผลต่างๆ เมื่ออีกฝั่งอยู่ในสายแต่ ปิด กล้อง -->
+      </div>
+
 
       <div class="containerbtnRemote">
-        <button id="btnVideoRemote" class="btn btnRemote d-none"><i class="fas fa-video-slash"></i></button>
-        <button id="btnMicRemote" class="btn btnRemote d-none"><i class="fa-duotone fa-microphone-slash"></i></button>
+        <button id="btnVideoRemote" class="btnRemote-close d-none"><i class="fas fa-video-slash"></i></button>
+        <button id="btnMicRemote" class="btnRemote-close d-none"><i class="fa-solid fa-microphone-slash"></i></button>
       </div>
 
     </div>
 
 
-    <div class="video-remote d-none"></div>
+    <div class="video-remote d-none">
+      
+    </div>
 
     <!-- <div class="video-menu">
 
@@ -1112,7 +1126,7 @@ option = {
     // channel: 'sos_1669_id_' + sos_1669_id,
     channel: 'sos_1669_id',
     uid: '{{ Auth::user()->id }}',
-    // uname: '{{ Auth::user()->name }}',
+    uname: '{{ Auth::user()->name }}',
 
     token: "",
   };
@@ -1476,6 +1490,9 @@ function start_countdown_user_out_room(){
     // Set the remote video container size.
     // Listen for the "user-published" event to retrieve a AgoraRTCRemoteUser object.
     agoraEngine.on("user-published", async (user, mediaType) => {
+      console.log('========================================');
+      console.log('>>>>>> User Published <<<<<<');
+      console.log('========================================');
       // Subscribe to the remote user when the SDK triggers the "user-published" event.
       await agoraEngine.subscribe(user, mediaType);
       console.log("subscribe success");
@@ -1483,7 +1500,10 @@ function start_countdown_user_out_room(){
       command_entered_room = 'in_room' ;
       document.querySelector('#card_show_h6_wait_command').classList.add('d-none');
       document.querySelector('#show_h6_wait_command').classList.add('d-none');
+
       remotePlayerContainer.classList.remove('d-none');
+      btnVideoRemote.classList.remove('d-none');
+      btnMicRemote.classList.remove('d-none');
 
       // Subscribe and play the remote video in the container If the remote user publishes a video track.
       if (mediaType == "video") {
@@ -1505,7 +1525,10 @@ function start_countdown_user_out_room(){
 
         // remote Usre เปิดกล้อง //////
         if (user.videoTrack) {
-          btnVideoRemote.classList.add('d-none');
+          // btnVideoRemote.classList.add('d-none');
+          btnVideoRemote.classList.remove('btnRemote-close');
+          btnVideoRemote.classList.add('btnRemote-open');
+          btnVideoRemote.innerHTML = `<i class="fas fa-video"></i>`;
         }
         // alert('มีคนเข้ามา');
         userJoinRoom = true;
@@ -1519,23 +1542,33 @@ function start_countdown_user_out_room(){
 
         // remote Usre เปิดไมค์ //////
         if (user.audioTrack) {
-          btnMicRemote.classList.add('d-none');
+          btnMicRemote.classList.remove('btnRemote-close');
+          btnMicRemote.classList.add('btnRemote-open');
+          btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone"></i>`;
         }
       }
       // Listen for the "user-unpublished" event.
       agoraEngine.on("user-unpublished", async (user, mediaType) => {
 
-        // remote Usre ปิดไมค์ //////
-        if (mediaType === "audio") {
-          if (!user.audioTrack) {
-            btnMicRemote.classList.remove('d-none');
-          }
-        }
+        console.log('========================================');
+        console.log('>>>>>> User UN Published <<<<<<');
+        console.log('========================================');
 
         // remote Usre ปิดกล้อง //////
         if (mediaType == "video") {
           if (!user.remoteVideoTrack) {
-            btnVideoRemote.classList.remove('d-none');
+            btnVideoRemote.classList.add('btnRemote-close');
+            btnVideoRemote.classList.remove('btnRemote-open');
+            btnVideoRemote.innerHTML = `<i class="fas fa-video-slash"></i>`;
+          }
+        }
+
+        // remote Usre ปิดไมค์ //////
+        if (mediaType === "audio") {
+          if (!user.audioTrack) {
+            btnMicRemote.classList.add('btnRemote-close');
+            btnMicRemote.classList.remove('btnRemote-open');
+            btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone-slash"></i>`;
           }
         }
 
@@ -1547,6 +1580,11 @@ function start_countdown_user_out_room(){
         userJoinRoom = false;
         // alert('มีคนออก');
         command_entered_room = 'yes' ;
+
+        btnVideoRemote.classList.add('d-none');
+        btnMicRemote.classList.add('d-none');
+        remotePlayerContainer.classList.remove('d-none')
+        document.querySelector('.video-remote').innerHTML = '' ;
 
       });
 
@@ -1607,8 +1645,6 @@ function start_countdown_user_out_room(){
       }
     }
 
-
-
     window.onload = function() {
       // Listen to the Join button click event.
       document.getElementById("join").onclick = async function() {
@@ -1625,9 +1661,83 @@ function start_countdown_user_out_room(){
         // Publish the local audio and video tracks in the channel.
         await agoraEngine.publish([channelParameters.localAudioTrack, channelParameters.localVideoTrack]);
         // Play the local video track.
-        channelParameters.localVideoTrack.play(localPlayerContainer);
+
         // console.log("publish success!");
 
+        setTimeout(function() {
+            console.log('========================================');
+            console.log('>>>>>> Get User <<<<<<');
+            console.log('========================================');
+
+            // console.log(agoraEngine);
+            // console.log(agoraEngine['remoteUsers']);
+            console.log(agoraEngine['remoteUsers'][0]);
+            // console.log(agoraEngine['remoteUsers']['length']);
+            let show_whene_video_no_active = document.querySelector('#show_whene_video_no_active');
+                show_whene_video_no_active.innerHTML = '' ;
+
+            if( agoraEngine['remoteUsers'][0] ){
+
+              if( agoraEngine['remoteUsers']['length'] != 0 ){
+                for(let c_uid = 0; c_uid < agoraEngine['remoteUsers']['length']; c_uid++){
+                  // console.log('USER_ID ==>> ' + agoraEngine['remoteUsers'][c_uid]['uid']);
+                  // console.log('กล้อง ==>> ' + agoraEngine['remoteUsers'][c_uid]['_video_added_']);
+                  // console.log('ไมค์ ==>> ' + agoraEngine['remoteUsers'][c_uid]['_audio_added_']);
+
+                  if(!agoraEngine['remoteUsers'][c_uid]['_video_added_']){
+                    // กล้องปิด
+                    channelParameters.localVideoTrack.setEnabled(true);
+                    channelParameters.localVideoTrack.play(remotePlayerContainer);
+                    btnVideoRemote.classList.remove('d-none');
+                    btnMicRemote.classList.remove('d-none');
+                    document.querySelector('.video-remote').classList.remove('d-none');
+                    let html_command_video_close = `
+                      <div>
+                        <center>
+                          <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 50%;">
+                          <br><br>
+                          <h5>เจ้าหน้าที่ปิดกล้อง</h5>
+                          <br>
+                          <p>เจ้าหน้า : </p>
+                        </center>
+                      </div>
+                    `;
+                  }else{
+                    channelParameters.localVideoTrack.play(localPlayerContainer);
+                  }
+
+                }
+              }
+
+            }else{
+              setTimeout(function() {
+                if( agoraEngine['remoteUsers']['length'] != 0 ){
+                  for(let c_uid = 0; c_uid < agoraEngine['remoteUsers']['length']; c_uid++){
+                    // console.log('USER_ID ==>> ' + agoraEngine['remoteUsers'][c_uid]['uid']);
+                    // console.log('ไมค์ ==>> ' + agoraEngine['remoteUsers'][c_uid]['_audio_added_']);
+                    // console.log('กล้อง ==>> ' + agoraEngine['remoteUsers'][c_uid]['_video_added_']);
+                    
+                    if(!agoraEngine['remoteUsers'][c_uid]['_video_added_']){
+                      // กล้องปิด
+                      channelParameters.localVideoTrack.setEnabled(true);
+                      channelParameters.localVideoTrack.play(remotePlayerContainer);
+                      btnVideoRemote.classList.remove('d-none');
+                      btnMicRemote.classList.remove('d-none');
+                      document.querySelector('.video-remote').classList.remove('d-none');
+                    }else{
+                      channelParameters.localVideoTrack.play(localPlayerContainer);
+                    }
+
+                  }
+                }else{
+                      channelParameters.localVideoTrack.play(localPlayerContainer);
+                }
+              }, 1000);
+            }
+
+
+        }, 2000);
+      
         // >>> UPDATE Member in room agora chat <<< //
         fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=user_join')
           .then(response => response.json())
@@ -1639,15 +1749,20 @@ function start_countdown_user_out_room(){
 
       }
 
-
       // Listen to the Leave button click event.
       document.getElementById('leave').onclick = async function() {
+
+        btnVideoRemote.classList.add('d-none');
+        btnMicRemote.classList.add('d-none');
+        document.querySelector('.video-remote').classList.add('d-none');
+
         // Destroy the local audio and video tracks.
         channelParameters.localAudioTrack.close();
         channelParameters.localVideoTrack.close();
         // Remove the containers you created for the local video and remote video.
         removeVideoDiv(remotePlayerContainer.id);
         removeVideoDiv(localPlayerContainer.id);
+
         // Leave the channel
         await agoraEngine.leave();
         // console.log("You left the channel");
@@ -1670,6 +1785,7 @@ function start_countdown_user_out_room(){
       }
     }
   }
+
 
   // Remove the video stream from the container.
   function removeVideoDiv(elementId) {
