@@ -1054,8 +1054,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	function loop_check_status_officer() {
 		check_status_officer = setInterval(function() {
 			let sos_id =	'{{ $data_sos->id }}';
+			// console.log('loop_check_status_officer');
 			func_check_status_officer(sos_id);
-		}, 4000);
+		}, 6000);
 	}
 
 	function Stop_loop_check_status_officer() {
@@ -1137,6 +1138,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 		
 		loop_check_officer = setInterval(function() {
 			// console.log(loop_officer_id);
+			// console.log('loop_check_location_officer');
 			check_location_officer(loop_officer_id);
 		}, 8000);
 	}
