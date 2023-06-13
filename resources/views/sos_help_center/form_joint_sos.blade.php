@@ -971,13 +971,13 @@
         document.querySelector('.menu-select-lv-' + level).classList.add(level + "-active");
 
         // VEHICLE TYPE
-        document.querySelector('.menu-select-vehicle-all').classList.remove("vehicle-all-active");
-        document.querySelector('.menu-select-vehicle-car').classList.remove("vehicle-car-active");
-        document.querySelector('.menu-select-vehicle-aircraft').classList.remove("vehicle-aircraft-active");
-        document.querySelector('.menu-select-vehicle-boat-1').classList.remove("vehicle-boat-1-active");
-        document.querySelector('.menu-select-vehicle-boat-2').classList.remove("vehicle-boat-2-active");
-        document.querySelector('.menu-select-vehicle-boat-3').classList.remove("vehicle-boat-3-active");
-        document.querySelector('.menu-select-vehicle-boat-other').classList.remove("vehicle-boat-other-active");
+        document.querySelector('.menu-select-vehicle-all').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-car').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-aircraft').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-boat-1').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-boat-2').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-boat-3').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-boat-other').classList.remove("vehicle-one-officer-active");
 
         let text_vehicle_type;
 
@@ -1004,7 +1004,7 @@
                 text_vehicle_type = "boat-other";
                 break;
         }
-        document.querySelector('.menu-select-vehicle-' + text_vehicle_type).classList.add("vehicle-" + text_vehicle_type + "-active");
+        document.querySelector('.menu-select-vehicle-' + text_vehicle_type).classList.add("vehicle-one-officer-active");
     }
 
     function joint_sos_select_level() {

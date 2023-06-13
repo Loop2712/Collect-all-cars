@@ -650,6 +650,64 @@
                                     border: #00438c 1px solid !important;
                                     border-radius: 25px !important;
                                 }
+                                
+                                
+
+
+                                .menu-select-vehicle-all{
+                                    background-color: #fff!important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius: 25px !important;
+                                    
+                                }
+                                
+
+                                .menu-select-vehicle-car{
+                                    background-color: #fff!important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius: 25px !important;
+                                }
+                                
+
+                                .menu-select-vehicle-aircraft{
+                                    background-color: #fff!important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius:25px!important;
+                                }
+                                
+                                
+
+                                .menu-select-vehicle-boat-1{
+                                    background-color: #fff!important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius: 25px !important;
+                                }
+
+                                .menu-select-vehicle-boat-2{
+                                    background-color: #fff!important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius: 25px !important;
+                                }
+
+                                .menu-select-vehicle-boat-3{
+                                    background-color: #fff!important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius:25px !important;
+                                }
+
+                                .menu-select-vehicle-boat-other{
+                                    background-color: #fff!important;
+                                    color: #00438c !important;
+                                    border: #00438c 1px solid !important;
+                                    border-radius: 25px !important;
+                                }
+
 
                                 .vehicle-one-officer-active {
                                     background-color: #00438c !important;
