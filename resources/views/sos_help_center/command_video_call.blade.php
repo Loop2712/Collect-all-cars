@@ -160,16 +160,15 @@
 
         <div class="video-local">
 
-          <div id="show_whene_video_no_active" style="position:absolute;top:25%;">
+          <div id="show_whene_video_no_active" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;">
 
               @if( empty($user_in_room) )
               <!-- ไม่มีผู้ใช้อยู่ในการสนทนา -->
-              <div>
-                <center>
-                  <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 50%;">
+              <div class="text-center">
+                  <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 12rem!important;">
+                  <!-- <img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius"> -->
                   <br><br>
                   <h5>ไม่มีผู้ใช้อยู่ในการสนทนา</h5>
-                </center>
               </div>
               @else
               <!-- ผู้ใช้ กำลังรอ -->
@@ -366,7 +365,7 @@ function create_html_user_in_room(data , type){
   // console.log('create_html_user_in_room');
   // console.log(data);
 
-  document.querySelector('#show_whene_video_no_active').innerHTML = '';
+  // document.querySelector('#show_whene_video_no_active').innerHTML = '';
 
   let html_img ;
   if (data['photo']){
@@ -391,7 +390,7 @@ function create_html_user_in_room(data , type){
 
     class_h5 = 'd-none' ;
     html_show_status = 'ไม่มีผู้ใช้อยู่ในการสนทนา' ;
-    html_img = `<img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 50%;">`;
+    html_img = `<img src="{{ url('/img/stickerline/PNG/7.png') }}"  style="width: 12rem!important;">`;
 
   }else if(type == 'end but in_room'){
 
@@ -406,13 +405,19 @@ function create_html_user_in_room(data , type){
           `+html_img+`
           <br><br>
           <h5 class="`+class_h5+`">คุณ : `+data['name']+`</h5>
-          <h5 class="mt-3 text-danger">`+html_show_status+`</h5>
+          <h5 class="mt-3">`+html_show_status+`</h5>
         </center>
       </div>
       `;
+
+      `<div>
+          <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 12rem!important;">
+          <br><br>
+          <h5>ไม่มีผู้ใช้อยู่ในการสนทนา</h5>
+      </div>`
   
 
-  document.querySelector('#show_whene_video_no_active').insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+  // document.querySelector('#show_whene_video_no_active').insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
 }
 

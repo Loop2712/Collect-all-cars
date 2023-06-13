@@ -31,6 +31,17 @@
 
   }
 
+.a{
+ width: 10%; 
+}
+div.b {
+  white-space: nowrap; 
+  width:100%;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  border: 1px solid #000000;
+}
+
 
 
 
@@ -118,8 +129,7 @@
       height: calc(100% - 30%);
       outline: #000 .3rem solid;
       border-radius: 1rem;
-      background-color: #ff0000;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='600' y1='25' x2='600' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0000'/%3E%3Cstop offset='1' stop-color='%23E0F'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='650' y1='25' x2='650' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0019'/%3E%3Cstop offset='1' stop-color='%23ce00f3'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='700' y1='25' x2='700' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0031'/%3E%3Cstop offset='1' stop-color='%23b000e6'/%3E%3C/linearGradient%3E%3ClinearGradient id='d' gradientUnits='userSpaceOnUse' x1='750' y1='25' x2='750' y2='777'%3E%3Cstop offset='0' stop-color='%23ff004a'/%3E%3Cstop offset='1' stop-color='%239400da'/%3E%3C/linearGradient%3E%3ClinearGradient id='e' gradientUnits='userSpaceOnUse' x1='800' y1='25' x2='800' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0063'/%3E%3Cstop offset='1' stop-color='%237a00ce'/%3E%3C/linearGradient%3E%3ClinearGradient id='f' gradientUnits='userSpaceOnUse' x1='850' y1='25' x2='850' y2='777'%3E%3Cstop offset='0' stop-color='%23ff007c'/%3E%3Cstop offset='1' stop-color='%236200c1'/%3E%3C/linearGradient%3E%3ClinearGradient id='g' gradientUnits='userSpaceOnUse' x1='900' y1='25' x2='900' y2='777'%3E%3Cstop offset='0' stop-color='%23ff0094'/%3E%3Cstop offset='1' stop-color='%234d00b5'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' gradientUnits='userSpaceOnUse' x1='950' y1='25' x2='950' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00ad'/%3E%3Cstop offset='1' stop-color='%233900a8'/%3E%3C/linearGradient%3E%3ClinearGradient id='i' gradientUnits='userSpaceOnUse' x1='1000' y1='25' x2='1000' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00c6'/%3E%3Cstop offset='1' stop-color='%2328009c'/%3E%3C/linearGradient%3E%3ClinearGradient id='j' gradientUnits='userSpaceOnUse' x1='1050' y1='25' x2='1050' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00df'/%3E%3Cstop offset='1' stop-color='%23180090'/%3E%3C/linearGradient%3E%3ClinearGradient id='k' gradientUnits='userSpaceOnUse' x1='1100' y1='25' x2='1100' y2='777'%3E%3Cstop offset='0' stop-color='%23ff00f7'/%3E%3Cstop offset='1' stop-color='%230b0083'/%3E%3C/linearGradient%3E%3ClinearGradient id='l' gradientUnits='userSpaceOnUse' x1='1150' y1='25' x2='1150' y2='777'%3E%3Cstop offset='0' stop-color='%23E0F'/%3E%3Cstop offset='1' stop-color='%23007'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg %3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' x='100' width='1100' height='800'/%3E%3Crect fill='url(%23c)' x='200' width='1000' height='800'/%3E%3Crect fill='url(%23d)' x='300' width='900' height='800'/%3E%3Crect fill='url(%23e)' x='400' width='800' height='800'/%3E%3Crect fill='url(%23f)' x='500' width='700' height='800'/%3E%3Crect fill='url(%23g)' x='600' width='600' height='800'/%3E%3Crect fill='url(%23h)' x='700' width='500' height='800'/%3E%3Crect fill='url(%23i)' x='800' width='400' height='800'/%3E%3Crect fill='url(%23j)' x='900' width='300' height='800'/%3E%3Crect fill='url(%23k)' x='1000' width='200' height='800'/%3E%3Crect fill='url(%23l)' x='1100' width='100' height='800'/%3E%3C/g%3E%3C/svg%3E");
+      background-color: #D3D3D3;
       background-attachment: fixed;
       background-size: cover;
     }
@@ -210,15 +220,20 @@
     }
     .video-detail-officer-box{
       display: flex;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      width: 100%;
+      width: 290px;
     }
     .video-detail-officer-box *{
       margin: 0;
       color: #fff;
     }
+
+    /*.video-detail-officer-box div p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }*/
+
     .video-detail-box{
       display: none !important;
     }
@@ -923,6 +938,8 @@
     }
   }
 
+
+
   /* .hrNew ,.video-detail-officer-box{
     display: none;
   } */
@@ -938,12 +955,15 @@
         @endif
       </div>
       &nbsp;&nbsp;&nbsp;
+
       <span class="video-officer-detail">
-        <p>เจ้าหน้าที่ : {{ $data_officer_command->name_officer_command }}</p>
-        <small>{{ $data_officer_command->user->phone }}</small>
-      </span>
-      <span class="video-officer-detail">
-        เจ้าหน้าที่ศูนย์สั่งการ {{ $data_officer_command->area }}
+        <div class="a">
+          <div class="b">ชื่อผมยาววววววววววววววววววววววววววววววววววววววววว</div>
+        </div>
+        <p>เจ้าหน้าที่ : ชื่อผมยาววววววววววววววววววววววววววววววววววววววววว</p>
+        <!-- <p>เจ้าหน้าที่ : {{ $data_officer_command->name_officer_command }}</p> -->
+        <p>ศูนย์สั่งการ : {{ $data_officer_command->area }}</p>
+        <small class="mt-3">{{ $data_officer_command->user->phone }}</small>
       </span>
       
       <button class="btn btn-success" id="join">join</button>
@@ -1038,16 +1058,17 @@
         </div>
       </div>
 
-      <div id="show_whene_video_no_active" class="" style="position:absolute;top:35%;">
+      <div id="show_whene_video_no_active" style="position:absolute;top:35%;">
           <!-- แสดงผลต่างๆ เมื่ออีกฝั่งอยู่ในสายแต่ ปิด กล้อง -->
-          <div>
+          <div style="margin-top: -70px;">
             <center>
-              <br><br>
-              <h3>
-                <i class="fa-duotone fa-spinner fa-spin-pulse" style="font-size: 30px;--fa-primary-color: #1cc41f; --fa-secondary-color: #55d357;"></i>
-              </h3>
+              <img src="{{ url('/img/icon/empty.png') }}" style="width: 50%;">
+              <h1>
+                <i class="fa-duotone fa-spinner fa-spin-pulse" style="--fa-primary-color: #1cc41f; --fa-secondary-color: #55d357;"></i>
+              </h1>
             </center>
           </div>
+
       </div>
 
 
@@ -1150,7 +1171,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         option['token'] = result;
 
         setTimeout(() => {
-            document.getElementById("join").click();
+            // document.getElementById("join").click();
         }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
 
     });
@@ -1720,8 +1741,6 @@ function start_countdown_user_out_room(){
                                 <img src="`+img_command+`" style="width: 50%;">
                                 <br><br>
                                 <h5>เจ้าหน้าที่ปิดกล้อง</h5>
-                                <br>
-                                <p>เจ้าหน้าที่ : `+data_command['name']+`</p>
                               </center>
                             </div>
                           `;
@@ -1759,8 +1778,6 @@ function start_countdown_user_out_room(){
                                   <img src="`+img_command+`" style="width: 50%;">
                                   <br><br>
                                   <h5>เจ้าหน้าที่ปิดกล้อง</h5>
-                                  <br>
-                                  <p>เจ้าหน้าที่ : `+data_command['name']+`</p>
                                 </center>
                               </div>
                             `;

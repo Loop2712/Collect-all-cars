@@ -1442,7 +1442,7 @@ color: #ff9317;
                             </button> -->
                             <ul class="nav nav-pills m-3" role="tablist">
                                 <li id="btn_operation" class="nav-item nav-pills nav-pills-purple m-2 d-none" role="presentation">
-                                    <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="check_go_to(null);reface_map_go_to_help();Stop_reface_check_form_yellow();">
+                                    <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="document.querySelector('#btn_save').click();check_go_to(null);reface_map_go_to_help();Stop_reface_check_form_yellow();">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                             </div>
@@ -1451,20 +1451,21 @@ color: #ff9317;
                                     </a>
                                 </li>
                                 <li id="btn_form_yellow" class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
-                                    <!-- <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#form_data_1').click();">
-                                        <div class="d-flex align-items-center">
-                                            <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
-                                            </div>
-                                            <div class="tab-title">แบบฟอร์มเหลือง</div>
-                                        </div>
-                                    </a> -->
-                                    <a class="nav-link btn-outline-warning btn active" href="{{ url('/sos_help_center') . '/' . $sos_help_center->id . '/edit' }}">
+                                    <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#form_data_1').click();">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                             </div>
                                             <div class="tab-title">แบบฟอร์มเหลือง</div>
                                         </div>
                                     </a>
+                                    <!-- /// ถ้ามีปัญหาเรื่องบันทึกข้อมูลเปิดด้านล่างนี้ แต่ให้ไปแก้เรื่องตอนวิดีโอคอลแล้วมันจะออก /// -->
+                                    <!-- <a class="nav-link btn-outline-warning btn active" href="{{ url('/sos_help_center') . '/' . $sos_help_center->id . '/edit' }}">
+                                        <div class="d-flex align-items-center">
+                                            <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
+                                            </div>
+                                            <div class="tab-title">แบบฟอร์มเหลือง</div>
+                                        </div>
+                                    </a> -->
                                 </li>
                                 <li id="btn_form_blue" class="nav-item nav-pills nav-pills-info m-2 d-none" role="presentation">
                                     <a class="nav-link  btn-outline-info btn" data-bs-toggle="pill" href="#form-blue" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_blue_1').click();">
@@ -1512,13 +1513,17 @@ color: #ff9317;
                                     <div class="btnGroupOperating">
                                         <div class="btn-group btnGroupOperating">
                                             <button type="button" class="btn btn-white btnOperating">เลือกหน่วยแพทย์</button>
-                                            <button type="button" class="btn btn-primary">เดียว</button>
-                                            <button type="button" class="btn btn-danger">ร่วม</button>
+                                            <a id="tag_a_open_map_operating_unit" type="button" class="btn btn-primary" onclick="document.querySelector('#tag_a_open_map_operating_unit_2').click();">
+                                              เดียว
+                                            </a>
+                                            <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
+                                              ร่วม
+                                            </a>
                                         </div>
                                     </div>
                                 </li>
-                                <li id="btn_select_operating_unit" class="nav-item nav-pills nav-pills-danger m-2 " role="presentation">
-                                    <a id="tag_a_open_map_operating_unit" class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="open_map_operating_unit();"> <!-- select_level(); -->
+                                <li id="" class="nav-item nav-pills nav-pills-danger m-2 d-none" role="presentation">
+                                    <a id="tag_a_open_map_operating_unit_2" class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="document.querySelector('#btn_save').click();open_map_operating_unit();">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
                                                 <i class="fa-solid fa-hospital-user"></i>
@@ -1527,8 +1532,8 @@ color: #ff9317;
                                         </div>
                                     </a>
                                 </li>
-                                <li id="btn_select_case_sos_joint" class="nav-item nav-pills nav-pills-orange m-2 ">
-                                    <a  class="nav-link btn-outline-orange btn" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="open_map_joint_sos_1669();"> 
+                                <!-- <li id="btn_select_case_sos_joint" class="nav-item nav-pills nav-pills-orange m-2 ">
+                                    <a  class="nav-link btn-outline-orange btn" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();"> 
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
                                                 <i class="fa-solid fa-hospital-user"></i>
@@ -1536,8 +1541,8 @@ color: #ff9317;
                                             <div class="tab-title">อุบัติเหตุร่วม</div>
                                         </div>
                                     </a>
-                                </li>
-                                <li id="btn_show_wait_officer_joint" class="nav-item nav-pills nav-pills-info m-2 d-none" onclick="show_wait_officer_joint();">
+                                </li> -->
+                                <li id="btn_show_wait_officer_joint" class="nav-item nav-pills nav-pills-info m-2 d-none" onclick="document.querySelector('#btn_save').click();show_wait_officer_joint();">
                                     <a  class="nav-link btn-outline-info btn" data-toggle="modal" data-target="#modal_show_officer_joint"> 
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
@@ -1547,7 +1552,7 @@ color: #ff9317;
                                         </div>
                                     </a>
                                 </li>
-                                <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 d-" role="presentation">
+                                <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 d-" role="presentation" onclick="document.querySelector('#btn_save').click();">
                                     <a class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#meet_sos" role="tab" aria-selected="false">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
@@ -2413,6 +2418,10 @@ color: #ff9317;
 
     });
 
+    window.addEventListener("beforeunload", function(event) {
+      document.querySelector('#btn_save').click();
+    });
+
 
     const image = "{{ url('/img/icon/operating_unit/sos.png') }}";
     var markers = [] ;
@@ -3130,7 +3139,7 @@ color: #ff9317;
       if (joint_case){
 
         document.querySelector('#btn_select_operating_unit').classList.add('d-none');
-        document.querySelector('#btn_select_case_sos_joint').classList.add('d-none');
+        // document.querySelector('#btn_select_case_sos_joint').classList.add('d-none');
 
         fetch("{{ url('/') }}/api/check_sos_joint_case" + "?sos_1669_id=" + sos_id)
           .then(response => response.json())
