@@ -31,16 +31,7 @@
 
   }
 
-.a{
- width: 10%; 
-}
-div.b {
-  white-space: nowrap; 
-  width:100%;
-  overflow: hidden;
-  text-overflow: ellipsis; 
-  border: 1px solid #000000;
-}
+
 
 
 
@@ -56,7 +47,7 @@ div.b {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: 100%;
+      width: 100%;  
     }
     .video-detail-officer-box *{
       margin: 0;
@@ -65,7 +56,15 @@ div.b {
     .video-detail-box{
       display: none !important;
     }
-
+    .video-officer-detail{
+      width: 90%;
+    }
+    .video-officer-detail p{
+      white-space: nowrap; 
+      width:100%;
+      overflow: hidden;
+      text-overflow: ellipsis;  
+    } 
     /* CSS สำหรับหน้าจอแท็บเล็ต */
     .video-call {
       outline: .5rem solid #000;
@@ -212,7 +211,7 @@ div.b {
   }
 
   @media screen and (max-width: 768px) {
-
+    
     /* CSS สำหรับหน้าจอมือถือ */
     .hrNew,
     #join {
@@ -220,7 +219,7 @@ div.b {
     }
     .video-detail-officer-box{
       display: flex;
-      width: 290px;
+      width: 100%;
     }
     .video-detail-officer-box *{
       margin: 0;
@@ -244,7 +243,15 @@ div.b {
       padding: 1rem;
       position: relative !important;
     }
-
+    .video-officer-detail{
+      width: 90%;
+    }
+    .video-officer-detail p{
+      white-space: nowrap; 
+      width:100%;
+      overflow: hidden;
+      text-overflow: ellipsis;  
+    } 
     .video-header {
       /* outline: .5rem solid #db2d2e; */
       padding: 1rem;
@@ -930,15 +937,23 @@ div.b {
       margin-top: 1rem;      
       text-align: center;
       color:#fff;
+      width: 100%;
 
     }
     .video-officer-detail p{
       margin: 0;
       font-weight: bold;
+      white-space: nowrap; 
+      width:100%;
+      overflow: hidden;
+      text-overflow: ellipsis; 
     }
   }
-
-
+.imgBox{
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+}
 
   /* .hrNew ,.video-detail-officer-box{
     display: none;
@@ -947,7 +962,7 @@ div.b {
 <div class="video-call">
   <div class="video-header">
     <div class="video-detail-officer-box">
-      <div class="d-flex justify-content-center">
+      <div class="imgBox">
         @if(!empty($data_officer_command->user->photo))
           <img class="imgOfficer" width="500" height="500" src="{{ url('storage')}}/{{ $data_officer_command->user->photo }}" />
         @else
@@ -957,16 +972,13 @@ div.b {
       &nbsp;&nbsp;&nbsp;
 
       <span class="video-officer-detail">
-        <div class="a">
-          <div class="b">ชื่อผมยาววววววววววววววววววววววววววววววววววววววววว</div>
-        </div>
-        <p>เจ้าหน้าที่ : ชื่อผมยาววววววววววววววววววววววววววววววววววววววววว</p>
+        <p>เจ้าหน้าที่ : ชื่อผมยาวววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว </p>
         <!-- <p>เจ้าหน้าที่ : {{ $data_officer_command->name_officer_command }}</p> -->
-        <p>ศูนย์สั่งการ : {{ $data_officer_command->area }}</p>
+        <p>ศูนย์สั่งการ : {{ $data_officer_command->area }} </p>
         <small class="mt-3">{{ $data_officer_command->user->phone }}</small>
       </span>
       
-      <button class="btn btn-success" id="join">join</button>
+      <button class="btn btn-success d-none" id="join">join</button>
       
     </div>
     <div class="box-pc-user">
