@@ -244,7 +244,7 @@
       position: relative !important;
     }
     .video-officer-detail{
-      width: 90%;
+      width: 85%;
     }
     .video-officer-detail p{
       white-space: nowrap; 
@@ -972,8 +972,7 @@
       &nbsp;&nbsp;&nbsp;
 
       <span class="video-officer-detail">
-        <p>เจ้าหน้าที่ : ชื่อผมยาวววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววววว </p>
-        <!-- <p>เจ้าหน้าที่ : {{ $data_officer_command->name_officer_command }}</p> -->
+        <p>เจ้าหน้าที่ : {{ $data_officer_command->name_officer_command }}</p>
         <p>ศูนย์สั่งการ : {{ $data_officer_command->area }} </p>
         <small class="mt-3">{{ $data_officer_command->user->phone }}</small>
       </span>
@@ -1000,6 +999,10 @@
             Go To SHOW USER
         </a>
         <div class="btnGroup">
+
+          <button class="btn btn-secondary" id="switch-camera-button">
+            <i class="fa-solid fa-camera-rotate"></i>
+          </button>
 
           <button class="btn btn-active" id="btnMic">
             <i class="fa-solid fa-microphone"></i>
@@ -1070,15 +1073,12 @@
         </div>
       </div>
 
-      <div id="show_whene_video_no_active" style="position:absolute;top:35%;">
+      <div id="show_whene_video_no_active" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;">
           <!-- แสดงผลต่างๆ เมื่ออีกฝั่งอยู่ในสายแต่ ปิด กล้อง -->
-          <div style="margin-top: -70px;">
-            <center>
-              <img src="{{ url('/img/icon/empty.png') }}" style="width: 50%;">
+          <div class="text-center">
               <h1>
                 <i class="fa-duotone fa-spinner fa-spin-pulse" style="--fa-primary-color: #1cc41f; --fa-secondary-color: #55d357;"></i>
               </h1>
-            </center>
           </div>
 
       </div>
@@ -1177,13 +1177,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
   fetch("{{ url('/') }}/api/video_call" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&appCertificate=' + appCertificate  + '&appId=' + appId)
     .then(response => response.text())
     .then(result => {
-        console.log("GET Token success");
-        console.log(result);
+        // console.log("GET Token success");
+        // console.log(result);
 
         option['token'] = result;
 
         setTimeout(() => {
-            // document.getElementById("join").click();
+            document.getElementById("join").click();
         }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
 
     });
@@ -1221,7 +1221,7 @@ function loop_check_command_in_room() {
     fetch("{{ url('/') }}/api/check_command_in_room" + "?sos_1669_id=" + sos_1669_id)
       .then(response => response.json())
       .then(result => {
-          console.log(result);
+          // console.log(result);
 
           if (result['data'] != 'ไม่มีข้อมูล'){
 
@@ -1299,18 +1299,41 @@ function start_countdown_user_out_room(){
   }, 1000);
 
 }
+  
+  // สร้างตัวแปร RtcEngine
+  let rtcEngine;
 
+  // เมื่อผู้ใช้ต้องการสลับกล้อง
+  function switchCamera() {
+    if (rtcEngine) {
+      rtcEngine.switchCamera(); // เรียกใช้งานฟังก์ชัน switchCamera เพื่อสลับกล้อง
+    }
+  }
+
+  // เพื่อเปิดใช้งานการสลับกล้องหลัง
+  function enableSwitchCamera() {
+    if (rtcEngine) {
+      rtcEngine.enableDualStreamMode(true); // เปิดใช้งานการสลับกล้องหลัง
+    }
+  }
+
+
+  // ในกรณีที่คุณต้องการสลับกล้องเมื่อมีการคลิกปุ่มหรือเหตุการณ์อื่น
+  document.getElementById("switch-camera-button").addEventListener("click", switchCamera);
 
 
   async function startBasicCall() {
     // Create an instance of the Agora Engine
 
-    console.log(option);
+    // console.log(option);
 
     const agoraEngine = AgoraRTC.createClient({
       mode: "rtc",
       codec: "vp8"
     });
+
+    enableSwitchCamera(); // เรียกใช้งานเพื่อเปิดใช้งานการสลับกล้องหลัง
+
     /////////////////////// จอคนเข้าร่วม//////////////////
     const remotePlayerContainer = document.querySelector('.video-remote');
     /////////////////////// จอตัวเอง/////////////////////
@@ -1411,7 +1434,7 @@ function start_countdown_user_out_room(){
     // เรียกใช้งานเมื่อต้องการเปลี่ยนอุปกรณ์เสียง
     function onChangeAudioDevice() {
       const selectedAudioDeviceId = getCurrentAudioDeviceId();
-      console.log('เปลี่ยนอุปกรณ์เสียงเป็น:', selectedAudioDeviceId);
+      // console.log('เปลี่ยนอุปกรณ์เสียงเป็น:', selectedAudioDeviceId);
 
       // หยุดการส่งเสียงจากอุปกรณ์ปัจจุบัน
       channelParameters.localAudioTrack.setEnabled(false);
@@ -1427,7 +1450,7 @@ function start_countdown_user_out_room(){
           // เริ่มส่งเสียงจากอุปกรณ์ใหม่
           channelParameters.localAudioTrack.setEnabled(true);
 
-          console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
+          // console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
         })
         .catch(error => {
           console.error('เกิดข้อผิดพลาดในการสร้าง local audio track:', error);
@@ -1437,7 +1460,7 @@ function start_countdown_user_out_room(){
 
     function onChangeVideoDevice() {
       const selectedVideoDeviceId = getCurrentVideoDeviceId();
-      console.log('เปลี่ยนอุปกรณ์กล้องเป็น:', selectedVideoDeviceId);
+      // console.log('เปลี่ยนอุปกรณ์กล้องเป็น:', selectedVideoDeviceId);
 
       // // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
       // channelParameters.localVideoTrack.setEnabled(false);
@@ -1470,7 +1493,7 @@ function start_countdown_user_out_room(){
             agoraEngine.publish([channelParameters.localVideoTrack]);
 
             // alert('เปิด')
-            console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
+            // console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
           } else {
             // alert('ปิด')
             channelParameters.localVideoTrack.setEnabled(false);
@@ -1531,12 +1554,12 @@ function start_countdown_user_out_room(){
     // Set the remote video container size.
     // Listen for the "user-published" event to retrieve a AgoraRTCRemoteUser object.
     agoraEngine.on("user-published", async (user, mediaType) => {
-      console.log('========================================');
-      console.log('>>>>>> User Published <<<<<<');
-      console.log('========================================');
+      // console.log('========================================');
+      // console.log('>>>>>> User Published <<<<<<');
+      // console.log('========================================');
       // Subscribe to the remote user when the SDK triggers the "user-published" event.
       await agoraEngine.subscribe(user, mediaType);
-      console.log("subscribe success");
+      // console.log("subscribe success");
 
       command_entered_room = 'in_room' ;
       document.querySelector('#card_show_h6_wait_command').classList.add('d-none');
@@ -1591,9 +1614,9 @@ function start_countdown_user_out_room(){
       // Listen for the "user-unpublished" event.
       agoraEngine.on("user-unpublished", async (user, mediaType) => {
 
-        console.log('========================================');
-        console.log('>>>>>> User UN Published <<<<<<');
-        console.log('========================================');
+        // console.log('========================================');
+        // console.log('>>>>>> User UN Published <<<<<<');
+        // console.log('========================================');
 
         // remote Usre ปิดกล้อง //////
         if (mediaType == "video") {
@@ -1716,13 +1739,13 @@ function start_countdown_user_out_room(){
               let data_command = result['data_command'];
 
               setTimeout(function() {
-                  console.log('========================================');
-                  console.log('>>>>>> Get User <<<<<<');
-                  console.log('========================================');
+                  // console.log('========================================');
+                  // console.log('>>>>>> Get User <<<<<<');
+                  // console.log('========================================');
 
                   // console.log(agoraEngine);
                   // console.log(agoraEngine['remoteUsers']);
-                  console.log(agoraEngine['remoteUsers'][0]);
+                  // console.log(agoraEngine['remoteUsers'][0]);
                   // console.log(agoraEngine['remoteUsers']['length']);
                   let show_whene_video_no_active = document.querySelector('#show_whene_video_no_active');
 
@@ -1744,23 +1767,20 @@ function start_countdown_user_out_room(){
                           btnVideoRemote.classList.remove('d-none');
                           btnMicRemote.classList.remove('d-none');
                           document.querySelector('.video-remote').classList.remove('d-none');
-
-                          let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
-
-                          let html_command_video_close = `
-                            <div>
-                              <center>
-                                <img src="`+img_command+`" style="width: 50%;">
-                                <br><br>
-                                <h5>เจ้าหน้าที่ปิดกล้อง</h5>
-                              </center>
-                            </div>
-                          `;
-
-                          show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
                         }
-
                       }
+
+                      let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
+
+                      let html_command_video_close = `
+                      <div class="text-center">
+                          <img src="`+img_command+`" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
+                          <br><br>
+                          <h5>เจ้าหน้าที่ปิดกล้อง</h5>
+                      </div>`;
+
+                      show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
+
                     }
 
                   }else{
@@ -1781,26 +1801,35 @@ function start_countdown_user_out_room(){
                             btnVideoRemote.classList.remove('d-none');
                             btnMicRemote.classList.remove('d-none');
                             document.querySelector('.video-remote').classList.remove('d-none');
-
-                            let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
-
-                            let html_command_video_close = `
-                              <div>
-                                <center>
-                                  <img src="`+img_command+`" style="width: 50%;">
-                                  <br><br>
-                                  <h5>เจ้าหน้าที่ปิดกล้อง</h5>
-                                </center>
-                              </div>
-                            `;
-
-                            show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
-
                           }
-
                         }
+
+                        let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
+
+                        let html_command_video_close = `
+                          <div class="text-center">
+                              <img src="`+img_command+`" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
+                              <br><br>
+                              <h5>เจ้าหน้าที่ปิดกล้อง</h5>
+                          </div>`;
+
+                        show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
+
                       }else{
                           channelParameters.localVideoTrack.play(localPlayerContainer);
+
+                          show_whene_video_no_active.innerHTML = '' ;
+
+                          let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
+
+                          let html_command_video_close = `
+                            <div class="text-center">
+                                <img src="`+img_command+`" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
+                                <br><br>
+                                <h5>เจ้าหน้าที่ปิดกล้อง</h5>
+                            </div>`;
+
+                          show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
                       }
                     }, 1000);
                   }
@@ -1855,7 +1884,7 @@ function start_countdown_user_out_room(){
 
   // Remove the video stream from the container.
   function removeVideoDiv(elementId) {
-    console.log("Removing " + elementId + "Div");
+    // console.log("Removing " + elementId + "Div");
     let Div = document.getElementById(elementId);
     if (Div) {
       Div.remove();

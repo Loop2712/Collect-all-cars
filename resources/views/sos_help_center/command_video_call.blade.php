@@ -166,23 +166,20 @@
               <!-- ไม่มีผู้ใช้อยู่ในการสนทนา -->
               <div class="text-center">
                   <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 12rem!important;">
-                  <!-- <img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius"> -->
                   <br><br>
                   <h5>ไม่มีผู้ใช้อยู่ในการสนทนา</h5>
               </div>
               @else
               <!-- ผู้ใช้ กำลังรอ -->
-              <div>
-                <center>
+              <div class="text-center">
                   @if(!empty($user_in_room->photo))
-                  <img src="{{ url('storage')}}/{{ $user_in_room->photo }}" style="width: 50%;border-radius: 20%;" class="main-shadow main-radius">
+                    <img src="{{ url('storage')}}/{{ $user_in_room->photo }}" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
                   @else
-                  <img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 50%;border-radius: 20%;" class="main-shadow main-radius">
+                    <img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
                   @endif
                   <br><br>
                   <h5>คุณ : {{ $user_in_room->name }}</h5>
                   <h5 class="mt-3 text-danger">ผู้ใช้ กำลังรอ..</h5>
-                </center>
               </div>
               @endif
 
@@ -649,6 +646,7 @@ async function startBasicCall() {
         // Publish the local audio and video tracks in the channel.
         await agoraEngine.publish([channelParameters.localAudioTrack, channelParameters.localVideoTrack]);
         // Play the local video track.
+        
         channelParameters.localVideoTrack.play(localPlayerContainer);
         // console.log("publish success!");
         stop_ringtone();
