@@ -1532,11 +1532,18 @@ function start_countdown_user_out_room(){
     // Specify the ID of the DIV container. You can use the uid of the local user.
     localPlayerContainer.id = option.uid;
     // Set the remote video container size.
+
+    // --------------------------------------------------------- //
+    // --------------------------------------------------------- //
+    // -------------------- User Published --------------------- //
+    // --------------------------------------------------------- //
+    // --------------------------------------------------------- //
+
     // Listen for the "user-published" event to retrieve a AgoraRTCRemoteUser object.
     agoraEngine.on("user-published", async (user, mediaType) => {
-      // console.log('========================================');
-      // console.log('>>>>>> User Published <<<<<<');
-      // console.log('========================================');
+      console.log('========================================');
+      console.log('>>>>>> User Published <<<<<<');
+      console.log('========================================');
       // Subscribe to the remote user when the SDK triggers the "user-published" event.
       await agoraEngine.subscribe(user, mediaType);
       // console.log("subscribe success");
@@ -1591,84 +1598,95 @@ function start_countdown_user_out_room(){
           btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone"></i>`;
         }
       }
-      // Listen for the "user-unpublished" event.
-      agoraEngine.on("user-unpublished", async (user, mediaType) => {
 
-        // console.log('========================================');
-        // console.log('>>>>>> User UN Published <<<<<<');
-        // console.log('========================================');
+    });
 
-        // remote Usre ปิดกล้อง //////
-        if (mediaType == "video") {
-          if (!user.remoteVideoTrack) {
-            btnVideoRemote.classList.add('btnRemote-close');
-            btnVideoRemote.classList.remove('btnRemote-open');
-            btnVideoRemote.innerHTML = `<i class="fas fa-video-slash"></i>`;
-          }
+    // --------------------------------------------------------- //
+    // --------------------------------------------------------- //
+    // ------------------ User Unpublished --------------------- //
+    // --------------------------------------------------------- //
+    // --------------------------------------------------------- //
+
+    // Listen for the "user-unpublished" event.
+    agoraEngine.on("user-unpublished", async (user, mediaType) => {
+
+      console.log('========================================');
+      console.log('>>>>>> User UN Published <<<<<<');
+      console.log('========================================');
+
+      // remote Usre ปิดกล้อง //////
+      if (mediaType == "video") {
+        if (!user.remoteVideoTrack) {
+          btnVideoRemote.classList.add('btnRemote-close');
+          btnVideoRemote.classList.remove('btnRemote-open');
+          btnVideoRemote.innerHTML = `<i class="fas fa-video-slash"></i>`;
+
+          //// get_data_command เพื่อสร้าง div ปิดกล้อง ////
+          let show_whene_video_no_active = document.querySelector('#show_whene_video_no_active');
+
+          fetch("{{ url('/') }}/api/get_data_command_adn_user" + "?sos_1669_id=" + sos_1669_id)
+              .then(response => response.json())
+              .then(result => {
+                  console.log(result);
+                  
+                  show_whene_video_no_active.innerHTML = '' ;
+
+                  let data_command = result['data_command'];
+                  let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
+
+                  let html_command_video_close = `
+                  <div class="text-center">
+                      <img src="`+img_command+`" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
+                      <br><br>
+                      <h5>เจ้าหน้าที่ปิดกล้อง</h5>
+                  </div>`;
+
+                  show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
+                  console.log('สร้าง DIV ปิดกล้อง');
+          });
+          //// จบ get_data_command เพื่อสร้าง div ปิดกล้อง ////
         }
+      }
 
-        // remote Usre ปิดไมค์ //////
-        if (mediaType === "audio") {
-          if (!user.audioTrack) {
-            btnMicRemote.classList.add('btnRemote-close');
-            btnMicRemote.classList.remove('btnRemote-open');
-            btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone-slash"></i>`;
-          }
+      // remote Usre ปิดไมค์ //////
+      if (mediaType === "audio") {
+        if (!user.audioTrack) {
+          btnMicRemote.classList.add('btnRemote-close');
+          btnMicRemote.classList.remove('btnRemote-open');
+          btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone-slash"></i>`;
         }
+      }
 
-      });
+    });
 
-      agoraEngine.on("user-left", function(evt) {
-        remotePlayerContainer.classList.add('d-none');
-        channelParameters.localVideoTrack.play(localPlayerContainer);
-        userJoinRoom = false;
-        // alert('มีคนออก');
-        command_entered_room = 'yes' ;
+    // --------------------------------------------------------- //
+    // --------------------------------------------------------- //
+    // -------------------- User Left -------------------------- //
+    // --------------------------------------------------------- //
+    // --------------------------------------------------------- //
 
-        btnVideoRemote.classList.add('d-none');
-        btnMicRemote.classList.add('d-none');
-        remotePlayerContainer.classList.remove('d-none')
-        document.querySelector('.video-remote').innerHTML = '' ;
-        document.querySelector('.video-remote').classList.add('d-none') ;
+    agoraEngine.on("user-left", function(evt) {
+      remotePlayerContainer.classList.add('d-none');
+      channelParameters.localVideoTrack.play(localPlayerContainer);
+      userJoinRoom = false;
+      // alert('มีคนออก');
+      command_entered_room = 'yes' ;
 
-
-      });
+      btnVideoRemote.classList.add('d-none');
+      btnMicRemote.classList.add('d-none');
+      remotePlayerContainer.classList.remove('d-none')
+      document.querySelector('.video-remote').innerHTML = '' ;
+      document.querySelector('.video-remote').classList.add('d-none') ;
 
 
     });
+
 
 
     btn_switchCamera.onclick = async function() {
-      console.log('switchCamera');
-  if (rtcEngine) {
-    rtcEngine.getDevices(function(devices) {
-      var cameras = devices.filter(function(device) {
-        return device.kind === 'videoinput';
-      });
+      
+      switchCamera();
 
-      var currentCameraId = rtcEngine.getRecordingDevice();
-      var nextCameraId;
-
-      for (var i = 0; i < cameras.length; i++) {
-        if (cameras[i].deviceId !== currentCameraId) {
-          nextCameraId = cameras[i].deviceId;
-          break;
-        }
-      }
-
-      if (nextCameraId) {
-        rtcEngine.switchDevice('video', nextCameraId, function() {
-          console.log('Camera switched');
-        }, function(err) {
-          console.error('Failed to switch camera', err);
-        });
-      } else {
-        console.log('No available camera to switch');
-      }
-    });
-  } else {
-    console.log('rtcEngine is not initialized');
-  }
     }
 
     btnVideo.onclick = async function() {

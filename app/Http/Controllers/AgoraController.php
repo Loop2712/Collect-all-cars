@@ -271,4 +271,34 @@ class AgoraController extends Controller
         return $check_data_array ;
 
     }
+
+    function get_data_command_adn_user(Request $request)
+    {
+        $sos_id = $request->sos_1669_id;
+
+        $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
+
+        if( !empty($agora_chat->member_in_room) ){
+
+            $data_member_in_room = $agora_chat->member_in_room;
+            $check_data_array['data'] = json_decode($data_member_in_room, true);
+
+            $check_user = $check_data_array['data']['user'];
+            $check_command = $check_data_array['data']['command'];
+
+            if( !empty($check_user) ){
+                $check_data_array['data_user'] = User::where('id' , $check_user)->first();
+            }
+
+            if( !empty($check_command) ){
+                $check_data_array['data_command'] = User::where('id' , $check_command)->first();
+            }
+        }
+
+        return $check_data_array ;
+
+
+
+    }
+
 }

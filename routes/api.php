@@ -270,10 +270,13 @@ Route::get('/nationalities/create_new_sos_group_line/{language}/{id_guoup_line}'
 // show user
 Route::get('/data_officer_go_to_help/{sos_id}', 'Sos_help_centerController@data_officer_go_to_help');
 
-
+////////////////////////////
+//////// Agora Chat ////////
+////////////////////////////
 Route::get('/video_call', 'AgoraController@token');
 Route::get('/join_room', 'AgoraController@join_room');
 Route::get('/left_room', 'AgoraController@left_room');
 Route::get('/check_user_in_room', 'AgoraController@check_user_in_room');
 Route::get('/check_command_in_room', 'AgoraController@check_command_in_room');
+Route::get('/get_data_command_adn_user', 'AgoraController@get_data_command_adn_user');
 
