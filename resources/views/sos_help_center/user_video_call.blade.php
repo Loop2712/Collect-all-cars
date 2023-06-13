@@ -1000,7 +1000,7 @@
         </a>
         <div class="btnGroup">
 
-          <button class="btn btn-secondary" id="switch-camera-button">
+          <button class="btn btn-secondary" id="btn_switchCamera" onclick="switchCamera();">
             <i class="fa-solid fa-camera-rotate"></i>
           </button>
 
@@ -1299,28 +1299,6 @@ function start_countdown_user_out_room(){
   }, 1000);
 
 }
-  
-  // สร้างตัวแปร RtcEngine
-  let rtcEngine;
-
-  // เมื่อผู้ใช้ต้องการสลับกล้อง
-  function switchCamera() {
-    if (rtcEngine) {
-      rtcEngine.switchCamera(); // เรียกใช้งานฟังก์ชัน switchCamera เพื่อสลับกล้อง
-    }
-  }
-
-  // เพื่อเปิดใช้งานการสลับกล้องหลัง
-  function enableSwitchCamera() {
-    if (rtcEngine) {
-      rtcEngine.enableDualStreamMode(true); // เปิดใช้งานการสลับกล้องหลัง
-    }
-  }
-
-
-  // ในกรณีที่คุณต้องการสลับกล้องเมื่อมีการคลิกปุ่มหรือเหตุการณ์อื่น
-  document.getElementById("switch-camera-button").addEventListener("click", switchCamera);
-
 
   async function startBasicCall() {
     // Create an instance of the Agora Engine
@@ -1332,12 +1310,13 @@ function start_countdown_user_out_room(){
       codec: "vp8"
     });
 
-    enableSwitchCamera(); // เรียกใช้งานเพื่อเปิดใช้งานการสลับกล้องหลัง
-
     /////////////////////// จอคนเข้าร่วม//////////////////
     const remotePlayerContainer = document.querySelector('.video-remote');
     /////////////////////// จอตัวเอง/////////////////////
     const localPlayerContainer = document.querySelector('.video-local');
+
+    /////////////////////// ปุ่มสลับกล้อง/////////////////////
+    const btn_switchCamera = document.querySelector('#btn_switchCamera');
 
     ///////////////////////// btn local user/////////////////////
     const btnMic = document.querySelector('#btnMic');
@@ -1374,6 +1353,7 @@ function start_countdown_user_out_room(){
     //     var selectedVideoDevice = videoDevices[0]; // เลือกอุปกรณ์วิดีโอที่ 1
 
     // });
+
     window.addEventListener('DOMContentLoaded', async () => {
       try {
         // เรียกดูอุปกรณ์ทั้งหมด
@@ -1656,6 +1636,40 @@ function start_countdown_user_out_room(){
 
 
     });
+
+
+    btn_switchCamera.onclick = async function() {
+      console.log('switchCamera');
+  if (rtcEngine) {
+    rtcEngine.getDevices(function(devices) {
+      var cameras = devices.filter(function(device) {
+        return device.kind === 'videoinput';
+      });
+
+      var currentCameraId = rtcEngine.getRecordingDevice();
+      var nextCameraId;
+
+      for (var i = 0; i < cameras.length; i++) {
+        if (cameras[i].deviceId !== currentCameraId) {
+          nextCameraId = cameras[i].deviceId;
+          break;
+        }
+      }
+
+      if (nextCameraId) {
+        rtcEngine.switchDevice('video', nextCameraId, function() {
+          console.log('Camera switched');
+        }, function(err) {
+          console.error('Failed to switch camera', err);
+        });
+      } else {
+        console.log('No available camera to switch');
+      }
+    });
+  } else {
+    console.log('rtcEngine is not initialized');
+  }
+    }
 
     btnVideo.onclick = async function() {
       if (isMuteVideo == false) {
