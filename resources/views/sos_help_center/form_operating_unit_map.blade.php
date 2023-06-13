@@ -597,80 +597,61 @@
                             </div>
 
                             <style>
-                                .menu-select-vehicle-all{
+                                .menu-select-vehicle-officer-all{
                                     background-color: #fff!important;
                                     color: #00438c !important;
                                     border: #00438c 1px solid !important;
                                     border-radius: 25px !important;
                                     
                                 }
-                                .vehicle-all-active {
-                                    background-color: #00438c !important;
-                                    color: #ffffff !important;
-                                }
+                                
 
-                                .menu-select-vehicle-car{
+                                .menu-select-vehicle-officer-car{
                                     background-color: #fff!important;
                                     color: #00438c !important;
                                     border: #00438c 1px solid !important;
                                     border-radius: 25px !important;
                                 }
-                                .vehicle-car-active {
-                                    background-color: #00438c !important;
-                                    color: #ffffff !important;
-                                }
+                                
 
-                                .menu-select-vehicle-aircraft{
+                                .menu-select-vehicle-officer-aircraft{
                                     background-color: #fff!important;
                                     color: #00438c !important;
                                     border: #00438c 1px solid !important;
                                     border-radius:25px!important;
                                 }
-                                .vehicle-aircraft-active {
-                                    background-color: #00438c !important;
-                                    color: #ffffff !important;
-                                }
+                                
+                                
 
-                                .menu-select-vehicle-boat-1{
+                                .menu-select-vehicle-officer-boat-1{
                                     background-color: #fff!important;
                                     color: #00438c !important;
                                     border: #00438c 1px solid !important;
                                     border-radius: 25px !important;
                                 }
-                                .vehicle-boat-1-active {
-                                    background-color: #00438c !important;
-                                    color: #ffffff !important;
-                                }
 
-                                .menu-select-vehicle-boat-2{
+                                .menu-select-vehicle-officer-boat-2{
                                     background-color: #fff!important;
                                     color: #00438c !important;
                                     border: #00438c 1px solid !important;
                                     border-radius: 25px !important;
                                 }
-                                .vehicle-boat-2-active {
-                                    background-color: #00438c !important;
-                                    color: #ffffff !important;
-                                }
 
-                                .menu-select-vehicle-boat-3{
+                                .menu-select-vehicle-officer-boat-3{
                                     background-color: #fff!important;
                                     color: #00438c !important;
                                     border: #00438c 1px solid !important;
                                     border-radius:25px !important;
                                 }
-                                .vehicle-boat-3-active {
-                                    background-color: #00438c !important;
-                                    color: #ffffff !important;
-                                }
 
-                                .menu-select-vehicle-boat-other{
+                                .menu-select-vehicle-officer-boat-other{
                                     background-color: #fff!important;
                                     color: #00438c !important;
                                     border: #00438c 1px solid !important;
                                     border-radius: 25px !important;
                                 }
-                                .vehicle-boat-other-active {
+
+                                .vehicle-one-officer-active {
                                     background-color: #00438c !important;
                                     color: #ffffff !important;
                                 }
@@ -678,43 +659,43 @@
                             <!-- BTN Select vehicle  -->
                             <div class="owl-carousel owl-theme owlmenu-vehicle p-3">
                                 <div class="item" style="width:100%">
-                                    <a class="btn menu-select-vehicle-all" href="javascript:;" 
+                                    <a class="btn menu-select-vehicle-officer-all vehicle-one-officer-active" href="javascript:;" 
                                         onclick="document.querySelector('#input_vehicle_type').value = 'all';select_level();">
                                     ทั้งหมด
                                     </a>
                                 </div>
                                 <div class="item" style="width:100%">
-                                    <a class="btn menu-select-vehicle-car" href="javascript:;" 
+                                    <a class="btn menu-select-vehicle-officer-car" href="javascript:;" 
                                         onclick="document.querySelector('#input_vehicle_type').value = 'รถ';select_level();">
-                                    รถ
+                                    รถ  
                                     </a>
                                 </div>
                                 <div class="item" style="width:100%">
-                                    <a class="btn menu-select-vehicle-aircraft" href="javascript:;" 
+                                    <a class="btn menu-select-vehicle-officer-aircraft" href="javascript:;" 
                                         onclick="document.querySelector('#input_vehicle_type').value = 'อากาศยาน';select_level();">
                                     อากาศยาน
                                     </a>
                                 </div>
                                 <div class="item" style="width:100%">
-                                    <a class="btn menu-select-vehicle-boat-1" href="javascript:;" 
+                                    <a class="btn menu-select-vehicle-officer-boat-1" href="javascript:;" 
                                         onclick="document.querySelector('#input_vehicle_type').value = 'เรือ ป.1';select_level();">
                                     เรือ ป.1
                                     </a>
                                 </div>
                                 <div class="item" style="width:100%">
-                                    <a class="btn menu-select-vehicle-boat-2" href="javascript:;" 
+                                    <a class="btn menu-select-vehicle-officer-boat-2" href="javascript:;" 
                                         onclick="document.querySelector('#input_vehicle_type').value = 'เรือ ป.2';select_level();">
                                     เรือ ป.2
                                     </a>
                                 </div>
                                 <div class="item" style="width:100%">
-                                    <a class="btn menu-select-vehicle-boat-3" href="javascript:;" 
+                                    <a class="btn menu-select-vehicle-officer-boat-3" href="javascript:;" 
                                         onclick="document.querySelector('#input_vehicle_type').value = 'เรือ ป.3';select_level();">
                                     เรือ ป.3
                                     </a>
                                 </div>
                                 <div class="item" style="width:100%">
-                                    <a class="btn  menu-select-vehicle-boat-other" href="javascript:;" 
+                                    <a class="btn  menu-select-vehicle-officer-boat-other" href="javascript:;" 
                                     onclick="document.querySelector('#input_vehicle_type').value = 'เรือประเภทอื่นๆ';select_level();">
                                         เรืออื่นๆ
                                     </a>
@@ -1388,6 +1369,7 @@
     }
 
     function set_active_btn_menu_select(level , vehicle_type){
+        
         //  LEVEL
         
         document.querySelector('.menu-select-one-lv-all').classList.remove("all-active");
@@ -1395,17 +1377,17 @@
         document.querySelector('.menu-select-one-lv-bls').classList.remove("bls-active");
         document.querySelector('.menu-select-one-lv-ils').classList.remove("ils-active");
         document.querySelector('.menu-select-one-lv-als').classList.remove("als-active");
-
         document.querySelector('.menu-select-one-lv-' + level).classList.add(level + "-active");
 
         // VEHICLE TYPE
-        document.querySelector('.menu-select-vehicle-all').classList.remove("vehicle-all-active");
-        document.querySelector('.menu-select-vehicle-car').classList.remove("vehicle-car-active");
-        document.querySelector('.menu-select-vehicle-aircraft').classList.remove("vehicle-aircraft-active");
-        document.querySelector('.menu-select-vehicle-boat-1').classList.remove("vehicle-boat-1-active");
-        document.querySelector('.menu-select-vehicle-boat-2').classList.remove("vehicle-boat-2-active");
-        document.querySelector('.menu-select-vehicle-boat-3').classList.remove("vehicle-boat-3-active");
-        document.querySelector('.menu-select-vehicle-boat-other').classList.remove("vehicle-boat-other-active");
+        document.querySelector('.menu-select-vehicle-officer-all').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-officer-car').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-officer-aircraft').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-officer-boat-1').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-officer-boat-2').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-officer-boat-3').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-officer-boat-other').classList.remove("vehicle-one-officer-active");
+
 
         let text_vehicle_type ;
 
@@ -1432,7 +1414,11 @@
                 text_vehicle_type = "boat-other" ;
             break;
         }
-        document.querySelector('.menu-select-vehicle-' + text_vehicle_type).classList.add("vehicle-" + text_vehicle_type + "-active");
+
+        // console.log(vehicle_type);   
+        document.querySelector('.menu-select-vehicle-officer-' + text_vehicle_type).classList.add("vehicle-one-officer-active");
+        console.log('.menu-select-vehicle-' + text_vehicle_type);
+    
     }
 
     function set_active_btn_menu_select_forward(forward_level){
