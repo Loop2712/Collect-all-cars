@@ -1017,7 +1017,7 @@
 
           <span class="containerbtnDevice d-">
             <div class="btn-group btnGroupVideoCall">
-              <button class="btnDevice btn dropdown-toggle btn_for_select_video_device d-none" type="button" data-bs-toggle='dropdown' aria-expanded="false" style=" width: 20px !important;height: 20px !important; padding: 0 !important;">
+              <button class="btnDevice btn dropdown-toggle btn_for_select_video_device d-" type="button" data-bs-toggle='dropdown' aria-expanded="false" style=" width: 20px !important;height: 20px !important; padding: 0 !important;">
                 <i class="fa-solid fa-chevron-down fa-2xs"></i>
               </button>
 
