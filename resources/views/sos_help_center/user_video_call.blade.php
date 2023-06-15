@@ -693,6 +693,15 @@
       top: 0px;
       z-index: 99999;
     }
+
+  .btn_switchScreen{
+    position: absolute;
+    bottom: 3px;
+    left: 3px;
+    border-radius: 30%;
+    z-index: 99999;
+  }
+
 </style>
 
 
@@ -995,14 +1004,33 @@
       </div>
       <hr class="hrNew">
       <div class="video-menu">
+
         <a id="go_to_show_user" class="d-none" href="">
             Go To SHOW USER
         </a>
+
         <div class="btnGroup">
 
           <button class="btn btn-secondary" id="btn_switchCamera" onclick="switchCamera();">
             <i class="fa-solid fa-camera-rotate"></i>
           </button>
+
+          <span class="containerbtnDevice d-">
+            <div class="btn-group btnGroupVideoCall">
+              <button class="btnDevice btn dropdown-toggle btn_for_select_video_device d-none" type="button" data-bs-toggle='dropdown' aria-expanded="false" style=" width: 20px !important;height: 20px !important; padding: 0 !important;">
+                <i class="fa-solid fa-chevron-down fa-2xs"></i>
+              </button>
+
+              <div class="dropdown-menu">
+                <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
+                <div id="video-device-list"></div>
+              </div>
+
+            </div>
+          </span>
+        </div>
+
+        <div class="btnGroup">
 
           <button class="btn btn-active" id="btnMic">
             <i class="fa-solid fa-microphone"></i>
@@ -1024,24 +1052,9 @@
 
         </div>
        
-        <div class="btnGroup">
-
-          <button class="btn btn-active" id="btnVideo">
-            <i class="fas fa-video"></i>
-          </button>
-
-          <span class="containerbtnDevice d-none">
-            <div class="btn-group btnGroupVideoCall">
-              <button class="btnDevice btn dropdown-toggle" type="button" data-bs-toggle='dropdown' aria-expanded="false" style=" width: 20px !important;height: 20px !important; padding: 0 !important;"><i class="fa-solid fa-chevron-down fa-2xs"></i></button>
-
-              <div class="dropdown-menu">
-                <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
-                <div id="video-device-list"></div>
-              </div>
-
-            </div>
-          </span>
-        </div>
+        <button class="btn btn-active" id="btnVideo">
+          <i class="fas fa-video"></i>
+        </button>
 
 
         <button class="btn btn-exit" id="leave">
@@ -1055,7 +1068,13 @@
 
   <div class="video-body">
 
+    <span id="btn_switchScreen" class="btn btn-secondary btn_switchScreen d-none">
+      <i class="fa-duotone fa-repeat"></i>
+    </span>
+
     <div class="video-local">
+
+      <i id="video_local_slash" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
 
       <div id="card_show_h6_wait_command" class="card card_show_h6_wait_command d-none">
         <div class="alert border-0 border-start border-5 border-warning alert-dismissible fade show py-2">
@@ -1079,6 +1098,8 @@
               <h1>
                 <i class="fa-duotone fa-spinner fa-spin-pulse" style="--fa-primary-color: #1cc41f; --fa-secondary-color: #55d357;"></i>
               </h1>
+              <br>
+              <span id="show_text_noti"></span>
           </div>
 
       </div>
@@ -1093,7 +1114,7 @@
 
 
     <div class="video-remote d-none">
-      
+      <i id="video_remote_slash" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
     </div>
 
     <!-- <div class="video-menu">
@@ -1315,8 +1336,11 @@ function start_countdown_user_out_room(){
     /////////////////////// จอตัวเอง/////////////////////
     const localPlayerContainer = document.querySelector('.video-local');
 
-    /////////////////////// ปุ่มสลับกล้อง/////////////////////
+    /////////////////////// ปุ่มสลับ กล้อง/////////////////////
     const btn_switchCamera = document.querySelector('#btn_switchCamera');
+
+    /////////////////////// ปุ่มสลับ จอ/////////////////////
+    const btn_switchScreen = document.querySelector('#btn_switchScreen');
 
     ///////////////////////// btn local user/////////////////////
     const btnMic = document.querySelector('#btnMic');
@@ -1354,6 +1378,8 @@ function start_countdown_user_out_room(){
 
     // });
 
+    var activeVideoDeviceId
+
     window.addEventListener('DOMContentLoaded', async () => {
       try {
         // เรียกดูอุปกรณ์ทั้งหมด
@@ -1364,12 +1390,12 @@ function start_countdown_user_out_room(){
           audio: true,
           video: true
         });
+
         const activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
-        const activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
+              activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
 
         // แยกอุปกรณ์ตามประเภท
         const audioDevices = devices.filter(device => device.kind === 'audioinput');
-        const videoDevices = devices.filter(device => device.kind === 'videoinput');
 
         // สร้างรายการอุปกรณ์รับข้อมูลและเพิ่มลงในรายการ
         const audioDeviceList = document.getElementById('audio-device-list');
@@ -1389,23 +1415,6 @@ function start_countdown_user_out_room(){
           radio.addEventListener('change', onChangeAudioDevice);
         });
 
-        // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
-        const videoDeviceList = document.getElementById('video-device-list');
-        videoDevices.forEach(device => {
-          const radio = document.createElement('input');
-          radio.type = 'radio';
-          radio.name = 'video-device';
-          radio.value = device.deviceId;
-          radio.checked = device.deviceId === activeVideoDeviceId;
-
-          const label = document.createElement('label');
-          label.classList.add('dropdown-item');
-          label.appendChild(radio);
-          label.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${videoDeviceList.children.length + 1}`));
-
-          videoDeviceList.appendChild(label);
-          radio.addEventListener('change', onChangeVideoDevice);
-        });
       } catch (error) {
         console.error('เกิดข้อผิดพลาดในการเรียกดูอุปกรณ์:', error);
       }
@@ -1450,30 +1459,48 @@ function start_countdown_user_out_room(){
           cameraId: selectedVideoDeviceId
         }).then(newVideoTrack => {
 
+          // console.log('------------ newVideoTrack ------------');
+          // console.log(newVideoTrack);
+
           // ปิดการเล่นภาพวิดีโอกล้องเดิม
+          agoraEngine.unpublish([channelParameters.localVideoTrack]);
           channelParameters.localVideoTrack.stop();
           channelParameters.localVideoTrack.close();
 
 
           // เปลี่ยน local video track เป็นอุปกรณ์ใหม่
           channelParameters.localVideoTrack = newVideoTrack;
+
           if (isMuteVideo == false) {
+
             // เริ่มส่งภาพจากอุปกรณ์ใหม่
-            channelParameters.localVideoTrack.setEnabled(true);
+            // channelParameters.localVideoTrack.setEnabled(true);
             // แสดงภาพวิดีโอใน <div>
 
-            if (userJoinRoom == false) {
-              channelParameters.localVideoTrack.play(localPlayerContainer);
-            } else {
-              channelParameters.localVideoTrack.play(remotePlayerContainer);
+            try{
+              if (Screen_current == 'first'){
+                channelParameters.localVideoTrack.play(localPlayerContainer);
+                channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+              }else{
+                channelParameters.localVideoTrack.play(remotePlayerContainer);
+                channelParameters.remoteVideoTrack.play(localPlayerContainer);
+              }
+            }catch{
+              if (Screen_current == 'first'){
+                channelParameters.localVideoTrack.play(localPlayerContainer);
+                // channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+              }else{
+                // channelParameters.localVideoTrack.play(remotePlayerContainer);
+                channelParameters.remoteVideoTrack.play(localPlayerContainer);
+              }
             }
+            
 
-            channelParameters.localVideoTrack.open();
             // ส่ง local video track ใหม่ไปยังผู้ใช้คนที่สอง
             agoraEngine.publish([channelParameters.localVideoTrack]);
 
             // alert('เปิด')
-            // console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
+            console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
           } else {
             // alert('ปิด')
             channelParameters.localVideoTrack.setEnabled(false);
@@ -1539,6 +1566,9 @@ function start_countdown_user_out_room(){
     // --------------------------------------------------------- //
     // --------------------------------------------------------- //
 
+    var first_Published = true ;
+    var Remote_MuteVideo = false ;
+
     // Listen for the "user-published" event to retrieve a AgoraRTCRemoteUser object.
     agoraEngine.on("user-published", async (user, mediaType) => {
       console.log('========================================');
@@ -1547,6 +1577,7 @@ function start_countdown_user_out_room(){
       // Subscribe to the remote user when the SDK triggers the "user-published" event.
       await agoraEngine.subscribe(user, mediaType);
       // console.log("subscribe success");
+      document.querySelector('#btn_switchScreen').classList.remove('d-none');
 
       command_entered_room = 'in_room' ;
       document.querySelector('#card_show_h6_wait_command').classList.add('d-none');
@@ -1555,6 +1586,11 @@ function start_countdown_user_out_room(){
       remotePlayerContainer.classList.remove('d-none');
       btnVideoRemote.classList.remove('d-none');
       btnMicRemote.classList.remove('d-none');
+
+      if (first_Published){
+        Screen_current = 'second' ; // first second
+        first_Published = false ;
+      }
 
       // Subscribe and play the remote video in the container If the remote user publishes a video track.
       if (mediaType == "video") {
@@ -1571,15 +1607,50 @@ function start_countdown_user_out_room(){
         // Append the remote container to the page body.
         // document.body.append(remotePlayerContainer);
         // Play the remote video track.
-        channelParameters.remoteVideoTrack.play(localPlayerContainer);
-        channelParameters.localVideoTrack.play(remotePlayerContainer);
+        // channelParameters.remoteVideoTrack.play(localPlayerContainer);
+        // channelParameters.localVideoTrack.play(remotePlayerContainer);
 
         // remote Usre เปิดกล้อง //////
         if (user.videoTrack) {
           // btnVideoRemote.classList.add('d-none');
+          Remote_MuteVideo = false ;
           btnVideoRemote.classList.remove('btnRemote-close');
           btnVideoRemote.classList.add('btnRemote-open');
           btnVideoRemote.innerHTML = `<i class="fas fa-video"></i>`;
+
+          console.log('===============================');
+          console.log('Screen_current >> : ' + Screen_current);
+          console.log('===============================');
+
+          if (Screen_current == 'first'){
+            document.querySelector('#video_remote_slash').classList.add('d-none');
+          }else{
+            document.querySelector('#video_local_slash').classList.add('d-none');
+          }
+
+          try{
+            if (Screen_current == 'first'){
+              channelParameters.localVideoTrack.play(localPlayerContainer);
+              channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+            }else{
+              channelParameters.localVideoTrack.play(remotePlayerContainer);
+              channelParameters.remoteVideoTrack.play(localPlayerContainer);
+            }
+          }catch{
+            console.log('เห้ออ..');
+
+            setTimeout(function() {
+              if (Screen_current == 'first'){
+                channelParameters.localVideoTrack.play(localPlayerContainer);
+                channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+              }else{
+                channelParameters.localVideoTrack.play(remotePlayerContainer);
+                channelParameters.remoteVideoTrack.play(localPlayerContainer);
+              }
+            }, 2000);
+
+          }
+          
         }
         // alert('มีคนเข้ามา');
         userJoinRoom = true;
@@ -1617,33 +1688,41 @@ function start_countdown_user_out_room(){
       // remote Usre ปิดกล้อง //////
       if (mediaType == "video") {
         if (!user.remoteVideoTrack) {
+          Remote_MuteVideo = true ;
           btnVideoRemote.classList.add('btnRemote-close');
           btnVideoRemote.classList.remove('btnRemote-open');
           btnVideoRemote.innerHTML = `<i class="fas fa-video-slash"></i>`;
 
           //// get_data_command เพื่อสร้าง div ปิดกล้อง ////
-          let show_whene_video_no_active = document.querySelector('#show_whene_video_no_active');
 
-          fetch("{{ url('/') }}/api/get_data_command_adn_user" + "?sos_1669_id=" + sos_1669_id)
-              .then(response => response.json())
-              .then(result => {
-                  console.log(result);
-                  
-                  show_whene_video_no_active.innerHTML = '' ;
+          if (Screen_current == 'first'){
+            document.querySelector('#video_remote_slash').classList.remove('d-none');
+            document.querySelector('#video_local_slash').classList.add('d-none');
+          }else{
+            let show_whene_video_no_active = document.querySelector('#show_whene_video_no_active');
 
-                  let data_command = result['data_command'];
-                  let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
+            fetch("{{ url('/') }}/api/get_data_command_adn_user" + "?sos_1669_id=" + sos_1669_id)
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+                    
+                    show_whene_video_no_active.innerHTML = '' ;
 
-                  let html_command_video_close = `
-                  <div class="text-center">
-                      <img src="`+img_command+`" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
-                      <br><br>
-                      <h5>เจ้าหน้าที่ปิดกล้อง</h5>
-                  </div>`;
+                    let data_command = result['data_command'];
+                    let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
 
-                  show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
-                  console.log('สร้าง DIV ปิดกล้อง');
-          });
+                    let html_command_video_close = `
+                    <div class="text-center">
+                        <img src="`+img_command+`" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
+                        <br><br>
+                        <h5>เจ้าหน้าที่ปิดกล้อง</h5>
+                    </div>`;
+
+                    show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
+                    console.log('สร้าง DIV ปิดกล้อง');
+            });
+          }
+          
           //// จบ get_data_command เพื่อสร้าง div ปิดกล้อง ////
         }
       }
@@ -1672,20 +1751,145 @@ function start_countdown_user_out_room(){
       // alert('มีคนออก');
       command_entered_room = 'yes' ;
 
+      document.querySelector('#btn_switchScreen').classList.add('d-none');
+
       btnVideoRemote.classList.add('d-none');
       btnMicRemote.classList.add('d-none');
       remotePlayerContainer.classList.remove('d-none')
       document.querySelector('.video-remote').innerHTML = '' ;
       document.querySelector('.video-remote').classList.add('d-none') ;
 
+      Screen_current = 'first' ; // first second
 
     });
 
+    var Screen_current = 'first' ; // first second
+
+    btn_switchScreen.onclick = async function() {
+
+      console.log(Screen_current);
+      console.log(agoraEngine['remoteUsers'][0]);
+
+      if (Screen_current == 'first'){
+        channelParameters.localVideoTrack.play(remotePlayerContainer);
+        channelParameters.remoteVideoTrack.play(localPlayerContainer);
+        Screen_current = 'second' ; // first second
+        document.querySelector('#video_local_slash').classList.add('d-none');
+      }else{
+        channelParameters.localVideoTrack.play(localPlayerContainer);
+        channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+        Screen_current = 'first' ; // first second
+        document.querySelector('#video_remote_slash').classList.add('d-none');
+      }
+
+      if (isMuteVideo) {
+        if (Screen_current == 'first'){
+          document.querySelector('#video_local_slash').classList.remove('d-none');
+        }else{
+          document.querySelector('#video_remote_slash').classList.remove('d-none');
+        }
+      }
+
+      if (Remote_MuteVideo){
+        if (Screen_current == 'first'){
+          channelParameters.remoteVideoTrack.stop(remotePlayerContainer);
+          document.querySelector('#video_local_slash').classList.add('d-none');
+          document.querySelector('#video_remote_slash').classList.remove('d-none');
+        }else{
+          // document.querySelector('#video_local_slash').classList.remove('d-none');
+          channelParameters.remoteVideoTrack.stop(remotePlayerContainer);
+          document.querySelector('#video_remote_slash').classList.add('d-none');
+        }
+      }
+
+      if (Remote_MuteVideo && isMuteVideo){
+          // document.querySelector('#video_local_slash').classList.remove('d-none');
+
+          if (Screen_current == 'first'){
+            channelParameters.remoteVideoTrack.stop(remotePlayerContainer);
+            document.querySelector('#video_remote_slash').classList.remove('d-none');
+            // document.querySelector('#video_local_slash').classList.add('d-none');
+          }else{
+
+          }
+      }
+
+    }
 
 
     btn_switchCamera.onclick = async function() {
       
-      switchCamera();
+      console.log('btn_switchCamera');
+
+      console.log('activeVideoDeviceId');
+      console.log(activeVideoDeviceId);
+
+      // เรียกดูอุปกรณ์ทั้งหมด
+      const devices = await navigator.mediaDevices.enumerateDevices();
+
+      // เรียกดูอุปกรณ์ที่ใช้อยู่
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: true,
+        video: true
+      });
+
+      // แยกอุปกรณ์ตามประเภท
+      let videoDevices = devices.filter(device => device.kind === 'videoinput');
+
+        console.log('------- videoDevices -------');
+        console.log(videoDevices);
+        console.log('length ==>> ' + videoDevices.length);
+        console.log('------- ------- -------');
+
+      // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
+      let videoDeviceList = document.getElementById('video-device-list');
+          videoDeviceList.innerHTML = '';
+
+      let count_i = 1 ;
+
+      videoDevices.forEach(device => {
+        let radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.id = 'video-device-' + count_i;
+        radio.name = 'video-device';
+        radio.value = device.deviceId;
+        // radio.checked = device.deviceId === activeVideoDeviceId;
+
+        let label = document.createElement('label');
+        label.classList.add('dropdown-item');
+        label.appendChild(radio);
+        label.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${videoDeviceList.children.length + 1}`));
+
+        videoDeviceList.appendChild(label);
+        radio.addEventListener('change', onChangeVideoDevice);
+
+        count_i = count_i + 1 ;
+      });
+
+      // ---------------------------
+
+      if (videoDevices.length > 2){
+        document.querySelector('.btn_for_select_video_device').click();
+      }else{
+
+        let check_videoDevices = document.getElementsByName('video-device');
+        for (let i = 0; i < check_videoDevices.length; i++) {
+          if (check_videoDevices[i].value != activeVideoDeviceId) {
+
+            console.log('********************');
+            console.log('value');
+            console.log(check_videoDevices[i].value);
+            console.log('id');
+            console.log(check_videoDevices[i].id);
+            console.log('********************');
+
+            activeVideoDeviceId = check_videoDevices[i].value ;
+            document.querySelector('#'+check_videoDevices[i].id).click();
+
+          }
+        }
+
+      }
 
     }
 
@@ -1699,17 +1903,34 @@ function start_countdown_user_out_room(){
         btnVideo.classList.remove('btn-active');
         isMuteVideo = true;
 
+        if (Screen_current == 'first'){
+          document.querySelector('#video_local_slash').classList.remove('d-none');
+        }else{
+          document.querySelector('#video_remote_slash').classList.remove('d-none');
+        }
+
         alertNoti('<i class="fa-solid fa-video-slash"></i>', 'กล้องปิดอยู่');
 
       } else {
         channelParameters.localVideoTrack.setEnabled(true);
         // channelParameters.localVideoTrack.play(localPlayerContainer);
 
-        if (userJoinRoom == false) {
+        // if (userJoinRoom == false) {
+        //   channelParameters.localVideoTrack.play(localPlayerContainer);
+        // } else {
+        //   channelParameters.localVideoTrack.play(remotePlayerContainer);
+        // }
+
+        if (Screen_current == 'first'){
           channelParameters.localVideoTrack.play(localPlayerContainer);
-        } else {
+          channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+          document.querySelector('#video_local_slash').classList.add('d-none');
+        }else{
           channelParameters.localVideoTrack.play(remotePlayerContainer);
+          channelParameters.remoteVideoTrack.play(localPlayerContainer);
+          document.querySelector('#video_remote_slash').classList.add('d-none');
         }
+
         btnVideo.innerHTML = '<i class="fa-solid fa-video"></i>';
         btnVideo.classList.remove('btn-disabled');
         btnVideo.classList.add('btn-active');
@@ -1749,7 +1970,17 @@ function start_countdown_user_out_room(){
         // console.log("--- Onclick >> JOIN ---");
         // console.log(option.channel);
         // Join a channel.
-        await agoraEngine.join(option.appId, option.channel, option.token, option.uid);
+        try{
+          await agoraEngine.join(option.appId, option.channel, option.token, option.uid);
+        }catch{
+          console.log('========================================');
+          console.log('>>>>>> เชื่อมต่อล้มเหลว กำลังเชื่อต่อใหม่ <<<<<<');
+          console.log('========================================');
+          document.querySelector('#show_text_noti').innerHTML = 'เชื่อมต่อล้มเหลว กำลังเชื่อต่อใหม่..' ;
+          setTimeout(function() {
+            window.location.reload(true);
+          }, 2500);
+        }
         // Create a local audio track from the audio sampled by a microphone.
         channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
         // Create a local video track from the video captured by a camera.
@@ -1775,98 +2006,67 @@ function start_countdown_user_out_room(){
                   // console.log('>>>>>> Get User <<<<<<');
                   // console.log('========================================');
 
-                  // console.log(agoraEngine);
-                  // console.log(agoraEngine['remoteUsers']);
-                  // console.log(agoraEngine['remoteUsers'][0]);
-                  // console.log(agoraEngine['remoteUsers']['length']);
                   let show_whene_video_no_active = document.querySelector('#show_whene_video_no_active');
 
                   if( agoraEngine['remoteUsers'][0] ){
+                    document.querySelector('#btn_switchScreen').classList.remove('d-none');
 
                     if( agoraEngine['remoteUsers']['length'] != 0 ){
 
-                      show_whene_video_no_active.innerHTML = '' ;
-
                       for(let c_uid = 0; c_uid < agoraEngine['remoteUsers']['length']; c_uid++){
-                        // console.log('USER_ID ==>> ' + agoraEngine['remoteUsers'][c_uid]['uid']);
-                        // console.log('กล้อง ==>> ' + agoraEngine['remoteUsers'][c_uid]['_video_added_']);
-                        // console.log('ไมค์ ==>> ' + agoraEngine['remoteUsers'][c_uid]['_audio_added_']);
-
                         if(!agoraEngine['remoteUsers'][c_uid]['_video_added_']){
                           // กล้องปิด
-                          channelParameters.localVideoTrack.setEnabled(true);
+                          Remote_MuteVideo = true ;
+                          // channelParameters.localVideoTrack.setEnabled(true);
                           channelParameters.localVideoTrack.play(remotePlayerContainer);
                           btnVideoRemote.classList.remove('d-none');
                           btnMicRemote.classList.remove('d-none');
                           document.querySelector('.video-remote').classList.remove('d-none');
                         }
                       }
-
-                      let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
-
-                      let html_command_video_close = `
-                      <div class="text-center">
-                          <img src="`+img_command+`" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
-                          <br><br>
-                          <h5>เจ้าหน้าที่ปิดกล้อง</h5>
-                      </div>`;
-
-                      show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
-
+                      create_html_no_video();
                     }
 
                   }else{
                     setTimeout(function() {
                       if( agoraEngine['remoteUsers']['length'] != 0 ){
-
-                        show_whene_video_no_active.innerHTML = '' ;
+                        document.querySelector('#btn_switchScreen').classList.remove('d-none');
 
                         for(let c_uid = 0; c_uid < agoraEngine['remoteUsers']['length']; c_uid++){
-                          // console.log('USER_ID ==>> ' + agoraEngine['remoteUsers'][c_uid]['uid']);
-                          // console.log('ไมค์ ==>> ' + agoraEngine['remoteUsers'][c_uid]['_audio_added_']);
-                          // console.log('กล้อง ==>> ' + agoraEngine['remoteUsers'][c_uid]['_video_added_']);
-                          
                           if(!agoraEngine['remoteUsers'][c_uid]['_video_added_']){
                             // กล้องปิด
-                            channelParameters.localVideoTrack.setEnabled(true);
+                            Remote_MuteVideo = true ;
+                            // channelParameters.localVideoTrack.setEnabled(true);
                             channelParameters.localVideoTrack.play(remotePlayerContainer);
                             btnVideoRemote.classList.remove('d-none');
                             btnMicRemote.classList.remove('d-none');
                             document.querySelector('.video-remote').classList.remove('d-none');
                           }
                         }
-
-                        let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
-
-                        let html_command_video_close = `
-                          <div class="text-center">
-                              <img src="`+img_command+`" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
-                              <br><br>
-                              <h5>เจ้าหน้าที่ปิดกล้อง</h5>
-                          </div>`;
-
-                        show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
-
+                        create_html_no_video();
                       }else{
-                          channelParameters.localVideoTrack.play(localPlayerContainer);
-
-                          show_whene_video_no_active.innerHTML = '' ;
-
-                          let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
-
-                          let html_command_video_close = `
-                            <div class="text-center">
-                                <img src="`+img_command+`" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
-                                <br><br>
-                                <h5>เจ้าหน้าที่ปิดกล้อง</h5>
-                            </div>`;
-
-                          show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
+                        channelParameters.localVideoTrack.play(localPlayerContainer);
+                        create_html_no_video();
                       }
                     }, 1000);
                   }
               }, 2000);
 
+              function create_html_no_video(){
+
+                show_whene_video_no_active.innerHTML = '' ;
+                let img_command = '{{ url("storage")}}/' + data_command['photo'] ;
+
+                let html_command_video_close = `
+                <div class="text-center">
+                    <img src="`+img_command+`" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
+                    <br><br>
+                    <h5>เจ้าหน้าที่ปิดกล้อง</h5>
+                </div>`;
+
+                show_whene_video_no_active.insertAdjacentHTML('beforeend', html_command_video_close); // แทรกล่างสุด
+
+              }
 
               // ตรวจสอบ เจ้าหน้าที่ อยู่ในห้อง
               setTimeout(function() {

@@ -1087,52 +1087,53 @@ color: #ff9317;
                 <h4>
                     <u id="u_phone_user">{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}</u>
                 </h4>
-                    <style>
-                        .btnVideoCall{
-                            background-color: #1e3f57;
-                            color: #fff;
-                            outline: #1e3f57 1px solid;
-                            transition: all .15s ease-in-out;
-                        }
-                        .btnVideoCall:is(:hover ,:focus){
-                            outline-offset: 2px !important;
-                            color: #fff !important;
+                <hr>
+                <style>
+                    .btnVideoCall{
+                        background-color: #1e3f57;
+                        color: #fff;
+                        outline: #1e3f57 1px solid;
+                        transition: all .15s ease-in-out;
+                    }
+                    .btnVideoCall:is(:hover ,:focus){
+                        outline-offset: 2px !important;
+                        color: #fff !important;
 
-                        }.fade-slide {
-                            animation-duration: 0.5s;
-                            animation-timing-function: ease-in-out;
-                        }
+                    }.fade-slide {
+                        animation-duration: 0.5s;
+                        animation-timing-function: ease-in-out;
+                    }
 
-                            .fade-slide.fade-out {
-                            animation-name: fadeOutDown;
-                        }
+                        .fade-slide.fade-out {
+                        animation-name: fadeOutDown;
+                    }
 
-                            .fade-slide.fade-in {
-                            animation-name: fadeInUp;
-                        }
+                        .fade-slide.fade-in {
+                        animation-name: fadeInUp;
+                    }
 
-                        @keyframes fadeOutDown {
-                            0% {
-                                opacity: 1;
-                                transform: translate(0, 0);
-                            }
-                            100% {
-                                opacity: 0;
-                                transform: translate(0, 20px);
-                            }
+                    @keyframes fadeOutDown {
+                        0% {
+                            opacity: 1;
+                            transform: translate(0, 0);
                         }
+                        100% {
+                            opacity: 0;
+                            transform: translate(0, 20px);
+                        }
+                    }
 
-                        @keyframes fadeInUp {
-                            0% {
-                                opacity: 0;
-                                transform: translate(0, 20px);
-                            }
-                            100% {
-                                opacity: 1;
-                                transform: translate(0, 0);
-                            }
+                    @keyframes fadeInUp {
+                        0% {
+                            opacity: 0;
+                            transform: translate(0, 20px);
                         }
-                    </style>
+                        100% {
+                            opacity: 1;
+                            transform: translate(0, 0);
+                        }
+                    }
+                </style>
                 @if(Auth::user()->id == '1' || Auth::user()->id == '4' || Auth::user()->id == '64' || Auth::user()->id == '11003663')
                 <button id="btnVideoCall" class="btn btnVideoCall" data-animation-class="fa-bounce" onclick="start_video_call_command();">
                     <i id="iconVideoCall" class="fa-duotone fa-video-plus"> </i> Video Call
