@@ -1885,7 +1885,7 @@ function start_countdown_user_out_room(){
 
             activeVideoDeviceId = check_videoDevices[i].value ;
             document.querySelector('#'+check_videoDevices[i].id).click();
-
+            break;
           }
         }
 
