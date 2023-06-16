@@ -1471,37 +1471,26 @@ function start_countdown_user_out_room(){
       // channelParameters.localVideoTrack.setEnabled(false);
       agoraEngine.unpublish([channelParameters.localVideoTrack]);
 
-      alert('ก่อนนนนน ท้องฟ้าจะสดใส');
-      alert(selectedVideoDeviceId);
-
       // สร้าง local video track ใหม่โดยใช้กล้องที่คุณต้องการ
       setTimeout(function() {
         AgoraRTC.createCameraVideoTrack({ cameraId: selectedVideoDeviceId })
           .then(newVideoTrack => {
-            
-            alert('เข้ามาแล้วนะ');
-            alert(selectedVideoDeviceId);
+
             // console.log('------------ newVideoTrack ------------');
             // console.log(newVideoTrack);
 
             // ปิดการเล่นภาพวิดีโอกล้องเดิม
             channelParameters.localVideoTrack.stop();
-            alert('1');
             channelParameters.localVideoTrack.close();
-
-            alert('2');
 
             // เปลี่ยน local video track เป็นอุปกรณ์ใหม่
             channelParameters.localVideoTrack = newVideoTrack;
-            alert('3');
 
             if (isMuteVideo == false) {
-              alert('4');
 
               // เริ่มส่งภาพจากอุปกรณ์ใหม่
               channelParameters.localVideoTrack.setEnabled(true);
               // แสดงภาพวิดีโอใน <div>
-              alert('4.1');
 
               try{
                 if (Screen_current == 'first'){
@@ -1524,8 +1513,8 @@ function start_countdown_user_out_room(){
               // ส่ง local video track ใหม่ไปยังผู้ใช้คนที่สอง
               agoraEngine.publish([channelParameters.localVideoTrack]);
 
-              alert('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
-              console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
+              // alert('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
+              // console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
             } else {
               // alert('ปิด');
               channelParameters.localVideoTrack.setEnabled(false);
@@ -1533,7 +1522,8 @@ function start_countdown_user_out_room(){
 
           })
           .catch(error => {
-            alert(error);
+            alert('ไม่สามารถเปลี่ยนกล้องได้');
+            document.querySelector('#btn_switchCamera').click();
             console.error('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
           });
         }, 3000);
