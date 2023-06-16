@@ -1522,7 +1522,7 @@ function start_countdown_user_out_room(){
         })
         .catch(error => {
           // alert('ไม่สามารถเปลี่ยนกล้องได้');
-          alertNoti('<i class="fa-solid fa-video-slash"></i>', 'ไม่สามารถเปลี่ยนกล้องได้');
+          alertNoti('<i class="fa-solid fa-triangle-exclamation fa-shake"></i>', 'ไม่สามารถเปลี่ยนกล้องได้');
           document.querySelector('#btn_switchCamera').click();
           console.error('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
         });
