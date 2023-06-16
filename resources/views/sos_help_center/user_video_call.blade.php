@@ -1482,17 +1482,22 @@ function start_countdown_user_out_room(){
 
             // ปิดการเล่นภาพวิดีโอกล้องเดิม
             channelParameters.localVideoTrack.stop();
+            alert('1');
             channelParameters.localVideoTrack.close();
 
+            alert('2');
 
             // เปลี่ยน local video track เป็นอุปกรณ์ใหม่
             channelParameters.localVideoTrack = newVideoTrack;
+            alert('3');
 
             if (isMuteVideo == false) {
+              alert('4');
 
               // เริ่มส่งภาพจากอุปกรณ์ใหม่
               channelParameters.localVideoTrack.setEnabled(true);
               // แสดงภาพวิดีโอใน <div>
+              alert('4.1');
 
               try{
                 if (Screen_current == 'first'){
