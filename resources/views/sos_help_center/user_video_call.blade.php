@@ -1476,10 +1476,9 @@ function start_countdown_user_out_room(){
 
       // สร้าง local video track ใหม่โดยใช้กล้องที่คุณต้องการ
       setTimeout(function() {
-        AgoraRTC.createCameraVideoTrack({
-            cameraId: selectedVideoDeviceId
-          }).then(newVideoTrack => {
-
+        AgoraRTC.createCameraVideoTrack({ cameraId: selectedVideoDeviceId })
+          .then(newVideoTrack => {
+            
             alert('เข้ามาแล้วนะ');
             alert(selectedVideoDeviceId);
             // console.log('------------ newVideoTrack ------------');
