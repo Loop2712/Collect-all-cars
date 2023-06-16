@@ -666,15 +666,6 @@
     z-index: 999999999;
   }
 
-  .containerbtnDevice {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 2px !important;
-    height: 2px !important;
-    padding: 0 !important;
-  }
-
   .btnDevice {
     font-size: 12px !important;
     position: absolute;
@@ -867,28 +858,6 @@
       width: 100%;
     }
 
-
-    .containerbtnDevice {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 2px !important;
-      height: 2px !important;
-      padding: 0 !important;
-    }
-
-    .btnDevice {
-      font-size: 12px !important;
-      position: absolute;
-      bottom: 15;
-      right: 20;
-      padding: 0 !important;
-      /* outline: #000 5px solid; */
-      background-color: #fff !important;
-      border-radius: 50%;
-      color: #000 !important;
-    }
-
     .btnGroup {
       position: relative;
     }
@@ -959,6 +928,10 @@
       text-overflow: ellipsis; 
     }
   }
+
+/*--------------------*/
+
+
 .imgBox{
   display: flex;
   align-items: center;
@@ -969,10 +942,34 @@
  transform: scaleX(-1);
 }
 
+.containerbtnDevice {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 2px !important;
+    height: 2px !important;
+    padding: 0 !important;
+  }
+
+.btnDevice {
+    font-size: 12px !important;
+    position: absolute;
+    bottom: 15;
+    right: 20;
+    padding: 0 !important;
+    /* outline: #000 5px solid; */
+    background-color: #fff !important;
+    border-radius: 50%;
+    color: #000 !important;
+  }
+
+
   /* .hrNew ,.video-detail-officer-box{
     display: none;
   } */
 </style>
+
+
 <div class="video-call">
   <div class="video-header">
     <div class="video-detail-officer-box">
@@ -1033,6 +1030,7 @@
 
             </div>
           </span>
+
         </div>
 
         <div class="btnGroup">
@@ -1839,7 +1837,9 @@ function start_countdown_user_out_room(){
 
     }
 
-
+        
+    var now_Mobile_Devices = 1;
+    
     btn_switchCamera.onclick = async function() {
       
       console.log('btn_switchCamera');
@@ -1891,30 +1891,64 @@ function start_countdown_user_out_room(){
 
       // ---------------------------
 
-      if (videoDevices.length > 2){
+      // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
+      const deviceType = checkDeviceType();
+      console.log("Device Type:", deviceType);
+
+      if (deviceType == 'PC'){
         document.querySelector('.btn_for_select_video_device').click();
       }else{
 
         let check_videoDevices = document.getElementsByName('video-device');
-        for (let i = 0; i < check_videoDevices.length; i++) {
-          if (check_videoDevices[i].value != activeVideoDeviceId) {
 
-            console.log('********************');
-            console.log('value');
-            console.log(check_videoDevices[i].value);
-            console.log('id');
-            console.log(check_videoDevices[i].id);
-            console.log('********************');
-
-            activeVideoDeviceId = check_videoDevices[i].value ;
-            document.querySelector('#'+check_videoDevices[i].id).click();
-            break;
-          }
+        if (now_Mobile_Devices == 1){
+          // console.log("now_Mobile_Devices == 1 // ให้คลิก ");
+          // console.log(check_videoDevices[1].id);
+          document.querySelector('#'+check_videoDevices[1].id).click();
+          now_Mobile_Devices = 2 ;
+        }else{
+          // console.log("now_Mobile_Devices == 2 // ให้คลิก ");
+          // console.log(check_videoDevices[0].id);
+          document.querySelector('#'+check_videoDevices[0].id).click();
+          now_Mobile_Devices = 1 ;
         }
+
+        // for (let i = 0; i < check_videoDevices.length; i++) {
+        //   if (check_videoDevices[i].value != activeVideoDeviceId) {
+
+        //     console.log('********************');
+        //     console.log('value');
+        //     console.log(check_videoDevices[i].value);
+        //     console.log('id');
+        //     console.log(check_videoDevices[i].id);
+        //     console.log('********************');
+
+        //     activeVideoDeviceId = check_videoDevices[i].value ;
+        //     document.querySelector('#'+check_videoDevices[i].id).click();
+        //     break;
+        //   }
+        // }
 
       }
 
     }
+
+    // ตรวจสอบอุปกรณ์ที่ใช้งาน
+    function checkDeviceType() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // ตรวจสอบชนิดของอุปกรณ์
+      if (/android/i.test(userAgent)) {
+        return "Mobile (Android)";
+      }
+
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "Mobile (iOS)";
+      }
+
+      return "PC";
+    }
+
 
     btnVideo.onclick = async function() {
       if (isMuteVideo == false) {
