@@ -1074,10 +1074,6 @@
 
     <div class="video-local">
 
-      <span id="camera_555">
-        อุปกรณ์
-      </span>
-
       <i id="video_local_slash" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
 
       <div id="card_show_h6_wait_command" class="card card_show_h6_wait_command d-none">
@@ -1854,7 +1850,6 @@ function start_countdown_user_out_room(){
           videoDeviceList.innerHTML = '';
 
       let count_i = 1 ;
-      let camera_555 = document.querySelector('#camera_555');
 
       videoDevices.forEach(device => {
         let radio = document.createElement('input');
@@ -1863,14 +1858,6 @@ function start_countdown_user_out_room(){
         radio.name = 'video-device';
         radio.value = device.deviceId;
         // radio.checked = device.deviceId === activeVideoDeviceId;
-
-
-        let html = `
-              <br>
-              <p>`+device.deviceId+`</p>
-              `;
-
-          camera_555.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
         let label = document.createElement('label');
         label.classList.add('dropdown-item');
