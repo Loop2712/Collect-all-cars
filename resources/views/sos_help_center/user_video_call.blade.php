@@ -1072,7 +1072,7 @@
       <i class="fa-duotone fa-repeat"></i>
     </span>
 
-    <div class="video-local" style="transform: scaleX(-1);">
+    <div class="video-local">
 
       <i id="video_local_slash" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 50px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
 
@@ -1113,7 +1113,7 @@
     </div>
 
 
-    <div class="video-remote d-none" style="transform: scaleX(-1);">
+    <div class="video-remote d-none">
       <i id="video_remote_slash" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 25px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
     </div>
 
