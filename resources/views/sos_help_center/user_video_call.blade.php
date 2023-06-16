@@ -979,7 +979,7 @@
         @if(!empty($data_officer_command->user->photo))
           <img class="imgOfficer" width="500" height="500" src="{{ url('storage')}}/{{ $data_officer_command->user->photo }}" />
         @else
-          <img class="imgOfficer" width="500" height="500" src="{{ url('/img/stickerline/flex/12.png') }}" />
+          <img class="imgOfficer" width="500" height="500" src="{{ url('/img/stickerline/Flex/12.png') }}" />
         @endif
       </div>
       &nbsp;&nbsp;&nbsp;
