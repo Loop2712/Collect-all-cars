@@ -616,6 +616,7 @@
     justify-content: center !important;
     align-items: center !important;
     color: #fff !important;
+    z-index: 999999;
   }
 
   .alertStatus {
@@ -1467,16 +1468,16 @@ function start_countdown_user_out_room(){
       const selectedVideoDeviceId = getCurrentVideoDeviceId();
       // console.log('เปลี่ยนอุปกรณ์กล้องเป็น:', selectedVideoDeviceId);
 
-      // // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
-      // channelParameters.localVideoTrack.setEnabled(false);
-      agoraEngine.unpublish([channelParameters.localVideoTrack]);
-
       // สร้าง local video track ใหม่โดยใช้กล้องที่คุณต้องการ
       AgoraRTC.createCameraVideoTrack({ cameraId: selectedVideoDeviceId })
         .then(newVideoTrack => {
 
           // console.log('------------ newVideoTrack ------------');
           // console.log(newVideoTrack);
+
+          // // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
+          // channelParameters.localVideoTrack.setEnabled(false);
+          agoraEngine.unpublish([channelParameters.localVideoTrack]);
 
           // ปิดการเล่นภาพวิดีโอกล้องเดิม
           channelParameters.localVideoTrack.stop();
