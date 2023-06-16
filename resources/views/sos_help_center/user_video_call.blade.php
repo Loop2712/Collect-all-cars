@@ -964,7 +964,7 @@
   justify-content: center ;
 }
 
-.scaleX-1 div video{
+.scaleX-1{
  transform: scaleX(-1);
 }
 
@@ -1060,6 +1060,9 @@
           <i class="fas fa-video"></i>
         </button>
 
+        <button class="btn btn-active" id="" onclick="advdvsv();">
+          <i class="fa-solid fa-pen-nib"></i>
+        </button>
 
         <button class="btn btn-exit" id="leave">
             <i class="fa-solid fa-phone-xmark"></i>
@@ -1067,6 +1070,15 @@
       </div>
     </div>
 
+    <script>
+      function advdvsv(){
+        let video_local = document.querySelector('.video-local');
+        let mkl = video_local.querySelector('[style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: black;"]');
+          mkl.classList.add('scaleX-1');
+
+        console.log(mkl);
+      }
+    </script>
 
   </div>
 
@@ -1076,7 +1088,7 @@
       <i class="fa-duotone fa-repeat"></i>
     </span>
 
-    <div class="video-local scaleX-1">
+    <div class="video-local">
 
       <i id="video_local_slash" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 50px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
 
