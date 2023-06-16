@@ -1016,7 +1016,7 @@
         <div class="modal fade" id="test" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-              <button type="button" class="btn" data-dismiss="modal" aria-label="Close" style="position: absolute; top:10;right: 10px;color:#4d4d4d;z-index: 9999999999;">
+              <button id="ปุ่มนี้สำหรับปิด_modal" type="button" class="btn" data-dismiss="modal" aria-label="Close" style="position: absolute; top:10;right: 10px;color:#4d4d4d;z-index: 9999999999;">
                 <i class="fa-solid fa-xmark"></i>
               </button>
               <div class="modal-body">
@@ -1455,10 +1455,17 @@ function start_countdown_user_out_room(){
         });
     }
 
+    var old_activeVideoDeviceId ;
 
     function onChangeVideoDevice() {
+
+      old_activeVideoDeviceId = activeVideoDeviceId ;
+      
       const selectedVideoDeviceId = getCurrentVideoDeviceId();
       // console.log('เปลี่ยนอุปกรณ์กล้องเป็น:', selectedVideoDeviceId);
+
+      activeVideoDeviceId = selectedVideoDeviceId ;
+
 
       // สร้าง local video track ใหม่โดยใช้กล้องที่คุณต้องการ
       AgoraRTC.createCameraVideoTrack({ cameraId: selectedVideoDeviceId })
@@ -1517,12 +1524,16 @@ function start_countdown_user_out_room(){
           // alert('ไม่สามารถเปลี่ยนกล้องได้');
           alertNoti('<i class="fa-solid fa-triangle-exclamation fa-shake"></i>', 'ไม่สามารถเปลี่ยนกล้องได้');
 
+          activeVideoDeviceId = old_activeVideoDeviceId ;
+
           setTimeout(function() {
             document.querySelector('#btn_switchCamera').click();
           }, 2000);
 
           console.error('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
         });
+
+        document.querySelector('#ปุ่มนี้สำหรับปิด_modal').click();
     }
 
     // async function onChangeVideoDevice() {
@@ -1841,6 +1852,10 @@ function start_countdown_user_out_room(){
       console.log('activeVideoDeviceId');
       console.log(activeVideoDeviceId);
 
+      // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
+      const deviceType = checkDeviceType();
+      console.log("Device Type:", deviceType);
+
       // เรียกดูอุปกรณ์ทั้งหมด
       const devices = await navigator.mediaDevices.enumerateDevices();
 
@@ -1870,7 +1885,10 @@ function start_countdown_user_out_room(){
         radio.id = 'video-device-' + count_i;
         radio.name = 'video-device';
         radio.value = device.deviceId;
-        // radio.checked = device.deviceId === activeVideoDeviceId;
+
+        if (deviceType == 'PC'){
+          radio.checked = device.deviceId === activeVideoDeviceId;
+        }
 
         let label = document.createElement('label');
         label.classList.add('dropdown-item');
@@ -1884,10 +1902,6 @@ function start_countdown_user_out_room(){
       });
 
       // ---------------------------
-
-      // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
-      const deviceType = checkDeviceType();
-      console.log("Device Type:", deviceType);
 
       if (deviceType == 'PC'){
         document.querySelector('.btn_for_select_video_device').click();
