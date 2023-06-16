@@ -608,7 +608,7 @@
   .containerAlert {
     transform: scale(0);
     position: absolute;
-    top: 185px;
+    bottom: 150px;
     /* เปลี่ยนจาก top: 10px; เป็น top: 50%; */
     /* outline: #000 1px solid; */
     width: 100%;
