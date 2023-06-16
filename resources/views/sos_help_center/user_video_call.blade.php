@@ -753,9 +753,6 @@
       font-weight: bold;
 
     }
-
-    
-
     .video-detail-box {
       display: flex;
       white-space: nowrap;
@@ -768,9 +765,6 @@
     .btn-location {
       display: none !important;
     }
-
-
-
     .video-body {
       position: relative;
       width: 100%;
@@ -832,9 +826,6 @@
       background-color: #db2d2e !important;
       color: #fff !important;
     }
-
-
-
     .divRadio {
       margin-top: 1rem;
       display: flex;
@@ -870,31 +861,6 @@
     .btnGroup {
       position: relative;
     }
-
-    .dropdown-toggle::after {
-      display: none;
-    }
-
-    .dropdown-menu {
-      width: 300px;
-    }
-
-    .dropdown-menu .dropdown-item {
-      font-size: .8rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      width: 100%;
-    }
-
-    .dropdown-menu .dropdown-item input {
-      margin-right: .5rem;
-    }
-
-    .dropdown-header {
-      font-family: 'Mitr', sans-serif;
-    }
-
     .video-detail-officer-box {
       display: flex;
       white-space: nowrap;
@@ -963,7 +929,29 @@
     color: #000 !important;
   }
 
+  .dropdown-toggle::after {
+      display: none;
+    }
 
+    .dropdown-menu {
+      width: 300px;
+    }
+
+    .dropdown-menu .dropdown-item {
+      font-size: .8rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+
+    .dropdown-menu .dropdown-item input {
+      margin-right: .5rem;
+    }
+
+    .dropdown-header {
+      font-family: 'Mitr', sans-serif;
+    }
   /* .hrNew ,.video-detail-officer-box{
     display: none;
   } */
@@ -986,6 +974,8 @@
         <p>เจ้าหน้าที่ : {{ $data_officer_command->name_officer_command }}</p>
         <p>ศูนย์สั่งการ : {{ $data_officer_command->area }} </p>
         <small class="mt-3">{{ $data_officer_command->user->phone }}</small>
+      
+
       </span>
       
       <button class="btn btn-success d-none" id="join">join</button>
@@ -1012,25 +1002,29 @@
         </a>
 
         <div class="btnGroup">
-
           <button class="btn btn-secondary" id="btn_switchCamera" onclick="switchCamera();">
             <i class="fa-solid fa-camera-rotate"></i>
           </button>
+        </div>
 
-          <span class="containerbtnDevice d-">
-            <div class="btn-group btnGroupVideoCall">
-              <button class="btnDevice btn dropdown-toggle btn_for_select_video_device d-" type="button" data-bs-toggle='dropdown' aria-expanded="false" style=" width: 20px !important;height: 20px !important; padding: 0 !important;">
-                <i class="fa-solid fa-chevron-down fa-2xs"></i>
+
+        <button class="btnDevice  btn dropdown-toggle btn_for_select_video_device d-none" type="button" data-toggle="modal" data-target="#test" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
+          <i class="fa-solid fa-chevron-down fa-2xs"></i>
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="test" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <button type="button" class="btn" data-dismiss="modal" aria-label="Close" style="position: absolute; top:10;right: 10px;color:#4d4d4d;z-index: 9999999999;">
+                <i class="fa-solid fa-xmark"></i>
               </button>
-
-              <div class="dropdown-menu">
-                <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
-                <div id="video-device-list"></div>
+              <div class="modal-body">
+              <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
+                  <div id="video-device-list"></div>
               </div>
-
             </div>
-          </span>
-
+          </div>
         </div>
 
         <div class="btnGroup">
