@@ -1017,7 +1017,7 @@
 
           <span class="containerbtnDevice d-">
             <div class="btn-group btnGroupVideoCall">
-              <button class="btnDevice btn dropdown-toggle btn_for_select_video_device d-none" type="button" data-bs-toggle='dropdown' aria-expanded="false" style=" width: 20px !important;height: 20px !important; padding: 0 !important;">
+              <button class="btnDevice btn dropdown-toggle btn_for_select_video_device d-" type="button" data-bs-toggle='dropdown' aria-expanded="false" style=" width: 20px !important;height: 20px !important; padding: 0 !important;">
                 <i class="fa-solid fa-chevron-down fa-2xs"></i>
               </button>
 
@@ -1074,7 +1074,7 @@
 
     <div class="video-local">
 
-      <i id="video_local_slash" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
+      <i id="video_local_slash" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 50px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
 
       <div id="card_show_h6_wait_command" class="card card_show_h6_wait_command d-none">
         <div class="alert border-0 border-start border-5 border-warning alert-dismissible fade show py-2">
@@ -1114,7 +1114,7 @@
 
 
     <div class="video-remote d-none">
-      <i id="video_remote_slash" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
+      <i id="video_remote_slash" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 25px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
     </div>
 
     <!-- <div class="video-menu">
