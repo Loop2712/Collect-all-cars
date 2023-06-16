@@ -1474,7 +1474,7 @@ function start_countdown_user_out_room(){
           if (isMuteVideo == false) {
 
             // เริ่มส่งภาพจากอุปกรณ์ใหม่
-            // channelParameters.localVideoTrack.setEnabled(true);
+            channelParameters.localVideoTrack.setEnabled(true);
             // แสดงภาพวิดีโอใน <div>
 
             try{
@@ -1495,7 +1495,6 @@ function start_countdown_user_out_room(){
               }
             }
             
-
             // ส่ง local video track ใหม่ไปยังผู้ใช้คนที่สอง
             agoraEngine.publish([channelParameters.localVideoTrack]);
 
@@ -1508,7 +1507,7 @@ function start_countdown_user_out_room(){
 
         })
         .catch(error => {
-          alert('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
+          alert(error);
           console.error('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
         });
 
