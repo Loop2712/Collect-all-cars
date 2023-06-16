@@ -1527,7 +1527,7 @@ function start_countdown_user_out_room(){
             alert(error);
             console.error('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
           });
-        }, 1000);
+        }, 3000);
 
     }
 
