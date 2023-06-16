@@ -964,6 +964,10 @@
   justify-content: center ;
 }
 
+.scaleX-1 div video{
+ transform: scaleX(-1);
+}
+
   /* .hrNew ,.video-detail-officer-box{
     display: none;
   } */
@@ -1072,7 +1076,7 @@
       <i class="fa-duotone fa-repeat"></i>
     </span>
 
-    <div class="video-local">
+    <div class="video-local scaleX-1">
 
       <i id="video_local_slash" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 50px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
 
