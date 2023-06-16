@@ -1472,6 +1472,7 @@ function start_countdown_user_out_room(){
       agoraEngine.unpublish([channelParameters.localVideoTrack]);
 
       alert('ก่อนนนนน ท้องฟ้าจะสดใส');
+      alert(selectedVideoDeviceId);
 
       // สร้าง local video track ใหม่โดยใช้กล้องที่คุณต้องการ
       setTimeout(function() {
@@ -1479,6 +1480,8 @@ function start_countdown_user_out_room(){
             cameraId: selectedVideoDeviceId
           }).then(newVideoTrack => {
 
+            alert('เข้ามาแล้วนะ');
+            alert(selectedVideoDeviceId);
             // console.log('------------ newVideoTrack ------------');
             // console.log(newVideoTrack);
 
