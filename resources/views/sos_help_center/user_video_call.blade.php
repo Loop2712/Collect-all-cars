@@ -1208,7 +1208,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         option['token'] = result;
 
         setTimeout(() => {
-            // document.getElementById("join").click();
+            document.getElementById("join").click();
         }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
 
     });
@@ -1457,6 +1457,7 @@ function start_countdown_user_out_room(){
 
       // // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
       // channelParameters.localVideoTrack.setEnabled(false);
+      agoraEngine.unpublish([channelParameters.localVideoTrack]);
 
       // สร้าง local video track ใหม่โดยใช้กล้องที่คุณต้องการ
       AgoraRTC.createCameraVideoTrack({
@@ -1467,7 +1468,6 @@ function start_countdown_user_out_room(){
           // console.log(newVideoTrack);
 
           // ปิดการเล่นภาพวิดีโอกล้องเดิม
-          agoraEngine.unpublish([channelParameters.localVideoTrack]);
           channelParameters.localVideoTrack.stop();
           channelParameters.localVideoTrack.close();
 
@@ -1503,15 +1503,16 @@ function start_countdown_user_out_room(){
             // ส่ง local video track ใหม่ไปยังผู้ใช้คนที่สอง
             agoraEngine.publish([channelParameters.localVideoTrack]);
 
-            // alert('เปิด')
+            alert('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
             console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
           } else {
-            // alert('ปิด')
+            // alert('ปิด');
             channelParameters.localVideoTrack.setEnabled(false);
           }
 
         })
         .catch(error => {
+          alert('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
           console.error('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
         });
 
