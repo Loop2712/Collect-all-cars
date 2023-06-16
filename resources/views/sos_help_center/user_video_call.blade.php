@@ -1471,6 +1471,8 @@ function start_countdown_user_out_room(){
       // channelParameters.localVideoTrack.setEnabled(false);
       agoraEngine.unpublish([channelParameters.localVideoTrack]);
 
+      alert('ก่อนนนนน ท้องฟ้าจะสดใส');
+
       // สร้าง local video track ใหม่โดยใช้กล้องที่คุณต้องการ
       setTimeout(function() {
         AgoraRTC.createCameraVideoTrack({
