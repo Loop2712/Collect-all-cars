@@ -2234,54 +2234,63 @@ class Sos_help_centerController extends Controller
 
         $sos_help_center = Sos_help_center::where('id' , $sos_1669_id)->first();
 
+        $Data_arr = array();
+
         $sos_joint_case = $sos_help_center->joint_case ;
-        $arr_joint_case = json_decode($sos_joint_case, true);
 
-        $Data_arr = [];
+        if( !empty($sos_joint_case) ){
 
-        for ($xi = 0; $xi < count($arr_joint_case); $xi++){
+            $arr_joint_case = json_decode($sos_joint_case, true);
 
-            $sos_by_case = Sos_help_center::where('id' , $arr_joint_case[$xi])->first();
-            $arr_by_case = [];
+            for ($xi = 0; $xi < count($arr_joint_case); $xi++){
 
-            $arr_by_case['id'] = $sos_by_case->id;
-            $arr_by_case['status'] = $sos_by_case->status;
-            $arr_by_case['wait'] = $sos_by_case->wait;
-            $arr_by_case['operating_code'] = $sos_by_case->operating_code;
-            $arr_by_case['time_command'] = $sos_by_case->time_command;
-            $arr_by_case['joint_case'] = $sos_by_case->joint_case;
-            $arr_by_case['helper_id'] = $sos_by_case->helper_id;
-            
-            if ($arr_by_case['status'] == "ปฏิเสธ"){
+                $sos_by_case = Sos_help_center::where('id' , $arr_joint_case[$xi])->first();
+                $arr_by_case = [];
 
-                $arr_refuse = $sos_by_case->refuse;
-                $refuse_ep = explode("," , $arr_refuse) ;
-                $refuse_last = $refuse_ep[count($refuse_ep)-1];
-
-                $data_officer = Data_1669_operating_officer::where('user_id' , $refuse_last)->first();
+                $arr_by_case['id'] = $sos_by_case->id;
+                $arr_by_case['status'] = $sos_by_case->status;
+                $arr_by_case['wait'] = $sos_by_case->wait;
+                $arr_by_case['operating_code'] = $sos_by_case->operating_code;
+                $arr_by_case['time_command'] = $sos_by_case->time_command;
+                $arr_by_case['joint_case'] = $sos_by_case->joint_case;
+                $arr_by_case['helper_id'] = $sos_by_case->helper_id;
                 
-            }else if($arr_by_case['status'] == "รอการยืนยัน"){
+                if ($arr_by_case['status'] == "ปฏิเสธ"){
 
-                $data_officer = Data_1669_operating_officer::where('user_id' , $sos_by_case->wait)->first();
+                    $arr_refuse = $sos_by_case->refuse;
+                    $refuse_ep = explode("," , $arr_refuse) ;
+                    $refuse_last = $refuse_ep[count($refuse_ep)-1];
 
-            }else{
+                    $data_officer = Data_1669_operating_officer::where('user_id' , $refuse_last)->first();
+                    
+                }else if($arr_by_case['status'] == "รอการยืนยัน"){
 
-                $data_officer = Data_1669_operating_officer::where('user_id' , $sos_by_case->helper_id)->first();
+                    $data_officer = Data_1669_operating_officer::where('user_id' , $sos_by_case->wait)->first();
+
+                }else{
+
+                    $data_officer = Data_1669_operating_officer::where('user_id' , $sos_by_case->helper_id)->first();
+
+                }
+
+                $data_operating = Data_1669_operating_unit::where('id' , $data_officer->operating_unit_id)->first();
+
+                $arr_by_case['name_wait_officer'] = $data_officer->name_officer;
+                $arr_by_case['name_wait_phone'] = $data_officer->user->phone;
+                $arr_by_case['name_wait_photo'] = $data_officer->user->photo;
+                $arr_by_case['name_wait_level'] = $data_officer->level;
+                $arr_by_case['name_wait_vehicle_type'] = $data_officer->vehicle_type;
+                $arr_by_case['name_wait_operating'] = $data_operating->name;
+                
+
+                $Data_arr[$xi] = $arr_by_case ;
 
             }
 
-            $data_operating = Data_1669_operating_unit::where('id' , $data_officer->operating_unit_id)->first();
+            // $Data_arr['check_data'] = 'มีข้อมูล' ;
 
-            $arr_by_case['name_wait_officer'] = $data_officer->name_officer;
-            $arr_by_case['name_wait_phone'] = $data_officer->user->phone;
-            $arr_by_case['name_wait_photo'] = $data_officer->user->photo;
-            $arr_by_case['name_wait_level'] = $data_officer->level;
-            $arr_by_case['name_wait_vehicle_type'] = $data_officer->vehicle_type;
-            $arr_by_case['name_wait_operating'] = $data_operating->name;
-            
-
-            $Data_arr[$xi] = $arr_by_case ;
-
+        }else{
+            // $Data_arr['check_data'] = 'ไม่มีข้อมูล' ;
         }
 
         return $Data_arr ;

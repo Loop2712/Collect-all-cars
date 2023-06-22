@@ -3145,20 +3145,26 @@ color: #ff9317;
         fetch("{{ url('/') }}/api/check_sos_joint_case" + "?sos_1669_id=" + sos_id)
           .then(response => response.json())
           .then(result => {
+              // console.log('-------------- FORM check_sos_joint_case ---------------');
+              // console.log('check_sos_joint_case');
               // console.log(result);
+              // console.log('-----------------------------');
 
-              for(let item of result){
+              if(result.length != 0){
+                  for(let item of result){
 
-                  // console.log(item.id);
-                  // console.log(item.status);
-                  // console.log('--------------------');
+                    // console.log(item.id);
+                    // console.log(item.status);
+                    // console.log('--------------------');
 
-                  if (item.status === 'รอการยืนยัน' ||item.status === 'ปฏิเสธ' ){
-                      document.querySelector('#btn_show_wait_officer_joint').classList.remove('d-none');
-                      break;
+                    if (item.status === 'รอการยืนยัน' ||item.status === 'ปฏิเสธ' ){
+                        document.querySelector('#btn_show_wait_officer_joint').classList.remove('d-none');
+                        break;
+                    }
+
                   }
-
               }
+                
 
           });
 
@@ -3166,8 +3172,6 @@ color: #ff9317;
         // console.log('case no joint');
         document.querySelector('#btn_select_operating_unit').classList.remove('d-none');
       }
-
-      
 
     }
 

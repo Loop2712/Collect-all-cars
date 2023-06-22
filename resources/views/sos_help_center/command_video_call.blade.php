@@ -90,9 +90,42 @@
     align-items: center;
     justify-content: center;
     border: none;
-}.video-menu button i{
+}
+.video-menu button i{
     font-size: 1rem !important;
 }
+
+.video-head {
+    display: flex;
+    width: calc(100%);
+    /* outline: #000 1rem solid; */
+    border-radius: 1rem;
+    /*position: absolute;*/
+    /* bottom: -20%; */
+    margin-top: 1rem;
+    justify-content: space-around;
+    background-color: #BEBEBE;
+    height: 4rem !important;
+    align-items: center;
+}
+
+.video-head button {
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+    width: 3rem !important;
+    height: 3rem !important;
+    /* outline:#fff 1px solid; */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+.video-head button i{
+    font-size: 1rem !important;
+}
+
 .btn-exit{
     background-color: #db2d2e !important;
 }
@@ -158,6 +191,26 @@
 
     <div id="divVideoCall" class="video-body fade-slide"style="display: none;">
 
+        <div class="video-head">
+
+          <span id="span_timer_video_call" class="d-none">
+              <span id="icon_timer_video_call">
+                <i class="fa-duotone fa-record-vinyl fa-beat-fade" style="--fa-secondary-color: #6e89b4;"></i> 
+                &nbsp;&nbsp;เวลาสนทนา : 
+              </span>
+              <span id="timer_video_call">เริ่มนับเมื่อมีผู้ใช้ 2 คน</span>
+          </span>
+
+          <span class="btn btn-success" id="command_join">
+              <i class="fa-solid fa-phone-volume"></i> เริ่มต้นการสนทนา
+          </span>
+
+          <span id="btn_close_audio_ringtone" class="btn btn-secondary d-none" onclick="stop_ringtone();">
+              <i class="fa-solid fa-volume-slash"></i>
+          </span>
+
+        </div>
+
         <div class="video-local">
 
           <div id="show_whene_video_no_active" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;">
@@ -193,15 +246,7 @@
 
         <div class="video-remote d-none"></div>
 
-        <div class="video-menu">
-
-              <span class="btn btn-success" id="command_join">
-                  <i class="fa-solid fa-phone-volume"></i> เริ่มต้นการสนทนา
-              </span>
-
-              <span id="btn_close_audio_ringtone" class="btn btn-secondary d-none" onclick="stop_ringtone();">
-                  <i class="fa-solid fa-volume-slash"></i>
-              </span>
+        <div class="video-menu d-none">
 
               <button id="btnMic" class="btn-active d-none">
                   <i class="fa-duotone fa-microphone"></i>
@@ -295,8 +340,8 @@ function loop_check_user_in_room() {
 
     check_user_in_room = setInterval(function() {
 
-      console.log('loop_check_user_in_room');
-      console.log("แจ้งเตือนคนเข้าห้อง >> " + check_command_in_room);
+      // console.log('loop_check_user_in_room');
+      // console.log("แจ้งเตือนคนเข้าห้อง >> " + check_command_in_room);
 
       fetch("{{ url('/') }}/api/check_user_in_room" + "?sos_1669_id=" + sos_1669_id)
         .then(response => response.json())
@@ -319,6 +364,11 @@ function loop_check_user_in_room() {
               // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
               create_html_user_in_room(result['data'] , 'wait');
 
+              if(!check_start_timer_video_call){
+                start_timer_video_call(result['data_agora']['time_start']);
+              }
+
+
               if( check_command_in_room ){
                 audio_in_room.play();
                 check_command_in_room = false ;
@@ -334,6 +384,10 @@ function loop_check_user_in_room() {
 
               // myStop_check_user_in_room();
             }else{
+
+              if(check_start_timer_video_call){
+                myStop_timer_video_call();
+              }
 
               stop_ringtone();
               document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
@@ -459,6 +513,7 @@ async function startBasicCall() {
     mode: "rtc",
     codec: "vp8"
   });
+
   /////////////////////// จอคนเข้าร่วม//////////////////
   const remotePlayerContainer = document.querySelector('.video-remote');
   /////////////////////// จอตัวเอง/////////////////////
@@ -479,6 +534,12 @@ async function startBasicCall() {
 
   // Specify the ID of the DIV container. You can use the uid of the local user.
   localPlayerContainer.id = option.uid;
+
+  // --------------------------------------------------------- //
+  // --------------------------------------------------------- //
+  // -------------------- User Published --------------------- //
+  // --------------------------------------------------------- //
+  // --------------------------------------------------------- //
 
   agoraEngine.on("user-published", async (user, mediaType) => {
       // Subscribe to the remote user when the SDK triggers the "user-published" event.
@@ -538,45 +599,62 @@ async function startBasicCall() {
           btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone"></i>`;
         }
       }
-      // Listen for the "user-unpublished" event.
-      agoraEngine.on("user-unpublished", async (user, mediaType) => {
-
-        // remote Usre ปิดกล้อง //////
-        if (mediaType == "video") {
-          if (!user.remoteVideoTrack) {
-            btnVideoRemote.classList.add('btnRemote-close');
-            btnVideoRemote.classList.remove('btnRemote-open');
-            btnVideoRemote.innerHTML = `<i class="fas fa-video-slash"></i>`;
-          }
-        }
-
-        // remote Usre ปิดไมค์ //////
-        if (mediaType === "audio") {
-          if (!user.audioTrack) {
-            btnMicRemote.classList.add('btnRemote-close');
-            btnMicRemote.classList.remove('btnRemote-open');
-            btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone-slash"></i>`;
-          }
-        }
-
-      });
-
-      agoraEngine.on("user-left", function(evt) {
-
-        remotePlayerContainer.classList.add('d-none');
-        channelParameters.localVideoTrack.play(localPlayerContainer);
-        userJoinRoom = false;
-        // alert('มีคนออก');
-        btnVideoRemote.classList.add('d-none');
-        btnMicRemote.classList.add('d-none');
-        remotePlayerContainer.classList.remove('d-none')
-        document.querySelector('.video-remote').innerHTML = '' ;
-        check_first_play_ringtone = 0 ;
-        // loop_check_user_in_room();
-
-      });
 
     });
+
+    // --------------------------------------------------------- //
+    // --------------------------------------------------------- //
+    // ------------------ User Unpublished --------------------- //
+    // --------------------------------------------------------- //
+    // --------------------------------------------------------- //
+
+
+    // Listen for the "user-unpublished" event.
+    agoraEngine.on("user-unpublished", async (user, mediaType) => {
+
+      // remote Usre ปิดกล้อง //////
+      if (mediaType == "video") {
+        if (!user.remoteVideoTrack) {
+          btnVideoRemote.classList.add('btnRemote-close');
+          btnVideoRemote.classList.remove('btnRemote-open');
+          btnVideoRemote.innerHTML = `<i class="fas fa-video-slash"></i>`;
+        }
+      }
+
+      // remote Usre ปิดไมค์ //////
+      if (mediaType === "audio") {
+        if (!user.audioTrack) {
+          btnMicRemote.classList.add('btnRemote-close');
+          btnMicRemote.classList.remove('btnRemote-open');
+          btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone-slash"></i>`;
+        }
+      }
+
+    });
+
+    // --------------------------------------------------------- //
+    // --------------------------------------------------------- //
+    // -------------------- User Left -------------------------- //
+    // --------------------------------------------------------- //
+    // --------------------------------------------------------- //
+
+    agoraEngine.on("user-left", function(evt) {
+
+      remotePlayerContainer.classList.add('d-none');
+      channelParameters.localVideoTrack.play(localPlayerContainer);
+      userJoinRoom = false;
+      // alert('มีคนออก');
+      btnVideoRemote.classList.add('d-none');
+      btnMicRemote.classList.add('d-none');
+      remotePlayerContainer.classList.remove('d-none')
+      document.querySelector('.video-remote').innerHTML = '' ;
+      check_first_play_ringtone = 0 ;
+      // loop_check_user_in_room();
+
+    });
+
+    // --------------------------------------------------------- //
+    // --------------------------------------------------------- //
 
     btnVideo.onclick = async function() {
       if (isMuteVideo == false) {
@@ -636,7 +714,21 @@ async function startBasicCall() {
         check_command_in_room = true ;
         check_first_play_ringtone = 1 ;
         // Join a channel.
-        await agoraEngine.join(option.appId, option.channel, option.token, option.uid);
+
+        try{
+            await agoraEngine.join(option.appId, option.channel, option.token, option.uid);
+        }catch{
+
+          console.log('========================================');
+          console.log('>>>>>> เชื่อมต่อล้มเหลว กำลังเชื่อต่อใหม่ <<<<<<');
+          console.log('========================================');
+
+          setTimeout(function() {
+            document.querySelector('#command_join').click();
+          }, 2500);
+
+        }
+
         // Create a local audio track from the audio sampled by a microphone.
         channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
         // Create a local video track from the video captured by a camera.
@@ -649,14 +741,27 @@ async function startBasicCall() {
         
         channelParameters.localVideoTrack.play(localPlayerContainer);
         // console.log("publish success!");
+
+        document.querySelector('.video-menu').classList.remove('d-none');
+        document.querySelector('#span_timer_video_call').classList.remove('d-none');
+
         stop_ringtone();
+
         fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_join')
           .then(response => response.json())
           .then(result => {
-              // console.log(result);
+              console.log(result);
 
               if(result['data']['user']){
                 create_html_user_in_room(result['data_user'] , 'in_room');
+
+                if(!check_start_timer_video_call){
+                  start_timer_video_call(result['data_agora']['time_start']);
+                }
+              }else{
+                if(check_start_timer_video_call){
+                  myStop_timer_video_call();
+                }
               }
 
           });
@@ -680,6 +785,10 @@ async function startBasicCall() {
 
         check_command_in_room = false ;
 
+        if(check_start_timer_video_call){
+          myStop_timer_video_call();
+        }
+
         // Destroy the local audio and video tracks.
         channelParameters.localAudioTrack.close();
         channelParameters.localVideoTrack.close();
@@ -701,6 +810,9 @@ async function startBasicCall() {
         btnVideoRemote.classList.add('d-none');
         btnMicRemote.classList.add('d-none');
         document.querySelector('.video-remote').classList.add('d-none');
+        document.querySelector('.video-menu').classList.add('d-none');
+        document.querySelector('#span_timer_video_call').classList.add('d-none');
+
         // window.location.reload();
 
         fetch("{{ url('/') }}/api/left_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_left')
@@ -716,6 +828,66 @@ async function startBasicCall() {
 
           });
       }
+}
+
+var check_start_timer_video_call = false ;
+
+function myStop_timer_video_call() {
+    clearInterval(loop_timer_video_call);
+    check_start_timer_video_call = false;
+    document.querySelector('#timer_video_call').innerHTML = 'ผู้ใช้ออกจากการสนทนา' ;
+    document.querySelector('#icon_timer_video_call').classList.add('d-none');
+}
+
+function start_timer_video_call(time_start){
+
+  console.log('start_timer_video_call');
+  console.log(time_start);
+
+  document.querySelector('#icon_timer_video_call').classList.remove('d-none');
+
+  check_start_timer_video_call = true ;
+
+  var timeCountVideo = document.getElementById("timer_video_call");
+
+  // วันที่และเวลาที่กำหนด
+  var targetDate = new Date();
+  var targetTime = targetDate.getTime();
+
+  loop_timer_video_call = setInterval(function() {
+
+    // วันที่และเวลาปัจจุบัน
+    var currentDate = new Date();
+    var currentTime = currentDate.getTime();
+
+    // คำนวณเวลาที่ผ่านไปในมิลลิวินาที
+    var elapsedTime = currentTime - targetTime;
+    var elapsedMinutes = Math.floor(elapsedTime / (1000 * 60));
+
+    // แปลงเวลาที่ผ่านไปให้เป็นรูปแบบชั่วโมง:นาที:วินาที
+    var hours = Math.floor(elapsedMinutes / 60);
+    var minutes = elapsedMinutes % 60;
+    var seconds = Math.floor((elapsedTime / 1000) % 60);
+
+    let showTimeCountVideo;
+    // แสดงผลลัพธ์
+    if (hours > 0) {
+        if (minutes < 10) {  // ใส่ 0 ข้างหน้า นาที กรณีเลขยังไม่ถึง 10
+            showTimeCountVideo = hours + ':' + '0' + minutes + ':' + seconds + "&nbsp;/ 10 นาที";
+        }else{
+            showTimeCountVideo = hours + ':' + minutes + ':' + seconds + "&nbsp;/ 10 นาที";
+        }
+    } else {
+        if(seconds < 10){  // ใส่ 0 ข้างหน้า วินาที กรณีเลขยังไม่ถึง 10
+            showTimeCountVideo =  minutes + ':' + '0' + seconds + "&nbsp;/ 10 นาที";
+        }else{
+            showTimeCountVideo = minutes + ':' + seconds + "&nbsp;/ 10 นาที";
+        }
+    }
+
+    timeCountVideo.innerHTML = showTimeCountVideo ;
+
+  }, 1000);
 
 }
 

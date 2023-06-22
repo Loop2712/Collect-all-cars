@@ -118,7 +118,7 @@
             .then(result => {
                 // console.log(result[0]['add_line']);
                 if (result[0]['add_line'] != "Yes") {
-                    document.querySelector('#btn_modal_addline').click();
+                    // document.querySelector('#btn_modal_addline').click();
                 }
         });
 

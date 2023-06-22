@@ -67,6 +67,17 @@ class AgoraController extends Controller
         $user_in_room = [];
         $user_in_room['data'] = 'ไม่มีข้อมูล';
 
+        if ( empty($agora_chat) ){
+            $data_create = [];
+            $data_create['room_for'] = 'user_sos_1669';
+            $data_create['sos_id'] = $sos_id;
+
+            Agora_chat::create($data_create);
+            $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
+        }
+
+        $user_in_room['data_agora'] = $agora_chat;
+
         if( !empty($agora_chat->member_in_room) ){
             $data_member_in_room = $agora_chat->member_in_room;
 
@@ -162,6 +173,7 @@ class AgoraController extends Controller
 
         $check_data_array = [];
         $check_data_array['data'] = 'ไม่มีข้อมูล' ;
+        $check_data_array['data_agora'] = $agora_chat_last ;
 
         if( !empty($agora_chat_last->member_in_room) ){
 

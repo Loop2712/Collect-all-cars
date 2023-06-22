@@ -1130,6 +1130,7 @@
 
     var count_status_officer = 0;
     var all_officer_wait_status = 0;
+
     function show_wait_officer_joint() {
 
         let sos_id = '{{ $sos_help_center->id }}';
@@ -1137,181 +1138,148 @@
         fetch("{{ url('/') }}/api/check_sos_joint_case" + "?sos_1669_id=" + sos_id)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
-                all_officer_wait_status = result.length;
-                count_status_officer = 0;
+             	// console.log('-------------- show_wait_officer_joint ---------------');
+	            // console.log('check_sos_joint_case');
+	            // console.log(result.length);
+	            // console.log('-----------------------------');
 
-                let show_officer_joint_content = document.querySelector('#show_officer_joint_content');
-                show_officer_joint_content.innerHTML = '';
+	            if(result.length != 0){
+	            	// console.log('result.length != 0');
 
-                let arr_sos_id_count_time = [];
-                
-                for (let item of result) {
-                    let html_of_result = '';
+	                all_officer_wait_status = result.length;
+	                count_status_officer = 0;
 
-                    // console.log("id >> " + item.id);
-                    // console.log("status >> " + item.status);
-                    // console.log("wait >> " + item.wait);
-                    // console.log("operating_code >> " + item.operating_code);
-                    // console.log("time_command >> " + item.time_command);
-                    // console.log("name_wait_officer >> " + item.name_wait_officer);
-                    // console.log("name_wait_phone >> " + item.name_wait_phone);
-                    // console.log("name_wait_photo >> " + item.name_wait_photo);
-                    // console.log("name_wait_operating >> " + item.name_wait_operating);
-                    // console.log("name_wait_vehicle_type >> " + item.name_wait_vehicle_type);
-                    // console.log("name_wait_level >> " + item.name_wait_level);
-                    // console.log("joint_case >> " + item.joint_case);
-                    // console.log('--------------------');
+	                let show_officer_joint_content = document.querySelector('#show_officer_joint_content');
+	                show_officer_joint_content.innerHTML = '';
 
-                    let html_footer;
-                    let html_div_class_card;
-                    let html_div_head;
-                    let status_officer;
-                    let btn_wait_officer
+	                let arr_sos_id_count_time = [];
+	                
+	                for (let item of result) {
+	                    let html_of_result = '';
 
-                    
-                    
+	                    // console.log("id >> " + item.id);
+	                    // console.log("status >> " + item.status);
+	                    // console.log("wait >> " + item.wait);
+	                    // console.log("operating_code >> " + item.operating_code);
+	                    // console.log("time_command >> " + item.time_command);
+	                    // console.log("name_wait_officer >> " + item.name_wait_officer);
+	                    // console.log("name_wait_phone >> " + item.name_wait_phone);
+	                    // console.log("name_wait_photo >> " + item.name_wait_photo);
+	                    // console.log("name_wait_operating >> " + item.name_wait_operating);
+	                    // console.log("name_wait_vehicle_type >> " + item.name_wait_vehicle_type);
+	                    // console.log("name_wait_level >> " + item.name_wait_level);
+	                    // console.log("joint_case >> " + item.joint_case);
+	                    // console.log('--------------------');
 
-                    if (item.helper_id) {
-                        count_status_officer += 1;
-                    }
-
-                    if (item.status == "ปฏิเสธ") {
-
-                     status_officer = `
-                        <span class="countTimeWaitOfficer officer-danger" >เจ้าหน้าที่ปฏิเสธเคส
-                        </span>
-                        `;
-
-                    btn_wait_officer = `
-                        <button class="btn btnSelectOfficerAgain" onclick="select_new_officer_sos_id(` + item.joint_case + `);">
-                            เลือกใหม่
-                        </button>
-                        `;
-
-                    } else if (item.status == "รอการยืนยัน") {
-
-                        let arr_id_of_case = {};
-                        arr_id_of_case.id = item.id;
-                        arr_id_of_case.time_command = item.time_command;
-
-                        arr_sos_id_count_time.push(arr_id_of_case);
-
-                       status_officer = `
-                        <span class="countTimeWaitOfficer officer-warning" >รอการยืนยัน 
-                            <span id="timer_wait_officer_id_` + item.id + `"></span> 
-                        </span>
-                        `;
-
-                        btn_wait_officer = `
-                        <button class="btn btnSelectOfficerAgain" onclick="select_new_officer_sos_id(` + item.joint_case + `);">
-                            เลือกใหม่
-                        </button>
-                        `;
+	                    let html_footer;
+	                    let html_div_class_card;
+	                    let html_div_head;
+	                    let status_officer;
+	                    let btn_wait_officer
 
 
-                    } else {
-                        status_officer = `
-                        <span class="countTimeWaitOfficer officer-success" >เจ้าหน้าที่รับเคสแล้ว 
-                        </span>
-                        `;
+	                    if (item.helper_id) {
+	                        count_status_officer += 1;
+	                    }
 
-                        btn_wait_officer = `
-                        <a class="btn btnWaitOfficerSuccess" href="{{ url("/") }}/sos_help_center/` +  item.id+ `/edit#step-1" >
-                            ไปที่เคสนี้
-                        </a>
-                        `;
+	                    if (item.status == "ปฏิเสธ") {
 
-                    }
+	                     status_officer = `
+	                        <span class="countTimeWaitOfficer officer-danger" >เจ้าหน้าที่ปฏิเสธเคส
+	                        </span>
+	                        `;
 
-                    let photo_officer;
-                    if (item.name_wait_photo) {
-                        photo_officer = '{{ url("/") }}/storage/' + item.name_wait_photo;
-                    } else {
-                        photo_officer = '{{ url("/") }}/img/stickerline/Flex/9.png';
-                    }
+	                    btn_wait_officer = `
+	                        <button class="btn btnSelectOfficerAgain" onclick="select_new_officer_sos_id(` + item.joint_case + `);">
+	                            เลือกใหม่
+	                        </button>
+	                        `;
 
-                    html_of_result = `
-                    <div class="colOfficer">
-							<div class="card cardWaitOfficer">
-								 ` + status_officer + `
-								<div class="headerWaitOfficer">
-									<img class="imgOfficerWait" src="{{ asset('/img/stickerline/PNG/1.png') }}">
-									<div class="dataHeaderOfficer">
-										<h4 class="m-0">` + item.name_wait_officer + `</h4>
-										<p class="m-0"> ` + item.operating_code + `</p>
+	                    } else if (item.status == "รอการยืนยัน") {
+
+	                        let arr_id_of_case = {};
+	                        arr_id_of_case.id = item.id;
+	                        arr_id_of_case.time_command = item.time_command;
+
+	                        arr_sos_id_count_time.push(arr_id_of_case);
+
+	                       status_officer = `
+	                        <span class="countTimeWaitOfficer officer-warning" >รอการยืนยัน 
+	                            <span id="timer_wait_officer_id_` + item.id + `"></span> 
+	                        </span>
+	                        `;
+
+	                        btn_wait_officer = `
+	                        <button class="btn btnSelectOfficerAgain" onclick="select_new_officer_sos_id(` + item.joint_case + `);">
+	                            เลือกใหม่
+	                        </button>
+	                        `;
+
+
+	                    } else {
+	                        status_officer = `
+	                        <span class="countTimeWaitOfficer officer-success" >เจ้าหน้าที่รับเคสแล้ว 
+	                        </span>
+	                        `;
+
+	                        btn_wait_officer = `
+	                        <a class="btn btnWaitOfficerSuccess" href="{{ url("/") }}/sos_help_center/` +  item.id+ `/edit#step-1" >
+	                            ไปที่เคสนี้
+	                        </a>
+	                        `;
+
+	                    }
+
+	                    let photo_officer;
+	                    if (item.name_wait_photo) {
+	                        photo_officer = '{{ url("/") }}/storage/' + item.name_wait_photo;
+	                    } else {
+	                        photo_officer = '{{ url("/") }}/img/stickerline/Flex/9.png';
+	                    }
+
+	                    html_of_result = `
+	                    <div class="colOfficer">
+								<div class="card cardWaitOfficer">
+									 ` + status_officer + `
+									<div class="headerWaitOfficer">
+										<img class="imgOfficerWait" src="{{ asset('/img/stickerline/PNG/1.png') }}">
+										<div class="dataHeaderOfficer">
+											<h4 class="m-0">` + item.name_wait_officer + `</h4>
+											<p class="m-0"> ` + item.operating_code + `</p>
+										</div>
 									</div>
-								</div>
-								<div class="bodyWaitOfficer">
-									<span><b>ข้อมูล</b> </span>
-									<div class="itemWaitOfficerItem">
-										<i class="fa-solid fa-phone text-primary"></i>
-										<span>` + item.name_wait_phone + `</span>
+									<div class="bodyWaitOfficer">
+										<span><b>ข้อมูล</b> </span>
+										<div class="itemWaitOfficerItem">
+											<i class="fa-solid fa-phone text-primary"></i>
+											<span>` + item.name_wait_phone + `</span>
+										</div>
+										<div class="itemWaitOfficerItem">
+											<i class="fa-duotone fa-car-building text-success"></i>
+											<span>` + item.name_wait_operating + `</span>
+										</div>
+										<div class="itemWaitOfficerItem">
+											<i class="fa-duotone fa-siren-on text-danger"></i>
+											<span>` + item.name_wait_level + `</span>
+										</div>
+										<div class="itemWaitOfficerItem">
+											<i class="fa-duotone fa-truck-medical text-orange"></i>
+											<span>` + item.name_wait_vehicle_type + `</span>
+										</div>
+										<hr>
+										` + btn_wait_officer + `
 									</div>
-									<div class="itemWaitOfficerItem">
-										<i class="fa-duotone fa-car-building text-success"></i>
-										<span>` + item.name_wait_operating + `</span>
-									</div>
-									<div class="itemWaitOfficerItem">
-										<i class="fa-duotone fa-siren-on text-danger"></i>
-										<span>` + item.name_wait_level + `</span>
-									</div>
-									<div class="itemWaitOfficerItem">
-										<i class="fa-duotone fa-truck-medical text-orange"></i>
-										<span>` + item.name_wait_vehicle_type + `</span>
-									</div>
-									<hr>
-									` + btn_wait_officer + `
 								</div>
 							</div>
-						</div>
-                    `;
-                    show_officer_joint_content.insertAdjacentHTML('beforeend', html_of_result); // แทรกล่างสุด
+	                    `;
+	                    show_officer_joint_content.insertAdjacentHTML('beforeend', html_of_result); // แทรกล่างสุด
 
-                }
+	                }
+	                
+	                startTimer_wait_officer_joint(arr_sos_id_count_time);
+	                stop_loop_check_data()
 
-
-                
-                
-
-                
- // <div class="` + class_col + `">
-                    //         ` + html_div_class_card + ` 
-                    //             <div class="card-body">
-                    //                 <h4 class="card-title text-center">
-                    //                     ` + item.operating_code + `</b>
-                    //                 </h4>
-                    //                 <div class="row mt-3">
-                    //                     <div class="col-12 text-center">
-                    //                         ` + html_div_head + `
-                    //                     </div>
-                    //                     <hr class="mt-3">
-                    //                     <div class="col-3">
-                    //                         <img src="` + photo_officer + `" class="card-img-top" alt="...">
-                    //                     </div>
-                    //                     <div class="col-9">
-                    //                         <b>เจ้าหน้าที่ : </b>` + item.name_wait_officer + `
-                    //                         <br>
-                    //                         <b>เบอร์ : </b>` + item.name_wait_phone + `
-                    //                         <br>
-                    //                         <b>หน่วยแพทย์ : </b>` + item.name_wait_operating + `
-                    //                         <br>
-                    //                         <b>ระดับ : </b>` + item.name_wait_level + `
-                    //                         <br>
-                    //                         <b>ประเภท : </b>` + item.name_wait_vehicle_type + `
-                    //                     </div>
-                    //                     <hr class="mt-3">
-                    //                 </div>
-                    //                 <div class="mt-3">
-                    //                     <center>
-                    //                        ` + html_footer + `
-                    //                     </center>
-                    //                 </div>
-                    //             </div>
-                    //         </div>
-                    //     </div>
-                startTimer_wait_officer_joint(arr_sos_id_count_time);
-                stop_loop_check_data()
+     			}
 
             });
 
@@ -1325,8 +1293,8 @@
     }
 
     let interval_check_status_officer = setInterval(() => {
-        console.log("count>>>" + count_status_officer);
-        console.log("all>>" + all_officer_wait_status);
+        // console.log("count>>>" + count_status_officer);
+        // console.log("all>>" + all_officer_wait_status);
          show_wait_officer_joint();
     }, 5000);
 
@@ -1385,238 +1353,241 @@
                 console.log(result)
                 // console.log(result.length);
 
-                for (let xxi = 0; xxi < result.length; xxi++) {
+                if(result.length != 0){
 
-                    // //// แสดงข้อมูลเดิม //// //
-                    let data_by_js_new_select_officer = document.querySelector('#data_by_js_new_select_officer');
+	                for (let xxi = 0; xxi < result.length; xxi++) {
 
-                    let html_div_head;
-                    if (result[xxi]['status'] == "ปฏิเสธ") {
-                        html_div_head = `
-                            <span class="countTimeWaitOfficer officer-danger" >หน่วยแพทย์ ปฏิเสธ 
-                            </span>
-                        `;
-                    } else if (result[xxi]['status'] == "รอการยืนยัน") {
-                        html_div_head = `
-                        <span class="countTimeWaitOfficer officer-warning" >รอการยืนยัน 
-                        </span>
-                        `;
-                    } else {
-                        html_div_head = `
-                             <span class="countTimeWaitOfficer officer-success" >เจ้าหน้าที่รับเคสแล้ว 
-                            </span>
-                        `;
-                    }
+	                    // //// แสดงข้อมูลเดิม //// //
+	                    let data_by_js_new_select_officer = document.querySelector('#data_by_js_new_select_officer');
 
-                    let html_name_wait_level;
-                    if (result[xxi]['name_wait_level'] == "FR") {
-                        html_name_wait_level = `
-                            <span class="btn btn-sm btn-success main-radius main-shadow mt-1">
-                                FR
-                            </span>
-                        `;
-                    } else if (result[xxi]['name_wait_level'] == "BLS") {
-                        html_name_wait_level = `
-                            <span class="btn btn-sm btn-warning main-radius main-shadow mt-1">
-                                BLS
-                            </span>
-                        `;
-                    } else {
-                        html_name_wait_level = `
-                            <span class="btn btn-sm btn-danger main-radius main-shadow mt-1">
-                                ` + result[xxi]['name_wait_level'] + `
-                            </span>
-                        `;
-                    }
+	                    let html_div_head;
+	                    if (result[xxi]['status'] == "ปฏิเสธ") {
+	                        html_div_head = `
+	                            <span class="countTimeWaitOfficer officer-danger" >หน่วยแพทย์ ปฏิเสธ 
+	                            </span>
+	                        `;
+	                    } else if (result[xxi]['status'] == "รอการยืนยัน") {
+	                        html_div_head = `
+	                        <span class="countTimeWaitOfficer officer-warning" >รอการยืนยัน 
+	                        </span>
+	                        `;
+	                    } else {
+	                        html_div_head = `
+	                             <span class="countTimeWaitOfficer officer-success" >เจ้าหน้าที่รับเคสแล้ว 
+	                            </span>
+	                        `;
+	                    }
 
-                    // `+ result[xxi]['xxx'] +`
-                    let html_of_old_officer = `
-                        <div class="item containerItem">
-                            <div class="d-flex align-items-center justify-content-center ">
-                                <div class="card carSelectNewOfficer ">
-                                   ` + html_div_head + `
-                                    <div class="headerSelectNewOfficer">
-                                        <img class="imgSelectNewOfficer" src="{{ asset('/img/stickerline/PNG/1.png') }}">
-                                        <div class="dataHeaderOfficer">
-                                            <h4 class="m-0">` + result[xxi]['name_wait_officer'] + `</h4>
-                                            <p class="m-0">` + result[xxi]['operating_code'] + `</p>
-                                        </div>
-                                    </div>
-                                    <div class="bodySelectNewOfficer">
-                                        <span><b>ข้อมูล</b> </span>
-                                        <div class="itemSelectNewOfficerItem ">
-                                            <div>
-                                                <i class="fa-solid fa-phone text-primary"></i>
-                                                <span>` + result[xxi]['name_wait_phone'] + `</span>
-                                            </div>
+	                    let html_name_wait_level;
+	                    if (result[xxi]['name_wait_level'] == "FR") {
+	                        html_name_wait_level = `
+	                            <span class="btn btn-sm btn-success main-radius main-shadow mt-1">
+	                                FR
+	                            </span>
+	                        `;
+	                    } else if (result[xxi]['name_wait_level'] == "BLS") {
+	                        html_name_wait_level = `
+	                            <span class="btn btn-sm btn-warning main-radius main-shadow mt-1">
+	                                BLS
+	                            </span>
+	                        `;
+	                    } else {
+	                        html_name_wait_level = `
+	                            <span class="btn btn-sm btn-danger main-radius main-shadow mt-1">
+	                                ` + result[xxi]['name_wait_level'] + `
+	                            </span>
+	                        `;
+	                    }
 
-                                            <div>
-                                                <i class="fa-duotone fa-truck-medical text-orange"></i>
-                                                <span>` + result[xxi]['name_wait_vehicle_type'] + `</span>
-                                            </div>
-                                            <div>
-                                                <i class="fa-duotone fa-siren-on text-danger"></i>
-                                                <span>` + result[xxi]['name_wait_level'] + `</span>
-                                            </div>
-                                            <div>
-                                                <i class="fa-duotone fa-car-building text-success"></i>
-                                                <span>` + result[xxi]['name_wait_operating'] + `</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                `;
+	                    // `+ result[xxi]['xxx'] +`
+	                    let html_of_old_officer = `
+	                        <div class="item containerItem">
+	                            <div class="d-flex align-items-center justify-content-center ">
+	                                <div class="card carSelectNewOfficer ">
+	                                   ` + html_div_head + `
+	                                    <div class="headerSelectNewOfficer">
+	                                        <img class="imgSelectNewOfficer" src="{{ asset('/img/stickerline/PNG/1.png') }}">
+	                                        <div class="dataHeaderOfficer">
+	                                            <h4 class="m-0">` + result[xxi]['name_wait_officer'] + `</h4>
+	                                            <p class="m-0">` + result[xxi]['operating_code'] + `</p>
+	                                        </div>
+	                                    </div>
+	                                    <div class="bodySelectNewOfficer">
+	                                        <span><b>ข้อมูล</b> </span>
+	                                        <div class="itemSelectNewOfficerItem ">
+	                                            <div>
+	                                                <i class="fa-solid fa-phone text-primary"></i>
+	                                                <span>` + result[xxi]['name_wait_phone'] + `</span>
+	                                            </div>
 
-                    let html_of_list_name_officer = `<!-- รายชื่อหน่วยแพทย์ -->
-                                <div class="col-12">
-                                    <div class=" radius-10 w-100 mt-3">
-                                        <!-- BTN Select Level -->
-                                        <div class="chat-tab-menu ">
-                                            <ul class="nav nav-pills nav-justified">
-                                                <li class="nav-item">
-                                                    <a class="nav-link menu-select-lv-all all-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
-                                                    onclick="document.querySelector('#new_select_officer_input_select_level_id_` + result[xxi]['id'] + `').value = 'all';new_select_officer_level('` + result[xxi]['id'] + `');">
-                                                        <div class="font-24">ALL
-                                                        </div>
-                                                        <div><small>ทั้งหมด</small>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link  menu-select-lv-fr fr-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
-                                                    onclick="document.querySelector('#new_select_officer_input_select_level_id_` + result[xxi]['id'] + `').value = 'fr';new_select_officer_level('` + result[xxi]['id'] + `')">
-                                                        <div class="font-24">FR
-                                                            </div>
-                                                        <div>
-                                                            <small>เบื้องต้น</small>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link menu-select-lv-bls bls-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
-                                                    onclick="document.querySelector('#new_select_officer_input_select_level_id_` + result[xxi]['id'] + `').value = 'bls';new_select_officer_level('` + result[xxi]['id'] + `')">
-                                                        <div class="font-24">BLS
-                                                        </div>
-                                                        <div><small>ทั่วไป</small>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link menu-select-lv-ils ils-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
-                                                    onclick="document.querySelector('#new_select_officer_input_select_level_id_` + result[xxi]['id'] + `').value = 'ils';new_select_officer_level('` + result[xxi]['id'] + `')">
-                                                        <div class="font-24">ILS
-                                                        </div>
-                                                        <div><small>กลาง</small>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link menu-select-lv-als als-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
-                                                    onclick="document.querySelector('#new_select_officer_input_select_level_id_` + result[xxi]['id'] + `').value = 'als';new_select_officer_level('` + result[xxi]['id'] + `')">
-                                                        <div class="font-24">ALS
-                                                        </div>
-                                                        <div><small>สูง</small>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <input class="d-none" type="text" name="new_select_officer_input_select_level_id_` + result[xxi]['id'] + `" id="new_select_officer_input_select_level_id_` + result[xxi]['id'] + `" value="{{ isset($data_form_yellow->operating_suit_type) ? $data_form_yellow->operating_suit_type : 'all'}}">
-                                        </div>
+	                                            <div>
+	                                                <i class="fa-duotone fa-truck-medical text-orange"></i>
+	                                                <span>` + result[xxi]['name_wait_vehicle_type'] + `</span>
+	                                            </div>
+	                                            <div>
+	                                                <i class="fa-duotone fa-siren-on text-danger"></i>
+	                                                <span>` + result[xxi]['name_wait_level'] + `</span>
+	                                            </div>
+	                                            <div>
+	                                                <i class="fa-duotone fa-car-building text-success"></i>
+	                                                <span>` + result[xxi]['name_wait_operating'] + `</span>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                `;
 
-                                        <!-- BTN Select vehicle  -->
-                                        <div class="owl-carousel owl-theme owlmenu-vehicle-new_select_officer p-3">
-                                            <div class="item" style="width:100%">
-                                                <a class="btn menu-select-vehicle-all vehicle-all-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
-                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'all';new_select_officer_level('` + result[xxi]['id'] + `');">
-                                                ทั้งหมด
-                                                </a>
-                                            </div>
-                                            <div class="item" style="width:100%">
-                                                <a class="btn menu-select-vehicle-car vehicle-car-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
-                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'รถ';new_select_officer_level('` + result[xxi]['id'] + `');">
-                                                รถ
-                                                </a>
-                                            </div>
-                                            <div class="item" style="width:100%">
-                                                <a class="btn menu-select-vehicle-aircraft vehicle-aircraft-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
-                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'อากาศยาน';new_select_officer_level('` + result[xxi]['id'] + `');">
-                                                อากาศยาน
-                                                </a>
-                                            </div>
-                                            <div class="item" style="width:100%">
-                                                <a class="btn menu-select-vehicle-boat-1 vehicle-boat-1-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
-                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'เรือ ป.1';new_select_officer_level('` + result[xxi]['id'] + `');">
-                                                เรือ ป.1
-                                                </a>
-                                            </div>
-                                            <div class="item" style="width:100%">
-                                                <a class="btn menu-select-vehicle-boat-2 vehicle-boat-2-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
-                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'เรือ ป.2';new_select_officer_level('` + result[xxi]['id'] + `');">
-                                                เรือ ป.2
-                                                </a>
-                                            </div>
-                                            <div class="item" style="width:100%">
-                                                <a class="btn menu-select-vehicle-boat-3 vehicle-boat-3-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
-                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'เรือ ป.3';new_select_officer_level('` + result[xxi]['id'] + `');">
-                                                เรือ ป.3
-                                                </a>
-                                            </div>
-                                            <div class="item" style="width:100%">
-                                                <a class="btn  menu-select-vehicle-boat-other vehicle-boat-other-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
-                                                onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'เรือประเภทอื่นๆ';new_select_officer_level('` + result[xxi]['id'] + `');">
-                                                    เรืออื่นๆ
-                                                </a>
-                                            </div>
-                                        </div>
-                                    
-                                        <input class="d-none" type="text" name="new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `" id="new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `" value="{{ isset($data_form_yellow->vehicle_type) ? $data_form_yellow->vehicle_type : 'all'}}" >
+	                    let html_of_list_name_officer = `<!-- รายชื่อหน่วยแพทย์ -->
+	                                <div class="col-12">
+	                                    <div class=" radius-10 w-100 mt-3">
+	                                        <!-- BTN Select Level -->
+	                                        <div class="chat-tab-menu ">
+	                                            <ul class="nav nav-pills nav-justified">
+	                                                <li class="nav-item">
+	                                                    <a class="nav-link menu-select-lv-all all-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
+	                                                    onclick="document.querySelector('#new_select_officer_input_select_level_id_` + result[xxi]['id'] + `').value = 'all';new_select_officer_level('` + result[xxi]['id'] + `');">
+	                                                        <div class="font-24">ALL
+	                                                        </div>
+	                                                        <div><small>ทั้งหมด</small>
+	                                                        </div>
+	                                                    </a>
+	                                                </li>
+	                                                <li class="nav-item">
+	                                                    <a class="nav-link  menu-select-lv-fr fr-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
+	                                                    onclick="document.querySelector('#new_select_officer_input_select_level_id_` + result[xxi]['id'] + `').value = 'fr';new_select_officer_level('` + result[xxi]['id'] + `')">
+	                                                        <div class="font-24">FR
+	                                                            </div>
+	                                                        <div>
+	                                                            <small>เบื้องต้น</small>
+	                                                        </div>
+	                                                    </a>
+	                                                </li>
+	                                                <li class="nav-item">
+	                                                    <a class="nav-link menu-select-lv-bls bls-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
+	                                                    onclick="document.querySelector('#new_select_officer_input_select_level_id_` + result[xxi]['id'] + `').value = 'bls';new_select_officer_level('` + result[xxi]['id'] + `')">
+	                                                        <div class="font-24">BLS
+	                                                        </div>
+	                                                        <div><small>ทั่วไป</small>
+	                                                        </div>
+	                                                    </a>
+	                                                </li>
+	                                                <li class="nav-item">
+	                                                    <a class="nav-link menu-select-lv-ils ils-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
+	                                                    onclick="document.querySelector('#new_select_officer_input_select_level_id_` + result[xxi]['id'] + `').value = 'ils';new_select_officer_level('` + result[xxi]['id'] + `')">
+	                                                        <div class="font-24">ILS
+	                                                        </div>
+	                                                        <div><small>กลาง</small>
+	                                                        </div>
+	                                                    </a>
+	                                                </li>
+	                                                <li class="nav-item">
+	                                                    <a class="nav-link menu-select-lv-als als-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
+	                                                    onclick="document.querySelector('#new_select_officer_input_select_level_id_` + result[xxi]['id'] + `').value = 'als';new_select_officer_level('` + result[xxi]['id'] + `')">
+	                                                        <div class="font-24">ALS
+	                                                        </div>
+	                                                        <div><small>สูง</small>
+	                                                        </div>
+	                                                    </a>
+	                                                </li>
+	                                            </ul>
+	                                            <input class="d-none" type="text" name="new_select_officer_input_select_level_id_` + result[xxi]['id'] + `" id="new_select_officer_input_select_level_id_` + result[xxi]['id'] + `" value="{{ isset($data_form_yellow->operating_suit_type) ? $data_form_yellow->operating_suit_type : 'all'}}">
+	                                        </div>
 
-                                        <input class="d-none" type="text" id="new_select_officer_of_sos_id_` + result[xxi]['id'] + `" >
+	                                        <!-- BTN Select vehicle  -->
+	                                        <div class="owl-carousel owl-theme owlmenu-vehicle-new_select_officer p-3">
+	                                            <div class="item" style="width:100%">
+	                                                <a class="btn menu-select-vehicle-all vehicle-all-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
+	                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'all';new_select_officer_level('` + result[xxi]['id'] + `');">
+	                                                ทั้งหมด
+	                                                </a>
+	                                            </div>
+	                                            <div class="item" style="width:100%">
+	                                                <a class="btn menu-select-vehicle-car vehicle-car-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
+	                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'รถ';new_select_officer_level('` + result[xxi]['id'] + `');">
+	                                                รถ
+	                                                </a>
+	                                            </div>
+	                                            <div class="item" style="width:100%">
+	                                                <a class="btn menu-select-vehicle-aircraft vehicle-aircraft-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
+	                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'อากาศยาน';new_select_officer_level('` + result[xxi]['id'] + `');">
+	                                                อากาศยาน
+	                                                </a>
+	                                            </div>
+	                                            <div class="item" style="width:100%">
+	                                                <a class="btn menu-select-vehicle-boat-1 vehicle-boat-1-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
+	                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'เรือ ป.1';new_select_officer_level('` + result[xxi]['id'] + `');">
+	                                                เรือ ป.1
+	                                                </a>
+	                                            </div>
+	                                            <div class="item" style="width:100%">
+	                                                <a class="btn menu-select-vehicle-boat-2 vehicle-boat-2-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
+	                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'เรือ ป.2';new_select_officer_level('` + result[xxi]['id'] + `');">
+	                                                เรือ ป.2
+	                                                </a>
+	                                            </div>
+	                                            <div class="item" style="width:100%">
+	                                                <a class="btn menu-select-vehicle-boat-3 vehicle-boat-3-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
+	                                                    onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'เรือ ป.3';new_select_officer_level('` + result[xxi]['id'] + `');">
+	                                                เรือ ป.3
+	                                                </a>
+	                                            </div>
+	                                            <div class="item" style="width:100%">
+	                                                <a class="btn  menu-select-vehicle-boat-other vehicle-boat-other-sos_id_` + result[xxi]['id'] + `" href="javascript:;" 
+	                                                onclick="document.querySelector('#new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `').value = 'เรือประเภทอื่นๆ';new_select_officer_level('` + result[xxi]['id'] + `');">
+	                                                    เรืออื่นๆ
+	                                                </a>
+	                                            </div>
+	                                        </div>
+	                                    
+	                                        <input class="d-none" type="text" name="new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `" id="new_select_officer_input_vehicle_type_id_` + result[xxi]['id'] + `" value="{{ isset($data_form_yellow->vehicle_type) ? $data_form_yellow->vehicle_type : 'all'}}" >
 
-                                        <!-- ตรงนี้เลื่อนได้ -->
-                                        <div style="">
-                                            <div class="data-officer p-3 mb-3 ps ps--active-y" id="new_select_officer_card_data_operating_id_` + result[xxi]['id'] + `">
-                                                <!-- ข้อมูลหน่วยแพทย์ในพื้นที่ -->
-                                            </div>
-                                        </div>
-                                        <!-- จบ ตรงนี้เลื่อนได้ -->
+	                                        <input class="d-none" type="text" id="new_select_officer_of_sos_id_` + result[xxi]['id'] + `" >
 
-                                        <div class="div_bottom" style="margin-top: auto;">
-                                            <center>
-                                                <br>
-                                                <div class="row d-none" id="div_show_officer_select_sos_id_` + result[xxi]['id'] + `">
-                                                    <div class="col-9">
-                                                        <h5 id="show_officer_select_sos_id_` + result[xxi]['id'] + `">
-                                                            เลือก : <b></b> 
-                                                        </h5>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <span class="btn btn-sm btn-danger" onclick="cancel_select_sos_id('` + result[xxi]['id'] + `');">
-                                                            ยกเลิก
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <button id="btn_send_new_select_officer_sos_id_` + result[xxi]['id'] + `" class="mt-3 btn btn-primary main-shadow main-radius" style="width: 60%;" disabled 
-                                                onclick="send_data_new_select_officer('` + result[xxi]['id'] + `');">
-                                                    ยืนยัน
-                                                </button>
-                                            </center>
-                                            <br>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    `;
+	                                        <!-- ตรงนี้เลื่อนได้ -->
+	                                        <div style="">
+	                                            <div class="data-officer p-3 mb-3 ps ps--active-y" id="new_select_officer_card_data_operating_id_` + result[xxi]['id'] + `">
+	                                                <!-- ข้อมูลหน่วยแพทย์ในพื้นที่ -->
+	                                            </div>
+	                                        </div>
+	                                        <!-- จบ ตรงนี้เลื่อนได้ -->
 
-                    if (result[xxi]['status'] == "ปฏิเสธ" || result[xxi]['status'] == "รอการยืนยัน") {
-                        html_of_old_officer = html_of_old_officer + html_of_list_name_officer;
-                    }
+	                                        <div class="div_bottom" style="margin-top: auto;">
+	                                            <center>
+	                                                <br>
+	                                                <div class="row d-none" id="div_show_officer_select_sos_id_` + result[xxi]['id'] + `">
+	                                                    <div class="col-9">
+	                                                        <h5 id="show_officer_select_sos_id_` + result[xxi]['id'] + `">
+	                                                            เลือก : <b></b> 
+	                                                        </h5>
+	                                                    </div>
+	                                                    <div class="col-3">
+	                                                        <span class="btn btn-sm btn-danger" onclick="cancel_select_sos_id('` + result[xxi]['id'] + `');">
+	                                                            ยกเลิก
+	                                                        </span>
+	                                                    </div>
+	                                                </div>
+	                                                <button id="btn_send_new_select_officer_sos_id_` + result[xxi]['id'] + `" class="mt-3 btn btn-primary main-shadow main-radius" style="width: 60%;" disabled 
+	                                                onclick="send_data_new_select_officer('` + result[xxi]['id'] + `');">
+	                                                    ยืนยัน
+	                                                </button>
+	                                            </center>
+	                                            <br>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                    `;
 
-                    data_by_js_new_select_officer.insertAdjacentHTML('beforeend', html_of_old_officer); // แทรกล่างสุด
-                    
-                }
+	                    if (result[xxi]['status'] == "ปฏิเสธ" || result[xxi]['status'] == "รอการยืนยัน") {
+	                        html_of_old_officer = html_of_old_officer + html_of_list_name_officer;
+	                    }
+
+	                    data_by_js_new_select_officer.insertAdjacentHTML('beforeend', html_of_old_officer); // แทรกล่างสุด
+	                    
+	                }
+	            }
 
             });
 
