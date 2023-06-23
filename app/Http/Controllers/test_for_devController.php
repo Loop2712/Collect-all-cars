@@ -323,6 +323,51 @@ class test_for_devController extends Controller
 
         return "Sent Success"; 
     }
+
+    function test_send_many_bubble(){
+
+
+        $template_path = storage_path('../public/json/test_many_bubble_1.json');
+        $string_json = file_get_contents($template_path);
+
+        $count_bubble = 2 ;
+        $all_bubble_json = '';
+
+        for ($i = 0; $i < $count_bubble; $i++){
+            $bubble_json = storage_path('../public/json/test_many_bubble_2.json');
+            $bubble_string_json = file_get_contents($bubble_json);
+
+            $color_i = '#27'.$i.$i.'FF' ;
+            $bubble_string_json = str_replace("<count>", $i ,$bubble_string_json);
+            $bubble_string_json = str_replace("#27ACB2", $color_i ,$bubble_string_json);
+
+            $all_bubble_json = $all_bubble_json . $bubble_string_json ;
+        }
+
+        $string_json = str_replace("<content>",$all_bubble_json,$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => 'U2762c265eb9c74012b5a24b4cbee095a',
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+    }
     
     
 }
