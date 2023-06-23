@@ -314,7 +314,7 @@ class Sos_mapController extends Controller
             DB::table('users')
                 ->where([ 
                         ['type', 'line'],
-                        ['provider_id', $user->provider_id],
+                        ['provider_id', $data_user->provider_id],
                     ])
                 ->update(['user_from' => $update_user_from]);
 
