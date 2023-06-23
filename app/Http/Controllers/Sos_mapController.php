@@ -296,12 +296,12 @@ class Sos_mapController extends Controller
         if(Auth::check()){
 
             $data_user = Auth::user();
-            
+
             if ( !empty($data_user->user_from) ){
 
                 $check_user_from = explode(",",$data_user->user_from);
 
-                if (in_array( $user_from , $check_user_from )){
+                if ( in_array( $user_from , $check_user_from ) ){
                     $update_user_from = $data_user->user_from ;
                 }else{
                     $update_user_from = $data_user->user_from .','. $user_from ;
@@ -317,7 +317,6 @@ class Sos_mapController extends Controller
                         ['provider_id', $user->provider_id],
                     ])
                 ->update(['user_from' => $update_user_from]);
-            }
 
             return redirect('sos_map/create');
         }else{
