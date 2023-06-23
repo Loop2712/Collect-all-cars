@@ -1343,77 +1343,7 @@ color: #ff9317;
     <div class="col-12 col-md-9 col-lg-9  "  >
         <div class="tab-content" id="pills-tabContent">
 
-            <!--------------------------------- operation --------------------------------->
-            <div class="tab-pane fade" id="operation" role="tabpanel">
-                <div class="card radius-10 p-3">
-                    <div class="row">
-                        <div class="col-12">
-                            @php
-                                if($sos_help_center->status != 'เสร็จสิ้น'){
-                                    $class_span_status = 'float-end' ;
-                                }else{
-                                    $class_span_status = 'float-start' ;
-                                }
-                            @endphp
-                            <div class="row">
-                                <h4>
-                                    <span class="{{ $class_span_status }}">
-                                        สถานะ :  <b><span id="show_status" class=""></span></b>
-                                        <span id="show_remark_status" class="d-none text-secondary">(<span id="text_remark_status"></span>)</span>
-                                    </span>
-
-                                    @if($sos_help_center->status != 'เสร็จสิ้น')
-                                    <span id="text_duration" class="text-warning"></span> (<span id="show_distance" ></span>) ● <span id="text_arrivalTime"></span>
-                                        <!-- <span id="h4_show_distance" class="">
-                                            <i class="fa-duotone fa-road"></i> ระยะทาง :  <b><span id="show_distance" class="text-warning"></span></b>
-                                        </span>
-                                        &nbsp;&nbsp;
-                                        <span>
-                                            <i class="fa-solid fa-timer"></i> ระยะเวลา :  <b><span id="text_duration" class="text-warning"></span></b>
-                                        </span>
-                                        &nbsp;&nbsp;
-                                        <span>
-                                            <i class="fa-solid fa-circle-check"></i> เวลาถึงโดยประมาณ :  <b><span id="text_arrivalTime" class="text-warning"></span></b>
-                                        </span> -->
-                                    @endif
-                                </h4>
-                            </div>
-                            <hr>
-                            <!-- <div class="row text-center">
-                                <div class="col-6">
-                                    <p>การให้รหัสความรุนแรง (IDC) : <span id="show_idc" class="btn btn-sm px-5 radius-30 d-none"></span></p>
-                                </div>
-                                <div class="col-6">
-                                    <p>รหัสความรุนแรง ณ จุดเกิดเหตุ (RC): <span id="show_rc" class="btn btn-sm px-5 radius-30 d-none"></span></p>
-                                </div>
-                            </div> -->
-
-                            <div class="row text-center">
-                                <div class="col-6 " >
-                                    <div class="box-idc-rc"  id="show_idc">
-                                        <!-- การให้รหัสความรุนแรง (IDC) <br> ดำ -->
-                                    </div>
-                                </div>
-                                <div class="col-6" >
-                                    <div class=" box-idc-rc" id="show_rc">
-                                        <!-- รหัสความรุนแรง ณ จุดเกิดเหตุ (RC) <br> แดง(วิกฤติ) -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-12" style="position: relative;">
-                            <span id="span_btn_steps_travel" class="btn btn-danger main-shadow main-radius d-none" style="position: absolute;top: 0.5rem;right: 5rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" data-toggle="modal" data-target="#modal_steps_travel">
-                                แนะนำการเดินทาง
-                            </span>
-                            <span class="btn btn-sm btn-danger"  style="position: absolute;top: 0.5rem;left: 13rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#see_img_sos">
-                                <i class="fa-duotone fa-images"></i>รูปภาพ 
-                            </span>
-                            <div id="map_go_to_help"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
 
             <!-- ////////////////////////////////////// cardHeader ////////////////////////////////////// -->
          
@@ -1570,6 +1500,77 @@ color: #ff9317;
             </div>
             <!-- ////////////////////////////////////// cardHeader ////////////////////////////////////// -->
 
+             <!--------------------------------- operation --------------------------------->
+             <div class="tab-pane fade" id="operation" role="tabpanel">
+                <div class="card radius-10 p-3">
+                    <div class="row">
+                        <div class="col-12">
+                            @php
+                                if($sos_help_center->status != 'เสร็จสิ้น'){
+                                    $class_span_status = 'float-end' ;
+                                }else{
+                                    $class_span_status = 'float-start' ;
+                                }
+                            @endphp
+                            <div class="row">
+                                <h4>
+                                    <span class="{{ $class_span_status }}">
+                                        สถานะ :  <b><span id="show_status" class=""></span></b>
+                                        <span id="show_remark_status" class="d-none text-secondary">(<span id="text_remark_status"></span>)</span>
+                                    </span>
+
+                                    @if($sos_help_center->status != 'เสร็จสิ้น')
+                                    <span id="text_duration" class="text-warning"></span> (<span id="show_distance" ></span>) ● <span id="text_arrivalTime"></span>
+                                        <!-- <span id="h4_show_distance" class="">
+                                            <i class="fa-duotone fa-road"></i> ระยะทาง :  <b><span id="show_distance" class="text-warning"></span></b>
+                                        </span>
+                                        &nbsp;&nbsp;
+                                        <span>
+                                            <i class="fa-solid fa-timer"></i> ระยะเวลา :  <b><span id="text_duration" class="text-warning"></span></b>
+                                        </span>
+                                        &nbsp;&nbsp;
+                                        <span>
+                                            <i class="fa-solid fa-circle-check"></i> เวลาถึงโดยประมาณ :  <b><span id="text_arrivalTime" class="text-warning"></span></b>
+                                        </span> -->
+                                    @endif
+                                </h4>
+                            </div>
+                            <hr>
+                            <!-- <div class="row text-center">
+                                <div class="col-6">
+                                    <p>การให้รหัสความรุนแรง (IDC) : <span id="show_idc" class="btn btn-sm px-5 radius-30 d-none"></span></p>
+                                </div>
+                                <div class="col-6">
+                                    <p>รหัสความรุนแรง ณ จุดเกิดเหตุ (RC): <span id="show_rc" class="btn btn-sm px-5 radius-30 d-none"></span></p>
+                                </div>
+                            </div> -->
+
+                            <div class="row text-center">
+                                <div class="col-6 " >
+                                    <div class="box-idc-rc"  id="show_idc">
+                                        <!-- การให้รหัสความรุนแรง (IDC) <br> ดำ -->
+                                    </div>
+                                </div>
+                                <div class="col-6" >
+                                    <div class=" box-idc-rc" id="show_rc">
+                                        <!-- รหัสความรุนแรง ณ จุดเกิดเหตุ (RC) <br> แดง(วิกฤติ) -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12" style="position: relative;">
+                            <span id="span_btn_steps_travel" class="btn btn-danger main-shadow main-radius d-none" style="position: absolute;top: 0.5rem;right: 5rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" data-toggle="modal" data-target="#modal_steps_travel">
+                                แนะนำการเดินทาง
+                            </span>
+                            <span class="btn btn-sm btn-danger"  style="position: absolute;top: 0.5rem;left: 13rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#see_img_sos">
+                                <i class="fa-duotone fa-images"></i>รูปภาพ 
+                            </span>
+                            <div id="map_go_to_help"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             @include ('sos_help_center.form_joint_sos')
 
             <!--------------------------------- form yellow --------------------------------->
