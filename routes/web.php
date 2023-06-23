@@ -52,7 +52,7 @@ Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 Route::get('login/line/tu_sos', 'Auth\LoginController@redirectToLine_TU_SOS');
 
 // Line login other app 
-Route::get('login/line/{user_from}', 'Auth\LoginController@redirectToLine_TU_SOS');
+Route::get('login/line/{user_from}', 'Auth\LoginController@redirectToLine_other_app_SOS');
 Route::get('/sos_login/{user_from}', 'Sos_mapController@sos_login_other_app');
 
 
