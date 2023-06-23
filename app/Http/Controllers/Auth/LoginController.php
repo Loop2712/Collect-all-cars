@@ -359,13 +359,27 @@ class LoginController extends Controller
                     ->update(['add_line' => 'Yes']);
             }else{
 
+                if ( !empty($data_user->user_from) ){
+
+                    $check_user_from = explode(",",$data_user->user_from);
+
+                    if (in_array( $from , $check_user_from )){
+                        $update_user_from = $data_user->user_from ;
+                    }else{
+                        $update_user_from = $data_user->user_from .','. $from ;
+                    }
+
+                }else{
+                    $update_user_from = $from ;
+                }
+
                 DB::table('users')
                     ->where([ 
                             ['type', 'line'],
                             ['provider_id', $user->provider_id],
                         ])
-                    ->update(['user_from' => $from]);
-            }
+                    ->update(['user_from' => $update_user_from]);
+                }
         }
 
     }

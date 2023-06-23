@@ -294,6 +294,31 @@ class Sos_mapController extends Controller
     public function sos_login_other_app(Request $request , $user_from)
     {
         if(Auth::check()){
+
+            $data_user = Auth::user();
+            
+            if ( !empty($data_user->user_from) ){
+
+                $check_user_from = explode(",",$data_user->user_from);
+
+                if (in_array( $user_from , $check_user_from )){
+                    $update_user_from = $data_user->user_from ;
+                }else{
+                    $update_user_from = $data_user->user_from .','. $user_from ;
+                }
+
+            }else{
+                $update_user_from = $user_from ;
+            }
+
+            DB::table('users')
+                ->where([ 
+                        ['type', 'line'],
+                        ['provider_id', $user->provider_id],
+                    ])
+                ->update(['user_from' => $update_user_from]);
+            }
+
             return redirect('sos_map/create');
         }else{
             return redirect('login/line/'.$user_from.'?redirectTo=sos_map/create');
