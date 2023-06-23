@@ -361,7 +361,8 @@ class LoginController extends Controller
 
                 DB::table('users')
                     ->where([ 
-                            ['id', $data_user->id],
+                            ['type', 'line'],
+                            ['provider_id', $user->provider_id],
                         ])
                     ->update(['user_from' => $from]);
             }
