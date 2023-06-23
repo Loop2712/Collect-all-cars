@@ -291,6 +291,15 @@ class Sos_mapController extends Controller
         }
     }
 
+    public function sos_login_other_app(Request $request , $user_from)
+    {
+        if(Auth::check()){
+            return redirect('sos_map/create');
+        }else{
+            return redirect('login/line/'.$user_from.'?redirectTo=sos_map/create');
+        }
+    }
+
     public function insurance_login()
     {
         if(Auth::check()){

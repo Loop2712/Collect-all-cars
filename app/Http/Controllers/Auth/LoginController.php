@@ -138,6 +138,15 @@ class LoginController extends Controller
         return Socialite::driver('line')->redirect();
     }
 
+    // Line login other_app
+    public function redirectToLine_other_app_SOS(Request $request, $user_from)
+    {
+        $request->session()->put('from', $user_from);
+        $request->session()->put('redirectTo', 'https://www.viicheck.com/sos_map/create');
+
+        return Socialite::driver('line')->redirect();
+    }
+
     // Line login kmutnbs
     public function redirectToLine_check_in(Request $request)
     {
@@ -348,6 +357,13 @@ class LoginController extends Controller
                             ['provider_id', $user->provider_id],
                         ])
                     ->update(['add_line' => 'Yes']);
+            }else{
+
+                DB::table('users')
+                    ->where([ 
+                            ['id', $data_user->id],
+                        ])
+                    ->update(['user_from' => $from]);
             }
         }
 
