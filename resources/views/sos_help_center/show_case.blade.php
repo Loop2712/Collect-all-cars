@@ -643,12 +643,12 @@ input:focus {
 		
 		<menu class="col-12 " >
 			<a href="{{ url('/officer_form_yellow/'.$data_sos->id.'#step-1' ) }}" class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" >
-				แก้ไขข้อมูล ฟอร์มเหลือง
+				แก้ไขข้อมูลผู้ป่วย
 			</a>
 		</menu>
 		<menu class="col-12 " >
 			<button class="btn btn-secondary main-shadow main-radius btn-update-status" style="width:100%;" >
-				ขอหน่วยปฎิบัติการร่วม / หมู่
+				ปฎิบัติการร่วม / หมู่
 			</button>
 		</menu>
 	</div>
