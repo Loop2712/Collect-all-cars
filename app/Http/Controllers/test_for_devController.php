@@ -326,22 +326,28 @@ class test_for_devController extends Controller
 
     function test_send_many_bubble(){
 
-
         $template_path = storage_path('../public/json/test_many_bubble_1.json');
         $string_json = file_get_contents($template_path);
 
         $count_bubble = 2 ;
+        $check_count_bubble = $count_bubble + 1 ;
         $all_bubble_json = '';
 
-        for ($i = 0; $i < $count_bubble; $i++){
+        for ($i = 1; $i < $check_count_bubble; $i++){
             $bubble_json = storage_path('../public/json/test_many_bubble_2.json');
             $bubble_string_json = file_get_contents($bubble_json);
 
-            $color_i = '#27'.$i.$i.'FF' ;
+            $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+            $color_i = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
+
             $bubble_string_json = str_replace("<count>", $i ,$bubble_string_json);
             $bubble_string_json = str_replace("#27ACB2", $color_i ,$bubble_string_json);
 
-            $all_bubble_json = $all_bubble_json . $bubble_string_json ;
+            if ( !empty($all_bubble_json) ){
+                $all_bubble_json = $all_bubble_json .','. $bubble_string_json ;
+            }else{
+                $all_bubble_json = $bubble_string_json ;
+            }
         }
 
         $string_json = str_replace("<content>",$all_bubble_json,$string_json);
@@ -349,7 +355,7 @@ class test_for_devController extends Controller
         $messages = [ json_decode($string_json, true) ];
 
         $body = [
-            "to" => 'U2762c265eb9c74012b5a24b4cbee095a',
+            "to" => 'U912994894c449f2237f73f18b5703e89',
             "messages" => $messages,
         ];
 
@@ -368,6 +374,5 @@ class test_for_devController extends Controller
         $result = file_get_contents($url, false, $context);
 
     }
-    
-    
+
 }
