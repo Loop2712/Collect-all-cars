@@ -1473,14 +1473,54 @@ color: #ff9317;
                                         </div>
                                     </a>
                                 </li> -->
+                                <style>
+                                  .notification-count_joint_refuse {
+                                    position: absolute;
+                                    top: -18px;
+                                    left: 75% !important;
+                                    background-color: red; 
+                                    color: white;
+                                    width: 24px;
+                                    height: 24px;
+                                    font-size: 16px;
+                                    border-radius: 50%;/*
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;*/
+                                  }
+                                  .notification-count_joint_waut {
+                                    position: absolute;
+                                    top: -18px;
+                                    left: 90% !important;
+                                    background-color: #FF7700FF; 
+                                    color: #fff;
+                                    width: 24px;
+                                    height: 24px;
+                                    font-size: 16px;
+                                    border-radius: 50%;/*
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;*/
+                                  }
+                                </style>
                                 <li id="btn_show_wait_officer_joint" class="nav-item nav-pills nav-pills-info m-2 d-none" onclick="document.querySelector('#btn_save').click();show_wait_officer_joint();">
-                                    <a  class="nav-link btn-outline-info btn" data-toggle="modal" data-target="#modal_show_officer_joint"> 
+                                    <a  class="nav-link btn-outline-info btn" data-toggle="modal" data-target="#modal_show_officer_joint" style="position: relative;"> 
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
                                                 <i class="fa-duotone fa-spinner fa-spin-pulse"></i>
                                             </div>
                                             <div class="tab-title">กำลังรอเจ้าหน้าที่</div>
                                         </div>
+                                        <span id="span_warning_status_joint" class="notification-count_joint_waut d-none">
+                                          <center>
+                                            <p id="span_text_warning_status_joint" class="m-0" id=""></p>
+                                          </center>
+                                        </span>
+                                        <span id="span_danger_status_joint" class="notification-count_joint_refuse d-none">
+                                          <center>
+                                            <p id="span_text_danger_status_joint" class="m-0" id=""></p>
+                                          </center>
+                                        </span>
                                     </a>
                                 </li>
                                 <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 d-" role="presentation" onclick="document.querySelector('#btn_save').click();">

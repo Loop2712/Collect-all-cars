@@ -1111,7 +1111,7 @@ class Sos_help_centerController extends Controller
         $data_sos = Sos_help_center::where('id' , $sos_id)->first();
         $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id' , $sos_id)->first();
 
-        $date_now = date("Y-m-d");
+        $date_now = date("Y-m-d H:i:s");
         $time_now = date("H:i:s");
         $text_at = '@' ;
 
@@ -2126,6 +2126,7 @@ class Sos_help_centerController extends Controller
         $new_sos_by_joint['status'] = 'รอการยืนยัน' ;
         $new_sos_by_joint['create_by'] = 'joint_with - sos_id ' . $sos_1669_id;
         $new_sos_by_joint['time_create_sos'] = $data_sos_main->time_create_sos ;
+        // $new_sos_by_joint['time_command'] = $data_sos_main->time_command ;
         $new_sos_by_joint['command_by'] = $data_sos_main->command_by ;
         $new_sos_by_joint['address'] = $data_sos_main->address ;
 

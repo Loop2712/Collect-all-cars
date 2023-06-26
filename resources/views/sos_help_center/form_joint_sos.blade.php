@@ -1140,8 +1140,14 @@
             .then(result => {
              	// console.log('-------------- show_wait_officer_joint ---------------');
 	            // console.log('check_sos_joint_case');
+	            // console.log(result);
 	            // console.log(result.length);
 	            // console.log('-----------------------------');
+
+                let count_all_refuse = 0 ;
+                let count_all_wait = 0 ;
+	            document.querySelector('#span_warning_status_joint').classList.add('d-none');
+	            document.querySelector('#span_danger_status_joint').classList.add('d-none');
 
 	            if(result.length != 0){
 	            	// console.log('result.length != 0');
@@ -1182,20 +1188,29 @@
 	                        count_status_officer += 1;
 	                    }
 
+	                    // console.log(item.status);
+	                    
 	                    if (item.status == "ปฏิเสธ") {
 
-	                     status_officer = `
-	                        <span class="countTimeWaitOfficer officer-danger" >เจ้าหน้าที่ปฏิเสธเคส
-	                        </span>
-	                        `;
+	                    	count_all_refuse = count_all_refuse + 1 ;
 
-	                    btn_wait_officer = `
-	                        <button class="btn btnSelectOfficerAgain" onclick="select_new_officer_sos_id(` + item.joint_case + `);">
-	                            เลือกใหม่
-	                        </button>
-	                        `;
+	                     	status_officer = `
+		                        <span class="countTimeWaitOfficer officer-danger" >เจ้าหน้าที่ปฏิเสธเคส
+		                        </span>
+		                        `;
+
+		                    btn_wait_officer = `
+		                        <button class="btn btnSelectOfficerAgain" onclick="select_new_officer_sos_id(` + item.joint_case + `);">
+		                            เลือกใหม่
+		                        </button>
+		                        `;
+
+		                    document.querySelector('#span_danger_status_joint').classList.remove('d-none');
+		                    document.querySelector('#span_text_danger_status_joint').innerHTML = count_all_refuse ;
 
 	                    } else if (item.status == "รอการยืนยัน") {
+
+	                    	count_all_wait = count_all_wait + 1 ;
 
 	                        let arr_id_of_case = {};
 	                        arr_id_of_case.id = item.id;
@@ -1215,6 +1230,8 @@
 	                        </button>
 	                        `;
 
+	                        document.querySelector('#span_warning_status_joint').classList.remove('d-none');
+		                    document.querySelector('#span_text_warning_status_joint').innerHTML = count_all_wait ;
 
 	                    } else {
 	                        status_officer = `
