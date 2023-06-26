@@ -115,7 +115,7 @@
                             <input class="d-none" type="text" id="list_joint_sos_officer">
 
                             <div class="data-officer p-3 mb-3 ps ps--active-y" id="joint_sos_card_data_operating">
-                                <!-- ข้อมูลหน่วยแพทย์ในพื้นที่ -->
+                                <!-- ข้อมูลหน่วยปฏิบัติการในพื้นที่ -->
                             </div>
 
                             <!-- <div class="data-officer p-3 mb-3 ps ps--active-y">
@@ -146,7 +146,7 @@
                                     <!-- <h5>
                                         ทั้งหมด : <b><span id="show_count_select_operating">0</span></b> หน่วยปฏิบัติการ
                                     </h5> -->
-                                    <p id="show_error_noselect" class="text-danger d-none">กรุณาเลือกหน่วยแพทย์</p>
+                                    <p id="show_error_noselect" class="text-danger d-none">กรุณาเลือกหน่วยปฏิบัติการ</p>
                                     <span id="btn_send_data_joint_sos" class="mt-3 btn btn-primary main-shadow main-radius" style="width: 60%;" onclick="send_data_joint_sos('{{ $sos_1669_id }}');">
                                         เลือก <b><span id="show_count_select_operating">0</span></b> หน่วย
                                     </span>
@@ -496,7 +496,7 @@
                                     <div class="row mt-3">
                                         <div class="col-12 text-center">
                                             <h5>
-                                                <i class="fa-duotone fa-spinner fa-spin-pulse"></i> รอการยืนยัน จากหน่วยแพทย์
+                                                <i class="fa-duotone fa-spinner fa-spin-pulse"></i> รอการยืนยัน จากหน่วยปฏิบัติการ
                                             </h5>
                                         </div>
                                         <hr class="mt-3">
@@ -506,7 +506,7 @@
                                         <div class="col-9">
                                             <b>เจ้าหน้าที่ : </b>
                                             <br>
-                                            <b>หน่วยแพทย์ : </b>
+                                            <b>หน่วยปฏิบัติการ : </b>
                                             <br>
                                             <b>ระดับ : </b>
                                             <br>
@@ -565,7 +565,7 @@
                     </div>
                     <div class="col-7">
                         <!-- <center>
-                            <h3 id="h3_เลือกหน่วยแพทย์ใหม่" class="d-none mt-3"><u>เลือกหน่วยแพทย์ใหม่</u></h3>
+                            <h3 id="h3_เลือกหน่วยปฏิบัติการใหม่" class="d-none mt-3"><u>เลือกหน่วยปฏิบัติการใหม่</u></h3>
                         </center> -->
                         <div id="map_new_select_officer" class="mt-3"></div>
                     </div>
@@ -1363,7 +1363,7 @@
 	                    let html_div_head;
 	                    if (result[xxi]['status'] == "ปฏิเสธ") {
 	                        html_div_head = `
-	                            <span class="countTimeWaitOfficer officer-danger" >หน่วยแพทย์ ปฏิเสธ 
+	                            <span class="countTimeWaitOfficer officer-danger" >หน่วยปฏิบัติการ ปฏิเสธ 
 	                            </span>
 	                        `;
 	                    } else if (result[xxi]['status'] == "รอการยืนยัน") {
@@ -1436,7 +1436,7 @@
 	                                    </div>
 	                                `;
 
-	                    let html_of_list_name_officer = `<!-- รายชื่อหน่วยแพทย์ -->
+	                    let html_of_list_name_officer = `<!-- รายชื่อหน่วยปฏิบัติการ -->
 	                                <div class="col-12">
 	                                    <div class=" radius-10 w-100 mt-3">
 	                                        <!-- BTN Select Level -->
@@ -1545,7 +1545,7 @@
 	                                        <!-- ตรงนี้เลื่อนได้ -->
 	                                        <div style="">
 	                                            <div class="data-officer p-3 mb-3 ps ps--active-y" id="new_select_officer_card_data_operating_id_` + result[xxi]['id'] + `">
-	                                                <!-- ข้อมูลหน่วยแพทย์ในพื้นที่ -->
+	                                                <!-- ข้อมูลหน่วยปฏิบัติการในพื้นที่ -->
 	                                            </div>
 	                                        </div>
 	                                        <!-- จบ ตรงนี้เลื่อนได้ -->

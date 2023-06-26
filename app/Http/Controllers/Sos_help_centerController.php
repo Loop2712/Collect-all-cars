@@ -2199,7 +2199,7 @@ class Sos_help_centerController extends Controller
 
         }
 
-        // ดำเนินการส่งข้อมูลให้หน่วยแพทย์ตามเคส และอัพเดทเคสทั้งหมดให้มี joint_case ร่วมกัน
+        // ดำเนินการส่งข้อมูลให้หน่วยปฏิบัติการตามเคส และอัพเดทเคสทั้งหมดให้มี joint_case ร่วมกัน
         for ($xi = 0; $xi < count($id_of_new_sos); $xi++){
 
             DB::table('sos_help_centers')
@@ -2217,7 +2217,7 @@ class Sos_help_centerController extends Controller
             $distance = $list_arr_ep[1] ;
             $operating_unit_id = $list_arr_ep[2] ;
 
-            // ส่งไลน์ให้หน่วยอแพทย์ตามเคส และอัพเดทข้อมูลหน่วยแพทย์เข้า sos_help_center
+            // ส่งไลน์ให้หน่วยอแพทย์ตามเคส และอัพเดทข้อมูลหน่วยปฏิบัติการเข้า sos_help_center
             $this->send_data_sos_to_operating_unit( $sos_id, $operating_unit_id, $user_id , $distance);
             
         }
@@ -2304,7 +2304,7 @@ class Sos_help_centerController extends Controller
         $operating_unit_id = $requestData['operating_unit_id'];
         $distance = $requestData['distance'];
 
-        // ส่งไลน์ให้หน่วยอแพทย์ตามเคส และอัพเดทข้อมูลหน่วยแพทย์เข้า sos_help_center
+        // ส่งไลน์ให้หน่วยอแพทย์ตามเคส และอัพเดทข้อมูลหน่วยปฏิบัติการเข้า sos_help_center
         $this->send_data_sos_to_operating_unit( $sos_id, $operating_unit_id, $user_id , $distance);
 
         return 'OK';

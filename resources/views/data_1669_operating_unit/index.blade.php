@@ -7,10 +7,10 @@
         <div class="d-flex align-items-center">
             <div class="col-12 mt-3">
                 <span class="font-weight-bold h4 mb-0">
-                    การจัดการหน่วยแพทย์ ในพื้นที่ {{ Auth::user()->sub_organization }}
+                    การจัดการหน่วยปฏิบัติการ ในพื้นที่ {{ Auth::user()->sub_organization }}
                 </span>
                 <a href="{{ url('/data_1669_operating_unit/create') }}" class="btn btn-success btn-sm float-end float-right mb-0" title="Add New Data_1669_operating_unit">
-                    <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มหน่วยแพทย์
+                    <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มหน่วยปฏิบัติการ
                 </a>
             </div>
         </div>

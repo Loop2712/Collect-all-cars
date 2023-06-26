@@ -1174,7 +1174,7 @@ color: #ff9317;
             <div class="card radius-10 p-3 d-none" id="div_data_operating">
                 <!-- div_data_operating -->
                 <h3>
-                    <b>ข้อมูลหน่วยแพทย์</b>
+                    <b>ข้อมูลหน่วยปฏิบัติการ</b>
                 </h3>
                 <span>
                     ชื่อหน่วย
@@ -1369,7 +1369,7 @@ color: #ff9317;
                             <i class="fa-solid fa-hospital-user"></i> <br> แบบฟอร์มชมพู
                             </button>
                             <button id="btn_select_operating_unit" disabled  type="button" class="btn btn-secondary m-2" onclick="click_select_btn('operating_unit');">
-                                <i class="fa-solid fa-truck-medical"></i> <br> เลือกหน่วยแพทย์
+                                <i class="fa-solid fa-truck-medical"></i> <br> เลือกหน่วยปฏิบัติการ
                             </button> -->
                             <ul class="nav nav-pills m-3" role="tablist">
                                 <li id="btn_operation" class="nav-item nav-pills nav-pills-purple m-2 d-none" role="presentation">
@@ -1443,7 +1443,7 @@ color: #ff9317;
                                 <li id="btn_select_operating_unit" class="nav-item nav-pills nav-pills-danger m-2 " role="presentation">
                                     <div class="btnGroupOperating">
                                         <div class="btn-group btnGroupOperating">
-                                            <button type="button" class="btn btn-white btnOperating">เลือกหน่วยแพทย์</button>
+                                            <button type="button" class="btn btn-white btnOperating">เลือกหน่วยปฏิบัติการ</button>
                                             <a id="tag_a_open_map_operating_unit" type="button" class="btn btn-primary" onclick="document.querySelector('#tag_a_open_map_operating_unit_2').click();">
                                               เดียว
                                             </a>
@@ -1459,7 +1459,7 @@ color: #ff9317;
                                             <div class="tab-icon">
                                                 <i class="fa-solid fa-hospital-user"></i>
                                             </div>
-                                            <div class="tab-title">เลือกหน่วยแพทย์</div>
+                                            <div class="tab-title">เลือกหน่วยปฏิบัติการ</div>
                                         </div>
                                     </a>
                                 </li>

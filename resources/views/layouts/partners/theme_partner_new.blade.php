@@ -574,14 +574,14 @@
 										</div>
 										<div class="col-6"> 
 											<div class="w-100">
-												<span class="mb-1 font-14 h5">ข้อมูลหน่วยแพทย์</span>
+												<span class="mb-1 font-14 h5">ข้อมูลหน่วยปฏิบัติการ</span>
 												<div class="float-end">
 													<span class="badge badge-pill bg-light-danger text-danger mr" > aa </span>
 													<span class="badge badge-pill bg-light-danger text-danger" > aa </span>
 												</div>
 											</div>
 											<p class="mb-0 font-13 text-secondary">ชื่อเจ้าหน้าที่ : Thanakorn</p>
-											<p class="mb-0 font-13 text-secondary">หน่วยแพทย์ : วีเช็ค</p>
+											<p class="mb-0 font-13 text-secondary">หน่วยปฏิบัติการ : วีเช็ค</p>
 										</div>
 									</div>
 								</div>
@@ -654,7 +654,7 @@
 										<a href="{{ url('/all_name_user_partner') }}"><i class='fas fa-users-cog'></i> สมาชิกศูนย์สั่งการ</a>
 									</li>
 									<li>
-										<a href="{{ url('/data_1669_operating_unit') }}"><i class="fa-solid fa-user-plus"></i> หน่วยแพทย์ </a>
+										<a href="{{ url('/data_1669_operating_unit') }}"><i class="fa-solid fa-user-plus"></i> หน่วยปฏิบัติการ </a>
 									</li>
 								</ul>
 							@else
@@ -2920,7 +2920,7 @@
 												</div>
 												<div class="col-6"> 
 													<div class="w-100">
-														<span class="mb-1 font-14 h5">ข้อมูลหน่วยแพทย์</span>
+														<span class="mb-1 font-14 h5">ข้อมูลหน่วยปฏิบัติการ</span>
 														<div class="float-end">
 															<span class="badge badge-pill bg-light-`+ color_operating_suit_type +` text-`+ color_operating_suit_type +` mr" > 
 																`+ operating_suit_type_helping +`
@@ -2934,7 +2934,7 @@
 														ชื่อเจ้าหน้าที่ : `+ name_helper_helping +` 
 													</p>
 													<p class="mb-0 font-13 text-secondary">
-														หน่วยแพทย์ : `+ organization_helper_helping +`
+														หน่วยปฏิบัติการ : `+ organization_helper_helping +`
 													</p>
 												</div>
 											</div>

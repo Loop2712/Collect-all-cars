@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <h3 class="card-header">
-                        เพิ่มหน่วยแพทย์
+                        เพิ่มหน่วยปฏิบัติการ
                     </h3>
                     <div class="card-body">
                         <!-- <a href="{{ url('/data_1669_operating_unit') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>

@@ -53,7 +53,7 @@
                         <div class="card-title d-flex align-items-center">
 							<div><i class="fa-solid fa-people-group me-1 font-22 text-primary"></i>
 							</div>
-							<h5 class="mb-0 text-primary">หน่วยปฎิบัติการ</h5>
+							<h5 class="mb-0 text-primary">หน่วยปฏิบัติการ</h5>
 						</div>
 						<hr>
 						<div class="row">

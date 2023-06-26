@@ -9,7 +9,7 @@
 
             <div class="col-12 mt-3">
                 <span class="font-weight-bold h4 mb-0">
-                    ข้อมูลหน่วยแพทย์ {{ $data_1669_operating_unit->name }}
+                    ข้อมูลหน่วยปฏิบัติการ {{ $data_1669_operating_unit->name }}
                 </span>
                 <button class="btn btn-success btn-sm float-end float-right mb-0" onclick="gen_qr_code_add_officer();">
                     <i class="fa fa-plus" aria-hidden="true"></i>  เพิ่มสมาชิก

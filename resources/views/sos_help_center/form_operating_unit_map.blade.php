@@ -44,7 +44,7 @@
                 <div class="modal-body pb-0">
                     <div class="col-12 d-flex align-items-center">
                        <img style="width:50px;" src="{{ url('/') }}/img/stickerline/PNG/7.png">
-                        <span class="h2 m-0 pl-2">ยืนยันการเลือก "หน่วยแพทย์"</span>
+                        <span class="h2 m-0 pl-2">ยืนยันการเลือก "หน่วยปฏิบัติการ"</span>
                     </div>
                 </div>
                 <hr>
@@ -132,7 +132,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <br>
-                                <h2>รอการยืนยัน<br>จากหน่วยแพทย์</h2>
+                                <h2>รอการยืนยัน<br>จากหน่วยปฏิบัติการ</h2>
                             </div>
                             <div class="col-4">
                                 <br>
@@ -159,7 +159,7 @@
                         </div>
                     </div>
                     <h2 class="text-center mt-5">
-                        รอการยืนยัน จากหน่วยแพทย์
+                        รอการยืนยัน จากหน่วยปฏิบัติการ
                     </h2>
                     <h5 class="text-center mt-5">
                         โปรดรอสักครู่... (<span id="timer_wait_officer"></span>)
@@ -174,7 +174,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <br>
-                                <h2>หน่วยแพทย์<br>ปฏิเสธ</h2>
+                                <h2>หน่วยปฏิบัติการ<br>ปฏิเสธ</h2>
                             </div>
                             <div class="col-4">
                                 <br>
@@ -213,7 +213,7 @@
                         </svg>
                     </div>
                     <h2 class="text-center mt-5">
-                        หน่วยแพทย์ปฏิเสธ
+                        หน่วยปฏิบัติการปฏิเสธ
                     </h2>
                     <h5 class="text-center mt-5">
                         โปรดเปลี่ยนหน่วย
@@ -236,7 +236,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <br>
-                                <h2>หน่วยแพทย์<br>ปฏิเสธ</h2>
+                                <h2>หน่วยปฏิบัติการ<br>ปฏิเสธ</h2>
                             </div>
                             <div class="col-4">
                                 <br>
