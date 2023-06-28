@@ -964,6 +964,11 @@
 								</li>
 								<li> 
 									<a href="#">
+										<i class="fa-solid fa-paper-plane"></i> ส่งข้อมูล
+									</a>
+								</li>
+								<li> 
+									<a href="#">
 										<i class="fa-solid fa-chart-pie"></i> วิเคราะห์ข้อมูล (soon)
 									</a>
 								</li>

@@ -2333,4 +2333,61 @@ class Sos_help_centerController extends Controller
         return $check_officer_command ;
     }
 
+    function real_time_check_refuse_and_call(){
+
+        $data = [];
+        $data['refuse'] = '' ;
+        $data['call'] = '' ;
+
+        $data_sos = Sos_help_center::where('status' , 'ปฏิเสธ')->get();
+
+        if( !empty($data_sos) ){
+            foreach ($data_sos as $item_sos){
+
+                if ( empty($data['refuse']) ){
+                    $data['refuse'] = (string)$item_sos->id ;
+                }else{
+                    $data['refuse'] = $data['refuse'] . ',' . (string)$item_sos->id ;
+                }
+
+            }
+        }else{
+            $data['refuse'] = 'ไม่มีข้อมูล';
+        }
+
+        $data_agora_chat = Agora_chat::where('member_in_room' , '!=', null)->get();
+
+        if( !empty($data_agora_chat) ){
+
+            foreach ($data_agora_chat as $item_agora){
+
+                if( !empty($item_agora->member_in_room) ){
+                    $data_member_in_room = $item_agora->member_in_room;
+
+                    $data_array = json_decode($data_member_in_room, true);
+                    $check_user = $data_array['user'];
+
+                    if( !empty($check_user) ){
+                        if ( empty($data['call']) ){
+                            $data['call'] = (string)$item_agora->sos_id ;
+                        }else{
+                            $data['call'] = $data['call'] . ',' . (string)$item_agora->sos_id ;
+                        }
+                    }
+                }
+
+            }
+
+        }else{
+            $data['call'] = 'ไม่มีข้อมูล';
+        }
+
+        if ( empty($data['call']) ){
+            $data['call'] = 'ไม่มีข้อมูล';
+        }
+
+        return $data ;
+
+    }
+
 }

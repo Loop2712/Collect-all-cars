@@ -1191,14 +1191,54 @@
 
                             </div>
                         </div>
-                        <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
+                        <!-- ///////////////////////////////// END MOCK UP ////////////////////////////// -->
+
+                        <style>
+                            .notification-refuse {
+                                position: absolute;
+                                top: -15px;
+                                right: 90% !important;
+                                background-color: red; 
+                                color: #fff;
+                                width: 30px;
+                                height: 30px;
+                                font-size: 18px;
+                                border-radius: 50%;
+                                z-index: 9999;
+                            }
+                            .notification-call {
+                                position: absolute;
+                                top: -15px;
+                                right: 85% !important;
+                                background-color: green; 
+                                color: #fff;
+                                width: 30px;
+                                height: 30px;
+                                font-size: 18px;
+                                border-radius: 50%;
+                                z-index: 9999;
+                            }
+                        </style>
 
                         @foreach($data_sos as $item)
 
-                            <div class="col-12">
+                            <div class="col-12" style="position: relative;">
+                                <span id="notification_refuse_sos_id_{{ $item->id }}" class="notification-refuse d-none">
+                                    <center>
+                                        <i class="fa-solid fa-triangle-exclamation fa-bounce"></i>
+                                    </center>
+                                </span>
+
+                                <span id="notification_call_sos_id_{{ $item->id }}" class="notification-call d-none">
+                                    <center>
+                                        <i class="fa-solid fa-phone-volume fa-shake"></i>
+                                    </center>
+                                </span>
+
                                 <a id="card_data_sos_id_{{ $item->id }}" class="a_data_user data-show" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}">
-                                    <div class="card card-data-sos card-sos shadow">
+                                    <div class="card card-data-sos card-sos shadow card_sos_id_{{ $item->id }}">
                                         <div class="card-header-sos">
+
                                             <span><b> {{$item->operating_code}}</b></span>
 
                                             @php
@@ -2257,6 +2297,8 @@
             show_location_A();
         }
 
+        real_time_check_refuse_and_call();
+
     });
     
     const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
@@ -3037,6 +3079,60 @@
         if('{{ Auth::user()->organization }}' == 'สพฉ' && '{{ Auth::user()->sub_organization }}' == 'ศูนย์ใหญ่'){
             click_select_area_map('ทั้งหมด');
         }
+    }
+
+    function real_time_check_refuse_and_call(){
+
+        setInterval(function() {
+            // console.log('real_time_check_refuse_and_call');
+
+            let all_notification_refuse = document.querySelectorAll('.notification-refuse');
+            let all_notification_call = document.querySelectorAll('.notification-call');
+            let card_data_sos = document.querySelectorAll('.card-data-sos');
+
+            all_notification_refuse.forEach(Item_1 => {
+               Item_1.classList.add('d-none');
+            })
+
+            all_notification_call.forEach(Item_2 => {
+               Item_2.classList.add('d-none');
+            })
+
+            card_data_sos.forEach(Item_3 => {
+               Item_3.classList.remove('border-color-change-color');
+            })
+
+            fetch("{{ url('/') }}/api/real_time_check_refuse_and_call")
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                    let result_refuse = result['refuse'].split(",");
+                    let result_call = result['call'].split(",");
+                        // console.log(result_refuse);
+                        // console.log(result_call);
+
+                    if(result_refuse[0] != 'ไม่มีข้อมูล'){
+                        for(let ii = 0; ii < result_refuse.length; ii++){
+                            document.querySelector('#notification_refuse_sos_id_'+result_refuse[ii]).classList.remove('d-none');
+                            // border-color-change-color
+                            let div_card_refuse = document.querySelector('.card_sos_id_'+result_refuse[ii]);
+                                div_card_refuse.classList.add('border-color-change-color');
+                        }
+                    }
+
+                    if(result_call[0] != 'ไม่มีข้อมูล'){
+                        for(let xx = 0; xx < result_call.length; xx++){
+                            document.querySelector('#notification_call_sos_id_'+result_call[xx]).classList.remove('d-none');
+                            let div_card_call = document.querySelector('.card_sos_id_'+result_call[xx]);
+                                div_card_call.classList.add('border-color-change-color');
+                        }
+                    }
+
+                });
+
+        }, 6000);
+
     }
 </script>
 
