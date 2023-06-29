@@ -1566,7 +1566,16 @@
 
                                                 
                                             </div>
-                                            <div>{{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }} &nbsp;&nbsp;{{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}</div>
+                                            <div>
+                                                {{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }} &nbsp;&nbsp;{{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}
+
+                                                @if($item->status == "เสร็จสิ้น")
+                                                    <br>
+                                                    <span class="btn btn-success main-shadow main-radius float-end mt-3">
+                                                        ส่งข้อมูล
+                                                    </span>
+                                                @endif
+                                            </div>
                                         </div>
                                     </a>
                                         

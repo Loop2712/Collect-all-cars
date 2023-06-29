@@ -166,6 +166,53 @@
   position: absolute;
 }
 
+  @keyframes sacleupanddown {
+    0% {
+      transform: scale(0);
+    }
+
+    /* Change the percentage here to make it faster */
+    10% {
+      transform: scale(1);
+    }
+
+    /* Change the percentage here to make it stay down for longer */
+    90% {
+      transform: scale(1);
+    }
+
+    /* Keep this at the end */
+    100% {
+      transform: scale(0);
+    }
+  }
+  
+.containerAlert {
+  transform: scale(0);
+  position: absolute;
+  bottom: 150px;
+  /* เปลี่ยนจาก top: 10px; เป็น top: 50%; */
+  /* outline: #000 1px solid; */
+  width: 100%;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  color: #fff !important;
+  z-index: 999999;
+}
+
+.alertStatus {
+  /* transform: scale(0); */
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  color: #fff !important;
+  padding: 3px 10px !important;
+  border-radius: 1rem !important;
+}
+
+#iconAlert {
+  margin-right: .5rem;
+}
+
 /* *{
     outline: #000 1px solid;
 } */
@@ -191,19 +238,34 @@
 
     <div id="divVideoCall" class="video-body fade-slide"style="display: none;">
 
+      <div id="div_for_alertTime">
+        <div class="containerAlert">
+          <div class="alertStatus">
+            <span id="iconAlert">
+            </span>
+            <span id="detailAlert">
+            </span>
+          </div>
+        </div>
+      </div>
+        
         <div class="video-head">
 
           <span id="span_timer_video_call" class="d-none">
-              <span id="icon_timer_video_call">
+              <span id="icon_timer_video_call" class="">
                 <i class="fa-duotone fa-record-vinyl fa-beat-fade" style="--fa-secondary-color: #6e89b4;"></i> 
                 &nbsp;&nbsp;เวลาสนทนา : 
               </span>
               <span id="timer_video_call">เริ่มนับเมื่อมีผู้ใช้ 2 คน</span>
           </span>
 
-          <span class="btn btn-success" id="command_join">
+          <span class="btn btn-success" style="width: 90%;" id="command_join">
               <i class="fa-solid fa-phone-volume"></i> เริ่มต้นการสนทนา
           </span>
+
+          <!-- <span class="btn btn-success" style="width: 90%;" id="vasdvs" onclick="vasdvs();">
+              <i class="fa-solid fa-phone-volume"></i> vasdvs
+          </span> -->
 
           <span id="btn_close_audio_ringtone" class="btn btn-secondary d-none" onclick="stop_ringtone();">
               <i class="fa-solid fa-volume-slash"></i>
@@ -213,7 +275,9 @@
 
         <div class="video-local">
 
-          <div id="show_whene_video_no_active" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;">
+          <i id="video_local_slash" style="position:absolute;top:58%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 50px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
+
+          <div id="show_whene_video_no_active" style="position:absolute;top:58%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;">
 
               @if( empty($user_in_room) )
               <!-- ไม่มีผู้ใช้อยู่ในการสนทนา -->
@@ -267,6 +331,10 @@
 <script src="{{ asset('Agora_Web_SDK_FULL/AgoraRTC_N-4.17.0.js') }}"></script>
 
 <script>
+
+function vasdvs(){
+  alertNoti('<i class="fa-solid fa-video-slash"></i>', 'กล้องปิดอยู่');
+}
 
 var option;
 var sos_1669_id = '{{ $sos_id }}';
@@ -667,6 +735,7 @@ async function startBasicCall() {
         isMuteVideo = true;
 
         // alertNoti('<i class="fa-solid fa-video-slash"></i>', 'กล้องปิดอยู่');
+        document.querySelector('#video_local_slash').classList.remove('d-none');
 
       } else {
         channelParameters.localVideoTrack.setEnabled(true);
@@ -683,6 +752,7 @@ async function startBasicCall() {
         isMuteVideo = false;
 
         // alertNoti('<i class="fa-solid fa-video"></i>', 'กล้องเปิดอยู่');
+        document.querySelector('#video_local_slash').classList.add('d-none');
 
       }
     }
@@ -746,6 +816,9 @@ async function startBasicCall() {
         document.querySelector('#span_timer_video_call').classList.remove('d-none');
 
         stop_ringtone();
+
+        // update status command => "Helping"
+        document.querySelector('#officerHelping').click();
 
         fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_join')
           .then(response => response.json())
@@ -811,8 +884,15 @@ async function startBasicCall() {
         btnMicRemote.classList.add('d-none');
         document.querySelector('.video-remote').classList.add('d-none');
         document.querySelector('.video-menu').classList.add('d-none');
-        document.querySelector('#span_timer_video_call').classList.add('d-none');
 
+        document.querySelector('#span_timer_video_call').classList.add('d-none');
+        document.querySelector('#icon_timer_video_call').classList.remove('d-none');
+        document.querySelector('#timer_video_call').innerHTML = 'เริ่มนับเมื่อมีผู้ใช้ 2 คน';
+
+
+
+        // update status command => "Standby"
+        document.querySelector('#officerStandby').click();
         // window.location.reload();
 
         fetch("{{ url('/') }}/api/left_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_left')
@@ -885,9 +965,55 @@ function start_timer_video_call(time_start){
         }
     }
 
+    let check_time = minutes + '.' + seconds ;
+        console.log(check_time);
+
+    if(check_time == '1.0'){
+        console.log('เหลือเวลาอีก '+check_time+' นาที');
+        // alertNoti('<i class="fa-solid fa-video-slash"></i>', 'กล้องปิดอยู่');
+    }
+
     timeCountVideo.innerHTML = showTimeCountVideo ;
 
   }, 1000);
+
+}
+
+function alertNoti(Icon, Detail) {
+  const alertElement = document.querySelector('.containerAlert');
+  const iconElement = document.querySelector('#iconAlert');
+  const detailElement = document.querySelector('#detailAlert');
+
+  if (alertElement) {
+    alertElement.classList.remove('scaleUpDown');
+    alertElement.remove();
+  }
+
+  const newAlertElement = document.createElement('div');
+  newAlertElement.classList.add('containerAlert');
+  newAlertElement.classList.add('scaleUpDown');
+
+  newAlertElement.classList.add('scaleUpDown');
+
+  const alertStatus = document.createElement('span');
+  alertStatus.classList.add('alertStatus');
+
+
+  const newIconElement = document.createElement('span');
+  newIconElement.id = 'iconAlert';
+  newIconElement.innerHTML = Icon;
+
+  const newDetailElement = document.createElement('span');
+  newDetailElement.id = 'detailAlert';
+  newDetailElement.innerHTML = Detail;
+
+  alertStatus.appendChild(newIconElement);
+  alertStatus.appendChild(newDetailElement);
+
+  newAlertElement.appendChild(alertStatus);
+
+  let div_for_alertTime = document.querySelector('#div_for_alertTime');
+      div_for_alertTime.appendChild(newAlertElement);
 
 }
 

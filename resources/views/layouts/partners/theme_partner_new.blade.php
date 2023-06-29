@@ -639,6 +639,15 @@
 			</div>
 			<!--navigation-->
 			<ul class="metismenu" id="menu" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+
+				<li id="div_ll_Dashboard" class="">
+					<a href="{{ url('/all_dashboard') }}" class="">
+						<div class="parent-icon">
+							<i class="fa-solid fa-chart-line"></i>
+						</div>
+						<div class="menu-title">Dashboard</div>
+					</a>
+				</li>
 				<!-- Admin -->
 				@if(Auth::check())
                     @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "admin-condo")
