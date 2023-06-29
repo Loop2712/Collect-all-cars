@@ -525,7 +525,7 @@
                     <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove3.png') }}" class="img-fluid">
                   </a>               
                 </div>
-                <div class="timeline_content">
+                <div class="timeline_content d-none">
                   <div class="col-lg-6 col-md-6  text-center">
                     <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download>
                       <div class="icon-box" style="padding: 0px;">
@@ -560,7 +560,7 @@
 
           <span id="tab-3" style="position: absolute;margin-top:-130px"></span>
           <div>
-            <div class="row">
+            <div class="row mt-3">
               <div class="col-12 details ">
                 <h3 style="font-family: 'Kanit', sans-serif;"> <b>แจ้งเตือนโรคติดต่อ</b> </h3>
                 <span style="text-indent: 5px;font-size:18px;" class="timeline_head">เข้าสถานที่ต่างๆได้อย่างหายห่วง ด้วยระบบ<span style="color: #EB2424;"> ViiCARE </span>เพียงแสกน<span style="color: #EB2424;"> QR-Code </span>ก่อนเข้าพื้นที่ หากเกิดโรคติดต่อขึ้นในพื้นที่ ระบบจะแจ้งเตือนไปยังกลุ่มเสี่ยงพร้อมทั้งระบุแนวทางการปฎิบัติเบื้องต้น </span>
