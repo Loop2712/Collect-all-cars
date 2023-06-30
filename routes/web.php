@@ -227,6 +227,12 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::resource('notify_repair', 'Notify_repairController');
 	Route::resource('category_condo', 'Category_condoController');
 
+	// sos map title
+	Route::resource('sos_map_title', 'Sos_map_titleController')->except(['create','edit','show']);
+	Route::get('create_new_title_sos', 'Sos_map_titleController@create_new_title_sos');
+	Route::get('delete_title_sos', 'Sos_map_titleController@delete_title_sos');
+
+
 });
 // end admin-partner
 
@@ -493,4 +499,3 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::resource('agora_chat', 'Agora_chatController');
-Route::resource('sos_map_title', 'Sos_map_titleController');

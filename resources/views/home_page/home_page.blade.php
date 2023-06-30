@@ -969,7 +969,7 @@
                     <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove3.png') }}" class="img-fluid">
                   </a>               
                 </div>
-                <div class="row">
+                <div class="row d-none">
                   <div class="col-6  text-center">
                     <a href="{{ asset('/img/more/sticker-VII-v1.png') }}" download>
                       <div class="icon-box" style="padding: 0px;">

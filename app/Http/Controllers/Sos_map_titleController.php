@@ -8,6 +8,9 @@ use App\Http\Requests;
 use App\Models\Sos_map_title;
 use Illuminate\Http\Request;
 
+use Auth;
+use Illuminate\Support\Facades\DB;
+
 class Sos_map_titleController extends Controller
 {
     /**
@@ -17,20 +20,20 @@ class Sos_map_titleController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
+        $user = Auth::user();
 
-        if (!empty($keyword)) {
-            $sos_map_title = Sos_map_title::where('title', 'LIKE', "%$keyword%")
-                ->orWhere('name_partner', 'LIKE', "%$keyword%")
-                ->orWhere('ask_to_partner', 'LIKE', "%$keyword%")
-                ->orWhere('status', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $sos_map_title = Sos_map_title::latest()->paginate($perPage);
-        }
+        $data_partner = DB::table('partners')
+            ->where('name', $user->organization)
+            ->where('name_area', null)
+            ->first();
 
-        return view('sos_map_title.index', compact('sos_map_title'));
+        $name_partner = $data_partner->name ;
+
+        $sos_map_title = Sos_map_title::where('name_partner', $name_partner)->get();
+
+        $sos_map_title_by_user = Sos_map_title::where('ask_to_partner', $name_partner)->get();
+
+        return view('sos_map_title.index', compact('sos_map_title','name_partner','sos_map_title_by_user'));
     }
 
     /**
@@ -119,5 +122,24 @@ class Sos_map_titleController extends Controller
         Sos_map_title::destroy($id);
 
         return redirect('sos_map_title')->with('flash_message', 'Sos_map_title deleted!');
+    }
+
+    public function create_new_title_sos(Request $request){
+        
+        $requestData = $request->all();
+        
+        Sos_map_title::create($requestData);
+
+        return 'OK' ;
+    }
+
+    public function delete_title_sos(Request $request){
+        
+        $requestData = $request->all();
+
+        Sos_map_title::where('title' , $requestData['title'])->where('name_partner' , $requestData['name_partner'])->delete();
+
+        return 'Delete ' . $requestData['title'] . ' Success' ;
+
     }
 }
