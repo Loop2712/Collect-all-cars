@@ -649,16 +649,19 @@
 					</a>
                     <ul>
                         <li>
-                            <a href="{{ url('/dashboard_index#section1') }}"><i class='fas fa-users-cog'></i>dashboard section 1</a>
+                            <a href="{{ url('/dashboard_index#dashboard_boardcast') }}"><i class='fas fa-users-cog'></i>Broadcast</a>
                         </li>
                         <li>
-                            <a href="{{ url('/dashboard_index#section2') }}"><i class='fas fa-users-cog'></i>dashboard section 2</a>
+                            <a href="{{ url('/dashboard_index#dashboard_user') }}"><i class='fas fa-users-cog'></i>User</a>
                         </li>
                         <li>
-                            <a href="{{ url('/dashboard_index#section3') }}"><i class='fas fa-users-cog'></i>dashboard section 3</a>
+                            <a href="{{ url('/dashboard_index#dashboard_viicare') }}"><i class='fas fa-users-cog'></i>ViiCare</a>
                         </li>
                         <li>
-                            <a href="{{ url('/dashboard_index#section4') }}"><i class='fas fa-users-cog'></i>dashboard section 4</a>
+                            <a href="{{ url('/dashboard_index#dashboard_viimove') }}"><i class='fas fa-users-cog'></i>ViiMove</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/dashboard_index#dashboard_viisos') }}"><i class='fas fa-users-cog'></i>ViiSOS</a>
                         </li>
                     </ul>
 				</li>

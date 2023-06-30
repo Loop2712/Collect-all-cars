@@ -1,8 +1,26 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
-    <div id="section1" class="card main-radius" style="background-color: red; width: 500px; height: 500px;" ></div>
-    <div id="section2" class="card main-radius" style="background-color: green; width: 500px; height: 500px;" ></div>
-    <div id="section3" class="card main-radius" style="background-color: blue; width: 500px; height: 500px;" ></div>
-    <div id="section4" class="card main-radius" style="background-color: yellow; width: 500px; height: 500px;" ></div>
+    <div id="dashboard_boardcast" class="mb-3" >
+        @include ('dashboard.dashboard_boardcast.dashboard_boardcast')
+    </div>
+    <hr>
+    <div id="dashboard_user" class="mb-3" >
+        @include ('dashboard.dashboard_user.dashboard_user')
+    </div>
+    <hr>
+    <h3>ViiCare</h3>
+    <div id="dashboard_viicare" class="mb-3" >
+        @include ('dashboard.dashboard_viicare.dashboard_viicare')
+    </div>
+    <hr>
+    <h3>ViiMove</h3>
+    <div id="dashboard_viimove" class="mb-3" >
+        @include ('dashboard.dashboard_viimove.dashboard_viimove')
+    </div>
+    <hr>
+    <h3>ViiSOS</h3>
+    <div id="dashboard_viisos" class="mb-3" >
+        @include ('dashboard.dashboard_viisos.dashboard_viisos')
+    </div>
 @endsection
