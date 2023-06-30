@@ -3,7 +3,7 @@
 @section('content')
 
 <style>
-#checkbox {
+.checkbox {
   display: none;
 }
 
@@ -54,18 +54,18 @@
   z-index: 3;
 }
 
-#checkbox:checked + .switch .powersign {
+.checkbox:checked + .switch .powersign {
   border: 4px solid rgb(255, 255, 255);
   box-shadow: 0px 0px 10px rgb(66, 255, 135),
     0px 0px 5px rgb(66, 255, 135) inset;
 }
 
-#checkbox:checked + .switch .powersign::after {
+.checkbox:checked + .switch .powersign::after {
   background-color: rgb(255, 255, 255);
   box-shadow: 0px 0px 5px rgb(66, 255, 135);
 }
 
-#checkbox:checked + .switch {
+.checkbox:checked + .switch {
   box-shadow: 0px 0px 1px rgb(66, 255, 135) inset,
     0px 0px 2px rgb(66, 255, 135) inset,
     0px 0px 10px rgb(66, 255, 135) inset,
@@ -76,12 +76,18 @@
   background-color: rgb(94, 204, 134);
 }
 
-#checkbox:checked + .switch .powersign::before {
+.checkbox:checked + .switch .powersign::before {
   background-color: rgb(94, 204, 134);
 }
 
 
 </style>
+
+<!-- <input type="checkbox" id="checkbox_test" class="checkbox">
+<label for="checkbox_test" class="switch">
+    <div class="powersign"></div>
+</label> -->
+
 
 <div class="card">
     <div class="card-body">
@@ -221,8 +227,8 @@
                     </div>
                     <div class="col-2">
                         <div class="float-end">
-                            <input type="checkbox" class="d-none" id="checkbox" checked disabled>
-                            <label for="checkbox" class="switch">
+                            <input type="checkbox" class="checkbox" checked disabled>
+                            <label for="" class="switch">
                                 <div class="powersign"></div>
                             </label>
                         </div>
@@ -240,8 +246,8 @@
                     </div>
                     <div class="col-2">
                         <div class="float-end">
-                            <input type="checkbox" class="d-none" id="checkbox" checked disabled>
-                            <label for="checkbox" class="switch">
+                            <input type="checkbox" class="checkbox" checked disabled>
+                            <label for="" class="switch">
                                 <div class="powersign"></div>
                             </label>
                         </div>
@@ -259,8 +265,8 @@
                     </div>
                     <div class="col-2">
                         <div class="float-end">
-                            <input type="checkbox" class="d-none" id="checkbox" checked disabled>
-                            <label for="checkbox" class="switch">
+                            <input type="checkbox" class="checkbox" checked disabled>
+                            <label for="" class="switch">
                                 <div class="powersign"></div>
                             </label>
                         </div>
@@ -278,7 +284,7 @@
                             $status_checked = '';
                         }
                     @endphp
-                    <div class="row" style="margin-top: 20px;">
+                    <div class="row" style="margin-top: 20px;" id="data_title_id_{{ $item->id }}">
                         <div class="col-8">
                             <h5><b>{{ $item->title }}</b></h5>
                         </div>
@@ -286,13 +292,13 @@
                             <div class="float-end">
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="checkbox" id="checkbox" {{ $status_checked }}>
-                                        <label for="checkbox" class="switch">
+                                        <input type="checkbox" id="checkbox_id_{{ $item->id }}" class="checkbox" {{ $status_checked }}>
+                                        <label for="checkbox_id_{{ $item->id }}" class="switch">
                                             <div class="powersign"></div>
                                         </label>
                                     </div>
                                     <div class="col-6">
-                                        <span class="btn btn-danger main-shadow main-radius" onclick="delete_title_sos('{{ $item->title }}');">
+                                        <span class="btn btn-danger main-shadow main-radius" onclick="delete_title_sos('{{ $item->title }}','{{ $item->id }}');">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </span>
                                     </div>
@@ -357,33 +363,33 @@
         document.querySelector('#create_now_loading').classList.remove('d-none');
 
         fetch("{{ url('/') }}/create_new_title_sos?title=" + input_new_title_sos + '&name_partner=' + name_partner)
-            .then(response => response.text())
+            .then(response => response.json())
             .then(result => {
                 console.log(result);
 
-                if(result == 'OK'){
+                if(result.check == 'OK'){
                     let content_title_sos = document.querySelector('#content_title_sos');
 
                     let html = `
-                        <div class="row" style="margin-top: 20px;">
+                        <div class="row" style="margin-top: 20px;" id="data_title_id_`+result['data']['id']+`">
                             <div class="col-8">
-                                <h5>
-                                    <b>`+input_new_title_sos+`</b>
-                                </h5>
+                                <h5><b>`+input_new_title_sos+`</b></h5>
                             </div>
-                            <div class="col-2">
+                            <div class="col-4">
                                 <div class="float-end">
-                                    <input type="checkbox" id="checkbox">
-                                    <label for="checkbox" class="switch">
-                                        <div class="powersign"></div>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="col-2">
-                                    <span class="btn btn-danger main-shadow main-radius" onclick="delete_title_sos('`+input_new_title_sos+`');">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </span>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="checkbox" id="checkbox_id_`+result['data']['id']+`" class="checkbox">
+                                            <label for="checkbox_id_`+result['data']['id']+`" class="switch">
+                                                <div class="powersign"></div>
+                                            </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <span class="btn btn-danger main-shadow main-radius" onclick="delete_title_sos('`+input_new_title_sos+`','`+result['data']['id']+`');">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <center>
@@ -403,13 +409,19 @@
 
     }
 
-    function delete_title_sos(text_title){
+    function delete_title_sos(text_title , title_id){
+
         fetch("{{ url('/') }}/delete_title_sos?title=" + text_title + '&name_partner=' + name_partner)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
 
+                if(result == 'OK'){
+                    document.querySelector('#data_title_id_'+title_id).remove();
+                }
+
         });
+
     }
 
 </script>

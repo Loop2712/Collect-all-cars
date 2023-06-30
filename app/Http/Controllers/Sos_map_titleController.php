@@ -127,10 +127,19 @@ class Sos_map_titleController extends Controller
     public function create_new_title_sos(Request $request){
         
         $requestData = $request->all();
-        
+
+        $user = Auth::user();
+
+        $requestData['user_id'] = $user->id ;
         Sos_map_title::create($requestData);
 
-        return 'OK' ;
+        $sos_map_title = Sos_map_title::latest()->first();
+
+        $data = [];
+        $data['check'] = 'OK';
+        $data['data'] = $sos_map_title;
+
+        return $data ;
     }
 
     public function delete_title_sos(Request $request){
@@ -139,7 +148,7 @@ class Sos_map_titleController extends Controller
 
         Sos_map_title::where('title' , $requestData['title'])->where('name_partner' , $requestData['name_partner'])->delete();
 
-        return 'Delete ' . $requestData['title'] . ' Success' ;
+        return 'OK' ;
 
     }
 }
