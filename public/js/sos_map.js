@@ -203,14 +203,9 @@
                     area_arr.push(text_latlng);
                 }
                 
-                
-
-              
-
-                 
-
                 if ( inside([ lat, lng ], area_arr) ) {
 
+                    document.querySelector('#div_text_Area_supervisor').classList.remove('d-none');
                     document.querySelector('#a_help').classList.remove('d-none');
 
                     let area_help = document.querySelector("#area_help");
@@ -243,9 +238,6 @@
                             logo_partner_help.src = 'https://www.viicheck.com/img/logo/logo_x-icon.png';
                         }  
                        
-
-                        
-                        
 
                     document.querySelector('#btn_quick_help').classList.add('d-none');
                 } 

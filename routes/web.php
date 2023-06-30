@@ -491,4 +491,6 @@ Route::group(['middleware' => ['auth']], function () {
     // ไม่ทราบ
 	Route::post('/agora/call-user', 'AgoraController@callUser');
 });
+
 Route::resource('agora_chat', 'Agora_chatController');
+Route::resource('sos_map_title', 'Sos_map_titleController');

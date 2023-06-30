@@ -1,6 +1,6 @@
 
 @if(Auth::user()->id == '1' || Auth::user()->id == '2')
-<div style="display:;">
+<div style="display:none;">
 @else
 <div style="display:none;">
 @endif
@@ -72,9 +72,7 @@
             <div id="location_users">
 
             </div>
-            <div>
-                <span>Area supervisor</span>
-            </div>
+
             <div class="col-12 p-3 mb-5 rounded " >
                 <div class="row">
                     <div class="col-12 mt-2" id="location_user">
@@ -94,8 +92,11 @@
                             <br>
                             <b><span class="notranslate" id="area_help"></span></b>
                         </a> -->
+                        <div id="div_text_Area_supervisor" class="d-none">
+                            <span class="notranslate">Area supervisor</span>
+                        </div>
 
-                        <a id="a_help" class="d-none mail-shadow btn btn-md btn-block btn-warning text-dark"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;"  onclick="area_help_general();">
+                        <a id="a_help" class="d-none mail-shadow btn btn-md btn-block btn-warning text-dark mt-2"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;"  onclick="area_help_general();">
                             <div class="d-flex">
                                 <div class="col-3 p-0 d-flex align-items-center">
                                     <div class="justify-content-center col-12 p-0">
@@ -296,7 +297,33 @@
                                         @endif
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="text-center h6 mt-3">
+                                    โปรดเลือกหัวข้อการขอความช่วยเหลือ
+                                </div>
+                                <div id="div_data_title_sos" class="form-group mt-3">
+                                    <select name="title_sos" id="title_sos" class="form-control" onchange="
+                                            if(this.value=='อื่นๆ'){ 
+                                                document.querySelector('#title_sos_other').classList.remove('d-none');
+                                                document.querySelector('#title_sos_other').focus();
+                                            }else{ 
+                                                document.querySelector('#title_sos_other').classList.add('d-none');
+                                            }">
+                                        <option value="" selected > - เลือกหัวข้อการขอความช่วยเหลือ - </option>
+                                        <option value="เหตุด่วนเหตุร้าย">เหตุด่วนเหตุร้าย</option>
+                                        <option value="อุบัติเหตุ">อุบัติเหตุ</option>
+                                        <option value="ไฟไหม้">ไฟไหม้</option>
+                                        <!-- <option value="รถเสีย" >รถเสีย</option>
+                                        <option value="ทะเลาะวิวาท" >ทะเลาะวิวาท</option> -->
+
+                                        <!-- แทรกหัวข้อของ องค์กรนั้นๆที่เพิ่มเข้ามา -->
+                                        <option value="อื่นๆ">อื่นๆ</option>
+                                    </select>
+                                    <textarea class="form-control mt-2 d-none" id="title_sos_other" name="title_sos_other" rows="3"></textarea>
+                                </div>
                             </div>
+
+
                             <style>
                                 
                                 .img-car-parking{
@@ -381,8 +408,8 @@
                                 </span>
 
                                 <!-- เปิดกล้อง -->
-                                <a class="align-self-end text-white btn-primary btn-circle btn-show-camera" style="position: absolute; margin-bottom:10px" onclick="capture_registration();">
-                                    <i class="fas fa-camera"></i>
+                                <a class="align-self-end text-white btn btn-primary btn-show-camera main-radius main-shadow" style="position: absolute; margin-bottom:10px" onclick="capture_registration();">
+                                    <i class="fas fa-camera"></i> เพิ่มภาพถ่าย
                                 </a>
 
                                 <!-- ถ่าย -->
