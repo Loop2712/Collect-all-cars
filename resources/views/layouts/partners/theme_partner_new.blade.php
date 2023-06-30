@@ -9,7 +9,7 @@
 	<!-- loader-->
 	<link href="{{ asset('partner_new/css/pace.min.css') }}" rel="stylesheet" />
 	<script src="{{ asset('partner_new/js/pace.min.js') }}"></script>
-	
+
 
 
 	<!-- Required meta tags -->
@@ -47,7 +47,7 @@
 	<!-- fontawesome icon -->
     <link rel="stylesheet" href="{{ asset('/partner/fonts/fontawesome/css/fontawesome-all.min.css') }}">
  	<link href="https://kit-pro.fontawesome.com/releases/v6.3.0/css/pro.min.css" rel="stylesheet">
-	 
+
 	<!-- carousel -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
@@ -341,9 +341,9 @@
         	width: 100% !important;
         }*/
 
-        
+
         /*แจ้งเตือน SOS ยังไม่ได้ดำเนินการ*/
-      
+
 
 .nav-wait-officer .nav-link.active {
 		border-color: red red #fff !important;
@@ -361,10 +361,10 @@
 	}
 
 
-	
 
 
-/* 
+
+/*
 .countWaiting{
 	position: absolute;
 	top: -12px;
@@ -447,7 +447,7 @@
 		}
 
 		.notification-danger{
-			background-color: #fc6d6d; 
+			background-color: #fc6d6d;
 			animation: border-flash-danger 1s infinite;
 		}
 		.notification-primary{
@@ -528,7 +528,7 @@
 									<p class="mb-0 font-13 text-secondary">081-234-5678</p>
 									<span class="badge badge-pill bg-light-danger text-danger " > <span>ผ่านมาแล้ว</span> <span>15 นาที</span></span>
 								</div>
-								<div class="list-inline d-flex  ms-auto"> 
+								<div class="list-inline d-flex  ms-auto">
 									<a onclick="sos_1669_command_by('{{ Auth::user()->id }}' , `+ result[i_wait]['id'] +`);" class="btnSosWait">สั่งการ</a>
 								</div>
 							</div>
@@ -550,13 +550,13 @@
 						<div class="tab-pane fade" id="wait_data" role="tabpanel">
 							<!-- เคสที่ดำเนินการอยู่ -->
 
-							
+
 							<!-- Mock up เคสที่ดำเนินการอยู่ -->
 							<div class="userSosWait d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
 								<div class="mr-5">
 									<img src="http://localhost/Collect-all-cars/public/img/stickerline/PNG/21.png" class="imgSos" width="70" height="70" alt="" />
 								</div>
-								
+
 								<div class="w-100 pl">
 									<div class="d-flex align-items-center">
 										<h6	h6 class="d-flex align-items-center mr"> 2050-1553-1551</h6>
@@ -572,7 +572,7 @@
 											<p class="mb-0 font-13 text-secondary">081-234-5678</p>
 
 										</div>
-										<div class="col-6"> 
+										<div class="col-6">
 											<div class="w-100">
 												<span class="mb-1 font-14 h5">ข้อมูลหน่วยปฏิบัติการ</span>
 												<div class="float-end">
@@ -585,7 +585,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 							<!-- END Mock up เคสที่ดำเนินการอยู่ -->
 
@@ -601,7 +601,7 @@
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <h5 class="modal-title" id="Label_show_sos_wait">
-	                    ... : 
+	                    ... :
 	                </h5>
 	                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">
 	                    <span aria-hidden="true">&times;</span>
@@ -641,12 +641,26 @@
 			<ul class="metismenu" id="menu" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
 
 				<li id="div_ll_Dashboard" class="">
-					<a href="{{ url('/all_dashboard') }}" class="">
+					<a href="#" class="has-arrow">
 						<div class="parent-icon">
 							<i class="fa-solid fa-chart-line"></i>
 						</div>
 						<div class="menu-title">Dashboard</div>
 					</a>
+                    <ul>
+                        <li>
+                            <a href="{{ url('/dashboard_index#section1') }}"><i class='fas fa-users-cog'></i>dashboard section 1</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/dashboard_index#section2') }}"><i class='fas fa-users-cog'></i>dashboard section 2</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/dashboard_index#section3') }}"><i class='fas fa-users-cog'></i>dashboard section 3</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/dashboard_index#section4') }}"><i class='fas fa-users-cog'></i>dashboard section 4</a>
+                        </li>
+                    </ul>
 				</li>
 				<!-- Admin -->
 				@if(Auth::check())
@@ -655,7 +669,7 @@
 							<a href="#" class="has-arrow">
 								<div class="parent-icon"><i class="fas fa-user-shield"></i>
 								</div>
-								<div class="menu-title">การจัดการผู้ใช้</div>
+								<div class="menu-title">การจัดการ</div>
 							</a>
 							@if(Auth::user()->organization == "สพฉ" )
 								<ul>
@@ -669,7 +683,12 @@
 							@else
 								<ul>
 									<li>
-										<a href="{{ url('/manage_user_partner') }}"><i class='fas fa-users-cog'></i> สมาชิก</a>
+										<a href="{{ url('/manage_user_partner') }}"><i class='fas fa-users-cog'></i> จัดการผู้ใช้</a>
+									</li>
+								</ul>
+                                <ul>
+									<li>
+										<a href="{{ url('/manage_user_partner') }}"><i class='fas fa-users-cog'></i> ขอความช่วยเหลือ</a>
 									</li>
 								</ul>
 							@endif
@@ -690,20 +709,20 @@
 
 
 					<ul class="mm-collapse " style="">
-						<li> 
+						<li>
 							<a id="li_menu_Dashboard" href="{{ url('/broadcast/dashboard') }}">
 								<i class='fas fa-users-cog'></i> Dashboard
 							</a>
 						</li>
-						
+
 						<!--check in  -->
-						<li class=""> 
+						<li class="">
 							<a class="has-arrow" href="javascript:;">
 								<i class="bx bx-right-arrow-alt"></i>by Checkin
 							</a>
 							<ul class="mm-collapse " style="">
-								<li > 
-									<li class="div-tooltip"> 
+								<li >
+									<li class="div-tooltip">
 										<a href="#" class="disabled">
 											<i class='fas fa-users-cog'></i> Dashboard Checkin
 										</a>
@@ -711,14 +730,14 @@
 											<center><i class="fa-regular fa-triangle-exclamation"></i> ฟีเจอร์ยังไม่พร้อมใช้งานขณะนี้</center>
 										</span>
 									</li>
-									<li class="div-tooltip"> 
+									<li class="div-tooltip">
 										<a id="li_menu_Check_in" class="" href="{{ url('/broadcast/broadcast_by_check_in') }}">
 										<i class="fas fa-map-marker-check"></i> Boardcast Checkin
 										</a>
 										<span id="tip_check_in" class="tooltip d-none" style="font-size: 0.95em;">
 											<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
-												โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
-												<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
+												โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ
+												<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>
 										</span>
 									</li>
 								</li>
@@ -729,8 +748,8 @@
 						<!-- User -->
 						<li class=""> <a class="has-arrow" href="javascript:;" ><i class="bx bx-right-arrow-alt"></i>by User</a>
 							<ul class="mm-collapse " style="">
-								<li class=""> 
-									<li class="div-tooltip"> 
+								<li class="">
+									<li class="div-tooltip">
 										<a  href="#" class="disabled">
 											<i class='fas fa-users-cog'></i> Dashboard User
 										</a>
@@ -738,14 +757,14 @@
 											<center><i class="fa-regular fa-triangle-exclamation"></i> ฟีเจอร์ยังไม่พร้อมใช้งานขณะนี้</center>
 										</span>
 									</li>
-									<li class="div-tooltip"> 
+									<li class="div-tooltip">
 										<a id="li_menu_User" class="" href="{{ url('/broadcast/broadcast_by_user') }}">
 											<i class='fas fa-users-cog'></i> Boardcast User
 										</a>
 										<span id="tip_user" class="tooltip d-none" style="font-size: 0.95em;">
 											<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
-												โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
-												<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
+												โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ
+												<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>
 										</span>
 									</li>
 								</li>
@@ -756,8 +775,8 @@
 						<!-- Cars -->
 						<li class=""> <a class="has-arrow" href="javascript:;" ><i class="bx bx-right-arrow-alt"></i>by Cars</a>
 							<ul class="mm-collapse " style="">
-								<li class=""> 
-									<li class="div-tooltip">  
+								<li class="">
+									<li class="div-tooltip">
 										<a href="#"class="disabled">
 											<i class='fas fa-users-cog'></i> Dashboard Cars
 
@@ -766,14 +785,14 @@
 											<center><i class="fa-regular fa-triangle-exclamation"></i> ฟีเจอร์ยังไม่พร้อมใช้งานขณะนี้</center>
 										</span>
 									</li>
-									<li class="div-tooltip"> 
+									<li class="div-tooltip">
 										<a id="li_menu_Car" class="" href="{{ url('/broadcast/broadcast_by_car') }}">
 											<i class='fas fa-users-cog'></i> Boardcast Cars
 										</a>
 										<span id="tip_car" class="tooltip d-none" style="font-size: 0.95em;">
 											<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
-												โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
-												<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
+												โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ
+												<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>
 										</span>
 									</li>
 								</li>
@@ -794,36 +813,36 @@
 						@if(Auth::user()->id == "1")
 							<li> <a id="li_menu_Dashboard" href="{{ url('/broadcast/dashboard') }}"><i class='fas fa-users-cog'></i> Dashboard</a>
 							</li>
-							<li class="div-tooltip"> 
+							<li class="div-tooltip">
 								<a id="li_menu_Check_in" href="{{ url('/broadcast/broadcast_by_check_in') }}"><i class="fas fa-map-marker-check"></i> by Check In</a>
 								<span id="tip_check_in" class="tooltip d-none" style="font-size: 0.95em;">
 									<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
-										โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
-										<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
+										โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ
+										<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>
 								</span>
 							</li>
-							<li class="div-tooltip"> 
+							<li class="div-tooltip">
 								<a id="li_menu_User"href="{{ url('/broadcast/broadcast_by_user') }}"><i class="fad fa-users"></i> by User</a>
 								<span  id="tip_user" class="tooltip d-none" style="font-size: 0.95em;">
 									<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
-									โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
-										<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
+									โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ
+										<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>
 								</span>
 							</li>
 						@endif
-							<li class="div-tooltip"> 
+							<li class="div-tooltip">
 								<a id="li_menu_Cars"href="{{ url('/broadcast/broadcast_by_car') }}"><i class="fad fa-car-bus"></i> by cars</a>
 								<span id="tip_car" class="tooltip d-none" style="font-size: 0.95em;">
 									<center><i class="fa-regular fa-triangle-exclamation"></i> อัพเกรดเพื่อใช้ฟีเจอร์นี้</center>
-									โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ 
-										<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>  
+									โปรดติดต่อ <a href="tel:020277856" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">02-027-7856</a> หรือ
+										<a href="mailto:contact.viicheck@gmail.com" class="p-0" style="display: inline;background-color: transparent;text-decoration: underline;color:red">contact.viicheck@gmail.com</a>
 								</span>
 							</li>
 					</ul>
 				</li> -->
 
 
-				
+
 				<!-- Broadcast -->
 
 				<!-- สำหรับ องค์กร / คอนโด -->
@@ -907,36 +926,36 @@
 									<div class="menu-title">Vii SOS</div>
 								</a>
 								<ul >
-									<li> 
+									<li>
 										<a href="{{ url('/sos_partner') }}" data-submenu="{{ url('/sos_detail_partner') }}" data-submenu-2="{{ url('/sos_score_helper') }}" data-submenu-have-id="{{ url('/score_helper') }}/"class="d-block sub-menu">
-											<i class='fas fa-hands-helping'></i>  
+											<i class='fas fa-hands-helping'></i>
 
 											<span id="div_menu_help_1">
 												ให้ความช่วยเหลือ
 											</span>
-											 
+
 											<span id="div_menu_help" class="d-none">
 												<i  class="fas fa-exclamation-circle notify_alert float-end mt-1"></i>
 											</span>
 										</a>
 									</li>
-									
+
 									@if(Auth::check())
 					                    @if(Auth::user()->role == "admin-partner")
-											<li> <a href="{{ url('/add_area') }}" data-submenu="{{ url('/service_current') }}" data-submenu-2="{{ url('/service_pending') }}" data-submenu-3="{{ url('/service_area') }}" class="sub-menu"><i class='far fa-map'></i>พื้นที่บริการ</a></li>
+											<li> <a href="{{ url('/add_area') }}" data-submenu="{{ url('/service_current') }}" data-submenu-2="{{ url('/service_pending') }}" data-submenu-3="{{ url('/service_area') }}" class="sub-menu"><i class='far fa-map'></i> พื้นที่บริการ</a></li>
 										@endif
 									@endif
 
 									@if(Auth::user()->organization == "JS100 Radio" or Auth::user()->organization == "2บี กรีน จำกัด")
-										<li> 
+										<li>
 
 											<a href="{{ url('/sos_emergency_js100') }}" data-submenu="{{ url('/sos_detail_js100') }}" class="d-block sub-menu">
 											<i class="fal fa-siren-on"></i>
-												
+
 												<span id="div_menu_help_js100">
 													SOS by calling
 												</span>
-												
+
 												<span id="div_menu_alert_js100" class="d-none">
 													<i  class="fas fa-exclamation-circle notify_alert float-end mt-1"></i>
 												</span>
@@ -961,22 +980,22 @@
 								<div class="menu-title">ขอความช่วยเหลือ</div>
 							</a>
 							<ul>
-								<li> 
+								<li>
 									<a href="{{ url('/help_center_admin') }}">
 										<i class="fa-solid fa-user-headset"></i> ควบคุมและสั่งการ
 									</a>
 								</li>
-								<li> 
+								<li>
 									<a href="#">
 										<i class="fa-solid fa-clock"></i> รอข้อมูล
 									</a>
 								</li>
-								<li> 
+								<li>
 									<a href="#">
 										<i class="fa-solid fa-paper-plane"></i> ส่งข้อมูล
 									</a>
 								</li>
-								<li> 
+								<li>
 									<a href="#">
 										<i class="fa-solid fa-chart-pie"></i> วิเคราะห์ข้อมูล (soon)
 									</a>
@@ -1014,12 +1033,12 @@
 								<div class="menu-title">FOR DEV ViiCHECK</div>
 							</a>
 							<ul>
-								<li> 
+								<li>
 									<a href="#" onclick="tetetetfttfg();">
 										<i class="fa-solid fa-siren-on"></i> Test new sos 1669
 									</a>
 								</li>
-								<li> 
+								<li>
 									<a href="#" onclick="reset_count_sos_1669();">
 										<i class="fa-solid fa-repeat"></i> reset count 1669
 									</a>
@@ -1030,14 +1049,14 @@
 								</li>
 							</ul>
 						</li>
-						
+
 
 					@endif
 				@endif
 				<!-- END FOR DEV -->
 
 				<br>
-				
+
 				<!------------------------------------------------------------------- menu เก่า ------------------------------------------------------------------->
 				<!-- ----------------- Admin -------------------- -->
 				<!-- @if(Auth::check())
@@ -1432,7 +1451,7 @@
 						  	</li>
                           	<li class="nav-item" style="margin-top:-3px;margin-left:-10px;">
                             	<a class="nav-link" href="tel:020277856">
-                                	<span  style="font-size:15px;margin-top:15px;">02-0277856</span> 
+                                	<span  style="font-size:15px;margin-top:15px;">02-0277856</span>
                             	</a>
 						  	</li>
 						  	<li class="nav-item">
@@ -1621,7 +1640,7 @@
 						</div>
 					</div>
 					@endif
-				 	
+
 				 		<!-- switch officer 1669 -->
 						@if(Auth::user()->organization == "สพฉ" )
 							<style>
@@ -1714,17 +1733,17 @@
 							            	// console.log(result)
 							            	change_switch_officer_to(result['status']);
 							        });
-							        
+
 							    });
 
 								function click_switch_officer_1669(){
 									let switch_officer = document.querySelector('#officerStandby');
 									let officer_helping = document.querySelector('#officerHelping');
 
-								
+
 									if (switch_officer.checked) {
 							            change_switch_officer_to('Standby');
-										
+
 									} else if (officer_helping.checked){
 							            change_switch_officer_to('Helping');
 									}else{
@@ -1763,7 +1782,7 @@
 
 						@endif
 						<!-- END switch officer 1669 -->
-				 	
+
 
 
 					<div class="search-bar flex-grow-1 header-notifications-list header-message-list">
@@ -1780,7 +1799,7 @@
 					 <div class="user-box dropdown">
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         	@if(!empty(Auth::user()->photo))
-                                <img alt="" style="width:60px;" class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ Auth::user()->photo }}" data-original-title="Usuario"> 
+                                <img alt="" style="width:60px;" class="img-circle img-thumbnail isTooltip" src="{{ url('storage')}}/{{ Auth::user()->photo }}" data-original-title="Usuario">
                             @else
                                 <img src="{{ asset('/partner/images/user/avatar-1.jpg') }}" style="width:60px;" class="img-radius" alt="User-Profile-Image">
                             @endif
@@ -1836,7 +1855,7 @@
 	<div class="switcher-wrapper">
 		@if(Auth::check())
             @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "admin-condo")
-				<div id="div_switcher" class="switcher-btn" onclick="change_color();" style=""> 
+				<div id="div_switcher" class="switcher-btn" onclick="change_color();" style="">
 					<i class='bx bx-cog bx-spin'></i>
 				</div>
 			@endif
@@ -1932,7 +1951,7 @@
             <div class="collapse" id="collapse_set_group_line">
             	<br>
                 <ul id="ul_group_line" class="list-group">
-                	
+
 				</ul>
             </div>
 			<hr/>
@@ -1987,7 +2006,7 @@
 	                    <label id="label_old_time_zone" class="control-label"></label>
 	                    <select class="form-control" name="input_time_zone" id="input_time_zone" required>
 	                        <option id="old_time_zone" value="" selected>- เลือก Time zone -</option>
-	                        
+
 	                    </select>
 	                </div>
 	            </div>
@@ -2116,7 +2135,7 @@
 
 
 
-	
+
 <script>
 
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -2140,7 +2159,7 @@
 			    }, 5000);
 			@endif
 		@endif
-        
+
     });
 
     function check_data_partner()
@@ -2155,7 +2174,7 @@
             .then(result => {
                 // console.log(result);
                 // console.log(result[0]['class_color_menu']);
-                let delayInMilliseconds = 200; 
+                let delayInMilliseconds = 200;
 
 		        setTimeout(function() {
 		        	if (result[0]['class_color_menu'] !== "other"){
@@ -2163,7 +2182,7 @@
                 		document.querySelector('#span_sub_partner').classList.add('text-white');
 		        	}
 		        }, delayInMilliseconds);
-                
+
                 if (result[0]['name'] === "สพฉ"){
                 	document.querySelector('#h4_name_partner').innerHTML = "ศูนย์สั่งการ";
                 }else{
@@ -2196,7 +2215,7 @@
                     	class_tag_li.value = "list-group-item";
                     	tag_li.setAttributeNode(class_tag_li);
 
-                    tag_li.innerHTML = 
+                    tag_li.innerHTML =
                     	"<b>" + item.line_group + "</b>" +
                     	"<br><span class='btn' onclick='set_group_line(" + item.group_line_id + ")' style='float:right;font-style: italic;color: red;font-size: 14px;''>แก้ไข</span> "
                     ;
@@ -2209,7 +2228,7 @@
 	            .then(response => response.json())
 	            .then(result => {
 	                // console.log(result);
-	                
+
 	                if (result.length >= 1) {
 	                	document.querySelector('#div_menu_Broadcast').classList.remove('d-none');
 	                }else{
@@ -2236,7 +2255,7 @@
 
 	        });
 	    @endif
-            
+
     }
 
     function check_sos_alarm()
@@ -2267,7 +2286,7 @@
 
 								if (result[0]['photo']) {
 									document.querySelector('#btn_modal_notify_img').classList.remove('d-none');
-									
+
 									let tag_a_modal_notify_img = document.querySelector('#tag_a_modal_notify_img');
 									let tag_a_notify_img_href = document.createAttribute("href");
 									tag_a_notify_img_href.value = "{{ url('storage' )}}"+"/"+ result[0]['photo'];
@@ -2279,7 +2298,7 @@
 									modal_notify_img_src.value = "{{ url('storage' )}}"+"/"+ result[0]['photo'];
 
 									modal_notify_img.setAttributeNode(modal_notify_img_src);
-									
+
 								}else {
 									document.querySelector('#btn_modal_notify_img').classList.add('d-none');
 								}
@@ -2287,7 +2306,7 @@
 								let btn_go_to_help = document.querySelector('#btn_go_to_help');
 									let btn_go_to_help_onclick = document.createAttribute("onclick");
 				                  		btn_go_to_help_onclick.value = "go_to_help(" + result[0]['id'] + "," +  {{ Auth::user()->id }} + ")";
-									
+
 								btn_go_to_help.setAttributeNode(btn_go_to_help_onclick);
 
 
@@ -2296,14 +2315,14 @@
 				                let tag_a_class = document.createAttribute("href");
 				                  	tag_a_class.value = "https://www.google.co.th/maps/search/"+ result[0]['lat'] +","+ result[0]['lng'] +"/@"+ result[0]['lat'] +","+ result[0]['lng'] +",16z";
 
-				                  	tag_a_link_ggmap.setAttributeNode(tag_a_class); 
+				                  	tag_a_link_ggmap.setAttributeNode(tag_a_class);
 
 								document.querySelector('#btn_modal_notify').click();
 
 								if (result[0]['photo']) {
 									document.querySelector('#btn_modal_notify_img').click();
 								}
-								
+
 								audio.play();
 			                }
 			        });
@@ -2322,9 +2341,9 @@
         });
 
         setInterval(function() {
-	    	window.location.reload(true) ; 
+	    	window.location.reload(true) ;
 	    }, 1000);
-        
+
     }
 
     function status_help_complete(id_sos , id_user)
@@ -2336,11 +2355,11 @@
         });
 
         setInterval(function() {
-	    	window.location.reload(true) ; 
+	    	window.location.reload(true) ;
 	    }, 1000);
-        
+
     }
-    
+
     function change_color()
     {
         let delayInMilliseconds = 500; //0.5 second
@@ -2358,10 +2377,10 @@
     	let color_item_Ex = document.querySelector('#color_item_Ex');
             let color_item_Ex_style = document.createAttribute("style");
                 color_item_Ex_style.value = "background-color:" + code_color + " ;";
-                color_item_Ex.setAttributeNode(color_item_Ex_style); 
+                color_item_Ex.setAttributeNode(color_item_Ex_style);
             let click_color_item_Ex = document.createAttribute("onclick");
                 click_color_item_Ex.value = "add_input_color('" + code_color + "')";
-                 color_item_Ex.setAttributeNode(click_color_item_Ex); 
+                 color_item_Ex.setAttributeNode(click_color_item_Ex);
     }
 
     function add_color_item_Ex_menu()
@@ -2374,10 +2393,10 @@
 
             let color_item_Ex_style_menu = document.createAttribute("style");
                 color_item_Ex_style_menu.value = "background-color:" + code_color_menu + " ;";
-                color_item_Ex_menu.setAttributeNode(color_item_Ex_style_menu); 
+                color_item_Ex_menu.setAttributeNode(color_item_Ex_style_menu);
             let click_color_item_Ex_menu = document.createAttribute("onclick");
                 click_color_item_Ex_menu.value = "add_input_color_menu('" + code_color_menu + "')";
-                 color_item_Ex_menu.setAttributeNode(click_color_item_Ex_menu); 
+                 color_item_Ex_menu.setAttributeNode(click_color_item_Ex_menu);
     }
 
     function random_color()
@@ -2408,73 +2427,73 @@
         let color_item_1 = document.querySelector('#color_item_1');
             let color_item_1_style = document.createAttribute("style");
                 color_item_1_style.value = "background-color:" + color_1 + " ;";
-                color_item_1.setAttributeNode(color_item_1_style); 
+                color_item_1.setAttributeNode(color_item_1_style);
             let click_color_item_1 = document.createAttribute("onclick");
                 click_color_item_1.value = "add_input_color('" + color_1 + "')";
-                 color_item_1.setAttributeNode(click_color_item_1); 
+                 color_item_1.setAttributeNode(click_color_item_1);
 
         // 2
         let color_item_2 = document.querySelector('#color_item_2');
             let color_item_2_style = document.createAttribute("style");
                 color_item_2_style.value = "background-color:" + color_2 + " ;";
-                color_item_2.setAttributeNode(color_item_2_style); 
+                color_item_2.setAttributeNode(color_item_2_style);
             let click_color_item_2 = document.createAttribute("onclick");
                 click_color_item_2.value = "add_input_color('" + color_2 + "')";
-                 color_item_2.setAttributeNode(click_color_item_2); 
+                 color_item_2.setAttributeNode(click_color_item_2);
 
         // 3
         let color_item_3 = document.querySelector('#color_item_3');
             let color_item_3_style = document.createAttribute("style");
                 color_item_3_style.value = "background-color:" + color_3 + " ;";
-                color_item_3.setAttributeNode(color_item_3_style); 
+                color_item_3.setAttributeNode(color_item_3_style);
             let click_color_item_3 = document.createAttribute("onclick");
                 click_color_item_3.value = "add_input_color('" + color_3 + "')";
-                 color_item_3.setAttributeNode(click_color_item_3); 
+                 color_item_3.setAttributeNode(click_color_item_3);
 
         // 4
         let color_item_4 = document.querySelector('#color_item_4');
             let color_item_4_style = document.createAttribute("style");
                 color_item_4_style.value = "background-color:" + color_4 + " ;";
-                color_item_4.setAttributeNode(color_item_4_style); 
+                color_item_4.setAttributeNode(color_item_4_style);
             let click_color_item_4 = document.createAttribute("onclick");
                 click_color_item_4.value = "add_input_color('" + color_4 + "')";
-                 color_item_4.setAttributeNode(click_color_item_4); 
+                 color_item_4.setAttributeNode(click_color_item_4);
 
         // 5
         let color_item_5 = document.querySelector('#color_item_5');
             let color_item_5_style = document.createAttribute("style");
                 color_item_5_style.value = "background-color:" + color_5 + " ;";
-                color_item_5.setAttributeNode(color_item_5_style); 
+                color_item_5.setAttributeNode(color_item_5_style);
             let click_color_item_5 = document.createAttribute("onclick");
                 click_color_item_5.value = "add_input_color('" + color_5 + "')";
-                 color_item_5.setAttributeNode(click_color_item_5); 
+                 color_item_5.setAttributeNode(click_color_item_5);
 
         // 6
         let color_item_6 = document.querySelector('#color_item_6');
             let color_item_6_style = document.createAttribute("style");
                 color_item_6_style.value = "background-color:" + color_6 + " ;";
-                color_item_6.setAttributeNode(color_item_6_style); 
+                color_item_6.setAttributeNode(color_item_6_style);
             let click_color_item_6 = document.createAttribute("onclick");
                 click_color_item_6.value = "add_input_color('" + color_6 + "')";
-                 color_item_6.setAttributeNode(click_color_item_6); 
+                 color_item_6.setAttributeNode(click_color_item_6);
 
         // 7
         let color_item_7 = document.querySelector('#color_item_7');
             let color_item_7_style = document.createAttribute("style");
                 color_item_7_style.value = "background-color:" + color_7 + " ;";
-                color_item_7.setAttributeNode(color_item_7_style); 
+                color_item_7.setAttributeNode(color_item_7_style);
             let click_color_item_7 = document.createAttribute("onclick");
                 click_color_item_7.value = "add_input_color('" + color_7 + "')";
-                 color_item_7.setAttributeNode(click_color_item_7); 
+                 color_item_7.setAttributeNode(click_color_item_7);
 
         // 8
         let color_item_8 = document.querySelector('#color_item_8');
             let color_item_8_style = document.createAttribute("style");
                 color_item_8_style.value = "background-color:" + color_8 + " ;";
-                color_item_8.setAttributeNode(color_item_8_style); 
+                color_item_8.setAttributeNode(color_item_8_style);
             let click_color_item_8 = document.createAttribute("onclick");
                 click_color_item_8.value = "add_input_color('" + color_8 + "')";
-                 color_item_8.setAttributeNode(click_color_item_8); 
+                 color_item_8.setAttributeNode(click_color_item_8);
 
     }
 
@@ -2555,7 +2574,7 @@
 
             	let html_class_class_2 = document.createAttribute("class");
             		html_class_class_2.value = "";
-            		html_class.setAttributeNode(html_class_class_2); 
+            		html_class.setAttributeNode(html_class_class_2);
 
 			    let switcher_wrapper_menu = document.querySelector('#switcher-wrapper_menu');
 			    	switcher_wrapper_menu.style = "" ;
@@ -2564,7 +2583,7 @@
 			    	header_wrapper_menu.style = "" ;
 			    	header_wrapper_menu.style = "background-color: " + color + ";" ;
 
-			    	
+
 		}
 
     	// console.log(color);
@@ -2597,7 +2616,7 @@
                 let onclick = document.createAttribute("onclick");
                 	onclick.value = "update_data_group_line('" + result[0]['id']+ "')";
                 	btn_cf_set.setAttributeNode(onclick);
-                
+
         });
 
         fetch("{{ url('/') }}/api/search_time_zone")
@@ -2608,8 +2627,8 @@
                     let option = document.createElement("option");
                     option.text = item.TimeZone;
                     option.value = item.TimeZone;
-                    input_time_zone.add(option);             
-                } 
+                    input_time_zone.add(option);
+                }
 
         });
 
@@ -2627,7 +2646,7 @@
 
         document.querySelector('#btn_close_set_group').click();
 
-        let delay = 800; 
+        let delay = 800;
 
         setTimeout(function() {
             alert("ตั้งค่ากลุ่มไลน์ "+ input_name_group_line + " เรียบร้อยแล้ว");
@@ -2648,13 +2667,13 @@
     //             }
     //     });
     // }
-	
+
 	function check_submenu(){
 		let menu = $('.sub-menu');
 		var winlocation = window.location.href.split('?')[0]
 		whole_string = winlocation;
 		split_string = whole_string.split(/(\d+)/);
-		
+
 
 		for (i = 0; i < menu.length; i++) {
 			if(winlocation == menu[i].getAttribute("data-submenu")){
@@ -2692,7 +2711,7 @@
 
 	var count_sos_wait = 0 ;
 	var count_sos_Helping = 0 ;
-	
+
 	function check_ask_for_help_1669(){
 		// console.log('สพฉ');
 
@@ -2714,7 +2733,7 @@
 					document.querySelector('.notification-icon').classList.add('d-none');
                 }
                 // จบ แสดงผลกระดิ่งล่างขวา
-                
+
 				if (result['count_sos_Helping'] == 0){
 
 					count_sos_Helping = result['count_sos_Helping'] ;
@@ -2900,7 +2919,7 @@
 										<div class="mr-5">
 											<img src="`+ photo_sos_helping +`" class="imgSos" width="70" height="70" alt="" />
 										</div>
-										
+
 										<div class="w-100 pl">
 											<div class="d-flex align-items-center">
 												<h5	h6 class="d-flex align-items-center mr">
@@ -2908,18 +2927,18 @@
 												</h5>
 												&nbsp;&nbsp;
 												<span class="badge badge-pill bg-light-`+ color_idc_helping +` text-`+ color_idc_helping +` mr" >
-													IDC 
-													<br> 
-													`+ result['data_sos_Helping'][i_Helping]['idc'] +` 
+													IDC
+													<br>
+													`+ result['data_sos_Helping'][i_Helping]['idc'] +`
 												</span>
 												&nbsp;&nbsp;
-												<span class="badge badge-pill bg-light-`+ color_rc_helping +` text-`+ color_rc_helping +` mr" > 
-													RC 
-													<br> 
-													`+ result['data_sos_Helping'][i_Helping]['rc'] +` 
+												<span class="badge badge-pill bg-light-`+ color_rc_helping +` text-`+ color_rc_helping +` mr" >
+													RC
+													<br>
+													`+ result['data_sos_Helping'][i_Helping]['rc'] +`
 												</span>
-												<span class="badge badge-pill `+ color_status_helping +`  ms-auto" > 
-													`+ result['data_sos_Helping'][i_Helping]['status'] +` 
+												<span class="badge badge-pill `+ color_status_helping +`  ms-auto" >
+													`+ result['data_sos_Helping'][i_Helping]['status'] +`
 												</span>
 											</div>
 
@@ -2927,25 +2946,25 @@
 												<div class="col-6 border-right">
 													<h6 class="mb-1 font-14">ข้อมูลผู้ขอความช่วยเหลือ</h6>
 													<p class="mb-0 font-13 text-secondary">
-														`+ result['data_sos_Helping'][i_Helping]['name_user'] +` 
+														`+ result['data_sos_Helping'][i_Helping]['name_user'] +`
 													</p>
 													<p class="mb-0 font-13 text-secondary">`+ phone_sos_helping +`</p>
 
 												</div>
-												<div class="col-6"> 
+												<div class="col-6">
 													<div class="w-100">
 														<span class="mb-1 font-14 h5">ข้อมูลหน่วยปฏิบัติการ</span>
 														<div class="float-end">
-															<span class="badge badge-pill bg-light-`+ color_operating_suit_type +` text-`+ color_operating_suit_type +` mr" > 
+															<span class="badge badge-pill bg-light-`+ color_operating_suit_type +` text-`+ color_operating_suit_type +` mr" >
 																`+ operating_suit_type_helping +`
 															</span>
-															<span class="badge badge-pill bg-light-info text-info" > 
+															<span class="badge badge-pill bg-light-info text-info" >
 																`+ vehicle_type_helping +`
 															</span>
 														</div>
 													</div>
 													<p class="mb-0 font-13 text-secondary">
-														ชื่อเจ้าหน้าที่ : `+ name_helper_helping +` 
+														ชื่อเจ้าหน้าที่ : `+ name_helper_helping +`
 													</p>
 													<p class="mb-0 font-13 text-secondary">
 														หน่วยปฏิบัติการ : `+ organization_helper_helping +`
@@ -2953,7 +2972,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 									</div>
 								`;
 
@@ -2965,7 +2984,7 @@
 
 				}
 
-				
+
 
 				if (result['check_data'] != "ไม่มีข้อมูล") {
 
@@ -3059,14 +3078,14 @@
 							// 		<img src="`+ photo_sos +`" class="rounded-circle" width="46" height="46" alt="" />
 							// 	</div>
 							// 	<div class="ms-2">
-							// 		<h6 class="mb-1 font-14">`+ result[i_wait]['name_user'] +` 
+							// 		<h6 class="mb-1 font-14">`+ result[i_wait]['name_user'] +`
 							// 			<span class="badge badge-pill bg-light-danger text-danger" id="time-diff-`+ i_wait +`">
 							// 				`+ formattedTimeDiff +`
 							// 			</span>
 							// 		</h6>
 							// 		<p class="mb-0 font-13 text-secondary">`+ phone_sos + result[i_wait]['id'] +`</p>
 							// 	</div>
-							// 	<div class="list-inline d-flex  ms-auto"> 
+							// 	<div class="list-inline d-flex  ms-auto">
 							// 		<a onclick="sos_1669_command_by('{{ Auth::user()->id }}' , `+ result[i_wait]['id'] +`);" class="btnSosWait">สั่งการ</a>
 							// 	</div>
 							// 	</div>
@@ -3084,7 +3103,7 @@
 											<span>ผ่านมาแล้ว</span> <span id="time-diff-`+ i_wait +`">`+ formattedTimeDiff +`</span>
 										</span>
 									</div>
-									<div class="list-inline d-flex  ms-auto"> 
+									<div class="list-inline d-flex  ms-auto">
 										<a onclick="sos_1669_command_by('{{ Auth::user()->id }}' , `+ result[i_wait]['id'] +`);" class="btnSosWait">สั่งการ</a>
 									</div>
 								</div>
@@ -3108,7 +3127,7 @@
 							}, 60000); // update every minute
 						}
 
-	        			
+
 	        		}
 
 				}
@@ -3175,7 +3194,7 @@
                 		photo_officer = "{{ url('/img/stickerline/Flex/12.png') }}" ;
                 	}
 
-                	html_officer_Standby = html_officer_Standby + 
+                	html_officer_Standby = html_officer_Standby +
 	                	`<a class="item owlItemOfficer btn" onclick="Forward_notify('`+item['id']+`','`+result['id']+`')">
 	                        <div class="badgeImg">
 	                            <img style="opacity: 1 !important;" src="`+photo_officer+`" class="rounded-circle" width="46" height="46">
@@ -3192,15 +3211,15 @@
                 }
 
             });
-        
+
         // console.log(html_officer_Standby);
 
         if (result['forward_operation_from']){
-        	
+
             let old_operating_code = '';
 	    	let old_rc = '';
 	    	let class_old_rc = '';
-            
+
             old_operating_code = result['old_operating_code'];
 			old_rc = result['old_rc'];
 
@@ -3246,7 +3265,7 @@
         }
 
         setTimeout(function() {
-      
+
 	        text_message = `<div class="cardAlertOfficer" style="width:100%">
 	                                <h5 class="headerCardOfficer">
 	                                    `+data_text_sos+`
@@ -3257,7 +3276,7 @@
 	                                <div class="owl-carousel owlOfficer owl-theme">
 
 	                                 	`+html_officer_Standby+`
-	                                    
+
 	                                </div>
 
 	                        </div>`;
@@ -3323,11 +3342,11 @@
 		        ]
 	            ],onClosed: function asdfa(instance, toast, closedBy){
 	                // if (closedBy === 'timeout') {
-	                // 	// 
+	                // 	//
 	                // }
 
 	                add_data_new_sos1669_to_div(result);
-	               
+
 	            },onOpening: function () {
 	                // console.log(pass);
 	                let tag_progressbar = document.querySelector('.iziToast-progressbar');
@@ -3369,7 +3388,7 @@
 				            }
 				        });
 				    });
-					
+
 
 					let bg_color = tag_progressbar.querySelector('.bg-color-progressbar');
 
@@ -3384,7 +3403,7 @@
 	                let audio_alet_new_sos_1669 = new Audio("{{ asset('sound/Alarm Clock.mp3') }}");
 	                    audio_alet_new_sos_1669.play();
 	            }
-	        
+
 	        });
 
 		}, 1000);
@@ -3413,7 +3432,7 @@
     		tag_a_new_sos1669.setAttribute('href', '{{ url("/") }}' + "/sos_help_center/" + id + "/edit");
 
     	tag_a_new_sos1669.click();
-    	
+
     }
 
     function click_tag_a_go_to_map(lat,lng){
@@ -3471,7 +3490,7 @@
             .then(result => {
                 // console.log(result);
                 if (result == "OK") {
-                	
+
                 	fetch("{{ url('/') }}/api/change_status_officer_to" + '/' + '{{ Auth::user()->id }}' + '/' + '{{ Auth::user()->sub_organization }}' + '/' + 'Helping')
 				            .then(response => response.text())
 				            .then(result => {
@@ -3716,7 +3735,7 @@
 
 		// status == เสร็จสิ้น >> show_min_case / grade
         if(result['status'] == "เสร็จสิ้น"){
-        	
+
         	// grade
 			let grade = result['score_total'] ;
 			let rounded_grade = Math.ceil(result['score_total']) ;
@@ -3828,12 +3847,12 @@
         	let html_show_min_case = 'ใช้เวลารวม : <span class="' + bg_show_min_case + '">' + show_min_case + '</span>' ;
         	new_div_data_sos.querySelector('[mock_up_mark="grade"]').insertAdjacentHTML('afterbegin', html_show_min_case);
         }
-        
+
         // forward_operation_to เคสนี้ส่งต่อ "ไปที่" ใด
         if (result['forward_operation_to']){
 
 		    new_div_data_sos.querySelector('.forward_operation_to').classList.remove('d-none');
-	        
+
 	        new_div_data_sos.querySelector('[mock_up_mark="forward_operation_to_code"]').innerHTML = result['forward_operation_to_code'];
 	        new_div_data_sos.querySelector('[mock_up_mark="forward_operation_to_status"]').innerHTML = result['forward_operation_to_status'];
 
@@ -3847,9 +3866,9 @@
         }
         // forward_operation_from เคสนี้ส่งต่อ "มาจาก" ที่ใด
 		if (result['forward_operation_from']){
-        	
+
         	new_div_data_sos.querySelector('.forward_operation_from').classList.remove('d-none');
-	        
+
 	        new_div_data_sos.querySelector('[mock_up_mark="forward_operation_from_code"]').innerHTML = result['forward_operation_from_code'];
 	        new_div_data_sos.querySelector('[mock_up_mark="forward_operation_from_name_helper"]').innerHTML = result['forward_operation_from_name_helper'];
 
@@ -4061,9 +4080,9 @@
 		// }else{
 		// 	html_star = '<span class="text-secondary">ไม่มีการประเมิน</span>' ;
 		// }
-		
 
-  //   	let text_html = 
+
+  //   	let text_html =
 
 	 //    	`
 	 //    	<a class="data-show col-lg-6 col-md-6 col-12 a_data_user" href="{{url('/') }}`+url_edit+`">
@@ -4098,8 +4117,8 @@
   //                                   `+html_address+`
   //                               </p>
   //                           </div>
-  //                       </div> 
-                        
+  //                       </div>
+
   //                       <hr style="margin-top: -5px;">
 
   //                       <div class="sos-username">
@@ -4188,7 +4207,7 @@
 
         return timeWithSuffix ;
     }
-        
+
 
 </script>
 

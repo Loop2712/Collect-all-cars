@@ -51,7 +51,7 @@ Route::get('login/line/callback', 'Auth\LoginController@handleLineCallback');
 // TU
 Route::get('login/line/tu_sos', 'Auth\LoginController@redirectToLine_TU_SOS');
 
-// Line login other app 
+// Line login other app
 Route::get('login/line/{user_from}', 'Auth\LoginController@redirectToLine_other_app_SOS');
 Route::get('/sos_login/{user_from}', 'Sos_mapController@sos_login_other_app');
 
@@ -96,16 +96,16 @@ Route::get('/select_get', function () {
 });
 
 Route::get('/terms_of_service', function () {
-    
+
     return view('terms_of_service');
 });
 
 Route::get('/privacy_policy', function () {
-    
+
     return view('privacy_policy');
 });
 Route::get('/faq', function () {
-    
+
     return view('faq');
 });
 
@@ -113,7 +113,7 @@ Auth::routes();
 
 // ADMIN VIICHECK
 Route::middleware(['auth', 'role:admin'])->group(function () {
-	
+
 	Route::get('/dashboard', 'DashboardController@dashboard');
 	Route::get('/manage_user', 'Manage_userController@manage_user');
 	Route::get('/view_new_user', 'Manage_userController@view_new_user');
@@ -130,7 +130,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	    return view('guest');
 	});
 	Route::get('/guest_latest', 'DashboardController@guest_latest');
-	
+
 	Route::get('/report_register_cars', 'DashboardController@report_register_cars');
 	Route::get('/add_news', 'DashboardController@add_news');
 
@@ -138,7 +138,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 	Route::get('/change_ToGold', 'GuestController@change_ToGold');
 	Route::get('/change_ToSilver', 'GuestController@change_ToSilver');
 	Route::get('/change_ToBronze', 'GuestController@change_ToBronze');
-	
+
 	Route::resource('profanity', 'ProfanityController');
 	Route::resource('report_news', 'Report_newsController');
 	Route::resource('insurance', 'InsuranceController');
@@ -185,13 +185,16 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('/sos_score_helper', 'PartnerController@sos_score_helper');
 	Route::get('/score_helper/{user_id}', 'PartnerController@score_helper');
 
-	// BROADCAST 
+	// BROADCAST
 	Route::get('/broadcast/dashboard', 'PartnerController@dashboard_broadcast');
 	Route::get('/broadcast/content', 'PartnerController@content_broadcast');
 	Route::get('/broadcast/broadcast_by_car', 'PartnerController@broadcast_by_car');
 	Route::get('/broadcast/broadcast_by_check_in', 'PartnerController@broadcast_by_check_in');
 	Route::get('/broadcast/broadcast_by_user', 'PartnerController@broadcast_by_user');
-	
+
+	// DASHBOARD
+    Route::get('/dashboard_index', 'Partner_DashboardController@dashboard_index');
+
 	// Route::get('/sos_insurance', 'PartnerController@sos_insurance');
 		Route::post('/partner_add_area', 'PartnerController@partner_add_area');
 		Route::get('/add_area', 'PartnerController@add_area');
@@ -214,7 +217,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::resource('data_1669_operating_unit', 'Data_1669_operating_unitController');
 	Route::get('sos_help_center/{sos_id}/rate_case', 'Sos_help_centerController@rate_case');
 	Route::get('sos_help_center/{sos_id}/give_rate_case', 'Sos_help_centerController@give_rate_case');
-	
+
 	Route::get('all_name_user_partner', 'Sos_help_centerController@all_name_user_partner');
 	Route::resource('data_1669_officer_command', 'Data_1669_officer_commandController');
 
@@ -245,7 +248,7 @@ Route::get('register_new_officer', 'Sos_help_centerController@register_new_offic
 // 	Route::get('/sos_partner', 'PartnerController@view_sos');
 // 	// Route::get('/sos_insurance', 'PartnerController@sos_insurance');
 // 	Route::get('/sos_detail_partner', 'PartnerController@sos_detail_chart');
-	
+
 
 // });
 // end partner
@@ -266,11 +269,11 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('sos_map', 'Sos_mapController')->except(['index','show','edit']);
 	Route::get('sos_insurance_blade', 'Sos_mapController@sos_insurance_blade');
 	// Route::get('/sosmap', 'SosController@sosmap');
-	
+
 	Route::get('/check_in_finish', function () {
 	    return view('check_in/check_in_finish');
 	});
-	
+
 	// -------- CONDO ---------
 	Route::get('select_condo', 'Partner_condoController@select_condo');
 	Route::get('/data_user_of_condo', 'Partner_condoController@data_user_of_condo');
@@ -319,7 +322,7 @@ Route::get('/market/motercycle/{id}', 'MotercleyviewController@show');
 // END AUTO LOHIN FROM FLEX LINE
 
 	Route::get('/edit_profile_facebook', 'ProfileController@edit_profile_facebook');
-	
+
 //Route::resource('car','CarController');
 
 Route::resource('detail', 'DetailController');
@@ -382,22 +385,22 @@ Route::get('/pok_tek_tung', 'SosController@pok_tek_tung');
 Route::resource('organization', 'OrganizationController')->except(['index','show']);
 
 Route::get('/sos_thank', function () {
-    
+
     return view('sos_map/sos_thank');
 });
 
 Route::get('/sos_thank_area', function () {
-    
+
     return view('sos_map/sos_thank_area');
 });
 
 Route::get('/test_test', function () {
-    
+
     return view('test_test');
 });
 
 Route::get('/test_link_line', function () {
-    
+
     return view('test_link_line');
 });
 
@@ -415,17 +418,17 @@ Route::resource('d-p_tu_student', 'DP_tu_studentController');
 Route::resource('mylog_fb', 'Mylog_fbController');
 
 Route::get('qr-code-g', function () {
-  
+
     \QrCode::size(500)
             ->format('png')
             ->generate('viicheck.com', public_path('img/new_qr_code/qrcode.png'));
-    
+
   return view('qrCode');
-    
+
 });
 
 Route::get('/select_register', function () {
-    
+
     return view('select_register');
 });
 
