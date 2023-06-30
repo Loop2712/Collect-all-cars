@@ -688,7 +688,8 @@
 								</ul>
                                 <ul>
 									<li>
-										<a href="{{ url('/manage_user_partner') }}"><i class='fas fa-users-cog'></i> ขอความช่วยเหลือ</a>
+										<a href="{{ url('/sos_map_title') }}"><i class="fa-solid fa-list-ol"></i>
+										หัวข้อขอความช่วยเหลือ</a>
 									</li>
 								</ul>
 							@endif
@@ -912,7 +913,7 @@
 									</li>
 									<li> <a href="{{ url('/guest_partner') }}"><i class="fas fa-file-signature"></i> รถที่ถูกรายงาน</a>
 									</li>
-									<li> <a href="{{ url('/partner_guest_latest') }}"><i class="fas fa-history"></i>รถที่ถูกรายงานล่าสุด</a>
+									<li> <a href="{{ url('/partner_guest_latest') }}"><i class="fas fa-history"></i> รถที่ถูกรายงานล่าสุด</a>
 									</li>
 								</ul>
 							</li>
@@ -942,7 +943,15 @@
 
 									@if(Auth::check())
 					                    @if(Auth::user()->role == "admin-partner")
-											<li> <a href="{{ url('/add_area') }}" data-submenu="{{ url('/service_current') }}" data-submenu-2="{{ url('/service_pending') }}" data-submenu-3="{{ url('/service_area') }}" class="sub-menu"><i class='far fa-map'></i> พื้นที่บริการ</a></li>
+											<li>
+												<a href="{{ url('/add_area') }}" data-submenu="{{ url('/service_current') }}" data-submenu-2="{{ url('/service_pending') }}" data-submenu-3="{{ url('/service_area') }}" class="sub-menu">
+													<i class='far fa-map'></i>
+
+													<span>
+														&nbsp;พื้นที่บริการ
+													</span>
+												</a>
+											</li>
 										@endif
 									@endif
 
@@ -950,7 +959,7 @@
 										<li>
 
 											<a href="{{ url('/sos_emergency_js100') }}" data-submenu="{{ url('/sos_detail_js100') }}" class="d-block sub-menu">
-											<i class="fal fa-siren-on"></i>
+												<i class="fal fa-siren-on"></i>
 
 												<span id="div_menu_help_js100">
 													SOS by calling
