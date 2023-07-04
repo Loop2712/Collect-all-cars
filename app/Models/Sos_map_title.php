@@ -25,7 +25,7 @@ class Sos_map_title extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'name_partner', 'ask_to_partner', 'status','user_id'];
+    protected $fillable = ['title', 'name_partner', 'ask_to_partner', 'status','user_id','count'];
 
     
 }

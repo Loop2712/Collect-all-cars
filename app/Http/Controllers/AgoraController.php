@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Data_1669_officer_command;
+use App\Models\Sos_map;
 use App\Models\Sos_help_center;
 use App\Models\Agora_chat;
 
@@ -16,6 +17,9 @@ use Willywes\AgoraSDK\RtcTokenBuilder;
 
 class AgoraController extends Controller
 {
+    // // // // -------- // // // //
+    // // // // SOS 1669 // // // //
+    // // // // -------- // // // //
     public function index(Request $request)
     {
         $sos_id = $request->sos_id;
@@ -308,9 +312,28 @@ class AgoraController extends Controller
         }
 
         return $check_data_array ;
+    }
+    // // // // // ------------ // // // // //
+    // // // // // END SOS 1669 // // // // //
+    // // // // // ------------ // // // // //
 
 
+    // // // // // ---------------- // // // // //
+    // // // // // SOS 1669 COMPANY // // // // //
+    // // // // // ---------------- // // // // //
 
+    public function index_sos_map(Request $request)
+    {
+        $sos_id = $request->sos_id;
+        $user = Auth::user();
+
+        $data_sos = Sos_map::where('id', $sos_id)->first();
+
+        return view('sos_map/agora_chat/video_call', compact('sos_id','user','data_sos'));
+        
     }
 
+    // // // // // -------------------- // // // // //
+    // // // // // END SOS 1669 COMPANY // // // // //
+    // // // // // -------------------- // // // // //
 }

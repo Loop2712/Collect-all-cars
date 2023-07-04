@@ -101,7 +101,24 @@
 
         <hr>
 
-        <div class="form-row mt-3">
+        <div class="row mt-3">
+            <div class="col-6">
+                <input id="input_new_title_sos" type="text" class="form-control" value="" placeholder="เพิ่มหัวข้อใหม่ที่นี่..">
+            </div>
+            <div class="col-2 text-end d-grid">
+                <button type="button" id="btn_Create_new_title_sos" onclick="Create_new_title_sos();" class="btn btn-info main-shadow main-radius">
+                    เพิ่มหัวข้อใหม่
+                </button>
+            </div>
+            <div class="col-4" style="position: relative;">
+                <p id="create_now_loading" class="text-success d-none" style="font-size: 23px;position: absolute;top: 5px;">
+                    <span class="spinner-border" role="status" aria-hidden="true"></span>
+                    &nbsp;กำลังโหลด...
+                </p>
+            </div>
+        </div>
+
+        <div class="form-row mt-4">
             <div class="col-12">
                 <div class="row row-cols-1 row-cols-lg-4">
                     <div class="col">
@@ -110,7 +127,9 @@
                                 <div class="d-flex align-items-center">
                                     <div>
                                         <p class="mb-0 text-white">รวมทั้งหมด</p>
-                                        <h5 class="mb-0 text-white">867</h5>
+                                        <h5 class="mb-0 text-white" id="h5_count_all_title">
+                                            {{ count($sos_map_title_by_user) + count($sos_map_title) + 3 }}
+                                        </h5>
                                     </div>
                                     <div class="ms-auto text-white">
                                         <i class="fa-solid fa-bars font-30"></i>
@@ -122,20 +141,38 @@
                             </div>
                         </div>
                     </div>
+
+                    @php
+                        $count_all = count($sos_map_title_by_user) + count($sos_map_title) + 3 ;
+                        $count_admin = count($sos_map_title) + 3 ;
+                        $count_user = count($sos_map_title_by_user) ;
+
+                        // ADMIN
+                        $percent_card_admin = ($count_admin / $count_all) * 100 ;
+                        $percent_card_admin = number_format($percent_card_admin, 2, '.', '');
+
+                        // USER
+                        $percent_card_user = ($count_user / $count_all) * 100 ;
+                        $percent_card_user = number_format($percent_card_user, 2, '.', '');
+
+                    @endphp
+
                     <div class="col">
                         <div class="card radius-10 overflow-hidden bg-gradient-burning">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <p class="mb-0 text-white">หัวข้อแอดมินเพิ่ม</p>
-                                        <h5 class="mb-0 text-white">52,945</h5>
+                                        <p class="mb-0 text-white">เพิ่มโดยแอดมิน</p>
+                                        <h5 class="mb-0 text-white" id="h5_count_title_by_admin">
+                                            {{ count($sos_map_title) + 3 }}
+                                        </h5>
                                     </div>
                                     <div class="ms-auto text-white">
                                         <i class="fa-solid fa-user-tie font-30"></i>
                                     </div>
                                 </div>
                                 <div class="progress bg-white-2 radius-10 mt-4" style="height:4.5px;">
-                                    <div class="progress-bar bg-white" role="progressbar" style="width: 72%"></div>
+                                    <div id="div_percent_card_admin" class="progress-bar bg-white" role="progressbar" style="width: {{ $percent_card_admin  }}%"></div>
                                 </div>
                             </div>
                         </div>
@@ -145,15 +182,17 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <p class="mb-0 text-white">หัวข้อผู้ขอความช่วยเหลือเพิ่ม</p>
-                                        <h5 class="mb-0 text-white">52,945</h5>
+                                        <p class="mb-0 text-white">เพิ่มโดยผู้ขอความช่วยเหลือ</</p>
+                                        <h5 class="mb-0 text-white" id="h5_count_title_by_user">
+                                            {{ count($sos_map_title_by_user) }}
+                                        </h5>
                                     </div>
                                     <div class="ms-auto text-white">
                                         <i class="fa-solid fa-users font-30"></i>
                                     </div>
                                 </div>
                                 <div class="progress bg-white-2 radius-10 mt-4" style="height:4.5px;">
-                                    <div class="progress-bar bg-white" role="progressbar" style="width: 68%"></div>
+                                    <div class="progress-bar bg-white" role="progressbar" style="width: {{ $percent_card_user  }}%"></div>
                                 </div>
                             </div>
                         </div>
@@ -165,7 +204,7 @@
                                     <div>
                                         <p class="mb-0 text-white">เปิดใช้งาน</p>
                                         <h5 class="mb-0 text-white">
-                                            <span>8</span> / 10
+                                            <span id="card_count_title_active"></span> / 10
                                         </h5>
                                     </div>
                                     <div class="ms-auto text-white">
@@ -173,7 +212,7 @@
                                     </div>
                                 </div>
                                 <div class="progress  bg-white-2 radius-10 mt-4" style="height:4.5px;">
-                                    <div class="progress-bar bg-white" role="progressbar" style="width: 80%"></div>
+                                    <div id="div_percent_card_active" class="progress-bar bg-white" role="progressbar" style="width: 0%"></div>
                                 </div>
                             </div>
                         </div>
@@ -182,22 +221,6 @@
             </div>
         </div>
 
-        <div class="row mt-3">
-            <div class="col-6">
-                <input id="input_new_title_sos" type="text" class="form-control" value="" placeholder="เพิ่มหัวข้อใหม่ที่นี่..">
-            </div>
-            <div class="col-2 text-end d-grid">
-                <button type="button" onclick="Create_new_title_sos();" class="btn btn-info main-shadow main-radius">
-                    เพิ่มหัวข้อใหม่
-                </button>
-            </div>
-            <div class="col-4" style="position: relative;">
-                <p id="create_now_loading" class="text-success d-none" style="font-size: 23px;position: absolute;top: 5px;">
-                    <span class="spinner-border" role="status" aria-hidden="true"></span>
-                    &nbsp;กำลังโหลด...
-                </p>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -208,12 +231,12 @@
                 <div class="card-title row d-flex align-items-center">
                     <div class="col-9">
                         <h3 class="mb-0 text-primary">
-                            <i class="fa-solid fa-user-tie"></i>&nbsp;&nbsp;หัวข้อแอดมินเพิ่ม
+                            <i class="fa-duotone fa-memo-circle-check"></i>&nbsp;&nbsp;หัวข้อที่พร้อมใช้งาน
                         </h3>
                     </div>
                     <div class="col-3">
                         <div class="float-end">
-                            แสดงผล <span>3</span> / 10
+                            แสดงผล <span id="text_count_title_active"></span> / 10
                         </div>
                     </div>
                 </div>
@@ -292,8 +315,8 @@
                             <div class="float-end">
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="checkbox" id="checkbox_id_{{ $item->id }}" class="checkbox" {{ $status_checked }}>
-                                        <label for="checkbox_id_{{ $item->id }}" class="switch">
+                                        <input type="checkbox" id="checkbox_id_{{ $item->id }}" name="input_checkbox" class="checkbox" {{ $status_checked }}>
+                                        <label for="checkbox_id_{{ $item->id }}" class="switch" onclick="change_status_title('{{ $item->id }}');">
                                             <div class="powersign"></div>
                                         </label>
                                     </div>
@@ -320,29 +343,50 @@
             <div class="card-body p-5">
                 <div class="card-title d-flex align-items-center">
                     <h3 class="mb-0 text-danger">
-                        <i class="fa-solid fa-users"></i>&nbsp;&nbsp;หัวข้อผู้ขอความช่วยเหลือเพิ่ม
+                        <i class="fa-regular fa-circle-ellipsis-vertical"></i>&nbsp;&nbsp;หัวข้ออื่นๆ
                     </h3>
 
                 </div>
                 <hr>
 
-                <div class="row" style="margin-top: 25px;">
-                    <div class="col-9">
-                        <h5>
-                            <b>รถชน</b>
-                        </h5>
-                    </div>
-                    <div class="col-3">
-                        <div class="float-end">
-                            <span class="btn btn-info main-radius main-shadow">
-                                เพิ่มหัวข้อนี้
-                            </span>
+                @foreach($sos_map_title_by_user as $item_user)
+                    <div class="row" style="margin-top: 25px;">
+                        <div class="col-8">
+                            <h5>
+                                <b>{{ $item_user->title }}</b>
+                            </h5>
                         </div>
+                        @php
+                            if( empty($item_user->name_partner) ){
+                                $class_div_count = '' ;
+                            }else{
+                                $class_div_count = 'd-none' ;
+                            }
+                        @endphp
+                        <div class="col-1">
+                            <div class="{{ $class_div_count }}" id="div_count_title_by_user_{{ $item_user->id }}">
+                                {{ $item_user->count }}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="float-end" id="div_btn_add_title_by_user_{{ $item_user->id }}">
+
+                                @if( empty($item_user->name_partner) )
+                                    <span class="btn btn-info main-radius main-shadow" style="width: 90%;" title="เพิ่มหัวข้อนี้" onclick="add_title_by_user('{{ $item_user->id }}');">
+                                        <center><i class="fa-sharp fa-solid fa-plus"></i></center>
+                                    </span>
+                                @else
+                                    <span class="btn btn-outline-success main-radius main-shadow" style="width: 90%;" title="เพิ่มหัวข้อนี้เรียบร้อยแล้ว">
+                                        <center><i class="fa-duotone fa-check"></i></center>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <center>
+                            <hr style="border: 1px solid ;width: 100%;">
+                        </center>
                     </div>
-                    <center>
-                        <hr style="border: 1px solid ;width: 100%;">
-                    </center>
-                </div>
+                @endforeach
 
             </div>
         </div>
@@ -352,6 +396,15 @@
 
 
 <script>
+
+    var count_active ;
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+        check_count_title_active();
+    });
+
+    // --------------------------------------------------------------
     
     var name_partner = '{{ $name_partner }}';
         // console.log('name_partner => ' + name_partner);
@@ -360,32 +413,205 @@
 
         let input_new_title_sos = document.querySelector('#input_new_title_sos').value;
             // console.log(input_new_title_sos);
-        document.querySelector('#create_now_loading').classList.remove('d-none');
 
-        fetch("{{ url('/') }}/create_new_title_sos?title=" + input_new_title_sos + '&name_partner=' + name_partner)
+        if( input_new_title_sos ){
+
+            document.querySelector('#create_now_loading').classList.remove('d-none');
+
+            fetch("{{ url('/') }}/create_new_title_sos?title=" + input_new_title_sos + '&name_partner=' + name_partner)
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                    if(result.check == 'OK'){
+                        let content_title_sos = document.querySelector('#content_title_sos');
+
+                        let html = `
+                            <div class="row" style="margin-top: 20px;" id="data_title_id_`+result['data']['id']+`">
+                                <div class="col-8">
+                                    <h5><b>`+input_new_title_sos+`</b></h5>
+                                </div>
+                                <div class="col-4">
+                                    <div class="float-end">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input type="checkbox" id="checkbox_id_`+result['data']['id']+`" name="input_checkbox" class="checkbox">
+                                                <label for="checkbox_id_`+result['data']['id']+`" class="switch" onclick="change_status_title(`+result['data']['id']+`);">
+                                                    <div class="powersign"></div>
+                                                </label>
+                                            </div>
+                                            <div class="col-6">
+                                                <span class="btn btn-danger main-shadow main-radius" onclick="delete_title_sos('`+input_new_title_sos+`','`+result['data']['id']+`');">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <center>
+                                    <hr style="border: 1px solid ;width: 100%;">
+                                </center>
+                            </div>
+                        `;
+
+                        content_title_sos.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+                        document.querySelector('#create_now_loading').classList.add('d-none');
+                        document.querySelector('#input_new_title_sos').value = '';
+
+                        let h5_count_all_title = document.querySelector('#h5_count_all_title').innerText;
+                        document.querySelector('#h5_count_all_title').innerHTML = parseInt(h5_count_all_title) + 1 ;
+
+                        let h5_count_title_by_admin = document.querySelector('#h5_count_title_by_admin').innerText;
+                        document.querySelector('#h5_count_title_by_admin').innerHTML = parseInt(h5_count_title_by_admin) + 1 ;
+
+                        // div_percent_card_admin
+                        let count_all = parseInt(h5_count_all_title) + 1 ;
+                        let count_admin = parseInt(h5_count_title_by_admin) + 1 ;
+                        let percent_card_admin = (count_admin / count_all) * 100 ;
+                            percent_card_admin = percent_card_admin.toFixed(2);
+                        document.querySelector('#div_percent_card_admin').setAttribute('style' , 'width:' + percent_card_admin + '%;');
+
+                        if(result.by_user == 'Yes'){
+                            let html_btn = `
+                                <span class="btn btn-outline-success main-radius main-shadow" style="width: 90%;" title="เพิ่มหัวข้อนี้เรียบร้อยแล้ว">
+                                    <center><i class="fa-duotone fa-check"></i></center>
+                                </span>
+                            `;
+                            document.querySelector('#div_btn_add_title_by_user_'+result['data']['id']).innerHTML = html_btn; // แทรกล่างสุด
+                            document.querySelector('#div_count_title_by_user_'+result['data']['id']).classList.add('d-none');
+                        }
+
+                    }else{
+                        alert('มีหัวข้อนี้อยู่แล้ว');
+                        document.querySelector('#create_now_loading').classList.add('d-none');
+                        document.querySelector('#input_new_title_sos').value = '';
+                    }
+            });
+
+        }else{
+            document.querySelector('#input_new_title_sos').focus();
+        }
+
+        check_count_title_active();
+
+    }
+
+    function delete_title_sos(text_title , title_id){
+
+        fetch("{{ url('/') }}/delete_title_sos?title=" + text_title + '&name_partner=' + name_partner)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
-                if(result.check == 'OK'){
-                    let content_title_sos = document.querySelector('#content_title_sos');
+                if(result['delete'] == 'Yes'){
+                    document.querySelector('#data_title_id_'+title_id).remove();
+                }
 
+                if(result['remove'] == 'Yes'){
+                    // console.log(result);
+                    document.querySelector('#data_title_id_'+title_id).remove();
                     let html = `
+                            <span class="btn btn-info main-radius main-shadow" style="width: 90%;" title="เพิ่มหัวข้อนี้" onclick="add_title_by_user('`+result['data']['id']+`');">
+                                <center><i class="fa-sharp fa-solid fa-plus"></i></center>
+                            </span>
+                        `;
+                    document.querySelector('#div_btn_add_title_by_user_'+result['data']['id']).innerHTML = html; // แทรกล่างสุด
+                    document.querySelector('#div_count_title_by_user_'+result['data']['id']).classList.remove('d-none');
+                }
+
+                let h5_count_all_title = document.querySelector('#h5_count_all_title').innerText;
+                document.querySelector('#h5_count_all_title').innerHTML = parseInt(h5_count_all_title) - 1 ;
+
+                let h5_count_title_by_admin = document.querySelector('#h5_count_title_by_admin').innerText;
+                document.querySelector('#h5_count_title_by_admin').innerHTML = parseInt(h5_count_title_by_admin) - 1 ;
+
+                // div_percent_card_admin
+                let count_all = parseInt(h5_count_all_title) - 1 ;
+                let count_admin = parseInt(h5_count_title_by_admin) - 1 ;
+                let percent_card_admin = (count_admin / count_all) * 100 ;
+                    percent_card_admin = percent_card_admin.toFixed(2);
+                document.querySelector('#div_percent_card_admin').setAttribute('style' , 'width:' + percent_card_admin + '%;');
+
+        });
+
+        check_count_title_active();
+
+    }
+
+    function change_status_title(id){
+
+        let check_checkbox ;
+        let checkbox = document.querySelector('#checkbox_id_'+id);
+        // console.log(checkbox.checked);
+
+        if(checkbox.checked){
+            check_checkbox = 'no'; // เดิม เปิด ==> สั่งให้ ปิด
+        }else{
+            check_checkbox = 'active'; // เดิม ปิด ==> สั่งให้ เปิด
+        }
+
+        if(check_checkbox == 'active'){
+
+            if(count_active >= 10){
+                alert('จำนวนเกินกว่าที่กำหนด');
+                document.querySelector('#checkbox_id_'+id).click();
+            }else{
+                fetch("{{ url('/') }}/change_status_title?check_checkbox=" + check_checkbox + '&id=' + id)
+                    .then(response => response.text())
+                    .then(result => {
+                        // console.log(result);
+                });
+            }
+
+        }else{
+
+            fetch("{{ url('/') }}/change_status_title?check_checkbox=" + check_checkbox + '&id=' + id)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+            });
+        }
+
+        
+
+        check_count_title_active();
+
+    }
+    
+    function add_title_by_user(id){
+
+        fetch("{{ url('/') }}/add_title_by_user?id=" + id)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                let html_btn = `
+                        <span class="btn btn-outline-success main-radius main-shadow" style="width: 90%;" title="เพิ่มหัวข้อนี้เรียบร้อยแล้ว">
+                            <center><i class="fa-duotone fa-check"></i></center>
+                        </span>
+                    `;
+                document.querySelector('#div_btn_add_title_by_user_'+id).innerHTML = html_btn; // แทรกล่างสุด
+                document.querySelector('#div_count_title_by_user_'+id).classList.add('d-none');
+
+                // //////////////////////////////////////////////////////////////
+
+                let html_div_new_title = `
                         <div class="row" style="margin-top: 20px;" id="data_title_id_`+result['data']['id']+`">
                             <div class="col-8">
-                                <h5><b>`+input_new_title_sos+`</b></h5>
+                                <h5><b>`+result['data']['title']+`</b></h5>
                             </div>
                             <div class="col-4">
                                 <div class="float-end">
                                     <div class="row">
                                         <div class="col-6">
-                                            <input type="checkbox" id="checkbox_id_`+result['data']['id']+`" class="checkbox">
-                                            <label for="checkbox_id_`+result['data']['id']+`" class="switch">
+                                            <input type="checkbox" id="checkbox_id_`+result['data']['id']+`" name="input_checkbox" class="checkbox">
+                                            <label for="checkbox_id_`+result['data']['id']+`" class="switch" onclick="change_status_title(`+result['data']['id']+`);">
                                                 <div class="powersign"></div>
                                             </label>
                                         </div>
                                         <div class="col-6">
-                                            <span class="btn btn-danger main-shadow main-radius" onclick="delete_title_sos('`+input_new_title_sos+`','`+result['data']['id']+`');">
+                                            <span class="btn btn-danger main-shadow main-radius" onclick="delete_title_sos('`+result['data']['title']+`','`+result['data']['id']+`');">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </span>
                                         </div>
@@ -398,29 +624,39 @@
                         </div>
                     `;
 
-                    content_title_sos.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+                    content_title_sos.insertAdjacentHTML('beforeend', html_div_new_title); // แทรกล่างสุด
 
-                    document.querySelector('#create_now_loading').classList.add('d-none');
-                    document.querySelector('#input_new_title_sos').value = '';
-
-                }
 
         });
+
+        check_count_title_active();
 
     }
 
-    function delete_title_sos(text_title , title_id){
+    function check_count_title_active(){
 
-        fetch("{{ url('/') }}/delete_title_sos?title=" + text_title + '&name_partner=' + name_partner)
-            .then(response => response.text())
-            .then(result => {
-                console.log(result);
+        count_active = 3 ;
 
-                if(result == 'OK'){
-                    document.querySelector('#data_title_id_'+title_id).remove();
+        setTimeout(function() {
+            
+            let input_checkbox = document.querySelectorAll('[name="input_checkbox"]');
+            // console.log(input_checkbox);
+
+            input_checkbox.forEach(input_checkbox => {
+                if(input_checkbox.checked){
+                    count_active = count_active + 1 ;
                 }
+            })
 
-        });
+            document.querySelector('#text_count_title_active').innerHTML = count_active ;
+            document.querySelector('#card_count_title_active').innerHTML = count_active ;
+
+            // div_percent_card_active
+            let percent_card_active = (count_active / 10) * 100 ;
+                percent_card_active = percent_card_active.toFixed(2);
+            document.querySelector('#div_percent_card_active').setAttribute('style' , 'width:' + percent_card_active + '%;');
+
+        }, 500);
 
     }
 

@@ -231,6 +231,8 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::resource('sos_map_title', 'Sos_map_titleController')->except(['create','edit','show']);
 	Route::get('create_new_title_sos', 'Sos_map_titleController@create_new_title_sos');
 	Route::get('delete_title_sos', 'Sos_map_titleController@delete_title_sos');
+	Route::get('change_status_title', 'Sos_map_titleController@change_status_title');
+	Route::get('add_title_by_user', 'Sos_map_titleController@add_title_by_user');
 
 
 });
@@ -491,11 +493,20 @@ Route::get('/mockup_video_call', function () {
 //     return view('sos_help_center/user_video_call');
 // });
 
+////////////////////////////
+//////// Agora Chat ////////
+////////////////////////////
 Route::group(['middleware' => ['auth']], function () {
-	// index
-    Route::get('user_video_call/sos_help_center', 'AgoraController@index');
-    // ไม่ทราบ
-	Route::post('/agora/call-user', 'AgoraController@callUser');
+
+	// SOS 1669 //
+	Route::get('user_video_call/sos_help_center', 'AgoraController@index'); // index
+	Route::post('/agora/call-user', 'AgoraController@callUser'); // ไม่ทราบ
+	// END SOS 1669 //
+
+	// SOS COMPANY //
+    Route::get('video_call/sos_map', 'AgoraController@index_sos_map');
+	// END SOS COMPANY //
+
 });
 
 Route::resource('agora_chat', 'Agora_chatController');

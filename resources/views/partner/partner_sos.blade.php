@@ -260,6 +260,10 @@
                                     ดูหมุด
                                 </a>
                             @endif
+
+                            <a href="{{ url('/video_call/sos_map') }}?sos_id={{ $item->id }}" class="btn btn-primary main-shadow main-radius">
+                                <i class="fa-solid fa-list-check"></i>
+                            </a>
                             
                         </div>
                         </div>

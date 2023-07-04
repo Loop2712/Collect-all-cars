@@ -18,6 +18,7 @@ use App\Models\LineMessagingAPI;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailTo_sos_partner;
 use App\Models\Partner_condo;
+use App\Models\Sos_map_title;
 use App\User;
 
 
@@ -86,9 +87,83 @@ class Sos_mapController extends Controller
         
         $requestData = $request->all();
 
+        // ตรวจสอบ และเพิ่ม title sos
+        if( $requestData['title_sos'] == 'อื่นๆ' ){
+
+            $sos_map_title = Sos_map_title::where('name_partner', $requestData['area'])
+                ->where('ask_to_partner' , null)
+                ->where('title' , $requestData['title_sos_other'])
+                ->first();
+
+            if( empty($sos_map_title) ){
+
+                $title_by_user = Sos_map_title::where('ask_to_partner', $requestData['area'])
+                    ->where('title' , $requestData['title_sos_other'])
+                    ->first();
+
+                if(!empty($title_by_user)){
+
+                    if(empty($title_by_user->count)){
+                        $count_by_user_old = 0 ;
+                    }else{
+                        $count_by_user_old = intval($title_by_user->count) ;
+                    }
+
+                    DB::table('sos_map_titles')
+                        ->where('id',$title_by_user->id)
+                        ->update([
+                            'count' => $count_by_user_old + 1 ,
+                    ]);
+
+                }else{
+
+                    $new_data_title = [];
+                    $new_data_title['title'] = $requestData['title_sos_other'];
+                    $new_data_title['ask_to_partner'] = $requestData['area'];
+                    $new_data_title['user_id'] = $requestData['user_id'];
+                    $new_data_title['count'] = '1';
+
+                    Sos_map_title::create($new_data_title);
+
+                }
+
+            }else{
+
+                if(empty($sos_map_title->count)){
+                    $count_old = 0 ;
+                }else{
+                    $count_old = intval($sos_map_title->count) ;
+                }
+
+                DB::table('sos_map_titles')
+                    ->where('id',$sos_map_title->id)
+                    ->update([
+                        'count' => $count_old + 1 ,
+                ]);
+            }
+
+        }else{
+
+            $sos_map_title_main = Sos_map_title::where('name_partner', $requestData['area'])
+                ->where('title' , $requestData['title_sos'])
+                ->first();
+
+            if(empty($sos_map_title_main->count)){
+                $count_main = 0 ;
+            }else{
+                $count_main = intval($sos_map_title_main->count) ;
+            }
+
+            DB::table('sos_map_titles')
+                ->where('id',$sos_map_title_main->id)
+                ->update([
+                    'count' => $count_main + 1 ,
+            ]);
+        }
+
         // echo "<pre>";
         // print_r($requestData);
-        // echo "<pre>";
+        // echo "<pre>"; 
         // exit();
         
         if (!empty($requestData['text_img'])) {

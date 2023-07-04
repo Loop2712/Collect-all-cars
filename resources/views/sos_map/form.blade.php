@@ -85,7 +85,7 @@
 
                     <div class="col-12  order-1">
                         <!-- a_help click modal -->
-                        <a id="a_help_modal" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" data-toggle="modal" data-target="#staticBackdrop"></a>
+                        <a id="a_help_modal" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" data-toggle="modal" data-target="#staticBackdrop" onclick="search_title_sos();"></a>
 
                         <!-- <a id="a_help" style="font-family: 'Kanit', sans-serif;border-radius:15px" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" onclick="area_help_general();">
                             <i class="fas fa-bullhorn"></i> <b>Ask for HELP </b>
@@ -308,16 +308,11 @@
                                                 document.querySelector('#title_sos_other').focus();
                                             }else{ 
                                                 document.querySelector('#title_sos_other').classList.add('d-none');
+                                                document.querySelector('#title_sos_other').value = null;
                                             }">
-                                        <option value="" selected > - เลือกหัวข้อการขอความช่วยเหลือ - </option>
-                                        <option value="เหตุด่วนเหตุร้าย">เหตุด่วนเหตุร้าย</option>
-                                        <option value="อุบัติเหตุ">อุบัติเหตุ</option>
-                                        <option value="ไฟไหม้">ไฟไหม้</option>
-                                        <!-- <option value="รถเสีย" >รถเสีย</option>
-                                        <option value="ทะเลาะวิวาท" >ทะเลาะวิวาท</option> -->
-
+                                        
                                         <!-- แทรกหัวข้อของ องค์กรนั้นๆที่เพิ่มเข้ามา -->
-                                        <option value="อื่นๆ">อื่นๆ</option>
+
                                     </select>
                                     <textarea class="form-control mt-2 d-none" id="title_sos_other" name="title_sos_other" rows="3"></textarea>
                                 </div>
@@ -1257,6 +1252,55 @@
 
         window.location.href = window.location.href;
         // document.querySelector('#btn_close_pls_input_phone').click();
+    }
+
+    function search_title_sos(){
+
+        let title_sos = document.querySelector('#title_sos');
+            title_sos.innerHTML = '' ;
+        let name_partner = document.querySelector('#area_help').innerText ;
+            console.log(name_partner);
+
+        fetch("{{ url('/') }}/api/search_title_sos/" + name_partner)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.title;
+                    option.value = item.title;
+                    title_sos.add(option);
+
+                    let option_class = document.createAttribute("class");
+                        option_class.value = "translate";
+                     
+                    option.setAttributeNode(option_class);
+
+                }
+
+                let option_other = document.createElement("option");
+                    option_other.text = "อื่นๆ";
+                    option_other.value = "อื่นๆ";
+                    title_sos.add(option_other); 
+
+                    let option_other_class = document.createAttribute("class");
+                        option_other_class.value = "translate";
+                     
+                    option_other.setAttributeNode(option_other_class); 
+
+                let html_option = `
+                        <option class="translate" value="" selected > - เลือกหัวข้อการขอความช่วยเหลือ - </option>
+                        <option class="translate" value="เหตุด่วนเหตุร้าย">เหตุด่วนเหตุร้าย</option>
+                        <option class="translate" value="อุบัติเหตุ">อุบัติเหตุ</option>
+                        <option class="translate" value="ไฟไหม้">ไฟไหม้</option>
+                    `;
+
+                title_sos.insertAdjacentHTML('afterbegin', html_option); // แทรกบนสุด
+
+
+            });
+
     }
 
 </script>

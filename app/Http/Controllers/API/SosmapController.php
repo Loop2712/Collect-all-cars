@@ -11,6 +11,7 @@ use Auth;
 use App\Models\Mylog;
 use App\Models\Partner;
 use App\Http\Controllers\API\API_Time_zone;
+use App\Models\Sos_map_title;
 
 class SosmapController extends Controller
 {
@@ -141,6 +142,14 @@ class SosmapController extends Controller
 
          return redirect('/sos_map/create')->with('flash_message', 'Sos_map added!');
          
+    }
+
+    function search_title_sos($name_partner){
+
+        $sos_map_title = Sos_map_title::where('name_partner', $name_partner)->where('status','active')->get();
+
+        return $sos_map_title ;
+
     }
 
 

@@ -127,17 +127,48 @@ class Sos_map_titleController extends Controller
     public function create_new_title_sos(Request $request){
         
         $requestData = $request->all();
+        $data = [];
 
         $user = Auth::user();
-
         $requestData['user_id'] = $user->id ;
-        Sos_map_title::create($requestData);
 
-        $sos_map_title = Sos_map_title::latest()->first();
+        $check_old = Sos_map_title::where('title',$requestData['title'])
+            ->where('name_partner' , $user->organization)
+            ->first();
 
-        $data = [];
-        $data['check'] = 'OK';
-        $data['data'] = $sos_map_title;
+        $check_old_by_user = Sos_map_title::where('title',$requestData['title'])
+            ->where('ask_to_partner' , $user->organization)
+            ->first();
+
+        if( empty($check_old) ){
+
+            if( empty($check_old_by_user) ){
+                Sos_map_title::create($requestData);
+
+                $sos_map_title = Sos_map_title::latest()->first();
+
+                $data['check'] = 'OK';
+                $data['by_user'] = 'No';
+                $data['data'] = $sos_map_title;
+            }else{
+                DB::table('sos_map_titles')
+                    ->where('id', $check_old_by_user->id)
+                    ->update([
+                        'name_partner' => $user->organization,
+                ]);
+
+                $sos_map_title = Sos_map_title::where('id',$check_old_by_user->id)->first();
+
+                $data['check'] = 'OK';
+                $data['by_user'] = 'Yes';
+                $data['data'] = $sos_map_title;
+            }
+            
+        }else{
+            $data['check'] = 'NO';
+        }
+
+        
 
         return $data ;
     }
@@ -145,10 +176,77 @@ class Sos_map_titleController extends Controller
     public function delete_title_sos(Request $request){
         
         $requestData = $request->all();
+        $data_return = [];
 
-        Sos_map_title::where('title' , $requestData['title'])->where('name_partner' , $requestData['name_partner'])->delete();
+        $data = Sos_map_title::where('title' , $requestData['title'])->where('name_partner' , $requestData['name_partner'])->get();
+
+        foreach ($data as $item){
+
+            if( !empty($item->ask_to_partner) ){
+
+                DB::table('sos_map_titles')
+                    ->where('title', $requestData['title'])
+                    ->where('name_partner', $requestData['name_partner'])
+                    ->update([
+                        'name_partner' => null,
+                        'status' => null,
+                ]);
+
+                $new_data = Sos_map_title::where('title' , $requestData['title'])
+                    ->where('ask_to_partner' , $requestData['name_partner'])
+                    ->first();
+
+                $data_return['remove'] = 'Yes';
+                $data_return['data'] = $new_data;
+
+            }else{
+                
+                Sos_map_title::where('id' , $item->id)->delete();
+                $data_return['delete'] = 'Yes';
+            }
+
+        }
+
+        return $data_return ;
+
+    }
+
+    public function change_status_title(Request $request){
+        
+        $requestData = $request->all();
+
+        if ($requestData['check_checkbox'] == 'active'){
+            $check_checkbox = 'active';
+        }else{
+            $check_checkbox = null;
+        }
+
+        DB::table('sos_map_titles')
+              ->where('id', $requestData['id'])
+              ->update([
+                'status' => $check_checkbox,
+          ]);
 
         return 'OK' ;
 
+    }
+
+    public function add_title_by_user(Request $request){
+        
+        $requestData = $request->all();
+        
+        $Sos_map_title = Sos_map_title::where('id' , $requestData['id'])->first();
+
+        DB::table('sos_map_titles')
+              ->where('title', $Sos_map_title->title)
+              ->update([
+                'name_partner' => $Sos_map_title->ask_to_partner,
+          ]);
+
+        $data = [];
+        $data['check'] = 'OK';
+        $data['data'] = $Sos_map_title;
+
+        return $data ;
     }
 }
