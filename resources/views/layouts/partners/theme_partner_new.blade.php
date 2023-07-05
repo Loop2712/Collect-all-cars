@@ -649,19 +649,19 @@
 					</a>
                     <ul>
                         <li>
-                            <a href="{{ url('/dashboard_index#dashboard_boardcast') }}"><i class='fas fa-users-cog'></i>Broadcast</a>
-                        </li>
-                        <li>
                             <a href="{{ url('/dashboard_index#dashboard_user') }}"><i class='fas fa-users-cog'></i>User</a>
                         </li>
                         <li>
-                            <a href="{{ url('/dashboard_index#dashboard_viicare') }}"><i class='fas fa-users-cog'></i>ViiCare</a>
+                            <a href="{{ url('/dashboard_index#dashboard_viisos') }}"><i class='fas fa-users-cog'></i>ViiSOS</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/dashboard_index#dashboard_viicare') }}"><i class='fas fa-users-cog'></i>ViiNews</a>
                         </li>
                         <li>
                             <a href="{{ url('/dashboard_index#dashboard_viimove') }}"><i class='fas fa-users-cog'></i>ViiMove</a>
                         </li>
                         <li>
-                            <a href="{{ url('/dashboard_index#dashboard_viisos') }}"><i class='fas fa-users-cog'></i>ViiSOS</a>
+                            <a href="{{ url('/dashboard_index#dashboard_boardcast') }}"><i class='fas fa-users-cog'></i>Broadcast</a>
                         </li>
                     </ul>
 				</li>
@@ -684,6 +684,11 @@
 									</li>
 								</ul>
 							@else
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="fa-duotone fa-sitemap"></i> จัดการข้อมูลองค์กร</a>
+                                    </li>
+                                </ul>
 								<ul>
 									<li>
 										<a href="{{ url('/manage_user_partner') }}"><i class='fas fa-users-cog'></i> จัดการผู้ใช้</a>

@@ -8,7 +8,7 @@ File: app.css
 */
 
 
-/*  
+/*
   - Google Font
   - General
   - Sidebar
@@ -22,7 +22,7 @@ File: app.css
   - Navs and Tabs
   - Background Colors
   - Authentication
-  - Buttons 
+  - Buttons
   - Pricing Table
   - Forms
   - Responsive
@@ -30,8 +30,8 @@ File: app.css
         .div-tooltip{
             position: relative;
     overflow: hidden;
-    text-overflow: ellipsis; 
-    white-space: nowrap; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
     cursor: pointer;
     }
     .div-tooltip:hover{
@@ -64,7 +64,7 @@ File: app.css
     opacity: 0; /* to hide it but still there*/
     border-radius:10px;
     font-family: 'Kanit', sans-serif;
-	
+
     }
 
     .div-tooltip .tooltip::before{
@@ -80,7 +80,7 @@ File: app.css
     border:10px solid;
     border-color:  transparent transparent #612F00 transparent;
 
-    } 
+    }
 	a.disabled {
 		pointer-events: none;
 		cursor: default;
@@ -93,16 +93,16 @@ File: app.css
 	display: flex;
 	margin-bottom: 10px;
 	}
-  
+
 	.plans .plan input[type="radio"] {
 	position: absolute;
 	opacity: 0;
 	}
-  
+
 	.plans .plan {
 	cursor: pointer;
-	}   
-  
+	}
+
 	.plans .plan .plan-content {
 	padding: 20px 20px 0px 20px;
 	-webkit-box-sizing: border-box;
@@ -117,11 +117,11 @@ File: app.css
 	position: relative;
 	text-align: center;
 	}
-  
+
 	.plans .plan .plan-content img {
 	height: 42px;
 	}
-  
+
 	.plans .plan .plan-details span {
 	margin-bottom: 10px;
 	display: block;
@@ -129,21 +129,21 @@ File: app.css
 	line-height: 24px;
 	color: #252f42;
 	font-family: 'Kanit', sans-serif;
-  
+
 	}
-  
-  
+
+
 	.plans .plan .plan-details p {
 	color: #646a79;
 	font-size: 14px;
 	line-height: 18px;
 	}
-  
+
 	.plans .plan .plan-content:hover {
 	-webkit-box-shadow: 0px 3px 5px 0px #e8e8e8;
 	box-shadow: 0px 3px 5px 0px #e8e8e8;
 	}
-  
+
 	.plans .plan input[type="radio"]:checked + .plan-content:after {
 	content: "";
 	position: absolute;
@@ -157,7 +157,7 @@ File: app.css
 	-webkit-box-shadow: 0px 0px 0px 2px #db2d2e;
 	box-shadow: 0px 0px 0px 2px #db2d2e;
 	}
-  
+
 	.plans .plan input[type="radio"]:checked + .plan-content {
 	border: 2px solid #db2d2e;
 	background: #FFECEC;
@@ -177,7 +177,7 @@ File: app.css
 			-ms-flex-align: start;
 			align-items: center;
 		}
-		
+
 	}
 	@media (max-width:1025px) {
 		.plans {
@@ -191,7 +191,7 @@ File: app.css
 			-ms-flex-align: start;
 			align-items: center;
 		}
-		
+
 	}
 	@media screen and (max-width: 991px)  {
 		.plans {
@@ -208,12 +208,12 @@ File: app.css
 		.plans .plan {
 			width: 100%;
 		}
-	
+
 		.plans .plan .plan-content .plan-details {
 			width: 80%;
 			display: inline-block;
 		}
-	
+
 		.plans .plan input[type="radio"]:checked + .plan-content:after {
 			top: 45%;
 			-webkit-transform: translate(-50%);
@@ -221,7 +221,7 @@ File: app.css
 			transform: translate(-50%);
 		}
 	}
-  
+
 	@media screen and (max-width: 767px) {
 		.plans{
 			margin: 0 20px;
@@ -235,7 +235,7 @@ File: app.css
 			display: inline-block;
 		}
 	}
-  
+
 	@media screen and (max-width: 540px) {
 	.plans .plan .plan-content img {
 		margin-bottom: 20px;
@@ -244,16 +244,16 @@ File: app.css
 		-o-transition: height 0.4s;
 		transition: height 0.4s;
 	}
-  
+
 	.plans .plan input[type="radio"]:checked + .plan-content:after {
 		top: 20px;
 		right: 10px;
 	}
-  
+
 	.plans .plan .plan-content .plan-details {
 		width: 100%;
 	}
-  
+
 	.plans .plan .plan-content {
 		padding: 20px 0px 0px 0px;
 		-webkit-box-orient: vertical;
@@ -265,7 +265,7 @@ File: app.css
 		align-items: baseline;
 	}
 	}
-  
+
 	/* inspiration */
 	.inspiration {
 	font-size: 12px;
@@ -274,7 +274,7 @@ File: app.css
 	bottom: 10px;
 	font-weight: 300;
 	}
-  
+
 	.inspiration a {
 	color: #666;
 	}
@@ -294,7 +294,7 @@ File: app.css
   align-items: flex-start;
   height: 100%;
   }
-  
+
   .sos-map {
   position: sticky;
   top: 4rem;
@@ -371,7 +371,7 @@ a {
 
 	z-index: 11;
 
-	
+
 	box-shadow: 0 0 2rem 0 rgb(136 152 170 / 15%);
 
 
@@ -496,7 +496,7 @@ a {
 
 
 	background-clip: border-box;
-	
+
 
 	z-index: 10;
 
@@ -869,9 +869,9 @@ a {
 
 
 	color: #8833ff;
-	
+
     text-decoration: none;
-	
+
     background: rgb(136 51 255 / 12%);
 
 
@@ -1133,7 +1133,7 @@ a {
 .dash-wrapper {
 
     margin: -1.5rem -1.5rem -5.5rem -1.5rem;
-	
+
     padding: 1.5rem 1.5rem 6.5rem 1.5rem;
 
 }
@@ -1300,6 +1300,19 @@ a {
 
 
 }
+
+.count_checkin_number {
+    padding: 5px;
+    width: auto;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ededed;
+    font-size: 18px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
 
 
 #geographic-map {
@@ -4110,7 +4123,7 @@ a {
 .circles {
 	margin-bottom: -10px;
   }
-  
+
   .circle {
 	width: 100px;
 	margin: 0;
@@ -4119,11 +4132,11 @@ a {
 	text-align: center;
 	line-height: 1.2;
   }
-  
+
   .circle canvas {
 	vertical-align: middle;
   }
-  
+
   .circle strong {
 	position: absolute;
 	top: 30px;
@@ -4133,13 +4146,13 @@ a {
 	line-height: 40px;
 	font-size: 24px;
   }
-  
+
   .circle strong i {
 	font-style: normal;
 	font-size: 0.6em;
 	font-weight: normal;
   }
-  
+
   .circle span {
 	display: block;
 	color: #aaa;
@@ -4625,7 +4638,7 @@ input::placeholder {
 
 	border-bottom: 1px solid rgb(228 228 228 / 0%);
 
-	
+
     background-clip: border-box;
 
 
@@ -5643,7 +5656,7 @@ input::placeholder {
 	}
 
 
-	
+
 
 
 	.wrapper.toggled .sidebar-wrapper {
@@ -5663,7 +5676,7 @@ input::placeholder {
 
 	}
 
-	
+
 	.wrapper.toggled .overlay {
 
 
@@ -6051,4 +6064,14 @@ input::placeholder {
 	}
 
 
+}
+
+.text-weight-bold{
+    font-weight: bold;
+}
+
+.bg_section{
+    background-color: rgb(228, 221, 213);
+    padding: 0.5rem;
+    border-radius: 10px;
 }

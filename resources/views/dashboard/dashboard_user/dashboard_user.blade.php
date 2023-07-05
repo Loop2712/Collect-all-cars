@@ -77,7 +77,7 @@
 
 <!-- ============================= User table info ================================= -->
 
-<div class="row">
+{{-- <div class="row">
     <div class="col-12 col-xl-4 d-flex">
         <div class="card radius-10 w-100">
             <div class="card-body">
@@ -405,7 +405,7 @@
     </div>
     </div> -->
 
-</div><!--end row-->
+</div><!--end row--> --}}
 
 <!-- ============================= User from other organization ================================= -->
 
@@ -415,7 +415,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-1">ข้อมูลผู้ใช้จากองค์กรนั้นๆ</h5>
+                        <h5 class="mb-1">ข้อมูลผู้ใช้จากองค์กร</h5>
                     </div>
                     <div class="ms-auto">
                         <a href="javscript:;" class="btn btn-primary btn-sm radius-30">View All Products</a>
@@ -588,7 +588,7 @@
             <div class="card-body ">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h6 class="mb-0">ผู้ใช้จากแต่ละองค์กร</h6>
+                        <h6 class="mb-0">ผู้ใช้จากส่วนอื่น</h6>
                     </div>
                     <div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
                     </div>

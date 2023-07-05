@@ -1,4 +1,4 @@
-<div class="row row-cols-1 row-cols-lg-2 row-cols-xl-2">
+{{-- <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-2">
     <div class="col d-flex">
         <div class="card radius-10 w-100">
             <div class="card-body" style="position: relative;">
@@ -129,7 +129,7 @@
             <div class="resize-triggers"><div class="expand-trigger"><div style="width: 363px; height: 475px;"></div></div><div class="contract-trigger"></div></div></div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <div class="row">
     <div class="col-12 col-xl-8 d-flex">
