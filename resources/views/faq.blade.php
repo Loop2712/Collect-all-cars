@@ -49,6 +49,41 @@
     			<div class="faq__content">
 					<p style="text-indent:1.5em;">สามารถติดต่อ ViiCHECK Contact Center 02-0277856 หรือ Messengerหรือ ติดต่อเราผ่านทาง E-mail: contact.viicheck@gmail.com</div>
   		</details>
+      <details>
+        <summary>อาการฉุกเฉินวิกฤต 10 อาการได้แก่</summary>
+          <div class="faq__content">
+            <p style="text-indent:1.5em;">
+               1. หมดสติ ไม่รู้สึกตัว ไม่หายใจ
+            </p>
+            <p style="text-indent:1.5em;">
+               2. หายใจเร็ว หอบเหนื่อยรุนแรง หายใจติดขัดมีเสียงดัง
+            </p>
+            <p style="text-indent:1.5em;">
+               3. ซึมลง เหงื่อแตก ตัวเย็น หรือมีอาการชักร่วม
+            </p>
+            <p style="text-indent:1.5em;">
+               4. บหน้าอกเฉียบพลัน รุนแรง
+            </p>
+            <p style="text-indent:1.5em;">
+               5. แขนขาอ่อนแรงครึ่งซีก พูดไม่ชัด แบบปัจจุบันทันด่วน หรือชักต่อเนื่องไม่หยุด
+            </p>
+            <p style="text-indent:1.5em;">
+               6. ได้รับบาดเจ็บ ต่อสมอง ต่อกระดูกสันหลังมีแขนขาอ่อนแรง มีบาดแผลที่เสียเลือดมาก ถูกไฟฟ้าแรงสูง แผลไฟไหม้บริเวณกว้าง
+            </p>
+            <p style="text-indent:1.5em;">
+               7. ถูกยิง ถูกแทง ที่ศีรษะ ลาตัว อวัยวะสาคัญ 
+            </p>
+            <p style="text-indent:1.5em;">
+               8. พิษกัด ซึม หายใจลำบาก หนังตาตก
+            </p>
+            <p style="text-indent:1.5em;">
+               9. ตั้งครรภ์และชัก ตกเลือดมาก มีน้ำเดิน เด็กโผล่ และ
+            </p>
+            <p style="text-indent:1.5em;">
+               10. บาดเจ็บต่อดวงตาจากสารพิษ มองไม่ชัด
+            </p>
+          </div>
+      </details>
    </main>
 </div>
 
