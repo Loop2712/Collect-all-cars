@@ -9,12 +9,12 @@
     </div>
 </div>
 <div class="bg-transparent">
-    <h3 class="font-weight-bold mb-0">กรุงเทพมหานคร</h3>
+    <h3 class="font-weight-bold mb-1">กรุงเทพมหานคร</h3>
     <div class="row row-cols-1 row-cols-md-2">
 
         <div class="col-12 col-md-4 d-flex">
             <div class="card radius-10 w-100">
-                <div class="card-body">
+                <div class="card-header">
                     <div class="d-flex align-items-center">
                         <div>
                             <h5 class="font-weight-bold mb-0" >ไม่ได้เข้าพื้นที่นานที่สุด</h5>
@@ -87,7 +87,7 @@
 
         <div class="col-12 col-md-4 d-flex">
             <div class="card radius-10 w-100">
-                <div class="card-body">
+                <div class="card-header">
                     <div class="d-flex align-items-center">
                         <div>
                             <h5 class="font-weight-bold mb-0">เข้าพื้นที่บ่อยที่สุด</h5>
@@ -159,7 +159,7 @@
 
         <div class="col-12 col-md-4 d-flex">
             <div class="card radius-10 w-100">
-                <div class="card-body">
+                <div class="card-header">
                     <div class="d-flex align-items-center">
                         <div>
                             <h5 class="font-weight-bold mb-0">เข้าพื้นที่ล่าสุด</h5>

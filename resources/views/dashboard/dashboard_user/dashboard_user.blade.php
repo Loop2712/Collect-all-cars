@@ -415,166 +415,51 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-1">ข้อมูลผู้ใช้จากองค์กร</h5>
+                        <h5 class="mb-1">ข้อมูลผู้ใช้ขององค์กร</h5>
                     </div>
                     <div class="ms-auto">
-                        <a href="javscript:;" class="btn btn-primary btn-sm radius-30">View All Products</a>
+                        <a href="javscript:;" class="btn btn-primary btn-sm radius-30">ดูข้อมูลผู้ใช้ทั้งหมด</a>
                     </div>
                 </div>
 
                 <div class="table-responsive mt-3">
-                    <table class="table align-middle mb-0">
+                    <table class="table align-middle mb-0 ">
                         <thead class="table-light">
                             <tr>
-                                <th>ID</th>
-                                <th>ชื่อ องค์กร</th>
-                                <th>วันที่</th>
+                                <th>ลำดับ</th>
+                                <th>ชื่อ</th>
+                                <th>ที่อยู่</th>
+                                <th>เบอร์</th>
                                 <th>สถานะ</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>#55879</td>
-                                <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="recent-product-img">
-                                        <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" alt="">
-                                    </div>
-                                    <div class="ms-2">
-                                        <h6 class="mb-1 font-14">Light Red T-Shirt</h6>
-                                    </div>
-                                </div>
-                                </td>
-                                <td>22 Jun, 2020</td>
-                                <td class=""><span class="badge bg-light-success text-success w-100">Completed</span></td>
-
-                                <td>
-                                <div class="d-flex order-actions">	<a href="javascript:;" class="text-danger bg-light-danger border-0"><i class='bx bxs-trash'></i></a>
-                                    <a href="javascript:;" class="ms-4 text-primary bg-light-primary border-0"><i class='bx bxs-edit' ></i></a>
-                                </div>
-                                </td>
-                            </tr>
-                            <tr>
-                            <td>#88379</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="recent-product-img">
-                                        <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" alt="">
-                                    </div>
-                                    <div class="ms-2">
-                                        <h6 class="mb-1 font-14">Grey Headphone</h6>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>22 Jun, 2020</td>
-                            <td class=""><span class="badge bg-light-danger text-danger w-100">Cancelled</span></td>
-                            <td>
-                                <div class="d-flex order-actions">	<a href="javascript:;" class="text-danger bg-light-danger border-0"><i class='bx bxs-trash'></i></a>
-                                    <a href="javascript:;" class="ms-4 text-primary bg-light-primary border-0"><i class='bx bxs-edit' ></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#68823</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="recent-product-img">
-                                        <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" alt="">
-                                    </div>
-                                    <div class="ms-2">
-                                        <h6 class="mb-1 font-14">Grey Hand Watch</h6>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>22 Jun, 2020</td>
-                            <td class=""><span class="badge bg-light-warning text-warning w-100">Pending</span></td>
-                            <td>
-                                <div class="d-flex order-actions">	<a href="javascript:;" class="text-danger bg-light-danger border-0"><i class='bx bxs-trash'></i></a>
-                                    <a href="javascript:;" class="ms-4 text-primary bg-light-primary border-0"><i class='bx bxs-edit' ></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#54869</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="recent-product-img">
-                                        <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" alt="">
-                                    </div>
-                                    <div class="ms-2">
-                                        <h6 class="mb-1 font-14">Brown Sofa</h6>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>22 Jun, 2020</td>
-                            <td class=""><span class="badge bg-light-success text-success w-100">Completed</span></td>
-                            <td>
-                                <div class="d-flex order-actions">	<a href="javascript:;" class="text-danger bg-light-danger border-0"><i class='bx bxs-trash'></i></a>
-                                    <a href="javascript:;" class="ms-4 text-primary bg-light-primary border-0"><i class='bx bxs-edit' ></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#22536</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="recent-product-img">
-                                        <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" alt="">
-                                    </div>
-                                    <div class="ms-2">
-                                        <h6 class="mb-1 font-14">Black iPhone 11</h6>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>22 Jun, 2020</td>
-                            <td class=""><span class="badge bg-light-success text-success w-100">Completed</span></td>
-                            <td>
-                                <div class="d-flex order-actions">	<a href="javascript:;" class="text-danger bg-light-danger border-0"><i class='bx bxs-trash'></i></a>
-                                    <a href="javascript:;" class="ms-4 text-primary bg-light-primary border-0"><i class='bx bxs-edit' ></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#25796</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="recent-product-img">
-                                        <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" alt="">
-                                    </div>
-                                    <div class="ms-2">
-                                        <h6 class="mb-1 font-14">Men Yellow T-Shirt</h6>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>22 Jun, 2020</td>
-                            <td class=""><span class="badge bg-light-warning text-warning w-100">Pending</span></td>
-                            <td>
-                                <div class="d-flex order-actions">	<a href="javascript:;" class="text-danger bg-light-danger border-0"><i class='bx bxs-trash'></i></a>
-                                    <a href="javascript:;" class="ms-4 text-primary bg-light-primary border-0"><i class='bx bxs-edit' ></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#98754</td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="recent-product-img">
-                                        <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" alt="">
-                                    </div>
-                                    <div class="ms-2">
-                                        <h6 class="mb-1 font-14">Grey Stand Table</h6>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>22 Jun, 2020</td>
-                            <td class=""><span class="badge bg-light-danger text-danger w-100">Cancelled</span></td>
-                            <td>
-                                <div class="d-flex order-actions">	<a href="javascript:;" class="text-danger bg-light-danger border-0"><i class='bx bxs-trash'></i></a>
-                                    <a href="javascript:;" class="ms-4 text-primary bg-light-primary border-0"><i class='bx bxs-edit' ></i></a>
-                                </div>
-                            </td>
-                        </tr>
+                            @foreach ($total_userData as $user)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="recent-product-img">
+                                                @if(!empty($user->avatar) && empty($user->photo))
+                                                    <img src="{{ $user->avatar }}">
+                                                @endif
+                                                @if(!empty($user->photo))
+                                                    <img src="{{ url('storage') }}/{{ $user->photo }}">
+                                                @endif
+                                                @if(empty($user->avatar) && empty($user->photo))
+                                                    <img src="https://www.viicheck.com/Medilab/img/icon.png">
+                                                @endif
+                                            </div>
+                                            <div class="ms-2">
+                                                <h6 class="mb-1 font-14">{{$user->name}}</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{$user->location_P}}</td>
+                                    <td>{{$user->phone}}</td>
+                                    <td class=""><span class="badge bg-light-success text-success w-40">{{$user->status}}</span></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -585,83 +470,26 @@
 
     <div class="col-12 col-lg-4 d-flex">
         <div class="card radius-10 w-100">
-            <div class="card-body ">
+            <div class="card-header ">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h6 class="mb-0">ผู้ใช้จากส่วนอื่น</h6>
+                        <h6 class="mb-0">ผู้ใช้จากส่วนอื่น(Sub_Organization)</h6>
                     </div>
                     <div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
                     </div>
                 </div>
             </div>
             <div class="dashboard-top-countries mb-3 p-3 ps ps--active-y">
-                <div class="row mb-4">
-                    <div class="col-2">
-                        <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" width="42" alt="">
-                    </div>
-                    <div class="col">
-                        <p class="mb-2">United States <strong class="float-end">445,85</strong></p>
-                        <div class="progress radius-10" style="height:6px;">
-                            <div class="progress-bar bg-gradient-blues" role="progressbar" style="width: 86%"></div>
+                @foreach ($countSub as $countSub)
+                    <div class="row mb-4">
+                        <div class="col">
+                            <p class="mb-2">{{$countSub->sub_organization}}<strong class="float-end">{{ $countSub->sub_organization_count }} </strong></p>
+                            <div class="progress radius-10" style="height:6px;">
+                                <div class="progress-bar bg-gradient-blues" role="progressbar" style="width: {{ ($countSub->sub_organization_count / $totalCount) * 100 }}%"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-2">
-                        <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" width="42" alt="">
-                    </div>
-                    <div class="col">
-                        <p class="mb-2">Germany <strong class="float-end">683,46</strong></p>
-                        <div class="progress radius-10" style="height:6px;">
-                            <div class="progress-bar bg-gradient-cosmic" role="progressbar" style="width: 66%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-2">
-                        <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" width="42" alt="">
-                    </div>
-                    <div class="col">
-                        <p class="mb-2">Canada <strong class="float-end">982,43</strong></p>
-                        <div class="progress radius-10" style="height:6px;">
-                            <div class="progress-bar bg-gradient-burning" role="progressbar" style="width: 56%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-2">
-                        <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" width="42" alt="">
-                    </div>
-                    <div class="col">
-                        <p class="mb-2">India <strong class="float-end">852,35</strong></p>
-                        <div class="progress radius-10" style="height:6px;">
-                            <div class="progress-bar bg-gradient-lush" role="progressbar" style="width: 45%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-2">
-                        <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" width="42" alt="">
-                    </div>
-                    <div class="col">
-                        <p class="mb-2">Netherlands <strong class="float-end">785,24</strong></p>
-                        <div class="progress radius-10" style="height:6px;">
-                            <div class="progress-bar bg-gradient-kyoto" role="progressbar" style="width: 38%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-0">
-                    <div class="col-2">
-                        <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" width="42" alt="">
-                    </div>
-                    <div class="col">
-                        <p class="mb-2">Malaysia <strong class="float-end">387,56</strong></p>
-                        <div class="progress radius-10" style="height:6px;">
-                            <div class="progress-bar bg-gradient-moonlit" role="progressbar" style="width: 28%"></div>
-                        </div>
-                    </div>
-                </div>
-
+                @endforeach
             <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 330px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 269px;"></div></div></div>
         </div>
      </div>

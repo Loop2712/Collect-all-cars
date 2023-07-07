@@ -1,13 +1,11 @@
 
 
-
-
 <!--========================= เลือกพื้นที่ - ข้อมูลการช่วยเหลือ && คะแนนผู้ใช้เหลือ  =============================-->
 <div class="row">
 
     <div class="col-12 col-xl-4 d-flex">
         <div class="card radius-10 w-100 overflow-hidden">
-            <div class="card-body">
+            <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="mb-0">ข้อมูลการช่วยเหลือ</h5>
@@ -328,7 +326,7 @@
 <div class="row row-cols-1 row-cols-lg-3">
     <div class="col d-flex">
         <div class="card radius-10 w-100">
-            <div class="card-body">
+            <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
                         <h6 class="font-weight-bold mb-0" >เคสที่ช่วยเหลือเร็วที่สุด</h6>
@@ -404,7 +402,7 @@
     </div>
     <div class="col d-flex">
         <div class="card radius-10 w-100">
-            <div class="card-body">
+            <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
                         <h6 class="font-weight-bold mb-0">เคสที่ช่วยเหลือช้าที่สุด</h6>
@@ -480,7 +478,7 @@
     </div>
     <div class="col d-flex">
         <div class="card radius-10 w-100">
-            <div class="card-body">
+            <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
                         <h6 class="font-weight-bold mb-0">คะแนนผู้ช่วยเหลือสูงสุด</h6>
@@ -551,3 +549,325 @@
         </div>
        </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<!-- <div class="col-12 text-center d-block d-md-none">
+  <h1>ระบบนี้ใช้ได้เฉพาะ pc เท่านั้น</h1>
+</div> -->
+<script>
+          var options = {
+          series: [{
+          name: 'AM',
+          data: [  <?php echo $sos_time_00 ?>, <?php echo $sos_time_01 ?> , <?php echo $sos_time_02 ?>, <?php echo $sos_time_03 ?>, <?php echo $sos_time_04 ?>, <?php echo $sos_time_05 ?>, <?php echo $sos_time_06 ?>, <?php echo $sos_time_07 ?>, <?php echo $sos_time_08 ?>, <?php echo $sos_time_09 ?>, <?php echo $sos_time_10 ?>, <?php echo $sos_time_11 ?>,null , null , null , null , null , null , null , null , null , null , null , null ,]
+          },
+          {
+          name: 'PM',
+          data: [ null , null , null , null , null , null , null , null , null , null , null , null , <?php echo $sos_time_12 ?>,  <?php echo $sos_time_13 ?>, <?php echo $sos_time_14 ?>, <?php echo $sos_time_15 ?>, <?php echo $sos_time_16 ?>, <?php echo $sos_time_17 ?>, <?php echo $sos_time_18 ?>, <?php echo $sos_time_19 ?>, <?php echo $sos_time_20 ?>, <?php echo $sos_time_21 ?>, <?php echo $sos_time_22 ?>, <?php echo $sos_time_23 ?>, ]
+          },
+        ],
+          chart: {
+          height: 400,
+          type: 'area'
+        },
+        dataLabels: {
+          enabled: true
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          type: 'time',
+          categories: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00" ,"13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00",]
+        },
+        tooltip: {
+          x: {
+            format: 'HH:mm'
+          },
+
+        },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chartpc"), options);
+        chart.render();
+</script>
+
+<script>
+          var options = {
+          series: [{
+          name: 'AM',
+          data: [  <?php echo $sos_time_00 ?>, <?php echo $sos_time_01 ?> , <?php echo $sos_time_02 ?>, <?php echo $sos_time_03 ?>, <?php echo $sos_time_04 ?>, <?php echo $sos_time_05 ?>, <?php echo $sos_time_06 ?>, <?php echo $sos_time_07 ?>, <?php echo $sos_time_08 ?>, <?php echo $sos_time_09 ?>, <?php echo $sos_time_10 ?>, <?php echo $sos_time_11 ?>]
+          },],
+          chart: {
+          height: 400,
+          type: 'area'
+        },
+        dataLabels: {
+          enabled: true
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          type: 'time',
+          categories: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "010:00", "011:00" ]
+        },
+        tooltip: {
+          x: {
+            format: 'HH:mm'
+          },
+
+        },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chartmobilepm"), options);
+        chart.render();
+        var options = {
+          series: [{
+          name: 'PM',
+          data: [<?php echo $sos_time_12 ?>,  <?php echo $sos_time_13 ?>, <?php echo $sos_time_14 ?>, <?php echo $sos_time_15 ?>, <?php echo $sos_time_16 ?>, <?php echo $sos_time_17 ?>, <?php echo $sos_time_18 ?>, <?php echo $sos_time_19 ?>, <?php echo $sos_time_20 ?>, <?php echo $sos_time_21 ?>, <?php echo $sos_time_22 ?>, <?php echo $sos_time_23 ?>, ]
+          },
+        ],
+          chart: {
+          height: 400,
+          type: 'area'
+        },
+        dataLabels: {
+          enabled: true
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        xaxis: {
+          type: 'time',
+          categories: ["12:00" ,"13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00", "24:00",]
+        },
+        tooltip: {
+          x: {
+            format: 'HH:mm'
+          },
+
+        },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chartmobileam"), options);
+        chart.render();
+</script>
+
+<script>
+    function select_area(){
+        var select_area = document.getElementById('select_area').value;
+        // console.log(select_year);
+        var input_area = document.getElementById('input_area');
+        input_area.value = select_area;
+    }
+
+    function select_year(){
+        var select_year = document.getElementById('select_year').value;
+        // console.log(select_year);
+        var input_year = document.getElementById('input_year');
+        input_year.value = select_year;
+    }
+    function select_month(){
+        var select_month = document.getElementById('select_month').value;
+        // console.log(select_month);
+        var input_month = document.getElementById('input_month');
+        input_month.value = select_month;
+    }
+    document.addEventListener('DOMContentLoaded', (event) => {
+        var input_area = document.getElementById('input_area').value;
+
+        var input_year = document.getElementById('input_year').value;
+        var input_month = document.getElementById('input_month').value;
+
+        var select_area = document.getElementById('select_area');
+        var select_year = document.getElementById('select_year');
+        var select_month = document.getElementById('select_month');
+
+        select_area.value = input_area ;
+        select_year.value = input_year ;
+        select_month.value = input_month ;
+
+    });
+    </script>
+    <script>
+    var canvas = document.getElementById("canvas_1");
+    var ctx = canvas.getContext("2d");
+    var radius = canvas.height / 2;
+    ctx.translate(radius, radius);
+    radius = radius * 0.90
+    setInterval(drawClock, 1000);
+
+    function drawClock() {
+        drawFace(ctx, radius);
+        drawNumbers(ctx, radius);
+        drawTime(ctx, radius);
+    }
+
+    function drawFace(ctx, radius) {
+        var grad;
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, 2*Math.PI);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+        grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+        grad.addColorStop(0, '#333');
+        grad.addColorStop(0.5, 'white');
+        grad.addColorStop(1, '#333');
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = radius*0.1;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+        ctx.fillStyle = '#333';
+        ctx.fill();
+    }
+
+    function drawNumbers(ctx, radius) {
+        var ang;
+        var num;
+        ctx.font = radius*0.175 + "px arial";
+        ctx.textBaseline="middle";
+        ctx.textAlign="center";
+        ctx.fillText('AM', 0, 20);
+        for(num = 1; num < 13; num++){
+        ang = num * Math.PI / 6;
+        ctx.rotate(ang);
+        ctx.translate(0, -radius*0.85);
+        ctx.rotate(-ang);
+        ctx.fillText(num.toString(), 0, 0);
+        ctx.rotate(ang);
+        ctx.translate(0, radius*0.85);
+        ctx.rotate(-ang);
+        }
+    }
+
+    function drawTime(ctx, radius){
+        var now = new Date();
+        // console.log(now);
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        if (hour < 12 ) {
+            //hour
+            hour=hour%12;
+            hour=(hour*Math.PI/6)+
+            (minute*Math.PI/(6*60))+
+            (second*Math.PI/(360*60));
+            drawHand(ctx, hour, radius*0.5, radius*0.07);
+            //minute
+            minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+            drawHand(ctx, minute, radius*0.8, radius*0.07);
+            // second
+            second=(second*Math.PI/30);
+            drawHand(ctx, second, radius*0.9, radius*0.02);
+        }else {
+            //hour
+            drawHand_2(ctx, 12.56, radius*0.5, radius*0.07);
+            //minute
+            minute=(12.56);
+            drawHand_2(ctx, minute, radius*0.8, radius*0.07);
+        }
+
+    }
+
+    function drawHand(ctx, pos, length, width) {
+        ctx.beginPath();
+        ctx.lineWidth = width;
+        ctx.lineCap = "round";
+        ctx.moveTo(0,0);
+        ctx.rotate(pos);
+        ctx.lineTo(0, -length);
+        ctx.stroke();
+        ctx.rotate(-pos);
+    }
+    </script>
+    <script>
+    var canvas_2 = document.getElementById("canvas_2");
+    var ctx_2 = canvas_2.getContext("2d");
+    var radius_2 = canvas_2.height / 2;
+    ctx_2.translate(radius_2, radius_2);
+    radius_2 = radius_2 * 0.90
+    setInterval(drawClock_2, 1000);
+
+    function drawClock_2() {
+        drawFace_2(ctx_2, radius_2);
+        drawNumbers_2(ctx_2, radius_2);
+        drawTime_2(ctx_2, radius_2);
+    }
+
+    function drawFace_2(ctx_2, radius_2) {
+        var grad_2;
+        ctx_2.beginPath();
+        ctx_2.arc(0, 0, radius_2, 0, 2*Math.PI);
+        ctx_2.fillStyle = 'white';
+        ctx_2.fill();
+        grad_2 = ctx_2.createRadialGradient(0,0,radius_2*0.95, 0,0,radius_2*1.05);
+        grad_2.addColorStop(0, '#333');
+        grad_2.addColorStop(0.5, 'white');
+        grad_2.addColorStop(1, '#333');
+        ctx_2.strokeStyle = grad_2;
+        ctx_2.lineWidth = radius_2*0.1;
+        ctx_2.stroke();
+        ctx_2.beginPath();
+        ctx_2.arc(0, 0, radius_2*0.1, 0, 2*Math.PI);
+        ctx_2.fillStyle = '#333';
+        ctx_2.fill();
+    }
+
+    function drawNumbers_2(ctx_2, radius_2) {
+        var ang_2;
+        var num_2;
+        ctx_2.font = radius_2*0.175 + "px arial";
+        ctx_2.textBaseline="middle";
+        ctx_2.textAlign="center";
+        ctx_2.fillText('PM', 0, 20);
+        for(num_2 = 1; num_2 < 13; num_2++){
+        ang_2 = num_2 * Math.PI / 6;
+        ctx_2.rotate(ang_2);
+        ctx_2.translate(0, -radius_2*0.85);
+        ctx_2.rotate(-ang_2);
+        ctx_2.fillText(num_2.toString(), 0, 0);
+        ctx_2.rotate(ang_2);
+        ctx_2.translate(0, radius_2*0.85);
+        ctx_2.rotate(-ang_2);
+        }
+    }
+
+    function drawTime_2(ctx_2, radius_2){
+        var now_2 = new Date();
+        var hour_2 = now_2.getHours();
+        var minute_2 = now_2.getMinutes();
+        var second_2 = now_2.getSeconds();
+        if (hour_2 >= 12 ) {
+            //hour
+            hour_2=hour_2%12;
+            hour_2=(hour_2*Math.PI/6)+
+            (minute_2*Math.PI/(6*60))+
+            (second_2*Math.PI/(360*60));
+            drawHand_2(ctx_2, hour_2, radius_2*0.5, radius_2*0.07);
+            //minute
+            minute_2=(minute_2*Math.PI/30)+(second_2*Math.PI/(30*60));
+            drawHand_2(ctx_2, minute_2, radius_2*0.8, radius_2*0.07);
+            // second
+            second_2=(second_2*Math.PI/30);
+            drawHand_2(ctx_2, second_2, radius_2*0.9, radius_2*0.02);
+        }else {
+            //hour
+            drawHand_2(ctx_2, 12.56, radius_2*0.5, radius_2*0.07);
+            //minute
+            minute_2=(12.56);
+            drawHand_2(ctx_2, minute_2, radius_2*0.8, radius_2*0.07);
+        }
+    }
+
+    function drawHand_2(ctx_2, pos_2, length_2, width_2) {
+        ctx_2.beginPath();
+        ctx_2.lineWidth = width_2;
+        ctx_2.lineCap = "round";
+        ctx_2.moveTo(0,0);
+        ctx_2.rotate(pos_2);
+        ctx_2.lineTo(0, -length_2);
+        ctx_2.stroke();
+        ctx_2.rotate(-pos_2);
+    }
+</script>

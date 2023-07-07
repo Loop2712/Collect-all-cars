@@ -32,6 +32,19 @@ class Partner_DashboardController extends Controller
 {
     function dashboard_index(Request $request)
     {
+        //ดึงข้อมูลผู้ใช้ทั้งหมด
+        $total_userData = User::get();
+
+        //จำนวน sub_organization ทั้งหมด
+        $totalCount = DB::table('users')
+        ->select(DB::raw('COUNT(sub_organization) as total_count'))
+        ->value(DB::raw('COUNT(sub_organization)'));
+
+        //ชื่อและนับจำนวน sub_organization แต่ละชื่อ
+        $countSub = DB::table('users')
+        ->select('users.sub_organization', DB::raw('COUNT(sub_organization) as sub_organization_count'))
+        ->groupBy('users.sub_organization')
+        ->get();
 
         $data_user = Auth::user();
 
@@ -2646,7 +2659,7 @@ class Partner_DashboardController extends Controller
         }
 
 
-        return view('dashboard.dashboard_index', compact('name_area','select_name_areas','data_partners','data_time_zone','sos_all','area','sos_time_00','sos_time_01','sos_time_02','sos_time_03','sos_time_04','sos_time_05','sos_time_06','sos_time_07','sos_time_08','sos_time_09','sos_time_10','sos_time_11','sos_time_12','sos_time_13','sos_time_14','sos_time_15','sos_time_16','sos_time_17','sos_time_18','sos_time_19','sos_time_20','sos_time_21','sos_time_22','sos_time_23','total'));
+        return view('dashboard.dashboard_index', compact('total_userData','countSub','totalCount','name_area','select_name_areas','data_partners','data_time_zone','sos_all','area','sos_time_00','sos_time_01','sos_time_02','sos_time_03','sos_time_04','sos_time_05','sos_time_06','sos_time_07','sos_time_08','sos_time_09','sos_time_10','sos_time_11','sos_time_12','sos_time_13','sos_time_14','sos_time_15','sos_time_16','sos_time_17','sos_time_18','sos_time_19','sos_time_20','sos_time_21','sos_time_22','sos_time_23','total'));
 
     }
 
