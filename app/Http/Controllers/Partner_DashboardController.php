@@ -10,6 +10,7 @@ use App\Models\Partner_condo;
 use Illuminate\Http\Request;
 use App\Models\Group_line;
 
+use PDF;
 use App\User;
 use App\CarModel;
 use App\Models\Register_car;
@@ -71,6 +72,30 @@ class Partner_DashboardController extends Controller
         }
 
         return view('dashboard.dashboard_user.user_index' , compact('user_data'));
+    }
+
+    function users_pdf(Request $request){
+
+        $requestData = $request->all();
+        $keyword = $request->get('search');
+        $perPage = 20;
+
+        if (!empty($keyword)) {
+            $user_data = User::where('name', 'LIKE', "%$keyword%")
+                ->orWhere('name_staff', 'LIKE', "%$keyword%")
+                ->orWhere('sex', 'LIKE', "%$keyword%")
+                ->orWhere('location_P', 'LIKE', "%$keyword%")
+                ->orWhere('location_A', 'LIKE', "%$keyword%")
+                ->orWhere('country', 'LIKE', "%$keyword%")
+                ->orWhere('language', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $user_data = User::latest()->paginate($perPage);
+        }
+
+        $user_pdf = PDF::loadView('dashboard.dashboard_user.user_pdf', compact('user_data') )->setPaper("A4", 'landscape');
+
+        return $user_pdf->stream('users_report.pdf');
     }
 
 }
