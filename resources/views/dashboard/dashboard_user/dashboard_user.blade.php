@@ -10,8 +10,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <p class="mb-0 text-white">ผู้ใช้ใหม่เดือนนี้</p>
-                        <h5 class="mb-0 text-white">867</h5>
+                        <p class="mb-0 text-white">ผู้ใช้ทั้งหมด</p>
+                        <h5 class="mb-0 text-white">{{$all_user}}</h5>
                     </div>
                     <div class="ms-auto text-white"><i class="fa-regular fa-user-plus font-30"></i>
                     </div>
@@ -27,8 +27,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <p class="mb-0 text-white" >ผู้ใช้ทั้งหมด</p>
-                        <h5 class="mb-0 text-white">24.5K</h5>
+                        <p class="mb-0 text-white" >ผู้ใช้ใหม่เดือนนี้</p>
+                        <h5 class="mb-0 text-white">{{$all_user_m}}</h5>
                     </div>
                     <div class="ms-auto text-white"><i class="fa-regular fa-user font-30"></i>
                     </div>
@@ -96,8 +96,8 @@
                             <tr>
                                 <th>ลำดับ</th>
                                 <th>ชื่อ</th>
-                                <th>ที่อยู่</th>
-                                <th>เบอร์</th>
+                                <th>เพศ</th>
+                                <th>วันเกิด</th>
                                 <th>สถานะ</th>
                             </tr>
                         </thead>
@@ -123,8 +123,8 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{$user->location_P}}</td>
-                                    <td>{{$user->phone}}</td>
+                                    <td>{{$user->sex}}</td>
+                                    <td>{{$user->brith}}</td>
                                     <td class=""><span class="badge bg-light-success text-success w-40">{{$user->status}}</span></td>
                                 </tr>
                             @endforeach
@@ -141,19 +141,19 @@
             <div class="card-header ">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h6 class="mb-0">ผู้ใช้จากส่วนอื่น(Sub_Organization)</h6>
+                        <h6 class="mb-0">ผู้ใช้จากส่วนอื่น (User_from)</h6>
                     </div>
                     <div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
                     </div>
                 </div>
             </div>
             <div class="dashboard-top-countries mb-3 p-3 ps ps--active-y">
-                @foreach ($countSub as $countSub)
+                @foreach ($countUser_from as $countSub)
                     <div class="row mb-4">
                         <div class="col">
-                            <p class="mb-2">{{$countSub->sub_organization}}<strong class="float-end">{{ $countSub->sub_organization_count }} </strong></p>
+                            <p class="mb-2">{{$countSub->user_from}}<strong class="float-end">{{ $countSub->user_from_count }} </strong></p>
                             <div class="progress radius-10" style="height:6px;">
-                                <div class="progress-bar bg-gradient-blues" role="progressbar" style="width: {{ ($countSub->sub_organization_count / $totalCount) * 100 }}%"></div>
+                                <div class="progress-bar bg-gradient-blues" role="progressbar" style="width: {{ ($countSub->user_from_count / $totalCount) * 100 }}%"></div>
                             </div>
                         </div>
                     </div>

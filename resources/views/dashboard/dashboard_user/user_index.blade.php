@@ -8,9 +8,9 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             <div class="dt-buttons btn-group">
-                                <button class="btn btn-outline-secondary buttons-copy buttons-html5" tabindex="0"aria-controls="example2" type="button">
+                                <!-- <button class="btn btn-outline-secondary buttons-copy buttons-html5" tabindex="0"aria-controls="example2" type="button">
                                     <span>Copy</span>
-                                </button>
+                                </button> -->
                                 <button class="btn btn-outline-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="example2" type="button">
                                     <span>Excel</span>
                                 </button>

@@ -10,6 +10,11 @@
 	<link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('partner_new/css/app.css') }}" rel="stylesheet">
 
+    <style>
+        body{
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 <h2 class="text-center">USERS REPORT</h2>
 <body>

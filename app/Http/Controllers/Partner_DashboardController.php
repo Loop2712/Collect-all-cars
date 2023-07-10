@@ -10,6 +10,7 @@ use App\Models\Partner_condo;
 use Illuminate\Http\Request;
 use App\Models\Group_line;
 
+Use Carbon\Carbon;
 use PDF;
 use App\User;
 use App\CarModel;
@@ -33,30 +34,36 @@ class Partner_DashboardController extends Controller
 {
     function dashboard_index(Request $request)
     {
-        //ดึงข้อมูลผู้ใช้ทั้งหมด
+        // ดึงข้อมูลผู้ใช้ทั้งหมด
         $total_userData = User::get();
 
-        //จำนวน sub_organization ทั้งหมด
-        $totalCount = DB::table('users')
-        ->select(DB::raw('COUNT(sub_organization) as total_count'))
-        ->value(DB::raw('COUNT(sub_organization)'));
+        // นับผู้ใช้ทั้งหมด
+        $all_user = User::count();
 
-        //ชื่อและนับจำนวน sub_organization แต่ละชื่อ
-        $countSub = DB::table('users')
-        ->select('users.sub_organization', DB::raw('COUNT(sub_organization) as sub_organization_count'))
-        ->groupBy('users.sub_organization')
+        // นับผู้ใช้ทั้งหมด
+        $date_now = Carbon::now();
+        $all_user_m = User::whereMonth('created_at', $date_now)->count();
+
+        // จำนวน user_from ทั้งหมด ---> ค่าที่เป็น null จะไม่ถูกนับ
+        $totalCount = DB::table('users')
+        ->select(DB::raw('COUNT(user_from) as total_count'))
+        ->value(DB::raw('COUNT(user_from)'));
+
+        // groupBy --> user_from ที่ไม่ใช่ค่าว่าง แต่ละที่มาและนับจำนวน user_from แต่ละที่มา ------> นำไปคำนวน  $totalCount เพื่อหาเปอร์เซ็น
+        $countUser_from = DB::table('users')
+        ->where('users.user_from', '!=' ,null)
+        ->select('users.user_from', DB::raw('COUNT(user_from) as user_from_count'))
+        ->groupBy('users.user_from')
         ->get();
 
-
-
-        return view('dashboard.dashboard_index', compact('total_userData','countSub','totalCount'));
+        return view('dashboard.dashboard_index', compact('total_userData','countUser_from','totalCount','all_user','all_user_m'));
 
     }
 
     function dashboard_user_index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 20;
+        $perPage = 10;
 
         if (!empty($keyword)) {
             $user_data = User::where('name', 'LIKE', "%$keyword%")
@@ -78,7 +85,7 @@ class Partner_DashboardController extends Controller
 
         $requestData = $request->all();
         $keyword = $request->get('search');
-        $perPage = 20;
+        $perPage = 10;
 
         if (!empty($keyword)) {
             $user_data = User::where('name', 'LIKE', "%$keyword%")
