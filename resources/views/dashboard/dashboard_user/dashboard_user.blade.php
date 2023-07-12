@@ -1,8 +1,35 @@
+<style>
+    .progress_bar_USER {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	overflow: hidden;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	background-color: #656a74;
+	transition: width .6s ease
+}
+</style>
 <!-- ======================================================================
                                 ข้อมูลผู้ใช้
 =========================================================================== -->
 
 <!-- ============================= 4 card ================================= -->
+@php
+    // % ของผู้ใช้เดือนนี้
+    $percent_user_new_m = ($all_user_m / $all_user) * 100;
+    $percent_user_new_m = number_format($percent_user_new_m,2);
+
+    // % ของผู้ใช้ในองค์กร
+    $percent_user_officer = (count($data_officer) / $all_user) * 100;
+    $percent_user_officer = number_format($percent_user_officer,2);
+
+    // % ของผู้ใช้จาก API
+    $percent_user_from = (count($data_user_from) / $all_user) * 100;
+    $percent_user_from = number_format($percent_user_from,2);
+
+@endphp
 
 <div class="row row-cols-1 row-cols-lg-4">
     <div class="col">
@@ -13,11 +40,11 @@
                         <p class="mb-0 text-white">ผู้ใช้ทั้งหมด</p>
                         <h5 class="mb-0 text-white">{{$all_user}}</h5>
                     </div>
-                    <div class="ms-auto text-white"><i class="fa-regular fa-user-plus font-30"></i>
+                    <div class="ms-auto text-white"><i class="fa-regular fa-user font-30"></i>
                     </div>
                 </div>
-                <div class="progress bg-white-2 radius-10 mt-4" style="height:4.5px;">
-                    <div class="progress-bar bg-white" role="progressbar" style="width: 46%"></div>
+                <div class="progress mt-4">
+                    <div class="progress_bar_USER" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                 </div>
             </div>
         </div>
@@ -27,14 +54,14 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <p class="mb-0 text-white" >ผู้ใช้ใหม่เดือนนี้</p>
+                        <p class="mb-0 text-white">ผู้ใช้ใหม่เดือนนี้</p>
                         <h5 class="mb-0 text-white">{{$all_user_m}}</h5>
                     </div>
-                    <div class="ms-auto text-white"><i class="fa-regular fa-user font-30"></i>
+                    <div class="ms-auto text-white"><i class="fa-regular fa-user-plus font-30"></i>
                     </div>
                 </div>
-                <div class="progress bg-white-2 radius-10 mt-4" style="height:4.5px;">
-                    <div class="progress-bar bg-white" role="progressbar" style="width: 68%"></div>
+                <div class="progress mt-4">
+                    <div class="progress_bar_USER" role="progressbar" style="width: {{$percent_user_new_m}}%;" aria-valuenow="{{$percent_user_new_m}}" aria-valuemin="0" aria-valuemax="100">{{$percent_user_new_m}}%</div>
                 </div>
             </div>
         </div>
@@ -44,14 +71,14 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <p class="mb-0 text-white">---</p>
-                        <h5 class="mb-0 text-white">$52,945</h5>
+                        <p class="mb-0 text-white">เจ้าหน้าที่ในองค์กร</p>
+                        <h5 class="mb-0 text-white">{{count($data_officer)}}</h5>
                     </div>
-                    <div class="ms-auto text-white"><i class="bx bx-wallet font-30"></i>
+                    <div class="ms-auto text-white"><i class="fa-duotone fa-users font-30"></i>
                     </div>
                 </div>
-                <div class="progress bg-white-2 radius-10 mt-4" style="height:4.5px;">
-                    <div class="progress-bar bg-white" role="progressbar" style="width: 72%"></div>
+                <div class="progress mt-4">
+                    <div class="progress_bar_USER" role="progressbar" style="width: {{$percent_user_officer}}%;" aria-valuenow="{{$percent_user_officer}}" aria-valuemin="0" aria-valuemax="100">{{$percent_user_officer}}%</div>
                 </div>
             </div>
         </div>
@@ -61,14 +88,14 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <p class="mb-0 text-white">---</p>
-                        <h5 class="mb-0 text-white">869</h5>
+                        <p class="mb-0 text-white">ผู้ใช้อื่นๆ</p>
+                        <h5 class="mb-0 text-white">{{count($data_user_from)}}</h5>
                     </div>
-                    <div class="ms-auto text-white"><i class="bx bx-chat font-30"></i>
+                    <div class="ms-auto text-white"><i class="fa-solid fa-user-tie font-30"></i>
                     </div>
                 </div>
-                <div class="progress  bg-white-2 radius-10 mt-4" style="height:4.5px;">
-                    <div class="progress-bar bg-white" role="progressbar" style="width: 66%"></div>
+                <div class="progress mt-4">
+                    <div class="progress_bar_USER" role="progressbar" style="width: {{$percent_user_from}}%;" aria-valuenow="{{$percent_user_from}}" aria-valuemin="0" aria-valuemax="100">{{$percent_user_from}}%</div>
                 </div>
             </div>
         </div>
@@ -78,12 +105,12 @@
 <!-- ============================= User from other organization ================================= -->
 
 <div class="row mb-3">
-    <div class="col-12 col-xl-8">
+    <div class="col-12 col-xl-7">
         <div class="card radius-10 mb-0">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-1">ข้อมูลผู้ใช้ขององค์กร</h5>
+                        <h5 class="mb-1">เจ้าหน้าที่ภายในองค์กร</h5>
                     </div>
                     <div class="ms-auto">
                         <a href="{{ url('/dashboard_user_index') }}" class="btn btn-primary btn-sm radius-30">ดูข้อมูลผู้ใช้ทั้งหมด</a>
@@ -94,17 +121,17 @@
                     <table class="table align-middle mb-0 ">
                         <thead class="table-light">
                             <tr>
-                                <th>ลำดับ</th>
                                 <th>ชื่อ</th>
                                 <th>เพศ</th>
                                 <th>วันเกิด</th>
                                 <th>สถานะ</th>
+                                <th>เป็นสมาชิกมาแล้ว</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($total_userData as $user)
+                            @foreach ($data_officer as $user)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="recent-product-img">
@@ -126,6 +153,7 @@
                                     <td>{{$user->sex}}</td>
                                     <td>{{$user->brith}}</td>
                                     <td class=""><span class="badge bg-light-success text-success w-40">{{$user->status}}</span></td>
+                                    <td>{{$user->created_at->diffForHumans()}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -136,32 +164,246 @@
         </div>
     </div>
 
-    <div class="col-12 col-lg-4 d-flex">
-        <div class="card radius-10 w-100">
-            <div class="card-header ">
+    <div class="col-12 col-xl-5">
+        <div class="card radius-10 mb-0">
+            <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h6 class="mb-0">ผู้ใช้จากส่วนอื่น (User_from)</h6>
+                        <h5 class="mb-1">ผู้ใช้จาก API</h5>
                     </div>
-                    <div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
+                    <div class="ms-auto">
+                        <a href="{{ url('/dashboard_user_index') }}" class="btn btn-primary btn-sm radius-30">ดูข้อมูลผู้ใช้ทั้งหมด</a>
                     </div>
                 </div>
+
+                <div class="table-responsive mt-3">
+                    <table class="table align-middle mb-0 ">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ชื่อ</th>
+                                <th>เพศ</th>
+                                <th>เป็นสมาชิกมาแล้ว</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data_user_from as $user)
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="recent-product-img">
+                                                @if(!empty($user->avatar) && empty($user->photo))
+                                                    <img src="{{ $user->avatar }}">
+                                                @endif
+                                                @if(!empty($user->photo))
+                                                    <img src="{{ url('storage') }}/{{ $user->photo }}">
+                                                @endif
+                                                @if(empty($user->avatar) && empty($user->photo))
+                                                    <img src="https://www.viicheck.com/Medilab/img/icon.png">
+                                                @endif
+                                            </div>
+                                            <div class="ms-2">
+                                                <h6 class="mb-1 font-14">{{$user->name}}</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{$user->sex}}</td>
+                                    <td>{{$user->created_at->diffForHumans()}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
-            <div class="dashboard-top-countries mb-3 p-3 ps ps--active-y">
-                @foreach ($countUser_from as $countSub)
-                    <div class="row mb-4">
-                        <div class="col">
-                            <p class="mb-2">{{$countSub->user_from}}<strong class="float-end">{{ $countSub->user_from_count }} </strong></p>
-                            <div class="progress radius-10" style="height:6px;">
-                                <div class="progress-bar bg-gradient-blues" role="progressbar" style="width: {{ ($countSub->user_from_count / $totalCount) * 100 }}%"></div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 330px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 269px;"></div></div></div>
         </div>
-     </div>
+    </div>
+
 </div><!--end row-->
+
+<!-- ============================= User from Login with Bar Chart ================================= -->
+
+<div class="row  mb-3">
+    <div class="col-12 col-lg-7">
+        <div class="card">
+            <div class="d-flex align-items-center m-3">
+                <div>
+                    <h5 class="mb-1">ช่องทางเข้าสู่ระบบ</h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="chartUser_from_Login"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-5">
+        <div class="card">
+            <div class="d-flex align-items-center m-3">
+                <div>
+                    <h5 class="mb-1">ที่อยู่ของผู้ใช้</h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-center">
+                    <div id="chartUser_Location"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div><!--end row-->
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<!-- Bar Chart แสดงช่องทางการ login -->
+<script>
+
+    let user_type_login_arr = [];
+    let name_user_type_login_arr = [];
+    let color_type_login_arr = [];
+
+    @foreach ($count_type_login as $item)
+        user_type_login_arr.push('{{ $item->user_type_count }}');
+    @endforeach
+
+    let type_login;
+
+    @foreach ($count_type_login as $item)
+        @if (empty($item->type))
+            type_login = "web";
+        @else
+            type_login = '{{ $item->type }}';
+        @endif
+
+        name_user_type_login_arr.push(type_login);
+    @endforeach
+
+    let color_loop;
+    @foreach ($count_type_login as $item)
+        @if (empty($item->type))
+            color_loop = '#546E7A';
+        @elseif($item->type == 'line')
+            color_loop = '#13d8aa';
+        @elseif($item->type == 'google')
+            color_loop = '#d4526e';
+        @elseif($item->type == 'facebook')
+            color_loop = '#33b2df';
+        @endif
+
+        color_type_login_arr.push(color_loop);
+
+    @endforeach
+
+
+    var options = {
+        series: [{
+            data: user_type_login_arr,
+        }],
+          chart: {
+          type: 'bar',
+          height: 380
+        },
+        plotOptions: {
+          bar: {
+            barHeight: '100%',
+            distributed: true,
+            horizontal: true,
+            dataLabels: {
+              position: 'bottom'
+            },
+          }
+        },
+        colors: color_type_login_arr,
+        dataLabels: {
+          enabled: true,
+          textAnchor: 'start',
+          style: {
+            colors: ['#fff']
+          },
+          formatter: function (val, opt) {
+            return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+          },
+          offsetX: 0,
+          dropShadow: {
+            enabled: true
+          }
+        },
+        stroke: {
+          width: 1,
+          colors: ['#fff']
+        },
+        xaxis: {
+            categories: name_user_type_login_arr,
+        },
+        yaxis: {
+          labels: {
+            show: false
+          }
+        },
+        tooltip: {
+          theme: 'dark',
+          x: {
+            show: false
+          },
+          y: {
+            title: {
+              formatter: function () {
+                return ''
+              }
+            }
+          }
+        }
+        };
+
+var chart = new ApexCharts(document.querySelector("#chartUser_from_Login"), options);
+chart.render();
+
+
+</script>
+
+<!-- Pie Chart แสดงจังหวัด -->
+<script>
+    let user_location_arr = [];
+    let type_location_arr = [];
+
+    @foreach ($count_user_location as $item)
+        user_location_arr.push(Number('{{ $item->user_location_count }}'));
+    @endforeach
+    console.log(user_location_arr);
+    console.log(typeof(user_location_arr));
+    let type_location;
+    @foreach ($count_user_location as $item)
+        @if (empty($item->location_P))
+            type_location = "ไม่ได้ระบุ";
+        @else
+            type_location = '{{ $item->location_P }}';
+        @endif
+        type_location_arr.push(type_location);
+    @endforeach
+
+    var options = {
+        series: user_location_arr,
+        chart: {
+            width: 470,
+            type: 'pie',
+        },
+        labels: type_location_arr,
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 400
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+
+    var chart = new ApexCharts(document.querySelector("#chartUser_Location"), options);
+    chart.render();
+</script>
 
 
 
