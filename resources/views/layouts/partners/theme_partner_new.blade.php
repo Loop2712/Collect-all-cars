@@ -639,31 +639,37 @@
 			<!--navigation-->
 			<ul class="metismenu" id="menu" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
 
-				<li id="div_ll_Dashboard" class="">
-					<a href="#" class="has-arrow">
-						<div class="parent-icon">
-							<i class="fa-solid fa-chart-line"></i>
-						</div>
-						<div class="menu-title">Dashboard</div>
-					</a>
-                    <ul>
-                        <li>
-                            <a href="{{ url('/dashboard_index#dashboard_user') }}"><i class='fas fa-users-cog'></i>User</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/dashboard_index#dashboard_viisos') }}"><i class='fas fa-users-cog'></i>ViiSOS</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/dashboard_index#dashboard_viicare') }}"><i class='fas fa-users-cog'></i>ViiNews</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/dashboard_index#dashboard_viimove') }}"><i class='fas fa-users-cog'></i>ViiMove</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/dashboard_index#dashboard_boardcast') }}"><i class='fas fa-users-cog'></i>Broadcast</a>
-                        </li>
-                    </ul>
-				</li>
+				<!-- Dashboard Partner -->
+				@if(Auth::check())
+                    @if(Auth::user()->role == "admin-partner" and Auth::user()->organization != "สพฉ")
+					<li id="div_ll_Dashboard" class="">
+						<a href="#" class="has-arrow">
+							<div class="parent-icon">
+								<i class="fa-solid fa-chart-line"></i>
+							</div>
+							<div class="menu-title">Dashboard</div>
+						</a>
+	                    <ul>
+	                        <li>
+	                            <a href="{{ url('/dashboard_index#dashboard_user') }}"><i class='fas fa-users-cog'></i>User</a>
+	                        </li>
+	                        <li>
+	                            <a href="{{ url('/dashboard_index#dashboard_viisos') }}"><i class='fas fa-users-cog'></i>ViiSOS</a>
+	                        </li>
+	                        <li>
+	                            <a href="{{ url('/dashboard_index#dashboard_viicare') }}"><i class='fas fa-users-cog'></i>ViiNews</a>
+	                        </li>
+	                        <li>
+	                            <a href="{{ url('/dashboard_index#dashboard_viimove') }}"><i class='fas fa-users-cog'></i>ViiMove</a>
+	                        </li>
+	                        <li>
+	                            <a href="{{ url('/dashboard_index#dashboard_boardcast') }}"><i class='fas fa-users-cog'></i>Broadcast</a>
+	                        </li>
+	                    </ul>
+					</li>
+					@endif
+				@endif
+
 				<!-- Admin -->
 				@if(Auth::check())
                     @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "admin-condo")
@@ -1011,9 +1017,19 @@
 										<i class="fa-solid fa-paper-plane"></i> ส่งข้อมูล
 									</a>
 								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" class="has-arrow">
+								<div class="parent-icon">
+									<i class="fa-solid fa-chart-pie"></i>
+								</div>
+								<div class="menu-title">วิเคราะห์ข้อมูล</div>
+							</a>
+							<ul>
 								<li>
 									<a href="#">
-										<i class="fa-solid fa-chart-pie"></i> วิเคราะห์ข้อมูล (soon)
+										<i class="fa-solid fa-user-headset"></i> ...
 									</a>
 								</li>
 							</ul>

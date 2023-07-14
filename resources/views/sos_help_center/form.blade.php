@@ -1135,7 +1135,7 @@ color: #ff9317;
                     }
                 </style>
                 @if(Auth::user()->id == '1' || Auth::user()->id == '4' || Auth::user()->id == '64' || Auth::user()->id == '11003663')
-                <button id="btnVideoCall" class="btn btnVideoCall" data-animation-class="fa-bounce" onclick="start_video_call_command();">
+                <button id="btnVideoCall" class="btn btnVideoCall" data-animation-class="fa-bounce" onclick="start_video_call_command();" disabled>
                     <i id="iconVideoCall" class="fa-duotone fa-video-plus"> </i> Video Call
                 </button>
                 @endif
@@ -1164,8 +1164,8 @@ color: #ff9317;
             @include('sos_help_center.command_video_call', 
               [
               'sos_id' => $sos_1669_id ,
-              'app_id' => env("AGORA_APP_ID") ,
-              'appCertificate' => env("AGORA_APP_CERTIFICATE"),
+              'app_id' => $appID ,
+              'appCertificate' => $appCertificate,
               'agora_chat' => $agora_chat
               ]
             )

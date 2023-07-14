@@ -20,6 +20,18 @@ class AgoraController extends Controller
     // // // // -------- // // // //
     // // // // SOS 1669 // // // //
     // // // // -------- // // // //
+
+    public function get_appId()
+    {
+        $appID = env('AGORA_APP_ID');
+        $appCertificate = env('AGORA_APP_CERTIFICATE');
+
+        $data = [] ;
+        $data['appId'] = $appID ;
+        $data['appCertificate'] = $appCertificate ;
+
+        return $data ;
+    }
     public function index(Request $request)
     {
         $sos_id = $request->sos_id;
@@ -34,8 +46,11 @@ class AgoraController extends Controller
 
     public function token(Request $request)
     {
-        $appID = $request->appId;
-        $appCertificate = $request->appCertificate;
+        // $appID = $request->appId;
+        // $appCertificate = $request->appCertificate;
+
+        $appID = env('AGORA_APP_ID');
+        $appCertificate = env('AGORA_APP_CERTIFICATE');
 
         $data_user = User::where('id' ,$request->user_id)->first();
 

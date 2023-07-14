@@ -142,9 +142,12 @@ class Sos_help_centerController extends Controller
 
         $sos_1669_id = $id ;
 
+        $appID = env('AGORA_APP_ID');
+        $appCertificate = env('AGORA_APP_CERTIFICATE');
+
         $agora_chat = Agora_chat::where('sos_id' , $sos_1669_id)->where('room_for' , 'user_sos_1669')->first();
 
-        return view('sos_help_center.edit', compact('data_forword_form', 'data_forword_to' , 'sos_help_center','all_provinces','data_form_yellow','sos_1669_id','agora_chat'));
+        return view('sos_help_center.edit', compact('data_forword_form', 'data_forword_to' , 'sos_help_center','all_provinces','data_form_yellow','sos_1669_id','agora_chat','appID','appCertificate'));
     }
 
     /**
