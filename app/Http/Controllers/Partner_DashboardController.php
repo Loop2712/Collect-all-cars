@@ -22,7 +22,7 @@ class Partner_DashboardController extends Controller
         $user_login = Auth::user();
 
         // เจ้าหน้าที่ในองค์กร
-        $data_officer = User::where('organization', '=', $user_login->organization)->get();
+        $data_officer = User::where('organization', '=', $user_login->organization)->orderBy('created_at','DESC')->get();
 
         // ผู้ใช้ที่มาจาก API
         $data_user_from = User::where('user_from','LIKE',"%มีเงิน_จำกัด%")->get();
@@ -70,6 +70,7 @@ class Partner_DashboardController extends Controller
 
         if (!empty($keyword)) {
             $user_data = User::where('organization', '=', $user_login->organization)
+                ->orWhere('user_from','LIKE',"%มีเงิน_จำกัด%")
                 ->where('name', 'LIKE', "%$keyword%")
                 ->orWhere('name_staff', 'LIKE', "%$keyword%")
                 ->orWhere('sex', 'LIKE', "%$keyword%")
@@ -79,10 +80,33 @@ class Partner_DashboardController extends Controller
                 ->orWhere('language', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $user_data = User::where('organization', '=', $user_login->organization)->latest()->paginate($perPage);
+            $user_data = User::where('organization', '=', $user_login->organization)->orWhere('user_from','LIKE',"%มีเงิน_จำกัด%")->latest()->paginate($perPage);
         }
 
-        return view('dashboard.dashboard_user.user_index' , compact('user_data'));
+        return view('dashboard.dashboard_user.user_index' , compact('user_data','filter_location_P'));
+    }
+
+    function filter_user(Request $request){
+        $user_login = Auth::user();
+
+        $keyword = $request->all();
+        $perPage = 10;
+
+        if(!empty($keyword)){
+
+        } else {
+            // GroupBy ช่องทาง login
+            $filter_location_P = DB::table('users')
+            ->where('users.location_P', '!=', null)
+            ->where('users.organization', '=', $user_login->organization)
+            ->orWhere('user_from','LIKE',"%มีเงิน_จำกัด%")
+            ->select('users.location_P')
+            ->groupBy('users.location_P')
+            ->orderBy('users.location_P','DESC')
+            ->get();
+        }
+
+        return $filter_location_P;
     }
 
 }

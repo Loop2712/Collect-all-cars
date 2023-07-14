@@ -1,29 +1,28 @@
 @extends('layouts.partners.theme_partner_new')
 
-<style>
+{{-- <style>
     div.dataTables_wrapper div.dataTables_filter {
         display: none;
     }
-</style>
+</style> --}}
 
 @section('content')
 
     <div class="card">
-        <div class="card-body">
-            <div class="row row-cols-1 row-cols-lg-6">
-                <!-- เพิ่มตัวกรอง -->
+        <div id="card_table_user" class="card-body">
+             <!-- เพิ่มตัวกรอง -->
+            <div id="advanced_filter_user" class="row row-cols-1 row-cols-lg-6 collapse" >
                 <div class="col mb-3">
                     <label for="gender_filter" class="form-label">เพศ:</label>
-                    <select class="form-select" id="gender_filter">
+                    <select class="form-select filter-select" id="gender_filter">
                         <option value="">--</option>
-                        <option value="male">ผู้ชาย</option>
-                        <option value="female">ผู้หญิง</option>
-
+                        <option value="ผู้ชาย">ผู้ชาย</option>
+                        <option value="ผู้หญิง">ผู้หญิง</option>
                     </select>
                 </div>
                 <div class="col mb-3">
                     <label for="age_filter" class="form-label">อายุ:</label>
-                    <select class="form-select" id="age_filter">
+                    <select class="form-select filter-select" id="age_filter">
                         <option value="">--</option>
                         <option value="below_12">ต่ำกว่า 12</option>
                         <option value="13_19">13 - 19</option>
@@ -34,18 +33,17 @@
                 </div>
                 <div class="col mb-3">
                     <label for="province_filter" class="form-label">จังหวัด:</label>
-                    <select class="form-select" id="province_filter">
+                    <select class="form-select filter-select" id="province_filter">
                         <option value="">--</option>
                         <!-- เพิ่มตัวเลือกจังหวัดที่ต้องการ -->
-                        <option value="bangkok">กรุงเทพมหานคร</option>
-                        <option value="chiang_mai">เชียงใหม่</option>
-                        <option value="phuket">ภูเก็ต</option>
-                        <!-- เพิ่มตัวเลือกจังหวัดอื่น ๆ ตามต้องการ -->
+                        @foreach ($filter_location_P as $item)
+                            <option value="{{$item->location_P}}">{{$item->location_P}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col mb-3">
                     <label for="province_filter" class="form-label">อำเภอ:</label>
-                    <select class="form-select" id="province_filter">
+                    <select class="form-select filter-select" id="province_filter">
                         <option value="">--</option>
                         <!-- เพิ่มตัวเลือกจังหวัดที่ต้องการ -->
                         <option value="bangkok">กรุงเทพมหานคร</option>
@@ -56,7 +54,7 @@
                 </div>
                 <div class="col mb-3">
                     <label for="nationality_filter" class="form-label">สัญชาติ:</label>
-                    <select class="form-select" id="nationality_filter">
+                    <select class="form-select filter-select" id="nationality_filter">
                         <option value="">--</option>
                         <!-- เพิ่มตัวเลือกสัญชาติที่ต้องการ -->
                         <option value="thai">ไทย</option>
@@ -67,7 +65,7 @@
                 </div>
                 <div class="col mb-3">
                     <label for="membership_filter" class="form-label">เป็นสมาชิกมาแล้ว:</label>
-                    <select class="form-select" id="membership_filter">
+                    <select class="form-select filter-select" id="membership_filter">
                         <option value="">--</option>
                         <option value="less_than_1_month">น้อยกว่า 1 เดือน</option>
                         <option value="1_6_months">1 - 6 เดือน</option>
@@ -75,8 +73,8 @@
                         <option value="more_than_1_year">มากกว่า 1 ปี</option>
                     </select>
                 </div>
-                <!-- จบส่วนตัวกรอง -->
             </div>
+            <!-- จบส่วนตัวกรอง -->
             <div class="table-responsive">
                 <table id="example2" class="table table-striped table-bordered">
                     <thead>
@@ -95,14 +93,14 @@
                     <tbody>
                         @foreach ($user_data as $user)
                             <tr role="row" class="odd">
-                                <td class="sorting_1">{{$user->name}}</td>
-                                <td>{{$user->name_staff}}</td>
-                                <td>{{$user->sex}}</td>
-                                <td>{{$user->brith}}</td>
-                                <td>{{$user->location_P}}</td>
-                                <td>{{$user->location_A}}</td>
-                                <td>{{$user->nationalitie}}</td>
-                                <td>{{$user->language}}</td>
+                                <td class="sorting_1">{{$user->name ? $user->name : '-'}}</td>
+                                <td>{{$user->name_staff ? $user->name_staff : '-'}}</td>
+                                <td>ผู้ชาย</td>
+                                <td>{{$user->brith ? $user->brith : '-'}}</td>
+                                <td>{{$user->location_P ? $user->location_P : '-'}}</td>
+                                <td>{{$user->location_A ? $user->location_A : '-'}}</td>
+                                <td>{{$user->nationalitie ? $user->nationalitie : '-'}}</td>
+                                <td>{{$user->language ? $user->language : '-'}}</td>
                                 <td>{{$user->created_at->diffForHumans()}}</td>
                             </tr>
                         @endforeach
@@ -126,79 +124,59 @@
                 buttons: ['excel', 'pdf', 'print']
             } );
 
-            // เรียกใช้ฟังก์ชันเมื่อมีการเปลี่ยนค่าในตัวกรอง
-            $('#gender_filter, #age_filter, #membership_filter, #province_filter, #nationality_filter').change(function() {
-                table.draw();
+            // เมื่อมีการเลือกค่าในตัวกรอง dropdown
+        $('.filter-select').on('change', function() {
+            var genderFilter = $('#gender_filter').val();
+            var ageFilter = $('#age_filter').val();
+            var provinceFilter = $('#province_filter').val();
+            var districtFilter = $('#district_filter').val();
+            var nationalityFilter = $('#nationality_filter').val();
+            var membershipFilter = $('#membership_filter').val();
+
+            let filter_url = "{{ url('/') }}/api/filter_user?genderFilter=" + genderFilter + "&ageFilter=" + ageFilter + "&provinceFilter=" + provinceFilter +"&districtFilter=" + districtFilter + "&nationalityFilter=" + nationalityFilter + "&membershipFilter=" + membershipFilter;
+            fetch(url).then(response => response.json())
+            .then(result => {
+
+            }).catch((error) => {
+                console.log("ERROR HERE");
+                console.log(error);
             });
 
-            // กำหนดฟังก์ชันสำหรับการกรองข้อมูล
-            $.fn.dataTable.ext.search.push(
-                function(settings, data, dataIndex) {
-                    var genderFilter = $('#gender_filter').val();
-                    var ageFilter = $('#age_filter').val();
-                    var membershipFilter = $('#membership_filter').val();
-                    var provinceFilter = $('#province_filter').val();
-                    var nationalityFilter = $('#nationality_filter').val();
+            console.log(genderFilter);
+            // console.log(typeof(provinceFilter));
 
-                    var gender = data[2]; // คอลัมน์เพศ
-                    var age = parseInt(data[3]); // คอลัมน์อายุ
-                    var membership = data[8]; // คอลัมน์เป็นสมาชิกมาแล้ว
-                    var province = data[5]; // คอลัมน์จังหวัด
-                    var nationality = data[6]; // คอลัมน์สัญชาติ
-
-                    // กรองตามเพศ
-                    if (genderFilter && genderFilter !== gender) {
-                        return false;
-                    }
-
-                    // กรองตามอายุ
-                    if (ageFilter) {
-                        var ageRange = ageFilter.split('_');
-                        var minAge = parseInt(ageRange[0]);
-                        var maxAge = parseInt(ageRange[1]);
-                        if (age < minAge || age > maxAge) {
-                            return false;
-                        }
-                    }
-
-                    // กรองตามการเป็นสมาชิกมาแล้ว
-                    if (membershipFilter) {
-                        var membershipRange = membershipFilter.split('_');
-                        var minMonths = parseInt(membershipRange[0]);
-                        var maxMonths = parseInt(membershipRange[1]);
-                        var months = membership.match(/\d+/g); // สกัดเอาเฉพาะตัวเลขในสตริง
-                        if (months) {
-                            var numMonths = parseInt(months[0]);
-                            if (numMonths < minMonths || numMonths > maxMonths) {
-                                return false;
-                            }
-                        } else {
-                            return false;
-                        }
-                    }
-
-                    // กรองตามจังหวัด
-                    if (provinceFilter && provinceFilter !== province) {
-                        return false;
-                    }
-
-                    // กรองตามสัญชาติ
-                    if (nationalityFilter && nationalityFilter !== nationality) {
-                        return false;
-                    }
-
-                    return true; // รักษาข้อมูลที่ผ่านการกรอง
-                }
-            );
-
-            // กำหนดให้ทำการกรองข้อมูลเมื่อมีการค้นหาหรือเปลี่ยนหน้า
-            table.on('search.dt page.dt', function() {
-                table.draw();
-            });
+            // นำค่าตัวกรองไปใช้ในการกรองข้อมูลตาราง
+            table
+            .columns([2, 3, 4, 5, 6, 8])
+            .search([genderFilter, ageFilter, provinceFilter, districtFilter, nationalityFilter, membershipFilter])
+            .draw();
+        });
 
             table.buttons().container()
                 .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
         } );
+    </script>
+
+    <script>
+        var card_body = document.querySelector('#card_table_user');
+
+        var advanced_search = document.createElement('div');
+            advanced_search.id = 'advanced_search';
+            advanced_search.innerHTML = "การค้นหาขั้นสูง";
+            advanced_search.classList.add('collapse');
+
+            card_body.insertBefore(advanced_search, card_body.firstChild);
+
+            // สร้างปุ่มที่จะใช้ในการเปิด-ปิดการ collapse
+            var button = document.createElement('button');
+            button.classList.add('btn', 'btn-outline-primary' ,'mb-2');
+            button.setAttribute('type', 'button');
+            button.setAttribute('data-toggle', 'collapse');
+            button.setAttribute('data-target', '#advanced_filter_user');
+            button.innerHTML = 'การค้นหาขั้นสูง';
+
+            // เพิ่มปุ่มไปยัง div card_body
+            card_body.insertBefore(button, card_body.firstChild);
     </script>
 
 

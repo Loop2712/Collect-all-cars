@@ -259,7 +259,7 @@ Route::get('/send_data_new_select_officer', 'Sos_help_centerController@send_data
 Route::get('/check_officer_command_in_call/{sos_id}', 'Sos_help_centerController@check_officer_command_in_call');
 Route::get('/real_time_check_refuse_and_call', 'Sos_help_centerController@real_time_check_refuse_and_call');
 
-    // SOS HELP CENTER FORM USER 
+    // SOS HELP CENTER FORM USER
     Route::get('/check_unit_cf_sos_form_user/{sos_id}', 'Sos_help_centerController@check_unit_cf_sos_form_user');
     Route::get('/check_location_officer/{sos_id}', 'Sos_help_centerController@check_location_officer');
     Route::get('/check_status_officer/{sos_id}', 'Sos_help_centerController@check_status_officer');
@@ -281,3 +281,10 @@ Route::get('/check_user_in_room', 'AgoraController@check_user_in_room');
 Route::get('/check_command_in_room', 'AgoraController@check_command_in_room');
 Route::get('/get_data_command_adn_user', 'AgoraController@get_data_command_adn_user');
 
+
+//========================//
+//     DashBoard
+//========================//
+
+//========== User ==============//
+Route::get('/filter_user', 'Partner_DashboardController@filter_user');

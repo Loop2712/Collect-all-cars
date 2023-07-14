@@ -1,14 +1,19 @@
 <style>
+    .progress_bg {
+        background-color: rgb(255 255 255 / 12%) !important;
+    }
+
     .progress_bar_USER {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	overflow: hidden;
-	color: #fff;
+	color: #000000b0;
 	text-align: center;
 	white-space: nowrap;
-	background-color: #656a74;
-	transition: width .6s ease
+	background-color: #ffffff;
+	transition: width .6s ease;
+    font-weight: bold;
 }
 </style>
 <!-- ======================================================================
@@ -19,15 +24,15 @@
 @php
     // % ของผู้ใช้เดือนนี้
     $percent_user_new_m = ($all_user_m / $all_user) * 100;
-    $percent_user_new_m = number_format($percent_user_new_m,2);
+    $percent_user_new_m = number_format($percent_user_new_m,0);
 
     // % ของผู้ใช้ในองค์กร
     $percent_user_officer = (count($data_officer) / $all_user) * 100;
-    $percent_user_officer = number_format($percent_user_officer,2);
+    $percent_user_officer = number_format($percent_user_officer,0);
 
     // % ของผู้ใช้จาก API
     $percent_user_from = (count($data_user_from) / $all_user) * 100;
-    $percent_user_from = number_format($percent_user_from,2);
+    $percent_user_from = number_format($percent_user_from,0);
 
 @endphp
 
@@ -37,13 +42,13 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <p class="mb-0 text-white">ผู้ใช้ทั้งหมด</p>
-                        <h5 class="mb-0 text-white">{{$all_user}}</h5>
+                        <h5 class="mb-0 text-white">ผู้ใช้งานทั้งหมด</h5>
+                        <h3 class="mb-0 text-white">{{$all_user}}</h3>
                     </div>
                     <div class="ms-auto text-white"><i class="fa-regular fa-user font-30"></i>
                     </div>
                 </div>
-                <div class="progress mt-4">
+                <div class="progress progress_bg mt-4">
                     <div class="progress_bar_USER" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                 </div>
             </div>
@@ -54,13 +59,13 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <p class="mb-0 text-white">ผู้ใช้ใหม่เดือนนี้</p>
-                        <h5 class="mb-0 text-white">{{$all_user_m}}</h5>
+                        <h5 class="mb-0 text-white">ผู้ใช้งานใหม่เดือนนี้</h5>
+                        <h3 class="mb-0 text-white">{{$all_user_m}}</h3>
                     </div>
                     <div class="ms-auto text-white"><i class="fa-regular fa-user-plus font-30"></i>
                     </div>
                 </div>
-                <div class="progress mt-4">
+                <div class="progress progress_bg mt-4">
                     <div class="progress_bar_USER" role="progressbar" style="width: {{$percent_user_new_m}}%;" aria-valuenow="{{$percent_user_new_m}}" aria-valuemin="0" aria-valuemax="100">{{$percent_user_new_m}}%</div>
                 </div>
             </div>
@@ -71,13 +76,13 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <p class="mb-0 text-white">เจ้าหน้าที่ในองค์กร</p>
-                        <h5 class="mb-0 text-white">{{count($data_officer)}}</h5>
+                        <h5 class="mb-0 text-white">เจ้าหน้าที่ภายในองค์กร</h5>
+                        <h3 class="mb-0 text-white">{{count($data_officer)}}</h3>
                     </div>
                     <div class="ms-auto text-white"><i class="fa-duotone fa-users font-30"></i>
                     </div>
                 </div>
-                <div class="progress mt-4">
+                <div class="progress progress_bg mt-4">
                     <div class="progress_bar_USER" role="progressbar" style="width: {{$percent_user_officer}}%;" aria-valuenow="{{$percent_user_officer}}" aria-valuemin="0" aria-valuemax="100">{{$percent_user_officer}}%</div>
                 </div>
             </div>
@@ -88,13 +93,13 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <p class="mb-0 text-white">ผู้ใช้อื่นๆ</p>
-                        <h5 class="mb-0 text-white">{{count($data_user_from)}}</h5>
+                        <h5 class="mb-0 text-white">ผู้ใช้งานจากช่องทางอื่น</h5>
+                        <h3 class="mb-0 text-white">{{count($data_user_from)}}</h3>
                     </div>
                     <div class="ms-auto text-white"><i class="fa-solid fa-user-tie font-30"></i>
                     </div>
                 </div>
-                <div class="progress mt-4">
+                <div class="progress progress_bg mt-4">
                     <div class="progress_bar_USER" role="progressbar" style="width: {{$percent_user_from}}%;" aria-valuenow="{{$percent_user_from}}" aria-valuemin="0" aria-valuemax="100">{{$percent_user_from}}%</div>
                 </div>
             </div>
@@ -104,10 +109,10 @@
 
 <!-- ============================= User from other organization ================================= -->
 
-<div class="row mb-3">
-    <div class="col-12 col-xl-7">
-        <div class="card radius-10 mb-0">
-            <div class="card-body">
+<div class="row mb-3 ">
+    <div class="col-12 col-xl-7 ">
+        <div class="card radius-10 mb-0 h-100">
+            <div class="card-body ">
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="mb-1">เจ้าหน้าที่ภายในองค์กร</h5>
@@ -164,12 +169,12 @@
         </div>
     </div>
 
-    <div class="col-12 col-xl-5">
-        <div class="card radius-10 mb-0">
-            <div class="card-body">
+    <div class="col-12 col-xl-5 ">
+        <div class="card radius-10 mb-0 h-100">
+            <div class="card-body ">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-1">ผู้ใช้จาก API</h5>
+                        <h5 class="mb-1">ผู้ใช้งานจากช่องทางอื่น</h5>
                     </div>
                     <div class="ms-auto">
                         <a href="{{ url('/dashboard_user_index') }}" class="btn btn-primary btn-sm radius-30">ดูข้อมูลผู้ใช้ทั้งหมด</a>
@@ -222,9 +227,9 @@
 
 <!-- ============================= User from Login with Bar Chart ================================= -->
 
-<div class="row  mb-3">
+<div class="row mb-3">
     <div class="col-12 col-lg-7">
-        <div class="card">
+        <div class="card h-100">
             <div class="d-flex align-items-center m-3">
                 <div>
                     <h5 class="mb-1">ช่องทางเข้าสู่ระบบ</h5>
@@ -236,21 +241,19 @@
         </div>
     </div>
     <div class="col-12 col-lg-5">
-        <div class="card">
+        <div class="card h-100">
             <div class="d-flex align-items-center m-3">
                 <div>
-                    <h5 class="mb-1">ที่อยู่ของผู้ใช้</h5>
+                    <h5 class="mb-1">จังหวัดของผู้ใช้สูงสุด 5 อันดับ</h5>
                 </div>
             </div>
             <div class="card-body">
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center align-items-center">
                     <div id="chartUser_Location"></div>
                 </div>
             </div>
         </div>
     </div>
-
-
 </div><!--end row-->
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -384,7 +387,7 @@ chart.render();
     var options = {
         series: user_location_arr,
         chart: {
-            width: 470,
+            width: 500,
             type: 'pie',
         },
         labels: type_location_arr,
