@@ -2336,13 +2336,20 @@ class Sos_help_centerController extends Controller
         return $check_officer_command ;
     }
 
-    function real_time_check_refuse_and_call(){
+    function real_time_check_refuse_and_call(Request $request){
 
         $data = [];
         $data['refuse'] = '' ;
         $data['call'] = '' ;
 
-        $data_sos = Sos_help_center::where('status' , 'ปฏิเสธ')->get();
+        $requestData = $request->all();
+
+        $data_user = User::where('id',$requestData['user_id'])->first();
+        $area = $data_user->sub_organization ;
+
+        $data_sos = Sos_help_center::where('status' , 'ปฏิเสธ')
+            ->where('notify', 'LIKE', "%$area%")
+            ->get();
 
         if( !empty($data_sos) ){
             foreach ($data_sos as $item_sos){
@@ -2364,7 +2371,10 @@ class Sos_help_centerController extends Controller
 
             foreach ($data_agora_chat as $item_agora){
 
-                if( !empty($item_agora->member_in_room) ){
+                // ตรวจสอบว่า sos id นี้เป็นของพื้นที่ $data_user คนนี้หรือเปล่า
+                $data_for_loop = Sos_help_center::where('id' , $item_agora->sos_id)->first();
+
+                if (str_contains($data_for_loop->notify, $area)) { 
                     $data_member_in_room = $item_agora->member_in_room;
 
                     $data_array = json_decode($data_member_in_room, true);
@@ -2378,7 +2388,6 @@ class Sos_help_centerController extends Controller
                         }
                     }
                 }
-
             }
 
         }else{

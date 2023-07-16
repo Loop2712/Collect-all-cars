@@ -3091,7 +3091,7 @@
     }
 
     function real_time_check_refuse_and_call(){
-
+        
         setInterval(function() {
             // console.log('real_time_check_refuse_and_call');
 
@@ -3111,17 +3111,21 @@
                Item_3.classList.remove('border-color-change-color');
             })
 
-            fetch("{{ url('/') }}/api/real_time_check_refuse_and_call")
+            fetch("{{ url('/') }}/api/real_time_check_refuse_and_call?user_id="+'{{ Auth::user()->id }}')
                 .then(response => response.json())
                 .then(result => {
+                    // console.log("real_time_check_refuse_and_call");
                     // console.log(result);
+                    // console.log('--------------------------------');
 
                     let result_refuse = result['refuse'].split(",");
                     let result_call = result['call'].split(",");
-                        // console.log(result_refuse);
-                        // console.log(result_call);
+                        console.log('result_refuse >> ' + result_refuse);
+                        console.log('result_call >> ' + result_call);
+                        console.log('result_refuse[0] >> ' + result_refuse[0]);
+                        console.log('result_call[0] >> ' + result_call[0]);
 
-                    if(result_refuse[0] != 'ไม่มีข้อมูล'){
+                    if(result_refuse[0] && result_refuse[0] != 'ไม่มีข้อมูล'){
                         for(let ii = 0; ii < result_refuse.length; ii++){
                             document.querySelector('#notification_refuse_sos_id_'+result_refuse[ii]).classList.remove('d-none');
                             // border-color-change-color
@@ -3130,7 +3134,7 @@
                         }
                     }
 
-                    if(result_call[0] != 'ไม่มีข้อมูล'){
+                    if(result_call[0] && result_call[0] != 'ไม่มีข้อมูล'){
                         for(let xx = 0; xx < result_call.length; xx++){
                             document.querySelector('#notification_call_sos_id_'+result_call[xx]).classList.remove('d-none');
                             let div_card_call = document.querySelector('.card_sos_id_'+result_call[xx]);

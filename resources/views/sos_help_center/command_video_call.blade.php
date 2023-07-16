@@ -267,7 +267,7 @@
               <i class="fa-solid fa-phone-volume"></i> vasdvs
           </span> -->
 
-          <span id="btn_close_audio_ringtone" class="btn btn-secondary d-none" onclick="stop_ringtone();">
+          <span id="btn_close_audio_ringtone" class="btn btn-secondary d-none" onclick="mute_ringtone();">
               <i class="fa-solid fa-volume-slash"></i>
           </span>
 
@@ -379,7 +379,16 @@ function stop_ringtone() {
   check_first_play_ringtone = 0 ;
 }
 
+function mute_ringtone(){
+  audio_ringtone.pause();
+  audio_ringtone.currentTime = 0;
+  isPlaying_ringtone = false;
+}
+
 function runLoop_check_appId() {
+
+  let user_in_room = '{{ $user_in_room }}';
+
   setTimeout(() => {
 
     fetch("{{ url('/') }}/api/get_appId")
@@ -398,6 +407,24 @@ function runLoop_check_appId() {
           }else{
             setTimeout(() => {
               document.querySelector('#btnVideoCall').disabled = false;
+
+              if(user_in_room){
+                document.querySelector('#command_join').innerHTML = 
+                `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
+                document.querySelector('#command_join').classList.add('video-call-in-room');
+                document.querySelector('#command_join').classList.remove('btn-success');
+                document.querySelector('#command_join').setAttribute('style' , 'width: 60%;');
+                document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+
+                document.querySelector('#btnVideoCall').click();
+
+                play_ringtone();
+                loop_check_user_in_room();
+
+              }else{
+                loop_check_user_in_room();
+              }
+
             }, 1000);
           }
     });
@@ -415,30 +442,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
     console.log('มี ข้อมูลตั้งแต่แรก');
     console.log(appId);
     console.log(appCertificate);
+
     setTimeout(() => {
       document.querySelector('#btnVideoCall').disabled = false;
+
+      if(user_in_room){
+        document.querySelector('#command_join').innerHTML = 
+        `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
+        document.querySelector('#command_join').classList.add('video-call-in-room');
+        document.querySelector('#command_join').classList.remove('btn-success');
+        document.querySelector('#command_join').setAttribute('style' , 'width: 60%;');
+        document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+
+        document.querySelector('#btnVideoCall').click();
+
+        play_ringtone();
+        loop_check_user_in_room();
+
+      }else{
+        loop_check_user_in_room();
+      }
+
     }, 1000);
   }
   
-  if(user_in_room){
-    document.querySelector('#command_join').innerHTML = 
-    `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
-    document.querySelector('#command_join').classList.add('video-call-in-room');
-    document.querySelector('#command_join').classList.remove('btn-success');
-    document.querySelector('#command_join').setAttribute('style' , 'width: 60%;');
-    document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
-
-    document.querySelector('#btnVideoCall').click();
-
-    play_ringtone();
-
-  }else{
-
-    loop_check_user_in_room();
-
-  }
-
-
 });
 
 var check_command_in_room = false ;
@@ -527,7 +554,6 @@ function create_html_user_in_room(data , type){
 
   console.log('create_html_user_in_room');
   console.log(data);
-
   console.log('type >> ' + type);
 
   // document.querySelector('#show_whene_video_no_active').innerHTML = '';

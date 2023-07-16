@@ -991,20 +991,56 @@
 				@endif
 				<!-- end care move sos -->
 
+				<style>
+                    .theme-notification-menu {
+                        position: absolute;
+                        top: 10px;
+                        left: 78% !important;
+                        color: #f5950f;
+                        width: 30px;
+                        height: 30px;
+                        font-size: 18px;
+                        border-radius: 50%;
+                        z-index: 999999!important;
+                    }
+                    .theme-notification-call {
+                        position: absolute;
+                        left: 85% !important;
+                        color: #ADFF2F;
+                        width: 20px;
+                        height: 20px;
+                        font-size: 18px;
+                        z-index: 9999;
+                    }
+                    .theme-notification-refuse {
+                        position: absolute;
+                        left: 75% !important;
+                        color: red;
+                        width: 20px;
+                        height: 20px;
+                        font-size: 18px;
+                        z-index: 9999;
+                    }
+
+                </style>
+
 				<!-- SOS HELP CENTER 1669 -->
 				@if(Auth::check())
 					@if(Auth::user()->id == "1" or Auth::user()->id == "64" or Auth::user()->id == "2" or Auth::user()->organization == 'สพฉ')
 						<li>
-							<a href="#" class="has-arrow">
+							<a id="menu_command_sos" href="#" class="has-arrow">
 								<div class="parent-icon">
 									<i class="fa-solid fa-truck-medical"></i>
 								</div>
 								<div class="menu-title">ขอความช่วยเหลือ</div>
+								<i id="i_noti_menu" class="fa-solid fa-circle-exclamation fa-bounce theme-notification-menu d-none"></i>
 							</a>
 							<ul>
 								<li>
 									<a href="{{ url('/help_center_admin') }}">
 										<i class="fa-solid fa-user-headset"></i> ควบคุมและสั่งการ
+										<i id="i_noti_call" class="fa-solid fa-phone-volume fa-shake theme-notification-call d-none"></i>
+										<i id="i_noti_refuse" class="fa-solid fa-triangle-exclamation fa-bounce theme-notification-refuse d-none"></i>
 									</a>
 								</li>
 								<li>
@@ -2186,14 +2222,113 @@
 		       	// check_sos_js100();
 		    }, 10000);
 		@else
+			// ด้านล่างนี้เป็น สพฉ ศูนย์สั่งการต่างๆ
 		    @if(Auth::user()->sub_organization != 'ศูนย์ใหญ่')
 				setInterval(function() {
 					check_ask_for_help_1669();
 			    }, 5000);
+
+			    let full_url = '{{ url()->full() }}' ;
+			    let text_url_all = full_url.split('/');
+			    let last_text = text_url_all.length - 1 ;
+			    let link_current = text_url_all[last_text];
+			    // console.log(text_url_all);
+			    // console.log(link_current);
+
+			    if (link_current != 'help_center_admin'){
+			    	// หน้าไหนเมนูบาร์ไม่กางออกส่งไปคลิกได้ที่นี่เลย
+			    	open_menu_bar(text_url_all);
+			    	// เช็ควิดีโอคอลและการปฏิเสธ
+			    	Theme_check_refuse_and_call(text_url_all);
+			    }
+
 			@endif
 		@endif
 
     });
+
+    function Theme_check_refuse_and_call(text_url_all) {
+
+		// console.log('Theme_check_refuse_and_call');
+
+		let i_noti_refuse = document.querySelector('#i_noti_refuse');
+		let i_noti_call = document.querySelector('#i_noti_call');
+		let i_noti_menu = document.querySelector('#i_noti_menu');
+
+	    setInterval(function() {
+	    	fetch("{{ url('/') }}/api/real_time_check_refuse_and_call?user_id="+'{{ Auth::user()->id }}')
+                .then(response => response.json())
+                .then(result => {
+                    // console.log("real_time_check_refuse_and_call");
+                    // console.log(result);
+                    // console.log('--------------------------------');
+
+                    let result_refuse = result['refuse'].split(",");
+                    let result_call = result['call'].split(",");
+                        // console.log('result_refuse >> ');
+                        // console.log(result_refuse);
+                        // console.log('result_call >> ');
+                        // console.log(result_call);
+
+                        // console.log('result_refuse[0] >> ' + result_refuse[0]);
+                        // console.log('result_call[0] >> ' + result_call[0]);
+
+                    // ตรวจสอบเงื่อนไขการแสดงผลไอคอนแจ้งเตือนหาก url ไม่ใช่ help_center_admin
+                    if(result_refuse[0] && result_refuse[0] != 'ไม่มีข้อมูล'){
+                    	i_noti_menu.classList.remove('d-none');
+                    	i_noti_refuse.classList.remove('d-none');
+                    }else{
+                    	i_noti_refuse.classList.add('d-none');
+                    }
+
+                    if(result_call[0] && result_call[0] != 'ไม่มีข้อมูล'){
+                    	i_noti_menu.classList.remove('d-none');
+                    	i_noti_call.classList.remove('d-none');
+                    }else{
+                    	i_noti_call.classList.add('d-none');
+                    }
+
+                    if (!result_refuse[0] && result_call[0] == 'ไม่มีข้อมูล'){
+                    	i_noti_menu.classList.add('d-none');
+                    	i_noti_refuse.classList.add('d-none');
+                    	i_noti_call.classList.add('d-none');
+                    }
+
+                    // ตรวจสอบถ้าอยู่ในหน้า EDIT ของเคสนั้นๆ แล้วไม่มีการโทรหรือปฏิเสธจากเคสอื่นให้ซ่อน icon แจ้งเตือน
+                    if (result_refuse.length == 1){
+                    	if(result_refuse[0] == text_url_all[6] || result_refuse[0] == ""){
+                    		i_noti_refuse.classList.add('d-none');
+                    	}
+                    }
+
+                    if (result_call.length == 1){
+                    	if(result_call[0] == text_url_all[6] || result_call[0] == ""){
+                    		i_noti_call.classList.add('d-none');
+                    	}
+                    }
+
+                    if (result_refuse.length == 1 && result_call.length == 1){
+                    	if(result_refuse[0] == text_url_all[6] || result_refuse[0] == "" && result_call[0] == text_url_all[6] || result_call[0] == ""){
+                    		i_noti_menu.classList.add('d-none');
+                    		i_noti_refuse.classList.add('d-none');
+                    		i_noti_call.classList.add('d-none');
+                    	}
+                    }
+
+                });
+	    }, 5000);
+	}
+
+	function open_menu_bar(text_url_all){
+
+		// sos_help_center/{id}/edit
+		if (text_url_all[5] == 'sos_help_center'){
+    		setTimeout(function() {
+    			document.querySelector('#menu_command_sos').click();
+		    }, 2000);
+    	}
+
+	}
 
     function check_data_partner()
     {
