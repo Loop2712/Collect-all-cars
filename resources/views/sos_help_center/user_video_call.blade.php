@@ -1053,7 +1053,7 @@
           <i class="fas fa-video"></i>
         </button>
 
-        <button class="btn btn-active" id="" onclick="advdvsv();">
+        <button class="btn btn-active" id="" onclick="picture_mirror();">
           <i class="fa-solid fa-pen-nib"></i>
         </button>
 
@@ -1064,7 +1064,7 @@
     </div>
 
     <script>
-      function advdvsv(){
+      function picture_mirror(){
         let video_local = document.querySelector('.video-local');
         let mkl = video_local.querySelector('[style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: black;"]');
           mkl.classList.add('scaleX-1');
@@ -1361,12 +1361,12 @@ function myStop_check_command_in_room() {
 
 function myStop_countdown_user_out_room() {
     clearInterval(check_countdown_user_out_room);
-    start_countdown = 10 ;
+    start_countdown = 15 ;
     check_start_countdown_user_out_room = 'no';
 }
 
 var check_countdown_user_out_room ;
-var start_countdown = 10 ;
+var start_countdown = 15 ;
 
 function start_countdown_user_out_room(){
 

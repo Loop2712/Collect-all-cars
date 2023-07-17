@@ -24,6 +24,11 @@
     width: calc(100%);
 }
 
+.video-body-local {
+    position: relative;
+    width: calc(100%);
+}
+
 .btn-disabled {
     background-color: #db2d2e !important;
     color: #fff !important;
@@ -61,7 +66,7 @@
     outline: #009e6b .3rem solid;
     border-radius: .5rem;
     position: absolute;
-    top: 105%;
+    top: 5%;
     right: calc(100% - 95%);
 }
 .video-menu {
@@ -269,42 +274,48 @@
 
         </div>
 
-        <div class="video-local">
+        <!-- แสดงผลวิดีโอ -->
+        <div class="video-body-local">
 
-          <i id="video_local_slash" style="position:absolute;top:58%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 50px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
+          <div class="video-local">
 
-          <div id="show_whene_video_no_active" style="position:absolute;top:58%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;">
+            <i id="video_local_slash" style="position:absolute;top:58%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 50px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
 
-              @if( empty($user_in_room) )
-              <!-- ไม่มีผู้ใช้อยู่ในการสนทนา -->
-              <div class="text-center">
-                  <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 12rem!important;">
-                  <br><br>
-                  <h5>ไม่มีผู้ใช้อยู่ในการสนทนา</h5>
-              </div>
-              @else
-              <!-- ผู้ใช้ กำลังรอ -->
-              <div class="text-center">
-                  @if(!empty($user_in_room->photo))
-                    <img src="{{ url('storage')}}/{{ $user_in_room->photo }}" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
-                  @else
-                    <img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
-                  @endif
-                  <br><br>
-                  <h5>คุณ : {{ $user_in_room->name }}</h5>
-                  <h5 class="mt-3 text-danger">ผู้ใช้ กำลังรอ..</h5>
-              </div>
-              @endif
+            <div id="show_whene_video_no_active" style="position:absolute;top:58%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;">
 
+                @if( empty($user_in_room) )
+                <!-- ไม่มีผู้ใช้อยู่ในการสนทนา -->
+                <div class="text-center">
+                    <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 12rem!important;">
+                    <br><br>
+                    <h5>ไม่มีผู้ใช้อยู่ในการสนทนา</h5>
+                </div>
+                @else
+                <!-- ผู้ใช้ กำลังรอ -->
+                <div class="text-center">
+                    @if(!empty($user_in_room->photo))
+                      <img src="{{ url('storage')}}/{{ $user_in_room->photo }}" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
+                    @else
+                      <img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
+                    @endif
+                    <br><br>
+                    <h5>คุณ : {{ $user_in_room->name }}</h5>
+                    <h5 class="mt-3 text-danger">ผู้ใช้ กำลังรอ..</h5>
+                </div>
+                @endif
+
+            </div>
+
+            <div class="containerbtnRemote">
+              <button id="btnVideoRemote" class="btnRemote-close d-none"></button>
+              <button id="btnMicRemote" class="btnRemote-close d-none"></button>
+            </div>
           </div>
 
-          <div class="containerbtnRemote">
-            <button id="btnVideoRemote" class="btnRemote-close d-none"></button>
-            <button id="btnMicRemote" class="btnRemote-close d-none"></button>
-          </div>
+          <div class="video-remote d-none"></div>
+
         </div>
-
-        <div class="video-remote d-none"></div>
+        <!-- จบ แสดงผลวิดีโอ -->
 
         <div class="video-menu d-none">
 
@@ -1103,7 +1114,7 @@ function alertNoti(Icon, Detail) {
 
     <script>
         // Find necessary elements
-        const videoBody = document.querySelector(".video-body");
+        const videoBody = document.querySelector(".video-body-local");
         const videoRemote = document.querySelector(".video-remote");
 
         // Adjust style of video-remote to make it draggable
