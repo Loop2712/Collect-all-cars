@@ -279,9 +279,9 @@
 
           <div class="video-local">
 
-            <i id="video_local_slash" style="position:absolute;top:58%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 50px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
+            <i id="video_local_slash_screen_1" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 50px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
 
-            <div id="show_whene_video_no_active" style="position:absolute;top:58%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;">
+            <div id="show_whene_video_no_active" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;">
 
                 @if( empty($user_in_room) )
                 <!-- ไม่มีผู้ใช้อยู่ในการสนทนา -->
@@ -312,7 +312,9 @@
             </div>
           </div>
 
-          <div class="video-remote d-none"></div>
+          <div class="video-remote d-none">
+
+          </div>
 
         </div>
         <!-- จบ แสดงผลวิดีโอ -->
@@ -473,9 +475,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
   
 });
 
+// ตัวแปรสำหรับกำหนดการเล่นเสียง ringtone
 var check_command_in_room = false ;
 var check_first_play_ringtone = 0 ;
 var check_first_play_audio_in_room = 0 ;
+
+// ตัวแปรสำหรับกำหนดการแสดงผลวิดีโอ เริ่มแรกเป็นจอใหญ่เสมอ
+var command_screen_current = 1 ;
+var video_success ;
 
 function loop_check_user_in_room() {
 
@@ -501,19 +508,25 @@ function loop_check_user_in_room() {
               let btnVideoCall_sty = document.querySelector('#divVideoCall').getAttribute('style');
                 // console.log(btnVideoCall_sty);
 
-              if(btnVideoCall_sty == "display: none;"){
+              if(btnVideoCall_sty == "display: none;" && video_success != 'OK'){
                 document.querySelector('#btnVideoCall').click();
               }
 
-              // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
-              create_html_user_in_room(result['data'] , 'wait');
+              userJoinRoom = true;
+
+              // กำหนดจอของเจ้าหน้าที่ให้แสดงที่จอ เล็ก
+              command_screen_current = 2 ;
 
               // if(!check_start_timer_video_call){
               //   start_timer_video_call(result['data_agora']['time_start']);
               // }
 
-
               if( check_command_in_room ){
+
+                if(userJoinRoom == true){
+                  // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
+                  create_html_user_in_room(result['data'] , 'in_room');
+                }
 
                 if( check_first_play_audio_in_room == 0 ){
                   audio_in_room.play();
@@ -521,6 +534,14 @@ function loop_check_user_in_room() {
                 }
 
               }else{
+
+                if(video_success == 'OK'){
+                  // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
+                  create_html_user_in_room(result['data'] , 'end but in_room');
+                }else{
+                  // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
+                  create_html_user_in_room(result['data'] , 'wait');
+                }
 
                 if( check_first_play_ringtone == 0 ){
                   play_ringtone();
@@ -532,9 +553,15 @@ function loop_check_user_in_room() {
               // myStop_check_user_in_room();
             }else{
 
+              video_success = '';
+
               if(check_start_timer_video_call){
                 myStop_timer_video_call();
               }
+
+              userJoinRoom = false;
+              // กำหนดจอของเจ้าหน้าที่ให้แสดงที่จอ ใหญ่
+              command_screen_current = 1 ;
 
               stop_ringtone();
               document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
@@ -569,9 +596,9 @@ function create_html_user_in_room(data , type){
 
   let html_img ;
   if (data['photo']){
-      html_img = `<img src="{{ url('storage')}}/`+data['photo']+`" style="width: 50%;border-radius: 20%;" class="main-shadow main-radius">`;
+      html_img = `<img src="{{ url('storage')}}/`+data['photo']+`" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">`;
   }else{
-      html_img = `<img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 50%;border-radius: 20%;" class="main-shadow main-radius">`;
+      html_img = `<img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">`;
   }
 
   let html_show_status ;
@@ -593,7 +620,7 @@ function create_html_user_in_room(data , type){
     class_h5 = 'd-none' ;
     class_show_status = '' ;
     html_show_status = 'ไม่มีผู้ใช้อยู่ในการสนทนา' ;
-    html_img = `<img src="{{ url('/img/stickerline/PNG/7.png') }}"  style="width: 12rem!important;">`;
+    html_img = `<img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 12rem!important;">`;
 
   }else if(type == 'end but in_room'){
 
@@ -603,21 +630,13 @@ function create_html_user_in_room(data , type){
   }
 
   let html = `
-      <div>
-        <center>
+      <div class="text-center">
           `+html_img+`
           <br><br>
           <h5 class="`+class_h5+`">คุณ : `+data['name']+`</h5>
           <h5 class="mt-3 `+class_show_status+`">`+html_show_status+`</h5>
-        </center>
       </div>
-      `;
-
-      `<div>
-          <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 12rem!important;">
-          <br><br>
-          <h5>ไม่มีผู้ใช้อยู่ในการสนทนา</h5>
-      </div>`
+    `;
   
   document.querySelector('#show_whene_video_no_active').innerHTML = '' ;
   document.querySelector('#show_whene_video_no_active').insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
@@ -688,311 +707,394 @@ async function startBasicCall() {
   localPlayerContainer.id = option.uid;
 
   // --------------------------------------------------------- //
-  // --------------------------------------------------------- //
   // -------------------- User Published --------------------- //
   // --------------------------------------------------------- //
+  agoraEngine.on("user-published", async (user, mediaType) => {
+    // Subscribe to the remote user when the SDK triggers the "user-published" event.
+    await agoraEngine.subscribe(user, mediaType);
+    console.log("+++++++++++===========+++++++++++");
+    console.log("+++++++++++===========+++++++++++");
+    console.log("+++++++++++===========+++++++++++");
+    console.log(user.uid);
+    console.log("subscribe success");
+    console.log("+++++++++++===========+++++++++++");
+    console.log("+++++++++++===========+++++++++++");
+    console.log("+++++++++++===========+++++++++++");
+    console.log(user);
+    console.log(mediaType);
+
+    remotePlayerContainer.classList.remove('d-none');
+    btnVideoRemote.classList.remove('d-none');
+    btnMicRemote.classList.remove('d-none');
+
+    /////////////////////////////////////////////////
+    //// หาข้อมูล เปิด/ปิด กล้อง ไมค์ เมื่อเจ้าหน้าที่เข้ามาทีหลัง ////
+    /////////////////////////////////////////////////
+    if(user['_audio_added_']){
+      // remote Usre เปิดไมค์ //////
+      btnMicRemote.classList.remove('btnRemote-close');
+      btnMicRemote.classList.add('btnRemote-open');
+      btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone"></i>`;
+    }else{
+      // remote Usre ปิดไมค์ //////
+      btnMicRemote.classList.add('btnRemote-close');
+      btnMicRemote.classList.remove('btnRemote-open');
+      btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone-slash"></i>`;
+    }
+
+    if(user['_video_added_']){
+      // remote Usre เปิดกล้อง //////
+      btnVideoRemote.classList.remove('btnRemote-close');
+      btnVideoRemote.classList.add('btnRemote-open');
+      btnVideoRemote.innerHTML = `<i class="fas fa-video"></i>`;
+    }else{
+      btnVideoRemote.classList.add('btnRemote-close');
+      btnVideoRemote.classList.remove('btnRemote-open');
+      btnVideoRemote.innerHTML = `<i class="fas fa-video-slash"></i>`;
+    }
+    /////////////////////////////////////////////////////
+    //// จบ หาข้อมูล เปิด/ปิด กล้อง ไมค์ เมื่อเจ้าหน้าที่เข้ามาทีหลัง ////
+    ///////////////////////////////////////////////////
+
+
+    // Subscribe and play the remote video in the container If the remote user publishes a video track.
+    if (mediaType == "video") {
+      // Retrieve the remote video track.
+      channelParameters.remoteVideoTrack = user.videoTrack;
+      // Retrieve the remote audio track.
+      channelParameters.remoteAudioTrack = user.audioTrack;
+      // Save the remote user id for reuse.
+      channelParameters.remoteUid = user.uid.toString();
+      // Specify the ID of the DIV container. You can use the uid of the remote user.
+      remotePlayerContainer.id = user.uid.toString();
+      channelParameters.remoteUid = user.uid.toString();
+      // remotePlayerContainer.textContent = "Remote user " + user.uid.toString();
+      // Append the remote container to the page body.
+      // document.body.append(remotePlayerContainer);
+      
+      // Play the remote video track.
+      channelParameters.remoteVideoTrack.play(localPlayerContainer);
+
+      // กำหนดจอของเจ้าหน้าที่ให้แสดงที่จอ เล็ก
+      command_screen_current = 2 ;
+      // ตัวเลือกแสดงผลวิดีโอของเจ้าหน้าที่
+      select_show_localVideoTrack();
+
+      // remote Usre เปิดกล้อง //////
+      if (user.videoTrack) {
+        btnVideoRemote.classList.remove('btnRemote-close');
+        btnVideoRemote.classList.add('btnRemote-open');
+        btnVideoRemote.innerHTML = `<i class="fas fa-video"></i>`;
+      }
+      // alert('มีคนเข้ามา');
+      userJoinRoom = true;
+
+      if(userJoinRoom == true){
+        // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
+        create_html_user_in_room(result['data'] , 'in_room');
+      }
+
+    }
+
+    // Subscribe and play the remote audio track If the remote user publishes the audio track only.
+    if (mediaType == "audio") {
+      // Get the RemoteAudioTrack object in the AgoraRTCRemoteUser object.
+      channelParameters.remoteAudioTrack = user.audioTrack;
+      // Play the remote audio track. No need to pass any DOM element.
+      channelParameters.remoteAudioTrack.play();
+
+      // remote Usre เปิดไมค์ //////
+      if (user.audioTrack) {
+        btnMicRemote.classList.remove('btnRemote-close');
+        btnMicRemote.classList.add('btnRemote-open');
+        btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone"></i>`;
+      }
+    }
+
+  });
+
+  // --------------------------------------------------------- //
+  // ------------------ User Un published --------------------- //
+  // --------------------------------------------------------- //
+  // Listen for the "user-unpublished" event.
+  agoraEngine.on("user-unpublished", async (user, mediaType) => {
+
+    // remote Usre ปิดกล้อง //////
+    if (mediaType == "video") {
+      if (!user.remoteVideoTrack) {
+        btnVideoRemote.classList.add('btnRemote-close');
+        btnVideoRemote.classList.remove('btnRemote-open');
+        btnVideoRemote.innerHTML = `<i class="fas fa-video-slash"></i>`;
+      }
+    }
+
+    // remote Usre ปิดไมค์ //////
+    if (mediaType === "audio") {
+      if (!user.audioTrack) {
+        btnMicRemote.classList.add('btnRemote-close');
+        btnMicRemote.classList.remove('btnRemote-open');
+        btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone-slash"></i>`;
+      }
+    }
+
+  });
+
+  // --------------------------------------------------------- //
+  // -------------------- User Left -------------------------- //
+  // --------------------------------------------------------- //
+  agoraEngine.on("user-left", function(evt) {
+
+    video_success = 'OK' ;
+    remotePlayerContainer.classList.add('d-none');
+    // channelParameters.localVideoTrack.play(localPlayerContainer);
+    userJoinRoom = false;
+    // alert('มีคนออก');
+    btnVideoRemote.classList.add('d-none');
+    btnMicRemote.classList.add('d-none');
+
+    document.querySelector('.video-remote').innerHTML = '' ;
+    check_first_play_ringtone = 0 ;
+    // loop_check_user_in_room();
+
+    // กำหนดจอของเจ้าหน้าที่ให้แสดงที่จอ ใหญ่
+    command_screen_current = 1 ;
+    // ตัวเลือกแสดงผลวิดีโอของเจ้าหน้าที่
+    select_show_localVideoTrack();
+
+  });
+
+  // --------------------------------------------------------- //
   // --------------------------------------------------------- //
 
-  agoraEngine.on("user-published", async (user, mediaType) => {
-      // Subscribe to the remote user when the SDK triggers the "user-published" event.
-      await agoraEngine.subscribe(user, mediaType);
-      console.log("+++++++++++===========+++++++++++");
-      console.log("+++++++++++===========+++++++++++");
-      console.log("+++++++++++===========+++++++++++");
-      console.log(user.uid);
-      console.log("subscribe success");
-      console.log("+++++++++++===========+++++++++++");
-      console.log("+++++++++++===========+++++++++++");
-      console.log("+++++++++++===========+++++++++++");
+  btnVideo.onclick = async function() {
+    if (isMuteVideo == false) {
+      // Mute the local video.
+      channelParameters.localVideoTrack.setEnabled(false);
+      // Update the button text.
+      btnVideo.innerHTML = '<i class="fa-solid fa-video-slash"></i>';
+      btnVideo.classList.add('btn-disabled');
+      btnVideo.classList.remove('btn-active');
+      isMuteVideo = true;
 
-      remotePlayerContainer.classList.remove('d-none');
-      btnVideoRemote.classList.remove('d-none');
-      btnMicRemote.classList.remove('d-none');
-      remotePlayerContainer.classList.remove('d-none')
+      // alertNoti('<i class="fa-solid fa-video-slash"></i>', 'กล้องปิดอยู่');
 
-      // Subscribe and play the remote video in the container If the remote user publishes a video track.
-      if (mediaType == "video") {
-        // Retrieve the remote video track.
-        channelParameters.remoteVideoTrack = user.videoTrack;
-        // Retrieve the remote audio track.
-        channelParameters.remoteAudioTrack = user.audioTrack;
-        // Save the remote user id for reuse.
-        channelParameters.remoteUid = user.uid.toString();
-        // Specify the ID of the DIV container. You can use the uid of the remote user.
-        remotePlayerContainer.id = user.uid.toString();
-        channelParameters.remoteUid = user.uid.toString();
-        // remotePlayerContainer.textContent = "Remote user " + user.uid.toString();
-        // Append the remote container to the page body.
-        // document.body.append(remotePlayerContainer);
-        // Play the remote video track.
-        channelParameters.remoteVideoTrack.play(localPlayerContainer);
-        channelParameters.localVideoTrack.play(remotePlayerContainer);
-
-        // remote Usre เปิดกล้อง //////
-        if (user.videoTrack) {
-          btnVideoRemote.classList.remove('btnRemote-close');
-          btnVideoRemote.classList.add('btnRemote-open');
-          btnVideoRemote.innerHTML = `<i class="fas fa-video"></i>`;
-        }
-        // alert('มีคนเข้ามา');
-        userJoinRoom = true;
-      }
-      // Subscribe and play the remote audio track If the remote user publishes the audio track only.
-      if (mediaType == "audio") {
-        // Get the RemoteAudioTrack object in the AgoraRTCRemoteUser object.
-        channelParameters.remoteAudioTrack = user.audioTrack;
-        // Play the remote audio track. No need to pass any DOM element.
-        channelParameters.remoteAudioTrack.play();
-
-        // remote Usre เปิดไมค์ //////
-        if (user.audioTrack) {
-          btnMicRemote.classList.remove('btnRemote-close');
-          btnMicRemote.classList.add('btnRemote-open');
-          btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone"></i>`;
-        }
+      if(command_screen_current == 1){
+        document.querySelector('#video_local_slash_screen_1').classList.remove('d-none');
+        document.querySelector('#video_local_slash_screen_2').classList.add('d-none');
+      }else{
+        document.querySelector('#video_local_slash_screen_1').classList.add('d-none');
+        document.querySelector('#video_local_slash_screen_2').classList.remove('d-none');
       }
 
-    });
+    } else {
+      channelParameters.localVideoTrack.setEnabled(true);
+      // channelParameters.localVideoTrack.play(localPlayerContainer);
 
-    // --------------------------------------------------------- //
-    // --------------------------------------------------------- //
-    // ------------------ User Unpublished --------------------- //
-    // --------------------------------------------------------- //
-    // --------------------------------------------------------- //
+      // ตัวเลือกแสดงผลวิดีโอของเจ้าหน้าที่
+      select_show_localVideoTrack();
 
+      btnVideo.innerHTML = '<i class="fa-solid fa-video"></i>';
+      btnVideo.classList.remove('btn-disabled');
+      btnVideo.classList.add('btn-active');
+      isMuteVideo = false;
 
-    // Listen for the "user-unpublished" event.
-    agoraEngine.on("user-unpublished", async (user, mediaType) => {
+      // alertNoti('<i class="fa-solid fa-video"></i>', 'กล้องเปิดอยู่');
+      document.querySelector('#video_local_slash_screen_1').classList.add('d-none');
+      document.querySelector('#video_local_slash_screen_2').classList.add('d-none');
 
-      // remote Usre ปิดกล้อง //////
-      if (mediaType == "video") {
-        if (!user.remoteVideoTrack) {
-          btnVideoRemote.classList.add('btnRemote-close');
-          btnVideoRemote.classList.remove('btnRemote-open');
-          btnVideoRemote.innerHTML = `<i class="fas fa-video-slash"></i>`;
-        }
-      }
+    }
+  }
 
-      // remote Usre ปิดไมค์ //////
-      if (mediaType === "audio") {
-        if (!user.audioTrack) {
-          btnMicRemote.classList.add('btnRemote-close');
-          btnMicRemote.classList.remove('btnRemote-open');
-          btnMicRemote.innerHTML = `<i class="fa-solid fa-microphone-slash"></i>`;
-        }
-      }
+  btnMic.onclick = async function() {
+    if (isMuteAudio == false) {
+      // Mute the local video.
+      channelParameters.localAudioTrack.setEnabled(false);
+      // Update the button text.
+      btnMic.innerHTML = '<i class="fa-solid fa-microphone-slash"></i>';
+      btnMic.classList.add('btn-disabled');
+      btnMic.classList.remove('btn-active');
+      isMuteAudio = true;
+    } else {
+      // Unmute the local video.
+      channelParameters.localAudioTrack.setEnabled(true);
+      // Update the button text.
+      btnMic.innerHTML = '<i class="fa-solid fa-microphone"></i>';
+      btnMic.classList.remove('btn-disabled');
+      btnMic.classList.add('btn-active');
+      isMuteAudio = false;
+    }
+  }
 
-    });
+  // Listen to the Join button click event.
+  document.getElementById("command_join").onclick = async function() {
+    // console.log("--- Onclick >> JOIN ---");
+    // console.log(option.channel);
+    stop_ringtone();
+    check_command_in_room = true ;
+    check_first_play_ringtone = 1 ;
+    // Join a channel.
 
-    // --------------------------------------------------------- //
-    // --------------------------------------------------------- //
-    // -------------------- User Left -------------------------- //
-    // --------------------------------------------------------- //
-    // --------------------------------------------------------- //
+    try{
+        await agoraEngine.join(option.appId, option.channel, option.token, option.uid);
+    }catch{
 
-    agoraEngine.on("user-left", function(evt) {
+      console.log('========================================');
+      console.log('>>>>>> เชื่อมต่อล้มเหลว กำลังเชื่อต่อใหม่ <<<<<<');
+      console.log('========================================');
 
-      remotePlayerContainer.classList.add('d-none');
-      channelParameters.localVideoTrack.play(localPlayerContainer);
-      userJoinRoom = false;
-      // alert('มีคนออก');
-      btnVideoRemote.classList.add('d-none');
-      btnMicRemote.classList.add('d-none');
-      remotePlayerContainer.classList.remove('d-none')
-      document.querySelector('.video-remote').innerHTML = '' ;
-      check_first_play_ringtone = 0 ;
-      // loop_check_user_in_room();
+      setTimeout(function() {
+        document.querySelector('#command_join').click();
+      }, 2500);
 
-    });
-
-    // --------------------------------------------------------- //
-    // --------------------------------------------------------- //
-
-    btnVideo.onclick = async function() {
-      if (isMuteVideo == false) {
-        // Mute the local video.
-        channelParameters.localVideoTrack.setEnabled(false);
-        // Update the button text.
-        btnVideo.innerHTML = '<i class="fa-solid fa-video-slash"></i>';
-        btnVideo.classList.add('btn-disabled');
-        btnVideo.classList.remove('btn-active');
-        isMuteVideo = true;
-
-        // alertNoti('<i class="fa-solid fa-video-slash"></i>', 'กล้องปิดอยู่');
-        document.querySelector('#video_local_slash').classList.remove('d-none');
-
-      } else {
-        channelParameters.localVideoTrack.setEnabled(true);
-        // channelParameters.localVideoTrack.play(localPlayerContainer);
-
-        if (userJoinRoom == false) {
-          channelParameters.localVideoTrack.play(localPlayerContainer);
-        } else {
-          channelParameters.localVideoTrack.play(remotePlayerContainer);
-        }
-        btnVideo.innerHTML = '<i class="fa-solid fa-video"></i>';
-        btnVideo.classList.remove('btn-disabled');
-        btnVideo.classList.add('btn-active');
-        isMuteVideo = false;
-
-        // alertNoti('<i class="fa-solid fa-video"></i>', 'กล้องเปิดอยู่');
-        document.querySelector('#video_local_slash').classList.add('d-none');
-
-      }
     }
 
-    btnMic.onclick = async function() {
-      if (isMuteAudio == false) {
-        // Mute the local video.
-        channelParameters.localAudioTrack.setEnabled(false);
-        // Update the button text.
-        btnMic.innerHTML = '<i class="fa-solid fa-microphone-slash"></i>';
-        btnMic.classList.add('btn-disabled');
-        btnMic.classList.remove('btn-active');
-        isMuteAudio = true;
-      } else {
-        // Unmute the local video.
-        channelParameters.localAudioTrack.setEnabled(true);
-        // Update the button text.
-        btnMic.innerHTML = '<i class="fa-solid fa-microphone"></i>';
-        btnMic.classList.remove('btn-disabled');
-        btnMic.classList.add('btn-active');
-        isMuteAudio = false;
-      }
+    // Create a local audio track from the audio sampled by a microphone.
+    channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+    // Create a local video track from the video captured by a camera.
+    channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
+    // Append the local video container to the page body.
+    // document.body.append(localPlayerContainer);
+    // Publish the local audio and video tracks in the channel.
+    await agoraEngine.publish([channelParameters.localAudioTrack, channelParameters.localVideoTrack]);
+    // Play the local video track.
+    
+    document.querySelector('.video-menu').classList.remove('d-none');
+    document.querySelector('#span_timer_video_call').classList.remove('d-none');
+
+    // update status command => "Helping"
+    document.querySelector('#officerHelping').click();
+
+    fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_join')
+      .then(response => response.json())
+      .then(result => {
+          console.log(result);
+
+          if(result['data']['user']){
+            create_html_user_in_room(result['data_user'] , 'in_room');
+            if(!check_start_timer_video_call){
+              start_timer_video_call(result['data_agora']['time_start']);
+            }
+          }else{
+            if(check_start_timer_video_call){
+              myStop_timer_video_call();
+            }
+          }
+
+          // ตัวเลือกแสดงผลวิดีโอของเจ้าหน้าที่
+          select_show_localVideoTrack();
+
+      });
+
+    btnMic.innerHTML = '<i class="fa-solid fa-microphone"></i>';
+    btnVideo.innerHTML = '<i class="fa-solid fa-video"></i>';
+
+    document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
+    document.querySelector('#command_join').classList.add('btn-success');
+    document.querySelector('#command_join').classList.add('d-none');
+    document.querySelector('#command_join').classList.remove('video-call-in-room');
+    document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
+    document.querySelector('#btnMic').classList.remove('d-none');
+    document.querySelector('#btnVideo').classList.remove('d-none');
+    document.querySelector('#leave').classList.remove('d-none');
+
+    if(userJoinRoom == true){
+      // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
+      create_html_user_in_room(result['data'] , 'in_room');
     }
 
-      // Listen to the Join button click event.
-      document.getElementById("command_join").onclick = async function() {
-        // console.log("--- Onclick >> JOIN ---");
-        // console.log(option.channel);
-        stop_ringtone();
-        check_command_in_room = true ;
-        check_first_play_ringtone = 1 ;
-        // Join a channel.
+    let html_icon_video_slash = `
+      <i id="video_local_slash_screen_2" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 25px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
+    `;
 
-        try{
-            await agoraEngine.join(option.appId, option.channel, option.token, option.uid);
-        }catch{
+    document.querySelector('.video-remote').innerHTML = '' ;
+    document.querySelector('.video-remote').insertAdjacentHTML('afterbegin', html_icon_video_slash); // แทรกล่างสุด
 
-          console.log('========================================');
-          console.log('>>>>>> เชื่อมต่อล้มเหลว กำลังเชื่อต่อใหม่ <<<<<<');
-          console.log('========================================');
+  }
 
-          setTimeout(function() {
-            document.querySelector('#command_join').click();
-          }, 2500);
+  // Listen to the Leave button click event.
+  document.getElementById('leave').onclick = async function() {
 
-        }
+    check_command_in_room = false ;
 
-        // Create a local audio track from the audio sampled by a microphone.
-        channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
-        // Create a local video track from the video captured by a camera.
-        channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
-        // Append the local video container to the page body.
-        // document.body.append(localPlayerContainer);
-        // Publish the local audio and video tracks in the channel.
-        await agoraEngine.publish([channelParameters.localAudioTrack, channelParameters.localVideoTrack]);
-        // Play the local video track.
-        
-        channelParameters.localVideoTrack.play(localPlayerContainer);
-        // console.log("publish success!");
+    if(check_start_timer_video_call){
+      myStop_timer_video_call();
+    }
 
-        document.querySelector('.video-menu').classList.remove('d-none');
-        document.querySelector('#span_timer_video_call').classList.remove('d-none');
+    // Destroy the local audio and video tracks.
+    channelParameters.localAudioTrack.close();
+    channelParameters.localVideoTrack.close();
+    // Remove the containers you created for the local video and remote video.
+    // removeVideoDiv(remotePlayerContainer.id);
+    // removeVideoDiv(localPlayerContainer.id);
+    // Leave the channel
+    await agoraEngine.leave();
+    // console.log("You left the channel");
+    document.querySelector('#btnMic').setAttribute('class', 'btn-active');
+    document.querySelector('#btnVideo').setAttribute('class', 'btn-active');
 
-        // update status command => "Helping"
-        document.querySelector('#officerHelping').click();
+    document.querySelector('#leave').classList.add('d-none');
+    document.querySelector('#command_join').classList.remove('d-none');
+    document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
+    document.querySelector('#btnMic').classList.add('d-none');
+    document.querySelector('#btnVideo').classList.add('d-none');
+    document.querySelector('#btnVideoCall').click();
+    btnVideoRemote.classList.add('d-none');
+    btnMicRemote.classList.add('d-none');
+    document.querySelector('.video-remote').classList.add('d-none');
+    document.querySelector('.video-menu').classList.add('d-none');
 
-        fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_join')
-          .then(response => response.json())
-          .then(result => {
-              console.log(result);
-
-              if(result['data']['user']){
-                create_html_user_in_room(result['data_user'] , 'in_room');
-
-                if(!check_start_timer_video_call){
-                  start_timer_video_call(result['data_agora']['time_start']);
-                }
-              }else{
-                if(check_start_timer_video_call){
-                  myStop_timer_video_call();
-                }
-              }
-
-          });
-
-        btnMic.innerHTML = '<i class="fa-solid fa-microphone"></i>';
-        btnVideo.innerHTML = '<i class="fa-solid fa-video"></i>';
-
-        document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
-        document.querySelector('#command_join').classList.add('btn-success');
-        document.querySelector('#command_join').classList.add('d-none');
-        document.querySelector('#command_join').classList.remove('video-call-in-room');
-        document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
-        document.querySelector('#btnMic').classList.remove('d-none');
-        document.querySelector('#btnVideo').classList.remove('d-none');
-        document.querySelector('#leave').classList.remove('d-none');
-
-      }
-
-      // Listen to the Leave button click event.
-      document.getElementById('leave').onclick = async function() {
-
-        check_command_in_room = false ;
-
-        if(check_start_timer_video_call){
-          myStop_timer_video_call();
-        }
-
-        // Destroy the local audio and video tracks.
-        channelParameters.localAudioTrack.close();
-        channelParameters.localVideoTrack.close();
-        // Remove the containers you created for the local video and remote video.
-        // removeVideoDiv(remotePlayerContainer.id);
-        // removeVideoDiv(localPlayerContainer.id);
-        // Leave the channel
-        await agoraEngine.leave();
-        // console.log("You left the channel");
-        document.querySelector('#btnMic').setAttribute('class', 'btn-active');
-        document.querySelector('#btnVideo').setAttribute('class', 'btn-active');
-
-        document.querySelector('#leave').classList.add('d-none');
-        document.querySelector('#command_join').classList.remove('d-none');
-        document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
-        document.querySelector('#btnMic').classList.add('d-none');
-        document.querySelector('#btnVideo').classList.add('d-none');
-        document.querySelector('#btnVideoCall').click();
-        btnVideoRemote.classList.add('d-none');
-        btnMicRemote.classList.add('d-none');
-        document.querySelector('.video-remote').classList.add('d-none');
-        document.querySelector('.video-menu').classList.add('d-none');
-
-        document.querySelector('#span_timer_video_call').classList.add('d-none');
-        document.querySelector('#icon_timer_video_call').classList.remove('d-none');
-        document.querySelector('#timer_video_call').innerHTML = 'เริ่มนับเมื่อมีผู้ใช้ 2 คน';
+    document.querySelector('#span_timer_video_call').classList.add('d-none');
+    document.querySelector('#icon_timer_video_call').classList.remove('d-none');
+    document.querySelector('#timer_video_call').innerHTML = 'เริ่มนับเมื่อมีผู้ใช้ 2 คน';
 
 
 
-        // update status command => "Standby"
-        document.querySelector('#officerStandby').click();
-        // window.location.reload();
+    // update status command => "Standby"
+    document.querySelector('#officerStandby').click();
+    // window.location.reload();
 
-        fetch("{{ url('/') }}/api/left_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_left')
-          .then(response => response.json())
-          .then(result => {
-              // console.log(result);
+    fetch("{{ url('/') }}/api/left_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_left')
+      .then(response => response.json())
+      .then(result => {
+          // console.log(result);
+          
+          video_success = 'OK' ;
 
-              if(result['data']['user']){
-                create_html_user_in_room(result['data_user'] , 'end but in_room');
-              }else{
-                create_html_user_in_room(result['data'] , 'out');
-              }
+          if(result['data']['user']){
+            create_html_user_in_room(result['data_user'] , 'end but in_room');
+          }else{
+            create_html_user_in_room(result['data'] , 'out');
+          }
 
-          });
-      }
+      });
+  }
+
 }
 
+// ///////////////////////////////////////////// //
+// /////// select_show_localVideoTrack //////// //
+// /////////////////////////////////////////// //
+
+function select_show_localVideoTrack(){
+
+  /////////////////////// จอคนเข้าร่วม//////////////////
+  let remotePlayerContainer = document.querySelector('.video-remote');
+  /////////////////////// จอตัวเอง/////////////////////
+  let localPlayerContainer = document.querySelector('.video-local');
+
+  if(command_screen_current === 1){
+    // แสดงวิดีโอใน div local
+    channelParameters.localVideoTrack.play(localPlayerContainer);
+  }else{
+    // แสดงวิดีโอใน div remote
+    channelParameters.localVideoTrack.play(remotePlayerContainer);
+  }
+
+}
+
+// /////////////////////////////////// //
+// /////// Timer Video Call ///////// //
+// ///////////////////////////////// //
 var check_start_timer_video_call = false ;
 
 function myStop_timer_video_call() {
