@@ -1213,25 +1213,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
     option['appId'] = appId;
     option['appCertificate'] = appCertificate;
 
-    setTimeout(() => {
+    fetch("{{ url('/') }}/api/video_call" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}')
+      .then(response => response.text())
+      .then(result => {
+          // console.log("GET Token success");
+          // console.log(result);
 
-      fetch("{{ url('/') }}/api/video_call" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}')
-        .then(response => response.text())
-        .then(result => {
-            // console.log("GET Token success");
-            // console.log(result);
+          option['token'] = result;
 
-            option['token'] = result;
+          setTimeout(() => {
+              document.getElementById("join").click();
+          }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
 
-            setTimeout(() => {
-                document.getElementById("join").click();
-            }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
+      });
 
-        });
+      startBasicCall();
 
-        startBasicCall();
-
-    }, 1000);
   }
 
   
@@ -1258,25 +1255,23 @@ function runLoop_check_appId() {
           if (!appId && !appCertificate) {
             runLoop_check_appId();
           }else{
-            setTimeout(() => {
 
-              fetch("{{ url('/') }}/api/video_call" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}')
-                .then(response => response.text())
-                .then(result => {
-                    // console.log("GET Token success");
-                    // console.log(result);
+            fetch("{{ url('/') }}/api/video_call" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}')
+              .then(response => response.text())
+              .then(result => {
+                  // console.log("GET Token success");
+                  // console.log(result);
 
-                    option['token'] = result;
+                  option['token'] = result;
 
-                    setTimeout(() => {
-                        document.getElementById("join").click();
-                    }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
+                  setTimeout(() => {
+                      document.getElementById("join").click();
+                  }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
 
-                });
+              });
 
-                startBasicCall();
+              startBasicCall();
 
-            }, 1000);
           }
     });
 
