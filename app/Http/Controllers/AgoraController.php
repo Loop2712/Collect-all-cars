@@ -37,10 +37,13 @@ class AgoraController extends Controller
         $sos_id = $request->sos_id;
         $user = Auth::user();
 
+        $appID = env('AGORA_APP_ID');
+        $appCertificate = env('AGORA_APP_CERTIFICATE');
+
         $data_sos = Sos_help_center::where('sos_help_centers.id', $sos_id)->first();
         $data_officer_command = Data_1669_officer_command::where('id',$data_sos->command_by)->first();
 
-        return view('sos_help_center/user_video_call', compact('sos_id','user','data_sos','data_officer_command'));
+        return view('sos_help_center/user_video_call', compact('sos_id','user','data_sos','data_officer_command','appID','appCertificate'));
         
     }
 
@@ -55,8 +58,8 @@ class AgoraController extends Controller
         $data_user = User::where('id' ,$request->user_id)->first();
 
         $user = $data_user->id;
-        // $channelName = 'sos_1669_id_' . $request->sos_1669_id;
-        $channelName = 'sos_1669_id';
+        $channelName = 'sos_1669_id_' . $request->sos_1669_id;
+        // $channelName = 'sos_1669_id';
 
         $role = RtcTokenBuilder::RoleAttendee;
         $expireTimeInSeconds = 1200;

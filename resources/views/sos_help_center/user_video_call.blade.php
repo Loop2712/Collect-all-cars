@@ -1185,41 +1185,103 @@
 <script>
 
 var option;
-let sos_1669_id = '{{ $sos_id }}';
+var sos_1669_id = '{{ $sos_id }}';
 
-let appId = '{{ env("AGORA_APP_ID") }}';
-let appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+var appId = '{{ $appID }}';
+var appCertificate = '{{ $appCertificate }}';
 
 option = {
-    // Pass your App ID here.
-    appId: appId,
-    appCertificate: appCertificate,
-    // channel: 'sos_1669_id_' + sos_1669_id,
-    channel: 'sos_1669_id',
-    uid: '{{ Auth::user()->id }}',
-    uname: '{{ Auth::user()->name }}',
+  // Pass your App ID here.
+  appId: "",
+  appCertificate: "",
+  channel: 'sos_1669_id_' + sos_1669_id,
+  // channel: 'sos_1669_id',
+  uid: '{{ Auth::user()->id }}',
+  uname: '{{ Auth::user()->name }}',
 
-    token: "",
-  };
+  token: "",
+};
 
 document.addEventListener('DOMContentLoaded', (event) => {
 
-  fetch("{{ url('/') }}/api/video_call" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&appCertificate=' + appCertificate  + '&appId=' + appId)
-    .then(response => response.text())
-    .then(result => {
-        // console.log("GET Token success");
-        // console.log(result);
+  if(!appId || !appCertificate){
+    runLoop_check_appId();
+  }else{
+    // console.log('มี ข้อมูลตั้งแต่แรก');
+    // console.log(appId);
+    // console.log(appCertificate);
+    option['appId'] = appId;
+    option['appCertificate'] = appCertificate;
 
-        option['token'] = result;
+    setTimeout(() => {
 
-        setTimeout(() => {
-            document.getElementById("join").click();
-        }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
+      fetch("{{ url('/') }}/api/video_call" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}')
+        .then(response => response.text())
+        .then(result => {
+            // console.log("GET Token success");
+            // console.log(result);
 
+            option['token'] = result;
+
+            setTimeout(() => {
+                document.getElementById("join").click();
+            }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
+
+        });
+
+        startBasicCall();
+
+    }, 1000);
+  }
+
+  
+});
+
+function runLoop_check_appId() {
+
+  setTimeout(() => {
+
+    fetch("{{ url('/') }}/api/get_appId")
+        .then(response => response.json())
+        .then(result => {
+          // console.log(result);
+          appId = result['appId'];
+          appCertificate = result['appCertificate'];
+
+          option['appId'] = appId;
+          option['appCertificate'] = appCertificate;
+
+          // console.log('ไม่มี ข้อมูลตั้งแต่แรก');
+          // console.log(appId);
+          // console.log(appCertificate);
+
+          if (!appId && !appCertificate) {
+            runLoop_check_appId();
+          }else{
+            setTimeout(() => {
+
+              fetch("{{ url('/') }}/api/video_call" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}')
+                .then(response => response.text())
+                .then(result => {
+                    // console.log("GET Token success");
+                    // console.log(result);
+
+                    option['token'] = result;
+
+                    setTimeout(() => {
+                        document.getElementById("join").click();
+                    }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
+
+                });
+
+                startBasicCall();
+
+            }, 1000);
+          }
     });
 
-    startBasicCall();
-});
+  }, 1000);
+}
 
   
 const channelName = "Viicheck";

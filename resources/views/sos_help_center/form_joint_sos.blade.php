@@ -814,7 +814,9 @@
         fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level + "/" + vehicle_type + "/" + forward_level)
             .then(response => response.json())
             .then(result => {
+                console.log('------ get_location_operating_unit -------');
                 console.log(result);
+                console.log('----------------------');
                 let list_joint_sos_officer = document.querySelector('#list_joint_sos_officer').value;
                 list_arr = list_joint_sos_officer.split(',');
 
@@ -1200,7 +1202,7 @@
 		                        `;
 
 		                    btn_wait_officer = `
-		                        <button class="btn btnSelectOfficerAgain" onclick="select_new_officer_sos_id(` + item.joint_case + `);">
+		                        <button class="btn btnSelectOfficerAgain" onclick="select_new_officer_sos_id(`+item.joint_case+`,`+item.id+`);">
 		                            เลือกใหม่
 		                        </button>
 		                        `;
@@ -1225,7 +1227,7 @@
 	                        `;
 
 	                        btn_wait_officer = `
-	                        <button class="btn btnSelectOfficerAgain" onclick="select_new_officer_sos_id(` + item.joint_case + `);">
+	                        <button class="btn btnSelectOfficerAgain" onclick="select_new_officer_sos_id(`+item.joint_case+`,`+item.id+`);">
 	                            เลือกใหม่
 	                        </button>
 	                        `;
@@ -1349,11 +1351,13 @@
 <!-- // JS NEW SELECT OFFICER // -->
 <!-- /////////////////////////// -->
 <script>
-    function select_new_officer_sos_id(data) {
+    function select_new_officer_sos_id(data , click_id) {
 
         // console.log('*******************************************************');
         // console.log('select_new_officer_sos_id');
+        // console.log('click_id >> '+ click_id);
         // console.log(data);
+
         document.querySelector('#btn_close_modal_show_officer_joint').click();
         document.querySelector('#btn_open_modal_new_select_officer_of_id_sos').click();
 
@@ -1601,7 +1605,11 @@
 	                        html_of_old_officer = html_of_old_officer + html_of_list_name_officer;
 	                    }
 
-	                    data_by_js_new_select_officer.insertAdjacentHTML('beforeend', html_of_old_officer); // แทรกล่างสุด
+	                    if(result[xxi]['id'] == click_id){
+		                    data_by_js_new_select_officer.insertAdjacentHTML('afterbegin', html_of_old_officer); // แทรกล่างสุด
+	                    }else{
+		                    data_by_js_new_select_officer.insertAdjacentHTML('beforeend', html_of_old_officer); // แทรกล่างสุด
+	                    }
 	                    
 	                }
 	            }

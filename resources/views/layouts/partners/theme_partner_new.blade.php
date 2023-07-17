@@ -2308,7 +2308,7 @@
                     }
 
                     if (result_refuse.length == 1 && result_call.length == 1){
-                    	if(result_refuse[0] == text_url_all[6] || result_refuse[0] == "" && result_call[0] == text_url_all[6] || result_call[0] == ""){
+                    	if( (result_refuse[0] == text_url_all[6] || result_refuse[0] == "") && (result_call[0] == text_url_all[6] || result_call[0] == "") ){
                     		i_noti_menu.classList.add('d-none');
                     		i_noti_refuse.classList.add('d-none');
                     		i_noti_call.classList.add('d-none');
@@ -2316,7 +2316,7 @@
                     }
 
                 });
-	    }, 5000);
+	    }, 6500);
 	}
 
 	function open_menu_bar(text_url_all){

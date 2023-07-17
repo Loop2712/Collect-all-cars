@@ -263,10 +263,6 @@
             <i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; เริ่มต้นการสนทนา
           </span>
 
-          <!-- <span class="btn btn-success" style="width: 90%;" id="vasdvs" onclick="vasdvs();">
-              <i class="fa-solid fa-phone-volume"></i> vasdvs
-          </span> -->
-
           <span id="btn_close_audio_ringtone" class="btn btn-secondary d-none" onclick="mute_ringtone();">
               <i class="fa-solid fa-volume-slash"></i>
           </span>
@@ -332,10 +328,6 @@
 
 <script>
 
-function vasdvs(){
-  alertNoti('<i class="fa-solid fa-video-slash"></i>', 'กล้องปิดอยู่');
-}
-
 var option;
 var sos_1669_id = '{{ $sos_id }}';
 
@@ -367,6 +359,9 @@ function play_ringtone() {
     audio_ringtone.loop = true;
     audio_ringtone.play();
     isPlaying_ringtone = true;
+
+    check_first_play_ringtone = 1 ;
+
   }
 }
 
@@ -382,7 +377,6 @@ function stop_ringtone() {
 function mute_ringtone(){
   audio_ringtone.pause();
   audio_ringtone.currentTime = 0;
-  isPlaying_ringtone = false;
 }
 
 function runLoop_check_appId() {
@@ -398,9 +392,9 @@ function runLoop_check_appId() {
           appId = result['appId'];
           appCertificate = result['appCertificate'];
 
-          console.log('ไม่มี ข้อมูลตั้งแต่แรก');
-          console.log(appId);
-          console.log(appCertificate);
+          // console.log('ไม่มี ข้อมูลตั้งแต่แรก');
+          // console.log(appId);
+          // console.log(appCertificate);
 
           if (!appId && !appCertificate) {
             runLoop_check_appId();
@@ -439,9 +433,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   if(!appId || !appCertificate){
     runLoop_check_appId();
   }else{
-    console.log('มี ข้อมูลตั้งแต่แรก');
-    console.log(appId);
-    console.log(appCertificate);
+    // console.log('มี ข้อมูลตั้งแต่แรก');
+    // console.log(appId);
+    // console.log(appCertificate);
 
     setTimeout(() => {
       document.querySelector('#btnVideoCall').disabled = false;
@@ -470,6 +464,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 var check_command_in_room = false ;
 var check_first_play_ringtone = 0 ;
+var check_first_play_audio_in_room = 0 ;
 
 function loop_check_user_in_room() {
 
@@ -481,9 +476,9 @@ function loop_check_user_in_room() {
       fetch("{{ url('/') }}/api/check_user_in_room" + "?sos_1669_id=" + sos_1669_id)
         .then(response => response.json())
         .then(result => {
-            console.log('check_user_in_room');
-            console.log(result);
-            console.log('-------------------------------------');
+            // console.log('check_user_in_room');
+            // console.log(result);
+            // console.log('-------------------------------------');
 
             if(result['data'] != 'ไม่มีข้อมูล'){
               document.querySelector('#command_join').innerHTML = 
@@ -508,14 +503,17 @@ function loop_check_user_in_room() {
 
 
               if( check_command_in_room ){
-                audio_in_room.play();
-                check_command_in_room = false ;
+
+                if( check_first_play_audio_in_room == 0 ){
+                  audio_in_room.play();
+                  check_first_play_audio_in_room = 1 ;
+                }
+
               }else{
 
                 if( check_first_play_ringtone == 0 ){
                   play_ringtone();
                   document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
-                  check_first_play_ringtone = 1 ;
                 }
 
               }
@@ -543,7 +541,7 @@ function loop_check_user_in_room() {
 
         });
       
-    }, 5000);
+    }, 6500);
 }
 
 function myStop_check_user_in_room() {
@@ -552,9 +550,9 @@ function myStop_check_user_in_room() {
 
 function create_html_user_in_room(data , type){
 
-  console.log('create_html_user_in_room');
-  console.log(data);
-  console.log('type >> ' + type);
+  // console.log('create_html_user_in_room');
+  // console.log(data);
+  // console.log('type >> ' + type);
 
   // document.querySelector('#show_whene_video_no_active').innerHTML = '';
 
@@ -623,8 +621,8 @@ function start_video_call_command(){
       // Pass your App ID here.
       appId: appId,
       appCertificate: appCertificate,
-      // channel: 'sos_1669_id_' + sos_1669_id,
-      channel: 'sos_1669_id',
+      channel: 'sos_1669_id_' + sos_1669_id,
+      // channel: 'sos_1669_id',
       uid: '{{ Auth::user()->id }}',
       // uname: '{{ Auth::user()->name }}',
 
@@ -856,6 +854,7 @@ async function startBasicCall() {
       document.getElementById("command_join").onclick = async function() {
         // console.log("--- Onclick >> JOIN ---");
         // console.log(option.channel);
+        stop_ringtone();
         check_command_in_room = true ;
         check_first_play_ringtone = 1 ;
         // Join a channel.
@@ -889,8 +888,6 @@ async function startBasicCall() {
 
         document.querySelector('.video-menu').classList.remove('d-none');
         document.querySelector('#span_timer_video_call').classList.remove('d-none');
-
-        stop_ringtone();
 
         // update status command => "Helping"
         document.querySelector('#officerHelping').click();
