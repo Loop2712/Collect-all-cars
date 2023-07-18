@@ -1083,6 +1083,13 @@
 
     <div class="video-local">
 
+      <span id="span_timer_video_call" class="d-none" style="position: absolute;z-index: 99999!important;top: 5px;left: 5px;">
+          <span id="icon_timer_video_call" class="">
+            <i class="fa-duotone fa-record-vinyl fa-beat-fade" style="--fa-secondary-color: #6e89b4;"></i> 
+            &nbsp;<span id="timer_video_call"></span>
+          </span>
+      </span>
+
       <i id="video_local_slash" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 50px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
 
       <div id="card_show_h6_wait_command" class="card card_show_h6_wait_command d-none">
@@ -1323,7 +1330,22 @@ function loop_check_command_in_room() {
               check_play_audio_in_room = 'ห้ามเล่น';
             }
 
+            // command อยู่ในห้อง
+            if(commandJoinRoom == true){
+              if(!check_start_timer_video_call){
+                start_timer_video_call(result['data_agora']['time_start']);
+              }
+            }else{
+              if(check_start_timer_video_call){
+                myStop_timer_video_call();
+              }
+            }
+
           }else{
+
+            if(check_start_timer_video_call){
+              myStop_timer_video_call();
+            }
 
             document.querySelector('#show_h6_wait_command').classList.remove('d-none');
             document.querySelector('#card_show_h6_wait_command').classList.remove('d-none');
@@ -1421,7 +1443,7 @@ function start_countdown_user_out_room(){
     var isMuteVideo = false;
     var isMuteAudio = false;
 
-    var userJoinRoom = false;
+    var commandJoinRoom = false;
 
     // var agoraDevices = AgoraRTC.getDevices(function(devices) {
     //     var audioDevices = devices.filter(function(device) {
@@ -1733,7 +1755,7 @@ function start_countdown_user_out_room(){
           
         }
         // alert('มีคนเข้ามา');
-        userJoinRoom = true;
+        commandJoinRoom = true;
       }
       // Subscribe and play the remote audio track If the remote user publishes the audio track only.
       if (mediaType == "audio") {
@@ -1827,9 +1849,14 @@ function start_countdown_user_out_room(){
     agoraEngine.on("user-left", function(evt) {
       remotePlayerContainer.classList.add('d-none');
       channelParameters.localVideoTrack.play(localPlayerContainer);
-      userJoinRoom = false;
+
       // alert('มีคนออก');
+      commandJoinRoom = false;
       command_entered_room = 'yes' ;
+
+      if(check_start_timer_video_call){
+        myStop_timer_video_call();
+      }
 
       document.querySelector('#btn_switchScreen').classList.add('d-none');
 
@@ -2037,7 +2064,7 @@ function start_countdown_user_out_room(){
         channelParameters.localVideoTrack.setEnabled(true);
         // channelParameters.localVideoTrack.play(localPlayerContainer);
 
-        // if (userJoinRoom == false) {
+        // if (commandJoinRoom == false) {
         //   channelParameters.localVideoTrack.play(localPlayerContainer);
         // } else {
         //   channelParameters.localVideoTrack.play(remotePlayerContainer);
@@ -2128,6 +2155,16 @@ function start_countdown_user_out_room(){
                   // console.log('>>>>>> Get User <<<<<<');
                   // console.log('========================================');
 
+                  if(result['data']['command']){
+                    if(!check_start_timer_video_call){
+                      start_timer_video_call(result['data_agora']['time_start']);
+                    }
+                  }else{
+                    if(check_start_timer_video_call){
+                      myStop_timer_video_call();
+                    }
+                  }
+
                   let show_whene_video_no_active = document.querySelector('#show_whene_video_no_active');
 
                   if( agoraEngine['remoteUsers'][0] ){
@@ -2172,6 +2209,7 @@ function start_countdown_user_out_room(){
                       }
                     }, 1000);
                   }
+
               }, 2000);
 
               function create_html_no_video(){
@@ -2195,11 +2233,17 @@ function start_countdown_user_out_room(){
                 loop_check_command_in_room();
               }, 1000);
           });
-              
+             
       }
-
       // Listen to the Leave button click event.
       document.getElementById('leave').onclick = async function() {
+
+        let meet_2_people = 'No' ;
+
+        if(check_start_timer_video_call){
+          myStop_timer_video_call();
+          meet_2_people = 'Yes' ;
+        }
 
         btnVideoRemote.classList.add('d-none');
         btnMicRemote.classList.add('d-none');
@@ -2220,7 +2264,7 @@ function start_countdown_user_out_room(){
             go_to_show_user_href.value = '{{ url("/") }}/sos_help_center/'+'{{ $sos_id }}'+'/show_user' ;
             go_to_show_user.setAttributeNode(go_to_show_user_href);
 
-        fetch("{{ url('/') }}/api/left_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=user_left')
+        fetch("{{ url('/') }}/api/left_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=user_left'+"&meet_2_people="+meet_2_people+"&hours="+hours+"&minutes="+minutes+"&seconds="+seconds)
           .then(response => response.json())
           .then(result => {
               // console.log(result);
@@ -2231,9 +2275,89 @@ function start_countdown_user_out_room(){
           }, 1000);
         // Refresh the page for reuse
         // window.location.reload();
+
       }
+
     }
   }
+
+
+  // /////////////////////////////////// //
+// /////// Timer Video Call ///////// //
+// ///////////////////////////////// //
+var check_start_timer_video_call = false ;
+
+function myStop_timer_video_call() {
+    clearInterval(loop_timer_video_call);
+    check_start_timer_video_call = false;
+    document.querySelector('#span_timer_video_call').classList.add('d-none');
+    document.querySelector('#timer_video_call').innerHTML = '' ;
+}
+
+var hours = 0;
+var minutes = 0;
+var seconds = 0;
+
+function start_timer_video_call(time_start){
+
+  console.log('start_timer_video_call');
+  console.log(time_start);
+
+  document.querySelector('#span_timer_video_call').classList.remove('d-none');
+  document.querySelector('#icon_timer_video_call').classList.remove('d-none');
+
+  check_start_timer_video_call = true ;
+
+  var timeCountVideo = document.getElementById("timer_video_call");
+
+  // วันที่และเวลาที่กำหนด
+  var targetDate = new Date();
+  var targetTime = targetDate.getTime();
+
+  loop_timer_video_call = setInterval(function() {
+
+    // วันที่และเวลาปัจจุบัน
+    var currentDate = new Date();
+    var currentTime = currentDate.getTime();
+
+    // คำนวณเวลาที่ผ่านไปในมิลลิวินาที
+    var elapsedTime = currentTime - targetTime;
+    var elapsedMinutes = Math.floor(elapsedTime / (1000 * 60));
+
+    // แปลงเวลาที่ผ่านไปให้เป็นรูปแบบชั่วโมง:นาที:วินาที
+    hours = Math.floor(elapsedMinutes / 60);
+    minutes = elapsedMinutes % 60;
+    seconds = Math.floor((elapsedTime / 1000) % 60);
+
+    let showTimeCountVideo;
+    // แสดงผลลัพธ์
+    if (hours > 0) {
+        if (minutes < 10) {  // ใส่ 0 ข้างหน้า นาที กรณีเลขยังไม่ถึง 10
+            showTimeCountVideo = hours + ':' + '0' + minutes + ':' + seconds + "&nbsp;/ 10 นาที";
+        }else{
+            showTimeCountVideo = hours + ':' + minutes + ':' + seconds + "&nbsp;/ 10 นาที";
+        }
+    } else {
+        if(seconds < 10){  // ใส่ 0 ข้างหน้า วินาที กรณีเลขยังไม่ถึง 10
+            showTimeCountVideo =  minutes + ':' + '0' + seconds + "&nbsp;/ 10 นาที";
+        }else{
+            showTimeCountVideo = minutes + ':' + seconds + "&nbsp;/ 10 นาที";
+        }
+    }
+
+    let check_time = minutes + '.' + seconds ;
+        console.log(check_time);
+
+    if(check_time == '1.0'){
+        console.log('เหลือเวลาอีก '+check_time+' นาที');
+        // alertNoti('<i class="fa-solid fa-video-slash"></i>', 'กล้องปิดอยู่');
+    }
+
+    timeCountVideo.innerHTML = showTimeCountVideo ;
+
+  }, 1000);
+
+}
 
 
   // Remove the video stream from the container.
