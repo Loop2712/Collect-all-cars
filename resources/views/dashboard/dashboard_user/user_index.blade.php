@@ -133,14 +133,14 @@
             var nationalityFilter = $('#nationality_filter').val();
             var membershipFilter = $('#membership_filter').val();
 
-            let filter_url = "{{ url('/') }}/api/filter_user?genderFilter=" + genderFilter + "&ageFilter=" + ageFilter + "&provinceFilter=" + provinceFilter +"&districtFilter=" + districtFilter + "&nationalityFilter=" + nationalityFilter + "&membershipFilter=" + membershipFilter;
-            fetch(url).then(response => response.json())
-            .then(result => {
+            // let filter_url = "{{ url('/') }}/api/filter_user?genderFilter=" + genderFilter + "&ageFilter=" + ageFilter + "&provinceFilter=" + provinceFilter +"&districtFilter=" + districtFilter + "&nationalityFilter=" + nationalityFilter + "&membershipFilter=" + membershipFilter;
+            // fetch(url).then(response => response.json())
+            // .then(result => {
 
-            }).catch((error) => {
-                console.log("ERROR HERE");
-                console.log(error);
-            });
+            // }).catch((error) => {
+            //     console.log("ERROR HERE");
+            //     console.log(error);
+            // });
 
             console.log(genderFilter);
             // console.log(typeof(provinceFilter));

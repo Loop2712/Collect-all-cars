@@ -2,19 +2,22 @@
     .progress_bg {
         background-color: rgb(255 255 255 / 12%) !important;
     }
-
     .progress_bar_USER {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	overflow: hidden;
-	color: #000000b0;
-	text-align: center;
-	white-space: nowrap;
-	background-color: #ffffff;
-	transition: width .6s ease;
-    font-weight: bold;
-}
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        color: #000000b0;
+        text-align: center;
+        white-space: nowrap;
+        background-color: #ffffff;
+        transition: width .6s ease;
+        font-weight: bold;
+    }
+    .logo-image {
+        width: 20px; /* ปรับขนาดตามที่คุณต้องการ */
+        height: 20px; /* ปรับขนาดตามที่คุณต้องการ */
+    }
 </style>
 <!-- ======================================================================
                                 ข้อมูลผู้ใช้
@@ -256,6 +259,7 @@
     </div>
 </div><!--end row-->
 
+<!-- apexcharts -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <!-- Bar Chart แสดงช่องทางการ login -->
@@ -264,7 +268,12 @@
     let user_type_login_arr = [];
     let name_user_type_login_arr = [];
     let color_type_login_arr = [];
-
+    let logo_type_login_arr = [
+        'https://www.viicheck.com/Medilab/img/icon.png',
+        'https://www.viicheck.com/Medilab/img/icon.png',
+        'https://www.viicheck.com/Medilab/img/icon.png',
+        'https://www.viicheck.com/Medilab/img/icon.png',
+    ];
     @foreach ($count_type_login as $item)
         user_type_login_arr.push('{{ $item->user_type_count }}');
     @endforeach
@@ -282,17 +291,23 @@
     @endforeach
 
     let color_loop;
+    let logo_loop;
     @foreach ($count_type_login as $item)
         @if (empty($item->type))
             color_loop = '#546E7A';
+            logo_loop = "https://www.viicheck.com/Medilab/img/icon.png"
         @elseif($item->type == 'line')
             color_loop = '#13d8aa';
+            logo_loop = "https://www.viicheck.com/Medilab/img/icon.png"
         @elseif($item->type == 'google')
             color_loop = '#d4526e';
+            logo_loop = "https://www.viicheck.com/Medilab/img/icon.png"
         @elseif($item->type == 'facebook')
             color_loop = '#33b2df';
+            logo_loop = "https://www.viicheck.com/Medilab/img/icon.png"
         @endif
 
+        // logo_type_login_arr.push(logo_loop);
         color_type_login_arr.push(color_loop);
 
     @endforeach
@@ -339,9 +354,10 @@
             categories: name_user_type_login_arr,
         },
         yaxis: {
-          labels: {
-            show: false
-          }
+            labels: {
+                categories: name_user_type_login_arr,
+                show: false
+            }
         },
         tooltip: {
           theme: 'dark',

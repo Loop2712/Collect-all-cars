@@ -227,7 +227,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="font-weight-bold mb-0" >ประเภทรถรถมากที่สุด 5 อันดับ</h5>
+                        <h5 class="font-weight-bold mb-0" >ประเภทรถมากที่สุด 5 อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"

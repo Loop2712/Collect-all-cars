@@ -1063,11 +1063,10 @@
 								<div class="menu-title">วิเคราะห์ข้อมูล</div>
 							</a>
 							<ul>
-								<li>
-									<a href="#">
-										<i class="fa-solid fa-user-headset"></i> ...
-									</a>
-								</li>
+								<li> <a href="{{ url('/dashboard_1669_index#command_center_info') }}"><i class='fad fa-book'></i> ข้อมูลเจ้าหน้าที่ศูนย์สั่งการ</a>
+                                </li>
+                                <li> <a href="{{ url('/dashboard_1669_index#sos_help') }}"><i class="fas fa-photo-video"></i> ข้อมูลการขอความช่วยเหลือ</a>
+                                </li>
 							</ul>
 						</li>
 					@endif

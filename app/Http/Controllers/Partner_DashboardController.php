@@ -83,6 +83,16 @@ class Partner_DashboardController extends Controller
             $user_data = User::where('organization', '=', $user_login->organization)->orWhere('user_from','LIKE',"%มีเงิน_จำกัด%")->latest()->paginate($perPage);
         }
 
+        // GroupBy ที่อยู่ไปใช้ใน dropdown filter
+        $filter_location_P = DB::table('users')
+            ->where('users.location_P', '!=', null)
+            ->where('users.organization', '=', $user_login->organization)
+            ->orWhere('user_from','LIKE',"%มีเงิน_จำกัด%")
+            ->select('users.location_P')
+            ->groupBy('users.location_P')
+            ->orderBy('users.location_P','DESC')
+            ->get();
+
         return view('dashboard.dashboard_user.user_index' , compact('user_data','filter_location_P'));
     }
 
