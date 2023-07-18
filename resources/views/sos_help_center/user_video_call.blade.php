@@ -1104,7 +1104,7 @@
               </h6>
             </div>
           </div>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="document.querySelector('#card_show_h6_wait_command').classList.add('d-none');"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" onclick="document.querySelector('#card_show_h6_wait_command').classList.add('d-none');"></button> <!-- aria-label="Close" -->
         </div>
       </div>
 
@@ -1228,13 +1228,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
           option['token'] = result;
 
+          startBasicCall();
+
           setTimeout(() => {
               document.getElementById("join").click();
           }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
 
       });
 
-      startBasicCall();
+      
 
   }
 
@@ -1270,14 +1272,14 @@ function runLoop_check_appId() {
                   // console.log(result);
 
                   option['token'] = result;
+                  
+                  startBasicCall();
 
                   setTimeout(() => {
                       document.getElementById("join").click();
                   }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
 
               });
-
-              startBasicCall();
 
           }
     });
@@ -1308,6 +1310,8 @@ var check_play_audio_in_room = 'ห้ามเล่น' ;
 var command_entered_room = 'no' ;
 var check_start_countdown_user_out_room = 'no' ;
 
+var check_user_in_room = false ;
+
 function loop_check_command_in_room() {
 
   check_command_in_room = setInterval(function() {
@@ -1322,7 +1326,7 @@ function loop_check_command_in_room() {
             myStop_countdown_user_out_room();
 
             command_entered_room = 'yes' ;
-            document.querySelector('#show_h6_wait_command').classList.add('d-none');
+            // document.querySelector('#show_h6_wait_command').classList.add('d-none');
             document.querySelector('#card_show_h6_wait_command').classList.add('d-none');
 
             if (check_play_audio_in_room == 'เล่น'){
@@ -1330,14 +1334,16 @@ function loop_check_command_in_room() {
               check_play_audio_in_room = 'ห้ามเล่น';
             }
 
-            // command อยู่ในห้อง
-            if(commandJoinRoom == true){
-              if(!check_start_timer_video_call){
-                start_timer_video_call(result['data_agora']['time_start']);
-              }
-            }else{
-              if(check_start_timer_video_call){
-                myStop_timer_video_call();
+            if( check_user_in_room ){
+              // command อยู่ในห้อง
+              if(commandJoinRoom == true){
+                if(!check_start_timer_video_call){
+                  start_timer_video_call(result['data_agora']['time_start']);
+                }
+              }else{
+                if(check_start_timer_video_call){
+                  myStop_timer_video_call();
+                }
               }
             }
 
@@ -1347,7 +1353,7 @@ function loop_check_command_in_room() {
               myStop_timer_video_call();
             }
 
-            document.querySelector('#show_h6_wait_command').classList.remove('d-none');
+            // document.querySelector('#show_h6_wait_command').classList.remove('d-none');
             document.querySelector('#card_show_h6_wait_command').classList.remove('d-none');
             check_play_audio_in_room = 'เล่น';
 
@@ -1682,7 +1688,7 @@ function start_countdown_user_out_room(){
       document.querySelector('#btn_switchScreen').classList.remove('d-none');
 
       command_entered_room = 'in_room' ;
-      document.querySelector('#card_show_h6_wait_command').classList.add('d-none');
+      // document.querySelector('#card_show_h6_wait_command').classList.add('d-none');
       document.querySelector('#show_h6_wait_command').classList.add('d-none');
 
       remotePlayerContainer.classList.remove('d-none');
@@ -2142,6 +2148,9 @@ function start_countdown_user_out_room(){
 
         // console.log("publish success!");
 
+        check_user_in_room = true ;
+
+
         // >>> UPDATE Member in room agora chat <<< //
         fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=user_join')
           .then(response => response.json())
@@ -2244,6 +2253,8 @@ function start_countdown_user_out_room(){
           myStop_timer_video_call();
           meet_2_people = 'Yes' ;
         }
+
+        check_user_in_room = false ;
 
         btnVideoRemote.classList.add('d-none');
         btnMicRemote.classList.add('d-none');
