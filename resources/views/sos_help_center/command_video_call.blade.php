@@ -552,7 +552,7 @@ function loop_check_user_in_room() {
                   create_html_user_in_room(result['data'] , 'wait');
                 }
 
-                if( check_first_play_ringtone == 0 ){
+                if( check_first_play_ringtone == 0 && video_success != 'OK'){
                   play_ringtone();
                   document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
                 }
@@ -1028,8 +1028,17 @@ async function startBasicCall() {
 
     check_command_in_room = false ;
 
+    let meet_2_people = 'No' ;
+
     if(check_start_timer_video_call){
       myStop_timer_video_call();
+      meet_2_people = 'Yes' ;
+    }
+
+    if(meet_2_people == 'Yes'){
+      console.log('hours >> ' + hours);
+      console.log('minutes >> ' + minutes);
+      console.log('seconds >> ' + seconds);
     }
 
     // Destroy the local audio and video tracks.
@@ -1065,7 +1074,7 @@ async function startBasicCall() {
     document.querySelector('#officerStandby').click();
     // window.location.reload();
 
-    fetch("{{ url('/') }}/api/left_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_left')
+    fetch("{{ url('/') }}/api/left_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_left'+"&meet_2_people="+meet_2_people+"&hours="+hours+"&minutes="+minutes+"&seconds="+seconds)
       .then(response => response.json())
       .then(result => {
           // console.log(result);
@@ -1116,6 +1125,10 @@ function myStop_timer_video_call() {
     document.querySelector('#icon_timer_video_call').classList.add('d-none');
 }
 
+var hours = 0;
+var minutes = 0;
+var seconds = 0;
+
 function start_timer_video_call(time_start){
 
   console.log('start_timer_video_call');
@@ -1142,9 +1155,9 @@ function start_timer_video_call(time_start){
     var elapsedMinutes = Math.floor(elapsedTime / (1000 * 60));
 
     // แปลงเวลาที่ผ่านไปให้เป็นรูปแบบชั่วโมง:นาที:วินาที
-    var hours = Math.floor(elapsedMinutes / 60);
-    var minutes = elapsedMinutes % 60;
-    var seconds = Math.floor((elapsedTime / 1000) % 60);
+    hours = Math.floor(elapsedMinutes / 60);
+    minutes = elapsedMinutes % 60;
+    seconds = Math.floor((elapsedTime / 1000) % 60);
 
     let showTimeCountVideo;
     // แสดงผลลัพธ์

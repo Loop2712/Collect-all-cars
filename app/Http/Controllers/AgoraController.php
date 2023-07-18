@@ -225,6 +225,28 @@ class AgoraController extends Controller
 
         $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
 
+        // เวลาของการสนทนาตั้งแต่ 2 คนขึ้นไป
+        if( !empty($request->meet_2_people) ){
+
+            $meet_2_people = $request->meet_2_people;
+            $hours = $request->hours;
+            $minutes = $request->minutes;
+            $seconds = $request->seconds;
+
+            if($meet_2_people == 'Yes'){
+                $update_than_2_people_timemeet =  (int)($hours / 3600) + (int)($minutes / 60) + $seconds ;
+            }else{
+                $update_than_2_people_timemeet = null ;
+            }
+
+            if( !empty($agora_chat->than_2_people_timemeet) ){
+                $update_than_2_people_timemeet = (int)$agora_chat->than_2_people_timemeet + (int)$update_than_2_people_timemeet ;
+            }else{
+                $update_than_2_people_timemeet = $update_than_2_people_timemeet ;
+            }
+
+        }
+
         if($type == 'command_left'){
             $data_old = $agora_chat->member_in_room;
 
@@ -278,6 +300,7 @@ class AgoraController extends Controller
                     'member_in_room' => $data_update,
                     'time_start' => $update_time_start,
                     'total_timemeet' => $update_total_timemeet,
+                    'than_2_people_timemeet' => $update_than_2_people_timemeet,
                 ]);
 
         $agora_chat_last = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
