@@ -226,6 +226,12 @@ class AgoraController extends Controller
         $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'user_sos_1669')->first();
 
         // เวลาของการสนทนาตั้งแต่ 2 คนขึ้นไป
+        if( !empty($agora_chat->than_2_people_timemeet) ){
+            $update_than_2_people_timemeet = $agora_chat->than_2_people_timemeet ;
+        }else{
+            $update_than_2_people_timemeet = null ;
+        }
+
         if( !empty($request->meet_2_people) ){
 
             $meet_2_people = $request->meet_2_people;

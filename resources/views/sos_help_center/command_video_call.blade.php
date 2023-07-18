@@ -313,7 +313,7 @@
           </div>
 
           <div class="video-remote d-none">
-
+            <i id="video_local_slash_screen_2" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 25px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
           </div>
 
         </div>
@@ -689,6 +689,11 @@ function start_video_call_command(){
     startBasicCall();
 }
 
+/////////////////////// จอ เล็ก //////////////////
+const remotePlayerContainer = document.querySelector('.video-remote');
+/////////////////////// จอ ใหญ่ /////////////////////
+const localPlayerContainer = document.querySelector('.video-local');
+
 async function startBasicCall() {
 
   // console.log(option);
@@ -697,11 +702,6 @@ async function startBasicCall() {
     mode: "rtc",
     codec: "vp8"
   });
-
-  /////////////////////// จอคนเข้าร่วม//////////////////
-  const remotePlayerContainer = document.querySelector('.video-remote');
-  /////////////////////// จอตัวเอง/////////////////////
-  const localPlayerContainer = document.querySelector('.video-local');
 
   ///////////////////////// btn local user/////////////////////
   const btnMic = document.querySelector('#btnMic');
@@ -1000,13 +1000,6 @@ async function startBasicCall() {
             create_html_user_in_room(result['data'] , 'in_room');
           }
 
-          let html_icon_video_slash = `
-            <i id="video_local_slash_screen_2" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 25px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
-          `;
-
-          document.querySelector('.video-remote').innerHTML = '' ;
-          document.querySelector('.video-remote').insertAdjacentHTML('afterbegin', html_icon_video_slash); // แทรกล่างสุด
-
       });
 
     btnMic.innerHTML = '<i class="fa-solid fa-microphone"></i>';
@@ -1020,6 +1013,13 @@ async function startBasicCall() {
     document.querySelector('#btnMic').classList.remove('d-none');
     document.querySelector('#btnVideo').classList.remove('d-none');
     document.querySelector('#leave').classList.remove('d-none');
+
+    // let html_icon_video_slash = `
+    //     <i id="video_local_slash_screen_2" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 25px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
+    //   `;
+
+    //   document.querySelector('.video-remote').innerHTML = '' ;
+    //   document.querySelector('.video-remote').insertAdjacentHTML('afterbegin', html_icon_video_slash); // แทรกล่างสุด
 
   }
 
@@ -1098,18 +1098,18 @@ async function startBasicCall() {
 
 function select_show_localVideoTrack(){
 
-  /////////////////////// จอคนเข้าร่วม//////////////////
-  let remotePlayerContainer = document.querySelector('.video-remote');
-  /////////////////////// จอตัวเอง/////////////////////
-  let localPlayerContainer = document.querySelector('.video-local');
+  setTimeout(function() {
 
-  if(command_screen_current === 1){
-    // แสดงวิดีโอใน div local
-    channelParameters.localVideoTrack.play(localPlayerContainer);
-  }else{
-    // แสดงวิดีโอใน div remote
-    channelParameters.localVideoTrack.play(remotePlayerContainer);
-  }
+    if(command_screen_current === 1){
+      // แสดงวิดีโอใน div local
+      channelParameters.localVideoTrack.play(localPlayerContainer);
+    }else{
+      // แสดงวิดีโอใน div remote
+      channelParameters.localVideoTrack.play(remotePlayerContainer);
+    }
+
+  }, 1000);
+
 
 }
 
