@@ -25,7 +25,7 @@ class Agora_chat extends Model
      *
      * @var array
      */
-    protected $fillable = ['room_for', 'time_start', 'member_in_room', 'total_timemeet', 'amount_meet', 'detail', 'sos_id', 'consult_doctor_id'];
+    protected $fillable = ['room_for', 'time_start', 'member_in_room', 'total_timemeet', 'than_2_people_timemeet', 'detail', 'sos_id', 'consult_doctor_id'];
 
     
 }

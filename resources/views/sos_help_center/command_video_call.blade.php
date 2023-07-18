@@ -520,12 +520,21 @@ function loop_check_user_in_room() {
               // if(!check_start_timer_video_call){
               //   start_timer_video_call(result['data_agora']['time_start']);
               // }
-
+      
               if( check_command_in_room ){
 
                 if(userJoinRoom == true){
                   // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
                   create_html_user_in_room(result['data'] , 'in_room');
+
+                  if(!check_start_timer_video_call){
+                    start_timer_video_call(result['data_agora']['time_start']);
+                  }
+
+                }else{
+                  if(check_start_timer_video_call){
+                    myStop_timer_video_call();
+                  }
                 }
 
                 if( check_first_play_audio_in_room == 0 ){
@@ -546,6 +555,10 @@ function loop_check_user_in_room() {
                 if( check_first_play_ringtone == 0 ){
                   play_ringtone();
                   document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+                }
+
+                if(check_start_timer_video_call){
+                  myStop_timer_video_call();
                 }
 
               }
@@ -789,11 +802,6 @@ async function startBasicCall() {
       // alert('มีคนเข้ามา');
       userJoinRoom = true;
 
-      if(userJoinRoom == true){
-        // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
-        create_html_user_in_room(result['data'] , 'in_room');
-      }
-
     }
 
     // Subscribe and play the remote audio track If the remote user publishes the audio track only.
@@ -860,6 +868,10 @@ async function startBasicCall() {
     command_screen_current = 1 ;
     // ตัวเลือกแสดงผลวิดีโอของเจ้าหน้าที่
     select_show_localVideoTrack();
+
+    if(check_start_timer_video_call){
+      myStop_timer_video_call();
+    }
 
   });
 
@@ -983,6 +995,18 @@ async function startBasicCall() {
           // ตัวเลือกแสดงผลวิดีโอของเจ้าหน้าที่
           select_show_localVideoTrack();
 
+          if(userJoinRoom == true){
+            // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
+            create_html_user_in_room(result['data'] , 'in_room');
+          }
+
+          let html_icon_video_slash = `
+            <i id="video_local_slash_screen_2" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 25px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
+          `;
+
+          document.querySelector('.video-remote').innerHTML = '' ;
+          document.querySelector('.video-remote').insertAdjacentHTML('afterbegin', html_icon_video_slash); // แทรกล่างสุด
+
       });
 
     btnMic.innerHTML = '<i class="fa-solid fa-microphone"></i>';
@@ -996,18 +1020,6 @@ async function startBasicCall() {
     document.querySelector('#btnMic').classList.remove('d-none');
     document.querySelector('#btnVideo').classList.remove('d-none');
     document.querySelector('#leave').classList.remove('d-none');
-
-    if(userJoinRoom == true){
-      // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
-      create_html_user_in_room(result['data'] , 'in_room');
-    }
-
-    let html_icon_video_slash = `
-      <i id="video_local_slash_screen_2" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;font-size: 25px;z-index:99999;" class="fa-solid fa-video-slash d-none"></i>
-    `;
-
-    document.querySelector('.video-remote').innerHTML = '' ;
-    document.querySelector('.video-remote').insertAdjacentHTML('afterbegin', html_icon_video_slash); // แทรกล่างสุด
 
   }
 
