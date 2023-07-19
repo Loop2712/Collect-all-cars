@@ -514,3 +514,5 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::resource('agora_chat', 'Agora_chatController');
+
+Route::resource('sos_1669_officer_ask_more', 'Sos_1669_officer_ask_moreController');
