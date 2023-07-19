@@ -2401,5 +2401,25 @@ class Sos_help_centerController extends Controller
         return $data ;
 
     }
+    function check_data_form_yellow_show_case(Request $request)
+    {
+        $requestData = $request->all();
 
+        $sos_id = $requestData['sos_id'];
+
+        $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $sos_id)->first();
+
+        return $data_form_yellow;
+    }
+
+    function officerSaveFormYellow(Request $request)
+    {
+        $requestData = $request->all();
+
+        $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $requestData['sos_id'])->first();
+        $data_form_yellow->update($requestData);
+
+
+        return $data_form_yellow;
+    }
 }

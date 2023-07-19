@@ -1,6 +1,8 @@
 @extends('layouts.viicheck')
 
 @section('content')
+@include ('sos_help_officer.officer_form_yellow')
+
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -144,8 +146,24 @@ height: calc(36px + 2*1rem);
 color: #0d6efd;
 -webkit-box-shadow: none;
 box-shadow: none;
-border: 2px solid transparent;
 border-radius: 10px;
+}
+.card-input-primary +.card{
+	border: 2px solid #0d6efd !important;
+	display: none;
+}
+.card-input-red +.card{
+	border: 2px solid #db2d2e !important;
+	display: none;
+}.card-input-success +.card{
+	border: 2px solid #29cc39 !important;
+	display: none;
+}.card-input-warning +.card{
+	border: 2px solid #ffc30e !important;
+	display: none;
+}.card-input-dark +.card{
+	border: 2px solid #000 !important;
+	display: none;
 }
 
 .card-input-element+.card:hover {
@@ -194,14 +212,44 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		opacity: 1;
 		transform: rotateZ(0deg);
 	}
-}.card-input-red:checked+.card {
+}
+
+
+.card-input-red:checked+.card {
 	border: 2px solid #db2d2e !important;
 	background-color: #db2d2e !important;
 	color: #fff !important;
 	-webkit-transition: border .3s;
 	-o-transition: border .3s;
 	transition: border .3s;
-}.show-data{
+} .card-input-success:checked+.card {
+	border: 2px solid #29cc39 !important;
+	background-color: #29cc39 !important;
+	color: #fff !important;
+	-webkit-transition: border .3s;
+	-o-transition: border .3s;
+	transition: border .3s;
+}
+
+.card-input-warning:checked+.card {
+	border: 2px solid #ffc30e !important;
+	background-color: #ffc30e !important;
+	color: #fff !important;
+	-webkit-transition: border .3s;
+	-o-transition: border .3s;
+	transition: border .3s;
+}
+
+.card-input-dark:checked+.card {
+	border: 2px solid #000 !important;
+	background-color: #000 !important;
+	color: #fff !important;
+	-webkit-transition: border .3s;
+	-o-transition: border .3s;
+	transition: border .3s;
+}
+
+.show-data{
 	animation: myAnim 1s ease 0s 1 normal forwards;
 }
 @keyframes myAnim {
@@ -642,10 +690,13 @@ input:focus {
 	<div class="row data-menu show-data-menu d-none" id="menu_1" style="bottom: -1rem">
 		
 		<menu class="col-12 " >
-			<a href="{{ url('/officer_form_yellow/'.$data_sos->id.'#step-1' ) }}" class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" >
+			<button  class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" data-toggle="modal" data-target="#modalOfficerFormYellow" onclick="check_data_form_yellow_show_case()">
 				แก้ไขข้อมูลผู้ป่วย
-			</a>
+			</button>
 		</menu>
+	
+
+		
 		<menu class="col-12 " >
 			<button class="btn btn-secondary main-shadow main-radius btn-update-status" style="width:100%;" >
 				ปฎิบัติการร่วม / หมู่
