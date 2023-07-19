@@ -3355,13 +3355,14 @@
 			            close : false ,
 			            closeOnEscape : false,
 			            closeOnClick: false ,
+			            drag: false,
 			            buttons: [
 				            [
 				                '<span id="btn_command_ask_mores_id_'+item.id+'" class="h3" style="margin-right:20px;"><button class="btn btn-info text-white"><i class="fa-solid fa-radar fa-beat-fade text-danger"></i> รับเคส</button></span>',
 				                
 				            ],
 				          	[
-					            '<span class="h3" style="margin-right:20px;"><button class="btn btn-danger"><i class="fa-regular fa-map-location-dot"></i> ส่งต่อ</button></span>',
+					            '<span class="h3" style="margin-right:20px;"><button class="btn btn-danger"><i class="fa-solid fa-paper-plane"></i> ส่งต่อ</button></span>',
 					        ],
 					    ],
 					});
