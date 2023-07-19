@@ -545,6 +545,19 @@ class Sos_help_centerController extends Controller
                 ->where('sos_help_centers.status' , '!=' , 'เสร็จสิ้น')
                 ->select('sos_help_centers.*', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text','sos_1669_form_yellows.vehicle_type','sos_1669_form_yellows.operating_suit_type')
                 ->get();
+
+        $sos_ask_mores = DB::table('sos_help_centers')
+                ->join('sos_1669_officer_ask_mores', 'sos_help_centers.id', '=', 'sos_1669_officer_ask_mores.sos_id')
+                ->where('sos_help_centers.notify', "LIKE" , "%$sub_organization%")
+                ->where('sos_1669_officer_ask_mores.success' , null)
+                ->select('sos_help_centers.*', 'sos_1669_officer_ask_mores.*')
+                ->get();
+
+        if( !empty($sos_ask_mores) ){
+            $sos_ask_mores = $sos_ask_mores ;
+        }else{
+            $sos_ask_mores = "ไม่มีข้อมูล" ;
+        }
         
         if ($check_data) {
 
@@ -576,6 +589,7 @@ class Sos_help_centerController extends Controller
             $data['count_sos_Helping'] = count($sos_Helping) ;
             $data['data_sos_Helping'] = $sos_Helping ;
             $data['check_data'] = "ไม่มีข้อมูล" ;
+            $data['sos_ask_mores'] = $sos_ask_mores ;
 
             return $data ;
         }

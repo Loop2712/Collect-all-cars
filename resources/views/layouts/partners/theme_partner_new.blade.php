@@ -3198,6 +3198,10 @@
 			            });
 				}else{
 
+					// การขอหน่วยปฏิบัติการเพิ่มเติม
+                	// console.log(result['sos_ask_mores']);
+                	create_alert_sos_ask_mores(result['sos_ask_mores']);
+
 					if ( result['count_sos_wait'] == 0 ){
 						document.querySelector('#div_noti_wait').classList.add('d-none');
 						document.querySelector('#modal_show_sos_wait_body').innerHTML = '';
@@ -3320,6 +3324,54 @@
 			document.querySelector('#modal_show_sos_wait_body').classList.remove('show' , 'active');
 			document.querySelector('#wait_data').classList.add('show' , 'active');
 		}
+	}
+
+	function create_alert_sos_ask_mores(data){
+
+		console.log('create_alert_sos_ask_mores');
+		console.log(data);
+
+		if(data != 'ไม่มีข้อมูล' || !data.success){
+
+			let btn_command_ask_mores ;
+
+			for(let item of data){
+
+				btn_command_ask_mores = document.querySelector('#btn_command_ask_mores_id_' + item.id);
+			
+				if(!btn_command_ask_mores){
+
+					let text_message = 'มีการขอหน่วยปฏิบัติการเพิ่ม ID >> ' + item.id ;
+
+					iziToast.show({
+					    title: 'Hey',
+					    titleSize: '35',
+					    titleLineHeight: '50',
+			            message: text_message,
+			            messageSize: '20',
+			            messageLineHeight: '35',
+			            position: 'topLeft', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+			            timeout: false,
+			            close : false ,
+			            closeOnEscape : false,
+			            closeOnClick: false ,
+			            buttons: [
+				            [
+				                '<span id="btn_command_ask_mores_id_'+item.id+'" class="h3" style="margin-right:20px;"><button class="btn btn-info text-white"><i class="fa-solid fa-radar fa-beat-fade text-danger"></i> รับเคส</button></span>',
+				                
+				            ],
+				          	[
+					            '<span class="h3" style="margin-right:20px;"><button class="btn btn-danger"><i class="fa-regular fa-map-location-dot"></i> ส่งต่อ</button></span>',
+					        ],
+					    ],
+					});
+
+		        }
+
+			}
+			
+		}
+		
 	}
 
 

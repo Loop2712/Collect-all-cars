@@ -25,7 +25,7 @@ class Sos_1669_officer_ask_more extends Model
      *
      * @var array
      */
-    protected $fillable = ['sos_id', 'officer_id', 'rc', 'vehicle_car', 'vehicle_aircraft', 'vehicle_boat_1', 'vehicle_boat_2', 'vehicle_boat_3', 'vehicle_boat_other', 'officer_amount'];
+    protected $fillable = ['sos_id', 'officer_id', 'rc', 'vehicle_car', 'vehicle_aircraft', 'vehicle_boat_1', 'vehicle_boat_2', 'vehicle_boat_3', 'vehicle_boat_other', 'officer_amount','success'];
 
     
 }
