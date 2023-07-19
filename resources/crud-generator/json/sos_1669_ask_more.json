@@ -1,0 +1,44 @@
+{
+    "fields": [
+        {
+            "name": "sos_id",
+            "type": "string"
+        },
+        {
+            "name": "officer_id",
+            "type": "string"
+        },
+        {
+            "name": "rc",
+            "type": "string"
+        },
+        {
+            "name": "vehicle_car",
+            "type": "string"
+        },
+        {
+            "name": "vehicle_aircraft",
+            "type": "string"
+        },
+        {
+            "name": "vehicle_boat_1",
+            "type": "string"
+        },
+        {
+            "name": "vehicle_boat_2",
+            "type": "string"
+        },
+        {
+            "name": "vehicle_boat_3",
+            "type": "string"
+        },
+        {
+            "name": "vehicle_boat_other",
+            "type": "string"
+        },
+        {
+            "name": "officer_amount",
+            "type": "string"
+        }
+    ]
+}
