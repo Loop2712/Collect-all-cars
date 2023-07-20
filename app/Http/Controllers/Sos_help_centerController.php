@@ -522,14 +522,16 @@ class Sos_help_centerController extends Controller
         $update_count_sos = (int)$old_count_sos + 1 ;
         // $update_for_gen_code = (int)$data_old_count_sos->for_gen_code + 1 ;
 
-        DB::table('sos_1669_province_codes')
-            ->where([ 
-                    ['id', $data_old_count_sos->id],
-                ])
-            ->update([
-                    'count_sos' => $update_count_sos,
-                    // 'for_gen_code' => $update_for_gen_code,
-                ]);
+        if(!empty($data_old_count_sos)){
+            DB::table('sos_1669_province_codes')
+                ->where([ 
+                        ['id', $data_old_count_sos->id],
+                    ])
+                ->update([
+                        'count_sos' => $update_count_sos,
+                        // 'for_gen_code' => $update_for_gen_code,
+                    ]);
+        }
 
         return $requestData['sos_help_center_id'] ;
     }
