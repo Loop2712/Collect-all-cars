@@ -156,7 +156,7 @@
 
                         @if(Auth::user()->nationalitie == 'Thai' || empty(Auth::user()->nationalitie))
                                 <!-- /////// BTN SOS 1669 /////// -->
-                            <span id="btn_ask_1669" class="main-shadow btn btn-md btn-block d-none"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
+                            <span id="btn_ask_1669" class="main-shadow btn btn-md btn-block d-"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
                                 <div class="d-flex">
                                     <div class="col-3 p-0 d-flex align-items-center">
                                         <div class="justify-content-center col-12 p-0">
