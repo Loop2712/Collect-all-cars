@@ -99,13 +99,13 @@ class Sos_mapController extends Controller
             $requestData['title_sos_other'] = "";
         }
 
+        $sos_map_title = Sos_map_title::where('name_partner', $requestData['area'])
+            ->where('ask_to_partner' , null)
+            ->where('title' , $requestData['title_sos_other'])
+            ->first();
+
         // ตรวจสอบ และเพิ่ม title sos
         if( $requestData['title_sos'] == 'อื่นๆ' ){
-
-            $sos_map_title = Sos_map_title::where('name_partner', $requestData['area'])
-                ->where('ask_to_partner' , null)
-                ->where('title' , $requestData['title_sos_other'])
-                ->first();
 
             if( empty($sos_map_title) ){
 
@@ -147,11 +147,14 @@ class Sos_mapController extends Controller
                     $count_old = intval($sos_map_title->count) ;
                 }
 
-                DB::table('sos_map_titles')
-                    ->where('id',$sos_map_title->id)
-                    ->update([
-                        'count' => $count_old + 1 ,
-                ]);
+                if(!empty($sos_map_title)){
+                    DB::table('sos_map_titles')
+                        ->where('id',$sos_map_title->id)
+                        ->update([
+                            'count' => $count_old + 1 ,
+                    ]);  
+                }
+                
             }
 
         }else{
@@ -166,11 +169,13 @@ class Sos_mapController extends Controller
                 $count_main = intval($sos_map_title_main->count) ;
             }
 
-            DB::table('sos_map_titles')
-                ->where('id',$sos_map_title_main->id)
-                ->update([
-                    'count' => $count_main + 1 ,
-            ]);
+            if( !empty($sos_map_title_main) ){
+                DB::table('sos_map_titles')
+                    ->where('id',$sos_map_title_main->id)
+                    ->update([
+                        'count' => $count_main + 1 ,
+                ]);
+            }
         }
 
         // echo "<pre>";
