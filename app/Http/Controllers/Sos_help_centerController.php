@@ -442,11 +442,15 @@ class Sos_help_centerController extends Controller
             ->orderBy('number' , 'ASC')
             ->first();
 
-        $requestData['create_by'] = "user - " . $requestData['user_id'];
-        $requestData['notify'] = $data_officer_command->id .' - '.$province_name;
-        $requestData['status'] = 'รับแจ้งเหตุ';
-        $requestData['time_create_sos'] = $time_create_sos;
-        $requestData['address'] = $province_name."/".$district_name."/".$sub_district_name ;
+        if(!empty($data_officer_command)){
+            $requestData['create_by'] = "user - " . $requestData['user_id'];
+            $requestData['notify'] = $data_officer_command->id .' - '.$province_name;
+            $requestData['status'] = 'รับแจ้งเหตุ';
+            $requestData['time_create_sos'] = $time_create_sos;
+            $requestData['address'] = $province_name."/".$district_name."/".$sub_district_name ;
+        }
+
+        
         
         Sos_help_center::create($requestData);
 
