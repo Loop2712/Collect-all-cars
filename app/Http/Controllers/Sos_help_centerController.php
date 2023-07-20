@@ -514,12 +514,12 @@ class Sos_help_centerController extends Controller
             ->first();
 
         if(!empty($data_old_count_sos->count_sos)){
-            $data_old_count_sos->count_sos = $data_old_count_sos->count_sos ;
+            $old_count_sos = $data_old_count_sos->count_sos ;
         }else{
-            $data_old_count_sos->count_sos = 0 ;
+            $old_count_sos = 0 ;
         }
-        
-        $update_count_sos = (int)$data_old_count_sos->count_sos + 1 ;
+
+        $update_count_sos = (int)$old_count_sos + 1 ;
         // $update_for_gen_code = (int)$data_old_count_sos->for_gen_code + 1 ;
 
         DB::table('sos_1669_province_codes')
