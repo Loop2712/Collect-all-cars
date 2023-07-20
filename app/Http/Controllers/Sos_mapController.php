@@ -87,6 +87,18 @@ class Sos_mapController extends Controller
         
         $requestData = $request->all();
 
+        if (!empty($requestData['title_sos'])){
+            $requestData['title_sos'] = $requestData['title_sos'] ;
+        }else{
+            $requestData['title_sos'] = "";
+        }
+
+        if (!empty($requestData['title_sos_other'])){
+            $requestData['title_sos_other'] = $requestData['title_sos_other'] ;
+        }else{
+            $requestData['title_sos_other'] = "";
+        }
+
         // ตรวจสอบ และเพิ่ม title sos
         if( $requestData['title_sos'] == 'อื่นๆ' ){
 
