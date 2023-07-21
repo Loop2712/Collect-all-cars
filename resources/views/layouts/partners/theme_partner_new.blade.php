@@ -336,6 +336,10 @@
         	width: 100% !important;
         }
 
+        .width-40{
+        	width: 40% !important;
+        }
+
         /*.iziToast-texts{
         	width: 100% !important;
         }*/
@@ -3331,6 +3335,9 @@
 		console.log('create_alert_sos_ask_mores');
 		console.log(data);
 
+		let icon_stk = "https://www.viicheck.com/img/stickerline/PNG/21.png" ;
+		let html_officer_Standby = '' ;
+
 		if(data != 'ไม่มีข้อมูล' || !data.success){
 
 			let btn_command_ask_mores ;
@@ -3341,31 +3348,168 @@
 			
 				if(!btn_command_ask_mores){
 
-					let text_message = 'มีการขอหน่วยปฏิบัติการเพิ่ม ID >> ' + item.id ;
+					let html_vehicle = '';
 
-					iziToast.show({
-					    title: 'Hey',
-					    titleSize: '35',
-					    titleLineHeight: '50',
-			            message: text_message,
-			            messageSize: '20',
-			            messageLineHeight: '35',
-			            position: 'topLeft', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
-			            timeout: false,
-			            close : false ,
-			            closeOnEscape : false,
-			            closeOnClick: false ,
-			            drag: false,
-			            buttons: [
-				            [
-				                '<span id="btn_command_ask_mores_id_'+item.id+'" class="h3" style="margin-right:20px;"><button class="btn btn-info text-white"><i class="fa-solid fa-radar fa-beat-fade text-danger"></i> รับเคส</button></span>',
-				                
-				            ],
-				          	[
-					            '<span class="h3" style="margin-right:20px;"><button class="btn btn-danger"><i class="fa-solid fa-paper-plane"></i> ส่งต่อ</button></span>',
-					        ],
-					    ],
-					});
+					let sum_boat = 0 ;
+
+					let vehicle_car = item.vehicle_car ;
+						if (!vehicle_car){
+							vehicle_car = 0 ;
+						}else{
+							html_vehicle = html_vehicle+`<i class="fa-solid fa-car-side"></i> `+vehicle_car+`&nbsp;&nbsp;`;
+						}
+					let vehicle_aircraft = item.vehicle_aircraft ;
+						if (!vehicle_aircraft){
+							vehicle_aircraft = 0 ;
+						}else{
+							html_vehicle = html_vehicle+`<i class="fa-solid fa-helicopter"></i> `+vehicle_aircraft+`&nbsp;&nbsp;`;
+						}
+					let vehicle_boat_1 = item.vehicle_boat_1 ;
+						if (!vehicle_boat_1){
+							vehicle_boat_1 = 0 ;
+						}else{
+							sum_boat = parseInt(sum_boat) + parseInt(vehicle_boat_1) ;
+						}
+					let vehicle_boat_2 = item.vehicle_boat_2 ;
+						if (!vehicle_boat_2){
+							vehicle_boat_2 = 0 ;
+						}else{
+							sum_boat = parseInt(sum_boat) + parseInt(vehicle_boat_2) ;
+						}
+					let vehicle_boat_3 = item.vehicle_boat_3 ;
+						if (!vehicle_boat_3){
+							vehicle_boat_3 = 0 ;
+						}else{
+							sum_boat = parseInt(sum_boat) + parseInt(vehicle_boat_3) ;
+						}
+					let vehicle_boat_other = item.vehicle_boat_other ;
+						if (!vehicle_boat_other){
+							vehicle_boat_other = 0 ;
+						}else{
+							sum_boat = parseInt(sum_boat) + parseInt(vehicle_boat_other) ;
+						}
+
+					if (sum_boat != 0){
+						html_vehicle = html_vehicle+`<i class="fa-solid fa-ship"></i> `+sum_boat;
+					}
+
+					let require_vehicle_all = parseInt(vehicle_car) + parseInt(vehicle_aircraft) + parseInt(vehicle_boat_1) + parseInt(vehicle_boat_2) + parseInt(vehicle_boat_3) + parseInt(vehicle_boat_other) ;
+
+					let admin_id = "{{ Auth::user()->id }}" ;
+
+					fetch("{{ url('/') }}/api/search_officer_Standby" + '/' + admin_id)
+			            .then(response => response.json())
+			            .then(officer_Standby => {
+			                console.log('officer_Standby');
+			                console.log(officer_Standby);
+
+			                for(let item_Standby of officer_Standby){
+
+			                	console.log(item_Standby['name_officer_command']);
+
+			                	let photo_officer ;
+
+			                	if (item_Standby['photo']){
+			                		photo_officer = "{{ url('/storage') }}/" + item_Standby['photo'];
+			                	}else{
+			                		photo_officer = "{{ url('/img/stickerline/Flex/12.png') }}" ;
+			                	}
+
+			                	html_officer_Standby = html_officer_Standby +
+				                	`<a class="item owlItemOfficer btn">
+				                        <div class="badgeImg">
+				                            <img style="opacity: 1 !important;" src="`+photo_officer+`" class="" height="50">
+				                        </div>
+				                        <span class="owlNameOfficer" style="margin-left: 10px;">
+				                        	`+item_Standby['name_officer_command']+`
+				                        	<br>
+				                        	<span style="font-size:15px;color:gray;">ลำดับที่ `+item_Standby['number']+`</span>
+				                        </span>
+				                    </a>` ;
+
+			                }
+			        });
+
+			        setTimeout(function() {
+						// let text_message = 'มีการขอหน่วยปฏิบัติการเพิ่ม ID >> ' + item.id ;
+						let text_message = `
+		                	<div class="row g-0">
+								<div class="col-md-2">
+									<img src="https://www.viicheck.com/img/stickerline/PNG/21.png" style="width:90%;" class="card-img">
+								</div>
+								<div class="col-md-10">
+					                <h3 class="card-title">
+					                 	<i class="fa-duotone fa-light-emergency-on fa-shake" style="--fa-primary-color: #ff3333; --fa-secondary-color: #ff3333;"></i>
+					                 	<b>มีการขอหน่วยปฏิบัติการเพิ่ม</b>
+					                </h3>
+					                <p class="card-text">
+					                	<b>รหัสปฏิบัติการ : `+item.operating_code+`</b>
+					                	<br>
+					                	<b>จำนวนที่ต้องการ : `+require_vehicle_all+`</b> หน่วย | <b>`+html_vehicle+`</b> 
+					                </p>
+				                	<a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#select_forward" aria-expanded="true" aria-controls="select_forward" class="">
+				                		<i class="fa-solid fa-paper-plane"></i> ส่งต่อการแจ้งเตือน
+				                	</a>
+				                	<a id="btn_command_ask_mores_id_`+item.id+`" href="javascript:;" class="btn btn-info">
+				                		<i class="fa-solid fa-radar fa-beat-fade text-danger"></i> เลือกหน่วยปฏิบัติการ
+				                	</a>
+								</div>
+								<div id="select_forward" class="col-md-12 accordion-collapse collapse" style="border:none">
+									<div class="accordion-body">
+										<div class="owl-carousel owlOfficer owl-theme">
+		                                 	`+html_officer_Standby+`
+		                                </div>
+		                            </div>
+					            </div>
+							</div>
+						`;
+
+						iziToast.show({
+
+							// image: icon_stk,
+				    		// imageWidth: 150,
+						    // title: 'Hey',
+						    // titleSize: '35',
+						    // titleLineHeight: '50',
+				            message: text_message,
+				            messageSize: '20',
+				            messageLineHeight: '35',
+				            position: 'topLeft', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+				            timeout: false,
+				            close : false ,
+				            closeOnEscape : false,
+				            closeOnClick: false ,
+				            drag: false,
+				            onOpening: function () {
+				            	$(function() {
+							        // Owl Carousel
+							        let owl_ask_mores = $(".owlOfficer");
+							        owl_ask_mores.owlCarousel({
+							            margin: 10,
+							            loop: false,
+							            nav: true,
+							            autoWidth: true,
+							            items: 3,
+							            dots: false,
+							            responsive: {
+							                0: {
+							                    items: 1,
+							                    autoWidth: false
+							                },
+							                768: {
+							                    items: 2
+							                }
+							            }
+							        });
+							    });
+
+							    let iziToast = document.querySelector('.iziToast-animateInside');
+							    	iziToast.classList.add('width-40');
+				            }
+
+
+						});
+					}, 1000);
 
 		        }
 
