@@ -305,7 +305,7 @@
                                         <br><br><br>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="นำส่ง" value="นำส่ง" class="sub_treatment card-input-red card-input-element d-none">
+                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="นำส่ง" value="นำส่ง" class="sub_treatment card-input-red card-input-element d-none">
                                                 <div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         นำส่ง
@@ -315,7 +315,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="ส่งต่อชุดปฏิบัติการระดับสูงกว่า" value="ส่งต่อชุดปฏิบัติการระดับสูงกว่า" class="sub_treatment card-input-red card-input-element d-none">
+                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="ส่งต่อชุดปฏิบัติการระดับสูงกว่า" value="ส่งต่อชุดปฏิบัติการระดับสูงกว่า" class="sub_treatment card-input-red card-input-element d-none">
                                                 <div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         ส่งต่อชุดปฏิบัติการระดับสูงกว่า
@@ -325,7 +325,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" ame="sub_treatmentOfficer" data-sub_treatment="ไม่นำส่ง" value="ไม่นำส่ง" class="sub_treatment card-input-red card-input-element d-none">
+                                                <input type="checkbox" ame="sub_treatment" data-sub_treatment="ไม่นำส่ง" value="ไม่นำส่ง" class="sub_treatment card-input-red card-input-element d-none">
                                                 <div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         ไม่นำส่ง
@@ -335,7 +335,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="เสียชีวิตระหว่างนำส่ง" value="เสียชีวิตระหว่างนำส่ง" class="sub_treatment card-input-red card-input-element d-none">
+                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="เสียชีวิตระหว่างนำส่ง" value="เสียชีวิตระหว่างนำส่ง" class="sub_treatment card-input-red card-input-element d-none">
                                                 <div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         เสียชีวิตระหว่างนำส่ง
@@ -345,7 +345,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="เสียชีวิต ณ จุดเกิดเหตุ" value="เสียชีวิต ณ จุดเกิดเหตุ" class="sub_treatment card-input-red card-input-element d-none">
+                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="เสียชีวิต ณ จุดเกิดเหตุ" value="เสียชีวิต ณ จุดเกิดเหตุ" class="sub_treatment card-input-red card-input-element d-none">
                                                 <div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         เสียชีวิต ณ จุดเกิดเหตุ
@@ -359,7 +359,7 @@
                                     <div class="row d-none" id="treatment_no">
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="ผู้ป่วยปฏิเสธการรักษา" value="ผู้ป่วยปฏิเสธการรักษา" class="sub_treatment card-input-element card-input-primary d-none">
+                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="ผู้ป่วยปฏิเสธการรักษา" value="ผู้ป่วยปฏิเสธการรักษา" class="sub_treatment card-input-element card-input-primary d-none">
                                                 <div class="card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         ผู้ป่วยปฏิเสธการรักษา
@@ -369,7 +369,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="ยกเลิก" value="ยกเลิก" class="sub_treatment card-input-element card-input-primary d-none">
+                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="ยกเลิก" value="ยกเลิก" class="sub_treatment card-input-element card-input-primary d-none">
                                                 <div class="card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         ยกเลิก
@@ -379,7 +379,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="ไม่พบเหตุ" value="ไม่พบเหตุ" class="sub_treatment card-input-element card-input-primary d-none">
+                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="ไม่พบเหตุ" value="ไม่พบเหตุ" class="sub_treatment card-input-element card-input-primary d-none">
                                                 <div class="card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         ไม่พบเหตุ
@@ -389,7 +389,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="เสียชีวิตก่อนชุดปฏิบัติการไปถึง" value="เสียชีวิตก่อนชุดปฏิบัติการไปถึง" class="sub_treatment card-input-element card-input-primary d-none">
+                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="เสียชีวิตก่อนชุดปฏิบัติการไปถึง" value="เสียชีวิตก่อนชุดปฏิบัติการไปถึง" class="sub_treatment card-input-element card-input-primary d-none">
                                                 <div class="card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         เสียชีวิตก่อนชุดปฏิบัติการไปถึง
