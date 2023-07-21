@@ -301,7 +301,7 @@
 
                                 <div class="col-12">
                                     <!-- -------------------------------------------   เคสมีการรักษา  ----------------------------------------------------- -->
-                                    <div class="row d-none" id="treatment_yes">
+                                    <div class="row d-none" id="treatment_officer_yes">
                                         <br><br><br>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
@@ -356,7 +356,7 @@
                                     </div>
 
                                     <!-- -------------------------------------------   เคส ไม่มี การรักษา  ----------------------------------------------------- -->
-                                    <div class="row d-none" id="treatment_no">
+                                    <div class="row d-none" id="treatment_officer_no">
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
                                                 <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="ผู้ป่วยปฏิเสธการรักษา" value="ผู้ป่วยปฏิเสธการรักษา" class="sub_treatment card-input-element card-input-primary d-none">
@@ -930,13 +930,13 @@
                         for (var i = 0, length = check_treatment.length; i < length; i++) {
                             if (check_treatment[i].checked) {
                                 if (check_treatment[i].value == "มีการรักษา") {
-                                    document.querySelector('#treatment_no').classList.add('d-none');
-                                    document.querySelector('#treatment_yes').classList.remove('d-none');
-                                    document.querySelector('#treatment_yes').classList.add('show-data');
+                                    document.querySelector('#treatment_officer_no').classList.add('d-none');
+                                    document.querySelector('#treatment_officer_yes').classList.remove('d-none');
+                                    document.querySelector('#treatment_officer_yes').classList.add('show-data');
                                 } else {
-                                    document.querySelector('#treatment_yes').classList.add('d-none');
-                                    document.querySelector('#treatment_no').classList.remove('d-none');
-                                    document.querySelector('#treatment_no').classList.add('show-data');
+                                    document.querySelector('#treatment_officer_yes').classList.add('d-none');
+                                    document.querySelector('#treatment_officer_no').classList.remove('d-none');
+                                    document.querySelector('#treatment_officer_no').classList.add('show-data');
                                 }
 
                                 break;
