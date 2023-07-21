@@ -804,15 +804,29 @@
                         }
 
 
-                        let treatment = document.querySelector('input[name="treatmentOfficer"]:checked').value;
-                        let sub_treatment = Array.from(document.querySelectorAll('input[name="sub_treatmentOfficer"]:checked')).map(input => input.value);
-                        let submission_criteria = Array.from(document.querySelectorAll('input[name="submission_criteria"]:checked')).map(input => input.value);
-                        let communication_hospital = Array.from(document.querySelectorAll('input[name="communication_hospital"]:checked')).map(input => input.value);
-                        let registration_category = document.getElementById('registration_category').value;
-                        let registration_number = document.getElementById('registration_number').value;
-                        let registration_province = document.getElementById('registration_province').value;
-                        let owner_registration = document.querySelector('input[name="owner_registration"]:checked').value;
-                        let rc_black_text = document.getElementById('rc_black_text').value;
+                        let treatmentElement = document.querySelector('input[name="treatmentOfficer"]:checked');
+                        let treatment = treatmentElement ? treatmentElement.value : '';
+
+                        let sub_treatmentElements = Array.from(document.querySelectorAll('input[name="sub_treatmentOfficer"]:checked'));
+                        let sub_treatment = sub_treatmentElements.map(input => input.value);
+
+                        let submission_criteriaElements = Array.from(document.querySelectorAll('input[name="submission_criteria"]:checked'));
+                        let submission_criteria = submission_criteriaElements.map(input => input.value);
+
+                        let communication_hospitalElements = Array.from(document.querySelectorAll('input[name="communication_hospital"]:checked'));
+                        let communication_hospital = communication_hospitalElements.map(input => input.value);
+
+                        let registration_category = document.getElementById('registration_category') ? document.getElementById('registration_category').value : '';
+
+                        let registration_number = document.getElementById('registration_number') ? document.getElementById('registration_number').value : '';
+
+                        let registration_province = document.getElementById('registration_province') ? document.getElementById('registration_province').value : '';
+
+                        let owner_registrationElement = document.querySelector('input[name="owner_registration"]:checked');
+                        let owner_registration = owner_registrationElement ? owner_registrationElement.value : '';
+
+                        let rc_black_text = document.getElementById('rc_black_text') ? document.getElementById('rc_black_text').value : '';
+
 
 
                         const nameInfields = [
@@ -886,20 +900,20 @@
 
                 <script>
                     function setCheckedInputs(inputs, values) {
-                    if (!Array.isArray(inputs) || !Array.isArray(values) || inputs.length === 0) {
-                        console.error('Inputs must be a non-empty array.');
-                        return;
-                    }
-
-                    inputs.forEach(input => {
-                        if (!(input instanceof Element)) {
-                            console.error('Input element is not valid.');
+                        if (!Array.isArray(inputs) || !Array.isArray(values) || inputs.length === 0) {
+                            console.error('Inputs must be a non-empty array.');
                             return;
                         }
 
-                        input.checked = values.includes(input.value);
-                    });
-                }
+                        inputs.forEach(input => {
+                            if (!(input instanceof Element)) {
+                                console.error('Input element is not valid.');
+                                return;
+                            }
+
+                            input.checked = values.includes(input.value);
+                        });
+                    }
 
                     function showContent(buttonId) {
                         var buttonContainer = document.getElementById('buttonContainer');
