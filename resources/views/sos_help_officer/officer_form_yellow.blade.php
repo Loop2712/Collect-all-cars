@@ -257,7 +257,7 @@
                                             <b>
                                                 <div class="input-wrapper-b-code inline">
                                                     <span>
-                                                        ดำ <input name="rc_black_text" id="rc_black_text" size="10" style="border-radius: 5px;border: 1px solid dark; border-bottom: 1px dashed #ffffff;color:#000" class="form-control input_code_black  p-0 m-0" placeholder="ใส่รหัส" type="text" value="{{ isset($data_form_yellow->rc_black_text) ? $data_form_yellow->rc_black_text : ''}}" readonly>
+                                                        ดำ <input name="rc_black_text" id="rc_black_text" size="10" style="border-radius: 5px;border: 1px solid dark; border-bottom: 1px dashed #ffffff;color:#000" class="form-control input_code_black  p-0 m-0" placeholder="ใส่รหัส" type="text" readonly>
                                                     </span>
 
                                                 </div>
@@ -279,7 +279,7 @@
                                 </div>
                                 <div class="col-6 ">
                                     <label>
-                                        <input type="radio" name="treatmenta" data-treatment="มีการรักษา" value="มีการรักษา" class="card-input-red card-input-element d-none" onchange="check_treatment(); reset_sub_treatment();">
+                                        <input type="radio" name="treatmentOfficer" data-treatment="มีการรักษา" value="มีการรักษา" class="card-input-red card-input-element d-none" onchange="check_treatment(); reset_sub_treatment();">
                                         <div class="card card-body d-flex flex-row justify-content-between align-items-center text-danger">
                                             <b>
                                                 มีการรักษา
@@ -290,7 +290,7 @@
 
                                 <div class="col-6 ">
                                     <label>
-                                        <input type="radio" name="treatmenta" data-treatment="ไม่มีการรักษา" value="ไม่มีการรักษา" class="card-input-element card-input-primary d-none" onchange="check_treatment(); reset_sub_treatment();">
+                                        <input type="radio" name="treatmentOfficer" data-treatment="ไม่มีการรักษา" value="ไม่มีการรักษา" class="card-input-element card-input-primary d-none" onchange="check_treatment(); reset_sub_treatment();">
                                         <div class="card card-body d-flex flex-row-reverse  justify-content-between align-items-center">
                                             <b>
                                                 ไม่มีการรักษา
@@ -305,7 +305,7 @@
                                         <br><br><br>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="นำส่ง" value="นำส่ง" class="sub_treatment card-input-red card-input-element d-none">
+                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="นำส่ง" value="นำส่ง" class="sub_treatment card-input-red card-input-element d-none">
                                                 <div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         นำส่ง
@@ -315,7 +315,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="ส่งต่อชุดปฏิบัติการระดับสูงกว่า" value="ส่งต่อชุดปฏิบัติการระดับสูงกว่า" class="sub_treatment card-input-red card-input-element d-none">
+                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="ส่งต่อชุดปฏิบัติการระดับสูงกว่า" value="ส่งต่อชุดปฏิบัติการระดับสูงกว่า" class="sub_treatment card-input-red card-input-element d-none">
                                                 <div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         ส่งต่อชุดปฏิบัติการระดับสูงกว่า
@@ -325,7 +325,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" ame="sub_treatment" data-sub_treatment="ไม่นำส่ง" value="ไม่นำส่ง" class="sub_treatment card-input-red card-input-element d-none">
+                                                <input type="checkbox" ame="sub_treatmentOfficer" data-sub_treatment="ไม่นำส่ง" value="ไม่นำส่ง" class="sub_treatment card-input-red card-input-element d-none">
                                                 <div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         ไม่นำส่ง
@@ -335,7 +335,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="เสียชีวิตระหว่างนำส่ง" value="เสียชีวิตระหว่างนำส่ง" class="sub_treatment card-input-red card-input-element d-none">
+                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="เสียชีวิตระหว่างนำส่ง" value="เสียชีวิตระหว่างนำส่ง" class="sub_treatment card-input-red card-input-element d-none">
                                                 <div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         เสียชีวิตระหว่างนำส่ง
@@ -345,7 +345,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="เสียชีวิต ณ จุดเกิดเหตุ" value="เสียชีวิต ณ จุดเกิดเหตุ" class="sub_treatment card-input-red card-input-element d-none">
+                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="เสียชีวิต ณ จุดเกิดเหตุ" value="เสียชีวิต ณ จุดเกิดเหตุ" class="sub_treatment card-input-red card-input-element d-none">
                                                 <div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         เสียชีวิต ณ จุดเกิดเหตุ
@@ -359,7 +359,7 @@
                                     <div class="row d-none" id="treatment_no">
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="ผู้ป่วยปฏิเสธการรักษา" value="ผู้ป่วยปฏิเสธการรักษา" class="sub_treatment card-input-element card-input-primary d-none">
+                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="ผู้ป่วยปฏิเสธการรักษา" value="ผู้ป่วยปฏิเสธการรักษา" class="sub_treatment card-input-element card-input-primary d-none">
                                                 <div class="card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         ผู้ป่วยปฏิเสธการรักษา
@@ -369,7 +369,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="ยกเลิก" value="ยกเลิก" class="sub_treatment card-input-element card-input-primary d-none">
+                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="ยกเลิก" value="ยกเลิก" class="sub_treatment card-input-element card-input-primary d-none">
                                                 <div class="card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         ยกเลิก
@@ -379,7 +379,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="ไม่พบเหตุ" value="ไม่พบเหตุ" class="sub_treatment card-input-element card-input-primary d-none">
+                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="ไม่พบเหตุ" value="ไม่พบเหตุ" class="sub_treatment card-input-element card-input-primary d-none">
                                                 <div class="card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         ไม่พบเหตุ
@@ -389,7 +389,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" name="sub_treatment" data-sub_treatment="เสียชีวิตก่อนชุดปฏิบัติการไปถึง" value="เสียชีวิตก่อนชุดปฏิบัติการไปถึง" class="sub_treatment card-input-element card-input-primary d-none">
+                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="เสียชีวิตก่อนชุดปฏิบัติการไปถึง" value="เสียชีวิตก่อนชุดปฏิบัติการไปถึง" class="sub_treatment card-input-element card-input-primary d-none">
                                                 <div class="card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         เสียชีวิตก่อนชุดปฏิบัติการไปถึง
@@ -699,7 +699,7 @@
                 <script>
                     function check_data_form_yellow_show_case() {
 
-                        console.log("check_data_form_yellow_show_case");
+                        // console.log("check_data_form_yellow_show_case");
                         // ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
                         fetch("{{ url('/') }}/api/check_data_form_yellow_show_case/" + "?sos_id=" + '{{ $data_sos->id }}')
                             .then(response => response.json())
@@ -707,13 +707,14 @@
                                 //  INPUT RC
                                 const rcInputs = document.querySelectorAll('input[name="rc"]');
                                 setCheckedInputs(rcInputs, result.rc);
+                                document.querySelector('#rc_black_text').value = result.rc_black_text;
                                 //  INPUT RC
 
                                 //  INPUT treatment 
                                 /////////////////////////////
                                 // อย่าลืมแก้ไขชื่อ treatmenta //
                                 ////////////////////////////
-                                const treatmentInputs = document.querySelectorAll('input[name="treatmenta"]');
+                                const treatmentInputs = document.querySelectorAll('input[name="treatmentOfficer"]');
                                 setCheckedInputs(treatmentInputs, result.treatment);
                                 check_treatment();
                                 //  INPUT treatment
@@ -731,11 +732,11 @@
                                     const patientVNInput = document.querySelector(`#patient_vn_${i}`).value = result[`patient_vn_${i}`];
                                     const deliveredProvinceInput = document.querySelector(`#delivered_province_${i}`).value = result[`delivered_province_${i}`];
                                     const deliveredHospitalInput = document.querySelector(`#delivered_hospital_${i}`).value = result[`delivered_hospital_${i}`];
-                                    console.log(i);
+                                    // console.log(i);
 
                                     if (result[`patient_name_${i}`] || result[`patient_age_${i}`] || result[`patient_hn_${i}`] || result[`patient_vn_${i}`] || result[`delivered_province_${i}`] || result[`delivered_hospital_${i}`]) {
                                         if (i >= 2) {
-                                            console.log("มีข้อมูล" + i);
+                                            // console.log("มีข้อมูล" + i);
                                             document.getElementById(`fieldset${i}`).classList.remove('hidden');
                                             document.getElementById('delete-btn').classList.remove('hidden');
                                             document.getElementById('add-btn').classList.remove('hidden');
@@ -760,6 +761,7 @@
 
 
 
+
                                 document.querySelector('#registration_category').value = result.registration_category;
                                 document.querySelector('#registration_number').value = result.registration_number;
                                 document.querySelector('#registration_province').value = result.registration_province;
@@ -778,16 +780,92 @@
                 <script>
                     // ตรวจจับการเปลี่ยนแปลงในฟิลด์และส่งข้อมูลไปยัง Controller
                     document.querySelectorAll('input[name="rc"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
+                    document.querySelectorAll('input[name="treatmentOfficer"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
+                    document.querySelectorAll('input[name="sub_treatment"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
+                    document.querySelectorAll('fieldset').forEach(fieldset => {
+                        fieldset.addEventListener('input', officer_save_data_form_yellow);
+                    });
+                    document.querySelectorAll('input[name="submission_criteria"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
+                    document.querySelectorAll('input[name="communication_hospital"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
+                    document.getElementById('registration_category').addEventListener('input', officer_save_data_form_yellow);
+                    document.getElementById('registration_number').addEventListener('input', officer_save_data_form_yellow);
+                    document.getElementById('registration_province').addEventListener('input', officer_save_data_form_yellow);
+                    document.querySelectorAll('input[name="owner_registration"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
+                    document.getElementById('rc_black_text').addEventListener('input', officer_save_data_form_yellow);
 
                     function officer_save_data_form_yellow() {
                         // console.log("{{ $data_sos->id }}");
-                        const rc = document.querySelector('input[name="rc"]:checked').value;
-                        
+                        let rc = document.querySelector('input[name="rc"]:checked').value;
+                        if (rc === "ดำ") {
+                            document.querySelector('#rc_black_text').readOnly = false;
+                        } else {
+                            document.querySelector('#rc_black_text').readOnly = true;
+                            document.querySelector('#rc_black_text').value = null;
+                        }
+
+
+                        let treatment = document.querySelector('input[name="treatmentOfficer"]:checked').value;
+                        let sub_treatment = Array.from(document.querySelectorAll('input[name="sub_treatment"]:checked')).map(input => input.value);
+                        let submission_criteria = Array.from(document.querySelectorAll('input[name="submission_criteria"]:checked')).map(input => input.value);
+                        let communication_hospital = Array.from(document.querySelectorAll('input[name="communication_hospital"]:checked')).map(input => input.value);
+                        let registration_category = document.getElementById('registration_category').value;
+                        let registration_number = document.getElementById('registration_number').value;
+                        let registration_province = document.getElementById('registration_province').value;
+                        let owner_registration = document.querySelector('input[name="owner_registration"]:checked').value;
+                        let rc_black_text = document.getElementById('rc_black_text').value;
+
+
+                        const nameInfields = [
+                            'patient_name_1',
+                            'patient_age_1',
+                            'patient_hn_1',
+                            'patient_vn_1',
+                            'delivered_province_1',
+                            'delivered_hospital_1',
+                            'patient_name_2',
+                            'patient_age_2',
+                            'patient_hn_2',
+                            'patient_vn_2',
+                            'delivered_province_2',
+                            'delivered_hospital_2',
+                            'patient_name_3',
+                            'patient_age_3',
+                            'patient_hn_3',
+                            'patient_vn_3',
+                            'delivered_province_3',
+                            'delivered_hospital_3',
+                        ];
+
+                        // สร้างออบเจกต์เพื่อเก็บข้อมูล
+                        const dataInFields = {};
+
+                        // วนลูปเพื่อดึงข้อมูลจากฟิลด์และเก็บไว้ในออบเจกต์ formData
+                        nameInfields.forEach(field => {
+                            dataInFields[field] = document.getElementById(field).value;
+                        });
+
+
+
                         let data_arr = {
-                            "sos_id" : "{{ $data_sos->id }}",
-                            "rc" : rc,
+                            "sos_id": "{{ $data_sos->id }}",
+                            "rc": rc,
+                            "treatment": treatment,
+                            "sub_treatment": sub_treatment,
+                            "submission_criteria": submission_criteria,
+                            "communication_hospital": communication_hospital,
+                            "registration_category": registration_category,
+                            "registration_number": registration_number,
+                            "registration_province": registration_province,
+                            "owner_registration": owner_registration,
+                            "rc_black_text": rc_black_text,
 
                         };
+                        // เพิ่มข้อมูลจาก fields เข้าใน data_arr
+                        data_arr = {
+                            ...data_arr,
+                            ...dataInFields
+                        };
+
                         fetch("{{ url('/') }}/api/officerSaveFormYellow", {
                             method: 'post',
                             body: JSON.stringify(data_arr),
@@ -802,8 +880,6 @@
                             // console.error(error);
                         });
                     }
-
-                   
                 </script>
 
 
@@ -849,7 +925,7 @@
                         /////////////////////////////
                         // อย่าลืมแก้ไขชื่อ treatmenta //
                         ////////////////////////////
-                        var check_treatment = document.getElementsByName('treatmenta');
+                        var check_treatment = document.getElementsByName('treatmentOfficer');
                         // เช็คช่อง input ว่าเลือกมีการรักษาหรือไม่
                         for (var i = 0, length = check_treatment.length; i < length; i++) {
                             if (check_treatment[i].checked) {
@@ -984,4 +1060,218 @@
         </div>
     </div>
 </div>
+
+
+
+<style>
+    .ask_more_header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #input-section .inputCreateGroup {
+        outline: #000 3px dotted;
+        display: block;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 10px;
+    }
+</style>
+<!-- Modal -->
+<div class="modal fade" id="modalAskMore" tabindex="-1" role="dialog" aria-labelledby="modalAskMoreTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="ask_more_header">
+                    <h4>ขอหน่วยปฎิบัติการเพิ่ม </h4>
+                    <button class="btn btn-success" onclick="addInputField()"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <form id="form">
+                    <div id="input-section"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="validateForm()">ยืนยัน</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<script>
+    let inputCount = 1;
+
+    function addInputField() {
+        const inputSection = document.getElementById('input-section');
+
+        const inputContainer = document.createElement('div');
+        inputContainer.classList.add('input-container');
+
+        inputContainer.innerHTML = `
+  <div class="inputCreateGroup">
+    <select name="vehicle_${inputCount}" class="form-select mb-3" aria-label="Default select example" required>
+        <option selected="" value="">โปรดเลือกยานพาหนะ<small class="text-danger">*</small></option>
+        <option value="รถยนต์">รถยนต์</option>
+        <option value="อากาศยานต์">อากาศยานต์</option>
+        <option value="เรือป.1">เรือป.1</option>
+        <option value="เรือป.2">เรือป.2</option>
+        <option value="เรือป.3">เรือป.3</option>
+        <option value="เรืออื่นๆ">เรืออื่นๆ</option>
+    </select>
+
+    <select name="rc_vehicle_${inputCount}" class="form-select mb-3" aria-label="Default select example" required>
+        <option selected="" value="{{ $data_sos->form_yellow->rc }}">{{ $data_sos->form_yellow->rc }}</option>
+        <option value="แดง(วิกฤติ)">แดง(วิกฤติ)</option>
+        <option value="ขาว(ทั่วไป)">ขาว(ทั่วไป)</option>
+        <option value="เหลือง(เร่งด่วน)">เหลือง(เร่งด่วน)</option>
+        <option value="เขียว(ไม่รุนแรง)">เขียว(ไม่รุนแรง)</option>
+        <option value="ดำ">ดำ</option>
+    </select>
+
+
+    <div class="row mt-3">
+    <div class="col-12 m-0">จำนวน<small class="text-danger">*</small></div>
+    <div class="col-4">
+  <label>
+    <input type="radio" name="amount_vehicle_${inputCount}" value="1" class="card-input-element card-input-primary d-none" required>
+    <div class="h-75 card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+      <b>
+        1
+      </b>
+    </div>
+  </label>
+</div>
+<div class="col-4">
+  <label>
+    <input type="radio" name="amount_vehicle_${inputCount}" value="2" class="card-input-element card-input-primary d-none">
+    <div class="h-75 card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+      <b>
+        2
+      </b>
+    </div>
+  </label>
+</div>
+<div class="col-4">
+  <label>
+    <input type="radio" name="amount_vehicle_${inputCount}" value="other" class="card-input-element card-input-primary d-none">
+    <div class="h-75 card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+      <b>
+        เพิ่ม
+      </b>
+    </div>
+  </label>
+</div>
+<div class="col-12">
+<input type="text" name="input_amount_vehicle${inputCount}" class="form-control mb-2 hidden value=""   placeholder="กรอกจำนวนที่ต้องการ">
+</div>
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-danger " onclick="removeInputField(this)"> ลบ</button> 
+    </div>
+  </div>`;
+        const inputText = inputContainer.querySelector('input[type="text"]');
+        const radioButtons = inputContainer.querySelectorAll('input[type="radio"]');
+
+        // ใช้ฟังก์ชัน onChange ในการตรวจสอบเมื่อมีการคลิกที่ radio buttons
+        radioButtons.forEach(radioButton => {
+            radioButton.addEventListener('change', () => {
+                if (radioButton.value === 'other') {
+                    inputText.style.display = 'block';
+                    inputText.required = true;
+
+                } else {
+                    inputText.style.display = 'none';
+                    inputText.value = '';
+                    inputText.required = false;
+
+                }
+            });
+        });
+
+        inputSection.appendChild(inputContainer);
+
+        inputCount++;
+
+    }
+
+    function removeInputField(button) {
+        const inputSection = document.getElementById('input-section');
+        const inputContainer = button.closest('.input-container');
+        inputCount--;
+        inputSection.removeChild(inputContainer);
+
+
+    }
+
+    function validateForm() {
+        const form = document.getElementById('form');
+        const inputs = form.querySelectorAll('input[required], select[required]');
+
+        let isFormValid = true;
+        inputs.forEach(input => {
+            if (input.type === 'radio') {
+                const radioGroup = form.querySelector(`input[name="${input.name}"]:checked`);
+                if (!radioGroup) {
+                    isFormValid = false;
+                }
+            } else {
+                if (!input.value.trim()) {
+                    isFormValid = false;
+                }
+            }
+        });
+
+        if (isFormValid) {
+            submitForm();
+        } else {
+            alert('กรุณากรอกข้อมูลให้ครบทุกช่องที่มีเครื่องหมาย *');
+        }
+    }
+
+
+
+
+
+
+    // ฟังก์ชันสำหรับแสดงค่าที่กรอกใน input type text ลงในคอนโซล (console)
+    function submitForm() {
+        const formInputs = document.querySelectorAll('select[name^="vehicle_"], select[name^="rc_vehicle_"], input[name^="amount_vehicle_"], input[name^="input_amount_vehicle"]');
+        const formData = {};
+
+        formData['sos_id'] = '{{$data_sos->id}}';
+
+        formInputs.forEach(input => {
+            if (input.type === 'radio') {
+                if (input.checked) {
+                    formData[input.name] = input.value;
+                    if (input.value === 'other') {
+                        const inputText = document.querySelector(`input[name="input_amount_vehicle${input.name.slice(-1)}"]`);
+                        if (inputText !== null) {
+                            let correspondingAmountInput = document.querySelector(`input[name="${input.name}"]`);
+                            formData[correspondingAmountInput.name] = inputText.value;
+
+                        }
+                    }
+                }
+            } else {
+                formData[input.name] = input.value;
+            }
+        });
+
+        // console.log(formData);
+
+        fetch("{{ url('/') }}/api/officerAskMore", {
+            method: 'post',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            console.log(data);
+        }).catch(function(error) {
+            // console.error(error);
+        });
+    }
+</script>

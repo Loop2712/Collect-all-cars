@@ -2444,9 +2444,28 @@ class Sos_help_centerController extends Controller
         $requestData = $request->all();
 
         $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $requestData['sos_id'])->first();
+
+        $sub_treatment = implode(',', array_unique($requestData['sub_treatment']));
+        $requestData['sub_treatment'] = $sub_treatment;
+        
+        $submission_criteria = implode(',', array_unique($requestData['submission_criteria']));
+        $requestData['submission_criteria'] = $submission_criteria;
+
+        $communication_hospital = implode(',', array_unique($requestData['communication_hospital']));
+        $requestData['communication_hospital'] = $communication_hospital;
+        
         $data_form_yellow->update($requestData);
 
+        return $requestData;
+    }
 
-        return $data_form_yellow;
+    function officerAskMore(Request $request)
+    {
+        $requestData = $request->all();
+        $sos_id = $requestData['sos_id'];
+        $data_sos = Sos_help_center::where('id' , $sos_id)->first();
+        $data_officer_command = Data_1669_officer_command::where('id' , $data_sos->command_by)->first();
+
+        return $data_officer_command;
     }
 }
