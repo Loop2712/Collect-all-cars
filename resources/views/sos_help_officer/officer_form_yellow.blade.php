@@ -795,7 +795,9 @@
 
                     function officer_save_data_form_yellow() {
                         // console.log("{{ $data_sos->id }}");
-                        let rc = document.querySelector('input[name="rc"]:checked').value;
+                        let rcElement = document.querySelector('input[name="rc"]:checked');
+                        let rc = rcElement ? rcElement.value : '';
+
                         if (rc === "ดำ") {
                             document.querySelector('#rc_black_text').readOnly = false;
                         } else {
