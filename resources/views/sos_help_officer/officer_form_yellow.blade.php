@@ -886,10 +886,20 @@
 
                 <script>
                     function setCheckedInputs(inputs, values) {
-                        inputs.forEach(input => {
-                            input.checked = values.includes(input.value);
-                        });
+                    if (!Array.isArray(inputs) || !Array.isArray(values) || inputs.length === 0) {
+                        console.error('Inputs must be a non-empty array.');
+                        return;
                     }
+
+                    inputs.forEach(input => {
+                        if (!(input instanceof Element)) {
+                            console.error('Input element is not valid.');
+                            return;
+                        }
+
+                        input.checked = values.includes(input.value);
+                    });
+                }
 
                     function showContent(buttonId) {
                         var buttonContainer = document.getElementById('buttonContainer');
