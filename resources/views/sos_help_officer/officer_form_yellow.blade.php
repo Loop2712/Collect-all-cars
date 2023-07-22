@@ -205,7 +205,7 @@
                     <div id="contentContainer" class="hidden">
                         <div id="button1Content" class="hidden" data-button="button1">
                             <h4 class="font-weight-bold">
-                                <button class="btn btnBack " onclick="hideContent()"><i class="fa-regular fa-chevron-left"></i></button> รหัสความรุนแรง ณ จุดเกิดเหตุ
+                                <button class="btn btnBack " onclick="hideContent(); officer_save_data_form_yellow('button1Content');"><i class="fa-regular fa-chevron-left"></i></button> รหัสความรุนแรง ณ จุดเกิดเหตุ
                             </h4>
                             <hr class="w-25">
                             <div class="row">
@@ -273,7 +273,7 @@
                         </div>
                         <div id="button2Content" class="hidden" data-button="button2">
                             <h4 class="font-weight-bold">
-                                <button class="btn btnBack " onclick="hideContent()"><i class="fa-regular fa-chevron-left"></i></button> การปฏิบัติการ
+                                <button class="btn btnBack " onclick="hideContent(); officer_save_data_form_yellow('button2Content');"><i class="fa-regular fa-chevron-left"></i></button> การปฏิบัติการ
                             </h4>
                             <div class="row">
                                 <div class="w-100 col-12">
@@ -409,7 +409,7 @@
                         </div>
                         <div id="button3Content" class="hidden" data-button="button3">
                             <h4 class="font-weight-bold">
-                                <button class="btn btnBack " onclick="hideContent()"><i class="fa-regular fa-chevron-left"></i></button> ชื่อผู้ป่วย
+                                <button class="btn btnBack " onclick="hideContent(); officer_save_data_form_yellow('button3Content');"><i class="fa-regular fa-chevron-left"></i></button> ชื่อผู้ป่วย
                             </h4>
                             <div class="col-12 d-block">
                                 <button id="delete-btn" onclick="deleteFieldsets(); " class="btnDelPatient btn hidden">
@@ -645,7 +645,7 @@
                         </div>
                         <div id="button4Content" class="hidden" data-button="button4">
                             <h4 class="font-weight-bold">
-                                <button class="btn btnBack " onclick="hideContent()"><i class="fa-regular fa-chevron-left"></i></button> เพิ่มเติม
+                                <button class="btn btnBack " onclick="hideContent(); officer_save_data_form_yellow('button4Content');"><i class="fa-regular fa-chevron-left"></i></button> เพิ่มเติม
                             </h4>
                             <hr class="w-25">
                             <div class="row">
@@ -931,7 +931,7 @@
                         //     ...data_arr,
                         //     ...dataInFields
                         // };
-                        console.log(data_arr);
+                        // console.log(data_arr);
                         fetch("{{ url('/') }}/api/officerSaveFormYellow", {
                             method: 'post',
                             body: JSON.stringify(data_arr),
@@ -941,7 +941,7 @@
                         }).then(function(response) {
                             return response.json();
                         }).then(function(data) {
-                            console.log(data);
+                            // console.log(data);
                         }).catch(function(error) {
                             // console.error(error);
                         });
