@@ -510,7 +510,7 @@ Route::group(['middleware' => ['auth']], function () {
 	// SOS COMPANY //
     Route::get('video_call/sos_map', 'AgoraController@index_sos_map');
 	// END SOS COMPANY //
-
+Route::resource('problem_report', 'Problem_reportController')->except(['show','edit']);;
 });
 
 Route::resource('agora_chat', 'Agora_chatController');

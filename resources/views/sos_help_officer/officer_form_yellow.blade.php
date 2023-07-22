@@ -185,6 +185,53 @@
                         .hidden {
                             display: none;
                         }
+
+                        .btn-submit-edit-form-yellow {
+                            margin-top: 12px;
+                            background-color: #28a745;
+                            color: #fff;
+                            text-transform: uppercase;
+                            font-weight: bold;
+                            position: relative;
+                            display: block;
+                            width: 90%;
+                            padding: 13px;
+                        }
+                        .btn-submit-edit-form-yellow:hover {
+                            color: #fff;
+                        }
+                        .btn-submit-edit-form-yellow::after {
+                            content: '';
+                            display: block;
+                            width: 1.2em;
+                            height: 1.2em;
+                            position: absolute;
+                            left: calc(50% - 0.75em);
+                            top: calc(50% - 0.75em);
+                            border: 0.15em solid transparent;
+                            border-right-color: white;
+                            border-radius: 50%;
+                            animation: button-anim 0.7s linear infinite;
+                            opacity: 0;
+                        }
+
+                        @keyframes button-anim {
+                            from {
+                                transform: rotate(0);
+                            }
+
+                            to {
+                                transform: rotate(360deg);
+                            }
+                        }
+
+                        .btn-submit-edit-form-yellow.loading {
+                            color: transparent;
+                        }
+
+                        .btn-submit-edit-form-yellow.loading::after {
+                            opacity: 1;
+                        }
                     </style>
                     <div id="buttonContainer" class="row">
                         <div class="p-1 col-6">
@@ -266,8 +313,8 @@
                                         </div>
                                     </label>
                                 </div>
-                                <div class="col-12 d-flex justify-content-end">
-                                    <button class="btn btn-success" onclick="officer_save_data_form_yellow('button1Content')">ยืนยัน</button>
+                                <div class="col-12 d-flex justify-content-center">
+                                    <button class="btn btn-submit-edit-form-yellow" onclick="officer_save_data_form_yellow('button1Content');" data-number="1">ยืนยัน</button>
                                 </div>
                             </div>
                         </div>
@@ -402,8 +449,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 d-flex justify-content-end">
-                                    <button class="btn btn-success" onclick="officer_save_data_form_yellow('button2Content')">ยืนยัน</button>
+                                <div class="col-12 d-flex justify-content-center">
+                                    <button class="btn btn-submit-edit-form-yellow" onclick="officer_save_data_form_yellow('button2Content');" data-number="2">ยืนยัน</button>
                                 </div>
                             </div>
                         </div>
@@ -639,8 +686,8 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-12 d-flex justify-content-end">
-                                <button class="btn btn-success" onclick="officer_save_data_form_yellow('button3Content')">ยืนยัน</button>
+                            <div class="col-12 d-flex justify-content-center">
+                                <button class="btn btn-submit-edit-form-yellow" onclick="officer_save_data_form_yellow('button3Content');" data-number="3">ยืนยัน</button>
                             </div>
                         </div>
                         <div id="button4Content" class="hidden" data-button="button4">
@@ -700,8 +747,8 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-12 d-flex justify-content-end">
-                                <button class="btn btn-success" onclick="officer_save_data_form_yellow('button4Content')">ยืนยัน</button>
+                            <div class="col-12 d-flex justify-content-center">
+                                <button class="btn btn-submit-edit-form-yellow" onclick="officer_save_data_form_yellow('button4Content');" data-number="4">ยืนยัน</button>
                             </div>
                         </div>
                     </div>
@@ -709,6 +756,27 @@
 
 
                 <script>
+                    const buttons = document.querySelectorAll(".btn-submit-edit-form-yellow");
+
+                    buttons.forEach((button) => {
+                        button.addEventListener('click', () => {
+                            const buttonNumber = button.dataset.number;
+
+                            // Show loader on button click
+                            button.classList.add("loading");
+
+                            setTimeout(() => {
+                                button.classList.remove("loading");
+                                button.innerHTML = "<i class='fa-solid fa-circle-check'></i>";
+                            }, 1500);
+
+                            setTimeout(() => {
+                                button.innerHTML = "บันทึก";
+                                hideContent();
+                            }, 3000);
+                        });
+                    });
+
                     function check_data_form_yellow_show_case() {
 
                         // console.log("check_data_form_yellow_show_case");
@@ -786,7 +854,8 @@
                                 //  INPUT owner_registration 
 
                             });
-                    } 
+                    }
+
                     function setCheckedInputs(inputs, values) {
                         inputs.forEach(input => {
                             input.checked = values.includes(input.value);
@@ -856,7 +925,7 @@
 
                             let sub_treatmentElements = Array.from(document.querySelectorAll('input[name="sub_treatmentOfficer"]:checked'));
                             let sub_treatment = sub_treatmentElements.map(input => input.value);
-                            data_arr.sub_treatment = sub_treatment; 
+                            data_arr.sub_treatment = sub_treatment;
 
 
 
@@ -951,8 +1020,6 @@
 
 
                 <script>
-                  
-
                     function showContent(buttonId) {
                         var buttonContainer = document.getElementById('buttonContainer');
                         var contentContainer = document.getElementById('contentContainer');
