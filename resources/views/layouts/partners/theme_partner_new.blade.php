@@ -2160,6 +2160,34 @@
 		</div>
 	</div>
 
+	<!-- //////////////////// -->
+	<!-- ///MODAL ASK MORE/// -->
+	<!-- //////////////////// -->
+	<button id="btn_modal_select_officer_ask_more" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_select_officer_ask_more">
+	  Launch static backdrop modal
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="modal_select_officer_ask_more" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_select_officer_ask_more" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="Label_modal_select_officer_ask_more">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        ...
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Understood</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 
 
 <input type="text" class="d-none" name="user_organization" id="user_organization" value="{{ Auth::user()->organization }}">
@@ -3329,11 +3357,15 @@
 			document.querySelector('#wait_data').classList.add('show' , 'active');
 		}
 	}
+		
+	var data_ask_more  ;
 
 	function create_alert_sos_ask_mores(data){
 
 		console.log('create_alert_sos_ask_mores');
 		console.log(data);
+
+		data_ask_more = data
 
 		let icon_stk = "https://www.viicheck.com/img/stickerline/PNG/21.png" ;
 		let html_officer_Standby = '' ;
@@ -3400,12 +3432,12 @@
 					fetch("{{ url('/') }}/api/search_officer_Standby" + '/' + admin_id)
 			            .then(response => response.json())
 			            .then(officer_Standby => {
-			                console.log('officer_Standby');
-			                console.log(officer_Standby);
+			                // console.log('officer_Standby');
+			                // console.log(officer_Standby);
 
 			                for(let item_Standby of officer_Standby){
 
-			                	console.log(item_Standby['name_officer_command']);
+			                	// console.log(item_Standby['name_officer_command']);
 
 			                	let photo_officer ;
 
@@ -3416,7 +3448,7 @@
 			                	}
 
 			                	html_officer_Standby = html_officer_Standby +
-				                	`<a class="item owlItemOfficer btn">
+				                	`<a class="item owlItemOfficer btn" onclick="send_noti_ask_mores_to('`+item_Standby['user_id']+`','`+item.ask_mores_id+`')">
 				                        <div class="badgeImg">
 				                            <img style="opacity: 1 !important;" src="`+photo_officer+`" class="" height="50">
 				                        </div>
@@ -3443,20 +3475,20 @@
 					                 	<b>มีการขอหน่วยปฏิบัติการเพิ่ม</b>
 					                </h3>
 					                <p class="card-text">
-					                	<b>รหัสปฏิบัติการ : `+item.operating_code+`</b>
+					                	<b>รหัสปฏิบัติการ : `+item.operating_code+`</b> ID >> `+item.id+`
 					                	<br>
 					                	<b>จำนวนที่ต้องการ : `+require_vehicle_all+`</b> หน่วย | <b>`+html_vehicle+`</b> 
 					                </p>
-				                	<a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#select_forward" aria-expanded="true" aria-controls="select_forward" class="">
+				                	<a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#select_forward_`+item.id+`" aria-expanded="true" aria-controls="select_forward_`+item.id+`" class="">
 				                		<i class="fa-solid fa-paper-plane"></i> ส่งต่อการแจ้งเตือน
 				                	</a>
-				                	<a id="btn_command_ask_mores_id_`+item.id+`" href="javascript:;" class="btn btn-info">
+				                	<a id="btn_command_ask_mores_id_`+item.id+`" href="javascript:;" class="btn btn-info" onclick="select_officer_ask_more('`+item.id+`')">
 				                		<i class="fa-solid fa-radar fa-beat-fade text-danger"></i> เลือกหน่วยปฏิบัติการ
 				                	</a>
 								</div>
-								<div id="select_forward" class="col-md-12 accordion-collapse collapse" style="border:none">
+								<div id="select_forward_`+item.id+`" class="col-md-12 accordion-collapse collapse" style="border:none">
 									<div class="accordion-body">
-										<div class="owl-carousel owlOfficer owl-theme">
+										<div class="owl-carousel owlOfficer owlOfficer_`+item.id+` owl-theme">
 		                                 	`+html_officer_Standby+`
 		                                </div>
 		                            </div>
@@ -3483,7 +3515,7 @@
 				            onOpening: function () {
 				            	$(function() {
 							        // Owl Carousel
-							        let owl_ask_mores = $(".owlOfficer");
+							        let owl_ask_mores = $(".owlOfficer_"+item.id);
 							        owl_ask_mores.owlCarousel({
 							            margin: 10,
 							            loop: false,
@@ -3505,11 +3537,24 @@
 
 							    let iziToast = document.querySelector('.iziToast-animateInside');
 							    	iziToast.classList.add('width-40');
-				            }
+				            },buttons: [
+						        [
+						            `<span id="btn_close_iziToast_ask_more_`+item.id+`" class="h3 float-end float-right d-none">
+						            	<button class="btn btn-secondary d-none">
+						            		<i class="fa-solid fa-xmark"></i> ปิด
+						            	</button>
+						            </span>`,
+						            function (instance, toast) {
+						                instance.hide({
+						                transitionOut: 'fadeOutUp'
+						              }, toast);
+						            }
+						        ]
+					        ]
 
 
 						});
-					}, 1000);
+					}, 1500);
 
 		        }
 
@@ -3517,6 +3562,30 @@
 			
 		}
 		
+	}
+
+	function send_noti_ask_mores_to(user_id , ask_mores_id){
+		fetch("{{ url('/') }}/api/send_noti_ask_mores_to" + '/' + user_id + '/' + ask_mores_id)
+            .then(response => response.text())
+            .then(result => {
+            	// console.log(result);
+            	if (result== 'OK') {
+            		document.querySelector('#btn_close_iziToast_ask_more_'+ask_mores_id).click();
+            	}
+        });
+	}
+
+	function select_officer_ask_more(ask_mores_id){
+
+		console.log('--------------');
+		console.log('select_officer_ask_more');
+		console.log(ask_mores_id);
+		console.log(data_ask_more);
+
+        document.querySelector('#btn_close_iziToast_ask_more_'+ask_mores_id).click();
+		let btn_modal = document.querySelector('#btn_modal_select_officer_ask_more');
+			btn_modal.click();
+
 	}
 
 

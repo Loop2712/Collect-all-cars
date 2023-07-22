@@ -563,7 +563,8 @@ class Sos_help_centerController extends Controller
                 ->join('sos_1669_officer_ask_mores', 'sos_help_centers.id', '=', 'sos_1669_officer_ask_mores.sos_id')
                 ->where('sos_help_centers.notify', "LIKE" , "%$sub_organization%")
                 ->where('sos_1669_officer_ask_mores.success' , null)
-                ->select('sos_help_centers.*', 'sos_1669_officer_ask_mores.*')
+                ->where('sos_1669_officer_ask_mores.noti_to' , $user_id)
+                ->select('sos_help_centers.*', 'sos_1669_officer_ask_mores.*' , 'sos_1669_officer_ask_mores.id as ask_mores_id')
                 ->get();
 
         if( !empty($sos_ask_mores) ){
@@ -606,6 +607,20 @@ class Sos_help_centerController extends Controller
 
             return $data ;
         }
+    }
+
+    function send_noti_ask_mores_to($user_id , $ask_mores_id){
+
+        // $data_officer_command = Data_1669_officer_command::where('id',$command_by)->first();
+        // $user_id = $data_officer_command->user_id ;
+
+        DB::table('sos_1669_officer_ask_mores')
+            ->where('id',$ask_mores_id)
+            ->update([
+                'noti_to' => $user_id ,
+        ]);
+
+        return 'OK' ;
     }
 
     function update_last_check_ask_for_help_1669($sos_id){
