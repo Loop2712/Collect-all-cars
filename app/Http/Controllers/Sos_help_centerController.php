@@ -2460,14 +2460,22 @@ class Sos_help_centerController extends Controller
 
         $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $requestData['sos_id'])->first();
 
-        $sub_treatment = implode(',', array_unique($requestData['sub_treatment']));
-        $requestData['sub_treatment'] = $sub_treatment;
-        
-        $submission_criteria = implode(',', array_unique($requestData['submission_criteria']));
-        $requestData['submission_criteria'] = $submission_criteria;
 
-        $communication_hospital = implode(',', array_unique($requestData['communication_hospital']));
-        $requestData['communication_hospital'] = $communication_hospital;
+        if( !empty($requestData['sub_treatment']) ){
+            $sub_treatment = implode(',', array_unique($requestData['sub_treatment']));
+            $requestData['sub_treatment'] = $sub_treatment;
+        }
+        
+        if ( !empty($requestData['submission_criteria'])) {
+            $submission_criteria = implode(',', array_unique($requestData['submission_criteria']));
+        $requestData['submission_criteria'] = $submission_criteria;
+        }
+       
+       
+        if ( !empty($requestData['communication_hospital'])) {
+            $communication_hospital = implode(',', array_unique($requestData['communication_hospital']));
+            $requestData['communication_hospital'] = $communication_hospital;
+        }
         
         $data_form_yellow->update($requestData);
 

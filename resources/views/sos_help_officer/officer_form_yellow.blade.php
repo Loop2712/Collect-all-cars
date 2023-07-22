@@ -266,6 +266,9 @@
                                         </div>
                                     </label>
                                 </div>
+                                <div class="col-12 d-flex justify-content-end">
+                                    <button class="btn btn-success" onclick="officer_save_data_form_yellow('button1Content')">ยืนยัน</button>
+                                </div>
                             </div>
                         </div>
                         <div id="button2Content" class="hidden" data-button="button2">
@@ -399,11 +402,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-12 d-flex justify-content-end">
+                                    <button class="btn btn-success" onclick="officer_save_data_form_yellow('button2Content')">ยืนยัน</button>
+                                </div>
                             </div>
                         </div>
                         <div id="button3Content" class="hidden" data-button="button3">
                             <h4 class="font-weight-bold">
-                                <button class="btn btnBack " onclick="hideContent()"><i class="fa-regular fa-chevron-left"></i></button> การปฏิบัติการ
+                                <button class="btn btnBack " onclick="hideContent()"><i class="fa-regular fa-chevron-left"></i></button> ชื่อผู้ป่วย
                             </h4>
                             <div class="col-12 d-block">
                                 <button id="delete-btn" onclick="deleteFieldsets(); " class="btnDelPatient btn hidden">
@@ -633,6 +639,9 @@
                                     </label>
                                 </div>
                             </div>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button class="btn btn-success" onclick="officer_save_data_form_yellow('button3Content')">ยืนยัน</button>
+                            </div>
                         </div>
                         <div id="button4Content" class="hidden" data-button="button4">
                             <h4 class="font-weight-bold">
@@ -691,6 +700,9 @@
                                     </label>
                                 </div>
                             </div>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button class="btn btn-success" onclick="officer_save_data_form_yellow('button4Content')">ยืนยัน</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -704,11 +716,14 @@
                         fetch("{{ url('/') }}/api/check_data_form_yellow_show_case/" + "?sos_id=" + '{{ $data_sos->id }}')
                             .then(response => response.json())
                             .then(result => {
+
+                                console.log("check_data_form_yellow_show_case");
                                 //  INPUT RC
                                 const rcInputs = document.querySelectorAll('input[name="rc"]');
                                 setCheckedInputs(rcInputs, result.rc);
                                 document.querySelector('#rc_black_text').value = result.rc_black_text;
                                 //  INPUT RC
+                                console.log(result.rc);
 
                                 //  INPUT treatment 
                                 /////////////////////////////
@@ -771,7 +786,27 @@
                                 //  INPUT owner_registration 
 
                             });
+                    } 
+                    function setCheckedInputs(inputs, values) {
+                        inputs.forEach(input => {
+                            input.checked = values.includes(input.value);
+                        });
                     }
+                    // function setCheckedInputs(inputs, values) {
+                    //     if (!Array.isArray(inputs) || !Array.isArray(values) || inputs.length === 0) {
+                    //         console.error('Inputs must be a non-empty array.');
+                    //         return;
+                    //     }
+
+                    //     inputs.forEach(input => {
+                    //         if (!(input instanceof Element)) {
+                    //             console.error('Input element is not valid.');
+                    //             return;
+                    //         }
+
+                    //         input.checked = values.includes(input.value);
+                    //     });
+                    // }
                 </script>
 
 
@@ -779,109 +814,124 @@
 
                 <script>
                     // ตรวจจับการเปลี่ยนแปลงในฟิลด์และส่งข้อมูลไปยัง Controller
-                    document.querySelectorAll('input[name="rc"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
-                    document.querySelectorAll('input[name="treatmentOfficer"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
-                    document.querySelectorAll('input[name="sub_treatmentOfficer"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
-                    document.querySelectorAll('fieldset').forEach(fieldset => {
-                        fieldset.addEventListener('input', officer_save_data_form_yellow);
-                    });
-                    document.querySelectorAll('input[name="submission_criteria"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
-                    document.querySelectorAll('input[name="communication_hospital"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
-                    document.getElementById('registration_category').addEventListener('input', officer_save_data_form_yellow);
-                    document.getElementById('registration_number').addEventListener('input', officer_save_data_form_yellow);
-                    document.getElementById('registration_province').addEventListener('input', officer_save_data_form_yellow);
-                    document.querySelectorAll('input[name="owner_registration"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
-                    document.getElementById('rc_black_text').addEventListener('input', officer_save_data_form_yellow);
+                    // document.querySelectorAll('input[name="rc"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
+                    // document.querySelectorAll('input[name="treatmentOfficer"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
+                    // document.querySelectorAll('input[name="sub_treatmentOfficer"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
+                    // document.querySelectorAll('fieldset').forEach(fieldset => {
+                    //     fieldset.addEventListener('input', officer_save_data_form_yellow);
+                    // });
+                    // document.querySelectorAll('input[name="submission_criteria"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
+                    // document.querySelectorAll('input[name="communication_hospital"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
+                    // document.getElementById('registration_category').addEventListener('input', officer_save_data_form_yellow);
+                    // document.getElementById('registration_number').addEventListener('input', officer_save_data_form_yellow);
+                    // document.getElementById('registration_province').addEventListener('input', officer_save_data_form_yellow);
+                    // document.querySelectorAll('input[name="owner_registration"]').forEach(input => input.addEventListener('change', officer_save_data_form_yellow));
+                    // document.getElementById('rc_black_text').addEventListener('input', officer_save_data_form_yellow);
 
-                    function officer_save_data_form_yellow() {
-                        // console.log("{{ $data_sos->id }}");
-                        let rcElement = document.querySelector('input[name="rc"]:checked');
-                        let rc = rcElement ? rcElement.value : '';
-
-                        if (rc === "ดำ") {
-                            document.querySelector('#rc_black_text').readOnly = false;
-                        } else {
-                            document.querySelector('#rc_black_text').readOnly = true;
-                            document.querySelector('#rc_black_text').value = null;
-                        }
-
-
-                        let treatmentElement = document.querySelector('input[name="treatmentOfficer"]:checked');
-                        let treatment = treatmentElement ? treatmentElement.value : '';
-
-                        let sub_treatmentElements = Array.from(document.querySelectorAll('input[name="sub_treatmentOfficer"]:checked'));
-                        let sub_treatment = sub_treatmentElements.map(input => input.value);
-
-                        let submission_criteriaElements = Array.from(document.querySelectorAll('input[name="submission_criteria"]:checked'));
-                        let submission_criteria = submission_criteriaElements.map(input => input.value);
-
-                        let communication_hospitalElements = Array.from(document.querySelectorAll('input[name="communication_hospital"]:checked'));
-                        let communication_hospital = communication_hospitalElements.map(input => input.value);
-
-                        let registration_category = document.getElementById('registration_category') ? document.getElementById('registration_category').value : '';
-
-                        let registration_number = document.getElementById('registration_number') ? document.getElementById('registration_number').value : '';
-
-                        let registration_province = document.getElementById('registration_province') ? document.getElementById('registration_province').value : '';
-
-                        let owner_registrationElement = document.querySelector('input[name="owner_registration"]:checked');
-                        let owner_registration = owner_registrationElement ? owner_registrationElement.value : '';
-
-                        let rc_black_text = document.getElementById('rc_black_text') ? document.getElementById('rc_black_text').value : '';
-
-
-
-                        const nameInfields = [
-                            'patient_name_1',
-                            'patient_age_1',
-                            'patient_hn_1',
-                            'patient_vn_1',
-                            'delivered_province_1',
-                            'delivered_hospital_1',
-                            'patient_name_2',
-                            'patient_age_2',
-                            'patient_hn_2',
-                            'patient_vn_2',
-                            'delivered_province_2',
-                            'delivered_hospital_2',
-                            'patient_name_3',
-                            'patient_age_3',
-                            'patient_hn_3',
-                            'patient_vn_3',
-                            'delivered_province_3',
-                            'delivered_hospital_3',
-                        ];
-
-                        // สร้างออบเจกต์เพื่อเก็บข้อมูล
-                        const dataInFields = {};
-
-                        // วนลูปเพื่อดึงข้อมูลจากฟิลด์และเก็บไว้ในออบเจกต์ formData
-                        nameInfields.forEach(field => {
-                            dataInFields[field] = document.getElementById(field).value;
-                        });
-
-
+                    function officer_save_data_form_yellow(divId) {
 
                         let data_arr = {
                             "sos_id": "{{ $data_sos->id }}",
-                            "rc": rc,
-                            "treatment": treatment,
-                            "sub_treatment": sub_treatment,
-                            "submission_criteria": submission_criteria,
-                            "communication_hospital": communication_hospital,
-                            "registration_category": registration_category,
-                            "registration_number": registration_number,
-                            "registration_province": registration_province,
-                            "owner_registration": owner_registration,
-                            "rc_black_text": rc_black_text,
-
                         };
+
+                        if (divId === 'button1Content') {
+                            console.log("button1Content");
+                            let rcElement = document.querySelector('input[name="rc"]:checked');
+                            let rc = rcElement ? rcElement.value : '';
+
+                            if (rc === "ดำ") {
+                                document.querySelector('#rc_black_text').readOnly = false;
+                            } else {
+                                document.querySelector('#rc_black_text').readOnly = true;
+                                document.querySelector('#rc_black_text').value = null;
+                            }
+
+                            let rc_black_text = document.getElementById('rc_black_text') ? document.getElementById('rc_black_text').value : '';
+                            data_arr.rc = rcElement ? rcElement.value : '';
+                        } else if (divId === 'button2Content') {
+                            console.log("button2Content");
+                            let treatmentElement = document.querySelector('input[name="treatmentOfficer"]:checked');
+                            let treatment = treatmentElement ? treatmentElement.value : '';
+                            data_arr.treatment = treatmentElement ? treatmentElement.value : '';
+
+                            let sub_treatmentElements = Array.from(document.querySelectorAll('input[name="sub_treatmentOfficer"]:checked'));
+                            let sub_treatment = sub_treatmentElements.map(input => input.value);
+                            data_arr.sub_treatment = sub_treatment; 
+
+
+
+                        } else if (divId === 'button3Content') {
+                            console.log("button3Content");
+
+                            let submission_criteriaElements = Array.from(document.querySelectorAll('input[name="submission_criteria"]:checked'));
+                            let submission_criteria = submission_criteriaElements.map(input => input.value);
+                            data_arr.submission_criteria = submission_criteria;
+
+                            let communication_hospitalElements = Array.from(document.querySelectorAll('input[name="communication_hospital"]:checked'));
+                            let communication_hospital = communication_hospitalElements.map(input => input.value);
+                            data_arr.communication_hospital = communication_hospital;
+
+
+                            const nameInfields = [
+                                'patient_name_1',
+                                'patient_age_1',
+                                'patient_hn_1',
+                                'patient_vn_1',
+                                'delivered_province_1',
+                                'delivered_hospital_1',
+                                'patient_name_2',
+                                'patient_age_2',
+                                'patient_hn_2',
+                                'patient_vn_2',
+                                'delivered_province_2',
+                                'delivered_hospital_2',
+                                'patient_name_3',
+                                'patient_age_3',
+                                'patient_hn_3',
+                                'patient_vn_3',
+                                'delivered_province_3',
+                                'delivered_hospital_3',
+                            ];
+
+                            // สร้างออบเจกต์เพื่อเก็บข้อมูล
+                            const dataInFields = {};
+
+                            // วนลูปเพื่อดึงข้อมูลจากฟิลด์และเก็บไว้ในออบเจกต์ formData
+                            nameInfields.forEach(field => {
+                                dataInFields[field] = document.getElementById(field).value;
+                            });
+                            data_arr = {
+                                ...data_arr,
+                                ...dataInFields
+                            };
+
+                        } else if (divId === 'button4Content') {
+                            console.log("button4Content");
+
+                            let registration_category = document.getElementById('registration_category') ? document.getElementById('registration_category').value : '';
+                            data_arr.registration_category = registration_category;
+
+                            let registration_number = document.getElementById('registration_number') ? document.getElementById('registration_number').value : '';
+                            data_arr.registration_number = registration_number;
+
+                            let registration_province = document.getElementById('registration_province') ? document.getElementById('registration_province').value : '';
+                            data_arr.registration_province = registration_province;
+
+                            let owner_registrationElement = document.querySelector('input[name="owner_registration"]:checked');
+                            let owner_registration = owner_registrationElement ? owner_registrationElement.value : '';
+                            data_arr.owner_registration = owner_registration;
+
+
+                        }
+                        // console.log("{{ $data_sos->id }}");
+
+
                         // เพิ่มข้อมูลจาก fields เข้าใน data_arr
-                        data_arr = {
-                            ...data_arr,
-                            ...dataInFields
-                        };
-
+                        // data_arr = {
+                        //     ...data_arr,
+                        //     ...dataInFields
+                        // };
+                        console.log(data_arr);
                         fetch("{{ url('/') }}/api/officerSaveFormYellow", {
                             method: 'post',
                             body: JSON.stringify(data_arr),
@@ -901,21 +951,7 @@
 
 
                 <script>
-                    function setCheckedInputs(inputs, values) {
-                        if (!Array.isArray(inputs) || !Array.isArray(values) || inputs.length === 0) {
-                            console.error('Inputs must be a non-empty array.');
-                            return;
-                        }
-
-                        inputs.forEach(input => {
-                            if (!(input instanceof Element)) {
-                                console.error('Input element is not valid.');
-                                return;
-                            }
-
-                            input.checked = values.includes(input.value);
-                        });
-                    }
+                  
 
                     function showContent(buttonId) {
                         var buttonContainer = document.getElementById('buttonContainer');
@@ -1157,44 +1193,44 @@
 
 
     <div class="row mt-3">
-    <div class="col-12 m-0">จำนวน<small class="text-danger">*</small></div>
-    <div class="col-4">
-  <label>
-    <input type="radio" name="amount_vehicle_${inputCount}" value="1" class="card-input-element card-input-primary d-none" required>
-    <div class="h-75 card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-      <b>
-        1
-      </b>
-    </div>
-  </label>
-</div>
-<div class="col-4">
-  <label>
-    <input type="radio" name="amount_vehicle_${inputCount}" value="2" class="card-input-element card-input-primary d-none">
-    <div class="h-75 card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-      <b>
-        2
-      </b>
-    </div>
-  </label>
-</div>
-<div class="col-4">
-  <label>
-    <input type="radio" name="amount_vehicle_${inputCount}" value="other" class="card-input-element card-input-primary d-none">
-    <div class="h-75 card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-      <b>
-        เพิ่ม
-      </b>
-    </div>
-  </label>
-</div>
-<div class="col-12">
-<input type="text" name="input_amount_vehicle${inputCount}" class="form-control mb-2 hidden value=""   placeholder="กรอกจำนวนที่ต้องการ">
-</div>
-    <div class="d-flex justify-content-end">
-        <button class="btn btn-danger " onclick="removeInputField(this)"> ลบ</button> 
-    </div>
-  </div>`;
+        <div class="col-12 m-0">จำนวน<small class="text-danger">*</small></div>
+            <div class="col-4">
+                <label>
+                    <input type="radio" name="amount_vehicle_${inputCount}" value="1" class="card-input-element card-input-primary d-none" required>
+                    <div class="h-75 card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+                        <b>
+                            1
+                        </b>
+                    </div>
+                </label>
+            </div>
+            <div class="col-4">
+            <label>
+                <input type="radio" name="amount_vehicle_${inputCount}" value="2" class="card-input-element card-input-primary d-none">
+                <div class="h-75 card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+                <b>
+                    2
+                </b>
+                </div>
+            </label>
+            </div>
+            <div class="col-4">
+            <label>
+                <input type="radio" name="amount_vehicle_${inputCount}" value="other" class="card-input-element card-input-primary d-none">
+                <div class="h-75 card card-body bg-light d-flex flex-row justify-content-between align-items-center">
+                <b>
+                    เพิ่ม
+                </b>
+                </div>
+            </label>
+            </div>
+            <div class="col-12">
+            <input type="text" name="input_amount_vehicle${inputCount}" class="form-control mb-2 hidden value=""   placeholder="กรอกจำนวนที่ต้องการ">
+            </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-danger " onclick="removeInputField(this)"> ลบ</button> 
+                </div>
+            </div>`;
         const inputText = inputContainer.querySelector('input[type="text"]');
         const radioButtons = inputContainer.querySelectorAll('input[type="radio"]');
 
