@@ -128,9 +128,16 @@ class Data_1669_operating_unitController extends Controller
      */
     public function edit($id)
     {
+        $data_user = Auth::user();
+        $sub_organization = $data_user->sub_organization ;
+
+        $polygon_provinces = DB::table('province_ths')
+                ->where('polygon' , '!=' , null)
+                ->get();
+
         $data_1669_operating_unit = Data_1669_operating_unit::findOrFail($id);
 
-        return view('data_1669_operating_unit.edit', compact('data_1669_operating_unit'));
+        return view('data_1669_operating_unit.edit', compact('data_1669_operating_unit','sub_organization','polygon_provinces'));
     }
 
     /**

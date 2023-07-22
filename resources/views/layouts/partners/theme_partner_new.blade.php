@@ -2163,9 +2163,7 @@
 	<!-- //////////////////// -->
 	<!-- ///MODAL ASK MORE/// -->
 	<!-- //////////////////// -->
-	<button id="btn_modal_select_officer_ask_more" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_select_officer_ask_more">
-	  Launch static backdrop modal
-	</button>
+	<button id="btn_modal_select_officer_ask_more" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_select_officer_ask_more"></button>
 
 	<!-- Modal -->
 	<div class="modal fade" id="modal_select_officer_ask_more" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_select_officer_ask_more" aria-hidden="true">
@@ -3362,15 +3360,54 @@
 
 	function create_alert_sos_ask_mores(data){
 
-		console.log('create_alert_sos_ask_mores');
-		console.log(data);
+		// console.log('create_alert_sos_ask_mores');
+		// console.log(data);
 
 		data_ask_more = data
 
 		let icon_stk = "https://www.viicheck.com/img/stickerline/PNG/21.png" ;
 		let html_officer_Standby = '' ;
+	    let count_item_Standby = 0 ;
 
 		if(data != 'ไม่มีข้อมูล' || !data.success){
+
+			let admin_id = "{{ Auth::user()->id }}" ;
+
+			fetch("{{ url('/') }}/api/search_officer_Standby" + '/' + admin_id)
+	            .then(response => response.json())
+	            .then(officer_Standby => {
+	                // console.log('officer_Standby');
+	                // console.log(officer_Standby);
+
+	                for(let item_Standby of officer_Standby){
+
+	                	count_item_Standby = count_item_Standby + 1 ;
+
+	                	// console.log(item_Standby['name_officer_command']);
+
+	                	let photo_officer ;
+
+	                	if (item_Standby['photo']){
+	                		photo_officer = "{{ url('/storage') }}/" + item_Standby['photo'];
+	                	}else{
+	                		photo_officer = "{{ url('/img/stickerline/Flex/12.png') }}" ;
+	                	}
+
+	                	html_officer_Standby = html_officer_Standby +
+		                	`<a class="item owlItemOfficer btn a_item_`+count_item_Standby+`">
+		                        <div class="badgeImg">
+		                            <img style="opacity: 1 !important;" src="`+photo_officer+`" class="" height="50">
+		                        </div>
+		                        <span class="d-none Standby_user_count_`+count_item_Standby+`">`+item_Standby['user_id']+`</span>
+		                        <span class="owlNameOfficer" style="margin-left: 10px;">
+		                        	`+item_Standby['name_officer_command']+`
+		                        	<br>
+		                        	<span style="font-size:15px;color:gray;">ลำดับที่ `+item_Standby['number']+`</span>
+		                        </span>
+		                    </a>` ;
+
+	                }
+	        });
 
 			let btn_command_ask_mores ;
 
@@ -3427,41 +3464,6 @@
 
 					let require_vehicle_all = parseInt(vehicle_car) + parseInt(vehicle_aircraft) + parseInt(vehicle_boat_1) + parseInt(vehicle_boat_2) + parseInt(vehicle_boat_3) + parseInt(vehicle_boat_other) ;
 
-					let admin_id = "{{ Auth::user()->id }}" ;
-
-					fetch("{{ url('/') }}/api/search_officer_Standby" + '/' + admin_id)
-			            .then(response => response.json())
-			            .then(officer_Standby => {
-			                // console.log('officer_Standby');
-			                // console.log(officer_Standby);
-
-			                for(let item_Standby of officer_Standby){
-
-			                	// console.log(item_Standby['name_officer_command']);
-
-			                	let photo_officer ;
-
-			                	if (item_Standby['photo']){
-			                		photo_officer = "{{ url('/storage') }}/" + item_Standby['photo'];
-			                	}else{
-			                		photo_officer = "{{ url('/img/stickerline/Flex/12.png') }}" ;
-			                	}
-
-			                	html_officer_Standby = html_officer_Standby +
-				                	`<a class="item owlItemOfficer btn" onclick="send_noti_ask_mores_to('`+item_Standby['user_id']+`','`+item.ask_mores_id+`')">
-				                        <div class="badgeImg">
-				                            <img style="opacity: 1 !important;" src="`+photo_officer+`" class="" height="50">
-				                        </div>
-				                        <span class="owlNameOfficer" style="margin-left: 10px;">
-				                        	`+item_Standby['name_officer_command']+`
-				                        	<br>
-				                        	<span style="font-size:15px;color:gray;">ลำดับที่ `+item_Standby['number']+`</span>
-				                        </span>
-				                    </a>` ;
-
-			                }
-			        });
-
 			        setTimeout(function() {
 						// let text_message = 'มีการขอหน่วยปฏิบัติการเพิ่ม ID >> ' + item.id ;
 						let text_message = `
@@ -3475,7 +3477,7 @@
 					                 	<b>มีการขอหน่วยปฏิบัติการเพิ่ม</b>
 					                </h3>
 					                <p class="card-text">
-					                	<b>รหัสปฏิบัติการ : `+item.operating_code+`</b> ID >> `+item.id+`
+					                	<b>รหัสปฏิบัติการ : `+item.operating_code+`</b>
 					                	<br>
 					                	<b>จำนวนที่ต้องการ : `+require_vehicle_all+`</b> หน่วย | <b>`+html_vehicle+`</b> 
 					                </p>
@@ -3537,6 +3539,28 @@
 
 							    let iziToast = document.querySelector('.iziToast-animateInside');
 							    	iziToast.classList.add('width-40');
+
+							    	// console.log("ID ASK MORE >> " + item.id);
+							    	// console.log("count_item_Standby >> " + count_item_Standby);
+
+							    let owlOfficer_case = document.querySelector('.owlOfficer_'+item.id);
+									// console.log(owlOfficer_case);
+
+								for (let ixz = 1; ixz <= count_item_Standby; ixz++) {
+
+									let Standby_user_id = owlOfficer_case.querySelector('.Standby_user_count_'+ixz).innerHTML;
+										Standby_user_id = Standby_user_id.replaceAll(" ","");
+										// console.log(Standby_user_id);
+
+									let a_item = owlOfficer_case.querySelector('.a_item_'+ixz);
+										a_item.setAttribute("onclick" , 
+									"send_noti_ask_mores_to('"+Standby_user_id+"','"+item.ask_mores_id+"')");
+										// console.log(a_item);
+
+								}
+
+								// console.log("-------------------------------------");
+
 				            },buttons: [
 						        [
 						            `<span id="btn_close_iziToast_ask_more_`+item.id+`" class="h3 float-end float-right d-none">
