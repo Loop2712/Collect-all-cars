@@ -1652,13 +1652,34 @@ class Sos_help_centerController extends Controller
 
         $requestData = $request->all();
 
+        $data_user = Auth::user();
+        $user_id = $data_user->id ;
+
         $operating_unit_id = $requestData['operating_unit_id'] ;
 
         $data_unit = Data_1669_operating_unit::where('id' , $operating_unit_id)->first();
 
         $name_area =  $data_unit->area ;
 
-        return view('data_1669_operating_officer.create', compact('operating_unit_id', 'name_area'));
+        return view('data_1669_operating_officer.create', compact('operating_unit_id', 'name_area','user_id'));
+    }
+
+    function check_old_officer($user_id){
+
+        // $data_officer = Data_1669_operating_officer::where('user_id', $user_id)->first();
+        $data_officer = DB::table('data_1669_operating_officers')
+            ->join('data_1669_operating_units', 'data_1669_operating_officers.operating_unit_id', '=', 'data_1669_operating_units.id')
+            ->where('data_1669_operating_officers.user_id' , $user_id)
+            ->select('data_1669_operating_officers.*', 'data_1669_operating_units.name as name_unit', 'data_1669_operating_units.area as area_unit')
+            ->first();
+
+        if ( empty($data_officer) ) {
+            $data_officer_old['data'] = 'ไม่มีข้อมูล' ;
+        }else{
+            $data_officer_old['data'] = $data_officer ;
+        }
+
+        return $data_officer_old ;
     }
 
     public function all_name_user_partner(Request $request)

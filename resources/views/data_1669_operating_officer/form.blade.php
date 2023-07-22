@@ -55,3 +55,120 @@
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
 </div>
+
+<!-- Button trigger modal -->
+<span id="btn_open_modal_warning" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_warning">
+  btn_open_modal_warning
+</span>
+
+<!-- Modal -->
+<div class="modal fade" id="modal_warning" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_btn_open_modal_warning" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title notranslate" id="Label_btn_open_modal_warning">
+                    <i class="fa-solid fa-triangle-exclamation fa-bounce" style="color: #ff8e24;"></i> คำเตือน
+                </h5>
+                <span type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </span>
+            </div>
+            <div class="modal-body notranslate" id="modal_warning_content">
+                <!-- CONTENT -->
+            </div>
+            <hr>
+            <div>
+                <center>
+                    <a style="width:35%;" href="{{ url('/officers/switch_standby_login?openExternalBrowser=1') }}" class="btn btn-secondary" >ปิด</a>
+                    <span style="width:35%;" type="button" class="btn btn-primary" data-dismiss="modal">ดำเนินการต่อ</span>
+                </center>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // console.log("START");
+
+        check_old_officer();
+
+    });
+
+    function check_old_officer(){
+
+        let user_id = "{{ $user_id }}";
+
+        fetch("{{ url('/') }}/api/check_old_officer"+ "/" + user_id)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+
+                if(result['data'] != 'ไม่มีข้อมูล'){
+                    document.querySelector('#btn_open_modal_warning').click();
+
+                    let html = `
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    <img src="{{ url('/img/stickerline/Flex/9.png') }}" style="width:50%;">
+                                    <div class="mt-3">
+                                        <h3>คุณ `+result['data']['name_officer']+`</h3>
+                                        <h5 class="text-danger">คุณมีหน่วยปฏิบัติการเดิมอยู่แล้ว</h5>
+                                        <p class="text-secondary mb-1" style="font-size:20px;">
+                                            เมื่อคุณกด <b>"ดำเนินการต่อ"</b> 
+                                            <br>
+                                            ระบบจะทำการอัพเดทหน่วยปฏิบัติการของคุณ
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr class="my-4">
+                                <h5>
+                                    <center>
+                                        ข้อมูลหน่วยปฏิบัติการเดิม
+                                    </center>
+                                </h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <h6 class="mb-0">
+                                            <i class="fa-sharp fa-regular fa-input-text"></i>
+                                            ชื่อหน่วยปฏิบัติการ
+                                        </h6>
+                                        <span class="text-secondary">`+result['data']['name_unit']+`</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <h6 class="mb-0">
+                                            <i class="fa-regular fa-map-location-dot"></i>
+                                            พื้นที่หน่วยปฏิบัติการ
+                                        </h6>
+                                        <span class="text-secondary">`+result['data']['area_unit']+`</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <h6 class="mb-0">
+                                            <i class="fa-solid fa-ranking-star"></i>
+                                            ระดับปฏิบัติการ
+                                        </h6>
+                                        <span class="text-secondary">`+result['data']['level']+`</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <h6 class="mb-0">
+                                            <i class="fa-solid fa-car"></i>
+                                            ยานพาหนะ
+                                        </h6>
+                                        <span class="text-secondary">`+result['data']['vehicle_type']+`</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        `;
+
+                        document.querySelector('#modal_warning_content').insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
+                }
+
+            });
+
+    }
+
+</script>

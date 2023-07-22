@@ -299,7 +299,14 @@
         <div class="row mt-2">
             <div class="col-12">
                 <h3 class="font-weight-bold float-start mb-0">
-                    การจัดการผู้ใช้
+                    การจัดการผู้ใช้ &nbsp;
+                    @if(Auth::user()->role == "admin-partner")
+                        @if($sub_organization != "ศูนย์ใหญ่")
+                        <span class="btn btn-sm btn-outline-info main-shadow main-radius" data-toggle="modal" data-target="#modal_change_number_officer">
+                            จัดลำดับ <i class="fa-duotone fa-repeat"></i>
+                        </span>
+                        @endif
+                    @endif
                 </h3>
 
                 <a style="margin-left: 10px;margin-right: 10px;" class="float-end ms-auto mt-1" type="button" data-toggle="modal" data-target="#Partner_user">
@@ -356,14 +363,7 @@
                 <thead>
                     <tr class="text-center">
                         <th>
-                            ลำดับ &nbsp;
-                            @if(Auth::user()->role == "admin-partner")
-                                @if($sub_organization != "ศูนย์ใหญ่")
-                                <span class="btn btn-sm btn-outline-info main-shadow main-radius" data-toggle="modal" data-target="#modal_change_number_officer">
-                                    <i class="fa-duotone fa-repeat"></i>
-                                </span>
-                                @endif
-                            @endif
+                            ลำดับ
                         </th>
                         <!-- <th>ตำแหน่ง</th> -->
                         <th>เจ้าหน้าที่</th>
@@ -402,7 +402,7 @@
                         </td> -->
                         <td>
                             <div class="customers-list  ">
-                                <a target="break" href="{{ url('/').'/profile/'.$item->id }}" class="customers-list-item d-flex align-items-center p-2 cursor-pointer">
+                                <div class="customers-list-item d-flex align-items-center p-2 cursor-pointer">
                                     <div class="">
                                         @if(!empty($item->user->photo))
                                             <img src="{{ url('/storage') .'/'. $item->user->photo  }}"  class="rounded-circle" width="46" height="46" alt="">
@@ -416,7 +416,7 @@
                                         <p class="mb-0 font-13 text-secondary">{{ substr_replace(substr_replace($item->user->phone, '-', 3, 0), '-', 7, 0) }}</p>
                                         @endif
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         </td>
                         <td class="text-center">
@@ -469,7 +469,7 @@
                             @endphp
                             @if(!empty($item->creator))
                             <div class="customers-list  ">
-                                <a target="break" href="{{ url('/profile/' . $item->creator) }}" class="customers-list-item d-flex align-items-center p-2 cursor-pointer">
+                                <div class="customers-list-item d-flex align-items-center p-2 cursor-pointer">
                                     <div class="">
                                         @if(!empty($user_creator->photo))
                                             <img src="{{ url('/storage') .'/'. $user_creator->photo  }}"  class="rounded-circle" width="46" height="46" alt="">
@@ -480,7 +480,7 @@
                                     <div class="ms-2">
                                         <h6 class="mb-1 font-14">{{ $user_creator->name }}</h6>
                                     </div>
-                                </a>
+                                </div>
                             </div>
                             @else
                                 <img src="{{ asset('/img/logo/logo_x-icon_2.png') }}" style="width:50px;" class="img-radius">

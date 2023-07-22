@@ -57,8 +57,20 @@ class Data_1669_operating_officerController extends Controller
     {
         
         $requestData = $request->all();
+
+        $data_old_officer = Data_1669_operating_officer::where('user_id' , $requestData['user_id'])->first();
+
+        if( !empty($data_old_officer) ){
+
+            // ลบข้อมูลเก่าและสร้างใหม่
+            Data_1669_operating_officer::where('user_id' , $requestData['user_id'])->delete();
+            Data_1669_operating_officer::create($requestData);
+        }else{
+            // สร้างข้อมูลเจ้าหน้าที่หน่วยปฏิบัติการใหม่
+            Data_1669_operating_officer::create($requestData);
+
+        }
         
-        Data_1669_operating_officer::create($requestData);
 
         $data_user_officer = User::where('id' , $requestData['user_id'])->first();
 
