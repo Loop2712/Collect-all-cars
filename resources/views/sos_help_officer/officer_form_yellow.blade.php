@@ -717,7 +717,7 @@
                             .then(response => response.json())
                             .then(result => {
 
-                                console.log("check_data_form_yellow_show_case");
+                                // console.log("check_data_form_yellow_show_case");
                                 //  INPUT RC
                                 const rcInputs = document.querySelectorAll('input[name="rc"]');
                                 setCheckedInputs(rcInputs, result.rc);
@@ -835,7 +835,7 @@
                         };
 
                         if (divId === 'button1Content') {
-                            console.log("button1Content");
+                            // console.log("button1Content");
                             let rcElement = document.querySelector('input[name="rc"]:checked');
                             let rc = rcElement ? rcElement.value : '';
 
@@ -849,7 +849,7 @@
                             let rc_black_text = document.getElementById('rc_black_text') ? document.getElementById('rc_black_text').value : '';
                             data_arr.rc = rcElement ? rcElement.value : '';
                         } else if (divId === 'button2Content') {
-                            console.log("button2Content");
+                            // console.log("button2Content");
                             let treatmentElement = document.querySelector('input[name="treatmentOfficer"]:checked');
                             let treatment = treatmentElement ? treatmentElement.value : '';
                             data_arr.treatment = treatmentElement ? treatmentElement.value : '';
@@ -861,7 +861,7 @@
 
 
                         } else if (divId === 'button3Content') {
-                            console.log("button3Content");
+                            // console.log("button3Content");
 
                             let submission_criteriaElements = Array.from(document.querySelectorAll('input[name="submission_criteria"]:checked'));
                             let submission_criteria = submission_criteriaElements.map(input => input.value);
@@ -906,7 +906,7 @@
                             };
 
                         } else if (divId === 'button4Content') {
-                            console.log("button4Content");
+                            // console.log("button4Content");
 
                             let registration_category = document.getElementById('registration_category') ? document.getElementById('registration_category').value : '';
                             data_arr.registration_category = registration_category;
