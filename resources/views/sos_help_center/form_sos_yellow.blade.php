@@ -1192,9 +1192,19 @@
 						<div class="row {{ $class_no_operating_unit }}" id="no_operating_unit">
 							<div class="col-md-4">
 								<label for="" class="form-label"><b>&nbsp;</b></label>
-								<span id="btn_select_unit_in_no5" class="nav-link btn-danger btn" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();" style="width:100%;" > <!-- select_level(); -->
+								<span class="nav-link btn-danger btn" style="width:100%;" > <!-- select_level(); -->
                                     <i class="fa-solid fa-hospital-user"></i> เลือกหน่วยปฏิบัติการ
 								</span>
+								<div class="mt-3">
+									<center>
+										<button id="btn_select_unit_in_no5" class="btn btn-primary px-5" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();">
+											เดี่ยว
+										</button>
+										<button class="btn btn-danger px-5" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
+											ร่วม
+										</button>
+									</center>
+								</div>
 							</div>
 						</div>
 						
@@ -2290,7 +2300,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row  m-0 p-0">
+				<div class="row  m-0 p-0 d-none">
 					<div class="d-flex justify-content-end my-3 float-end">
 						<div class="d-flex align-items-end">
 						
@@ -2371,6 +2381,9 @@
 
 <script>
 
+	var form_yellow_current_topic = 1 ;
+	var load_first_time = 'Yes' ;
+
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
 
@@ -2383,7 +2396,7 @@
 	        check_click_rc();
         }, 1500);
 
-        Loop_check_form_yellow();
+        // Loop_check_form_yellow();
 
     });
 
@@ -2397,7 +2410,7 @@
         reface_check_form_yellow = setInterval(function() {
         	check_start_data_form_yellow();
         	distance_in_no5();
-        }, 5000);
+        }, 10000);
 
     }
 
@@ -2477,6 +2490,12 @@
 			        check_color_btn(null);
 		        }, 1000);
             });
+
+        if(load_first_time == "Yes"){
+        	load_first_time = "No" ;
+        	Loop_check_form_yellow();
+        }
+
     }
 
     function edit_form_yellow(key,value,old){
@@ -2588,6 +2607,9 @@
 		// console.log(click_to);
 
 		let active = window.location.href.split('#step-')[1];
+
+		form_yellow_current_topic = click_to ;
+		console.log("ปัจจุบันอยู่ที่หน้า >> " + form_yellow_current_topic);
 
 			// console.log("active >> " + active_sp[2]);
 

@@ -556,6 +556,7 @@ class Sos_help_centerController extends Controller
                 ->join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
                 ->where('sos_help_centers.command_by' , $data_officer_command->id)
                 ->where('sos_help_centers.status' , '!=' , 'เสร็จสิ้น')
+                ->where('sos_help_centers.notify' , 'LIKE' , "%$sub_organization%")
                 ->select('sos_help_centers.*', 'sos_1669_form_yellows.idc', 'sos_1669_form_yellows.rc', 'sos_1669_form_yellows.rc_black_text','sos_1669_form_yellows.vehicle_type','sos_1669_form_yellows.operating_suit_type')
                 ->get();
 
@@ -597,7 +598,9 @@ class Sos_help_centerController extends Controller
             return $check_data ;
         }else{
 
-            $data = Sos_help_center::where('command_by' , null)->get();
+            $data = Sos_help_center::where('command_by' , null)
+                ->where('notify', "LIKE" , "%$sub_organization%")
+                ->get();
 
             $data['count_sos_wait'] = count($data) ;
             $data['count_sos_Helping'] = count($sos_Helping) ;

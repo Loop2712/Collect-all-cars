@@ -1398,7 +1398,7 @@ color: #ff9317;
                                         </div>
                                     </a> -->
                                 </li>
-                                <li id="btn_form_blue" class="nav-item nav-pills nav-pills-info m-2 d-none" role="presentation">
+                                <!-- <li id="btn_form_blue" class="nav-item nav-pills nav-pills-info m-2 d-none" role="presentation">
                                     <a class="nav-link  btn-outline-info btn" data-bs-toggle="pill" href="#form-blue" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_blue_1').click();">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
@@ -1407,8 +1407,8 @@ color: #ff9317;
                                             <div class="tab-title">แบบฟอร์มฟ้า</div>
                                         </div>
                                     </a>
-                                </li>
-                                <li id="btn_form_green" class="nav-item  nav-pills nav-pills-success m-2 d-none" role="presentation">
+                                </li> -->
+                                <!-- <li id="btn_form_green" class="nav-item  nav-pills nav-pills-success m-2 d-none" role="presentation">
                                     <a class="nav-link btn-outline-success btn" data-bs-toggle="pill" href="#form-green" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_green_1').click();">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
@@ -1417,8 +1417,8 @@ color: #ff9317;
                                             <div class="tab-title">แบบฟอร์มเขียว</div>
                                         </div>
                                     </a>
-                                </li>
-                                <li id="btn_form_pink" class="nav-item nav-pills nav-pills-pink m-2 d-none" role="presentation">
+                                </li> -->
+                                <!-- <li id="btn_form_pink" class="nav-item nav-pills nav-pills-pink m-2 d-none" role="presentation">
                                     <a class="nav-link btn-outline-pink btn" data-bs-toggle="pill" href="#form-pink" role="tab" aria-selected="false" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#step_pink_1').click();">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
@@ -1427,7 +1427,7 @@ color: #ff9317;
                                             <div class="tab-title">แบบฟอร์มชมพู</div>
                                         </div>
                                     </a>
-                                </li>
+                                </li> -->
                                 <style>
                                     .btnGroupOperating{
                                         border-radius: 8px !important;
@@ -1523,7 +1523,7 @@ color: #ff9317;
                                         </span>
                                     </a>
                                 </li>
-                                <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 d-" role="presentation" onclick="document.querySelector('#btn_save').click();">
+                                <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 d-none" role="presentation" onclick="document.querySelector('#btn_save').click();">
                                     <a class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#meet_sos" role="tab" aria-selected="false">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
@@ -1617,11 +1617,11 @@ color: #ff9317;
             <div class="tab-pane fade show active" id="form_yellow" role="tabpanel">
                 <div class="card radius-10 p-3 yellow-form">
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-4">
                             <div class="box-status">
                                 @php
                                     $date = $sos_help_center->created_at ;
-                                    $result = $date->format('d/m/Y');
+                                    $result = $date->format('d / m / Y');
                                 @endphp
                                 <span class="m-0">วันที่ </span>
                                 <h5 class="m-0 h5">
@@ -1629,7 +1629,7 @@ color: #ff9317;
                                 </h5>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-5">
                             <div class="box-status">
                                 <span class="m-0">เลขที่ปฏิบัติการ(ON)</span>
                                 <h5 class="m-0 h5">
@@ -1639,31 +1639,22 @@ color: #ff9317;
                                 </h5>
                             </div>
                         </div>
-                        <div class="col-3">
-                            <div class="box-status">
-                                <span class="m-0">ลำดับผู้ป่วย(CN)</span>
-                                <h5 class="m-0 h5">
-                                    <b>
-                                        .............
-                                    </b>
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="col-2 float-end">
-                            <button style="width: 100%;" id="btn_save" class=" btn btn-success d-flex justify-content-center btn-block" type="button" onclick="btn_save_data();send_save_data();"> 
-                                <div id="icon_save_data" class="d-none">
-                                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-                                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-                                    </svg>
-                                </div>
-                                    &nbsp;
-                                <span id="text_btn_save">
-                                    บันทึก
-                                </span>
-                                
-                            </button>
-
+                        <div class="col-3 float-end">
+                            <h5 class="m-0 h5">
+                                <button style="width: 100%;margin-top: 7px;" id="btn_save" class=" btn btn-success d-flex justify-content-center btn-block" type="button" onclick="btn_save_data();send_save_data();"> 
+                                    <div id="icon_save_data" class="d-none">
+                                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                                        </svg>
+                                    </div>
+                                        &nbsp;
+                                    <span id="text_btn_save">
+                                        บันทึก
+                                    </span>
+                                    
+                                </button>
+                            </h5>
                         </div>
                         <div class="col-12">
                             @include ('sos_help_center.form_sos_yellow')
@@ -1709,7 +1700,7 @@ color: #ff9317;
                             </div>
                         </div>
                         <div class="col-12">
-                            @include ('sos_help_center.form_sos_blue')
+                            <!-- @include ('sos_help_center.form_sos_blue') -->
                         </div>
                     </div>
                 </div>
@@ -1718,7 +1709,7 @@ color: #ff9317;
 
             <!--------------------------------- form green --------------------------------->
             <div class="tab-pane fade" id="form-green" role="tabpanel">
-                <p>@include ('sos_help_center.form_sos_green')</p>
+                <!-- <p>@include ('sos_help_center.form_sos_green')</p> -->
             </div>
 
             <!--------------------------------- form pink --------------------------------->
@@ -3148,28 +3139,28 @@ color: #ff9317;
            type = operating_suit_type_value ;
         }
 
-        switch(type) {
-            case 'FR':
-                document.querySelector('#btn_form_blue').classList.remove('d-none');
-                document.querySelector('#btn_form_green').classList.add('d-none');
-                document.querySelector('#btn_form_pink').classList.add('d-none');
-            break;
-            case 'BLS':
-                document.querySelector('#btn_form_blue').classList.add('d-none');
-                document.querySelector('#btn_form_green').classList.add('d-none');
-                document.querySelector('#btn_form_pink').classList.remove('d-none');
-            break;
-            case 'ILS':
-                document.querySelector('#btn_form_blue').classList.add('d-none');
-                document.querySelector('#btn_form_green').classList.remove('d-none');
-                document.querySelector('#btn_form_pink').classList.add('d-none');
-            break;
-            case 'ALS':
-                document.querySelector('#btn_form_blue').classList.add('d-none');
-                document.querySelector('#btn_form_green').classList.remove('d-none');
-                document.querySelector('#btn_form_pink').classList.add('d-none');
-            break;
-        }
+        // switch(type) {
+        //     case 'FR':
+        //         document.querySelector('#btn_form_blue').classList.remove('d-none');
+        //         document.querySelector('#btn_form_green').classList.add('d-none');
+        //         document.querySelector('#btn_form_pink').classList.add('d-none');
+        //     break;
+        //     case 'BLS':
+        //         document.querySelector('#btn_form_blue').classList.add('d-none');
+        //         document.querySelector('#btn_form_green').classList.add('d-none');
+        //         document.querySelector('#btn_form_pink').classList.remove('d-none');
+        //     break;
+        //     case 'ILS':
+        //         document.querySelector('#btn_form_blue').classList.add('d-none');
+        //         document.querySelector('#btn_form_green').classList.remove('d-none');
+        //         document.querySelector('#btn_form_pink').classList.add('d-none');
+        //     break;
+        //     case 'ALS':
+        //         document.querySelector('#btn_form_blue').classList.add('d-none');
+        //         document.querySelector('#btn_form_green').classList.remove('d-none');
+        //         document.querySelector('#btn_form_pink').classList.add('d-none');
+        //     break;
+        // }
 
     }
 
@@ -3223,11 +3214,11 @@ color: #ff9317;
         if (status === 'รอการยืนยัน' || status === 'ปฏิเสธ' || status === 'รับแจ้งเหตุ' || !status) {
             document.querySelector('#btn_operation').classList.add('d-none');
             document.querySelector('#btn_select_operating_unit').classList.remove('d-none');
-            document.querySelector('#btn_open_meet').classList.add('d-none');
+            // document.querySelector('#btn_open_meet').classList.add('d-none');
         }else{
             document.querySelector('#btn_operation').classList.remove('d-none');
             document.querySelector('#btn_select_operating_unit').classList.add('d-none');
-            document.querySelector('#btn_open_meet').classList.remove('d-none');
+            // document.querySelector('#btn_open_meet').classList.remove('d-none');
         }
 
     }

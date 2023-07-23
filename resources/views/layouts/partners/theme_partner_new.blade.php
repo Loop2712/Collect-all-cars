@@ -2249,13 +2249,13 @@
 		       	check_sos_alarm();
 		    	//// เช็ค JS100 ////
 		       	// check_sos_js100();
-		    }, 10000);
+		    }, 7500);
 		@else
 			// ด้านล่างนี้เป็น สพฉ ศูนย์สั่งการต่างๆ
 		    @if(Auth::user()->sub_organization != 'ศูนย์ใหญ่')
 				setInterval(function() {
 					check_ask_for_help_1669();
-			    }, 5000);
+			    }, 7000);
 
 			    let full_url = '{{ url()->full() }}' ;
 			    let text_url_all = full_url.split('/');
@@ -2345,7 +2345,7 @@
                     }
 
                 });
-	    }, 6500);
+	    },  8000);
 	}
 
 	function open_menu_bar(text_url_all){
@@ -2537,7 +2537,7 @@
                 // console.log(result);
         });
 
-        setInterval(function() {
+        setTimeout(function() {
 	    	window.location.reload(true) ;
 	    }, 1000);
 
@@ -2551,7 +2551,7 @@
                 // console.log(result);
         });
 
-        setInterval(function() {
+        setTimeout(function() {
 	    	window.location.reload(true) ;
 	    }, 1000);
 

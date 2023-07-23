@@ -1119,7 +1119,7 @@
                         document.querySelector('#btn_select_operating_unit').classList.add('d-none');
                         document.querySelector('#btn_show_wait_officer_joint').classList.remove('d-none');
 
-                        show_wait_officer_joint();
+                        // show_wait_officer_joint();
                         
                     }
 
@@ -1314,8 +1314,8 @@
     let interval_check_status_officer = setInterval(() => {
         // console.log("count>>>" + count_status_officer);
         // console.log("all>>" + all_officer_wait_status);
-         show_wait_officer_joint();
-    }, 5000);
+        show_wait_officer_joint();
+    }, 7000);
 
     // Function to start the timer
     function startTimer_wait_officer_joint(arr_sos_id_count_time) {
