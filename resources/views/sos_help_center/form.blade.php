@@ -1373,7 +1373,7 @@ color: #ff9317;
                             </button> -->
                             <ul class="nav nav-pills m-3" role="tablist">
                                 <li id="btn_operation" class="nav-item nav-pills nav-pills-purple m-2 d-none" role="presentation">
-                                    <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="document.querySelector('#btn_save').click();check_go_to(null);reface_map_go_to_help();Stop_reface_check_form_yellow();">
+                                    <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="document.querySelector('#btn_save').click();check_go_to(null);reface_map_go_to_help();Stop_reface_check_form_yellow();update_page_before_click_button('other');">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                             </div>
@@ -1382,7 +1382,8 @@ color: #ff9317;
                                     </a>
                                 </li>
                                 <li id="btn_form_yellow" class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
-                                    <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');document.querySelector('#form_data_1').click();">
+                                    <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');update_page_before_click_button('yellow');"> 
+                                      <!-- document.querySelector('#form_data_1').click(); -->
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                             </div>
@@ -1444,7 +1445,7 @@ color: #ff9317;
                                     <div class="btnGroupOperating">
                                         <div class="btn-group btnGroupOperating">
                                             <button type="button" class="btn btn-white btnOperating">เลือกหน่วยปฏิบัติการ</button>
-                                            <a id="tag_a_open_map_operating_unit" type="button" class="btn btn-primary" onclick="document.querySelector('#tag_a_open_map_operating_unit_2').click();">
+                                            <a id="tag_a_open_map_operating_unit" type="button" class="btn btn-primary" onclick="document.querySelector('#tag_a_open_map_operating_unit_2').click();update_page_before_click_button('other');">
                                               เดียว
                                             </a>
                                             <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
@@ -1641,7 +1642,7 @@ color: #ff9317;
                         </div>
                         <div class="col-3 float-end">
                             <h5 class="m-0 h5">
-                                <button style="width: 100%;margin-top: 7px;" id="btn_save" class=" btn btn-success d-flex justify-content-center btn-block" type="button" onclick="btn_save_data();send_save_data();"> 
+                                <button style="width: 100%;margin-top: 7px;" id="btn_save" class=" btn btn-success d-flex justify-content-center btn-block" type="button" onclick="btn_save_data_animation();send_save_data();"> 
                                     <div id="icon_save_data" class="d-none">
                                         <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                                             <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
@@ -1700,7 +1701,7 @@ color: #ff9317;
                             </div>
                         </div>
                         <div class="col-12">
-                            <!-- @include ('sos_help_center.form_sos_blue') -->
+                            <!-- include ('sos_help_center.form_sos_blue') -->
                         </div>
                     </div>
                 </div>
@@ -1709,11 +1710,11 @@ color: #ff9317;
 
             <!--------------------------------- form green --------------------------------->
             <div class="tab-pane fade" id="form-green" role="tabpanel">
-                <!-- <p>@include ('sos_help_center.form_sos_green')</p> -->
+                <!-- <p>include ('sos_help_center.form_sos_green')</p> -->
             </div>
 
             <!--------------------------------- form pink --------------------------------->
-            <div class="tab-pane fade" id="form-pink" role="tabpanel">
+            <!-- <div class="tab-pane fade" id="form-pink" role="tabpanel">
                 <div class="card radius-10 p-3 pink-form">
                     <div class="row">
                         <div class="col">
@@ -1749,11 +1750,10 @@ color: #ff9317;
                             </div>
                         </div>
                         <div class="col-12">
-                            <!--  -->
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!--------------------------------- operating_unit --------------------------------->
             <div class="tab-pane fade" id="operating_unit" role="tabpanel">
@@ -3269,7 +3269,7 @@ color: #ff9317;
 </script>
 
 <script>
-    function btn_save_data() {
+    function btn_save_data_animation() {
         document.querySelector('#icon_save_data').classList.remove('d-none');
         document.querySelector('#text_btn_save').innerHTML = "บันทึก..";
         const animated = document.querySelector('.checkmark__check');
@@ -3442,7 +3442,7 @@ color: #ff9317;
 <!-- alet_new_data -->
 <script>
 
-    function alet_new_data(form_color , key , value , old) {
+    function alet_new_data(form_color , main_key , key , value , old) {
 
         // เช็คว่ามีอันเดิมที่แสดงอยู่หรือไม่
         let elms_check = document.querySelectorAll('div[class~="iziToast"]')
@@ -3493,7 +3493,7 @@ color: #ff9317;
                   [
                     '<button>บันทึก (<span id="nub_vi_'+pass+'">8</span>)</button>',
                     function (instance, toast) {
-                        save_data(key , value , old)
+                        save_data( main_key , key , value , old)
                       instance.hide({
                         transitionOut: 'fadeOutUp'
                       }, toast);
@@ -3502,7 +3502,7 @@ color: #ff9317;
                   [
                     '<button class="btn btn-danger">ไม่บันทึก</button>',
                     function (instance, toast) {
-                        dont_save_data(key , value , old);
+                        dont_save_data( main_key , key , value , old);
                         instance.hide({
                         transitionOut: 'fadeOutUp'
                       }, toast);
@@ -3593,7 +3593,7 @@ color: #ff9317;
         // alert("STOP");
     }
 
-    function save_data(key , value , old){
+    function save_data( main_key , key , value , old){
 
         let text_key = change_key_to_text_key(key);
 
@@ -3604,13 +3604,15 @@ color: #ff9317;
             title: 'บันทึกข้อมูลเรียบร้อย',
             message: 'บันทึกข้อมูล ข้อ : ' + text_key + ' เรียบร้อย ข้อมูลที่เปลี่ยนแปลง : ' + value
         });
+
         // บันทึกข้อมูลใหม่
-        edit_form_yellow(key , value , old);
+        edit_form_yellow( main_key , key , value , old);
+
         let audio_save_data = new Audio("{{ asset('sound/ยืนยัน.mp3') }}");
             audio_save_data.play();
 
     }
-    function dont_save_data(key , value , old){
+    function dont_save_data( main_key , key , value , old){
 
         let text_key = change_key_to_text_key(key);
 

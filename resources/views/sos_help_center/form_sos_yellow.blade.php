@@ -2382,6 +2382,8 @@
 <script>
 
 	var form_yellow_current_topic = 1 ;
+	var page_before_click_button ;
+
 	var load_first_time = 'Yes' ;
 
 	document.addEventListener('DOMContentLoaded', (event) => {
@@ -2402,89 +2404,173 @@
 
 	var start_data_arr = [] ;
 	var check_start_data_arr = "No" ;
+
 	var data_arr = [] ;
+	var all_data_arr = [] ;
 
 	function Loop_check_form_yellow() {
 
-        console.log("LOOP check form yellow");
+        // console.log("LOOP check form yellow");
         reface_check_form_yellow = setInterval(function() {
         	check_start_data_form_yellow();
         	distance_in_no5();
-        }, 10000);
+        }, 15000);
 
     }
 
 	function Stop_reface_check_form_yellow() {
         clearInterval(reface_check_form_yellow);
-        console.log("STOP LOOP check form yellow");
+        // console.log("STOP LOOP check form yellow");
     }
 
     function check_start_data_form_yellow(){
 
-		console.log("Check data form yellow");
+		// console.log('----------------------------');
+		// console.log("** Check data form yellow **");
+		// console.log("ตอนนี้อยู่ที่หน้า >> " + form_yellow_current_topic);
+		// console.log("กำลังจะอัพเดทหน้าอื่นๆ และแจ้งเตือนหน้า "+ form_yellow_current_topic + " ถ้าข้อมูลมีการเปลี่ยนแปลง");
+		// console.log('----------------------------');
+
     	// ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
 		fetch("{{ url('/') }}/api/check_update/form_yellow" + "/" + '{{ $sos_help_center->id }}')
             .then(response => response.json())
             .then(data_new_5vi => {
 
-            	if (start_data_arr) {
-            		for (const [key, value] of Object.entries(data_new_5vi)) {
-				  		// console.log(key);
-				  		if (data_new_5vi[key] === null) {
-				  			data_new_5vi[key] = '';
-				  		}
+				// console.log(" >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<");
+				// console.log(" >>>>>>>>> data_new_5vi <<<<<<<<<");
+				// console.log(" >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<");
+				// console.log(data_new_5vi);
 
-				  		if (data_new_5vi[key] != start_data_arr[key] && check_start_data_arr == "Yes") {
+				// console.log(" >>>>>>>>>---------------------<<<<<<<<<");
+				// console.log("ปัจจุบันอยู่หน้าที่ >> " + form_yellow_current_topic);
+				// console.log("start_data_arr ข้อมูล ก่อน อัพเดท");
+				// console.log(start_data_arr);
+				// console.log(" >>>>>>>>>---------------------<<<<<<<<<");
 
-				  			// console.log(key + " ==>> ข้อมูลเปลี่ยน");
-				  			// console.log(start_data_arr[key] + " เปลี่ยนเป็น " + data_new_5vi[key]);
+				if (start_data_arr && check_start_data_arr == "Yes") {
 
-					        if( key === 'operation_unit_name' || key === 'action_set_name' || key === 'time_create_sos' || key === 'time_command' || key === 'time_go_to_help' || key === 'time_to_the_scene' || key === 'time_leave_the_scene' || key === 'time_hospital' || key === 'time_to_the_operating_base' || key === 'km_create_sos_to_go_to_help' || key === 'km_to_the_scene_to_leave_the_scene' || key === 'km_hospital' || key === 'km_operating_base' ){
+					for (const [main_key, main_value ] of Object.entries(data_new_5vi)) {
+			  		
+				  		// console.log("หัวข้อ : " + main_key);
+				  		// console.log(data_new_5vi[main_key]);
 
-					        	document.querySelector('#'+key).value = value ;
-					        	
-							}else if(key === 'rc' || key === 'treatment' || key === 'sub_treatment'){
-								edit_form_yellow(key , value , null);
-							}else if (key === 'vehicle_type' || key === 'operating_suit_type') {
+				  		let key_title = main_key.split('_')[1];
 
-								// console.log(data_new_5vi[key]);
+				  		if (key_title != form_yellow_current_topic) {
 
-								if (data_new_5vi[key]){
-									document.querySelector('#no_operating_unit').classList.add('d-none')  ;
-									document.querySelector('#has_an_operating_unit').classList.remove('d-none')  ;
+				  			// หัวข้อ main_key ไม่เท่ากับหน้าปัจจุบัน ให้เข้าไปทำกับอัพเดทข้อมูล
+				  			// console.log("อัพเดทข้อมูล หน้า : " + main_key);
 
-									let input_Element_key = document.querySelector('input[name="'+key+'"]');
+				  			for (const [sub_key, sub_value ] of Object.entries(data_new_5vi[main_key])) {
 
-										input_Element_key.value = value ;
-										input_Element_key.checked = true ;
-										input_Element_key.setAttribute('data-'+key , value);
+					  			if (data_new_5vi[main_key][sub_key] === null) {
+						  			data_new_5vi[main_key][sub_key] = '';
+						  		}
 
-										document.querySelector('#text_show_' + key).innerHTML = value ;
+					  			// console.log(" ==>> " + sub_key + " <<== ");
+					  			// console.log(data_new_5vi[main_key][sub_key]);
 
-									// ถ้า KEY = operating_suit_type
-									let color_operating ;
-									if (value === "FR") {
-										color_operating = "success" ;
-									}else if(value === "BLS"){
-										color_operating = "warning" ;
-									}else if(value === "ILS" || value === "ALS"){
-										color_operating = "danger" ;
+						  		// UPDATE ข้อมูล sub_key
+					  			start_data_arr[main_key][sub_key] = data_new_5vi[main_key][sub_key] ;
+
+					  			if( sub_key === 'operation_unit_name' || sub_key === 'action_set_name' || sub_key === 'time_create_sos' || sub_key === 'time_command' || sub_key === 'time_go_to_help' || sub_key === 'time_to_the_scene' || sub_key === 'time_leave_the_scene' || sub_key === 'time_hospital' || sub_key === 'time_to_the_operating_base' || sub_key === 'km_create_sos_to_go_to_help' || sub_key === 'km_to_the_scene_to_leave_the_scene' || sub_key === 'km_hospital' || sub_key === 'km_operating_base' ){
+
+						        	document.querySelector('#'+sub_key).value = data_new_5vi[main_key][sub_key] ;
+						        	
+								}
+								// else if(sub_key === 'rc' || sub_key === 'treatment' || sub_key === 'sub_treatment'){
+
+								// 	edit_form_yellow(main_key , sub_key , data_new_5vi[main_key][sub_key] , null);
+
+								// }
+								else if (sub_key === 'vehicle_type' || sub_key === 'operating_suit_type') {
+
+									// console.log(data_new_5vi[key]);
+
+									if (data_new_5vi[main_key][sub_key]){
+										document.querySelector('#no_operating_unit').classList.add('d-none')  ;
+										document.querySelector('#has_an_operating_unit').classList.remove('d-none')  ;
+
+										let input_Element_key = document.querySelector('input[name="'+sub_key+'"]');
+
+											input_Element_key.value = data_new_5vi[main_key][sub_key] ;
+											input_Element_key.checked = true ;
+											input_Element_key.setAttribute('data-'+sub_key , data_new_5vi[main_key][sub_key]);
+
+											document.querySelector('#text_show_' + sub_key).innerHTML = data_new_5vi[main_key][sub_key] ;
+
+										// ถ้า KEY = operating_suit_type
+										let color_operating ;
+										if (data_new_5vi[main_key][sub_key] === "FR") {
+											color_operating = "success" ;
+										}else if(data_new_5vi[main_key][sub_key] === "BLS"){
+											color_operating = "warning" ;
+										}else if(data_new_5vi[main_key][sub_key] === "ILS" || data_new_5vi[main_key][sub_key] === "ALS"){
+											color_operating = "danger" ;
+										}
+
+										input_Element_key.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
 									}
 
-									input_Element_key.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
-								}
+					  			}else if (sub_key === 'lat' || sub_key === 'lng') {
+					  				// console.log("สั่งบันทึก lat lng >> " + key)
+	        						check_go_to(null);
+	        						
+					  			}else{
+					  				edit_form_yellow(main_key , sub_key , data_new_5vi[main_key][sub_key] , null);
+					  			}
 
-				  			}else if (key === 'lat' || key === 'lng') {
-				  				// console.log("สั่งบันทึก lat lng >> " + key)
-        						check_go_to(null);
-        						
-				  			}else{
-				  				// แจ้งเตือนข้อมูลเปลี่ยนแปลง
-	        					alet_new_data('form_yellow' ,key , value , start_data_arr[key]);
-				  			}
+								// console.log("---------------------------------------");
+
+					  		}
+
+				  		}else if(key_title == form_yellow_current_topic){
+
+				  			// หัวข้อ main_key ตรงกับหน้าที่เปิดอยู่ ตรวจสอบการเปลี่ยนแปลงของข้อมูล
+				  			// console.log("ตรวจสอบการเปลี่ยนแปลงของข้อมูล หน้า : " + main_key);
+
+				  			for (const [sub_key, sub_value ] of Object.entries(data_new_5vi[main_key])) {
+
+					  			if (data_new_5vi[main_key][sub_key] === null) {
+						  			data_new_5vi[main_key][sub_key] = '';
+						  		}
+
+					  			// console.log(" ==>> " + sub_key + " <<== ");
+					  			// console.log(data_new_5vi[main_key][sub_key]);
+
+					  			if( start_data_arr[main_key][sub_key] == data_new_5vi[main_key][sub_key] ){
+					  				// console.log(main_key + " / หัวข้อ : " + sub_key);
+					  				// console.log(">> ข้อมูล ไม่มี การเปลี่ยนแปลง <<");
+					  			}else{
+					  				// console.log(main_key + " / หัวข้อ : " + sub_key);
+					  				// console.log(">> ข้อมูล มี การเปลี่ยนแปลง <<");
+					  				// console.log("จาก " + start_data_arr[main_key][sub_key] + " | เปลี่ยนเป็น " + data_new_5vi[main_key][sub_key]);
+
+					  				// แจ้งเตือนข้อมูลเปลี่ยนแปลง
+		        					alet_new_data('form_yellow' , main_key , sub_key , data_new_5vi[main_key][sub_key] , start_data_arr[main_key][sub_key]);
+					  			}
+					  			
+								// console.log("---------------------------------------");
+
+					  		}
+
 				  		}
+
+				  		
+						// console.log("---------------------------------------------------------");
+						// console.log("---------------------------------------------------------");
+
+
 					}
-            	}
+
+					// console.log("start_data_arr ข้อมูล หลัง อัพเดท");
+					// console.log(start_data_arr);
+
+					// console.log("*************************************************");
+					// console.log("*************************************************");
+
+				}
+
 
             	setTimeout(function() {
 			        check_color_btn(null);
@@ -2498,22 +2584,22 @@
 
     }
 
-    function edit_form_yellow(key,value,old){
+    function edit_form_yellow(main_key , sub_key , value , old){
 
-		console.log("-------------------------------------------");
-		console.log(">>> SAVE NEW DATA <<<");
-		console.log(key + " >> " + value);
-		console.log("--------------------------------------------");
+		// console.log("-------------------------------------------");
+		// console.log(">>> SAVE NEW DATA <<<");
+		// console.log(main_key + " : " + sub_key + " >> " + value);
+		// console.log("--------------------------------------------");
 
-		start_data_arr[key] = value ;
-		data_arr[key] = value ;
+		// start_data_arr[main_key][sub_key] = value ;
+		// data_arr[key] = value ;
 
 		//  radio
-		if (key === 'be_notified' || key === 'idc' || key === 'rc' || key === 'treatment' || key === 'sub_treatment' || key === 'owner_registration') {
-			console.log("radio");
-			if (value === null) {
+		if (sub_key === 'be_notified' || sub_key === 'idc' || sub_key === 'rc' || sub_key === 'treatment' || sub_key === 'sub_treatment' || sub_key === 'owner_registration') {
+			// console.log("radio");
+			if (value === null || value === '') {
 
-				let key_radio = document.getElementsByName(key);
+				let key_radio = document.getElementsByName(sub_key);
 
 		        for (let iov = 0, length = key_radio.length; iov < length; iov++) { 
 		            if (key_radio[iov].checked) {
@@ -2522,19 +2608,19 @@
 		        }
 
 			}else{
-				document.querySelector('[data-'+key+'="'+ value +'"]').checked = true;
+				document.querySelector('[data-'+sub_key+'="'+ value +'"]').checked = true;
 			}
 
-			if (key === 'treatment') {
+			if (sub_key === 'treatment') {
 				check_treatment();
 				reset_sub_treatment();
 			}
 		}
 		// cheeck box
-		else if (key === 'symptom' || key === 'submission_criteria' || key === 'communication_hospital') {
-			console.log("cheeck box");
+		else if (sub_key === 'symptom' || sub_key === 'submission_criteria' || sub_key === 'communication_hospital') {
+			// console.log("cheeck box");
 
-			let key_cheeck_box = document.getElementsByName(key);
+			let key_cheeck_box = document.getElementsByName(sub_key);
 
 	        for (let izi = 0, length = key_cheeck_box.length; izi < length; izi++) { 
 	            if (key_cheeck_box[izi].checked) {
@@ -2542,35 +2628,42 @@
 	            }
 	        }
 
-	        if (value != null) {
+
+	        if ( value ) {
+
 				let data_all_cheeck_box = value.split(",");
+
 				for (let xxi = 0; xxi < data_all_cheeck_box.length; xxi++) {
-			        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[xxi] +'"]').checked = true;
+			        document.querySelector('[data-'+sub_key+'="'+ data_all_cheeck_box[xxi] +'"]').checked = true;
 			    }
 			}
 			
 		}
 		// user_name && phone_user
-		else if(key === 'name_user' || key === 'phone_user'){
-			console.log("usera");
-			document.querySelector('#'+key).value = value;
-			document.querySelector('#u_'+key).innerHTML = value ;
+		else if(sub_key === 'name_user' || sub_key === 'phone_user'){
+			// console.log("usera");
+			document.querySelector('#'+sub_key).value = value;
+			document.querySelector('#u_'+sub_key).innerHTML = value ;
 		}
 		// text area
-		else if(key === 'location_sos' || key === 'symptom_other'){
-			console.log("text area");
-			document.querySelector('[name="'+key+'"]').value = value ;
+		else if(sub_key === 'location_sos' || sub_key === 'symptom_other'){
+			// console.log("text area");
+			document.querySelector('[name="'+sub_key+'"]').value = value ;
 		}
 		// input general
 		else{
-			console.log("input general");
-			document.querySelector('#'+key).value = value;
+			// console.log("input general");
+			document.querySelector('#'+sub_key).value = value;
 		}
 
-        check_go_to(null);
+		if( old ){
+	    	// console.log("บันทึกข้อมูลเข้า DB");
+    	    check_go_to(null);
+		}
+
 
 		// send_save_data(null);
-		// btn_save_data();
+		// btn_save_data_animation();
 		setTimeout(function() {
 	        check_color_btn(null);
         }, 1000);
@@ -2599,7 +2692,7 @@
 
 		check_color_btn(active);
 		send_save_data(active);
-		btn_save_data();
+		btn_save_data_animation();
 
 	}
 
@@ -2609,7 +2702,7 @@
 		let active = window.location.href.split('#step-')[1];
 
 		form_yellow_current_topic = click_to ;
-		console.log("ปัจจุบันอยู่ที่หน้า >> " + form_yellow_current_topic);
+		// console.log("ปัจจุบันอยู่ที่หน้า >> " + form_yellow_current_topic);
 
 			// console.log("active >> " + active_sp[2]);
 
@@ -2618,7 +2711,7 @@
 
 		send_save_data(active);
 		check_color_btn(active);
-		btn_save_data();
+		btn_save_data_animation();
 	}
 
 	function check_click_rc(){
@@ -2666,11 +2759,21 @@
 
 	function send_save_data(active){
 
+		if (!active) {
+			active = form_yellow_current_topic ;
+		}
+
 		// check_before_save_form_yellow(active);
 		confirm_send_save_data(active);
 	}
 
 	function confirm_send_save_data(active){
+
+		// console.log('----------------------------');
+		// console.log("confirm_send_save_data");
+		// console.log("กำลังจะบันทึกหน้าที่ >> " + active);
+		// console.log("กำลังไปที่หน้า >> " + form_yellow_current_topic);
+		// console.log('----------------------------');
 
 		// ---------------------------- ข้อใน form ----------------------------//
 	    // ==>> 1
@@ -2780,12 +2883,20 @@
 		let patient_vn_1 = document.querySelector('[name="patient_vn_1"]'); 
 		let delivered_province_1 = document.querySelector('[name="delivered_province_1"]'); 
 		let delivered_hospital_1 = document.querySelector('[name="delivered_hospital_1"]'); 
+
 		let patient_name_2 = document.querySelector('[name="patient_name_2"]'); 
 		let patient_age_2 = document.querySelector('[name="patient_age_2"]'); 
 		let patient_hn_2 = document.querySelector('[name="patient_hn_2"]'); 
 		let patient_vn_2 = document.querySelector('[name="patient_vn_2"]'); 
 		let delivered_province_2 = document.querySelector('[name="delivered_province_2"]'); 
 		let delivered_hospital_2 = document.querySelector('[name="delivered_hospital_2"]'); 
+
+		let patient_name_3 = document.querySelector('[name="patient_name_3"]'); 
+		let patient_age_3 = document.querySelector('[name="patient_age_3"]'); 
+		let patient_hn_3 = document.querySelector('[name="patient_hn_3"]'); 
+		let patient_vn_3 = document.querySelector('[name="patient_vn_3"]'); 
+		let delivered_province_3 = document.querySelector('[name="delivered_province_3"]'); 
+		let delivered_hospital_3 = document.querySelector('[name="delivered_hospital_3"]'); 
 
 		let submission_criteria = document.getElementsByClassName('submission_criteria');
 		let submission_criteria_value = "" ;
@@ -2825,229 +2936,209 @@
 
 		// ------------------------------------------------------------------------------------------------------------
 
-		// switch(active) {
-		//   	case '1':
-		//     	data_arr = {
-		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-		// 	        "be_notified" : be_notified_value,
-		// 	        "name_user" : name_user.value,
-		// 	        "phone_user" : phone_user.value,
-		// 	        "lat" : lat.value,
-		// 	        "lng" : lng.value,
-		// 	        "location_sos" : location_sos.value,
-		// 	    };
-		//     break;
-		//   	case '2':
-		//     	data_arr = {
-		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-		// 	        "symptom" : symptom_value,
-		// 	    };
-		//     break;
-		// 	case '3':
-		//     	data_arr = {
-		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-		// 	        "symptom_other" : symptom_other.value,
-		// 	    };
-		//     break;
-		//     case '4':
-		//     	data_arr = {
-		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-		// 	        "idc" : idc_value,
-		// 	    };
-		//     break;
-		//     case '5':
-		//     	data_arr = {
-		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-		// 	        "vehicle_type" : vehicle_type_value,
-		// 	        "operating_suit_type" : operating_suit_type_value,
-		// 	        "operation_unit_name" : operation_unit_name.value,
-		// 	        "action_set_name" : action_set_name.value,
-		// 	        "time_create_sos" : time_create_sos.value,
-		// 	        "time_command" : time_command.value,
-		// 	        "time_go_to_help" : time_go_to_help.value,
-		// 	        "time_to_the_scene" : time_to_the_scene.value,
-		// 	        "time_leave_the_scene" : time_leave_the_scene.value,
-		// 	        "time_hospital" : time_hospital.value,
-		// 	        "time_to_the_operating_base" : time_to_the_operating_base.value,
-		// 	        "km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
-		// 	        "km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
-		// 	        "km_hospital" : km_hospital.value,
-		// 	        "km_operating_base" : km_operating_base.value,
-		// 	    };
+		switch(active) {
+		  	case '1':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "be_notified" : be_notified_value,
+			        "name_user" : name_user.value,
+			        "phone_user" : phone_user.value,
+			        "lat" : lat.value,
+			        "lng" : lng.value,
+			        "location_sos" : location_sos.value,
+			    };
+		    break;
+		  	case '2':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "symptom" : symptom_value,
+			    };
+		    break;
+			case '3':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "symptom_other" : symptom_other.value,
+			    };
+		    break;
+		    case '4':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "idc" : idc_value,
+			    };
+		    break;
+		    case '5':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        // "vehicle_type" : vehicle_type_value,
+			        // "operating_suit_type" : operating_suit_type_value,
+			        // "operation_unit_name" : operation_unit_name.value,
+			        // "action_set_name" : action_set_name.value,
+			        // "time_create_sos" : time_create_sos.value,
+			        // "time_command" : time_command.value,
+			        // "time_go_to_help" : time_go_to_help.value,
+			        // "time_to_the_scene" : time_to_the_scene.value,
+			        // "time_leave_the_scene" : time_leave_the_scene.value,
+			        // "time_hospital" : time_hospital.value,
+			        // "time_to_the_operating_base" : time_to_the_operating_base.value,
+			        // "km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
+			        // "km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
+			        // "km_hospital" : km_hospital.value,
+			        // "km_operating_base" : km_operating_base.value,
+			    };
 
-		// 	    if (operating_suit_type_value) {
-		// 	    	document.querySelector('#input_select_level').value = operating_suit_type_value;
-		// 	    }
+			    if (operating_suit_type_value) {
+			    	document.querySelector('#input_select_level').value = operating_suit_type_value;
+			    }
 
-		// 	    if (vehicle_type_value) {
-        //     		document.querySelector('#input_vehicle_type').value = vehicle_type_value;
-		// 	    }
+			    if (vehicle_type_value) {
+            		document.querySelector('#input_vehicle_type').value = vehicle_type_value;
+			    }
 			   
-		//     break;
-		//     case '6':
+		    break;
+		    case '6':
 
-		//     	if ( rc_value && rc_value === "ดำ" ) {
-		//     		data_arr = {
-		// 		        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-		// 		        "rc" : rc_value,
-		// 		        "rc_black_text" : rc_black_text.value,
-		// 		    };
-		//     	}else{
-		//     		data_arr = {
-		// 		        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-		// 		        "rc" : rc_value,
-		// 		    };
-		//     	}
+		    	if ( rc_value && rc_value === "ดำ" ) {
+		    		data_arr = {
+				        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+				        "rc" : rc_value,
+				        "rc_black_text" : rc_black_text.value,
+				    };
+		    	}else{
+		    		data_arr = {
+				        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+				        "rc" : rc_value,
+				    };
+		    	}
 		    	
-		//     break;
-		//     case '7':
-		//     	data_arr = {
-		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-		// 	        "treatment" : treatment_value,
-		// 	        "sub_treatment" : sub_treatment_value,
-		// 	    };
-		//     break;
-		//     case '8':
-		//     	data_arr = {
-		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-		// 	        "patient_name_1" : patient_name_1.value,
-		// 	        "patient_age_1" : patient_age_1.value,
-		// 	        "patient_hn_1" : patient_hn_1.value,
-		// 	        "patient_vn_1" : patient_vn_1.value,
-		// 	        "delivered_province_1" : delivered_province_1.value,
-		// 	        "delivered_hospital_1" : delivered_hospital_1.value,
-		// 	        "patient_name_2" : patient_name_2.value,
-		// 	        "patient_age_2" : patient_age_2.value,
-		// 	        "patient_hn_2" : patient_hn_2.value,
-		// 	        "patient_vn_2" : patient_vn_2.value,
-		// 	        "delivered_province_2" : delivered_province_2.value,
-		// 	        "delivered_hospital_2" : delivered_hospital_2.value,
-		// 	        "submission_criteria" : submission_criteria_value,
-		// 	        "communication_hospital" : communication_hospital_value,
-		// 	    };
-		// 	    // console.log(data_arr);
-		//     break;
-		//     case '9':
-		//     	data_arr = {
-		// 	        "sos_help_center_id" : "{{ $sos_help_center->id }}",
-		// 	        "registration_category" : registration_category.value,
-		// 	        "registration_number" : registration_number.value,
-		// 	        "registration_province" : registration_province.value,
-		// 	        "owner_registration" : owner_registration_value,
-		// 	    }; 
-		//     break;
-		// 	default :
-		// 		data_arr = {
-		// 			"sos_help_center_id" : "{{ $sos_help_center->id }}",
-		// 			"be_notified" : be_notified_value,
-		// 			"name_user" : name_user.value,
-		// 			"phone_user" : phone_user.value,
-		// 			"lat" : lat.value,
-		// 			"lng" : lng.value,
-		// 			"location_sos" : location_sos.value,
-		// 			"symptom" : symptom_value,
-		// 			"symptom_other" : symptom_other.value,
-		// 			"idc" : idc_value,
-		// 			"vehicle_type" : vehicle_type_value,
-		// 			"operating_suit_type" : operating_suit_type_value,
-		// 			"operation_unit_name" : operation_unit_name.value,
-		// 			"action_set_name" : action_set_name.value,
-		// 			"time_create_sos" : time_create_sos.value,
-		// 			"time_command" : time_command.value,
-		// 			"time_go_to_help" : time_go_to_help.value,
-		// 			"time_to_the_scene" : time_to_the_scene.value,
-		// 			"time_leave_the_scene" : time_leave_the_scene.value,
-		// 			"time_hospital" : time_hospital.value,
-		// 			"time_to_the_operating_base" : time_to_the_operating_base.value,
-		// 			"km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
-		// 			"km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
-		// 			"km_hospital" : km_hospital.value,
-		// 			"km_operating_base" : km_operating_base.value,
-		// 			"rc" : rc_value,
-		// 			"rc_black_text" : rc_black_text.value,
-		// 			"treatment" : treatment_value,
-		// 			"sub_treatment" : sub_treatment_value,
-		// 			"patient_name_1" : patient_name_1.value,
-		// 			"patient_age_1" : patient_age_1.value,
-		// 			"patient_hn_1" : patient_hn_1.value,
-		// 			"patient_vn_1" : patient_vn_1.value,
-		// 			"delivered_province_1" : delivered_province_1.value,
-		// 			"delivered_hospital_1" : delivered_hospital_1.value,
-		// 			"patient_name_2" : patient_name_2.value,
-		// 			"patient_age_2" : patient_age_2.value,
-		// 			"patient_hn_2" : patient_hn_2.value,
-		// 			"patient_vn_2" : patient_vn_2.value,
-		// 			"delivered_province_2" : delivered_province_2.value,
-		// 			"delivered_hospital_2" : delivered_hospital_2.value,
-		// 			"submission_criteria" : submission_criteria_value,
-		// 			"communication_hospital" : communication_hospital_value,
-		// 			"registration_category" : registration_category.value,
-		// 			"registration_number" : registration_number.value,
-		// 			"registration_province" : registration_province.value,
-		// 			"owner_registration" : owner_registration_value,
-		// 		}
-
-		// 		if (operating_suit_type_value) {
-		// 	    	document.querySelector('#input_select_level').value = operating_suit_type_value;
-		// 	    }
-
-		// 	    if (vehicle_type_value) {
-	    //     		document.querySelector('#input_vehicle_type').value = vehicle_type_value;
-		// 	    }
-
-		//     break;
-		// }
+		    break;
+		    case '7':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "treatment" : treatment_value,
+			        "sub_treatment" : sub_treatment_value,
+			    };
+		    break;
+		    case '8':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "patient_name_1" : patient_name_1.value,
+			        "patient_age_1" : patient_age_1.value,
+			        "patient_hn_1" : patient_hn_1.value,
+			        "patient_vn_1" : patient_vn_1.value,
+			        "delivered_province_1" : delivered_province_1.value,
+			        "delivered_hospital_1" : delivered_hospital_1.value,
+			        "patient_name_2" : patient_name_2.value,
+			        "patient_age_2" : patient_age_2.value,
+			        "patient_hn_2" : patient_hn_2.value,
+			        "patient_vn_2" : patient_vn_2.value,
+			        "delivered_province_2" : delivered_province_2.value,
+			        "delivered_hospital_2" : delivered_hospital_2.value,
+			        "patient_name_3" : patient_name_3.value,
+			        "patient_age_3" : patient_age_3.value,
+			        "patient_hn_3" : patient_hn_3.value,
+			        "patient_vn_3" : patient_vn_3.value,
+			        "delivered_province_3" : delivered_province_3.value,
+			        "delivered_hospital_3" : delivered_hospital_3.value,
+			        "submission_criteria" : submission_criteria_value,
+			        "communication_hospital" : communication_hospital_value,
+			    };
+			    // console.log(data_arr);
+		    break;
+		    case '9':
+		    	data_arr = {
+			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "registration_category" : registration_category.value,
+			        "registration_number" : registration_number.value,
+			        "registration_province" : registration_province.value,
+			        "owner_registration" : owner_registration_value,
+			    }; 
+		    break;
+			
+		}
 
 		// ----------------------------------------------------------------------------
-		data_arr = {
+
+		// console.log('-- data_arr --');
+		// console.log(data_arr);
+		// console.log('-- -- -- -- --');
+
+		all_data_arr = {
 			"sos_help_center_id" : "{{ $sos_help_center->id }}",
-			"be_notified" : be_notified_value,
-			"name_user" : name_user.value,
-			"phone_user" : phone_user.value,
-			"lat" : lat.value,
-			"lng" : lng.value,
-			"location_sos" : location_sos.value,
-			"symptom" : symptom_value,
-			"symptom_other" : symptom_other.value,
-			"idc" : idc_value,
-			// "vehicle_type" : vehicle_type_value,
-			// "operating_suit_type" : operating_suit_type_value,
-			// "operation_unit_name" : operation_unit_name.value,
-			// "action_set_name" : action_set_name.value,
-			// "time_create_sos" : time_create_sos.value,
-			// "time_command" : time_command.value,
-			// "time_go_to_help" : time_go_to_help.value,
-			// "time_to_the_scene" : time_to_the_scene.value,
-			// "time_leave_the_scene" : time_leave_the_scene.value,
-			// "time_hospital" : time_hospital.value,
-			// "time_to_the_operating_base" : time_to_the_operating_base.value,
-			// "km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
-			// "km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
-			// "km_hospital" : km_hospital.value,
-			// "km_operating_base" : km_operating_base.value,
-			"rc" : rc_value,
-			"rc_black_text" : rc_black_text.value,
-			"treatment" : treatment_value,
-			"sub_treatment" : sub_treatment_value,
-			"patient_name_1" : patient_name_1.value,
-			"patient_age_1" : patient_age_1.value,
-			"patient_hn_1" : patient_hn_1.value,
-			"patient_vn_1" : patient_vn_1.value,
-			"delivered_province_1" : delivered_province_1.value,
-			"delivered_hospital_1" : delivered_hospital_1.value,
-			"patient_name_2" : patient_name_2.value,
-			"patient_age_2" : patient_age_2.value,
-			"patient_hn_2" : patient_hn_2.value,
-			"patient_vn_2" : patient_vn_2.value,
-			"delivered_province_2" : delivered_province_2.value,
-			"delivered_hospital_2" : delivered_hospital_2.value,
-			"submission_criteria" : submission_criteria_value,
-			"communication_hospital" : communication_hospital_value,
-			"registration_category" : registration_category.value,
-			"registration_number" : registration_number.value,
-			"registration_province" : registration_province.value,
-			"owner_registration" : owner_registration_value,
+			"page_1" : {
+				"be_notified" : be_notified_value,
+				"name_user" : name_user.value,
+				"phone_user" : phone_user.value,
+				"lat" : lat.value,
+				"lng" : lng.value,
+				"location_sos" : location_sos.value,
+			},
+			"page_2" : {
+				"symptom" : symptom_value,
+			},
+			"page_3" : {
+				"symptom_other" : symptom_other.value,
+			},
+			"page_4" : {
+				"idc" : idc_value,
+			},
+			"page_5" : {
+				// "vehicle_type" : vehicle_type_value,
+				// "operating_suit_type" : operating_suit_type_value,
+				// "operation_unit_name" : operation_unit_name.value,
+				// "action_set_name" : action_set_name.value,
+				// "time_create_sos" : time_create_sos.value,
+				// "time_command" : time_command.value,
+				// "time_go_to_help" : time_go_to_help.value,
+				// "time_to_the_scene" : time_to_the_scene.value,
+				// "time_leave_the_scene" : time_leave_the_scene.value,
+				// "time_hospital" : time_hospital.value,
+				// "time_to_the_operating_base" : time_to_the_operating_base.value,
+				// "km_create_sos_to_go_to_help" : km_create_sos_to_go_to_help.value,
+				// "km_to_the_scene_to_leave_the_scene" : km_to_the_scene_to_leave_the_scene.value,
+				// "km_hospital" : km_hospital.value,
+				// "km_operating_base" : km_operating_base.value,
+			},
+			"page_6" : {
+				"rc" : rc_value,
+				"rc_black_text" : rc_black_text.value,
+			},
+			"page_7" : {
+				"treatment" : treatment_value,
+				"sub_treatment" : sub_treatment_value,
+			},
+			"page_8" : {
+				"patient_name_1" : patient_name_1.value,
+				"patient_age_1" : patient_age_1.value,
+				"patient_hn_1" : patient_hn_1.value,
+				"patient_vn_1" : patient_vn_1.value,
+				"delivered_province_1" : delivered_province_1.value,
+				"delivered_hospital_1" : delivered_hospital_1.value,
+				"patient_name_2" : patient_name_2.value,
+				"patient_age_2" : patient_age_2.value,
+				"patient_hn_2" : patient_hn_2.value,
+				"patient_vn_2" : patient_vn_2.value,
+				"delivered_province_2" : delivered_province_2.value,
+				"delivered_hospital_2" : delivered_hospital_2.value,
+				"patient_name_3" : patient_name_3.value,
+		        "patient_age_3" : patient_age_3.value,
+		        "patient_hn_3" : patient_hn_3.value,
+		        "patient_vn_3" : patient_vn_3.value,
+		        "delivered_province_3" : delivered_province_3.value,
+		        "delivered_hospital_3" : delivered_hospital_3.value,
+				"submission_criteria" : submission_criteria_value,
+				"communication_hospital" : communication_hospital_value,
+			},
+			"page_9" : {
+				"registration_category" : registration_category.value,
+				"registration_number" : registration_number.value,
+				"registration_province" : registration_province.value,
+				"owner_registration" : owner_registration_value,
+			},
+			
 		}
+
+		// console.log('**-- all_data_arr --**')
+		// console.log(all_data_arr);
 
 		if (operating_suit_type_value) {
 	    	document.querySelector('#input_select_level').value = operating_suit_type_value;
@@ -3061,11 +3152,12 @@
 		
 	  	// console.log(">>>>>>>>>> DATA ARRAY <<<<<<<<<<");
 
-		for (const [key, value] of Object.entries(data_arr)) {
-	  		start_data_arr[key] = value ;
-	  		// console.log(key + ' >> ' + value);
-		}
+	  	start_data_arr = all_data_arr ;
 		check_start_data_arr = "Yes" ;
+
+		// for (const [key, value] of Object.entries(data_arr)) {
+	  	// 	// console.log(key + ' >> ' + value);
+		// }
 
 		// ---------------------------- ส่งข้อมูลไปอัพเดท ----------------------------//
 		fetch("{{ url('/') }}/api/send_save_data/form_yellow", {
@@ -3665,6 +3757,30 @@
 			
 			}
 		}
+
+	}
+
+	function update_page_before_click_button(type){
+
+		// console.log("///////////////////////////");
+		// console.log("update_page_before_click_button");
+		// console.log("type >> " + type);
+		// console.log("///////////////////////////");
+
+		if(type == "other"){
+
+			page_before_click_button = form_yellow_current_topic ;
+
+			go_to_form_data(1);
+
+			// console.log("page_before_click_button  >> " + page_before_click_button);
+			// console.log("form_yellow_current_topic  >> " + form_yellow_current_topic);
+
+		}else{
+			go_to_form_data(page_before_click_button);
+			page_before_click_button = null ;
+		}
+		
 
 	}
 
