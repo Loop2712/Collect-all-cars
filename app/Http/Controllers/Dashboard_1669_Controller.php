@@ -25,6 +25,7 @@ class Dashboard_1669_Controller extends Controller
     function dashboard_index_1669(Request $request)
     {
         $user_login = Auth::user();
+        $data_command_user = Data_1669_officer_command::where('user_id' , $user_login->id)->first();
 
         //==================================================================================================================//
                                                         //  ข้อมูลเจ้าหน้าที่
@@ -63,8 +64,7 @@ class Dashboard_1669_Controller extends Controller
 
         // สำหรับนับจำนวนสั่งการเฉยๆไม่ต้องเอาไปทำอะไรต่อ
         $count_command_1669_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-        ->select('sos_help_centers.*', DB::raw('COUNT(*) as count_command_by'))
-        ->groupBy('command_by')
+        ->where('command_by', $data_command_user->id)
         ->get();
 
         // echo "<pre>";
