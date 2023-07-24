@@ -242,7 +242,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="font-weight-bold mb-0" >การสั่งการมากที่สุด {{count($count_command_1669_data)}} อันดับ</h5>
+                        <h5 class="font-weight-bold mb-0" >การสั่งการมากที่สุด {{count($command_1669_data)}} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -300,7 +300,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{$top5_command->count_command_by}}</td>
+                                    <td>{{ count($count_command_1669_data) }}</td>
                                     <td>{{$count_status_success}}</td>
                                     <td>{{$count_status_helping}}</td>
                                 </tr>
