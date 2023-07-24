@@ -56,16 +56,25 @@ class Dashboard_1669_Controller extends Controller
 
         // การสั่งการมากที่สุด 5 อันดับ
         $command_1669_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        ->where('operating_unit_id' , "!=" , null)
         ->select('sos_help_centers.*', DB::raw('COUNT(*) as count_command_by'))
         ->groupBy('command_by')
         ->get();
 
+        // echo "<pre>";
+        // print_r($command_1669_data);
+        // echo "<pre>";
+        // exit();
+
+
         // คะแนนเฉลี่ยของหน่วย 5 อันดับ  /// ยืนยันความถูกต้องจาก SENIOR
         $avg_score_unit_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        ->where('operating_unit_id' , "!=" , null)
         ->select('operating_unit_id', DB::raw('AVG(score_total) as avg_score_total'))
         ->groupBy('operating_unit_id')
         ->orderBy('avg_score_total', 'desc') // เรียงจากมากไปน้อย
         ->get();
+
 
 
         //จำนวนยานพาหนะทั้งหมด    /// ข้ามไว้ ////
@@ -80,6 +89,7 @@ class Dashboard_1669_Controller extends Controller
 
         // คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด 5 อันดับ
         $avg_score_by_case = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        ->where('helper_id' , "!=" , null)
         ->select('sos_help_centers.*', DB::raw('AVG(score_total) as avg_score_by_case'))
         ->groupBy('helper_id')
         ->orderBy('avg_score_by_case', 'desc') // เรียงจากมากไปน้อย
@@ -151,15 +161,16 @@ class Dashboard_1669_Controller extends Controller
 
         // วนลูปเพื่อตรวจสอบและเก็บข้อมูลที่ตรงเงื่อนไข
         foreach ($command_1669_data as $data) {
-            $address_parts = explode('/', $data->address);
-            $current_result = $address_parts[1];
+            if( !empty($data->address) ){
+                $address_parts = explode('/', $data->address);
+                $current_result = $address_parts[1];
 
-            // ข้อมูลตรงเงื่อนไข ให้เก็บใน $sos_area_top5_filtered_data
-            $sos_area_top5_filtered_data[] = $current_result;
+                // ข้อมูลตรงเงื่อนไข ให้เก็บใน $sos_area_top5_filtered_data
+                $sos_area_top5_filtered_data[] = $current_result;
 
-            // เพิ่มค่าในตัวแปร $count_sos_area_top5_filtered_data ให้กับค่าในฟิลด์ $current_result โดยใช้ค่าเริ่มต้นเป็น 0 หากยังไม่มีค่านี้ใน $count_sos_area_top5_filtered_data
-            $count_sos_area_top5_filtered_data[$current_result] = isset($count_sos_area_top5_filtered_data[$current_result]) ? $count_sos_area_top5_filtered_data[$current_result] + 1 : 1;
-
+                // เพิ่มค่าในตัวแปร $count_sos_area_top5_filtered_data ให้กับค่าในฟิลด์ $current_result โดยใช้ค่าเริ่มต้นเป็น 0 หากยังไม่มีค่านี้ใน $count_sos_area_top5_filtered_data
+                $count_sos_area_top5_filtered_data[$current_result] = isset($count_sos_area_top5_filtered_data[$current_result]) ? $count_sos_area_top5_filtered_data[$current_result] + 1 : 1;
+            }
 
         }
 
