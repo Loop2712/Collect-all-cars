@@ -286,8 +286,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 
 <style type="text/css">
-    #map {
-      height: 100%;
+    #sos_map_organization {
+      height: calc(40vh);
     }
 </style>
 
@@ -301,9 +301,9 @@
     function initMap() {
         console.log("MAPPPPPP");
         // 13.7248936,100.4930264 lat lng ประเทศไทย
-        map = new google.maps.Map(document.getElementById("sos_map_organization"), {
+        let map = new google.maps.Map(document.getElementById("sos_map_organization"), {
             center: {lat: 13.7248936, lng: 100.4930264 },
-            zoom: 14,
+            zoom: 5,
         });
 
         // let all_lat = [];
