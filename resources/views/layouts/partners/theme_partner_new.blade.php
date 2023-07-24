@@ -3189,6 +3189,8 @@
 
 					if(result['forward_operation_to']){
 
+						console.log('to');
+
                         fetch("{{ url('/') }}/api/get_forward_operation/" + result['forward_operation_to'] )
                             .then(response => response.json())
                             .then(result_forward => {
@@ -3204,6 +3206,8 @@
 
                     }else if(result['forward_operation_from']){
 
+						console.log('from');
+
                         fetch("{{ url('/') }}/api/get_forward_operation/" + result['forward_operation_from'] )
                             .then(response => response.json())
                             .then(result_forward => {
@@ -3218,6 +3222,8 @@
                             });
 
                     }else{
+						console.log('else');
+
                         alet_new_sos_1669(result);
                     }
 
