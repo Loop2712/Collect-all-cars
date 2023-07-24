@@ -2284,7 +2284,7 @@ class Sos_help_centerController extends Controller
         $requestData['forward_operation_from'] = $data_sos_help_center->id ;
         $requestData['photo_sos'] = $data_sos_help_center->photo_sos ;
         $requestData['create_by'] = "forward_operation_from - " . $data_sos_help_center->id;
-        $requestData['notify'] = $province_name;
+        $requestData['notify'] = $data_sos_help_center->command_by .' - '. $province_name;
         $requestData['status'] = 'รับแจ้งเหตุ';
         $requestData['time_create_sos'] = $time_create_sos;
         
