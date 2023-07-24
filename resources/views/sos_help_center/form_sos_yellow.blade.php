@@ -2426,7 +2426,7 @@
     function check_start_data_form_yellow(){
 
 		// console.log('----------------------------');
-		// console.log("** Check data form yellow **");
+		console.log("** Check data form yellow **");
 		// console.log("ตอนนี้อยู่ที่หน้า >> " + form_yellow_current_topic);
 		// console.log("กำลังจะอัพเดทหน้าอื่นๆ และแจ้งเตือนหน้า "+ form_yellow_current_topic + " ถ้าข้อมูลมีการเปลี่ยนแปลง");
 		// console.log('----------------------------');
@@ -2456,7 +2456,7 @@
 
 				  		let key_title = main_key.split('_')[1];
 
-				  		if (key_title != form_yellow_current_topic) {
+				  		if (key_title != form_yellow_current_topic && key_title != '5') {
 
 				  			// หัวข้อ main_key ไม่เท่ากับหน้าปัจจุบัน ให้เข้าไปทำกับอัพเดทข้อมูล
 				  			// console.log("อัพเดทข้อมูล หน้า : " + main_key);
@@ -2524,7 +2524,7 @@
 
 					  		}
 
-				  		}else if(key_title == form_yellow_current_topic){
+				  		}else if(key_title == form_yellow_current_topic && key_title != '5'){
 
 				  			// หัวข้อ main_key ตรงกับหน้าที่เปิดอยู่ ตรวจสอบการเปลี่ยนแปลงของข้อมูล
 				  			// console.log("ตรวจสอบการเปลี่ยนแปลงของข้อมูล หน้า : " + main_key);
@@ -2769,11 +2769,11 @@
 
 	function confirm_send_save_data(active){
 
-		// console.log('----------------------------');
-		// console.log("confirm_send_save_data");
-		// console.log("กำลังจะบันทึกหน้าที่ >> " + active);
-		// console.log("กำลังไปที่หน้า >> " + form_yellow_current_topic);
-		// console.log('----------------------------');
+		console.log('----------------------------');
+		console.log("confirm_send_save_data");
+		console.log("กำลังจะบันทึกหน้าที่ >> " + active);
+		console.log("กำลังไปที่หน้า >> " + form_yellow_current_topic);
+		console.log('----------------------------');
 
 		// ---------------------------- ข้อใน form ----------------------------//
 	    // ==>> 1
@@ -2940,6 +2940,8 @@
 		  	case '1':
 		    	data_arr = {
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "page" : "1",
+			        "start_data_arr" : start_data_arr,
 			        "be_notified" : be_notified_value,
 			        "name_user" : name_user.value,
 			        "phone_user" : phone_user.value,
@@ -2951,24 +2953,32 @@
 		  	case '2':
 		    	data_arr = {
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "page" : "2",
+			        "start_data_arr" : start_data_arr,
 			        "symptom" : symptom_value,
 			    };
 		    break;
 			case '3':
 		    	data_arr = {
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "page" : "3",
+			        "start_data_arr" : start_data_arr,
 			        "symptom_other" : symptom_other.value,
 			    };
 		    break;
 		    case '4':
 		    	data_arr = {
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "page" : "4",
+			        "start_data_arr" : start_data_arr,
 			        "idc" : idc_value,
 			    };
 		    break;
 		    case '5':
 		    	data_arr = {
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "page" : "5",
+			        "start_data_arr" : start_data_arr,
 			        // "vehicle_type" : vehicle_type_value,
 			        // "operating_suit_type" : operating_suit_type_value,
 			        // "operation_unit_name" : operation_unit_name.value,
@@ -3000,12 +3010,16 @@
 		    	if ( rc_value && rc_value === "ดำ" ) {
 		    		data_arr = {
 				        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        	"page" : "6",
+			        	"start_data_arr" : start_data_arr,
 				        "rc" : rc_value,
 				        "rc_black_text" : rc_black_text.value,
 				    };
 		    	}else{
 		    		data_arr = {
 				        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        	"page" : "6",
+			        	"start_data_arr" : start_data_arr,
 				        "rc" : rc_value,
 				    };
 		    	}
@@ -3014,6 +3028,8 @@
 		    case '7':
 		    	data_arr = {
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "page" : "7",
+			        "start_data_arr" : start_data_arr,
 			        "treatment" : treatment_value,
 			        "sub_treatment" : sub_treatment_value,
 			    };
@@ -3021,6 +3037,8 @@
 		    case '8':
 		    	data_arr = {
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "page" : "8",
+			        "start_data_arr" : start_data_arr,
 			        "patient_name_1" : patient_name_1.value,
 			        "patient_age_1" : patient_age_1.value,
 			        "patient_hn_1" : patient_hn_1.value,
@@ -3047,6 +3065,8 @@
 		    case '9':
 		    	data_arr = {
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+			        "page" : "9",
+			        "start_data_arr" : start_data_arr,
 			        "registration_category" : registration_category.value,
 			        "registration_number" : registration_number.value,
 			        "registration_province" : registration_province.value,
@@ -3058,9 +3078,9 @@
 
 		// ----------------------------------------------------------------------------
 
-		// console.log('-- data_arr --');
-		// console.log(data_arr);
-		// console.log('-- -- -- -- --');
+		console.log('-------- data_arr --------');
+		console.log(data_arr);
+		console.log('--------------------------------');
 
 		all_data_arr = {
 			"sos_help_center_id" : "{{ $sos_help_center->id }}",
@@ -3167,9 +3187,12 @@
                 'Content-Type': 'application/json'
             }
         }).then(function (response){
-            // return response.text();
+            return response.json();
         }).then(function(data){
-            // console.log(data);
+            console.log(data);
+            if (data['check_data_change'] == "Yes") {
+            	Stop_reface_check_form_yellow();
+            }
         }).catch(function(error){
             // console.error(error);
         });

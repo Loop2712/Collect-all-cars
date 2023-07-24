@@ -897,36 +897,158 @@ class Sos_help_centerController extends Controller
         $data_sos_help_center = Sos_help_center::where('id',$requestData['sos_help_center_id'])->first();
 
         $data_Sos_1669 = Sos_1669_form_yellow::where('sos_help_center_id',$requestData['sos_help_center_id'])->first();
-        $data_Sos_1669->update($requestData);
 
-        $date_sos = $data_sos_help_center->created_at ;
-        $result = $date_sos->format('Y-m-d');
+        $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id',$requestData['sos_help_center_id'])->first();
 
-        if (!empty($requestData['time_create_sos'])) {
-            $requestData['time_create_sos'] = $result . " " . $requestData['time_create_sos'];
-        }
-        if (!empty($requestData['time_command'])) {
-            $requestData['time_command'] = $result . " " . $requestData['time_command'];
-        }
-        if (!empty($requestData['time_go_to_help'])) {
-            $requestData['time_go_to_help'] = $result . " " . $requestData['time_go_to_help'];
-        }
-        if (!empty($requestData['time_to_the_scene'])) {
-            $requestData['time_to_the_scene'] = $result . " " . $requestData['time_to_the_scene'];
-        }
-        if (!empty($requestData['time_leave_the_scene'])) {
-            $requestData['time_leave_the_scene'] = $result . " " . $requestData['time_leave_the_scene'];
-        }
-        if (!empty($requestData['time_hospital'])) {
-            $requestData['time_hospital'] = $result . " " . $requestData['time_hospital'];
-        }
-        if (!empty($requestData['time_to_the_operating_base'])) {
-            $requestData['time_to_the_operating_base'] = $result . " " . $requestData['time_to_the_operating_base'];
-        }
+        $data_arr = array();
 
-        $data_sos_help_center->update($requestData);
+        $data_arr["sos_help_center_id"] =  $data_form_yellow->id ;
+
+        $data_arr['page_1']["be_notified"] = $data_form_yellow->be_notified;
+        $data_arr['page_1']["name_user"] = $data_form_yellow->name_user ;
+        $data_arr['page_1']["phone_user"] = $data_form_yellow->phone_user ;
+        $data_arr['page_1']["lat"] = $data_form_yellow->lat ;
+        $data_arr['page_1']["lng"] = $data_form_yellow->lng ;
+        $data_arr['page_1']["location_sos"] = $data_form_yellow->location_sos ;
+
+        $data_arr['page_2']["symptom"] = $data_form_yellow->symptom ;
+
+        $data_arr['page_3']["symptom_other"] = $data_form_yellow->symptom_other ;
+
+        $data_arr['page_4']["idc"] = $data_form_yellow->idc ;
+
+        $data_arr['page_5']["vehicle_type"] = $data_form_yellow->vehicle_type ;
+        $data_arr['page_5']["operating_suit_type"] = $data_form_yellow->operating_suit_type ;
+        $data_arr['page_5']["operation_unit_name"] = $data_form_yellow->operation_unit_name ;
+        $data_arr['page_5']["action_set_name"] = $data_form_yellow->action_set_name ;
+        $data_arr['page_5']["time_create_sos"] = $data_form_yellow->time_create_sos ;
+        $data_arr['page_5']["time_command"] = $data_form_yellow->time_command ;
+        $data_arr['page_5']["time_go_to_help"] = $data_form_yellow->time_go_to_help ;
+        $data_arr['page_5']["time_to_the_scene"] = $data_form_yellow->time_to_the_scene ;
+        $data_arr['page_5']["time_leave_the_scene"] = $data_form_yellow->time_leave_the_scene ;
+        $data_arr['page_5']["time_hospital"] = $data_form_yellow->time_hospital ;
+        $data_arr['page_5']["time_to_the_operating_base"] = $data_form_yellow->time_to_the_operating_base ;
+        $data_arr['page_5']["km_create_sos_to_go_to_help"] = $data_form_yellow->km_create_sos_to_go_to_help ;
+        $data_arr['page_5']["km_to_the_scene_to_leave_the_scene"] = $data_form_yellow->km_to_the_scene_to_leave_the_scene ;
+        $data_arr['page_5']["km_hospital"] = $data_form_yellow->km_hospital ;
+        $data_arr['page_5']["km_operating_base"] = $data_form_yellow->km_operating_base ;
+
+        $data_arr['page_6']["rc"] = $data_form_yellow->rc ;
+        $data_arr['page_6']["rc_black_text"] = $data_form_yellow->rc_black_text ;
+
+        $data_arr['page_7']["treatment"] = $data_form_yellow->treatment ;
+        $data_arr['page_7']["sub_treatment"] = $data_form_yellow->sub_treatment ;
+
+        $data_arr['page_8']["patient_name_1"] = $data_form_yellow->patient_name_1 ;
+        $data_arr['page_8']["patient_age_1"] = $data_form_yellow->patient_age_1 ;
+        $data_arr['page_8']["patient_hn_1"] = $data_form_yellow->patient_hn_1 ;
+        $data_arr['page_8']["patient_vn_1"] = $data_form_yellow->patient_vn_1 ;
+        $data_arr['page_8']["delivered_province_1"] = $data_form_yellow->delivered_province_1 ;
+        $data_arr['page_8']["delivered_hospital_1"] = $data_form_yellow->delivered_hospital_1 ;
+        $data_arr['page_8']["patient_name_2"] = $data_form_yellow->patient_name_2 ;
+        $data_arr['page_8']["patient_age_2"] = $data_form_yellow->patient_age_2 ;
+        $data_arr['page_8']["patient_hn_2"] = $data_form_yellow->patient_hn_2 ;
+        $data_arr['page_8']["patient_vn_2"] = $data_form_yellow->patient_vn_2 ;
+        $data_arr['page_8']["delivered_province_2"] = $data_form_yellow->delivered_province_2 ;
+        $data_arr['page_8']["delivered_hospital_2"] = $data_form_yellow->delivered_hospital_2 ;
+        $data_arr['page_8']["patient_name_3"] = $data_form_yellow->patient_name_3 ;
+        $data_arr['page_8']["patient_age_3"] = $data_form_yellow->patient_age_3 ;
+        $data_arr['page_8']["patient_hn_3"] = $data_form_yellow->patient_hn_3 ;
+        $data_arr['page_8']["patient_vn_3"] = $data_form_yellow->patient_vn_3 ;
+        $data_arr['page_8']["delivered_province_3"] = $data_form_yellow->delivered_province_3 ;
+        $data_arr['page_8']["delivered_hospital_3"] = $data_form_yellow->delivered_hospital_3 ;
+        $data_arr['page_8']["submission_criteria"] = $data_form_yellow->submission_criteria ;
+        $data_arr['page_8']["communication_hospital"] = $data_form_yellow->communication_hospital ;
+
+        $data_arr['page_9']["registration_category"] = $data_form_yellow->registration_category ;
+        $data_arr['page_9']["registration_number"] = $data_form_yellow->registration_number ;
+        $data_arr['page_9']["registration_province"] = $data_form_yellow->registration_province ;
+        $data_arr['page_9']["owner_registration"] = $data_form_yellow->owner_registration ;
+
+        $data_change = [] ;
+        $data_change['check_data_change'] = "No" ;
+
+        // ตรวจสอบค่าใน $data_arr ตามคีย์ที่เหมือนกันกับ $requestData["page"]
+        switch ($requestData["page"]) {
+            case "1":
+                $error_keys = array();
+                foreach ($requestData as $key => $value) {
+                    if( !empty($data_arr['page_1'][$key]) ){
+
+                        $old_data_DB = $data_arr['page_1'][$key] ;
+                        $old_data_WEB = $requestData["start_data_arr"]['page_1'][$key] ;
+                        $new_data = $value ;
+
+                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) ){
+
+                            $data_change['page_1'][$key]['old_data_DB'] = $data_arr['page_1'][$key] ;
+                            $data_change['page_1'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_1'][$key] ;
+                            $data_change['page_1'][$key]['new_data'] = $value ;
+                            $data_change['check_data_change'] = "Yes" ;
+                        
+                        }
+
+                    }
+                }
+
+                break;
+
+            // เพิ่ม case สำหรับ page อื่นๆ ที่คุณต้องการตรวจสอบ
+            case "2":
+                // ตรวจสอบข้อมูลใน $data_arr['page_2'] เช่นเดียวกัน
+                break;
+
+            case "3":
+                // ตรวจสอบข้อมูลใน $data_arr['page_3'] เช่นเดียวกัน
+                break;
+
+            // สามารถเพิ่ม case สำหรับ page อื่นๆ ต่อได้ตามต้องการ
+            default:
+                // echo "ไม่พบข้อมูลสำหรับหน้านี้ใน \$data_arr";
+                break;
+        }
         
-        return "OK" ;
+
+        if($data_change['check_data_change'] == "Yes"){
+
+            return $data_change ;
+
+        }else{
+
+            $data_Sos_1669->update($requestData);
+
+            $date_sos = $data_sos_help_center->created_at ;
+            $result = $date_sos->format('Y-m-d');
+
+            if (!empty($requestData['time_create_sos'])) {
+                $requestData['time_create_sos'] = $result . " " . $requestData['time_create_sos'];
+            }
+            if (!empty($requestData['time_command'])) {
+                $requestData['time_command'] = $result . " " . $requestData['time_command'];
+            }
+            if (!empty($requestData['time_go_to_help'])) {
+                $requestData['time_go_to_help'] = $result . " " . $requestData['time_go_to_help'];
+            }
+            if (!empty($requestData['time_to_the_scene'])) {
+                $requestData['time_to_the_scene'] = $result . " " . $requestData['time_to_the_scene'];
+            }
+            if (!empty($requestData['time_leave_the_scene'])) {
+                $requestData['time_leave_the_scene'] = $result . " " . $requestData['time_leave_the_scene'];
+            }
+            if (!empty($requestData['time_hospital'])) {
+                $requestData['time_hospital'] = $result . " " . $requestData['time_hospital'];
+            }
+            if (!empty($requestData['time_to_the_operating_base'])) {
+                $requestData['time_to_the_operating_base'] = $result . " " . $requestData['time_to_the_operating_base'];
+            }
+
+            $data_sos_help_center->update($requestData);
+
+            $data_change['check_data_change'] == "No" ;
+            $data_change['date'] = "OK";
+            
+            return $data_change ;
+        }
     }
 
     function search_data_help_center(Request $request)
