@@ -20,7 +20,7 @@
                                         <div class="d-flex align-items-center">
                                             <div><i class='bx bxs-checkbox me-2 font-24 text-primary'></i>
                                             </div>
-                                            <div>{{$top5_score_unit->operating_unit->name}}</div>
+                                            <div>{{$top5_score_unit->operating_unit->name ? $top5_score_unit->operating_unit->name : "--"}}</div>
                                         </div>
                                     </td>
                                     <td><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i>{{$top5_score_unit->avg_score_total}}</p></td>
@@ -88,7 +88,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="font-weight-bold mb-0" >คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด 5 อันดับ</h5>
+                        <h5 class="font-weight-bold mb-0" >คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด {{count($avg_score_by_case)}} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
