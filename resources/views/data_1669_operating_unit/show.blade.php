@@ -186,6 +186,9 @@
                                                             $color_status = "warning";
                                                             $text_status = "กำลังช่วยเหลือ" ;
                                                         break;
+                                                        default:
+                                                            $color_status = "danger";
+                                                            $text_status = "ยังไม่พร้อม" ;
                                                     }
                                                 @endphp
                                                 <center>
