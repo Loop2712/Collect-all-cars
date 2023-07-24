@@ -72,7 +72,6 @@ class Dashboard_1669_Controller extends Controller
         // echo "<pre>";
         // exit();
 
-
         // คะแนนเฉลี่ยของหน่วย 5 อันดับ  /// ยืนยันความถูกต้องจาก SENIOR
         $avg_score_unit_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
         ->where('operating_unit_id' , "!=" , null)
