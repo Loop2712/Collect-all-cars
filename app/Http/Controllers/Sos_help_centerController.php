@@ -978,14 +978,19 @@ class Sos_help_centerController extends Controller
                         $old_data_DB = $data_arr['page_1'][$key] ;
                         $old_data_WEB = $requestData["start_data_arr"]['page_1'][$key] ;
                         $new_data = $value ;
+                        $check_dont_save = $requestData["check_dont_save"] ;
 
-                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) ){
+                        $data_change['page'] = 'page_1' ;
+
+                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
 
                             $data_change['page_1'][$key]['old_data_DB'] = $data_arr['page_1'][$key] ;
                             $data_change['page_1'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_1'][$key] ;
                             $data_change['page_1'][$key]['new_data'] = $value ;
                             $data_change['check_data_change'] = "Yes" ;
                         
+                        }else{
+                            $data_change['page_1'][$key] = $value ;
                         }
 
                     }
@@ -995,17 +1000,224 @@ class Sos_help_centerController extends Controller
 
             // เพิ่ม case สำหรับ page อื่นๆ ที่คุณต้องการตรวจสอบ
             case "2":
-                // ตรวจสอบข้อมูลใน $data_arr['page_2'] เช่นเดียวกัน
+                $error_keys = array();
+                foreach ($requestData as $key => $value) {
+                    if( !empty($data_arr['page_2'][$key]) ){
+
+                        $old_data_DB = $data_arr['page_2'][$key] ;
+                        $old_data_WEB = $requestData["start_data_arr"]['page_2'][$key] ;
+                        $new_data = $value ;
+                        $check_dont_save = $requestData["check_dont_save"] ;
+
+                        $data_change['page'] = 'page_2' ;
+
+                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
+
+                            $data_change['page_2'][$key]['old_data_DB'] = $data_arr['page_2'][$key] ;
+                            $data_change['page_2'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_2'][$key] ;
+                            $data_change['page_2'][$key]['new_data'] = $value ;
+                            $data_change['check_data_change'] = "Yes" ;
+                        
+                        }else{
+                            $data_change['page_2'][$key] = $value ;
+                        }
+
+                    }
+                }
+
                 break;
 
             case "3":
-                // ตรวจสอบข้อมูลใน $data_arr['page_3'] เช่นเดียวกัน
+                $error_keys = array();
+                foreach ($requestData as $key => $value) {
+                    if( !empty($data_arr['page_3'][$key]) ){
+
+                        $old_data_DB = $data_arr['page_3'][$key] ;
+                        $old_data_WEB = $requestData["start_data_arr"]['page_3'][$key] ;
+                        $new_data = $value ;
+                        $check_dont_save = $requestData["check_dont_save"] ;
+
+                        $data_change['page'] = 'page_3' ;
+
+                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
+
+                            $data_change['page_3'][$key]['old_data_DB'] = $data_arr['page_3'][$key] ;
+                            $data_change['page_3'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_3'][$key] ;
+                            $data_change['page_3'][$key]['new_data'] = $value ;
+                            $data_change['check_data_change'] = "Yes" ;
+                        
+                        }else{
+                            $data_change['page_3'][$key] = $value ;
+                        }
+
+                    }
+                }
                 break;
 
-            // สามารถเพิ่ม case สำหรับ page อื่นๆ ต่อได้ตามต้องการ
-            default:
-                // echo "ไม่พบข้อมูลสำหรับหน้านี้ใน \$data_arr";
+            case "4":
+                $error_keys = array();
+                foreach ($requestData as $key => $value) {
+                    if( !empty($data_arr['page_4'][$key]) ){
+
+                        $old_data_DB = $data_arr['page_4'][$key] ;
+                        $old_data_WEB = $requestData["start_data_arr"]['page_4'][$key] ;
+                        $new_data = $value ;
+                        $check_dont_save = $requestData["check_dont_save"] ;
+
+                        $data_change['page'] = 'page_4' ;
+
+                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
+
+                            $data_change['page_4'][$key]['old_data_DB'] = $data_arr['page_4'][$key] ;
+                            $data_change['page_4'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_4'][$key] ;
+                            $data_change['page_4'][$key]['new_data'] = $value ;
+                            $data_change['check_data_change'] = "Yes" ;
+                        
+                        }else{
+                            $data_change['page_4'][$key] = $value ;
+                        }
+
+                    }
+                }
                 break;
+
+            case "5":
+                $error_keys = array();
+                foreach ($requestData as $key => $value) {
+                    if( !empty($data_arr['page_5'][$key]) ){
+
+                        $old_data_DB = $data_arr['page_5'][$key] ;
+                        $old_data_WEB = $requestData["start_data_arr"]['page_5'][$key] ;
+                        $new_data = $value ;
+                        $check_dont_save = $requestData["check_dont_save"] ;
+
+                        $data_change['page'] = 'page_5' ;
+
+                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
+
+                            $data_change['page_5'][$key]['old_data_DB'] = $data_arr['page_5'][$key] ;
+                            $data_change['page_5'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_5'][$key] ;
+                            $data_change['page_5'][$key]['new_data'] = $value ;
+                            $data_change['check_data_change'] = "Yes" ;
+                        
+                        }else{
+                            $data_change['page_5'][$key] = $value ;
+                        }
+
+                    }
+                }
+                break;
+
+            case "6":
+                $error_keys = array();
+                foreach ($requestData as $key => $value) {
+                    if( !empty($data_arr['page_6'][$key]) ){
+
+                        $old_data_DB = $data_arr['page_6'][$key] ;
+                        $old_data_WEB = $requestData["start_data_arr"]['page_6'][$key] ;
+                        $new_data = $value ;
+                        $check_dont_save = $requestData["check_dont_save"] ;
+
+                        $data_change['page'] = 'page_6' ;
+
+                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
+
+                            $data_change['page_6'][$key]['old_data_DB'] = $data_arr['page_6'][$key] ;
+                            $data_change['page_6'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_6'][$key] ;
+                            $data_change['page_6'][$key]['new_data'] = $value ;
+                            $data_change['check_data_change'] = "Yes" ;
+                        
+                        }else{
+                            $data_change['page_6'][$key] = $value ;
+                        }
+
+                    }
+                }
+                break;
+
+            case "7":
+                $error_keys = array();
+                foreach ($requestData as $key => $value) {
+                    if( !empty($data_arr['page_7'][$key]) ){
+
+                        $old_data_DB = $data_arr['page_7'][$key] ;
+                        $old_data_WEB = $requestData["start_data_arr"]['page_7'][$key] ;
+                        $new_data = $value ;
+                        $check_dont_save = $requestData["check_dont_save"] ;
+
+                        $data_change['page'] = 'page_7' ;
+
+                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
+
+                            $data_change['page_7'][$key]['old_data_DB'] = $data_arr['page_7'][$key] ;
+                            $data_change['page_7'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_7'][$key] ;
+                            $data_change['page_7'][$key]['new_data'] = $value ;
+                            $data_change['check_data_change'] = "Yes" ;
+                        
+                        }else{
+                            $data_change['page_7'][$key] = $value ;
+                        }
+
+                    }
+                }
+                break;
+
+            case "8":
+                $error_keys = array();
+                foreach ($requestData as $key => $value) {
+                    if( !empty($data_arr['page_8'][$key]) ){
+
+                        $old_data_DB = $data_arr['page_8'][$key] ;
+                        $old_data_WEB = $requestData["start_data_arr"]['page_8'][$key] ;
+                        $new_data = $value ;
+                        $check_dont_save = $requestData["check_dont_save"] ;
+
+                        $data_change['page'] = 'page_8' ;
+
+                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
+
+                            $data_change['page_8'][$key]['old_data_DB'] = $data_arr['page_8'][$key] ;
+                            $data_change['page_8'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_8'][$key] ;
+                            $data_change['page_8'][$key]['new_data'] = $value ;
+                            $data_change['check_data_change'] = "Yes" ;
+                        
+                        }else{
+                            $data_change['page_8'][$key] = $value ;
+                        }
+
+                    }
+                }
+                break;
+
+            case "9":
+                $error_keys = array();
+                foreach ($requestData as $key => $value) {
+                    if( !empty($data_arr['page_9'][$key]) ){
+
+                        $old_data_DB = $data_arr['page_9'][$key] ;
+                        $old_data_WEB = $requestData["start_data_arr"]['page_9'][$key] ;
+                        $new_data = $value ;
+                        $check_dont_save = $requestData["check_dont_save"] ;
+
+                        $data_change['page'] = 'page_9' ;
+
+                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
+
+                            $data_change['page_9'][$key]['old_data_DB'] = $data_arr['page_9'][$key] ;
+                            $data_change['page_9'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_9'][$key] ;
+                            $data_change['page_9'][$key]['new_data'] = $value ;
+                            $data_change['check_data_change'] = "Yes" ;
+                        
+                        }else{
+                            $data_change['page_9'][$key] = $value ;
+                        }
+
+                    }
+                }
+                break;
+
+
+
         }
         
 
@@ -1049,6 +1261,25 @@ class Sos_help_centerController extends Controller
             
             return $data_change ;
         }
+    }
+
+    function save_data_change_form_yellow(Request $request)
+    {
+        $requestData = $request->all();
+
+        $data_sos_help_center = Sos_help_center::where('id',$requestData['sos_help_center_id'])->first();
+
+        $data_Sos_1669 = Sos_1669_form_yellow::where('sos_help_center_id',$requestData['sos_help_center_id'])->first();
+
+        $data_Sos_1669->update($requestData);
+
+        $data_sos_help_center->update($requestData);
+
+        $data['check'] = "OK" ;
+        $data['data'] = $requestData ;
+
+        return $data ;
+
     }
 
     function search_data_help_center(Request $request)

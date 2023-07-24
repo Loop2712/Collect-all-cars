@@ -1197,7 +1197,7 @@
 								</span>
 								<div class="mt-3">
 									<center>
-										<button id="btn_select_unit_in_no5" class="btn btn-primary px-5" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null);document.querySelector('#tag_a_open_map_operating_unit').click();">
+										<button id="btn_select_unit_in_no5" class="btn btn-primary px-5" data-bs-toggle="pill" href="#operating_unit" role="tab" aria-selected="false" onclick="check_go_to(null,null);document.querySelector('#tag_a_open_map_operating_unit').click();">
 											เดี่ยว
 										</button>
 										<button class="btn btn-danger px-5" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
@@ -2324,9 +2324,9 @@
 						</div>
 					</div>
 					<div class="d-flex justify-content-between">
-						<button class="btn btn-primary " id="prev-btn-form-yellow" type="button" onclick="check_go_to('remove');">ย้อนกลับ</button>
+						<button class="btn btn-primary " id="prev-btn-form-yellow" type="button" onclick="check_go_to('remove',null);">ย้อนกลับ</button>
 						&nbsp;&nbsp;
-						<button class="btn btn-primary" id="next-btn-form-yellow" type="button" onclick="check_go_to('add');">ต่อไป</button>
+						<button class="btn btn-primary" id="next-btn-form-yellow" type="button" onclick="check_go_to('add',null);">ต่อไป</button>
 					</div>
 				</div>
 			</div>
@@ -2344,13 +2344,13 @@
    			</p>
 		</div>
 	</div> -->
-	<!-- <i id="btn_next" class="fa-solid fa-caret-right text-secondary" href="#carousel_form_yellow" role="button" data-slide="next" onclick="check_go_to('add');"></i> -->
+	<!-- <i id="btn_next" class="fa-solid fa-caret-right text-secondary" href="#carousel_form_yellow" role="button" data-slide="next" onclick="check_go_to('add',null);"></i> -->
 
 	<!-- <div class="row" style="position: absolute;bottom: 1%;right:3%;"> -->
         <!-- -----------------BTN prev next------------------- -->
         <!-- <div class="col-12 d-flex align-items-end">
             <h4 class="text-primary text-end">
-                <i id="btn_prev" class="fa-solid fa-caret-left text-secondary" href="#carousel_form_yellow" role="button" data-slide="prev" onclick="check_go_to('remove');"></i>
+                <i id="btn_prev" class="fa-solid fa-caret-left text-secondary" href="#carousel_form_yellow" role="button" data-slide="prev" onclick="check_go_to('remove',null);"></i>
                 &nbsp;&nbsp;
 
                 <i id="btn_circle_1" class="fa-solid fa-circle-1 text-secondary" role="button" onclick="go_to_form_data('1');"></i>
@@ -2372,11 +2372,72 @@
                 <i id="btn_circle_9" class="fa-solid fa-circle-9 text-secondary" role="button" onclick="go_to_form_data('9');"></i>
                 &nbsp;&nbsp;
 
-                <i id="btn_next" class="fa-solid fa-caret-right text-secondary" href="#carousel_form_yellow" role="button" data-slide="next" onclick="check_go_to('add');"></i>
+                <i id="btn_next" class="fa-solid fa-caret-right text-secondary" href="#carousel_form_yellow" role="button" data-slide="next" onclick="check_go_to('add',null);"></i>
             </h4>
         </div>
     </div> -->
 
+</div>
+
+<div>
+	<!-- Button trigger modal -->
+	<button id="btn_modal_alet_data_change" class="btn btn-primary d-" data-toggle="modal" data-target="#modal_alet_data_change">
+	  	modal_alet_data_change
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade notranslate" id="modal_alet_data_change" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_alet_data_change" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+		    <div class="modal-content">
+		      	<div class="modal-header">
+		        	<h3 class="modal-title" id="Label_modal_alet_data_change">
+		        		<b>มีการอัพเดทข้อมูลจากหน่วยปฏิบัติการ</b>
+		        	</h3>
+		        	<button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+		          		<span aria-hidden="true">&times;</span>
+	        		</button>
+		      	</div>
+		      	<div class="modal-body">
+		        	<table class="table table-bordered mb-0">
+						<thead>
+							<tr>
+								<th scope="col" style="width:10%;">
+									<input class="d-none" type="checkbox" id="select_titel_all" name="select_titel_all" onclick="select_titel_update_all();">
+								</th>
+								<th scope="col" style="width:30%;">หัวข้อ</th>
+								<th scope="col" style="width:30%;">ข้อมูลจากหน่วยปฏิบัติการ</th>
+								<th scope="col" style="width:30%;">ข้อมูลของคุณ</th>
+							</tr>
+						</thead>
+						<tbody id="for_create_modal_alet_data_change">
+							<!-- content -->
+						</tbody>
+					</table>
+
+					<hr>
+					<div class="row">
+						<div class="col-9">
+							<p>
+								<span class="text-success mt-2">
+									<i class="fa-solid fa-circle" style="color: #25db00;"></i> สีเขียว = ข้อมูลที่บันทึกแทนที่
+								</span>
+								<br>
+								<span class="text-danger mt-2">
+									<i class="fa-solid fa-circle" style="color: #ff0000;"></i> สีแดง = ข้อมูลจะถูกลบ
+								</span>
+							</p>
+						</div>
+						<div class="col-3">
+							<button style="width: 80%;" type="button" class="btn btn-success" data-dismiss="modal" onclick="save_data_change_form_yellow();">
+				        		บันทึก
+				        	</button>
+						</div>
+					</div>
+					<br>
+		      	</div>
+		    </div>
+		</div>
+	</div>
 </div>
 
 <script>
@@ -2514,7 +2575,7 @@
 
 					  			}else if (sub_key === 'lat' || sub_key === 'lng') {
 					  				// console.log("สั่งบันทึก lat lng >> " + key)
-	        						check_go_to(null);
+	        						check_go_to(null,null);
 	        						
 					  			}else{
 					  				edit_form_yellow(main_key , sub_key , data_new_5vi[main_key][sub_key] , null);
@@ -2658,11 +2719,11 @@
 
 		if( old ){
 	    	// console.log("บันทึกข้อมูลเข้า DB");
-    	    check_go_to(null);
+    	    check_go_to(null,null);
 		}
 
 
-		// send_save_data(null);
+		// send_save_data(null , null);
 		// btn_save_data_animation();
 		setTimeout(function() {
 	        check_color_btn(null);
@@ -2684,14 +2745,14 @@
 		}
     }
 
-	function check_go_to(type){
+	function check_go_to(type , check_dont_save){
 		// console.log(type);
 		
 		let active = window.location.href.split('#step-')[1];
 			// console.log(active);
 
 		check_color_btn(active);
-		send_save_data(active);
+		send_save_data(active , check_dont_save);
 		btn_save_data_animation();
 
 	}
@@ -2709,7 +2770,7 @@
 		// document.querySelector('#form_data_' + active_sp[2]).classList.remove('active');
 		// document.querySelector('#form_data_' + click_to).classList.add('active');
 
-		send_save_data(active);
+		send_save_data(active, null);
 		check_color_btn(active);
 		btn_save_data_animation();
 	}
@@ -2749,7 +2810,7 @@
 	//         				console.log("แจ้งเตือนข้อมูลเปลี่ยนแปลง form yellow");
 
 	// 			  		}else{
-	// 						// confirm_send_save_data(active);
+	// 						// confirm_send_save_data(active , null);
 	// 			  		}
 	// 				}
     //         	}
@@ -2757,23 +2818,29 @@
     // }
 
 
-	function send_save_data(active){
+	function send_save_data(active , check_dont_save){
 
 		if (!active) {
 			active = form_yellow_current_topic ;
 		}
 
 		// check_before_save_form_yellow(active);
-		confirm_send_save_data(active);
+		confirm_send_save_data(active , check_dont_save);
 	}
 
-	function confirm_send_save_data(active){
+	function confirm_send_save_data(active , check_dont_save){
 
-		console.log('----------------------------');
-		console.log("confirm_send_save_data");
-		console.log("กำลังจะบันทึกหน้าที่ >> " + active);
-		console.log("กำลังไปที่หน้า >> " + form_yellow_current_topic);
-		console.log('----------------------------');
+		// console.log('----------------------------');
+		// console.log("confirm_send_save_data");
+		// console.log("กำลังจะบันทึกหน้าที่ >> " + active);
+		// console.log("กำลังไปที่หน้า >> " + form_yellow_current_topic);
+		// console.log('----------------------------');
+
+		if(check_dont_save){
+			check_dont_save = "Yes" ;
+		}else{
+			check_dont_save = "No" ;
+		}
 
 		// ---------------------------- ข้อใน form ----------------------------//
 	    // ==>> 1
@@ -2942,6 +3009,7 @@
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "page" : "1",
 			        "start_data_arr" : start_data_arr,
+			        "check_dont_save" : check_dont_save,
 			        "be_notified" : be_notified_value,
 			        "name_user" : name_user.value,
 			        "phone_user" : phone_user.value,
@@ -2955,6 +3023,7 @@
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "page" : "2",
 			        "start_data_arr" : start_data_arr,
+			        "check_dont_save" : check_dont_save,
 			        "symptom" : symptom_value,
 			    };
 		    break;
@@ -2963,6 +3032,7 @@
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "page" : "3",
 			        "start_data_arr" : start_data_arr,
+			        "check_dont_save" : check_dont_save,
 			        "symptom_other" : symptom_other.value,
 			    };
 		    break;
@@ -2971,6 +3041,7 @@
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "page" : "4",
 			        "start_data_arr" : start_data_arr,
+			        "check_dont_save" : check_dont_save,
 			        "idc" : idc_value,
 			    };
 		    break;
@@ -2979,6 +3050,7 @@
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "page" : "5",
 			        "start_data_arr" : start_data_arr,
+			        "check_dont_save" : check_dont_save,
 			        // "vehicle_type" : vehicle_type_value,
 			        // "operating_suit_type" : operating_suit_type_value,
 			        // "operation_unit_name" : operation_unit_name.value,
@@ -3012,6 +3084,7 @@
 				        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        	"page" : "6",
 			        	"start_data_arr" : start_data_arr,
+			        	"check_dont_save" : check_dont_save,
 				        "rc" : rc_value,
 				        "rc_black_text" : rc_black_text.value,
 				    };
@@ -3020,6 +3093,7 @@
 				        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        	"page" : "6",
 			        	"start_data_arr" : start_data_arr,
+			        	"check_dont_save" : check_dont_save,
 				        "rc" : rc_value,
 				    };
 		    	}
@@ -3030,6 +3104,7 @@
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "page" : "7",
 			        "start_data_arr" : start_data_arr,
+			        "check_dont_save" : check_dont_save,
 			        "treatment" : treatment_value,
 			        "sub_treatment" : sub_treatment_value,
 			    };
@@ -3039,6 +3114,7 @@
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "page" : "8",
 			        "start_data_arr" : start_data_arr,
+			        "check_dont_save" : check_dont_save,
 			        "patient_name_1" : patient_name_1.value,
 			        "patient_age_1" : patient_age_1.value,
 			        "patient_hn_1" : patient_hn_1.value,
@@ -3067,6 +3143,7 @@
 			        "sos_help_center_id" : "{{ $sos_help_center->id }}",
 			        "page" : "9",
 			        "start_data_arr" : start_data_arr,
+			        "check_dont_save" : check_dont_save,
 			        "registration_category" : registration_category.value,
 			        "registration_number" : registration_number.value,
 			        "registration_province" : registration_province.value,
@@ -3078,9 +3155,9 @@
 
 		// ----------------------------------------------------------------------------
 
-		console.log('-------- data_arr --------');
-		console.log(data_arr);
-		console.log('--------------------------------');
+		// console.log('-------- data_arr --------');
+		// console.log(data_arr);
+		// console.log('--------------------------------');
 
 		all_data_arr = {
 			"sos_help_center_id" : "{{ $sos_help_center->id }}",
@@ -3189,9 +3266,10 @@
         }).then(function (response){
             return response.json();
         }).then(function(data){
-            console.log(data);
+            // console.log(data);
             if (data['check_data_change'] == "Yes") {
             	Stop_reface_check_form_yellow();
+            	create_modal_alet_data_change(data);
             }
         }).catch(function(error){
             // console.error(error);
@@ -3204,6 +3282,131 @@
         }
 
 	}
+
+    function create_modal_alet_data_change(data){
+
+    	let div_content = document.querySelector('#for_create_modal_alet_data_change');
+    		div_content.innerHTML = '' ;
+
+    	let page = data['page'];
+
+		for (const [key, value ] of Object.entries(data[page])) {
+
+			let name_key = change_key_to_text_key(key);
+			let type_value = typeof value ;
+
+			if(type_value == "object"){
+				// console.log("หัวข้อ : " + name_key + " ==> ");
+				// console.log(value);
+
+				// สร้าง modal
+		    	let html_tr = `
+		    		<tr>
+						<th scope="row">
+							<input type="checkbox" name="select_titel_update" 
+							onchange="if(this.checked){
+								document.querySelector('#data_change_`+key+`').value = '`+value.new_data+`';
+								document.querySelector('#td_`+key+`_DB').classList.add('bg-danger');
+								document.querySelector('#td_`+key+`_DB').classList.remove('bg-success');
+								document.querySelector('#td_`+key+`_NEW').classList.remove('bg-danger');
+								document.querySelector('#td_`+key+`_NEW').classList.add('bg-success');
+							}else{
+								document.querySelector('#data_change_`+key+`').value = '`+value.old_data_DB+`';
+								document.querySelector('#td_`+key+`_NEW').classList.add('bg-danger');
+								document.querySelector('#td_`+key+`_NEW').classList.remove('bg-success');
+								document.querySelector('#td_`+key+`_DB').classList.remove('bg-danger');
+								document.querySelector('#td_`+key+`_DB').classList.add('bg-success');
+							}
+							">
+						</th>
+						<td>`+name_key+`</td>
+						<td id="td_`+key+`_DB" class="bg-success">`+value.old_data_DB+`</td>
+						<td id="td_`+key+`_NEW" class="bg-danger">`+value.new_data+`</td>
+					</tr>
+					<input class="form-control d-none" type="text" data-change='Yes' id="data_change_`+key+`" name="`+key+`" value="`+value.old_data_DB+`">
+		    	`;
+
+        		div_content.insertAdjacentHTML('beforeend', html_tr); // แทรกล่างสุด
+
+			}
+
+		}
+
+    	document.querySelector('#btn_modal_alet_data_change').click();
+    }
+
+    function select_titel_update_all(){
+
+    	let select_titel_all = document.querySelector('#select_titel_all');
+    	let check_other = document.querySelectorAll('[name="select_titel_update"]');
+
+    	// let input_data_change = document.querySelectorAll('input[data-change="Yes"]');
+
+		if(select_titel_all.checked){
+
+			check_other.forEach(check_other => {
+
+			    check_other.click();
+			})
+		}else{
+
+			check_other.forEach(check_other => {
+
+			    check_other.click();
+			})
+		}
+
+    }
+
+    function save_data_change_form_yellow(){
+
+    	// console.log("-----** save_data_change_form_yellow **-----");
+
+    	// ส่งข้อมูลทั้งหมดไปบันทึก
+    	let data_arr = [] ;
+    		data_arr = {
+		        "sos_help_center_id" : "{{ $sos_help_center->id }}",
+		    };
+
+    	let input_data_change = document.querySelectorAll('input[data-change="Yes"]');
+
+			input_data_change.forEach(input_data_change => {
+			    // console.log(input_data_change);
+			    // console.log(input_data_change.value);
+
+		        data_arr[input_data_change.name] = input_data_change.value;
+			})
+
+		// console.log(data_arr);
+
+		// ---------------------------- ส่งข้อมูลไปอัพเดท ----------------------------//
+		fetch("{{ url('/') }}/api/save_data_change_form_yellow", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.json();
+        }).then(function(data){
+            // console.log("UPDATE SUCCESS");
+            // console.log(data);
+            if (data['check'] == "OK") {
+            	for (const [key, value ] of Object.entries(data['data'])) {
+            		if(key != "sos_help_center_id"){
+            			edit_form_yellow(null , key , value , 'save_data_change_form_yellow')
+            		}
+            	}
+            	Loop_check_form_yellow();
+            }
+        }).catch(function(error){
+            // console.error(error);
+        });
+
+
+
+    }
+
 
 </script>
 

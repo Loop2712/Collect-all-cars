@@ -1373,7 +1373,7 @@ color: #ff9317;
                             </button> -->
                             <ul class="nav nav-pills m-3" role="tablist">
                                 <li id="btn_operation" class="nav-item nav-pills nav-pills-purple m-2 d-none" role="presentation">
-                                    <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="document.querySelector('#btn_save').click();check_go_to(null);reface_map_go_to_help();Stop_reface_check_form_yellow();update_page_before_click_button('other');">
+                                    <a id="tag_a_operation" class="nav-link btn-outline-purple btn" data-bs-toggle="pill" href="#operation" role="tab" aria-selected="true" onclick="document.querySelector('#btn_save').click();check_go_to(null,null);reface_map_go_to_help();Stop_reface_check_form_yellow();update_page_before_click_button('other');">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
                                             </div>
@@ -1642,7 +1642,7 @@ color: #ff9317;
                         </div>
                         <div class="col-3 float-end">
                             <h5 class="m-0 h5">
-                                <button style="width: 100%;margin-top: 7px;" id="btn_save" class=" btn btn-success d-flex justify-content-center btn-block" type="button" onclick="btn_save_data_animation();send_save_data();"> 
+                                <button style="width: 100%;margin-top: 7px;" id="btn_save" class=" btn btn-success d-flex justify-content-center btn-block" type="button" onclick="btn_save_data_animation();send_save_data(null , null);"> 
                                     <div id="icon_save_data" class="d-none">
                                         <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                                             <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
@@ -2956,7 +2956,7 @@ color: #ff9317;
 
         document.querySelector('#btn_close_modal_mapMarkLocation').click();
         check_lat_lng();
-        check_go_to(null);
+        check_go_to(null,null);
     }
 
     function go_to_maps(){
@@ -3093,7 +3093,7 @@ color: #ff9317;
                             detail_location_sos.value = response.results[0].formatted_address;
 
                             check_lat_lng();
-                            check_go_to(null);
+                            check_go_to(null,null);
 
                     } else {
                         window.alert("No results found");
@@ -3625,7 +3625,7 @@ color: #ff9317;
         });
 
         // เปลี่ยนข้อมูลกลับเหมือนเดิม
-        check_go_to(null);
+        check_go_to(null,'dont_save');
         let audio_dont_save_data = new Audio("{{ asset('sound/ปฏิเสธ.mp3') }}");
             audio_dont_save_data.play();
     }
