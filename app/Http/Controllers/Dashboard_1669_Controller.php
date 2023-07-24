@@ -61,6 +61,12 @@ class Dashboard_1669_Controller extends Controller
         ->groupBy('command_by')
         ->get();
 
+        // สำหรับนับจำนวนสั่งการเฉยๆไม่ต้องเอาไปทำอะไรต่อ
+        $count_command_1669_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        ->select('sos_help_centers.*', DB::raw('COUNT(*) as count_command_by'))
+        ->groupBy('command_by')
+        ->get();
+
         // echo "<pre>";
         // print_r($command_1669_data);
         // echo "<pre>";
@@ -198,7 +204,8 @@ class Dashboard_1669_Controller extends Controller
         'data_sos_fastest_5',
         'data_sos_slowest_5',
         'sos_area_top5_filtered_data',
-        'count_sos_area_top5_filtered_data'
+        'count_sos_area_top5_filtered_data',
+        'count_command_1669_data'
 
 
     ));
