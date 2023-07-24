@@ -7,7 +7,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="mb-0 text-dark">ขอความช่วยเหลือทั้งหมด</h5>
-                        <h4 class="my-1">42K</h4>
+                        <h4 class="my-1">{{ count($data_sos) }}</h4>
                     </div>
                     <div class="text-primary ms-auto font-30">{Icon}
                     </div>
@@ -21,7 +21,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="mb-0 text-dark">ช่วยเหลือเสร็จสิ้น</h5>
-                        <h4 class="my-1">56M</h4>
+                        <h4 class="my-1">{{ $count_sos_success }}</h4>
                     </div>
                     <div class="text-danger ms-auto font-30">{Icon}
                     </div>
@@ -35,7 +35,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="mb-0 text-dark">กำลังดำเนินการ</h5>
-                        <h4 class="my-1">42M</h4>
+                        <h4 class="my-1">{{ $count_sos_helping }}</h4>
                     </div>
                     <div class="text-warning ms-auto font-30">{Icon}
                     </div>
@@ -49,7 +49,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="mb-0 text-dark">ยังไม่ได้ดำเนินการ</h5>
-                        <h4 class="my-1">85M</h4>
+                        <h4 class="my-1">{{ $count_sos_notReady }}</h4>
                     </div>
                     <div class="text-success ms-auto font-30">{Icon}
                     </div>
@@ -92,41 +92,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>151</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 4.70</p></td>
-                            </tr>
-                            <tr>
-                                <td>152</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 4.50</p></td>
-                            </tr>
-                            <tr>
-                                <td>153</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 4.40</p></td>
-                            </tr>
-                            <tr>
-                                <td>154</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 4.30</p></td>
-                            </tr>
-                            <tr>
-                                <td>155</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 4.10</p></td>
-                            </tr>
+                            @foreach ($data_sos_score_best_5 as $sos_score_best_5)
+                                <tr>
+                                    <td>{{ $sos_score_best_5->id ? $sos_score_best_5->id : "--"}}</td>
+                                    <td>{{ $sos_score_best_5->address ? $sos_score_best_5->address : "--"}}</td>
+                                    <td>{{ $sos_score_best_5->name_helper ? $sos_score_best_5->name_helper : "--"}}</td>
+                                    <td>{{ $sos_score_best_5->organization_helper ? $sos_score_best_5->organization_helper : "--"}}</td>
+                                    <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i>{{ $sos_score_best_5->score_total ? $sos_score_best_5->score_total : "--"}}</p></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -166,41 +140,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>177</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 3.22</p></td>
-                            </tr>
-                            <tr>
-                                <td>178</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 3.21</p></td>
-                            </tr>
-                            <tr>
-                                <td>179</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 3.20</p></td>
-                            </tr>
-                            <tr>
-                                <td>180</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 3.15</p></td>
-                            </tr>
-                            <tr>
-                                <td>181</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 3.12</p></td>
-                            </tr>
+                            @foreach ($data_sos_score_worst_5 as $sos_score_worst_5)
+                                <tr>
+                                    <td>{{ $sos_score_worst_5->id ? $sos_score_worst_5->id : "--"}}</td>
+                                    <td>{{ $sos_score_worst_5->address ? $sos_score_worst_5->address : "--"}}</td>
+                                    <td>{{ $sos_score_worst_5->name_helper ? $sos_score_worst_5->name_helper : "--"}}</td>
+                                    <td>{{ $sos_score_worst_5->organization_helper ? $sos_score_worst_5->organization_helper : "--"}}</td>
+                                    <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i>{{ $sos_score_worst_5->score_total ? $sos_score_worst_5->score_total : "--"}}</p></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -243,41 +191,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>200</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td >3.11 นาที</td>
-                            </tr>
-                            <tr>
-                                <td>201</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td >3.22 นาที</td>
-                            </tr>
-                            <tr>
-                                <td>202</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td >3.40 นาที</td>
-                            </tr>
-                            <tr>
-                                <td>203</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td >3.42 นาที</td>
-                            </tr>
-                            <tr>
-                                <td>204</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td >3.55 นาที</td>
-                            </tr>
+                            @foreach ($data_sos_fastest_5 as $data_sos_fastest_5)
+
+                            @php
+                                $sos_fastest_5_time_sos_success = strtotime($data_sos_fastest_5->time_sos_success);
+                                $sos_fastest_5_time_command = strtotime($data_sos_fastest_5->time_command);
+
+                                $sos_fastest_5_timeDifference = abs($sos_fastest_5_time_sos_success - $sos_fastest_5_time_command);
+
+                                if ($sos_fastest_5_timeDifference >= 3600) {
+                                    $sos_fastest_5_hours = floor($sos_fastest_5_timeDifference / 3600);
+                                    $sos_fastest_5_remainingMinutes = floor(($sos_fastest_5_timeDifference % 3600) / 60);
+                                    $sos_fastest_5_remainingSeconds = $sos_fastest_5_timeDifference % 60;
+
+                                    $sos_fastest_5_time_unit = $sos_fastest_5_hours . ' ชั่วโมง ' . $sos_fastest_5_remainingMinutes . ' นาที ' . $sos_fastest_5_remainingSeconds . ' วินาที';
+                                } elseif ($sos_fastest_5_timeDifference >= 60) {
+                                    $sos_fastest_5_minutes = floor($sos_fastest_5_timeDifference / 60);
+                                    $sos_fastest_5_seconds = $sos_fastest_5_timeDifference % 60;
+
+                                    $sos_fastest_5_time_unit = $sos_fastest_5_minutes . ' นาที ' . $sos_fastest_5_seconds . ' วินาที';
+                                } else {
+                                    $sos_fastest_5_time_unit = $sos_fastest_5_timeDifference . ' วินาที';
+                                }
+
+                            @endphp
+                                <tr>
+                                    <td>{{ $data_sos_fastest_5->id ? $data_sos_fastest_5->id : "--"}}</td>
+                                    <td>{{ $data_sos_fastest_5->address ? $data_sos_fastest_5->address : "--"}}</td>
+                                    <td>{{ $data_sos_fastest_5->name_helper ? $data_sos_fastest_5->name_helper : "--"}}</td>
+                                    <td>{{ $data_sos_fastest_5->organization_helper ? $data_sos_fastest_5->organization_helper : "--"}}</td>
+                                    <td >{{ $sos_fastest_5_time_unit }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -317,41 +262,38 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($data_sos_slowest_5 as $data_sos_slowest_5)
+
+                            @php
+                                $time_sos_success = strtotime($data_sos_slowest_5->time_sos_success);
+                                $time_command = strtotime($data_sos_slowest_5->time_command);
+
+                                $timeDifference = abs($time_sos_success - $time_command);
+
+                                if ($timeDifference >= 3600) {
+                                    $hours = floor($timeDifference / 3600);
+                                    $remainingMinutes = floor(($timeDifference % 3600) / 60);
+                                    $remainingSeconds = $timeDifference % 60;
+
+                                    $time_unit = $hours . ' ชั่วโมง ' . $remainingMinutes . ' นาที ' . $remainingSeconds . ' วินาที';
+                                } elseif ($timeDifference >= 60) {
+                                    $minutes = floor($timeDifference / 60);
+                                    $seconds = $timeDifference % 60;
+
+                                    $time_unit = $minutes . ' นาที ' . $seconds . ' วินาที';
+                                } else {
+                                    $time_unit = $timeDifference . ' วินาที';
+                                }
+
+                            @endphp
                             <tr>
-                                <td>222</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td >8.11 นาที</td>
+                                <td>{{ $data_sos_slowest_5->id ? $data_sos_slowest_5->id : "--"}}</td>
+                                <td>{{ $data_sos_slowest_5->address ? $data_sos_slowest_5->address : "--"}}</td>
+                                <td>{{ $data_sos_slowest_5->name_helper ? $data_sos_slowest_5->name_helper : "--"}}</td>
+                                <td>{{ $data_sos_slowest_5->organization_helper ? $data_sos_slowest_5->organization_helper : "--"}}</td>
+                                <td>{{ $time_unit }}</td>
                             </tr>
-                            <tr>
-                                <td>223</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td >7.22 นาที</td>
-                            </tr>
-                            <tr>
-                                <td>224</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td >7.20 นาที</td>
-                            </tr>
-                            <tr>
-                                <td>225</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td >6.42 นาที</td>
-                            </tr>
-                            <tr>
-                                <td>226</td>
-                                <td>กรุงเทพ/เขต1</td>
-                                <td>นาย A</td>
-                                <td>วีเช็ค ประเทศไทย</td>
-                                <td >5.55 นาที</td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3 class="text-dark">ข้อมูลเจ้าหน้าที่</h3>
+<h3 class="text-dark" style="font-weight: bold;">ข้อมูลเจ้าหน้าที่</h3>
 <div id="command_center_info" class="mb-3 bg_section" >
     @include ('dashboard_1669.dashboard_1669_officer.command_center_info_index')
 </div>
@@ -15,7 +15,7 @@
     <hr>
 </div>
 
-<h3 class="text-dark">ข้อมูลการขอความช่วยเหลือ</h3>
+<h3 class="text-dark" style="font-weight: bold;">ข้อมูลการขอความช่วยเหลือ</h3>
 <div id="sos_help" class="mb-3 bg_section" >
     @include ('dashboard_1669.dashboard_1669_sos.sos_help_index')
 </div>

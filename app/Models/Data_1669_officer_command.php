@@ -28,11 +28,15 @@ class Data_1669_officer_command extends Model
     protected $fillable = ['name_officer_command', 'user_id', 'area', 'officer_role', 'number', 'status', 'creator'];
 
     public function user(){
-        return $this->belongsTo('App\User', 'user_id', 'id'); 
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+
+    public function user_creator(){
+        return $this->belongsTo('App\User', 'creator', 'id');
     }
 
     public function sos_help_center(){
         return $this->hasMany('App\Models\Sos_help_center', 'command_by');
     }
-    
+
 }

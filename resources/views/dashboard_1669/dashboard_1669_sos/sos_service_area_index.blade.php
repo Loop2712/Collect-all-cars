@@ -16,63 +16,8 @@
                     </div>
                 </div>
 
-                <div class="table-responsive mt-4 mb-4">
-                    <table class="table align-middle mb-0">
-                        <tbody>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div><i class='bx bxs-checkbox me-2 font-24 text-primary'></i>
-                                        </div>
-                                        <div>Medication "Aripiprazole"</div>
-                                    </div>
-                                </td>
-                                <td><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 5.00</p></td>
-                            </tr>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div><i class='bx bxs-checkbox me-2 font-24 text-danger'></i>
-                                        </div>
-                                        <div>Medication "Risperidone"</div>
-                                    </div>
-                                </td>
-                                <td><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 4.80</p></td>
-
-                            </tr>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div><i class='bx bxs-checkbox me-2 font-24 text-success'></i>
-                                        </div>
-                                        <div>Medication "Aripiprazole+Risperidone"</div>
-                                    </div>
-                                </td>
-                                <td><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 4.70</p></td>
-
-                            </tr>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div><i class='bx bxs-checkbox me-2 font-24 text-warning'></i>
-                                        </div>
-                                        <div>No Medication</div>
-                                    </div>
-                                </td>
-                                <td><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 4.60</p></td>
-                            </tr>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div><i class='bx bxs-checkbox me-2 font-24 text-info'></i>
-                                        </div>
-                                        <div>Other</div>
-                                    </div>
-                                </td>
-                                <td><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 4.50</p></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="mt-4 mb-4">
+                   <div id="sos_map_organization"></div>
                 </div>
             </div>
         </div>
@@ -83,7 +28,7 @@
         <div class="card radius-10 h-100">
             <div class="d-flex align-items-center m-3">
                 <div>
-                    <h5 class="mb-1">พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ</h5>
+                    <h5 class="mb-1 font-weight-bold">พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ</h5>
                 </div>
                 <div class="dropdown ms-auto">
                     <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -336,9 +281,169 @@
 
 <!-- apexcharts -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<!-- map-googleAPI -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
+
+<style type="text/css">
+    #map {
+      height: 100%;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        initMap();
+    });
+</script>
+<!-- MAP พื้นที่การขอความช่วยเหลือในจังหวัด -->
+<script>
+    function initMap() {
+        console.log("MAPPPPPP");
+        // 13.7248936,100.4930264 lat lng ประเทศไทย
+        map = new google.maps.Map(document.getElementById("sos_map_organization"), {
+            center: {lat: 13.7248936, lng: 100.4930264 },
+            zoom: 14,
+        });
+
+        // let all_lat = [];
+        // let all_lng = [];
+        // let all_lat_lng = [];
+
+        // let lat_average ;
+        // let lng_average ;
+
+        // let lat_sum = 0 ;
+        // let lng_sum = 0 ;
+
+        // let name_partner = document.querySelector('#name_partner');
+
+        // fetch("{{ url('/') }}/api/sos_data_map/")
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         // console.log(result);
+
+        //         for (let ii = 0; ii < result.length; ii++) {
+
+        //             all_lat.push(JSON.parse(result[ii]['sos_area'])[xx]['lat']);
+        //             all_lng.push(JSON.parse(result[ii]['sos_area'])[xx]['lng']);
+        //         }
+
+        //         let bounds = new google.maps.LatLngBounds();
+
+        //             for (let vc = 0; vc < all_lat_lng.length; vc++) {
+        //                 bounds.extend(all_lat_lng[vc]);
+        //             }
+
+        //             map = new google.maps.Map(document.getElementById("map"), {
+        //                 // zoom: num_zoom,
+        //                 // center: bounds.getCenter(),
+        //             });
+        //             map.fitBounds(bounds);
+
+        //         for (let xi = 0; xi < result.length; xi++) {
+
+        //             // วาดพื้นที่รวมทั้งหมด
+        //             let draw_sum_area = new google.maps.Polygon({
+        //                 paths: all_lat_lng,
+        //                 strokeColor: "red",
+        //                 strokeOpacity: 0,
+        //                 strokeWeight: 0,
+        //                 fillColor: "red",
+        //                 fillOpacity: 0,
+        //             });
+        //             draw_sum_area.setMap(map);
+
+        //             // วาดแยกแต่ละพื้นที่
+        //             let draw_area_other = new google.maps.Polygon({
+        //                 paths: JSON.parse(result[xi]['sos_area']),
+        //                 strokeColor: "#008450",
+        //                 strokeOpacity: 0.8,
+        //                 strokeWeight: 1,
+        //                 fillColor: "#008450",
+        //                 fillOpacity: 0.25,
+        //                 zIndex:10,
+        //             });
+        //             draw_area_other.setMap(map);
+
+        //             // mouseover on polygon
+        //             google.maps.event.addListener(draw_area_other, 'mouseover', function (event) {
+        //                 this.setOptions({
+        //                     strokeColor: '#00ff00',
+        //                     fillColor: '#00ff00'
+        //                 });
+
+        //                 let image_empty = "https://www.viicheck.com/img/icon/flag_empty.png";
+
+        //                 for (let mm = 0; mm < JSON.parse(result[xi]['sos_area']).length; mm++) {
+
+        //                     all_lat.push(JSON.parse(result[xi]['sos_area'])[mm]['lat']);
+        //                     all_lng.push(JSON.parse(result[xi]['sos_area'])[mm]['lng']);
+
+        //                 }
+
+        //                 for (let zz = 0; zz < all_lat.length; zz++) {
+
+        //                     lat_sum = lat_sum + all_lat[zz] ;
+        //                     lng_sum = lng_sum + all_lng[zz] ;
+
+        //                     lat_average = lat_sum / all_lat.length ;
+        //                     lng_average = lng_sum / all_lng.length ;
+        //                 }
+
+        //                 marker_mouseover = new google.maps.Marker({
+        //                     // position: JSON.parse(result[xi]['sos_area'])[0],
+        //                     position: {lat: lat_average, lng: lng_average },
+        //                     map: map,
+        //                     icon: image_empty,
+        //                     label: {
+        //                         text: result[xi]['name_area'],
+        //                         color: 'black',
+        //                         fontSize: "18px",
+        //                         fontWeight: 'bold',
+        //                     },
+        //                     zIndex:10,
+        //                 });
+
+        //             });
+
+        //             // mouseout polygon
+        //             google.maps.event.addListener(draw_area_other, 'mouseout', function (event) {
+        //                 this.setOptions({
+        //                     strokeColor: '#008450',
+        //                     fillColor: '#008450'
+        //                 });
+        //                 marker_mouseover.setMap(null);
+
+        //                 lat_sum = 0 ;
+        //                 lng_sum = 0 ;
+        //                 lat_average = 0 ;
+        //                 lng_average = 0 ;
+        //                 all_lat = [] ;
+        //                 all_lng = [] ;
+        //             });
+
+        //             draw_area_other.addListener("click", () => {
+        //                 // select_name_area(result[xi]['name_area']);
+        //                 try {
+        //                     document.querySelector('#select_name_area_' + result[xi]['name_area']).click();
+        //                 }
+        //                 catch(err) {
+        //                     alert('ไม่มีข้อมูลการขอความช่วยเหลือ');
+        //                 }
+
+        //             });
+        //         }
+
+
+        //     });
+
+    }
+</script>
 
 <!-- Column CHART พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ -->
 <script>
+
     var options = {
          series: [{
          data: [ 1380 , 1100 , 840 , 430 , 400 ]
@@ -378,7 +483,7 @@
          colors: ['#fff']
        },
        xaxis: {
-         categories: ['กรุงเทพมหานคร', 'นครนายก', 'จตุจักร', 'พระนครศรีอยุธยา', 'ปทุมธานี',],
+         categories: ['อำเภอ1', 'อำเภอ2', 'อำเภอ3', 'อำเภอ4', 'อำเภอ5',],
        },
        yaxis: {
          labels: {
@@ -690,6 +795,8 @@
        chart.render();
 
 </script>
+
+
 
 
 

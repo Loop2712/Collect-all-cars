@@ -298,3 +298,5 @@ Route::get('/get_appId', 'AgoraController@get_appId');
 
 //========== User ==============//
 Route::get('/filter_user', 'Partner_DashboardController@filter_user');
+//========== สพฉ ==============//
+Route::get('/sos_data_map', 'Dashboard_1669_Controller@map_sos');

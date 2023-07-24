@@ -46,8 +46,8 @@ class User extends Authenticatable
     }
 
     public function products(){
-        return $this->hasMany('App\Models\Wishlist', 'user_id','id'); 
-    }  
+        return $this->hasMany('App\Models\Wishlist', 'user_id','id');
+    }
 
     public function check_ins(){
         return $this->hasMany('App\Models\Check_in', 'user_id');
@@ -73,8 +73,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Data_1669_officer_command', 'user_id' ,'id');
     }
 
+    public function officer_command_creator(){
+        return $this->hasMany('App\Models\Data_1669_officer_command', 'creator' ,'id');
+    }
+
     // public function sell(){
-    //     return $this->hasMany('App\Sell', 'user_id'); 
-    // }   
+    //     return $this->hasMany('App\Sell', 'user_id');
+    // }
 
 }
