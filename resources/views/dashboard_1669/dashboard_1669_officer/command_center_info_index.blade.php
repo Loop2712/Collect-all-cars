@@ -111,17 +111,17 @@
                                 <tr>
                                     <td>
                                         @php
-                                            $data_command = App\User::where('id',$top5_lastet_command_units->user_id)->first();
+                                            $data_command_2 = App\User::where('id',$top5_lastet_command_units->user_id)->first();
                                         @endphp
                                         <div class="d-flex align-items-center">
                                             <div class="recent-product-img">
-                                                @if(!empty($data_command->avatar) && empty($data_command->photo))
-                                                    <img src="{{ $data_command->avatar }}">
+                                                @if(!empty($data_command_2->avatar) && empty($data_command_2->photo))
+                                                    <img src="{{ $data_command_2->avatar }}">
                                                 @endif
-                                                @if(!empty($data_command->photo))
-                                                    <img src="{{ url('storage') }}/{{ $data_command->photo }}">
+                                                @if(!empty($data_command_2->photo))
+                                                    <img src="{{ url('storage') }}/{{ $data_command_2->photo }}">
                                                 @endif
-                                                @if(empty($data_command->avatar) && empty($data_command->photo))
+                                                @if(empty($data_command_2->avatar) && empty($data_command_2->photo))
                                                     <img src="https://www.viicheck.com/Medilab/img/icon.png">
                                                 @endif
                                             </div>
