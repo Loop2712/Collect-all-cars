@@ -675,7 +675,7 @@
 										</div>
 									</div>
 									<div class="col-6 col-md-4 col-lg-4">
-										<span class="btn btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" style="width:90%;" onclick="mapMarkLocation('12.870032','100.992541','6');">
+										<span id="title_1_select_latlng" class="btn btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" style="width:90%;" onclick="mapMarkLocation('12.870032','100.992541','6');">
 											เลือกจุดเกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
 										</span>
 									</div>
@@ -2381,7 +2381,7 @@
 
 <div>
 	<!-- Button trigger modal -->
-	<button id="btn_modal_alet_data_change" class="btn btn-primary d-" data-toggle="modal" data-target="#modal_alet_data_change">
+	<button id="btn_modal_alet_data_change" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_alet_data_change">
 	  	modal_alet_data_change
 	</button>
 

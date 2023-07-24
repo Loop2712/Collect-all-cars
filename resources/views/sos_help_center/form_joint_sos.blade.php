@@ -12,7 +12,20 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-8">
-                        <div id="map_joint_sos_1669"></div>
+                        <div id="stk_select_lat_lng" class="d-none">
+                    	  	<div class="col-12 text-center">
+			                    <br><br><br>
+			                    <img style="width:50%;" src="{{ url('/') }}/img/stickerline/PNG/10.png">
+			                    <br><br><br>
+			                    <h6>ไม่พบตำแหน่งของจุดเกิดเหตุ</h6>
+			                    <h3>..กรุณาเลือกจุดเกิดเหตุ..</h3>
+			                    <br>
+			                    <span class="btn btn-sm btn-danger main-shadow main-radius" data-dismiss="modal" onclick="document.querySelector('#title_1_select_latlng').click();">
+			                        เลือกจุดเกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
+			                    </span>
+			                </div>
+			            </div>
+                        <div id="map_joint_sos_1669" class="d-none"></div>
                     </div>
                     <div class="col-4" style="display: flex;flex-direction: column;">
                         <div class="card radius-10 w-100">
@@ -736,8 +749,6 @@
   
     //////////////////// END open_map_joint_sos_1669 ////////////////////
    
-
-
     function open_map_joint_sos_1669() {
 
         joint_sos_set_active_btn_menu_select('all', 'all');
@@ -748,6 +759,9 @@
         // console.log(parseFloat(sos_lng.value));
 
         if (sos_lat.value && sos_lng.value) {
+
+        	document.querySelector('#stk_select_lat_lng').classList.add('d-none');
+        	document.querySelector('#map_joint_sos_1669').classList.remove('d-none');
 
             let m_lat = parseFloat(sos_lat.value);
             let m_lng = parseFloat(sos_lng.value);
@@ -782,6 +796,9 @@
             // console.log('open_map');
             joint_sos_operating_unit(m_lat, m_lng, level_start, vehicle_type_start, 'open_map');
 
+        }else{
+        	document.querySelector('#stk_select_lat_lng').classList.remove('d-none');
+        	document.querySelector('#map_joint_sos_1669').classList.add('d-none');
         }
     }
 
