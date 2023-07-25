@@ -1453,7 +1453,6 @@ class Sos_help_centerController extends Controller
                 ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
                 ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
                 ->where('data_1669_operating_officers.status' , 'Standby')
-                ->where('data_1669_operating_units.area' , $sub_organization)
                 // ->having("distance", "<", 10)
                 ->orderBy("distance");
                 // ->limit(20);
@@ -1474,7 +1473,7 @@ class Sos_help_centerController extends Controller
                 $data_locations->orWhere('data_1669_operating_officers.level' , "ALS");
             }
 
-            $locations = $data_locations->get();
+            $locations = $data_locations->where('data_1669_operating_units.area' , $sub_organization)->get();
 
         }else{
 
