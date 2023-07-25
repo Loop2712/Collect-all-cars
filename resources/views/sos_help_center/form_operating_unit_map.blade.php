@@ -19,6 +19,8 @@
         height: 80px;
         width: 80px;
         border-width: 10px;
+    }.data-officer{
+        overflow: auto;
     }
 </style>
 <!-- Modal cf_select_operating_unit -->
