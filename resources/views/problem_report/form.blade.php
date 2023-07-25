@@ -65,12 +65,12 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">รายละเอียด</label>
+                                    <label class="form-label">อธิบายเหตุการณ์ที่เกิดปัญหา</label>
                                     <textarea class="form-control" name="description" placeholder="กรอกรายละเอียด" rows="3" id="description" value="{{ isset($problem_report->description) ? $problem_report->description : ''}}"></textarea>
                                 </div>
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-primary">แจ้งปัญหา</button>
-                                    <button onclick="history.back()" class="btn btn-light"><i class="bx bx-arrow-back mr-1"></i>Back</button>
+                                    <a href="#" onclick="history.back()" class="btn btn-light"><i class="bx bx-arrow-back mr-1"></i>Back</a>
                                 </div>
                             </div>
                         </div>
