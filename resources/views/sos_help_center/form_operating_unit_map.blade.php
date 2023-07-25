@@ -19,8 +19,6 @@
         height: 80px;
         width: 80px;
         border-width: 10px;
-    }.data-officer{
-        overflow: auto;
     }
 </style>
 <!-- Modal cf_select_operating_unit -->
@@ -864,10 +862,17 @@
                                     </button>
                                 </div>
                             </div> -->
-
-
-                            <div class="data-officer p-3 mb-3 ps ps--active-y" id="card_data_operating">
-
+                                
+                                <style>
+                                    .overflow-data-officer{
+                                        overflow: auto;
+                                        height: 100%;
+                                    }
+                                </style>
+                            <div class="data-officer test p-3 mb-3 ps ps--active-y" >
+                                <div class="overflow-data-officer" id="card_data_operating">
+                                </div>
+                                
                                 <!-- <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
                                     <div class="level bls d-flex align-items-center ">
                                         <center>
