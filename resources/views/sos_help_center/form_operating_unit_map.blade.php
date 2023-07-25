@@ -1031,6 +1031,9 @@
     function location_operating_unit(m_lat, m_lng, level ,vehicle_type, check_click) {
         // console.log("level >> " + level);
         // console.log("vehicle_type >> " + vehicle_type);
+
+        let sub_organization = "{{ Auth::user()->sub_organization }}";
+
         level = level.toLowerCase();
 
         let check_forward = "{{ $sos_help_center->forward_operation_from }}";
@@ -1053,7 +1056,7 @@
         let data_arr = [];
         let text_data_arr = [];
 
-        fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level + "/" + vehicle_type + "/" + forward_level)
+        fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level + "/" + vehicle_type + "/" + forward_level + "/" +  sub_organization)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
