@@ -564,7 +564,7 @@
 <div class="modal fade" id="modal_new_select_officer_of_id_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_new_select_officer_of_id_sos" aria-hidden="true">
     <div class="modal-dialog modal-xl" >
         <div class="modal-content" style="height:95vh !important">
-        <button type="button" class="btnCloseModalOfficer btn" data-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+        <button type="button" class="btnCloseModalOfficer btn" onclick="window.location.reload();"><i class="fa-solid fa-xmark"></i></button>
 
             <div class="modal-body" style="height:95vh !important;overflow:auto;">
                 <div class="row">
@@ -1259,7 +1259,7 @@
 	                        `;
 
 	                        btn_wait_officer = `
-	                        <a class="btn btnWaitOfficerSuccess" href="{{ url("/") }}/sos_help_center/` +  item.id+ `/edit#step-1" >
+	                        <a class="btn btnWaitOfficerSuccess" href="{{ url("/") }}/sos_help_center/` +  item.id+ `/edit" >
 	                            ไปที่เคสนี้
 	                        </a>
 	                        `;
