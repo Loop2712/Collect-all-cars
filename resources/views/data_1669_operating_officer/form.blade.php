@@ -107,7 +107,6 @@
                 console.log(result);
 
                 if(result['data'] != 'ไม่มีข้อมูล'){
-                    document.querySelector('#btn_open_modal_warning').click();
 
                     let html = `
                         <div class="card">
@@ -165,6 +164,8 @@
                         `;
 
                         document.querySelector('#modal_warning_content').insertAdjacentHTML('afterbegin', html); // แทรกบนสุด
+
+                        document.querySelector('#btn_open_modal_warning').click();
                 }
 
             });
