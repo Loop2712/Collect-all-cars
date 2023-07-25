@@ -1452,9 +1452,9 @@ class Sos_help_centerController extends Controller
                 ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
                 ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
                 ->where('data_1669_operating_officers.status' , 'Standby')
-                ->having("distance", "<", 10)
-                ->orderBy("distance")
-                ->limit(20);
+                // ->having("distance", "<", 10)
+                ->orderBy("distance");
+                // ->limit(20);
 
             if ($forward_level == "เขียว(ไม่รุนแรง)"){
                 $data_locations->where('data_1669_operating_officers.level' , "FR");
@@ -1481,9 +1481,9 @@ class Sos_help_centerController extends Controller
                 ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
                 ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
                 ->where('data_1669_operating_officers.status' , 'Standby')
-                ->having("distance", "<", 10)
+                // ->having("distance", "<", 10)
                 ->orderBy("distance")
-                ->limit(20)
+                // ->limit(20)
                 ->get();
             }else if ($level == "all" && $vehicle_type != "all") {
                 $locations = DB::table('data_1669_operating_units')
@@ -1491,9 +1491,9 @@ class Sos_help_centerController extends Controller
                 ->where('data_1669_operating_officers.vehicle_type' , $vehicle_type)
                 ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
                 ->where('data_1669_operating_officers.status' , 'Standby')
-                ->having("distance", "<", 10)
+                // ->having("distance", "<", 10)
                 ->orderBy("distance")
-                ->limit(20)
+                // ->limit(20)
                 ->get();
             }else if ($level != "all" && $vehicle_type == "all") {
                 $locations = DB::table('data_1669_operating_units')
@@ -1501,9 +1501,9 @@ class Sos_help_centerController extends Controller
                 ->where('data_1669_operating_officers.level' , $level)
                 ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
                 ->where('data_1669_operating_officers.status' , 'Standby')
-                ->having("distance", "<", 10)
+                // ->having("distance", "<", 10)
                 ->orderBy("distance")
-                ->limit(20)
+                // ->limit(20)
                 ->get();
             }else{
                 $locations = DB::table('data_1669_operating_units')
@@ -1512,9 +1512,9 @@ class Sos_help_centerController extends Controller
                 ->where('data_1669_operating_officers.vehicle_type' , $vehicle_type)
                 ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
                 ->where('data_1669_operating_officers.status' , 'Standby')
-                ->having("distance", "<", 10)
+                // ->having("distance", "<", 10)
                 ->orderBy("distance")
-                ->limit(20)
+                // ->limit(20)
                 ->get();
             }
         }
