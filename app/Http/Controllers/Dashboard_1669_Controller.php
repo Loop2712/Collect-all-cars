@@ -158,104 +158,70 @@ class Dashboard_1669_Controller extends Controller
         ->select('address')
         ->get();
 
-        $data_arr = array();
+            $data_arr = array();
 
-        foreach ($sos_area_top5 as $key) {
-            $sos_area_explode = explode('/', $key->address)[1];
+            foreach ($sos_area_top5 as $key) {
+                $sos_area_explode = explode('/', $key->address)[1];
 
-            // ตรวจสอบว่ามีคีย์ที่เป็น $sos_area_explode อยู่ใน Array หรือไม่
-            if (array_key_exists($sos_area_explode, $data_arr)) {
-                // ถ้ามีอยู่แล้วให้บวกค่าเข้าไปอีก 1
-                $data_arr[$sos_area_explode] += 1;
-            } else {
-                // ถ้าไม่มีให้สร้างคีย์ใหม่และกำหนดค่าเป็น 1
-                $data_arr[$sos_area_explode] = 1;
+                // ตรวจสอบว่ามีคีย์ที่เป็น $sos_area_explode อยู่ใน Array หรือไม่
+                if (array_key_exists($sos_area_explode, $data_arr)) {
+                    // ถ้ามีอยู่แล้วให้บวกค่าเข้าไปอีก 1
+                    $data_arr[$sos_area_explode] += 1;
+                } else {
+                    // ถ้าไม่มีให้สร้างคีย์ใหม่และกำหนดค่าเป็น 1
+                    $data_arr[$sos_area_explode] = 1;
+                }
+
             }
 
-            echo $sos_area_explode;
-            echo '<br>';
-        }
+            $name_area = array();
+            $count_area = array();
 
-        echo"----------------------------------------<br>";
-        echo"ข้อมูลดั้งเดิม <br>";
-        echo"<pre>";
-        print_r($data_arr);
-        echo"</pre>";
-        echo"-------------------------";
-        echo"<br>";
-        echo"-------------------------";
-        echo"<br>";
+            // นำข้อมูลจาก $data_arr เก็บไว้ใน $name_area และ $count_area
+            foreach ($data_arr as $key => $value) {
+                array_push($name_area, $key);
+                array_push($count_area, $value);
+            }
 
-        $name_area = array();
-        $count_area = array();
+            // เรียงลำดับ $name_area และ $count_area ตามค่าใน $count_area จากมากไปน้อย
+            array_multisort($count_area, SORT_DESC, $name_area);
 
-        // นำข้อมูลจาก $data_arr เก็บไว้ใน $name_area และ $count_area
-        foreach ($data_arr as $key => $value) {
-            array_push($name_area, $key);
-            array_push($count_area, $value);
-        }
+            // สร้าง $data ใหม่โดยใช้ค่าใน $name_area และ $count_area
+            $data = array();
+            for ($i = 0; $i < count($name_area); $i++) {
+                $key = $name_area[$i];
+                $data[$key] = $count_area[$i];
+            }
 
-        // เรียงลำดับ $name_area และ $count_area ตามค่าใน $count_area จากมากไปน้อย
-        array_multisort($count_area, SORT_DESC, $name_area);
-
-        // สร้าง $data ใหม่โดยใช้ค่าใน $name_area และ $count_area
-        $data = array();
-        for ($i = 0; $i < count($name_area); $i++) {
-            $key = $name_area[$i];
-            $data[$key] = $count_area[$i];
-        }
-
-        echo"จัดเรียงลำดับใหม่ <br>";
-        echo"<pre>";
-        print_r($data);
-        echo"</pre>";
-        echo"-------------------------";
-        echo"<br>";
-        echo"-------------------------";
-        echo"<br>";
+        // echo"จัดเรียงลำดับใหม่ <br>";
+        // echo"<pre>";
+        // print_r($data);
+        // echo"</pre>";
+        // echo"-------------------------";
+        // echo"<br>";
+        // echo"-------------------------";
+        // echo"<br>";
 
 
-        echo"<br>";
-        echo">> ชื่อพื้นที่ <<";
-        echo"<br>";
-        echo"<pre>";
-        print_r($name_area);
-        echo"</pre>";
-        echo"-------------------------";
+        // echo"<br>";
+        // echo">> ชื่อพื้นที่ <<";
+        // echo"<br>";
+        // echo"<pre>";
+        // print_r($name_area);
+        // echo"</pre>";
+        // echo"-------------------------";
 
-        echo"<br>";
-        echo"<br>";
-        echo">> จำนวนครั้งของพื้นที่ <<";
-        echo"<br>";
-        echo"<pre>";
-        print_r($count_area);
-        echo"</pre>";
-        echo"-------------------------";
+        // echo"<br>";
+        // echo"<br>";
+        // echo">> จำนวนครั้งของพื้นที่ <<";
+        // echo"<br>";
+        // echo"<pre>";
+        // print_r($count_area);
+        // echo"</pre>";
+        // echo"-------------------------";
 
-        exit();
+        // exit();
 
-        // สร้างตัวแปรสำหรับเก็บข้อมูลที่ตรงเงื่อนไขทั้งหมด
-        // $sos_area_top5_filtered_data = [];
-
-        // // สร้างตัวแปรสำหรับเก็บจำนวนข้อมูลที่มีค่าในฟิลด์ $data->command_by ที่ซ้ำกัน
-        // $count_sos_area_top5_filtered_data = [];
-
-        // // วนลูปเพื่อตรวจสอบและเก็บข้อมูลที่ตรงเงื่อนไข
-        // foreach ($command_1669_data as $data) {
-        //     if( !empty($data->address) ){
-        //         $address_parts = explode('/', $data->address);
-        //         $current_result = $address_parts[1];
-
-        //         // ข้อมูลตรงเงื่อนไข ให้เก็บใน $sos_area_top5_filtered_data
-        //         $sos_area_top5_filtered_data[] = $current_result;
-
-        //         // เพิ่มค่าในตัวแปร $count_sos_area_top5_filtered_data ให้กับค่าในฟิลด์ $current_result โดยใช้ค่าเริ่มต้นเป็น 0 หากยังไม่มีค่านี้ใน $count_sos_area_top5_filtered_data
-        //         $count_sos_area_top5_filtered_data[$current_result] = isset($count_sos_area_top5_filtered_data[$current_result]) ? $count_sos_area_top5_filtered_data[$current_result] + 1 : 1;
-        //     }
-
-        // }
-
-        // dd($sos_area_top5);
 
     return view('dashboard_1669.dashboard_1669_index',
 
@@ -279,7 +245,9 @@ class Dashboard_1669_Controller extends Controller
         'data_sos_fastest_5',
         'data_sos_slowest_5',
         'sos_area_top5',
-        'count_command_1669_data'
+        'count_command_1669_data',
+        'name_area',
+        'count_area',
 
 
     ));

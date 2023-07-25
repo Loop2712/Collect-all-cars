@@ -445,27 +445,18 @@
 <script>
     let series_arr = [];
     let categories_arr = [];
-    let count_address = 0;
 
-    @foreach ($sos_area_top5 as $item)
-        @php
-            // ใช้ฟังก์ชัน explode เพื่อแยกข้อมูลใน $item->address ด้วยเครื่องหมาย /
-            $addressParts = explode('/', $item->address);
-            // นำข้อมูล index ที่ 1 มาเก็บใน series_arr (เนื่องจาก index เริ่มต้นที่ 0)
-            $addressPartIndex1 = $addressParts[1];
-        @endphp
+    @foreach ($count_area as $item)
+        series_arr.push(Number('{{ $item }}'));
+    @endforeach
 
-        console.log('{{$addressPartIndex1}}');
-
-
-
-        categories_arr.push(addressPartIndex1);
-        series_arr.push(count_address);
+    @foreach ($name_area as $item)
+        categories_arr.push('{{ $item }}');
     @endforeach
 
     var options = {
          series: [{
-         data: categories_arr
+         data: series_arr
        }],
          chart: {
          type: 'bar',
@@ -502,7 +493,7 @@
          colors: ['#fff']
        },
        xaxis: {
-         categories: series_arr,
+         categories: categories_arr,
        },
        yaxis: {
          labels: {
