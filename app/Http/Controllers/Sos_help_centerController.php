@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use SebastianBergmann\Environment\Console;
 use App\Models\Data_1669_operating_officer;
 use App\Models\Data_1669_operating_unit;
+use App\Models\Sos_1669_officer_ask_more;
 use App\Models\Mylog;
 use App\Models\Partner;
 use App\Models\Time_zone;
@@ -2849,6 +2850,7 @@ class Sos_help_centerController extends Controller
     function officerSaveFormYellow(Request $request)
     {
         $requestData = $request->all();
+        $sos_id = $requestData['sos_id'];
 
         $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $requestData['sos_id'])->first();
 
@@ -2871,16 +2873,75 @@ class Sos_help_centerController extends Controller
         
         $data_form_yellow->update($requestData);
 
-        return $requestData;
+        return $sos_id;
     }
 
     function officerAskMore(Request $request)
     {
         $requestData = $request->all();
-        $sos_id = $requestData['sos_id'];
-        $data_sos = Sos_help_center::where('id' , $sos_id)->first();
-        $data_officer_command = Data_1669_officer_command::where('id' , $data_sos->command_by)->first();
+        // $data_sos = Sos_help_center::where('id' , $sos_id)->first();
+        // $data_officer_command = Data_1669_officer_command::where('id' , $data_sos->command_by)->first();
 
-        return $data_officer_command;
+        $countnumber = 1;
+
+        foreach ($requestData as $item) {
+
+            $sos_id = $item['sos_id'];
+
+            if (empty($data_askMore['sos_id'])) {
+                $data_askMore['sos_id'] = $sos_id;
+            }
+
+            if (empty($data_askMore['officer_id'])) {
+                $data_askMore['officer_id'] = $item['officer_id'];
+            }
+
+            $data_sos_help_center = Sos_help_center::where('id', $sos_id)->first();
+            
+            $data_officer_command = Data_1669_officer_command::where('id',$data_sos_help_center->command_by)->first();
+
+            if ($data_officer_command->status != "Standby") {
+                // $test = "ไม่ Standby";
+                $data_officer_command_not_standby = Data_1669_officer_command::where('area',$data_officer_command->area)
+                ->where('status' , 'Standby')
+                ->orderBy('number' , 'ASC')->first();
+        
+                if (empty($data_askMore['noti_to'])) {
+                    $data_askMore['noti_to'] =  $data_officer_command_not_standby->id;
+                }
+
+            }else {
+                // $test = "Standby";
+                if (empty($data_askMore['noti_to'])) {
+                    $data_askMore['noti_to'] =  $data_officer_command->id;
+                }
+            }
+
+            if ($item['vehicle_' . $countnumber] == "รถยนต์") {
+                $data_askMore['vehicle_car'] = $item['amount_vehicle_' . $countnumber];
+                $data_askMore['rc_car'] = $item['rc_vehicle_' . $countnumber];
+            }
+            if ($item['vehicle_' . $countnumber] == "อากาศยาน") {
+                $data_askMore['vehicle_aircraft'] = $item['amount_vehicle_' . $countnumber];
+                $data_askMore['rc_aircraft'] = $item['rc_vehicle_' . $countnumber];
+            }if ($item['vehicle_' . $countnumber] == "เรือป.1") {
+                $data_askMore['vehicle_boat_1'] = $item['amount_vehicle_' . $countnumber];
+                $data_askMore['rc_boat_1'] = $item['rc_vehicle_' . $countnumber];
+            }if ($item['vehicle_' . $countnumber] == "เรือป.2") {
+                $data_askMore['vehicle_boat_2'] = $item['amount_vehicle_' . $countnumber];
+                $data_askMore['rc_boat_2'] = $item['rc_vehicle_' . $countnumber];
+            }if ($item['vehicle_' . $countnumber] == "เรือป.3") {
+                $data_askMore['vehicle_boat_3'] = $item['amount_vehicle_' . $countnumber];
+                $data_askMore['rc_boat_3'] = $item['rc_vehicle_' . $countnumber];
+            }if ($item['vehicle_' . $countnumber] == "เรืออื่นๆ") {
+                $data_askMore['vehicle_boat_other'] = $item['amount_vehicle_' . $countnumber];
+                $data_askMore['rc_boat_other'] = $item['rc_vehicle_' . $countnumber];
+            }
+            $countnumber++;
+        }
+
+        Sos_1669_officer_ask_more::create($data_askMore);
+
+        return $data_askMore['noti_to'];
     }
 }

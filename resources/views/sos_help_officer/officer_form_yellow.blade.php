@@ -899,6 +899,8 @@
 
                     function officer_save_data_form_yellow(divId) {
 
+                        
+
                         let data_arr = {
                             "sos_id": "{{ $data_sos->id }}",
                         };
@@ -1242,7 +1244,7 @@
     <select name="vehicle_${inputCount}" class="form-select mb-3" aria-label="Default select example" required>
         <option selected="" value="">โปรดเลือกยานพาหนะ<small class="text-danger">*</small></option>
         <option value="รถยนต์">รถยนต์</option>
-        <option value="อากาศยานต์">อากาศยานต์</option>
+        <option value="อากาศยาน">อากาศยาน</option>
         <option value="เรือป.1">เรือป.1</option>
         <option value="เรือป.2">เรือป.2</option>
         <option value="เรือป.3">เรือป.3</option>
@@ -1364,43 +1366,53 @@
 
     // ฟังก์ชันสำหรับแสดงค่าที่กรอกใน input type text ลงในคอนโซล (console)
     function submitForm() {
-        const formInputs = document.querySelectorAll('select[name^="vehicle_"], select[name^="rc_vehicle_"], input[name^="amount_vehicle_"], input[name^="input_amount_vehicle"]');
-        const formData = {};
+    const formInputs = document.querySelectorAll('select[name^="vehicle"], select[name^="rc_vehicle_"], input[name^="amount_vehicle_"], input[name^="input_amount_vehicle"]');
+    const formData = [];
+   
+    formInputs.forEach(input => { 
+        
 
-        formData['sos_id'] = '{{$data_sos->id}}';
+      const inputCount = input.name.slice(-1); // ดึงตัวเลขที่ปรากฏท้ายของชื่อ input field
+      const currentData = formData[inputCount - 1] || {}; // ใช้ข้อมูลของชุดปัจจุบันหากมีใน formData และถ้าไม่มีก็สร้าง Object ใหม่
+      currentData['sos_id'] = "{{$data_sos->id}}";
+      currentData['officer_id'] = "{{$data_sos->helper_id}}";
 
-        formInputs.forEach(input => {
-            if (input.type === 'radio') {
-                if (input.checked) {
-                    formData[input.name] = input.value;
-                    if (input.value === 'other') {
-                        const inputText = document.querySelector(`input[name="input_amount_vehicle${input.name.slice(-1)}"]`);
-                        if (inputText !== null) {
-                            let correspondingAmountInput = document.querySelector(`input[name="${input.name}"]`);
-                            formData[correspondingAmountInput.name] = inputText.value;
-
-                        }
-                    }
-                }
-            } else {
-                formData[input.name] = input.value;
+      if (input.type === 'radio') {
+        if (input.checked) {
+          currentData[input.name] = input.value;
+          if (input.value === 'other') {
+            const inputText = document.querySelector(`input[name="input_amount_vehicle${inputCount}"]`);
+            if (inputText !== null) {
+              let correspondingAmountInput = document.querySelector(`input[name="${input.name}"]`);
+              currentData[correspondingAmountInput.name] = inputText.value;
             }
-        });
+          }
+        }
+      } else {
+        currentData[input.name] = input.value;
+      }
+
+      formData[inputCount - 1] = currentData; // อัปเดตข้อมูลของชุดปัจจุบันใน formData
+    });
+
+    console.log(formData);
 
         // console.log(formData);
 
         fetch("{{ url('/') }}/api/officerAskMore", {
-            method: 'post',
+            method: 'POST',
             body: JSON.stringify(formData),
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(function(response) {
-            return response.json();
+            return response.text();
         }).then(function(data) {
+            console.log("aa");
+
             console.log(data);
         }).catch(function(error) {
-            // console.error(error);
+            console.error(error);
         });
     }
 </script>

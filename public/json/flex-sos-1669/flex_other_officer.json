@@ -348,7 +348,7 @@
                   "action": {
                     "type": "message",
                     "label": "เจ้าหน้าที่แจ้งปัญหา",
-                    "text": "Soon"
+                    "uri": "https://www.viicheck.com/problem_report?openExternalBrowser=1"
                   }
                 }
               ],
