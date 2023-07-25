@@ -1134,11 +1134,10 @@ color: #ff9317;
                         }
                     }
                 </style>
-                @if(Auth::user()->id == '1' || Auth::user()->id == '4' || Auth::user()->id == '64' || Auth::user()->id == '11003663')
+                
                 <button id="btnVideoCall" class="btn btnVideoCall" data-animation-class="fa-bounce" onclick="start_video_call_command();" disabled>
                     <i id="iconVideoCall" class="fa-duotone fa-video-plus"> </i> Video Call
                 </button>
-                @endif
             </div>
             <div class="card radius-10 p-3 fade-slide" id="div_detail_sos">
                 <div class="row d-flex justify-content-between">

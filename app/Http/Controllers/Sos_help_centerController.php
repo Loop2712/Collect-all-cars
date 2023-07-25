@@ -2907,13 +2907,13 @@ class Sos_help_centerController extends Controller
                 ->orderBy('number' , 'ASC')->first();
         
                 if (empty($data_askMore['noti_to'])) {
-                    $data_askMore['noti_to'] =  $data_officer_command_not_standby->id;
+                    $data_askMore['noti_to'] =  $data_officer_command_not_standby->user_id;
                 }
 
             }else {
                 // $test = "Standby";
                 if (empty($data_askMore['noti_to'])) {
-                    $data_askMore['noti_to'] =  $data_officer_command->id;
+                    $data_askMore['noti_to'] =  $data_officer_command->user_id;
                 }
             }
 
