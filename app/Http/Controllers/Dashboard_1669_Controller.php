@@ -154,31 +154,84 @@ class Dashboard_1669_Controller extends Controller
 
         // พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ
         $sos_area_top5 = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        ->where('address' , "!=" , null)
         ->select('address')
         ->get();
 
-        $area_arr = [];
-        $data_arr['name'] = [];
-        $data_arr['count'] = [];
+        $data_arr = array();
 
         foreach ($sos_area_top5 as $key) {
             $sos_area_explode = explode('/', $key->address)[1];
 
-            if (in_array($sos_area_explode,  $data_arr['name'])){
-                $data_arr['name'].push($sos_area_explode)
-                // $data_arr[$sos_area_explode] = intval($data_arr[$sos_area_explode]) + 1 ;
-            }else{
-                $data_arr[$sos_area_explode] = 1 ;
-
+            // ตรวจสอบว่ามีคีย์ที่เป็น $sos_area_explode อยู่ใน Array หรือไม่
+            if (array_key_exists($sos_area_explode, $data_arr)) {
+                // ถ้ามีอยู่แล้วให้บวกค่าเข้าไปอีก 1
+                $data_arr[$sos_area_explode] += 1;
+            } else {
+                // ถ้าไม่มีให้สร้างคีย์ใหม่และกำหนดค่าเป็น 1
+                $data_arr[$sos_area_explode] = 1;
             }
 
             echo $sos_area_explode;
             echo '<br>';
         }
 
+        echo"----------------------------------------<br>";
+        echo"ข้อมูลดั้งเดิม <br>";
         echo"<pre>";
         print_r($data_arr);
         echo"</pre>";
+        echo"-------------------------";
+        echo"<br>";
+        echo"-------------------------";
+        echo"<br>";
+
+        $name_area = array();
+        $count_area = array();
+
+        // นำข้อมูลจาก $data_arr เก็บไว้ใน $name_area และ $count_area
+        foreach ($data_arr as $key => $value) {
+            array_push($name_area, $key);
+            array_push($count_area, $value);
+        }
+
+        // เรียงลำดับ $name_area และ $count_area ตามค่าใน $count_area จากมากไปน้อย
+        array_multisort($count_area, SORT_DESC, $name_area);
+
+        // สร้าง $data ใหม่โดยใช้ค่าใน $name_area และ $count_area
+        $data = array();
+        for ($i = 0; $i < count($name_area); $i++) {
+            $key = $name_area[$i];
+            $data[$key] = $count_area[$i];
+        }
+
+        echo"จัดเรียงลำดับใหม่ <br>";
+        echo"<pre>";
+        print_r($data);
+        echo"</pre>";
+        echo"-------------------------";
+        echo"<br>";
+        echo"-------------------------";
+        echo"<br>";
+
+
+        echo"<br>";
+        echo">> ชื่อพื้นที่ <<";
+        echo"<br>";
+        echo"<pre>";
+        print_r($name_area);
+        echo"</pre>";
+        echo"-------------------------";
+
+        echo"<br>";
+        echo"<br>";
+        echo">> จำนวนครั้งของพื้นที่ <<";
+        echo"<br>";
+        echo"<pre>";
+        print_r($count_area);
+        echo"</pre>";
+        echo"-------------------------";
+
         exit();
 
         // สร้างตัวแปรสำหรับเก็บข้อมูลที่ตรงเงื่อนไขทั้งหมด
