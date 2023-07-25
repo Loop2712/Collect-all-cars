@@ -1089,6 +1089,8 @@
 						</li>
 						<li> <a href="{{ url('/partner_media?menu=all') }}"><i class="fas fa-photo-video"></i> สื่อประชาสัมพันธ์</a>
 						</li>
+						<li> <a href="{{ url('/problem_report') }}"><i class="fa-solid fa-message-exclamation"></i> แจ้งปัญหาการใช้งาน</a>
+						</li>
 					</ul>
 				</li>
 				<!-- Other -->
