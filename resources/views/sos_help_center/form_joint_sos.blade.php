@@ -1375,7 +1375,8 @@
         // console.log('click_id >> '+ click_id);
         // console.log(data);
 
-        document.querySelector('#btn_close_modal_show_officer_joint').click();
+        // document.querySelector('#btn_close_modal_show_officer_joint').click();
+        $("#modal_show_officer_joint").modal("hide");
         document.querySelector('#btn_open_modal_new_select_officer_of_id_sos').click();
 
         document.querySelector('#div_for_carousel_new_select_officer').innerHTML = '';
