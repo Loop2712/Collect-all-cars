@@ -346,7 +346,7 @@
                   "height": "44.5%",
                   "offsetBottom": "5%",
                   "action": {
-                    "type": "message",
+                    "type": "uri",
                     "label": "เจ้าหน้าที่แจ้งปัญหา",
                     "uri": "https://www.viicheck.com/problem_report?openExternalBrowser=1"
                   }
