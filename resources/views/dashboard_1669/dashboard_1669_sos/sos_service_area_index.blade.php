@@ -445,13 +445,21 @@
 <script>
     let series_arr = [];
     let categories_arr = [];
+    let i_count = 0;
+    let i_name = 0;
 
     @foreach ($count_area as $item)
-        series_arr.push(Number('{{ $item }}'));
+        if(i_count < 5){
+            series_arr.push(Number('{{ $item }}'));
+        }
+        i_count++;
     @endforeach
 
     @foreach ($name_area as $item)
-        categories_arr.push('{{ $item }}');
+        if(i_name < 5){
+            categories_arr.push('{{ $item }}');
+        }
+        i_name++;
     @endforeach
 
     var options = {
