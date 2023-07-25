@@ -74,7 +74,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="font-weight-bold mb-0 text-success" >คะแนนการช่วยเหลือต่อเคส มาก ที่สุด 5 อันดับ</h5>
+                        <h5 class="font-weight-bold mb-0 text-success" >คะแนนการช่วยเหลือต่อเคส มาก ที่สุด {{ count($data_sos_score_best_5) }} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -122,7 +122,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="font-weight-bold mb-0 text-danger" >คะแนนการช่วยเหลือต่อเคส น้อย ที่สุด 5 อันดับ</h5>
+                        <h5 class="font-weight-bold mb-0 text-danger" >คะแนนการช่วยเหลือต่อเคส น้อย ที่สุด {{ count($data_sos_score_worst_5) }} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -173,7 +173,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="font-weight-bold mb-0 text-success" >เวลาในการช่วยเหลือ ไว ที่สุด 5 อันดับ</h5>
+                        <h5 class="font-weight-bold mb-0 text-success" >เวลาในการช่วยเหลือ ไว ที่สุด {{ count($data_sos_fastest_5) }} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -244,7 +244,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="font-weight-bold mb-0 text-danger" >เวลาในการช่วยเหลือ ช้า ที่สุด 5 อันดับ</h5>
+                        <h5 class="font-weight-bold mb-0 text-danger" >เวลาในการช่วยเหลือ ช้า ที่สุด {{ count($data_sos_slowest_5) }} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"

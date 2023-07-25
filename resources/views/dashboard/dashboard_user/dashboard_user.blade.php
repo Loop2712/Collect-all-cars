@@ -374,10 +374,8 @@
         }
         };
 
-var chart = new ApexCharts(document.querySelector("#chartUser_from_Login"), options);
-chart.render();
-
-
+    var chart = new ApexCharts(document.querySelector("#chartUser_from_Login"), options);
+    chart.render();
 </script>
 
 <!-- Pie Chart แสดงจังหวัด -->

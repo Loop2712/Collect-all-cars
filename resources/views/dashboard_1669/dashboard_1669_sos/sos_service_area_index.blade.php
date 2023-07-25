@@ -443,10 +443,29 @@
 
 <!-- Column CHART พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ -->
 <script>
+    let series_arr = [];
+    let categories_arr = [];
+    let count_address = 0;
+
+    @foreach ($sos_area_top5 as $item)
+        @php
+            // ใช้ฟังก์ชัน explode เพื่อแยกข้อมูลใน $item->address ด้วยเครื่องหมาย /
+            $addressParts = explode('/', $item->address);
+            // นำข้อมูล index ที่ 1 มาเก็บใน series_arr (เนื่องจาก index เริ่มต้นที่ 0)
+            $addressPartIndex1 = $addressParts[1];
+        @endphp
+
+        console.log('{{$addressPartIndex1}}');
+
+
+
+        categories_arr.push(addressPartIndex1);
+        series_arr.push(count_address);
+    @endforeach
 
     var options = {
          series: [{
-         data: [ 1380 , 1100 , 840 , 430 , 400 ]
+         data: categories_arr
        }],
          chart: {
          type: 'bar',
@@ -483,7 +502,7 @@
          colors: ['#fff']
        },
        xaxis: {
-         categories: ['อำเภอ1', 'อำเภอ2', 'อำเภอ3', 'อำเภอ4', 'อำเภอ5',],
+         categories: series_arr,
        },
        yaxis: {
          labels: {

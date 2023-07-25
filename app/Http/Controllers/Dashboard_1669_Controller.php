@@ -154,32 +154,55 @@ class Dashboard_1669_Controller extends Controller
 
         // พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ
         $sos_area_top5 = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-        ->groupBy('address')
-        ->limit(5)
+        ->select('address')
         ->get();
 
-        // สร้างตัวแปรสำหรับเก็บข้อมูลที่ตรงเงื่อนไขทั้งหมด
-        $sos_area_top5_filtered_data = [];
+        $area_arr = [];
+        $data_arr['name'] = [];
+        $data_arr['count'] = [];
 
-        // สร้างตัวแปรสำหรับเก็บจำนวนข้อมูลที่มีค่าในฟิลด์ $data->command_by ที่ซ้ำกัน
-        $count_sos_area_top5_filtered_data = [];
+        foreach ($sos_area_top5 as $key) {
+            $sos_area_explode = explode('/', $key->address)[1];
 
-        // วนลูปเพื่อตรวจสอบและเก็บข้อมูลที่ตรงเงื่อนไข
-        foreach ($command_1669_data as $data) {
-            if( !empty($data->address) ){
-                $address_parts = explode('/', $data->address);
-                $current_result = $address_parts[1];
+            if (in_array($sos_area_explode,  $data_arr['name'])){
+                $data_arr['name'].push($sos_area_explode)
+                // $data_arr[$sos_area_explode] = intval($data_arr[$sos_area_explode]) + 1 ;
+            }else{
+                $data_arr[$sos_area_explode] = 1 ;
 
-                // ข้อมูลตรงเงื่อนไข ให้เก็บใน $sos_area_top5_filtered_data
-                $sos_area_top5_filtered_data[] = $current_result;
-
-                // เพิ่มค่าในตัวแปร $count_sos_area_top5_filtered_data ให้กับค่าในฟิลด์ $current_result โดยใช้ค่าเริ่มต้นเป็น 0 หากยังไม่มีค่านี้ใน $count_sos_area_top5_filtered_data
-                $count_sos_area_top5_filtered_data[$current_result] = isset($count_sos_area_top5_filtered_data[$current_result]) ? $count_sos_area_top5_filtered_data[$current_result] + 1 : 1;
             }
 
+            echo $sos_area_explode;
+            echo '<br>';
         }
 
-        // dd($count_sos_area_top5_filtered_data);
+        echo"<pre>";
+        print_r($data_arr);
+        echo"</pre>";
+        exit();
+
+        // สร้างตัวแปรสำหรับเก็บข้อมูลที่ตรงเงื่อนไขทั้งหมด
+        // $sos_area_top5_filtered_data = [];
+
+        // // สร้างตัวแปรสำหรับเก็บจำนวนข้อมูลที่มีค่าในฟิลด์ $data->command_by ที่ซ้ำกัน
+        // $count_sos_area_top5_filtered_data = [];
+
+        // // วนลูปเพื่อตรวจสอบและเก็บข้อมูลที่ตรงเงื่อนไข
+        // foreach ($command_1669_data as $data) {
+        //     if( !empty($data->address) ){
+        //         $address_parts = explode('/', $data->address);
+        //         $current_result = $address_parts[1];
+
+        //         // ข้อมูลตรงเงื่อนไข ให้เก็บใน $sos_area_top5_filtered_data
+        //         $sos_area_top5_filtered_data[] = $current_result;
+
+        //         // เพิ่มค่าในตัวแปร $count_sos_area_top5_filtered_data ให้กับค่าในฟิลด์ $current_result โดยใช้ค่าเริ่มต้นเป็น 0 หากยังไม่มีค่านี้ใน $count_sos_area_top5_filtered_data
+        //         $count_sos_area_top5_filtered_data[$current_result] = isset($count_sos_area_top5_filtered_data[$current_result]) ? $count_sos_area_top5_filtered_data[$current_result] + 1 : 1;
+        //     }
+
+        // }
+
+        // dd($sos_area_top5);
 
     return view('dashboard_1669.dashboard_1669_index',
 
@@ -202,8 +225,7 @@ class Dashboard_1669_Controller extends Controller
         'data_sos_score_worst_5',
         'data_sos_fastest_5',
         'data_sos_slowest_5',
-        'sos_area_top5_filtered_data',
-        'count_sos_area_top5_filtered_data',
+        'sos_area_top5',
         'count_command_1669_data'
 
 
