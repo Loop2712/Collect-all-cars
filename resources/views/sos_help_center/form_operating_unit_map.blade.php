@@ -535,7 +535,7 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <h5 class="mb-0">ข้อมูลเจ้าหน้าที่ (รัศมี 10 กม.)</h5>
+                                        <h5 class="mb-0">ข้อมูลเจ้าหน้าที่</h5>
                                     </div>
                                     <!-- <div class="font-22 ms-auto">
                                             <button class="btn btn-success" onclick="test()"> <i class="fa-regular fa-eye-slash"></i></button>

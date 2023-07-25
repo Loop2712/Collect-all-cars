@@ -1446,12 +1446,15 @@ class Sos_help_centerController extends Controller
         $latitude = (float)$m_lat ;
         $longitude = (float)$m_lng;
 
+        $data_user = Auth::user();
+
         if ($forward_level != "null"){
 
             $data_locations = DB::table('data_1669_operating_units')
                 ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
                 ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
                 ->where('data_1669_operating_officers.status' , 'Standby')
+                ->where('data_1669_operating_units.area' , $data_user->sub_organization)
                 // ->having("distance", "<", 10)
                 ->orderBy("distance");
                 // ->limit(20);
@@ -1481,6 +1484,7 @@ class Sos_help_centerController extends Controller
                 ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
                 ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
                 ->where('data_1669_operating_officers.status' , 'Standby')
+                ->where('data_1669_operating_units.area' , $data_user->sub_organization)
                 // ->having("distance", "<", 10)
                 ->orderBy("distance")
                 // ->limit(20)
@@ -1491,6 +1495,7 @@ class Sos_help_centerController extends Controller
                 ->where('data_1669_operating_officers.vehicle_type' , $vehicle_type)
                 ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
                 ->where('data_1669_operating_officers.status' , 'Standby')
+                ->where('data_1669_operating_units.area' , $data_user->sub_organization)
                 // ->having("distance", "<", 10)
                 ->orderBy("distance")
                 // ->limit(20)
@@ -1501,6 +1506,7 @@ class Sos_help_centerController extends Controller
                 ->where('data_1669_operating_officers.level' , $level)
                 ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
                 ->where('data_1669_operating_officers.status' , 'Standby')
+                ->where('data_1669_operating_units.area' , $data_user->sub_organization)
                 // ->having("distance", "<", 10)
                 ->orderBy("distance")
                 // ->limit(20)
@@ -1512,6 +1518,7 @@ class Sos_help_centerController extends Controller
                 ->where('data_1669_operating_officers.vehicle_type' , $vehicle_type)
                 ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
                 ->where('data_1669_operating_officers.status' , 'Standby')
+                ->where('data_1669_operating_units.area' , $data_user->sub_organization)
                 // ->having("distance", "<", 10)
                 ->orderBy("distance")
                 // ->limit(20)
