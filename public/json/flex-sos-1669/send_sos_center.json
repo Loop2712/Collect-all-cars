@@ -10,30 +10,10 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/img/flex/1669/going_to_help_1669.png",
+            "url": "https://www.viicheck.com/img/flex/1669/going_to_help_1669_กาญ.png",
             "size": "full",
             "aspectRatio": "2500:3500",
             "aspectMode": "cover"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "image",
-                "url": "https://viicheck.com/img/logo-partner/command-center/กาญจนบุรี.png",
-                "aspectMode": "fit",
-                "size": "50px",
-                "aspectRatio": "1:1"
-              }
-            ],
-            "position": "absolute",
-            "offsetTop": "8%",
-            "offsetStart": "9.3%",
-            "width": "15%",
-            "height": "9%",
-            "justifyContent": "space-around",
-            "alignItems": "center"
           },
           {
             "type": "box",
