@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center align-items-center">
+                <div class="">
                     <div id="sos_1669_form_yellows"></div>
                 </div>
             </div>
@@ -88,78 +88,48 @@
                 <div class="table-responsive mt-4 mb-4">
                     <table class="table align-middle mb-0">
                         <tbody>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div><i class='bx bxs-checkbox me-2 font-24 text-primary'></i>
-                                        </div>
-                                        <div>แพลตฟอร์มวีเช็ค</div>
-                                    </div>
-                                </td>
-                                <td>562 ครั้ง</td>
-                            </tr>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div><i class='bx bxs-checkbox me-2 font-24 text-danger'></i>
-                                        </div>
-                                        <div>โทรศัพท์หมายเลข ๑๖๖๙</div>
-                                    </div>
-                                </td>
-                                <td>561 ครั้ง</td>
+                            @foreach ($notify_data as $notify_data)
 
-                            </tr>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div><i class='bx bxs-checkbox me-2 font-24 text-success'></i>
+                                @php
+                                    $color_benotified;
+                                    switch ($notify_data->be_notified) {
+                                        case 'แพลตฟอร์มวีเช็ค':
+                                            $color_benotified = "#dc3545";
+                                            break;
+                                        case 'โทรศัพท์หมายเลข ๑๖๖๙':
+                                            $color_benotified = "#0d6efd";
+                                            break;
+                                        case 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)':
+                                            $color_benotified = "#198754";
+                                            break;
+                                        case 'โทรศัพท์หมายเลขอื่นๆ':
+                                            $color_benotified = "#0dcaf0";
+                                            break;
+                                        case 'วิทยุสื่อสาร':
+                                            $color_benotified = "#ffc107";
+                                            break;
+                                        case 'วิธีอื่นๆ':
+                                            $color_benotified = "#f48024";
+                                            break;
+                                        case 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า':
+                                            $color_benotified = "#f9a3a4";
+                                            break;
+                                        default:
+                                            $color_benotified = "#212529";
+                                            break;
+                                    }
+                                @endphp
+                                <tr>
+                                    <td class="px-0">
+                                        <div class="d-flex align-items-center">
+                                            <div><i class='bx bxs-checkbox me-2 font-24' style="color:{{$color_benotified}};"></i>
+                                            </div>
+                                            <div>{{$notify_data->be_notified}}</div>
                                         </div>
-                                        <div>โทรศัพท์หมายเลข ๑๖๖๙ (second call)</div>
-                                    </div>
-                                </td>
-                                <td>452 ครั้ง</td>
-
-                            </tr>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div><i class='bx bxs-checkbox me-2 font-24 text-warning'></i>
-                                        </div>
-                                        <div>โทรศัพท์หมายเลขอื่นๆ</div>
-                                    </div>
-                                </td>
-                                <td>444 ครั้ง</td>
-                            </tr>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div><i class='bx bxs-checkbox me-2 font-24 text-info'></i>
-                                        </div>
-                                        <div>วิทยุสื่อสาร</div>
-                                    </div>
-                                </td>
-                                <td>235 ครั้ง</td>
-                            </tr>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div><i class='bx bxs-checkbox me-2 font-24 text-dark'></i>
-                                        </div>
-                                        <div>วิธีอื่นๆ  </div>
-                                    </div>
-                                </td>
-                                <td>235 ครั้ง</td>
-                            </tr>
-                            <tr>
-                                <td class="px-0">
-                                    <div class="d-flex align-items-center">
-                                        <div><i class='bx bxs-checkbox me-2 font-24 text-primary'></i>
-                                        </div>
-                                        <div>ส่งต่อชุดปฏิบัติการระดับสูงกว่า</div>
-                                    </div>
-                                </td>
-                                <td>145 ครั้ง</td>
-                            </tr>
+                                    </td>
+                                    <td>{{$notify_data->count_be_notified}} ครั้ง</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -299,144 +269,54 @@
 <!-- MAP พื้นที่การขอความช่วยเหลือในจังหวัด -->
 <script>
     function initMap() {
-        console.log("MAPPPPPP");
-        // 13.7248936,100.4930264 lat lng ประเทศไทย
-        let map = new google.maps.Map(document.getElementById("sos_map_organization"), {
-            center: {lat: 13.7248936, lng: 100.4930264 },
-            zoom: 5,
+
+        var map_sos_organization ;
+        var marker_sos_organization ;
+
+        let user_login_organization = '{{Auth::user()->sub_organization}}';
+
+        let all_lat_lng = [];
+
+        fetch("{{ url('/') }}/api/sos_data_map/" + user_login_organization)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                for (let ii = 0; ii < result.length; ii++) {
+                    let lat = parseFloat(result[ii].lat);
+                    let lng = parseFloat(result[ii].lng);
+
+                    all_lat_lng.push({"lat": lat, "lng": lng});
+                }
+
+
+                let bounds = new google.maps.LatLngBounds();
+
+                    for (let vc = 0; vc < all_lat_lng.length; vc++) {
+                        bounds.extend(all_lat_lng[vc]);
+                    }
+
+                    map_sos_organization = new google.maps.Map(document.getElementById("sos_map_organization"), {
+                        // zoom: num_zoom,
+                        // center: bounds.getCenter(),
+                    });
+                    map_sos_organization.fitBounds(bounds);
+
+                    //ปักหมุด
+                    let image_marker_sos = "https://www.viicheck.com/img/icon/flag_2.png";
+                    @foreach($sos_map_data as $sos_map_data)
+                        @if(!empty($sos_map_data->lat))
+                            marker_sos_organization = new google.maps.Marker({
+                                position: { lat: {{ $sos_map_data->lat }} , lng: {{ $sos_map_data->lng }}  },
+                                map: map_sos_organization,
+                                icon: image_marker_sos,
+                                zIndex:5,
+                            });
+                        @endif
+                    @endforeach
+
         });
 
-        // let all_lat = [];
-        // let all_lng = [];
-        // let all_lat_lng = [];
-
-        // let lat_average ;
-        // let lng_average ;
-
-        // let lat_sum = 0 ;
-        // let lng_sum = 0 ;
-
-        // let name_partner = document.querySelector('#name_partner');
-
-        // fetch("{{ url('/') }}/api/sos_data_map/")
-        //     .then(response => response.json())
-        //     .then(result => {
-        //         // console.log(result);
-
-        //         for (let ii = 0; ii < result.length; ii++) {
-
-        //             all_lat.push(JSON.parse(result[ii]['sos_area'])[xx]['lat']);
-        //             all_lng.push(JSON.parse(result[ii]['sos_area'])[xx]['lng']);
-        //         }
-
-        //         let bounds = new google.maps.LatLngBounds();
-
-        //             for (let vc = 0; vc < all_lat_lng.length; vc++) {
-        //                 bounds.extend(all_lat_lng[vc]);
-        //             }
-
-        //             map = new google.maps.Map(document.getElementById("map"), {
-        //                 // zoom: num_zoom,
-        //                 // center: bounds.getCenter(),
-        //             });
-        //             map.fitBounds(bounds);
-
-        //         for (let xi = 0; xi < result.length; xi++) {
-
-        //             // วาดพื้นที่รวมทั้งหมด
-        //             let draw_sum_area = new google.maps.Polygon({
-        //                 paths: all_lat_lng,
-        //                 strokeColor: "red",
-        //                 strokeOpacity: 0,
-        //                 strokeWeight: 0,
-        //                 fillColor: "red",
-        //                 fillOpacity: 0,
-        //             });
-        //             draw_sum_area.setMap(map);
-
-        //             // วาดแยกแต่ละพื้นที่
-        //             let draw_area_other = new google.maps.Polygon({
-        //                 paths: JSON.parse(result[xi]['sos_area']),
-        //                 strokeColor: "#008450",
-        //                 strokeOpacity: 0.8,
-        //                 strokeWeight: 1,
-        //                 fillColor: "#008450",
-        //                 fillOpacity: 0.25,
-        //                 zIndex:10,
-        //             });
-        //             draw_area_other.setMap(map);
-
-        //             // mouseover on polygon
-        //             google.maps.event.addListener(draw_area_other, 'mouseover', function (event) {
-        //                 this.setOptions({
-        //                     strokeColor: '#00ff00',
-        //                     fillColor: '#00ff00'
-        //                 });
-
-        //                 let image_empty = "https://www.viicheck.com/img/icon/flag_empty.png";
-
-        //                 for (let mm = 0; mm < JSON.parse(result[xi]['sos_area']).length; mm++) {
-
-        //                     all_lat.push(JSON.parse(result[xi]['sos_area'])[mm]['lat']);
-        //                     all_lng.push(JSON.parse(result[xi]['sos_area'])[mm]['lng']);
-
-        //                 }
-
-        //                 for (let zz = 0; zz < all_lat.length; zz++) {
-
-        //                     lat_sum = lat_sum + all_lat[zz] ;
-        //                     lng_sum = lng_sum + all_lng[zz] ;
-
-        //                     lat_average = lat_sum / all_lat.length ;
-        //                     lng_average = lng_sum / all_lng.length ;
-        //                 }
-
-        //                 marker_mouseover = new google.maps.Marker({
-        //                     // position: JSON.parse(result[xi]['sos_area'])[0],
-        //                     position: {lat: lat_average, lng: lng_average },
-        //                     map: map,
-        //                     icon: image_empty,
-        //                     label: {
-        //                         text: result[xi]['name_area'],
-        //                         color: 'black',
-        //                         fontSize: "18px",
-        //                         fontWeight: 'bold',
-        //                     },
-        //                     zIndex:10,
-        //                 });
-
-        //             });
-
-        //             // mouseout polygon
-        //             google.maps.event.addListener(draw_area_other, 'mouseout', function (event) {
-        //                 this.setOptions({
-        //                     strokeColor: '#008450',
-        //                     fillColor: '#008450'
-        //                 });
-        //                 marker_mouseover.setMap(null);
-
-        //                 lat_sum = 0 ;
-        //                 lng_sum = 0 ;
-        //                 lat_average = 0 ;
-        //                 lng_average = 0 ;
-        //                 all_lat = [] ;
-        //                 all_lng = [] ;
-        //             });
-
-        //             draw_area_other.addListener("click", () => {
-        //                 // select_name_area(result[xi]['name_area']);
-        //                 try {
-        //                     document.querySelector('#select_name_area_' + result[xi]['name_area']).click();
-        //                 }
-        //                 catch(err) {
-        //                     alert('ไม่มีข้อมูลการขอความช่วยเหลือ');
-        //                 }
-
-        //             });
-        //         }
-
-
-        //     });
 
     }
 </script>
@@ -486,6 +366,7 @@
          enabled: true,
          textAnchor: 'start',
          style: {
+            fontSize: '16px',
            colors: ['#000']
          },
          formatter: function (val, opt) {
@@ -537,29 +418,104 @@
 
 </script>
 
-<!-- DONUT CHART หัวข้อการขอความช่วยเหลือมากที่สุด -->
+<!-- Column CHART หัวข้อการขอความช่วยเหลือมากที่สุด -->
 <script>
 
+    let symptom_count_arr = [];
+    let symptom_categories_arr = [];
+
+    // ฟังก์ชันสุ่มสี HEX
+    function randomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+
+        return color;
+    }
+
+    @foreach ($most_symptom_data as $item)
+        // นับจำนวน หัวข้อ
+        symptom_count_arr.push(Number('{{ $item->count_sympton }}'));
+
+        // นับประเภท หัวข้อ
+        symptom_categories_arr.push('{{ $item->symptom }}');
+    @endforeach
+
+    // เก็บสีที่สุ่ม ไว้ใน array โดยอิงจาก array ประเภทหัวข้อ
+    const symptom_colors = symptom_categories_arr.map(() => randomColor());
+
     var options = {
-        series: [44, 55, 41, 17, 15],
-        chart: {
-        width: 450,
-        type: 'donut',
-    },
-    legend: {
-        position: 'bottom',
-    },
-    responsive: [{
-        breakpoint: 480,
-            options: {
-                chart: {
-                width: 400
-                },
-                legend: {
+            series: [{
+            data: symptom_count_arr
+        }],
+            chart: {
+            type: 'bar',
+            height: 380,
+            width: '100%'
+        },
+        plotOptions: {
+            bar: {
+            barHeight: '100%',
+            distributed: true,
+            horizontal: true,
+            dataLabels: {
                 position: 'bottom'
+            },
+            }
+        },
+        colors: symptom_colors,
+        dataLabels: {
+            enabled: true,
+            textAnchor: 'start',
+            style: {
+            fontSize: '16px',
+            colors: ['#000']
+        },
+            formatter: function (val, opt) {
+            return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+        },
+            offsetX: 0,
+            dropShadow: {
+            enabled: true
+        }
+        },
+        stroke: {
+            width: 1,
+            colors: ['#fff']
+        },
+        xaxis: {
+            categories: symptom_categories_arr,
+        },
+        yaxis: {
+            labels: {
+            show: false
+            }
+        },
+    //    title: {
+    //        text: 'Custom DataLabels',
+    //        align: 'center',
+    //        floating: true
+    //    },
+    //    subtitle: {
+    //        text: 'Category Names as DataLabels inside bars',
+    //        align: 'center',
+    //    },
+        tooltip: {
+            theme: 'dark',
+            x: {
+            show: false
+            },
+            y: {
+            title: {
+                formatter: function () {
+                return ''
                 }
             }
-        }]
+            }
+        }
     };
 
     var chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows"), options);
@@ -569,28 +525,71 @@
 
 <!-- PIE CHART ระดับสถานการณ์ประเมินโดย ศูนย์สั่งการ -->
 <script>
+    let idc_count_arr = [];
+    let idc_categories_arr = [];
+    let idc_color_arr = [];
+    @foreach ($idc_data as $item)
+        // นับจำนวน หัวข้อ
+        idc_count_arr.push(Number('{{ $item->count_idc }}'));
+
+        // นับประเภท หัวข้อ
+        idc_categories_arr.push('{{ $item->idc }}');
+
+        switch ('{{ $item->idc }}') {
+            case 'แดง':
+                idc_color_arr.push("#dc3545");
+                break;
+            case 'เหลือง':
+                idc_color_arr.push("#ffc107");
+                break;
+            case 'เขียว':
+                idc_color_arr.push("#28a745");
+                break;
+            case 'ขาว':
+                idc_color_arr.push("#cbd3da");
+                break;
+            case 'ดำ':
+                idc_color_arr.push("#121416");
+                break;
+            default:
+                idc_color_arr.push("#121416");
+                break;
+        }
+
+    @endforeach
 
     var options = {
-        series: [44, 55, 41, 17, 15],
-        chart: {
-        width: 470,
-        type: 'pie',
-    },
-    legend: {
-        position: 'bottom',
-    },
-    responsive: [{
-        breakpoint: 480,
-            options: {
-                chart: {
-                width: 400
+            series: idc_count_arr,
+            chart: {
+                width: 500,
+                type: 'pie',
+            },
+            legend:{
+                formatter: function(val, opts) {
+                    return val + " - " + opts.w.globals.series[opts.seriesIndex]
                 },
-                legend: {
-                position: 'bottom'
-                }
-            }
-        }]
-    };
+                position: 'bottom',
+            },
+
+            labels: idc_categories_arr,
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 400
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }],
+            dataLabels: {
+                style: {
+                    fontSize: '14px', // ค่า fontSize ที่คุณต้องการ
+                },
+            },
+            colors: idc_color_arr,
+        };
 
     var chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows_idc"), options);
     chart.render();
@@ -600,27 +599,71 @@
 <!-- PIE CHART ระดับสถานการณ์ประเมินโดย หน่วยปฏิบัติการ -->
 <script>
 
+    let rc_count_arr = [];
+    let rc_categories_arr = [];
+    let rc_color_arr = [];
+    @foreach ($rc_data as $item)
+        // นับจำนวน หัวข้อ
+        rc_count_arr.push(Number('{{ $item->count_rc }}'));
+
+        // นับประเภท หัวข้อ
+        rc_categories_arr.push('{{ $item->rc }}');
+
+        switch ('{{ $item->rc }}') {
+            case 'แดง':
+                rc_color_arr.push("#dc3545");
+                break;
+            case 'เหลือง':
+                rc_color_arr.push("#ffc107");
+                break;
+            case 'เขียว':
+                rc_color_arr.push("#28a745");
+                break;
+            case 'ขาว':
+                rc_color_arr.push("#cbd3da");
+                break;
+            case 'ดำ':
+                rc_color_arr.push("#121416");
+                break;
+            default:
+                rc_color_arr.push("#121416");
+                break;
+        }
+
+    @endforeach
+
     var options = {
-        series: [44, 55, 41, 17, 15],
-        chart: {
-        width: 470,
-        type: 'pie',
-    },
-    legend: {
-        position: 'bottom',
-    },
-    responsive: [{
-        breakpoint: 480,
-            options: {
-                chart: {
-                width: 400
+            series: rc_count_arr,
+            chart: {
+                width: 500,
+                type: 'pie',
+            },
+            legend:{
+                formatter: function(val, opts) {
+                    return val + " - " + opts.w.globals.series[opts.seriesIndex]
                 },
-                legend: {
-                position: 'bottom'
-                }
-            }
-        }]
-    };
+                position: 'bottom',
+            },
+
+            labels: rc_categories_arr,
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 400
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }],
+            dataLabels: {
+                style: {
+                    fontSize: '14px', // ค่า fontSize ที่คุณต้องการ
+                },
+            },
+            colors: rc_color_arr,
+        };
 
     var chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows_rc"), options);
     chart.render();
@@ -629,15 +672,30 @@
 
 <!-- DONUT CHART การปฏิบัติการ -->
 <script>
+    let treatment_count_arr = [];
+    let treatment_categories_arr = [];
+
+    @foreach ($treatment_data as $item)
+        // นับจำนวน หัวข้อ
+        treatment_count_arr.push(Number('{{ $item->count_treatment }}'));
+
+        // นับประเภท หัวข้อ
+        treatment_categories_arr.push('{{ $item->treatment }}');
+
+    @endforeach
+
     var options = {
-        series: [222, 55],
+        series: treatment_count_arr,
         chart: {
         width: 450,
         type: 'donut',
     },
-    labels: ["มีการรักษา" , "ไม่มีการรักษา" ],
+    labels: treatment_categories_arr,
     colors: ['#2dce89', '#f5365c'], // กำหนดสีที่ต้องการ
     legend: {
+        formatter: function(val, opts) {
+            return val + " - " + opts.w.globals.series[opts.seriesIndex]
+        },
         position: 'bottom',
     },
     responsive: [{
@@ -660,76 +718,103 @@
 
 <!-- Column CHART การปฏิบัติการ CURE -->
 <script>
-    var options = {
-         series: [{
-         data: [ 1380 , 1100 , 840 , 430 , 400 ]
-       }],
-         chart: {
-         type: 'bar',
-         height: 380,
-         width: '100%'
-       },
-       plotOptions: {
-         bar: {
-           barHeight: '100%',
-           distributed: true,
-           horizontal: true,
-           dataLabels: {
-             position: 'bottom'
-           },
-         }
-       },
-       colors: ['#28a745',  '#33b2df',  '#ffc107',  '#f48024', '#d4526e',],
-       dataLabels: {
-         enabled: true,
-         textAnchor: 'start',
-         style: {
-           colors: ['#000']
-         },
-         formatter: function (val, opt) {
-           return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
-         },
-         offsetX: 0,
-         dropShadow: {
-           enabled: true
-         }
-       },
-       stroke: {
-         width: 1,
-         colors: ['#fff']
-       },
-       xaxis: {
-         categories: ['นำส่งโรงพยาบาล', 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า', 'ไม่นำส่ง', 'เสียชีวิตระหว่างนำส่ง', 'เสียชีวิต ณ จุดเกิดเหตุ',],
 
-       },
-       yaxis: {
-         labels: {
-           show: false
-         }
-       },
-    //    title: {
-    //        text: 'Custom DataLabels',
-    //        align: 'center',
-    //        floating: true
-    //    },
-    //    subtitle: {
-    //        text: 'Category Names as DataLabels inside bars',
-    //        align: 'center',
-    //    },
-       tooltip: {
-         theme: 'dark',
-         x: {
-           show: false
-         },
-         y: {
-           title: {
-             formatter: function () {
-               return ''
-             }
-           }
-         }
-       }
-       };
+    let have_cure_count_arr = [];
+    let have_cure_categories_arr = [];
+
+    // ฟังก์ชันสุ่มสี HEX
+    function randomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+
+        return color;
+    }
+
+    @foreach ($treatment_have_cure_data as $item)
+        // นับจำนวน หัวข้อ
+        have_cure_count_arr.push(Number('{{ $item->count_sub_treatment }}'));
+
+        // นับประเภท หัวข้อ
+        have_cure_categories_arr.push('{{ $item->sub_treatment }}');
+    @endforeach
+
+    // เก็บสีที่สุ่ม ไว้ใน array โดยอิงจาก array ประเภทหัวข้อ
+    const have_cure_color_arr = have_cure_categories_arr.map(() => randomColor());
+
+    var options = {
+        series: [{
+            data: have_cure_count_arr,
+        }],
+            chart: {
+            type: 'bar',
+            height: 380,
+            width: '100%'
+        },
+        plotOptions: {
+            bar: {
+            barHeight: '100%',
+            distributed: true,
+            horizontal: true,
+            dataLabels: {
+                position: 'bottom'
+            },
+            }
+        },
+        colors: have_cure_color_arr,
+        dataLabels: {
+            enabled: true,
+            textAnchor: 'start',
+            style: {
+                fontSize: '16px',
+                colors: ['#000']
+            },
+            formatter: function (val, opt) {
+                return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+            },
+            offsetX: 0,
+            dropShadow: {
+            enabled: true
+            }
+        },
+        stroke: {
+            width: 1,
+            colors: ['#fff']
+        },
+        xaxis: {
+            categories: have_cure_categories_arr,
+        },
+        yaxis: {
+            labels: {
+            show: false
+            }
+        },
+        //    title: {
+        //        text: 'Custom DataLabels',
+        //        align: 'center',
+        //        floating: true
+        //    },
+        //    subtitle: {
+        //        text: 'Category Names as DataLabels inside bars',
+        //        align: 'center',
+        //    },
+        tooltip: {
+            theme: 'dark',
+            x: {
+            show: false
+            },
+            y: {
+            title: {
+                formatter: function () {
+                return ''
+                }
+            }
+            }
+        }
+    };
 
        var chart = new ApexCharts(document.querySelector("#operation_cure"), options);
        chart.render();
@@ -738,53 +823,80 @@
 
 <!-- Column CHART การปฏิบัติการ NO CURE -->
 <script>
-    var options = {
-         series: [{
-         data: [ 555 , 450 , 254 , 59]
-       }],
-         chart: {
-         type: 'bar',
-         height: 380,
-         width: '100%'
-       },
-       plotOptions: {
-         bar: {
-           barHeight: '100%',
-           distributed: true,
-           horizontal: true,
-           dataLabels: {
-             position: 'bottom'
-           },
-         }
-       },
-       colors: ['#28a745', '#ffc107', '#f48024', '#d4526e',],
-       dataLabels: {
-         enabled: true,
-         textAnchor: 'start',
-         style: {
-           colors: ['#000']
-         },
-         formatter: function (val, opt) {
-           return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
-         },
-         offsetX: 0,
-         dropShadow: {
-           enabled: true
-         }
-       },
-       stroke: {
-         width: 1,
-         colors: ['#fff']
-       },
-       xaxis: {
-         categories: ['ผู้ป่วยปฏิเสธการรักษา', 'ยกเลิก', 'ไม่พบเหตุ', 'เสียชีวิตก่อนชุดปฏิบัติการไปถึง'],
+    let have_no_cure_count_arr = [];
+    let have_no_cure_categories_arr = [];
 
-       },
-       yaxis: {
-         labels: {
-           show: false
-         }
-       },
+    // ฟังก์ชันสุ่มสี HEX
+    function randomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+
+        return color;
+    }
+
+    @foreach ($treatment_have_no_cure_data as $item)
+        // นับจำนวน หัวข้อ
+        have_no_cure_count_arr.push(Number('{{ $item->count_sub_treatment }}'));
+
+        // นับประเภท หัวข้อ
+        have_no_cure_categories_arr.push('{{ $item->sub_treatment }}');
+    @endforeach
+
+    // เก็บสีที่สุ่ม ไว้ใน array โดยอิงจาก array ประเภทหัวข้อ
+    const have_no_cure_color_arr = have_no_cure_categories_arr.map(() => randomColor());
+
+    var options = {
+            series: [{
+            data: have_no_cure_count_arr,
+        }],
+            chart: {
+            type: 'bar',
+            height: 380,
+            width: '100%'
+        },
+        plotOptions: {
+            bar: {
+            barHeight: '100%',
+            distributed: true,
+            horizontal: true,
+            dataLabels: {
+                position: 'bottom'
+            },
+            }
+        },
+        colors: have_no_cure_color_arr,
+        dataLabels: {
+            enabled: true,
+            textAnchor: 'start',
+            style: {
+            fontSize: '16px',
+            colors: ['#000']
+            },
+            formatter: function (val, opt) {
+            return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+            },
+            offsetX: 0,
+            dropShadow: {
+            enabled: true
+            }
+        },
+        stroke: {
+            width: 1,
+            colors: ['#fff']
+        },
+        xaxis: {
+            categories: have_no_cure_categories_arr,
+
+        },
+        yaxis: {
+            labels: {
+            show: false
+            }
+        },
     //    title: {
     //        text: 'Custom DataLabels',
     //        align: 'center',
@@ -794,20 +906,20 @@
     //        text: 'Category Names as DataLabels inside bars',
     //        align: 'center',
     //    },
-       tooltip: {
-         theme: 'dark',
-         x: {
-           show: false
-         },
-         y: {
-           title: {
-             formatter: function () {
-               return ''
-             }
-           }
-         }
-       }
-       };
+        tooltip: {
+            theme: 'dark',
+            x: {
+            show: false
+            },
+            y: {
+            title: {
+                formatter: function () {
+                return ''
+                }
+            }
+            }
+        }
+    };
 
        var chart = new ApexCharts(document.querySelector("#operation_no_cure"), options);
        chart.render();

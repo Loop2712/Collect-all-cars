@@ -273,7 +273,7 @@
                                             $data_user_command = App\User::where('id',$top5_command->officers_command_by->user_id)->first();
 
                                             $command_sos_by = App\Models\Sos_help_center::where('command_by',$top5_command->command_by)->get();
-
+                                            $count_command_1669_data = count($command_sos_by);
                                             $count_status_success = 0;
                                             $count_status_helping = 0;
                                             foreach ($command_sos_by as $key) {
@@ -283,6 +283,7 @@
                                                     $count_status_helping = $count_status_helping + 1;
                                                 }
                                             }
+
                                         @endphp
                                         <div class="d-flex align-items-center mt-3">
                                             @if(!empty($data_user_command->avatar) && empty($data_user_command->photo))
@@ -300,7 +301,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{ count($count_command_1669_data) }}</td>
+                                    <td>{{$count_command_1669_data}}</td>
                                     <td>{{$count_status_success}}</td>
                                     <td>{{$count_status_helping}}</td>
                                 </tr>

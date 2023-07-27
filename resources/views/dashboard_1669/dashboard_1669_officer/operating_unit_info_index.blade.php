@@ -42,7 +42,7 @@
             </div>
             <div class="card-body">
                 <div class="d-flex justify-content-center align-items-center">
-                    <div id="chartVehicleTop5"></div>
+                    <div id="chartlevel_op"></div>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
     <!--จำนวนยานพาหนะทั้งหมด  -->
     <div class="col-12 col-lg-4 mb-2">
         <div class="card radius-10 h-100">
-            <div class="card-body ">
+            <div class=" p-3">
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="mb-0 font-weight-bold">จำนวนยานพาหนะทั้งหมด </h5>
@@ -60,15 +60,55 @@
                 </div>
             </div>
             <div class="mb-3 p-3">
-                @foreach ($vechicle_area as $vehicle_data)
+                @foreach ($vehicle_arr as $vehicle_arr)
+                    @php
+                        $color_benotified;
+                        switch ( $vehicle_arr['vehicle_type'] ) {
+                            case 'รถ':
+                                $color_benotified = "#dc3545";
+                                $vehicle_icon = '<i class="fa-solid fa-car" style="font-size: 2rem; color: #dc3545;"></i>';
+
+                                break;
+                            case 'อากาศยาน':
+                                $color_benotified = "#0d6efd";
+                                $vehicle_icon = '<i class="fa-solid fa-helicopter" style="font-size: 2rem; color: #0d6efd;"></i>';
+
+                                break;
+                            case 'เรือ ป.1':
+                                $color_benotified = "#198754";
+                                $vehicle_icon = '<i class="fa-solid fa-ship" style="font-size: 2rem; color: #198754;"></i>';
+
+                                break;
+                            case 'เรือ ป.2':
+                                $color_benotified = "#0dcaf0";
+                                $vehicle_icon = '<i class="fa-duotone fa-ship" style="font-size: 2rem; color: #0dcaf0;"></i>';
+
+                                break;
+                            case 'เรือ ป.3':
+                                $color_benotified = "#ffc107";
+                                $vehicle_icon = '<i class="fa-duotone fa-ship" style="font-size: 2rem; color: #ffc107;"></i>';
+
+                                break;
+                            case 'เรือประเภทอื่นๆ':
+                                $color_benotified = "#f48024";
+                                $vehicle_icon = '<i class="fa-solid fa-ship" style="font-size: 2rem; color: #f48024;"></i>';
+
+                                break;
+                            default:
+                                $color_benotified = "#212529";
+                                $vehicle_icon = '<i class="fa-solid fa-truck-bolt" style="font-size: 2rem; color: #212529;"></i>';
+
+                                break;
+                        }
+                    @endphp
                     <div class="row mb-4">
                         <div class="col-2 mt-2 text-center">
-                            <i class="fa-solid fa-motorcycle" style="font-size: 2rem"></i>
+                            {!! $vehicle_icon !!}
                         </div>
                         <div class="col">
-                            <p class="mb-2" style="font-weight: bold;">ประเภทยานพาหนะ<strong class="float-end">จำนวน</strong></p>
+                            <p class="mb-2" style="font-weight: bold; font-size: 16px">{{ $vehicle_arr['vehicle_type'] }}<strong class="float-end">{{ $vehicle_arr['count_vehicle_type'] }}</strong></p>
                             <div class="progress radius-10" style="height:6px;">
-                                <div class="progress-bar bg-gradient-lush" role="progressbar" style="width: 80%"></div>
+                                <div class="progress-bar bg-gradient-moonlit" role="progressbar" style="width: 80%"></div>
                             </div>
                         </div>
                     </div>
@@ -210,8 +250,40 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <script>
+
+    let lv_op_count_arr = [];
+    let lv_op_categories_arr = [];
+    let lv_op_color_arr = [];
+
+    @foreach ($level_op_arr as $item)
+        // นับจำนวน หัวข้อ
+        lv_op_count_arr.push(Number('{{ $item['count_level_op'] }}'));
+
+        // นับประเภท หัวข้อ
+        lv_op_categories_arr.push('{{ $item['level'] }}');
+
+        switch ('{{ $item['level'] }}') {
+            case 'ALS':
+                lv_op_color_arr.push("#dc3545");
+                break;
+            case 'ILS':
+                lv_op_color_arr.push("#f48024");
+                break;
+            case 'BLS':
+                lv_op_color_arr.push("#ffc107");
+                break;
+            case 'FR':
+                lv_op_color_arr.push("#28a745");
+                break;
+            default:
+                lv_op_color_arr.push("#121416");
+                break;
+        }
+
+    @endforeach
+
     var options = {
-        series: [44, 55, 41, 17, 15],
+        series: lv_op_count_arr,
         chart: {
         width: 450,
         type: 'donut',
@@ -234,6 +306,8 @@
             return val + " - " + opts.w.globals.series[opts.seriesIndex]
         }
     },
+    labels: lv_op_categories_arr,
+    colors: lv_op_color_arr,
     responsive: [{
         breakpoint: 480,
         options: {
@@ -247,7 +321,7 @@
     }]
     };
 
-    var chart = new ApexCharts(document.querySelector("#chartVehicleTop5"), options);
+    var chart = new ApexCharts(document.querySelector("#chartlevel_op"), options);
     chart.render();
 
 </script>
