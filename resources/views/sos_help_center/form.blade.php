@@ -442,7 +442,7 @@
                             <div class="row" id="div_search_by_place">
                               <div class="col-12" id="id_tee_ja_sai">
                                 <!-- <input class="form-control" id="input_search_by_place" placeholder="ค้นหาด้วยชื่อสถานที่ เช่น ศูนย์ราชการ" value=""> -->
-                                <input id="pac-input" class="controls form-control  "  type="text"placeholder="ค้นหาด้วยชื่อสถานที่ เช่น ศูนย์ราชการ" >
+                                <input id="pac-input" class="controls form-control" type="text" placeholder="ค้นหาด้วยชื่อสถานที่ เช่น ศูนย์ราชการ">
                               </div>
                             </div>
                             <!-- จบ ค้นหาด้วยชื่อสถานที่ -->
@@ -450,7 +450,7 @@
 
                         <div class="col-3 mt-3">
                           <center>
-                              <button id="span_submit_locations_sos" type="button" class="btn btn-info text-white" style="width: 100%;">
+                              <button id="span_submit_locations_sos" type="button" class="btn btn-info text-white main-shadow main-radius" style="width: 100%;">
                                   <i class="fa-solid fa-circle-check"></i> ยืนยัน
                               </button>
                           </center>
@@ -459,11 +459,80 @@
                     </div>
                 </div>
                 <hr>
+
+                <style>
+
+                  .slide-switcher-open-place {
+                    animation: slide-open-place 1s ease 0s 1 normal forwards;
+                  }
+
+                  @keyframes slide-open-place {
+                    0% {
+                      transform: translateX(-365px);
+                      opacity: 0; /* ทำให้หายไปทีละ peu */
+                    }
+                    100% {
+                      transform: translateX(0);
+                      opacity: 1; /* ทำให้ค่อย ๆ ปรากฏขึ้น */
+                    }
+                  }
+
+                  .slide-switcher-close-place {
+                    animation: slide-close-place 1s ease 0s 1 normal forwards;
+                  }
+
+                  @keyframes slide-close-place {
+                    0% {
+                      transform: translateX(0);
+                      opacity: 1; /* ทำให้ค่อย ๆ หายไป */
+                    }
+                    100% {
+                      transform: translateX(-365px);
+                      opacity: 0; /* ทำให้หายไป */
+                    }
+                  }
+
+                </style>
+                <script>
+                  function hideDiv() {
+                    // ใช้ .classList.toggle() เพื่อเปิด/ปิด class "slide-switcher-close-place" และ "slide-switcher-open-place"
+                    document.querySelector('.div_content_data_place').classList.toggle('slide-switcher-close-place');
+                    document.querySelector('.div_content_data_place').classList.toggle('slide-switcher-open-place');
+                    
+                    setTimeout(function() {
+                      document.querySelector('#btn_switch_place_outline').classList.toggle('d-none');
+                    }, 800);
+                  }
+                </script>
+
+
                 <div style="padding-right:15px;margin-top: 5px;">
                     <div class="card">
                         <div id="mapMarkLocation" class="d-none"></div>
                         <div id="map_places" class=""></div>
                         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&callback=initAutocomplete&libraries=places&v=weekly&language=th" defer></script>
+
+                        <div id="div_for_find_a_place" class="d-none">
+                          <button id="btn_switch_place_outline" class="btn btn-info d-none" onclick="hideDiv();" style="position: absolute;z-index: 9999;top:90%;width: 5%;">
+                            <i class="fa-solid fa-chevron-right"></i>
+                          </button>
+
+                          <div class="card slide-switcher-open-place div_content_data_place" style="position: absolute;z-index: 99999;top:10%;height:85%;width: 30%;">
+
+                            <button class="btn btn-info" onclick="hideDiv();" style="width:20%;">
+                              <i class="fa-solid fa-chevron-right rotate"></i>
+                            </button>
+
+                            <div class="card-body">
+                              <div class="row g-0" style="overflow: auto;height: 420px;">
+                                <div class="data_content_place">
+                                  <!-- content -->
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
 
                     </div>
                 </div>
@@ -3224,6 +3293,8 @@ color: #ff9317;
 
     function click_select_search_by(search_by){
 
+      document.querySelector('#div_for_find_a_place').classList.add('d-none');
+
       // map_places
       // mapMarkLocation
 
@@ -3286,14 +3357,16 @@ color: #ff9317;
 
 <script>
 
+  var map_places ;
+
   function initAutocomplete() {
 
-    let map_places = new google.maps.Map(document.getElementById("map_places"), {
+    map_places = new google.maps.Map(document.getElementById("map_places"), {
       center: {lat: 12.870032, lng: 100.992541 },
       zoom: 6,
       mapTypeId: "roadmap",
     });
-    
+
     // Create the search box and link it to the UI element.
     
     const searchBox = new google.maps.places.SearchBox(input);
@@ -3315,11 +3388,20 @@ color: #ff9317;
         return;
       }
 
+
+      document.querySelector('#div_for_find_a_place').classList.remove('d-none');
+      document.querySelector('.data_content_place').innerHTML = '';
+      // console.log(places);
+
       // Clear out the old markers_places.
-      markers_places.forEach((marker) => {
+      markers_places.forEach((markers_places) => {
         markers_places.setMap(null);
       });
       markers_places = [];
+
+      if (marker){
+        marker.setMap(null);
+      }
 
       // For each place, get the icon, name and location.
       const bounds = new google.maps.LatLngBounds();
@@ -3339,14 +3421,14 @@ color: #ff9317;
         };
 
         // Create a marker for each place.
-        // markers_places.push(
-        //   new google.maps.Marker({
-        //     map: map_places,
-        //     icon: image,
-        //     title: place.name,
-        //     position: place.geometry.location,
-        //   })
-        // );
+        markers_places.push(
+          new google.maps.Marker({
+            map: map_places,
+            // icon: image,
+            title: place.name,
+            position: place.geometry.location,
+          })
+        );
 
         const geocoder = new google.maps.Geocoder();
         const infowindow = new google.maps.InfoWindow();
@@ -3354,7 +3436,7 @@ color: #ff9317;
         const search_place_lat = place.geometry.location.lat();
         const search_place_lng = place.geometry.location.lng();
 
-        geocodeLatLng_places(geocoder, map_places, infowindow , search_place_lat , search_place_lng);
+        // geocodeLatLng_places(geocoder, map_places, infowindow , search_place_lat , search_place_lng);
 
         if (place.geometry.viewport) {
           // Only geocodes have viewport.
@@ -3362,6 +3444,25 @@ color: #ff9317;
         } else {
           bounds.extend(place.geometry.location);
         }
+
+        let text_div_html = `
+          <a href="#" onclick="set_center_map_place(`+search_place_lat+`, `+search_place_lng+`,'`+place.name+`');">
+            <div class="col-md-12">
+              <div class="card-body">
+                <h6 class="card-title">
+                  <b>`+place.name+`</b>
+                </h6>
+                <p class="text-muted">
+                  `+place.formatted_address+`
+                </p>
+              </div>
+            </div>
+          <a/>
+          <hr>
+        `;
+
+        document.querySelector('.data_content_place').insertAdjacentHTML('beforeend', text_div_html); // แทรกล่างสุด
+
       });
 
       map_places.fitBounds(bounds);
@@ -3410,7 +3511,24 @@ color: #ff9317;
   container.appendChild(input);
   map_places.controls[google.maps.ControlPosition.TOP_LEFT].push(container);
 
-  function geocodeLatLng_places(geocoder, map, infowindow , place_lat , place_lng) {
+
+  function set_center_map_place(set_lat,set_lng,name){
+
+    // console.log(set_lat);
+    // console.log(set_lng);
+    let newCenter = {lat: set_lat, lng: set_lng};
+    // เซ็ต center ใหม่ให้กับ map
+    map_places.setCenter(newCenter);
+    map_places.setZoom(14);
+
+    const geocoder = new google.maps.Geocoder();
+    const infowindow = new google.maps.InfoWindow();
+
+    geocodeLatLng_places(geocoder, map_places, infowindow , set_lat , set_lng , name);
+
+  }
+
+  function geocodeLatLng_places(geocoder, map, infowindow , place_lat , place_lng , name) {
 
     const latlng = {
         lat: parseFloat(place_lat),
@@ -3421,11 +3539,11 @@ color: #ff9317;
         .then((response) => {
             if (response.results[0]) {
                 map.setZoom(15);
-                const marker = new google.maps.Marker({
+                marker = new google.maps.Marker({
                   position: latlng,
                   map: map,
                 });
-                infowindow.setContent(response.results[0].formatted_address);
+                infowindow.setContent(name);
                 infowindow.open(map, marker);
 
             } else {
