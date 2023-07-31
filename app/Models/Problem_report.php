@@ -25,7 +25,7 @@ class Problem_report extends Model
      *
      * @var array
      */
-    protected $fillable = ['image', 'description', 'status', 'user_id', 'solution', 'remark'];
+    protected $fillable = ['image', 'description', 'status', 'user_id', 'solution', 'remark','photo_success'];
 
     
 }

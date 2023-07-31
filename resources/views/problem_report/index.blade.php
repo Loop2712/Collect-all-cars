@@ -164,7 +164,7 @@
                                             <span class="badge bg-light-primary text-primary w-100">กำลังดำเนินการ</span>
                                             @break
                                             @case('เสร็จสิ้น')
-                                                <span class="badge bg-light-success text-success w-100">Completed</span>
+                                                <span class="badge bg-light-success text-success w-100">เสร็จสิ้น</span>
                                             @break
                                         @endswitch
                                     </td>
