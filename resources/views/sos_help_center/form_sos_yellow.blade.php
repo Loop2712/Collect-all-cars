@@ -653,11 +653,36 @@
 								</div>
 							</div>
 							<div class="col-md-6">
-								<label for="phone_user" class="form-label">โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ</label>
+								<label for="phone_user" class="form-label">โทรศัพท์ผู้แจ้ง</label>
+								<span id="phone-error" style="color: red;"></span>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-phone"></i></span>
-									<input type="text" class="form-control border-start-0 radius-2" id="phone_user" name="phone_user" value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}" placeholder="โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ" oninput="document.querySelector('#u_phone_user').innerHTML = document.querySelector('#phone_user').value ;">
+									<input type="tel" pattern="[0-9]{9,10}" class="form-control border-start-0 radius-2" id="phone_user" name="phone_user" value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}" placeholder="โทรศัพท์ผู้แจ้ง" oninput="document.querySelector('#u_phone_user').innerHTML = document.querySelector('#phone_user').value ;validatePhone(this);">
 								</div>
 							</div>
+
+							<script>
+								// JavaScript
+								let delay_check_phone ;
+								function validatePhone(input) {
+									
+									document.getElementById("phone-error").textContent = "";
+									clearTimeout(delay_check_phone);
+
+							        delay_check_phone = setTimeout(function() {
+							            const phonePattern = /^[0-9]{9,10}$/; // รูปแบบตัวเลขที่ต้องการ (9 หรือ 10 หลัก)
+
+										if (input.validity.patternMismatch) {
+										    // ถ้ามีรูปแบบไม่ตรงกับที่กำหนด
+										    input.setCustomValidity("กรุณาใส่เบอร์โทรศัพท์ให้ถูกต้อง (ตัวเลข 9 หรือ 10 หลัก)");
+										    document.getElementById("phone-error").textContent = "กรุณาใส่เบอร์โทรศัพท์ให้ถูกต้อง (ตัวเลข 9 หรือ 10 หลัก)";
+										} else {
+										    input.setCustomValidity("");
+										    document.getElementById("phone-error").textContent = "";
+										}
+							        }, 1500);
+
+								}
+							</script>
 
 							<div class="col-12 mt-3">
 								<label for="inputAddress3" class="form-label">สถานที่เกิดเหตุ
