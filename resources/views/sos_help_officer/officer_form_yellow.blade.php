@@ -1217,10 +1217,10 @@
                 <div class="row d-flex justify-content-center">
                     <ul class="nav nav-pills d-flex justify-content-center text-center" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#addrDetail" type="button" role="tab" aria-controls="home" aria-selected="true">ตำแหน่ง</button>
+                            <button  class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#addrDetail" type="button" role="tab" aria-controls="home" aria-selected="true" onclick="check_data_form_yellow_show_case('detail')">ตำแหน่ง</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#symptomOther" type="button" role="tab" aria-controls="profile" aria-selected="false">อาการ</button>
+                            <button  class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#symptomOther" type="button" role="tab" aria-controls="profile" aria-selected="false" onclick="check_data_form_yellow_show_case('detail')">อาการ</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
