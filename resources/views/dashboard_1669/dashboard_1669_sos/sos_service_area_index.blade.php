@@ -536,19 +536,19 @@
         idc_categories_arr.push('{{ $item->idc }}');
 
         switch ('{{ $item->idc }}') {
-            case 'แดง':
+            case 'แดง(วิกฤติ)':
                 idc_color_arr.push("#dc3545");
                 break;
-            case 'เหลือง':
+            case 'เหลือง(เร่งด่วน)เหลือง(เร่งด่วน)':
                 idc_color_arr.push("#ffc107");
                 break;
-            case 'เขียว':
+            case 'เขียว(ไม่รุนแรง)':
                 idc_color_arr.push("#28a745");
                 break;
-            case 'ขาว':
+            case 'ขาว(ทั่วไป)':
                 idc_color_arr.push("#cbd3da");
                 break;
-            case 'ดำ':
+            case 'ดำ(รับบริการสาธารณสุขอื่น)':
                 idc_color_arr.push("#121416");
                 break;
             default:
@@ -614,16 +614,16 @@
         rc_categories_arr.push('{{ $item->rc }}');
 
         switch ('{{ $item->rc }}') {
-            case 'แดง':
+            case 'แดง(วิกฤติ)':
                 rc_color_arr.push("#dc3545");
                 break;
-            case 'เหลือง':
+            case 'เหลือง(เร่งด่วน)':
                 rc_color_arr.push("#ffc107");
                 break;
-            case 'เขียว':
+            case 'เขียว(ไม่รุนแรง)':
                 rc_color_arr.push("#28a745");
                 break;
-            case 'ขาว':
+            case 'ขาว(ทั่วไป)':
                 rc_color_arr.push("#cbd3da");
                 break;
             case 'ดำ':
