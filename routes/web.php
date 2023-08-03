@@ -198,6 +198,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 
     // DASHBOARD_1669
     Route::get('/dashboard_1669_index', 'Dashboard_1669_Controller@dashboard_index_1669');
+    Route::get('/dashboard_1669_show', 'Dashboard_1669_Controller@all_user_1669');
 
 	// Route::get('/sos_insurance', 'PartnerController@sos_insurance');
 		Route::post('/partner_add_area', 'PartnerController@partner_add_area');

@@ -1,3 +1,16 @@
+<style>
+    /* ซ่อนตัว search และ pagination ของ top5_score_unit_table */
+    #top5_score_unit_table_filter {
+        display: none;
+    }
+    #top5_score_unit_table_info {
+        display: none;
+    }
+    #top5_score_unit_table_paginate {
+        display: none;
+    }
+</style>
+
 <h4 class="text-dark">ข้อมูลหน่วยปฏิบัติการ</h4>
 <!--============= 3 card -- 4-4-4  ================-->
 <div class="row mb-4">
@@ -7,23 +20,40 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <h5 class="mb-0 font-weight-bold">คะแนนเฉลี่ยของหน่วย {{count($avg_score_unit_data)}} อันดับ</h5>
-                    <p class="mb-0 ms-auto"><i class='bx bx-dots-horizontal-rounded float-end font-24'></i>
-                    </p>
+                    <!-- ตัวอย่างปุ่มสลับ -->
+                    <div class="dropdown ms-auto">
+                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
+                            data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item btn" onclick="top5_score_unit_toggleDataBtn('least_data')">มากสุด 5 อันดับ</a>
+                            <a class="dropdown-item btn" onclick="top5_score_unit_toggleDataBtn('most_data')">น้อยสุด 5 อันดับ</a>
+                            {{-- <button id="top5_score_unit_toggleDataBtn" class="btn btn-primary">สลับข้อมูล</button> --}}
+                        </div>
+                    </div>
                 </div>
 
                 <div class="table-responsive mt-4 mb-4">
-                    <table class="table align-middle mb-0">
-                        <tbody>
+                    <table id="top5_score_unit_table" class="table align-middle mb-0" >
+                        <thead>
+                            <tr>
+                                <th>ชื่อหน่วย</th>
+                                <th>คะแนน</th>
+                            </tr>
+                        </thead>
+                        <tbody id="top5_score_unit_tbody">
                             @foreach ($avg_score_unit_data as $top5_score_unit)
-                                <tr>
-                                    <td class="px-0">
+                                <tr role="row" class="odd">
+                                    <td>
                                         <div class="d-flex align-items-center">
-                                            <div><i class='bx bxs-checkbox me-2 font-24 text-primary'></i>
-                                            </div>
                                             <div>{{$top5_score_unit->operating_unit->name ? $top5_score_unit->operating_unit->name : "--"}}</div>
                                         </div>
                                     </td>
-                                    <td><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i>{{$top5_score_unit->avg_score_total}}</p></td>
+                                    <td>
+                                        <p class="ms-auto mb-0">
+                                            <i class="bx bxs-star text-warning mr-1"></i>{{$top5_score_unit->avg_score_total}}
+                                        </p>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -41,7 +71,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="d-flex justify-content-center align-items-center">
+                <div class="p-2">
                     <div id="chartlevel_op"></div>
                 </div>
             </div>
@@ -55,10 +85,11 @@
                     <div>
                         <h5 class="mb-0 font-weight-bold">จำนวนยานพาหนะทั้งหมด </h5>
                     </div>
-                    <div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
-                    </div>
+                    <!-- <div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
+                    </div> -->
                 </div>
             </div>
+
             <div class="mb-3 p-3">
                 @foreach ($vehicle_arr as $vehicle_arr)
                     @php
@@ -100,6 +131,11 @@
 
                                 break;
                         }
+
+                        // % ของผู้ใช้เดือนนี้
+                        $percent_vehicle_arr = ($vehicle_arr['count_vehicle_type'] / $count_vehicle_all) * 100;
+                        $percent_vehicle_arr = number_format($percent_vehicle_arr,0);
+
                     @endphp
                     <div class="row mb-4">
                         <div class="col-2 mt-2 text-center">
@@ -108,7 +144,7 @@
                         <div class="col">
                             <p class="mb-2" style="font-weight: bold; font-size: 16px">{{ $vehicle_arr['vehicle_type'] }}<strong class="float-end">{{ $vehicle_arr['count_vehicle_type'] }}</strong></p>
                             <div class="progress radius-10" style="height:6px;">
-                                <div class="progress-bar bg-gradient-moonlit" role="progressbar" style="width: 80%"></div>
+                                <div class="progress-bar bg-gradient-moonlit" role="progressbar" style="width: {{$percent_vehicle_arr}}%"></div>
                             </div>
                         </div>
                     </div>
@@ -135,14 +171,16 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item btn " onclick="avg_score_by_case_toggleDataBtn('least_data')">มากสุด 5 อันดับ</a>
+                            <a class="dropdown-item btn " onclick="avg_score_by_case_toggleDataBtn('most_data')">น้อยสุด 5 อันดับ</a>
+                            <!-- <button id="top5_score_unit_toggleDataBtn" class="btn btn-primary">สลับข้อมูล</button> -->
                         </div>
                     </div>
                 </div>
             </div>
             <div class="card-body p-3">
                 <div class="table-responsive">
-                    <table class="table align-middle mb-0">
+                    <table id="avg_score_by_case_table" class="table align-middle mb-0">
                         <thead>
                             <tr>
                                 <th>ชื่อ</th>
@@ -150,7 +188,7 @@
                                 <th>คะแนนเฉลี่ยต่อเคส</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="avg_score_by_case_tbody">
                             @foreach ($avg_score_by_case as $avg_score_by_case)
                                 <tr>
                                     <td>
@@ -159,11 +197,11 @@
                                         @endphp
                                         <div class="d-flex align-items-center">
                                             <div class="recent-product-img">
-                                                @if(!empty($data_user_avg_score_by_case->avatar) && empty($data_user_avg_score_by_case->photo))
-                                                    <img src="{{ $data_user_avg_score_by_case->avatar }}" width="35" height="35" class="rounded-circle" alt="">
-                                                @endif
                                                 @if(!empty($data_user_avg_score_by_case->photo))
                                                     <img src="{{ url('storage') }}/{{ $data_user_avg_score_by_case->photo }}" width="35" height="35" class="rounded-circle" alt="">
+                                                @endif
+                                                @if(empty($data_user_avg_score_by_case->photo) && !empty($data_user_avg_score_by_case->avatar))
+                                                    <img src="{{ $data_user_avg_score_by_case->avatar }}" width="35" height="35" class="rounded-circle" alt="">
                                                 @endif
                                                 @if(empty($data_user_avg_score_by_case->avatar) && empty($data_user_avg_score_by_case->photo))
                                                     <img src="https://www.viicheck.com/Medilab/img/icon.png" width="35" height="35" class="rounded-circle" alt="">
@@ -185,7 +223,7 @@
 
         </div>
     </div>
-    <!--======= ลำดับการรับแจ้งเตือน 5 อันดับ col-7 ============-->
+    <!--======= รายชื่อหน่วยปฏิบัติการ col-7 ============-->
     <div class="col-12 col-lg-7">
         <div class="card radius-10 w-100">
             <div class="card-header">
@@ -198,7 +236,7 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/data_1669_operating_unit') }}">ดูข้อมูลหน่วยทั้งหมด</a>
                         </div>
                     </div>
                 </div>
@@ -214,28 +252,31 @@
                                 <th>จำนวนออกปฏิบัติการ</th>
                                 <th>ลงทะเบียนมาแล้วกี่วัน</th>
                                 <th>คะแนนเฉลี่ย</th>
-                                <th>ลำดับ</th>
+                                <th></th>
                             </tr>
                         </thead>
 
                         <tbody>
                             @foreach ($operating_unit_data as $operating_unit_data)
-                            <tr>
-                                @php
-                                    $count_amount_operator = App\Models\Sos_help_center::where('operating_unit_id',$operating_unit_data->id)->count();
-
-                                @endphp
-                                <td>{{$operating_unit_data->name}}</td>
-                                <td>{{$count_amount_operator}}</td>
-                                <td>จำนวนออกปฏิบัติการ</td>
-                                @if (!empty($operating_unit_data->created_at))
-                                    <td> {{ \Carbon\Carbon::parse($operating_unit_data->created_at)->locale('th')->diffForHumans() }}</td>
-                                @else
-                                    <td> -- </td>
-                                @endif
-                                <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 4.70</p></td>
-                                <td>ลำดับ</td>
-                            </tr>
+                                <tr>
+                                    @php
+                                        $count_amount_operator = App\Models\Data_1669_operating_officer::where('operating_unit_id',$operating_unit_data->operating_unit_id)->count();
+                                    @endphp
+                                    <td>{{$operating_unit_data->op_name}}</td>
+                                    <td>{{$count_amount_operator}}</td>
+                                    <td>{{$operating_unit_data->count_operating}}</td>
+                                    @if (!empty($operating_unit_data->created_at))
+                                        <td> {{ \Carbon\Carbon::parse($operating_unit_data->op_lastest)->locale('th')->diffForHumans() }}</td>
+                                    @else
+                                        <td> -- </td>
+                                    @endif
+                                    <td><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i>{{$operating_unit_data->avg_score_by_unit}}</p></td>
+                                    <td>
+                                        <a href="{{ url('/data_1669_operating_unit'). '/' . $operating_unit_data->operating_unit_id }}">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -251,6 +292,124 @@
 
 <script>
 
+    //==============================================================================================================//
+    //                                       ***** คำเตือน *****
+    // ค่าที่ส่งมา กับ ค่าที่เราเลือก ไม่ตรงกัน --> เลยแก้ปัญหาเฉพาะหน้า โดยสลับค่า most_data เป็นน้อย  least_data เป็นมากแทน
+    // onclick="top5_score_unit_toggleDataBtn('least_data')">มากสุด 5 อันดับ
+    // onclick="top5_score_unit_toggleDataBtn('most_data')">น้อยสุด 5 อันดับ
+    //=============================================================================================================//
+
+    // document.document.querySelector('.top5_score_unit_toggleDataBtn').addEventListener('click', () => {
+    function top5_score_unit_toggleDataBtn(filter_data) {
+
+        let user_login = '{{Auth::user()->sub_organization}}';
+        let tbody = document.getElementById('top5_score_unit_tbody');
+
+        // ดึงข้อมูลผ่าน Fetch API จากหลังบ้าน
+        fetch("{{ url('/') }}/api/top5_score_unit" + '/' + filter_data + '/' + user_login)
+            .then(response => response.json()) // แปลงข้อมูลเป็น JSON
+            .then(data => {
+                console.log(data);
+                // หาตารางที่มี id เท่ากับ 'top5_score_unit_table'
+                const table = document.getElementById('top5_score_unit_table').getElementsByTagName('tbody')[0];
+                // ล้างข้อมูลในตาราง
+                table.innerHTML = '';
+
+                let data_table;
+                // สร้างแถวและเพิ่มข้อมูลในตาราง
+                data.forEach(top5_score_unit => {
+
+                    data_table = `
+                        <tr role="row" class="odd">
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div>`+ top5_score_unit.name_unit +`</div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="ms-auto mb-0">
+                                    <i class="bx bxs-star text-warning mr-1"></i>`+ top5_score_unit.avg_score_total +`
+                                </p>
+                            </td>
+                        </tr>
+                    `;
+
+                    tbody.insertAdjacentHTML('afterbegin', data_table); // แทรกบนสุด
+                });
+
+            })
+            .catch(error => {
+                console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
+            });
+    };
+</script>
+
+<script>
+
+    //==============================================================================================================//
+    //                                       ***** คำเตือน *****
+    // ค่าที่ส่งมา กับ ค่าที่เราเลือก ไม่ตรงกัน --> เลยแก้ปัญหาเฉพาะหน้า โดยสลับค่า most_data เป็นน้อย  least_data เป็นมากแทน
+    // onclick="top5_score_unit_toggleDataBtn('least_data')">มากสุด 5 อันดับ
+    // onclick="top5_score_unit_toggleDataBtn('most_data')">น้อยสุด 5 อันดับ
+    //=============================================================================================================//
+
+    // document.document.querySelector('.top5_score_unit_toggleDataBtn').addEventListener('click', () => {
+    function avg_score_by_case_toggleDataBtn(filter_data) {
+
+        let user_login = '{{Auth::user()->sub_organization}}';
+        let tbody = document.getElementById('avg_score_by_case_tbody');
+
+        // ดึงข้อมูลผ่าน Fetch API จากหลังบ้าน
+        fetch("{{ url('/') }}/api/avg_score_by_case" + '/' + filter_data + '/' + user_login)
+            .then(response => response.json()) // แปลงข้อมูลเป็น JSON
+            .then(data => {
+                console.log(data);
+                // หาตารางที่มี id เท่ากับ 'top5_score_unit_table'
+                const table = document.getElementById('avg_score_by_case_table').getElementsByTagName('tbody')[0];
+                // ล้างข้อมูลในตาราง
+                table.innerHTML = '';
+
+                let data_table;
+                // สร้างแถวและเพิ่มข้อมูลในตาราง
+                data.forEach(avg_score_by_case => {
+
+                    let htmlProfile = '';
+                    if(avg_score_by_case.photo){
+                        htmlProfile = `<img src="{{ url('storage') }}/`+avg_score_by_case.photo +`" width="35" height="35" class="rounded-circle" alt="">`;
+                    }
+                    else if(!avg_score_by_case.photo && avg_score_by_case.avatar){
+                        htmlProfile = `<img src="`+avg_score_by_case.avatar +`" width="35" height="35" class="rounded-circle" alt="">`;
+                    }
+                    else if(!avg_score_by_case.photo && !avg_score_by_case.avatar){
+                        htmlProfile = `<img src="https://www.viicheck.com/Medilab/img/icon.png" width="35" height="35" class="rounded-circle" alt="">`;
+                    }
+
+                    data_table = `
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="recent-product-img">`+ htmlProfile +`</div>
+                                    <div class="ms-2">
+                                        <h6 class="mt-2 font-14">`+ avg_score_by_case.name_user +`</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>`+ avg_score_by_case.name_unit +`</td>
+                            <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> `+ avg_score_by_case.avg_score_by_case +`</p></td>
+                        </tr>
+                    `;
+
+                    tbody.insertAdjacentHTML('afterbegin', data_table); // แทรกบนสุด
+                });
+
+            })
+            .catch(error => {
+                console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
+            });
+    };
+</script>
+
+<script>
     let lv_op_count_arr = [];
     let lv_op_categories_arr = [];
     let lv_op_color_arr = [];
@@ -283,45 +442,44 @@
     @endforeach
 
     var options = {
-        series: lv_op_count_arr,
+        series: [{
+            data: lv_op_count_arr
+        }],
         chart: {
-        width: 450,
-        type: 'donut',
-    },
-    plotOptions: {
-        pie: {
-        startAngle: -90,
-        endAngle: 270
+            height: 350,
+            type: 'bar',
+            events: {
+                click: function(chart, w, e) {
+                //   console.log(chart, w, e)
+                }
+            }
+        },
+        colors: lv_op_color_arr,
+        plotOptions: {
+        bar: {
+            columnWidth: '45%',
+            distributed: true,
         }
-    },
-    dataLabels: {
-        enabled: false
-    },
-    fill: {
-        type: 'gradient',
-    },
-    legend: {
-        position: 'bottom',
-        formatter: function(val, opts) {
-            return val + " - " + opts.w.globals.series[opts.seriesIndex]
-        }
-    },
-    labels: lv_op_categories_arr,
-    colors: lv_op_color_arr,
-    responsive: [{
-        breakpoint: 480,
-        options: {
-        chart: {
-            width: 400
+        },
+        dataLabels: {
+            enabled: true
         },
         legend: {
-            position: 'bottom'
-        }
-        }
-    }]
-    };
+            show: false
+        },
+        xaxis: {
+            categories: lv_op_categories_arr,
+                labels: {
+                    style: {
+                    colors: lv_op_color_arr,
+                    fontSize: '12px'
+                    }
+                }
+            }
+        };
 
-    var chart = new ApexCharts(document.querySelector("#chartlevel_op"), options);
-    chart.render();
-
+        var chart = new ApexCharts(document.querySelector("#chartlevel_op"), options);
+        chart.render();
 </script>
+
+

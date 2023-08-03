@@ -55,7 +55,6 @@ class Dashboard_1669_Controller extends Controller
             ->limit(5)
             ->get();
 
-
         // การสั่งการมากที่สุด 5 อันดับ
         $command_1669_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
         ->where('operating_unit_id' , "!=" , null)
@@ -86,13 +85,14 @@ class Dashboard_1669_Controller extends Controller
         ->get();
 
         $vehicle_arr = array();
+        // เก็บจำนวนยานพาหนะทั้งหมด
+        $count_vehicle_all = 0;
 
         foreach ($merge_vehicle_data as $key) {
             $vehicle_unit_data = Data_1669_operating_officer::where('operating_unit_id', $key->id)->get();
 
             // Count occurrences of vehicle_type
             $vehicle_type_counts = $vehicle_unit_data->countBy('vehicle_type');
-
             // Merge the counts into $vehicle_arr
             foreach ($vehicle_type_counts as $vehicle_type => $count) {
                 if (isset($vehicle_arr[$vehicle_type])) {
@@ -104,6 +104,8 @@ class Dashboard_1669_Controller extends Controller
                     ];
                 }
             }
+            // นับจำนวน ยานพาหนะ เพื่อหา จำนวนทั้งหมด
+            $count_vehicle_all += $vehicle_unit_data->count();
         }
 
         // เรียง array index ที่มีค่ามากกว่าก่อน
@@ -157,18 +159,16 @@ class Dashboard_1669_Controller extends Controller
         ->limit(5)
         ->get();
 
-        //รายชื่อหน่วยปฏิบัติการ     /// ข้ามไว้ ////
-        $operating_unit_data = Data_1669_operating_unit::where('area','=',$user_login->sub_organization)
-        ->limit(10)
-        ->orderBy('created_at','desc')
-        ->get();
-
-        foreach ($operating_unit_data as $key ) {
-            //จำนวนคนในหน่วย
-            $amount_operator[] = Sos_help_center::where('operating_unit_id',$key->id)
-            ->select('sos_help_centers.*', DB::raw('AVG(score_total) as avg_score_by_unit'))
+        //รายชื่อหน่วยปฏิบัติการ
+        $operating_unit_data = Sos_help_center::join('data_1669_operating_units','sos_help_centers.operating_unit_id' ,'=' , 'data_1669_operating_units.id')
+            ->where('sos_help_centers.notify','LIKE',"%$user_login->sub_organization%")
+            ->select('sos_help_centers.*', 'data_1669_operating_units.name as op_name','data_1669_operating_units.created_at as op_lastest',
+                DB::raw('AVG(sos_help_centers.score_total) as avg_score_by_unit') ,
+                DB::raw('COUNT(sos_help_centers.operating_unit_id) as count_operating'))
+            ->groupBy('sos_help_centers.operating_unit_id')
+            ->limit(10)
+            ->orderBy('op_lastest','desc')
             ->get();
-        }
 
         //==================================================================================================================//
                                                     //  ข้อมูลการขอความช่วยเหลือ
@@ -331,10 +331,10 @@ class Dashboard_1669_Controller extends Controller
         'command_1669_data',
         'avg_score_unit_data',
         'vehicle_arr',
+        'count_vehicle_all',
         'level_op_arr',
         'avg_score_by_case',
         'operating_unit_data',
-        'amount_operator',
         'data_sos',
         'count_sos_success',
         'count_sos_helping',
@@ -359,6 +359,20 @@ class Dashboard_1669_Controller extends Controller
 
     }
 
+    function all_user_1669(Request $request){
+
+        $user_login = Auth::user();
+        $perPage = 10;
+
+        //  USER สพฉ ในพื้นที่เดียวกับ ผู้เข้าสู่ระบบ
+        $data_command_user = Data_1669_officer_command::where('area', '=' ,$user_login->sub_organization)
+        ->orderBy('id','DESC')
+        ->latest()->paginate($perPage);
+
+
+        return view('dashboard_1669.dashboard_1669_officer.command_center_info_show' ,compact('data_command_user'));
+    }
+
     function map_sos(Request $request,$user_login_organization){
 
         // $user_login = $request->user_login_organization;
@@ -366,5 +380,67 @@ class Dashboard_1669_Controller extends Controller
         $sos_map_data = Sos_help_center::where('notify','LIKE',"%$user_login_organization%")->get();
 
         return $sos_map_data;
+    }
+
+    function top5_score_unit(Request $request,$filter_data,$user_login){
+        // คะแนนเฉลี่ยของหน่วย 5 อันดับ  /// ยืนยันความถูกต้องจาก SENIOR
+        $order = $filter_data === "most_data" ? 'desc' : 'asc';
+
+        $top5_score_unit = Sos_help_center::where('notify', 'LIKE', "%$user_login%")
+            ->where('operating_unit_id', "!=", null)
+            ->select('operating_unit_id', DB::raw('AVG(score_total) as avg_score_total'))
+            ->groupBy('operating_unit_id')
+            ->orderBy('avg_score_total', $order)
+            ->limit(5)
+            ->get();
+
+        for ($i=0; $i < count($top5_score_unit); $i++) {
+            $data_operating_unit = Data_1669_operating_unit::where('id',$top5_score_unit[$i]['operating_unit_id'])->first();
+            $top5_score_unit[$i]['name_unit'] = $data_operating_unit->name;
+        }
+
+        return $top5_score_unit;
+    }
+
+    function avg_score_by_case(Request $request,$filter_data,$user_login){
+        // คะแนนเฉลี่ยของหน่วย 5 อันดับ  /// ยืนยันความถูกต้องจาก SENIOR
+        $order = $filter_data === "most_data" ? 'desc' : 'asc';
+
+        // คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด 5 อันดับ
+        $avg_score_by_case = Sos_help_center::where('notify','LIKE',"%$user_login%")
+            ->where('helper_id' , "!=" , null)
+            ->select('sos_help_centers.*', DB::raw('AVG(score_total) as avg_score_by_case'))
+            ->groupBy('helper_id')
+            ->orderBy('avg_score_by_case', $order) // เรียงจากมากไปน้อย
+            ->limit(5)
+            ->get();
+
+        for ($i=0; $i < count($avg_score_by_case); $i++) {
+
+            $data_user = User::where('id',$avg_score_by_case[$i]['helper_id'])->first();
+            $avg_score_by_case[$i]['name_user'] = $data_user->name;
+            $avg_score_by_case[$i]['avatar'] = $data_user->avatar;
+            $avg_score_by_case[$i]['photo'] = $data_user->photo;
+
+            $data_operating_unit = Data_1669_operating_unit::where('id',$avg_score_by_case[$i]['operating_unit_id'])->first();
+            $avg_score_by_case[$i]['name_unit'] = $data_operating_unit->name;
+
+        }
+
+        return $avg_score_by_case;
+    }
+
+    function filter_all_user_1669(Request $request){
+
+        $user_login = Auth::user();
+        $perPage = 10;
+
+        //  USER สพฉ ในพื้นที่เดียวกับ ผู้เข้าสู่ระบบ
+        $data_command_user = Data_1669_officer_command::where('area', '=' ,$user_login->sub_organization)
+        ->orderBy('id','DESC')
+        ->latest()->paginate($perPage);
+
+
+        return $data_command_user;
     }
 }

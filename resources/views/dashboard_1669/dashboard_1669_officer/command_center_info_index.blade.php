@@ -89,7 +89,7 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_1669_show') }}">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">หน้าการจัดการ</a>
+                            <a class="dropdown-item" href="{{ url('/all_name_user_partner') }}">หน้าการจัดการ</a>
                         </div>
                     </div>
                 </div>
@@ -242,16 +242,16 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="font-weight-bold mb-0" >การสั่งการมากที่สุด {{count($command_1669_data)}} อันดับ</h5>
+                        <h5 class="font-weight-bold mb-0 p-2" >การสั่งการมากที่สุด {{count($command_1669_data)}} อันดับ</h5>
                     </div>
-                    <div class="dropdown ms-auto">
+                    <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="javaScript:;">ดูข้อมูลเพิ่มเติม</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="p-3">

@@ -1,19 +1,19 @@
 <!--============= 3 card -- 4-4-4  ================-->
 <div class="row mb-4">
-    <!--MAP ปักหมุดการขอความช่วยเหลือในจังหวัด -->
+    <!-- MAP ปักหมุดการขอความช่วยเหลือในจังหวัด -->
     <div class="col-12 col-lg-4 mb-3">
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <h5 class="mb-0 font-weight-bold">MAP ปักหมุดการขอความช่วยเหลือในจังหวัด</h5>
-                    <div class="dropdown ms-auto">
+                    <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="mt-4 mb-4">
@@ -30,14 +30,14 @@
                 <div>
                     <h5 class="mb-1 font-weight-bold">พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ</h5>
                 </div>
-                <div class="dropdown ms-auto">
+                <!-- <div class="dropdown ms-auto">
                     <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                         data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                     </div>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="card-body">
                 <div class="w-100">
@@ -53,16 +53,16 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
                     <h5 class="mb-0 font-weight-bold">หัวข้อการขอความช่วยเหลือมากที่สุด</h5>
-                    <div class="dropdown ms-auto">
+                    <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="">
+                <div class="p-2">
                     <div id="sos_1669_form_yellows"></div>
                 </div>
             </div>
@@ -75,14 +75,14 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <h5 class="mb-0 font-weight-bold">รับแจ้งเตือนทาง</h5>
-                    <div class="dropdown ms-auto">
+                    <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="table-responsive mt-4 mb-4">
@@ -143,16 +143,16 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
                     <h5 class="mb-0 font-weight-bold">ระดับสถานการณ์ประเมินโดย ศูนย์สั่งการ</h5>
-                    <div class="dropdown ms-auto">
+                    <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="d-flex justify-content-center align-items-center">
+                <div class="p-2">
                     <div id="sos_1669_form_yellows_idc"></div>
                 </div>
             </div>
@@ -165,16 +165,16 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
                     <h5 class="mb-0 font-weight-bold"> ระดับสถานการณ์ประเมินโดย หน่วยปฏิบัติการ</h5>
-                    <div class="dropdown ms-auto">
+                    <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
-                        <div class="dropdown-menu dropdown-menu-right">
+                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="d-flex justify-content-center align-items-center">
+                <div class="p-2">
                     <div id="sos_1669_form_yellows_rc"></div>
                 </div>
             </div>
@@ -187,14 +187,14 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
                     <h5 class="mb-0 font-weight-bold"> การปฏิบัติการ</h5>
-                    <div class="dropdown ms-auto">
+                    <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
                     <div id="operation"></div>
@@ -209,14 +209,14 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
                     <h5 class="mb-0 font-weight-bold">การปฏิบัติการที่มีการรักษา</h5>
-                    <div class="dropdown ms-auto">
+                    <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="h-100">
                     <div id="operation_cure"></div>
@@ -231,14 +231,14 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
                     <h5 class="mb-0 font-weight-bold">การปฏิบัติการที่ไม่มีการรักษา</h5>
-                    <div class="dropdown ms-auto">
+                    <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="h-100">
                     <div id="operation_no_cure"></div>
@@ -559,40 +559,44 @@
     @endforeach
 
     var options = {
-            series: idc_count_arr,
-            chart: {
-                width: 500,
-                type: 'pie',
-            },
-            legend:{
-                formatter: function(val, opts) {
-                    return val + " - " + opts.w.globals.series[opts.seriesIndex]
-                },
-                position: 'bottom',
-            },
-
-            labels: idc_categories_arr,
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 400
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
+        series: [{
+            data: idc_count_arr
+        }],
+        chart: {
+            height: 350,
+            type: 'bar',
+            events: {
+                click: function(chart, w, e) {
+                //   console.log(chart, w, e)
+                }
+            }
+        },
+        colors: idc_color_arr,
+        plotOptions: {
+        bar: {
+            columnWidth: '45%',
+            distributed: true,
+        }
+        },
+        dataLabels: {
+            enabled: true
+        },
+        legend: {
+            show: false
+        },
+        xaxis: {
+            categories: idc_categories_arr,
+                labels: {
+                    style: {
+                    colors: idc_color_arr,
+                    fontSize: '12px'
                     }
-                }],
-            dataLabels: {
-                style: {
-                    fontSize: '14px', // ค่า fontSize ที่คุณต้องการ
-                },
-            },
-            colors: idc_color_arr,
+                }
+            }
         };
 
-    var chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows_idc"), options);
-    chart.render();
+        var chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows_idc"), options);
+        chart.render();
 
 </script>
 
@@ -633,40 +637,44 @@
     @endforeach
 
     var options = {
-            series: rc_count_arr,
-            chart: {
-                width: 500,
-                type: 'pie',
-            },
-            legend:{
-                formatter: function(val, opts) {
-                    return val + " - " + opts.w.globals.series[opts.seriesIndex]
-                },
-                position: 'bottom',
-            },
-
-            labels: rc_categories_arr,
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 400
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
+        series: [{
+            data: rc_count_arr
+        }],
+        chart: {
+            height: 350,
+            type: 'bar',
+            events: {
+                click: function(chart, w, e) {
+                //   console.log(chart, w, e)
+                }
+            }
+        },
+        colors: rc_color_arr,
+        plotOptions: {
+        bar: {
+            columnWidth: '45%',
+            distributed: true,
+        }
+        },
+        dataLabels: {
+            enabled: true
+        },
+        legend: {
+            show: false
+        },
+        xaxis: {
+            categories: rc_categories_arr,
+                labels: {
+                    style: {
+                    colors: rc_color_arr,
+                    fontSize: '12px'
                     }
-                }],
-            dataLabels: {
-                style: {
-                    fontSize: '14px', // ค่า fontSize ที่คุณต้องการ
-                },
-            },
-            colors: rc_color_arr,
+                }
+            }
         };
 
-    var chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows_rc"), options);
-    chart.render();
+        var chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows_rc"), options);
+        chart.render();
 
 </script>
 
