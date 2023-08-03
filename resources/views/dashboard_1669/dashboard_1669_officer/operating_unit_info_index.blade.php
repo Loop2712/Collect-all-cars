@@ -1,17 +1,6 @@
-<style>
-    /* ซ่อนตัว search และ pagination ของ top5_score_unit_table */
-    #top5_score_unit_table_filter {
-        display: none;
-    }
-    #top5_score_unit_table_info {
-        display: none;
-    }
-    #top5_score_unit_table_paginate {
-        display: none;
-    }
-</style>
 
-<h4 class="text-dark">ข้อมูลหน่วยปฏิบัติการ</h4>
+
+<h4 class="text-dark font-weight-bold">ข้อมูลหน่วยปฏิบัติการ</h4>
 <!--============= 3 card -- 4-4-4  ================-->
 <div class="row mb-4">
     <!--คะแนนเฉลี่ยของหน่วย 5 อันดับ -->
@@ -35,22 +24,22 @@
 
                 <div class="table-responsive mt-4 mb-4">
                     <table id="top5_score_unit_table" class="table align-middle mb-0" >
-                        <thead>
+                        <thead class="fz_header">
                             <tr>
                                 <th>ชื่อหน่วย</th>
                                 <th>คะแนน</th>
                             </tr>
                         </thead>
-                        <tbody id="top5_score_unit_tbody">
+                        <tbody id="top5_score_unit_tbody" class="fz_body">
                             @foreach ($avg_score_unit_data as $top5_score_unit)
                                 <tr role="row" class="odd">
                                     <td>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center p-2">
                                             <div>{{$top5_score_unit->operating_unit->name ? $top5_score_unit->operating_unit->name : "--"}}</div>
                                         </div>
                                     </td>
                                     <td>
-                                        <p class="ms-auto mb-0">
+                                        <p class="ms-auto mb-0 ">
                                             <i class="bx bxs-star text-warning mr-1"></i>{{$top5_score_unit->avg_score_total}}
                                         </p>
                                     </td>
@@ -159,8 +148,8 @@
 
 <div class="row mb-4">
     <!--======= คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด 5 อันดับ col-5 ============-->
-    <div class="col-12 col-lg-5">
-        <div class="card radius-10 w-100">
+    <div class="col-12 col-lg-5 mb-2">
+        <div class="card radius-10 w-100 h-100">
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
@@ -208,7 +197,7 @@
                                                 @endif
                                             </div>
                                             <div class="ms-2">
-                                                <h6 class="mt-2 font-14">{{$avg_score_by_case->officers_user->name}}</h6>
+                                                <span class="mt-2 font-14">{{$avg_score_by_case->officers_user->name}}</span>
                                             </div>
                                         </div>
                                     </td>
@@ -224,8 +213,8 @@
         </div>
     </div>
     <!--======= รายชื่อหน่วยปฏิบัติการ col-7 ============-->
-    <div class="col-12 col-lg-7">
-        <div class="card radius-10 w-100">
+    <div class="col-12 col-lg-7 mb-2">
+        <div class="card radius-10 w-100 h-100">
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
@@ -255,7 +244,6 @@
                                 <th></th>
                             </tr>
                         </thead>
-
                         <tbody>
                             @foreach ($operating_unit_data as $operating_unit_data)
                                 <tr>
@@ -271,7 +259,7 @@
                                         <td> -- </td>
                                     @endif
                                     <td><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i>{{$operating_unit_data->avg_score_by_unit}}</p></td>
-                                    <td>
+                                    <td >
                                         <a href="{{ url('/data_1669_operating_unit'). '/' . $operating_unit_data->operating_unit_id }}">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                         </a>
@@ -462,7 +450,12 @@
         }
         },
         dataLabels: {
-            enabled: true
+            enabled: true,
+            style: {
+                fontSize: '18px',
+                fontWeight: 'bold',
+
+            },
         },
         legend: {
             show: false
@@ -472,11 +465,20 @@
                 labels: {
                     style: {
                     colors: lv_op_color_arr,
-                    fontSize: '12px'
+                    fontSize: '16px',
+                    fontWeight: 'bold',
                     }
                 }
+            },
+        yaxis: {
+            labels: {
+                style: {
+                    fontSize: '16px',
+                    fontWeight: 'bold'
+                }
             }
-        };
+        }
+    };
 
         var chart = new ApexCharts(document.querySelector("#chartlevel_op"), options);
         chart.render();

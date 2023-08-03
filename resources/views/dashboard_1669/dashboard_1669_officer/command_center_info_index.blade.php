@@ -1,16 +1,5 @@
-<style>
-    .fz_header {
-        font-size: 18px;
-    }
-    .fz_body {
-        font-size: 16px;
-    }
-    .font-weight-bold{
-        font-weight: bold !important;
-    }
-</style>
 
-<h4 class="text-dark">ข้อมูลเจ้าหน้าที่ศูนย์สั่งการ</h4>
+<h4 class="text-dark p-1 font-weight-bold">ข้อมูลเจ้าหน้าที่ศูนย์สั่งการ</h4>
 
 <!--=============== 4 card row =====================-->
 
@@ -20,13 +9,12 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-0 text-dark">เจ้าหน้าที่ศูนย์สั่งการ</h5>
-                        <h3 class="mb-0 text-dark">{{ count($data_command )}} คน</h3>
+                        <h5 class="mb-0 text-dark font-weight-bold">เจ้าหน้าที่ศูนย์สั่งการ</h5>
+                        <h3 class="mb-0 text-dark font-weight-bold">{{ count($data_command )}} คน</h3>
                     </div>
                     <div class="ms-auto text-dark"><i class="fa-solid fa-user-vneck font-30"></i>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -35,8 +23,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-0 text-dark" >พร้อมช่วยเหลือ</h5>
-                        <h3 class="mb-0 text-dark">{{ $count_Standby }} คน</h3>
+                        <h5 class="mb-0 text-dark font-weight-bold" >พร้อมช่วยเหลือ</h5>
+                        <h3 class="mb-0 text-dark font-weight-bold">{{ $count_Standby }} คน</h3>
                     </div>
                     <div class="ms-auto text-dark"><i class="fa-solid fa-check font-30"></i>
                     </div>
@@ -49,8 +37,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-0 text-dark">กำลังช่วยเหลือ</h5>
-                        <h3 class="mb-0 text-dark">{{ $count_Helping }} คน</h3>
+                        <h5 class="mb-0 text-dark font-weight-bold">กำลังช่วยเหลือ</h5>
+                        <h3 class="mb-0 text-dark font-weight-bold">{{ $count_Helping }} คน</h3>
                     </div>
                     <div class="ms-auto text-dark"><i class="fa-solid fa-hourglass-clock font-30"></i>
                     </div>
@@ -63,8 +51,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-0 text-dark">ไม่พร้อม</h5>
-                        <h3 class="mb-0 text-dark">{{ $count_notReady }} คน</h3>
+                        <h5 class="mb-0 text-dark font-weight-bold">ไม่พร้อม</h5>
+                        <h3 class="mb-0 text-dark font-weight-bold">{{ $count_notReady }} คน</h3>
                     </div>
                     <div class="ms-auto text-dark"><i class="fa-sharp fa-solid fa-xmark font-30"></i>
                     </div>
@@ -108,8 +96,8 @@
                         </thead>
                         <tbody class="fz_body">
                             @foreach ($data_command as $top5_lastet_command_units)
-                                <tr>
-                                    <td>
+                                <tr >
+                                    <td >
                                         @php
                                             $data_command_2 = App\User::where('id',$top5_lastet_command_units->user_id)->first();
                                         @endphp
@@ -125,8 +113,8 @@
                                                     <img src="https://www.viicheck.com/Medilab/img/icon.png">
                                                 @endif
                                             </div>
-                                            <div class="ms-2">
-                                                <h6 class="mt-3 font-14">{{$top5_lastet_command_units->name_officer_command}}</h6>
+                                            <div class="ms-2 ">
+                                                <span class="mt-3 font-14">{{$top5_lastet_command_units->name_officer_command}}</span>
                                             </div>
                                         </div>
                                     </td>
@@ -159,9 +147,6 @@
                                         <td> -- </td>
                                     @endif
 
-                                    {{-- @php
-                                        $user_creator = App\User::where('id', $top5_lastet_command_units->creator)->first();
-                                    @endphp --}}
                                     @if (!empty($top5_lastet_command_units->creator))
                                         <td>{{ $top5_lastet_command_units->user_creator->name }}</td>
                                     @else

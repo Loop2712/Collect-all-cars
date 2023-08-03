@@ -6,8 +6,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-0 text-dark">ขอความช่วยเหลือทั้งหมด</h5>
-                        <h4 class="my-1">{{ count($data_sos) }}</h4>
+                        <h5 class="mb-0 text-dark font-weight-bold">ขอความช่วยเหลือทั้งหมด</h5>
+                        <h4 class="my-1 font-weight-bold">{{ count($data_sos) }}</h4>
                     </div>
                     <div class="text-primary ms-auto font-30">
                         <img class="d-none d-lg-block" src="{{ asset('/img/stickerline/PNG/21.png') }}" width="120em">
@@ -22,8 +22,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-0 text-dark">ช่วยเหลือเสร็จสิ้น</h5>
-                        <h4 class="my-1">{{ $count_sos_success }}</h4>
+                        <h5 class="mb-0 text-dark font-weight-bold">ช่วยเหลือเสร็จสิ้น</h5>
+                        <h4 class="my-1 font-weight-bold">{{ $count_sos_success }}</h4>
                     </div>
                     <div class="text-danger ms-auto font-30">
                         <img class="d-none d-lg-block" src="{{ asset('/img/stickerline/PNG/18.png') }}" width="120em">
@@ -38,8 +38,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-0 text-dark">กำลังดำเนินการ</h5>
-                        <h4 class="my-1">{{ $count_sos_helping }}</h4>
+                        <h5 class="mb-0 text-dark font-weight-bold">กำลังดำเนินการ</h5>
+                        <h4 class="my-1 font-weight-bold">{{ $count_sos_helping }}</h4>
                     </div>
                     <div class="text-warning ms-auto font-30">
                         <img class="d-none d-lg-block" src="{{ asset('/img/stickerline/Flex/2.png') }}" width="120em">
@@ -54,8 +54,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-0 text-dark">ยังไม่ได้ดำเนินการ</h5>
-                        <h4 class="my-1">{{ $count_sos_notReady }}</h4>
+                        <h5 class="mb-0 text-dark font-weight-bold">ยังไม่ได้ดำเนินการ</h5>
+                        <h4 class="my-1 font-weight-bold">{{ $count_sos_notReady }}</h4>
                     </div>
                     <div class="text-success ms-auto font-30">
                         <img class="d-none d-lg-block" src="{{ asset('/img/stickerline/PNG/5.png') }}" width="120em">

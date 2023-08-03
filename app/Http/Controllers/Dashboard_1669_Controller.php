@@ -383,8 +383,9 @@ class Dashboard_1669_Controller extends Controller
     }
 
     function top5_score_unit(Request $request,$filter_data,$user_login){
-        // คะแนนเฉลี่ยของหน่วย 5 อันดับ  /// ยืนยันความถูกต้องจาก SENIOR
-        $order = $filter_data === "most_data" ? 'desc' : 'asc';
+
+        // คะแนนเฉลี่ยของหน่วย 5 อันดับ
+        $order = $filter_data == "most_data" ? 'desc' : 'asc';
 
         $top5_score_unit = Sos_help_center::where('notify', 'LIKE', "%$user_login%")
             ->where('operating_unit_id', "!=", null)
@@ -403,8 +404,9 @@ class Dashboard_1669_Controller extends Controller
     }
 
     function avg_score_by_case(Request $request,$filter_data,$user_login){
-        // คะแนนเฉลี่ยของหน่วย 5 อันดับ  /// ยืนยันความถูกต้องจาก SENIOR
-        $order = $filter_data === "most_data" ? 'desc' : 'asc';
+
+        // คะแนนเฉลี่ยของหน่วย 5 อันดับ
+        $order = $filter_data == "most_data" ? 'desc' : 'asc';
 
         // คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด 5 อันดับ
         $avg_score_by_case = Sos_help_center::where('notify','LIKE',"%$user_login%")
