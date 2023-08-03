@@ -519,10 +519,6 @@
 
                           <div class="card slide-switcher-open-place div_content_data_place" style="position: absolute;z-index: 99999;top:10%;height:85%;width: 30%;">
 
-                            <button class="btn btn-info" onclick="hideDiv();" style="width:20%;">
-                              <i class="fa-solid fa-chevron-right rotate"></i>
-                            </button>
-
                             <div class="card-body">
                               <div class="row g-0" style="overflow: auto;height: 420px;">
                                 <div class="data_content_place">
@@ -530,6 +526,10 @@
                                 </div>
                               </div>
                             </div>
+
+                            <button class="btn btn-info m-2" onclick="hideDiv();" style="width:20%;">
+                              <i class="fa-solid fa-chevron-right rotate"></i>
+                            </button>
 
                           </div>
                         </div>
