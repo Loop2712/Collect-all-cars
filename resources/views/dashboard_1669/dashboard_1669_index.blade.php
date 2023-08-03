@@ -30,9 +30,11 @@
         <div id="sos_service_area" class="mb-3 bg_section">
             @include ('dashboard_1669.dashboard_1669_sos.sos_service_area_index')
         </div>
-        <div id="video_call" class="mb-3 bg_section">
-            @include ('dashboard_1669.dashboard_1669_sos.video_call_index')
-        </div>
+        @if (Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '11003429')
+            <div id="video_call" class="mb-3 bg_section">
+                @include ('dashboard_1669.dashboard_1669_sos.video_call_index')
+            </div>
+        @endif
         <hr>
     </div>
 
