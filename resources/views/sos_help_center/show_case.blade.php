@@ -688,9 +688,14 @@ input:focus {
 
 	<!-- ////////////////////////////////////////// MENU 1 EDIT FORM ////////////////////////////////////////// -->
 	<div class="row data-menu show-data-menu d-none" id="menu_1" style="bottom: -1rem">
-		
 		<menu class="col-12 " >
-			<button  class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" data-toggle="modal" data-target="#modalOfficerFormYellow" onclick="check_data_form_yellow_show_case()">
+			<button  class="btn btn-update-status btn-primary main-shadow main-radius" style="width:100%;" data-toggle="modal" data-target="#modalDataDetailFormYellow" onclick="check_data_form_yellow_show_case('detail')">
+				รายละเอียดเคส
+			</button>
+		</menu>
+
+		<menu class="col-12 " >
+			<button  class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" data-toggle="modal" data-target="#modalOfficerFormYellow" onclick="check_data_form_yellow_show_case('edit')">
 				แก้ไขข้อมูลผู้ป่วย
 			</button>
 		</menu>

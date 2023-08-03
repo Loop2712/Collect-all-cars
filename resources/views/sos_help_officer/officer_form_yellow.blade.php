@@ -197,9 +197,11 @@
                             width: 90%;
                             padding: 13px;
                         }
+
                         .btn-submit-edit-form-yellow:hover {
                             color: #fff;
                         }
+
                         .btn-submit-edit-form-yellow::after {
                             content: '';
                             display: block;
@@ -777,81 +779,96 @@
                         });
                     });
 
-                    function check_data_form_yellow_show_case() {
-
+                    function check_data_form_yellow_show_case(typecheck) {
+                        // console.log(typecheck);
                         // console.log("check_data_form_yellow_show_case");
                         // ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
                         fetch("{{ url('/') }}/api/check_data_form_yellow_show_case/" + "?sos_id=" + '{{ $data_sos->id }}')
                             .then(response => response.json())
                             .then(result => {
 
-                                // console.log("check_data_form_yellow_show_case");
-                                //  INPUT RC
-                                const rcInputs = document.querySelectorAll('input[name="rc"]');
-                                setCheckedInputs(rcInputs, result.rc);
-                                document.querySelector('#rc_black_text').value = result.rc_black_text;
-                                //  INPUT RC
-                                console.log(result.rc);
+                                if (typecheck === "edit") {
+                                    // console.log("check_data_form_yellow_show_case");
+                                    //  INPUT RC
+                                    const rcInputs = document.querySelectorAll('input[name="rc"]');
+                                    setCheckedInputs(rcInputs, result.rc);
+                                    document.querySelector('#rc_black_text').value = result.rc_black_text;
+                                    //  INPUT RC
+                                    // console.log(result.rc);
 
-                                //  INPUT treatment 
-                                /////////////////////////////
-                                // อย่าลืมแก้ไขชื่อ treatmenta //
-                                ////////////////////////////
-                                const treatmentInputs = document.querySelectorAll('input[name="treatmentOfficer"]');
-                                setCheckedInputs(treatmentInputs, result.treatment);
-                                check_treatment();
-                                //  INPUT treatment
+                                    //  INPUT treatment 
+                                    /////////////////////////////
+                                    // อย่าลืมแก้ไขชื่อ treatmenta //
+                                    ////////////////////////////
+                                    const treatmentInputs = document.querySelectorAll('input[name="treatmentOfficer"]');
+                                    setCheckedInputs(treatmentInputs, result.treatment);
+                                    check_treatment();
+                                    //  INPUT treatment
 
-                                //  INPUT sub_treatment 
-                                const sub_treatment_checkboxInputs = document.querySelectorAll('input[name="sub_treatmentOfficer"]');
-                                setCheckedInputs(sub_treatment_checkboxInputs, result.sub_treatment);
-                                //  INPUT sub_treatment 
+                                    //  INPUT sub_treatment 
+                                    const sub_treatment_checkboxInputs = document.querySelectorAll('input[name="sub_treatmentOfficer"]');
+                                    setCheckedInputs(sub_treatment_checkboxInputs, result.sub_treatment);
+                                    //  INPUT sub_treatment 
 
 
-                                for (let i = 1; i <= 3; i++) {
-                                    const patientNameInput = document.querySelector(`#patient_name_${i}`).value = result[`patient_name_${i}`];
-                                    const patientAgeInput = document.querySelector(`#patient_age_${i}`).value = result[`patient_age_${i}`];
-                                    const patientHNInput = document.querySelector(`#patient_hn_${i}`).value = result[`patient_hn_${i}`];
-                                    const patientVNInput = document.querySelector(`#patient_vn_${i}`).value = result[`patient_vn_${i}`];
-                                    const deliveredProvinceInput = document.querySelector(`#delivered_province_${i}`).value = result[`delivered_province_${i}`];
-                                    const deliveredHospitalInput = document.querySelector(`#delivered_hospital_${i}`).value = result[`delivered_hospital_${i}`];
-                                    // console.log(i);
+                                    for (let i = 1; i <= 3; i++) {
+                                        const patientNameInput = document.querySelector(`#patient_name_${i}`).value = result[`patient_name_${i}`];
+                                        const patientAgeInput = document.querySelector(`#patient_age_${i}`).value = result[`patient_age_${i}`];
+                                        const patientHNInput = document.querySelector(`#patient_hn_${i}`).value = result[`patient_hn_${i}`];
+                                        const patientVNInput = document.querySelector(`#patient_vn_${i}`).value = result[`patient_vn_${i}`];
+                                        const deliveredProvinceInput = document.querySelector(`#delivered_province_${i}`).value = result[`delivered_province_${i}`];
+                                        const deliveredHospitalInput = document.querySelector(`#delivered_hospital_${i}`).value = result[`delivered_hospital_${i}`];
+                                        // console.log(i);
 
-                                    if (result[`patient_name_${i}`] || result[`patient_age_${i}`] || result[`patient_hn_${i}`] || result[`patient_vn_${i}`] || result[`delivered_province_${i}`] || result[`delivered_hospital_${i}`]) {
-                                        if (i >= 2) {
-                                            // console.log("มีข้อมูล" + i);
-                                            document.getElementById(`fieldset${i}`).classList.remove('hidden');
-                                            document.getElementById('delete-btn').classList.remove('hidden');
-                                            document.getElementById('add-btn').classList.remove('hidden');
+                                        if (result[`patient_name_${i}`] || result[`patient_age_${i}`] || result[`patient_hn_${i}`] || result[`patient_vn_${i}`] || result[`delivered_province_${i}`] || result[`delivered_hospital_${i}`]) {
+                                            if (i >= 2) {
+                                                // console.log("มีข้อมูล" + i);
+                                                document.getElementById(`fieldset${i}`).classList.remove('hidden');
+                                                document.getElementById('delete-btn').classList.remove('hidden');
+                                                document.getElementById('add-btn').classList.remove('hidden');
 
-                                            if (i === 3) {
-                                                document.getElementById('add-btn').classList.add('hidden');
+                                                if (i === 3) {
+                                                    document.getElementById('add-btn').classList.add('hidden');
+                                                }
                                             }
                                         }
+
+                                    }
+
+                                    //  INPUT submission_criteria 
+                                    const submission_criteria_checkboxInputs = document.querySelectorAll('input[name="submission_criteria"]');
+                                    setCheckedInputs(submission_criteria_checkboxInputs, result.submission_criteria);
+                                    //  INPUT submission_criteria 
+
+                                    //  INPUT communication_hospital 
+                                    const communication_hospital_checkboxInputs = document.querySelectorAll('input[name="communication_hospital"]');
+                                    setCheckedInputs(communication_hospital_checkboxInputs, result.communication_hospital);
+                                    //  INPUT communication_hospital 
+
+
+
+
+                                    document.querySelector('#registration_category').value = result.registration_category;
+                                    document.querySelector('#registration_number').value = result.registration_number;
+                                    document.querySelector('#registration_province').value = result.registration_province;
+                                    //  INPUT owner_registration 
+                                    const owner_registration_checkboxInputs = document.querySelectorAll('input[name="owner_registration"]');
+                                    setCheckedInputs(owner_registration_checkboxInputs, result.owner_registration);
+                                    //  INPUT owner_registration 
+
+                                }else{
+                                    // console.log(result);
+
+                                    if (result.location_sos) {
+                                        document.querySelector('#textAddrDetail').innerHTML = result.location_sos;
+                                    }
+
+                                    if (result.symptom_other) {
+                                        document.querySelector('#textSymptomOtherDetail').innerHTML = result.symptom_other;
+                                        
                                     }
 
                                 }
-
-                                //  INPUT submission_criteria 
-                                const submission_criteria_checkboxInputs = document.querySelectorAll('input[name="submission_criteria"]');
-                                setCheckedInputs(submission_criteria_checkboxInputs, result.submission_criteria);
-                                //  INPUT submission_criteria 
-
-                                //  INPUT communication_hospital 
-                                const communication_hospital_checkboxInputs = document.querySelectorAll('input[name="communication_hospital"]');
-                                setCheckedInputs(communication_hospital_checkboxInputs, result.communication_hospital);
-                                //  INPUT communication_hospital 
-
-
-
-
-                                document.querySelector('#registration_category').value = result.registration_category;
-                                document.querySelector('#registration_number').value = result.registration_number;
-                                document.querySelector('#registration_province').value = result.registration_province;
-                                //  INPUT owner_registration 
-                                const owner_registration_checkboxInputs = document.querySelectorAll('input[name="owner_registration"]');
-                                setCheckedInputs(owner_registration_checkboxInputs, result.owner_registration);
-                                //  INPUT owner_registration 
 
                             });
                     }
@@ -899,7 +916,7 @@
 
                     function officer_save_data_form_yellow(divId) {
 
-                        
+
 
                         let data_arr = {
                             "sos_id": "{{ $data_sos->id }}",
@@ -1192,7 +1209,39 @@
     </div>
 </div>
 
-
+<!-- Modal -->
+<div class="modal fade" id="modalDataDetailFormYellow" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row d-flex justify-content-center">
+                    <ul class="nav nav-pills d-flex justify-content-center text-center" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#addrDetail" type="button" role="tab" aria-controls="home" aria-selected="true">ตำแหน่ง</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#symptomOther" type="button" role="tab" aria-controls="profile" aria-selected="false">อาการ</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="addrDetail" role="tabpanel" aria-labelledby="home-tab">
+                            <h4 class="mt-3 font-weight-bold">
+                                ตำแหน่ง
+                            </h4>
+                            <p id="textAddrDetail">ไม่มีการระบุรายละเอียดตำแหน่ง</p>
+                        </div>
+                        <div class="tab-pane fade" id="symptomOther" role="tabpanel" aria-labelledby="profile-tab">
+                            <h4 class="mt-3 font-weight-bold">
+                                อาการ
+                            </h4>
+                            <p id="textSymptomOtherDetail">ไม่มีการระบุรายละเอียดอาการ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <style>
     .ask_more_header {
@@ -1366,36 +1415,36 @@
 
     // ฟังก์ชันสำหรับแสดงค่าที่กรอกใน input type text ลงในคอนโซล (console)
     function submitForm() {
-    const formInputs = document.querySelectorAll('select[name^="vehicle"], select[name^="rc_vehicle_"], input[name^="amount_vehicle_"], input[name^="input_amount_vehicle"]');
-    const formData = [];
-   
-    formInputs.forEach(input => { 
-        
+        const formInputs = document.querySelectorAll('select[name^="vehicle"], select[name^="rc_vehicle_"], input[name^="amount_vehicle_"], input[name^="input_amount_vehicle"]');
+        const formData = [];
 
-      const inputCount = input.name.slice(-1); // ดึงตัวเลขที่ปรากฏท้ายของชื่อ input field
-      const currentData = formData[inputCount - 1] || {}; // ใช้ข้อมูลของชุดปัจจุบันหากมีใน formData และถ้าไม่มีก็สร้าง Object ใหม่
-      currentData['sos_id'] = "{{$data_sos->id}}";
-      currentData['officer_id'] = "{{$data_sos->helper_id}}";
+        formInputs.forEach(input => {
 
-      if (input.type === 'radio') {
-        if (input.checked) {
-          currentData[input.name] = input.value;
-          if (input.value === 'other') {
-            const inputText = document.querySelector(`input[name="input_amount_vehicle${inputCount}"]`);
-            if (inputText !== null) {
-              let correspondingAmountInput = document.querySelector(`input[name="${input.name}"]`);
-              currentData[correspondingAmountInput.name] = inputText.value;
+
+            const inputCount = input.name.slice(-1); // ดึงตัวเลขที่ปรากฏท้ายของชื่อ input field
+            const currentData = formData[inputCount - 1] || {}; // ใช้ข้อมูลของชุดปัจจุบันหากมีใน formData และถ้าไม่มีก็สร้าง Object ใหม่
+            currentData['sos_id'] = "{{$data_sos->id}}";
+            currentData['officer_id'] = "{{$data_sos->helper_id}}";
+
+            if (input.type === 'radio') {
+                if (input.checked) {
+                    currentData[input.name] = input.value;
+                    if (input.value === 'other') {
+                        const inputText = document.querySelector(`input[name="input_amount_vehicle${inputCount}"]`);
+                        if (inputText !== null) {
+                            let correspondingAmountInput = document.querySelector(`input[name="${input.name}"]`);
+                            currentData[correspondingAmountInput.name] = inputText.value;
+                        }
+                    }
+                }
+            } else {
+                currentData[input.name] = input.value;
             }
-          }
-        }
-      } else {
-        currentData[input.name] = input.value;
-      }
 
-      formData[inputCount - 1] = currentData; // อัปเดตข้อมูลของชุดปัจจุบันใน formData
-    });
+            formData[inputCount - 1] = currentData; // อัปเดตข้อมูลของชุดปัจจุบันใน formData
+        });
 
-    console.log(formData);
+        console.log(formData);
 
         // console.log(formData);
 
