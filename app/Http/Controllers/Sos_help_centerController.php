@@ -244,9 +244,6 @@ class Sos_help_centerController extends Controller
                 ->where('polygon' , '!=' , null)
                 ->get();
 
-            $all_data_sos = Sos_help_center::where('id', '!=', null)->get();
-
-
         }else{
              if (!empty($keyword)) {
                 $data_sos = Sos_help_center::where('id', 'LIKE', "%$keyword%")
@@ -264,11 +261,9 @@ class Sos_help_centerController extends Controller
                 ->where('polygon' , '!=' , null)
                 ->where('province_name' , $sub_organization)
                 ->get();
-
-            $all_data_sos = Sos_help_center::where('notify', 'LIKE', "%$sub_organization%")->get();
         }
         
-        return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos','polygon_provinces','color_theme','all_data_sos'));
+        return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos','polygon_provinces','color_theme'));
 
     }
 
