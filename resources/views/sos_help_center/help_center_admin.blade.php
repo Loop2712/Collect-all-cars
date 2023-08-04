@@ -2039,7 +2039,6 @@
                                 </div>
                             </a> -->
                         @endforeach
-                        <div class="pagination-wrapper"> {!! $data_sos->appends(['search' => Request::get('search')])->render() !!} </div>
 
                     </div>
                        
