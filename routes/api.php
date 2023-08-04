@@ -225,7 +225,7 @@ Route::post('/send_save_data/form_yellow', 'Sos_help_centerController@save_form_
 Route::post('/save_data_change_form_yellow', 'Sos_help_centerController@save_data_change_form_yellow');
 Route::get('/send_noti_ask_mores_to/{user_id}/{ask_mores_id}', 'Sos_help_centerController@send_noti_ask_mores_to');
 Route::get('/check_update/form_yellow/{sos_id}', 'Sos_help_centerController@check_update_form_yellow');
-Route::get('/get_location_operating_unit/{lat}/{lng}/{level}/{vehicle_type}/{forward_level}/{sub_organization}', 'Sos_help_centerController@get_location_operating_unit');
+Route::get('/get_location_operating_unit', 'Sos_help_centerController@get_location_operating_unit');
 Route::get('/send_data_sos_to_operating_unit/{sos_id}/{operating_unit_id}/{user_id}/{distance}', 'Sos_help_centerController@send_data_sos_to_operating_unit');
 Route::get('/check_status_wait_operating_unit/{sos_id}', 'Sos_help_centerController@check_status_wait_operating_unit');
 Route::get('/get_current_officer_location/{sos_id}', 'Sos_help_centerController@get_current_officer_location');

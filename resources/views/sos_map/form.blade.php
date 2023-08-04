@@ -234,7 +234,7 @@
                                 <div class="d-flex align-items-center col-9 text-center">
                                     <div class="justify-content-center col-12">
                                         <b>
-                                            <span class="d-block" style="color: #ffffff;">Emergency Services</span>
+                                            <span class="d-block" style="color: #ffffff;">Emergency Medical Services</span>
                                             <span class="d-block" style="color: #ffffff;">📞 1669</span>
                                         </b>
                                         

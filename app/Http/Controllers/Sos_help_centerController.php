@@ -1441,7 +1441,16 @@ class Sos_help_centerController extends Controller
         return $data_sos ;
     }
 
-    function get_location_operating_unit($m_lat , $m_lng , $level , $vehicle_type , $forward_level , $sub_organization){
+    function get_location_operating_unit(Request $request)
+    {
+        $requestData = $request->all();
+
+        $m_lat = $requestData['m_lat'] ;
+        $m_lng = $requestData['m_lng'] ;
+        $level = $requestData['level'] ;
+        $vehicle_type = $requestData['vehicle_type'] ;
+        $forward_level = $requestData['forward_level'] ;
+        $sub_organizatio = $requestData['sub_organizatio'] ;
 
         $latitude = (float)$m_lat ;
         $longitude = (float)$m_lng;
