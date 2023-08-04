@@ -197,7 +197,7 @@
                                                 @endif
                                             </div>
                                             <div class="ms-2">
-                                                <span class="mt-2 font-14">{{$avg_score_by_case->officers_user->name}}</span>
+                                                <span class="mt-2 font-14">{{$avg_score_by_case->operating_officer->name_officer}}</span>
                                             </div>
                                         </div>
                                     </td>
