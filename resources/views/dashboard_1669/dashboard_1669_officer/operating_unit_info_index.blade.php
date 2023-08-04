@@ -182,7 +182,7 @@
                                 <tr>
                                     <td>
                                         @php
-                                            $data_user_avg_score_by_case = App\User::where('id',$avg_score_by_case->officers_command_by->user_id)->first();
+                                            $data_user_avg_score_by_case = App\User::where('id',$avg_score_by_case->helper_id)->first();
                                         @endphp
                                         <div class="d-flex align-items-center">
                                             <div class="recent-product-img">
