@@ -1820,7 +1820,7 @@ class LineApiController extends Controller
                         'status' => "ออกจากฐาน",
                         'organization_helper' => $data_unit->name,
                         'operating_unit_id' => $data_unit->id,
-                        'name_helper' => $data_user->name,
+                        'name_helper' => $data_officers->name_officer,
                         'helper_id' => $data_user->id,
                         'time_go_to_help' => $date_now,
                         'wait' => null,
@@ -1836,7 +1836,7 @@ class LineApiController extends Controller
                         'operating_suit_type' => $data_officers->level,
                         'time_go_to_help' => $date_now,
                         'operation_unit_name' => $data_unit->name,
-                        'action_set_name' => $data_user->name,
+                        'action_set_name' => $data_officers->name_officer,
                     ]);
 
                 // ------------------------------------------------------------------

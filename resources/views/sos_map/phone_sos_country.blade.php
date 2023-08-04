@@ -4,7 +4,7 @@
 
 <!-- SOS ไทย -->
 <div id="sos_TH" class="row d-none" style="margin-top:10px">
-    @if(!empty($user->nationalitie) && !empty($nationalitie_tel))
+    @if( !empty($user->nationalitie) && !empty($nationalitie_tel) && $user->nationalitie != "Thai")
     <div class="col-12 mb-2">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('embassy','{{ $nationalitie_tel }}');" style="background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>&nbsp;Embassy of {{$user->nationalitie}}
         </a>
@@ -32,15 +32,15 @@
     <div class="col-12" style="margin-top:-20px;margin-bottom:-10px;">
         <hr>
     </div>
-    <div class="col-7">
+    <!-- <div class="col-7">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">หน่วยแพทย์กู้ชีวิต</p>
     </div>
     <div class="col-5">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('life_saving','1669');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>&nbsp; 1669</a>
-    </div>
-    <div class="col-12" style="margin-top:-20px;margin-bottom:-10px;">
+    </div> -->
+    <!-- <div class="col-12" style="margin-top:-20px;margin-bottom:-10px;">
         <hr>
-    </div>
+    </div> -->
     <div class="col-7">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">ตำรวจท่องเที่ยว</p>
     </div>

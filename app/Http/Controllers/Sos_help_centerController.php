@@ -235,9 +235,9 @@ class Sos_help_centerController extends Controller
                     ->orWhere('photo_sos', 'LIKE', "%$keyword%")
                     ->orWhere('organization_helper', 'LIKE', "%$keyword%")
                     ->orWhere('name_helper', 'LIKE', "%$keyword%")
-                    ->latest()->paginate($perPage);
+                    ->get();
             } else {
-                $data_sos = Sos_help_center::latest()->paginate($perPage);
+                $data_sos = Sos_help_center::get();
             }
 
             $polygon_provinces = DB::table('province_ths')
@@ -252,9 +252,9 @@ class Sos_help_centerController extends Controller
                     ->orWhere('photo_sos', 'LIKE', "%$keyword%")
                     ->orWhere('organization_helper', 'LIKE', "%$keyword%")
                     ->orWhere('name_helper', 'LIKE', "%$keyword%")
-                    ->latest()->paginate($perPage);
+                    ->get();
             } else {
-                $data_sos = Sos_help_center::where('notify', 'LIKE', "%$sub_organization%")->orderBy('created_at' , 'DESC')->paginate($perPage);
+                $data_sos = Sos_help_center::where('notify', 'LIKE', "%$sub_organization%")->orderBy('created_at' , 'DESC')->get();
             }
 
             $polygon_provinces = DB::table('province_ths')

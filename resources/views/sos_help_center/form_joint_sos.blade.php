@@ -828,7 +828,9 @@
         let data_arr = [];
         let text_data_arr = [];
 
-        fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level + "/" + vehicle_type + "/" + forward_level)
+        let sub_organization = "{{ Auth::user()->sub_organization }}" ;
+
+        fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level + "/" + vehicle_type + "/" + forward_level + "/" + sub_organization)
             .then(response => response.json())
             .then(result => {
                 console.log('------ get_location_operating_unit -------');
@@ -1764,8 +1766,10 @@
         // ------------------------------------------------------------------------------------------
         let data_arr = [];
         let text_data_arr = [];
+        
+        let sub_organization = "{{ Auth::user()->sub_organization }}" ;
 
-        fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level + "/" + vehicle_type + "/" + forward_level)
+        fetch("{{ url('/') }}/api/get_location_operating_unit" + "/" + m_lat + "/" + m_lng + "/" + level + "/" + vehicle_type + "/" + forward_level + "/" + sub_organization)
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
