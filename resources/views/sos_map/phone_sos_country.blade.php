@@ -38,9 +38,9 @@
     <div class="col-5">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('life_saving','1669');" style=" background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>&nbsp; 1669</a>
     </div> -->
-    <div class="col-12" style="margin-top:-20px;margin-bottom:-10px;">
+    <!-- <div class="col-12" style="margin-top:-20px;margin-bottom:-10px;">
         <hr>
-    </div>
+    </div> -->
     <div class="col-7">
         <p style="font-size:15px; text-align: center; margin-top:10px; ">ตำรวจท่องเที่ยว</p>
     </div>
