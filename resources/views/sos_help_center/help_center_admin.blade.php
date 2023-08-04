@@ -801,7 +801,7 @@
                                 <div class="d-flex align-items-center">
                                     <div>
                                         <p class="mb-0 text-white">จำนวนทั้งหมด</p>
-                                        <h5 class="mb-0 text-white"><span id="span_count_data">{{ count($data_sos) }}</span> รายการ</h5>
+                                        <h5 class="mb-0 text-white"><span id="span_count_data">{{ count(all_data_sos) }}</span> รายการ</h5>
                                     </div>
                                     <div class="ms-auto text-white">
                                         <i class="fa-sharp fa-solid fa-light-emergency-on font-30"></i>
@@ -2422,7 +2422,7 @@
                 div_body_help.innerHTML = "" ;
 
             document.querySelector('#data_help').classList.remove('d-none');
-            document.querySelector('#span_count_data').innerHTML = "{{ count($data_sos) }}";
+            document.querySelector('#span_count_data').innerHTML = "{{ count($all_data_sos) }}";
 
             document.querySelector('#span_min_average_per_case').innerHTML = "{{ $show_min_average_per_case }}" ;
             document.querySelector('#span_count_success_average').innerHTML = "{{ $count_success }}" ;
@@ -3081,7 +3081,7 @@
 
         document.querySelector('#div_body_help').classList.add('d-none');
         document.querySelector('#data_help').classList.remove('d-none');
-        document.querySelector('#span_count_data').innerHTML = "{{ count($data_sos) }}";
+        document.querySelector('#span_count_data').innerHTML = "{{ count($all_data_sos) }}";
         document.querySelector('#span_min_average_per_case').innerHTML = "{{ $show_min_average_per_case }}" ;
         document.querySelector('#span_count_success_average').innerHTML = "{{ $count_success }}" ;
 
