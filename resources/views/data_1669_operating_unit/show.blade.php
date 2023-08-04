@@ -111,7 +111,7 @@
                                                 {{ $item->name_officer }}
                                             </td>
                                             <td>
-                                                @if( $item->status == "Standby")
+                                                @if( $item->status == "Standby" || $item->status == "Helping" )
                                                     <style>
                                                         #map_standby_{{ $item->id }} {
                                                             height: calc(15vh);
