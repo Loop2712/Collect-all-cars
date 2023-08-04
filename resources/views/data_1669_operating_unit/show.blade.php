@@ -111,13 +111,21 @@
                                                 {{ $item->name_officer }}
                                             </td>
                                             <td>
-                                                @if( $item->status == "Standby" || $item->status == "Helping" )
+                                                @if( $item->status == "Standby" )
                                                     <style>
                                                         #map_standby_{{ $item->id }} {
                                                             height: calc(15vh);
                                                         }
                                                     </style>
                                                     <div id="map_standby_{{ $item->id }}"></div>
+                                                    <!-- {{ $item->lat }},{{ $item->lng }} -->
+                                                @else
+                                                    <style>
+                                                        #map_standby_{{ $item->id }} {
+                                                            height: calc(15vh);
+                                                        }
+                                                    </style>
+                                                    <div class="d-none" id="map_standby_{{ $item->id }}"></div>
                                                     <!-- {{ $item->lat }},{{ $item->lng }} -->
                                                 @endif
                                             </td>
