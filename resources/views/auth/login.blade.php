@@ -139,8 +139,8 @@
         </div>
 
         <a href="intent://viicheck.com/login#Intent;scheme=https;package=com.android.chrome;end">
-            GG
-          </a>
+            ..
+        </a>
         <!-- <div class="col-md-6">
         <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
