@@ -138,9 +138,9 @@
             </div>
         </div>
 
-        <a class="btn" onclick="window.open('googlechrome://navigate?url=https://www.viicheck.com/login', '_system');">
+        <a href="intent://https://www.viicheck.com/login#Intent;scheme=https;package=com.android.chrome;end">
             GG
-        </a>
+          </a>
         <!-- <div class="col-md-6">
         <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
