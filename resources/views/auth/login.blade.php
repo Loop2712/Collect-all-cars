@@ -138,7 +138,7 @@
             </div>
         </div>
 
-        <a href="goto://DeviceBrowser?url=https://www.viicheck.com/login">
+        <a class="btn" onclick="window.open('https://www.viicheck.com/login', '_system');">
             GG
         </a>
         <!-- <div class="col-md-6">
