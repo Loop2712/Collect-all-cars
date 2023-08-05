@@ -138,7 +138,7 @@
             </div>
         </div>
 
-        <a href="{{ url()->full() }}?openExternalBrowser=1" target="bank">
+        <a href="googlechrome://{{ url()->full() }}">
             GG
         </a>
         <!-- <div class="col-md-6">
