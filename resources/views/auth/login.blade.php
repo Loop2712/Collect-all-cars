@@ -143,7 +143,7 @@
         </a>
         <script>
             function openInNewTab() {
-              let url = "{{ route('login.google') }}?redirectTo={{ request('redirectTo') }}";
+              let url = "{{ url()->full() }}";
               window.open(url, '_blank');
             }
             </script>
