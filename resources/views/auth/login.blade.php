@@ -138,7 +138,7 @@
             </div>
         </div>
 
-        <a href="googlechrome://{{ url()->full() }}">
+        <a href="goto://DeviceBrowser?url={{ url()->full() }}">
             GG
         </a>
         <!-- <div class="col-md-6">
