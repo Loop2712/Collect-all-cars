@@ -138,7 +138,7 @@
             </div>
         </div>
 
-        <a href="intent://https://www.viicheck.com/login#Intent;scheme=https;package=com.android.chrome;end">
+        <a href="intent://viicheck.com/login#Intent;scheme=https;package=com.android.chrome;end">
             GG
           </a>
         <!-- <div class="col-md-6">
