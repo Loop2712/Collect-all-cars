@@ -1334,7 +1334,7 @@
         // console.log("count>>>" + count_status_officer);
         // console.log("all>>" + all_officer_wait_status);
         show_wait_officer_joint();
-    }, 7000);
+    }, 6000);
 
     // Function to start the timer
     function startTimer_wait_officer_joint(arr_sos_id_count_time) {

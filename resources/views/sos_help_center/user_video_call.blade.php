@@ -1379,7 +1379,7 @@ function loop_check_command_in_room() {
 
       });
 
-  }, 5000);
+  }, 4000);
 
 }
 

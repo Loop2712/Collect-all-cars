@@ -1141,17 +1141,17 @@
 								$text_vehicle_type = "อากาศยาน" ;
 								$value_vehicle_type = "อากาศยาน" ;
 								$class_vehicle_type = "fa-sharp fa-solid fa-plane" ;
-							}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๑' ){
+							}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๑' || $data_form_yellow->vehicle_type == 'เรือ ป.1'){
 								$check_checked = "checked";
 								$text_vehicle_type = "เรือ ป.๑" ;
 								$value_vehicle_type = "เรือ ป.๑" ;
 								$class_vehicle_type = "fa-duotone fa-ship" ;
-							}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๒' ){
+							}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๒' || $data_form_yellow->vehicle_type == 'เรือ ป.2'){
 								$check_checked = "checked";
 								$text_vehicle_type = "เรือ ป.๒" ;
 								$value_vehicle_type = "เรือ ป.๒" ;
 								$class_vehicle_type = "fa-duotone fa-ship" ;
-							}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๓' ){
+							}else if ( $data_form_yellow->vehicle_type == 'เรือ ป.๓' || $data_form_yellow->vehicle_type == 'เรือ ป.3'){
 								$check_checked = "checked";
 								$text_vehicle_type = "เรือ ป.๓" ;
 								$value_vehicle_type = "เรือ ป.๓" ;
@@ -2500,7 +2500,7 @@
         reface_check_form_yellow = setInterval(function() {
         	check_start_data_form_yellow();
         	distance_in_no5();
-        }, 15000);
+        }, 5000);
 
     }
 

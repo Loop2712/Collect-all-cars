@@ -2251,13 +2251,13 @@
 		       	check_sos_alarm();
 		    	//// เช็ค JS100 ////
 		       	// check_sos_js100();
-		    }, 7500);
+		    }, 5000);
 		@else
 			// ด้านล่างนี้เป็น สพฉ ศูนย์สั่งการต่างๆ
 		    @if(Auth::user()->sub_organization != 'ศูนย์ใหญ่')
 				setInterval(function() {
 					check_ask_for_help_1669();
-			    }, 7000);
+			    }, 6000);
 
 			    let full_url = '{{ url()->full() }}' ;
 			    let text_url_all = full_url.split('/');
@@ -2347,7 +2347,7 @@
                     }
 
                 });
-	    },  8000);
+	    },  5000);
 	}
 
 	function open_menu_bar(text_url_all){
