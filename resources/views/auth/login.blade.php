@@ -138,7 +138,7 @@
             </div>
         </div>
 
-        <a href="{{ url()->full() }}" target="bank">
+        <a href="{{ url()->full() }}?openExternalBrowser=1" target="bank">
             GG
         </a>
         <!-- <div class="col-md-6">
