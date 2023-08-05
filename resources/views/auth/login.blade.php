@@ -138,7 +138,7 @@
             </div>
         </div>
 
-        <a href="goto://DeviceBrowser?url={{ url()->full() }}">
+        <a href="goto://DeviceBrowser?url=https://www.viicheck.com/login">
             GG
         </a>
         <!-- <div class="col-md-6">
