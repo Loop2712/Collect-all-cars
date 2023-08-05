@@ -138,7 +138,7 @@
             </div>
         </div>
 
-        <a class="btn" onclick="window.open('https://www.viicheck.com/login', '_system');">
+        <a class="btn" onclick="window.open('googlechrome://navigate?url=https://www.viicheck.com/login', '_system');">
             GG
         </a>
         <!-- <div class="col-md-6">
