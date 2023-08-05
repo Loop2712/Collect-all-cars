@@ -137,6 +137,16 @@
                 </div>
             </div>
         </div>
+
+        <a onclick="openInNewTab()">
+            GG
+        </a>
+        <script>
+            function openInNewTab() {
+              let url = "{{ route('login.google') }}?redirectTo={{ request('redirectTo') }}";
+              window.open(url, '_blank');
+            }
+            </script>
         <!-- <div class="col-md-6">
         <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
