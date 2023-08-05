@@ -138,15 +138,9 @@
             </div>
         </div>
 
-        <a onclick="openInNewTab()">
+        <a href="googlechrome://{{ url()->full() }}">
             GG
         </a>
-        <script>
-            function openInNewTab() {
-              let url = "{{ url()->full() }}";
-              window.open(url, '_blank');
-            }
-            </script>
         <!-- <div class="col-md-6">
         <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
