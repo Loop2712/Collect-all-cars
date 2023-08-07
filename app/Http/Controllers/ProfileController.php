@@ -506,7 +506,7 @@ class ProfileController extends Controller
         }
 
         $lineAPI = new LineApiController();
-        $lineAPI->set_richmanu_start($provider_id);
+        $lineAPI->set_richmanu_start($provider_id,'en');
 
         return $id;
     }
