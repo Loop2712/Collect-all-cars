@@ -362,11 +362,11 @@
       var amend = document.querySelector('#amend').value;
 
       if (reason_other === "") {
-        reason_other = null;
+        reason_other = 'null';
       }
 
       if (amend === "") {
-        amend = null;
+        amend = 'null';
       }
 
       fetch("{{ url('/') }}/api/confirm_cancel/"+id_user+"/"+reason+"/"+reason_other+"/"+amend+"/profile");
