@@ -355,11 +355,11 @@
 
 <script>
     function confirm_cancel(){
-      var id_user = document.querySelector('#id_user').value;
-      var reason = document.querySelector('#reason').value;
+      let id_user = document.querySelector('#id_user').value;
+      let reason = document.querySelector('#reason').value;
 
-      var reason_other = document.querySelector('#reason_other').value;
-      var amend = document.querySelector('#amend').value;
+      let reason_other = document.querySelector('#reason_other').value;
+      let amend = document.querySelector('#amend').value;
 
       if (reason_other === "") {
         reason_other = 'null';

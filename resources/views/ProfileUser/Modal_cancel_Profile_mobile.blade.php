@@ -309,7 +309,7 @@
                   <center>                                            
                     <h3 style=" font-family: 'Mitr', sans-serif;">ถ้าคุณไปวีคงคิดถึงคุณมากๆ</h3>
                     <h5 style=" font-family: 'Mitr', sans-serif;">วีหวังว่าคุณจะกลับมาเร็วๆนี้นะ</h5><br>
-                    <button type="button" style="border-radius: 18px;" class="btn btn-secondary " onclick="confirm_cancel();" >ยกเลิกเป็นสมาชิก</button> 
+                    <button type="button" style="border-radius: 18px;" class="btn btn-secondary " onclick="confirm_cancel_m();" >ยกเลิกเป็นสมาชิก</button> 
                     <button class="btn btn-primary text-white" type="button" style="border-radius: 18px;border:transparent;font-family: 'Mitr', sans-serif;padding:7px" data-dismiss="modal">ยกเลิก</button>
                   </center>
                 </div>
@@ -353,19 +353,19 @@
 </div> -->
 
 <script>
-    function confirm_cancel(){
-      var id_user = document.querySelector('#id_user').value;
-      var reason_m = document.querySelector('#reason_m').value;
+    function confirm_cancel_m(){
+      let id_user = document.querySelector('#id_user').value;
+      let reason_m = document.querySelector('#reason_m').value;
 
-      var reason_m_other = document.querySelector('#reason_m_other').value;
-      var amend = document.querySelector('#amend').value;
+      let reason_m_other = document.querySelector('#reason_m_other').value;
+      let amend = document.querySelector('#amend').value;
 
       if (reason_m_other === "") {
-        reason_m_other = null;
+        reason_m_other = 'null';
       }
 
       if (amend === "") {
-        amend = null;
+        amend = 'null';
       }
 
       fetch("{{ url('/') }}/api/confirm_cancel/"+id_user+"/"+reason_m+"/"+reason_m_other+"/"+amend+"/profile");
