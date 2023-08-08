@@ -371,6 +371,6 @@
 
       fetch("{{ url('/') }}/api/confirm_cancel?id_user="+id_user+"&reason="+reason+"&reason_other="+reason_other+"&amend="+amend);
       
-      // document.querySelector('#btn_logout').click();
+      document.querySelector('#btn_logout').click();
     }
 </script>
