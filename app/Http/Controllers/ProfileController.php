@@ -438,7 +438,7 @@ class ProfileController extends Controller
     {
         $requestData = $request->all();
 
-        $id = $requestData['id'] ;
+        $id = $requestData['id_user'] ;
         $reason = $requestData['reason'] ;
         $reason_other = $requestData['reason_other'] ;
         $amend = $requestData['amend'] ;
