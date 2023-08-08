@@ -368,7 +368,7 @@
         amend = 'null';
       }
 
-      fetch("{{ url('/') }}/api/confirm_cancel/?id_user="+id_user+"&reason="+reason_m+"&reason_other="+reason_m_other+"&amend="+amend);
+      fetch("{{ url('/') }}/api/confirm_cancel?id_user="+id_user+"&reason="+reason_m+"&reason_other="+reason_m_other+"&amend="+amend);
       
       document.querySelector('#btn_logout').click();
     }
