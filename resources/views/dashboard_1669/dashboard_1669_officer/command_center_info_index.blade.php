@@ -229,14 +229,14 @@
                     <div>
                         <h5 class="font-weight-bold mb-0 p-2" >การสั่งการมากที่สุด {{count($command_1669_data)}} อันดับ</h5>
                     </div>
-                    <!-- <div class="dropdown ms-auto">
+                    <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_1669_all_command') }}">ดูข้อมูลเพิ่มเติม</a>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
             <div class="p-3">

@@ -1,4 +1,8 @@
-
+<style>
+    body {
+        text-align: left;
+    }
+</style>
 
 <h4 class="text-dark font-weight-bold">ข้อมูลหน่วยปฏิบัติการ</h4>
 <!--============= 3 card -- 4-4-4  ================-->
@@ -17,7 +21,8 @@
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item btn" onclick="top5_score_unit_toggleDataBtn('least_data')">มากสุด 5 อันดับ</a>
                             <a class="dropdown-item btn" onclick="top5_score_unit_toggleDataBtn('most_data')">น้อยสุด 5 อันดับ</a>
-                            {{-- <button id="top5_score_unit_toggleDataBtn" class="btn btn-primary">สลับข้อมูล</button> --}}
+                            <hr>
+                            <a class="dropdown-item btn" href="{{ url('/dashboard_1669_all_score_unit') }}">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
@@ -71,15 +76,19 @@
         <div class="card radius-10 h-100">
             <div class=" p-3">
                 <div class="d-flex align-items-center">
-                    <div>
-                        <h5 class="mb-0 font-weight-bold">จำนวนยานพาหนะทั้งหมด </h5>
+                    <h5 class="mb-0 font-weight-bold">จำนวนยานพาหนะทั้งหมด </h5>
+                    <div class="dropdown ms-auto">
+                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
+                            data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <button class="dropdown-item btn" onclick="downloadImage()">Save PNG</button>
+                        </div>
                     </div>
-                    <!-- <div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
-                    </div> -->
                 </div>
             </div>
 
-            <div class="mb-3 p-3">
+            <div id="all_vehicel_div" class="mb-3 p-3">
                 @foreach ($vehicle_arr as $vehicle_arr)
                     @php
                         $color_benotified;
@@ -139,6 +148,7 @@
                     </div>
                 @endforeach
             </div>
+            <canvas id="canvas" style="display: none;"></canvas>
         </div>
     </div>
 
@@ -162,6 +172,9 @@
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item btn " onclick="avg_score_by_case_toggleDataBtn('least_data')">มากสุด 5 อันดับ</a>
                             <a class="dropdown-item btn " onclick="avg_score_by_case_toggleDataBtn('most_data')">น้อยสุด 5 อันดับ</a>
+                            <hr>
+                            <a class="dropdown-item btn " href="{{ url('/dashboard_1669_all_average_score_by_case') }}">ดูข้อมูลเพิ่มเติม</a>
+
                             <!-- <button id="top5_score_unit_toggleDataBtn" class="btn btn-primary">สลับข้อมูล</button> -->
                         </div>
                     </div>
@@ -277,6 +290,9 @@
 
 <!-- apexcharts -->
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<!-- ติดตั้ง html2canvas ผ่าน CDN -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.3.2/dist/html2canvas.min.js"></script>
 
 <script>
 
@@ -482,6 +498,33 @@
 
         var chart = new ApexCharts(document.querySelector("#chartlevel_op"), options);
         chart.render();
+</script>
+
+
+
+<script>
+    // ฟังก์ชันเพื่อดาวน์โหลดรูปภาพ
+    function downloadImage() {
+        const element = document.getElementById('all_vehicel_div');
+
+        // เรียกใช้ html2canvas เพื่อแปลง HTML เป็นรูปภาพ
+        html2canvas(element, {
+            useCORS: true, // เปิดใช้งานการโหลดรูปภาพด้วย CORS
+            allowTaint: true, // เปิดใช้งานในการใช้งานรูปภาพที่มาจากเมืองข้อมูล
+            scale: 2, // กำหนดขนาดเริ่มต้นของรูปภาพ (สามารถปรับเปลี่ยนค่าตามความต้องการ)
+            backgroundColor: '#ffffff', // กำหนดสีพื้นหลังให้กับรูปภาพ (สามารถปรับเปลี่ยนค่าตามความต้องการ)
+        }).then(canvas => {
+
+        // รับข้อมูลรูปภาพในรูปของ base64
+        const imageData = canvas.toDataURL('image/png');
+
+        // สร้างลิงก์ใหม่ในการดาวน์โหลดรูปภาพ
+        const link = document.createElement('a');
+            link.href = imageData;
+            link.download = 'my_vehicle_image.png'; // ตั้งชื่อไฟล์ที่จะดาวน์โหลด
+            link.click();
+        });
+    }
 </script>
 
 

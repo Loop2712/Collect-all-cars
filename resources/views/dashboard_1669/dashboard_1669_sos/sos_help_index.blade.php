@@ -76,14 +76,14 @@
                     <div>
                         <h5 class="font-weight-bold mb-0 text-success" >คะแนนการช่วยเหลือต่อเคส มาก ที่สุด {{ count($data_sos_score_best_5) }} อันดับ</h5>
                     </div>
-                    <!-- <div class="dropdown ms-auto">
+                    <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_1669_all_sos_show') }}">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 
@@ -124,14 +124,14 @@
                     <div>
                         <h5 class="font-weight-bold mb-0 text-danger" >คะแนนการช่วยเหลือต่อเคส น้อย ที่สุด {{ count($data_sos_score_worst_5) }} อันดับ</h5>
                     </div>
-                    <!-- <div class="dropdown ms-auto">
+                    <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_1669_all_sos_show') }}">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 
@@ -175,14 +175,14 @@
                     <div>
                         <h5 class="font-weight-bold mb-0 text-success" >เวลาในการช่วยเหลือ ไว ที่สุด {{ count($data_sos_fastest_5) }} อันดับ</h5>
                     </div>
-                    <!-- <div class="dropdown ms-auto">
+                    <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_1669_all_sos_show') }}">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 
@@ -246,14 +246,14 @@
                     <div>
                         <h5 class="font-weight-bold mb-0 text-danger" >เวลาในการช่วยเหลือ ช้า ที่สุด {{ count($data_sos_slowest_5) }} อันดับ</h5>
                     </div>
-                    <!-- <div class="dropdown ms-auto">
+                    <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_1669_all_sos_show') }}">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 

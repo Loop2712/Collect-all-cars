@@ -87,7 +87,7 @@
 
                 <div class="table-responsive mt-4 mb-4">
                     <table class="table align-middle mb-0">
-                        <tbody>
+                        <tbody class="fz_body font-weight-bold">
                             @foreach ($notify_data as $notify_data)
 
                                 @php
@@ -196,7 +196,7 @@
                         </div>
                     </div> -->
                 </div>
-                <div class="d-flex justify-content-center align-items-center">
+                <div class="p-2">
                     <div id="operation"></div>
                 </div>
             </div>
@@ -343,75 +343,74 @@
     @endforeach
 
     var options = {
-         series: [{
-         data: series_arr
-       }],
-         chart: {
-         type: 'bar',
-         height: 380,
-         width: '100%'
-       },
-       plotOptions: {
-         bar: {
-           barHeight: '100%',
-           distributed: true,
-           horizontal: true,
-           dataLabels: {
-             position: 'bottom'
-           },
-         }
-       },
-       colors: ['#33b2df',  '#d4526e',  '#f48024',  '#f9a3a4', '#90ee7e',],
-       dataLabels: {
-         enabled: true,
-         textAnchor: 'start',
-         style: {
+            series: [{
+            data: series_arr
+        }],
+            chart: {
+            type: 'bar',
+            height: 380,
+            width: '100%'
+        },
+        plotOptions: {
+            bar: {
+                barHeight: '100%',
+                distributed: true,
+                horizontal: true,
+                dataLabels: {
+                    position: 'bottom'
+                },
+            }
+        },
+        colors: ['#33b2df',  '#d4526e',  '#f48024',  '#f9a3a4', '#90ee7e',],
+        dataLabels: {
+            enabled: true,
+            textAnchor: 'start',
+            style: {
+                fontSize: '16px',
+                colors: ['#000']
+            },
+            formatter: function (val, opt) {
+                return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+            },
+            offsetX: 0,
+            dropShadow: {
+            enabled: true
+            }
+        },
+        stroke: {
+            width: 1,
+            colors: ['#fff']
+        },
+        xaxis: {
+            categories: categories_arr,
+            style: {
+                fontSize: '18px',
+                fontWeight: 'bold',
+            },
+        },
+        yaxis: {
+            labels: {
+            show: false
+            }
+        },
+        legend: {
             fontSize: '16px',
-           colors: ['#000']
-         },
-         formatter: function (val, opt) {
-           return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
-         },
-         offsetX: 0,
-         dropShadow: {
-           enabled: true
-         }
-       },
-       stroke: {
-         width: 1,
-         colors: ['#fff']
-       },
-       xaxis: {
-         categories: categories_arr,
-       },
-       yaxis: {
-         labels: {
-           show: false
-         }
-       },
-    //    title: {
-    //        text: 'Custom DataLabels',
-    //        align: 'center',
-    //        floating: true
-    //    },
-    //    subtitle: {
-    //        text: 'Category Names as DataLabels inside bars',
-    //        align: 'center',
-    //    },
-       tooltip: {
-         theme: 'dark',
-         x: {
-           show: false
-         },
-         y: {
-           title: {
-             formatter: function () {
-               return ''
-             }
-           }
-         }
-       }
-       };
+            fontWeight: 'bold',
+        },
+        tooltip: {
+            theme: 'dark',
+            x: {
+                show: false
+            },
+            y: {
+                title: {
+                    formatter: function () {
+                    return ''
+                    }
+                }
+            }
+        }
+    };
 
        var chart = new ApexCharts(document.querySelector("#Top5_Area_SOS"), options);
        chart.render();
@@ -449,8 +448,8 @@
 
     var options = {
             series: [{
-            data: symptom_count_arr
-        }],
+                data: symptom_count_arr
+            }],
             chart: {
             type: 'bar',
             height: 380,
@@ -458,12 +457,12 @@
         },
         plotOptions: {
             bar: {
-            barHeight: '100%',
-            distributed: true,
-            horizontal: true,
-            dataLabels: {
-                position: 'bottom'
-            },
+                barHeight: '100%',
+                distributed: true,
+                horizontal: true,
+                dataLabels: {
+                    position: 'bottom'
+                },
             }
         },
         colors: symptom_colors,
@@ -494,26 +493,21 @@
             show: false
             }
         },
-    //    title: {
-    //        text: 'Custom DataLabels',
-    //        align: 'center',
-    //        floating: true
-    //    },
-    //    subtitle: {
-    //        text: 'Category Names as DataLabels inside bars',
-    //        align: 'center',
-    //    },
+        legend: {
+            fontSize: '16px',
+            fontWeight: 'bold',
+        },
         tooltip: {
             theme: 'dark',
             x: {
-            show: false
+                show: false
             },
             y: {
-            title: {
-                formatter: function () {
-                return ''
+                title: {
+                    formatter: function () {
+                        return ''
+                    }
                 }
-            }
             }
         }
     };
@@ -523,7 +517,7 @@
 
 </script>
 
-<!-- PIE CHART ระดับสถานการณ์ประเมินโดย ศูนย์สั่งการ -->
+<!-- Bar CHART ระดับสถานการณ์ประเมินโดย ศูนย์สั่งการ -->
 <script>
     let idc_count_arr = [];
     let idc_categories_arr = [];
@@ -532,27 +526,30 @@
         // นับจำนวน หัวข้อ
         idc_count_arr.push(Number('{{ $item->count_idc }}'));
 
-        // นับประเภท หัวข้อ
-        idc_categories_arr.push('{{ $item->idc }}');
-
         switch ('{{ $item->idc }}') {
             case 'แดง(วิกฤติ)':
                 idc_color_arr.push("#dc3545");
+                idc_categories_arr.push('วิกฤติ');
                 break;
-            case 'เหลือง(เร่งด่วน)เหลือง(เร่งด่วน)':
+            case 'เหลือง(เร่งด่วน)':
                 idc_color_arr.push("#ffc107");
+                idc_categories_arr.push('เร่งด่วน');
                 break;
             case 'เขียว(ไม่รุนแรง)':
                 idc_color_arr.push("#28a745");
+                idc_categories_arr.push('ไม่รุนแรง');
                 break;
             case 'ขาว(ทั่วไป)':
                 idc_color_arr.push("#cbd3da");
+                idc_categories_arr.push('ทั่วไป');
                 break;
             case 'ดำ(รับบริการสาธารณสุขอื่น)':
                 idc_color_arr.push("#121416");
+                idc_categories_arr.push('อื่นๆ');
                 break;
             default:
                 idc_color_arr.push("#121416");
+                idc_categories_arr.push('ไม่พบข้อมูล');
                 break;
         }
 
@@ -579,28 +576,41 @@
         }
         },
         dataLabels: {
-            enabled: true
+            enabled: true,
+            style: {
+                fontSize: '18px',
+                fontWeight: 'bold',
+            }
         },
         legend: {
             show: false
         },
         xaxis: {
             categories: idc_categories_arr,
-                labels: {
-                    style: {
-                    colors: idc_color_arr,
-                    fontSize: '12px'
-                    }
+            labels: {
+                style: {
+                    colors: '#000000',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
                 }
             }
-        };
+        },
+        yaxis: {
+            labels: {
+                style: {
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                }
+            }
+        }
+    };
 
         var chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows_idc"), options);
         chart.render();
 
 </script>
 
-<!-- PIE CHART ระดับสถานการณ์ประเมินโดย หน่วยปฏิบัติการ -->
+<!-- Bar CHART ระดับสถานการณ์ประเมินโดย หน่วยปฏิบัติการ -->
 <script>
 
     let rc_count_arr = [];
@@ -610,27 +620,30 @@
         // นับจำนวน หัวข้อ
         rc_count_arr.push(Number('{{ $item->count_rc }}'));
 
-        // นับประเภท หัวข้อ
-        rc_categories_arr.push('{{ $item->rc }}');
-
         switch ('{{ $item->rc }}') {
             case 'แดง(วิกฤติ)':
                 rc_color_arr.push("#dc3545");
+                rc_categories_arr.push('วิกฤติ');
                 break;
             case 'เหลือง(เร่งด่วน)':
                 rc_color_arr.push("#ffc107");
+                rc_categories_arr.push('เร่งด่วน');
                 break;
             case 'เขียว(ไม่รุนแรง)':
                 rc_color_arr.push("#28a745");
+                rc_categories_arr.push('ไม่รุนแรง');
                 break;
             case 'ขาว(ทั่วไป)':
                 rc_color_arr.push("#cbd3da");
+                rc_categories_arr.push('ทั่วไป');
                 break;
             case 'ดำ':
                 rc_color_arr.push("#121416");
+                rc_categories_arr.push('อื่นๆ');
                 break;
             default:
                 rc_color_arr.push("#121416");
+                rc_categories_arr.push('ไม่พบข้อมูล');
                 break;
         }
 
@@ -657,28 +670,41 @@
         }
         },
         dataLabels: {
-            enabled: true
+            enabled: true,
+            style: {
+                fontSize: '18px',
+                fontWeight: 'bold',
+            }
         },
         legend: {
             show: false
         },
         xaxis: {
             categories: rc_categories_arr,
-                labels: {
-                    style: {
-                    colors: rc_color_arr,
-                    fontSize: '12px'
-                    }
+            labels: {
+                style: {
+                    colors: '#000000',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
                 }
             }
-        };
+        },
+        yaxis: {
+            labels: {
+                style: {
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                }
+            }
+        }
+    };
 
         var chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows_rc"), options);
         chart.render();
 
 </script>
 
-<!-- DONUT CHART การปฏิบัติการ -->
+<!-- Bar CHART การปฏิบัติการ -->
 <script>
     let treatment_count_arr = [];
     let treatment_categories_arr = [];
@@ -693,30 +719,57 @@
     @endforeach
 
     var options = {
-        series: treatment_count_arr,
+        series: [{
+            data: treatment_count_arr
+        }],
         chart: {
-        width: 450,
-        type: 'donut',
-    },
-    labels: treatment_categories_arr,
-    colors: ['#2dce89', '#f5365c'], // กำหนดสีที่ต้องการ
-    legend: {
-        formatter: function(val, opts) {
-            return val + " - " + opts.w.globals.series[opts.seriesIndex]
-        },
-        position: 'bottom',
-    },
-    responsive: [{
-        breakpoint: 480,
-            options: {
-                chart: {
-                width: 400
-                },
-                legend: {
-                position: 'bottom'
+            height: 350,
+            type: 'bar',
+            events: {
+                click: function(chart, w, e) {
+                //   console.log(chart, w, e)
                 }
             }
-        }]
+        },
+        colors: ['#0d6efd','#e62e2e'],
+        plotOptions: {
+        bar: {
+            columnWidth: '45%',
+            distributed: true,
+        }
+        },
+        dataLabels: {
+            enabled: true,
+            distributed: false,
+            style: {
+                fontSize: '18px',
+                fontWeight: 'bold',
+            },
+            background: {
+                borderRadius: 10,
+            }
+        },
+        legend: {
+            show: false
+        },
+        xaxis: {
+            categories: treatment_categories_arr,
+            labels: {
+                style: {
+                    colors: '#000000',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                }
+            }
+        },
+        yaxis: {
+            labels: {
+                style: {
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                }
+            }
+        }
     };
 
     var chart = new ApexCharts(document.querySelector("#operation"), options);
@@ -800,15 +853,10 @@
             show: false
             }
         },
-        //    title: {
-        //        text: 'Custom DataLabels',
-        //        align: 'center',
-        //        floating: true
-        //    },
-        //    subtitle: {
-        //        text: 'Category Names as DataLabels inside bars',
-        //        align: 'center',
-        //    },
+        legend: {
+            fontSize: '16px',
+            fontWeight: 'bold',
+        },
         tooltip: {
             theme: 'dark',
             x: {
@@ -905,15 +953,10 @@
             show: false
             }
         },
-    //    title: {
-    //        text: 'Custom DataLabels',
-    //        align: 'center',
-    //        floating: true
-    //    },
-    //    subtitle: {
-    //        text: 'Category Names as DataLabels inside bars',
-    //        align: 'center',
-    //    },
+        legend: {
+            fontSize: '16px',
+            fontWeight: 'bold',
+        },
         tooltip: {
             theme: 'dark',
             x: {
