@@ -434,8 +434,15 @@ class ProfileController extends Controller
         exit();
     }
 
-    public function cancel_Profile($id,$reason,$reason_other,$amend)
+    public function cancel_Profile(Request $request)
     {
+        $requestData = $request->all();
+
+        $id = $requestData['id'] ;
+        $reason = $requestData['reason'] ;
+        $reason_other = $requestData['reason_other'] ;
+        $amend = $requestData['amend'] ;
+    
         $requestData['user_id'] = $id ;
 
         switch ($reason) {

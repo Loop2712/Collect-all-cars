@@ -304,6 +304,12 @@ class LoginController extends Controller
         Auth::login($user);
         $data_user = Auth::user();
 
+        DB::table('users')
+            ->where('provider_id', $data->id)
+            ->update([
+                'status' => 'active',
+            ]);
+
         if ($type == "line") {
 
             $provider_id = $user->provider_id ;

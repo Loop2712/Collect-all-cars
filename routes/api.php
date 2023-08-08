@@ -115,7 +115,7 @@ Route::post('/search_reg_ocr','API\GoogleCloudVision@search_registration_ocr');
 Route::post('/search_reg_ocr_motor','API\GoogleCloudVision@search_registration_ocr_motor');
 
 // cancel_Profile
-Route::get('/confirm_cancel/{id_user}/{reason}/{reason_other}/{amend}/profile','ProfileController@cancel_Profile');
+Route::get('/confirm_cancel','ProfileController@cancel_Profile');
 // welcome_home
 Route::get('/welcome_home/{status_id}/profile','ProfileController@welcome_home');
 
