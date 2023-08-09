@@ -134,7 +134,11 @@
                                             <td> -- </td>
                                         @endif
                                     <!-- ชื่อหน่วยปฏิบัติการ -->
-                                    <td>{{ $all_data_sos->operating_unit->name ? $all_data_sos->operating_unit->name : "--"}}</td>
+                                        @if (!empty($all_data_sos->operating_unit_id))
+                                            <td>{{ $all_data_sos->operating_unit->name ? $all_data_sos->operating_unit->name : "--"}}</td>
+                                        @else
+                                            <td> -- </td>
+                                        @endif
                                     <!-- ระยะเวลาในการช่วยเหลือ -->
                                     @php
                                         $all_data_sos_time_sos_success = strtotime($all_data_sos->time_sos_success);
