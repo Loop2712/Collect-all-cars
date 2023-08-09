@@ -82,7 +82,7 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ url('/dashboard_1669_all_sos_show') }}">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_1669_all_case_sos_show') }}">ข้อมูลการช่วยเหลือเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>

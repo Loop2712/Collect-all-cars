@@ -438,7 +438,7 @@ class Dashboard_1669_Controller extends Controller
             if(!empty($data_command_user[$i]['creator'])){
                 $data_command_user[$i]['name_creator'] = $data_user->name;
             }else{
-                $data_command_user[$i]['name_creator'] = "ViiCheck";
+                $data_command_user[$i]['name_creator'] = "ViiCHECK";
             }
 
 
@@ -543,7 +543,7 @@ class Dashboard_1669_Controller extends Controller
 
 
 
-        return view('dashboard_1669.dashboard_1669_sos.dashboard_1669_sos_show.all_case_sos_show' , compact('data_sos'));
+        return view('dashboard_1669.dashboard_1669_sos.dashboard_1669_sos_show.all_case_sos_show' );
     }
 
     function map_sos(Request $request,$user_login_organization){
