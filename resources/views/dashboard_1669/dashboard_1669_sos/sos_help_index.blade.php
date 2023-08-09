@@ -88,7 +88,76 @@
                 </div>
             </div>
 
+            <div class="card-body p-3">
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0 ">
+                        <thead>
+                            <tr>
+                                <th>รหัสเคส</th>
+                                <th>ชื่อผู้ขอความช่วยเหลือ</th>
+                                <th>ชื่อเจ้าหน้าที่สั่งการ</th>
+                                <th>ชื่อเจ้าหน้าที่หน่วยปฏิบัติการ</th>
+                                <th>ชื่อหน่วยปฏิบัติการ</th>
+                                <th>ระยะเวลาในการช่วยเหลือ</th>
+                                <th>สถานะ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($all_data_sos as $all_data_sos)
+                                <tr>
+                                    <!-- รหัสเคส -->
+                                    <td>{{ $all_data_sos->operating_code ? $all_data_sos->operating_code : "--"}}</td>
+                                    <!-- ชื่อผู้ขอความช่วยเหลือ -->
+                                    <td>
+                                        @if( !empty($all_data_sos->name_user) )
+                                            {{ $all_data_sos->name_user }}
+                                        @else
+                                            @php
+                                                $create_by_ex = explode( 'admin - ', $all_data_sos->create_by );
+                                                $command_create = App\Models\Data_1669_officer_command::where('user_id',$create_by_ex[1])->first();
+                                                $name_command_create = $command_create->name_officer_command ;
+                                            @endphp
 
+                                            {{ $name_command_create }}
+                                        @endif
+                                    </td>
+                                    <!-- ชื่อเจ้าหน้าที่สั่งการ -->
+                                    <td>{{ $all_data_sos->officers_command_by->name_officer_command ? $all_data_sos->officers_command_by->name_officer_command : "--"}}</td>
+                                    <!-- ชื่อเจ้าหน้าที่หน่วยปฏิบัติการ -->
+                                    <td>{{ $all_data_sos->operating_officer->name_officer ? $all_data_sos->operating_officer->name_officer : "--"}}</td>
+                                    <!-- ชื่อหน่วยปฏิบัติการ -->
+                                    <td>{{ $all_data_sos->operating_unit->name ? $all_data_sos->operating_unit->name : "--"}}</td>
+                                    <!-- ระยะเวลาในการช่วยเหลือ -->
+                                    @php
+                                        $all_data_sos_time_sos_success = strtotime($all_data_sos->time_sos_success);
+                                        $all_data_sos_time_command = strtotime($all_data_sos->time_command);
+
+                                        $all_data_sos_timeDifference = abs($all_data_sos_time_sos_success - $all_data_sos_time_command);
+
+                                        if ($all_data_sos_timeDifference >= 3600) {
+                                            $all_data_sos_hours = floor($all_data_sos_timeDifference / 3600);
+                                            $all_data_sos_remainingMinutes = floor(($all_data_sos_timeDifference % 3600) / 60);
+                                            $all_data_sos_remainingSeconds = $all_data_sos_timeDifference % 60;
+
+                                            $all_data_sos_time_unit = $all_data_sos_hours . ' ชั่วโมง ' . $all_data_sos_remainingMinutes . ' นาที ' . $all_data_sos_remainingSeconds . ' วินาที';
+                                        } elseif ($all_data_sos_timeDifference >= 60) {
+                                            $all_data_sos_minutes = floor($all_data_sos_timeDifference / 60);
+                                            $all_data_sos_seconds = $all_data_sos_timeDifference % 60;
+
+                                            $all_data_sos_time_unit = $all_data_sos_minutes . ' นาที ' . $all_data_sos_seconds . ' วินาที';
+                                        } else {
+                                            $all_data_sos_time_unit = $all_data_sos_timeDifference . ' วินาที';
+                                        }
+
+                                    @endphp
+                                    <td>{{ $all_data_sos_time_unit ? $all_data_sos_time_unit : "--"}}</td>
+                                    <td>{{ $all_data_sos->status ? $all_data_sos->status : "--"}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
         </div>
     </div>

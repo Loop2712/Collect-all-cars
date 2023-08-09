@@ -330,11 +330,11 @@
         //         title_theme.innerHTML = "ข้อมูลการขอความช่วยเหลือ" ;
 
         //     // เพิ่มโค้ดสำหรับการกรองข้อมูล
-        //     var table = $('#all_data_sos_1669_table').DataTable( 
+        //     var table = $('#all_data_sos_1669_table').DataTable(
         //         {
         //             lengthChange: true,
         //             buttons: ['excel']
-        //         } 
+        //         }
         //     );
 
         //     table.buttons().container()

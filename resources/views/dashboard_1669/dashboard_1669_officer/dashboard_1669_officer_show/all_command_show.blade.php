@@ -20,28 +20,7 @@
             </h3>
         </div>
         <div id="card_table_user" class="card-body">
-            {{-- <form method="GET" action="{{ url('/dashboard_1669_all_sos_show') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-                <div id="advancedFilters" class="row">
-                    <div class="col-2 mb-3">
-                        <input class="form-control" type="text" id="name_filter" name="name_filter" value="{{ request('name_filter') }}" placeholder="ค้นหาชื่อหรือชื่อหน่วย">
-                    </div>
-                    <div class="col-1 mb-3">
-                        <button class="btn btn-primary " type="submit">
-                            <i class="fa-solid fa-magnifying-glass fa-2xs mt-0"></i>
-                        </button>
-                        <button class="btn btn-danger" type="submit" onclick="resetFilters()">
-                            <i class="fa-solid fa-trash fa-2xs mt-0 "></i>
-                        </button>
-                    </div>
-                </div>
 
-                <script>
-                    function resetFilters() {
-                        document.getElementById("name_filter").value = "";
-                    }
-                </script>
-
-            </form> --}}
             <div class="table-responsive p-3">
                 <table id="all_command_1669_data_table" class="table align-middle mb-0">
                     <thead class="fz_header">

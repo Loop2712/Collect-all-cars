@@ -32,40 +32,7 @@
         </h3>
     </div>
     <div id="card_table_user" class="card-body">
-        <form method="GET" action="{{ url('/dashboard_1669_all_average_score_by_case') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-            <div id="advancedFilters" class="row">
-                <div class="col-2 mb-3">
-                    <input class="form-control" type="text" id="name_filter" name="name_filter" value="{{ request('name_filter') }}" placeholder="ค้นหาชื่อหรือชื่อหน่วย">
-                </div>
-                <div class="col-2 mb-3">
-                    <select class="form-select filter-select" id="score_filter" name="score_filter">
-                        <option value="">คะแนนเฉลี่ย</option>
-                        <option value="5" @if(request('score_filter') == '5') selected @endif> 5</p> </option>
-                        <option value="4" @if(request('score_filter') == '4') selected @endif> 4</p> </option>
-                        <option value="3" @if(request('score_filter') == '3') selected @endif> 3</p> </option>
-                        <option value="2" @if(request('score_filter') == '2') selected @endif> 2</p> </option>
-                        <option value="1" @if(request('score_filter') == '1') selected @endif> 1</p> </option>
-                    </select>
-                </div>
-                <div class="col-1 mb-3">
-                    <button class="btn btn-primary " type="submit">
-                        <i class="fa-solid fa-magnifying-glass fa-2xs mt-0"></i>
-                    </button>
-                    <button class="btn btn-danger" type="submit" onclick="resetFilters()">
-                        <i class="fa-solid fa-trash fa-2xs mt-0 "></i>
-                    </button>
-                </div>
-            </div>
 
-            <script>
-                function resetFilters() {
-                    document.getElementById("name_filter").value = "";
-                    document.getElementById("gender_filter").value = "";
-                    document.getElementById("status_filter").value = "";
-                }
-            </script>
-
-        </form>
         <div class="table-responsive">
             <table id="avg_score_by_case_table" class="table align-middle mb-0">
                 <thead>
@@ -104,6 +71,13 @@
                         </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th>ชื่อ</th>
+                        <th>ชื่อหน่วย</th>
+                        <th>คะแนนเฉลี่ยต่อเคส</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
@@ -115,18 +89,40 @@
 <script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 
 <script>
-    $(document).ready(function() {
-        let title_theme = document.querySelector('#title_theme');
-                title_theme.innerHTML = "ข้อมูลคะแนนเฉลี่ยต่อเคสทั้งหมด" ;
-        // เพิ่มโค้ดสำหรับการกรองข้อมูล
-        let table = $('#avg_score_by_case_table').DataTable( {
+   $(document).ready(function () {
+        //Only needed for the filename of export files.
+        //Normally set in the title tag of your page.
+        document.title = "ข้อมูลคะแนนเฉลี่ยต่อเคสทั้งหมด";
+        // Create search inputs in footer
+        $("#avg_score_by_case_table tfoot th").each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        });
+        // DataTable initialisation
+        var table = $("#avg_score_by_case_table").DataTable({
+            dom: '<"dt-buttons"Bf><"clear">lirtp',
+            paging: true,
+            autoWidth: true,
             lengthChange: false,
-            buttons: ['excel','print']
-        } );
+            buttons: [
+                {
+                    extend: "excelHtml5",
+                    text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
+                },
+            ],
+            initComplete: function (settings, json) {
+                var footer = $("#avg_score_by_case_table tfoot tr");
+                $("#avg_score_by_case_table thead").append(footer);
+            }
+        });
 
-        table.buttons().container()
-            .appendTo( '#avg_score_by_case_table_wrapper .col-md-6:eq(0)' );
-    } );
+        // Apply the search
+        $("#avg_score_by_case_table thead").on("keyup", "input", function () {
+                table.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+            });
+    });
 </script>
 
 @endsection

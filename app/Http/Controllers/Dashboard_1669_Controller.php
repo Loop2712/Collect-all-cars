@@ -184,6 +184,12 @@ class Dashboard_1669_Controller extends Controller
         // นับ sos ที่สถานะ ปฎิเสธ
         $count_sos_notReady = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")->where('status', 'รับแจ้งเหตุ')->count();
 
+        // ข้อมูลการขอความช่วยเหลือ 10 ลำดับล่าสุด
+        $all_data_sos = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        ->limit(10)
+        ->orderBy('id','desc')
+        ->get();
+
         // คะแนนการช่วยเหลือต่อเคส มาก ที่สุด 5 อันดับ
         $data_sos_score_best_5 = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
             ->where('score_total','!=',null)
@@ -371,6 +377,7 @@ class Dashboard_1669_Controller extends Controller
         'avg_score_by_case',
         'operating_unit_data',
         'data_sos',
+        'all_data_sos',
         'count_sos_success',
         'count_sos_helping',
         'count_sos_notReady',
@@ -613,12 +620,12 @@ class Dashboard_1669_Controller extends Controller
     function dashboard_1669_all_case_sos_show(Request $request){
         $user_login = Auth::user();
         $perPage = 10;
-        
+
         $data_sos = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
             ->orderBy('score_total','desc')
             ->get();
 
-        return view('dashboard_1669.dashboard_1669_sos.dashboard_1669_sos_show.all_case_sos_show' , 
+        return view('dashboard_1669.dashboard_1669_sos.dashboard_1669_sos_show.all_case_sos_show' ,
             compact('data_sos')
         );
     }

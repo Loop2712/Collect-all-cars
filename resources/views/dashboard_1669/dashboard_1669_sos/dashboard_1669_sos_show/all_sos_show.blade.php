@@ -38,7 +38,7 @@
         </h3>
     </div>
     <div class="card-body p-3">
-        <form method="GET" action="{{ url('/dashboard_1669_all_sos_show') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+        {{-- <form method="GET" action="{{ url('/dashboard_1669_all_sos_show') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
             <div id="advancedFilters" class="row">
                 <div class="col-2 mb-3">
                     <input class="form-control" type="text" id="name_filter" name="name_filter" value="{{ request('name_filter') }}" placeholder="ค้นหาชื่อหรือชื่อหน่วย">
@@ -79,7 +79,7 @@
                 }
             </script>
 
-        </form>
+        </form> --}}
         <div class="table-responsive">
             <table id="all_data_sos_table" class="table align-middle mb-0 ">
                 <thead class="fz_header">
@@ -119,7 +119,7 @@
                         @endphp
 
                         <tr class="mt_body_table">
-                            <td>{{ $data_sos->id ? $data_sos->id : "--"}}</td>
+                            <td>{{ $data_sos->operating_code ? $data_sos->operating_code : "--"}}</td>
                             <td>{{ $data_sos->address ? $data_sos->address : "--"}}</td>
                             <td>{{ $data_sos->name_helper ? $data_sos->name_helper : "--"}}</td>
                             <td>{{ $data_sos->organization_helper ? $data_sos->organization_helper : "--"}}</td>
@@ -128,6 +128,16 @@
                         </tr>
                     @endforeach
                 </tbody>
+                <tfoot class="fz_header">
+                    <tr>
+                        <th>รหัสเคส</th>
+                        <th>address</th>
+                        <th>name_helper</th>
+                        <th>organization_helper</th>
+                        <th>คะแนน</th>
+                        <th>ระยะเวลา</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
@@ -139,18 +149,40 @@
 <script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 
 <script>
-    $(document).ready(function() {
-        let title_theme = document.querySelector('#title_theme');
-                title_theme.innerHTML = "ข้อมูลการช่วยเหลือ" ;
-        // เพิ่มโค้ดสำหรับการกรองข้อมูล
-        let table = $('#all_data_sos_table').DataTable( {
+    $(document).ready(function () {
+        //Only needed for the filename of export files.
+        //Normally set in the title tag of your page.
+        document.title = "ข้อมูลการขอความช่วยเหลือ";
+        // Create search inputs in footer
+        $("#all_data_sos_table tfoot th").each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        });
+        // DataTable initialisation
+        var table = $("#all_data_sos_table").DataTable({
+            dom: '<"dt-buttons"Bf><"clear">lirtp',
+            paging: true,
+            autoWidth: true,
             lengthChange: false,
-            buttons: ['excel','print']
-        } );
+            buttons: [
+                {
+                    extend: "excelHtml5",
+                    text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
+                },
+            ],
+            initComplete: function (settings, json) {
+                var footer = $("#all_data_sos_table tfoot tr");
+                $("#all_data_sos_table thead").append(footer);
+            }
+        });
 
-        table.buttons().container()
-            .appendTo( '#all_data_sos_table_wrapper .col-md-6:eq(0)' );
-    } );
+        // Apply the search
+        $("#all_data_sos_table thead").on("keyup", "input", function () {
+                table.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+            });
+    });
 </script>
 
 @endsection
