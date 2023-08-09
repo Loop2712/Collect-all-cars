@@ -133,7 +133,7 @@
                             <td>{{ $item_sos->operating_code }}</td>
                             <td>{{ $item_sos->status }}</td>
                             <td>{{ $item_sos->remark_status }}</td>
-                            <td>{{ $item_sos->created_at }}</td>
+                            <td>{{ thaidate("j F Y" , strtotime($item_sos->created_at)) }}</td>
                             <td>{{ $item_sos->lat }}</td>
                             <td>{{ $item_sos->lng }}</td>
                             <td>{{ $item_sos->address }}</td>
@@ -226,6 +226,91 @@
                         </tr>
                         @endforeach
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>รหัสเคส</th>
+                            <th>สถานะ</th>
+                            <th>หมายเหตุสถานะ</th>
+                            <th>วันที่ / เวลา</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                            <th>สถานที่</th>
+                            <th>รายละเอียดสถานที่</th>
+                            <th>รับแจ้งเหตุทาง</th>
+                            <th>ผู้ขอความช่วยเหลือ</th>
+                            <th>เบอร์ติดต่อผู้ขอความช่วยเหลือ</th>
+                            <th>สั่งการโดย</th>
+                            <th>ชื่อหน่วยปฏบัติการ</th>
+                            <th>เจ้าหน้าที่หน่วยปฏิบัติการ</th>
+                            <th>ยานพาหนะ</th>
+                            <th>ระดับเจ้าหน้าที่หน่วยปฏิบัติการ</th>
+                            <th>อาการ</th>
+                            <th>รายละเอียดอาการ</th>
+                            <th>การให้รหัสความรุนแรง (IDC)</th>
+                            <th>รหัสความรุนแรง ณ จุดเกิดเหตุ (RC)</th>
+                            <th>รายละเอียดรหัสความรุนแรง ณ จุดเกิดเหตุ</th>
+                            <th>รายละเอียดสถานที่เกิดเหตุจากเจ้าหน้าที่</th>
+                            <th>เวลาสั่งการ</th>
+                            <th>เวลาออกจากฐาน</th>
+                            <th>เวลาถึงที่เกิดเหตุ</th>
+                            <th>เวลาออกจากที่เกิดเหตุ</th>
+                            <th>เวลาถึง รพ.</th>
+                            <th>เวลากลับถึงฐาน</th>
+                            <th>รวมเวลาในการช่วยเหลือ</th>
+
+                            <th>เลข กม. ออกจากฐาน</th>
+                            <th>เลข กม. ถึงที่เกิดเหตุ</th>
+                            <th>เลข กม. ถึง รพ.</th>
+                            <th>เลข กม. กลับถึงฐาน</th>
+                            <th>รวมเลข กม.</th>
+
+                            <th>การรักษา</th>
+                            <th>รายละเอียดการรักษา</th>
+
+                            <th>คะแนนความประทับใจ</th>
+                            <th>คะแนนความรวดเร็ว</th>
+                            <th>รวมคะแนนการช่วยเหลือ</th>
+                            <th>ข้อความการประเมิน</th>
+
+                            <th>หมายเหตุจากเจ้าหน้าที่</th>
+
+                            <th>เคสนี้รับมาจาก</th>
+                            <th>ส่งต่อเคสนี้ไปยัง</th>
+                            <th>อุบัติเหตุร่วม/อุบัติเหตุหมู่</th>
+
+                            <th>ชื่อ-สกุล (ผู้ป่วย 1)</th>
+                            <th>อายุ (ผู้ป่วย 1)</th>
+                            <th>HN (ผู้ป่วย 1)</th>
+                            <th>เลขประจำตัวประชาชน (ผู้ป่วย 1)</th>
+                            <th>นำส่งที่จังหวัด (ผู้ป่วย 1)</th>
+                            <th>นำส่ง รพ. (ผู้ป่วย 1)</th>
+
+                            <th>ชื่อ-สกุล (ผู้ป่วย 2)</th>
+                            <th>อายุ (ผู้ป่วย 2)</th>
+                            <th>HN (ผู้ป่วย 2)</th>
+                            <th>เลขประจำตัวประชาชน (ผู้ป่วย 2)</th>
+                            <th>นำส่งที่จังหวัด (ผู้ป่วย 2)</th>
+                            <th>นำส่ง รพ. (ผู้ป่วย 2)</th>
+
+                            <th>ชื่อ-สกุล (ผู้ป่วย 3)</th>
+                            <th>อายุ (ผู้ป่วย 3)</th>
+                            <th>HN (ผู้ป่วย 3)</th>
+                            <th>เลขประจำตัวประชาชน (ผู้ป่วย 3)</th>
+                            <th>นำส่งที่จังหวัด (ผู้ป่วย 3)</th>
+                            <th>นำส่ง รพ. (ผู้ป่วย 3)</th>
+
+                            <th>เกณฑ์การนำส่ง</th>
+                            <th>การติดต่อสื่อสารกับเจ้าหน้าที่ รพ.</th>
+
+                            <th>ทะเบียนรถหมวด</th>
+                            <th>เลขทะเบียน</th>
+                            <th>จังหวัด</th>
+                            <th>เจ้าของ</th>
+
+                            <th>เจ้าหน้าที่หน่วยปฏิบัติการที่ปฏิเสธเคสนี้</th>
+
+                        </tr>
+                    </tfoot>
 
                 </table>
             </div>
@@ -239,22 +324,59 @@
 	<script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 
     <script>
-        $(document).ready(function() {
+        // $(document).ready(function() {
 
-            let title_theme = document.querySelector('#title_theme');
-                title_theme.innerHTML = "ข้อมูลการขอความช่วยเหลือ" ;
+        //     let title_theme = document.querySelector('#title_theme');
+        //         title_theme.innerHTML = "ข้อมูลการขอความช่วยเหลือ" ;
 
-            // เพิ่มโค้ดสำหรับการกรองข้อมูล
-            var table = $('#all_data_sos_1669_table').DataTable( {
-                lengthChange: true,
-                buttons: ['excel']
-            } );
+        //     // เพิ่มโค้ดสำหรับการกรองข้อมูล
+        //     var table = $('#all_data_sos_1669_table').DataTable( 
+        //         {
+        //             lengthChange: true,
+        //             buttons: ['excel']
+        //         } 
+        //     );
 
-            // document.querySelector('.buttons-excel').innerHTML = 'Export Excel All' ;
+        //     table.buttons().container()
+        //         .appendTo( '#all_data_sos_1669_table_wrapper .col-md-6:eq(0) ' );
+        // } );
 
-            table.buttons().container()
-                .appendTo( '#all_data_sos_1669_table_wrapper .col-md-6:eq(0) ' );
-        } );
+
+    $(document).ready(function () {
+        //Only needed for the filename of export files.
+        //Normally set in the title tag of your page.
+        document.title = "ข้อมูลการขอความช่วยเหลือ";
+        // Create search inputs in footer
+        $("#all_data_sos_1669_table tfoot th").each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        });
+        // DataTable initialisation
+        var table = $("#all_data_sos_1669_table").DataTable({
+            dom: '<"dt-buttons"Bf><"clear">lirtp',
+            paging: false,
+            autoWidth: true,
+            lengthChange: false,
+            buttons: [
+                {
+                    extend: "excelHtml5",
+                    text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
+                },
+            ],
+            initComplete: function (settings, json) {
+                var footer = $("#all_data_sos_1669_table tfoot tr");
+                $("#all_data_sos_1669_table thead").append(footer);
+            }
+        });
+
+        // Apply the search
+        $("#all_data_sos_1669_table thead").on("keyup", "input", function () {
+                table.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+            });
+    });
+
     </script>
 
 @endsection
