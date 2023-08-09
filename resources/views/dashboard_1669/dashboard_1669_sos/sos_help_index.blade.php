@@ -122,9 +122,17 @@
                                         @endif
                                     </td>
                                     <!-- ชื่อเจ้าหน้าที่สั่งการ -->
-                                    <td>{{ $all_data_sos->officers_command_by->name_officer_command ? $all_data_sos->officers_command_by->name_officer_command : "--"}}</td>
+                                        @if (!empty($all_data_sos->command_by))
+                                            <td>{{ $all_data_sos->officers_command_by->name_officer_command ? $all_data_sos->officers_command_by->name_officer_command : "--"}}</td>
+                                        @else
+                                            <td> -- </td>
+                                        @endif
                                     <!-- ชื่อเจ้าหน้าที่หน่วยปฏิบัติการ -->
-                                    <td>{{ $all_data_sos->operating_officer->name_officer ? $all_data_sos->operating_officer->name_officer : "--"}}</td>
+                                        @if (!empty($all_data_sos->helper_id))
+                                            <td> {{ $all_data_sos->operating_officer->name_officer}} </td>
+                                        @else
+                                            <td> -- </td>
+                                        @endif
                                     <!-- ชื่อหน่วยปฏิบัติการ -->
                                     <td>{{ $all_data_sos->operating_unit->name ? $all_data_sos->operating_unit->name : "--"}}</td>
                                     <!-- ระยะเวลาในการช่วยเหลือ -->

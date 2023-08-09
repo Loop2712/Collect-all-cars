@@ -5,6 +5,16 @@
         display: none;
     }
 
+    .fz_header {
+        font-size: 18px;
+    }
+    .fz_body {
+        font-size: 16px;
+    }
+    .font-weight-bold{
+        font-weight: bold !important;
+    }
+
     div.dataTables_filter {
         margin-top: 1rem;
     }

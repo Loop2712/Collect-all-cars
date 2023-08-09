@@ -5,6 +5,16 @@
         display: none;
     }
 
+    .fz_header {
+        font-size: 18px;
+    }
+    .fz_body {
+        font-size: 16px;
+    }
+    .font-weight-bold{
+        font-weight: bold !important;
+    }
+
     .col-1.mb-3 .btn {
         width: 50px;
         height: 100%;
