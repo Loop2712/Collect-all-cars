@@ -705,7 +705,73 @@
     right: 1rem;
     z-index: 99999;
 }
+@media (min-width: 993px) {
+  .mobile-only {
+   width: 98vw;
+   height: 70vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }.img-mobile-only{
+    width: 100%;
+    }.header-mobile-only{
+        /* margin-top: 15px; */
+        font-size: 4.5rem;
+        font-weight: bolder;
+        color: #db2d2e;
+        margin: 30px 0;
+    }.detail-mobile-only{
+        font-size: 1.5rem;
+    }
+}
+@media (max-width: 1200px) {
+    .mobile-only {
+        margin: 400px auto;
+
+    }
+}
+@media (max-width: 992px) {
+  .mobile-only {
+   display: none;
+  }
+}
+
 </style>
+
+
+<div class="mobile-only">
+<div class="container">
+    <div class="card py-5">
+        <div class="row g-0">
+            <div class="col col-xl-7">
+                <div class="card-body p-4">
+                    <h2><span class="text-danger">ขออภัยในความไม่สะดวก</span></h2>
+                    <h3 class="font-weight-bold display-4">ใช้บนมือถือเท่านั้น</h3>
+                    <p>ระบบนี้ถูกออกแบบมาสำหรับการใช้งานบนสมาร์ทโฟนและแท็บเล็ต <br>เพื่อประสบการณ์ใช้งานที่ดีคุณสามารถลองใหม่อีกครั้งผ่านอุปกรณ์ดังกล่าว
+                    <div class="mt-5"> <a href="{{url('/')}}" class="btn btn-danger btn-lg px-md-5 radius-30">Go Home</a>
+                        <a href="javascript:;" onclick="history.back()" class="btn btn-outline-dark btn-lg ms-3 px-md-5 radius-30">Back</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5">
+                <img  src="{{ url('/img/stickerline/PNG/52.png') }}" class="img-fluid" alt="">
+            </div>
+        </div>
+        <!--end row-->
+    </div>
+</div>
+
+
+
+
+
+    <!-- <div class="text-center">
+        <img class="img-mobile-only" src="{{ url('/img/stickerline/PNG/51.png') }}" class="img-fluid" > 
+        <h1 class="d-block header-mobile-only">ขออภัย</h1>
+        <p class="detail-mobile-only">ระบบนี้ถูกออกแบบมาสำหรับการใช้งานบนสมาร์ทโฟนและแท็บเล็ต <br> คุณสามารถลองใหม่อีกครั้งผ่านอุปกรณ์เหล่านี้เพื่อให้ใช้งานอย่างมีประสิทธิภาพสูงสุด</p>
+    </div> -->
+
+</div>
 <div id="alert_phone" class=" div_alert " role="alert">
     <div class="alert-child">
         <div >
@@ -761,11 +827,11 @@
                         <div id="div_data_phone_1669" class="mt-3">
                             <div class="phone-user">
                                 @if(!empty($user->phone))
-                                <span id="phone_user">{{ $user->phone }}</span>
+                                <span id="phone_user_1669">{{ $user->phone }}</span>
                                 <input style="width: 60%;" class="text-center d-none"  type="phone" id="input_phone_1669" value="{{ $user->phone }}" placeholder="กรุณากรอกหมายเลขโทรศัพท์" oninput="edit_phone_1669();">
                                 <a class="btn-phone btn ml-3" onclick="
                                 document.querySelector('#input_phone_1669').classList.remove('d-none');
-                                document.querySelector('#phone_user').classList.add('d-none'); 
+                                document.querySelector('#phone_user_1669').classList.add('d-none'); 
                                 document.querySelector('#input_phone_1669').focus();
                                 ">แก้ไข</a>
                                 @else
@@ -797,10 +863,10 @@
                         <label class="col-12 mt-3" style="padding:0px;" for="photo_sos_1669" >
                             <div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
                                 <div class="form-group p-3"id="add_select_img">
-                                    <input class="form-control d-none" name="photo_sos_1669" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_1669" value="" accept="image/*" onchange="document.getElementById('show_photo_sos_1669').src = window.URL.createObjectURL(this.files[0]);check_add_img();">
+                                    <input class="form-control d-none" name="photo_sos_1669" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_1669" value="" accept="image/*" onchange="document.getElementById('show_photo_sos_1669').src = window.URL.createObjectURL(this.files[0]);check_add_img_1669();">
                                     <div  class="text-center">
                                         <center>
-                                            <img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
+                                            <img id="img_sos_1669" style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
                                         </center>
                                         <br>
                                         <h3 class="text-center m-0">
@@ -818,6 +884,12 @@
                     </div>
 
                 </div>
+                <script>
+                    function check_add_img_1669() {
+                        document.querySelector('#show_photo_sos_1669').classList.remove('d-none');
+                        document.querySelector('#add_select_img').classList.add('d-none');
+                    }
+                </script>
                 <div class="text-center">
                     <center>
                     <span class="mail-shadow btn btn-md btn-block" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;width: 90%;" onclick="send_ask_for_help_1669();">
