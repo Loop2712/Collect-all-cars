@@ -11,6 +11,14 @@
     button#advancedBtn {
         margin-top: 10px;
     }
+    .col.mb-3 {
+        position: relative;
+    }
+
+    .col-1.mb-3 .btn {
+        width: 50px;
+        height: 100%;
+    }
 </style>
 
 @section('content')
@@ -27,29 +35,48 @@
 
         <div id="card_table_user" class="card-body">
             <!-- เพิ่มตัวกรอง -->
-            <div id="advancedFilters" class="row row-cols-1 row-cols-lg-6 ">
-                <div class="col mb-3">
-                    <label for="name_filter" class="form-label">ชื่อ:</label>
-                    <input class="form-control" type="text" id="name_filter" value="" onchange="searchData()" placeholder="ค้นหาด้วยชื่อ">
+            <form method="GET" action="{{ url('/dashboard_1669_show') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                <div id="advancedFilters" class="row">
+                    <div class="col-2 mb-3">
+                        {{-- <label for="name_filter" class="form-label">ชื่อ:</label> --}}
+                        <input class="form-control" type="text" id="name_filter" name="name_filter" value="{{ request('name_filter') }}" placeholder="ค้นหาด้วยชื่อ">
+                    </div>
+                    <div class="col-2 mb-3">
+                        {{-- <label for="gender_filter" class="form-label">เพศ:</label> --}}
+                        <select class="form-select filter-select" id="gender_filter" name="gender_filter">
+                            <option value="">เพศ</option>
+                            <option value="ผู้ชาย" @if(request('gender_filter') == 'ผู้ชาย') selected @endif>ผู้ชาย</option>
+                            <option value="ผู้หญิง" @if(request('gender_filter') == 'ผู้หญิง') selected @endif>ผู้หญิง</option>
+                        </select>
+                    </div>
+                    <div class="col-2 mb-3">
+                        {{-- <label for="status_filter" class="form-label">สถานะ:</label> --}}
+                        <select class="form-select filter-select" id="status_filter" name="status_filter">
+                            <option value="">สถานะ</option>
+                            <option value="Standby" @if(request('gender_filter') == 'Standby') selected @endif>Standby</option>
+                            <option value="Helping" @if(request('gender_filter') == 'Helping') selected @endif>Helping</option>
+                            <option value="null" @if(request('gender_filter') == 'NotReady') selected @endif>NotReady</option>
+                        </select>
+                    </div>
+                    <div class="col-1 mb-3">
+                        <button class="btn btn-primary " type="submit">
+                            <i class="fa-solid fa-magnifying-glass fa-2xs mt-0"></i>
+                        </button>
+                        <button class="btn btn-danger" type="submit" onclick="resetFilters()">
+                            <i class="fa-solid fa-trash fa-2xs mt-0 "></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="col mb-3">
-                    <label for="gender_filter" class="form-label">เพศ:</label>
-                    <select class="form-select filter-select" onchange="searchData()" id="gender_filter">
-                        <option value="">--</option>
-                        <option value="ผู้ชาย">ผู้ชาย</option>
-                        <option value="ผู้หญิง">ผู้หญิง</option>
-                    </select>
-                </div>
-                <div class="col mb-3">
-                    <label for="status_filter" class="form-label">สถานะ:</label>
-                    <select class="form-select filter-select" onchange="searchData()" id="status_filter">
-                        <option value="">--</option>
-                        <option value="Standby">Standby</option>
-                        <option value="Helping">Helping</option>
-                        <option value="">Unready</option>
-                    </select>
-                </div>
-            </div>
+
+                <script>
+                    function resetFilters() {
+                        document.getElementById("name_filter").value = "";
+                        document.getElementById("gender_filter").value = "";
+                        document.getElementById("status_filter").value = "";
+                    }
+                </script>
+
+            </form>
             <!-- จบส่วนตัวกรอง -->
             <div class="table-responsive">
                 <table id="all_data_command_user_table" class="table table-striped table-bordered">
@@ -66,18 +93,15 @@
                         @foreach ($data_command_user as $user)
                         <tr>
                             <td>
-                                @php
-                                    $data_command_2 = App\User::where('id',$user->user_id)->first();
-                                @endphp
                                 <div class="d-flex align-items-center">
                                     <div class="recent-product-img">
-                                        @if(!empty($data_command_2->avatar) && empty($data_command_2->photo))
-                                            <img src="{{ $data_command_2->avatar }}">
+                                        @if(!empty($user->avatar) && empty($user->photo))
+                                            <img src="{{ $user->avatar }}">
                                         @endif
-                                        @if(!empty($data_command_2->photo))
-                                            <img src="{{ url('storage') }}/{{ $data_command_2->photo }}">
+                                        @if(!empty($user->photo))
+                                            <img src="{{ url('storage') }}/{{ $user->photo }}">
                                         @endif
-                                        @if(empty($data_command_2->avatar) && empty($data_command_2->photo))
+                                        @if(empty($user->avatar) && empty($user->photo))
                                             <img src="https://www.viicheck.com/Medilab/img/icon.png">
                                         @endif
                                     </div>
@@ -86,8 +110,8 @@
                                     </div>
                                 </div>
                             </td>
-                            @if (!empty($user->user->sex))
-                                <td>{{$user->user->sex}}</td>
+                            @if (!empty($user->sex))
+                                <td>{{$user->sex}}</td>
                             @else
                                 <td> -- </td>
                             @endif
@@ -117,7 +141,7 @@
 
 
                             @if (!empty($user->creator))
-                                <td>{{ $user->user_creator->name }}</td>
+                                <td>{{ $user->name }}</td>
                             @else
                                 <td> ViiCheck </td>
                             @endif
@@ -154,9 +178,11 @@
             const name = document.getElementById("name_filter").value;
             const gender = document.getElementById("gender_filter").value;
             const status = document.getElementById("status_filter").value;
-            console.log(name);
-            console.log(gender);
-            console.log(status);
+
+            // console.log(name);
+            // console.log(gender);
+            // console.log(status);
+
             get_filter_data_command_unit(name, gender, status);
         }
     </script>

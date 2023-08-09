@@ -369,11 +369,40 @@ class Dashboard_1669_Controller extends Controller
         $user_login = Auth::user();
         $perPage = 10;
 
-        //  USER สพฉ ในพื้นที่เดียวกับ ผู้เข้าสู่ระบบ
-        $data_command_user = Data_1669_officer_command::where('area', '=' ,$user_login->sub_organization)
-        ->orderBy('id','DESC')
-        ->paginate($perPage);
+        $name_filter = $request->get('name_filter');
+        $gender_filter = $request->get('gender_filter');
+        $status_filter = $request->get('status_filter');
 
+        //  USER สพฉ ในพื้นที่เดียวกับ ผู้เข้าสู่ระบบ
+        if(!empty($name_filter) || !empty($gender_filter) || !empty($status_filter)){
+            $data_command_user = Data_1669_officer_command::leftJoin('users' , 'data_1669_officer_commands.user_id','=','users.id')
+            ->where('data_1669_officer_commands.area', '=' ,$user_login->sub_organization)
+            ->when($name_filter, function ($query, $name_filter) {
+                return $query->where('users.name', 'LIKE' , "%$name_filter%");
+            })
+            ->when($gender_filter, function ($query, $gender_filter) {
+                return $query->where('users.sex', $gender_filter);
+            })
+            ->when($status_filter, function ($query, $status_filter) {
+                return $query->where('data_1669_officer_commands.status', $status_filter);
+            })
+            ->select('data_1669_officer_commands.*','users.name','users.avatar','users.photo','users.sex')
+            ->orderBy('id','DESC')
+            ->get();
+        }else{
+            $data_command_user = Data_1669_officer_command::leftJoin('users' , 'data_1669_officer_commands.user_id','=','users.id')
+            ->where('data_1669_officer_commands.area', '=' ,$user_login->sub_organization)
+            ->select('data_1669_officer_commands.*','users.name','users.avatar','users.photo','users.sex')
+            ->orderBy('id','DESC')
+            ->get();
+        }
+
+        for ($i=0; $i < count($data_command_user); $i++) {
+
+            $data_user = User::where('id',$data_command_user[$i]['creator'])->first();
+            $data_command_user[$i]['name_creator'] = $data_user->name;
+
+        }
 
         return view('dashboard_1669.dashboard_1669_officer.dashboard_1669_officer_show.command_center_info_show' , compact('data_command_user'));
     }
