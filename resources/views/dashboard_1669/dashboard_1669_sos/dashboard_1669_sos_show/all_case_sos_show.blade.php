@@ -354,13 +354,13 @@
         // DataTable initialisation
         var table = $("#all_data_sos_1669_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
-            paging: false,
+            paging: true,
             autoWidth: true,
             lengthChange: false,
             buttons: [
                 {
                     extend: "excelHtml5",
-                    text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
+                    text: "Export Excel All"  // เปลี่ยนข้อความในปุ่มที่นี่
                 },
             ],
             initComplete: function (settings, json) {
