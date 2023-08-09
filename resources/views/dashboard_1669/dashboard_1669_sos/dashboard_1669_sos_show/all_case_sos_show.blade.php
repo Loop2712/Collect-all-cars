@@ -144,7 +144,7 @@
                                     {{ $item_sos->name_user }}
                                 @else
                                     @php
-                                        $create_by_ex = explode( 'user - ', $item_sos->create_by );
+                                        $create_by_ex = explode( 'admin - ', $item_sos->create_by );
                                         $command_create = App\Models\Data_1669_officer_command::where('user_id',$create_by_ex[1])->first();
                                         $name_command_create = $command_create->name_officer_command ;
                                     @endphp
