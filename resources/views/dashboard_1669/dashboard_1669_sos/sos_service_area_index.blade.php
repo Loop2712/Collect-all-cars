@@ -52,7 +52,7 @@
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
-                    <h5 class="mb-0 font-weight-bold">หัวข้อการขอความช่วยเหลือมากที่สุด</h5>
+                    <h5 class="mb-0 font-weight-bold">หัวข้อการขอความช่วยเหลือมากที่สุด {{ count($arr_most_symptom_data_limit_5) }} อันดับ</h5>
                     <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -435,12 +435,13 @@
         return color;
     }
 
-    @foreach ($most_symptom_data as $item)
+    @foreach ($arr_most_symptom_data_limit_5 as $key_symptom => $value_symptom)
+        // echo $key_symptom . ": " . $value_symptom . "<br>";
         // นับจำนวน หัวข้อ
-        symptom_count_arr.push(Number('{{ $item->count_sympton }}'));
+        symptom_count_arr.push(Number('{{ $value_symptom }}'));
 
         // นับประเภท หัวข้อ
-        symptom_categories_arr.push('{{ $item->symptom }}');
+        symptom_categories_arr.push('{{ $key_symptom }}');
     @endforeach
 
     // เก็บสีที่สุ่ม ไว้ใน array โดยอิงจาก array ประเภทหัวข้อ

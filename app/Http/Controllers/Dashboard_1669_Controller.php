@@ -261,10 +261,44 @@ class Dashboard_1669_Controller extends Controller
         $most_symptom_data = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
             ->where('sos_help_centers.notify','LIKE',"%$user_login->sub_organization%")
             ->where('sos_1669_form_yellows.symptom', '!=', null)
-            ->select('sos_1669_form_yellows.symptom', DB::raw('COUNT(sos_1669_form_yellows.symptom) as count_sympton'))
-            ->groupBy('sos_1669_form_yellows.symptom')
-            ->orderBy('sos_1669_form_yellows.symptom','DESC')
+            // ->select('sos_1669_form_yellows.symptom', DB::raw('COUNT(sos_1669_form_yellows.symptom) as count_sympton'))
+            // ->groupBy('sos_1669_form_yellows.symptom')
+            // ->orderBy('sos_1669_form_yellows.symptom','DESC')
             ->get();
+
+        $arr_most_symptom_data = array();
+        $text_all_symptom = '' ;
+
+        foreach ($most_symptom_data as $iten_all) {
+            if (!empty($text_all_symptom)) {
+                $text_all_symptom = $text_all_symptom . "," . $iten_all->symptom ;
+            }else{
+                $text_all_symptom = $iten_all->symptom ;
+            }
+        }
+
+        $text_all_symptom_ex = explode("," , $text_all_symptom);
+
+        for ($symptom_i = 0; $symptom_i < count($text_all_symptom_ex) ; $symptom_i++) { 
+            if (array_key_exists($text_all_symptom_ex[$symptom_i],$arr_most_symptom_data)){
+                $arr_most_symptom_data[$text_all_symptom_ex[$symptom_i]] += 1 ;
+            }else{
+                $key_symptom = $text_all_symptom_ex[$symptom_i] ;
+                $arr_most_symptom_data[$key_symptom] = '1' ;
+            }
+        }
+        arsort($arr_most_symptom_data);
+
+        $arr_most_symptom_data_limit_5 = array();
+
+        $counter_symptom_5 = 0;
+        foreach ($arr_most_symptom_data as $key_symptom_5 => $value_symptom_5) {
+            if ($counter_symptom_5 < 5) {
+                $arr_most_symptom_data_limit_5[$key_symptom_5] = $value_symptom_5;
+            }
+            $counter_symptom_5 += 1;
+        }
+        // exit();
 
         // รับแจ้งเตือนทาง
         $notify_data = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
@@ -349,7 +383,8 @@ class Dashboard_1669_Controller extends Controller
         // 'count_command_1669_data',
         'name_area',
         'count_area',
-        'most_symptom_data',
+        // 'most_symptom_data',
+        'arr_most_symptom_data_limit_5',
         'notify_data',
         'idc_data',
         'rc_data',
