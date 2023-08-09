@@ -130,7 +130,7 @@
                         <tbody>
                             @foreach ($data_sos_score_best_5 as $sos_score_best_5)
                                 <tr>
-                                    <td>{{ $sos_score_best_5->id ? $sos_score_best_5->id : "--"}}</td>
+                                    <td>{{ $sos_score_best_5->operating_code ? $sos_score_best_5->operating_code : "--"}}</td>
                                     <td>{{ $sos_score_best_5->address ? $sos_score_best_5->address : "--"}}</td>
                                     <td>{{ $sos_score_best_5->name_helper ? $sos_score_best_5->name_helper : "--"}}</td>
                                     <td>{{ $sos_score_best_5->organization_helper ? $sos_score_best_5->organization_helper : "--"}}</td>
@@ -178,7 +178,7 @@
                         <tbody>
                             @foreach ($data_sos_score_worst_5 as $sos_score_worst_5)
                                 <tr>
-                                    <td>{{ $sos_score_worst_5->id ? $sos_score_worst_5->id : "--"}}</td>
+                                    <td>{{ $sos_score_worst_5->operating_code ? $sos_score_worst_5->operating_code : "--"}}</td>
                                     <td>{{ $sos_score_worst_5->address ? $sos_score_worst_5->address : "--"}}</td>
                                     <td>{{ $sos_score_worst_5->name_helper ? $sos_score_worst_5->name_helper : "--"}}</td>
                                     <td>{{ $sos_score_worst_5->organization_helper ? $sos_score_worst_5->organization_helper : "--"}}</td>
@@ -252,7 +252,7 @@
 
                             @endphp
                                 <tr>
-                                    <td>{{ $data_sos_fastest_5->id ? $data_sos_fastest_5->id : "--"}}</td>
+                                    <td>{{ $data_sos_fastest_5->operating_code ? $data_sos_fastest_5->operating_code : "--"}}</td>
                                     <td>{{ $data_sos_fastest_5->address ? $data_sos_fastest_5->address : "--"}}</td>
                                     <td>{{ $data_sos_fastest_5->name_helper ? $data_sos_fastest_5->name_helper : "--"}}</td>
                                     <td>{{ $data_sos_fastest_5->organization_helper ? $data_sos_fastest_5->organization_helper : "--"}}</td>
@@ -323,7 +323,7 @@
 
                             @endphp
                             <tr>
-                                <td>{{ $data_sos_slowest_5->id ? $data_sos_slowest_5->id : "--"}}</td>
+                                <td>{{ $data_sos_slowest_5->operating_code ? $data_sos_slowest_5->operating_code : "--"}}</td>
                                 <td>{{ $data_sos_slowest_5->address ? $data_sos_slowest_5->address : "--"}}</td>
                                 <td>{{ $data_sos_slowest_5->name_helper ? $data_sos_slowest_5->name_helper : "--"}}</td>
                                 <td>{{ $data_sos_slowest_5->organization_helper ? $data_sos_slowest_5->organization_helper : "--"}}</td>

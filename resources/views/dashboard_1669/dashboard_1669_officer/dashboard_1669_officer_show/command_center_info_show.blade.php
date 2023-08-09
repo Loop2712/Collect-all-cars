@@ -159,7 +159,10 @@
     <script>
         $(document).ready(function() {
             // เพิ่มโค้ดสำหรับการกรองข้อมูล
-            var table = $('#all_data_command_user_table').DataTable( {
+            let title_theme = document.querySelector('#title_theme');
+                title_theme.innerHTML = "ข้อมูลเจ้าหน้าที่ศูนย์สั่งการ" ;
+
+            let table = $('#all_data_command_user_table').DataTable( {
                 lengthChange: false,
                 buttons: ['excel','print']
             } );
@@ -183,8 +186,7 @@
         }
     </script>
 
-    <script>
-
+    {{-- <script>
         function get_filter_data_command_unit(name, gender, status) {
 
             let user_login = '{{Auth::user()->sub_organization}}';
@@ -287,19 +289,6 @@
                     console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
                 });
         };
-    </script>
-
-
-    {{-- <script>
-        function toggleAdvancedFilters() {
-        const advancedFilters = document.getElementById("advancedFilters");
-            advancedFilters.classList.toggle('d-none');
-        const nameInput = document.getElementById("nameInput");
-            nameInput.classList.toggle('d-none');
-        }
-
-        document.getElementById("advancedBtn").addEventListener("click", toggleAdvancedFilters);
     </script> --}}
-
 
 @endsection

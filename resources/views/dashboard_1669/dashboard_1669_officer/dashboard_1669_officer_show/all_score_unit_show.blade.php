@@ -101,8 +101,11 @@
 
 <script>
     $(document).ready(function() {
+        let title_theme = document.querySelector('#title_theme');
+                title_theme.innerHTML = "ข้อมูลคะแนนเฉลี่ยของหน่วย" ;
+
         // เพิ่มโค้ดสำหรับการกรองข้อมูล
-        var table = $('#all_score_unit_table').DataTable( {
+        let table = $('#all_score_unit_table').DataTable( {
             lengthChange: false,
             buttons: ['excel','print']
         } );

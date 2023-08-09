@@ -1,12 +1,13 @@
 @extends('layouts.partners.theme_partner_new')
 
 <style>
-    /* div.dataTables_wrapper div.dataTables_filter {
+    div.dataTables_wrapper div.dataTables_filter {
         display: none;
-    } */
+    }
 
-    div.dataTables_filter {
-        margin-top: 1rem;
+    .col-1.mb-3 .btn {
+        width: 50px;
+        height: 100%;
     }
 </style>
 
@@ -16,14 +17,33 @@
         <div class="col-12">
             <h3 class="font-weight-bold float-start mb-0">
                 ข้อมูลการสั่งการของเจ้าหน้าที่ &nbsp;
-                <!-- <span class="btn btn-sm btn-outline-info main-shadow main-radius" data-toggle="modal" data-target="#modal_change_number_officer">
-                    จัดลำดับ <i class="fa-duotone fa-repeat"></i>
-                </span> -->
             </h3>
         </div>
         <div id="card_table_user" class="card-body">
+            {{-- <form method="GET" action="{{ url('/dashboard_1669_all_sos_show') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                <div id="advancedFilters" class="row">
+                    <div class="col-2 mb-3">
+                        <input class="form-control" type="text" id="name_filter" name="name_filter" value="{{ request('name_filter') }}" placeholder="ค้นหาชื่อหรือชื่อหน่วย">
+                    </div>
+                    <div class="col-1 mb-3">
+                        <button class="btn btn-primary " type="submit">
+                            <i class="fa-solid fa-magnifying-glass fa-2xs mt-0"></i>
+                        </button>
+                        <button class="btn btn-danger" type="submit" onclick="resetFilters()">
+                            <i class="fa-solid fa-trash fa-2xs mt-0 "></i>
+                        </button>
+                    </div>
+                </div>
+
+                <script>
+                    function resetFilters() {
+                        document.getElementById("name_filter").value = "";
+                    }
+                </script>
+
+            </form> --}}
             <div class="table-responsive p-3">
-                <table id="all_command_1669_data" class="table align-middle mb-0">
+                <table id="all_command_1669_data_table" class="table align-middle mb-0">
                     <thead class="fz_header">
                         <tr>
                             <th>ชื่อ</th>
@@ -37,7 +57,7 @@
                             <tr >
                                 <td>
                                     @php
-                                        $data_user_command = App\User::where('id',$all_command->officers_command_by->user_id)->first();
+                                        $data_user_command = App\User::where('id',$all_command->user_id)->first();
 
                                         $command_sos_by = App\Models\Sos_help_center::where('command_by',$all_command->command_by)->get();
                                         $count_command_1669_data = count($command_sos_by);
@@ -64,7 +84,7 @@
                                         @endif
 
                                         <div class="flex-grow-1 ms-3">
-                                            <p class="font-weight-bold mb-0">{{$all_command->officers_command_by->name_officer_command}}</p>
+                                            <p class="font-weight-bold mb-0">{{$all_command->name_officer_command}}</p>
                                         </div>
                                     </div>
                                 </td>
@@ -73,6 +93,15 @@
                                 <td>{{$count_status_helping}}</td>
                             </tr>
                         @endforeach
+                    </tbody>
+                    <tfoot class="fz_header">
+                        <tr>
+                            <th>ชื่อ</th>
+                            <th>ทั้งหมด</th>
+                            <th>เสร็จสิ้น</th>
+                            <th>กำลังดำเนินการ</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
@@ -84,16 +113,40 @@
 	<script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 
     <script>
-        $(document).ready(function() {
-            // เพิ่มโค้ดสำหรับการกรองข้อมูล
-            var table = $('#all_command_1669_data').DataTable( {
+        $(document).ready(function () {
+            //Only needed for the filename of export files.
+            //Normally set in the title tag of your page.
+            document.title = "ข้อมูลการสั่งการของเจ้าหน้าที่";
+            // Create search inputs in footer
+            $("#all_command_1669_data_table tfoot th").each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+            });
+            // DataTable initialisation
+            var table = $("#all_command_1669_data_table").DataTable({
+                dom: '<"dt-buttons"Bf><"clear">lirtp',
+                paging: false,
+                autoWidth: true,
                 lengthChange: false,
-                buttons: ['excel', 'print']
-            } );
+                buttons: [
+                    {
+                        extend: "excelHtml5",
+                        text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
+                    },
+                ],
+                initComplete: function (settings, json) {
+                    var footer = $("#all_command_1669_data_table tfoot tr");
+                    $("#all_command_1669_data_table thead").append(footer);
+                }
+            });
 
-            table.buttons().container()
-                .appendTo( '#all_command_1669_data_wrapper .col-md-6:eq(0)' );
-        } );
+            // Apply the search
+            $("#all_command_1669_data_table thead").on("keyup", "input", function () {
+                    table.column($(this).parent().index())
+                    .search(this.value)
+                    .draw();
+                });
+        });
     </script>
 
 
