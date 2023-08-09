@@ -200,13 +200,13 @@ class Dashboard_1669_Controller extends Controller
         $data_sos_fastest_5 = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
             ->where('status','=','เสร็จสิ้น')
             ->limit(5)
-            ->orderBy('time_sos_success','asc')
+            ->orderByRaw('TIMESTAMPDIFF(SECOND, time_sos_success, time_command) desc')
             ->get();
         // เวลาในการช่วยเหลือ ช้า ที่สุด 5 อันดับ
         $data_sos_slowest_5 = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
             ->where('status','=','เสร็จสิ้น')
             ->limit(5)
-            ->orderBy('time_sos_success','desc')
+            ->orderByRaw('TIMESTAMPDIFF(SECOND, time_sos_success, time_command) asc')
             ->get();
 
         // MAP
@@ -451,13 +451,30 @@ class Dashboard_1669_Controller extends Controller
         $user_login = Auth::user();
         $perPage = 10;
 
+        $name_filter = $request->get('name_filter');
+
         // การสั่งการมากที่สุด 5 อันดับ
-        $command_1669_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-            ->where('operating_unit_id' , "!=" , null)
-            ->select('sos_help_centers.*', DB::raw('COUNT(*) as count_command_by'))
-            ->groupBy('command_by')
-            ->orderBy('count_command_by','DESC')
-            ->paginate($perPage);
+        if(!empty($name_filter)){
+            $command_1669_data = Sos_help_center::leftJoin('data_1669_officer_commands' , 'sos_help_centers.command_by','=','data_1669_officer_commands.id')
+                ->where('sos_help_centers.notify','LIKE',"%$user_login->sub_organization%")
+                ->where('sos_help_centers.operating_unit_id' , "!=" , null)
+                ->when($name_filter, function ($query, $name_filter) {
+                    return $query->where('data_1669_officer_commands.name_officer_command', 'LIKE' , "%$name_filter%");
+                })
+                ->select('sos_help_centers.id', 'sos_help_centers.command_by', 'data_1669_officer_commands.name_officer_command' , 'data_1669_officer_commands.user_id' ,DB::raw('COUNT(*) as count_command_by'))
+                ->groupBy('sos_help_centers.command_by')
+                ->orderBy('count_command_by','DESC')
+                ->get();
+        }else{
+            $command_1669_data = Sos_help_center::leftJoin('data_1669_officer_commands' , 'sos_help_centers.command_by','=','data_1669_officer_commands.id')
+                ->where('sos_help_centers.notify','LIKE',"%$user_login->sub_organization%")
+                ->where('sos_help_centers.operating_unit_id' , "!=" , null)
+                ->select('sos_help_centers.id', 'sos_help_centers.command_by', 'data_1669_officer_commands.name_officer_command' , 'data_1669_officer_commands.user_id' ,DB::raw('COUNT(*) as count_command_by'))
+                ->groupBy('sos_help_centers.command_by')
+                ->orderBy('count_command_by','DESC')
+                ->get();
+        }
+
 
         return view('dashboard_1669.dashboard_1669_officer.dashboard_1669_officer_show.all_command_show' , compact('command_1669_data'));
     }
@@ -473,6 +490,7 @@ class Dashboard_1669_Controller extends Controller
         $name_filter = $request->get('name_filter');
         $score_filter = $request->get('score_filter');
 
+
         if(!empty($name_filter) || !empty($score_filter)){
         // คะแนนเฉลี่ยของหน่วย
         $avg_score_unit_data = Sos_help_center::leftJoin('data_1669_operating_units' , 'sos_help_centers.operating_unit_id','=','data_1669_operating_units.id')
@@ -482,14 +500,14 @@ class Dashboard_1669_Controller extends Controller
                 return $query->where('data_1669_operating_units.name', 'LIKE' , "%$name_filter%");
             })
             ->when($score_filter, function ($query, $score_filter) {
-                return $query->where('sos_help_centers.score_total', $score_filter);
+                // return $query->where('sos_help_centers.score_total', $score_filter);
+                return $query->whereBetween('sos_help_centers.score_total', [$score_filter, $score_filter + 0.99]);
             })
             ->select('sos_help_centers.operating_unit_id', 'data_1669_operating_units.name' , DB::raw('AVG(score_total) as avg_score_total'))
             ->groupBy('sos_help_centers.operating_unit_id')
             ->orderBy('avg_score_total', 'desc') // เรียงจากมากไปน้อย
             ->paginate($perPage);
         }else{
-        // คะแนนเฉลี่ยของหน่วย
         $avg_score_unit_data = Sos_help_center::leftJoin('data_1669_operating_units' , 'sos_help_centers.operating_unit_id','=','data_1669_operating_units.id')
             ->where('sos_help_centers.notify','LIKE',"%$user_login->sub_organization%")
             ->where('sos_help_centers.operating_unit_id' , "!=" , null)
@@ -503,18 +521,42 @@ class Dashboard_1669_Controller extends Controller
         return view('dashboard_1669.dashboard_1669_officer.dashboard_1669_officer_show.all_score_unit_show' , compact('avg_score_unit_data'));
     }
 
-
-    function dashboard_1669_average_score_by_case(Request $request){
+    function dashboard_1669_all_average_score_by_case(Request $request){
         $user_login = Auth::user();
         $perPage = 10;
 
-        // คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด 5 อันดับ
-        $avg_score_by_case = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-            ->where('helper_id' , "!=" , null)
-            ->select('sos_help_centers.*', DB::raw('AVG(score_total) as avg_score_by_case'))
-            ->groupBy('helper_id')
-            ->orderBy('avg_score_by_case', 'desc') // เรียงจากมากไปน้อย
-            ->paginate($perPage);
+        $name_filter = $request->get('name_filter');
+        $score_filter = $request->get('score_filter');
+
+        if(!empty($name_filter) || !empty($score_filter)){
+            // คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด
+            $avg_score_by_case = Sos_help_center::leftJoin('data_1669_operating_units' , 'sos_help_centers.operating_unit_id','=','data_1669_operating_units.id')
+                ->leftJoin('data_1669_operating_officers' , 'sos_help_centers.helper_id','=','data_1669_operating_officers.user_id')
+                ->where('notify','LIKE',"%$user_login->sub_organization%")
+                ->where('helper_id' , "!=" , null)
+                ->when($name_filter, function ($query, $name_filter) {
+                    return $query->where('data_1669_operating_units.name', 'LIKE' , "%$name_filter%")
+                            ->orWhere('data_1669_operating_officers.name_officer', 'LIKE' , "%$name_filter%");
+                })
+                ->when($score_filter, function ($query, $score_filter) {
+                    // return $query->where('sos_help_centers.score_total', $score_filter);
+                    return $query->whereBetween('sos_help_centers.score_total', [$score_filter, $score_filter + 0.99]);
+                })
+                ->select('data_1669_operating_units.name', 'data_1669_operating_officers.name_officer', 'sos_help_centers.helper_id', DB::raw('AVG(score_total) as avg_score_by_case'))
+                ->groupBy('helper_id')
+                ->orderBy('avg_score_by_case', 'desc') // เรียงจากมากไปน้อย
+                ->paginate($perPage);
+        }else{
+            // คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด
+            $avg_score_by_case = Sos_help_center::leftJoin('data_1669_operating_units' , 'sos_help_centers.operating_unit_id','=','data_1669_operating_units.id')
+                ->leftJoin('data_1669_operating_officers' , 'sos_help_centers.helper_id','=','data_1669_operating_officers.user_id')
+                ->where('notify','LIKE',"%$user_login->sub_organization%")
+                ->where('helper_id' , "!=" , null)
+                ->select('data_1669_operating_units.name', 'data_1669_operating_officers.name_officer', 'sos_help_centers.helper_id', DB::raw('AVG(score_total) as avg_score_by_case'))
+                ->groupBy('helper_id')
+                ->orderBy('avg_score_by_case', 'desc') // เรียงจากมากไปน้อย
+                ->paginate($perPage);
+        }
 
         return view('dashboard_1669.dashboard_1669_officer.dashboard_1669_officer_show.all_average_score_by_case_show' , compact('avg_score_by_case'));
     }
@@ -527,12 +569,43 @@ class Dashboard_1669_Controller extends Controller
         $user_login = Auth::user();
         $perPage = 10;
 
-        // คะแนนการช่วยเหลือต่อเคส มาก ที่สุด 5 อันดับ
-        $data_sos = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-            // ->where('status','=','เสร็จสิ้น')
-            // ->where('score_total','!=',null)
-            ->orderBy('score_total','desc')
+        $name_filter = $request->get('name_filter');
+        $score_filter = $request->get('score_filter');
+        $time_filter = $request->get('time_filter');
+
+        // คะแนนและระยะเวลาการช่วยเหลือ
+        if(!empty($name_filter) || !empty($score_filter)){
+            $data_sos = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+            ->when($name_filter, function ($query, $name_filter) {
+                return $query->where('name_helper', 'LIKE', "%$name_filter%")
+                        ->orWhere('organization_helper', 'LIKE' , "%$name_filter%");
+            })
+            ->when($score_filter, function ($query, $score_filter) {
+                // return $query->where('sos_help_centers.score_total', $score_filter);
+                return $query->whereBetween('score_total', [$score_filter, $score_filter + 0.99]);
+            })
+            ->when($time_filter, function ($query, $time_filter) {
+                if ($time_filter == 'less_8') {
+                    return $query->whereRaw('TIMESTAMPDIFF(SECOND, time_sos_success, time_command) < 480');
+                } elseif ($time_filter == 'over_8_less_12') {
+                    return $query->whereRaw('TIMESTAMPDIFF(SECOND, time_sos_success, time_command) >= 480')
+                                 ->whereRaw('TIMESTAMPDIFF(SECOND, time_sos_success, time_command) <= 720');
+                } elseif ($time_filter == 'over_12') {
+                    return $query->whereRaw('TIMESTAMPDIFF(SECOND, time_sos_success, time_command) > 720');
+                }
+            })
+            ->where('status','=','เสร็จสิ้น')
+            ->orderBy('time_sos_success','asc')
             ->get();
+
+            dd($data_sos);
+        }else{
+            $data_sos = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+            ->where('status','=','เสร็จสิ้น')
+            ->orderBy('time_sos_success','asc')
+            ->get();
+        }
+
 
         return view('dashboard_1669.dashboard_1669_sos.dashboard_1669_sos_show.all_sos_show' , compact('data_sos'));
     }
@@ -541,13 +614,9 @@ class Dashboard_1669_Controller extends Controller
         $user_login = Auth::user();
         $perPage = 10;
 
-        $data_sos = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-            ->orderBy('score_total','desc')
-            ->get();
 
-        return view('dashboard_1669.dashboard_1669_sos.dashboard_1669_sos_show.all_case_sos_show' , 
-            compact('data_sos')
-        );
+
+        return view('dashboard_1669.dashboard_1669_sos.dashboard_1669_sos_show.all_case_sos_show' );
     }
 
     function map_sos(Request $request,$user_login_organization){
