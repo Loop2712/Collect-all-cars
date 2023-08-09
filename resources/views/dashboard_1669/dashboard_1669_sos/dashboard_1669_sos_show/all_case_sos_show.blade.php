@@ -360,7 +360,7 @@
             buttons: [
                 {
                     extend: "excelHtml5",
-                    text: "Export Excel All"  // เปลี่ยนข้อความในปุ่มที่นี่
+                    text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
                 },
             ],
             initComplete: function (settings, json) {
