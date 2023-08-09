@@ -247,11 +247,11 @@
             // เพิ่มโค้ดสำหรับการกรองข้อมูล
             var table = $('#all_data_sos_1669_table').DataTable( {
                 lengthChange: true,
-                buttons: ['excel','print']
+                buttons: ['excel']
             } );
 
-            document.querySelector('.buttons-excel').innerHTML = 'Export Excel All' ;
-            
+            // document.querySelector('.buttons-excel').innerHTML = 'Export Excel All' ;
+
             table.buttons().container()
                 .appendTo( '#all_data_sos_1669_table_wrapper .col-md-6:eq(0) ' );
         } );
