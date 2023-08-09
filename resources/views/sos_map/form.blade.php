@@ -748,8 +748,8 @@
                     <h2><span class="text-danger">ขออภัยในความไม่สะดวก</span></h2>
                     <h3 class="font-weight-bold display-4">ใช้บนมือถือเท่านั้น</h3>
                     <p>ระบบนี้ถูกออกแบบมาสำหรับการใช้งานบนสมาร์ทโฟนและแท็บเล็ต <br>เพื่อประสบการณ์ใช้งานที่ดีคุณสามารถลองใหม่อีกครั้งผ่านอุปกรณ์ดังกล่าว
-                    <div class="mt-5"> <a href="{{url('/')}}" class="btn btn-danger btn-lg px-md-5 radius-30">Go Home</a>
-                        <a href="javascript:;" onclick="history.back()" class="btn btn-outline-dark btn-lg ms-3 px-md-5 radius-30">Back</a>
+                    <div class="mt-5"> <a href="{{url('/')}}" class="btn btn-danger btn-lg px-md-5 radius-30 notranslate">Go Home</a>
+                        <a href="javascript:;" onclick="history.back()" class="notranslate btn btn-outline-dark btn-lg ms-3 px-md-5 radius-30">Back</a>
                     </div>
                 </div>
             </div>
