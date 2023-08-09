@@ -60,7 +60,7 @@
     <!-- datatables -->
     {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" /> --}}
 
-	<title>Partner Viicheck</title>
+	<title id="title_theme">Partner Viicheck</title>
 
 	<style>
 		.main-shadow{
