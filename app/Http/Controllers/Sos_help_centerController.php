@@ -1533,6 +1533,7 @@ class Sos_help_centerController extends Controller
         $data_sos = Sos_help_center::where('id' , $sos_id)->first();
         $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id' , $sos_id)->first();
         // $data_command = Data_1669_officer_command::where('id' , $data_sos->command_by)->first();
+        $data_officer_1669 = Data_1669_operating_officer::where('user_id' , $user_id)->first();
 
         // if ($data_command->area == "กาญจนบุรี") {
         //     $name_area_command = $data_command->area ;
@@ -1639,7 +1640,11 @@ class Sos_help_centerController extends Controller
                 'time_command' => $time_now
             ]);
 
-        return $data_sos->id ;
+        $return_data = [];
+        $return_data['id'] = $data_sos->id ;
+        $return_data['name_officer'] = $data_officer_1669->name_officer ;
+
+        return $return_data ;
     }
 
     function check_status_wait_operating_unit($sos_id)

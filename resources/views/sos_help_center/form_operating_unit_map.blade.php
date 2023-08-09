@@ -161,6 +161,9 @@
                     <h2 class="text-center mt-5">
                         รอการยืนยัน จากหน่วยปฏิบัติการ
                     </h2>
+                    <h4 class="text-center mt-5">
+                        <span id="name_officer_wait_unit"></span>
+                    </h4>
                     <h5 class="text-center mt-5">
                         โปรดรอสักครู่... (<span id="timer_wait_officer"></span>)
                     </h5>
@@ -215,6 +218,9 @@
                     <h2 class="text-center mt-5">
                         หน่วยปฏิบัติการปฏิเสธ
                     </h2>
+                    <h4 class="text-center mt-5">
+                        (<span id="name_officer_unit_refuse"></span>)
+                    </h4>
                     <h5 class="text-center mt-5">
                         โปรดเปลี่ยนหน่วย
                     </h5>
@@ -1533,12 +1539,13 @@
             });
 
         fetch("{{ url('/') }}/api/send_data_sos_to_operating_unit" + "/" + sos_id + "/" + operating_unit_id + "/" + user_id + "/" + distance)
-            .then(response => response.text())
+            .then(response => response.json())
             .then(result => {
                 // console.log(result);
 
                 if (result) {
-                    wait_operating_unit(result);
+                    document.querySelector('#name_officer_wait_unit').innerHTML = result['name_officer'];
+                    wait_operating_unit(result['id'] , result['name_officer']);
                 }
 
             });
@@ -1587,7 +1594,7 @@
 
 
     var myInterval;
-    function wait_operating_unit(sos_id) {
+    function wait_operating_unit(sos_id , name_helper) {
 
         myInterval = setInterval(function() {
             // console.log(sos_id);
@@ -1607,6 +1614,7 @@
                         myStop_setInterval();
 
                         // เปลี่ยน DIV ใน MODAL ให้แสดงถึงการปฏิเสธ
+                        document.querySelector('#name_officer_unit_refuse').innerHTML = name_helper ;
                         document.querySelector('#div_cf_select_unit').classList.add('d-none');
                         document.querySelector('#div_wait_unit').classList.add('d-none');
                         document.querySelector('#div_unit_refuse').classList.remove('d-none');
