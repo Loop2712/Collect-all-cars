@@ -67,6 +67,34 @@
     </div>
 </div>
 
+<!--======= ข้อมูลการขอความช่วยเหลือ 10 ลำดับล่าสุด ============-->
+
+<div class="row mb-4">
+    <div class="col-12 col-lg-12">
+        <div class="card radius-10 w-100 h-100">
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h5 class="font-weight-bold mb-0 " >ข้อมูลการขอความช่วยเหลือ 10 ลำดับล่าสุด </h5>
+                    </div>
+                    <div class="dropdown ms-auto">
+                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
+                            data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="{{ url('/dashboard_1669_all_sos_show') }}">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>
+
 <!--======= คะแนนการช่วยเหลือต่อเคส 5 อันดับ ============-->
 <div class="row mb-4">
     <div class="col-12 col-lg-6">

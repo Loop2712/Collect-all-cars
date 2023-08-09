@@ -53,9 +53,9 @@
                         {{-- <label for="status_filter" class="form-label">สถานะ:</label> --}}
                         <select class="form-select filter-select" id="status_filter" name="status_filter">
                             <option value="">สถานะ</option>
-                            <option value="Standby" @if(request('gender_filter') == 'Standby') selected @endif>Standby</option>
-                            <option value="Helping" @if(request('gender_filter') == 'Helping') selected @endif>Helping</option>
-                            <option value="null" @if(request('gender_filter') == 'NotReady') selected @endif>NotReady</option>
+                            <option value="Standby" @if(request('status_filter') == 'Standby') selected @endif>พร้อม</option>
+                            <option value="Helping" @if(request('status_filter') == 'Helping') selected @endif>ช่วยเหลือ</option>
+                            <option value="null" @if(request('status_filter') == 'NotReady') selected @endif>ไม่พร้อม</option>
                         </select>
                     </div>
                     <div class="col-1 mb-3">
@@ -79,7 +79,7 @@
             </form>
             <!-- จบส่วนตัวกรอง -->
             <div class="table-responsive">
-                <table id="all_data_command_user_table" class="table table-striped table-bordered">
+                <table id="all_data_command_user_table" class="table table-striped table-bordered align-middle">
                     <thead>
                         <tr>
                             <th>ชื่อ</th>
@@ -119,12 +119,12 @@
                             @switch($user->status)
                                 @case('Standby')
                                     <td>
-                                        <span class="badge badge-pill bg-success">{{$user->status}}</span>
+                                        <span class="badge badge-pill bg-success"> พร้อม</span>
                                     </td>
                                     @break
                                 @case('Helping')
                                     <td>
-                                        <span class="badge badge-pill bg-warning">{{$user->status}}</span>
+                                        <span class="badge badge-pill bg-warning"> ช่วยเหลือ </span>
                                     </td>
                                     @break
                                 @default
@@ -267,9 +267,6 @@
                         data_table = `
                         <tr>
                             <td>
-                                @php
-                                    $data_command_2 = App\User::where('id',$user->user_id)->first();
-                                @endphp
                                 <div class="d-flex align-items-center">
                                     <div class="recent-product-img">
                                         `+ htmlProfile +`

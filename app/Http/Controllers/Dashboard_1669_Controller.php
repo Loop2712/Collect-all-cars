@@ -378,7 +378,7 @@ class Dashboard_1669_Controller extends Controller
             $data_command_user = Data_1669_officer_command::leftJoin('users' , 'data_1669_officer_commands.user_id','=','users.id')
             ->where('data_1669_officer_commands.area', '=' ,$user_login->sub_organization)
             ->when($name_filter, function ($query, $name_filter) {
-                return $query->where('users.name', 'LIKE' , "%$name_filter%");
+                return $query->where('data_1669_officer_commands.name_officer_command', 'LIKE' , "%$name_filter%");
             })
             ->when($gender_filter, function ($query, $gender_filter) {
                 return $query->where('users.sex', $gender_filter);
