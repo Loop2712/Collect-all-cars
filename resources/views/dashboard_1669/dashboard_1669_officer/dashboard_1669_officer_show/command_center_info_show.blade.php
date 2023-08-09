@@ -11,10 +11,6 @@
     button#advancedBtn {
         margin-top: 10px;
     }
-    .col.mb-3 {
-        position: relative;
-    }
-
     .col-1.mb-3 .btn {
         width: 50px;
         height: 100%;
@@ -45,8 +41,8 @@
                         {{-- <label for="gender_filter" class="form-label">เพศ:</label> --}}
                         <select class="form-select filter-select" id="gender_filter" name="gender_filter">
                             <option value="">เพศ</option>
-                            <option value="ผู้ชาย" @if(request('gender_filter') == 'ผู้ชาย') selected @endif>ผู้ชาย</option>
-                            <option value="ผู้หญิง" @if(request('gender_filter') == 'ผู้หญิง') selected @endif>ผู้หญิง</option>
+                            <option value="ผู้ชาย" @if(request('gender_filter') == 'ผู้ชาย') selected @endif>ชาย</option>
+                            <option value="ผู้หญิง" @if(request('gender_filter') == 'ผู้หญิง') selected @endif>หญิง</option>
                         </select>
                     </div>
                     <div class="col-2 mb-3">

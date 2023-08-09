@@ -1,5 +1,12 @@
 @extends('layouts.partners.theme_partner_new')
 <style>
+    div.dataTables_wrapper div.dataTables_filter {
+        display: none;
+    }
+    .col-1.mb-3 .btn {
+        width: 50px;
+        height: 100%;
+    }
     .fz_header {
         font-size: 18px;
     }
@@ -19,11 +26,45 @@
 <div class="card p-2">
     <h3 class="font-weight-bold float-start mb-0">
         ข้อมูลคะแนนเฉลี่ยของหน่วย &nbsp;
-        <!-- <span class="btn btn-sm btn-outline-info main-shadow main-radius" data-toggle="modal" data-target="#modal_change_number_officer">
-            จัดลำดับ <i class="fa-duotone fa-repeat"></i>
-        </span> -->
     </h3>
     <div id="card_table_user" class="card-body">
+        <!-- เพิ่มตัวกรอง -->
+        <form method="GET" action="{{ url('/dashboard_1669_all_score_unit') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+            <div id="advancedFilters" class="row">
+                <div class="col-2 mb-3">
+                    {{-- <label for="name_filter" class="form-label">ชื่อ:</label> --}}
+                    <input class="form-control" type="text" id="name_filter" name="name_filter" value="{{ request('name_filter') }}" placeholder="ค้นหาด้วยชื่อ">
+                </div>
+                <div class="col-2 mb-3">
+                    {{-- <label for="score_filter" class="form-label">เพศ:</label> --}}
+                    <select class="form-select filter-select" id="score_filter" name="score_filter">
+                        <option value="">คะแนน</option>
+                        <option value="5" @if(request('score_filter') == '5') selected @endif>5</option>
+                        <option value="4" @if(request('score_filter') == '4') selected @endif>4</option>
+                        <option value="3" @if(request('score_filter') == '3') selected @endif>3</option>
+                        <option value="2" @if(request('score_filter') == '2') selected @endif>2</option>
+                        <option value="1" @if(request('score_filter') == '1') selected @endif>1</option>
+                    </select>
+                </div>
+                <div class="col-1 mb-3">
+                    <button class="btn btn-primary " type="submit">
+                        <i class="fa-solid fa-magnifying-glass fa-2xs mt-0"></i>
+                    </button>
+                    <button class="btn btn-danger" type="submit" onclick="resetFilters()">
+                        <i class="fa-solid fa-trash fa-2xs mt-0 "></i>
+                    </button>
+                </div>
+            </div>
+
+            <script>
+                function resetFilters() {
+                    document.getElementById("name_filter").value = "";
+                    document.getElementById("score_filter").value = "";
+                }
+            </script>
+
+        </form>
+        <!-- จบส่วนตัวกรอง -->
         <div class="table-responsive mt-4 mb-4">
             <table id="all_score_unit_table" class="table align-middle mb-0" >
                 <thead class="fz_header">
@@ -37,7 +78,7 @@
                         <tr role="row" class="odd">
                             <td>
                                 <div class="d-flex align-items-center p-2">
-                                    <div>{{$top5_score_unit->operating_unit->name ? $top5_score_unit->operating_unit->name : "--"}}</div>
+                                    <div>{{$top5_score_unit->name ? $top5_score_unit->name : "--"}}</div>
                                 </div>
                             </td>
                             <td>

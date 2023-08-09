@@ -430,13 +430,35 @@ class Dashboard_1669_Controller extends Controller
         $user_login = Auth::user();
         $perPage = 10;
 
-         // คะแนนเฉลี่ยของหน่วย
-        $avg_score_unit_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-            ->where('operating_unit_id' , "!=" , null)
-            ->select('operating_unit_id', DB::raw('AVG(score_total) as avg_score_total'))
-            ->groupBy('operating_unit_id')
+        $name_filter = $request->get('name_filter');
+        $score_filter = $request->get('score_filter');
+
+        if(!empty($name_filter) || !empty($score_filter)){
+        // คะแนนเฉลี่ยของหน่วย
+        $avg_score_unit_data = Sos_help_center::leftJoin('data_1669_operating_units' , 'sos_help_centers.operating_unit_id','=','data_1669_operating_units.id')
+            ->where('sos_help_centers.notify','LIKE',"%$user_login->sub_organization%")
+            ->where('sos_help_centers.operating_unit_id' , "!=" , null)
+            ->when($name_filter, function ($query, $name_filter) {
+                return $query->where('data_1669_operating_units.name', 'LIKE' , "%$name_filter%");
+            })
+            ->when($score_filter, function ($query, $score_filter) {
+                return $query->where('sos_help_centers.score_total', $score_filter);
+            })
+            ->select('sos_help_centers.operating_unit_id', 'data_1669_operating_units.name' , DB::raw('AVG(score_total) as avg_score_total'))
+            ->groupBy('sos_help_centers.operating_unit_id')
             ->orderBy('avg_score_total', 'desc') // เรียงจากมากไปน้อย
             ->paginate($perPage);
+        }else{
+        // คะแนนเฉลี่ยของหน่วย
+        $avg_score_unit_data = Sos_help_center::leftJoin('data_1669_operating_units' , 'sos_help_centers.operating_unit_id','=','data_1669_operating_units.id')
+            ->where('sos_help_centers.notify','LIKE',"%$user_login->sub_organization%")
+            ->where('sos_help_centers.operating_unit_id' , "!=" , null)
+            ->select('sos_help_centers.operating_unit_id', 'data_1669_operating_units.name' , DB::raw('AVG(score_total) as avg_score_total'))
+            ->groupBy('sos_help_centers.operating_unit_id')
+            ->orderBy('avg_score_total', 'desc') // เรียงจากมากไปน้อย
+            ->paginate($perPage);
+        }
+
 
         return view('dashboard_1669.dashboard_1669_officer.dashboard_1669_officer_show.all_score_unit_show' , compact('avg_score_unit_data'));
     }
