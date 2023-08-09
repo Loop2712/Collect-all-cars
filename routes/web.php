@@ -203,6 +203,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
     Route::get('/dashboard_1669_all_score_unit', 'Dashboard_1669_Controller@dashboard_1669_all_score_unit');
     Route::get('/dashboard_1669_all_average_score_by_case', 'Dashboard_1669_Controller@dashboard_1669_average_score_by_case');
     Route::get('/dashboard_1669_all_sos_show', 'Dashboard_1669_Controller@dashboard_1669_all_sos_show');
+    Route::get('/dashboard_1669_all_case_sos_show', 'Dashboard_1669_Controller@dashboard_1669_all_case_sos_show');
 
 	// Route::get('/sos_insurance', 'PartnerController@sos_insurance');
 		Route::post('/partner_add_area', 'PartnerController@partner_add_area');

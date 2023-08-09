@@ -30,8 +30,6 @@
         }
     </style>
 
-    <button id="pdfButton" class="btn btn-success mb-4">PRINT PDF</button>
-
     <div id="generatePdf">
         <h3 id="command_center_info" class="text-dark" style="font-weight: bold;">ข้อมูลเจ้าหน้าที่</h3>
         <div class="mb-3 bg_section1">

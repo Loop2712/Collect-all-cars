@@ -279,7 +279,7 @@ class Dashboard_1669_Controller extends Controller
 
         $text_all_symptom_ex = explode("," , $text_all_symptom);
 
-        for ($symptom_i = 0; $symptom_i < count($text_all_symptom_ex) ; $symptom_i++) { 
+        for ($symptom_i = 0; $symptom_i < count($text_all_symptom_ex) ; $symptom_i++) {
             if (array_key_exists($text_all_symptom_ex[$symptom_i],$arr_most_symptom_data)){
                 $arr_most_symptom_data[$text_all_symptom_ex[$symptom_i]] += 1 ;
             }else{
@@ -435,7 +435,12 @@ class Dashboard_1669_Controller extends Controller
         for ($i=0; $i < count($data_command_user); $i++) {
 
             $data_user = User::where('id',$data_command_user[$i]['creator'])->first();
-            $data_command_user[$i]['name_creator'] = $data_user->name;
+            if(!empty($data_command_user[$i]['creator'])){
+                $data_command_user[$i]['name_creator'] = $data_user->name;
+            }else{
+                $data_command_user[$i]['name_creator'] = "ViiCheck";
+            }
+
 
         }
 
@@ -530,6 +535,15 @@ class Dashboard_1669_Controller extends Controller
             ->get();
 
         return view('dashboard_1669.dashboard_1669_sos.dashboard_1669_sos_show.all_sos_show' , compact('data_sos'));
+    }
+
+    function dashboard_1669_all_case_sos_show(Request $request){
+        $user_login = Auth::user();
+        $perPage = 10;
+
+
+
+        return view('dashboard_1669.dashboard_1669_sos.dashboard_1669_sos_show.all_case_sos_show' , compact('data_sos'));
     }
 
     function map_sos(Request $request,$user_login_organization){
