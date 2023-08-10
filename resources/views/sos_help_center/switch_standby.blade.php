@@ -607,8 +607,8 @@ input:checked + .slider:before {
 	
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th&callback=getLocation"></script>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 
 <script>
 	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
@@ -626,9 +626,8 @@ input:checked + .slider:before {
         if (status_officers === 'Standby') {
         	switch_standby.checked = true ;
         }
-
 				check_value();
-        // getLocation();
+        getLocation();
 
     });
 
@@ -645,21 +644,18 @@ input:checked + .slider:before {
 		lat = position.coords.latitude ;
 		lng = position.coords.longitude ;
 
-			console.log("lat : " + lat);
-			console.log("lng : " + lng);
-
 		// console.log(lat);
 		// console.log(lng);
 
-        initMap(lat , lng);
+        initMap();
 	}
 
-    function initMap(m_lat , m_lng) {
+    function initMap() {
 
-			console.log("start map");
+			// console.log("start map");
 
-    	// let m_lat = lat ;
-    	// let m_lng = lng ;
+    	let m_lat = lat ;
+    	let m_lng = lng ;
       let m_numZoom = parseFloat('15');
 
       map_officers_switch = new google.maps.Map(document.getElementById("map_officers_switch"), {
