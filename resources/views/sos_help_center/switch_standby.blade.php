@@ -647,10 +647,10 @@ input:checked + .slider:before {
 		// console.log(lat);
 		// console.log(lng);
 
-        initMap(lat , lng);
+        initMap();
 	}
 
-    function initMap(lat , lng) {
+    function initMap() {
 
     	let m_lat = lat ;
     	let m_lng = lng ;
