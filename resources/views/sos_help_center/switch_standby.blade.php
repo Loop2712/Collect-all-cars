@@ -606,7 +606,7 @@ input:checked + .slider:before {
 </div> -->
 	
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th&callback=initMap"></script>
 <script>
 	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
 	var officer_marker ;
