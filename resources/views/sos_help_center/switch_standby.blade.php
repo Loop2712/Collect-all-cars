@@ -606,8 +606,10 @@ input:checked + .slider:before {
 </div> -->
 	
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script> -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&callback=initMap&language=th" defer></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+<!-- VIICHECK ใช้จริงใช้อันนี้ -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 
 <script>
 	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
