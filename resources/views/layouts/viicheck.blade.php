@@ -1228,7 +1228,7 @@
         <div class="col-md-1 col-lg-1 col-12">
           <div class="row">
             <div class="col-4">
-                @include ('counter')
+                <!-- @include ('counter') -->
             </div>
             <div class="col-8" style="font-size: 12px;">
               <div style="margin-left: -70px;margin-top: 12px;" class="text-center d-block d-md-none">
