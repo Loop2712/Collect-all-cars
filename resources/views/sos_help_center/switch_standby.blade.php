@@ -606,7 +606,9 @@ input:checked + .slider:before {
 </div> -->
 	
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th&callback=getLocation"></script>
+
 
 <script>
 	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
@@ -624,8 +626,9 @@ input:checked + .slider:before {
         if (status_officers === 'Standby') {
         	switch_standby.checked = true ;
         }
-		check_value();
-        getLocation();
+
+				check_value();
+        // getLocation();
 
     });
 
@@ -642,37 +645,42 @@ input:checked + .slider:before {
 		lat = position.coords.latitude ;
 		lng = position.coords.longitude ;
 
+			console.log("lat : " + lat);
+			console.log("lng : " + lng);
+
 		// console.log(lat);
 		// console.log(lng);
 
-        initMap();
+        initMap(lat , lng);
 	}
 
-    function initMap() {
+    function initMap(m_lat , m_lng) {
 
-    	let m_lat = lat ;
-    	let m_lng = lng ;
-        let m_numZoom = parseFloat('15');
+			console.log("start map");
 
-        map_officers_switch = new google.maps.Map(document.getElementById("map_officers_switch"), {
-            center: {lat: m_lat, lng: m_lng },
-            zoom: m_numZoom,
-        });
+    	// let m_lat = lat ;
+    	// let m_lng = lng ;
+      let m_numZoom = parseFloat('15');
 
-        if (officer_marker) {
-            officer_marker.setMap(null);
-        }
-		
-        officer_marker = new google.maps.Marker({
-            position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
-            map: map_officers_switch,
-            icon: image_operating_unit_general,
-        });
+      map_officers_switch = new google.maps.Map(document.getElementById("map_officers_switch"), {
+          center: {lat: m_lat, lng: m_lng },
+          zoom: m_numZoom,
+      });
 
-        document.querySelector('#div_switch').classList.remove('d-none');
-        document.querySelector('#badge-status-officer').classList.remove('d-none');
-        document.querySelector('#lable_switch_standby').classList.remove('d-none');
-        click_switch_standby();
+      if (officer_marker) {
+          officer_marker.setMap(null);
+      }
+	
+      officer_marker = new google.maps.Marker({
+          position: {lat: parseFloat(m_lat) , lng: parseFloat(m_lng) },
+          map: map_officers_switch,
+          icon: image_operating_unit_general,
+      });
+
+      document.querySelector('#div_switch').classList.remove('d-none');
+      document.querySelector('#badge-status-officer').classList.remove('d-none');
+      document.querySelector('#lable_switch_standby').classList.remove('d-none');
+      click_switch_standby();
 
     }
 
