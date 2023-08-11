@@ -2500,7 +2500,7 @@
         reface_check_form_yellow = setInterval(function() {
         	check_start_data_form_yellow();
         	distance_in_no5();
-        }, 5000);
+        }, 7000);
 
     }
 
