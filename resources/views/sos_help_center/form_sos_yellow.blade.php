@@ -2627,13 +2627,19 @@
 					  			if( start_data_arr[main_key][sub_key] == data_new_5vi[main_key][sub_key] ){
 					  				// console.log(main_key + " / หัวข้อ : " + sub_key);
 					  				// console.log(">> ข้อมูล ไม่มี การเปลี่ยนแปลง <<");
+					  				check_go_to(null,null);
 					  			}else{
 					  				// console.log(main_key + " / หัวข้อ : " + sub_key);
 					  				// console.log(">> ข้อมูล มี การเปลี่ยนแปลง <<");
 					  				// console.log("จาก " + start_data_arr[main_key][sub_key] + " | เปลี่ยนเป็น " + data_new_5vi[main_key][sub_key]);
+					  				// console.log(key_title);
 
-					  				// แจ้งเตือนข้อมูลเปลี่ยนแปลง
-		        					alet_new_data('form_yellow' , main_key , sub_key , data_new_5vi[main_key][sub_key] , start_data_arr[main_key][sub_key]);
+					  				if(key_title == '1' || key_title == '2' || key_title == '3' || key_title == '4'){
+						  				// ไม่ต้องแจ้งเตือน
+			        				}else{
+			        					// แจ้งเตือนข้อมูลเปลี่ยนแปลง
+			        					alet_new_data('form_yellow' , main_key , sub_key , data_new_5vi[main_key][sub_key] , start_data_arr[main_key][sub_key]);
+			        				}
 					  			}
 					  			
 								// console.log("---------------------------------------");
