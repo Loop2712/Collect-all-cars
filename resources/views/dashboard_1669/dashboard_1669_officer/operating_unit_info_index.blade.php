@@ -19,7 +19,9 @@
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center">
-                    <h5 class="mb-0 font-weight-bold">คะแนนเฉลี่ยของหน่วย {{count($avg_score_unit_data)}} อันดับ</h5>
+                    <div class="col-10">
+                        <h5 class="mb-0 font-weight-bold">คะแนนเฉลี่ยของหน่วย {{count($avg_score_unit_data)}} อันดับ</h5>
+                    </div>
                     <!-- ตัวอย่างปุ่มสลับ -->
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -67,7 +69,7 @@
     <div class="col-12 col-lg-4 mb-2">
         <div class="card radius-10 h-100">
             <div class="d-flex align-items-center m-3">
-                <div>
+                <div class="col-10">
                     <h5 class="mb-0 font-weight-bold">ระดับหน่วยปฏิบัติการทั้งหมด</h5>
                 </div>
             </div>
@@ -83,7 +85,9 @@
         <div class="card radius-10 h-100">
             <div class=" p-3">
                 <div class="d-flex align-items-center">
-                    <h5 class="mb-0 font-weight-bold">จำนวนยานพาหนะทั้งหมด </h5>
+                    <div class="col-10">
+                        <h5 class="mb-0 font-weight-bold">จำนวนยานพาหนะทั้งหมด </h5>
+                    </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -170,7 +174,7 @@
         <div class="card radius-10 w-100 h-100">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <div>
+                    <div class="col-10">
                         <h5 class="font-weight-bold mb-0" >คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด {{count($avg_score_by_case)}} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
@@ -238,7 +242,7 @@
         <div class="card radius-10 w-100 h-100">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <div>
+                    <div class="col-10">
                         <h5 class="font-weight-bold mb-0" >รายชื่อหน่วยปฏิบัติการ</h5>
                     </div>
                     <div class="dropdown ms-auto">

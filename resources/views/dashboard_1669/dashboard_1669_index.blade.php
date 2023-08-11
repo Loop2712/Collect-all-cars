@@ -30,10 +30,10 @@
         }
     </style>
 
-    <button class="btn btn-primary float-end me-1" onclick="SaveImageGlobal('generatePdf')">บันทึกภาพทั้งหมด</button>
+    <a href="#sos_help_pdf" class="btn btn-primary float-end me-1" onclick="SaveImageGlobal('generatePdf')">บันทึกภาพทั้งหมด</a>
     <a href="#sos_help_pdf" class="btn btn-warning float-end me-1" onclick="SaveImageGlobal('sos_help_pdf')">บันทึกข้อมูลการขอความช่วยเหลือ</a>
-    <button class="btn btn-danger float-end me-1" onclick="SaveImageGlobal('operating_unit_info')">บันทึกภาพหน่วยปฏิบัติการ</button>
-    <button class="btn btn-success float-end me-1" onclick="SaveImageGlobal('command_center_pdf')">บันทึกภาพเจ้าหน้าที่ศูนย์สั่งการ</button>
+    <a class="btn btn-danger float-end me-1" onclick="SaveImageGlobal('operating_unit_info')">บันทึกภาพหน่วยปฏิบัติการ</a>
+    <a class="btn btn-success float-end me-1" onclick="SaveImageGlobal('command_center_pdf')">บันทึกภาพเจ้าหน้าที่ศูนย์สั่งการ</a>
 
     <div id="generatePdf" class="p-2">
         <h3 id="command_center_info" class="text-dark" style="font-weight: bold;">ข้อมูลเจ้าหน้าที่</h3>
@@ -68,8 +68,8 @@
         <hr>
     </div>
 
-
     <script src="https://unpkg.com/modern-screenshot"></script>
+
     <script>
         function SaveImageGlobal(id_div) {
             setTimeout(() => {

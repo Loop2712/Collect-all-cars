@@ -5,7 +5,9 @@
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center">
-                    <h5 class="mb-0 font-weight-bold">MAP ปักหมุดการขอความช่วยเหลือในจังหวัด</h5>
+                    <div class="col-10">
+                        <h5 class="mb-0 font-weight-bold">MAP ปักหมุดการขอความช่วยเหลือในจังหวัด</h5>
+                    </div>
                     <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -27,7 +29,7 @@
     <div class="col-12 col-lg-4 mb-3">
         <div class="card radius-10 h-100">
             <div class="d-flex align-items-center m-3">
-                <div>
+                <div class="col-10">
                     <h5 class="mb-1 font-weight-bold">พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ</h5>
                 </div>
                 <!-- <div class="dropdown ms-auto">
@@ -52,7 +54,9 @@
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
-                    <h5 class="mb-0 font-weight-bold">หัวข้อการขอความช่วยเหลือมากที่สุด {{ count($arr_most_symptom_data_limit_5) }} อันดับ</h5>
+                    <div class="col-10">
+                        <h5 class="mb-0 font-weight-bold">หัวข้อการขอความช่วยเหลือมากที่สุด {{ count($arr_most_symptom_data_limit_5) }} อันดับ</h5>
+                    </div>
                     <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -74,7 +78,9 @@
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center">
-                    <h5 class="mb-0 font-weight-bold">รับแจ้งเตือนทาง</h5>
+                    <div class="col-10">
+                        <h5 class="mb-0 font-weight-bold">รับแจ้งเตือนทาง</h5>
+                    </div>
                     <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -142,7 +148,10 @@
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
-                    <h5 class="mb-0 font-weight-bold">ระดับสถานการณ์ประเมินโดย ศูนย์สั่งการ</h5>
+                    <div class="col-10">
+                        <h5 class="mb-0 font-weight-bold">ระดับสถานการณ์ประเมินโดย ศูนย์สั่งการ</h5>
+                    </div>
+
                     <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -164,7 +173,9 @@
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
-                    <h5 class="mb-0 font-weight-bold"> ระดับสถานการณ์ประเมินโดย หน่วยปฏิบัติการ</h5>
+                    <div class="col-10">
+                        <h5 class="mb-0 font-weight-bold"> ระดับสถานการณ์ประเมินโดย หน่วยปฏิบัติการ</h5>
+                    </div>
                     <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -186,7 +197,9 @@
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
-                    <h5 class="mb-0 font-weight-bold"> การปฏิบัติการ</h5>
+                    <div class="col-10">
+                        <h5 class="mb-0 font-weight-bold"> การปฏิบัติการ</h5>
+                    </div>
                     <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -208,7 +221,9 @@
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
-                    <h5 class="mb-0 font-weight-bold">การปฏิบัติการที่มีการรักษา</h5>
+                    <div class="col-10">
+                        <h5 class="mb-0 font-weight-bold">การปฏิบัติการที่มีการรักษา</h5>
+                    </div>
                     <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -230,7 +245,9 @@
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
-                    <h5 class="mb-0 font-weight-bold">การปฏิบัติการที่ไม่มีการรักษา</h5>
+                    <div class="col-10">
+                        <h5 class="mb-0 font-weight-bold">การปฏิบัติการที่ไม่มีการรักษา</h5>
+                    </div>
                     <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>

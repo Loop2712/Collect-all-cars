@@ -86,7 +86,7 @@
         <div class="card radius-10 w-100 h-100">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <div>
+                    <div class="col-10">
                         <h5 class="font-weight-bold mb-0" >เจ้าหน้าที่ศูนย์สั่งการ {{count($data_command)}} ลำดับ ล่าสุด</h5>
                     </div>
                     <div class="dropdown ms-auto">
@@ -184,7 +184,7 @@
         <div class="card radius-10 w-100 h-100">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <div>
+                    <div class="col-10">
                         <h5 class="font-weight-bold mb-0" >ลำดับการรับแจ้งเตือน {{count($noti_1669_data)}} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
@@ -243,7 +243,7 @@
         <div class="card radius-10 w-100 h-100">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <div>
+                    <div class="col-10">
                         <h5 class="font-weight-bold mb-0 p-2" >การสั่งการมากที่สุด {{count($command_1669_data)}} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
