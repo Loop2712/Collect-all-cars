@@ -270,8 +270,8 @@
 <script>
     function initMap() {
 
-        var map_sos_organization ;
-        var marker_sos_organization ;
+        var map_sos_organization;
+        var marker_sos_organization;
 
         let user_login_organization = '{{Auth::user()->sub_organization}}';
 
@@ -303,7 +303,8 @@
                     map_sos_organization.fitBounds(bounds);
 
                     //ปักหมุด
-                    let image_marker_sos = "https://www.viicheck.com/img/icon/flag_2.png";
+                    // let image_marker_sos = "https://www.viicheck.com/img/icon/operating_unit/sos.png";
+                    let image_marker_sos = "{{ asset('/img/icon/operating_unit/sos.png') }}";
                     @foreach($sos_map_data as $sos_map_data)
                         @if(!empty($sos_map_data->lat))
                             marker_sos_organization = new google.maps.Marker({

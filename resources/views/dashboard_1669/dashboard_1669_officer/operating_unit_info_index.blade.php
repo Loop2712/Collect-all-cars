@@ -1,6 +1,13 @@
 <style>
-    body {
-        text-align: left;
+    @media screen and (min-width: 1024px) {
+        .image_size{
+            width: 100px;
+        }
+    }
+    @media screen and (max-width: 1024px) {
+        .image_size{
+            width: 50px;
+        }
     }
 </style>
 
@@ -82,7 +89,7 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item btn" onclick="downloadImage()">Save PNG</button>
+                            <button class="dropdown-item btn" onclick="downloadImage('all_vehicel_div')">Save PNG</button>
                         </div>
                     </div>
                 </div>
@@ -95,37 +102,36 @@
                         switch ( $vehicle_arr['vehicle_type'] ) {
                             case 'รถ':
                                 $color_benotified = "#dc3545";
-                                $vehicle_icon = '<i class="fa-solid fa-car" style="font-size: 2rem; color: #dc3545;"></i>';
-
+                                $vehicle_icon = 'car_img.png';
                                 break;
                             case 'อากาศยาน':
                                 $color_benotified = "#0d6efd";
-                                $vehicle_icon = '<i class="fa-solid fa-helicopter" style="font-size: 2rem; color: #0d6efd;"></i>';
+                                $vehicle_icon = 'helicopter.png';
 
                                 break;
                             case 'เรือ ป.1':
                                 $color_benotified = "#198754";
-                                $vehicle_icon = '<i class="fa-solid fa-ship" style="font-size: 2rem; color: #198754;"></i>';
+                                $vehicle_icon = 'ship1.png';
 
                                 break;
                             case 'เรือ ป.2':
                                 $color_benotified = "#0dcaf0";
-                                $vehicle_icon = '<i class="fa-duotone fa-ship" style="font-size: 2rem; color: #0dcaf0;"></i>';
+                                $vehicle_icon = 'ship2.png';
 
                                 break;
                             case 'เรือ ป.3':
                                 $color_benotified = "#ffc107";
-                                $vehicle_icon = '<i class="fa-duotone fa-ship" style="font-size: 2rem; color: #ffc107;"></i>';
+                                $vehicle_icon = 'ship3.png';
 
                                 break;
                             case 'เรือประเภทอื่นๆ':
                                 $color_benotified = "#f48024";
-                                $vehicle_icon = '<i class="fa-solid fa-ship" style="font-size: 2rem; color: #f48024;"></i>';
+                                $vehicle_icon = 'ship4.png';
 
                                 break;
                             default:
                                 $color_benotified = "#212529";
-                                $vehicle_icon = '<i class="fa-solid fa-truck-bolt" style="font-size: 2rem; color: #212529;"></i>';
+                                $vehicle_icon = 'warning.png';
 
                                 break;
                         }
@@ -135,17 +141,19 @@
                         $percent_vehicle_arr = number_format($percent_vehicle_arr,0);
 
                     @endphp
+
                     <div class="row mb-4">
                         <div class="col-2 mt-2 text-center">
-                            {!! $vehicle_icon !!}
+                            <img src="{{ asset("/img/icon/$vehicle_icon") }}" width="35">
                         </div>
-                        <div class="col">
+                        <div class="col-9">
                             <p class="mb-2" style="font-weight: bold; font-size: 16px">{{ $vehicle_arr['vehicle_type'] }}<strong class="float-end">{{ $vehicle_arr['count_vehicle_type'] }}</strong></p>
                             <div class="progress radius-10" style="height:6px;">
                                 <div class="progress-bar bg-gradient-moonlit" role="progressbar" style="width: {{$percent_vehicle_arr}}%"></div>
                             </div>
                         </div>
                     </div>
+
                 @endforeach
             </div>
             <canvas id="canvas" style="display: none;"></canvas>
@@ -206,7 +214,7 @@
                                                     <img src="{{ $data_user_avg_score_by_case->avatar }}" width="35" height="35" class="rounded-circle" alt="">
                                                 @endif
                                                 @if(empty($data_user_avg_score_by_case->avatar) && empty($data_user_avg_score_by_case->photo))
-                                                    <img src="https://www.viicheck.com/Medilab/img/icon.png" width="35" height="35" class="rounded-circle" alt="">
+                                                    <img src="{{ asset('/Medilab/img/icon.png') }}" width="35" height="35" class="rounded-circle" alt="">
                                                 @endif
                                             </div>
                                             <div class="ms-2">
@@ -292,17 +300,14 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <!-- ติดตั้ง html2canvas ผ่าน CDN -->
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.3.2/dist/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+
+
 
 <script>
-
-    //==============================================================================================================//
-    //                                       ***** คำเตือน *****
-    // ค่าที่ส่งมา กับ ค่าที่เราเลือก ไม่ตรงกัน --> เลยแก้ปัญหาเฉพาะหน้า โดยสลับค่า most_data เป็นน้อย  least_data เป็นมากแทน
-    // onclick="top5_score_unit_toggleDataBtn('least_data')">มากสุด 5 อันดับ
-    // onclick="top5_score_unit_toggleDataBtn('most_data')">น้อยสุด 5 อันดับ
-    //=============================================================================================================//
-
     // document.document.querySelector('.top5_score_unit_toggleDataBtn').addEventListener('click', () => {
     function top5_score_unit_toggleDataBtn(filter_data) {
 
@@ -326,7 +331,7 @@
                     data_table = `
                         <tr role="row" class="odd">
                             <td>
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center p-2">
                                     <div>`+ top5_score_unit.name_unit +`</div>
                                 </div>
                             </td>
@@ -349,14 +354,6 @@
 </script>
 
 <script>
-
-    //==============================================================================================================//
-    //                                       ***** คำเตือน *****
-    // ค่าที่ส่งมา กับ ค่าที่เราเลือก ไม่ตรงกัน --> เลยแก้ปัญหาเฉพาะหน้า โดยสลับค่า most_data เป็นน้อย  least_data เป็นมากแทน
-    // onclick="top5_score_unit_toggleDataBtn('least_data')">มากสุด 5 อันดับ
-    // onclick="top5_score_unit_toggleDataBtn('most_data')">น้อยสุด 5 อันดับ
-    //=============================================================================================================//
-
     // document.document.querySelector('.top5_score_unit_toggleDataBtn').addEventListener('click', () => {
     function avg_score_by_case_toggleDataBtn(filter_data) {
 
@@ -394,7 +391,7 @@
                                 <div class="d-flex align-items-center">
                                     <div class="recent-product-img">`+ htmlProfile +`</div>
                                     <div class="ms-2">
-                                        <h6 class="mt-2 font-14">`+ avg_score_by_case.name_user +`</h6>
+                                        <h6 class="mt-2 font-14">`+ avg_score_by_case.name_officer +`</h6>
                                     </div>
                                 </div>
                             </td>
@@ -500,31 +497,22 @@
         chart.render();
 </script>
 
+<script src="https://unpkg.com/modern-screenshot"></script>
+    <script>
+        function downloadImage(id_div) {
+            setTimeout(() => {
+                const targetElement = document.querySelector('#'+id_div);
+                targetElement.style.backgroundColor = 'white';
 
+                modernScreenshot.domToPng(targetElement).then(dataUrl => {
+                    const link = document.createElement('a')
+                    link.download = 'จำนวนยานพาหนะทั้งหมด.png'
+                    link.href = dataUrl
+                    link.click()
+                })
+            }, 500);
+        }
+    </script>
 
-<script>
-    // ฟังก์ชันเพื่อดาวน์โหลดรูปภาพ
-    function downloadImage() {
-        const element = document.getElementById('all_vehicel_div');
-
-        // เรียกใช้ html2canvas เพื่อแปลง HTML เป็นรูปภาพ
-        html2canvas(element, {
-            useCORS: true, // เปิดใช้งานการโหลดรูปภาพด้วย CORS
-            allowTaint: true, // เปิดใช้งานในการใช้งานรูปภาพที่มาจากเมืองข้อมูล
-            scale: 2, // กำหนดขนาดเริ่มต้นของรูปภาพ (สามารถปรับเปลี่ยนค่าตามความต้องการ)
-            backgroundColor: '#ffffff', // กำหนดสีพื้นหลังให้กับรูปภาพ (สามารถปรับเปลี่ยนค่าตามความต้องการ)
-        }).then(canvas => {
-
-        // รับข้อมูลรูปภาพในรูปของ base64
-        const imageData = canvas.toDataURL('image/png');
-
-        // สร้างลิงก์ใหม่ในการดาวน์โหลดรูปภาพ
-        const link = document.createElement('a');
-            link.href = imageData;
-            link.download = 'my_vehicle_image.png'; // ตั้งชื่อไฟล์ที่จะดาวน์โหลด
-            link.click();
-        });
-    }
-</script>
 
 

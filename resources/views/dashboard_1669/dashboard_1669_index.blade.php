@@ -30,28 +30,36 @@
         }
     </style>
 
-    <div id="generatePdf">
-        <h3 id="command_center_info" class="text-dark" style="font-weight: bold;">ข้อมูลเจ้าหน้าที่</h3>
-        <div class="mb-3 bg_section1">
-            @include ('dashboard_1669.dashboard_1669_officer.command_center_info_index')
-        </div>
+    <button class="btn btn-primary float-end me-1" onclick="SaveImageGlobal('generatePdf')">บันทึกภาพทั้งหมด</button>
+    <a href="#sos_help_pdf" class="btn btn-warning float-end me-1" onclick="SaveImageGlobal('sos_help_pdf')">บันทึกข้อมูลการขอความช่วยเหลือ</a>
+    <button class="btn btn-danger float-end me-1" onclick="SaveImageGlobal('operating_unit_info')">บันทึกภาพหน่วยปฏิบัติการ</button>
+    <button class="btn btn-success float-end me-1" onclick="SaveImageGlobal('command_center_pdf')">บันทึกภาพเจ้าหน้าที่ศูนย์สั่งการ</button>
 
-        <div id="operating_unit_info" class="mb-3 bg_section1">
-            @include ('dashboard_1669.dashboard_1669_officer.operating_unit_info_index')
-        </div>
+    <div id="generatePdf" class="p-2">
+        <h3 id="command_center_info" class="text-dark" style="font-weight: bold;">ข้อมูลเจ้าหน้าที่</h3>
+            <div id="command_center_pdf" class="mb-3 bg_section1">
+                @include ('dashboard_1669.dashboard_1669_officer.command_center_info_index')
+            </div>
+
+            <div id="operating_unit_info" class="mb-3 bg_section1">
+                @include ('dashboard_1669.dashboard_1669_officer.operating_unit_info_index')
+            </div>
+
 
         <!-- เพิ่มระยะห่าง -->
         <div id="dashboard_boardcast" style="margin: 70px 0 70px 0;"></div>
 
 
+        <div id="sos_help_pdf">
+            <h3 id="sos_help" class="text-dark" style="font-weight: bold;">ข้อมูลการขอความช่วยเหลือ</h3>
+            <div class="mb-3 bg_section2">
+                @include ('dashboard_1669.dashboard_1669_sos.sos_help_index')
+            </div>
+            <div id="sos_service_area" class="mb-3 bg_section2">
+                @include ('dashboard_1669.dashboard_1669_sos.sos_service_area_index')
+            </div>
+        </div>
 
-        <h3 id="sos_help" class="text-dark" style="font-weight: bold;">ข้อมูลการขอความช่วยเหลือ</h3>
-        <div class="mb-3 bg_section2">
-            @include ('dashboard_1669.dashboard_1669_sos.sos_help_index')
-        </div>
-        <div id="sos_service_area" class="mb-3 bg_section2">
-            @include ('dashboard_1669.dashboard_1669_sos.sos_service_area_index')
-        </div>
         @if (Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '11003429')
             <div id="video_call" class="mb-3 bg_section">
                 @include ('dashboard_1669.dashboard_1669_sos.video_call_index')
@@ -61,29 +69,21 @@
     </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
-
+    <script src="https://unpkg.com/modern-screenshot"></script>
     <script>
-        "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"
-    </script>
-    <script>
-        "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"
-    </script>
+        function SaveImageGlobal(id_div) {
+            setTimeout(() => {
+                const targetElement = document.querySelector('#'+id_div);
+                targetElement.style.backgroundColor = 'white';
 
-    <script>
-        let btn = document.getElementById('pdfButton');
-        let page = document.getElementById('generatePdf');
-
-        btn.addEventListener('click', function() {
-            html2PDF(page, {
-                jsPDF: {
-                    format: 'a4',
-                    // orientation: 'landscape' // Add this line to set the orientation to landscape
-                },
-                imageType: 'image/jpeg',
-                output: './pdf/generate.pdf'
-            });
-        });
+                modernScreenshot.domToPng(targetElement).then(dataUrl => {
+                    const link = document.createElement('a')
+                    link.download = 'screenshot.png'
+                    link.href = dataUrl
+                    link.click()
+                })
+            }, 500);
+        }
     </script>
 
 @endsection

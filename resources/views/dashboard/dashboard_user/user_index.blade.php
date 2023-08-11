@@ -1,83 +1,38 @@
 @extends('layouts.partners.theme_partner_new')
 
-{{-- <style>
+<style>
     div.dataTables_wrapper div.dataTables_filter {
         display: none;
     }
-</style> --}}
+
+    .fz_header {
+        font-size: 18px;
+    }
+    .fz_body {
+        font-size: 16px;
+    }
+    .font-weight-bold{
+        font-weight: bold !important;
+    }
+
+    .col-1.mb-3 .btn {
+        width: 50px;
+        height: 100%;
+    }
+</style>
 
 @section('content')
 
     <div class="card">
+        <div class="col-12">
+            <h3 class="font-weight-bold float-start mb-0">
+                ข้อมูลเจ้าหน้าที่ภายในองค์กร &nbsp;
+            </h3>
+        </div>
         <div id="card_table_user" class="card-body">
-             <!-- เพิ่มตัวกรอง -->
-            <div id="advanced_filter_user" class="row row-cols-1 row-cols-lg-6 collapse" >
-                <div class="col mb-3">
-                    <label for="gender_filter" class="form-label">เพศ:</label>
-                    <select class="form-select filter-select" id="gender_filter">
-                        <option value="">--</option>
-                        <option value="ผู้ชาย">ผู้ชาย</option>
-                        <option value="ผู้หญิง">ผู้หญิง</option>
-                    </select>
-                </div>
-                <div class="col mb-3">
-                    <label for="age_filter" class="form-label">อายุ:</label>
-                    <select class="form-select filter-select" id="age_filter">
-                        <option value="">--</option>
-                        <option value="below_12">ต่ำกว่า 12</option>
-                        <option value="13_19">13 - 19</option>
-                        <option value="20_39">20 - 39</option>
-                        <option value="40_59">40 - 59</option>
-                        <option value="above_60">60 ขึ้นไป</option>
-                    </select>
-                </div>
-                <div class="col mb-3">
-                    <label for="province_filter" class="form-label">จังหวัด:</label>
-                    <select class="form-select filter-select" id="province_filter">
-                        <option value="">--</option>
-                        <!-- เพิ่มตัวเลือกจังหวัดที่ต้องการ -->
-                        @foreach ($filter_location_P as $item)
-                            <option value="{{$item->location_P}}">{{$item->location_P}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col mb-3">
-                    <label for="province_filter" class="form-label">อำเภอ:</label>
-                    <select class="form-select filter-select" id="province_filter">
-                        <option value="">--</option>
-                        <!-- เพิ่มตัวเลือกจังหวัดที่ต้องการ -->
-                        <option value="bangkok">กรุงเทพมหานคร</option>
-                        <option value="chiang_mai">เชียงใหม่</option>
-                        <option value="phuket">ภูเก็ต</option>
-                        <!-- เพิ่มตัวเลือกจังหวัดอื่น ๆ ตามต้องการ -->
-                    </select>
-                </div>
-                <div class="col mb-3">
-                    <label for="nationality_filter" class="form-label">สัญชาติ:</label>
-                    <select class="form-select filter-select" id="nationality_filter">
-                        <option value="">--</option>
-                        <!-- เพิ่มตัวเลือกสัญชาติที่ต้องการ -->
-                        <option value="thai">ไทย</option>
-                        <option value="american">อเมริกัน</option>
-                        <option value="british">บริติช</option>
-                        <!-- เพิ่มตัวเลือกสัญชาติอื่น ๆ ตามต้องการ -->
-                    </select>
-                </div>
-                <div class="col mb-3">
-                    <label for="membership_filter" class="form-label">เป็นสมาชิกมาแล้ว:</label>
-                    <select class="form-select filter-select" id="membership_filter">
-                        <option value="">--</option>
-                        <option value="less_than_1_month">น้อยกว่า 1 เดือน</option>
-                        <option value="1_6_months">1 - 6 เดือน</option>
-                        <option value="6_12_months">6 - 12 เดือน</option>
-                        <option value="more_than_1_year">มากกว่า 1 ปี</option>
-                    </select>
-                </div>
-            </div>
-            <!-- จบส่วนตัวกรอง -->
             <div class="table-responsive">
-                <table id="example2" class="table table-striped table-bordered">
-                    <thead>
+                <table id="user_data_table" class="table table-striped table-bordered">
+                    <thead class="fz_header">
                         <tr>
                             <th>ชื่อ</th>
                             <th>ชื่อ-สกุล</th>
@@ -90,10 +45,10 @@
                             <th>เป็นสมาชิกมาแล้ว</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="fz_body">
                         @foreach ($user_data as $user)
-                            <tr role="row" class="odd">
-                                <td class="sorting_1">{{$user->name ? $user->name : '-'}}</td>
+                            <tr role="row" class="odd p-2">
+                                <td >{{$user->name ? $user->name : '-'}}</td>
                                 <td>{{$user->name_staff ? $user->name_staff : '-'}}</td>
                                 <td>ผู้ชาย</td>
                                 <td>{{$user->brith ? $user->brith : '-'}}</td>
@@ -105,7 +60,19 @@
                             </tr>
                         @endforeach
                     </tbody>
-
+                    <tfoot class="fz_header">
+                        <tr>
+                            <th>ชื่อ</th>
+                            <th>ชื่อ-สกุล</th>
+                            <th>เพศ</th>
+                            <th>วันเกิด</th>
+                            <th>จังหวัด</th>
+                            <th>อำเภอ</th>
+                            <th>สัญชาติ</th>
+                            <th>ภาษาที่ใช้</th>
+                            <th>เป็นสมาชิกมาแล้ว</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
@@ -117,67 +84,40 @@
 	<script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 
     <script>
-        $(document).ready(function() {
-            // เพิ่มโค้ดสำหรับการกรองข้อมูล
-            var table = $('#example2').DataTable( {
-                lengthChange: false,
-                buttons: ['excel', 'pdf', 'print']
-            } );
-
-            // เมื่อมีการเลือกค่าในตัวกรอง dropdown
-        $('.filter-select').on('change', function() {
-            var genderFilter = $('#gender_filter').val();
-            var ageFilter = $('#age_filter').val();
-            var provinceFilter = $('#province_filter').val();
-            var districtFilter = $('#district_filter').val();
-            var nationalityFilter = $('#nationality_filter').val();
-            var membershipFilter = $('#membership_filter').val();
-
-            // let filter_url = "{{ url('/') }}/api/filter_user?genderFilter=" + genderFilter + "&ageFilter=" + ageFilter + "&provinceFilter=" + provinceFilter +"&districtFilter=" + districtFilter + "&nationalityFilter=" + nationalityFilter + "&membershipFilter=" + membershipFilter;
-            // fetch(url).then(response => response.json())
-            // .then(result => {
-
-            // }).catch((error) => {
-            //     console.log("ERROR HERE");
-            //     console.log(error);
-            // });
-
-            console.log(genderFilter);
-            // console.log(typeof(provinceFilter));
-
-            // นำค่าตัวกรองไปใช้ในการกรองข้อมูลตาราง
-            table
-            .columns([2, 3, 4, 5, 6, 8])
-            .search([genderFilter, ageFilter, provinceFilter, districtFilter, nationalityFilter, membershipFilter])
-            .draw();
+       $(document).ready(function () {
+        //Only needed for the filename of export files.
+        //Normally set in the title tag of your page.
+        document.title = "ข้อมูลเจ้าหน้าที่ภายในองค์กร";
+        // Create search inputs in footer
+        $("#user_data_table tfoot th").each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        });
+        // DataTable initialisation
+        var table = $("#user_data_table").DataTable({
+            dom: '<"dt-buttons"Bf><"clear">lirtp',
+            paging: true,
+            autoWidth: true,
+            lengthChange: false,
+            buttons: [
+                {
+                    extend: "excelHtml5",
+                    text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
+                },
+            ],
+            initComplete: function (settings, json) {
+                var footer = $("#user_data_table tfoot tr");
+                $("#user_data_table thead").append(footer);
+            }
         });
 
-            table.buttons().container()
-                .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
-        } );
+        // Apply the search
+        $("#user_data_table thead").on("keyup", "input", function () {
+                table.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+            });
+    });
     </script>
-
-    <script>
-        var card_body = document.querySelector('#card_table_user');
-
-        var advanced_search = document.createElement('div');
-            advanced_search.id = 'advanced_search';
-            advanced_search.innerHTML = "การค้นหาขั้นสูง";
-            advanced_search.classList.add('collapse');
-
-            card_body.insertBefore(advanced_search, card_body.firstChild);
-
-            // สร้างปุ่มที่จะใช้ในการเปิด-ปิดการ collapse
-            var button = document.createElement('button');
-            button.classList.add('btn', 'btn-outline-primary' ,'mb-2');
-            button.setAttribute('type', 'button');
-            button.setAttribute('data-toggle', 'collapse');
-            button.setAttribute('data-target', '#advanced_filter_user');
-            button.innerHTML = 'การค้นหาขั้นสูง';
-
-            // เพิ่มปุ่มไปยัง div card_body
-            card_body.insertBefore(button, card_body.firstChild);
-    </script>
-
 
 @endsection

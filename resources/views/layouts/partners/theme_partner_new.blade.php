@@ -45,7 +45,7 @@
 	<link rel="stylesheet" href="{{ asset('partner_new/css/header-colors.css') }}" />
 	<!-- fontawesome icon -->
     <link rel="stylesheet" href="{{ asset('/partner/fonts/fontawesome/css/fontawesome-all.min.css') }}">
- 	<link href="https://kit-pro.fontawesome.com/releases/v6.3.0/css/pro.min.css" rel="stylesheet">
+ 	<link href="https://kit-pro.fontawesome.com/releases/v6.4.2/css/pro.min.css" rel="stylesheet">
 
 	<!-- carousel -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
@@ -3363,7 +3363,7 @@
 			document.querySelector('#wait_data').classList.add('show' , 'active');
 		}
 	}
-		
+
 	var data_ask_more  ;
 
 	function create_alert_sos_ask_mores(data){
@@ -3422,7 +3422,7 @@
 			for(let item of data){
 
 				btn_command_ask_mores = document.querySelector('#btn_command_ask_mores_id_' + item.id);
-			
+
 				if(!btn_command_ask_mores){
 
 					let html_vehicle = '';
@@ -3487,7 +3487,7 @@
 					                <p class="card-text">
 					                	<b>รหัสปฏิบัติการ : `+item.operating_code+`</b>
 					                	<br>
-					                	<b>จำนวนที่ต้องการ : `+require_vehicle_all+`</b> หน่วย | <b>`+html_vehicle+`</b> 
+					                	<b>จำนวนที่ต้องการ : `+require_vehicle_all+`</b> หน่วย | <b>`+html_vehicle+`</b>
 					                </p>
 				                	<a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#select_forward_`+item.id+`" aria-expanded="true" aria-controls="select_forward_`+item.id+`" class="">
 				                		<i class="fa-solid fa-paper-plane"></i> ส่งต่อการแจ้งเตือน
@@ -3561,7 +3561,7 @@
 										// console.log(Standby_user_id);
 
 									let a_item = owlOfficer_case.querySelector('.a_item_'+ixz);
-										a_item.setAttribute("onclick" , 
+										a_item.setAttribute("onclick" ,
 									"send_noti_ask_mores_to('"+Standby_user_id+"','"+item.ask_mores_id+"')");
 										// console.log(a_item);
 
@@ -3591,9 +3591,9 @@
 		        }
 
 			}
-			
+
 		}
-		
+
 	}
 
 	function send_noti_ask_mores_to(user_id , ask_mores_id){

@@ -1,4 +1,17 @@
 
+<style>
+    @media screen and (min-width: 1024px) {
+        .icon_size{
+            width: 100px;
+        }
+    }
+    @media screen and (max-width: 1024px) {
+        .icon_size{
+            width: 50px;
+        }
+    }
+</style>
+
 <h4 class="text-dark p-1 font-weight-bold">ข้อมูลเจ้าหน้าที่ศูนย์สั่งการ</h4>
 
 <!--=============== 4 card row =====================-->
@@ -12,7 +25,8 @@
                         <h5 class="mb-0 text-dark font-weight-bold">เจ้าหน้าที่ศูนย์สั่งการ</h5>
                         <h3 class="mb-0 text-dark font-weight-bold">{{ count($data_command )}} คน</h3>
                     </div>
-                    <div class="ms-auto text-dark"><i class="fa-solid fa-user-vneck font-30"></i>
+                    <div class="ms-auto text-dark">
+                        <img class="icon_size" src="{{ asset('/img/stickerline/PNG/34.2.png') }}">
                     </div>
                 </div>
             </div>
@@ -26,7 +40,8 @@
                         <h5 class="mb-0 text-dark font-weight-bold" >พร้อมช่วยเหลือ</h5>
                         <h3 class="mb-0 text-dark font-weight-bold">{{ $count_Standby }} คน</h3>
                     </div>
-                    <div class="ms-auto text-dark"><i class="fa-solid fa-check font-30"></i>
+                    <div class="ms-auto text-dark">
+                        <img class="icon_size" src="{{ asset('/img/stickerline/PNG/38.1.png') }}">
                     </div>
                 </div>
             </div>
@@ -40,7 +55,8 @@
                         <h5 class="mb-0 text-dark font-weight-bold">กำลังช่วยเหลือ</h5>
                         <h3 class="mb-0 text-dark font-weight-bold">{{ $count_Helping }} คน</h3>
                     </div>
-                    <div class="ms-auto text-dark"><i class="fa-solid fa-hourglass-clock font-30"></i>
+                    <div class="ms-auto text-dark">
+                        <img class="icon_size" src="{{ asset('/img/stickerline/PNG/23.png') }}">
                     </div>
                 </div>
             </div>
@@ -54,7 +70,8 @@
                         <h5 class="mb-0 text-dark font-weight-bold">ไม่พร้อม</h5>
                         <h3 class="mb-0 text-dark font-weight-bold">{{ $count_notReady }} คน</h3>
                     </div>
-                    <div class="ms-auto text-dark"><i class="fa-sharp fa-solid fa-xmark font-30"></i>
+                    <div class="ms-auto text-dark">
+                        <img class="icon_size" src="{{ asset('/img/stickerline/PNG/17.png') }}">
                     </div>
                 </div>
             </div>
@@ -110,7 +127,7 @@
                                                     <img src="{{ url('storage') }}/{{ $data_command_2->photo }}">
                                                 @endif
                                                 @if(empty($data_command_2->avatar) && empty($data_command_2->photo))
-                                                    <img src="https://www.viicheck.com/Medilab/img/icon.png">
+                                                    <img src="{{ asset('/Medilab/img/icon.png') }}">
                                                 @endif
                                             </div>
                                             <div class="ms-2 ">
@@ -203,7 +220,7 @@
                                                     <img src="{{ url('storage') }}/{{ $top5_lastet_notification->photo }}">
                                                 @endif
                                                 @if(empty($top5_lastet_notification->avatar) && empty($top5_lastet_notification->photo))
-                                                    <img src="https://www.viicheck.com/Medilab/img/icon.png">
+                                                    <img src="{{ asset('/Medilab/img/icon.png') }}">
                                                 @endif
                                             </div>
                                             <div class="ms-2">
@@ -278,7 +295,7 @@
                                                 <img src="{{ url('storage') }}/{{ $data_user_command->photo }}" width="35" height="35" class="rounded-circle" alt="">
                                             @endif
                                             @if(empty($data_user_command->avatar) && empty($data_user_command->photo))
-                                                <img src="https://www.viicheck.com/Medilab/img/icon.png" width="35" height="35" class="rounded-circle" alt="">
+                                                <img src="{{ asset('/Medilab/img/icon.png') }}" width="35" height="35" class="rounded-circle" alt="">
                                             @endif
 
                                             <div class="flex-grow-1 ms-3">

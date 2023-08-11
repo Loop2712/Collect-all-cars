@@ -163,6 +163,7 @@
 
                                     @endphp
                                     <td>{{ $all_data_sos_time_unit ? $all_data_sos_time_unit : "--"}}</td>
+                                    <!-- สถานะ -->
                                     <td>{{ $all_data_sos->status ? $all_data_sos->status : "--"}}</td>
                                 </tr>
                             @endforeach

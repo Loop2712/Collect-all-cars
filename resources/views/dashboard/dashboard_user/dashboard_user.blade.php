@@ -18,13 +18,26 @@
         width: 20px; /* ปรับขนาดตามที่คุณต้องการ */
         height: 20px; /* ปรับขนาดตามที่คุณต้องการ */
     }
+    .fz_header {
+        font-size: 18px;
+    }
+    .fz_body {
+        font-size: 16px;
+    }
+    .font-weight-bold{
+        font-weight: bold !important;
+    }
+
 </style>
 <!-- ======================================================================
                                 ข้อมูลผู้ใช้
 =========================================================================== -->
 
 <!-- ============================= 4 card ================================= -->
-@php
+
+<div class="row row-cols-1 row-cols-lg-4">
+
+    @php
     // % ของผู้ใช้เดือนนี้
     $percent_user_new_m = ($all_user_m / $all_user) * 100;
     $percent_user_new_m = number_format($percent_user_new_m,0);
@@ -37,16 +50,15 @@
     $percent_user_from = (count($data_user_from) / $all_user) * 100;
     $percent_user_from = number_format($percent_user_from,0);
 
-@endphp
+    @endphp
 
-<div class="row row-cols-1 row-cols-lg-4">
     <div class="col">
         <div class="card radius-10 overflow-hidden bg-gradient-cosmic">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-0 text-white">ผู้ใช้งานทั้งหมด</h5>
-                        <h3 class="mb-0 text-white">{{$all_user}}</h3>
+                        <h5 class="mb-0 text-white font-weight-bold">ผู้ใช้งานทั้งหมด</h5>
+                        <h3 class="mb-0 text-white font-weight-bold">{{$all_user}}</h3>
                     </div>
                     <div class="ms-auto text-white"><i class="fa-regular fa-user font-30"></i>
                     </div>
@@ -62,8 +74,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-0 text-white">ผู้ใช้งานใหม่เดือนนี้</h5>
-                        <h3 class="mb-0 text-white">{{$all_user_m}}</h3>
+                        <h5 class="mb-0 text-white font-weight-bold">ผู้ใช้งานใหม่เดือนนี้</h5>
+                        <h3 class="mb-0 text-white font-weight-bold">{{$all_user_m}}</h3>
                     </div>
                     <div class="ms-auto text-white"><i class="fa-regular fa-user-plus font-30"></i>
                     </div>
@@ -79,8 +91,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-0 text-white">เจ้าหน้าที่ภายในองค์กร</h5>
-                        <h3 class="mb-0 text-white">{{count($data_officer)}}</h3>
+                        <h5 class="mb-0 text-white font-weight-bold">เจ้าหน้าที่ภายในองค์กร</h5>
+                        <h3 class="mb-0 text-white font-weight-bold">{{count($data_officer)}}</h3>
                     </div>
                     <div class="ms-auto text-white"><i class="fa-duotone fa-users font-30"></i>
                     </div>
@@ -96,8 +108,8 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-0 text-white">ผู้ใช้งานจากช่องทางอื่น</h5>
-                        <h3 class="mb-0 text-white">{{count($data_user_from)}}</h3>
+                        <h5 class="mb-0 text-white font-weight-bold">ผู้ใช้งานจากช่องทางอื่น</h5>
+                        <h3 class="mb-0 text-white font-weight-bold">{{count($data_user_from)}}</h3>
                     </div>
                     <div class="ms-auto text-white"><i class="fa-solid fa-user-tie font-30"></i>
                     </div>
@@ -118,16 +130,21 @@
             <div class="card-body ">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-1">เจ้าหน้าที่ภายในองค์กร</h5>
+                        <h5 class="mb-1 font-weight-bold">เจ้าหน้าที่ภายในองค์กร</h5>
                     </div>
-                    <div class="ms-auto">
-                        <a href="{{ url('/dashboard_user_index') }}" class="btn btn-primary btn-sm radius-30">ดูข้อมูลผู้ใช้ทั้งหมด</a>
+                    <div class="dropdown ms-auto">
+                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
+                            data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="{{ url('/dashboard_user_index') }}">ดูข้อมูลเพิ่มเติม</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="table-responsive mt-3">
                     <table class="table align-middle mb-0 ">
-                        <thead class="table-light">
+                        <thead class="table-light fz_header">
                             <tr>
                                 <th>ชื่อ</th>
                                 <th>เพศ</th>
@@ -136,7 +153,7 @@
                                 <th>เป็นสมาชิกมาแล้ว</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="fz_body">
                             @foreach ($data_officer as $user)
                                 <tr>
 
@@ -177,23 +194,28 @@
             <div class="card-body ">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h5 class="mb-1">ผู้ใช้งานจากช่องทางอื่น</h5>
+                        <h5 class="mb-1 font-weight-bold">ผู้ใช้งานจากช่องทางอื่น</h5>
                     </div>
-                    <div class="ms-auto">
-                        <a href="{{ url('/dashboard_user_index') }}" class="btn btn-primary btn-sm radius-30">ดูข้อมูลผู้ใช้ทั้งหมด</a>
+                    <div class="dropdown ms-auto">
+                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
+                            data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="{{ url('/dashboard_user_index') }}">ดูข้อมูลเพิ่มเติม</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="table-responsive mt-3">
                     <table class="table align-middle mb-0 ">
-                        <thead class="table-light">
+                        <thead class="table-light fz_header">
                             <tr>
                                 <th>ชื่อ</th>
                                 <th>เพศ</th>
                                 <th>เป็นสมาชิกมาแล้ว</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="fz_body">
                             @foreach ($data_user_from as $user)
                                 <tr>
                                     <td>
@@ -268,12 +290,7 @@
     let user_type_login_arr = [];
     let name_user_type_login_arr = [];
     let color_type_login_arr = [];
-    let logo_type_login_arr = [
-        'https://www.viicheck.com/Medilab/img/icon.png',
-        'https://www.viicheck.com/Medilab/img/icon.png',
-        'https://www.viicheck.com/Medilab/img/icon.png',
-        'https://www.viicheck.com/Medilab/img/icon.png',
-    ];
+    let logo_type_login_arr = [];
     @foreach ($count_type_login as $item)
         user_type_login_arr.push('{{ $item->user_type_count }}');
     @endforeach
@@ -317,38 +334,39 @@
         series: [{
             data: user_type_login_arr,
         }],
-          chart: {
-          type: 'bar',
-          height: 380
+            chart: {
+                type: 'bar',
+                height: 380
         },
         plotOptions: {
-          bar: {
-            barHeight: '100%',
-            distributed: true,
-            horizontal: true,
-            dataLabels: {
-              position: 'bottom'
-            },
-          }
+            bar: {
+                barHeight: '100%',
+                distributed: true,
+                horizontal: true,
+                dataLabels: {
+                position: 'bottom'
+                },
+            }
         },
         colors: color_type_login_arr,
         dataLabels: {
-          enabled: true,
-          textAnchor: 'start',
-          style: {
-            colors: ['#fff']
-          },
-          formatter: function (val, opt) {
-            return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
-          },
-          offsetX: 0,
-          dropShadow: {
-            enabled: true
-          }
+            enabled: true,
+            textAnchor: 'start',
+            style: {
+                fontSize: 18,
+                colors: ['#fff']
+            },
+            formatter: function (val, opt) {
+                return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+            },
+            offsetX: 0,
+            dropShadow: {
+                enabled: true
+            }
         },
         stroke: {
-          width: 1,
-          colors: ['#fff']
+            width: 1,
+            colors: ['#fff']
         },
         xaxis: {
             categories: name_user_type_login_arr,
@@ -357,22 +375,23 @@
             labels: {
                 categories: name_user_type_login_arr,
                 show: false
-            }
+            },
         },
         tooltip: {
-          theme: 'dark',
-          x: {
-            show: false
-          },
-          y: {
-            title: {
-              formatter: function () {
-                return ''
-              }
+            theme: 'dark',
+            x: {
+                show: false
+            },
+            y: {0
+                title: {
+                    formatter: function () {
+                        return ''
+                    }
+                }
             }
-          }
-        }
-        };
+        },
+
+    };
 
     var chart = new ApexCharts(document.querySelector("#chartUser_from_Login"), options);
     chart.render();

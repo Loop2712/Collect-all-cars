@@ -37,7 +37,7 @@ class Partner_DashboardController extends Controller
         ->orWhere('user_from','LIKE',"%มีเงิน_จำกัด%")
         ->count();
 
-        // GroupBy ช่องทาง login
+        // ช่องทางเข้าสู่ระบบ
         $count_type_login = DB::table('users')
         ->where('users.organization', '=', $user_login->organization)
         ->orWhere('user_from','LIKE',"%มีเงิน_จำกัด%")
@@ -46,9 +46,7 @@ class Partner_DashboardController extends Controller
         ->orderBy('user_type_count','DESC')
         ->get();
 
-        // dd($count_type_login);
-
-        // GroupBy ช่องทาง login
+        // จังหวัดของผู้ใช้สูงสุด 5 อันดับ
         $count_user_location = DB::table('users')
         ->where('users.organization', '=', $user_login->organization)
         ->orWhere('user_from','LIKE',"%มีเงิน_จำกัด%")
@@ -57,7 +55,14 @@ class Partner_DashboardController extends Controller
         ->orderBy('user_location_count','DESC')
         ->get();
 
-        return view('dashboard.dashboard_index', compact('data_officer','data_user_from','all_user','all_user_m','count_type_login','count_user_location'));
+        return view('dashboard.dashboard_index',  compact(
+            'data_officer',
+            'data_user_from',
+            'all_user',
+            'all_user_m',
+            'count_type_login',
+            'count_user_location'
+        ));
 
     }
 

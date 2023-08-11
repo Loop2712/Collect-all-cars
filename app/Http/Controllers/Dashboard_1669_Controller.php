@@ -677,9 +677,11 @@ class Dashboard_1669_Controller extends Controller
         for ($i=0; $i < count($avg_score_by_case); $i++) {
 
             $data_user = User::where('id',$avg_score_by_case[$i]['helper_id'])->first();
-            $avg_score_by_case[$i]['name_user'] = $data_user->name;
             $avg_score_by_case[$i]['avatar'] = $data_user->avatar;
             $avg_score_by_case[$i]['photo'] = $data_user->photo;
+
+            $data_officer = Data_1669_operating_officer::where('user_id',$avg_score_by_case[$i]['helper_id'])->first();
+            $avg_score_by_case[$i]['name_officer'] = $data_officer->name_officer;
 
             $data_operating_unit = Data_1669_operating_unit::where('id',$avg_score_by_case[$i]['operating_unit_id'])->first();
             $avg_score_by_case[$i]['name_unit'] = $data_operating_unit->name;
