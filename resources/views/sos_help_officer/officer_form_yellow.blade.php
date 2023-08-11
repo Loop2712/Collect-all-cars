@@ -1256,6 +1256,87 @@
         padding: 10px;
         margin-top: 10px;
         border-radius: 10px;
+    }.loading-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loading-spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-left-color: #000;
+        animation: spin 1s linear infinite;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        margin-right: 20px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes drawCheck {
+        0% {
+            transform: scale(0);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .checkmark {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: block;
+        stroke-width: 2;
+        stroke: #29cc39;
+        stroke-miterlimit: 10;
+        margin: 10% auto;
+        box-shadow: inset 0px 0px 0px #ffffff;
+        animation: fill 0.9s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
+    }
+
+    .checkmark__check {
+        transform-origin: 50% 50%;
+        stroke-dasharray: 48;
+        stroke-dashoffset: 48;
+        animation: stroke 0.8s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
+    }
+
+    @keyframes stroke {
+        100% {
+            stroke-dashoffset: 0
+        }
+    }
+
+    @keyframes scale {
+
+        0%,
+        100% {
+            transform: none
+        }
+
+        50% {
+            transform: scale3d(1.1, 1.1, 1)
+        }
+    }
+
+    @keyframes fill {
+        100% {
+            box-shadow: inset 0px 0px 0px 60px #fff
+        }
     }
 </style>
 <!-- Modal -->
@@ -1268,9 +1349,23 @@
                     <button class="btn btn-success" onclick="addInputField()"><i class="fa-solid fa-plus"></i></button>
                 </div>
                 <form id="form">
+                <div class="loading-container d-none">
+                    <div class="loading-spinner"></div>
+
+                    <div class="contrainerCheckmark d-none">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                        </svg>
+                        <center>
+                            <h5 class="mt-5">เสร็จสิ้น</h5>
+                        </center>
+                    </div>
+                </div>
                     <div id="input-section"></div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="validateForm()">ยืนยัน</button>
+                    <div class="d-flex justify-content-around mt-4">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 40%;">ปิด</button>
+                        <button type="button" class="btn btn-primary" onclick="validateForm()" style="width: 40%;">ยืนยัน</button>
                     </div>
                 </form>
             </div>
@@ -1379,8 +1474,6 @@
         const inputContainer = button.closest('.input-container');
         inputCount--;
         inputSection.removeChild(inputContainer);
-
-
     }
 
     function validateForm() {
@@ -1444,7 +1537,7 @@
             formData[inputCount - 1] = currentData; // อัปเดตข้อมูลของชุดปัจจุบันใน formData
         });
 
-        console.log(formData);
+        // console.log(formData);
 
         // console.log(formData);
 
@@ -1457,11 +1550,30 @@
         }).then(function(response) {
             return response.text();
         }).then(function(data) {
-            console.log("aa");
+            // console.log("aa");
+            clearInputSection();
 
-            console.log(data);
+            document.querySelector(".loading-container").classList.remove('d-none');
+
+            setTimeout(function() {
+                    document.querySelector(".loading-spinner").style.display = "none";
+                    document.querySelector(".contrainerCheckmark").classList.remove('d-none');
+                }, 2000);
+
+            setTimeout(function() {
+                document.querySelector(".loading-container").classList.add('d-none');
+            }, 4000);
+
+            // console.log(data);
         }).catch(function(error) {
             console.error(error);
         });
     }
+
+    function clearInputSection() {
+    const inputSection = document.getElementById('input-section');
+    inputSection.innerHTML = ''; // เคลียร์เนื้อหาทั้งหมดใน inputSection
+    inputCount = 1; // รีเซ็ตค่า inputCount เป็น 1
+}
+
 </script>

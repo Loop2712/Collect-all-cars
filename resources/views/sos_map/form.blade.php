@@ -532,7 +532,7 @@
     </div>
 </div>
 <!-- Button trigger modal -->
-<span id="btn_modal_sos_1669" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_sos_1669">
+<span id="btn_modal_sos_1669" class="btn btn-primary d-noดne" data-toggle="modal" data-target="#modal_sos_1669">
     ทดสอบ 1669
 </span>
 
