@@ -263,15 +263,15 @@
     }
     .goog-text-highlight {
         background-color: transparent !important;
-        border: none !important; 
+        border: none !important;
         box-shadow: none !important;
     }
 
-    #goog-gt-tt, .goog-te-balloon-frame{display: none !important;} 
+    #goog-gt-tt, .goog-te-balloon-frame{display: none !important;}
     .goog-text-highlight { background: none !important; box-shadow: none !important;}
     .goog-logo-link{display: none !important;}
     .goog-te-gadget{height: 28px !important;  overflow: hidden;}
-  
+
   </style>
 
 
@@ -280,10 +280,10 @@
 <body class="bg-white">
 
   <!-- ============== COOKIE ============== -->
-<!-- Cookie Consent by https://www.cookiewow.com --> 
-<script type="text/javascript" src="https://cookiecdn.com/cwc.js"></script> 
+<!-- Cookie Consent by https://www.cookiewow.com -->
+<script type="text/javascript" src="https://cookiecdn.com/cwc.js"></script>
 <script id="cookieWow" type="text/javascript" src="https://cookiecdn.com/configs/B9xBa3fozaLCfhakLM3pgqtW" data-cwcid="B9xBa3fozaLCfhakLM3pgqtW"></script>
-  
+
 <!-- ======= Top Bar ======= -->
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-between">
@@ -372,7 +372,7 @@
           </li>
           <li><a class="nav-link scrollto" href="{{ url('/register_car/create') }}"><b>ลงทะเบียนรถ</b></a></li>
           <li><a class="nav-link scrollto" href="{{ url('/promotion') }}"><b>โปรโมชั่น</b></a></li>
-          
+
           <li class="dropdown">
               <a href="#">
                 <b>อื่นๆ</b>
@@ -399,7 +399,7 @@
               </a> -->
             </ul>
           </li>
-          
+
           @if(Auth::check())
           <a class="notranslate d-none d-lg-block" href="{{ url('/sos_map/create') }}" style="font-size: 18px;margin-left: 10px;">
             <span class="btn btn-danger main-shadow main-radius">
@@ -428,7 +428,7 @@
                   @case("admin")
                     <a href="{{ url('/dashboard') }}" target="blank">
                       <li>
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp; 
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp;
                         Admin
                       </li>
                     </a>
@@ -436,7 +436,7 @@
                   @case("admin-partner")
                     <a href="{{ url('/partner_index') }}">
                       <li class="notranslate">
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp; 
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp;
                         admin-partner
                       </li>
                     </a>
@@ -444,7 +444,7 @@
                   @case("admin-condo")
                     <a href="{{ url('/partner_index') }}">
                       <li class="notranslate">
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp; 
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp;
                         For Corporation
                       </li>
                     </a>
@@ -452,14 +452,14 @@
                   @case("partner")
                     <a href="{{ url('/partner_index') }}" target="blank">
                       <li class="notranslate">
-                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp; 
+                        <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp;
                         partner
                       </li>
                     </a>
                   @break
                 @endswitch
               @endif
-          
+
             @if (Route::has('password.request'))
             <a href="{{ route('password.request') }}">
               <li>
@@ -666,8 +666,8 @@
                     <div class="collapse " id="language_popup">
                         <div class="card col-md-12 card-body no-radius border-0 " style="padding:0px;">
                             <div class="row text-center">
-                              
-                              
+
+
                             </div>
                         </div>
                     </div> -->
@@ -1200,9 +1200,7 @@
       <div class="row">
         <div class="col-lg-1 col-md-1 col-2" style="padding-right:0px;">
           <div class="text-center">
-            <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
-              <img class="pt-4" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo/bns_registered.png') }}">
-            </a>
+            <!-- ตำแหน่ง DBD -->
           </div>
         </div>
         <div class="col-10">
@@ -1252,7 +1250,7 @@
     <!-- คอม -->
     <div class="text-center d-none d-lg-block" style="background-color: #F1F7FD;padding:0px 25px 25px 25px">
       <span class="text-dark">WWW.ViiCHECK.com</span> <span class="text-dark">•<span>
-      <a class="link" href="{{ url('/privacy_policy') }}" target="_blank">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</a> 
+      <a class="link" href="{{ url('/privacy_policy') }}" target="_blank">นโยบายเกี่ยวกับข้อมูลส่วนบุคคล</a>
       <span class="text-dark">•<span>
       <a class="link" href="{{ url('/terms_of_service') }}" target="_blank">ข้อกำหนดและเงื่อนไขการใช้บริการ</a>
       <span class="text-dark">•<span>
@@ -1282,7 +1280,7 @@
   <script src="{{ asset('Medilab/js/main.js') }}"></script>
 
   <!-- DBD -->
-  <script id="dbd-init" src="https://www.trustmarkthai.com/callbackData/initialize.js?t=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149"></script>
+  <!-- <script id="dbd-init" src="https://www.trustmarkthai.com/callbackData/initialize.js?t=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149"></script> -->
 
   <!-- Js Plugins -->
 
@@ -1590,7 +1588,7 @@
 
         return timeWithSuffix ;
     }
-  
+
 </script>
 
 
