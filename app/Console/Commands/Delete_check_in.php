@@ -50,9 +50,9 @@ class Delete_check_in extends Command
 
         $check_in_15days = Check_in::where('created_at' , "<=" , $date_15)->get();
 
-        foreach ($check_in_15days as $item) {
-            Check_in::where('id' , $item->id)->delete();
-        }
+        // foreach ($check_in_15days as $item) {
+        //     Check_in::where('id' , $item->id)->delete();
+        // }
 
         // --------------------------------
 
