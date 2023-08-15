@@ -264,6 +264,7 @@ Route::get('/real_time_check_refuse_and_call', 'Sos_help_centerController@real_t
 Route::get('/check_data_form_yellow_show_case', 'Sos_help_centerController@check_data_form_yellow_show_case');
 Route::post('/officerSaveFormYellow', 'Sos_help_centerController@officerSaveFormYellow');
 Route::post('/officerAskMore', 'Sos_help_centerController@officerAskMore');
+Route::get('/update_noti_ask_mores/{ask_mores_id}', 'Sos_help_centerController@update_noti_ask_mores');
 
 Route::get('/check_old_officer/{user_id}', 'Sos_help_centerController@check_old_officer');
 

@@ -1516,7 +1516,7 @@ class Sos_help_centerController extends Controller
                 ->where('data_1669_operating_officers.vehicle_type' , $vehicle_type)
                 ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
                 ->where('data_1669_operating_officers.status' , 'Standby')
-                // ->where('data_1669_operating_units.area' , $data_user->sub_organization)
+                ->where('data_1669_operating_units.area' , $sub_organization)
                 // ->having("distance", "<", 10)
                 ->orderBy("distance")
                 // ->limit(20)
@@ -2962,5 +2962,19 @@ class Sos_help_centerController extends Controller
         Sos_1669_officer_ask_more::create($data_askMore);
 
         return $data_askMore['noti_to'];
+    }
+
+    function update_noti_ask_mores($ask_mores_id){
+
+        DB::table('sos_1669_officer_ask_mores')
+            ->where([ 
+                    [ 'id', $ask_mores_id ],
+                ])
+            ->update([
+                    'success' => "กำลังดำเนินการ",
+                ]);
+
+        return "OK" ;
+
     }
 }

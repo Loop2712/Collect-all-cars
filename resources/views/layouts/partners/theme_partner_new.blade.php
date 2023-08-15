@@ -363,6 +363,228 @@
 		right: 5px;
 	}
 
+/*ปุ่ม ค้นหา level เจ้าหน้าที่ใน map */
+.level {
+    width: 38px !important;
+    height: 38px !important;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.FR {
+    background-color: #24b333;
+    color: white;
+}
+
+.BLS {
+    background-color: #fac831;
+    color: drak;
+}
+
+.ILS {
+    background-color: #faa507;
+    color: drak;
+}
+
+.ALS {
+    background-color: #ce1124;
+    color: white;
+
+}
+
+
+
+.menu-select-one-lv-all ,.menu-select-lv-all{
+    background-color: #fff!important;
+    color: #8833ff !important;
+    border: #8833ff 1px solid !important;
+    border-radius: 5px 0 0 5px !important;
+}
+.all-active {
+    background-color: #8833ff !important;;
+    color: #ffffff !important;
+}
+
+.menu-select-one-lv-fr ,.menu-select-lv-fr{
+    background-color: #fff!important;
+    color: #24b333 !important;
+    border: #24b333 1px solid !important;
+    border-radius: 0px !important;
+}
+.fr-active {
+    background-color: #24b333 !important;
+    color: #ffffff !important;
+}
+
+.menu-select-one-lv-bls ,.menu-select-lv-bls{
+   background-color: #fff!important;
+    color: #fac831 !important;
+    border: #fac831 1px solid !important;
+    border-radius: 0px !important;
+}
+.bls-active { 
+    background-color: #fac831!important;
+    color: #ffffff !important;
+}
+
+.menu-select-one-lv-ils ,.menu-select-lv-ils{
+    background-color: #fff!important;
+    color: #faa507 !important;
+    border: #faa507 1px solid !important;
+    border-radius: 0px !important;
+}
+.ils-active {
+    background-color: #faa507!important;
+    color: #ffffff !important;
+}
+
+.menu-select-one-lv-als ,.menu-select-lv-als{
+    background-color: #fff!important;
+    color: #ce1124 !important;
+    border: #ce1124 1px solid !important;
+    border-radius:  0 5px 5px  0!important;
+}
+.als-active {
+    background-color: #ce1124!important;
+    color: #ffffff !important;
+}
+
+.gm-style-iw{
+    max-width: 250px !important;
+    padding: 500px;
+}.btn-select-officer{
+    width:50px!important;
+    color:white!important;
+    background-color:#24b333!important;
+    border-radius:25px !important;
+}
+.btn-select-officer:hover{
+    color:#24b333!important;
+    background-color:white!important;
+    border:1px solid #24b333;
+}
+
+.menu-select-vehicle-officer-all{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius: 25px !important;
+    
+}
+
+
+.menu-select-vehicle-officer-car{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius: 25px !important;
+}
+
+
+.menu-select-vehicle-officer-aircraft{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius:25px!important;
+}
+
+
+
+.menu-select-vehicle-officer-boat-1{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius: 25px !important;
+}
+
+.menu-select-vehicle-officer-boat-2{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius: 25px !important;
+}
+
+.menu-select-vehicle-officer-boat-3{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius:25px !important;
+}
+
+.menu-select-vehicle-officer-boat-other{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius: 25px !important;
+}
+
+
+
+
+.menu-select-vehicle-all{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius: 25px !important;
+    
+}
+
+
+.menu-select-vehicle-car{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius: 25px !important;
+}
+
+
+.menu-select-vehicle-aircraft{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius:25px!important;
+}
+
+
+
+.menu-select-vehicle-boat-1{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius: 25px !important;
+}
+
+.menu-select-vehicle-boat-2{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius: 25px !important;
+}
+
+.menu-select-vehicle-boat-3{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius:25px !important;
+}
+
+.menu-select-vehicle-boat-other{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius: 25px !important;
+}
+
+
+.vehicle-one-officer-active {
+    background-color: #00438c !important;
+    color: #ffffff !important;
+}
 
 
 
@@ -2165,27 +2387,183 @@
 	<!-- //////////////////// -->
 	<!-- ///MODAL ASK MORE/// -->
 	<!-- //////////////////// -->
+	<style>
+		.map_select_officer_ask_more {
+	      	height: calc(55vh);
+	      	background-color: red;
+	    }
+	</style>
 	<button id="btn_modal_select_officer_ask_more" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_select_officer_ask_more"></button>
 
 	<!-- Modal -->
-	<div class="modal fade" id="modal_select_officer_ask_more" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_select_officer_ask_more" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="Label_modal_select_officer_ask_more">Modal title</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	        ...
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Understood</button>
-	      </div>
-	    </div>
-	  </div>
+	<div class="modal fade" id="modal_select_officer_ask_more" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_select_officer_ask_more" aria-hidden="true" style="z-index:999999;">
+	  	<div class="modal-dialog modal-xl" role="document">
+		    <div class="modal-content">
+		      	<div class="modal-header">
+		        	<h3 class="modal-title" id="Label_modal_select_officer_ask_more">
+		        		การขอหน่วยปฏิบัติการเพิ่ม รหัสปฏิบัติการ : 000
+		        	 </h3>
+		        	<button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+		          		<span aria-hidden="true">&times;</span>
+		        	</button>
+		      	</div>
+		      	<div class="modal-body">
+		        	<div class="row">
+	                    <div class="col-8">
+	                    	<div class="card">
+								<div class="card-body">
+									<h4>
+										ต้องการ <b style="font-size:30px;">รถ</b> 
+										รหัสเหตุการณ์ <b style="font-size:30px;" class="text-warning">เหลือง(เร่งด่วน)</b> 
+										จำนวน <b style="font-size:30px;">1</b> 
+									</h4>
+								</div>
+							</div>
+	                        <div class="map_select_officer_ask_more" id="map_select_officer_ask_more" class="d-none"></div>
+	                    </div>
+	                    <div class="col-4" style="display: flex;flex-direction: column;">
+	                        <div class="card radius-10 w-100">
+	                            <div class="card-body">
+	                                <div class="d-flex align-items-center">
+	                                    <div>
+	                                        <h5 class="mb-0">ข้อมูลเจ้าหน้าที่</h5>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <!-- BTN Select Level -->
+	                            <div class="chat-tab-menu ">
+	                                <ul class="nav nav-pills nav-justified">
+	                                    <li class="nav-item">
+	                                        <a class="nav-link  menu-select-lv-all ask_more-select-lv-all" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_level').value = 'all';select_officer_ask_more_btn_menu_select();">
+	                                            <div class="font-24">ALL
+	                                            </div>
+	                                            <div><small>ทั้งหมด</small>
+	                                            </div>
+	                                        </a>
+	                                    </li>
+	                                    <li class="nav-item">
+	                                        <a class="nav-link  menu-select-lv-fr ask_more-select-lv-fr" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_level').value = 'fr';select_officer_ask_more_btn_menu_select();">
+	                                            <div class="font-24">FR
+	                                            </div>
+	                                            <div>
+	                                                <small>เบื้องต้น</small>
+	                                            </div>
+	                                        </a>
+	                                    </li>
+	                                    <li class="nav-item">
+	                                        <a class="nav-link menu-select-lv-bls ask_more-select-lv-bls" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_level').value = 'bls';select_officer_ask_more_btn_menu_select();">
+	                                            <div class="font-24">BLS
+	                                            </div>
+	                                            <div><small>ทั่วไป</small>
+	                                            </div>
+	                                        </a>
+	                                    </li>
+	                                    <li class="nav-item">
+	                                        <a class="nav-link menu-select-lv-ils ask_more-select-lv-ils" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_level').value = 'ils';select_officer_ask_more_btn_menu_select();">
+	                                            <div class="font-24">ILS
+	                                            </div>
+	                                            <div><small>กลาง</small>
+	                                            </div>
+	                                        </a>
+	                                    </li>
+	                                    <li class="nav-item">
+	                                        <a class="nav-link menu-select-lv-als ask_more-select-lv-als" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_level').value = 'als';select_officer_ask_more_btn_menu_select();">
+	                                            <div class="font-24">ALS
+	                                            </div>
+	                                            <div><small>สูง</small>
+	                                            </div>
+	                                        </a>
+	                                    </li>
+	                                </ul>
+	                                <input class="d-" type="text" name="select_officer_ask_more_level" id="select_officer_ask_more_level" value="all">
+	                            </div>
+
+	                            <!-- BTN Select vehicle  -->
+	                            <div class="owl-carousel owl-theme owlmenu-vehicle-ask_more p-3">
+	                                <div class="item" style="width:100%">
+	                                    <a class="btn menu-select-vehicle-all ask_more-select-vehicle-all" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_vehicle_type').value = 'all';select_officer_ask_more_btn_menu_select();">
+	                                        ทั้งหมด
+	                                    </a>
+	                                </div>
+	                                <div class="item" style="width:100%">
+	                                    <a class="btn menu-select-vehicle-car ask_more-select-vehicle-car" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_vehicle_type').value = 'รถ';select_officer_ask_more_btn_menu_select();">
+	                                        รถ
+	                                    </a>
+	                                </div>
+	                                <div class="item" style="width:100%">
+	                                    <a class="btn menu-select-vehicle-aircraft ask_more-select-vehicle-aircraft" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_vehicle_type').value = 'อากาศยาน';select_officer_ask_more_btn_menu_select();">
+	                                        อากาศยาน
+	                                    </a>
+	                                </div>
+	                                <div class="item" style="width:100%">
+	                                    <a class="btn menu-select-vehicle-boat-1 ask_more-select-vehicle-boat-1" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_vehicle_type').value = 'เรือ ป.1';select_officer_ask_more_btn_menu_select();">
+	                                        เรือ ป.1
+	                                    </a>
+	                                </div>
+	                                <div class="item" style="width:100%">
+	                                    <a class="btn menu-select-vehicle-boat-2 ask_more-select-vehicle-boat-2" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_vehicle_type').value = 'เรือ ป.2';select_officer_ask_more_btn_menu_select();">
+	                                        เรือ ป.2
+	                                    </a>
+	                                </div>
+	                                <div class="item" style="width:100%">
+	                                    <a class="btn menu-select-vehicle-boat-3 ask_more-select-vehicle-boat-3" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_vehicle_type').value = 'เรือ ป.3';select_officer_ask_more_btn_menu_select();">
+	                                        เรือ ป.3
+	                                    </a>
+	                                </div>
+	                                <div class="item" style="width:100%">
+	                                    <a class="btn  menu-select-vehicle-boat-other ask_more-select-vehicle-boat-other" href="javascript:;" onclick="document.querySelector('#select_officer_ask_more_vehicle_type').value = 'เรือประเภทอื่นๆ';select_officer_ask_more_btn_menu_select();">
+	                                        เรืออื่นๆ
+	                                    </a>
+	                                </div>
+	                            </div>
+
+	                            <input class="d-" type="text" name="select_officer_ask_more_vehicle_type" id="select_officer_ask_more_vehicle_type" value="all">
+
+	                            <input class="d-" type="text" id="list_select_officer_ask_more">
+	                            <input class="d-" type="text" id="ask_more_id">
+
+	                            <div class="data-officer p-3 mb-3 ps ps--active-y" id="select_officer_ask_more_card_data_operating">
+	                                <!-- ข้อมูลหน่วยปฏิบัติการในพื้นที่ -->
+	                            </div>
+
+	                            <div class="data-officer p-3 mb-3 ps ps--active-y">
+	                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
+	                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+	                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
+	                                            <div class="d-flex align-items-center">
+	                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
+	                                            </div>
+	                                            <div class="ms-auto">
+	                                                <div class="d-flex align-items-center p-2 cursor-pointer">
+	                                                    <div class="level FR d-flex align-items-center m-2">
+	                                                        <center> FR </center>
+	                                                    </div>
+	                                                    <div style="margin-left: 10px;">
+	                                                        <h6 class="mb-1 font-14">กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ (เรือ ป.1)</h6>
+	                                                        <p class="mb-0 font-14">เจ้าหน้าที่ : TEERASAK3</p>
+	                                                        <p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ 2.07 กม. </p>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="div_bottom" style="margin-top: auto;">
+	                                <center>
+	                                    <p id="show_error_noselect_officer_ask_more" class="text-danger d-none">กรุณาเลือกหน่วยปฏิบัติการ</p>
+	                                    <span id="btn_send_data_joint_sos" class="mt-3 btn btn-primary main-shadow main-radius" style="width: 60%;" onclick="">
+	                                        เลือก <b><span id="show_count_select_operating_officer_ask_more">0</span></b> หน่วย
+	                                    </span>
+	                                </center>
+	                                <br>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+		      	</div>
+		    </div>
+	  	</div>
 	</div>
 
 
@@ -3363,7 +3741,7 @@
 			document.querySelector('#wait_data').classList.add('show' , 'active');
 		}
 	}
-
+		
 	var data_ask_more  ;
 
 	function create_alert_sos_ask_mores(data){
@@ -3422,7 +3800,7 @@
 			for(let item of data){
 
 				btn_command_ask_mores = document.querySelector('#btn_command_ask_mores_id_' + item.id);
-
+			
 				if(!btn_command_ask_mores){
 
 					let html_vehicle = '';
@@ -3487,7 +3865,7 @@
 					                <p class="card-text">
 					                	<b>รหัสปฏิบัติการ : `+item.operating_code+`</b>
 					                	<br>
-					                	<b>จำนวนที่ต้องการ : `+require_vehicle_all+`</b> หน่วย | <b>`+html_vehicle+`</b>
+					                	<b>จำนวนที่ต้องการ : `+require_vehicle_all+`</b> หน่วย | <b>`+html_vehicle+`</b> 
 					                </p>
 				                	<a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#select_forward_`+item.id+`" aria-expanded="true" aria-controls="select_forward_`+item.id+`" class="">
 				                		<i class="fa-solid fa-paper-plane"></i> ส่งต่อการแจ้งเตือน
@@ -3561,7 +3939,7 @@
 										// console.log(Standby_user_id);
 
 									let a_item = owlOfficer_case.querySelector('.a_item_'+ixz);
-										a_item.setAttribute("onclick" ,
+										a_item.setAttribute("onclick" , 
 									"send_noti_ask_mores_to('"+Standby_user_id+"','"+item.ask_mores_id+"')");
 										// console.log(a_item);
 
@@ -3591,9 +3969,9 @@
 		        }
 
 			}
-
+			
 		}
-
+		
 	}
 
 	function send_noti_ask_mores_to(user_id , ask_mores_id){
@@ -3614,11 +3992,80 @@
 		console.log(ask_mores_id);
 		console.log(data_ask_more);
 
-        document.querySelector('#btn_close_iziToast_ask_more_'+ask_mores_id).click();
-		let btn_modal = document.querySelector('#btn_modal_select_officer_ask_more');
-			btn_modal.click();
+		fetch("{{ url('/') }}/api/update_noti_ask_mores" + '/' + ask_mores_id)
+            .then(response => response.text())
+            .then(result => {
+            	// console.log(result);
+            	if (result== 'OK') {
+            		document.querySelector('#btn_close_iziToast_ask_more_'+ask_mores_id).click();
+					let btn_modal = document.querySelector('#btn_modal_select_officer_ask_more');
+						btn_modal.click();
+
+					select_officer_ask_more_btn_menu_select();
+
+					let owl_vehicle = $(".owlmenu-vehicle-ask_more");
+		            owl_vehicle.owlCarousel({
+		                margin: 5,
+		                loop: false,
+		                autoWidth: true,
+		                nav: false,
+
+		                dots: false
+		            });
+            	}
+        });
 
 	}
+
+	function select_officer_ask_more_btn_menu_select() {
+
+		let level = document.querySelector('#select_officer_ask_more_level').value ;
+		let vehicle_type = document.querySelector('#select_officer_ask_more_vehicle_type').value ;
+        //  LEVEL
+        document.querySelector('.ask_more-select-lv-all').classList.remove("all-active");
+        document.querySelector('.ask_more-select-lv-fr').classList.remove("fr-active");
+        document.querySelector('.ask_more-select-lv-bls').classList.remove("bls-active");
+        document.querySelector('.ask_more-select-lv-ils').classList.remove("ils-active");
+        document.querySelector('.ask_more-select-lv-als').classList.remove("als-active");
+
+        document.querySelector('.ask_more-select-lv-' + level).classList.add(level + "-active");
+
+        // VEHICLE TYPE
+        document.querySelector('.ask_more-select-vehicle-all').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.ask_more-select-vehicle-car').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.ask_more-select-vehicle-aircraft').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.ask_more-select-vehicle-boat-1').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.ask_more-select-vehicle-boat-2').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.ask_more-select-vehicle-boat-3').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.ask_more-select-vehicle-boat-other').classList.remove("vehicle-one-officer-active");
+
+        let text_vehicle_type;
+
+        switch (vehicle_type) {
+            case 'all':
+                text_vehicle_type = "all";
+                break;
+            case 'รถ':
+                text_vehicle_type = "car";
+                break;
+            case 'อากาศยาน':
+                text_vehicle_type = "aircraft";
+                break;
+            case 'เรือ ป.1':
+                text_vehicle_type = "boat-1";
+                break;
+            case 'เรือ ป.2':
+                text_vehicle_type = "boat-2";
+                break;
+            case 'เรือ ป.3':
+                text_vehicle_type = "boat-3";
+                break;
+            case 'เรือประเภทอื่นๆ':
+                text_vehicle_type = "boat-other";
+                break;
+        }
+        document.querySelector('.ask_more-select-vehicle-' + text_vehicle_type).classList.add("vehicle-one-officer-active");
+    }
 
 
 
