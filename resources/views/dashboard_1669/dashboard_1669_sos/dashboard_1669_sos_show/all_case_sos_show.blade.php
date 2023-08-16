@@ -157,7 +157,7 @@
                                 @endif
                             </td>
                             <td>{{ $item_sos->phone_user ? $item_sos->phone_user : "--" }}</td>
-                            <td>{{ $item_sos->command_by ? $item_sos->command_by : "--" }}</td>
+                            <td>{{ $item_sos->officers_command_by->name_officer_command ? $item_sos->officers_command_by->name_officer_command : "--" }}</td>
                             <td>{{ $item_sos->organization_helper ? $item_sos->organization_helper : "--" }}</td>
                             <td>{{ $item_sos->name_helper ? $item_sos->name_helper : "--" }}</td>
                             <td>{{ $item_sos->form_yellow->vehicle_type ? $item_sos->form_yellow->vehicle_type : "--" }}</td>
@@ -176,24 +176,28 @@
                             <td>{{ $item_sos->time_to_the_operating_base ? $item_sos->time_to_the_operating_base : "--" }}</td>
 
                             @php
-                                $s_time_sos_success = strtotime($item_sos->time_sos_success);
-                                $s_time_command = strtotime($item_sos->time_command);
+                                if (!empty($item_sos->time_sos_success)) {
+                                    $s_time_sos_success = strtotime($item_sos->time_sos_success);
+                                    $s_time_command = strtotime($item_sos->time_command);
 
-                                $s_timeDifference = abs($s_time_sos_success - $s_time_command);
+                                    $s_timeDifference = abs($s_time_sos_success - $s_time_command);
 
-                                if ($s_timeDifference >= 3600) {
-                                    $s_hours = floor($s_timeDifference / 3600);
-                                    $s_remainingMinutes = floor(($s_timeDifference % 3600) / 60);
-                                    $s_remainingSeconds = $s_timeDifference % 60;
+                                    if ($s_timeDifference >= 3600) {
+                                        $s_hours = floor($s_timeDifference / 3600);
+                                        $s_remainingMinutes = floor(($s_timeDifference % 3600) / 60);
+                                        $s_remainingSeconds = $s_timeDifference % 60;
 
-                                    $s_time_unit = $s_hours . ' ชั่วโมง ' . $s_remainingMinutes . ' นาที ' . $s_remainingSeconds . ' วินาที';
-                                } elseif ($s_timeDifference >= 60) {
-                                    $s_minutes = floor($s_timeDifference / 60);
-                                    $s_seconds = $s_timeDifference % 60;
+                                        $s_time_unit = $s_hours . ' ชั่วโมง ' . $s_remainingMinutes . ' นาที ' . $s_remainingSeconds . ' วินาที';
+                                    } elseif ($s_timeDifference >= 60) {
+                                        $s_minutes = floor($s_timeDifference / 60);
+                                        $s_seconds = $s_timeDifference % 60;
 
-                                    $s_time_unit = $s_minutes . ' นาที ' . $s_seconds . ' วินาที';
-                                } else {
-                                    $s_time_unit = $s_timeDifference . ' วินาที';
+                                        $s_time_unit = $s_minutes . ' นาที ' . $s_seconds . ' วินาที';
+                                    } else {
+                                        $s_time_unit = $s_timeDifference . ' วินาที';
+                                    }
+                                }else{
+                                    $s_time_unit = '--';
                                 }
 
                             @endphp
