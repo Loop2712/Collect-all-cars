@@ -15,6 +15,10 @@
         width: 50px;
         height: 100%;
     }
+    #all_data_sos_1669_table_paginate ul.pagination{
+        float: left !important;
+    }
+
 </style>
 
 @section('content')
@@ -130,15 +134,15 @@
                     <tbody id="data_command_user_tbody">
                         @foreach( $data_sos as $item_sos )
                         <tr>
-                            <td>{{ $item_sos->operating_code }}</td>
-                            <td>{{ $item_sos->status }}</td>
-                            <td>{{ $item_sos->remark_status }}</td>
-                            <td>{{ thaidate("j F Y" , strtotime($item_sos->created_at)) }}</td>
-                            <td>{{ $item_sos->lat }}</td>
-                            <td>{{ $item_sos->lng }}</td>
-                            <td>{{ $item_sos->address }}</td>
-                            <td>y_location_sos</td>
-                            <td>y_be_notified</td>
+                            <td>{{ $item_sos->operating_code ? $item_sos->operating_code : "--" }}</td>
+                            <td>{{ $item_sos->status ? $item_sos->status : "--" }}</td>
+                            <td>{{ $item_sos->remark_status ? $item_sos->remark_status : "--" }}</td>
+                            <td>{{ thaidate("j F Y" , strtotime($item_sos->created_at)) ? thaidate("j F Y" , strtotime($item_sos->created_at)) : "--" }}</td>
+                            <td>{{ $item_sos->lat ? $item_sos->lat : "--" }}</td>
+                            <td>{{ $item_sos->lng ? $item_sos->lng : "--" }}</td>
+                            <td>{{ $item_sos->address ? $item_sos->address : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->location_sos ? $item_sos->form_yellow->location_sos : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->be_notified ? $item_sos->form_yellow->be_notified : "--" }}</td>
                             <td>
                                 @if( !empty($item_sos->name_user) )
                                     {{ $item_sos->name_user }}
@@ -152,76 +156,152 @@
                                     {{ $name_command_create }}
                                 @endif
                             </td>
-                            <td>{{ $item_sos->phone_user }}</td>
-                            <td>{{ $item_sos->command_by }}</td>
-                            <td>organization_helper</td>
-                            <td>name_helper</td>
-                            <td>y_vehicle_type</td>
-                            <td>y_operating_suit_type</td>
-                            <td>y_symptom</td>
-                            <td>y_symptom_other</td>
-                            <td>y_idc</td>
-                            <td>y_rc</td>
-                            <td>y_rc_black_text</td>
-                            <td>s_remark_photo_sos</td>
-                            <td>time_command</td>
-                            <td>time_go_to_help</td>
-                            <td>time_to_the_scene</td>
-                            <td>time_leave_the_scene</td>
-                            <td>time_hospital</td>
-                            <td>time_to_the_operating_base</td>
-                            <td>รวมเวลาช่วยเหลือ (s_time_command - s_time_sos_success)</td>
+                            <td>{{ $item_sos->phone_user ? $item_sos->phone_user : "--" }}</td>
+                            <td>{{ $item_sos->command_by ? $item_sos->command_by : "--" }}</td>
+                            <td>{{ $item_sos->organization_helper ? $item_sos->organization_helper : "--" }}</td>
+                            <td>{{ $item_sos->name_helper ? $item_sos->name_helper : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->vehicle_type ? $item_sos->form_yellow->vehicle_type : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->operating_suit_type ? $item_sos->form_yellow->operating_suit_type : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->symptom ? $item_sos->form_yellow->symptom : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->symptom_other ? $item_sos->form_yellow->symptom_other : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->idc ? $item_sos->form_yellow->idc : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->rc ? $item_sos->form_yellow->rc : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->rc_black_text ? $item_sos->form_yellow->rc_black_text : "--" }}</td>
+                            <td>{{ $item_sos->remark_photo_sos ? $item_sos->remark_photo_sos : "--" }}</td>
+                            <td>{{ $item_sos->time_command ? $item_sos->time_command : "--" }}</td>
+                            <td>{{ $item_sos->time_go_to_help ? $item_sos->time_go_to_help : "--" }}</td>
+                            <td>{{ $item_sos->time_to_the_scene ? $item_sos->time_to_the_scene : "--" }}</td>
+                            <td>{{ $item_sos->time_leave_the_scene ? $item_sos->time_leave_the_scene : "--" }}</td>
+                            <td>{{ $item_sos->time_hospital ? $item_sos->time_hospital : "--" }}</td>
+                            <td>{{ $item_sos->time_to_the_operating_base ? $item_sos->time_to_the_operating_base : "--" }}</td>
 
-                            <td>km_create_sos_to_go_to_help</td>
-                            <td>km_to_the_scene_to_leave_the_scene</td>
-                            <td>km_hospital</td>
-                            <td>km_operating_base</td>
-                            <td>รวมเลข กม.</td>
+                            @php
+                                $s_time_sos_success = strtotime($item_sos->time_sos_success);
+                                $s_time_command = strtotime($item_sos->time_command);
 
-                            <td>y_treatment</td>
-                            <td>y_sub_treatment</td>
+                                $s_timeDifference = abs($s_time_sos_success - $s_time_command);
 
-                            <td>s_score_impression</td>
-                            <td>s_score_period</td>
-                            <td>s_score_total</td>
-                            <td>s_comment_help</td>
+                                if ($s_timeDifference >= 3600) {
+                                    $s_hours = floor($s_timeDifference / 3600);
+                                    $s_remainingMinutes = floor(($s_timeDifference % 3600) / 60);
+                                    $s_remainingSeconds = $s_timeDifference % 60;
 
-                            <td>s_remark_helper</td>
+                                    $s_time_unit = $s_hours . ' ชั่วโมง ' . $s_remainingMinutes . ' นาที ' . $s_remainingSeconds . ' วินาที';
+                                } elseif ($s_timeDifference >= 60) {
+                                    $s_minutes = floor($s_timeDifference / 60);
+                                    $s_seconds = $s_timeDifference % 60;
 
-                            <td>s_forward_operation_from</td>
-                            <td>s_forward_operation_to</td>
-                            <td>s_joint_case</td>
+                                    $s_time_unit = $s_minutes . ' นาที ' . $s_seconds . ' วินาที';
+                                } else {
+                                    $s_time_unit = $s_timeDifference . ' วินาที';
+                                }
 
-                            <td>y_patient_name_1</td>
-                            <td>y_patient_age_1</td>
-                            <td>y_patient_hn_1</td>
-                            <td>y_patient_vn_1</td>
-                            <td>y_delivered_province_1</td>
-                            <td>y_delivered_hospital_1</td>
+                            @endphp
+                            <td>{{ $s_time_unit }}</td>
 
-                            <td>y_patient_name_2</td>
-                            <td>y_patient_age_2</td>
-                            <td>y_patient_hn_2</td>
-                            <td>y_patient_vn_2</td>
-                            <td>y_delivered_province_2</td>
-                            <td>y_delivered_hospital_2</td>
+                            <td>{{ $item_sos->form_yellow->km_create_sos_to_go_to_help ? $item_sos->form_yellow->km_create_sos_to_go_to_help : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->km_to_the_scene_to_leave_the_scene ? $item_sos->form_yellow->km_to_the_scene_to_leave_the_scene : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->km_hospital ? $item_sos->form_yellow->km_hospital : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->km_operating_base ? $item_sos->form_yellow->km_operating_base : "--" }}</td>
 
-                            <td>y_patient_name_3</td>
-                            <td>y_patient_age_3</td>
-                            <td>y_patient_hn_3</td>
-                            <td>y_patient_vn_3</td>
-                            <td>y_delivered_province_3</td>
-                            <td>y_delivered_hospital_3</td>
+                            @php
+                                $total_km = $item_sos->form_yellow->km_create_sos_to_go_to_help + $item_sos->form_yellow->km_to_the_scene_to_leave_the_scene
+                                + $item_sos->form_yellow->km_hospital + $item_sos->form_yellow->km_operating_base;
+                            @endphp
+                            <td>{{ $total_km }}</td>
 
-                            <td>y_submission_criteria</td>
-                            <td>y_communication_hospital</td>
+                            <td>{{ $item_sos->form_yellow->treatment ? $item_sos->form_yellow->treatment : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->sub_treatment ? $item_sos->form_yellow->sub_treatment : "--" }}</td>
 
-                            <td>y_registration_category</td>
-                            <td>y_registration_number</td>
-                            <td>y_registration_province</td>
-                            <td>y_owner_registration</td>
+                            <td>{{ $item_sos->score_impression ? $item_sos->score_impression : "--" }}</td>
+                            <td>{{ $item_sos->score_period ? $item_sos->score_period : "--" }}</td>
+                            <td>{{ $item_sos->score_total ? $item_sos->score_total : "--" }}</td>
+                            <td>{{ $item_sos->comment_help ? $item_sos->comment_help : "--" }}</td>
 
-                            <td>s_refuse</td>
+                            <td>{{ $item_sos->remark_helper ? $item_sos->remark_helper : "--" }}</td>
+
+                            @php
+                                $forward_sos_from = App\Models\Sos_help_center::where('id',$item_sos->forward_operation_from)->select('operating_code','forward_operation_from')->first();
+                            @endphp
+
+                            @if (!empty($item_sos->forward_operation_from))
+                                <td>{{ $forward_sos_from->operating_code }}</td>
+                            @else
+                                <td>--</td>
+                            @endif
+
+                            @php
+                                $forward_sos_to = App\Models\Sos_help_center::where('id',$item_sos->forward_operation_to)->select('operating_code','forward_operation_to')->first();
+                            @endphp
+
+                            @if (!empty($item_sos->forward_operation_to))
+                                <td>{{ $forward_sos_to->operating_code }}</td>
+                            @else
+                                <td>--</td>
+                            @endif
+
+                            @php
+                                $joincase_array = array();
+                                if(!empty($item_sos->joint_case)){
+                                    $explode_joincase = json_decode($item_sos->joint_case);
+
+                                    for ($i = 0; $i < count($explode_joincase); $i++) {
+                                        $find_operationg_code = App\Models\Sos_help_center::where('id', $explode_joincase[$i])->select('operating_code')->first();
+
+                                        if ($find_operationg_code) {
+                                            $joincase_array[] = $find_operationg_code->operating_code;
+                                        }
+                                    }
+                                }
+                                $joined_codes = implode(',', $joincase_array);
+                            @endphp
+                            <td>{{ $joined_codes ? $joined_codes : "--" }}</td>
+
+                            <td>{{ $item_sos->form_yellow->patient_name_1 ? $item_sos->form_yellow->patient_name_1 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->patient_age_1 ? $item_sos->form_yellow->patient_age_1 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->patient_hn_1 ? $item_sos->form_yellow->patient_hn_1 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->patient_vn_1 ? $item_sos->form_yellow->patient_vn_1 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->delivered_province_1 ? $item_sos->form_yellow->delivered_province_1 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->delivered_hospital_1 ? $item_sos->form_yellow->delivered_hospital_1 : "--" }}</td>
+
+                            <td>{{ $item_sos->form_yellow->patient_name_2 ? $item_sos->form_yellow->patient_name_2 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->patient_age_2 ? $item_sos->form_yellow->patient_age_2 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->patient_hn_2 ? $item_sos->form_yellow->patient_hn_2 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->patient_vn_2 ? $item_sos->form_yellow->patient_vn_2 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->delivered_province_2 ? $item_sos->form_yellow->delivered_province_2 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->delivered_hospital_2 ? $item_sos->form_yellow->delivered_hospital_2 : "--" }}</td>
+
+                            <td>{{ $item_sos->form_yellow->patient_name_3 ? $item_sos->form_yellow->patient_name_3 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->patient_age_3 ? $item_sos->form_yellow->patient_age_3 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->patient_hn_3 ? $item_sos->form_yellow->patient_hn_3 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->patient_vn_3 ? $item_sos->form_yellow->patient_vn_3 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->delivered_province_3 ? $item_sos->form_yellow->delivered_province_3 : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->delivered_hospital_3 ? $item_sos->form_yellow->delivered_hospital_3 : "--" }}</td>
+
+
+                            <td>{{ $item_sos->form_yellow->submission_criteria ? $item_sos->form_yellow->submission_criteria : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->communication_hospital ? $item_sos->form_yellow->communication_hospital : "--" }}</td>
+
+                            <td>{{ $item_sos->form_yellow->registration_category ? $item_sos->form_yellow->registration_category : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->registration_number ? $item_sos->form_yellow->registration_number : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->registration_province ? $item_sos->form_yellow->registration_province : "--" }}</td>
+                            <td>{{ $item_sos->form_yellow->owner_registration ? $item_sos->form_yellow->owner_registration : "--" }}</td>
+                            @php
+                                $refuse_array = array();
+                                if(!empty($item_sos->refuse)){
+                                    $explode_refuse = explode(',',$item_sos->refuse);
+
+                                    for ($i = 0; $i < count($explode_refuse); $i++) {
+                                        $find_name = App\User::where('id', $explode_refuse[$i])->select('name')->first();
+
+                                        if ($find_name) {
+                                            $refuse_array[] = $find_name->name;
+                                        }
+                                    }
+                                }
+                                $name_refuse_arr = implode(',', $refuse_array);
+                            @endphp
+                            <td>{{ $name_refuse_arr ? $name_refuse_arr : "--"}}</td>
 
                         </tr>
                         @endforeach
@@ -378,5 +458,13 @@
     });
 
     </script>
+{{--
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let pagination_class = document.querySelector('.pagination');
+            pagination_class.classList.add('float-start');
+        });
+
+    </script> --}}
 
 @endsection

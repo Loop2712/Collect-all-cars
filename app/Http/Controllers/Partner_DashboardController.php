@@ -12,6 +12,8 @@ use Maatwebsite\Excel\Facades\Excel;
 Use Carbon\Carbon;
 use PDF;
 use App\User;
+use App\Models\Partner;
+use App\Models\Check_in;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,13 +57,65 @@ class Partner_DashboardController extends Controller
         ->orderBy('user_location_count','DESC')
         ->get();
 
+
+        //ไม่ได้เข้าพื้นที่นานที่สุด
+        $data_checkin = Partner::where('name' ,'=', $user_login->organization)->first();
+
+        $last_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
+        ->groupBy('user_id')
+        ->orderBy('time_out','asc')
+        ->limit(5)
+        ->get();
+
+        for ($i=0; $i < count($last_checkIn_data); $i++) {
+            $data_user_from_checkin = User::where('id','=',$last_checkIn_data[$i]['user_id'])->first();
+            $last_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
+            $last_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
+            $last_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
+        }
+
+        //เข้าพื้นที่บ่อยที่สุด
+        $most_often_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
+        ->select('*',DB::raw('COUNT(user_id) as count_user_checkin'))
+        ->groupBy('user_id')
+        ->orderBy('count_user_checkin','desc')
+        ->limit(5)
+        ->get();
+
+        for ($i=0; $i < count($most_often_checkIn_data); $i++) {
+            $data_user_from_checkin = User::where('id','=',$most_often_checkIn_data[$i]['user_id'])->first();
+            $most_often_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
+            $most_often_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
+            $most_often_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
+        }
+
+        //เข้าพื้นที่ล่าสุด
+        $lastest_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
+        ->groupBy('user_id')
+        ->orderBy('time_in','desc')
+        ->limit(5)
+        ->get();
+
+         for ($i=0; $i < count($lastest_checkIn_data); $i++) {
+             $data_user_from_checkin = User::where('id','=',$lastest_checkIn_data[$i]['user_id'])->first();
+             $lastest_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
+             $lastest_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
+             $lastest_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
+         }
+
+
+
         return view('dashboard.dashboard_index',  compact(
             'data_officer',
             'data_user_from',
             'all_user',
             'all_user_m',
             'count_type_login',
-            'count_user_location'
+            'count_user_location',
+            'last_checkIn_data',
+            'most_often_checkIn_data',
+            'lastest_checkIn_data',
+
         ));
 
     }

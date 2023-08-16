@@ -427,7 +427,7 @@
     border: #fac831 1px solid !important;
     border-radius: 0px !important;
 }
-.bls-active { 
+.bls-active {
     background-color: #fac831!important;
     color: #ffffff !important;
 }
@@ -474,7 +474,7 @@
     color: #00438c !important;
     border: #00438c 1px solid !important;
     border-radius: 25px !important;
-    
+
 }
 
 
@@ -531,7 +531,7 @@
     color: #00438c !important;
     border: #00438c 1px solid !important;
     border-radius: 25px !important;
-    
+
 }
 
 
@@ -883,7 +883,7 @@
 	                            <a href="{{ url('/dashboard_index#dashboard_viisos') }}"><i class='fas fa-users-cog'></i>ViiSOS</a>
 	                        </li>
 	                        <li>
-	                            <a href="{{ url('/dashboard_index#dashboard_viicare') }}"><i class='fas fa-users-cog'></i>ViiNews</a>
+	                            <a href="{{ url('/dashboard_index#dashboard_viinews') }}"><i class='fas fa-users-cog'></i>ViiNews</a>
 	                        </li>
 	                        <li>
 	                            <a href="{{ url('/dashboard_index#dashboard_viimove') }}"><i class='fas fa-users-cog'></i>ViiMove</a>
@@ -2413,9 +2413,9 @@
 	                    	<div class="card">
 								<div class="card-body">
 									<h4>
-										ต้องการ <b style="font-size:30px;">รถ</b> 
-										รหัสเหตุการณ์ <b style="font-size:30px;" class="text-warning">เหลือง(เร่งด่วน)</b> 
-										จำนวน <b style="font-size:30px;">1</b> 
+										ต้องการ <b style="font-size:30px;">รถ</b>
+										รหัสเหตุการณ์ <b style="font-size:30px;" class="text-warning">เหลือง(เร่งด่วน)</b>
+										จำนวน <b style="font-size:30px;">1</b>
 									</h4>
 								</div>
 							</div>
@@ -2531,7 +2531,7 @@
 	                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
 	                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
 	                                            <div class="d-flex align-items-center">
-	                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
+	                                                <input class="form-check-input" id="test" type="checkbox" value="">
 	                                            </div>
 	                                            <div class="ms-auto">
 	                                                <div class="d-flex align-items-center p-2 cursor-pointer">
@@ -3741,7 +3741,7 @@
 			document.querySelector('#wait_data').classList.add('show' , 'active');
 		}
 	}
-		
+
 	var data_ask_more  ;
 
 	function create_alert_sos_ask_mores(data){
@@ -3800,7 +3800,7 @@
 			for(let item of data){
 
 				btn_command_ask_mores = document.querySelector('#btn_command_ask_mores_id_' + item.id);
-			
+
 				if(!btn_command_ask_mores){
 
 					let html_vehicle = '';
@@ -3865,7 +3865,7 @@
 					                <p class="card-text">
 					                	<b>รหัสปฏิบัติการ : `+item.operating_code+`</b>
 					                	<br>
-					                	<b>จำนวนที่ต้องการ : `+require_vehicle_all+`</b> หน่วย | <b>`+html_vehicle+`</b> 
+					                	<b>จำนวนที่ต้องการ : `+require_vehicle_all+`</b> หน่วย | <b>`+html_vehicle+`</b>
 					                </p>
 				                	<a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#select_forward_`+item.id+`" aria-expanded="true" aria-controls="select_forward_`+item.id+`" class="">
 				                		<i class="fa-solid fa-paper-plane"></i> ส่งต่อการแจ้งเตือน
@@ -3939,7 +3939,7 @@
 										// console.log(Standby_user_id);
 
 									let a_item = owlOfficer_case.querySelector('.a_item_'+ixz);
-										a_item.setAttribute("onclick" , 
+										a_item.setAttribute("onclick" ,
 									"send_noti_ask_mores_to('"+Standby_user_id+"','"+item.ask_mores_id+"')");
 										// console.log(a_item);
 
@@ -3969,9 +3969,9 @@
 		        }
 
 			}
-			
+
 		}
-		
+
 	}
 
 	function send_noti_ask_mores_to(user_id , ask_mores_id){

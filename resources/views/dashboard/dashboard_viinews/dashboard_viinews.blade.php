@@ -1,3 +1,17 @@
+<style>
+    .recent-product-img {
+        width: 50px;
+        height: 50px;
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        border: 1px solid #e6e6e6;
+    }
+
+</style>
+
 <div class="card">
     <div class="card-header">
         <div>
@@ -11,12 +25,12 @@
 <div class="bg-transparent">
     <h3 class="font-weight-bold mb-1">กรุงเทพมหานคร</h3>
     <div class="row row-cols-1 row-cols-md-2">
-
+        <!-- ไม่ได้เข้าพื้นที่นานที่สุด -->
         <div class="col-12 col-md-4 d-flex">
             <div class="card radius-10 w-100">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
-                        <div>
+                        <div class="col-10">
                             <h5 class="font-weight-bold mb-0" >ไม่ได้เข้าพื้นที่นานที่สุด</h5>
                         </div>
                         <div class="dropdown ms-auto">
@@ -29,67 +43,57 @@
                         </div>
                     </div>
                 </div>
-                <div class="best-selling-products p-3 mb-3">
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="" />
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ A</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">4 เดือนที่แล้ว</p>
-                    </div>
-                    <hr />
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="" />
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ B</h6>
+                <div class="p-3 mb-3">
+                    @foreach ($last_checkIn_data as $last_checkIn_data)
+                        <div class="d-flex align-items-center">
+                            <div class="recent-product-img">
+                                @if(!empty($last_checkIn_data->photo))
+                                    <img src="{{ url('storage') }}/{{ $last_checkIn_data->photo }}" class="p-0" alt="">
+                                @endif
+                                @if(empty($last_checkIn_data->photo) && !empty($last_checkIn_data->avatar))
+                                    <img src="{{ $last_checkIn_data->avatar }}" class="p-0" alt="">
+                                @endif
+                                @if(empty($last_checkIn_data->photo && empty($last_checkIn_data->avatar)))
+                                    <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                @endif
+                            </div>
+                            <div class="ms-2">
+                                <span class="mt-2 font-14">{{$last_checkIn_data->name}}</span>
+                            </div>
 
+
+                            @php
+                                $currentDate = \Carbon\Carbon::now();
+                                $checkOutDate = \Carbon\Carbon::parse($last_checkIn_data->time_out);
+
+                                $daysDifference = $currentDate->diffInDays($checkOutDate);
+
+                                if ($daysDifference >= 86400) {
+                                    $checkin_days = floor($daysDifference / 86400);
+                                    $checkin_hours = floor(($daysDifference % 86400) / 3600);
+                                    // $checkin_remainingMinutes = floor((($daysDifference % 86400) % 3600) / 60);
+                                    // $checkin_remainingSeconds = ($daysDifference % 86400) % 60;
+
+                                    // $checkin_time_unit = $checkin_days . ' วัน ' . $checkin_hours . ' ชั่วโมง ' . $checkin_remainingMinutes . ' นาที ' . $checkin_remainingSeconds . ' วินาที';
+                                    $checkin_time_unit = $checkin_days . ' วัน ' . $checkin_hours . ' ชั่วโมง ';
+
+                                }else{
+                                    $checkin_time_unit = 'น้อยกว่า 1 วัน';
+                                }
+                            @endphp
+                            <p class="ms-auto mb-0 text-purple">{{ $checkin_time_unit }}</p>
                         </div>
-                        <p class="ms-auto mb-0 text-purple">4 เดือนที่แล้ว</p>
-                    </div>
-                    <hr />
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="" />
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ C</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">3 เดือนที่แล้ว</p>
-                    </div>
-                    <hr />
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="" />
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ D</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">3 เดือนที่แล้ว</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" class=""
-                                alt="" />
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ E</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">3 เดือนที่แล้ว</p>
-                    </div>
+                        <hr />
+                    @endforeach
                 </div>
             </div>
         </div>
-
+        <!-- เข้าพื้นที่บ่อยที่สุด -->
         <div class="col-12 col-md-4 d-flex">
             <div class="card radius-10 w-100">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
-                        <div>
+                        <div class="col-10">
                             <h5 class="font-weight-bold mb-0">เข้าพื้นที่บ่อยที่สุด</h5>
                         </div>
                         <div class="dropdown ms-auto">
@@ -102,66 +106,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="best-selling-products p-3 mb-3">
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="" />
+                <div class="p-3 mb-3">
+                    @foreach ($most_often_checkIn_data as $most_often_checkIn_data)
+                        <div class="d-flex align-items-center">
+                            <div class="recent-product-img">
+                                @if(!empty($most_often_checkIn_data->photo))
+                                    <img src="{{ url('storage') }}/{{ $most_often_checkIn_data->photo }}" class="p-0" alt="">
+                                @endif
+                                @if(empty($most_often_checkIn_data->photo) && !empty($most_often_checkIn_data->avatar))
+                                    <img src="{{ $most_often_checkIn_data->avatar }}" class="p-0" alt="">
+                                @endif
+                                @if(empty($most_often_checkIn_data->photo && empty($most_often_checkIn_data->avatar)))
+                                    <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                @endif
+                            </div>
+                            <div class="ms-2">
+                                <span class="mt-2 font-14">{{$most_often_checkIn_data->name}}</span>
+                            </div>
+
+                            <p class="ms-auto mb-0 text-purple">{{$most_often_checkIn_data->count_user_checkin}} ครั้ง</p>
                         </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ A</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">50 ครั้ง</p>
-                    </div>
-                    <hr />
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="" />
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ B</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">44 ครั้ง</p>
-                    </div>
-                    <hr />
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="" />
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ C</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">42 ครั้ง</p>
-                    </div>
-                    <hr />
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="" />
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ D</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">40 ครั้ง</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" class=""
-                                alt="" />
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ E</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">30 ครั้ง</p>
-                    </div>
+                        <hr />
+                    @endforeach
+
+
                 </div>
             </div>
         </div>
-
+        <!-- เข้าพื้นที่ล่าสุด -->
         <div class="col-12 col-md-4 d-flex">
             <div class="card radius-10 w-100">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
-                        <div>
+                        <div class="col-10">
                             <h5 class="font-weight-bold mb-0">เข้าพื้นที่ล่าสุด</h5>
                         </div>
                         <div class="dropdown ms-auto">
@@ -174,57 +151,60 @@
                         </div>
                     </div>
                 </div>
-                <div class="best-selling-products p-3 mb-3">
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="" />
+                <div class="p-3 mb-3">
+                    @foreach ($lastest_checkIn_data as $lastest_checkIn_data)
+                        <div class="d-flex align-items-center">
+                            <div class="recent-product-img">
+                                @if(!empty($lastest_checkIn_data->photo))
+                                    <img src="{{ url('storage') }}/{{ $lastest_checkIn_data->photo }}" class="p-0" alt="">
+                                @endif
+                                @if(empty($lastest_checkIn_data->photo) && !empty($lastest_checkIn_data->avatar))
+                                    <img src="{{ $lastest_checkIn_data->avatar }}" class="p-0" alt="">
+                                @endif
+                                @if(empty($lastest_checkIn_data->photo && empty($lastest_checkIn_data->avatar)))
+                                    <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                @endif
+                            </div>
+                            <div class="ms-2">
+                                <span class="mt-2 font-14">{{$lastest_checkIn_data->name}}</span>
+                            </div>
+
+                            @php
+                                $checkin_time_current = date('Y-m-d H:i:s');
+                                $checkin_time_in = \Carbon\Carbon::parse($lastest_checkIn_data->time_in);
+
+                                $checkin_timeDifference = $checkin_time_in->diffInMinutes($checkin_time_current); // หรือ diffInSeconds() หากต้องการในหน่วยวินาที
+
+                                if ($checkin_timeDifference >= 86400) {
+                                    $checkin_days = floor($checkin_timeDifference / 86400);
+                                    $checkin_hours = floor(($checkin_timeDifference % 86400) / 3600);
+                                    // $checkin_remainingMinutes = floor((($checkin_timeDifference % 86400) % 3600) / 60);
+                                    // $checkin_remainingSeconds = ($checkin_timeDifference % 86400) % 60;
+
+                                    // $checkin_time_unit = $checkin_days . ' วัน ' . $checkin_hours . ' ชั่วโมง ' . $checkin_remainingMinutes . ' นาที ' . $checkin_remainingSeconds . ' วินาที';
+                                    $checkin_time_unit = $checkin_days . ' วัน ' . $checkin_hours . ' ชั่วโมง ';
+
+                                } elseif ($checkin_timeDifference >= 3600) {
+                                    $checkin_hours = floor($checkin_timeDifference / 3600);
+                                    $checkin_remainingMinutes = floor(($checkin_timeDifference % 3600) / 60);
+                                    $checkin_remainingSeconds = $checkin_timeDifference % 60;
+
+                                    $checkin_time_unit = $checkin_hours . ' ชั่วโมง ' . $checkin_remainingMinutes . ' นาที ' . $checkin_remainingSeconds . ' วินาที';
+                                } elseif ($checkin_timeDifference >= 60) {
+                                    $checkin_minutes = floor($checkin_timeDifference / 60);
+                                    $checkin_seconds = $checkin_timeDifference % 60;
+
+                                    $checkin_time_unit = $checkin_minutes . ' นาที ' . $checkin_seconds . ' วินาที';
+                                } else {
+                                    $checkin_time_unit = $checkin_timeDifference . ' วินาที';
+                                }
+
+                            @endphp
+
+                            <p class="ms-auto mb-0 text-purple">{{$checkin_time_unit}}</p>
                         </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ A</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">2 นาทีที่แล้ว</p>
-                    </div>
-                    <hr />
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="" />
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ B</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">3 นาทีที่แล้ว</p>
-                    </div>
-                    <hr />
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="" />
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ C</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">3 นาทีที่แล้ว</p>
-                    </div>
-                    <hr />
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="" />
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ D</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">4 นาทีที่แล้ว</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" class=""
-                                alt="" />
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณ E</h6>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">5 นาทีที่แล้ว</p>
-                    </div>
+                        <hr />
+                    @endforeach
                 </div>
             </div>
         </div>

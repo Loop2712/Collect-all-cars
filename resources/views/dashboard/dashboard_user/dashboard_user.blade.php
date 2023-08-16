@@ -253,8 +253,9 @@
 <!-- ============================= User from Login with Bar Chart ================================= -->
 
 <div class="row mb-3">
+    <!-- ช่องทางเข้าสู่ระบบ -->
     <div class="col-12 col-lg-7">
-        <div class="card h-100">
+        <div class="card radius-10 h-100">
             <div class="d-flex align-items-center m-3">
                 <div>
                     <h5 class="mb-1">ช่องทางเข้าสู่ระบบ</h5>
@@ -265,8 +266,9 @@
             </div>
         </div>
     </div>
+    <!-- จังหวัดของผู้ใช้สูงสุด 5 อันดับ -->
     <div class="col-12 col-lg-5">
-        <div class="card h-100">
+        <div class="card radius-10 h-100">
             <div class="d-flex align-items-center m-3">
                 <div>
                     <h5 class="mb-1">จังหวัดของผู้ใช้สูงสุด 5 อันดับ</h5>
@@ -312,23 +314,21 @@
     @foreach ($count_type_login as $item)
         @if (empty($item->type))
             color_loop = '#546E7A';
-            logo_loop = "https://www.viicheck.com/Medilab/img/icon.png"
+            // logo_loop = "https://www.viicheck.com/Medilab/img/icon.png";
         @elseif($item->type == 'line')
             color_loop = '#13d8aa';
-            logo_loop = "https://www.viicheck.com/Medilab/img/icon.png"
+            // logo_loop = "https://www.viicheck.com/Medilab/img/icon.png";
         @elseif($item->type == 'google')
             color_loop = '#d4526e';
-            logo_loop = "https://www.viicheck.com/Medilab/img/icon.png"
+            // logo_loop = "https://www.viicheck.com/Medilab/img/icon.png";
         @elseif($item->type == 'facebook')
             color_loop = '#33b2df';
-            logo_loop = "https://www.viicheck.com/Medilab/img/icon.png"
+            // logo_loop = "https://www.viicheck.com/Medilab/img/icon.png";
         @endif
 
         // logo_type_login_arr.push(logo_loop);
         color_type_login_arr.push(color_loop);
-
     @endforeach
-
 
     var options = {
         series: [{
@@ -382,7 +382,7 @@
             x: {
                 show: false
             },
-            y: {0
+            y: {
                 title: {
                     formatter: function () {
                         return ''
