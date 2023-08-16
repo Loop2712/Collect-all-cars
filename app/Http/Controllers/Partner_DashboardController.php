@@ -63,16 +63,31 @@ class Partner_DashboardController extends Controller
 
         $last_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
         ->groupBy('user_id')
-        ->orderBy('time_out','asc')
-        ->limit(5)
+        ->select('user_id')
         ->get();
+
+        $sorted_last_checkIn_data = [];
 
         for ($i=0; $i < count($last_checkIn_data); $i++) {
             $data_user_from_checkin = User::where('id','=',$last_checkIn_data[$i]['user_id'])->first();
             $last_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
             $last_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
             $last_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
+
+            $data_checkin_from_checkin = Check_in::where('user_id',$last_checkIn_data[$i]['user_id'])
+            ->orderBy('time_out','desc')
+            ->get();
+
+            $last_checkIn_data[$i]['time_out'] = $data_checkin_from_checkin[0]['time_out'];
+
+            // เก็บข้อมูลที่ปรับแต่งเพื่อใช้ในการเรียงลำดับลงในอาร์เรย์
+            $sorted_last_checkIn_data[] = $last_checkIn_data[$i];
         }
+
+        usort($sorted_last_checkIn_data, function ($a, $b) {
+            return strtotime($a['time_out']) - strtotime($b['time_out']);
+        });
+
 
         //เข้าพื้นที่บ่อยที่สุด
         $most_often_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
@@ -92,16 +107,37 @@ class Partner_DashboardController extends Controller
         //เข้าพื้นที่ล่าสุด
         $lastest_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
         ->groupBy('user_id')
-        ->orderBy('time_in','desc')
+        ->select('user_id')
         ->limit(5)
         ->get();
 
-         for ($i=0; $i < count($lastest_checkIn_data); $i++) {
-             $data_user_from_checkin = User::where('id','=',$lastest_checkIn_data[$i]['user_id'])->first();
-             $lastest_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
-             $lastest_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
-             $lastest_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
-         }
+        $sorted_lastest_checkIn_data = [];
+
+        for ($i=0; $i < count($lastest_checkIn_data); $i++) {
+            $data_user_from_checkin = User::where('id','=',$lastest_checkIn_data[$i]['user_id'])->first();
+            $lastest_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
+            $lastest_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
+            $lastest_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
+
+            $data_checkin_from_checkin = Check_in::where('user_id',$last_checkIn_data[$i]['user_id'])
+            ->orderBy('time_in','desc')
+            ->get();
+
+            $lastest_checkIn_data[$i]['time_in'] = $data_checkin_from_checkin[0]['time_in'];
+
+            // เก็บข้อมูลที่ปรับแต่งเพื่อใช้ในการเรียงลำดับลงในอาร์เรย์
+            $sorted_lastest_checkIn_data[] = $lastest_checkIn_data[$i];
+        }
+
+        usort($sorted_lastest_checkIn_data, function ($a, $b) {
+            return strtotime($b['time_in']) - strtotime($a['time_in']);
+        });
+
+        //==================================================================================================================//
+                                                        //  viimove
+        //==================================================================================================================//
+
+
 
 
 
@@ -112,9 +148,9 @@ class Partner_DashboardController extends Controller
             'all_user_m',
             'count_type_login',
             'count_user_location',
-            'last_checkIn_data',
+            'sorted_last_checkIn_data',
             'most_often_checkIn_data',
-            'lastest_checkIn_data',
+            'sorted_lastest_checkIn_data',
 
         ));
 

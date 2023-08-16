@@ -23,7 +23,7 @@
     </div>
 </div>
 <div class="bg-transparent">
-    <h3 class="font-weight-bold mb-1">กรุงเทพมหานคร</h3>
+    <h3 class="font-weight-bold mb-1">พื้นที่ : รวม</h3>
     <div class="row row-cols-1 row-cols-md-2">
         <!-- ไม่ได้เข้าพื้นที่นานที่สุด -->
         <div class="col-12 col-md-4 d-flex">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="p-3 mb-3">
-                    @foreach ($last_checkIn_data as $last_checkIn_data)
+                    @foreach ($sorted_last_checkIn_data as $last_checkIn_data)
                         <div class="d-flex align-items-center">
                             <div class="recent-product-img">
                                 @if(!empty($last_checkIn_data->photo))
@@ -66,19 +66,30 @@
                                 $currentDate = \Carbon\Carbon::now();
                                 $checkOutDate = \Carbon\Carbon::parse($last_checkIn_data->time_out);
 
-                                $daysDifference = $currentDate->diffInDays($checkOutDate);
+                                $checkin_timeDifference = $currentDate->diffInMinutes($checkOutDate);
 
-                                if ($daysDifference >= 86400) {
-                                    $checkin_days = floor($daysDifference / 86400);
-                                    $checkin_hours = floor(($daysDifference % 86400) / 3600);
-                                    // $checkin_remainingMinutes = floor((($daysDifference % 86400) % 3600) / 60);
-                                    // $checkin_remainingSeconds = ($daysDifference % 86400) % 60;
+                                if ($checkin_timeDifference >= 86400) {
+                                    $checkin_days = floor($checkin_timeDifference / 86400);
+                                    $checkin_hours = floor(($checkin_timeDifference % 86400) / 3600);
+                                    // $checkin_remainingMinutes = floor((($checkin_timeDifference % 86400) % 3600) / 60);
+                                    // $checkin_remainingSeconds = ($checkin_timeDifference % 86400) % 60;
 
                                     // $checkin_time_unit = $checkin_days . ' วัน ' . $checkin_hours . ' ชั่วโมง ' . $checkin_remainingMinutes . ' นาที ' . $checkin_remainingSeconds . ' วินาที';
                                     $checkin_time_unit = $checkin_days . ' วัน ' . $checkin_hours . ' ชั่วโมง ';
 
-                                }else{
-                                    $checkin_time_unit = 'น้อยกว่า 1 วัน';
+                                }elseif ($checkin_timeDifference >= 3600) {
+                                    $checkin_hours = floor($checkin_timeDifference / 3600);
+                                    $checkin_remainingMinutes = floor(($checkin_timeDifference % 3600) / 60);
+                                    $checkin_remainingSeconds = $checkin_timeDifference % 60;
+
+                                    $checkin_time_unit = $checkin_hours . ' ชั่วโมง ' . $checkin_remainingMinutes . ' นาที ' . $checkin_remainingSeconds . ' วินาที';
+                                } elseif ($checkin_timeDifference >= 60) {
+                                    $checkin_minutes = floor($checkin_timeDifference / 60);
+                                    $checkin_seconds = $checkin_timeDifference % 60;
+
+                                    $checkin_time_unit = $checkin_minutes . ' นาที ' . $checkin_seconds . ' วินาที';
+                                } else {
+                                    $checkin_time_unit = $checkin_timeDifference . ' วินาที';
                                 }
                             @endphp
                             <p class="ms-auto mb-0 text-purple">{{ $checkin_time_unit }}</p>
@@ -152,7 +163,7 @@
                     </div>
                 </div>
                 <div class="p-3 mb-3">
-                    @foreach ($lastest_checkIn_data as $lastest_checkIn_data)
+                    @foreach ($sorted_lastest_checkIn_data as $lastest_checkIn_data)
                         <div class="d-flex align-items-center">
                             <div class="recent-product-img">
                                 @if(!empty($lastest_checkIn_data->photo))
