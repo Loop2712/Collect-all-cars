@@ -212,7 +212,12 @@
                                 $total_km = $item_sos->form_yellow->km_create_sos_to_go_to_help + $item_sos->form_yellow->km_to_the_scene_to_leave_the_scene
                                 + $item_sos->form_yellow->km_hospital + $item_sos->form_yellow->km_operating_base;
                             @endphp
-                            <td>{{ $total_km }}</td>
+                            @if ($total_km != 0)
+                                <td>{{ $total_km }}</td>
+                            @else
+                                <td> -- </td>
+                            @endif
+
 
                             <td>{{ $item_sos->form_yellow->treatment ? $item_sos->form_yellow->treatment : "--" }}</td>
                             <td>{{ $item_sos->form_yellow->sub_treatment ? $item_sos->form_yellow->sub_treatment : "--" }}</td>
