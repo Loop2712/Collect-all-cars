@@ -1267,7 +1267,13 @@ class Sos_help_centerController extends Controller
     function save_data_change_form_yellow(Request $request)
     {
         $requestData = $request->all();
-
+        
+        foreach ($requestData as $key => $value) {
+            if ($value === 'null') {
+                $requestData[$key] = null;
+            }
+        }
+        
         $data_sos_help_center = Sos_help_center::where('id',$requestData['sos_help_center_id'])->first();
 
         $data_Sos_1669 = Sos_1669_form_yellow::where('sos_help_center_id',$requestData['sos_help_center_id'])->first();
