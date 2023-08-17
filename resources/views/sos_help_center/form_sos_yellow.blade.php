@@ -2712,7 +2712,7 @@
 		}
 		// cheeck box
 		else if (sub_key === 'sub_treatment' || sub_key === 'symptom' || sub_key === 'submission_criteria' || sub_key === 'communication_hospital' ) {
-			console.log("cheeck box");
+			// console.log("cheeck box");
     		// console.log("sub_key >> " + sub_key);
 
 			let key_cheeck_box = document.getElementsByName(sub_key);
@@ -3431,14 +3431,14 @@
             return response.json();
         }).then(function(data){
             // console.log("UPDATE SUCCESS");
-            // console.log(data);
+            console.log(data);
             if (data['check'] == "OK") {
-				Loop_check_form_yellow();
             	for (const [key, value ] of Object.entries(data['data'])) {
             		if(key != "sos_help_center_id"){
             			edit_form_yellow(null , key , value , 'save_data_change_form_yellow')
             		}
             	}
+				Loop_check_form_yellow();
             }
         }).catch(function(error){
             // console.error(error);
