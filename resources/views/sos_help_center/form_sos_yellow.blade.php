@@ -2474,7 +2474,8 @@
 
 	$(document).ready(function () {
 	    $('#modal_alet_data_change').on('hidden.bs.modal', function () {
-	        console.log("โมดัลถูกปิดแล้ว");
+	        // console.log("โมดัลถูกปิดแล้ว");
+	        Loop_check_form_yellow();
 	    });
 	});
 
