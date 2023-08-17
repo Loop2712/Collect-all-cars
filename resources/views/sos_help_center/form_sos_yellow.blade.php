@@ -3337,7 +3337,11 @@
 		    	let html_tr = `
 		    		<tr>
 						<th scope="row">
-							<input type="checkbox" name="select_titel_update" 
+							<span id="icon_repeat_`+key+`" onclick="document.querySelector('#input_repeat_`+key+`').click();">
+								<i class="fa-duotone fa-repeat"></i> สลับ
+							</span>
+
+							<input id="input_repeat_`+key+`" type="checkbox" name="select_titel_update" class="d-none"
 							onchange="if(this.checked){
 								document.querySelector('#data_change_`+key+`').value = '`+value.new_data+`';
 								document.querySelector('#td_`+key+`_DB').classList.add('bg-danger');
@@ -3351,7 +3355,7 @@
 								document.querySelector('#td_`+key+`_DB').classList.remove('bg-danger');
 								document.querySelector('#td_`+key+`_DB').classList.add('bg-success');
 							}
-							">
+							"> 
 						</th>
 						<td>`+name_key+`</td>
 						<td id="td_`+key+`_DB" class="bg-success">`+value.old_data_DB+`</td>
