@@ -2734,10 +2734,6 @@
 				for (let xxi = 0; xxi < data_all_cheeck_box.length; xxi++) {
 			        document.querySelector('[data-'+sub_key+'="'+ data_all_cheeck_box[xxi] +'"]').checked = true;
 			    }
-			}else{
-				console.log("value false");
-				// Loop_check_form_yellow();
-				check_go_to(null,null);
 			}
 			
 		}
