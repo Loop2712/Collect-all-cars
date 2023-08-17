@@ -3270,7 +3270,8 @@ color: #ff9317;
 
       }else{
         // console.log('case no joint');
-        document.querySelector('#btn_select_operating_unit').classList.remove('d-none');
+        // document.querySelector('#btn_select_operating_unit').classList.remove('d-none');
+        check_show_btn_select_unit();
       }
 
     }
