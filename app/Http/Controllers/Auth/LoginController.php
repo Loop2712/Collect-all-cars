@@ -310,6 +310,18 @@ class LoginController extends Controller
                 'status' => 'active',
             ]);
 
+        DB::table('news')
+                ->where('user_id', $data_user->id)
+                ->update([
+                    'active' => "Yes",
+                ]);
+
+        DB::table('register_cars')
+                ->where('user_id', $data_user->id)
+                ->update([
+                    'active' => "Yes",
+                ]);
+
         if ($type == "line") {
 
             $provider_id = $user->provider_id ;
