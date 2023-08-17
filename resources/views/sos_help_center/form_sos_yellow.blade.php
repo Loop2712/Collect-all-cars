@@ -2494,8 +2494,6 @@
 	var data_arr = [] ;
 	var all_data_arr = [] ;
 
-	var check_modal_open = false ;
-
 	function Loop_check_form_yellow() {
 
         // console.log("LOOP check form yellow");
@@ -2509,13 +2507,6 @@
 	function Stop_reface_check_form_yellow() {
         clearInterval(reface_check_form_yellow);
         // console.log("STOP LOOP check form yellow");
-
-        if (check_modal_open) {
-	        $('#modal_alet_data_change').on('hidden.bs.modal', function () {
-		        console.log("โมดัลถูกปิดแล้ว");
-		        Loop_check_form_yellow();
-		    });
-	    }
     }
 
     function check_start_data_form_yellow(){
@@ -3380,7 +3371,6 @@
 		}
 
     	document.querySelector('#btn_modal_alet_data_change').click();
-    	check_modal_open = true ;
     }
 
     function select_titel_update_all(){
