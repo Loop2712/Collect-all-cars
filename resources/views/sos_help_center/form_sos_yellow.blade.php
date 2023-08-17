@@ -3448,13 +3448,8 @@
     var isModalClosed = false;
 
 	// หากโมดัลถูกปิด
-	document.getElementById("modal_alet_data_change").addEventListener("hidden.modal", function () {
+	document.getElementById("modal_alet_data_change").addEventListener("hidden.bs.modal", function () {
 	    isModalClosed = true;
-	    checkModalStatus();
-	});
-
-	// เมื่อคลิกปุ่มตรวจสอบสถานะโมดัล
-	function checkModalStatus() {
 	    if (isModalClosed) {
 	        console.log("โมดัลถูกปิดแล้ว");
             Loop_check_form_yellow();
@@ -3462,7 +3457,7 @@
 	        console.log("โมดัลยังไม่ถูกปิด");
 	        // Stop_reface_check_form_yellow();
 	    }
-	}
+	});
 
 
 
