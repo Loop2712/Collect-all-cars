@@ -2507,6 +2507,10 @@
 	function Stop_reface_check_form_yellow() {
         clearInterval(reface_check_form_yellow);
         // console.log("STOP LOOP check form yellow");
+        $('#modal_alet_data_change').on('hidden.bs.modal', function () {
+	        console.log("โมดัลถูกปิดแล้ว");
+	        Loop_check_form_yellow();
+	    });
     }
 
     function check_start_data_form_yellow(){
@@ -2516,11 +2520,6 @@
 		// console.log("ตอนนี้อยู่ที่หน้า >> " + form_yellow_current_topic);
 		// console.log("กำลังจะอัพเดทหน้าอื่นๆ และแจ้งเตือนหน้า "+ form_yellow_current_topic + " ถ้าข้อมูลมีการเปลี่ยนแปลง");
 		// console.log('----------------------------');
-
-		$('#modal_alet_data_change').on('hidden.bs.modal', function () {
-	        console.log("โมดัลถูกปิดแล้ว");
-	        Loop_check_form_yellow();
-	    });
 
     	// ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
 		fetch("{{ url('/') }}/api/check_update/form_yellow" + "/" + '{{ $sos_help_center->id }}')
