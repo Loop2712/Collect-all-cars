@@ -2410,8 +2410,8 @@
 	  	modal_alet_data_change
 	</button>
 
-	<!-- Modal -->
-	<div class="modal fade notranslate" id="modal_alet_data_change" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_alet_data_change" aria-hidden="true">
+	<!-- Modal  data-backdrop="static" -->
+	<div class="modal fade notranslate" id="modal_alet_data_change" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_alet_data_change" aria-hidden="true">
 		<div class="modal-dialog modal-xl">
 		    <div class="modal-content">
 		      	<div class="modal-header">
@@ -3444,6 +3444,23 @@
 
 
     }
+
+    var isModalClosed = false;
+
+	// หากโมดัลถูกปิด
+	document.getElementById("modal_alet_data_change").addEventListener("hidden.bs.modal", function () {
+	    isModalClosed = true;
+	});
+
+	// เมื่อคลิกปุ่มตรวจสอบสถานะโมดัล
+	function checkModalStatus() {
+	    if (isModalClosed) {
+	        console.log("โมดัลถูกปิดแล้ว");
+	    } else {
+	        console.log("โมดัลยังไม่ถูกปิด");
+	    }
+	}
+
 
 
 </script>
