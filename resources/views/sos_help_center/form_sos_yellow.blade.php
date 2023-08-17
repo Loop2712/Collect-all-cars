@@ -2737,6 +2737,7 @@
 			}else{
 				console.log("value false");
 				// Loop_check_form_yellow();
+				check_go_to(null,null);
 			}
 			
 		}
