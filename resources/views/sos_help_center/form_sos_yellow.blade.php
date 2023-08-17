@@ -2638,9 +2638,7 @@
 						  				// ไม่ต้องแจ้งเตือน
 			        				}else{
 			        					// แจ้งเตือนข้อมูลเปลี่ยนแปลง
-			        					// alet_new_data('form_yellow' , main_key , sub_key , data_new_5vi[main_key][sub_key] , start_data_arr[main_key][sub_key]);
-					  					edit_form_yellow(main_key , sub_key , data_new_5vi[main_key][sub_key] , null);
-
+			        					alet_new_data('form_yellow' , main_key , sub_key , data_new_5vi[main_key][sub_key] , start_data_arr[main_key][sub_key]);
 			        				}
 					  			}
 					  			
