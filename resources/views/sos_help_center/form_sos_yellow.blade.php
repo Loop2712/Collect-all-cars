@@ -2472,11 +2472,6 @@
 
 	var load_first_time = 'Yes' ;
 
-	$('#modal_alet_data_change').on('hidden.bs.modal', function () {
-        console.log("โมดัลถูกปิดแล้ว");
-        Loop_check_form_yellow();
-    });
-
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
 
@@ -3376,6 +3371,10 @@
 		}
 
     	document.querySelector('#btn_modal_alet_data_change').click();
+    	$('#modal_alet_data_change').on('hidden.bs.modal', function () {
+	        console.log("โมดัลถูกปิดแล้ว");
+	        Loop_check_form_yellow();
+	    });
     }
 
     function select_titel_update_all(){
