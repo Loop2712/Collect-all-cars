@@ -2467,6 +2467,10 @@
 
 <script>
 
+	document.getElementById("modal_alet_data_change").addEventListener("hidden.bs.modal", function () {
+	    console.log("555");
+	});
+
 	var form_yellow_current_topic = 1 ;
 	var page_before_click_button ;
 
@@ -3441,16 +3445,7 @@
             // console.error(error);
         });
 
-
-
     }
-
-
-	document.getElementById("modal_alet_data_change").addEventListener("hidden.bs.modal", function () {
-	    console.log("555");
-	});
-
-
 
 </script>
 
