@@ -2472,9 +2472,11 @@
 
 	var load_first_time = 'Yes' ;
 
-	document.getElementById("modal_alet_data_change").addEventListener("hidden.bs.modal", function () {
-		    console.log("555");
-		});
+	$(document).ready(function () {
+	    $('#modal_alet_data_change').on('hidden.bs.modal', function () {
+	        console.log("โมดัลถูกปิดแล้ว");
+	    });
+	});
 
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
