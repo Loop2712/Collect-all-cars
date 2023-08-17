@@ -870,7 +870,7 @@ input:focus {
 				<div class="row d-none mt-3" id="treatment_yes">
 					<div class="col-12 col-md-4 col-lg-4">
 						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
-							onclick="update_status('ออกจากที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'นำส่ง');">
+							onclick="update_status('ออกจากที่เกิดเหตุ' , '{{ $data_sos->id }}' , null);">
 								นำส่ง
 						</span>
 					</div>

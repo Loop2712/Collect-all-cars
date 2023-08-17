@@ -377,7 +377,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-4">
                                             <label>
-                                                <input type="checkbox" ame="sub_treatment" data-sub_treatment="ไม่นำส่ง" value="ไม่นำส่ง" class="sub_treatment card-input-red card-input-element d-none">
+                                                <input type="checkbox" name="sub_treatmentOfficer" data-sub_treatment="ไม่นำส่ง" value="ไม่นำส่ง" class="sub_treatment card-input-red card-input-element d-none">
                                                 <div class="text-danger card card-body d-flex flex-row justify-content-between align-items-center">
                                                     <b>
                                                         ไม่นำส่ง
