@@ -2411,7 +2411,7 @@
 	</button>
 
 	<!-- Modal  data-backdrop="static" -->
-	<div class="modal fade notranslate" id="modal_alet_data_change" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_alet_data_change" aria-hidden="true">
+	<div class="modal fade notranslate" id="modal_alet_data_change" data-keyboard="false" tabindex="-1" data-backdrop="static" aria-labelledby="Label_modal_alet_data_change" aria-hidden="true">
 		<div class="modal-dialog modal-xl">
 		    <div class="modal-content">
 		      	<div class="modal-header">
@@ -3435,8 +3435,8 @@
             			edit_form_yellow(null , key , value , 'save_data_change_form_yellow')
             		}
             	}
-            	Loop_check_form_yellow();
             }
+			Loop_check_form_yellow();
         }).catch(function(error){
             // console.error(error);
         });
