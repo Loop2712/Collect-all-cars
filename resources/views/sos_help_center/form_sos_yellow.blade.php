@@ -2496,7 +2496,7 @@
 
 	function Loop_check_form_yellow() {
 
-        console.log("LOOP check form yellow");
+        // console.log("LOOP check form yellow");
         reface_check_form_yellow = setInterval(function() {
         	check_start_data_form_yellow();
         	distance_in_no5();
@@ -2723,11 +2723,11 @@
 	            }
 	        }
 
-			console.log("value >>>>>>>>>>>>>>>>>>>>>>");
-			console.log(value);
+			// console.log("value >>>>>>>>>>>>>>>>>>>>>>");
+			// console.log(value);
 
 	        if ( value && value !== null && value !== "null" && value !== "[]") {
-				console.log("value true");
+				// console.log("value true");
 				
 				let data_all_cheeck_box = value.split(",");
 
@@ -2755,7 +2755,7 @@
 		}
 
 		if( old ){
-	    	console.log("บันทึกข้อมูลเข้า DB");
+	    	// console.log("บันทึกข้อมูลเข้า DB");
     	    check_go_to(null,null);
 		}
 
@@ -3431,7 +3431,7 @@
             return response.json();
         }).then(function(data){
             // console.log("UPDATE SUCCESS");
-            console.log(data);
+            // console.log(data);
             if (data['check'] == "OK") {
             	for (const [key, value ] of Object.entries(data['data'])) {
             		if(key != "sos_help_center_id"){
@@ -3439,7 +3439,7 @@
             		}
             	}
 				Loop_check_form_yellow();
-				console.log("loop ok");
+				// console.log("loop ok");
 
             }
         }).catch(function(error){
