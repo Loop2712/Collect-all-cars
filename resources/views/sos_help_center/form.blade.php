@@ -3278,6 +3278,7 @@ color: #ff9317;
     function check_show_btn_select_unit(){
 
         let status = '{{ $sos_help_center->status }}' ;
+        console.log(status);
 
         if (status === 'รอการยืนยัน' || status === 'ปฏิเสธ' || status === 'รับแจ้งเหตุ' || !status) {
             document.querySelector('#btn_operation').classList.add('d-none');
