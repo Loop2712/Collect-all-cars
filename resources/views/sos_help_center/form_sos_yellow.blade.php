@@ -2472,12 +2472,10 @@
 
 	var load_first_time = 'Yes' ;
 
-	$(document).ready(function () {
-	    $('#modal_alet_data_change').on('hidden.bs.modal', function () {
-	        // console.log("โมดัลถูกปิดแล้ว");
-	        Loop_check_form_yellow();
-	    });
-	});
+	$('#modal_alet_data_change').on('hidden.bs.modal', function () {
+        console.log("โมดัลถูกปิดแล้ว");
+        Loop_check_form_yellow();
+    });
 
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
