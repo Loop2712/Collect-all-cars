@@ -2688,9 +2688,8 @@
 		// start_data_arr[main_key][sub_key] = value ;
 		// data_arr[key] = value ;
 
-    	console.log("sub_key >> " + sub_key);
 		//  radio
-		if (sub_key === 'be_notified' || sub_key === 'idc' || sub_key === 'rc' || sub_key === 'treatment' || sub_key === 'sub_treatment' || sub_key === 'owner_registration') {
+		if (sub_key === 'be_notified' || sub_key === 'idc' || sub_key === 'rc' || sub_key === 'treatment' || sub_key === 'owner_registration') {
 			// console.log("radio");
 			if (value === null || value === '') {
 
@@ -2712,8 +2711,9 @@
 			}
 		}
 		// cheeck box
-		else if (sub_key === 'symptom' || sub_key === 'submission_criteria' || sub_key === 'communication_hospital') {
+		else if (sub_key === 'sub_treatment' || sub_key === 'symptom' || sub_key === 'submission_criteria' || sub_key === 'communication_hospital' ) {
 			// console.log("cheeck box");
+    		console.log("sub_key >> " + sub_key);
 
 			let key_cheeck_box = document.getElementsByName(sub_key);
 
