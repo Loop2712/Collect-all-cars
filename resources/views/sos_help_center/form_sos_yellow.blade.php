@@ -2517,6 +2517,11 @@
 		// console.log("กำลังจะอัพเดทหน้าอื่นๆ และแจ้งเตือนหน้า "+ form_yellow_current_topic + " ถ้าข้อมูลมีการเปลี่ยนแปลง");
 		// console.log('----------------------------');
 
+		$('#modal_alet_data_change').on('hidden.bs.modal', function () {
+	        console.log("โมดัลถูกปิดแล้ว");
+	        Loop_check_form_yellow();
+	    });
+
     	// ---------------------------- เช็คข้อมูลก่อนอัพเดท ----------------------------//
 		fetch("{{ url('/') }}/api/check_update/form_yellow" + "/" + '{{ $sos_help_center->id }}')
             .then(response => response.json())
@@ -3371,10 +3376,6 @@
 		}
 
     	document.querySelector('#btn_modal_alet_data_change').click();
-    	$('#modal_alet_data_change').on('hidden.bs.modal', function () {
-	        console.log("โมดัลถูกปิดแล้ว");
-	        Loop_check_form_yellow();
-	    });
     }
 
     function select_titel_update_all(){
