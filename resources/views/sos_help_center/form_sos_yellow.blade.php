@@ -2713,7 +2713,7 @@
 		// cheeck box
 		else if (sub_key === 'sub_treatment' || sub_key === 'symptom' || sub_key === 'submission_criteria' || sub_key === 'communication_hospital' ) {
 			// console.log("cheeck box");
-    		console.log("sub_key >> " + sub_key);
+    		// console.log("sub_key >> " + sub_key);
 
 			let key_cheeck_box = document.getElementsByName(sub_key);
 
@@ -3448,16 +3448,19 @@
     var isModalClosed = false;
 
 	// หากโมดัลถูกปิด
-	document.getElementById("modal_alet_data_change").addEventListener("hidden.bs.modal", function () {
+	document.getElementById("modal_alet_data_change").addEventListener("hidden.modal", function () {
 	    isModalClosed = true;
+	    checkModalStatus();
 	});
 
 	// เมื่อคลิกปุ่มตรวจสอบสถานะโมดัล
 	function checkModalStatus() {
 	    if (isModalClosed) {
 	        console.log("โมดัลถูกปิดแล้ว");
+            Loop_check_form_yellow();
 	    } else {
 	        console.log("โมดัลยังไม่ถูกปิด");
+	        // Stop_reface_check_form_yellow();
 	    }
 	}
 
