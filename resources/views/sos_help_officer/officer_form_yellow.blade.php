@@ -875,7 +875,10 @@
 
                     function setCheckedInputs(inputs, values) {
                         inputs.forEach(input => {
-                            input.checked = values.includes(input.value);
+                            if(values == input.value){
+                                // input.checked = values.includes(input.value);
+                                input.checked = true ;
+                            }
                         });
                     }
                     // function setCheckedInputs(inputs, values) {
