@@ -2712,7 +2712,7 @@
 		}
 		// cheeck box
 		else if (sub_key === 'sub_treatment' || sub_key === 'symptom' || sub_key === 'submission_criteria' || sub_key === 'communication_hospital' ) {
-			// console.log("cheeck box");
+			console.log("cheeck box");
     		// console.log("sub_key >> " + sub_key);
 
 			let key_cheeck_box = document.getElementsByName(sub_key);
@@ -2723,9 +2723,11 @@
 	            }
 	        }
 
+			console.log("value >>>>>>>>>>>>>>>>>>>>>>" + value);
 
 	        if ( value && value != null && value != "null") {
-
+				console.log("value true");
+				
 				let data_all_cheeck_box = value.split(",");
 
 				for (let xxi = 0; xxi < data_all_cheeck_box.length; xxi++) {
@@ -2752,7 +2754,7 @@
 		}
 
 		if( old ){
-	    	// console.log("บันทึกข้อมูลเข้า DB");
+	    	console.log("บันทึกข้อมูลเข้า DB");
     	    check_go_to(null,null);
 		}
 
