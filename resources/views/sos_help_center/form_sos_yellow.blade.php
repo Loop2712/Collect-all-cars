@@ -2724,7 +2724,7 @@
 	        }
 
 
-	        if ( value ) {
+	        if ( value && value != null && value != "null") {
 
 				let data_all_cheeck_box = value.split(",");
 
