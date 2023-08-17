@@ -2723,7 +2723,8 @@
 	            }
 	        }
 
-			console.log("value >>>>>>>>>>>>>>>>>>>>>>" + value);
+			console.log("value >>>>>>>>>>>>>>>>>>>>>>");
+			console.log(value);
 
 	        if ( value && value != null && value != "null") {
 				console.log("value true");
@@ -2754,7 +2755,7 @@
 		}
 
 		if( old ){
-	    	console.log("บันทึกข้อมูลเข้า DB");
+	    	// console.log("บันทึกข้อมูลเข้า DB");
     	    check_go_to(null,null);
 		}
 
