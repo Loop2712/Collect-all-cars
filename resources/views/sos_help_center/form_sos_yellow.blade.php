@@ -2442,7 +2442,7 @@
 					<hr>
 					<div class="row">
 						<div class="col-9">
-							<p>
+							<p style="font-size: 22px;">
 								<span class="text-success mt-2">
 									<i class="fa-solid fa-circle" style="color: #25db00;"></i> สีเขียว = ข้อมูลที่บันทึกแทนที่
 								</span>
@@ -3337,8 +3337,8 @@
 		    	let html_tr = `
 		    		<tr>
 						<th scope="row">
-							<span id="icon_repeat_`+key+`" onclick="document.querySelector('#input_repeat_`+key+`').click();">
-								<i class="fa-duotone fa-repeat"></i> สลับ
+							<span class="btn btn-sm btn-info" id="icon_repeat_`+key+`" onclick="document.querySelector('#input_repeat_`+key+`').click();">
+								<i class="fa-duotone fa-repeat"></i> สลับข้อมูลที่เลือก
 							</span>
 
 							<input id="input_repeat_`+key+`" type="checkbox" name="select_titel_update" class="d-none"
