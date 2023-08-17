@@ -2726,7 +2726,7 @@
 			console.log("value >>>>>>>>>>>>>>>>>>>>>>");
 			console.log(value);
 
-	        if ( value && value != null && value != "null") {
+	        if ( value && value !== null && value !== "null" && value !== "[]") {
 				console.log("value true");
 				
 				let data_all_cheeck_box = value.split(",");
