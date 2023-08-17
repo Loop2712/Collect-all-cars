@@ -427,7 +427,7 @@
     border: #fac831 1px solid !important;
     border-radius: 0px !important;
 }
-.bls-active {
+.bls-active { 
     background-color: #fac831!important;
     color: #ffffff !important;
 }
@@ -474,7 +474,7 @@
     color: #00438c !important;
     border: #00438c 1px solid !important;
     border-radius: 25px !important;
-
+    
 }
 
 
@@ -531,7 +531,7 @@
     color: #00438c !important;
     border: #00438c 1px solid !important;
     border-radius: 25px !important;
-
+    
 }
 
 
@@ -883,7 +883,7 @@
 	                            <a href="{{ url('/dashboard_index#dashboard_viisos') }}"><i class='fas fa-users-cog'></i>ViiSOS</a>
 	                        </li>
 	                        <li>
-	                            <a href="{{ url('/dashboard_index#dashboard_viinews') }}"><i class='fas fa-users-cog'></i>ViiNews</a>
+								<a href="{{ url('/dashboard_index#dashboard_viinews') }}"><i class='fas fa-users-cog'></i>ViiNews</a>
 	                        </li>
 	                        <li>
 	                            <a href="{{ url('/dashboard_index#dashboard_viimove') }}"><i class='fas fa-users-cog'></i>ViiMove</a>
@@ -2411,13 +2411,13 @@
 		        	<div class="row">
 	                    <div class="col-8">
 	                    	<div class="card">
-								<div class="card-body">
-									<h4>
-										ต้องการ <b style="font-size:30px;">รถ</b>
-										รหัสเหตุการณ์ <b style="font-size:30px;" class="text-warning">เหลือง(เร่งด่วน)</b>
-										จำนวน <b style="font-size:30px;">1</b>
-									</h4>
-								</div>
+								<ul class="list-group mt-4 list-group-flush" id="text_header_ask_more">
+									<!-- <h4>
+										ต้องการ <b style="font-size:30px;" id="type_vahicle_ask_more">รถ</b> 
+										รหัสเหตุการณ์ <b style="font-size:30px;" id="rc_ask_more" class="text-warning">เหลือง(เร่งด่วน)</b> 
+										จำนวน <b  style="font-size:30px;" id="quantity_vahicle_ask_more">1</b> 
+									</h4> -->
+								</ul>
 							</div>
 	                        <div class="map_select_officer_ask_more" id="map_select_officer_ask_more" class="d-none"></div>
 	                    </div>
@@ -2526,12 +2526,12 @@
 	                                <!-- ข้อมูลหน่วยปฏิบัติการในพื้นที่ -->
 	                            </div>
 
-	                            <div class="data-officer p-3 mb-3 ps ps--active-y">
+	                            <!-- <div class="data-officer p-3 mb-3 ps ps--active-y">
 	                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
 	                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
 	                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
 	                                            <div class="d-flex align-items-center">
-	                                                <input class="form-check-input" id="test" type="checkbox" value="">
+	                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
 	                                            </div>
 	                                            <div class="ms-auto">
 	                                                <div class="d-flex align-items-center p-2 cursor-pointer">
@@ -2548,7 +2548,7 @@
 	                                        </div>
 	                                    </div>
 	                                </div>
-	                            </div>
+	                            </div> -->
 	                            <div class="div_bottom" style="margin-top: auto;">
 	                                <center>
 	                                    <p id="show_error_noselect_officer_ask_more" class="text-danger d-none">กรุณาเลือกหน่วยปฏิบัติการ</p>
@@ -3741,7 +3741,7 @@
 			document.querySelector('#wait_data').classList.add('show' , 'active');
 		}
 	}
-
+		
 	var data_ask_more  ;
 
 	function create_alert_sos_ask_mores(data){
@@ -3800,7 +3800,7 @@
 			for(let item of data){
 
 				btn_command_ask_mores = document.querySelector('#btn_command_ask_mores_id_' + item.id);
-
+			
 				if(!btn_command_ask_mores){
 
 					let html_vehicle = '';
@@ -3865,7 +3865,7 @@
 					                <p class="card-text">
 					                	<b>รหัสปฏิบัติการ : `+item.operating_code+`</b>
 					                	<br>
-					                	<b>จำนวนที่ต้องการ : `+require_vehicle_all+`</b> หน่วย | <b>`+html_vehicle+`</b>
+					                	<b>จำนวนที่ต้องการ : `+require_vehicle_all+`</b> หน่วย | <b>`+html_vehicle+`</b> 
 					                </p>
 				                	<a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#select_forward_`+item.id+`" aria-expanded="true" aria-controls="select_forward_`+item.id+`" class="">
 				                		<i class="fa-solid fa-paper-plane"></i> ส่งต่อการแจ้งเตือน
@@ -3939,7 +3939,7 @@
 										// console.log(Standby_user_id);
 
 									let a_item = owlOfficer_case.querySelector('.a_item_'+ixz);
-										a_item.setAttribute("onclick" ,
+										a_item.setAttribute("onclick" , 
 									"send_noti_ask_mores_to('"+Standby_user_id+"','"+item.ask_mores_id+"')");
 										// console.log(a_item);
 
@@ -3969,9 +3969,9 @@
 		        }
 
 			}
-
+			
 		}
-
+		
 	}
 
 	function send_noti_ask_mores_to(user_id , ask_mores_id){
@@ -3998,9 +3998,116 @@
             	// console.log(result);
             	if (result== 'OK') {
             		document.querySelector('#btn_close_iziToast_ask_more_'+ask_mores_id).click();
+            		document.querySelector('#ask_more_id').value= ask_mores_id;
 					let btn_modal = document.querySelector('#btn_modal_select_officer_ask_more');
 						btn_modal.click();
 
+					var htmlDatavehicleAskMore = "";
+
+					function getRcColor(rc) {
+					switch (rc) {
+						case "แดง(วิกฤติ)":
+						return "bg-danger";
+						case "เขียว(ไม่รุนแรง)":
+						return "bg-success";
+						case "ดำ(รับบริการสาธารณสุขอื่น)":
+						return "bg-dark";
+						case "เหลือง(เร่งด่วน)":
+						return "bg-warning";
+						case "ขาว(ทั่วไป)":
+						return "bg-primary";
+						default:
+						return "";
+					}
+					}
+
+					if (data_ask_more['0']['vehicle_car'] !== null) {
+						var rcColor = getRcColor(data_ask_more['0']['rc_car']);
+					htmlDatavehicleAskMore += `
+					<li class="list-group-item d-flex align-items-center">
+							<div class="card-body">
+								<h2 class="mt-1 mb-1 ">ต้องการ <b>รถ</b></h2>
+								<span class="badge ${rcColor} font-18">รหัสเหตุการณ์ <b>${data_ask_more['0']['rc_car']}</b> </span>
+							</div>
+							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_car']} คัน</b> </strong>
+						</li>`;
+					}
+
+					if (data_ask_more['0']['vehicle_aircraft'] !== null) {
+						var rcColor = getRcColor(data_ask_more['0']['rc_aircraft']);
+
+					htmlDatavehicleAskMore += `
+						<li class="list-group-item d-flex align-items-center">
+							<div class="card-body">
+								<h2 class="mt-1 mb-1 ">ต้องการ <b>อากาศยาน</b></h2>
+								<span class="badge ${rcColor} font-18">รหัสเหตุการณ์ <b>${data_ask_more['0']['rc_aircraft']}</b> </span>
+							</div>
+							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_aircraft']} ลำ</b> </strong>
+						</li>`;
+					}
+
+					if (data_ask_more['0']['vehicle_boat_1'] !== null) {
+						var rcColor = getRcColor(data_ask_more['0']['rc_boat_1']);
+
+					htmlDatavehicleAskMore += `
+						<li class="list-group-item d-flex align-items-center">
+							<div class="card-body">
+								<h2 class="mt-1 mb-1 ">ต้องการ <b>เรือ ป.1</b></h2>
+								<span class="badge ${rcColor} font-18">รหัสเหตุการณ์ <b>${data_ask_more['0']['rc_boat_1']}</b> </span>
+							</div>
+							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_boat_1']} ลำ</b> </strong>
+						</li>`
+						;
+					}
+
+					if (data_ask_more['0']['vehicle_boat_2'] !== null) {
+						var rcColor = getRcColor(data_ask_more['0']['rc_boat_2']);
+
+					htmlDatavehicleAskMore += `
+						<li class="list-group-item d-flex align-items-center">
+							<div class="card-body">
+								<h2 class="mt-1 mb-1 ">ต้องการ <b>เรือ ป.2</b></h2>
+								<span class="badge ${rcColor} font-18">รหัสเหตุการณ์ <b>${data_ask_more['0']['rc_boat_2']}</b> </span>
+							</div>
+							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_boat_2']} ลำ</b> </strong>
+						</li>`
+						;
+					}
+
+					if (data_ask_more['0']['vehicle_boat_3'] !== null) {
+						var rcColor = getRcColor(data_ask_more['0']['rc_boat_3']);
+
+					htmlDatavehicleAskMore += `
+					<li class="list-group-item d-flex align-items-center">
+							<div class="card-body">
+								<h2 class="mt-1 mb-1 ">ต้องการ <b>เรือ ป.3</b></h2>
+								<span class="badge ${rcColor} font-18">รหัสเหตุการณ์ <b>${data_ask_more['0']['rc_boat_3']}</b> </span>
+							</div>
+							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_boat_3']} ลำ</b> </strong>
+						</li>`;
+					}
+
+					if (data_ask_more['0']['vehicle_boat_other'] !== null) {
+						var rcColor = getRcColor(data_ask_more['0']['rc_boat_other']);
+
+					htmlDatavehicleAskMore += `
+						<li class="list-group-item d-flex align-items-center">
+							<div class="card-body">
+								<h2 class="mt-1 mb-1 ">ต้องการ <b>เรือ อื่นๆ</b></h2>
+								<span class="badge ${rcColor} font-18">รหัสเหตุการณ์ <b>${data_ask_more['0']['rc_boat_other']}</b> </span>
+							</div>
+							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_boat_other']} ลำ</b> </strong>
+						</li>`;
+					}
+
+					
+
+					// แทรก HTML ที่ได้สร้างเข้าไปในตำแหน่งที่ต้องการในเอกสาร
+					document.getElementById("text_header_ask_more").innerHTML = htmlDatavehicleAskMore;
+						
+
+					document.querySelector('#Label_modal_select_officer_ask_more').innerHTML= 'การขอหน่วยปฏิบัติการเพิ่ม รหัสปฏิบัติการ : ' + data_ask_more['0']['operating_code'] ;
+					
 					select_officer_ask_more_btn_menu_select();
 
 					let owl_vehicle = $(".owlmenu-vehicle-ask_more");
@@ -4065,8 +4172,55 @@
                 break;
         }
         document.querySelector('.ask_more-select-vehicle-' + text_vehicle_type).classList.add("vehicle-one-officer-active");
+		ask_more_sos_opating_unit();
     }
 
+	function ask_more_sos_opating_unit() {
+		let select_officer_ask_more_vehicle_type = document.querySelector('#select_officer_ask_more_vehicle_type').value;
+		let select_officer_ask_more_level = document.querySelector('#select_officer_ask_more_level').value;
+
+		let upper_ask_more_level = select_officer_ask_more_level.toUpperCase();
+		let ask_more_id = document.querySelector('#ask_more_id').value;
+		// console.log(select_officer_ask_more_vehicle_type);
+		// console.log(select_officer_ask_more_level);
+		
+		// console.log(data_ask_more)
+		fetch("{{ url('/') }}/api/get_location_ask_more_operating_unit" + "?ask_more_vehicle_type=" + select_officer_ask_more_vehicle_type + "&ask_more_level=" + upper_ask_more_level + "&ask_more_id=" + ask_more_id)
+            .then(response => response.json())
+            .then(result => {
+				let html_ask_more_card_data_operating = "";
+				console.log(result);
+				// console.log(result.length);
+				if(result.length != 0){
+					for (let xxi = 0; xxi < result.length; xxi++) {
+						html_ask_more_card_data_operating += `
+						<div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+                            <div class="d-md-flex align-items-center email-message px-3 py-1">
+                                <div class="d-flex align-items-center">
+                                    <input class="form-check-input" type="checkbox"name="select_joint_sos_officer" >
+                                </div>
+                                <div class="ms-auto">
+                                    <div class="d-flex align-items-center p-2 cursor-pointer">
+                                        <div class="level ` + result[xxi]['level'] + ` d-flex align-items-center m-2"">
+                                            <center> ` + result[xxi]['level'] + ` </center>
+                                        </div>
+                                        <div style="margin-left: 10px;">
+                                            <h6 class="mb-1 font-14">` + result[xxi]['name'] + ` (` + result[xxi]['vehicle_type'] + `)</h6>
+                                            <p class="mb-0 font-14">เจ้าหน้าที่ : ` + result[xxi]['name_officer'] + `</p>
+											<p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ ` + result[xxi]['distance'].toFixed(2) + ` กม. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+					}
+				}
+				document.getElementById("select_officer_ask_more_card_data_operating").innerHTML = html_ask_more_card_data_operating;
+			});
+
+    }
+
+	
 
 
 	function alet_new_sos_1669(result) {

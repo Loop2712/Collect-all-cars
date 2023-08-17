@@ -2977,4 +2977,41 @@ class Sos_help_centerController extends Controller
         return "OK" ;
 
     }
+
+    function get_location_ask_more_operating_unit(Request $request){
+
+        $requestData = $request->all();
+
+        $ask_more_id = $requestData['ask_more_id'];
+        $ask_more_level = $requestData['ask_more_level'];
+        $ask_more_vehicle_type = $requestData['ask_more_vehicle_type'];
+       
+
+        $data_sos_ask_more = Sos_1669_officer_ask_more::where('id' , $ask_more_id)->first();
+        $data_sos_help_center = Sos_help_center::where('id' , $data_sos_ask_more->sos_id)->first();
+        $data_1669_operating_officers = Data_1669_operating_officer::where('user_id' , $data_sos_help_center->helper_id)->first();
+ 
+        $latitude = (float)$data_sos_help_center->lat;
+        $longitude = (float)$data_sos_help_center->lng;
+        
+        $data_officer_ask_more = Data_1669_operating_officer::where('operating_unit_id', $data_1669_operating_officers->operating_unit_id)
+        ->join('data_1669_operating_units', 'data_1669_operating_officers.operating_unit_id', '=', 'data_1669_operating_units.id')
+        // ->select('data_1669_operating_units.*', 'data_1669_operating_officers.name as name_opating_uint')
+        ->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( data_1669_operating_officers.lat ) ) * cos( radians( data_1669_operating_officers.lng ) - radians(?) ) + sin( radians(?) ) * sin( radians( data_1669_operating_officers.lat ) ) ) ) AS distance", [$latitude, $longitude, $latitude])
+        ->where('status', 'Standby')
+        ->orderBy("distance");
+    
+        if ($ask_more_level !== "ALL") {
+            $data_officer_ask_more = $data_officer_ask_more->where('level', $ask_more_level);
+        }
+        
+        if ($ask_more_vehicle_type !== "all") {
+            $data_officer_ask_more = $data_officer_ask_more->where('vehicle_type', $ask_more_vehicle_type);
+        }
+        
+        $data_officer_ask_more = $data_officer_ask_more->get();
+    
+        return $data_officer_ask_more;
+
+    }
 }

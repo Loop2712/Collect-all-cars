@@ -304,3 +304,5 @@ Route::get('/sos_data_map/{user_login_organization}', 'Dashboard_1669_Controller
 Route::get('/top5_score_unit/{filter_data}/{user_login}', 'Dashboard_1669_Controller@top5_score_unit');
 Route::get('/avg_score_by_case/{filter_data}/{user_login}', 'Dashboard_1669_Controller@avg_score_by_case');
 Route::get('/filter_data_command_unit', 'Dashboard_1669_Controller@filter_data_command_unit');
+Route::get('/get_location_ask_more_operating_unit/', 'Sos_help_centerController@get_location_ask_more_operating_unit');
+
