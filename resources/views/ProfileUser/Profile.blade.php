@@ -58,7 +58,7 @@
                             </span>
                             <br>
                             <span style="line-height: 30pt;">
-                                เป็นสมาชิกเมื่อ {{$data->created_at->diffForHumans()}}
+                                เป็นสมาชิกเมื่อ{{ \Carbon\Carbon::parse($data->created_at)->locale('th')->diffForHumans() }}  <!-- {{$data->created_at->diffForHumans()}} -->
                             </span>
                         </center>
                         <br>
