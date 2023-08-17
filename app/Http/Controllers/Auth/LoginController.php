@@ -270,7 +270,7 @@ class LoginController extends Controller
                 $user->photo = "uploads". "/" . 'photo' . $data->id . '.png';
             }
             else if (empty($data->avatar)) {
-                $user->avatar = "กรุณาเพิ่มรูปโปรไฟล์";
+                $user->avatar = null;
                 $user->photo = null ;
             }
 
@@ -287,7 +287,7 @@ class LoginController extends Controller
                 $user->photo = "uploads". "/" . 'photo' . $data->id . '.png';
             }
             else if (empty($data->avatar)) {
-                $user->avatar = "กรุณาเพิ่มรูปโปรไฟล์";
+                $user->avatar = null;
                 $user->photo = null ;
             }
             
