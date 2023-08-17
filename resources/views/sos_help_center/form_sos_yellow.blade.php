@@ -2755,7 +2755,7 @@
 		}
 
 		if( old ){
-	    	// console.log("บันทึกข้อมูลเข้า DB");
+	    	console.log("บันทึกข้อมูลเข้า DB");
     	    check_go_to(null,null);
 		}
 
@@ -3439,6 +3439,8 @@
             		}
             	}
 				Loop_check_form_yellow();
+				console.log("loop ok");
+
             }
         }).catch(function(error){
             // console.error(error);
