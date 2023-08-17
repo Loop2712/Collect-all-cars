@@ -1,4 +1,4 @@
-@extends('layouts.viicheck')
+@extends('layouts.viicheck_for_officer')
 
 @section('content')
 @include ('sos_help_officer.officer_form_yellow')
@@ -7,12 +7,13 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
-	div , span ,body,h1,h2,h3,h4,h5 ,h6{
+	*:not(i){
 		font-family: 'Kanit', sans-serif !important;
 	}
-	#topbar{
+	/* #topbar{
 		display: none !important;
-	} #header{
+	} */
+	 #header{
 		margin-top: -10% !important;
 	}
 	/* #map_show_case {
@@ -367,6 +368,10 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	}
 	.img-profile{
 		border-radius: 50%;
+		width: 46px;
+		height: 46px;
+		object-fit: cover;
+		outline: #000 1px solid;
 	}
 	.show-status{
 		background-color: #000000;
@@ -666,7 +671,7 @@ input:focus {
 					LONG : <span id="text_show_lng"></span>
 				</p>
 			</div>
-			<button class="btn btn-danger"> <i class="fa-duotone fa-camera-retro" onclick="document.querySelector('#btn_modal_add_photo_sos').click();"></i></button>
+			<button class="btn btn-danger" style="padding: 12px;"> <i class="fa-duotone fa-camera-retro" onclick="document.querySelector('#btn_modal_add_photo_sos').click();"></i></button>
 		</div>
 		<div class="btn p-0 m-0" data-toggle="modal" data-target="#exampleModalCenter">
 			@if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
@@ -745,7 +750,7 @@ input:focus {
 
 
 	<!-- ////////////////////////////////////////// MENU 3 OFFICER ACTION ////////////////////////////////////////// -->
-	<div class="row data-menu show-data-menu show-data-menu" id="menu_3" style="bottom: -2rem">
+	<div class="row data-menu show-data-menu p-0" id="menu_3" style="bottom: -2rem">
 
 		<!-- ----------------------------------------- ช่องกรอกเลข กม. ทั้งหมด ------------------------------------------- -->
 		<div id="div_mileage" class=d-none  >

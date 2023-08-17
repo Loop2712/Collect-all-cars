@@ -1,4 +1,4 @@
-@extends('layouts.viicheck')
+@extends('layouts.viicheck_for_officer')
 
 @section('content')
 <style>
@@ -300,7 +300,9 @@ input:checked + .slider:before {
   border: 1px solid rgb(23, 111, 211);
   font-weight: bold
 }
-
+.img_profile{
+	object-fit: cover;
+}
 #file {
   display: none;
 }option:checked { display:none; }
@@ -331,10 +333,10 @@ input:checked + .slider:before {
 					<div class="centered">
 						<div class="badge-wrap">
 							@if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
-								<img id="img_profile" src="{{ Auth::user()->avatar }}" width="60" height="60" class="rounded-circle" alt="">
+								<img id="img_profile" src="{{ Auth::user()->avatar }}" width="60" height="60" class="rounded-circle" alt="" class="img_profile ">
 							@endif
 							@if(!empty(Auth::user()->photo))
-								<img id="img_profile" src="{{ url('storage')}}/{{ Auth::user()->photo }}" width="60" height="60" class="rounded-circle" alt="">
+								<img id="img_profile" src="{{ url('storage')}}/{{ Auth::user()->photo }}" width="60" height="60" class="img_profile rounded-circle" alt="">
 							@endif
 						<div id="badge-status-officer" class="badge-without-number with-wave d-none"></div>
 					</div>
@@ -388,12 +390,12 @@ input:checked + .slider:before {
 					@endif
 					@if(!empty(Auth::user()->photo))
 					<label class="mt-3"  for="img_officer">
-						<img src="{{ url('storage')}}/{{ Auth::user()->photo }}" width="60" height="60" class="rounded-circle" alt="">
+						<img src="{{ url('storage')}}/{{ Auth::user()->photo }}" width="60" height="60" class="rounded-circle img_profile" alt="">
 					</label>
 					@endif
 				</div>
 				<label class="mt-3 d-none" id="leble_show_img_officer" for="img_officer">
-					<img width="60" height="60" class="rounded-circle" alt="your image" for="img_officer" id="show_img_officer"/>
+					<img width="60" height="60" class="rounded-circle img_profile" alt="your image" for="img_officer" id="show_img_officer"/>
 				</label>
 				<input type="text" class="input-data-officer mt-3 " id="name_officer"placeholder="ชื่อ" value="{{ isset($data_standby->name_officer) ? $data_standby->name_officer : Auth::user()->id}}">
 
