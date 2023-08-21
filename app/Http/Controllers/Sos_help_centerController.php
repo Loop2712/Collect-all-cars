@@ -2566,6 +2566,52 @@ class Sos_help_centerController extends Controller
 
     }
 
+    function create_ask_more_sos(Request $request){
+
+        $requestData = $request->all();
+
+        $sos_1669_id = $requestData['sos_ask_more_id'];
+        $command_by = $requestData['command_by'];
+        $list = $requestData['list'];
+
+        $list_arr = explode("_" , $list) ;
+
+        $data_sos_main = Sos_help_center::where('id', $sos_1669_id)->first();
+        $data_sos_main_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $sos_1669_id)->first();
+        
+        $new_sos_by_joint = [] ;
+        $new_sos_by_joint['lat'] = $data_sos_main->lat ;
+        $new_sos_by_joint['lng'] = $data_sos_main->lng ;
+
+        $new_sos_by_joint['photo_sos'] = $data_sos_main->photo_sos ;
+        $new_sos_by_joint['name_user'] = $data_sos_main->name_user ;
+        $new_sos_by_joint['phone_user'] = $data_sos_main->phone_user ;
+        $new_sos_by_joint['user_id'] = $data_sos_main->user_id ;
+        $new_sos_by_joint['status'] = 'รอการยืนยัน' ;
+        $new_sos_by_joint['create_by'] = 'joint_with - sos_id ' . $sos_1669_id;
+        $new_sos_by_joint['time_create_sos'] = date("Y-m-d h:i:s") ;
+        // $new_sos_by_joint['time_command'] = $data_sos_main->time_command ;
+        $new_sos_by_joint['command_by'] = $command_by ;
+        $new_sos_by_joint['address'] = $data_sos_main->address ;
+
+        $address_ep = explode("/" , $data_sos_main->address) ;
+        $province_name = $address_ep[0];
+        $district_name = $address_ep[1];
+
+        $new_sos_by_joint['notify'] = 'none - ' . $province_name ;
+
+        echo "<pre>";
+        print_r($list_arr);
+        echo "<pre>";
+        
+        echo "<br>";
+
+        echo "<pre>";
+        print_r($new_sos_by_joint);
+        echo "<pre>";
+
+    }
+
     function create_joint_sos_1669(Request $request){
 
         $requestData = $request->all();
@@ -3018,6 +3064,18 @@ class Sos_help_centerController extends Controller
         $data_officer_ask_more = $data_officer_ask_more->get();
     
         return $data_officer_ask_more;
+
+    }
+
+    function delete_case(Request $request){
+
+        $requestData = $request->all();
+        $sos_id = $requestData['sos_id'];
+
+        sos_help_center::where('id' , $sos_id)->delete();
+        Sos_1669_form_yellow::where('sos_help_center_id' , $sos_id)->delete();
+
+        return "OK" ;
 
     }
 }

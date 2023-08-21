@@ -2389,8 +2389,7 @@
 	<!-- //////////////////// -->
 	<style>
 		.map_select_officer_ask_more {
-	      	height: calc(55vh);
-	      	background-color: red;
+	      	height: calc(60vh);
 	    }
 	</style>
 	<button id="btn_modal_select_officer_ask_more" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_select_officer_ask_more"></button>
@@ -2403,7 +2402,7 @@
 		        	<h3 class="modal-title" id="Label_modal_select_officer_ask_more">
 		        		การขอหน่วยปฏิบัติการเพิ่ม รหัสปฏิบัติการ : 000
 		        	 </h3>
-		        	<button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+		        	<button id="btn_close_modal_ask_modal" type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
 		          		<span aria-hidden="true">&times;</span>
 		        	</button>
 		      	</div>
@@ -2411,7 +2410,7 @@
 		        	<div class="row">
 	                    <div class="col-8">
 	                    	<div class="card">
-								<ul class="list-group mt-4 list-group-flush" id="text_header_ask_more">
+								<ul class="list-group mt-1 list-group-flush" id="text_header_ask_more">
 									<!-- <h4>
 										ต้องการ <b style="font-size:30px;" id="type_vahicle_ask_more">รถ</b> 
 										รหัสเหตุการณ์ <b style="font-size:30px;" id="rc_ask_more" class="text-warning">เหลือง(เร่งด่วน)</b> 
@@ -2475,7 +2474,7 @@
 	                                        </a>
 	                                    </li>
 	                                </ul>
-	                                <input class="d-" type="text" name="select_officer_ask_more_level" id="select_officer_ask_more_level" value="all">
+	                                <input class="d-none" type="text" name="select_officer_ask_more_level" id="select_officer_ask_more_level" value="all">
 	                            </div>
 
 	                            <!-- BTN Select vehicle  -->
@@ -2517,10 +2516,10 @@
 	                                </div>
 	                            </div>
 
-	                            <input class="d-" type="text" name="select_officer_ask_more_vehicle_type" id="select_officer_ask_more_vehicle_type" value="all">
+	                            <input class="d-none" type="text" name="select_officer_ask_more_vehicle_type" id="select_officer_ask_more_vehicle_type" value="all">
 
-	                            <input class="d-" type="text" id="list_select_officer_ask_more">
-	                            <input class="d-" type="text" id="ask_more_id">
+	                            <input class="d-none" type="text" id="ask_more_id">
+	                            <input class="d-none" type="text" id="list_select_officer_ask_more">
 
 	                            <div class="data-officer p-3 mb-3 ps ps--active-y" id="select_officer_ask_more_card_data_operating">
 	                                <!-- ข้อมูลหน่วยปฏิบัติการในพื้นที่ -->
@@ -2552,7 +2551,7 @@
 	                            <div class="div_bottom" style="margin-top: auto;">
 	                                <center>
 	                                    <p id="show_error_noselect_officer_ask_more" class="text-danger d-none">กรุณาเลือกหน่วยปฏิบัติการ</p>
-	                                    <span id="btn_send_data_joint_sos" class="mt-3 btn btn-primary main-shadow main-radius" style="width: 60%;" onclick="">
+	                                    <span id="btn_send_data_joint_sos_ask_more" class="mt-3 btn btn-primary main-shadow main-radius" style="width: 60%;" >
 	                                        เลือก <b><span id="show_count_select_operating_officer_ask_more">0</span></b> หน่วย
 	                                    </span>
 	                                </center>
@@ -2610,7 +2609,7 @@
 <script src="{{ asset('partner_new/plugins/notifications/js/notifications.min.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/notifications/js/notification-custom-script.js') }}"></script>
 
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&callback=open_map_ask_more&language=th" defer></script>
 
 
 
@@ -3945,6 +3944,9 @@
 
 								}
 
+                                let audio_alert_ask_mores = new Audio("{{ asset('sound/warning-sound-6686.mp3') }}");
+                                audio_alert_ask_mores.play();
+
 								// console.log("-------------------------------------");
 
 				            },buttons: [
@@ -3987,22 +3989,24 @@
 
 	function select_officer_ask_more(ask_mores_id){
 
-		console.log('--------------');
-		console.log('select_officer_ask_more');
-		console.log(ask_mores_id);
-		console.log(data_ask_more);
+		// console.log('--------------');
+		// console.log('select_officer_ask_more');
+		// console.log(ask_mores_id);
+		// console.log(data_ask_more);
 
 		fetch("{{ url('/') }}/api/update_noti_ask_mores" + '/' + ask_mores_id)
             .then(response => response.text())
             .then(result => {
             	// console.log(result);
-            	if (result== 'OK') {
+            	if (result == 'OK') {
             		document.querySelector('#btn_close_iziToast_ask_more_'+ask_mores_id).click();
             		document.querySelector('#ask_more_id').value= ask_mores_id;
 					let btn_modal = document.querySelector('#btn_modal_select_officer_ask_more');
 						btn_modal.click();
 
-					var htmlDatavehicleAskMore = "";
+                    open_map_ask_more(data_ask_more);
+
+					let htmlDatavehicleAskMore = "";
 
 					function getRcColor(rc) {
 					switch (rc) {
@@ -4022,7 +4026,7 @@
 					}
 
 					if (data_ask_more['0']['vehicle_car'] !== null) {
-						var rcColor = getRcColor(data_ask_more['0']['rc_car']);
+						let rcColor = getRcColor(data_ask_more['0']['rc_car']);
 					htmlDatavehicleAskMore += `
 					<li class="list-group-item d-flex align-items-center">
 							<div class="card-body">
@@ -4034,7 +4038,7 @@
 					}
 
 					if (data_ask_more['0']['vehicle_aircraft'] !== null) {
-						var rcColor = getRcColor(data_ask_more['0']['rc_aircraft']);
+						let rcColor = getRcColor(data_ask_more['0']['rc_aircraft']);
 
 					htmlDatavehicleAskMore += `
 						<li class="list-group-item d-flex align-items-center">
@@ -4047,7 +4051,7 @@
 					}
 
 					if (data_ask_more['0']['vehicle_boat_1'] !== null) {
-						var rcColor = getRcColor(data_ask_more['0']['rc_boat_1']);
+						let rcColor = getRcColor(data_ask_more['0']['rc_boat_1']);
 
 					htmlDatavehicleAskMore += `
 						<li class="list-group-item d-flex align-items-center">
@@ -4061,7 +4065,7 @@
 					}
 
 					if (data_ask_more['0']['vehicle_boat_2'] !== null) {
-						var rcColor = getRcColor(data_ask_more['0']['rc_boat_2']);
+						let rcColor = getRcColor(data_ask_more['0']['rc_boat_2']);
 
 					htmlDatavehicleAskMore += `
 						<li class="list-group-item d-flex align-items-center">
@@ -4075,7 +4079,7 @@
 					}
 
 					if (data_ask_more['0']['vehicle_boat_3'] !== null) {
-						var rcColor = getRcColor(data_ask_more['0']['rc_boat_3']);
+						let rcColor = getRcColor(data_ask_more['0']['rc_boat_3']);
 
 					htmlDatavehicleAskMore += `
 					<li class="list-group-item d-flex align-items-center">
@@ -4088,7 +4092,7 @@
 					}
 
 					if (data_ask_more['0']['vehicle_boat_other'] !== null) {
-						var rcColor = getRcColor(data_ask_more['0']['rc_boat_other']);
+						let rcColor = getRcColor(data_ask_more['0']['rc_boat_other']);
 
 					htmlDatavehicleAskMore += `
 						<li class="list-group-item d-flex align-items-center">
@@ -4107,6 +4111,8 @@
 						
 
 					document.querySelector('#Label_modal_select_officer_ask_more').innerHTML= 'การขอหน่วยปฏิบัติการเพิ่ม รหัสปฏิบัติการ : ' + data_ask_more['0']['operating_code'] ;
+
+                    document.querySelector('#btn_send_data_joint_sos_ask_more').setAttribute('onclick', "send_data_joint_sos_ask_more('"+data_ask_more[0]['sos_id']+"','"+data_ask_more[0]['noti_to']+"')");
 					
 					select_officer_ask_more_btn_menu_select();
 
@@ -4192,12 +4198,27 @@
 				console.log(result);
 				// console.log(result.length);
 				if(result.length != 0){
+
+                    let list_select_officer_ask_more = document.querySelector('#list_select_officer_ask_more').value;
+                    let list_arr_ask_more = list_select_officer_ask_more.split(',');
+
 					for (let xxi = 0; xxi < result.length; xxi++) {
+
+                        let checked_ask_more;
+
+                        if (list_arr_ask_more.includes(result[xxi]['user_id'].toString() + '-' + result[xxi]['distance'].toFixed(2) + '-' + result[xxi]['operating_unit_id'])) {
+                            checked_ask_more = 'checked';
+                            // console.log('มีค่า '+result[xxi]['id']+' ในอาร์เรย์');
+                        } else {
+                            checked_ask_more = '';
+                            // console.log('ไม่มีค่า '+result[xxi]['id']+' ในอาร์เรย์');
+                        }
+
 						html_ask_more_card_data_operating += `
-						<div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+						<div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer" onclick="view_data_marker_ask_more(` + result[xxi]['id'] + `,'` + result[xxi]['name'] + `',` + result[xxi]['distance'].toFixed(2) + `,'` + result[xxi]['level'] + `',` + result[xxi]['lat'] + `,` + result[xxi]['lng'] + `);">
                             <div class="d-md-flex align-items-center email-message px-3 py-1">
                                 <div class="d-flex align-items-center">
-                                    <input class="form-check-input" type="checkbox"name="select_joint_sos_officer" >
+                                    <input class="form-check-input" type="checkbox" ` + checked_ask_more + ` name="select_joint_sos_officer_ask_more" id="select_joint_sos_officer_ask_more_id_` + result[xxi]['id'] + `_user_id_` + result[xxi]['user_id'] + `" onclick="select_joint_sos_officer_ask_more('` + result[xxi]['user_id'] + `','` + result[xxi]['distance'].toFixed(2) + `','` + result[xxi]['operating_unit_id'] + `','` + result[xxi]['id'] + `');">
                                 </div>
                                 <div class="ms-auto">
                                     <div class="d-flex align-items-center p-2 cursor-pointer">
@@ -4213,6 +4234,21 @@
                                 </div>
                             </div>
                         </div>`;
+
+                        let mark_icon = '' ;
+                        if(result[xxi]['level'] == "FR"){
+                            mark_icon = image_operating_unit_green_ask_more ;
+                        }else if(result[xxi]['level'] == "BLS"){
+                            mark_icon = image_operating_unit_yellow_ask_more ;
+                        }else{
+                            mark_icon = image_operating_unit_red_ask_more ;
+                        }
+
+                        marker_operating_ask_more = new google.maps.Marker({
+                            position: { lat: parseFloat(result[xxi]['lat']), lng: parseFloat(result[xxi]['lng']) },
+                            map: map_select_officer_ask_more,
+                            icon: mark_icon,
+                        });
 					}
 				}
 				document.getElementById("select_officer_ask_more_card_data_operating").innerHTML = html_ask_more_card_data_operating;
@@ -4220,8 +4256,146 @@
 
     }
 
-	
+    let image_sos_ask_more = "{{ url('/img/icon/operating_unit/sos.png') }}";
+    let image_operating_unit_red_ask_more = "{{ url('/img/icon/operating_unit/แดง.png') }}";
+    let image_operating_unit_yellow_ask_more = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
+    let image_operating_unit_green_ask_more = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
+    
+    function open_map_ask_more(data_ask_more){
 
+        console.log(data_ask_more);
+
+        let sos_ask_more ;
+
+        map_select_officer_ask_more = new google.maps.Map(document.getElementById("map_select_officer_ask_more"), {
+            center: { lat: parseFloat(data_ask_more[0]['lat']), lng: parseFloat(data_ask_more[0]['lng']) },
+            zoom: 12,
+        });
+
+        if (sos_ask_more) {
+            sos_ask_more.setMap(null);
+        }
+
+        sos_ask_more = new google.maps.Marker({
+            position: { lat: parseFloat(data_ask_more[0]['lat']), lng: parseFloat(data_ask_more[0]['lng']) },
+            map: map_select_officer_ask_more,
+            icon: image_sos_ask_more,
+        });
+        
+    }
+
+    function select_joint_sos_officer_ask_more(select_id, distance, operating_unit_id,officer_id) {
+
+        // console.log(select_id);
+        document.querySelector('#show_error_noselect_officer_ask_more').classList.add('d-none');
+
+        let list_select_officer_ask_more = document.querySelector('#list_select_officer_ask_more');
+        let check_checkbox = document.querySelector('#select_joint_sos_officer_ask_more_id_'+ officer_id + '_user_id_' + select_id).checked;
+
+        let arr_id;
+
+        if (check_checkbox) {
+            // true
+            if (list_select_officer_ask_more.value) {
+                list_select_officer_ask_more.value = list_select_officer_ask_more.value + ',' + select_id + '-' + distance + '-' + operating_unit_id;
+            } else {
+                list_select_officer_ask_more.value = select_id + '-' + distance + '-' + operating_unit_id;
+            }
+
+        } else {
+            // false
+            arr_id = list_select_officer_ask_more.value.split(',');
+
+            let index = arr_id.indexOf(select_id.toString() + '-' + distance + '-' + operating_unit_id);
+
+            if (index !== -1) {
+                // ลบค่าออกจากตัวแปร values
+                arr_id.splice(index, 1);
+                // อัปเดตค่าใหม่ใน input
+                list_select_officer_ask_more.value = arr_id.join(',');
+            }
+        }
+
+        let new_list_select_officer_ask_more = document.querySelector('#list_select_officer_ask_more');
+        if (new_list_select_officer_ask_more.value) {
+            let count_select = new_list_select_officer_ask_more.value.split(',');
+            document.querySelector('#show_count_select_operating_officer_ask_more').innerHTML = count_select.length;
+        } else {
+            document.querySelector('#show_count_select_operating_officer_ask_more').innerHTML = '0';
+        }
+
+    }
+
+    function send_data_joint_sos_ask_more(sos_ask_more_id , command_by) {
+
+        // console.log("sos_ask_more_id >> " + sos_ask_more_id);
+
+        let list_select_officer_ask_more = document.querySelector('#list_select_officer_ask_more');
+        // console.log(list_select_officer_ask_more.value);
+
+        if (list_select_officer_ask_more.value) {
+
+            document.querySelector('#show_error_noselect_officer_ask_more').classList.add('d-none');
+            document.querySelector('#btn_send_data_joint_sos_ask_more').innerHTML = 'ยืนยัน ' + `<i class="fa-duotone fa-spinner fa-spin-pulse"></i>`;
+            let list = list_select_officer_ask_more.value.replaceAll(',', '_');
+            // console.log(list);
+
+            fetch("{{ url('/') }}/api/create_ask_more_sos" + "?sos_ask_more_id=" + sos_ask_more_id + "&list=" + list + "&command_by="+command_by)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+
+                    if (result == "OK") { 
+                        document.querySelector('#btn_close_modal_ask_modal').click();
+                        // document.querySelector('#btn_open_modal_show_officer_joint').click();
+                        document.querySelector('#btn_send_data_joint_sos_ask_more').innerHTML = 'ยืนยัน';
+                        document.querySelector('#list_select_officer_ask_more').value = '';
+
+                        // show_wait_officer_joint();
+                        
+                    }
+
+                });
+        } else {
+            document.querySelector('#show_error_noselect_officer_ask_more').classList.remove('d-none');
+
+        }
+    }
+
+    let view_infoWindow ;
+    function view_data_marker_ask_more(id, name, distance, level, lat, lng) {
+
+        if (view_infoWindow) {
+            view_infoWindow.setMap(null);
+        }
+        const myLatlng = {
+            lat: parseFloat(lat),
+            lng: parseFloat(lng)
+        };
+
+        let contentString =
+            '<div id="content data_sos_map">'+
+                '<div  class="data-officer-item d-flex align-items-center  p-2 cursor-pointer">' +
+                    ' <div class="level  ' + level + ' d-flex align-items-center ">' +
+                        ' <center> ' + level + '</center>' +
+                    '</div>' +
+                    '<div class="ms-2">' +
+                        '<h6 class="mb-1 font-14">' + name + '</h6>' +
+                        '<p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ ' + distance + ' กม. </p>' +
+                    '</div>' +
+                '</div>'+
+            '</div>';
+
+        view_infoWindow = new google.maps.InfoWindow({
+            content: contentString,
+            position: myLatlng,
+        });
+
+        view_infoWindow.open(map_select_officer_ask_more);
+
+    }
+
+	
 
 	function alet_new_sos_1669(result) {
 

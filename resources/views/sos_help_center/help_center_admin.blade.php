@@ -1575,6 +1575,25 @@
                                                         ส่งข้อมูล
                                                     </span>
                                                 @endif
+
+                                                @if( Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '4' || Auth::user()->id == '11003429' )
+                                                    <br>
+                                                    <span class="btn btn-danger main-shadow main-radius float-end mt-3" onclick="delete_case('{{ $item->id }}');">
+                                                        ลบเคสนี้
+                                                    </span>
+                                                    <script>
+                                                        function delete_case(sos_id){
+                                                            fetch("{{ url('/') }}/api/delete_case" + "?sos_id=" + sos_id )
+                                                                .then(response => response.text())
+                                                                .then(result => {
+                                                                    // console.log(result);
+                                                                    if (result == "OK") {
+                                                                        window.location.reload();
+                                                                    }
+                                                                });
+                                                        }
+                                                    </script>
+                                                @endif
                                             </div>
                                         </div>
                                     </a>

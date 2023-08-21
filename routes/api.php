@@ -256,10 +256,12 @@ Route::get('/Forward_notify/{officer_command_id}/{sos_id}', 'Sos_help_centerCont
 Route::get('/check_status_officer_1669/{officer_command_id}/{sub_organization}','Sos_help_centerController@check_status_officer_1669');
 Route::get('/change_status_officer_to/{officer_command_id}/{sub_organization}/{change_to}', 'Sos_help_centerController@change_status_officer_to');
 Route::get('/create_joint_sos_1669', 'Sos_help_centerController@create_joint_sos_1669');
+Route::get('/create_ask_more_sos', 'Sos_help_centerController@create_ask_more_sos');
 Route::get('/check_sos_joint_case', 'Sos_help_centerController@check_sos_joint_case');
 Route::get('/send_data_new_select_officer', 'Sos_help_centerController@send_data_new_select_officer');
 Route::get('/check_officer_command_in_call/{sos_id}', 'Sos_help_centerController@check_officer_command_in_call');
 Route::get('/real_time_check_refuse_and_call', 'Sos_help_centerController@real_time_check_refuse_and_call');
+Route::get('/delete_case', 'Sos_help_centerController@delete_case');
 
 Route::get('/check_data_form_yellow_show_case', 'Sos_help_centerController@check_data_form_yellow_show_case');
 Route::post('/officerSaveFormYellow', 'Sos_help_centerController@officerSaveFormYellow');
