@@ -2512,7 +2512,9 @@
     function check_start_data_form_yellow(){
 
 		// console.log('----------------------------');
-		console.log("** Check data form yellow **");
+		console.log("**------------------------------------------**");
+		console.log("**--------- Check data form yellow ---------**");
+		console.log("**------------------------------------------**");
 		// console.log("ตอนนี้อยู่ที่หน้า >> " + form_yellow_current_topic);
 		// console.log("กำลังจะอัพเดทหน้าอื่นๆ และแจ้งเตือนหน้า "+ form_yellow_current_topic + " ถ้าข้อมูลมีการเปลี่ยนแปลง");
 		// console.log('----------------------------');
@@ -2535,141 +2537,204 @@
 
 				if (start_data_arr && check_start_data_arr == "Yes") {
 
-					for (const [main_key, main_value ] of Object.entries(data_new_5vi)) {
-			  		
-				  		// console.log("หัวข้อ : " + main_key);
-				  		// console.log(data_new_5vi[main_key]);
+					if (['1', '2', '3', '4', '5'].includes(form_yellow_current_topic)) {
+						// ข้อ 1- 5
+					    console.log(`ตอนนี้อยู่ที่หน้า : ${form_yellow_current_topic} กำลังบันทึก..`);
+					    check_go_to(null, null);
 
-				  		let key_title = main_key.split('_')[1];
+					}else{
+						// ไม่ใช่ ข้อ 1 - 5 ตรวจสอบและทำการแจ้งเตือน
+						console.log("กำลังตรวจสอบข้อมูลข้อมูล DB หน้า : " + form_yellow_current_topic)
+			  			
+				  		// console.log("------ ข้อมูลใน DB ------");
+				  		// console.log("หัวข้อ : " + "page_"+form_yellow_current_topic);
+				  		// console.log(data_new_5vi["page_"+form_yellow_current_topic]);
+				  		// console.log("-----------------------");
 
-				  		if (key_title != form_yellow_current_topic && key_title != '5') {
+				  		// console.log("------ ข้อมูลเดิมใน INPUT ------");
+				  		// console.log("หัวข้อ : " + "page_"+form_yellow_current_topic);
+				  		// console.log(start_data_arr["page_"+form_yellow_current_topic]);
+				  		// console.log("-----------------------");
 
-				  			// หัวข้อ main_key ไม่เท่ากับหน้าปัจจุบัน ให้เข้าไปทำกับอัพเดทข้อมูล
-				  			// console.log("อัพเดทข้อมูล หน้า : " + main_key);
+				  		let data_old_db = data_new_5vi["page_"+form_yellow_current_topic] ;
+				  		let data_on_input = start_data_arr["page_"+form_yellow_current_topic] ;
 
-				  			for (const [sub_key, sub_value ] of Object.entries(data_new_5vi[main_key])) {
+				  		let count_data_old_db = Object.keys(data_old_db).length;
+				  		let round_data_old_db = 0 ;
+				  		// console.log(count_data_old_db);
 
-					  			if (data_new_5vi[main_key][sub_key] === null) {
-						  			data_new_5vi[main_key][sub_key] = '';
-						  		}
+				  		let check_change_data_old_db = "No" ;
 
-					  			// console.log(" ==>> " + sub_key + " <<== ");
-					  			// console.log(data_new_5vi[main_key][sub_key]);
+				  		for (const [key, value ] of Object.entries(data_old_db)) {
 
-						  		// UPDATE ข้อมูล sub_key
-					  			start_data_arr[main_key][sub_key] = data_new_5vi[main_key][sub_key] ;
-
-					  			if( sub_key === 'operation_unit_name' || sub_key === 'action_set_name' || sub_key === 'time_create_sos' || sub_key === 'time_command' || sub_key === 'time_go_to_help' || sub_key === 'time_to_the_scene' || sub_key === 'time_leave_the_scene' || sub_key === 'time_hospital' || sub_key === 'time_to_the_operating_base' || sub_key === 'km_create_sos_to_go_to_help' || sub_key === 'km_to_the_scene_to_leave_the_scene' || sub_key === 'km_hospital' || sub_key === 'km_operating_base' ){
-
-						        	document.querySelector('#'+sub_key).value = data_new_5vi[main_key][sub_key] ;
-						        	
-								}
-								// else if(sub_key === 'rc' || sub_key === 'treatment' || sub_key === 'sub_treatment'){
-
-								// 	edit_form_yellow(main_key , sub_key , data_new_5vi[main_key][sub_key] , null);
-
-								// }
-								else if (sub_key === 'vehicle_type' || sub_key === 'operating_suit_type') {
-
-									// console.log(data_new_5vi[key]);
-
-									if (data_new_5vi[main_key][sub_key]){
-										document.querySelector('#no_operating_unit').classList.add('d-none')  ;
-										document.querySelector('#has_an_operating_unit').classList.remove('d-none')  ;
-
-										let input_Element_key = document.querySelector('input[name="'+sub_key+'"]');
-
-											input_Element_key.value = data_new_5vi[main_key][sub_key] ;
-											input_Element_key.checked = true ;
-											input_Element_key.setAttribute('data-'+sub_key , data_new_5vi[main_key][sub_key]);
-
-											document.querySelector('#text_show_' + sub_key).innerHTML = data_new_5vi[main_key][sub_key] ;
-
-										// ถ้า KEY = operating_suit_type
-										let color_operating ;
-										if (data_new_5vi[main_key][sub_key] === "FR") {
-											color_operating = "success" ;
-										}else if(data_new_5vi[main_key][sub_key] === "BLS"){
-											color_operating = "warning" ;
-										}else if(data_new_5vi[main_key][sub_key] === "ILS" || data_new_5vi[main_key][sub_key] === "ALS"){
-											color_operating = "danger" ;
-										}
-
-										input_Element_key.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
-									}
-
-					  			}else if (sub_key === 'lat' || sub_key === 'lng') {
-					  				// console.log("สั่งบันทึก lat lng >> " + key)
-	        						check_go_to(null,null);
-	        						
-					  			}else{
-					  				if(key_title == '1' || key_title == '2' || key_title == '3' || key_title == '4'){
-						  				// ไม่ต้องแจ้งเตือน
-			        				}else{
-			        					// แจ้งเตือนข้อมูลเปลี่ยนแปลง
-			        					edit_form_yellow(main_key , sub_key , data_new_5vi[main_key][sub_key] , null);
-			        				}
-					  				
-					  			}
-
-								// console.log("---------------------------------------");
-
+				  			if (data_old_db[key] == null) {
+					  			data_old_db[key] = '';
 					  		}
 
-				  		}else if(key_title == form_yellow_current_topic && key_title != '5'){
+				  			if( data_old_db[key] != data_on_input[key]){
+				  				console.log('ข้อมูล DB มีการเปลี่ยนแปลง');
+				  				console.log("เปลี่ยนแปลงที่ >> " + key);
+					  			console.log("ข้อมูลใน DB >>> " + data_old_db[key]);
+					  			console.log("ข้อมูลเดิมใน INPUT >>> " + data_on_input[key]);
 
-				  			// หัวข้อ main_key ตรงกับหน้าที่เปิดอยู่ ตรวจสอบการเปลี่ยนแปลงของข้อมูล
-				  			// console.log("ตรวจสอบการเปลี่ยนแปลงของข้อมูล หน้า : " + main_key);
+					  			edit_form_yellow(key , data_old_db[key] , data_on_input[key]);
 
-				  			for (const [sub_key, sub_value ] of Object.entries(data_new_5vi[main_key])) {
+					  			check_change_data_old_db = "Yes" ;
+				  			}
 
-					  			if (data_new_5vi[main_key][sub_key] === null) {
-						  			data_new_5vi[main_key][sub_key] = '';
-						  		}
-
-					  			// console.log(" ==>> " + sub_key + " <<== ");
-					  			// console.log(data_new_5vi[main_key][sub_key]);
-
-					  			if( start_data_arr[main_key][sub_key] == data_new_5vi[main_key][sub_key] ){
-					  				// console.log(main_key + " / หัวข้อ : " + sub_key);
-					  				// console.log(">> ข้อมูล ไม่มี การเปลี่ยนแปลง <<");
-					  				check_go_to(null,null);
-					  			}else{
-					  				// console.log(main_key + " / หัวข้อ : " + sub_key);
-					  				// console.log(">> ข้อมูล มี การเปลี่ยนแปลง <<");
-					  				// console.log("จาก " + start_data_arr[main_key][sub_key] + " | เปลี่ยนเป็น " + data_new_5vi[main_key][sub_key]);
-					  				// console.log(key_title);
-
-					  				if(key_title == '1' || key_title == '2' || key_title == '3' || key_title == '4'){
-						  				// ไม่ต้องแจ้งเตือน
-			        				}else{
-			        					// แจ้งเตือนข้อมูลเปลี่ยนแปลง
-			        					// alet_new_data('form_yellow' , main_key , sub_key , data_new_5vi[main_key][sub_key] , start_data_arr[main_key][sub_key]);
-					  					edit_form_yellow(main_key , sub_key , data_new_5vi[main_key][sub_key] , start_data_arr[main_key][sub_key]);
-
-			        				}
-					  			}
-					  			
-								// console.log("---------------------------------------");
-
-					  		}
+				  			round_data_old_db += 1 ;
 
 				  		}
 
+				  		if(count_data_old_db == round_data_old_db && check_change_data_old_db == "No"){
+			  				console.log('DB ไม่มีการเปลี่ยนแปลง กำลังบันทึก..');
+				    		check_go_to(null, null);
+			  			}
+
+
+						// // ตรวจเช็คข้อมูลมีการเปลี่ยนแปลง หน้าที่ไม่ได้เปิดอยู่ ให้อัพเดท INPUT
+				  		// if(data_new_5vi != start_data_arr){
+						// 	console.log("หน้าที่ไม่ได้เปิดอยู่ มีการเปลี่ยนแปลงข้อมูล");
+						// }
 				  		
-						// console.log("---------------------------------------------------------");
-						// console.log("---------------------------------------------------------");
-
-
 					}
 
-					// console.log("start_data_arr ข้อมูล หลัง อัพเดท");
-					// console.log(start_data_arr);
+					console.log("** ----------- EDN LOOP ----------- **");
 
-					// console.log("*************************************************");
-					// console.log("*************************************************");
 
-				}
+
+
+					// ------------------------------------------------------------------
+					// ------------------------------------------------------------------
+					// ------------------------------------------------------------------
+					// ------------------------------------------------------------------
+
+					// for (const [main_key, main_value ] of Object.entries(data_new_5vi)) {
+			  		
+				  	// 	// console.log("หัวข้อ : " + main_key);
+				  	// 	// console.log(data_new_5vi[main_key]);
+
+				  	// 	let key_title = main_key.split('_')[1];
+
+				  	// 	if (key_title != form_yellow_current_topic && key_title != '5') {
+
+				  	// 		// หัวข้อ main_key ไม่เท่ากับหน้าปัจจุบัน ให้เข้าไปทำกับอัพเดทข้อมูล
+				  	// 		// console.log("อัพเดทข้อมูล หน้า : " + main_key);
+
+				  	// 		for (const [sub_key, sub_value ] of Object.entries(data_new_5vi[main_key])) {
+
+					//   			if (data_new_5vi[main_key][sub_key] === null) {
+					// 	  			data_new_5vi[main_key][sub_key] = '';
+					// 	  		}
+
+					//   			// console.log(" ==>> " + sub_key + " <<== ");
+					//   			// console.log(data_new_5vi[main_key][sub_key]);
+
+					// 	  		// UPDATE ข้อมูล sub_key
+					//   			start_data_arr[main_key][sub_key] = data_new_5vi[main_key][sub_key] ;
+
+					//   			if( sub_key === 'operation_unit_name' || sub_key === 'action_set_name' || sub_key === 'time_create_sos' || sub_key === 'time_command' || sub_key === 'time_go_to_help' || sub_key === 'time_to_the_scene' || sub_key === 'time_leave_the_scene' || sub_key === 'time_hospital' || sub_key === 'time_to_the_operating_base' || sub_key === 'km_create_sos_to_go_to_help' || sub_key === 'km_to_the_scene_to_leave_the_scene' || sub_key === 'km_hospital' || sub_key === 'km_operating_base' ){
+
+					// 	        	document.querySelector('#'+sub_key).value = data_new_5vi[main_key][sub_key] ;
+						        	
+					// 			}
+					// 			// else if(sub_key === 'rc' || sub_key === 'treatment' || sub_key === 'sub_treatment'){
+
+					// 			// 	edit_form_yellow(sub_key , data_new_5vi[main_key][sub_key] , null);
+
+					// 			// }
+					// 			else if (sub_key === 'vehicle_type' || sub_key === 'operating_suit_type') {
+
+					// 				// console.log(data_new_5vi[key]);
+
+					// 				if (data_new_5vi[main_key][sub_key]){
+					// 					document.querySelector('#no_operating_unit').classList.add('d-none')  ;
+					// 					document.querySelector('#has_an_operating_unit').classList.remove('d-none')  ;
+
+					// 					let input_Element_key = document.querySelector('input[name="'+sub_key+'"]');
+
+					// 						input_Element_key.value = data_new_5vi[main_key][sub_key] ;
+					// 						input_Element_key.checked = true ;
+					// 						input_Element_key.setAttribute('data-'+sub_key , data_new_5vi[main_key][sub_key]);
+
+					// 						document.querySelector('#text_show_' + sub_key).innerHTML = data_new_5vi[main_key][sub_key] ;
+
+					// 					// ถ้า KEY = operating_suit_type
+					// 					let color_operating ;
+					// 					if (data_new_5vi[main_key][sub_key] === "FR") {
+					// 						color_operating = "success" ;
+					// 					}else if(data_new_5vi[main_key][sub_key] === "BLS"){
+					// 						color_operating = "warning" ;
+					// 					}else if(data_new_5vi[main_key][sub_key] === "ILS" || data_new_5vi[main_key][sub_key] === "ALS"){
+					// 						color_operating = "danger" ;
+					// 					}
+
+					// 					input_Element_key.setAttribute('class', "card-input-"+color_operating+" card-input-element d-none");
+					// 				}
+
+					//   			}else if (sub_key === 'lat' || sub_key === 'lng') {
+					//   				// console.log("สั่งบันทึก lat lng >> " + key)
+	        		// 				check_go_to(null,null);
+	        						
+					//   			}else{
+					//   				if(key_title == '1' || key_title == '2' || key_title == '3' || key_title == '4'){
+					// 	  				// ไม่ต้องแจ้งเตือน
+			        // 				}else{
+			        // 					// แจ้งเตือนข้อมูลเปลี่ยนแปลง
+			        // 					edit_form_yellow(sub_key , data_new_5vi[main_key][sub_key] , null);
+			        // 				}
+					  				
+					//   			}
+
+					// 			// console.log("---------------------------------------");
+
+					//   		}
+
+				  	// 	}else if(key_title == form_yellow_current_topic && key_title != '5'){
+
+				  	// 		// หัวข้อ main_key ตรงกับหน้าที่เปิดอยู่ ตรวจสอบการเปลี่ยนแปลงของข้อมูล
+				  	// 		// console.log("ตรวจสอบการเปลี่ยนแปลงของข้อมูล หน้า : " + main_key);
+
+				  	// 		for (const [sub_key, sub_value ] of Object.entries(data_new_5vi[main_key])) {
+
+					//   			if (data_new_5vi[main_key][sub_key] === null) {
+					// 	  			data_new_5vi[main_key][sub_key] = '';
+					// 	  		}
+
+					//   			// console.log(" ==>> " + sub_key + " <<== ");
+					//   			// console.log(data_new_5vi[main_key][sub_key]);
+
+					//   			if( start_data_arr[main_key][sub_key] == data_new_5vi[main_key][sub_key] ){
+					//   				// console.log(main_key + " / หัวข้อ : " + sub_key);
+					//   				// console.log(">> ข้อมูล ไม่มี การเปลี่ยนแปลง <<");
+					//   				check_go_to(null,null);
+					//   			}else{
+					//   				// console.log(main_key + " / หัวข้อ : " + sub_key);
+					//   				// console.log(">> ข้อมูล มี การเปลี่ยนแปลง <<");
+					//   				// console.log("จาก " + start_data_arr[main_key][sub_key] + " | เปลี่ยนเป็น " + data_new_5vi[main_key][sub_key]);
+					//   				// console.log(key_title);
+
+					//   				if(key_title == '1' || key_title == '2' || key_title == '3' || key_title == '4'){
+					// 	  				// ไม่ต้องแจ้งเตือน
+			        // 				}else{
+			        // 					// แจ้งเตือนข้อมูลเปลี่ยนแปลง
+			        // 					// alet_new_data('form_yellow' , main_key , sub_key , data_new_5vi[main_key][sub_key] , start_data_arr[main_key][sub_key]);
+					//   					edit_form_yellow(sub_key , data_new_5vi[main_key][sub_key] , start_data_arr[main_key][sub_key]);
+
+			        // 				}
+					//   			}
+					  			
+					// 			// console.log("---------------------------------------");
+
+					//   		}
+
+				  	// 	}
+
+					// }
+
+
+
+				} // ปีกกาปิด if start_data_arr && check_start_data_arr == "Yes"
 
 
             	setTimeout(function() {
@@ -2684,22 +2749,22 @@
 
     }
 
-    function edit_form_yellow(main_key , sub_key , value , old){
+    function edit_form_yellow(key , value , old){
 
 		// console.log("-------------------------------------------");
 		// console.log(">>> SAVE NEW DATA <<<");
-		// console.log(main_key + " : " + sub_key + " >> " + value);
+		// console.log(key + " >> " + value);
 		// console.log("--------------------------------------------");
 
-		// start_data_arr[main_key][sub_key] = value ;
+		// start_data_arr[key] = value ;
 		// data_arr[key] = value ;
 
 		//  radio
-		if (sub_key === 'be_notified' || sub_key === 'idc' || sub_key === 'rc' || sub_key === 'treatment' || sub_key === 'owner_registration') {
+		if (key === 'be_notified' || key === 'idc' || key === 'rc' || key === 'treatment' || key === 'owner_registration') {
 			// console.log("radio");
 			if (value === null || value === '') {
 
-				let key_radio = document.getElementsByName(sub_key);
+				let key_radio = document.getElementsByName(key);
 
 		        for (let iov = 0, length = key_radio.length; iov < length; iov++) { 
 		            if (key_radio[iov].checked) {
@@ -2708,20 +2773,20 @@
 		        }
 
 			}else{
-				document.querySelector('[data-'+sub_key+'="'+ value +'"]').checked = true;
+				document.querySelector('[data-'+key+'="'+ value +'"]').checked = true;
 			}
 
-			if (sub_key === 'treatment') {
+			if (key === 'treatment') {
 				check_treatment();
 				reset_sub_treatment();
 			}
 		}
 		// cheeck box
-		else if (sub_key === 'sub_treatment' || sub_key === 'symptom' || sub_key === 'submission_criteria' || sub_key === 'communication_hospital' ) {
+		else if (key === 'sub_treatment' || key === 'symptom' || key === 'submission_criteria' || key === 'communication_hospital' ) {
 			// console.log("cheeck box");
-    		// console.log("sub_key >> " + sub_key);
+    		// console.log("key >> " + key);
 
-			let key_cheeck_box = document.getElementsByName(sub_key);
+			let key_cheeck_box = document.getElementsByName(key);
 
 	        for (let izi = 0, length = key_cheeck_box.length; izi < length; izi++) { 
 	            if (key_cheeck_box[izi].checked) {
@@ -2738,26 +2803,26 @@
 				let data_all_cheeck_box = value.split(",");
 
 				for (let xxi = 0; xxi < data_all_cheeck_box.length; xxi++) {
-			        document.querySelector('[data-'+sub_key+'="'+ data_all_cheeck_box[xxi] +'"]').checked = true;
+			        document.querySelector('[data-'+key+'="'+ data_all_cheeck_box[xxi] +'"]').checked = true;
 			    }
 			}
 			
 		}
 		// user_name && phone_user
-		else if(sub_key === 'name_user' || sub_key === 'phone_user'){
+		else if(key === 'name_user' || key === 'phone_user'){
 			// console.log("usera");
-			document.querySelector('#'+sub_key).value = value;
-			document.querySelector('#u_'+sub_key).innerHTML = value ;
+			document.querySelector('#'+key).value = value;
+			document.querySelector('#u_'+key).innerHTML = value ;
 		}
 		// text area
-		else if(sub_key === 'location_sos' || sub_key === 'symptom_other'){
+		else if(key === 'location_sos' || key === 'symptom_other'){
 			// console.log("text area");
-			document.querySelector('[name="'+sub_key+'"]').value = value ;
+			document.querySelector('[name="'+key+'"]').value = value ;
 		}
 		// input general
 		else{
 			// console.log("input general");
-			document.querySelector('#'+sub_key).value = value;
+			document.querySelector('#'+key).value = value;
 		}
 
 		if( old ){
@@ -2792,7 +2857,7 @@
 		// console.log(type);
 		
 		let active = window.location.href.split('#step-')[1];
-			// console.log(active);
+			console.log("Go to page : " + active);
 
 		check_color_btn(active);
 		send_save_data(active , check_dont_save);
@@ -3441,7 +3506,7 @@
             if (data['check'] == "OK") {
             	for (const [key, value ] of Object.entries(data['data'])) {
             		if(key != "sos_help_center_id"){
-            			edit_form_yellow(null , key , value , 'save_data_change_form_yellow')
+            			edit_form_yellow(key , value , 'save_data_change_form_yellow')
             		}
             	}
 				Loop_check_form_yellow();

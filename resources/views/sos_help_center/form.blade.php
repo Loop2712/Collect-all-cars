@@ -3725,7 +3725,7 @@ color: #ff9317;
         });
 
         // บันทึกข้อมูลใหม่
-        edit_form_yellow( main_key , key , value , old);
+        // edit_form_yellow( main_key , key , value , old);
 
         let audio_save_data = new Audio("{{ asset('sound/ยืนยัน.mp3') }}");
             audio_save_data.play();
