@@ -4256,13 +4256,12 @@
 
     }
 
-    
+    let image_sos_ask_more = "{{ url('/img/icon/operating_unit/sos.png') }}";
+    let image_operating_unit_red_ask_more = "{{ url('/img/icon/operating_unit/แดง.png') }}";
+    let image_operating_unit_yellow_ask_more = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
+    let image_operating_unit_green_ask_more = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
     
     function open_map_ask_more(data_ask_more){
-        let image_sos_ask_more = "{{ url('/img/icon/operating_unit/sos.png') }}";
-        let image_operating_unit_red_ask_more = "{{ url('/img/icon/operating_unit/แดง.png') }}";
-        let image_operating_unit_yellow_ask_more = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
-        let image_operating_unit_green_ask_more = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
 
         console.log(data_ask_more);
 
@@ -4363,11 +4362,11 @@
         }
     }
 
-    let view_infoWindow ;
+    let view_infoWindow_ask_more ;
     function view_data_marker_ask_more(id, name, distance, level, lat, lng) {
 
-        if (view_infoWindow) {
-            view_infoWindow.setMap(null);
+        if (view_infoWindow_ask_more) {
+            view_infoWindow_ask_more.setMap(null);
         }
         const myLatlng = {
             lat: parseFloat(lat),
@@ -4387,12 +4386,12 @@
                 '</div>'+
             '</div>';
 
-        view_infoWindow = new google.maps.InfoWindow({
+        view_infoWindow_ask_more = new google.maps.InfoWindow({
             content: contentString,
             position: myLatlng,
         });
 
-        view_infoWindow.open(map_select_officer_ask_more);
+        view_infoWindow_ask_more.open(map_select_officer_ask_more);
 
     }
 
