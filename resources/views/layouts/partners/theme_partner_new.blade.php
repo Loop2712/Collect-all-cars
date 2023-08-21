@@ -4256,12 +4256,13 @@
 
     }
 
-    let image_sos_ask_more = "{{ url('/img/icon/operating_unit/sos.png') }}";
-    let image_operating_unit_red_ask_more = "{{ url('/img/icon/operating_unit/แดง.png') }}";
-    let image_operating_unit_yellow_ask_more = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
-    let image_operating_unit_green_ask_more = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
+    
     
     function open_map_ask_more(data_ask_more){
+        let image_sos_ask_more = "{{ url('/img/icon/operating_unit/sos.png') }}";
+        let image_operating_unit_red_ask_more = "{{ url('/img/icon/operating_unit/แดง.png') }}";
+        let image_operating_unit_yellow_ask_more = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
+        let image_operating_unit_green_ask_more = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
 
         console.log(data_ask_more);
 
