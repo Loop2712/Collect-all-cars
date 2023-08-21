@@ -2603,7 +2603,13 @@
 	        						check_go_to(null,null);
 	        						
 					  			}else{
-					  				edit_form_yellow(main_key , sub_key , data_new_5vi[main_key][sub_key] , null);
+					  				if(key_title == '1' || key_title == '2' || key_title == '3' || key_title == '4'){
+						  				// ไม่ต้องแจ้งเตือน
+			        				}else{
+			        					// แจ้งเตือนข้อมูลเปลี่ยนแปลง
+			        					edit_form_yellow(main_key , sub_key , data_new_5vi[main_key][sub_key] , null);
+			        				}
+					  				
 					  			}
 
 								// console.log("---------------------------------------");
