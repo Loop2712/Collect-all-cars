@@ -211,26 +211,29 @@
                                     @foreach ($data_sos_fastest_5 as $data_sos_fastest_5)
 
                                     @php
-                                    $sos_fastest_5_time_sos_success = strtotime($data_sos_fastest_5->time_sos_success);
-                                    $sos_fastest_5_time_command = strtotime($data_sos_fastest_5->time_command);
+                                    if(!empty($data_sos_fastest_5->time_sos_success)){
+                                        $sos_fastest_5_time_sos_success = strtotime($data_sos_fastest_5->time_sos_success);
+                                        $sos_fastest_5_time_command = strtotime($data_sos_fastest_5->time_command);
 
-                                    $sos_fastest_5_timeDifference = abs($sos_fastest_5_time_sos_success - $sos_fastest_5_time_command);
+                                        $sos_fastest_5_timeDifference = abs($sos_fastest_5_time_sos_success - $sos_fastest_5_time_command);
 
-                                    if ($sos_fastest_5_timeDifference >= 3600) {
-                                    $sos_fastest_5_hours = floor($sos_fastest_5_timeDifference / 3600);
-                                    $sos_fastest_5_remainingMinutes = floor(($sos_fastest_5_timeDifference % 3600) / 60);
-                                    $sos_fastest_5_remainingSeconds = $sos_fastest_5_timeDifference % 60;
+                                        if ($sos_fastest_5_timeDifference >= 3600) {
+                                            $sos_fastest_5_hours = floor($sos_fastest_5_timeDifference / 3600);
+                                            $sos_fastest_5_remainingMinutes = floor(($sos_fastest_5_timeDifference % 3600) / 60);
+                                            $sos_fastest_5_remainingSeconds = $sos_fastest_5_timeDifference % 60;
 
-                                    $sos_fastest_5_time_unit = $sos_fastest_5_hours . ' ชั่วโมง ' . $sos_fastest_5_remainingMinutes . ' นาที ' . $sos_fastest_5_remainingSeconds . ' วินาที';
-                                    } elseif ($sos_fastest_5_timeDifference >= 60) {
-                                    $sos_fastest_5_minutes = floor($sos_fastest_5_timeDifference / 60);
-                                    $sos_fastest_5_seconds = $sos_fastest_5_timeDifference % 60;
+                                            $sos_fastest_5_time_unit = $sos_fastest_5_hours . ' ชั่วโมง ' . $sos_fastest_5_remainingMinutes . ' นาที ' . $sos_fastest_5_remainingSeconds . ' วินาที';
+                                        } elseif ($sos_fastest_5_timeDifference >= 60) {
+                                            $sos_fastest_5_minutes = floor($sos_fastest_5_timeDifference / 60);
+                                            $sos_fastest_5_seconds = $sos_fastest_5_timeDifference % 60;
 
-                                    $sos_fastest_5_time_unit = $sos_fastest_5_minutes . ' นาที ' . $sos_fastest_5_seconds . ' วินาที';
-                                    } else {
-                                    $sos_fastest_5_time_unit = $sos_fastest_5_timeDifference . ' วินาที';
+                                            $sos_fastest_5_time_unit = $sos_fastest_5_minutes . ' นาที ' . $sos_fastest_5_seconds . ' วินาที';
+                                        } else {
+                                            $sos_fastest_5_time_unit = $sos_fastest_5_timeDifference . ' วินาที';
+                                        }
+                                    else{
+                                        $sos_fastest_5_time_unit  = "--";
                                     }
-
                                     @endphp
                                     <tr>
                                         <td>{{ $data_sos_fastest_5->operating_code ? $data_sos_fastest_5->operating_code : "--"}}</td>
@@ -279,26 +282,30 @@
                                     @foreach ($data_sos_slowest_5 as $data_sos_slowest_5)
 
                                     @php
-                                    $time_sos_success = strtotime($data_sos_slowest_5->time_sos_success);
-                                    $time_command = strtotime($data_sos_slowest_5->time_command);
+                                    if(!empty($data_sos_slowest_5->time_sos_success)){
 
-                                    $timeDifference = abs($time_sos_success - $time_command);
+                                        $time_sos_success = strtotime($data_sos_slowest_5->time_sos_success);
+                                        $time_command = strtotime($data_sos_slowest_5->time_command);
 
-                                    if ($timeDifference >= 3600) {
-                                    $hours = floor($timeDifference / 3600);
-                                    $remainingMinutes = floor(($timeDifference % 3600) / 60);
-                                    $remainingSeconds = $timeDifference % 60;
+                                        $timeDifference = abs($time_sos_success - $time_command);
 
-                                    $time_unit = $hours . ' ชั่วโมง ' . $remainingMinutes . ' นาที ' . $remainingSeconds . ' วินาที';
-                                    } elseif ($timeDifference >= 60) {
-                                    $minutes = floor($timeDifference / 60);
-                                    $seconds = $timeDifference % 60;
+                                        if ($timeDifference >= 3600) {
+                                            $hours = floor($timeDifference / 3600);
+                                            $remainingMinutes = floor(($timeDifference % 3600) / 60);
+                                            $remainingSeconds = $timeDifference % 60;
 
-                                    $time_unit = $minutes . ' นาที ' . $seconds . ' วินาที';
-                                    } else {
-                                    $time_unit = $timeDifference . ' วินาที';
+                                            $time_unit = $hours . ' ชั่วโมง ' . $remainingMinutes . ' นาที ' . $remainingSeconds . ' วินาที';
+                                        } elseif ($timeDifference >= 60) {
+                                            $minutes = floor($timeDifference / 60);
+                                            $seconds = $timeDifference % 60;
+
+                                            $time_unit = $minutes . ' นาที ' . $seconds . ' วินาที';
+                                        } else {
+                                            $time_unit = $timeDifference . ' วินาที';
+                                        }
+                                    else{
+                                        $time_unit  = "--";
                                     }
-
                                     @endphp
                                     <tr>
                                         <td>{{ $data_sos_slowest_5->operating_code ? $data_sos_slowest_5->operating_code : "--"}}</td>
@@ -546,152 +553,6 @@
         </div>
     </div> -->
 </div>
-
-<!--======= เวลาในการช่วยเหลือ 5 อันดับ ============-->
-<!-- <div class="row mb-4">
-    <div class="col-12 col-lg-6">
-        <div class="card radius-10 w-100">
-            <div class="card-header">
-                <div class="d-flex align-items-center">
-                    <div class="col-10">
-                        <h5 class="font-weight-bold mb-0 text-success"> อันดับ</h5>
-                    </div>
-                    <div class="dropdown ms-auto">
-                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
-                        </div>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ url('/dashboard_1669_all_sos_show') }}">ดูข้อมูลสมาชิกเพิ่มเติม</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-body p-3">
-                <div class="table-responsive">
-                    <table class="table align-middle mb-0 ">
-                        <thead>
-                            <tr>
-                                <th>รหัสเคส</th>
-                                <th>address</th>
-                                <th>name_helper</th>
-                                <th>organization_helper</th>
-                                <th>ระยะเวลารวม</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data_sos_fastest_5 as $data_sos_fastest_5)
-
-                            @php
-                            $sos_fastest_5_time_sos_success = strtotime($data_sos_fastest_5->time_sos_success);
-                            $sos_fastest_5_time_command = strtotime($data_sos_fastest_5->time_command);
-
-                            $sos_fastest_5_timeDifference = abs($sos_fastest_5_time_sos_success - $sos_fastest_5_time_command);
-
-                            if ($sos_fastest_5_timeDifference >= 3600) {
-                            $sos_fastest_5_hours = floor($sos_fastest_5_timeDifference / 3600);
-                            $sos_fastest_5_remainingMinutes = floor(($sos_fastest_5_timeDifference % 3600) / 60);
-                            $sos_fastest_5_remainingSeconds = $sos_fastest_5_timeDifference % 60;
-
-                            $sos_fastest_5_time_unit = $sos_fastest_5_hours . ' ชั่วโมง ' . $sos_fastest_5_remainingMinutes . ' นาที ' . $sos_fastest_5_remainingSeconds . ' วินาที';
-                            } elseif ($sos_fastest_5_timeDifference >= 60) {
-                            $sos_fastest_5_minutes = floor($sos_fastest_5_timeDifference / 60);
-                            $sos_fastest_5_seconds = $sos_fastest_5_timeDifference % 60;
-
-                            $sos_fastest_5_time_unit = $sos_fastest_5_minutes . ' นาที ' . $sos_fastest_5_seconds . ' วินาที';
-                            } else {
-                            $sos_fastest_5_time_unit = $sos_fastest_5_timeDifference . ' วินาที';
-                            }
-
-                            @endphp
-                            <tr>
-                                <td>{{ $data_sos_fastest_5->operating_code ? $data_sos_fastest_5->operating_code : "--"}}</td>
-                                <td>{{ $data_sos_fastest_5->address ? $data_sos_fastest_5->address : "--"}}</td>
-                                <td>{{ $data_sos_fastest_5->name_helper ? $data_sos_fastest_5->name_helper : "--"}}</td>
-                                <td>{{ $data_sos_fastest_5->organization_helper ? $data_sos_fastest_5->organization_helper : "--"}}</td>
-                                <td>{{ $sos_fastest_5_time_unit }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="col-12 col-lg-6">
-        <div class="card radius-10 w-100">
-            <div class="card-header">
-                <div class="d-flex align-items-center">
-                    <div class="col-10">
-                        <h5 class="font-weight-bold mb-0 text-danger">เวลาในการช่วยเหลือ ช้า ที่สุด {{ count($data_sos_slowest_5) }} อันดับ</h5>
-                    </div>
-                    <div class="dropdown ms-auto">
-                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
-                        </div>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ url('/dashboard_1669_all_sos_show') }}">ดูข้อมูลสมาชิกเพิ่มเติม</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-body p-3">
-                <div class="table-responsive">
-                    <table class="table align-middle mb-0 ">
-                        <thead>
-                            <tr>
-                                <th>รหัสเคส</th>
-                                <th>address</th>
-                                <th>name_helper</th>
-                                <th>organization_helper</th>
-                                <th>ระยะเวลารวม</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data_sos_slowest_5 as $data_sos_slowest_5)
-
-                            @php
-                            $time_sos_success = strtotime($data_sos_slowest_5->time_sos_success);
-                            $time_command = strtotime($data_sos_slowest_5->time_command);
-
-                            $timeDifference = abs($time_sos_success - $time_command);
-
-                            if ($timeDifference >= 3600) {
-                            $hours = floor($timeDifference / 3600);
-                            $remainingMinutes = floor(($timeDifference % 3600) / 60);
-                            $remainingSeconds = $timeDifference % 60;
-
-                            $time_unit = $hours . ' ชั่วโมง ' . $remainingMinutes . ' นาที ' . $remainingSeconds . ' วินาที';
-                            } elseif ($timeDifference >= 60) {
-                            $minutes = floor($timeDifference / 60);
-                            $seconds = $timeDifference % 60;
-
-                            $time_unit = $minutes . ' นาที ' . $seconds . ' วินาที';
-                            } else {
-                            $time_unit = $timeDifference . ' วินาที';
-                            }
-
-                            @endphp
-                            <tr>
-                                <td>{{ $data_sos_slowest_5->operating_code ? $data_sos_slowest_5->operating_code : "--"}}</td>
-                                <td>{{ $data_sos_slowest_5->address ? $data_sos_slowest_5->address : "--"}}</td>
-                                <td>{{ $data_sos_slowest_5->name_helper ? $data_sos_slowest_5->name_helper : "--"}}</td>
-                                <td>{{ $data_sos_slowest_5->organization_helper ? $data_sos_slowest_5->organization_helper : "--"}}</td>
-                                <td>{{ $time_unit }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div> -->
-
-
-
 <!-- Column CHART พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ -->
 <script>
     let series_arr = [];
