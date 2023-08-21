@@ -4362,38 +4362,38 @@
         }
     }
 
-    let view_infoWindow_ask_more ;
-    function view_data_marker_ask_more(id, name, distance, level, lat, lng) {
+    // let view_infoWindow_ask_more ;
+    // function view_data_marker_ask_more(id, name, distance, level, lat, lng) {
 
-        if (view_infoWindow_ask_more) {
-            view_infoWindow_ask_more.setMap(null);
-        }
-        const myLatlng = {
-            lat: parseFloat(lat),
-            lng: parseFloat(lng)
-        };
+    //     if (view_infoWindow_ask_more) {
+    //         view_infoWindow_ask_more.setMap(null);
+    //     }
+    //     const myLatlng = {
+    //         lat: parseFloat(lat),
+    //         lng: parseFloat(lng)
+    //     };
 
-        let contentString =
-            '<div id="content data_sos_map">'+
-                '<div  class="data-officer-item d-flex align-items-center  p-2 cursor-pointer">' +
-                    ' <div class="level  ' + level + ' d-flex align-items-center ">' +
-                        ' <center> ' + level + '</center>' +
-                    '</div>' +
-                    '<div class="ms-2">' +
-                        '<h6 class="mb-1 font-14">' + name + '</h6>' +
-                        '<p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ ' + distance + ' กม. </p>' +
-                    '</div>' +
-                '</div>'+
-            '</div>';
+    //     let contentString =
+    //         '<div id="content data_sos_map">'+
+    //             '<div  class="data-officer-item d-flex align-items-center  p-2 cursor-pointer">' +
+    //                 ' <div class="level  ' + level + ' d-flex align-items-center ">' +
+    //                     ' <center> ' + level + '</center>' +
+    //                 '</div>' +
+    //                 '<div class="ms-2">' +
+    //                     '<h6 class="mb-1 font-14">' + name + '</h6>' +
+    //                     '<p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ ' + distance + ' กม. </p>' +
+    //                 '</div>' +
+    //             '</div>'+
+    //         '</div>';
 
-        view_infoWindow_ask_more = new google.maps.InfoWindow({
-            content: contentString,
-            position: myLatlng,
-        });
+    //     view_infoWindow_ask_more = new google.maps.InfoWindow({
+    //         content: contentString,
+    //         position: myLatlng,
+    //     });
 
-        view_infoWindow_ask_more.open(map_select_officer_ask_more);
+    //     view_infoWindow_ask_more.open(map_select_officer_ask_more);
 
-    }
+    // }
 
 	
 
