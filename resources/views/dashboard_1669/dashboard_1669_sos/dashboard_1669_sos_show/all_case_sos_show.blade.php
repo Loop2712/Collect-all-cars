@@ -157,7 +157,11 @@
                                 @endif
                             </td>
                             <td>{{ $item_sos->phone_user ? $item_sos->phone_user : "--" }}</td>
-                            <td>{{ $item_sos->officers_command_by->name_officer_command ? $item_sos->officers_command_by->name_officer_command : "--" }}</td>
+                            @if (!empty($item_sos->command_by))
+                                <td>{{ $item_sos->officers_command_by->name_officer_command}}</td>
+                            @else
+                                <td> -- </td>
+                            @endif
                             <td>{{ $item_sos->organization_helper ? $item_sos->organization_helper : "--" }}</td>
                             <td>{{ $item_sos->name_helper ? $item_sos->name_helper : "--" }}</td>
                             <td>{{ $item_sos->form_yellow->vehicle_type ? $item_sos->form_yellow->vehicle_type : "--" }}</td>
