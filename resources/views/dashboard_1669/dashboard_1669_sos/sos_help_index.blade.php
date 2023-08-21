@@ -231,7 +231,7 @@
                                         } else {
                                             $sos_fastest_5_time_unit = $sos_fastest_5_timeDifference . ' วินาที';
                                         }
-                                    else{
+                                    }else{
                                         $sos_fastest_5_time_unit  = "--";
                                     }
                                     @endphp
