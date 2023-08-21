@@ -34,7 +34,9 @@
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <p class="mb-0">All Content</p>
-                        <h4 class="font-weight-bold">{{ $count_all_content }}<small class="text-success font-13"> (+2 วันนี้) </small></h4>
+                        <h4 class="font-weight-bold">{{ $count_all_content }}
+                            {{-- <small class="text-success font-13"> (+2 วันนี้) </small> --}}
+                        </h4>
                     </div>
                     <div class="widgets-icons bg-gradient-cosmic text-white"><i class="fa-solid fa-folder-grid"></i>
                     </div>
@@ -54,7 +56,7 @@
                     <div class="flex-grow-1">
                         <p class="mb-0">By Check in</p>
                         <h4 class="font-weight-bold">{{ $count_all_by_checkin }}
-                            <small class="text-success font-13"> (+2 วันนี้) </small>
+                            {{-- <small class="text-success font-13"> (+2 วันนี้) </small> --}}
                         </h4>
                     </div>
                     <div class="widgets-icons bg-gradient-kyoto text-white"><i class="fa-solid fa-location-check "></i>
@@ -74,7 +76,9 @@
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <p class="mb-0">By User</p>
-                        <h4 class="font-weight-bold">{{ $count_all_by_user }}<small class="text-dark font-13"> (+0 วันนี้) </small></h4>
+                        <h4 class="font-weight-bold">{{ $count_all_by_user }}
+                            {{-- <small class="text-dark font-13"> (+0 วันนี้) </small> --}}
+                        </h4>
                     </div>
                     <div class="widgets-icons bg-gradient-blues text-white"><i class="fa-solid fa-user"></i>
                     </div>
@@ -93,7 +97,9 @@
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <p class="mb-0">By Car</p>
-                        <h4 class="font-weight-bold"> {{ $count_all_by_car }} <small class="text-dark font-13">(+0 วันนี้)</small></h4>
+                        <h4 class="font-weight-bold"> {{ $count_all_by_car }}
+                            {{-- <small class="text-dark font-13">(+0 วันนี้)</small> --}}
+                        </h4>
                     </div>
                     <div class="widgets-icons bg-gradient-burning text-white"><i class="fa-solid fa-car-side"></i>
                     </div>
@@ -118,7 +124,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="font-weight-bold mb-0">
-                            <b>Check in</b>
+                            <b>By_Check_In</b>
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
@@ -133,12 +139,12 @@
 
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a data-toggle="collapse" data-target="#collapse_check_in_1" aria-expanded="true" aria-controls="collapse_check_in_1" href="javaScript:;" class="dropdown-item">
-                                    เนื้อหาที่ส่งหาเยอะที่สุด
+                                    เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </a>
                                 <a data-toggle="collapse" data-target="#collapse_check_in_2" aria-expanded="true" aria-controls="collapse_check_in_2" href="javaScript:;" class="dropdown-item">
                                     เนื้อหาที่ส่งบ่อยที่สุด
                                 </a>
-                                <a data-toggle="collapse" data-target="#collapse_check_in_2" aria-expanded="true" aria-controls="collapse_check_in_3" href="javaScript:;" class="dropdown-item">
+                                <a data-toggle="collapse" data-target="#collapse_check_in_3" aria-expanded="true" aria-controls="collapse_check_in_3" href="javaScript:;" class="dropdown-item">
                                     เนื้อหาที่มีคนดูมากที่สุด
                                 </a>
                             </div>
@@ -147,7 +153,7 @@
                 </div>
             </div>
 
-            <!-- เนื้อหาที่ส่งหาเยอะที่สุด -->
+            <!-- เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด -->
             <div id="collapse_check_in_1" class="collapse show" data-parent="#accordion_of_check_in">
                 <div class="card-body">
                     <div class="col d-flex">
@@ -157,18 +163,22 @@
                                     เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </span>
                                 <hr>
-                                @foreach ($all_by_checkin as $all_by_checkin)
+                                @foreach ($all_by_checkin_show_user as $checkin_show_user)
                                     <div class="d-flex align-items-center">
                                         <div class="">
-                                            <p class="ms-auto mb-0 text-purple">1 &nbsp;&nbsp;</p>
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
                                         </div>
                                         <div class="product-img">
-                                            <img src="https://www.viicheck.com/storage/uploads/6jxuRh4PEsSjOIoAZdPXdPpLfR3g4u78IZAICyVZ.png" class="p-1" alt="">
+                                            @if (!empty($checkin_show_user->photo))
+                                                <img src="https://www.viicheck.com/storage/{{ $checkin_show_user->photo}}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                            @endif
                                         </div>
                                         <div class="ps-3">
-                                            <h5 class="mb-0 font-weight-bold">{{ $all_by_checkin->name_content }}</h5>
+                                            <h5 class="mb-0 font-weight-bold">{{ $checkin_show_user->name_content ? $checkin_show_user->name_content : "--"}}</h5>
                                         </div>
-                                        <p class="ms-auto mb-0 text-purple">{{ $all_by_checkin->count_name_content }} รอบ</p>
+                                        <p class="ms-auto mb-0 text-purple">{{ $checkin_show_user->count_show_user ? $checkin_show_user->count_show_user : "0"}} รอบ</p>
                                     </div>
                                     <hr>
                                 @endforeach
@@ -189,27 +199,34 @@
                                     เนื้อหาที่ส่งบ่อยที่สุด
                                 </span>
                                 <hr>
-                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <p class="ms-auto mb-0 text-purple">1 &nbsp;&nbsp;</p>
+                                @foreach ($all_by_checkin_send_round as $checkin_send_round)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            @if (!empty($checkin_send_round->photo))
+                                                <img src="https://www.viicheck.com/storage/{{ $checkin_send_round->photo}}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $checkin_send_round->name_content ? $checkin_send_round->name_content : "--"}}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $checkin_send_round->send_round ? $checkin_send_round->send_round : "0"}} ครั้ง</p>
                                     </div>
-                                    <div class="product-img">
-                                        <img src="https://www.viicheck.com/storage/uploads/6jxuRh4PEsSjOIoAZdPXdPpLfR3g4u78IZAICyVZ.png" class="p-1" alt="">
-                                    </div>
-                                    <div class="ps-3">
-                                        <h5 class="mb-0 font-weight-bold">วีเช็ค</h5>
-                                    </div>
-                                    <p class="ms-auto mb-0 text-purple">0 ครั้ง</p>
-                                </div>
-                                <hr>
+                                    <hr>
+                                @endforeach
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- จบ การคลิกมากที่สุด -->
+            <!-- จบ เนื้อหาที่ส่งบ่อยที่สุด -->
 
-             <!-- เนื้อหาที่ส่งบ่อยที่สุด -->
+            <!-- เนื้อหาที่มีคนดูมากที่สุด -->
              <div id="collapse_check_in_3" class="collapse" data-parent="#accordion_of_check_in">
                 <div class="card-body">
                     <div class="col d-flex">
@@ -219,25 +236,31 @@
                                     เนื้อหาที่มีคนดูมากที่สุด
                                 </span>
                                 <hr>
-                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <p class="ms-auto mb-0 text-purple">1 &nbsp;&nbsp;</p>
+                                @foreach ($all_by_checkin_user_click as $checkin_user_click)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            @if (!empty($checkin_user_click->photo))
+                                                <img src="https://www.viicheck.com/storage/{{ $checkin_user_click->photo}}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $checkin_user_click->name_content ? $checkin_user_click->name_content : "--"}}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $checkin_user_click->count_user_click ? $checkin_user_click->count_user_click : "0"}} ครั้ง</p>
                                     </div>
-                                    <div class="product-img">
-                                        <img src="https://www.viicheck.com/storage/uploads/6jxuRh4PEsSjOIoAZdPXdPpLfR3g4u78IZAICyVZ.png" class="p-1" alt="">
-                                    </div>
-                                    <div class="ps-3">
-                                        <h5 class="mb-0 font-weight-bold">วีเช็ค</h5>
-                                    </div>
-                                    <p class="ms-auto mb-0 text-purple">0 ครั้ง</p>
-                                </div>
-                                <hr>
+                                    <hr>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- จบ การคลิกมากที่สุด -->
+            <!-- จบ เนื้อหาที่มีคนดูมากที่สุด -->
 
         </div>
     </div>
@@ -250,7 +273,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="font-weight-bold mb-0">
-                            <b>Car</b>
+                            <b>By_Car</b>
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
@@ -265,10 +288,13 @@
 
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a data-toggle="collapse" data-target="#collapse_car_1" aria-expanded="true" aria-controls="collapse_car_1" href="javaScript:;" class="dropdown-item">
-                                    เนื้อหาที่ส่งหาเยอะที่สุด
+                                    เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </a>
                                 <a data-toggle="collapse" data-target="#collapse_car_2" aria-expanded="true" aria-controls="collapse_car_2" href="javaScript:;" class="dropdown-item">
                                     เนื้อหาที่ส่งบ่อยที่สุด
+                                </a>
+                                <a data-toggle="collapse" data-target="#collapse_car_3" aria-expanded="true" aria-controls="collapse_car_3" href="javaScript:;" class="dropdown-item">
+                                    เนื้อหาที่มีคนดูมากที่สุด
                                 </a>
                             </div>
                         </div>
@@ -276,74 +302,41 @@
                 </div>
             </div>
 
-            <!-- เนื้อหาที่ส่งหาเยอะที่สุด -->
+            <!-- เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด -->
             <div id="collapse_car_1" class="collapse show" data-parent="#accordion_of_car">
                 <div class="card-body">
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                    เนื้อหาที่ส่งหาเยอะที่สุด
+                                    เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </span>
                                 <hr>
-                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <p class="ms-auto mb-0 text-purple">1 &nbsp;&nbsp;</p>
+                                @foreach ($all_by_car_show_user as $by_car_show_user)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            @if (!empty($by_car_show_user->photo))
+                                                <img src="https://www.viicheck.com/storage/{{ $by_car_show_user->photo}}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $by_car_show_user->name_content ? $by_car_show_user->name_content : "--"}}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $by_car_show_user->count_show_user }} ครั้ง</p>
                                     </div>
-                                    <div class="product-img">
-                                        <img src="https://www.viicheck.com/storage/uploads/GoKUtOrH1x9WhfCiJ5MB2FhZiLskRbu8vYXMna38.png" class="p-1" alt="">
-                                    </div>
-                                    <div class="ps-3">
-                                        <h5 class="mb-0 font-weight-bold">PEDDyHUB</h5>
-                                    </div>
-                                    <p class="ms-auto mb-0 text-purple">23 รอบ</p>
-                                </div>
-                                <hr>
-                                                                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <p class="ms-auto mb-0 text-purple">2 &nbsp;&nbsp;</p>
-                                    </div>
-                                    <div class="product-img">
-                                        <img src="https://www.viicheck.com/storage/uploads/eSXi55SZUbP5lG9MOcRsqgB74dBL1dPSuDyjzg94.jpg" class="p-1" alt="">
-                                    </div>
-                                    <div class="ps-3">
-                                        <h5 class="mb-0 font-weight-bold">How to use</h5>
-                                    </div>
-                                    <p class="ms-auto mb-0 text-purple">2 รอบ</p>
-                                </div>
-                                <hr>
-                                                                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <p class="ms-auto mb-0 text-purple">3 &nbsp;&nbsp;</p>
-                                    </div>
-                                    <div class="product-img">
-                                        <img src="https://www.viicheck.com/storage/uploads/ZGwq5Mh6nK3bGfBLY1fnZG7Ycn91bvnWJ7WzOAKA.png" class="p-1" alt="">
-                                    </div>
-                                    <div class="ps-3">
-                                        <h5 class="mb-0 font-weight-bold">สวัสดีค่ะ</h5>
-                                    </div>
-                                    <p class="ms-auto mb-0 text-purple">1 รอบ</p>
-                                </div>
-                                <hr>
-                                                                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <p class="ms-auto mb-0 text-purple">4 &nbsp;&nbsp;</p>
-                                    </div>
-                                    <div class="product-img">
-                                        <img src="https://www.viicheck.com/storage/uploads/IOuCAIEEgrOOcHcQY01yCUw7VC1ds2Ye0LuwReNT.png" class="p-1" alt="">
-                                    </div>
-                                    <div class="ps-3">
-                                        <h5 class="mb-0 font-weight-bold">traffic sign</h5>
-                                    </div>
-                                    <p class="ms-auto mb-0 text-purple">1 รอบ</p>
-                                </div>
-                                <hr>
+                                    <hr>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- จบ ส่งมากที่สุด -->
+            <!-- จบ เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด -->
 
             <!-- เนื้อหาที่ส่งบ่อยที่สุด -->
             <div id="collapse_car_2" class="collapse" data-parent="#accordion_of_car">
@@ -355,64 +348,69 @@
                                     เนื้อหาที่ส่งบ่อยที่สุด
                                 </span>
                                 <hr>
-                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <p class="ms-auto mb-0 text-purple">1 &nbsp;&nbsp;</p>
+                                @foreach ($all_by_car_send_round as $by_car_send_round)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            @if (!empty($by_car_send_round->photo))
+                                                <img src="https://www.viicheck.com/storage/{{ $by_car_send_round->photo}}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $by_car_send_round->name_content ? $by_car_send_round->name_content : "--"}}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $by_car_send_round->send_round ? $by_car_send_round->send_round : "0"}} ครั้ง</p>
                                     </div>
-                                    <div class="product-img">
-                                        <img src="https://www.viicheck.com/storage/uploads/GoKUtOrH1x9WhfCiJ5MB2FhZiLskRbu8vYXMna38.png" class="p-1" alt="">
-                                    </div>
-                                    <div class="ps-3">
-                                        <h5 class="mb-0 font-weight-bold">PEDDyHUB</h5>
-                                    </div>
-                                    <p class="ms-auto mb-0 text-purple">5 ครั้ง</p>
-                                </div>
-                                <hr>
-                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <p class="ms-auto mb-0 text-purple">2 &nbsp;&nbsp;</p>
-                                    </div>
-                                    <div class="product-img">
-                                        <img src="https://www.viicheck.com/storage/uploads/eSXi55SZUbP5lG9MOcRsqgB74dBL1dPSuDyjzg94.jpg" class="p-1" alt="">
-                                    </div>
-                                    <div class="ps-3">
-                                        <h5 class="mb-0 font-weight-bold">How to use</h5>
-                                    </div>
-                                    <p class="ms-auto mb-0 text-purple">4 ครั้ง</p>
-                                </div>
-                                <hr>
-                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <p class="ms-auto mb-0 text-purple">3 &nbsp;&nbsp;</p>
-                                    </div>
-                                    <div class="product-img">
-                                        <img src="https://www.viicheck.com/storage/uploads/IOuCAIEEgrOOcHcQY01yCUw7VC1ds2Ye0LuwReNT.png" class="p-1" alt="">
-                                    </div>
-                                    <div class="ps-3">
-                                        <h5 class="mb-0 font-weight-bold">traffic sign</h5>
-                                    </div>
-                                    <p class="ms-auto mb-0 text-purple">1 ครั้ง</p>
-                                </div>
-                                <hr>
-                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <p class="ms-auto mb-0 text-purple">4 &nbsp;&nbsp;</p>
-                                    </div>
-                                    <div class="product-img">
-                                        <img src="https://www.viicheck.com/storage/uploads/ZGwq5Mh6nK3bGfBLY1fnZG7Ycn91bvnWJ7WzOAKA.png" class="p-1" alt="">
-                                    </div>
-                                    <div class="ps-3">
-                                        <h5 class="mb-0 font-weight-bold">สวัสดีค่ะ</h5>
-                                    </div>
-                                    <p class="ms-auto mb-0 text-purple">0 ครั้ง</p>
-                                </div>
-                                <hr>
+                                    <hr>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- จบ การคลิกมากที่สุด -->
+
+            <!-- เนื้อหาที่มีคนดูมากที่สุด -->
+            <div id="collapse_car_3" class="collapse" data-parent="#accordion_of_car">
+                <div class="card-body">
+                    <div class="col d-flex">
+                        <div class="card radius-10 w-100">
+                            <div class="best-selling-products p-3 mb-3">
+                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                    เนื้อหาที่มีคนดูมากที่สุด
+                                </span>
+                                <hr>
+                                @foreach ($all_by_car_user_click as $by_car_user_click)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            @if (!empty($by_car_user_click->photo))
+                                                <img src="https://www.viicheck.com/storage/{{ $by_car_user_click->photo}}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $by_car_user_click->name_content ? $by_car_user_click->name_content : "--"}}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $by_car_user_click->count_user_click}} ครั้ง</p>
+                                    </div>
+                                    <hr>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- จบ เนื้อหาที่มีคนดูมากที่สุด -->
+
+
         </div>
     </div>
     <!-- END CAR  -->
@@ -424,7 +422,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="font-weight-bold mb-0">
-                            <b>User</b>
+                            <b>By_User</b>
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
@@ -439,10 +437,13 @@
 
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a data-toggle="collapse" data-target="#collapse_user_1" aria-expanded="true" aria-controls="collapse_user_1" href="javaScript:;" class="dropdown-item">
-                                    เนื้อหาที่ส่งหาเยอะที่สุด
+                                    เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </a>
                                 <a data-toggle="collapse" data-target="#collapse_user_2" aria-expanded="true" aria-controls="collapse_user_2" href="javaScript:;" class="dropdown-item">
                                     เนื้อหาที่ส่งบ่อยที่สุด
+                                </a>
+                                <a data-toggle="collapse" data-target="#collapse_user_3" aria-expanded="true" aria-controls="collapse_user_3" href="javaScript:;" class="dropdown-item">
+                                    เนื้อหาที่มีคนดูมากที่สุด
                                 </a>
                             </div>
                         </div>
@@ -450,22 +451,41 @@
                 </div>
             </div>
 
-            <!-- เนื้อหาที่ส่งหาเยอะที่สุด -->
-                                        <div id="collapse_user_1" class="collapse show" data-parent="#accordion_of_user">
+            <!-- เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด -->
+            <div id="collapse_user_1" class="collapse show" data-parent="#accordion_of_user">
                 <div class="card-body">
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                    เนื้อหาที่ส่งหาเยอะที่สุด
+                                    เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </span>
                                 <hr>
+                                @foreach ($all_by_user_show_user as $by_user_show_user)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            @if (!empty($by_user_show_user->photo))
+                                                <img src="https://www.viicheck.com/storage/{{ $by_user_show_user->photo}}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $by_user_show_user->name_content ? $by_user_show_user->name_content : "--"}}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $by_user_show_user->count_show_user }} ครั้ง</p>
+                                    </div>
+                                    <hr>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- จบ ส่งมากที่สุด -->
+            <!-- จบ เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด -->
 
             <!-- เนื้อหาที่ส่งบ่อยที่สุด -->
             <div id="collapse_user_2" class="collapse" data-parent="#accordion_of_user">
@@ -477,12 +497,68 @@
                                     เนื้อหาที่ส่งบ่อยที่สุด
                                 </span>
                                 <hr>
+                                @foreach ($all_by_user_send_round as $by_user_send_round)
+                                <div class="d-flex align-items-center">
+                                    <div class="">
+                                        <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                    </div>
+                                    <div class="product-img">
+                                        @if (!empty($by_user_send_round->photo))
+                                            <img src="https://www.viicheck.com/storage/{{ $by_user_send_round->photo}}" class="p-1" alt="">
+                                        @else
+                                            <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="ps-3">
+                                        <h5 class="mb-0 font-weight-bold">{{ $by_user_send_round->name_content ? $by_user_send_round->name_content : "--"}}</h5>
+                                    </div>
+                                    <p class="ms-auto mb-0 text-purple">{{ $by_user_send_round->send_round ? $by_user_send_round->send_round : "0"}} ครั้ง</p>
+                                </div>
+                                <hr>
+                            @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- จบ การคลิกมากที่สุด -->
+
+            <!-- เนื้อหาที่มีคนดูมากที่สุด -->
+            <div id="collapse_user_3" class="collapse" data-parent="#accordion_of_car">
+                <div class="card-body">
+                    <div class="col d-flex">
+                        <div class="card radius-10 w-100">
+                            <div class="best-selling-products p-3 mb-3">
+                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                    เนื้อหาที่มีคนดูมากที่สุด
+                                </span>
+                                <hr>
+                                @foreach ($all_by_user_user_click as $by_user_user_click)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            @if (!empty($by_user_user_click->photo))
+                                                <img src="https://www.viicheck.com/storage/{{ $by_user_user_click->photo}}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $by_user_user_click->name_content ? $by_user_user_click->name_content : "--"}}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $by_user_user_click->count_user_click}} ครั้ง</p>
+                                    </div>
+                                    <hr>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- จบ เนื้อหาที่มีคนดูมากที่สุด -->
+
         </div>
     </div>
     <!-- END User  -->

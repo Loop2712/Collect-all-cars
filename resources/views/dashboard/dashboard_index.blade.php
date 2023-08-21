@@ -1,7 +1,8 @@
 @extends('layouts.partners.theme_partner_new')
     <style>
         #all_dashboard{
-            text-align: justify ,
+            text-align: justify;
+            font-family: 'Mitr', sans-serif !important;
         }
 
         .bg_section1{

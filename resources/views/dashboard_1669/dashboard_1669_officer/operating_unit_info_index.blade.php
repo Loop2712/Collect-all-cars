@@ -287,7 +287,7 @@
                                     <td><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i>{{$operating_unit_data->avg_score_by_unit}}</p></td>
                                     <td >
                                         <a href="{{ url('/data_1669_operating_unit'). '/' . $operating_unit_data->operating_unit_id }}">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                            <img width="25px" src="{{ asset('/img/icon/eye.png') }}">
                                         </a>
                                     </td>
                                 </tr>

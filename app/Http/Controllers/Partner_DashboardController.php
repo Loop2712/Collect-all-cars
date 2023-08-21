@@ -190,48 +190,48 @@ class Partner_DashboardController extends Controller
                                                         //  viimove
         //==================================================================================================================//
 
-            $all_car_organization = Register_car::where('juristicNameTH',$user_login->organization)->get();
+            // $all_car_organization = Register_car::where('juristicNameTH',$user_login->organization)->get();
 
-            $car_type_data = Register_car::where('juristicNameTH',$user_login->organization)->where('car_type','car')->count();
-            $motorcycle_type_data = Register_car::where('juristicNameTH',$user_login->organization)->where('car_type','motorcycle')->count();
-            $other_type_data = Register_car::where('juristicNameTH',$user_login->organization)->where('car_type','other')->count();
+            // $car_type_data = Register_car::where('juristicNameTH',$user_login->organization)->where('car_type','car')->count();
+            // $motorcycle_type_data = Register_car::where('juristicNameTH',$user_login->organization)->where('car_type','motorcycle')->count();
+            // $other_type_data = Register_car::where('juristicNameTH',$user_login->organization)->where('car_type','other')->count();
 
 
-            // รถที่ถูกรายงานมากที่สุด 5 อันดับ
-            $report_car_top5 = Guest::where('organization',$user_login->organization)
-            ->select('*',DB::raw('COUNT(user_id) as amount_report'))
-            ->groupBy('user_id')
-            ->get();
+            // // รถที่ถูกรายงานมากที่สุด 5 อันดับ
+            // $report_car_top5 = Guest::where('organization',$user_login->organization)
+            // ->select('*',DB::raw('COUNT(user_id) as amount_report'))
+            // ->groupBy('user_id')
+            // ->get();
 
-            for ($i=0; $i < count($report_car_top5); $i++) {
-                $data_user_from_report_car_top5 = User::where('id','=',$report_car_top5[$i]['user_id'])->first();
-                $report_car_top5[$i]['name_from_users'] = $data_user_from_report_car_top5->name;
-                $report_car_top5[$i]['avatar'] = $data_user_from_report_car_top5->avatar;
-                $report_car_top5[$i]['photo'] = $data_user_from_report_car_top5->photo;
-            }
+            // for ($i=0; $i < count($report_car_top5); $i++) {
+            //     $data_user_from_report_car_top5 = User::where('id','=',$report_car_top5[$i]['user_id'])->first();
+            //     $report_car_top5[$i]['name_from_users'] = $data_user_from_report_car_top5->name;
+            //     $report_car_top5[$i]['avatar'] = $data_user_from_report_car_top5->avatar;
+            //     $report_car_top5[$i]['photo'] = $data_user_from_report_car_top5->photo;
+            // }
 
-            // ประเภทรถมากที่สุด 5 อันดับ
-            $type_car_registration_top5 = Register_car::where('juristicNameTH',$user_login->organization)
-            ->select('*',DB::raw('COUNT(type_car_registration) as amount_type_car'))
-            ->groupBy('type_car_registration')
-            ->orderBy('amount_type_car','desc')
-            ->limit(5)
-            ->get();
+            // // ประเภทรถมากที่สุด 5 อันดับ
+            // $type_car_registration_top5 = Register_car::where('juristicNameTH',$user_login->organization)
+            // ->select('*',DB::raw('COUNT(type_car_registration) as amount_type_car'))
+            // ->groupBy('type_car_registration')
+            // ->orderBy('amount_type_car','desc')
+            // ->limit(5)
+            // ->get();
 
-            for ($i=0; $i < count($type_car_registration_top5); $i++) {
-                $data_user_from_report_car_top5 = User::where('id','=',$type_car_registration_top5[$i]['user_id'])->first();
-                $type_car_registration_top5[$i]['name_from_users'] = $data_user_from_report_car_top5->name;
-                $type_car_registration_top5[$i]['avatar'] = $data_user_from_report_car_top5->avatar;
-                $type_car_registration_top5[$i]['photo'] = $data_user_from_report_car_top5->photo;
-            }
+            // for ($i=0; $i < count($type_car_registration_top5); $i++) {
+            //     $data_user_from_report_car_top5 = User::where('id','=',$type_car_registration_top5[$i]['user_id'])->first();
+            //     $type_car_registration_top5[$i]['name_from_users'] = $data_user_from_report_car_top5->name;
+            //     $type_car_registration_top5[$i]['avatar'] = $data_user_from_report_car_top5->avatar;
+            //     $type_car_registration_top5[$i]['photo'] = $data_user_from_report_car_top5->photo;
+            // }
 
-            //ยี่ห้อรถมากที่สุด
-            $brand_car_top5 = Register_car::where('juristicNameTH',$user_login->organization)
-            ->select('*',DB::raw('COUNT(brand) as amount_brand_car'))
-            ->groupBy('brand')
-            ->orderBy('amount_brand_car','desc')
-            ->limit(5)
-            ->get();
+            // //ยี่ห้อรถมากที่สุด
+            // $brand_car_top5 = Register_car::where('juristicNameTH',$user_login->organization)
+            // ->select('*',DB::raw('COUNT(brand) as amount_brand_car'))
+            // ->groupBy('brand')
+            // ->orderBy('amount_brand_car','desc')
+            // ->limit(5)
+            // ->get();
 
         //==================================================================================================================//
                                                         //  Dashboard BoardCast
@@ -254,15 +254,173 @@ class Partner_DashboardController extends Controller
         ->where('type_content','BC_by_car')
         ->count();
 
-        // By_Check_In
-        $all_by_checkin = Ads_content::where('name_partner',$user_login->organization)
+        // ======================== by_check_in =============================
+
+        // เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
+        $all_by_checkin_show_user = Ads_content::where('name_partner',$user_login->organization)
         ->where('type_content','BC_by_check_in')
-        ->select('*',DB::raw('COUNT(name_content) as count_name_content'))
-        ->groupBy('type_content')
+        ->get();
+
+        for ($i=0; $i < count($all_by_checkin_show_user); $i++) {
+            if(!empty($all_by_checkin_show_user[$i]['show_user'])){
+                $all_by_checkin_Explode = json_decode($all_by_checkin_show_user[$i]['show_user']);
+
+                $counts = array_count_values($all_by_checkin_Explode);
+
+                $all_by_checkin_counts = 0;
+                foreach ($counts as $key => $value) {
+                    $all_by_checkin_counts++;
+                }
+
+                $all_by_checkin_show_user[$i]['count_show_user'] = $all_by_checkin_counts;
+            }else{
+                $all_by_checkin_show_user[$i]['count_show_user'] = 0;
+            }
+
+        }
+
+        // เนื้อหาที่ส่งบ่อยที่สุด
+        $all_by_checkin_send_round = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_check_in')
+        ->orderBy('send_round','desc')
         ->limit(5)
         ->get();
 
+        // เนื้อหาที่มีคนดูมากที่สุด
+        $all_by_checkin_user_click = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_check_in')
+        ->get();
 
+        for ($i=0; $i < count($all_by_checkin_user_click); $i++) {
+
+            if(!empty($all_by_checkin_user_click[$i]['user_click'])){
+                $user_click_Explode = json_decode($all_by_checkin_user_click[$i]['user_click']);
+
+                $count_user_click = array_count_values($user_click_Explode);
+
+                $checkin_user_click = 0;
+                foreach ($count_user_click as $key => $value) {
+                    $checkin_user_click++;
+                }
+
+                $all_by_checkin_user_click[$i]['count_user_click'] = $checkin_user_click;
+            }else{
+                $all_by_checkin_user_click[$i]['count_user_click'] = 0;
+            }
+
+        }
+
+        // ======================== by_car =============================
+
+        // เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
+        $all_by_car_show_user = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_car')
+        ->get();
+
+        for ($i=0; $i < count($all_by_car_show_user); $i++) {
+            if(!empty($all_by_car_show_user[$i]['show_user'])){
+                $all_by_car_Explode = json_decode($all_by_car_show_user[$i]['show_user']);
+
+                $counts = array_count_values($all_by_car_Explode);
+
+                $all_by_car_counts = 0;
+                foreach ($counts as $key => $value) {
+                    $all_by_car_counts++;
+                }
+
+                $all_by_car_show_user[$i]['count_show_user'] = $all_by_car_counts;
+            }else{
+                $all_by_car_show_user[$i]['count_show_user'] = 0;
+            }
+
+        }
+
+        // เนื้อหาที่ส่งบ่อยที่สุด
+        $all_by_car_send_round = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_car')
+        ->orderBy('send_round','desc')
+        ->limit(5)
+        ->get();
+
+        // เนื้อหาที่มีคนดูมากที่สุด
+        $all_by_car_user_click = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_car')
+        ->get();
+
+        for ($i=0; $i < count($all_by_car_user_click); $i++) {
+
+            if(!empty($all_by_car_user_click[$i]['user_click'])){
+                $user_click_Explode = json_decode($all_by_car_user_click[$i]['user_click']);
+
+                $count_user_click = array_count_values($user_click_Explode);
+
+                $checkin_user_click = 0;
+                foreach ($count_user_click as $key => $value) {
+                    $checkin_user_click++;
+                }
+
+                $all_by_car_user_click[$i]['count_user_click'] = $checkin_user_click;
+            }else{
+                $all_by_car_user_click[$i]['count_user_click'] = 0;
+            }
+
+        }
+
+        // ======================== by_user =============================
+
+        // เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
+        $all_by_user_show_user = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_user')
+        ->get();
+
+        for ($i=0; $i < count($all_by_user_show_user); $i++) {
+            if(!empty($all_by_user_show_user[$i]['show_user'])){
+                $all_by_user_Explode = json_decode($all_by_user_show_user[$i]['show_user']);
+
+                $counts = array_count_values($all_by_user_Explode);
+
+                $all_by_user_counts = 0;
+                foreach ($counts as $key => $value) {
+                    $all_by_user_counts++;
+                }
+
+                $all_by_user_show_user[$i]['count_show_user'] = $all_by_user_counts;
+            }else{
+                $all_by_user_show_user[$i]['count_show_user'] = 0;
+            }
+
+        }
+
+        // เนื้อหาที่ส่งบ่อยที่สุด
+        $all_by_user_send_round = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_user')
+        ->orderBy('send_round','desc')
+        ->limit(5)
+        ->get();
+
+        // เนื้อหาที่มีคนดูมากที่สุด
+        $all_by_user_user_click = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_user')
+        ->get();
+
+        for ($i=0; $i < count($all_by_user_user_click); $i++) {
+
+            if(!empty($all_by_user_user_click[$i]['user_click'])){
+                $user_click_Explode = json_decode($all_by_user_user_click[$i]['user_click']);
+
+                $count_user_click = array_count_values($user_click_Explode);
+
+                $checkin_user_click = 0;
+                foreach ($count_user_click as $key => $value) {
+                    $checkin_user_click++;
+                }
+
+                $all_by_user_user_click[$i]['count_user_click'] = $checkin_user_click;
+            }else{
+                $all_by_user_user_click[$i]['count_user_click'] = 0;
+            }
+
+        }
 
 
         return view('dashboard.dashboard_index',  compact(
@@ -286,7 +444,16 @@ class Partner_DashboardController extends Controller
             'count_all_by_checkin',
             'count_all_by_user',
             'count_all_by_car',
-            'all_by_checkin'
+            'all_by_checkin_show_user',
+            'all_by_checkin_send_round',
+            'all_by_checkin_user_click',
+            'all_by_car_show_user',
+            'all_by_car_send_round',
+            'all_by_car_user_click',
+            'all_by_user_show_user',
+            'all_by_user_send_round',
+            'all_by_user_user_click',
+
 
 
         ));
