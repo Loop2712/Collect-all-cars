@@ -4235,20 +4235,20 @@
                             </div>
                         </div>`;
 
-                        let mark_icon = '' ;
-                        if(result[xxi]['level'] == "FR"){
-                            mark_icon = image_operating_unit_green_ask_more ;
-                        }else if(result[xxi]['level'] == "BLS"){
-                            mark_icon = image_operating_unit_yellow_ask_more ;
-                        }else{
-                            mark_icon = image_operating_unit_red_ask_more ;
-                        }
+                        // let mark_icon = '' ;
+                        // if(result[xxi]['level'] == "FR"){
+                        //     mark_icon = image_operating_unit_green_ask_more ;
+                        // }else if(result[xxi]['level'] == "BLS"){
+                        //     mark_icon = image_operating_unit_yellow_ask_more ;
+                        // }else{
+                        //     mark_icon = image_operating_unit_red_ask_more ;
+                        // }
 
-                        marker_operating_ask_more = new google.maps.Marker({
-                            position: { lat: parseFloat(result[xxi]['lat']), lng: parseFloat(result[xxi]['lng']) },
-                            map: map_select_officer_ask_more,
-                            icon: mark_icon,
-                        });
+                        // marker_operating_ask_more = new google.maps.Marker({
+                        //     position: { lat: parseFloat(result[xxi]['lat']), lng: parseFloat(result[xxi]['lng']) },
+                        //     map: map_select_officer_ask_more,
+                        //     icon: mark_icon,
+                        // });
 					}
 				}
 				document.getElementById("select_officer_ask_more_card_data_operating").innerHTML = html_ask_more_card_data_operating;
@@ -4256,111 +4256,111 @@
 
     }
 
-    let image_sos_ask_more = "{{ url('/img/icon/operating_unit/sos.png') }}";
-    let image_operating_unit_red_ask_more = "{{ url('/img/icon/operating_unit/แดง.png') }}";
-    let image_operating_unit_yellow_ask_more = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
-    let image_operating_unit_green_ask_more = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
+    // let image_sos_ask_more = "{{ url('/img/icon/operating_unit/sos.png') }}";
+    // let image_operating_unit_red_ask_more = "{{ url('/img/icon/operating_unit/แดง.png') }}";
+    // let image_operating_unit_yellow_ask_more = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
+    // let image_operating_unit_green_ask_more = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
     
-    function open_map_ask_more(data_ask_more){
+    // function open_map_ask_more(data_ask_more){
 
-        console.log(data_ask_more);
+    //     console.log(data_ask_more);
 
-        let sos_ask_more ;
+    //     let sos_ask_more ;
 
-        map_select_officer_ask_more = new google.maps.Map(document.getElementById("map_select_officer_ask_more"), {
-            center: { lat: parseFloat(data_ask_more[0]['lat']), lng: parseFloat(data_ask_more[0]['lng']) },
-            zoom: 12,
-        });
+    //     map_select_officer_ask_more = new google.maps.Map(document.getElementById("map_select_officer_ask_more"), {
+    //         center: { lat: parseFloat(data_ask_more[0]['lat']), lng: parseFloat(data_ask_more[0]['lng']) },
+    //         zoom: 12,
+    //     });
 
-        if (sos_ask_more) {
-            sos_ask_more.setMap(null);
-        }
+    //     if (sos_ask_more) {
+    //         sos_ask_more.setMap(null);
+    //     }
 
-        sos_ask_more = new google.maps.Marker({
-            position: { lat: parseFloat(data_ask_more[0]['lat']), lng: parseFloat(data_ask_more[0]['lng']) },
-            map: map_select_officer_ask_more,
-            icon: image_sos_ask_more,
-        });
+    //     sos_ask_more = new google.maps.Marker({
+    //         position: { lat: parseFloat(data_ask_more[0]['lat']), lng: parseFloat(data_ask_more[0]['lng']) },
+    //         map: map_select_officer_ask_more,
+    //         icon: image_sos_ask_more,
+    //     });
         
-    }
+    // }
 
-    function select_joint_sos_officer_ask_more(select_id, distance, operating_unit_id,officer_id) {
+    // function select_joint_sos_officer_ask_more(select_id, distance, operating_unit_id,officer_id) {
 
-        // console.log(select_id);
-        document.querySelector('#show_error_noselect_officer_ask_more').classList.add('d-none');
+    //     // console.log(select_id);
+    //     document.querySelector('#show_error_noselect_officer_ask_more').classList.add('d-none');
 
-        let list_select_officer_ask_more = document.querySelector('#list_select_officer_ask_more');
-        let check_checkbox = document.querySelector('#select_joint_sos_officer_ask_more_id_'+ officer_id + '_user_id_' + select_id).checked;
+    //     let list_select_officer_ask_more = document.querySelector('#list_select_officer_ask_more');
+    //     let check_checkbox = document.querySelector('#select_joint_sos_officer_ask_more_id_'+ officer_id + '_user_id_' + select_id).checked;
 
-        let arr_id;
+    //     let arr_id;
 
-        if (check_checkbox) {
-            // true
-            if (list_select_officer_ask_more.value) {
-                list_select_officer_ask_more.value = list_select_officer_ask_more.value + ',' + select_id + '-' + distance + '-' + operating_unit_id;
-            } else {
-                list_select_officer_ask_more.value = select_id + '-' + distance + '-' + operating_unit_id;
-            }
+    //     if (check_checkbox) {
+    //         // true
+    //         if (list_select_officer_ask_more.value) {
+    //             list_select_officer_ask_more.value = list_select_officer_ask_more.value + ',' + select_id + '-' + distance + '-' + operating_unit_id;
+    //         } else {
+    //             list_select_officer_ask_more.value = select_id + '-' + distance + '-' + operating_unit_id;
+    //         }
 
-        } else {
-            // false
-            arr_id = list_select_officer_ask_more.value.split(',');
+    //     } else {
+    //         // false
+    //         arr_id = list_select_officer_ask_more.value.split(',');
 
-            let index = arr_id.indexOf(select_id.toString() + '-' + distance + '-' + operating_unit_id);
+    //         let index = arr_id.indexOf(select_id.toString() + '-' + distance + '-' + operating_unit_id);
 
-            if (index !== -1) {
-                // ลบค่าออกจากตัวแปร values
-                arr_id.splice(index, 1);
-                // อัปเดตค่าใหม่ใน input
-                list_select_officer_ask_more.value = arr_id.join(',');
-            }
-        }
+    //         if (index !== -1) {
+    //             // ลบค่าออกจากตัวแปร values
+    //             arr_id.splice(index, 1);
+    //             // อัปเดตค่าใหม่ใน input
+    //             list_select_officer_ask_more.value = arr_id.join(',');
+    //         }
+    //     }
 
-        let new_list_select_officer_ask_more = document.querySelector('#list_select_officer_ask_more');
-        if (new_list_select_officer_ask_more.value) {
-            let count_select = new_list_select_officer_ask_more.value.split(',');
-            document.querySelector('#show_count_select_operating_officer_ask_more').innerHTML = count_select.length;
-        } else {
-            document.querySelector('#show_count_select_operating_officer_ask_more').innerHTML = '0';
-        }
+    //     let new_list_select_officer_ask_more = document.querySelector('#list_select_officer_ask_more');
+    //     if (new_list_select_officer_ask_more.value) {
+    //         let count_select = new_list_select_officer_ask_more.value.split(',');
+    //         document.querySelector('#show_count_select_operating_officer_ask_more').innerHTML = count_select.length;
+    //     } else {
+    //         document.querySelector('#show_count_select_operating_officer_ask_more').innerHTML = '0';
+    //     }
 
-    }
+    // }
 
-    function send_data_joint_sos_ask_more(sos_ask_more_id , command_by) {
+    // function send_data_joint_sos_ask_more(sos_ask_more_id , command_by) {
 
-        // console.log("sos_ask_more_id >> " + sos_ask_more_id);
+    //     // console.log("sos_ask_more_id >> " + sos_ask_more_id);
 
-        let list_select_officer_ask_more = document.querySelector('#list_select_officer_ask_more');
-        // console.log(list_select_officer_ask_more.value);
+    //     let list_select_officer_ask_more = document.querySelector('#list_select_officer_ask_more');
+    //     // console.log(list_select_officer_ask_more.value);
 
-        if (list_select_officer_ask_more.value) {
+    //     if (list_select_officer_ask_more.value) {
 
-            document.querySelector('#show_error_noselect_officer_ask_more').classList.add('d-none');
-            document.querySelector('#btn_send_data_joint_sos_ask_more').innerHTML = 'ยืนยัน ' + `<i class="fa-duotone fa-spinner fa-spin-pulse"></i>`;
-            let list = list_select_officer_ask_more.value.replaceAll(',', '_');
-            // console.log(list);
+    //         document.querySelector('#show_error_noselect_officer_ask_more').classList.add('d-none');
+    //         document.querySelector('#btn_send_data_joint_sos_ask_more').innerHTML = 'ยืนยัน ' + `<i class="fa-duotone fa-spinner fa-spin-pulse"></i>`;
+    //         let list = list_select_officer_ask_more.value.replaceAll(',', '_');
+    //         // console.log(list);
 
-            fetch("{{ url('/') }}/api/create_ask_more_sos" + "?sos_ask_more_id=" + sos_ask_more_id + "&list=" + list + "&command_by="+command_by)
-                .then(response => response.text())
-                .then(result => {
-                    // console.log(result);
+    //         fetch("{{ url('/') }}/api/create_ask_more_sos" + "?sos_ask_more_id=" + sos_ask_more_id + "&list=" + list + "&command_by="+command_by)
+    //             .then(response => response.text())
+    //             .then(result => {
+    //                 // console.log(result);
 
-                    if (result == "OK") { 
-                        document.querySelector('#btn_close_modal_ask_modal').click();
-                        // document.querySelector('#btn_open_modal_show_officer_joint').click();
-                        document.querySelector('#btn_send_data_joint_sos_ask_more').innerHTML = 'ยืนยัน';
-                        document.querySelector('#list_select_officer_ask_more').value = '';
+    //                 if (result == "OK") { 
+    //                     document.querySelector('#btn_close_modal_ask_modal').click();
+    //                     // document.querySelector('#btn_open_modal_show_officer_joint').click();
+    //                     document.querySelector('#btn_send_data_joint_sos_ask_more').innerHTML = 'ยืนยัน';
+    //                     document.querySelector('#list_select_officer_ask_more').value = '';
 
-                        // show_wait_officer_joint();
+    //                     // show_wait_officer_joint();
                         
-                    }
+    //                 }
 
-                });
-        } else {
-            document.querySelector('#show_error_noselect_officer_ask_more').classList.remove('d-none');
+    //             });
+    //     } else {
+    //         document.querySelector('#show_error_noselect_officer_ask_more').classList.remove('d-none');
 
-        }
-    }
+    //     }
+    // }
 
     // let view_infoWindow_ask_more ;
     // function view_data_marker_ask_more(id, name, distance, level, lat, lng) {
