@@ -28,9 +28,7 @@
         .font-weight-bold{
             font-weight: bold !important;
         }
-       *:not(i){
-		font-family: 'Kanit', sans-serif !important;
-	}#Top5_Area_SOS{
+       #Top5_Area_SOS{
         min-height: 300px !important;
     }.list-group-sos-province{
         height: calc(27vh);
