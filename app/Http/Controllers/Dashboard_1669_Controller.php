@@ -362,6 +362,31 @@ class Dashboard_1669_Controller extends Controller
         ->orderBy('count_sub_treatment','DESC')
         ->get();
 
+        $amphoe_sos = Sos_help_center::where('sos_help_centers.address', '!=', null)
+            ->where('sos_help_centers.notify', 'LIKE', "%$user_login->sub_organization%")
+            ->get('sos_help_centers.address');
+        
+        $decoded_districts = [];
+        
+        foreach ($amphoe_sos as $item) {
+            $decoded = json_decode('"' . $item->address . '"'); // แปลง Unicode เป็นภาษาไทย
+            $parts = explode('/', $decoded);
+            if (isset($parts[1])) {
+                $decoded_districts[] = $parts[1];
+            }
+        }
+        
+        $districtCounts = collect($decoded_districts)->countBy();
+        
+        // หา district ที่มากที่สุด
+        $mostCommonDistrict = $districtCounts->sortDesc()->keys()->first();
+        $countMostCommonDistrict = $districtCounts->sortDesc()->first();
+        
+        // ลบ district ที่มากที่สุดออกจาก districtCounts
+        $districtCountsWithoutMostCommon = $districtCounts->except([$mostCommonDistrict]);
+        
+
+        // ddd($countMostCommonDistrict , $mostCommonDistrict);
     return view('dashboard_1669.dashboard_1669_index',
 
     compact('data_command',
@@ -398,6 +423,9 @@ class Dashboard_1669_Controller extends Controller
         'treatment_data',
         'treatment_have_cure_data',
         'treatment_have_no_cure_data',
+        'mostCommonDistrict',
+        'districtCountsWithoutMostCommon',
+        'countMostCommonDistrict',
     ));
 
     }

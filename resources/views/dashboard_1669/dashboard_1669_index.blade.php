@@ -28,6 +28,11 @@
         .font-weight-bold{
             font-weight: bold !important;
         }
+       *:not(i){
+		font-family: 'Kanit', sans-serif !important;
+	}#Top5_Area_SOS{
+        min-height: 00px !important;
+    }
     </style>
 
     <a href="#sos_help_pdf" class="btn btn-primary float-end me-1" onclick="SaveImageGlobal('generatePdf')">บันทึกภาพทั้งหมด</a>
@@ -36,26 +41,27 @@
     <a class="btn btn-success float-end me-1" onclick="SaveImageGlobal('command_center_pdf')">บันทึกภาพเจ้าหน้าที่ศูนย์สั่งการ</a>
 
     <div id="generatePdf" class="p-2">
-        <h3 id="command_center_info" class="text-dark" style="font-weight: bold;">ข้อมูลเจ้าหน้าที่</h3>
-            <div id="command_center_pdf" class="mb-3 bg_section1">
-                @include ('dashboard_1669.dashboard_1669_officer.command_center_info_index')
-            </div>
+        <!-- <h3 id="command_center_info" class="text-dark mb-0" style="font-weight: bold;">ข้อมูลเจ้าหน้าที่</h3> -->
+        <!-- <hr class="mt-5"> -->
+        <div id="command_center_pdf" class="mb-3 ">
+            @include ('dashboard_1669.dashboard_1669_officer.command_center_info_index')
+        </div>
 
-            <div id="operating_unit_info" class="mb-3 bg_section1">
-                @include ('dashboard_1669.dashboard_1669_officer.operating_unit_info_index')
-            </div>
-
-
+        <div id="operating_unit_info" class="mb-3 ">
+            @include ('dashboard_1669.dashboard_1669_officer.operating_unit_info_index')
+        </div>
+            
         <!-- เพิ่มระยะห่าง -->
         <div id="dashboard_boardcast" style="margin: 70px 0 70px 0;"></div>
 
 
         <div id="sos_help_pdf">
-            <h3 id="sos_help" class="text-dark" style="font-weight: bold;">ข้อมูลการขอความช่วยเหลือ</h3>
-            <div class="mb-3 bg_section2">
+            <h3 id="sos_help" class="text-dark mb-0" style="font-weight: bold;">ข้อมูลการขอความช่วยเหลือ</h3>
+            <hr>
+            <div class="mb-3">
                 @include ('dashboard_1669.dashboard_1669_sos.sos_help_index')
             </div>
-            <div id="sos_service_area" class="mb-3 bg_section2">
+            <div id="sos_service_area" class="mb-3">
                 @include ('dashboard_1669.dashboard_1669_sos.sos_service_area_index')
             </div>
         </div>

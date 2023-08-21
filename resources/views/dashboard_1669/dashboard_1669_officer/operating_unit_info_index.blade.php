@@ -11,7 +11,8 @@
     }
 </style>
 
-<h4 class="text-dark font-weight-bold">ข้อมูลหน่วยปฏิบัติการ</h4>
+<h4 class="text-dark font-weight-bold mt-5">ข้อมูลหน่วยปฏิบัติการ</h4>
+<hr>
 <!--============= 3 card -- 4-4-4  ================-->
 <div class="row mb-4">
     <!--คะแนนเฉลี่ยของหน่วย 5 อันดับ -->
@@ -172,7 +173,7 @@
     <!--======= คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด 5 อันดับ col-5 ============-->
     <div class="col-12 col-lg-5 mb-2">
         <div class="card radius-10 w-100 h-100">
-            <div class="card-header">
+            <div class="p-3">
                 <div class="d-flex align-items-center">
                     <div class="col-10">
                         <h5 class="font-weight-bold mb-0" >คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด {{count($avg_score_by_case)}} อันดับ</h5>
@@ -192,7 +193,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body p-3">
+            <div class="card-body p-3 pt-0">
                 <div class="table-responsive">
                     <table id="avg_score_by_case_table" class="table align-middle mb-0">
                         <thead>
@@ -240,7 +241,7 @@
     <!--======= รายชื่อหน่วยปฏิบัติการ col-7 ============-->
     <div class="col-12 col-lg-7 mb-2">
         <div class="card radius-10 w-100 h-100">
-            <div class="card-header">
+            <div class="p-3">
                 <div class="d-flex align-items-center">
                     <div class="col-10">
                         <h5 class="font-weight-bold mb-0" >รายชื่อหน่วยปฏิบัติการ</h5>
@@ -256,7 +257,7 @@
                 </div>
             </div>
 
-            <div class="card-body p-3">
+            <div class="card-body p-3 pt-0">
                 <div class="table-responsive">
                     <table class="table align-middle mb-0 ">
                         <thead>

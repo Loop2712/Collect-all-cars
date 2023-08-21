@@ -13,13 +13,13 @@
 </style>
 
 <h4 class="text-dark p-1 font-weight-bold">ข้อมูลเจ้าหน้าที่ศูนย์สั่งการ</h4>
-
+<hr>
 <!--=============== 4 card row =====================-->
 
 <div class="row row-cols-1 row-cols-lg-4">
     <div class="col">
         <div class="card radius-10 overflow-hidden bg-gradient-blues">
-            <div class="card-body">
+            <div class="p-3">
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="mb-0 text-dark font-weight-bold">เจ้าหน้าที่ศูนย์สั่งการ</h5>
@@ -77,14 +77,15 @@
             </div>
         </div>
     </div>
-</div><!--end row-->
+</div>
+<!--end row-->
 
 <!--=============== top 5 info =====================-->
 <div class="row ">
     <!--======= รายชื่อเจ้าหน้าที่ศูนย์สั่งการ 5 ลำดับ ล่าสุด ============-->
     <div class="col-12 col-lg-12 mb-3">
         <div class="card radius-10 w-100 h-100">
-            <div class="card-header">
+            <div class="p-3">
                 <div class="d-flex align-items-center">
                     <div class="col-10">
                         <h5 class="font-weight-bold mb-0" >เจ้าหน้าที่ศูนย์สั่งการ {{count($data_command)}} ลำดับ ล่าสุด</h5>
@@ -99,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <div class="p-3">
+            <div class="p-3 pt-0">
                 <div class="table-responsive">
                     <table class="table align-middle mb-0">
                         <thead class="fz_header">
@@ -182,7 +183,7 @@
     <!--======= ลำดับการรับแจ้งเตือน 5 อันดับ ============-->
     <div class="col-12 col-lg-6 mb-3">
         <div class="card radius-10 w-100 h-100">
-            <div class="card-header">
+            <div class="p-3">
                 <div class="d-flex align-items-center">
                     <div class="col-10">
                         <h5 class="font-weight-bold mb-0" >ลำดับการรับแจ้งเตือน {{count($noti_1669_data)}} อันดับ</h5>
@@ -198,8 +199,8 @@
                 </div>
             </div>
 
-            <div class="p-3">
-                <div class="table-responsive p-3">
+            <div class="p-3 pt-0">
+                <div class="table-responsive">
                     <table class="table align-middle mb-0 ">
                         <thead class="fz_header">
                             <tr>
@@ -241,7 +242,7 @@
     <!--======= การสั่งการมากที่สุด 5 อันดับ ============-->
     <div class="col-12 col-lg-6 mb-3">
         <div class="card radius-10 w-100 h-100">
-            <div class="card-header">
+            <div class="p-3">
                 <div class="d-flex align-items-center">
                     <div class="col-10">
                         <h5 class="font-weight-bold mb-0 p-2" >การสั่งการมากที่สุด {{count($command_1669_data)}} อันดับ</h5>
@@ -256,8 +257,8 @@
                     </div>
                 </div>
             </div>
-            <div class="p-3">
-                <div class="table-responsive p-3">
+            <div class="p-3 pt-0">
+                <div class="table-responsive">
                     <table class="table align-middle mb-0">
                         <thead class="fz_header">
                             <tr>

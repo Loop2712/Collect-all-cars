@@ -1,94 +1,11 @@
-<!--============= 3 card -- 4-4-4  ================-->
-<div class="row mb-4">
-    <!-- MAP ปักหมุดการขอความช่วยเหลือในจังหวัด -->
-    <div class="col-12 col-lg-4 mb-3">
-        <div class="card radius-10 h-100">
+<div class="row">
+    <div class="col-12 col-xl-4 col-xxl-3 d-flex align-items-stretch">
+        <div class="card radius-10 w-100    ">
             <div class="card-body">
                 <div class="d-flex align-items-center">
-                    <div class="col-10">
-                        <h5 class="mb-0 font-weight-bold">MAP ปักหมุดการขอความช่วยเหลือในจังหวัด</h5>
-                    </div>
-                    <!-- <div class="dropdown ms-auto">
-                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
-                            data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
-                        </div>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
-                        </div>
-                    </div> -->
-                </div>
-
-                <div class="mt-4 mb-4">
-                   <div id="sos_map_organization"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-     <!--พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ -->
-    <div class="col-12 col-lg-4 mb-3">
-        <div class="card radius-10 h-100">
-            <div class="d-flex align-items-center m-3">
-                <div class="col-10">
-                    <h5 class="mb-1 font-weight-bold">พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ</h5>
-                </div>
-                <!-- <div class="dropdown ms-auto">
-                    <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
-                        data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
-                    </div>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
-                    </div>
-                </div> -->
-            </div>
-            <div class="card-body">
-                <div class="w-100">
-                    <div id="Top5_Area_SOS"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- หัวข้อการขอความช่วยเหลือมากที่สุด sos_1669_form_yellows->symptom -->
-    <div class="col-12 col-lg-4 mb-3">
-        <div class="card radius-10 h-100">
-            <div class="card-body">
-                <div class="d-flex align-items-center mb-3">
-                    <div class="col-10">
-                        <h5 class="mb-0 font-weight-bold">หัวข้อการขอความช่วยเหลือมากที่สุด {{ count($arr_most_symptom_data_limit_5) }} อันดับ</h5>
-                    </div>
-                    <!-- <div class="dropdown ms-auto">
-                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
-                            data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
-                        </div>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
-                        </div>
-                    </div> -->
-                </div>
-                <div class="p-2">
-                    <div id="sos_1669_form_yellows"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- รับแจ้งเตือนทาง -->
-    <div class="col-12 col-lg-4 mb-3">
-        <div class="card radius-10 h-100">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div class="col-10">
+                    <div class="col-112">
                         <h5 class="mb-0 font-weight-bold">รับแจ้งเตือนทาง</h5>
                     </div>
-                    <!-- <div class="dropdown ms-auto">
-                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
-                            data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
-                        </div>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
-                        </div>
-                    </div> -->
                 </div>
 
                 <div class="table-responsive mt-4 mb-4">
@@ -142,6 +59,150 @@
             </div>
         </div>
     </div>
+    <style>
+       
+    </style>
+    <div class="col-12 col-xl-8 col-xxl-9 d-flex">
+        <div class="card w-100 radius-10">
+            <div class="row g-0">
+                <div class="col-md-4 border-end">
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold ">การขอความช่วยเหลือในจังหวัด</h5>
+                        <h2 class="mt-4 mb-1 font-weight-bold">{{$mostCommonDistrict}} <span class="text-danger">{{$countMostCommonDistrict}}</span>  ครั้ง </h2>
+                        <p class="mb-0 text-secondary">{{$mostCommonDistrict}} เป็นอำเภอที่ขอความช่วยเหลือมากที่สุด</p>
+                    </div>
+
+                    <ul class="list-group mt-4 list-group-flush list-group-sos-province">
+                        @foreach($districtCountsWithoutMostCommon as $district => $count)
+                        <li class="font-18 list-group-item d-flex align-items-center">
+                            <span>{{$district}}</span>
+                            <strong class="ms-auto">{{$count}}</strong>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <div class="p-3">
+                        <div class="" id="sos_map_organization">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--============= 3 card -- 4-4-4  ================-->
+<div class="row mb-4">
+    <!-- MAP ปักหมุดการขอความช่วยเหลือในจังหวัด -->
+    <!-- <div class="col-12 col-lg-4 mb-3">
+        <div class="card radius-10 h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="col-10">
+                        <h5 class="mb-0 font-weight-bold">MAP ปักหมุดการขอความช่วยเหลือในจังหวัด</h5>
+                    </div> -->
+                    <!-- comment -->
+                    <!-- <div class="dropdown ms-auto">
+                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
+                            data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                        </div>
+                    </div> -->
+                    <!-- comment -->
+                <!-- </div>
+
+                <div class="mt-4 mb-4">
+                   <div id="sos_map_organization"></div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+     <!--พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ -->
+    <!-- <div class="col-12 col-lg-4 mb-3">
+        <div class="card radius-10 h-100">
+            <div class="d-flex align-items-center m-3">
+                <div class="col-10">
+                    <h5 class="mb-1 font-weight-bold">พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ</h5>
+                </div> -->
+            <!-- comment -->
+                <!-- <div class="dropdown ms-auto">
+                    <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
+                        data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                    </div>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                    </div>
+                </div> -->
+            <!-- comment -->
+            <!-- </div>
+            <div class="card-body">
+                <div class="w-100">
+                    <div id="Top5_Area_SOS"></div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- หัวข้อการขอความช่วยเหลือมากที่สุด sos_1669_form_yellows->symptom -->
+    <div class="col-12 col-lg-4 mb-3">
+        <div class="card radius-10 h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="col-10">
+                        <h5 class="mb-0 font-weight-bold">หัวข้อการขอความช่วยเหลือมากที่สุด {{ count($arr_most_symptom_data_limit_5) }} อันดับ</h5>
+                    </div>
+                    <!-- <div class="dropdown ms-auto">
+                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
+                            data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="p-2">
+                    <div id="sos_1669_form_yellows"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- รับแจ้งเตือนทาง -->
+    <!-- <div class="col-12 col-lg-4 mb-3">
+        <div class="card radius-10 h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="col-10">
+                        <h5 class="mb-0 font-weight-bold">รับแจ้งเตือนทาง</h5>
+                    </div> -->
+                    <!-- comment -->
+                    <!-- <div class="dropdown ms-auto">
+                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
+                            data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
+                        </div>
+                    </div> -->
+                    <!-- comment -->
+                <!-- </div>
+
+                <div class="table-responsive mt-4 mb-4">
+                    <table class="table align-middle mb-0">
+                        <tbody class="fz_body font-weight-bold">
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div> -->
 
     <!-- ระดับสถานการณ์ประเมินโดย ศูนย์สั่งการ -->
     <div class="col-12 col-lg-4 mb-3">
@@ -193,13 +254,15 @@
     </div>
 
     <!-- การปฏิบัติการ -->
-    <div class="col-12 col-lg-4 mb-3">
+    <!-- <div class="col-12 col-lg-4 mb-3">
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
                     <div class="col-10">
                         <h5 class="mb-0 font-weight-bold"> การปฏิบัติการ</h5>
-                    </div>
+                    </div> -->
+
+                    <!-- comment -->
                     <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -208,16 +271,18 @@
                             <a class="dropdown-item" href="javaScript:;">ดูข้อมูลสมาชิกเพิ่มเติม</a>
                         </div>
                     </div> -->
-                </div>
+                    <!-- comment -->
+
+                <!-- </div>
                 <div class="p-2">
                     <div id="operation"></div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- การปฏิบัติการ มีการรักษา -->
-    <div class="col-12 col-lg-4 mb-3">
+    <div class="col-12 col-lg-6 mb-3">
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
@@ -241,7 +306,7 @@
     </div>
 
     <!-- การปฏิบัติการ ไม่มีการรักษา -->
-    <div class="col-12 col-lg-4 mb-3">
+    <div class="col-12 col-lg-6 mb-3">
         <div class="card radius-10 h-100">
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
@@ -339,101 +404,6 @@
     }
 </script>
 
-<!-- Column CHART พื้นที่การขอความช่วยเหลือมากที่สุด 5 อันดับ -->
-<script>
-    let series_arr = [];
-    let categories_arr = [];
-    let i_count = 0;
-    let i_name = 0;
-
-    @foreach ($count_area as $item)
-        if(i_count < 5){
-            series_arr.push(Number('{{ $item }}'));
-        }
-        i_count++;
-    @endforeach
-
-    @foreach ($name_area as $item)
-        if(i_name < 5){
-            categories_arr.push('{{ $item }}');
-        }
-        i_name++;
-    @endforeach
-
-    var options = {
-            series: [{
-            data: series_arr
-        }],
-            chart: {
-            type: 'bar',
-            height: 380,
-            width: '100%'
-        },
-        plotOptions: {
-            bar: {
-                barHeight: '100%',
-                distributed: true,
-                horizontal: true,
-                dataLabels: {
-                    position: 'bottom'
-                },
-            }
-        },
-        colors: ['#33b2df',  '#d4526e',  '#f48024',  '#f9a3a4', '#90ee7e',],
-        dataLabels: {
-            enabled: true,
-            textAnchor: 'start',
-            style: {
-                fontSize: '16px',
-                colors: ['#000']
-            },
-            formatter: function (val, opt) {
-                return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
-            },
-            offsetX: 0,
-            dropShadow: {
-            enabled: true
-            }
-        },
-        stroke: {
-            width: 1,
-            colors: ['#fff']
-        },
-        xaxis: {
-            categories: categories_arr,
-            style: {
-                fontSize: '18px',
-                fontWeight: 'bold',
-            },
-        },
-        yaxis: {
-            labels: {
-            show: false
-            }
-        },
-        legend: {
-            fontSize: '16px',
-            fontWeight: 'bold',
-        },
-        tooltip: {
-            theme: 'dark',
-            x: {
-                show: false
-            },
-            y: {
-                title: {
-                    formatter: function () {
-                    return ''
-                    }
-                }
-            }
-        }
-    };
-
-       var chart = new ApexCharts(document.querySelector("#Top5_Area_SOS"), options);
-       chart.render();
-
-</script>
 
 <!-- Column CHART หัวข้อการขอความช่วยเหลือมากที่สุด -->
 <script>
@@ -723,78 +693,6 @@
 
 </script>
 
-<!-- Bar CHART การปฏิบัติการ -->
-<script>
-    let treatment_count_arr = [];
-    let treatment_categories_arr = [];
-
-    @foreach ($treatment_data as $item)
-        // นับจำนวน หัวข้อ
-        treatment_count_arr.push(Number('{{ $item->count_treatment }}'));
-
-        // นับประเภท หัวข้อ
-        treatment_categories_arr.push('{{ $item->treatment }}');
-
-    @endforeach
-
-    var options = {
-        series: [{
-            data: treatment_count_arr
-        }],
-        chart: {
-            height: 350,
-            type: 'bar',
-            events: {
-                click: function(chart, w, e) {
-                //   console.log(chart, w, e)
-                }
-            }
-        },
-        colors: ['#0d6efd','#e62e2e'],
-        plotOptions: {
-        bar: {
-            columnWidth: '45%',
-            distributed: true,
-        }
-        },
-        dataLabels: {
-            enabled: true,
-            distributed: false,
-            style: {
-                fontSize: '18px',
-                fontWeight: 'bold',
-            },
-            background: {
-                borderRadius: 10,
-            }
-        },
-        legend: {
-            show: false
-        },
-        xaxis: {
-            categories: treatment_categories_arr,
-            labels: {
-                style: {
-                    colors: '#000000',
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                }
-            }
-        },
-        yaxis: {
-            labels: {
-                style: {
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                }
-            }
-        }
-    };
-
-    var chart = new ApexCharts(document.querySelector("#operation"), options);
-    chart.render();
-
-</script>
 
 <!-- Column CHART การปฏิบัติการ CURE -->
 <script>
