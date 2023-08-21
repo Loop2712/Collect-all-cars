@@ -303,7 +303,7 @@
                                         } else {
                                             $time_unit = $timeDifference . ' วินาที';
                                         }
-                                    else{
+                                    }else{
                                         $time_unit  = "--";
                                     }
                                     @endphp
