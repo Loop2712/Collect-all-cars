@@ -108,15 +108,16 @@
                                 <!-- ชื่อผู้ขอความช่วยเหลือ -->
                                 <td>
                                     @if( !empty($all_data_sos->name_user) )
-                                    {{ $all_data_sos->name_user }}
+                                        {{ $all_data_sos->name_user }}
                                     @else
-                                    @php
-                                    $create_by_ex = explode( 'admin - ', $all_data_sos->create_by );
-                                    $command_create = App\Models\Data_1669_officer_command::where('user_id',$create_by_ex[1])->first();
-                                    $name_command_create = $command_create->name_officer_command ;
-                                    @endphp
+                                        @php
 
-                                    {{ $name_command_create }}
+                                            $command_create = App\Models\Data_1669_officer_command::where('id',$all_data_sos->command_by)->first();
+                                            
+                                            $name_command_create = $command_create->name_officer_command ;
+                                        @endphp
+    
+                                        {{ $name_command_create }} (เจ้าหน้าที่)
                                     @endif
                                 </td>
                                 <!-- ชื่อเจ้าหน้าที่สั่งการ -->
