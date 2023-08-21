@@ -8,12 +8,15 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 
 use App\Exports\UsersExport;
+use App\Models\Ads_content;
 use Maatwebsite\Excel\Facades\Excel;
 Use Carbon\Carbon;
 use PDF;
 use App\User;
 use App\Models\Partner;
 use App\Models\Check_in;
+use App\Models\Guest;
+use App\Models\Register_car;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,10 +60,13 @@ class Partner_DashboardController extends Controller
         ->orderBy('user_location_count','DESC')
         ->get();
 
+        //==================================================================================================================//
+                                                        //  viinews
+        //==================================================================================================================//
 
-        //ไม่ได้เข้าพื้นที่นานที่สุด
         $data_checkin = Partner::where('name' ,'=', $user_login->organization)->first();
 
+        //ไม่ได้เข้าพื้นที่นานที่สุด
         $last_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
         ->groupBy('user_id')
         ->select('user_id')
@@ -137,6 +143,124 @@ class Partner_DashboardController extends Controller
                                                         //  viimove
         //==================================================================================================================//
 
+        $all_car_organization = Register_car::where('juristicNameTH',$user_login->organization)->get();
+
+        $car_type_data = Register_car::where('juristicNameTH',$user_login->organization)->where('car_type','car')->count();
+        $motorcycle_type_data = Register_car::where('juristicNameTH',$user_login->organization)->where('car_type','motorcycle')->count();
+        $other_type_data = Register_car::where('juristicNameTH',$user_login->organization)->where('car_type','other')->count();
+
+
+        // รถที่ถูกรายงานมากที่สุด 5 อันดับ
+        $report_car_top5 = Guest::where('organization',$user_login->organization)
+        ->select('*',DB::raw('COUNT(user_id) as amount_report'))
+        ->groupBy('user_id')
+        ->get();
+
+        for ($i=0; $i < count($report_car_top5); $i++) {
+            $data_user_from_report_car_top5 = User::where('id','=',$report_car_top5[$i]['user_id'])->first();
+            $report_car_top5[$i]['name_from_users'] = $data_user_from_report_car_top5->name;
+            $report_car_top5[$i]['avatar'] = $data_user_from_report_car_top5->avatar;
+            $report_car_top5[$i]['photo'] = $data_user_from_report_car_top5->photo;
+        }
+
+        // ประเภทรถมากที่สุด 5 อันดับ
+        $type_car_registration_top5 = Register_car::where('juristicNameTH',$user_login->organization)
+        ->select('*',DB::raw('COUNT(type_car_registration) as amount_type_car'))
+        ->groupBy('type_car_registration')
+        ->orderBy('amount_type_car','desc')
+        ->limit(5)
+        ->get();
+
+        for ($i=0; $i < count($type_car_registration_top5); $i++) {
+            $data_user_from_report_car_top5 = User::where('id','=',$type_car_registration_top5[$i]['user_id'])->first();
+            $type_car_registration_top5[$i]['name_from_users'] = $data_user_from_report_car_top5->name;
+            $type_car_registration_top5[$i]['avatar'] = $data_user_from_report_car_top5->avatar;
+            $type_car_registration_top5[$i]['photo'] = $data_user_from_report_car_top5->photo;
+        }
+
+        //ยี่ห้อรถมากที่สุด
+        $brand_car_top5 = Register_car::where('juristicNameTH',$user_login->organization)
+        ->select('*',DB::raw('COUNT(brand) as amount_brand_car'))
+        ->groupBy('brand')
+        ->orderBy('amount_brand_car','desc')
+        ->limit(5)
+        ->get();
+
+        //==================================================================================================================//
+                                                        //  viimove
+        //==================================================================================================================//
+
+            $all_car_organization = Register_car::where('juristicNameTH',$user_login->organization)->get();
+
+            $car_type_data = Register_car::where('juristicNameTH',$user_login->organization)->where('car_type','car')->count();
+            $motorcycle_type_data = Register_car::where('juristicNameTH',$user_login->organization)->where('car_type','motorcycle')->count();
+            $other_type_data = Register_car::where('juristicNameTH',$user_login->organization)->where('car_type','other')->count();
+
+
+            // รถที่ถูกรายงานมากที่สุด 5 อันดับ
+            $report_car_top5 = Guest::where('organization',$user_login->organization)
+            ->select('*',DB::raw('COUNT(user_id) as amount_report'))
+            ->groupBy('user_id')
+            ->get();
+
+            for ($i=0; $i < count($report_car_top5); $i++) {
+                $data_user_from_report_car_top5 = User::where('id','=',$report_car_top5[$i]['user_id'])->first();
+                $report_car_top5[$i]['name_from_users'] = $data_user_from_report_car_top5->name;
+                $report_car_top5[$i]['avatar'] = $data_user_from_report_car_top5->avatar;
+                $report_car_top5[$i]['photo'] = $data_user_from_report_car_top5->photo;
+            }
+
+            // ประเภทรถมากที่สุด 5 อันดับ
+            $type_car_registration_top5 = Register_car::where('juristicNameTH',$user_login->organization)
+            ->select('*',DB::raw('COUNT(type_car_registration) as amount_type_car'))
+            ->groupBy('type_car_registration')
+            ->orderBy('amount_type_car','desc')
+            ->limit(5)
+            ->get();
+
+            for ($i=0; $i < count($type_car_registration_top5); $i++) {
+                $data_user_from_report_car_top5 = User::where('id','=',$type_car_registration_top5[$i]['user_id'])->first();
+                $type_car_registration_top5[$i]['name_from_users'] = $data_user_from_report_car_top5->name;
+                $type_car_registration_top5[$i]['avatar'] = $data_user_from_report_car_top5->avatar;
+                $type_car_registration_top5[$i]['photo'] = $data_user_from_report_car_top5->photo;
+            }
+
+            //ยี่ห้อรถมากที่สุด
+            $brand_car_top5 = Register_car::where('juristicNameTH',$user_login->organization)
+            ->select('*',DB::raw('COUNT(brand) as amount_brand_car'))
+            ->groupBy('brand')
+            ->orderBy('amount_brand_car','desc')
+            ->limit(5)
+            ->get();
+
+        //==================================================================================================================//
+                                                        //  Dashboard BoardCast
+        //==================================================================================================================//
+
+        $all_ads_content = Ads_content::where('name_partner',$user_login->organization)->get();
+
+        $count_all_content = Ads_content::where('name_partner',$user_login->organization)
+        ->count();
+
+        $count_all_by_checkin = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_check_in')
+        ->count();
+
+        $count_all_by_user = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_user')
+        ->count();
+
+        $count_all_by_car = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_car')
+        ->count();
+
+        // By_Check_In
+        $all_by_checkin = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_check_in')
+        ->select('*',DB::raw('COUNT(name_content) as count_name_content'))
+        ->groupBy('type_content')
+        ->limit(5)
+        ->get();
 
 
 
@@ -151,6 +275,19 @@ class Partner_DashboardController extends Controller
             'sorted_last_checkIn_data',
             'most_often_checkIn_data',
             'sorted_lastest_checkIn_data',
+            'all_car_organization',
+            'car_type_data',
+            'motorcycle_type_data',
+            'other_type_data',
+            'report_car_top5',
+            'type_car_registration_top5',
+            'brand_car_top5',
+            'count_all_content',
+            'count_all_by_checkin',
+            'count_all_by_user',
+            'count_all_by_car',
+            'all_by_checkin'
+
 
         ));
 

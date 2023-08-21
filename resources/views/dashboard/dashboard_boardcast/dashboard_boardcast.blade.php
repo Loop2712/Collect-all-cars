@@ -1,5 +1,31 @@
+<style>
+    .fz_header {
+        font-size: 18px;
+    }
+    .fz_body {
+        font-size: 16px;
+    }
+    .font-weight-bold{
+        font-weight: bold !important;
+    }
 
+</style>
 <!--========================== 4 Content ===============================-->
+
+    @php
+         // % ของ content Check_In
+        $percent_by_checkin = ($count_all_by_checkin / $count_all_content) * 100;
+        $percent_by_checkin = number_format($percent_by_checkin,0);
+
+        // % ของ content By_user
+        $percent_by_user = ($count_all_by_user / $count_all_content) * 100;
+        $percent_by_user = number_format($percent_by_user,0);
+
+        // % ของ content By_car
+        $percent_by_car = ($count_all_by_car / $count_all_content) * 100;
+        $percent_by_car = number_format($percent_by_car,0);
+    @endphp
+
 <h3>จำนวน Content ที่ส่งแล้ว</h3>
 <div class="row row-cols-1 row-cols-lg-4">
     <div class="col">
@@ -8,7 +34,7 @@
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <p class="mb-0">All Content</p>
-                        <h4 class="font-weight-bold">5 <small class="text-success font-13">(+2 วันนี้)</small></h4>
+                        <h4 class="font-weight-bold">{{ $count_all_content }}<small class="text-success font-13"> (+2 วันนี้) </small></h4>
                     </div>
                     <div class="widgets-icons bg-gradient-cosmic text-white"><i class="fa-solid fa-folder-grid"></i>
                     </div>
@@ -27,16 +53,18 @@
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <p class="mb-0">By Check in</p>
-                        <h4 class="font-weight-bold">3 <small class="text-success font-13">(+2 วันนี้)</small></h4>
+                        <h4 class="font-weight-bold">{{ $count_all_by_checkin }}
+                            <small class="text-success font-13"> (+2 วันนี้) </small>
+                        </h4>
                     </div>
                     <div class="widgets-icons bg-gradient-kyoto text-white"><i class="fa-solid fa-location-check "></i>
                     </div>
                 </div>
                 <div class="progress bg-dark-2 radius-10 mt-4" style="height:4.5px;">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: 60%"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: {{ $percent_by_checkin }}%"></div>
                 </div>
                 <br>
-                <span class="text-dark">คิดเป็น : 60.00 % จากเนื้อหาทั้งหมด</span>
+                <span class="text-dark">คิดเป็น : {{ $percent_by_checkin }} % จากเนื้อหาทั้งหมด</span>
             </div>
         </div>
     </div>
@@ -46,16 +74,16 @@
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <p class="mb-0">By User</p>
-                        <h4 class="font-weight-bold">1 <small class="text-dark font-13">(+0 วันนี้)</small></h4>
+                        <h4 class="font-weight-bold">{{ $count_all_by_user }}<small class="text-dark font-13"> (+0 วันนี้) </small></h4>
                     </div>
                     <div class="widgets-icons bg-gradient-blues text-white"><i class="fa-solid fa-user"></i>
                     </div>
                 </div>
                 <div class="progress bg-dark-2 radius-10 mt-4" style="height:4.5px;">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: 20%"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: {{ $percent_by_user }}%"></div>
                 </div>
                 <br>
-                <span class="text-dark">คิดเป็น : 20.00 % จากเนื้อหาทั้งหมด</span>
+                <span class="text-dark">คิดเป็น : {{ $percent_by_user }} % จากเนื้อหาทั้งหมด</span>
             </div>
         </div>
     </div>
@@ -65,16 +93,16 @@
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <p class="mb-0">By Car</p>
-                        <h4 class="font-weight-bold">1 <small class="text-dark font-13">(+0 วันนี้)</small></h4>
+                        <h4 class="font-weight-bold"> {{ $count_all_by_car }} <small class="text-dark font-13">(+0 วันนี้)</small></h4>
                     </div>
                     <div class="widgets-icons bg-gradient-burning text-white"><i class="fa-solid fa-car-side"></i>
                     </div>
                 </div>
                 <div class="progress bg-dark-2 radius-10 mt-4" style="height:4.5px;">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: 20%"></div>
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: {{ $percent_by_car }}%"></div>
                 </div>
                 <br>
-                <span class="text-dark">คิดเป็น : 20.00 % จากเนื้อหาทั้งหมด</span>
+                <span class="text-dark">คิดเป็น : {{ $percent_by_car }} % จากเนื้อหาทั้งหมด</span>
             </div>
         </div>
     </div>
@@ -110,6 +138,9 @@
                                 <a data-toggle="collapse" data-target="#collapse_check_in_2" aria-expanded="true" aria-controls="collapse_check_in_2" href="javaScript:;" class="dropdown-item">
                                     เนื้อหาที่ส่งบ่อยที่สุด
                                 </a>
+                                <a data-toggle="collapse" data-target="#collapse_check_in_2" aria-expanded="true" aria-controls="collapse_check_in_3" href="javaScript:;" class="dropdown-item">
+                                    เนื้อหาที่มีคนดูมากที่สุด
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -123,22 +154,24 @@
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
-                                    เนื้อหาที่ส่งหาเยอะที่สุด
+                                    เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </span>
                                 <hr>
-                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <p class="ms-auto mb-0 text-purple">1 &nbsp;&nbsp;</p>
+                                @foreach ($all_by_checkin as $all_by_checkin)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">1 &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            <img src="https://www.viicheck.com/storage/uploads/6jxuRh4PEsSjOIoAZdPXdPpLfR3g4u78IZAICyVZ.png" class="p-1" alt="">
+                                        </div>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $all_by_checkin->name_content }}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $all_by_checkin->count_name_content }} รอบ</p>
                                     </div>
-                                    <div class="product-img">
-                                        <img src="https://www.viicheck.com/storage/uploads/6jxuRh4PEsSjOIoAZdPXdPpLfR3g4u78IZAICyVZ.png" class="p-1" alt="">
-                                    </div>
-                                    <div class="ps-3">
-                                        <h5 class="mb-0 font-weight-bold">วีเช็ค</h5>
-                                    </div>
-                                    <p class="ms-auto mb-0 text-purple">1 รอบ</p>
-                                </div>
-                                <hr>
+                                    <hr>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -154,6 +187,36 @@
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
                                     เนื้อหาที่ส่งบ่อยที่สุด
+                                </span>
+                                <hr>
+                                <div class="d-flex align-items-center">
+                                    <div class="">
+                                        <p class="ms-auto mb-0 text-purple">1 &nbsp;&nbsp;</p>
+                                    </div>
+                                    <div class="product-img">
+                                        <img src="https://www.viicheck.com/storage/uploads/6jxuRh4PEsSjOIoAZdPXdPpLfR3g4u78IZAICyVZ.png" class="p-1" alt="">
+                                    </div>
+                                    <div class="ps-3">
+                                        <h5 class="mb-0 font-weight-bold">วีเช็ค</h5>
+                                    </div>
+                                    <p class="ms-auto mb-0 text-purple">0 ครั้ง</p>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- จบ การคลิกมากที่สุด -->
+
+             <!-- เนื้อหาที่ส่งบ่อยที่สุด -->
+             <div id="collapse_check_in_3" class="collapse" data-parent="#accordion_of_check_in">
+                <div class="card-body">
+                    <div class="col d-flex">
+                        <div class="card radius-10 w-100">
+                            <div class="best-selling-products p-3 mb-3">
+                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                    เนื้อหาที่มีคนดูมากที่สุด
                                 </span>
                                 <hr>
                                 <div class="d-flex align-items-center">

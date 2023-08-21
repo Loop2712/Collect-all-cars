@@ -1,6 +1,6 @@
 @extends('layouts.partners.theme_partner_new')
     <style>
-        #generatePdf{
+        #all_dashboard{
             text-align: justify ,
         }
 
@@ -27,42 +27,75 @@
             font-weight: bold !important;
         }
     </style>
+
 @section('content')
 
-<h3 class="text-dark">User</h3>
-<div id="dashboard_user" class="mb-3 bg_section1" >
-    @include ('dashboard.dashboard_user.dashboard_user')
-</div>
-<div style="margin: 70px 0 70px 0;">
-    <hr>
-</div>
-
-<h3 class="text-dark">ViiSOS</h3>
-<div id="dashboard_viisos" class="mb-3 bg_section1" >
-    @include ('dashboard.dashboard_viisos.dashboard_viisos')
-</div>
-<div style="margin: 70px 0 70px 0;">
-    <hr>
+<div class="row row-cols-1 row-cols-lg-1 m-2">
+    <div class="col">
+        <a class="btn btn-primary float-end m-1" onclick="SaveImageGlobal('all_dashboard')">Save All</a>
+        <a class="btn btn-success float-end m-1" onclick="SaveImageGlobal('dashboard_boardcast')">Save การประชาสัมพันธ์ข่าวสาร</a>
+        <a class="btn btn-info float-end m-1" onclick="SaveImageGlobal('dashboard_viimove')">Save ViiMove</a>
+        <a class="btn btn-danger float-end m-1" onclick="SaveImageGlobal('dashboard_viinews')">Save ViiNews</a>
+        <a class="btn btn-warning float-end m-1" onclick="SaveImageGlobal('dashboard_viisos')">Save ViiSOS</a>
+        <a class="btn btn-primary float-end m-1" onclick="SaveImageGlobal('dashboard_user')">Save User</a>
+    </div>
 </div>
 
-<h3 class="text-dark">ViiNews</h3>
-<div id="dashboard_viinews" class="mb-3 bg_section1" >
-    @include ('dashboard.dashboard_viinews.dashboard_viinews')
-</div>
-<div style="margin: 70px 0 70px 0;">
-    <hr>
+<div id="all_dashboard" class="p-2">
+    <h3 class="text-dark">User</h3>
+    <div id="dashboard_user" class="mb-3 bg_section1" >
+        @include ('dashboard.dashboard_user.dashboard_user')
+    </div>
+    <div style="margin: 70px 0 70px 0;">
+        <hr>
+    </div>
+
+    <h3 class="text-dark">ViiSOS</h3>
+    <div id="dashboard_viisos" class="mb-3 bg_section1" >
+        @include ('dashboard.dashboard_viisos.dashboard_viisos')
+    </div>
+    <div style="margin: 70px 0 70px 0;">
+        <hr>
+    </div>
+
+    <h3 class="text-dark">ViiNews</h3>
+    <div id="dashboard_viinews" class="mb-3 bg_section1" >
+        @include ('dashboard.dashboard_viinews.dashboard_viinews')
+    </div>
+    <div style="margin: 70px 0 70px 0;">
+        <hr>
+    </div>
+
+    <h3 class="text-dark">ViiMove</h3>
+    <div id="dashboard_viimove" class="mb-3 bg_section1" >
+        @include ('dashboard.dashboard_viimove.dashboard_viimove')
+    </div>
+    <div style="margin: 70px 0 70px 0;">
+        <hr>
+    </div>
+
+    <h3 class="text-dark">การประชาสัมพันธ์ข่าวสาร</h3>
+    <div id="dashboard_boardcast" class="mb-3 bg_section1" >
+        @include ('dashboard.dashboard_boardcast.dashboard_boardcast')
+    </div>
 </div>
 
-<h3 class="text-dark">ViiMove</h3>
-<div id="dashboard_viimove" class="mb-3 bg_section1" >
-    @include ('dashboard.dashboard_viimove.dashboard_viimove')
-</div>
-<div style="margin: 70px 0 70px 0;">
-    <hr>
-</div>
+    <script src="https://unpkg.com/modern-screenshot"></script>
 
-<h3 class="text-dark">การประชาสัมพันธ์ข่าวสาร</h3>
-<div id="dashboard_boardcast" class="mb-3 bg_section1" >
-    @include ('dashboard.dashboard_boardcast.dashboard_boardcast')
-</div>
+    <script>
+        function SaveImageGlobal(id_div) {
+            setTimeout(() => {
+                const targetElement = document.querySelector('#'+id_div);
+                targetElement.style.backgroundColor = 'white';
+
+                modernScreenshot.domToPng(targetElement).then(dataUrl => {
+                    const link = document.createElement('a')
+                    link.download = 'screenshot.png'
+                    link.href = dataUrl
+                    link.click()
+                })
+            }, 500);
+        }
+    </script>
+
 @endsection

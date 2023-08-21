@@ -66,33 +66,22 @@
                                 $currentDate = \Carbon\Carbon::now();
                                 $checkOutDate = \Carbon\Carbon::parse($last_checkIn_data->time_out);
 
-                                $checkin_timeDifference = $currentDate->diffInMinutes($checkOutDate);
+                                $checkout_timeDifference = $currentDate->diff($checkOutDate);
 
-                                if ($checkin_timeDifference >= 86400) {
-                                    $checkin_days = floor($checkin_timeDifference / 86400);
-                                    $checkin_hours = floor(($checkin_timeDifference % 86400) / 3600);
-                                    // $checkin_remainingMinutes = floor((($checkin_timeDifference % 86400) % 3600) / 60);
-                                    // $checkin_remainingSeconds = ($checkin_timeDifference % 86400) % 60;
+                                $daysDifference = $checkout_timeDifference->days;
+                                $hoursDifference = $checkout_timeDifference->h;
+                                $minutesDifference = $checkout_timeDifference->i;
 
-                                    // $checkin_time_unit = $checkin_days . ' วัน ' . $checkin_hours . ' ชั่วโมง ' . $checkin_remainingMinutes . ' นาที ' . $checkin_remainingSeconds . ' วินาที';
-                                    $checkin_time_unit = $checkin_days . ' วัน ' . $checkin_hours . ' ชั่วโมง ';
-
-                                }elseif ($checkin_timeDifference >= 3600) {
-                                    $checkin_hours = floor($checkin_timeDifference / 3600);
-                                    $checkin_remainingMinutes = floor(($checkin_timeDifference % 3600) / 60);
-                                    $checkin_remainingSeconds = $checkin_timeDifference % 60;
-
-                                    $checkin_time_unit = $checkin_hours . ' ชั่วโมง ' . $checkin_remainingMinutes . ' นาที ' . $checkin_remainingSeconds . ' วินาที';
-                                } elseif ($checkin_timeDifference >= 60) {
-                                    $checkin_minutes = floor($checkin_timeDifference / 60);
-                                    $checkin_seconds = $checkin_timeDifference % 60;
-
-                                    $checkin_time_unit = $checkin_minutes . ' นาที ' . $checkin_seconds . ' วินาที';
-                                } else {
-                                    $checkin_time_unit = $checkin_timeDifference . ' วินาที';
+                                if(!empty($daysDifference)){
+                                    $checkout_time_unit = $daysDifference . ' วัน ';
+                                }elseif (empty($daysDifference) && !empty($hoursDifference) ) {
+                                    $checkout_time_unit = $hoursDifference . ' ชม. '  . $minutesDifference . ' น. ';
+                                }elseif (empty($daysDifference) && empty($hoursDifference) && !empty($minutesDifference)) {
+                                    $checkout_time_unit = $minutesDifference . ' น. ';
                                 }
+
                             @endphp
-                            <p class="ms-auto mb-0 text-purple">{{ $checkin_time_unit }}</p>
+                            <p class="ms-auto mb-0 text-purple">{{ $checkout_time_unit }}</p>
                         </div>
                         <hr />
                     @endforeach
@@ -181,33 +170,21 @@
                             </div>
 
                             @php
-                                $checkin_time_current = date('Y-m-d H:i:s');
+                                $checkin_time_current = \Carbon\Carbon::now();
                                 $checkin_time_in = \Carbon\Carbon::parse($lastest_checkIn_data->time_in);
 
-                                $checkin_timeDifference = $checkin_time_in->diffInMinutes($checkin_time_current); // หรือ diffInSeconds() หากต้องการในหน่วยวินาที
+                                $checkin_timeDifference = $checkin_time_current->diff($checkin_time_in);
 
-                                if ($checkin_timeDifference >= 86400) {
-                                    $checkin_days = floor($checkin_timeDifference / 86400);
-                                    $checkin_hours = floor(($checkin_timeDifference % 86400) / 3600);
-                                    // $checkin_remainingMinutes = floor((($checkin_timeDifference % 86400) % 3600) / 60);
-                                    // $checkin_remainingSeconds = ($checkin_timeDifference % 86400) % 60;
+                                $daysDifference = $checkin_timeDifference->days;
+                                $hoursDifference = $checkin_timeDifference->h;
+                                $minutesDifference = $checkin_timeDifference->i;
 
-                                    // $checkin_time_unit = $checkin_days . ' วัน ' . $checkin_hours . ' ชั่วโมง ' . $checkin_remainingMinutes . ' นาที ' . $checkin_remainingSeconds . ' วินาที';
-                                    $checkin_time_unit = $checkin_days . ' วัน ' . $checkin_hours . ' ชั่วโมง ';
-
-                                } elseif ($checkin_timeDifference >= 3600) {
-                                    $checkin_hours = floor($checkin_timeDifference / 3600);
-                                    $checkin_remainingMinutes = floor(($checkin_timeDifference % 3600) / 60);
-                                    $checkin_remainingSeconds = $checkin_timeDifference % 60;
-
-                                    $checkin_time_unit = $checkin_hours . ' ชั่วโมง ' . $checkin_remainingMinutes . ' นาที ' . $checkin_remainingSeconds . ' วินาที';
-                                } elseif ($checkin_timeDifference >= 60) {
-                                    $checkin_minutes = floor($checkin_timeDifference / 60);
-                                    $checkin_seconds = $checkin_timeDifference % 60;
-
-                                    $checkin_time_unit = $checkin_minutes . ' นาที ' . $checkin_seconds . ' วินาที';
-                                } else {
-                                    $checkin_time_unit = $checkin_timeDifference . ' วินาที';
+                                if(!empty($daysDifference)){
+                                    $checkin_time_unit = $daysDifference . ' วัน ';
+                                }elseif (empty($daysDifference) && !empty($hoursDifference) ) {
+                                    $checkin_time_unit = $hoursDifference . ' ชม. '  . $minutesDifference . ' น. ';
+                                }elseif (empty($daysDifference) && empty($hoursDifference) && !empty($minutesDifference)) {
+                                    $checkin_time_unit = $minutesDifference . ' น. ';
                                 }
 
                             @endphp
