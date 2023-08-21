@@ -32,6 +32,9 @@
 		font-family: 'Kanit', sans-serif !important;
 	}#Top5_Area_SOS{
         min-height: 00px !important;
+    }.list-group-sos-province{
+        height: calc(27vh);
+        overflow: auto;
     }
     </style>
 

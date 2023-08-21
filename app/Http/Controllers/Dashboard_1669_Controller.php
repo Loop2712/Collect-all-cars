@@ -385,6 +385,9 @@ class Dashboard_1669_Controller extends Controller
         // ลบ district ที่มากที่สุดออกจาก districtCounts
         $districtCountsWithoutMostCommon = $districtCounts->except([$mostCommonDistrict]);
         
+        $orderedDistricts = $districtCountsWithoutMostCommon->sortByDesc(function ($count, $district) {
+            return $count;
+        });
 
         // ddd($countMostCommonDistrict , $mostCommonDistrict);
     return view('dashboard_1669.dashboard_1669_index',
@@ -424,7 +427,7 @@ class Dashboard_1669_Controller extends Controller
         'treatment_have_cure_data',
         'treatment_have_no_cure_data',
         'mostCommonDistrict',
-        'districtCountsWithoutMostCommon',
+        'orderedDistricts',
         'countMostCommonDistrict',
     ));
 

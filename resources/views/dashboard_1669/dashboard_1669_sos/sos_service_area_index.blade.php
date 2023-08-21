@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-12 col-xl-4 col-xxl-3 d-flex align-items-stretch">
+    <div class="col-12 col-xl-4 col-xxl-4 d-flex align-items-stretch">
         <div class="card radius-10 w-100    ">
             <div class="card-body">
                 <div class="d-flex align-items-center">
@@ -62,7 +62,7 @@
     <style>
        
     </style>
-    <div class="col-12 col-xl-8 col-xxl-9 d-flex">
+    <div class="col-12 col-xl-8 col-xxl-8 d-flex">
         <div class="card w-100 radius-10">
             <div class="row g-0">
                 <div class="col-md-4 border-end">
@@ -73,7 +73,7 @@
                     </div>
 
                     <ul class="list-group mt-4 list-group-flush list-group-sos-province">
-                        @foreach($districtCountsWithoutMostCommon as $district => $count)
+                        @foreach($orderedDistricts as $district => $count)
                         <li class="font-18 list-group-item d-flex align-items-center">
                             <span>{{$district}}</span>
                             <strong class="ms-auto">{{$count}}</strong>
@@ -368,7 +368,9 @@
                     let lat = parseFloat(result[ii].lat);
                     let lng = parseFloat(result[ii].lng);
 
-                    all_lat_lng.push({"lat": lat, "lng": lng});
+                    if (lat) {
+                        all_lat_lng.push({"lat": lat, "lng": lng});
+                    }
                 }
 
 
