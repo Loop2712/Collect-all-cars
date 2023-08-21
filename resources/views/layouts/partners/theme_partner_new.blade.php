@@ -2609,7 +2609,7 @@
 <script src="{{ asset('partner_new/plugins/notifications/js/notifications.min.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/notifications/js/notification-custom-script.js') }}"></script>
 
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
 
 
 
