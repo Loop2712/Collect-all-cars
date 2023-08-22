@@ -1219,8 +1219,12 @@
                                 z-index: 9999;
                             }
                         </style>
+                        
+                        <div class="pagination-wrapper"> 
+                            {!! $show_data_sos->appends(['search' => Request::get('search')])->render() !!} 
+                        </div>
 
-                        @foreach($data_sos as $item)
+                        @foreach($show_data_sos as $item)
 
                             <div class="col-12" style="position: relative;">
                                 <span id="notification_refuse_sos_id_{{ $item->id }}" class="notification-refuse d-none">

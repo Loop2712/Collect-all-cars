@@ -217,7 +217,6 @@ class Sos_help_centerController extends Controller
     {   
         $keyword = $request->get('search');
         $perPage = 25;
-
         
         $data_user = Auth::user();
         $sub_organization = $data_user->sub_organization;
@@ -229,33 +228,23 @@ class Sos_help_centerController extends Controller
         // $count_data = Sos_help_center::count();
 
         if ($sub_organization == "ศูนย์ใหญ่") {
-            if (!empty($keyword)) {
-                $data_sos = Sos_help_center::where('id', 'LIKE', "%$keyword%")
-                    ->orWhere('name_user', 'LIKE', "%$keyword%")
-                    ->orWhere('photo_sos', 'LIKE', "%$keyword%")
-                    ->orWhere('organization_helper', 'LIKE', "%$keyword%")
-                    ->orWhere('name_helper', 'LIKE', "%$keyword%")
-                    ->get();
-            } else {
-                $data_sos = Sos_help_center::get();
-            }
+
+            $data_sos = Sos_help_center::get();
+            $show_data_sos = Sos_help_center::latest()->paginate($perPage);
 
             $polygon_provinces = DB::table('province_ths')
                 ->where('polygon' , '!=' , null)
                 ->get();
 
         }else{
-             if (!empty($keyword)) {
-                $data_sos = Sos_help_center::where('id', 'LIKE', "%$keyword%")
-                    ->where('notify', 'LIKE', "%$sub_organization%")
-                    ->orWhere('name_user', 'LIKE', "%$keyword%")
-                    ->orWhere('photo_sos', 'LIKE', "%$keyword%")
-                    ->orWhere('organization_helper', 'LIKE', "%$keyword%")
-                    ->orWhere('name_helper', 'LIKE', "%$keyword%")
-                    ->get();
-            } else {
-                $data_sos = Sos_help_center::where('notify', 'LIKE', "%$sub_organization%")->orderBy('created_at' , 'DESC')->get();
-            }
+             
+            $data_sos = Sos_help_center::where('notify', 'LIKE', "%$sub_organization%")
+                ->orderBy('created_at' , 'DESC')
+                ->get();
+
+            $show_data_sos = Sos_help_center::where('notify', 'LIKE', "%$sub_organization%")
+                ->orderBy('created_at' , 'DESC')
+                ->latest()->paginate($perPage);
 
             $polygon_provinces = DB::table('province_ths')
                 ->where('polygon' , '!=' , null)
@@ -263,7 +252,7 @@ class Sos_help_centerController extends Controller
                 ->get();
         }
         
-        return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos','polygon_provinces','color_theme'));
+        return view('sos_help_center.help_center_admin', compact('data_user' , 'data_sos','show_data_sos','polygon_provinces','color_theme'));
 
     }
 
