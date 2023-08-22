@@ -2540,7 +2540,17 @@
 					if (['1', '2', '3', '4', '5'].includes(form_yellow_current_topic)) {
 						// ข้อ 1- 5
 					    // console.log(`ตอนนี้อยู่ที่หน้า : ${form_yellow_current_topic} กำลังบันทึก..`);
-					    check_go_to(null, null);
+					    
+					    let phone_user = document.querySelector('[name="phone_user"]');
+					    let check_num_phone_user = isNumeric(phone_user.value) ;
+
+					    if(!check_num_phone_user){
+					    	phone_user.value = '' ;
+					    	// console.log(`เคลีย phone_user`);
+					    }else{
+						    check_go_to(null, null);
+					    	// console.log(`บันทึกเรียบร้อย`);
+					    }
 
 					}else{
 						// ไม่ใช่ ข้อ 1 - 5 ตรวจสอบและทำการแจ้งเตือน
@@ -3321,6 +3331,18 @@
 
     	document.querySelector('#btn_modal_alet_data_change').click();
     }
+
+    function isNumeric(input) {
+	  	// ตรวจสอบว่าเป็นตัวเลขหรือไม่
+	  	if (!isNaN(input)) {
+	    	// ตรวจสอบว่าไม่มีจุดใน input
+    		if (input.indexOf('.') === -1) {
+	      		return true; // เป็นตัวเลขและไม่มีจุด
+	    	}
+	  	}
+	  	
+	  	return false; // ไม่เป็นตัวเลขหรือมีจุด
+	}
 
     function select_titel_update_all(){
 

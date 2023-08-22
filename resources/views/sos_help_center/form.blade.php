@@ -1151,7 +1151,7 @@ color: #ff9317;
                 </h4>
                 <hr>
                 <span class="mt-2">
-                    โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ
+                    โทรศัพท์ผู้แจ้ง
                 </span>
                 <h4>
                     <u id="u_phone_user">{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}</u>
@@ -3762,7 +3762,7 @@ color: #ff9317;
                 text_key = "ชื่อ/รหัสผู้แจ้งเหตุ" ;
             break;
             case 'phone_user':
-                text_key = "โทรศัพท์ผู้แจ้ง/ความถี่วิทยุ" ;
+                text_key = "โทรศัพท์ผู้แจ้ง" ;
             break;
             case 'lat':
                 text_key = "ละติจูด" ;
