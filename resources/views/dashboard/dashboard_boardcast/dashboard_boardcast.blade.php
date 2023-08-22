@@ -32,12 +32,13 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
-                        <p class="mb-0">All Content</p>
-                        <h4 class="font-weight-bold">{{ $count_all_content }}
+                        <h5 class="mb-0 font-weight-bold text-dark">เนื้อหาทั้งหมด</h5>
+                        <h3 class="font-weight-bold">{{ $count_all_content }}
                             {{-- <small class="text-success font-13"> (+2 วันนี้) </small> --}}
-                        </h4>
+                        </h3>
                     </div>
-                    <div class="widgets-icons bg-gradient-cosmic text-white"><i class="fa-solid fa-folder-grid"></i>
+                    <div class="widgets-icons bg-gradient-cosmic text-white">
+                        <img width="35px" src="{{ asset('/img/icon/newspaper.png') }}">
                     </div>
                 </div>
                 <div class="progress bg-dark-2 radius-10 mt-4" style="height:4.5px;">
@@ -53,19 +54,20 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
-                        <p class="mb-0">By Check in</p>
-                        <h4 class="font-weight-bold">{{ $count_all_by_checkin }}
+                        <h5 class="mb-0 font-weight-bold text-dark">เนื้อหาสำหรับการเช็คอิน</h5>
+                        <h3 class="font-weight-bold">{{ $count_all_by_checkin }}
                             {{-- <small class="text-success font-13"> (+2 วันนี้) </small> --}}
-                        </h4>
+                        </h3>
                     </div>
-                    <div class="widgets-icons bg-gradient-kyoto text-white"><i class="fa-solid fa-location-check "></i>
+                    <div class="widgets-icons bg-gradient-Ohhappiness text-white">
+                        <img width="35px" src="{{ asset('/img/icon/check-in.png') }}">
                     </div>
                 </div>
                 <div class="progress bg-dark-2 radius-10 mt-4" style="height:4.5px;">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: {{ $percent_by_checkin }}%"></div>
                 </div>
                 <br>
-                <span class="text-dark">คิดเป็น : {{ $percent_by_checkin }} % จากเนื้อหาทั้งหมด</span>
+                <h6 class="text-dark font-weight-bold">คิดเป็น : {{ $percent_by_checkin }} % จากเนื้อหาทั้งหมด</h6>
             </div>
         </div>
     </div>
@@ -74,19 +76,20 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
-                        <p class="mb-0">By User</p>
-                        <h4 class="font-weight-bold">{{ $count_all_by_user }}
+                        <h5 class="mb-0 font-weight-bold text-dark">เนื้อหาสำหรับผู้ใช้งาน</h5>
+                        <h3 class="font-weight-bold">{{ $count_all_by_user }}
                             {{-- <small class="text-dark font-13"> (+0 วันนี้) </small> --}}
-                        </h4>
+                        </h3>
                     </div>
-                    <div class="widgets-icons bg-gradient-blues text-white"><i class="fa-solid fa-user"></i>
+                    <div class="widgets-icons bg-gradient-blues text-white">
+                        <img width="35px" src="{{ asset('/img/icon/user.png') }}">
                     </div>
                 </div>
                 <div class="progress bg-dark-2 radius-10 mt-4" style="height:4.5px;">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: {{ $percent_by_user }}%"></div>
                 </div>
                 <br>
-                <span class="text-dark">คิดเป็น : {{ $percent_by_user }} % จากเนื้อหาทั้งหมด</span>
+                <h6 class="text-dark font-weight-bold ">คิดเป็น : {{ $percent_by_user }} % จากเนื้อหาทั้งหมด</h6>
             </div>
         </div>
     </div>
@@ -95,19 +98,20 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
-                        <p class="mb-0">By Car</p>
-                        <h4 class="font-weight-bold"> {{ $count_all_by_car }}
+                        <h5 class="mb-0 font-weight-bold text-dark">เนื้อหาสำหรับรถที่ลงทะเบียน</h5>
+                        <h3 class="font-weight-bold"> {{ $count_all_by_car }}
                             {{-- <small class="text-dark font-13">(+0 วันนี้)</small> --}}
-                        </h4>
+                        </h3>
                     </div>
-                    <div class="widgets-icons bg-gradient-burning text-white"><i class="fa-solid fa-car-side"></i>
+                    <div class="widgets-icons bg-gradient-kyoto text-white">
+                        <img width="35px" src="{{ asset('/img/icon/car.png') }}">
                     </div>
                 </div>
                 <div class="progress bg-dark-2 radius-10 mt-4" style="height:4.5px;">
                     <div class="progress-bar bg-dark" role="progressbar" style="width: {{ $percent_by_car }}%"></div>
                 </div>
                 <br>
-                <span class="text-dark">คิดเป็น : {{ $percent_by_car }} % จากเนื้อหาทั้งหมด</span>
+                <h6 class="text-dark font-weight-bold">คิดเป็น : {{ $percent_by_car }} % จากเนื้อหาทั้งหมด</h6>
             </div>
         </div>
     </div>
@@ -123,12 +127,12 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="font-weight-bold mb-0">
-                            <b>By_Check_In</b>
+                            <b>เนื้อหาสำหรับการเช็คอิน</b>
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
                         <a href="#" type="button" class="btn btn-sm btn-primary text-white">
-                            <i class="fa-sharp fa-solid fa-eye"></i> ดูเพิ่มเติม
+                            <img width="25px" src="{{ asset('/img/icon/eye_white.png') }}"> ดูเพิ่มเติม
                         </a>
 
                         <div class="btn-group" role="group">
@@ -158,18 +162,18 @@
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
-                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
                                     เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </span>
                                 <hr>
-                                @foreach ($all_by_checkin_show_user as $checkin_show_user)
+                                @foreach ($sorted_all_by_checkin_show_user as $checkin_show_user)
                                     <div class="d-flex align-items-center">
                                         <div class="">
                                             <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
                                         </div>
                                         <div class="product-img">
                                             @if (!empty($checkin_show_user->photo))
-                                                <img src="https://www.viicheck.com/storage/{{ $checkin_show_user->photo}}" class="p-1" alt="">
+                                                <img src="{{ asset('/storage').'/' }}{{ $checkin_show_user->photo}}" class="p-1" alt="">
                                             @else
                                                 <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                                             @endif
@@ -194,7 +198,7 @@
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
-                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
                                     เนื้อหาที่ส่งบ่อยที่สุด
                                 </span>
                                 <hr>
@@ -205,7 +209,7 @@
                                         </div>
                                         <div class="product-img">
                                             @if (!empty($checkin_send_round->photo))
-                                                <img src="https://www.viicheck.com/storage/{{ $checkin_send_round->photo}}" class="p-1" alt="">
+                                                <img src="{{ asset('/storage').'/' }}{{ $checkin_send_round->photo}}" class="p-1" alt="">
                                             @else
                                                 <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                                             @endif
@@ -226,23 +230,23 @@
             <!-- จบ เนื้อหาที่ส่งบ่อยที่สุด -->
 
             <!-- เนื้อหาที่มีคนดูมากที่สุด -->
-             <div id="collapse_check_in_3" class="collapse" data-parent="#accordion_of_check_in">
+            <div id="collapse_check_in_3" class="collapse" data-parent="#accordion_of_check_in">
                 <div class="card-body">
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
-                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
                                     เนื้อหาที่มีคนดูมากที่สุด
                                 </span>
                                 <hr>
-                                @foreach ($all_by_checkin_user_click as $checkin_user_click)
+                                @foreach ($sorted_all_by_checkin_user_click as $checkin_user_click)
                                     <div class="d-flex align-items-center">
                                         <div class="">
                                             <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
                                         </div>
                                         <div class="product-img">
                                             @if (!empty($checkin_user_click->photo))
-                                                <img src="https://www.viicheck.com/storage/{{ $checkin_user_click->photo}}" class="p-1" alt="">
+                                                <img src="{{ asset('/storage').'/' }}{{ $checkin_user_click->photo}}" class="p-1" alt="">
                                             @else
                                                 <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                                             @endif
@@ -272,12 +276,12 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="font-weight-bold mb-0">
-                            <b>By_Car</b>
+                            <b>เนื้อหาสำหรับรถที่ลงทะเบียน</b>
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
                         <a href="#" type="button" class="btn btn-sm btn-primary text-white">
-                            <i class="fa-sharp fa-solid fa-eye"></i> ดูเพิ่มเติม
+                            <img width="25px" src="{{ asset('/img/icon/eye_white.png') }}"> ดูเพิ่มเติม
                         </a>
 
                         <div class="btn-group" role="group">
@@ -307,7 +311,7 @@
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
-                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
                                     เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </span>
                                 <hr>
@@ -343,7 +347,7 @@
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
-                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
                                     เนื้อหาที่ส่งบ่อยที่สุด
                                 </span>
                                 <hr>
@@ -354,7 +358,7 @@
                                         </div>
                                         <div class="product-img">
                                             @if (!empty($by_car_send_round->photo))
-                                                <img src="https://www.viicheck.com/storage/{{ $by_car_send_round->photo}}" class="p-1" alt="">
+                                                <img src="{{ asset('/storage').'/' }}{{ $by_car_send_round->photo}}" class="p-1" alt="">
                                             @else
                                                 <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                                             @endif
@@ -379,18 +383,18 @@
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
-                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
                                     เนื้อหาที่มีคนดูมากที่สุด
                                 </span>
                                 <hr>
-                                @foreach ($all_by_car_user_click as $by_car_user_click)
+                                @foreach ($sorted_all_by_car_user_click as $by_car_user_click)
                                     <div class="d-flex align-items-center">
                                         <div class="">
                                             <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
                                         </div>
                                         <div class="product-img">
                                             @if (!empty($by_car_user_click->photo))
-                                                <img src="https://www.viicheck.com/storage/{{ $by_car_user_click->photo}}" class="p-1" alt="">
+                                                <img src="{{ asset('/storage').'/' }}{{ $by_car_user_click->photo}}" class="p-1" alt="">
                                             @else
                                                 <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                                             @endif
@@ -421,12 +425,12 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="font-weight-bold mb-0">
-                            <b>By_User</b>
+                            <b>เนื้อหาสำหรับผู้ใช้งาน</b>
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
                         <a href="#" type="button" class="btn btn-sm btn-primary text-white">
-                            <i class="fa-sharp fa-solid fa-eye"></i> ดูเพิ่มเติม
+                            <img width="25px" src="{{ asset('/img/icon/eye_white.png') }}"> ดูเพิ่มเติม
                         </a>
 
                         <div class="btn-group" role="group">
@@ -456,18 +460,18 @@
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
-                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
                                     เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </span>
                                 <hr>
-                                @foreach ($all_by_user_show_user as $by_user_show_user)
+                                @foreach ($sorted_all_by_user_show_user as $by_user_show_user)
                                     <div class="d-flex align-items-center">
                                         <div class="">
                                             <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
                                         </div>
                                         <div class="product-img">
                                             @if (!empty($by_user_show_user->photo))
-                                                <img src="https://www.viicheck.com/storage/{{ $by_user_show_user->photo}}" class="p-1" alt="">
+                                                <img src="{{ asset('/storage').'/' }}{{ $by_user_show_user->photo}}" class="p-1" alt="">
                                             @else
                                                 <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                                             @endif
@@ -492,7 +496,7 @@
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
-                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
                                     เนื้อหาที่ส่งบ่อยที่สุด
                                 </span>
                                 <hr>
@@ -503,7 +507,7 @@
                                     </div>
                                     <div class="product-img">
                                         @if (!empty($by_user_send_round->photo))
-                                            <img src="https://www.viicheck.com/storage/{{ $by_user_send_round->photo}}" class="p-1" alt="">
+                                            <img src="{{ asset('/storage').'/' }}{{ $by_user_send_round->photo}}" class="p-1" alt="">
                                         @else
                                             <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                                         @endif
@@ -528,18 +532,18 @@
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
-                                <span id="text_topic_check_in" class="text-secondary" style="font-size:16px;">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
                                     เนื้อหาที่มีคนดูมากที่สุด
                                 </span>
                                 <hr>
-                                @foreach ($all_by_user_user_click as $by_user_user_click)
+                                @foreach ($sorted_all_by_user_user_click as $by_user_user_click)
                                     <div class="d-flex align-items-center">
                                         <div class="">
                                             <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
                                         </div>
                                         <div class="product-img">
                                             @if (!empty($by_user_user_click->photo))
-                                                <img src="https://www.viicheck.com/storage/{{ $by_user_user_click->photo}}" class="p-1" alt="">
+                                                <img src="{{ asset('/storage').'/' }}{{ $by_user_user_click->photo}}" class="p-1" alt="">
                                             @else
                                                 <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                                             @endif

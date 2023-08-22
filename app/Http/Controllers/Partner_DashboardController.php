@@ -293,6 +293,10 @@ class Partner_DashboardController extends Controller
             }
 
         }
+        // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
+        $sorted_all_by_checkin_show_user = $all_by_checkin_show_user->sortByDesc(function ($item) {
+            return $item->count_show_user;
+        })->take(5);
 
         // เนื้อหาที่ส่งบ่อยที่สุด
         $all_by_checkin_send_round = Ads_content::where('name_partner',$user_login->organization)
@@ -324,6 +328,10 @@ class Partner_DashboardController extends Controller
             }
 
         }
+        // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
+        $sorted_all_by_checkin_user_click = $all_by_checkin_user_click->sortByDesc(function ($item) {
+            return $item->count_user_click;
+        })->take(5);
 
         // ======================== by_car =============================
 
@@ -349,9 +357,10 @@ class Partner_DashboardController extends Controller
             }
 
         }
+        // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
         $sorted_all_by_car_show_user = $all_by_car_show_user->sortByDesc(function ($item) {
             return $item->count_show_user;
-        });
+        })->take(5);
 
         // เนื้อหาที่ส่งบ่อยที่สุด
         $all_by_car_send_round = Ads_content::where('name_partner',$user_login->organization)
@@ -383,6 +392,10 @@ class Partner_DashboardController extends Controller
             }
 
         }
+        // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
+        $sorted_all_by_car_user_click = $all_by_car_user_click->sortByDesc(function ($item) {
+            return $item->count_user_click;
+        })->take(5);
 
         // ======================== by_user =============================
 
@@ -408,6 +421,10 @@ class Partner_DashboardController extends Controller
             }
 
         }
+        // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
+        $sorted_all_by_user_show_user = $all_by_user_show_user->sortByDesc(function ($item) {
+            return $item->count_show_user;
+        })->take(5);
 
         // เนื้อหาที่ส่งบ่อยที่สุด
         $all_by_user_send_round = Ads_content::where('name_partner',$user_login->organization)
@@ -439,6 +456,10 @@ class Partner_DashboardController extends Controller
             }
 
         }
+        // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
+        $sorted_all_by_user_user_click = $all_by_user_user_click->sortByDesc(function ($item) {
+            return $item->count_user_click;
+        })->take(5);
 
 
         return view('dashboard.dashboard_index',  compact(
@@ -464,15 +485,15 @@ class Partner_DashboardController extends Controller
             'count_all_by_checkin',
             'count_all_by_user',
             'count_all_by_car',
-            'all_by_checkin_show_user',
+            'sorted_all_by_checkin_show_user',
             'all_by_checkin_send_round',
-            'all_by_checkin_user_click',
+            'sorted_all_by_checkin_user_click',
             'sorted_all_by_car_show_user',
             'all_by_car_send_round',
-            'all_by_car_user_click',
-            'all_by_user_show_user',
+            'sorted_all_by_car_user_click',
+            'sorted_all_by_user_show_user',
             'all_by_user_send_round',
-            'all_by_user_user_click',
+            'sorted_all_by_user_user_click',
 
 
 
