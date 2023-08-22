@@ -412,8 +412,7 @@
     @foreach ($count_user_location as $item)
         user_location_arr.push(Number('{{ $item->user_location_count }}'));
     @endforeach
-    console.log(user_location_arr);
-    console.log(typeof(user_location_arr));
+
     let type_location;
     @foreach ($count_user_location as $item)
         @if (empty($item->location_P))

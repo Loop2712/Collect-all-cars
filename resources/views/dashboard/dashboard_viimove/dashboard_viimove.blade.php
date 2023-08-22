@@ -75,6 +75,59 @@
     </div>
 </div><!--end row-->
 
+<div class="row row-cols-1 row-cols-lg-1">
+    <div class="col"> <!-- Card 1 -->
+        <div class="card radius-10">
+            <div class="card-header border-bottom-0 bg-transparent">
+                <div class="d-lg-flex align-items-center">
+                    <div class="col-10">
+                        <h5 class="font-weight-bold mb-2 mb-lg-0" style="font-weight: bold">รถที่ลงทะเบียน {{ count($last_reg_car_top10) }} ลำดับล่าสุด</h5>
+                    </div>
+                    <div class="dropdown ms-auto">
+                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
+                            data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลเพิ่มเติม</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>ชื่อเจ้าของ</th>
+                                <th>ประเภท</th>
+                                <th>ยี่ห้อ</th>
+                                <th>รุ่น</th>
+                                <th>วันที่</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($last_reg_car_top10 as $last_reg_car_top10)
+                                <tr>
+                                    <th >{{ $loop->iteration }}</th>
+                                    <td>{{ $last_reg_car_top10->name_from_users}}</td>
+                                    <td>{{ $last_reg_car_top10->type_car_registration}}</td>
+                                    <td>{{ $last_reg_car_top10->brand}}</td>
+                                    <td>{{ $last_reg_car_top10->generation}}</td>
+                                    <td>{{ $last_reg_car_top10->created_at}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
 <div class="row row-cols-1 row-cols-lg-3">
     <!-- รถที่ถูกรายงานมากที่สุด -->
     <div class="col-12 col-md-4 d-flex">

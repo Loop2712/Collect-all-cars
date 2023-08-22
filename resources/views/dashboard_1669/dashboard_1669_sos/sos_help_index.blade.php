@@ -201,9 +201,9 @@
                                 <thead>
                                     <tr>
                                         <th>รหัสเคส</th>
-                                        <th>address</th>
-                                        <th>name_helper</th>
-                                        <th>organization_helper</th>
+                                        <th>สถานที่</th>
+                                        <th>เจ้าหน้าที่หน่วยปฏิบัติการ</th>
+                                        <th>ชื่อหน่วยปฏบัติการ</th>
                                         <th>ระยะเวลารวม</th>
                                     </tr>
                                 </thead>
@@ -272,9 +272,9 @@
                                 <thead>
                                     <tr>
                                         <th>รหัสเคส</th>
-                                        <th>address</th>
-                                        <th>name_helper</th>
-                                        <th>organization_helper</th>
+                                        <th>สถานที่</th>
+                                        <th>เจ้าหน้าที่หน่วยปฏิบัติการ</th>
+                                        <th>ชื่อหน่วยปฏบัติการ</th>
                                         <th>ระยะเวลารวม</th>
                                     </tr>
                                 </thead>
@@ -379,9 +379,9 @@
                                 <thead>
                                     <tr>
                                         <th>รหัสเคส</th>
-                                        <th>address</th>
-                                        <th>name_helper</th>
-                                        <th>organization_helper</th>
+                                        <th>สถานที่</th>
+                                        <th>เจ้าหน้าที่หน่วยปฏิบัติการ</th>
+                                        <th>ชื่อหน่วยปฏบัติการ</th>
                                         <th>คะแนน</th>
                                     </tr>
                                 </thead>
@@ -428,9 +428,9 @@
                                 <thead>
                                     <tr>
                                         <th>รหัสเคส</th>
-                                        <th>address</th>
-                                        <th>name_helper</th>
-                                        <th>organization_helper</th>
+                                        <th>สถานที่</th>
+                                        <th>เจ้าหน้าที่หน่วยปฏิบัติการ</th>
+                                        <th>ชื่อหน่วยปฏบัติการ</th>
                                         <th>คะแนน</th>
                                     </tr>
                                 </thead>
