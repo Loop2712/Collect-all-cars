@@ -960,161 +960,21 @@ class Sos_help_centerController extends Controller
 
         // ตรวจสอบค่าใน $data_arr ตามคีย์ที่เหมือนกันกับ $requestData["page"]
         switch ($requestData["page"]) {
-            case "1":
-                $error_keys = array();
-                foreach ($requestData as $key => $value) {
-                    if( !empty($data_arr['page_1'][$key]) ){
-
-                        $old_data_DB = $data_arr['page_1'][$key] ;
-                        $old_data_WEB = $requestData["start_data_arr"]['page_1'][$key] ;
-                        $new_data = $value ;
-                        $check_dont_save = $requestData["check_dont_save"] ;
-
-                        $data_change['page'] = 'page_1' ;
-
-                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
-
-                            $data_change['page_1'][$key]['old_data_DB'] = $data_arr['page_1'][$key] ;
-                            $data_change['page_1'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_1'][$key] ;
-                            $data_change['page_1'][$key]['new_data'] = $value ;
-                            $data_change['check_data_change'] = "Yes" ;
-                        
-                        }else{
-                            $data_change['page_1'][$key] = $value ;
-                        }
-
-                    }
-                }
-
-                break;
-
-            // เพิ่ม case สำหรับ page อื่นๆ ที่คุณต้องการตรวจสอบ
-            case "2":
-                $error_keys = array();
-                foreach ($requestData as $key => $value) {
-                    if( !empty($data_arr['page_2'][$key]) ){
-
-                        $old_data_DB = $data_arr['page_2'][$key] ;
-                        $old_data_WEB = $requestData["start_data_arr"]['page_2'][$key] ;
-                        $new_data = $value ;
-                        $check_dont_save = $requestData["check_dont_save"] ;
-
-                        $data_change['page'] = 'page_2' ;
-
-                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
-
-                            $data_change['page_2'][$key]['old_data_DB'] = $data_arr['page_2'][$key] ;
-                            $data_change['page_2'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_2'][$key] ;
-                            $data_change['page_2'][$key]['new_data'] = $value ;
-                            $data_change['check_data_change'] = "Yes" ;
-                        
-                        }else{
-                            $data_change['page_2'][$key] = $value ;
-                        }
-
-                    }
-                }
-
-                break;
-
-            case "3":
-                $error_keys = array();
-                foreach ($requestData as $key => $value) {
-                    if( !empty($data_arr['page_3'][$key]) ){
-
-                        $old_data_DB = $data_arr['page_3'][$key] ;
-                        $old_data_WEB = $requestData["start_data_arr"]['page_3'][$key] ;
-                        $new_data = $value ;
-                        $check_dont_save = $requestData["check_dont_save"] ;
-
-                        $data_change['page'] = 'page_3' ;
-
-                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
-
-                            $data_change['page_3'][$key]['old_data_DB'] = $data_arr['page_3'][$key] ;
-                            $data_change['page_3'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_3'][$key] ;
-                            $data_change['page_3'][$key]['new_data'] = $value ;
-                            $data_change['check_data_change'] = "Yes" ;
-                        
-                        }else{
-                            $data_change['page_3'][$key] = $value ;
-                        }
-
-                    }
-                }
-                break;
-
-            case "4":
-                $error_keys = array();
-                foreach ($requestData as $key => $value) {
-                    if( !empty($data_arr['page_4'][$key]) ){
-
-                        $old_data_DB = $data_arr['page_4'][$key] ;
-                        $old_data_WEB = $requestData["start_data_arr"]['page_4'][$key] ;
-                        $new_data = $value ;
-                        $check_dont_save = $requestData["check_dont_save"] ;
-
-                        $data_change['page'] = 'page_4' ;
-
-                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
-
-                            $data_change['page_4'][$key]['old_data_DB'] = $data_arr['page_4'][$key] ;
-                            $data_change['page_4'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_4'][$key] ;
-                            $data_change['page_4'][$key]['new_data'] = $value ;
-                            $data_change['check_data_change'] = "Yes" ;
-                        
-                        }else{
-                            $data_change['page_4'][$key] = $value ;
-                        }
-
-                    }
-                }
-                break;
-
-            case "5":
-                $error_keys = array();
-                foreach ($requestData as $key => $value) {
-                    if( !empty($data_arr['page_5'][$key]) ){
-
-                        $old_data_DB = $data_arr['page_5'][$key] ;
-                        $old_data_WEB = $requestData["start_data_arr"]['page_5'][$key] ;
-                        $new_data = $value ;
-                        $check_dont_save = $requestData["check_dont_save"] ;
-
-                        $data_change['page'] = 'page_5' ;
-
-                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
-
-                            $data_change['page_5'][$key]['old_data_DB'] = $data_arr['page_5'][$key] ;
-                            $data_change['page_5'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_5'][$key] ;
-                            $data_change['page_5'][$key]['new_data'] = $value ;
-                            $data_change['check_data_change'] = "Yes" ;
-                        
-                        }else{
-                            $data_change['page_5'][$key] = $value ;
-                        }
-
-                    }
-                }
-                break;
-
             case "6":
                 $error_keys = array();
                 foreach ($requestData as $key => $value) {
                     if( !empty($data_arr['page_6'][$key]) ){
 
-                        $old_data_DB = $data_arr['page_6'][$key] ;
-                        $old_data_WEB = $requestData["start_data_arr"]['page_6'][$key] ;
-                        $new_data = $value ;
+                        $data_DB = $data_arr['page_6'][$key] ;
+                        $data_WEB = $requestData["start_data_arr"]['page_6'][$key] ;
                         $check_dont_save = $requestData["check_dont_save"] ;
 
                         $data_change['page'] = 'page_6' ;
 
-                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
+                        if ( ($data_DB != $data_WEB) && $check_dont_save == "Yes" ){
 
-                            $data_change['page_6'][$key]['old_data_DB'] = $data_arr['page_6'][$key] ;
-                            $data_change['page_6'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_6'][$key] ;
-                            $data_change['page_6'][$key]['new_data'] = $value ;
+                            $data_change['page_6'][$key]['data_DB'] = $data_DB ; // ข้อมูลใหม่ที่มีการเปลี่ยนจาก DB
+                            $data_change['page_6'][$key]['data_WEB'] = $data_WEB ; // ข้อมูลเดิมที่อยู่ใน INPUT ก่อนหน้า
                             $data_change['check_data_change'] = "Yes" ;
                         
                         }else{
@@ -1130,18 +990,16 @@ class Sos_help_centerController extends Controller
                 foreach ($requestData as $key => $value) {
                     if( !empty($data_arr['page_7'][$key]) ){
 
-                        $old_data_DB = $data_arr['page_7'][$key] ;
-                        $old_data_WEB = $requestData["start_data_arr"]['page_7'][$key] ;
-                        $new_data = $value ;
+                        $data_DB = $data_arr['page_7'][$key] ;
+                        $data_WEB = $requestData["start_data_arr"]['page_7'][$key] ;
                         $check_dont_save = $requestData["check_dont_save"] ;
 
                         $data_change['page'] = 'page_7' ;
 
-                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
+                        if ( ($data_DB != $data_WEB) && $check_dont_save == "Yes" ){
 
-                            $data_change['page_7'][$key]['old_data_DB'] = $data_arr['page_7'][$key] ;
-                            $data_change['page_7'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_7'][$key] ;
-                            $data_change['page_7'][$key]['new_data'] = $value ;
+                            $data_change['page_7'][$key]['data_DB'] = $data_DB ; // ข้อมูลใหม่ที่มีการเปลี่ยนจาก DB
+                            $data_change['page_7'][$key]['data_WEB'] = $data_WEB ; // ข้อมูลเดิมที่อยู่ใน INPUT ก่อนหน้า
                             $data_change['check_data_change'] = "Yes" ;
                         
                         }else{
@@ -1157,18 +1015,16 @@ class Sos_help_centerController extends Controller
                 foreach ($requestData as $key => $value) {
                     if( !empty($data_arr['page_8'][$key]) ){
 
-                        $old_data_DB = $data_arr['page_8'][$key] ;
-                        $old_data_WEB = $requestData["start_data_arr"]['page_8'][$key] ;
-                        $new_data = $value ;
+                        $data_DB = $data_arr['page_8'][$key] ;
+                        $data_WEB = $requestData["start_data_arr"]['page_8'][$key] ;
                         $check_dont_save = $requestData["check_dont_save"] ;
 
                         $data_change['page'] = 'page_8' ;
 
-                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
+                        if ( ($data_DB != $data_WEB) && $check_dont_save == "Yes" ){
 
-                            $data_change['page_8'][$key]['old_data_DB'] = $data_arr['page_8'][$key] ;
-                            $data_change['page_8'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_8'][$key] ;
-                            $data_change['page_8'][$key]['new_data'] = $value ;
+                            $data_change['page_8'][$key]['data_DB'] = $data_DB ; // ข้อมูลใหม่ที่มีการเปลี่ยนจาก DB
+                            $data_change['page_8'][$key]['data_WEB'] = $data_WEB ; // ข้อมูลเดิมที่อยู่ใน INPUT ก่อนหน้า
                             $data_change['check_data_change'] = "Yes" ;
                         
                         }else{
@@ -1184,18 +1040,16 @@ class Sos_help_centerController extends Controller
                 foreach ($requestData as $key => $value) {
                     if( !empty($data_arr['page_9'][$key]) ){
 
-                        $old_data_DB = $data_arr['page_9'][$key] ;
-                        $old_data_WEB = $requestData["start_data_arr"]['page_9'][$key] ;
-                        $new_data = $value ;
+                        $data_DB = $data_arr['page_9'][$key] ;
+                        $data_WEB = $requestData["start_data_arr"]['page_9'][$key] ;
                         $check_dont_save = $requestData["check_dont_save"] ;
 
                         $data_change['page'] = 'page_9' ;
 
-                        if ( ($old_data_DB != $old_data_WEB) && ($old_data_DB != $new_data) && $check_dont_save == "No" ){
+                        if ( ($data_DB != $data_WEB) && $check_dont_save == "Yes" ){
 
-                            $data_change['page_9'][$key]['old_data_DB'] = $data_arr['page_9'][$key] ;
-                            $data_change['page_9'][$key]['old_data_WEB'] = $requestData["start_data_arr"]['page_9'][$key] ;
-                            $data_change['page_9'][$key]['new_data'] = $value ;
+                            $data_change['page_9'][$key]['data_DB'] = $data_DB ; // ข้อมูลใหม่ที่มีการเปลี่ยนจาก DB
+                            $data_change['page_9'][$key]['data_WEB'] = $data_WEB ; // ข้อมูลเดิมที่อยู่ใน INPUT ก่อนหน้า
                             $data_change['check_data_change'] = "Yes" ;
                         
                         }else{
