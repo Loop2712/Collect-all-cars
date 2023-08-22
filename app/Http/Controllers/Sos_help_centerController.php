@@ -216,7 +216,7 @@ class Sos_help_centerController extends Controller
     public function help_center_admin(Request $request)
     {   
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 20;
         
         $data_user = Auth::user();
         $sub_organization = $data_user->sub_organization;
