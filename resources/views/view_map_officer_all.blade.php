@@ -17,7 +17,7 @@
 			<h3 class="card-title">ข้อมูลหน่วยปฏิบัติการ ทั่วประเทศ</h3>
 		</div>
 		<p class="card-text" style="line-height: 25px;">
-			จำนวนทั้งหมดหน่วยปฏิบัติการทั้งหมด : <b>{{ count($data_officer_all) }}</b> <br>
+			จำนวนหน่วยปฏิบัติการทั้งหมด : <b>{{ count($data_officer_all) }}</b> <br>
 			พร้อมช่วยเหลือ : <b>{{ count($data_officer_ready) }}</b> <br>
 			กำลังช่วยเหลือ : <b>{{ count($data_officer_helping) }}</b> <br>
 			ไม่อยู่ : <b>{{ count($data_officer_Not_ready) }}</b> <br>
