@@ -4,6 +4,20 @@
     }
 </style>
 
+<div class="card" style="position:absolute;z-index: 99999;top: 10%;">
+	<div class="card-body">
+		<div>
+			<h4 class="card-title">ข้อมูลหน่วยปฏิบัติการ</h4>
+		</div>
+		<p class="card-text">
+			จำนวนทั้งหมดหน่วยปฏิบัติการทั้งหมด : {{ count($data_officer_all) }} <br>
+			พร้อมช่วยเหลือ : {{ count($data_officer_ready) }} <br>
+			กำลังช่วยเหลือ : {{ count($data_officer_helping) }} <br>
+			ไม่อยู่ : {{ count($data_officer_all) }} <br>
+		</p>
+	</div>
+</div>
+
 <div id="map_show_officer_all">
 	
 </div>
@@ -42,7 +56,7 @@
 
         let icon_level ;
 
-        @foreach($data_officer_all as $item)
+        @foreach($data_officer_ready as $item)
 
         	if( "{{ $item->level }}" === "FR" ){
         		icon_level = image_operating_unit_green ;

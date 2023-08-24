@@ -1150,9 +1150,21 @@ class PartnersController extends Controller
 
     function view_map_officer_all(){
 
-        $data_officer_all = Data_1669_operating_officer::where('lat' , "!=" , null)->get();
+        $data_officer_all = Data_1669_operating_officer::where('id' , "!=" , null)->get();
 
-        return view('view_map_officer_all', compact('data_officer_all'));
+        $data_officer_ready = Data_1669_operating_officer::where('lat' , "!=" , null)
+            ->where('status' , "Standby")
+            ->get();
+
+        $data_officer_helping = Data_1669_operating_officer::where('lat' , "!=" , null)
+            ->where('status' , "Helping")
+            ->get();
+
+        $data_officer_Not_ready = Data_1669_operating_officer::where('status' , "Not_ready")
+            ->orWhere('status' , null)
+            ->get();
+
+        return view('view_map_officer_all', compact('data_officer_all','data_officer_ready','data_officer_helping','data_officer_Not_ready'));
 
     }
 
