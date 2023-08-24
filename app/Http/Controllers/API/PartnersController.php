@@ -18,6 +18,8 @@ use App\Models\Partner_condo;
 use App\Models\Group_line;
 use App\Models\Time_zone;
 use App\Models\Disease;
+use App\Models\Data_1669_operating_officer;
+use App\Models\Data_1669_operating_unit;
 
 class PartnersController extends Controller
 {
@@ -1144,6 +1146,14 @@ class PartnersController extends Controller
         }
 
         return $data ;
+    }
+
+    function view_map_officer_all(){
+
+        $data_officer_all = Data_1669_operating_officer::where('lat' , "!=" , null)->get();
+
+        return view('view_map_officer_all', compact('data_officer_all'));
+
     }
 
 }
