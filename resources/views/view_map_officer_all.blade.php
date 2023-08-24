@@ -13,7 +13,7 @@
 			จำนวนทั้งหมดหน่วยปฏิบัติการทั้งหมด : {{ count($data_officer_all) }} <br>
 			พร้อมช่วยเหลือ : {{ count($data_officer_ready) }} <br>
 			กำลังช่วยเหลือ : {{ count($data_officer_helping) }} <br>
-			ไม่อยู่ : {{ count($data_officer_all) }} <br>
+			ไม่อยู่ : {{ count($data_officer_Not_ready) }} <br>
 		</p>
 	</div>
 </div>
