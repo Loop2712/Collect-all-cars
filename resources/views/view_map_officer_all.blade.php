@@ -2,18 +2,25 @@
 	#map_show_officer_all {
       height: calc(100%);
     }
+
+    .card{
+    	background-color: white;
+    	padding: 20px;
+    	border-radius: 15px;
+    	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+    }
 </style>
 
-<div class="card" style="position:absolute;z-index: 99999;top: 10%;">
+<div class="card" style="position:absolute;z-index: 99999;top: 10%;left: 1%;">
 	<div class="card-body">
 		<div>
-			<h4 class="card-title">ข้อมูลหน่วยปฏิบัติการ</h4>
+			<h3 class="card-title">ข้อมูลหน่วยปฏิบัติการ</h3>
 		</div>
-		<p class="card-text">
-			จำนวนทั้งหมดหน่วยปฏิบัติการทั้งหมด : {{ count($data_officer_all) }} <br>
-			พร้อมช่วยเหลือ : {{ count($data_officer_ready) }} <br>
-			กำลังช่วยเหลือ : {{ count($data_officer_helping) }} <br>
-			ไม่อยู่ : {{ count($data_officer_Not_ready) }} <br>
+		<p class="card-text" style="line-height: 25px;">
+			จำนวนทั้งหมดหน่วยปฏิบัติการทั้งหมด : <b>{{ count($data_officer_all) }}</b> <br>
+			พร้อมช่วยเหลือ : <b>{{ count($data_officer_ready) }}</b> <br>
+			กำลังช่วยเหลือ : <b>{{ count($data_officer_helping) }}</b> <br>
+			ไม่อยู่ : <b>{{ count($data_officer_Not_ready) }}</b> <br>
 		</p>
 	</div>
 </div>
