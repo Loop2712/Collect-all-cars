@@ -41,40 +41,6 @@
 		</div>
 	</div>
 <br><br><br>
-
-@if(Auth::user()->id == 1 || Auth::user()->id == 64)
-	<button class="btn btn-warning btn-sm main-shadow main-radius" onclick="Notification_click();">
-		Notification_click
-	</button>
-@endif
-
-<script>
-
-	function Notification_click(){
-        // console.log("START");
-
-		if ("Notification" in window) {
-		    Notification.requestPermission().then(function (permission) {
-		        if (permission === "granted") {
-		            var notification = new Notification("ยินดีต้อนรับ", {
-		                body: "ยินดีต้อนรับสู่เว็บไซต์ของเรา!",
-		                icon: "path/to/icon.png",
-		            });
-
-		            notification.onclick = function () {
-		                window.location.href = "https://www.example.com/";
-		            };
-		        }
-		    }).catch(function (error) {
-		        // กรณีที่ไม่ได้รับอนุญาตหรือเกิดข้อผิดพลาด
-		        alert("Notification permission error:", error);
-		    });
-		} else {
-		    alert("Web notifications are not supported in this browser.");
-		}
-
-	}
-</script>
 @endsection
 
 
