@@ -1373,7 +1373,7 @@
                         }
                     @endphp
                     <h5 class="text-dark">
-                        รหัสเหตุการณ์ <b class="{{ $rcColor }}">{{ $data_sos->form_yellow->rc }}</b>
+                        รหัสเหตุการณ์ <b class="{{ $rcColor }}" id="text_show_rc_ask_more">{{ $data_sos->form_yellow->rc }}</b>
                     </h5>
                 </div>
                 <form id="form">
@@ -1424,7 +1424,7 @@
     </select>
 
     <select name="rc_vehicle_${inputCount}" class="d-none form-select mb-3" aria-label="Default select example" required>
-        <option selected="" value="{{ $data_sos->form_yellow->rc }}">{{ $data_sos->form_yellow->rc }}</option>
+        <option id="op_rc_vehicle" selected="" value="{{ $data_sos->form_yellow->rc }}">{{ $data_sos->form_yellow->rc }}</option>
         <option value="แดง(วิกฤติ)">แดง(วิกฤติ)</option>
         <option value="ขาว(ทั่วไป)">ขาว(ทั่วไป)</option>
         <option value="เหลือง(เร่งด่วน)">เหลือง(เร่งด่วน)</option>
