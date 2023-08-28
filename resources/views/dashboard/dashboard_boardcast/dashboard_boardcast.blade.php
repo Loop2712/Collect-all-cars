@@ -76,28 +76,6 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
-                        <h5 class="mb-0 font-weight-bold text-dark">เนื้อหาสำหรับผู้ใช้งาน</h5>
-                        <h3 class="font-weight-bold">{{ $count_all_by_user }}
-                            {{-- <small class="text-dark font-13"> (+0 วันนี้) </small> --}}
-                        </h3>
-                    </div>
-                    <div class="widgets-icons bg-gradient-blues text-white">
-                        <img width="35px" src="{{ asset('/img/icon/user.png') }}">
-                    </div>
-                </div>
-                <div class="progress bg-dark-2 radius-10 mt-4" style="height:4.5px;">
-                    <div class="progress-bar bg-dark" role="progressbar" style="width: {{ $percent_by_user }}%"></div>
-                </div>
-                <br>
-                <h6 class="text-dark font-weight-bold ">คิดเป็น : {{ $percent_by_user }} % จากเนื้อหาทั้งหมด</h6>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card radius-10">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div class="flex-grow-1">
                         <h5 class="mb-0 font-weight-bold text-dark">เนื้อหาสำหรับรถที่ลงทะเบียน</h5>
                         <h3 class="font-weight-bold"> {{ $count_all_by_car }}
                             {{-- <small class="text-dark font-13">(+0 วันนี้)</small> --}}
@@ -115,6 +93,29 @@
             </div>
         </div>
     </div>
+    <div class="col">
+        <div class="card radius-10">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <h5 class="mb-0 font-weight-bold text-dark">เนื้อหาสำหรับผู้ใช้งาน</h5>
+                        <h3 class="font-weight-bold">{{ $count_all_by_user }}
+                            {{-- <small class="text-dark font-13"> (+0 วันนี้) </small> --}}
+                        </h3>
+                    </div>
+                    <div class="widgets-icons bg-gradient-blues text-white">
+                        <img width="35px" src="{{ asset('/img/icon/user.png') }}">
+                    </div>
+                </div>
+                <div class="progress bg-dark-2 radius-10 mt-4" style="height:4.5px;">
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: {{ $percent_by_user }}%"></div>
+                </div>
+                <br>
+                <h6 class="text-dark font-weight-bold ">คิดเป็น : {{ $percent_by_user }} % จากเนื้อหาทั้งหมด</h6>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!--========================== Most Often Content ===============================-->
@@ -131,7 +132,7 @@
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
-                        <a href="#" type="button" class="btn btn-sm btn-primary text-white">
+                        <a href="{{ url('/dashboard_boardcast_3_topic?type_page=check_in_btn') }}" type="button" class="btn btn-sm btn-primary text-white">
                             <img width="25px" src="{{ asset('/img/icon/eye_white.png') }}"> ดูเพิ่มเติม
                         </a>
 
@@ -280,7 +281,7 @@
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
-                        <a href="#" type="button" class="btn btn-sm btn-primary text-white">
+                        <a href="{{ url('/dashboard_boardcast_3_topic?type_page=car_btn') }}" type="button" class="btn btn-sm btn-primary text-white">
                             <img width="25px" src="{{ asset('/img/icon/eye_white.png') }}"> ดูเพิ่มเติม
                         </a>
 
@@ -429,7 +430,7 @@
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
-                        <a href="#" type="button" class="btn btn-sm btn-primary text-white">
+                        <a href="{{ url('/dashboard_boardcast_3_topic?type_page=user_btn') }}" type="button" class="btn btn-sm btn-primary text-white">
                             <img width="25px" src="{{ asset('/img/icon/eye_white.png') }}"> ดูเพิ่มเติม
                         </a>
 

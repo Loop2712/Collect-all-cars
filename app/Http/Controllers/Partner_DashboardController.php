@@ -68,6 +68,7 @@ class Partner_DashboardController extends Controller
         $check_in_data = Partner::where('name' ,'=', $user_login->organization)
         ->get();
 
+        $check_in_data_arr = array();
 
         for ($i=0; $i < count($check_in_data); $i++) {
             $check_ins_finder = Check_in::where('partner_id',$check_in_data[$i]['id'])->get();
@@ -93,7 +94,6 @@ class Partner_DashboardController extends Controller
             $minTimeCounts = array_keys($timeInCounts, $minValue);
             $minTimeCounts = array_slice($minTimeCounts, 0, 2);
 
-            //หาวันที่เช็คอินมากสุด และน้อยสุด
            // หาวันที่เช็คอินมากสุด และน้อยสุด
             $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             $thaiDays = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
@@ -152,19 +152,58 @@ class Partner_DashboardController extends Controller
 
         }
 
-
+        //========================== end =============================//
 
         $all_data_partner = Partner::where('name' ,'=', $user_login->organization)
         ->get();
 
+        //ใช้ 2 ตัวนี้ สำหรับกราฟ แสดง เวลาเช็คอินของแต่ละพื้นที่
+        $resultArray = [];
+        $timeArray = [];
+
         for ($i=0; $i < count($all_data_partner); $i++) {
             $check_ins_data = Check_in::where('partner_id',$all_data_partner[$i]['id'])->get();
 
-            $count_data = count($check_ins_data);
 
-            $all_data_partner[$i]['time_in'] = $check_ins_data[$i]['time_in'];
-            $all_data_partner[$i]['time_out'] = $check_ins_data[$i]['time_out'];
-            $all_data_partner[$i]['count_user_check_in'] = $count_data;
+            $dataCounts = [];
+            $timeCount = [];
+            foreach ($check_ins_data as $index => $check_in) {
+                $timeIn = $check_in->time_in;
+                $hour = date('H:i', strtotime($timeIn));
+
+                if (!isset($dataCounts[$hour])) {
+                    $dataCounts[$hour] = 0;
+                }
+                $dataCounts[$hour]++;
+
+                $formattime = date('H:i:s', strtotime($timeIn));
+                if (!isset($timeCount[$formattime])) {
+                    $timeCount[$formattime] = 0;
+                }else{
+
+                }
+
+
+            }
+
+            // foreach ($check_ins_data as $time_check_in) {
+            //     $timeCount[] = $time_check_in['time_in'];
+            // }
+
+            if(!empty($all_data_partner[$i]['name_area'])){
+                $resultArray[] = [
+                    'name' => $all_data_partner[$i]['name_area'],
+                    'data' => $dataCounts,
+                    'time' => $timeCount
+                ];
+            }else{
+                $resultArray[] = [
+                    'name' => "รวม",
+                    'data' => $dataCounts,
+                    'time' => $timeCount
+                ];
+            }
+
         }
 
         $data_checkin = Partner::where('name' ,'=', $user_login->organization)->first();
@@ -560,12 +599,16 @@ class Partner_DashboardController extends Controller
             'minTimeCounts',
             'maxValue',
             'minValue',
+            'resultArray',
+            'timeArray',
 
 
 
         ));
 
     }
+
+    //========================================== dashboard_user show ================================================
 
     function dashboard_user_index(Request $request)
     {
@@ -601,6 +644,295 @@ class Partner_DashboardController extends Controller
 
         return view('dashboard.dashboard_user.user_index' , compact('user_data','filter_location_P'));
     }
+
+    //========================================== viimove show ================================================
+
+    function viimove_register_car(Request $request){
+
+        $user_login = Auth::user();
+
+        $last_reg_car = Register_car::where('juristicNameTH',$user_login->organization)
+        ->orderBy('id','desc')
+        ->get();
+
+        for ($i=0; $i < count($last_reg_car); $i++) {
+            $data_user_from_last_reg_car = User::where('id','=',$last_reg_car[$i]['user_id'])->first();
+            $last_reg_car[$i]['name_from_users'] = $data_user_from_last_reg_car->name;
+            $last_reg_car[$i]['avatar'] = $data_user_from_last_reg_car->avatar;
+            $last_reg_car[$i]['photo'] = $data_user_from_last_reg_car->photo;
+        }
+
+        return view('dashboard.dashboard_viimove.viimove_show.register_car', compact('last_reg_car') );
+    }
+
+    function viimove_car_3_topic(Request $request){
+        $user_login = Auth::user();
+        $type_page = $request->get('type_page');
+
+        // รถที่ถูกรายงานมากที่สุด
+        $report_car = Guest::where('organization',$user_login->organization)
+        ->select('*',DB::raw('COUNT(user_id) as amount_report'))
+        ->groupBy('user_id')
+        ->get();
+
+        for ($i=0; $i < count($report_car); $i++) {
+            $data_user_from_report_car = User::where('id','=',$report_car[$i]['user_id'])->first();
+            $report_car[$i]['name_from_users'] = $data_user_from_report_car->name;
+            $report_car[$i]['avatar'] = $data_user_from_report_car->avatar;
+            $report_car[$i]['photo'] = $data_user_from_report_car->photo;
+        }
+
+        // ประเภทรถมากที่สุด
+        $type_car_registration = Register_car::where('juristicNameTH',$user_login->organization)
+        ->select('*',DB::raw('COUNT(type_car_registration) as amount_type_car'))
+        ->groupBy('type_car_registration')
+        ->orderBy('amount_type_car','desc')
+        ->get();
+
+        for ($i=0; $i < count($type_car_registration); $i++) {
+            $data_user_from_report_car = User::where('id','=',$type_car_registration[$i]['user_id'])->first();
+            $type_car_registration[$i]['name_from_users'] = $data_user_from_report_car->name;
+            $type_car_registration[$i]['avatar'] = $data_user_from_report_car->avatar;
+            $type_car_registration[$i]['photo'] = $data_user_from_report_car->photo;
+        }
+
+        //ยี่ห้อรถมากที่สุด
+        $brand_car = Register_car::where('juristicNameTH',$user_login->organization)
+        ->select('*',DB::raw('COUNT(brand) as amount_brand_car'))
+        ->groupBy('brand')
+        ->orderBy('amount_brand_car','desc')
+        ->get();
+
+        return view('dashboard.dashboard_viimove.viimove_show.car_3_topic', compact('report_car','type_car_registration','brand_car','type_page') );
+    }
+    //========================================== viinews show ================================================
+
+    function viinews_3_topic(Request $request){
+        $user_login = Auth::user();
+        $type_page = $request->get('type_page');
+
+        $data_checkin = Partner::where('name' ,'=', $user_login->organization)->first();
+
+        //ไม่ได้เข้าพื้นที่นานที่สุด
+        $last_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
+        ->groupBy('user_id')
+        ->select('user_id')
+        ->get();
+
+        $sorted_last_checkIn_data = [];
+
+        for ($i=0; $i < count($last_checkIn_data); $i++) {
+            $data_user_from_checkin = User::where('id','=',$last_checkIn_data[$i]['user_id'])->first();
+            $last_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
+            $last_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
+            $last_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
+
+            $data_checkin_from_checkin = Check_in::where('user_id',$last_checkIn_data[$i]['user_id'])
+            ->orderBy('time_out','desc')
+            ->get();
+
+            $last_checkIn_data[$i]['time_out'] = $data_checkin_from_checkin[0]['time_out'];
+
+            // เก็บข้อมูลที่ปรับแต่งเพื่อใช้ในการเรียงลำดับลงในอาร์เรย์
+            $sorted_last_checkIn_data[] = $last_checkIn_data[$i];
+        }
+
+        usort($sorted_last_checkIn_data, function ($a, $b) {
+            return strtotime($a['time_out']) - strtotime($b['time_out']);
+        });
+
+
+        //เข้าพื้นที่บ่อยที่สุด
+        $most_often_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
+        ->select('*',DB::raw('COUNT(user_id) as count_user_checkin'))
+        ->groupBy('user_id')
+        ->orderBy('count_user_checkin','desc')
+        ->limit(5)
+        ->get();
+
+        for ($i=0; $i < count($most_often_checkIn_data); $i++) {
+            $data_user_from_checkin = User::where('id','=',$most_often_checkIn_data[$i]['user_id'])->first();
+            $most_often_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
+            $most_often_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
+            $most_often_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
+        }
+
+        //เข้าพื้นที่ล่าสุด
+        $lastest_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
+        ->groupBy('user_id')
+        ->select('user_id')
+        ->limit(5)
+        ->get();
+
+        $sorted_lastest_checkIn_data = [];
+
+        for ($i=0; $i < count($lastest_checkIn_data); $i++) {
+            $data_user_from_checkin = User::where('id','=',$lastest_checkIn_data[$i]['user_id'])->first();
+            $lastest_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
+            $lastest_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
+            $lastest_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
+
+            $data_checkin_from_checkin = Check_in::where('user_id',$last_checkIn_data[$i]['user_id'])
+            ->orderBy('time_in','desc')
+            ->get();
+
+            $lastest_checkIn_data[$i]['time_in'] = $data_checkin_from_checkin[0]['time_in'];
+
+            // เก็บข้อมูลที่ปรับแต่งเพื่อใช้ในการเรียงลำดับลงในอาร์เรย์
+            $sorted_lastest_checkIn_data[] = $lastest_checkIn_data[$i];
+        }
+
+        usort($sorted_lastest_checkIn_data, function ($a, $b) {
+            return strtotime($b['time_in']) - strtotime($a['time_in']);
+        });
+
+
+        return view('dashboard.dashboard_viinews.viinews_show.viinews_3_topic', compact('sorted_last_checkIn_data','most_often_checkIn_data','sorted_lastest_checkIn_data','type_page') );
+    }
+
+    //========================================== boardcast show ================================================
+
+    function boardcast_3_topic(Request $request){
+        $user_login = Auth::user();
+        $type_page = $request->get('type_page');
+
+        //========================== by check_in =============================
+
+        $all_by_checkin = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_check_in')
+        ->get();
+
+        for ($i=0; $i < count($all_by_checkin); $i++) {
+            if(!empty($all_by_checkin[$i]['show_user'])){
+                $all_by_checkin_Explode = json_decode($all_by_checkin[$i]['show_user']);
+
+                $counts = array_count_values($all_by_checkin_Explode);
+
+                $all_by_checkin_counts = 0;
+                foreach ($counts as $key => $value) {
+                    $all_by_checkin_counts++;
+                }
+
+                $all_by_checkin[$i]['count_show_user'] = $all_by_checkin_counts;
+            }else{
+                $all_by_checkin[$i]['count_show_user'] = 0;
+            }
+
+            if(!empty($all_by_checkin[$i]['user_click'])){
+                $user_click_Explode = json_decode($all_by_checkin[$i]['user_click']);
+
+                $count_user_click = array_count_values($user_click_Explode);
+
+                $checkin_user_click = 0;
+                foreach ($count_user_click as $key => $value) {
+                    $checkin_user_click++;
+                }
+
+                $all_by_checkin[$i]['count_user_click'] = $checkin_user_click;
+            }else{
+                $all_by_checkin[$i]['count_user_click'] = 0;
+            }
+
+        }
+
+        // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
+        $sorted_all_by_checkin = $all_by_checkin->sortByDesc(function ($item) {
+            return $item->send_round;
+        });
+
+        //========================== by car =============================
+
+        $all_by_car = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_car')
+        ->get();
+
+        for ($i=0; $i < count($all_by_car); $i++) {
+            if(!empty($all_by_car[$i]['show_user'])){
+                $all_by_car_Explode = json_decode($all_by_car[$i]['show_user']);
+
+                $counts = array_count_values($all_by_car_Explode);
+
+                $all_by_car_counts = 0;
+                foreach ($counts as $key => $value) {
+                    $all_by_car_counts++;
+                }
+
+                $all_by_car[$i]['count_show_user'] = $all_by_car_counts;
+            }else{
+                $all_by_car[$i]['count_show_user'] = 0;
+            }
+
+            if(!empty($all_by_car[$i]['user_click'])){
+                $user_click_Explode = json_decode($all_by_car[$i]['user_click']);
+
+                $count_user_click = array_count_values($user_click_Explode);
+
+                $checkin_user_click = 0;
+                foreach ($count_user_click as $key => $value) {
+                    $checkin_user_click++;
+                }
+
+                $all_by_car[$i]['count_user_click'] = $checkin_user_click;
+            }else{
+                $all_by_car[$i]['count_user_click'] = 0;
+            }
+
+        }
+
+        // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
+        $sorted_all_by_car = $all_by_car->sortByDesc(function ($item) {
+            return $item->send_round;
+        });
+
+        //========================== by user =============================
+
+        $all_by_user = Ads_content::where('name_partner',$user_login->organization)
+        ->where('type_content','BC_by_user')
+        ->get();
+
+        for ($i=0; $i < count($all_by_user); $i++) {
+            if(!empty($all_by_user[$i]['show_user'])){
+                $all_by_user_Explode = json_decode($all_by_user[$i]['show_user']);
+
+                $counts = array_count_values($all_by_user_Explode);
+
+                $all_by_user_counts = 0;
+                foreach ($counts as $key => $value) {
+                    $all_by_user_counts++;
+                }
+
+                $all_by_user[$i]['count_show_user'] = $all_by_user_counts;
+            }else{
+                $all_by_user[$i]['count_show_user'] = 0;
+            }
+
+            if(!empty($all_by_user[$i]['user_click'])){
+                $user_click_Explode = json_decode($all_by_user[$i]['user_click']);
+
+                $count_user_click = array_count_values($user_click_Explode);
+
+                $checkin_user_click = 0;
+                foreach ($count_user_click as $key => $value) {
+                    $checkin_user_click++;
+                }
+
+                $all_by_user[$i]['count_user_click'] = $checkin_user_click;
+            }else{
+                $all_by_user[$i]['count_user_click'] = 0;
+            }
+
+        }
+
+        // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
+        $sorted_all_by_user = $all_by_user->sortByDesc(function ($item) {
+            return $item->send_round;
+        });
+
+        return view('dashboard.dashboard_boardcast.boardcast_show.boardcast_3_topic', compact('sorted_all_by_checkin','sorted_all_by_car','sorted_all_by_user','type_page') );
+    }
+
+
+    //=========================================== from api =====================================
 
     function filter_user(Request $request){
         $user_login = Auth::user();
@@ -735,5 +1067,104 @@ class Partner_DashboardController extends Controller
         // ส่งข้อมูลกลับไปยัง client ในรูปแบบ JSON
         return response()->json($responseData);
     }
+
+
+    function get_area_checkin_3_topic(Request $request , $area_id , $user_login){
+
+        $data_checkin = Partner::where('id',$area_id)->first();
+        // Check in
+        if(!empty($data_checkin->name_area)){
+            $name_area = $data_checkin->name_area;
+        }else{
+            $name_area = "รวม";
+        }
+
+        //ไม่ได้เข้าพื้นที่นานที่สุด
+        $last_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
+        ->groupBy('user_id')
+        ->select('user_id')
+        ->get();
+
+        $sorted_last_checkIn_data = [];
+
+        for ($i=0; $i < count($last_checkIn_data); $i++) {
+            $data_user_from_checkin = User::where('id','=',$last_checkIn_data[$i]['user_id'])->first();
+            $last_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
+            $last_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
+            $last_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
+
+            $data_checkin_from_checkin = Check_in::where('user_id',$last_checkIn_data[$i]['user_id'])
+            ->orderBy('time_out','desc')
+            ->get();
+
+            $last_checkIn_data[$i]['time_out'] = $data_checkin_from_checkin[0]['time_out'];
+
+            // เก็บข้อมูลที่ปรับแต่งเพื่อใช้ในการเรียงลำดับลงในอาร์เรย์
+            $sorted_last_checkIn_data[] = $last_checkIn_data[$i];
+        }
+
+        usort($sorted_last_checkIn_data, function ($a, $b) {
+            return strtotime($a['time_out']) - strtotime($b['time_out']);
+        });
+
+
+        //เข้าพื้นที่บ่อยที่สุด
+        $most_often_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
+        ->select('*',DB::raw('COUNT(user_id) as count_user_checkin'))
+        ->groupBy('user_id')
+        ->orderBy('count_user_checkin','desc')
+        ->limit(5)
+        ->get();
+
+        for ($i=0; $i < count($most_often_checkIn_data); $i++) {
+            $data_user_from_checkin = User::where('id','=',$most_often_checkIn_data[$i]['user_id'])->first();
+            $most_often_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
+            $most_often_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
+            $most_often_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
+        }
+
+        //เข้าพื้นที่ล่าสุด
+        $lastest_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
+        ->groupBy('user_id')
+        ->select('user_id')
+        ->limit(5)
+        ->get();
+
+        $sorted_lastest_checkIn_data = [];
+
+        for ($i=0; $i < count($lastest_checkIn_data); $i++) {
+            $data_user_from_checkin = User::where('id','=',$lastest_checkIn_data[$i]['user_id'])->first();
+            $lastest_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
+            $lastest_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
+            $lastest_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
+
+            $data_checkin_from_checkin = Check_in::where('user_id',$last_checkIn_data[$i]['user_id'])
+            ->orderBy('time_in','desc')
+            ->get();
+
+            $lastest_checkIn_data[$i]['time_in'] = $data_checkin_from_checkin[0]['time_in'];
+
+            // เก็บข้อมูลที่ปรับแต่งเพื่อใช้ในการเรียงลำดับลงในอาร์เรย์
+            $sorted_lastest_checkIn_data[] = $lastest_checkIn_data[$i];
+        }
+
+        usort($sorted_lastest_checkIn_data, function ($a, $b) {
+            return strtotime($b['time_in']) - strtotime($a['time_in']);
+        });
+
+         // นำตัวแปรมาเรียงเป็น Associative Array
+        $responseData = [
+            'sorted_last_checkIn_data' => $sorted_last_checkIn_data,
+            'most_often_checkIn_data' => $most_often_checkIn_data,
+            'sorted_lastest_checkIn_data' => $sorted_lastest_checkIn_data,
+            'name_area' => $name_area,
+        ];
+
+        // ส่งข้อมูลกลับไปยัง client ในรูปแบบ JSON
+        return response()->json($responseData);
+    }
+
+
+
 
 }

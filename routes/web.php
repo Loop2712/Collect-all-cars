@@ -197,6 +197,13 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
     Route::get('/dashboard_index', 'Partner_DashboardController@dashboard_index');
     Route::get('/dashboard_user_index', 'Partner_DashboardController@dashboard_user_index');
 
+    Route::get('/dashboard_viimove_register_car', 'Partner_DashboardController@viimove_register_car');
+    Route::get('/dashboard_viimove_car_3_topic', 'Partner_DashboardController@viimove_car_3_topic');
+
+    Route::get('/dashboard_viinews_3_topic', 'Partner_DashboardController@viinews_3_topic');
+
+    Route::get('/dashboard_boardcast_3_topic', 'Partner_DashboardController@boardcast_3_topic');
+
     // DASHBOARD_1669
     Route::get('/dashboard_1669_index', 'Dashboard_1669_Controller@dashboard_index_1669');
     Route::get('/dashboard_1669_show', 'Dashboard_1669_Controller@all_user_1669');

@@ -88,7 +88,7 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_viimove_register_car') }}" target="_blank">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_viimove_car_3_topic?type_page=report_btn') }}">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
@@ -189,7 +189,7 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_viimove_car_3_topic?type_page=type_btn') }}">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
@@ -243,7 +243,7 @@
                             data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_viimove_car_3_topic?type_page=brand_btn') }}">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
