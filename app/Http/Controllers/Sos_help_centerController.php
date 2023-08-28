@@ -2414,7 +2414,8 @@ class Sos_help_centerController extends Controller
         $requestData = $request->all();
 
         $sos_1669_id = $requestData['sos_ask_more_id'];
-        $command_by = $requestData['command_by'];
+        $command_by = Data_1669_officer_command::where('user_id',$requestData['command_by'])->first() ;
+        $command_by = $command_by->id ;
         $list = $requestData['list'];
 
         $list_arr = explode("_" , $list) ;
@@ -2443,15 +2444,126 @@ class Sos_help_centerController extends Controller
 
         $new_sos_by_joint['notify'] = 'none - ' . $province_name ;
 
-        echo "<pre>";
-        print_r($list_arr);
-        echo "<pre>";
+        // echo "<pre>";
+        // print_r($list_arr);
+        // echo "<pre>";
         
-        echo "<br>";
+        // echo "<br>";
 
-        echo "<pre>";
-        print_r($new_sos_by_joint);
-        echo "<pre>";
+        // echo "<pre>";
+        // print_r($new_sos_by_joint);
+        // echo "<pre>";
+
+        // สร้างเคส sos ร่วมทั้งหมด
+        $count_new_create_sos = count($list_arr) ;
+
+        $id_of_new_sos = array() ;
+        array_push($id_of_new_sos , (int)$sos_1669_id);
+
+        for ($i = 0; $i < (int)$count_new_create_sos; $i++){
+
+            // สร้างรหัส
+            $date_Y = date("y");
+            $date_m = date("m");
+
+            $sos_1669_province_codes = DB::table('sos_1669_province_codes')
+                ->where('province_name' , "LIKE"  , "%$province_name%")
+                ->where('district_name' , "LIKE" , "%$district_name%")
+                ->get();
+                $count_sos_area = 0 ;
+                $count_for_gen_code = 0 ;
+
+            foreach ($sos_1669_province_codes as $item) {
+                $province_code = $item->district_code ;
+                // count_sos
+                $old_count_sos = $item->count_sos ;
+                $count_sos_area = $count_sos_area + (int)$old_count_sos ;
+                // for gen code
+                $old_for_gen_code = $item->for_gen_code ;
+                // $count_for_gen_code = $count_for_gen_code + (int)$old_for_gen_code ;
+            }
+
+            $sum_count_sos_area = $count_sos_area + 1 ;
+            // $sum_for_gen_code = $count_for_gen_code + 1 ;
+            $sum_for_gen_code = (int)$old_for_gen_code + 1 ;
+
+            DB::table('sos_1669_province_codes')
+                ->where([ 
+                        ['district_code', $province_code],
+                    ])
+                ->update([
+                        'for_gen_code' => $sum_for_gen_code,
+                    ]);
+
+            $id_code = str_pad($sum_for_gen_code, 4, "0", STR_PAD_LEFT);
+            $operating_code = $date_Y.$date_m . "-" . $province_code . "-" . $id_code ;
+
+            $new_sos_by_joint['operating_code'] = $operating_code ;
+            // จบสร้างรหัส
+
+            $sos_help_center_last = "" ;
+            Sos_help_center::create($new_sos_by_joint);
+
+            sleep(1);
+            $sos_help_center_last = Sos_help_center::latest()->first();
+
+            $new_sos_by_joint['sos_help_center_id'] = $sos_help_center_last->id ;
+            $new_sos_by_joint['be_notified'] = $data_sos_main_yellow->be_notified ;
+            $new_sos_by_joint['location_sos'] = $data_sos_main_yellow->location_sos ;
+            $new_sos_by_joint['idc'] = $data_sos_main_yellow->rc ;
+
+            array_push($id_of_new_sos , $sos_help_center_last->id);
+
+            Sos_1669_form_yellow::create($new_sos_by_joint);
+
+        }
+
+        // update joint_case ใน เคสหลัก (เคสเดิมที่มีการขอร่วมมา)
+        DB::table('sos_help_centers')
+            ->where([ 
+                    [ 'id', $sos_1669_id ],
+                ])
+            ->update([
+                    'joint_case' => $id_of_new_sos,
+                ]);
+
+        // ดำเนินการส่งข้อมูลให้หน่วยปฏิบัติการตามเคส และอัพเดทเคสทั้งหมดให้มี joint_case ร่วมกัน
+        for ($xi = 0; $xi < count($id_of_new_sos); $xi++){
+
+            DB::table('sos_help_centers')
+                ->where([ 
+                        [ 'id', $id_of_new_sos[$xi] ],
+                    ])
+                ->update([
+                        'joint_case' => $id_of_new_sos,
+                    ]);
+
+            if($xi != 0){
+                $key_new = $xi - 1;
+                $list_arr_ep = explode("-" , $list_arr[$key_new]) ;
+
+                $sos_id = $id_of_new_sos[$xi];
+                $user_id = $list_arr_ep[0];
+                $distance = $list_arr_ep[1] ;
+                $operating_unit_id = $list_arr_ep[2] ;
+
+                // ส่งไลน์ให้หน่วยอแพทย์ตามเคส และอัพเดทข้อมูลหน่วยปฏิบัติการเข้า sos_help_center
+                $this->send_data_sos_to_operating_unit( $sos_id, $operating_unit_id, $user_id , $distance);
+            }
+            
+        }
+
+        // update success sos_1669_officer_ask_mores เป็น success
+        DB::table('sos_1669_officer_ask_mores')
+            ->where([ 
+                    [ 'sos_id', $sos_1669_id ],
+                ])
+            ->update([
+                    'success' => "success",
+                ]);
+
+        return "OK";
+        // return implode(" / ",$id_of_new_sos);
 
     }
 
@@ -2837,19 +2949,19 @@ class Sos_help_centerController extends Controller
             }
             if ($item['vehicle_' . $countnumber] == "อากาศยาน") {
                 $data_askMore['vehicle_aircraft'] = $item['amount_vehicle_' . $countnumber];
-                $data_askMore['rc_aircraft'] = $item['rc_vehicle_' . $countnumber];
+                $data_askMore['rc_car'] = $item['rc_vehicle_' . $countnumber];
             }if ($item['vehicle_' . $countnumber] == "เรือป.1") {
                 $data_askMore['vehicle_boat_1'] = $item['amount_vehicle_' . $countnumber];
-                $data_askMore['rc_boat_1'] = $item['rc_vehicle_' . $countnumber];
+                $data_askMore['rc_car'] = $item['rc_vehicle_' . $countnumber];
             }if ($item['vehicle_' . $countnumber] == "เรือป.2") {
                 $data_askMore['vehicle_boat_2'] = $item['amount_vehicle_' . $countnumber];
-                $data_askMore['rc_boat_2'] = $item['rc_vehicle_' . $countnumber];
+                $data_askMore['rc_car'] = $item['rc_vehicle_' . $countnumber];
             }if ($item['vehicle_' . $countnumber] == "เรือป.3") {
                 $data_askMore['vehicle_boat_3'] = $item['amount_vehicle_' . $countnumber];
-                $data_askMore['rc_boat_3'] = $item['rc_vehicle_' . $countnumber];
+                $data_askMore['rc_car'] = $item['rc_vehicle_' . $countnumber];
             }if ($item['vehicle_' . $countnumber] == "เรืออื่นๆ") {
                 $data_askMore['vehicle_boat_other'] = $item['amount_vehicle_' . $countnumber];
-                $data_askMore['rc_boat_other'] = $item['rc_vehicle_' . $countnumber];
+                $data_askMore['rc_car'] = $item['rc_vehicle_' . $countnumber];
             }
             $countnumber++;
         }

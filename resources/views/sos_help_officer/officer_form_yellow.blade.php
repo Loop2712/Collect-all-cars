@@ -1348,6 +1348,34 @@
                     <h4>ขอหน่วยปฎิบัติการเพิ่ม </h4>
                     <button class="btn btn-success" onclick="addInputField()"><i class="fa-solid fa-plus"></i></button>
                 </div>
+                <div>
+                    @php
+                        $rcColor = "" ;
+
+                        switch ($data_sos->form_yellow->rc) {
+                            case "แดง(วิกฤติ)":
+                                $rcColor =  "text-danger";
+                            break;
+                            case "เขียว(ไม่รุนแรง)":
+                                $rcColor =  "text-success";
+                            break;
+                            case "ดำ(รับบริการสาธารณสุขอื่น)":
+                                $rcColor =  "text-dark";
+                            break;
+                            case "เหลือง(เร่งด่วน)":
+                                $rcColor =  "text-warning";
+                            break;
+                            case "ขาว(ทั่วไป)":
+                                $rcColor =  "text-primary";
+                            break;
+                            default:
+                                $rcColor =  "";
+                        }
+                    @endphp
+                    <h5 class="text-dark">
+                        รหัสเหตุการณ์ <b class="{{ $rcColor }}">{{ $data_sos->form_yellow->rc }}</b>
+                    </h5>
+                </div>
                 <form id="form">
                 <div class="loading-container d-none">
                     <div class="loading-spinner"></div>
@@ -1395,7 +1423,7 @@
         <option value="เรืออื่นๆ">เรืออื่นๆ</option>
     </select>
 
-    <select name="rc_vehicle_${inputCount}" class="form-select mb-3" aria-label="Default select example" required>
+    <select name="rc_vehicle_${inputCount}" class="d-none form-select mb-3" aria-label="Default select example" required>
         <option selected="" value="{{ $data_sos->form_yellow->rc }}">{{ $data_sos->form_yellow->rc }}</option>
         <option value="แดง(วิกฤติ)">แดง(วิกฤติ)</option>
         <option value="ขาว(ทั่วไป)">ขาว(ทั่วไป)</option>

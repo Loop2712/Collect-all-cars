@@ -735,7 +735,7 @@
                     <h6>ไม่พบตำแหน่งของจุดเกิดเหตุ</h6>
                     <h3>..กรุณาเลือกจุดเกิดเหตุ..</h3>
                     <br>
-                    <span class="btn btn-sm btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="mapMarkLocation('12.870032','100.992541','6');">
+                    <span class="btn btn-sm btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" onclick="open_mapMarkLocation('12.870032','100.992541','6');">
                         เลือกจุดเกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
                     </span>
                 </div>

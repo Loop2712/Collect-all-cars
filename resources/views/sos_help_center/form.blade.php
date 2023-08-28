@@ -1842,7 +1842,7 @@ color: #ff9317;
     .div_alert{
   position: fixed;
   /* position: absolute; */
-  top: -30%;
+  top: -230px;
   /* top: 55%; */
   width: 100%;
   left: 0;
@@ -1883,11 +1883,11 @@ color: #ff9317;
   }
   /* Change the percentage here to make it faster */
   10% {
-    transform: translateY(230px);
+    transform: translateY(245px);
   }
   /* Change the percentage here to make it stay down for longer */
   90% {
-    transform: translateY(230px);
+    transform: translateY(245px);
   }
   /* Keep this at the end */
  100% {
@@ -2538,6 +2538,8 @@ color: #ff9317;
     let directionsDisplay_go_to_help ;
     let service_go_to_help ;
 
+    let mapMarkLocation ;
+
     function initMap() {
 
         let lat = document.querySelector('#lat'); 
@@ -2583,8 +2585,8 @@ color: #ff9317;
             markers.push(marker);
         }
 
-        const geocoder = new google.maps.Geocoder();
-        const infowindow = new google.maps.InfoWindow();
+        let geocoder = new google.maps.Geocoder();
+        let infowindow = new google.maps.InfoWindow();
 
         document.getElementById("span_submit_locations_sos").addEventListener("click", () => {
             
@@ -2592,7 +2594,7 @@ color: #ff9317;
         });
     }
 
-    function mapMarkLocation(lat , lng , numZoom) {
+    function open_mapMarkLocation(lat , lng , numZoom) {
 
         let m_lat ;
         let m_lng ;
@@ -2605,20 +2607,17 @@ color: #ff9317;
             document.querySelector('#location_P').setAttribute('disabled', 'true');
             show_amphoe();
             
-        }else{
-            m_lat = parseFloat(lat);
-            m_lng = parseFloat(lng);
-            m_numZoom = parseFloat(numZoom);
-
-            mapMarkLocation = new google.maps.Map(document.getElementById("mapMarkLocation"), {
-                center: {lat: m_lat, lng: m_lng },
-                zoom: m_numZoom,
-            });
         }
 
+        m_lat = parseFloat(lat);
+        m_lng = parseFloat(lng);
+        m_numZoom = parseFloat(numZoom);
 
-        
-
+        mapMarkLocation = new google.maps.Map(document.getElementById("mapMarkLocation"), {
+            center: {lat: m_lat, lng: m_lng },
+            zoom: m_numZoom,
+        });
+      
         // Create the initial InfoWindow.
         let infoWindow = new google.maps.InfoWindow({
             // content: "คลิกที่แผนที่เพื่อรับโลเคชั่น",
@@ -2640,7 +2639,7 @@ color: #ff9317;
             );
 
             let text_content = infoWindow.content ;
-                // console.log(text_content)
+                console.log(text_content)
 
             const contentArr = text_content.split(",");
             const lat_Arr = contentArr[0].split(":");
@@ -2929,10 +2928,10 @@ color: #ff9317;
 
         let input_search_by_latlong = document.querySelector('#input_search_by_latlong');
             input_search_by_latlong.value = "" ;
-        let input_search_by_place = document.querySelector('#input_search_by_place');
+        let input_search_by_place = document.querySelector('#pac-input');
             input_search_by_place.value = "" ;
 
-        click_select_search_by('district');
+        document.querySelector('#span_show_errorLatLong').classList.add('d-none');
 
         let location_P = document.querySelector("#location_P");
         let location_P_start = document.querySelector(".location_P_start");
@@ -2954,47 +2953,10 @@ color: #ff9317;
             option_start_T.value = "";
             location_T.add(option_start_T);
 
-        mapMarkLocation = new google.maps.Map(document.getElementById("mapMarkLocation"), {
-            center: {lat: 12.870032, lng: 100.992541 },
-            zoom: 6,
-        });
+        click_select_search_by(map_search_by_current);
 
-        // Create the initial InfoWindow.
-        let infoWindow = new google.maps.InfoWindow({
-            // content: "คลิกที่แผนที่เพื่อรับโลเคชั่น",
-            // position: myLatlng,
-        });
+        open_mapMarkLocation('12.870032','100.992541','6');
 
-        infoWindow.open(mapMarkLocation);
-        // Configure the click listener.
-        mapMarkLocation.addListener("click", (mapsMouseEvent) => {
-            // Close the current InfoWindow.
-            infoWindow.close();
-            // Create a new InfoWindow.
-            infoWindow = new google.maps.InfoWindow({
-                // position: mapsMouseEvent.latLng,
-            });
-
-            infoWindow.setContent(
-                JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-            );
-
-            let text_content = infoWindow.content ;
-                // console.log(text_content)
-
-            const contentArr = text_content.split(",");
-            const lat_Arr = contentArr[0].split(":");
-                let marker_lat = lat_Arr[1];
-            const lng_Arr = contentArr[1].split(":");
-                let marker_lng = lng_Arr[1].replace("\n}", "");
-
-            // console.log(marker_lat)
-            // console.log(marker_lng)
-            add_marker(marker_lat , marker_lng);
-            
-            infoWindow.open(mapMarkLocation);
-
-        });
     }
 
     function submit_locations_sos(){
@@ -3086,6 +3048,8 @@ color: #ff9317;
                     animated.onanimationend = () => {
                         document.querySelector('#alert_phone').classList.remove('up-down');
                     };
+
+                    return 'ไม่อยู่ในพื้นที่' ;
 
                 }else{ // อยู่ในพื้นที่
 
@@ -3293,8 +3257,19 @@ color: #ff9317;
 
     }
 
+    // ตัวเลือก เลือกจุดเกิดเหตุ
+    let map_search_by_current = 'place' ;
+
     function click_select_search_by(search_by){
 
+      if(!search_by){
+        search_by = "place" ;
+      }
+
+      map_search_by_current = search_by ;
+
+      console.log(map_search_by_current);
+      
       document.querySelector('#div_for_find_a_place').classList.add('d-none');
 
       // map_places
@@ -3371,7 +3346,7 @@ color: #ff9317;
 
     // Create the search box and link it to the UI element.
     
-    const searchBox = new google.maps.places.SearchBox(input);
+    let searchBox = new google.maps.places.SearchBox(input);
     
     // Bias the SearchBox results towards current map's viewport.
     map_places.addListener("bounds_changed", () => {
@@ -3383,7 +3358,7 @@ color: #ff9317;
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
     searchBox.addListener("places_changed", () => {
-      const places = searchBox.getPlaces();
+      let places = searchBox.getPlaces();
         
       if (places.length == 0) {
         // console.log('start1');
@@ -3406,7 +3381,7 @@ color: #ff9317;
       }
 
       // For each place, get the icon, name and location.
-      const bounds = new google.maps.LatLngBounds();
+      let bounds = new google.maps.LatLngBounds();
 
       places.forEach((place) => {
         if (!place.geometry || !place.geometry.location) {
@@ -3414,7 +3389,7 @@ color: #ff9317;
           return;
         }
 
-        const icon = {
+        let icon = {
           url: place.icon,
           size: new google.maps.Size(71, 71),
           origin: new google.maps.Point(0, 0),
@@ -3432,11 +3407,8 @@ color: #ff9317;
           })
         );
 
-        const geocoder = new google.maps.Geocoder();
-        const infowindow = new google.maps.InfoWindow();
-
-        const search_place_lat = place.geometry.location.lat();
-        const search_place_lng = place.geometry.location.lng();
+        let search_place_lat = place.geometry.location.lat();
+        let search_place_lng = place.geometry.location.lng();
 
         // geocodeLatLng_places(geocoder, map_places, infowindow , search_place_lat , search_place_lng);
 
@@ -3474,7 +3446,7 @@ color: #ff9317;
     // Add a listener for click event on the map_places
     google.maps.event.addListener(map_places, 'click', function(event) {
       // Get the clicked location
-      const clickedLocation = event.latLng;
+      let clickedLocation = event.latLng;
 
       if (marker){
         marker.setMap(null);
@@ -3496,12 +3468,77 @@ color: #ff9317;
       let place_lng = clickedLocation.lng();
 
       // console.log(place_lat);
-      // console.log(place_lng);
+      // console.log(place_lng); 
 
-      document.querySelector('#lat').value = place_lat ;
-      document.querySelector('#lng').value = place_lng ;
+      let geocoder = new google.maps.Geocoder();
+      let infowindow = new google.maps.InfoWindow();
+
+      check_LatLng_in_area(geocoder, infowindow,place_lat,place_lng);
 
     });
+
+  }
+
+  function check_LatLng_in_area(geocoder, infowindow , input_lat , input_lng) {
+      let latlng = {
+              lat: parseFloat(input_lat),
+              lng: parseFloat(input_lng),
+          };
+      // console.log(latlng);
+
+      geocoder
+        .geocode({ location: latlng })
+        .then((response) => {
+            // console.log(response);
+            
+            let district_P ;
+            let district_A ;
+            let district_T ;
+
+            //// ถ้าอยากรับอย่างอื่นเข้าไปดูที่ results[0]['address_components']['types'] ////
+            
+            const resultType_P = "administrative_area_level_1";
+            const resultType_A = "administrative_area_level_2";
+
+            const resultType_T_1 = "locality";
+            const resultType_T_2 = "sublocality";
+            const resultType_T_3 = "sublocality_level_1";
+
+            //// รับ จังหวัด อย่างเดียว ////
+            for (const component_p of response.results[0].address_components) {
+                if (component_p.types.includes(resultType_P)) {
+                    district_P = component_p.long_name;
+                    // console.log(district_P);
+                    break;
+                }
+            }
+
+            district_P = district_P.replaceAll(' ','');
+            district_P = district_P.replaceAll('จังหวัด','');
+            // console.log(district_P);
+
+            let sub_organization = "{{ Auth::user()->sub_organization }}";
+
+            if ( sub_organization != 'ศูนย์ใหญ่' && sub_organization != district_P ) { // ไม่อยู่ในพื้นที่
+                
+                document.querySelector('#alert_phone').classList.add('up-down');
+                const animated = document.querySelector('.up-down');
+                animated.onanimationend = () => {
+                    document.querySelector('#alert_phone').classList.remove('up-down');
+                };
+
+                if (new_marker_places){
+                  new_marker_places.setMap(null);
+                }
+
+            }else { // อยู่ในพื้นที่
+
+                document.querySelector('#lat').value = input_lat ;
+                document.querySelector('#lng').value = input_lng ;
+                
+            }
+        })
+        .catch((e) => window.alert("Geocoder failed due to: " + e));
 
   }
 
@@ -3523,8 +3560,8 @@ color: #ff9317;
     map_places.setCenter(newCenter);
     map_places.setZoom(14);
 
-    const geocoder = new google.maps.Geocoder();
-    const infowindow = new google.maps.InfoWindow();
+    let geocoder = new google.maps.Geocoder();
+    let infowindow = new google.maps.InfoWindow();
 
     geocodeLatLng_places(geocoder, map_places, infowindow , set_lat , set_lng , name);
 

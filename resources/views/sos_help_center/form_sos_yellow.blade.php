@@ -653,7 +653,11 @@
 								</div>
 							</div>
 							<div class="col-md-6">
-								<label for="phone_user" class="form-label">โทรศัพท์ผู้แจ้ง</label>
+								<label for="phone_user" class="form-label">
+									โทรศัพท์ผู้แจ้ง
+									<span style="font-size: 15px;color: grey;">(เฉพาะตัวเลข 9 หรือ 10 หลัก)</span>
+								</label>
+								<i id="icon_warning_phone_error" class="fa-solid fa-triangle-exclamation fa-bounce d-none" style="color: red;"></i>
 								<span id="phone-error" style="color: red;"></span>
 								<div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-phone"></i></span>
 									<input type="tel" pattern="[0-9]{9,10}" class="form-control border-start-0 radius-2" id="phone_user" name="phone_user" value="{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}" placeholder="โทรศัพท์ผู้แจ้ง" oninput="document.querySelector('#u_phone_user').innerHTML = document.querySelector('#phone_user').value ;validatePhone(this);">
@@ -666,6 +670,7 @@
 								function validatePhone(input) {
 									
 									document.getElementById("phone-error").textContent = "";
+									document.querySelector('#icon_warning_phone_error').classList.add('d-none');
 									clearTimeout(delay_check_phone);
 
 							        delay_check_phone = setTimeout(function() {
@@ -675,11 +680,15 @@
 										    // ถ้ามีรูปแบบไม่ตรงกับที่กำหนด
 										    input.setCustomValidity("กรุณาใส่เบอร์โทรศัพท์ให้ถูกต้อง (ตัวเลข 9 หรือ 10 หลัก)");
 										    document.getElementById("phone-error").textContent = "กรุณาใส่เบอร์โทรศัพท์ให้ถูกต้อง (ตัวเลข 9 หรือ 10 หลัก)";
+											document.querySelector('#icon_warning_phone_error').classList.remove('d-none');
+
+										    document.querySelector('#phone_user').value = '' ;
+										    document.querySelector('#u_phone_user').innerHTML = '' ;
 										} else {
 										    input.setCustomValidity("");
 										    document.getElementById("phone-error").textContent = "";
 										}
-							        }, 1500);
+							        }, 4000);
 
 								}
 							</script>
@@ -700,7 +709,7 @@
 										</div>
 									</div>
 									<div class="col-6 col-md-4 col-lg-4">
-										<span id="title_1_select_latlng" class="btn btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" style="width:90%;" onclick="mapMarkLocation('12.870032','100.992541','6');">
+										<span id="title_1_select_latlng" class="btn btn-danger main-shadow main-radius" data-toggle="modal" data-target="#modal_mapMarkLocation" style="width:90%;" onclick="open_mapMarkLocation('12.870032','100.992541','6');">
 											เลือกจุดเกิดเหตุ <i class="fa-sharp fa-solid fa-location-crosshairs"></i>
 										</span>
 									</div>
@@ -2541,16 +2550,8 @@
 						// ข้อ 1- 5
 					    // console.log(`ตอนนี้อยู่ที่หน้า : ${form_yellow_current_topic} กำลังบันทึก..`);
 					    
-					    let phone_user = document.querySelector('[name="phone_user"]');
-					    let check_num_phone_user = isNumeric(phone_user.value) ;
-
-					    if(!check_num_phone_user){
-					    	phone_user.value = '' ;
-					    	// console.log(`เคลีย phone_user`);
-					    }else{
-						    check_go_to(null, null);
-					    	// console.log(`บันทึกเรียบร้อย`);
-					    }
+					    check_go_to(null, null);
+					    // console.log(`บันทึกเรียบร้อย`);
 
 					}else{
 						// ไม่ใช่ ข้อ 1 - 5 ตรวจสอบและทำการแจ้งเตือน
@@ -3331,18 +3332,6 @@
 
     	document.querySelector('#btn_modal_alet_data_change').click();
     }
-
-    function isNumeric(input) {
-	  	// ตรวจสอบว่าเป็นตัวเลขหรือไม่
-	  	if (!isNaN(input)) {
-	    	// ตรวจสอบว่าไม่มีจุดใน input
-    		if (input.indexOf('.') === -1) {
-	      		return true; // เป็นตัวเลขและไม่มีจุด
-	    	}
-	  	}
-	  	
-	  	return false; // ไม่เป็นตัวเลขหรือมีจุด
-	}
 
     function select_titel_update_all(){
 

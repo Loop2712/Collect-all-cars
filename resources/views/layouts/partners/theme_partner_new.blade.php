@@ -2521,9 +2521,12 @@
 	                            <input class="d-none" type="text" id="ask_more_id">
 	                            <input class="d-none" type="text" id="list_select_officer_ask_more">
 
-	                            <div class="data-officer p-3 mb-3 ps ps--active-y" id="select_officer_ask_more_card_data_operating">
+	                            <div class="data-officer p-3 mb-3" style="overflow: auto;max-height: 450px;" id="select_officer_ask_more_card_data_operating">
 	                                <!-- ข้อมูลหน่วยปฏิบัติการในพื้นที่ -->
 	                            </div>
+
+                                <!-- div tag a เพื่อไปสู่เคสหลัก -->
+                                <div id="div_tag_a_to_case_main" class="d-none"></div>
 
 	                            <!-- <div class="data-officer p-3 mb-3 ps ps--active-y">
 	                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
@@ -2769,7 +2772,9 @@
                 document.querySelector('#check_name_partner').value = result[0]['name'];
                 document.querySelector('#class_color_menu').value = result[0]['class_color_menu'];
                 document.querySelector('#div_color_navbar').style = "background: " + result[0]['color_navbar'] + ";" ;
-                document.querySelector('#div_switcher').style = "background: " + result[0]['color_navbar'] + ";" ;
+                if(document.querySelector('#div_switcher')){
+                    document.querySelector('#div_switcher').style = "background: " + result[0]['color_navbar'] + ";" ;
+                }
 
                 if (user_sub_organization) {
                 	document.querySelector('#span_sub_partner').innerHTML = user_sub_organization ;
@@ -4006,103 +4011,96 @@
 
                     open_map_ask_more(data_ask_more);
 
-					let htmlDatavehicleAskMore = "";
+                    function getRcColor(rc) {
+                    switch (rc) {
+                        case "แดง(วิกฤติ)":
+                        return "bg-danger";
+                        case "เขียว(ไม่รุนแรง)":
+                        return "bg-success";
+                        case "ดำ(รับบริการสาธารณสุขอื่น)":
+                        return "bg-dark";
+                        case "เหลือง(เร่งด่วน)":
+                        return "bg-warning";
+                        case "ขาว(ทั่วไป)":
+                        return "bg-primary";
+                        default:
+                        return "";
+                    }
+                    }
 
-					function getRcColor(rc) {
-					switch (rc) {
-						case "แดง(วิกฤติ)":
-						return "bg-danger";
-						case "เขียว(ไม่รุนแรง)":
-						return "bg-success";
-						case "ดำ(รับบริการสาธารณสุขอื่น)":
-						return "bg-dark";
-						case "เหลือง(เร่งด่วน)":
-						return "bg-warning";
-						case "ขาว(ทั่วไป)":
-						return "bg-primary";
-						default:
-						return "";
-					}
-					}
+                    let rc_car = getRcColor(data_ask_more['0']['rc_car']);
+					let htmlDatavehicleAskMore = `
+                        <span class="badge ${rc_car} font-18">รหัสเหตุการณ์ <b>${data_ask_more['0']['rc_car']}</b> </span>
+                    `;
+
 
 					if (data_ask_more['0']['vehicle_car'] !== null) {
-						let rcColor = getRcColor(data_ask_more['0']['rc_car']);
-					htmlDatavehicleAskMore += `
-					<li class="list-group-item d-flex align-items-center">
-							<div class="card-body">
-								<h2 class="mt-1 mb-1 ">ต้องการ <b>รถ</b></h2>
-								<span class="badge ${rcColor} font-18">รหัสเหตุการณ์ <b>${data_ask_more['0']['rc_car']}</b> </span>
-							</div>
-							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_car']} คัน</b> </strong>
-						</li>`;
-					}
+
+					   htmlDatavehicleAskMore += `
+    					   <li class="list-group-item d-flex align-items-center">
+    							<div class="card-body">
+    								<h2 class="mt-1 mb-1 ">ต้องการ <b>รถ</b></h2>
+    							</div>
+    							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_car']} คัน</b> </strong>
+    						</li>`;
+    				}
 
 					if (data_ask_more['0']['vehicle_aircraft'] !== null) {
-						let rcColor = getRcColor(data_ask_more['0']['rc_aircraft']);
 
-					htmlDatavehicleAskMore += `
-						<li class="list-group-item d-flex align-items-center">
-							<div class="card-body">
-								<h2 class="mt-1 mb-1 ">ต้องการ <b>อากาศยาน</b></h2>
-								<span class="badge ${rcColor} font-18">รหัสเหตุการณ์ <b>${data_ask_more['0']['rc_aircraft']}</b> </span>
-							</div>
-							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_aircraft']} ลำ</b> </strong>
-						</li>`;
-					}
+    					htmlDatavehicleAskMore += `
+    						<li class="list-group-item d-flex align-items-center">
+    							<div class="card-body">
+    								<h2 class="mt-1 mb-1 ">ต้องการ <b>อากาศยาน</b></h2>
+    							</div>
+    							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_aircraft']} ลำ</b> </strong>
+    						</li>`;
+    				}
 
 					if (data_ask_more['0']['vehicle_boat_1'] !== null) {
-						let rcColor = getRcColor(data_ask_more['0']['rc_boat_1']);
 
-					htmlDatavehicleAskMore += `
-						<li class="list-group-item d-flex align-items-center">
-							<div class="card-body">
-								<h2 class="mt-1 mb-1 ">ต้องการ <b>เรือ ป.1</b></h2>
-								<span class="badge ${rcColor} font-18">รหัสเหตุการณ์ <b>${data_ask_more['0']['rc_boat_1']}</b> </span>
-							</div>
-							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_boat_1']} ลำ</b> </strong>
-						</li>`
-						;
-					}
+    					htmlDatavehicleAskMore += `
+    						<li class="list-group-item d-flex align-items-center">
+    							<div class="card-body">
+    								<h2 class="mt-1 mb-1 ">ต้องการ <b>เรือ ป.1</b></h2>
+    							</div>
+    							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_boat_1']} ลำ</b> </strong>
+    						</li>`
+    						;
+    				}
 
 					if (data_ask_more['0']['vehicle_boat_2'] !== null) {
-						let rcColor = getRcColor(data_ask_more['0']['rc_boat_2']);
 
-					htmlDatavehicleAskMore += `
-						<li class="list-group-item d-flex align-items-center">
-							<div class="card-body">
-								<h2 class="mt-1 mb-1 ">ต้องการ <b>เรือ ป.2</b></h2>
-								<span class="badge ${rcColor} font-18">รหัสเหตุการณ์ <b>${data_ask_more['0']['rc_boat_2']}</b> </span>
-							</div>
-							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_boat_2']} ลำ</b> </strong>
-						</li>`
-						;
-					}
+    					htmlDatavehicleAskMore += `
+    						<li class="list-group-item d-flex align-items-center">
+    							<div class="card-body">
+    								<h2 class="mt-1 mb-1 ">ต้องการ <b>เรือ ป.2</b></h2>
+    							</div>
+    							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_boat_2']} ลำ</b> </strong>
+    						</li>`
+    						;
+    				}
 
 					if (data_ask_more['0']['vehicle_boat_3'] !== null) {
-						let rcColor = getRcColor(data_ask_more['0']['rc_boat_3']);
 
-					htmlDatavehicleAskMore += `
-					<li class="list-group-item d-flex align-items-center">
-							<div class="card-body">
-								<h2 class="mt-1 mb-1 ">ต้องการ <b>เรือ ป.3</b></h2>
-								<span class="badge ${rcColor} font-18">รหัสเหตุการณ์ <b>${data_ask_more['0']['rc_boat_3']}</b> </span>
-							</div>
-							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_boat_3']} ลำ</b> </strong>
-						</li>`;
-					}
+    					htmlDatavehicleAskMore += `
+    					<li class="list-group-item d-flex align-items-center">
+    							<div class="card-body">
+    								<h2 class="mt-1 mb-1 ">ต้องการ <b>เรือ ป.3</b></h2>
+    							</div>
+    							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_boat_3']} ลำ</b> </strong>
+    						</li>`;
+    				}
 
 					if (data_ask_more['0']['vehicle_boat_other'] !== null) {
-						let rcColor = getRcColor(data_ask_more['0']['rc_boat_other']);
 
-					htmlDatavehicleAskMore += `
-						<li class="list-group-item d-flex align-items-center">
-							<div class="card-body">
-								<h2 class="mt-1 mb-1 ">ต้องการ <b>เรือ อื่นๆ</b></h2>
-								<span class="badge ${rcColor} font-18">รหัสเหตุการณ์ <b>${data_ask_more['0']['rc_boat_other']}</b> </span>
-							</div>
-							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_boat_other']} ลำ</b> </strong>
-						</li>`;
-					}
+    					htmlDatavehicleAskMore += `
+    						<li class="list-group-item d-flex align-items-center">
+    							<div class="card-body">
+    								<h2 class="mt-1 mb-1 ">ต้องการ <b>เรือ อื่นๆ</b></h2>
+    							</div>
+    							<strong class="ms-auto h3 "> <b>${data_ask_more['0']['vehicle_boat_other']} ลำ</b> </strong>
+    						</li>`;
+    				}
 
 					
 
@@ -4195,7 +4193,7 @@
             .then(response => response.json())
             .then(result => {
 				let html_ask_more_card_data_operating = "";
-				console.log(result);
+				// console.log(result);
 				// console.log(result.length);
 				if(result.length != 0){
 
@@ -4263,7 +4261,7 @@
     
     function open_map_ask_more(data_ask_more){
 
-        console.log(data_ask_more);
+        // console.log(data_ask_more);
 
         let sos_ask_more ;
 
@@ -4351,8 +4349,15 @@
                         document.querySelector('#btn_send_data_joint_sos_ask_more').innerHTML = 'ยืนยัน';
                         document.querySelector('#list_select_officer_ask_more').value = '';
 
-                        // show_wait_officer_joint();
-                        
+                        let div_tag_a_to_case_main = document.querySelector('#div_tag_a_to_case_main');
+
+                        let html_tag_a = `
+                            <a id="tag_a_to_case_main" href="{{ url('/sos_help_center/`+sos_ask_more_id+`/edit') }}">
+                            </a>
+                        `;
+
+                        div_tag_a_to_case_main.innerHTML = html_tag_a ;
+                        document.querySelector('#tag_a_to_case_main').click();
                     }
 
                 });
