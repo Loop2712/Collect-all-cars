@@ -2179,28 +2179,18 @@ input:focus {
         switch(text_event_level){
 			case 'แดง(วิกฤติ)':
 				class_color_officers = 'situation-red';
-				document.querySelector('#op_rc_vehicle').value = 'แดง(วิกฤติ)';
-				document.querySelector('#text_show_rc_ask_more').value = 'แดง(วิกฤติ)';
 			break;
 			case 'เหลือง(เร่งด่วน)':
 				class_color_officers = 'situation-yellow';
-				document.querySelector('#op_rc_vehicle').value = 'เหลือง(เร่งด่วน)';
-				document.querySelector('#text_show_rc_ask_more').value = 'เหลือง(เร่งด่วน)';
 			break;
 			case 'เขียว(ไม่รุนแรง)':
 				class_color_officers = 'situation-green';
-				document.querySelector('#op_rc_vehicle').value = 'เขียว(ไม่รุนแรง)';
-				document.querySelector('#text_show_rc_ask_more').value = 'เขียว(ไม่รุนแรง)';
 			break;
 			case 'ขาว(ทั่วไป)':
 				class_color_officers = 'situation-normal';
-				document.querySelector('#op_rc_vehicle').value = 'ขาว(ทั่วไป)';
-				document.querySelector('#text_show_rc_ask_more').value = 'ขาว(ทั่วไป)';
 			break;
 			case 'ดำ':
 				class_color_officers = 'situation-black';
-				document.querySelector('#op_rc_vehicle').value = 'ดำ';
-				document.querySelector('#text_show_rc_ask_more').value = 'ดำ';
 			break;
 			case 'rc_black_text':
 				class_color_officers = 'situation-black';
