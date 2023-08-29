@@ -1373,7 +1373,7 @@
                         }
                     @endphp
                     <h5 class=" text-dark">
-                        รหัสเหตุการณ์ <b class="{{ $rcColor }}">{{ $data_sos->form_yellow->rc }}</b>
+                        รหัสเหตุการณ์ <b class="{{ $rcColor }}" id="text_h5_show_level_rc">{{ $data_sos->form_yellow->rc }}</b>
                     </h5>
                 </div>
                 <form id="form">
@@ -1403,9 +1403,18 @@
 
 
 <script>
+    var text_level_for_rc_vehicle ;
     let inputCount = 1;
 
     function addInputField() {
+
+        let form_yellow_rc = "{{ $data_sos->form_yellow->rc }}" ;
+
+        if(form_yellow_rc){
+            text_level_for_rc_vehicle = form_yellow_rc ;
+        }
+        // console.log(text_level_for_rc_vehicle);
+
         const inputSection = document.getElementById('input-section');
 
         const inputContainer = document.createElement('div');
@@ -1424,7 +1433,7 @@
     </select>
 
     <select name="rc_vehicle_${inputCount}" class="d-none form-select mb-3" aria-label="Default select example" required>
-        <option selected="" value="{{ $data_sos->form_yellow->rc }}">{{ $data_sos->form_yellow->rc }}</option>
+        <option selected="" value="`+text_level_for_rc_vehicle+`">`+text_level_for_rc_vehicle+`</option>
         <option value="แดง(วิกฤติ)">แดง(วิกฤติ)</option>
         <option value="ขาว(ทั่วไป)">ขาว(ทั่วไป)</option>
         <option value="เหลือง(เร่งด่วน)">เหลือง(เร่งด่วน)</option>

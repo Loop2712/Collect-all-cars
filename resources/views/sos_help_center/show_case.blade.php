@@ -1032,6 +1032,30 @@ input:focus {
 			var element = document.getElementById('btn_menu_'+id);
 			var test = element.classList.contains('btn-danger');
 
+			if(id == 1 && text_level_for_rc_vehicle){
+				document.querySelector('#text_h5_show_level_rc').innerHTML = text_level_for_rc_vehicle ;
+				let rcColor ;
+				switch(text_level_for_rc_vehicle) {
+				  	case "แดง(วิกฤติ)":
+                        rcColor =  "text-danger";
+                    break;
+                    case "เขียว(ไม่รุนแรง)":
+                        rcColor =  "text-success";
+                    break;
+                    case "ดำ(รับบริการสาธารณสุขอื่น)":
+                        rcColor =  "text-dark";
+                    break;
+                    case "เหลือง(เร่งด่วน)":
+                        rcColor =  "text-warning";
+                    break;
+                    case "ขาว(ทั่วไป)":
+                        rcColor =  "text-primary";
+                    break;
+                    default:
+                        rcColor =  "";
+				}
+				document.querySelector('#text_h5_show_level_rc').classList.add(rcColor);
+			}
 			
 			for (let i = 1; i <= 4; i++) {
 				document.querySelector('#menu_'+ [i]).classList.add('d-none');
@@ -2179,18 +2203,23 @@ input:focus {
         switch(text_event_level){
 			case 'แดง(วิกฤติ)':
 				class_color_officers = 'situation-red';
+				text_level_for_rc_vehicle = text_event_level ;
 			break;
 			case 'เหลือง(เร่งด่วน)':
 				class_color_officers = 'situation-yellow';
+				text_level_for_rc_vehicle = text_event_level ;
 			break;
 			case 'เขียว(ไม่รุนแรง)':
 				class_color_officers = 'situation-green';
+				text_level_for_rc_vehicle = text_event_level ;
 			break;
 			case 'ขาว(ทั่วไป)':
 				class_color_officers = 'situation-normal';
+				text_level_for_rc_vehicle = text_event_level ;
 			break;
 			case 'ดำ':
 				class_color_officers = 'situation-black';
+				text_level_for_rc_vehicle = text_event_level ;
 			break;
 			case 'rc_black_text':
 				class_color_officers = 'situation-black';
