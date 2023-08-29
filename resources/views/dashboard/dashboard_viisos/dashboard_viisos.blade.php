@@ -65,18 +65,12 @@
                         <div class="d-flex align-items-center">
                             <div>
                                 <h5 class="mb-0 text-secondary">ช่วงเวลาขอความช่วยเหลือสูงสุด</h5>
-                                <h4 class="mb-0 font-weight-bold">
-                                    @if (count($sos_maxTimeCounts) === 1)
-                                        {{$sos_maxTimeCounts[0]}}.00
-                                    @else
-                                        @foreach ($sos_maxTimeCounts as $index => $sos_maxTimeCount)
-                                            {{$sos_maxTimeCount}}.00 {{$index !== count($sos_maxTimeCounts) - 1 ? ', ' : ''}}
-                                        @endforeach
-                                    @endif
+                                <h4 id="sos_maxTimeCounts" class="mb-0 font-weight-bold">
+                                    <!-- นำค่ามากจาก javascript-->
                                 </h4>
                             </div>
                             <div class="widgets-icons bg-light-success text-success ms-auto">
-                                {{-- <i class="bx bxs-category"></i> --}}
+                                <!-- <i class="bx bxs-category"></i> -->
                             </div>
                         </div>
                     </div>
@@ -86,18 +80,12 @@
                         <div class="d-flex align-items-center">
                             <div>
                                 <h5 class="mb-0 text-secondary">ช่วงเวลาขอความช่วยเหลือต่ำสุด</h5>
-                                <h4 class="mb-0 font-weight-bold">
-                                    @if (count($sos_minTimeCounts) === 1)
-                                    {{$sos_minTimeCounts[0]}}.00
-                                @else
-                                    @foreach ($sos_minTimeCounts as $index => $maxTimeCount)
-                                        {{$maxTimeCount}}.00 {{$index !== count($sos_minTimeCounts) - 1 ? ', ' : ''}}
-                                    @endforeach
-                                @endif
+                                <h4 id="sos_minTimeCounts" class="mb-0 font-weight-bold">
+                                    <!-- นำค่ามากจาก javascript-->
                                 </h4>
                             </div>
                             <div class="widgets-icons bg-light-info text-info ms-auto">
-                                {{-- <i class="bx bxs-cart-add"></i> --}}
+                                <!-- <i class="bx bxs-cart-add"></i> -->
                             </div>
                         </div>
                     </div>
@@ -453,6 +441,28 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         initMap();
+
+        let maxTimeCount = parseFloat('{{$sos_maxTimeCounts[0]}}');
+        let minTimeCount = parseFloat('{{$sos_minTimeCounts[0]}}');
+        console.log(maxTimeCount);
+        console.log(minTimeCount);
+        //แสดงช่วงเวลาที่มีการขอความช่วยเหลือมากสุด
+        if(maxTimeCount){
+            let max_startTime = maxTimeCount.toFixed(2); // แปลงเป็นสตริงที่มี 2 ตำแหน่งทศนิยม
+            let max_endTime = (maxTimeCount + 1).toFixed(2); // เพิ่มเวลาอีก 1 ชั่วโมงและแปลงเป็นสตริงที่มี 2 ตำแหน่งทศนิยม
+            document.querySelector('#sos_maxTimeCounts').innerHTML = max_startTime + ' - ' + max_endTime + ' น.';
+        }else{
+            document.querySelector('#sos_maxTimeCounts').innerHTML = "ไม่มีข้อมูล";
+        }
+        //แสดงช่วงเวลาที่มีการขอความช่วยเหลือมากสุด
+        if(minTimeCount){
+            let min_startTime = minTimeCount.toFixed(2); // แปลงเป็นสตริงที่มี 2 ตำแหน่งทศนิยม
+            let min_endTime = (minTimeCount + 1).toFixed(2); // เพิ่มเวลาอีก 1 ชั่วโมงและแปลงเป็นสตริงที่มี 2 ตำแหน่งทศนิยม
+            document.querySelector('#sos_minTimeCounts').innerHTML = min_startTime + ' - ' + min_endTime + ' น.';
+        }else{
+            document.querySelector('#sos_minTimeCounts').innerHTML = "ไม่มีข้อมูล";
+        }
+
     });
 </script>
 
@@ -512,4 +522,5 @@
 
     }
 </script>
+
 

@@ -103,7 +103,7 @@ class Partner_DashboardController extends Controller
         $sos_timeInCounts = array();
 
         foreach ($average_sos_all_data as $index => $check_in) {
-            $timeIn = $check_in->time_in;
+            $timeIn = $check_in->created_at;
             $hour = date('H', strtotime($timeIn));
 
             if (!isset($sos_timeInCounts[$hour])) {
@@ -114,15 +114,11 @@ class Partner_DashboardController extends Controller
         }
         $sos_maxValue = max($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
         $sos_maxTimeCounts = array_keys($sos_timeInCounts, $sos_maxValue);
-        $sos_maxTimeCounts = array_slice($sos_maxTimeCounts, 0, 1);
+        $sos_maxTimeCounts = array_slice($sos_maxTimeCounts, 0, 2);
 
         $sos_minValue = min($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
         $sos_minTimeCounts = array_keys($sos_timeInCounts, $sos_minValue);
-        $sos_minTimeCounts = array_slice($sos_minTimeCounts, 0, 1);
-
-
-
-
+        $sos_minTimeCounts = array_slice($sos_minTimeCounts, 0, 2);
 
         // ข้อมูลการขอความช่วยเหลือ 10 ลำดับล่าสุด
         $all_data_sos = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
