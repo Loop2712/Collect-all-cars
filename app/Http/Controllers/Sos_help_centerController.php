@@ -2936,6 +2936,10 @@ class Sos_help_centerController extends Controller
                     $data_askMore['noti_to'] =  $data_officer_command_not_standby->user_id;
                 }
 
+                if(empty($data_officer_command_not_standby)){
+                    $data_askMore['noti_to'] =  $data_officer_command->user_id;
+                }
+
             }else {
                 // $test = "Standby";
                 if (empty($data_askMore['noti_to'])) {
