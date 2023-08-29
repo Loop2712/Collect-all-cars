@@ -62,7 +62,6 @@
                 <table id="check_in_table" class="table table-striped table-bordered align-middle">
                     <thead>
                         <tr>
-
                             <th>ชื่อ_คอนเท้น</th>
                             <th>จำนวนคนที่ส่งหา</th>
                             <th>จำนวนคนที่กดดู</th>
@@ -79,16 +78,14 @@
                         </tr>
                     @endforeach
                     </tbody>
-                    {{-- <tfoot>
+                    <tfoot>
                         <tr>
-
-                            <th>ชื่อเจ้าของ</th>
-                            <th>ประเภท</th>
-                            <th>ยี่ห้อ</th>
-                            <th>รุ่น</th>
-                            <th>วันที่</th>
+                            <th>ชื่อ_คอนเท้น</th>
+                            <th>จำนวนคนที่ส่งหา</th>
+                            <th>จำนวนคนที่กดดู</th>
+                            <th>จำนวนการส่ง</th>
                         </tr>
-                    </tfoot> --}}
+                    </tfoot>
                 </table>
             </div>
 
@@ -136,15 +133,14 @@
                         </tr>
                     @endforeach
                     </tbody>
-                    {{-- <tfoot>
+                    <tfoot>
                         <tr>
-                            <th>ชื่อเจ้าของ</th>
-                            <th>ประเภท</th>
-                            <th>ยี่ห้อ</th>
-                            <th>รุ่น</th>
-                            <th>วันที่</th>
+                            <th>ชื่อ_คอนเท้น</th>
+                            <th>จำนวนคนที่ส่งหา</th>
+                            <th>จำนวนคนที่กดดู</th>
+                            <th>จำนวนการส่ง</th>
                         </tr>
-                    </tfoot> --}}
+                    </tfoot>
                 </table>
             </div>
 
@@ -192,15 +188,14 @@
                         </tr>
                     @endforeach
                     </tbody>
-                    {{-- <tfoot>
+                    <tfoot>
                         <tr>
-                            <th>ชื่อเจ้าของ</th>
-                            <th>ประเภท</th>
-                            <th>ยี่ห้อ</th>
-                            <th>รุ่น</th>
-                            <th>วันที่</th>
+                            <th>ชื่อ_คอนเท้น</th>
+                            <th>จำนวนคนที่ส่งหา</th>
+                            <th>จำนวนคนที่กดดู</th>
+                            <th>จำนวนการส่ง</th>
                         </tr>
-                    </tfoot> --}}
+                    </tfoot>
                 </table>
             </div>
 
@@ -209,10 +204,12 @@
     </div>
 </div>
 
-<!-- Bootstrap JS -->
-<script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
+<!--app JS-->
+<script src="{{ asset('/theme/js/app.js') }}"></script>
+
 <!--plugins-->
-<script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
+<script src="{{ asset('/theme/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('/theme/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

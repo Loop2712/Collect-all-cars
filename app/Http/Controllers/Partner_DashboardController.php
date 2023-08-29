@@ -157,13 +157,13 @@ class Partner_DashboardController extends Controller
         $all_data_partner = Partner::where('name' ,'=', $user_login->organization)
         ->get();
 
+        $check_in_chart_arr = $this->check_in_all_area_chart($all_data_partner);
         //ใช้ 2 ตัวนี้ สำหรับกราฟ แสดง เวลาเช็คอินของแต่ละพื้นที่
         $resultArray = [];
         $timeArray = [];
 
         for ($i=0; $i < count($all_data_partner); $i++) {
             $check_ins_data = Check_in::where('partner_id',$all_data_partner[$i]['id'])->get();
-
 
             $dataCounts = [];
             $timeCount = [];
@@ -205,6 +205,9 @@ class Partner_DashboardController extends Controller
             }
 
         }
+
+
+        //========================== end chart =============================//
 
         $data_checkin = Partner::where('name' ,'=', $user_login->organization)->first();
 
@@ -601,8 +604,7 @@ class Partner_DashboardController extends Controller
             'minValue',
             'resultArray',
             'timeArray',
-
-
+            'check_in_chart_arr',
 
         ));
 
@@ -1165,6 +1167,72 @@ class Partner_DashboardController extends Controller
     }
 
 
+
+    function check_in_all_area_chart($all_data_partner){
+
+        $hours = [];
+        $currentHour = Carbon::now()->startOfDay();
+        $chartData = array();
+
+        for ($i = 0; $i < 24; $i++) {
+            $hours[] = $currentHour->format('H:00');
+            $currentHour->addHour();
+        }
+
+        $iii = 0;
+
+        $chartData = [
+            'categories' => $hours,
+            'series' => [],
+        ];
+
+        foreach ($all_data_partner as $key) {
+
+            $data[$iii] = DB::table('check_ins')
+                ->where('partner_id',$key->id)
+                ->select(
+                    DB::raw('TIME_FORMAT(time_in, "%H:00") as hour'),
+                    DB::raw('COUNT(*) as count')
+                )
+                ->groupBy('hour')
+                ->get();
+
+            if(empty($key->name_area)){
+                $key->name_area = "รวม";
+            }
+
+            $data_array_loop =
+                [
+                    'name' => $key->name_area,
+                    'data' => $this->mergeData($hours, $data[$iii]),
+                ];
+
+            array_push($chartData['series'],$data_array_loop);
+
+            $iii++;
+
+        }
+
+
+        return $chartData;
+    }
+
+    private function mergeData($hours, $data)
+    {
+        $mergedData = [];
+
+        foreach ($hours as $hour) {
+            $match = $data->firstWhere('hour', $hour);
+
+            if ($match) {
+                $mergedData[] = $match->count;
+            } else {
+                $mergedData[] = 0;
+            }
+        }
+
+        return $mergedData;
+    }
 
 
 }

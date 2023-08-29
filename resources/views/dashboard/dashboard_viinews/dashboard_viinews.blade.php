@@ -412,25 +412,14 @@
 <script>
 
     console.log("Here We Go");
-    let dataObject = [];
-    let dataArray = [];
-    let timeObject = [];
-    let timeData = [];
-    @foreach ($resultArray as $item)
-        dataArray = Object.values({!! json_encode($item["data"]) !!});
-        dataObject.push({
-            name: '{{$item["name"]}}',
-            data: dataArray,
-        });
-        timeData = Object.keys({!! json_encode($item["data"]) !!});
-        timeObject.push(timeData);
-    @endforeach
 
-    console.log(dataObject);
-    console.log(timeObject);
+    let chartData_arr = [];
+    let chartData = @json($check_in_chart_arr);
 
-    var options = {
-        series: dataObject,
+    console.log(chartData);
+
+    let options_ViiNews = {
+        series: chartData.series,
         chart: {
             height: 350,
             type: 'area'
@@ -442,18 +431,19 @@
             curve: 'smooth'
         },
         xaxis: {
-            type: 'datetime',
-            categories: timeObject,
+            type: 'time',
+            categories: chartData.categories,
         },
         tooltip: {
             x: {
-                format: 'dd/MM/yy HH:mm'
+                format: 'HH:mm'
             },
         },
         };
 
-        var chart = new ApexCharts(document.querySelector("#chartViiNews"), options);
-        chart.render();
+        let chartViiNews = new ApexCharts(document.querySelector("#chartViiNews"), options_ViiNews);
+        chartViiNews.render();
+
 </script>
 
 
