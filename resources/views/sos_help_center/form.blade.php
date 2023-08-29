@@ -3535,7 +3535,8 @@ color: #ff9317;
 
                 document.querySelector('#lat').value = input_lat ;
                 document.querySelector('#lng').value = input_lng ;
-                
+                confirm_send_save_data('1' , null);
+
             }
         })
         .catch((e) => window.alert("Geocoder failed due to: " + e));

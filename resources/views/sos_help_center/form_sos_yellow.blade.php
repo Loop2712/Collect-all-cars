@@ -3260,7 +3260,7 @@
             	Stop_reface_check_form_yellow();
             	create_modal_alet_data_change(data);
             }else{
-    			// console.log("บันทึกข้อมูลเรียบร้อย");
+    			console.log("บันทึกข้อมูลเรียบร้อย");
             }
         }).catch(function(error){
             // console.error(error);
