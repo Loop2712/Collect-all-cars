@@ -35,9 +35,9 @@
                                 <div class="dropdown-menu dropdown-menu-right">
                                     @foreach ($all_data_partner as $select_area)
                                         @if (!empty($select_area->name_area))
-                                            <a class="dropdown-item" onclick="select_area_check_in('{{$select_area->name_area}}')" href="javaScript:;">พื้นที่ : {{ $select_area->name_area}}</a>
+                                            <a class="dropdown-item" onclick="select_area_check_in('{{$select_area->id}}')" href="javaScript:;">พื้นที่ : {{ $select_area->name_area}}</a>
                                         @else
-                                            <a class="dropdown-item" onclick="select_area_check_in('all_area')" href="javaScript:;">พื้นที่ : รวม</a>
+                                            <a class="dropdown-item" onclick="select_area_check_in('{{$select_area->id}}')" href="javaScript:;">พื้นที่ : รวม</a>
                                         @endif
                                     @endforeach
                                 </div>
@@ -54,7 +54,7 @@
                     <h5 class="text-center font-weight-bold">พื้นที่ : รวม</h5>
                     @php
 
-                        $today = \Carbon\Carbon::now();
+                        $today = \Carbon\Carbon::now()->addYears(543);
 
                         $date_now_thai = $today->locale('th')->isoFormat('LL');
 
@@ -449,13 +449,13 @@
 
 <script>
     // document.document.querySelector('.top5_score_unit_toggleDataBtn').addEventListener('click', () => {
-    function select_area_check_in(name_area) {
-
+    function select_area_check_in(area_id) {
+        console.log(area_id);
         let user_login = '{{Auth::user()->organization}}';
         let area_div = document.getElementById('area_div_checkin');
 
         // ดึงข้อมูลผ่าน Fetch API จากหลังบ้าน
-        fetch("{{ url('/') }}/api/get_area_checkin" + '/' + name_area + '/' + user_login)
+        fetch("{{ url('/') }}/api/get_area_checkin" + '/' + area_id + '/' + user_login)
             .then(response => response.json()) // แปลงข้อมูลเป็น JSON
             .then(data => {
                 console.log(data);
@@ -483,8 +483,6 @@
                     minThaiDay = data.minThaiDay[0];
                 } else {
                     minThaiDay = data.minThaiDay[0] + " " + data.minThaiDay[1];
-                    minThaiDay = "อาทิตย์ พฤหัสบดี";
-                    // minThaiDay = [...data.minThaiDay];
                 }
 
                 let maxTimeCounts;

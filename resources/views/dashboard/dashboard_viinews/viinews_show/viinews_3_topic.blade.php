@@ -69,8 +69,8 @@
                     <tbody>
                     @foreach ($sorted_last_checkIn_data as $item)
                         <tr>
-                            <td>{{ $item->name}}</td>
-                            <td>{{ $item->time_out}}</td>
+                            <td>{{ $item->name ? $item->name : "--"}}</td>
+                            <td>{{ $item->time_out ? $item->time_out : "--"}}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -118,8 +118,8 @@
                     <tbody>
                     @foreach ($most_often_checkIn_data as $item)
                         <tr>
-                            <td>{{ $item->name}}</td>
-                            <td>{{ $item->count_user_checkin}}</td>
+                            <td>{{ $item->name ? $item->name : "--"}}</td>
+                            <td>{{ $item->count_user_checkin ? $item->count_user_checkin : "--"}}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -166,8 +166,8 @@
                     <tbody>
                     @foreach ($sorted_lastest_checkIn_data as $item)
                         <tr>
-                            <td>{{ $item->name}}</td>
-                            <td>{{ $item->time_in}}</td>
+                            <td>{{ $item->name ? $item->name : "--"}}</td>
+                            <td>{{ $item->time_in ? $item->time_in : "--"}}</td>
                         </tr>
                     @endforeach
                     </tbody>

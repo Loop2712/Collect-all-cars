@@ -34,15 +34,15 @@
                 <tbody>
                     @foreach ($last_reg_car as $item)
                         <tr>
-                            <td>{{ $item->name_from_users}}</td>
-                            <td>{{ $item->type_car_registration}}</td>
-                            <td>{{ $item->brand}}</td>
-                            <td>{{ $item->generation}}</td>
-                            <td>{{ $item->created_at}}</td>
+                            <td>{{ $item->name_from_users ? $item->name_from_users : "--"}}</td>
+                            <td>{{ $item->type_car_registration ? $item->type_car_registration : "--"}}</td>
+                            <td>{{ $item->brand ? $item->brand : "--"}}</td>
+                            <td>{{ $item->generation ? $item->generation : "--"}}</td>
+                            <td>{{ $item->created_at ? $item->created_at : "--"}}</td>
                         </tr>
                     @endforeach
                 </tbody>
-                {{-- <tfoot>
+                <tfoot>
                     <tr>
                         <th>ชื่อเจ้าของ</th>
                         <th>ประเภท</th>
@@ -50,7 +50,7 @@
                         <th>รุ่น</th>
                         <th>วันที่</th>
                     </tr>
-                </tfoot> --}}
+                </tfoot>
             </table>
         </div>
 

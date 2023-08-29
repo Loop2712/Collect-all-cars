@@ -71,10 +71,10 @@
                     <tbody>
                     @foreach ($sorted_all_by_checkin as $item)
                         <tr>
-                            <td>{{ $item->name_content}}</td>
-                            <td>{{ $item->count_show_user}}</td>
-                            <td>{{ $item->count_user_click}}</td>
-                            <td>{{ $item->send_round}}</td>
+                            <td>{{ $item->name_content ? $item->name_content : "--"}}</td>
+                            <td>{{ $item->count_show_user ? $item->count_show_user : "--"}}</td>
+                            <td>{{ $item->count_user_click ? $item->count_user_click : "--"}}</td>
+                            <td>{{ $item->send_round ? $item->send_round : "--"}}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -204,12 +204,11 @@
     </div>
 </div>
 
-<!--app JS-->
-<script src="{{ asset('/theme/js/app.js') }}"></script>
 
+<!-- Bootstrap JS -->
+<script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
 <!--plugins-->
-<script src="{{ asset('/theme/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('/theme/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -238,6 +237,46 @@
 </script>
 
 <!-- check_in_table -->
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+        // DataTable initialisation
+        var table1 = document.querySelector("#car_table");
+        var dataTable = new DataTable(table1, {
+            dom: '<"dt-buttons"Bf><"clear">lirtp',
+            paging: true,
+            autoWidth: true,
+            lengthChange: false,
+            pageLength: 20,
+            columnDefs: [
+                { type: "num", targets: 0 },
+                { targets: [8, 9], orderable: false }
+            ],
+            order: [[0, 'desc']],
+            buttons: [
+                {
+                    text: "คืนค่าเริ่มต้น",
+                    action: function () {
+                        dataTable.order([[0, 'desc']]).draw();
+                        countActiveInactive();
+                    }
+                },
+                {
+                    extend: "excelHtml5",
+                    text: "Export Excel"
+                },
+            ],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
+            },
+            initComplete: function (settings, json) {
+                var footer1 = table.querySelector("tfoot tr");
+                table.querySelector("thead").appendChild(footer1);
+                countActiveInactive();
+            }
+        });
+    });
+</script>
 
 {{-- <script>
     $(document).ready(function () {
@@ -276,10 +315,11 @@
     });
 </script> --}}
 
-<script>
+{{-- <script>
     $(document).ready(function () {
+        console.log("Here We Go");
        // DataTable initialisation
-        var table = $("#check_in_table").DataTable({
+        let table1 = $("#check_in_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
             paging: true,
             autoWidth: true,
@@ -294,7 +334,7 @@
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
+                        table1.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                         count_active_inactive(); // คำนวณ Active และ Inactive ใหม่
                     }
                 },
@@ -307,13 +347,13 @@
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
             },
             initComplete: function (settings, json) {
-                var footer = $("#check_in_table tfoot tr");
-                $("#check_in_table thead").append(footer);
+                let footer1 = $("#check_in_table tfoot tr");
+                $("#check_in_table thead").append(footer1);
                 count_active_inactive();
             }
         });
     });
-</script>
+</script> --}}
 
 <!-- car_table -->
 {{-- <script>
@@ -356,7 +396,7 @@
 <script>
     $(document).ready(function () {
        // DataTable initialisation
-        var table = $("#car_table").DataTable({
+        let table2 = $("#car_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
             paging: true,
             autoWidth: true,
@@ -371,7 +411,7 @@
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
+                        table2.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                         count_active_inactive(); // คำนวณ Active และ Inactive ใหม่
                     }
                 },
@@ -384,8 +424,8 @@
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
             },
             initComplete: function (settings, json) {
-                var footer = $("#car_table tfoot tr");
-                $("#car_table thead").append(footer);
+                let footer2 = $("#car_table tfoot tr");
+                $("#car_table thead").append(footer2);
                 count_active_inactive();
             }
         });
@@ -396,7 +436,7 @@
 <script>
     $(document).ready(function () {
        // DataTable initialisation
-        var table = $("#user_table").DataTable({
+        var table3 = $("#user_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
             paging: true,
             autoWidth: true,
@@ -411,7 +451,7 @@
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
+                        table3.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                         count_active_inactive(); // คำนวณ Active และ Inactive ใหม่
                     }
                 },
@@ -424,8 +464,8 @@
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
             },
             initComplete: function (settings, json) {
-                var footer = $("#user_table tfoot tr");
-                $("#user_table thead").append(footer);
+                var footer3 = $("#user_table tfoot tr");
+                $("#user_table thead").append(footer3);
                 count_active_inactive();
             }
         });

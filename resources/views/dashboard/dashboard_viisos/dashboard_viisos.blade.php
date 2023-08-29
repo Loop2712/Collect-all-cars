@@ -2,39 +2,27 @@
 
 <!--========================= เลือกพื้นที่ - ข้อมูลการช่วยเหลือ && คะแนนผู้ใช้เหลือ  =============================-->
 <div class="row">
-    <div class="col-12 col-xl-4 d-flex">
+    <div class="col-12 col-xl-4 col-xxl-4 d-flex">
         <div class="card radius-10 w-100 overflow-hidden">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <div>
+                    <div class="col-12">
                         <h5 class="mb-0">ข้อมูลการช่วยเหลือ</h5>
                     </div>
-                    <div class="font-22 ms-auto"><i class="bx bx-dots-horizontal-rounded"></i>
-                    </div>
+
                 </div>
             </div>
 
-            <div class="store-metrics p-3 mb-3 ps ps--active-y">
+            <div class="p-3 mb-3">
                 <div class="card mt-3 radius-10 border shadow-none">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <p class="mb-0 text-secondary">จำนวนขอความช่วยเหลือ </p>
-                                <h4 class="mb-0">35</h4>
+                                <h5 class="mb-0 text-secondary">จำนวนขอความช่วยเหลือ </h5>
+                                <h4 class="mb-0 font-weight-bold">{{ $count_sos_all_data }}</h4>
                             </div>
-                            <div class="widgets-icons bg-light-primary text-primary ms-auto"><i class="bx bxs-shopping-bag"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card radius-10 border shadow-none">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <p class="mb-0 text-secondary">ระยะเวลาช่วยเหลือเฉลี่ย</p>
-                                <h4 class="mb-0">3.52 นาที</h4>
-                            </div>
-                            <div class="widgets-icons bg-light-danger text-danger ms-auto"><i class="bx bxs-group"></i>
+                            <div class="widgets-icons bg-light-primary text-primary ms-auto">
+
                             </div>
                         </div>
                     </div>
@@ -43,10 +31,31 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <p class="mb-0 text-secondary">ช่วงเวลาขอความช่วยเหลือสูงสุด</p>
-                                <h4 class="mb-0">13.00 - 14.00</h4>
+                                @php
+                                if(!empty($averageDifference)){
+                                    if ($averageDifference >= 3600) {
+                                        $sos_hours = floor($averageDifference / 3600);
+                                        $sos_remainingMinutes = floor(($averageDifference % 3600) / 60);
+                                        $sos_remainingSeconds = $averageDifference % 60;
+
+                                        $sos_time_unit = $sos_hours . ' ชั่วโมง ' . $sos_remainingMinutes . ' นาที ' . $sos_remainingSeconds . ' วินาที';
+                                    } elseif ($averageDifference >= 60) {
+                                        $sos_minutes = floor($averageDifference / 60);
+                                        $sos_seconds = $averageDifference % 60;
+                                        $sos_time_unit = $sos_minutes . ' นาที ' . $sos_seconds . ' วินาที';
+                                    } else {
+                                        $sos_time_unit = $averageDifference . ' วินาที';
+                                    }
+                                }else{
+                                    $sos_time_unit  = "--";
+                                }
+                            @endphp
+
+                                <h5 class="mb-0 text-secondary">ระยะเวลาช่วยเหลือเฉลี่ย</h5>
+                                <h4 class="mb-0 font-weight-bold">{{ $sos_time_unit}}</h4>
                             </div>
-                            <div class="widgets-icons bg-light-success text-success ms-auto"><i class="bx bxs-category"></i>
+                            <div class="widgets-icons bg-light-danger text-danger ms-auto">
+                                {{-- <i class="bx bxs-group"></i> --}}
                             </div>
                         </div>
                     </div>
@@ -55,29 +64,185 @@
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <p class="mb-0 text-secondary">ช่วงเวลาขอความช่วยเหลือต่ำสุด</p>
-                                <h4 class="mb-0">01.00 - 02.00</h4>
+                                <h5 class="mb-0 text-secondary">ช่วงเวลาขอความช่วยเหลือสูงสุด</h5>
+                                <h4 class="mb-0 font-weight-bold">
+                                    @if (count($sos_maxTimeCounts) === 1)
+                                        {{$sos_maxTimeCounts[0]}}.00
+                                    @else
+                                        @foreach ($sos_maxTimeCounts as $index => $sos_maxTimeCount)
+                                            {{$sos_maxTimeCount}}.00 {{$index !== count($sos_maxTimeCounts) - 1 ? ', ' : ''}}
+                                        @endforeach
+                                    @endif
+                                </h4>
                             </div>
-                            <div class="widgets-icons bg-light-info text-info ms-auto"><i class="bx bxs-cart-add"></i>
+                            <div class="widgets-icons bg-light-success text-success ms-auto">
+                                {{-- <i class="bx bxs-category"></i> --}}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card radius-10 border shadow-none mb-0">
+                <div class="card radius-10 border shadow-none">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div>
-                                <p class="mb-0 text-secondary">Total Vendors</p>
-                                <h4 class="mb-0">55</h4>
+                                <h5 class="mb-0 text-secondary">ช่วงเวลาขอความช่วยเหลือต่ำสุด</h5>
+                                <h4 class="mb-0 font-weight-bold">
+                                    @if (count($sos_minTimeCounts) === 1)
+                                    {{$sos_minTimeCounts[0]}}.00
+                                @else
+                                    @foreach ($sos_minTimeCounts as $index => $maxTimeCount)
+                                        {{$maxTimeCount}}.00 {{$index !== count($sos_minTimeCounts) - 1 ? ', ' : ''}}
+                                    @endforeach
+                                @endif
+                                </h4>
                             </div>
-                            <div class="widgets-icons bg-light-warning text-warning ms-auto"><i class="bx bxs-user-account"></i>
+                            <div class="widgets-icons bg-light-info text-info ms-auto">
+                                {{-- <i class="bx bxs-cart-add"></i> --}}
                             </div>
                         </div>
                     </div>
                 </div>
-            <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 450px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 359px;"></div></div></div>
+            </div>
         </div>
     </div>
+
+    <div class="col-12 col-xl-8 col-xxl-8 d-flex">
+        <div class="card w-100 radius-10">
+            <div class="row g-0">
+                <div class="col-md-4 border-end">
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold ">การขอความช่วยเหลือในจังหวัด</h5>
+                        <h2 class="mt-4 mb-1 font-weight-bold">{{$mostCommonDistrict}} <span class="text-danger">{{$countMostCommonDistrict}}</span>  ครั้ง </h2>
+                        <p class="mb-0 text-secondary">{{$mostCommonDistrict}} เป็นอำเภอที่ขอความช่วยเหลือมากที่สุด</p>
+                    </div>
+
+                    <ul class="list-group mt-4 list-group-flush list-group-sos-province">
+                        @foreach($orderedDistricts as $district => $count)
+                        <li class="font-18 list-group-item d-flex align-items-center">
+                            <span>{{$district}}</span>
+                            <strong class="ms-auto">{{$count}}</strong>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <div class="p-3">
+                        <div class="" id="sos_map_organization">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--======= ข้อมูลการขอความช่วยเหลือ 10 ลำดับล่าสุด ============-->
+
+<div class="row mb-4">
+    <div class="col-12 col-lg-12">
+        <div class="card radius-10 w-100 h-100">
+            <div class="p-3">
+                <div class="d-flex align-items-center">
+                    <div class="col-10">
+                        <h5 class="font-weight-bold mb-0 ">ข้อมูลการขอความช่วยเหลือ {{count($all_data_sos)}} ลำดับล่าสุด </h5>
+                    </div>
+                    <div class="dropdown ms-auto">
+                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="{{ url('/dashboard_1669_all_case_sos_show') }}" target="_blank">ข้อมูลการช่วยเหลือเพิ่มเติม</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-3 pt-0">
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0 ">
+                        <thead>
+                            <tr>
+                                <th>รหัสเคส</th>
+                                <th>ชื่อผู้ขอความช่วยเหลือ</th>
+                                <th>ชื่อเจ้าหน้าที่สั่งการ</th>
+                                <th>ชื่อเจ้าหน้าที่หน่วยปฏิบัติการ</th>
+                                <th>ชื่อหน่วยปฏิบัติการ</th>
+                                <th>ระยะเวลาในการช่วยเหลือ</th>
+                                <th>สถานะ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($all_data_sos as $all_data_sos)
+                            <tr>
+                                <!-- รหัสเคส -->
+                                <td>{{ $all_data_sos->operating_code ? $all_data_sos->operating_code : "--"}}</td>
+                                <!-- ชื่อผู้ขอความช่วยเหลือ -->
+                                <td>
+                                    @if( !empty($all_data_sos->name_user) )
+                                        {{ $all_data_sos->name_user }}
+                                    @else
+                                        @php
+                                            $command_create = App\Models\Data_1669_officer_command::where('id',$all_data_sos->command_by)->first();
+                                            $name_command_create = $command_create->name_officer_command ;
+                                        @endphp
+                                        {{ $name_command_create }} (เจ้าหน้าที่)
+                                    @endif
+                                </td>
+                                <!-- ชื่อเจ้าหน้าที่สั่งการ -->
+                                @if (!empty($all_data_sos->command_by))
+                                    <td>{{ $all_data_sos->officers_command_by->name_officer_command ? $all_data_sos->officers_command_by->name_officer_command : "--"}}</td>
+                                @else
+                                    <td> -- </td>
+                                @endif
+                                <!-- ชื่อเจ้าหน้าที่หน่วยปฏิบัติการ -->
+                                @if (!empty($all_data_sos->helper_id))
+                                    <td> {{ $all_data_sos->operating_officer->name_officer}} </td>
+                                @else
+                                    <td> -- </td>
+                                @endif
+                                <!-- ชื่อหน่วยปฏิบัติการ -->
+                                @if (!empty($all_data_sos->operating_unit_id))
+                                    <td>{{ $all_data_sos->operating_unit->name ? $all_data_sos->operating_unit->name : "--"}}</td>
+                                @else
+                                    <td> -- </td>
+                                @endif
+                                <!-- ระยะเวลาในการช่วยเหลือ -->
+                                @php
+                                    if(!empty($all_data_sos->time_sos_success)){
+                                        $all_data_sos_time_sos_success = strtotime($all_data_sos->time_sos_success);
+                                        $all_data_sos_time_command = strtotime($all_data_sos->time_command);
+
+                                        $all_data_sos_timeDifference = abs($all_data_sos_time_sos_success - $all_data_sos_time_command);
+
+                                        if ($all_data_sos_timeDifference >= 3600) {
+                                            $all_data_sos_hours = floor($all_data_sos_timeDifference / 3600);
+                                            $all_data_sos_remainingMinutes = floor(($all_data_sos_timeDifference % 3600) / 60);
+                                            $all_data_sos_remainingSeconds = $all_data_sos_timeDifference % 60;
+
+                                            $all_data_sos_time_unit = $all_data_sos_hours . ' ชั่วโมง ' . $all_data_sos_remainingMinutes . ' นาที ' . $all_data_sos_remainingSeconds . ' วินาที';
+                                        } elseif ($all_data_sos_timeDifference >= 60) {
+                                            $all_data_sos_minutes = floor($all_data_sos_timeDifference / 60);
+                                            $all_data_sos_seconds = $all_data_sos_timeDifference % 60;
+                                            $all_data_sos_time_unit = $all_data_sos_minutes . ' นาที ' . $all_data_sos_seconds . ' วินาที';
+                                        } else {
+                                            $all_data_sos_time_unit = $all_data_sos_timeDifference . ' วินาที';
+                                        }
+                                    }else{
+                                        $all_data_sos_time_unit  = "--";
+                                    }
+                                @endphp
+                                <td>{{ $all_data_sos_time_unit}}</td>
+                                <!-- สถานะ -->
+                                <td>{{ $all_data_sos->status ? $all_data_sos->status : "--"}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </div>
 
 <!--========================= คะแนนผู้ช่วยเหลือ  =============================-->
@@ -87,7 +252,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h6 class="font-weight-bold mb-0" >เคสที่ช่วยเหลือเร็วที่สุด</h6>
+                        <h6 class="font-weight-bold mb-0" >เคสที่ช่วยเหลือเร็วที่สุด {{count($data_sos_fastest_5)}} อันดับ</h6>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -97,73 +262,68 @@
                         </div>
                     </div>
                 </div>
-                </div>
-                <div class="best-selling-products p-3 mb-3 ps ps--active-y">
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณเดียร์</h6>
-                            <p class="mb-0 text-secondary">------------</p>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">3.55 น.</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณเดียร์</h6>
-                            <p class="mb-0 text-secondary">------------</p>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">3.55 น.</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณเดียร์</h6>
-                            <p class="mb-0 text-secondary">------------</p>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">3.55 น.</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณเดียร์</h6>
-                            <p class="mb-0 text-secondary">------------</p>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">3.55 น.</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://i.pinimg.com/originals/a7/cb/a1/a7cba17b0fa86d624e64383e8f883907.jpg" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณเดียร์</h6>
-                            <p class="mb-0 text-secondary">------------</p>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">3.55 น.</p>
-                    </div>
-                    <hr>
+            </div>
+            <div class="p-3 mb-3">
+                @foreach ($data_sos_fastest_5 as $fastest_5)
 
-                <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 450px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 288px;"></div></div></div>
+                    @php
+                        $fastest_5_user = App\User::where('id',$fastest_5->helper_id)->first();
+
+                        if(!empty($fastest_5->time_sos_success)){
+                            $sos_fastest_5_time_sos_success = strtotime($fastest_5->time_sos_success);
+                            $sos_fastest_5_time_command = strtotime($fastest_5->time_command);
+
+                            $sos_fastest_5_timeDifference = abs($sos_fastest_5_time_sos_success - $sos_fastest_5_time_command);
+
+                            if ($sos_fastest_5_timeDifference >= 3600) {
+                                $sos_fastest_5_hours = floor($sos_fastest_5_timeDifference / 3600);
+                                $sos_fastest_5_remainingMinutes = floor(($sos_fastest_5_timeDifference % 3600) / 60);
+                                $sos_fastest_5_remainingSeconds = $sos_fastest_5_timeDifference % 60;
+
+                                $sos_fastest_5_time_unit = $sos_fastest_5_hours . ' ชั่วโมง ' . $sos_fastest_5_remainingMinutes . ' นาที ' . $sos_fastest_5_remainingSeconds . ' วินาที';
+                            } elseif ($sos_fastest_5_timeDifference >= 60) {
+                                $sos_fastest_5_minutes = floor($sos_fastest_5_timeDifference / 60);
+                                $sos_fastest_5_seconds = $sos_fastest_5_timeDifference % 60;
+
+                                $sos_fastest_5_time_unit = $sos_fastest_5_minutes . ' นาที ' . $sos_fastest_5_seconds . ' วินาที';
+                            } else {
+                                $sos_fastest_5_time_unit = $sos_fastest_5_timeDifference . ' วินาที';
+                            }
+                        }else{
+                            $sos_fastest_5_time_unit  = "--";
+                        }
+                    @endphp
+
+                    <div class="d-flex align-items-center">
+                        <div class="product-img">
+                            @if(!empty($fastest_5_user->avatar) && empty($fastest_5_user->photo))
+                                <img src="{{ $fastest_5_user->avatar }}">
+                            @endif
+                            @if(!empty($fastest_5_user->photo))
+                                <img src="{{ url('storage') }}/{{ $fastest_5_user->photo }}">
+                            @endif
+                            @if(empty($fastest_5_user->avatar) && empty($fastest_5_user->photo))
+                                <img src="{{ asset('/Medilab/img/icon.png') }}">
+                            @endif
+                        </div>
+                        <div class="ps-3">
+                            <h6 class="mb-0 font-weight-bold">{{ $fastest_5->name_helper}}</h6>
+                            <p class="mb-0 font-weight-bold">รหัสเคส : {{ $fastest_5->operating_code}}</p>
+                        </div>
+                        <p class="ms-auto mb-0 text-purple font-weight-bold font-16">{{ $sos_fastest_5_time_unit }}</p>
+                    </div>
+                    <hr>
+                @endforeach
+            </div>
         </div>
     </div>
+
     <div class="col d-flex">
         <div class="card radius-10 w-100">
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h6 class="font-weight-bold mb-0">เคสที่ช่วยเหลือช้าที่สุด</h6>
+                        <h6 class="font-weight-bold mb-0">เคสที่ช่วยเหลือช้าที่สุด {{count($data_sos_slowest_5)}} อันดับ</h6>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -173,73 +333,68 @@
                         </div>
                     </div>
                 </div>
-                </div>
-                <div class="best-selling-products p-3 mb-3 ps ps--active-y">
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://scontent.fbkk24-1.fna.fbcdn.net/v/t39.30808-6/349009746_672703511284411_5341648996528743787_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF8vuIxNDYOjX2fLqW4DR40tzsM1Kkn9Aq3OwzUqSf0Cvh0zQyuHhExDqmXIAeZLtrh1IGGd11ihi7u9V8FAYRm&_nc_ohc=TrMWUtp3Jc0AX8kyfjv&_nc_ht=scontent.fbkk24-1.fna&oh=00_AfAec0V0VN-rvbrQvEpGnWnomTkX5hljbuzccl-4k-KnAg&oe=64A91A31" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณเบ้นซ์</h6>
-                            <p class="mb-0 text-secondary">------------</p>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">59.20 น.</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://scontent.fbkk24-1.fna.fbcdn.net/v/t39.30808-6/349009746_672703511284411_5341648996528743787_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF8vuIxNDYOjX2fLqW4DR40tzsM1Kkn9Aq3OwzUqSf0Cvh0zQyuHhExDqmXIAeZLtrh1IGGd11ihi7u9V8FAYRm&_nc_ohc=TrMWUtp3Jc0AX8kyfjv&_nc_ht=scontent.fbkk24-1.fna&oh=00_AfAec0V0VN-rvbrQvEpGnWnomTkX5hljbuzccl-4k-KnAg&oe=64A91A31" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณเบ้นซ์</h6>
-                            <p class="mb-0 text-secondary">------------</p>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">59.20 น.</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://scontent.fbkk24-1.fna.fbcdn.net/v/t39.30808-6/349009746_672703511284411_5341648996528743787_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF8vuIxNDYOjX2fLqW4DR40tzsM1Kkn9Aq3OwzUqSf0Cvh0zQyuHhExDqmXIAeZLtrh1IGGd11ihi7u9V8FAYRm&_nc_ohc=TrMWUtp3Jc0AX8kyfjv&_nc_ht=scontent.fbkk24-1.fna&oh=00_AfAec0V0VN-rvbrQvEpGnWnomTkX5hljbuzccl-4k-KnAg&oe=64A91A31" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณเบ้นซ์</h6>
-                            <p class="mb-0 text-secondary">------------</p>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">59.20 น.</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://scontent.fbkk24-1.fna.fbcdn.net/v/t39.30808-6/349009746_672703511284411_5341648996528743787_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF8vuIxNDYOjX2fLqW4DR40tzsM1Kkn9Aq3OwzUqSf0Cvh0zQyuHhExDqmXIAeZLtrh1IGGd11ihi7u9V8FAYRm&_nc_ohc=TrMWUtp3Jc0AX8kyfjv&_nc_ht=scontent.fbkk24-1.fna&oh=00_AfAec0V0VN-rvbrQvEpGnWnomTkX5hljbuzccl-4k-KnAg&oe=64A91A31" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณเบ้นซ์</h6>
-                            <p class="mb-0 text-secondary">------------</p>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">59.20 น.</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://scontent.fbkk24-1.fna.fbcdn.net/v/t39.30808-6/349009746_672703511284411_5341648996528743787_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeF8vuIxNDYOjX2fLqW4DR40tzsM1Kkn9Aq3OwzUqSf0Cvh0zQyuHhExDqmXIAeZLtrh1IGGd11ihi7u9V8FAYRm&_nc_ohc=TrMWUtp3Jc0AX8kyfjv&_nc_ht=scontent.fbkk24-1.fna&oh=00_AfAec0V0VN-rvbrQvEpGnWnomTkX5hljbuzccl-4k-KnAg&oe=64A91A31" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณเบ้นซ์</h6>
-                            <p class="mb-0 text-secondary">------------</p>
-                        </div>
-                        <p class="ms-auto mb-0 text-purple">59.20 น.</p>
-                    </div>
-                    <hr>
+            </div>
+            <div class="p-3 mb-3 ">
+                @foreach ($data_sos_slowest_5 as $slowest_5)
 
-                <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 450px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 288px;"></div></div></div>
+                    @php
+                        $slowest_5_user = App\User::where('id',$slowest_5->helper_id)->first();
+
+                        if(!empty($slowest_5->time_sos_success)){
+                            $sos_slowest_5_time_sos_success = strtotime($slowest_5->time_sos_success);
+                            $sos_slowest_5_time_command = strtotime($slowest_5->time_command);
+
+                            $sos_slowest_5_timeDifference = abs($sos_slowest_5_time_sos_success - $sos_slowest_5_time_command);
+
+                            if ($sos_slowest_5_timeDifference >= 3600) {
+                                $sos_slowest_5_hours = floor($sos_slowest_5_timeDifference / 3600);
+                                $sos_slowest_5_remainingMinutes = floor(($sos_slowest_5_timeDifference % 3600) / 60);
+                                $sos_slowest_5_remainingSeconds = $sos_slowest_5_timeDifference % 60;
+
+                                $sos_slowest_5_time_unit = $sos_slowest_5_hours . ' ชั่วโมง ' . $sos_slowest_5_remainingMinutes . ' นาที ' . $sos_slowest_5_remainingSeconds . ' วินาที';
+                            } elseif ($sos_slowest_5_timeDifference >= 60) {
+                                $sos_slowest_5_minutes = floor($sos_slowest_5_timeDifference / 60);
+                                $sos_slowest_5_seconds = $sos_slowest_5_timeDifference % 60;
+
+                                $sos_slowest_5_time_unit = $sos_slowest_5_minutes . ' นาที ' . $sos_slowest_5_seconds . ' วินาที';
+                            } else {
+                                $sos_slowest_5_time_unit = $sos_slowest_5_timeDifference . ' วินาที';
+                            }
+                        }else{
+                            $sos_slowest_5_time_unit  = "--";
+                        }
+                    @endphp
+
+                    <div class="d-flex align-items-center">
+                        <div class="product-img">
+                            @if(!empty($slowest_5_user->avatar) && empty($slowest_5_user->photo))
+                                <img src="{{ $slowest_5_user->avatar }}">
+                            @endif
+                            @if(!empty($slowest_5_user->photo))
+                                <img src="{{ url('storage') }}/{{ $slowest_5_user->photo }}">
+                            @endif
+                            @if(empty($slowest_5_user->avatar) && empty($slowest_5_user->photo))
+                                <img src="{{ asset('/Medilab/img/icon.png') }}">
+                            @endif
+                        </div>
+                        <div class="ps-3">
+                            <h6 class="mb-0 font-weight-bold">{{ $slowest_5->name_helper}}</h6>
+                            <p class="mb-0 font-weight-bold">รหัสเคส : {{ $slowest_5->operating_code}}</p>
+                        </div>
+                        <p class="ms-auto mb-0 text-purple font-weight-bold font-16">{{ $sos_slowest_5_time_unit }}</p>
+                    </div>
+                    <hr>
+                @endforeach
+            </div>
         </div>
     </div>
+
     <div class="col d-flex">
         <div class="card radius-10 w-100">
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h6 class="font-weight-bold mb-0">คะแนนผู้ช่วยเหลือสูงสุด</h6>
+                        <h6 class="font-weight-bold mb-0">คะแนนผู้ช่วยเหลือสูงสุด {{count($data_sos_score_best_5)}} อันดับ</h6>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -249,62 +404,112 @@
                         </div>
                     </div>
                 </div>
-              </div>
-                <div class="recent-reviews p-3 mb-3 ps ps--active-y">
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://scontent.fbkk24-1.fna.fbcdn.net/v/t39.30808-6/280078255_7454475791290928_8405856078378449812_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHCbTykQgLS4cb8CDFVUNFx_p4-PoCyMD3-nj4-gLIwPbkKa5-7U6mPIv6j1J0exOoTwDj5-Gr8RX3m-bx1gR11&_nc_ohc=vAK1I2dNaNcAX9M2F_D&_nc_ht=scontent.fbkk24-1.fna&oh=00_AfDBfGTtg9gtKxXSiRP32ywuj9cKRQ7B7TTPnGuOd_P9pw&oe=64AAB763" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณลัคกี้</h6>
-                        </div>
-                        <p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 5.00</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://scontent.fbkk24-1.fna.fbcdn.net/v/t39.30808-6/280078255_7454475791290928_8405856078378449812_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHCbTykQgLS4cb8CDFVUNFx_p4-PoCyMD3-nj4-gLIwPbkKa5-7U6mPIv6j1J0exOoTwDj5-Gr8RX3m-bx1gR11&_nc_ohc=vAK1I2dNaNcAX9M2F_D&_nc_ht=scontent.fbkk24-1.fna&oh=00_AfDBfGTtg9gtKxXSiRP32ywuj9cKRQ7B7TTPnGuOd_P9pw&oe=64AAB763" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณลัคกี้</h6>
-                        </div>
-                        <p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 5.00</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://scontent.fbkk24-1.fna.fbcdn.net/v/t39.30808-6/280078255_7454475791290928_8405856078378449812_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHCbTykQgLS4cb8CDFVUNFx_p4-PoCyMD3-nj4-gLIwPbkKa5-7U6mPIv6j1J0exOoTwDj5-Gr8RX3m-bx1gR11&_nc_ohc=vAK1I2dNaNcAX9M2F_D&_nc_ht=scontent.fbkk24-1.fna&oh=00_AfDBfGTtg9gtKxXSiRP32ywuj9cKRQ7B7TTPnGuOd_P9pw&oe=64AAB763" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณลัคกี้</h6>
-                        </div>
-                        <p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 5.00</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://scontent.fbkk24-1.fna.fbcdn.net/v/t39.30808-6/280078255_7454475791290928_8405856078378449812_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHCbTykQgLS4cb8CDFVUNFx_p4-PoCyMD3-nj4-gLIwPbkKa5-7U6mPIv6j1J0exOoTwDj5-Gr8RX3m-bx1gR11&_nc_ohc=vAK1I2dNaNcAX9M2F_D&_nc_ht=scontent.fbkk24-1.fna&oh=00_AfDBfGTtg9gtKxXSiRP32ywuj9cKRQ7B7TTPnGuOd_P9pw&oe=64AAB763" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณลัคกี้</h6>
-                        </div>
-                        <p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 5.00</p>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-center">
-                        <div class="product-img">
-                            <img src="https://scontent.fbkk24-1.fna.fbcdn.net/v/t39.30808-6/280078255_7454475791290928_8405856078378449812_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHCbTykQgLS4cb8CDFVUNFx_p4-PoCyMD3-nj4-gLIwPbkKa5-7U6mPIv6j1J0exOoTwDj5-Gr8RX3m-bx1gR11&_nc_ohc=vAK1I2dNaNcAX9M2F_D&_nc_ht=scontent.fbkk24-1.fna&oh=00_AfDBfGTtg9gtKxXSiRP32ywuj9cKRQ7B7TTPnGuOd_P9pw&oe=64AAB763" class="p-1" alt="">
-                        </div>
-                        <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">คุณลัคกี้</h6>
-                        </div>
-                        <p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> 5.00</p>
-                    </div>
-                    <hr>
+            </div>
+            <div class="p-3 mb-3">
+                @foreach ($data_sos_score_best_5 as $score_best_5)
 
-                <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 450px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 325px;"></div></div></div>
+                @php
+                    $score_best_5_user = App\User::where('id',$score_best_5->helper_id)->first();
+                @endphp
 
+                    <div class="d-flex align-items-center">
+                        <div class="product-img">
+                            @if(!empty($score_best_5_user->avatar) && empty($score_best_5_user->photo))
+                                <img src="{{ $score_best_5_user->avatar }}">
+                            @endif
+                            @if(!empty($score_best_5_user->photo))
+                                <img src="{{ url('storage') }}/{{ $score_best_5_user->photo }}">
+                            @endif
+                            @if(empty($score_best_5_user->avatar) && empty($score_best_5_user->photo))
+                                <img src="{{ asset('/Medilab/img/icon.png') }}">
+                            @endif
+                        </div>
+                        <div class="ps-3">
+                            <h6 class="mb-0 font-weight-bold">{{ $score_best_5->name_helper}}</h6>
+                            <p class="mb-0 font-weight-bold">รหัสเคส : {{ $slowest_5->operating_code}}</p>
+                        </div>
+                        <p class="ms-auto mb-0 font-weight-bold font-16"><i class="bx bxs-star text-warning mr-1"></i> {{ $score_best_5->score_total}}</p>
+                    </div>
+                    <hr>
+                @endforeach
+            </div>
         </div>
-       </div>
+    </div>
 </div>
+
+<!-- apexcharts -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<!-- map-googleAPI -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
+
+<style type="text/css">
+    #sos_map_organization {
+      min-height: calc(40vh);
+      height: 100%;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        initMap();
+    });
+</script>
+
+<!-- MAP พื้นที่การขอความช่วยเหลือในจังหวัด -->
+<script>
+    function initMap() {
+
+        var map_sos_organization;
+        var marker_sos_organization;
+
+        let user_login_organization = '{{Auth::user()->sub_organization}}';
+
+        let all_lat_lng = [];
+
+        fetch("{{ url('/') }}/api/sos_data_map_organization/" + user_login_organization)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                for (let ii = 0; ii < result.length; ii++) {
+                    let lat = parseFloat(result[ii].lat);
+                    let lng = parseFloat(result[ii].lng);
+
+                    if (lat) {
+                        all_lat_lng.push({"lat": lat, "lng": lng});
+                    }
+                }
+
+
+                let bounds = new google.maps.LatLngBounds();
+
+                    for (let vc = 0; vc < all_lat_lng.length; vc++) {
+                        bounds.extend(all_lat_lng[vc]);
+                    }
+
+                    map_sos_organization = new google.maps.Map(document.getElementById("sos_map_organization"), {
+                        // zoom: num_zoom,
+                        // center: bounds.getCenter(),
+                    });
+                    map_sos_organization.fitBounds(bounds);
+
+                    //ปักหมุด
+                    // let image_marker_sos = "https://www.viicheck.com/img/icon/operating_unit/sos.png";
+                    let image_marker_sos = "{{ asset('/img/icon/operating_unit/sos.png') }}";
+                    @foreach($sos_map_data as $sos_map_data)
+                        @if(!empty($sos_map_data->lat))
+                            marker_sos_organization = new google.maps.Marker({
+                                position: { lat: {{ $sos_map_data->lat }} , lng: {{ $sos_map_data->lng }}  },
+                                map: map_sos_organization,
+                                icon: image_marker_sos,
+                                zIndex:5,
+                            });
+                        @endif
+                    @endforeach
+
+        });
+
+    }
+</script>
 

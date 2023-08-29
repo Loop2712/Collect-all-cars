@@ -176,19 +176,19 @@
                     <tbody>
                     @foreach ($brand_car as $item)
                         <tr>
-                            <td>{{ $item->brand}}</td>
-                            <td>{{ $item->generation}}</td>
-                            <td>{{ $item->amount_brand_car}}</td>
+                            <td>{{ $item->brand ? $item->brand : "--"}}</td>
+                            <td>{{ $item->generation ? $item->generation : "--"}}</td>
+                            <td>{{ $item->amount_brand_car ? $item->amount_brand_car : "--"}}</td>
                         </tr>
                     @endforeach
                     </tbody>
-                    {{-- <tfoot>
+                    <tfoot>
                         <tr>
                             <th>ยี่ห้อ</th>
                             <th>รุ่น</th>
                             <th>จำนวน</th>
                         </tr>
-                    </tfoot> --}}
+                    </tfoot>
                 </table>
             </div>
 

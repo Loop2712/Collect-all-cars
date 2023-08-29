@@ -17,8 +17,10 @@ use App\Models\Partner;
 use App\Models\Check_in;
 use App\Models\Guest;
 use App\Models\Register_car;
+use App\Models\Sos_help_center;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Averages;
 
 class Partner_DashboardController extends Controller
 {
@@ -59,6 +61,130 @@ class Partner_DashboardController extends Controller
         ->groupBy('users.location_P')
         ->orderBy('user_location_count','DESC')
         ->get();
+
+
+
+        //==================================================================================================================//
+                                                        //  vii sos
+        //==================================================================================================================//
+        $sos_all_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        ->get();
+
+        //หาจำนวนการขอความช่วยเหลือ
+        $count_sos_all_data = count($sos_all_data);
+
+        //หาระยะเวลาเฉลี่ยการขอความช่วยเหลือ
+        $average_sos_all_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        ->where('status','=','เสร็จสิ้น')
+        ->get();
+
+        $totalDifference = 0;
+        $count = 0;
+
+        foreach ($average_sos_all_data as $data) {
+            $timeSosSuccess = strtotime($data->time_sos_success);
+            $timeCommand = strtotime($data->time_command);
+
+            if ($timeSosSuccess !== false && $timeCommand !== false) {
+                $difference = $timeSosSuccess - $timeCommand;
+                $totalDifference += $difference;
+                $count++;
+            }
+        }
+
+        if ($count > 0) {
+            $averageDifference = $totalDifference / $count;
+
+        } else {
+            $averageDifference = "--";
+        }
+
+        //หาเวลาที่เช็คอินมากสุด และน้อยสุด
+        $sos_timeInCounts = array();
+
+        foreach ($average_sos_all_data as $index => $check_in) {
+            $timeIn = $check_in->time_in;
+            $hour = date('H', strtotime($timeIn));
+
+            if (!isset($sos_timeInCounts[$hour])) {
+                $sos_timeInCounts[$hour] = 0;
+            }
+            $sos_timeInCounts[$hour]++;
+
+        }
+        $sos_maxValue = max($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+        $sos_maxTimeCounts = array_keys($sos_timeInCounts, $sos_maxValue);
+        $sos_maxTimeCounts = array_slice($sos_maxTimeCounts, 0, 1);
+
+        $sos_minValue = min($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+        $sos_minTimeCounts = array_keys($sos_timeInCounts, $sos_minValue);
+        $sos_minTimeCounts = array_slice($sos_minTimeCounts, 0, 1);
+
+
+
+
+
+        // ข้อมูลการขอความช่วยเหลือ 10 ลำดับล่าสุด
+        $all_data_sos = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        ->limit(10)
+        ->orderBy('id','desc')
+        ->get();
+
+        // เวลาในการช่วยเหลือ เร็ว ที่สุด 5 อันดับ
+        $data_sos_fastest_5 = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+            ->where('status','=','เสร็จสิ้น')
+            ->limit(5)
+            ->orderByRaw('TIMESTAMPDIFF(SECOND, time_sos_success, time_command) desc')
+            ->get();
+
+        // เวลาในการช่วยเหลือ ช้า ที่สุด 5 อันดับ
+        $data_sos_slowest_5 = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+            ->where('status','=','เสร็จสิ้น')
+            ->limit(5)
+            ->orderByRaw('TIMESTAMPDIFF(SECOND, time_sos_success, time_command) asc')
+            ->get();
+
+        // คะแนนการช่วยเหลือต่อเคส มากที่สุด 5 อันดับ
+        $data_sos_score_best_5 = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+            ->where('score_total','!=',null)
+            ->limit(5)
+            ->orderBy('score_total','desc')
+            ->get();
+
+        // MAP
+        $sos_map_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        ->where('lat','!=',null)
+        ->where('lng','!=',null)
+        ->get();
+
+        // การขอความช่วยเหลือในจังหวัด
+        $amphoe_sos = Sos_help_center::where('sos_help_centers.address', '!=', null)
+            ->where('sos_help_centers.notify', 'LIKE', "%$user_login->sub_organization%")
+            ->get('sos_help_centers.address');
+
+        $decoded_districts = [];
+
+        foreach ($amphoe_sos as $item) {
+            $decoded = json_decode('"' . $item->address . '"'); // แปลง Unicode เป็นภาษาไทย
+            $parts = explode('/', $decoded);
+            if (isset($parts[1])) {
+                $decoded_districts[] = $parts[1];
+            }
+        }
+
+        $districtCounts = collect($decoded_districts)->countBy();
+
+        // หา district ที่มากที่สุด
+        $mostCommonDistrict = $districtCounts->sortDesc()->keys()->first();
+        $countMostCommonDistrict = $districtCounts->sortDesc()->first();
+
+        // ลบ district ที่มากที่สุดออกจาก districtCounts
+        $districtCountsWithoutMostCommon = $districtCounts->except([$mostCommonDistrict]);
+
+        $orderedDistricts = $districtCountsWithoutMostCommon->sortByDesc(function ($count, $district) {
+            return $count;
+        });
+
 
         //==================================================================================================================//
                                                         //  viinews
@@ -605,7 +731,18 @@ class Partner_DashboardController extends Controller
             'resultArray',
             'timeArray',
             'check_in_chart_arr',
-
+            'data_sos_fastest_5',
+            'data_sos_slowest_5',
+            'data_sos_score_best_5',
+            'all_data_sos',
+            'mostCommonDistrict',
+            'orderedDistricts',
+            'countMostCommonDistrict',
+            'sos_map_data',
+            'count_sos_all_data',
+            'averageDifference',
+            'sos_maxTimeCounts',
+            'sos_minTimeCounts'
         ));
 
     }
@@ -805,35 +942,35 @@ class Partner_DashboardController extends Controller
         ->get();
 
         for ($i=0; $i < count($all_by_checkin); $i++) {
-            if(!empty($all_by_checkin[$i]['show_user'])){
-                $all_by_checkin_Explode = json_decode($all_by_checkin[$i]['show_user']);
+            // if(!empty($all_by_checkin[$i]['show_user'])){
+            //     $all_by_checkin_Explode = json_decode($all_by_checkin[$i]['show_user']);
 
-                $counts = array_count_values($all_by_checkin_Explode);
+            //     $counts = array_count_values($all_by_checkin_Explode);
 
-                $all_by_checkin_counts = 0;
-                foreach ($counts as $key => $value) {
-                    $all_by_checkin_counts++;
-                }
+            //     $all_by_checkin_counts = 0;
+            //     foreach ($counts as $key => $value) {
+            //         $all_by_checkin_counts++;
+            //     }
 
-                $all_by_checkin[$i]['count_show_user'] = $all_by_checkin_counts;
-            }else{
-                $all_by_checkin[$i]['count_show_user'] = 0;
-            }
+            //     $all_by_checkin[$i]['count_show_user'] = $all_by_checkin_counts;
+            // }else{
+            //     $all_by_checkin[$i]['count_show_user'] = 0;
+            // }
 
-            if(!empty($all_by_checkin[$i]['user_click'])){
-                $user_click_Explode = json_decode($all_by_checkin[$i]['user_click']);
+            // if(!empty($all_by_checkin[$i]['user_click'])){
+            //     $user_click_Explode = json_decode($all_by_checkin[$i]['user_click']);
 
-                $count_user_click = array_count_values($user_click_Explode);
+            //     $count_user_click = array_count_values($user_click_Explode);
 
-                $checkin_user_click = 0;
-                foreach ($count_user_click as $key => $value) {
-                    $checkin_user_click++;
-                }
+            //     $checkin_user_click = 0;
+            //     foreach ($count_user_click as $key => $value) {
+            //         $checkin_user_click++;
+            //     }
 
-                $all_by_checkin[$i]['count_user_click'] = $checkin_user_click;
-            }else{
-                $all_by_checkin[$i]['count_user_click'] = 0;
-            }
+            //     $all_by_checkin[$i]['count_user_click'] = $checkin_user_click;
+            // }else{
+            //     $all_by_checkin[$i]['count_user_click'] = 0;
+            // }
 
         }
 
@@ -959,17 +1096,9 @@ class Partner_DashboardController extends Controller
         return $filter_location_P;
     }
 
-    function get_area_checkin(Request $request , $name_area , $user_login){
+    function get_area_checkin(Request $request , $area_id , $user_login){
 
-        // Check in
-        if($name_area == 'all_area'){
-            $check_in_data = Partner::where('name' , $user_login)
-            ->get();
-        }else{
-            $check_in_data = Partner::where('name' , $user_login)
-            ->where('name_area',$name_area)
-            ->get();
-        }
+        $check_in_data = Partner::where('id' , $area_id)->get();
 
         for ($i=0; $i < count($check_in_data); $i++) {
             $check_ins_finder = Check_in::where('partner_id',$check_in_data[$i]['id'])->get();
@@ -1022,7 +1151,7 @@ class Partner_DashboardController extends Controller
             foreach ($minDays as $minDay) {
                 $minThaiDay[] = $thaiDays[array_search($minDay, $daysOfWeek)];
             }
-            // ddd($maxThaiDay);
+
             // นับคนที่เกิดเดือนนี้
             $currentMonth = date('m');
             $count_hbd = 0;
@@ -1050,6 +1179,11 @@ class Partner_DashboardController extends Controller
 
         }
 
+        // เปลี่ยนค่าว่างของพื้นที่รวม ให้เป็นรวม
+        if(empty($check_in_data->name_area)){
+            $name_area_show = "รวม";
+        }
+
         // นำตัวแปรมาเรียงเป็น Associative Array
         $responseData = [
             'count_hbd' => $count_hbd,
@@ -1062,9 +1196,8 @@ class Partner_DashboardController extends Controller
             'minTimeCounts' => $minTimeCounts,
             'maxValue' => $maxValue,
             'minValue' => $minValue,
-            'name_area' => $name_area,
+            'name_area' => $name_area_show,
         ];
-
 
         // ส่งข้อมูลกลับไปยัง client ในรูปแบบ JSON
         return response()->json($responseData);
@@ -1166,7 +1299,14 @@ class Partner_DashboardController extends Controller
         return response()->json($responseData);
     }
 
+    function map_sos_organization(Request $request,$user_login_organization){
 
+        // $user_login = $request->user_login_organization;
+
+        $sos_map_data = Sos_help_center::where('notify','LIKE',"%$user_login_organization%")->get();
+
+        return $sos_map_data;
+    }
 
     function check_in_all_area_chart($all_data_partner){
 

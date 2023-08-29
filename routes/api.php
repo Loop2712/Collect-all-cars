@@ -301,8 +301,9 @@ Route::get('/get_appId', 'AgoraController@get_appId');
 
 //========== User ==============//
 Route::get('/filter_user', 'Partner_DashboardController@filter_user');
-Route::get('/get_area_checkin/{name_area}/{user_login}', 'Partner_DashboardController@get_area_checkin');
+Route::get('/get_area_checkin/{area_id}/{user_login}', 'Partner_DashboardController@get_area_checkin');
 Route::get('/get_area_checkin_3_topic/{area_id}/{user_login}', 'Partner_DashboardController@get_area_checkin_3_topic');
+Route::get('/sos_data_map_organization/{user_login_organization}', 'Partner_DashboardController@map_sos_organization');
 //========== สพฉ ==============//
 Route::get('/sos_data_map/{user_login_organization}', 'Dashboard_1669_Controller@map_sos');
 Route::get('/top5_score_unit/{filter_data}/{user_login}', 'Dashboard_1669_Controller@top5_score_unit');

@@ -60,7 +60,7 @@
         </div>
     </div>
     <style>
-       
+
     </style>
     <div class="col-12 col-xl-8 col-xxl-8 d-flex">
         <div class="card w-100 radius-10">
@@ -84,7 +84,7 @@
                 <div class="col-md-8">
                     <div class="p-3">
                         <div class="" id="sos_map_organization">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -196,7 +196,7 @@
                 <div class="table-responsive mt-4 mb-4">
                     <table class="table align-middle mb-0">
                         <tbody class="fz_body font-weight-bold">
-                           
+
                         </tbody>
                     </table>
                 </div>
@@ -339,7 +339,8 @@
 
 <style type="text/css">
     #sos_map_organization {
-      height: calc(40vh);
+        min-height: calc(40vh);
+        height: 100%;
     }
 </style>
 
