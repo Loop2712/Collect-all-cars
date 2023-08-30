@@ -137,7 +137,7 @@
                             <td>{{ $item_sos->operating_code ? $item_sos->operating_code : "--" }}</td>
                             <td>{{ $item_sos->status ? $item_sos->status : "--" }}</td>
                             <td>{{ $item_sos->remark_status ? $item_sos->remark_status : "--" }}</td>
-                            <td>{{ thaidate("j F Y" , strtotime($item_sos->created_at)) ? thaidate("j F Y" , strtotime($item_sos->created_at)) : "--" }}</td>
+                            <td>{{ thaidate("j F Y / H:i" , strtotime($item_sos->created_at)) ? thaidate("j F Y / H:i" , strtotime($item_sos->created_at)) : "--" }}</td>
                             <td>{{ $item_sos->lat ? $item_sos->lat : "--" }}</td>
                             <td>{{ $item_sos->lng ? $item_sos->lng : "--" }}</td>
                             <td>{{ $item_sos->address ? $item_sos->address : "--" }}</td>
