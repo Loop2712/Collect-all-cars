@@ -165,13 +165,13 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="recent-product-img">
                                                     @if(!empty($user->avatar) && empty($user->photo))
-                                                        <img src="{{ $user->avatar }}">
+                                                        <img src="{{ $user->avatar }}" class="p-0" alt="">
                                                     @endif
                                                     @if(!empty($user->photo))
-                                                        <img src="{{ url('storage') }}/{{ $user->photo }}">
+                                                        <img src="{{ url('storage') }}/{{ $user->photo }}" class="p-0" alt="">
                                                     @endif
                                                     @if(empty($user->avatar) && empty($user->photo))
-                                                        <img src="{{ asset('/Medilab/img/icon.png') }}">
+                                                        <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                                                     @endif
                                                 </div>
                                                 <div class="ms-1">
@@ -226,13 +226,13 @@
                                         <div class="d-flex align-items-center">
                                             <div class="recent-product-img">
                                                 @if(!empty($user->avatar) && empty($user->photo))
-                                                    <img src="{{ $user->avatar }}">
+                                                    <img src="{{ $user->avatar }}" class="p-0" alt="">
                                                 @endif
                                                 @if(!empty($user->photo))
-                                                    <img src="{{ url('storage') }}/{{ $user->photo }}">
+                                                    <img src="{{ url('storage') }}/{{ $user->photo }}" class="p-0" alt="">
                                                 @endif
                                                 @if(empty($user->avatar) && empty($user->photo))
-                                                    <img src="{{ asset('/Medilab/img/icon.png') }}">
+                                                    <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                                                 @endif
                                             </div>
                                             <div class="ms-2">

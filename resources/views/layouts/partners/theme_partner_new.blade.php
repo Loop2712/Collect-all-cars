@@ -57,6 +57,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;700;800&family=Prompt:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@100;400&family=Taviraj&display=swap" rel="stylesheet">
     <!-- datatables -->
     {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" /> --}}
 
@@ -427,7 +428,7 @@
     border: #fac831 1px solid !important;
     border-radius: 0px !important;
 }
-.bls-active { 
+.bls-active {
     background-color: #fac831!important;
     color: #ffffff !important;
 }
@@ -474,7 +475,7 @@
     color: #00438c !important;
     border: #00438c 1px solid !important;
     border-radius: 25px !important;
-    
+
 }
 
 
@@ -531,7 +532,7 @@
     color: #00438c !important;
     border: #00438c 1px solid !important;
     border-radius: 25px !important;
-    
+
 }
 
 
@@ -2412,9 +2413,9 @@
 	                    	<div class="card">
 								<ul class="list-group mt-1 list-group-flush" id="text_header_ask_more">
 									<!-- <h4>
-										ต้องการ <b style="font-size:30px;" id="type_vahicle_ask_more">รถ</b> 
-										รหัสเหตุการณ์ <b style="font-size:30px;" id="rc_ask_more" class="text-warning">เหลือง(เร่งด่วน)</b> 
-										จำนวน <b  style="font-size:30px;" id="quantity_vahicle_ask_more">1</b> 
+										ต้องการ <b style="font-size:30px;" id="type_vahicle_ask_more">รถ</b>
+										รหัสเหตุการณ์ <b style="font-size:30px;" id="rc_ask_more" class="text-warning">เหลือง(เร่งด่วน)</b>
+										จำนวน <b  style="font-size:30px;" id="quantity_vahicle_ask_more">1</b>
 									</h4> -->
 								</ul>
 							</div>
@@ -2533,7 +2534,7 @@
 	                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
 	                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
 	                                            <div class="d-flex align-items-center">
-	                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
+	                                                <input class="form-check-input" id="test" type="checkbox" value="">
 	                                            </div>
 	                                            <div class="ms-auto">
 	                                                <div class="d-flex align-items-center p-2 cursor-pointer">
@@ -3745,7 +3746,7 @@
 			document.querySelector('#wait_data').classList.add('show' , 'active');
 		}
 	}
-		
+
 	var data_ask_more  ;
 
 	function create_alert_sos_ask_mores(data){
@@ -3804,7 +3805,7 @@
 			for(let item of data){
 
 				btn_command_ask_mores = document.querySelector('#btn_command_ask_mores_id_' + item.id);
-			
+
 				if(!btn_command_ask_mores){
 
 					let html_vehicle = '';
@@ -3869,7 +3870,7 @@
 					                <p class="card-text">
 					                	<b>รหัสปฏิบัติการ : `+item.operating_code+`</b>
 					                	<br>
-					                	<b>จำนวนที่ต้องการ : `+require_vehicle_all+`</b> หน่วย | <b>`+html_vehicle+`</b> 
+					                	<b>จำนวนที่ต้องการ : `+require_vehicle_all+`</b> หน่วย | <b>`+html_vehicle+`</b>
 					                </p>
 				                	<a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#select_forward_`+item.id+`" aria-expanded="true" aria-controls="select_forward_`+item.id+`" class="">
 				                		<i class="fa-solid fa-paper-plane"></i> ส่งต่อการแจ้งเตือน
@@ -3943,7 +3944,7 @@
 										// console.log(Standby_user_id);
 
 									let a_item = owlOfficer_case.querySelector('.a_item_'+ixz);
-										a_item.setAttribute("onclick" , 
+										a_item.setAttribute("onclick" ,
 									"send_noti_ask_mores_to('"+Standby_user_id+"','"+item.ask_mores_id+"')");
 										// console.log(a_item);
 
@@ -3976,9 +3977,9 @@
 		        }
 
 			}
-			
+
 		}
-		
+
 	}
 
 	function send_noti_ask_mores_to(user_id , ask_mores_id){
@@ -4102,16 +4103,16 @@
     						</li>`;
     				}
 
-					
+
 
 					// แทรก HTML ที่ได้สร้างเข้าไปในตำแหน่งที่ต้องการในเอกสาร
 					document.getElementById("text_header_ask_more").innerHTML = htmlDatavehicleAskMore;
-						
+
 
 					document.querySelector('#Label_modal_select_officer_ask_more').innerHTML= 'การขอหน่วยปฏิบัติการเพิ่ม รหัสปฏิบัติการ : ' + data_ask_more['0']['operating_code'] ;
 
                     document.querySelector('#btn_send_data_joint_sos_ask_more').setAttribute('onclick', "send_data_joint_sos_ask_more('"+data_ask_more[0]['sos_id']+"','"+data_ask_more[0]['noti_to']+"')");
-					
+
 					select_officer_ask_more_btn_menu_select();
 
 					let owl_vehicle = $(".owlmenu-vehicle-ask_more");
@@ -4187,7 +4188,7 @@
 		let ask_more_id = document.querySelector('#ask_more_id').value;
 		// console.log(select_officer_ask_more_vehicle_type);
 		// console.log(select_officer_ask_more_level);
-		
+
 		// console.log(data_ask_more)
 		fetch("{{ url('/') }}/api/get_location_ask_more_operating_unit" + "?ask_more_vehicle_type=" + select_officer_ask_more_vehicle_type + "&ask_more_level=" + upper_ask_more_level + "&ask_more_id=" + ask_more_id)
             .then(response => response.json())
@@ -4258,7 +4259,7 @@
     let image_operating_unit_red_ask_more = "{{ url('/img/icon/operating_unit/แดง.png') }}";
     let image_operating_unit_yellow_ask_more = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
     let image_operating_unit_green_ask_more = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
-    
+
     function open_map_ask_more(data_ask_more){
 
         // console.log(data_ask_more);
@@ -4279,7 +4280,7 @@
             map: map_select_officer_ask_more,
             icon: image_sos_ask_more,
         });
-        
+
     }
 
     function select_joint_sos_officer_ask_more(select_id, distance, operating_unit_id,officer_id) {
@@ -4343,7 +4344,7 @@
                 .then(result => {
                     // console.log(result);
 
-                    if (result == "OK") { 
+                    if (result == "OK") {
                         document.querySelector('#btn_close_modal_ask_modal').click();
                         // document.querySelector('#btn_open_modal_show_officer_joint').click();
                         document.querySelector('#btn_send_data_joint_sos_ask_more').innerHTML = 'ยืนยัน';
@@ -4400,7 +4401,7 @@
 
     }
 
-	
+
 
 	function alet_new_sos_1669(result) {
 

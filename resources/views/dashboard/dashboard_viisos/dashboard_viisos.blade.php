@@ -1,5 +1,4 @@
 
-
 <!--========================= เลือกพื้นที่ - ข้อมูลการช่วยเหลือ && คะแนนผู้ใช้เหลือ  =============================-->
 <div class="row">
     <div class="col-12 col-xl-4 col-xxl-4 d-flex">
@@ -7,7 +6,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div class="col-12">
-                        <h5 class="mb-0">ข้อมูลการช่วยเหลือ</h5>
+                        <h5 class="mb-0 font-weight-bold">ข้อมูลการช่วยเหลือ</h5>
                     </div>
 
                 </div>
@@ -22,7 +21,7 @@
                                 <h4 class="mb-0 font-weight-bold">{{ $count_sos_all_data }}</h4>
                             </div>
                             <div class="widgets-icons bg-light-primary text-primary ms-auto">
-
+                                <img width="40" src="{{ asset('/img/icon/sos.png') }}">
                             </div>
                         </div>
                     </div>
@@ -55,7 +54,7 @@
                                 <h4 class="mb-0 font-weight-bold">{{ $sos_time_unit}}</h4>
                             </div>
                             <div class="widgets-icons bg-light-danger text-danger ms-auto">
-                                {{-- <i class="bx bxs-group"></i> --}}
+                                <img width="40" src="{{ asset('/img/icon/hourglass.png') }}">
                             </div>
                         </div>
                     </div>
@@ -70,7 +69,7 @@
                                 </h4>
                             </div>
                             <div class="widgets-icons bg-light-success text-success ms-auto">
-                                <!-- <i class="bx bxs-category"></i> -->
+                                <img width="40" src="{{ asset('/img/icon/fast-time.png') }}">
                             </div>
                         </div>
                     </div>
@@ -85,7 +84,7 @@
                                 </h4>
                             </div>
                             <div class="widgets-icons bg-light-info text-info ms-auto">
-                                <!-- <i class="bx bxs-cart-add"></i> -->
+                                <img width="40" src="{{ asset('/img/icon/slow.png') }}">
                             </div>
                         </div>
                     </div>
@@ -129,7 +128,7 @@
 
 <div class="row mb-4">
     <div class="col-12 col-lg-12">
-        <div class="card radius-10 w-100 h-100">
+        <div id="all_data_sos_lastest_10" class="card radius-10 w-100 h-100">
             <div class="p-3">
                 <div class="d-flex align-items-center">
                     <div class="col-10">
@@ -139,7 +138,7 @@
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ url('/dashboard_1669_all_case_sos_show') }}" target="_blank">ข้อมูลการช่วยเหลือเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_viisos') }}" target="_blank">ข้อมูลการช่วยเหลือเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
@@ -246,7 +245,7 @@
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_viisos_3_topic') }}">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
@@ -317,7 +316,7 @@
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_viisos_3_topic') }}">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
@@ -388,7 +387,7 @@
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="javaScript:;">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_viisos_3_topic') }}">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>

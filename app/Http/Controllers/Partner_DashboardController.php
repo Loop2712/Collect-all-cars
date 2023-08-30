@@ -780,6 +780,28 @@ class Partner_DashboardController extends Controller
         return view('dashboard.dashboard_user.user_index' , compact('user_data','filter_location_P'));
     }
 
+    //========================================== dashboard_viisos show ================================================
+
+    function dashboard_viisos(Request $request){
+        $user_login = Auth::user();
+        // นับ sos ทั้งหมด
+        $data_sos = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")->get();
+
+        return view('dashboard.dashboard_viisos.viisos_show.all_sos_show', compact('data_sos') );
+    }
+
+    function viisos_3_topic(Request $request){
+        $user_login = Auth::user();
+
+        // เวลาในการช่วยเหลือ เร็ว ที่สุด 5 อันดับ
+        $data_sos_score_time = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+            ->where('status','=','เสร็จสิ้น')
+            ->orderByRaw('TIMESTAMPDIFF(SECOND, time_sos_success, time_command) desc')
+            ->get();
+
+        return view('dashboard.dashboard_viisos.viisos_show.viisos_3_topic', compact('data_sos_score_time') );
+    }
+
     //========================================== viimove show ================================================
 
     function viimove_register_car(Request $request){

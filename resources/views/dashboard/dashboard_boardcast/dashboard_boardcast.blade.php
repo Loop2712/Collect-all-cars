@@ -32,7 +32,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
-                        <h5 class="mb-0 font-weight-bold text-dark">เนื้อหาทั้งหมด</h5>
+                        <h5 class="mb-0 font-weight-bold text-dark">บรอดแคสต์ทั้งหมด</h5>
                         <h3 class="font-weight-bold">{{ $count_all_content }}
                             {{-- <small class="text-success font-13"> (+2 วันนี้) </small> --}}
                         </h3>
@@ -54,7 +54,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
-                        <h5 class="mb-0 font-weight-bold text-dark">เนื้อหาสำหรับการเช็คอิน</h5>
+                        <h5 class="mb-0 font-weight-bold text-dark">บรอดแคสต์เช็คอิน</h5>
                         <h3 class="font-weight-bold">{{ $count_all_by_checkin }}
                             {{-- <small class="text-success font-13"> (+2 วันนี้) </small> --}}
                         </h3>
@@ -67,7 +67,7 @@
                     <div class="progress-bar bg-dark" role="progressbar" style="width: {{ $percent_by_checkin }}%"></div>
                 </div>
                 <br>
-                <h6 class="text-dark font-weight-bold">คิดเป็น : {{ $percent_by_checkin }} % จากเนื้อหาทั้งหมด</h6>
+                <h6 class="text-dark font-weight-bold">คิดเป็น : {{ $percent_by_checkin }} % จากบรอดแคสต์ทั้งหมด</h6>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
-                        <h5 class="mb-0 font-weight-bold text-dark">เนื้อหาสำหรับรถที่ลงทะเบียน</h5>
+                        <h5 class="mb-0 font-weight-bold text-dark">บรอดแคสต์รถที่ลงทะเบียน</h5>
                         <h3 class="font-weight-bold"> {{ $count_all_by_car }}
                             {{-- <small class="text-dark font-13">(+0 วันนี้)</small> --}}
                         </h3>
@@ -89,7 +89,7 @@
                     <div class="progress-bar bg-dark" role="progressbar" style="width: {{ $percent_by_car }}%"></div>
                 </div>
                 <br>
-                <h6 class="text-dark font-weight-bold">คิดเป็น : {{ $percent_by_car }} % จากเนื้อหาทั้งหมด</h6>
+                <h6 class="text-dark font-weight-bold">คิดเป็น : {{ $percent_by_car }} % จากบรอดแคสต์ทั้งหมด</h6>
             </div>
         </div>
     </div>
@@ -98,7 +98,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
-                        <h5 class="mb-0 font-weight-bold text-dark">เนื้อหาสำหรับผู้ใช้งาน</h5>
+                        <h5 class="mb-0 font-weight-bold text-dark">บรอดแคสต์ผู้ใช้งาน</h5>
                         <h3 class="font-weight-bold">{{ $count_all_by_user }}
                             {{-- <small class="text-dark font-13"> (+0 วันนี้) </small> --}}
                         </h3>
@@ -111,7 +111,7 @@
                     <div class="progress-bar bg-dark" role="progressbar" style="width: {{ $percent_by_user }}%"></div>
                 </div>
                 <br>
-                <h6 class="text-dark font-weight-bold ">คิดเป็น : {{ $percent_by_user }} % จากเนื้อหาทั้งหมด</h6>
+                <h6 class="text-dark font-weight-bold ">คิดเป็น : {{ $percent_by_user }} % จากบรอดแคสต์ทั้งหมด</h6>
             </div>
         </div>
     </div>
@@ -128,7 +128,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="font-weight-bold mb-0">
-                            <b>เนื้อหาสำหรับการเช็คอิน</b>
+                            <b>บรอดแคสต์เช็คอิน</b>
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
@@ -143,13 +143,13 @@
 
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a data-toggle="collapse" data-target="#collapse_check_in_1" aria-expanded="true" aria-controls="collapse_check_in_1" href="javaScript:;" class="dropdown-item">
-                                    เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
+                                    บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </a>
                                 <a data-toggle="collapse" data-target="#collapse_check_in_2" aria-expanded="true" aria-controls="collapse_check_in_2" href="javaScript:;" class="dropdown-item">
-                                    เนื้อหาที่ส่งบ่อยที่สุด
+                                    บรอดแคสต์ที่ส่งบ่อยที่สุด
                                 </a>
                                 <a data-toggle="collapse" data-target="#collapse_check_in_3" aria-expanded="true" aria-controls="collapse_check_in_3" href="javaScript:;" class="dropdown-item">
-                                    เนื้อหาที่มีคนดูมากที่สุด
+                                    บรอดแคสต์ที่มีคนดูมากที่สุด
                                 </a>
                             </div>
                         </div>
@@ -157,14 +157,14 @@
                 </div>
             </div>
 
-            <!-- เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด -->
+            <!-- บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด -->
             <div id="collapse_check_in_1" class="collapse show" data-parent="#accordion_of_check_in">
                 <div class="card-body">
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
-                                    เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
+                                    บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </span>
                                 <hr>
                                 @foreach ($sorted_all_by_checkin_show_user as $checkin_show_user)
@@ -191,16 +191,16 @@
                     </div>
                 </div>
             </div>
-            <!-- จบ เนื้อหาที่ส่งหาเยอะที่สุด -->
+            <!-- จบ บรอดแคสต์ที่ส่งหาเยอะที่สุด -->
 
-            <!-- เนื้อหาที่ส่งบ่อยที่สุด -->
+            <!-- บรอดแคสต์ที่ส่งบ่อยที่สุด -->
             <div id="collapse_check_in_2" class="collapse" data-parent="#accordion_of_check_in">
                 <div class="card-body">
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
-                                    เนื้อหาที่ส่งบ่อยที่สุด
+                                    บรอดแคสต์ที่ส่งบ่อยที่สุด
                                 </span>
                                 <hr>
                                 @foreach ($all_by_checkin_send_round as $checkin_send_round)
@@ -228,16 +228,16 @@
                     </div>
                 </div>
             </div>
-            <!-- จบ เนื้อหาที่ส่งบ่อยที่สุด -->
+            <!-- จบ บรอดแคสต์ที่ส่งบ่อยที่สุด -->
 
-            <!-- เนื้อหาที่มีคนดูมากที่สุด -->
+            <!-- บรอดแคสต์ที่มีคนดูมากที่สุด -->
             <div id="collapse_check_in_3" class="collapse" data-parent="#accordion_of_check_in">
                 <div class="card-body">
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
-                                    เนื้อหาที่มีคนดูมากที่สุด
+                                    บรอดแคสต์ที่มีคนดูมากที่สุด
                                 </span>
                                 <hr>
                                 @foreach ($sorted_all_by_checkin_user_click as $checkin_user_click)
@@ -264,7 +264,7 @@
                     </div>
                 </div>
             </div>
-            <!-- จบ เนื้อหาที่มีคนดูมากที่สุด -->
+            <!-- จบ บรอดแคสต์ที่มีคนดูมากที่สุด -->
 
         </div>
     </div>
@@ -277,7 +277,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="font-weight-bold mb-0">
-                            <b>เนื้อหาสำหรับรถที่ลงทะเบียน</b>
+                            <b>บรอดแคสต์รถที่ลงทะเบียน</b>
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
@@ -292,13 +292,13 @@
 
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a data-toggle="collapse" data-target="#collapse_car_1" aria-expanded="true" aria-controls="collapse_car_1" href="javaScript:;" class="dropdown-item">
-                                    เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
+                                    บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </a>
                                 <a data-toggle="collapse" data-target="#collapse_car_2" aria-expanded="true" aria-controls="collapse_car_2" href="javaScript:;" class="dropdown-item">
-                                    เนื้อหาที่ส่งบ่อยที่สุด
+                                    บรอดแคสต์ที่ส่งบ่อยที่สุด
                                 </a>
                                 <a data-toggle="collapse" data-target="#collapse_car_3" aria-expanded="true" aria-controls="collapse_car_3" href="javaScript:;" class="dropdown-item">
-                                    เนื้อหาที่มีคนดูมากที่สุด
+                                    บรอดแคสต์ที่มีคนดูมากที่สุด
                                 </a>
                             </div>
                         </div>
@@ -313,7 +313,7 @@
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
-                                    เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
+                                    บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </span>
                                 <hr>
                                 @foreach ($sorted_all_by_car_show_user as $by_car_show_user)
@@ -349,7 +349,7 @@
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
-                                    เนื้อหาที่ส่งบ่อยที่สุด
+                                    บรอดแคสต์ที่ส่งบ่อยที่สุด
                                 </span>
                                 <hr>
                                 @foreach ($all_by_car_send_round as $by_car_send_round)
@@ -378,14 +378,14 @@
             </div>
             <!-- จบ การคลิกมากที่สุด -->
 
-            <!-- เนื้อหาที่มีคนดูมากที่สุด -->
+            <!-- บรอดแคสต์ที่มีคนดูมากที่สุด -->
             <div id="collapse_car_3" class="collapse" data-parent="#accordion_of_car">
                 <div class="card-body">
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
-                                    เนื้อหาที่มีคนดูมากที่สุด
+                                    บรอดแคสต์ที่มีคนดูมากที่สุด
                                 </span>
                                 <hr>
                                 @foreach ($sorted_all_by_car_user_click as $by_car_user_click)
@@ -412,7 +412,7 @@
                     </div>
                 </div>
             </div>
-            <!-- จบ เนื้อหาที่มีคนดูมากที่สุด -->
+            <!-- จบ บรอดแคสต์ที่มีคนดูมากที่สุด -->
 
 
         </div>
@@ -426,7 +426,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="font-weight-bold mb-0">
-                            <b>เนื้อหาสำหรับผู้ใช้งาน</b>
+                            <b>บรอดแคสต์สำหรับผู้ใช้งาน</b>
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
@@ -441,13 +441,13 @@
 
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a data-toggle="collapse" data-target="#collapse_user_1" aria-expanded="true" aria-controls="collapse_user_1" href="javaScript:;" class="dropdown-item">
-                                    เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
+                                    บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </a>
                                 <a data-toggle="collapse" data-target="#collapse_user_2" aria-expanded="true" aria-controls="collapse_user_2" href="javaScript:;" class="dropdown-item">
-                                    เนื้อหาที่ส่งบ่อยที่สุด
+                                    บรอดแคสต์ที่ส่งบ่อยที่สุด
                                 </a>
                                 <a data-toggle="collapse" data-target="#collapse_user_3" aria-expanded="true" aria-controls="collapse_user_3" href="javaScript:;" class="dropdown-item">
-                                    เนื้อหาที่มีคนดูมากที่สุด
+                                    บรอดแคสต์ที่มีคนดูมากที่สุด
                                 </a>
                             </div>
                         </div>
@@ -455,14 +455,14 @@
                 </div>
             </div>
 
-            <!-- เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด -->
+            <!-- บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด -->
             <div id="collapse_user_1" class="collapse show" data-parent="#accordion_of_user">
                 <div class="card-body">
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
-                                    เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
+                                    บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด
                                 </span>
                                 <hr>
                                 @foreach ($sorted_all_by_user_show_user as $by_user_show_user)
@@ -489,16 +489,16 @@
                     </div>
                 </div>
             </div>
-            <!-- จบ เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด -->
+            <!-- จบ บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด -->
 
-            <!-- เนื้อหาที่ส่งบ่อยที่สุด -->
+            <!-- บรอดแคสต์ที่ส่งบ่อยที่สุด -->
             <div id="collapse_user_2" class="collapse" data-parent="#accordion_of_user">
                 <div class="card-body">
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
-                                    เนื้อหาที่ส่งบ่อยที่สุด
+                                    บรอดแคสต์ที่ส่งบ่อยที่สุด
                                 </span>
                                 <hr>
                                 @foreach ($all_by_user_send_round as $by_user_send_round)
@@ -527,14 +527,14 @@
             </div>
             <!-- จบ การคลิกมากที่สุด -->
 
-            <!-- เนื้อหาที่มีคนดูมากที่สุด -->
+            <!-- บรอดแคสต์ที่มีคนดูมากที่สุด -->
             <div id="collapse_user_3" class="collapse" data-parent="#accordion_of_car">
                 <div class="card-body">
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
-                                    เนื้อหาที่มีคนดูมากที่สุด
+                                    บรอดแคสต์ที่มีคนดูมากที่สุด
                                 </span>
                                 <hr>
                                 @foreach ($sorted_all_by_user_user_click as $by_user_user_click)
@@ -561,7 +561,7 @@
                     </div>
                 </div>
             </div>
-            <!-- จบ เนื้อหาที่มีคนดูมากที่สุด -->
+            <!-- จบ บรอดแคสต์ที่มีคนดูมากที่สุด -->
 
         </div>
     </div>

@@ -19,13 +19,17 @@
         width: 50px;
         height: 100%;
     }
+
+    #user_data_table_length{
+        margin-top: 1rem;
+    }
 </style>
 
 @section('content')
 
     <div class="card">
         <div class="col-12">
-            <h3 class="font-weight-bold float-start mb-0">
+            <h3 class="font-weight-bold float-start mb-0 p-2">
                 ข้อมูลเจ้าหน้าที่ภายในองค์กร &nbsp;
             </h3>
         </div>
@@ -50,7 +54,7 @@
                             <tr role="row" class="odd p-2">
                                 <td >{{$user->name ? $user->name : '-'}}</td>
                                 <td>{{$user->name_staff ? $user->name_staff : '-'}}</td>
-                                <td>ผู้ชาย</td>
+                                <td>{{$user->sex ? $user->sex : '-'}}</td>
                                 <td>{{$user->brith ? $user->brith : '-'}}</td>
                                 <td>{{$user->location_P ? $user->location_P : '-'}}</td>
                                 <td>{{$user->location_A ? $user->location_A : '-'}}</td>
@@ -78,46 +82,59 @@
         </div>
     </div>
 
-	<!-- Bootstrap JS -->
-	<script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
 	<!--plugins-->
 	<script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 
-    <script>
-       $(document).ready(function () {
-        //Only needed for the filename of export files.
-        //Normally set in the title tag of your page.
-        document.title = "ข้อมูลเจ้าหน้าที่ภายในองค์กร";
-        // Create search inputs in footer
-        $("#user_data_table tfoot th").each(function () {
-            var title = $(this).text();
-            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
-        // DataTable initialisation
-        var table = $("#user_data_table").DataTable({
+<script>
+    $(document).ready(function () {
+       // DataTable initialisation
+        let table1 = $("#user_data_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
             paging: true,
             autoWidth: true,
-            lengthChange: false,
+            lengthChange: true,
+            pageLength: 20,
+            columnDefs: [
+                // { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
+                { targets: [0,1,2,3,4,5,6,7], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์
+            ],
+            order: [[8, 'asc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
             buttons: [
+                {
+                    text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
+                    action: function () {
+                        table1.order([[8, 'asc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
+                    }
+                },
                 {
                     extend: "excelHtml5",
                     text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
                 },
             ],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
+            },
             initComplete: function (settings, json) {
-                var footer = $("#user_data_table tfoot tr");
-                $("#user_data_table thead").append(footer);
+                let footer1 = $("#user_data_table tfoot tr");
+                $("#user_data_table thead").append(footer1);
+
             }
         });
 
-        // Apply the search
-        $("#user_data_table thead").on("keyup", "input", function () {
-                table.column($(this).parent().index())
-                .search(this.value)
-                .draw();
-            });
+        $("#user_data_table tfoot th").each(function () {
+            if($(this).text()){
+                let title1 = $(this).text();
+                if(title1){
+                    $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
+                }
+            }
+        });
+
     });
-    </script>
+
+
+
+
+</script>
 
 @endsection

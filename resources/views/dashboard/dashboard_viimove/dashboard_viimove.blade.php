@@ -9,6 +9,8 @@
         font-weight: bold !important;
     }
 
+
+
 </style>
 
 <div class="row row-cols-1 row-cols-lg-4">
@@ -77,7 +79,7 @@
 
 <div class="row row-cols-1 row-cols-lg-1">
     <div class="col"> <!-- Card 1 -->
-        <div class="card radius-10">
+        <div id="last_reg_car_top10" class="card radius-10">
             <div class="card-header border-bottom-0 bg-transparent">
                 <div class="d-lg-flex align-items-center">
                     <div class="col-10">

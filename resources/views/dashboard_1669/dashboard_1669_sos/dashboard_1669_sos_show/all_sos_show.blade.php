@@ -85,9 +85,9 @@
                 <thead class="fz_header">
                     <tr>
                         <th>รหัสเคส</th>
-                        <th>address</th>
-                        <th>name_helper</th>
-                        <th>organization_helper</th>
+                        <th>สถานที่</th>
+                        <th>ชื่อเจ้าหน้าที่</th>
+                        <th>ชื่อหน่วยปฏิบัติการ</th>
                         <th>คะแนน</th>
                         <th>ระยะเวลา</th>
                     </tr>
@@ -131,9 +131,9 @@
                 <tfoot class="fz_header">
                     <tr>
                         <th>รหัสเคส</th>
-                        <th>address</th>
-                        <th>name_helper</th>
-                        <th>organization_helper</th>
+                        <th>สถานที่</th>
+                        <th>ชื่อเจ้าหน้าที่</th>
+                        <th>ชื่อหน่วยปฏิบัติการ</th>
                         <th>คะแนน</th>
                         <th>ระยะเวลา</th>
                     </tr>

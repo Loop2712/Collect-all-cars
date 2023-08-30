@@ -1,6 +1,42 @@
 @extends('layouts.partners.theme_partner_new')
 
 <style>
+    .lds-ring {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border: 8px solid #2f0cf3;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: #1a6ce7 transparent transparent transparent;
+    }
+    .lds-ring div:nth-child(1) {
+        animation-delay: -0.45s;
+    }
+    .lds-ring div:nth-child(2) {
+        animation-delay: -0.3s;
+    }
+    .lds-ring div:nth-child(3) {
+        animation-delay: -0.15s;
+    }
+    @keyframes lds-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
     /* Style the tab */
     .tab {
       overflow: hidden;
@@ -22,7 +58,7 @@
 
     /* Change background color of buttons on hover */
     .tab button:hover {
-      background-color: #ddd;
+      background-color: #dddddd;
     }
 
     /* Create an active/current tablink class */
@@ -30,18 +66,32 @@
       background-color: #ccc;
     }
 
+    #report_car_table_filter{
+        display: none;
+    }
+
+    #type_car_registration_table_filter{
+        display: none;
+    }
+
+    #brand_car_table_filter{
+        display: none;
+    }
 
     </style>
 
 @section('content')
 
 <div class="tab">
-    <button id="report_btn" class="tablinks" onclick="openTab(event, 'report')">รถที่ถูกรายงานมากที่สุด</button>
-    <button id="type_btn"  class="tablinks" onclick="openTab(event, 'type')">ประเภทรถมากที่สุด</button>
-    <button id="brand_btn"  class="tablinks" onclick="openTab(event, 'brand')">ยี่ห้อรถมากที่สุด</button>
+    <button id="report_btn" class="tablinks" onclick="openTab(event, 'report')">รถที่ถูกรายงาน</button>
+    <button id="type_btn"  class="tablinks" onclick="openTab(event, 'type')">ประเภทรถ</button>
+    <button id="brand_btn"  class="tablinks" onclick="openTab(event, 'brand')">ยี่ห้อรถ</button>
+</div>
+<div class="d-flex justify-content-center align-items-center">
+    <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
 </div>
 
-<div id="report" class="tabcontent ">
+<div id="report" class="tabcontent d-none">
     <div class="card p-2">
         <div class="row">
             <div class="col-6">
@@ -52,8 +102,6 @@
         </div>
 
         <div id="" class="card-body">
-
-
             <style>
                 /* #report_car_table tr th{
                     min-width: 200px;
@@ -78,16 +126,13 @@
                         </tr>
                     @endforeach
                     </tbody>
-                    {{-- <tfoot>
-                        <tr>
-
+                    <tfoot>
+                       <tr>
                             <th>ชื่อเจ้าของ</th>
-                            <th>ประเภท</th>
-                            <th>ยี่ห้อ</th>
-                            <th>รุ่น</th>
-                            <th>วันที่</th>
+                            <th>ทะเบียนรถ</th>
+                            <th>จำนวน</th>
                         </tr>
-                    </tfoot> --}}
+                    </tfoot>
                 </table>
             </div>
 
@@ -96,7 +141,7 @@
     </div>
 </div>
 
-<div id="type" class="tabcontent ">
+<div id="type" class="tabcontent d-none">
     <div class="card p-2">
         <div class="row">
             <div class="col-6">
@@ -131,12 +176,12 @@
                         </tr>
                     @endforeach
                     </tbody>
-                    {{-- <tfoot>
+                    <tfoot>
                         <tr>
-                            th>ประเภท</th>
+                            <th>ประเภท</th>
                             <th>จำนวน</th>
                         </tr>
-                    </tfoot> --}}
+                    </tfoot>
                 </table>
             </div>
 
@@ -145,7 +190,7 @@
     </div>
 </div>
 
-<div id="brand" class="tabcontent ">
+<div id="brand" class="tabcontent d-none">
     <div class="card p-2">
         <div class="row">
             <div class="col-6">
@@ -197,8 +242,6 @@
     </div>
 </div>
 
-<!-- Bootstrap JS -->
-<script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
 <!--plugins-->
 <script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 
@@ -209,22 +252,33 @@
         if (tabButton) {
             tabButton.click();
         }
+
+        let report = document.querySelector('#report');
+        let type = document.querySelector('#type');
+        let brand = document.querySelector('#brand');
+
+        setTimeout(() => {
+            document.querySelector('#lds-ring').remove();
+            report.classList.remove('d-none');
+            type.classList.remove('d-none');
+            brand.classList.remove('d-none');
+        }, 1000);
     });
 </script>
 <!-- เปลี่ยน Tab -->
 <script>
     function openTab(evt, type) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-      document.getElementById(type).style.display = "block";
-      evt.currentTarget.className += " active";
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(type).style.display = "block";
+        evt.currentTarget.className += " active";
     }
 </script>
 
@@ -232,23 +286,22 @@
 <script>
     $(document).ready(function () {
        // DataTable initialisation
-        var table = $("#report_car_table").DataTable({
+        let table1 = $("#report_car_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
             paging: true,
             autoWidth: true,
             lengthChange: false,
             pageLength: 20,
             columnDefs: [
-                { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
-                { targets: [8, 9], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
+                // { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
+                { targets: [0, 1], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
             ],
-            order: [[0, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
+            order: [[2, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
             buttons: [
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
-                        count_active_inactive(); // คำนวณ Active และ Inactive ใหม่
+                        table1.order([[2, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                     }
                 },
                 {
@@ -260,11 +313,19 @@
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
             },
             initComplete: function (settings, json) {
-                var footer = $("#report_car_table tfoot tr");
-                $("#report_car_table thead").append(footer);
-                count_active_inactive();
+                let footer1 = $("#report_car_table tfoot tr");
+                $("#report_car_table thead").append(footer1);
             }
         });
+    });
+
+    $("#report_car_table tfoot th").each(function () {
+        if($(this).text()){
+            let title1 = $(this).text();
+            if(title1){
+                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
+            }
+        }
     });
 </script>
 
@@ -272,7 +333,7 @@
 <script>
     $(document).ready(function () {
        // DataTable initialisation
-        var table = $("#type_car_registration_table").DataTable({
+        let table2 = $("#type_car_registration_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
             paging: true,
             autoWidth: true,
@@ -280,15 +341,14 @@
             pageLength: 20,
             columnDefs: [
                 { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
-                { targets: [8, 9], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
+                { targets: [0], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
             ],
-            order: [[0, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
+            order: [[1, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
             buttons: [
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
-                        count_active_inactive(); // คำนวณ Active และ Inactive ใหม่
+                        table2.order([[1, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                     }
                 },
                 {
@@ -300,11 +360,19 @@
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
             },
             initComplete: function (settings, json) {
-                var footer = $("#type_car_registration_table tfoot tr");
-                $("#type_car_registration_table thead").append(footer);
-                count_active_inactive();
+                var footer2 = $("#type_car_registration_table tfoot tr");
+                $("#type_car_registration_table thead").append(footer2);
             }
         });
+    });
+
+    $("#type_car_registration_table tfoot th").each(function () {
+        if($(this).text()){
+            let title2 = $(this).text();
+            if(title2){
+                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title2 + '" />');
+            }
+        }
     });
 </script>
 
@@ -312,7 +380,7 @@
 <script>
     $(document).ready(function () {
        // DataTable initialisation
-        var table = $("#brand_car_table").DataTable({
+        let table3 = $("#brand_car_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
             paging: true,
             autoWidth: true,
@@ -320,15 +388,14 @@
             pageLength: 20,
             columnDefs: [
                 { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
-                { targets: [8, 9], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
+                { targets: [0, 1], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
             ],
-            order: [[0, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
+            order: [[2, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
             buttons: [
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
-                        count_active_inactive(); // คำนวณ Active และ Inactive ใหม่
+                        table3.order([[2, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                     }
                 },
                 {
@@ -340,11 +407,19 @@
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
             },
             initComplete: function (settings, json) {
-                var footer = $("#brand_car_table tfoot tr");
-                $("#brand_car_table thead").append(footer);
-                count_active_inactive();
+                let footer3 = $("#brand_car_table tfoot tr");
+                $("#brand_car_table thead").append(footer3);
             }
         });
+    });
+
+    $("#brand_car_table tfoot th").each(function () {
+        if($(this).text()){
+            let title3 = $(this).text();
+            if(title3){
+                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title3 + '" />');
+            }
+        }
     });
 </script>
 

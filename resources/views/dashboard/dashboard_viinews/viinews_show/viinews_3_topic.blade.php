@@ -1,6 +1,42 @@
 @extends('layouts.partners.theme_partner_new')
 
 <style>
+    .lds-ring {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border: 8px solid #2f0cf3;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: #1a6ce7 transparent transparent transparent;
+    }
+    .lds-ring div:nth-child(1) {
+        animation-delay: -0.45s;
+    }
+    .lds-ring div:nth-child(2) {
+        animation-delay: -0.3s;
+    }
+    .lds-ring div:nth-child(3) {
+        animation-delay: -0.15s;
+    }
+    @keyframes lds-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
     /* Style the tab */
     .tab {
       overflow: hidden;
@@ -30,6 +66,18 @@
       background-color: #ccc;
     }
 
+    #longest_table_filter{
+        display: none;
+    }
+
+    #most_often_table_filter{
+        display: none;
+    }
+
+    #lastest_table_filter{
+        display: none;
+    }
+
 
     </style>
 
@@ -41,7 +89,11 @@
     <button id="lastest_btn"  class="tablinks" onclick="openTab(event, 'lastest')">เข้าพื้นที่ล่าสุด</button>
 </div>
 
-<div id="longest" class="tabcontent ">
+<div class="d-flex justify-content-center align-items-center">
+    <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>
+
+<div id="longest" class="tabcontent d-none">
     <div class="card p-2">
         <div class="row">
             <div class="col-6">
@@ -70,16 +122,37 @@
                     @foreach ($sorted_last_checkIn_data as $item)
                         <tr>
                             <td>{{ $item->name ? $item->name : "--"}}</td>
-                            <td>{{ $item->time_out ? $item->time_out : "--"}}</td>
+
+                            @php
+                                $currentDate = \Carbon\Carbon::now();
+                                $checkOutDate = \Carbon\Carbon::parse($item->time_out);
+
+                                $checkout_timeDifference = $currentDate->diff($checkOutDate);
+
+                                $daysDifference = $checkout_timeDifference->days;
+                                $hoursDifference = $checkout_timeDifference->h;
+                                $minutesDifference = $checkout_timeDifference->i;
+
+                                if(!empty($daysDifference)){
+                                    $checkout_time_unit = $daysDifference . ' วัน ';
+                                }elseif (empty($daysDifference) && !empty($hoursDifference) ) {
+                                    $checkout_time_unit = $hoursDifference . ' ชม. '  . $minutesDifference . ' น. ';
+                                }elseif (empty($daysDifference) && empty($hoursDifference) && !empty($minutesDifference)) {
+                                    $checkout_time_unit = $minutesDifference . ' น. ';
+                                }
+
+                            @endphp
+
+                            <td>{{ $checkout_time_unit ? $checkout_time_unit : "--"}}</td>
                         </tr>
                     @endforeach
                     </tbody>
-                    {{-- <tfoot>
+                    <tfoot>
                          <tr>
                             <th>ชื่อผู้ใช้</th>
                             <th>ระยะเวลา</th>
                         </tr>
-                    </tfoot> --}}
+                    </tfoot>
                 </table>
             </div>
 
@@ -88,7 +161,7 @@
     </div>
 </div>
 
-<div id="most_often" class="tabcontent ">
+<div id="most_often" class="tabcontent d-none">
     <div class="card p-2">
         <div class="row">
             <div class="col-6">
@@ -108,11 +181,11 @@
             </style>
 
             <div class="table-responsive">
-                <table id="car_table" class="table table-striped table-bordered align-middle">
+                <table id="most_often_table" class="table table-striped table-bordered align-middle">
                     <thead>
                         <tr>
                             <th>ชื่อผู้ใช้</th>
-                            <th>ครั้ง</th>
+                            <th>จำนวน(ครั้ง)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,12 +196,12 @@
                         </tr>
                     @endforeach
                     </tbody>
-                    {{-- <tfoot>
+                    <tfoot>
                          <tr>
                             <th>ชื่อผู้ใช้</th>
                             <th>ระยะเวลา</th>
                         </tr>
-                    </tfoot> --}}
+                    </tfoot>
                 </table>
             </div>
 
@@ -137,7 +210,7 @@
     </div>
 </div>
 
-<div id="lastest" class="tabcontent ">
+<div id="lastest" class="tabcontent d-none">
     <div class="card p-2">
         <div class="row">
             <div class="col-6">
@@ -156,7 +229,7 @@
             </style>
 
             <div class="table-responsive">
-                <table id="user_table" class="table table-striped table-bordered align-middle">
+                <table id="lastest_table" class="table table-striped table-bordered align-middle">
                     <thead>
                         <tr>
                             <th>ชื่อผู้ใช้</th>
@@ -167,19 +240,39 @@
                     @foreach ($sorted_lastest_checkIn_data as $item)
                         <tr>
                             <td>{{ $item->name ? $item->name : "--"}}</td>
-                            <td>{{ $item->time_in ? $item->time_in : "--"}}</td>
+
+                            @php
+                                $checkin_time_current = \Carbon\Carbon::now();
+                                $checkin_time_in = \Carbon\Carbon::parse($item->time_in);
+
+                                $checkin_timeDifference = $checkin_time_current->diff($checkin_time_in);
+
+                                $daysDifference = $checkin_timeDifference->days;
+                                $hoursDifference = $checkin_timeDifference->h;
+                                $minutesDifference = $checkin_timeDifference->i;
+
+                                if(!empty($daysDifference)){
+                                    $checkin_time_unit2 = $daysDifference . ' วัน ';
+                                }elseif (empty($daysDifference) && !empty($hoursDifference) ) {
+                                    $checkin_time_unit2 = $hoursDifference . ' ชม. '  . $minutesDifference . ' น. ';
+                                }elseif (empty($daysDifference) && empty($hoursDifference) && !empty($minutesDifference)) {
+                                    $checkin_time_unit2 = $minutesDifference . ' น. ';
+                                }
+
+                            @endphp
+
+                            <td>{{ $checkin_time_unit2 ? $checkin_time_unit2 : "--"}}</td>
                         </tr>
                     @endforeach
                     </tbody>
-                    {{-- <tfoot>
+                    <tfoot>
                          <tr>
                             <th>ชื่อผู้ใช้</th>
                             <th>ระยะเวลา</th>
                         </tr>
-                    </tfoot> --}}
+                    </tfoot>
                 </table>
             </div>
-
 
         </div>
     </div>
@@ -197,6 +290,17 @@
         if (tabButton) {
             tabButton.click();
         }
+
+        let longest = document.querySelector('#longest');
+        let most_often = document.querySelector('#most_often');
+        let lastest = document.querySelector('#lastest');
+
+        setTimeout(() => {
+            document.querySelector('#lds-ring').remove();
+            longest.classList.remove('d-none');
+            most_often.classList.remove('d-none');
+            lastest.classList.remove('d-none');
+        }, 1000);
     });
 </script>
 <!-- เปลี่ยน Tab -->
@@ -217,48 +321,10 @@
 </script>
 
 <!-- check_in_table -->
-
-{{-- <script>
-    $(document).ready(function () {
-        //Only needed for the filename of export files.
-        //Normally set in the title tag of your page.
-        document.title = "check_in";
-        // Create search inputs in footer
-        $("#check_in_table tfoot th").each(function () {
-            var title = $(this).text();
-            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
-        // DataTable initialisation
-        var table = $("#check_in_table").DataTable({
-            dom: '<"dt-buttons"Bf><"clear">lirtp',
-            paging: true,
-            autoWidth: true,
-            lengthChange: false,
-            buttons: [
-                {
-                    extend: "excelHtml5",
-                    text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
-                },
-            ],
-            initComplete: function (settings, json) {
-                var footer = $("#check_in_table tfoot tr");
-                $("#check_in_table thead").append(footer);
-            }
-        });
-
-        // Apply the search
-        $("#check_in_table thead").on("keyup", "input", function () {
-                table.column($(this).parent().index())
-                .search(this.value)
-                .draw();
-            });
-    });
-</script> --}}
-
 <script>
     $(document).ready(function () {
        // DataTable initialisation
-        var table = $("#longest_table").DataTable({
+        let table1 = $("#longest_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
             paging: true,
             autoWidth: true,
@@ -266,15 +332,14 @@
             pageLength: 20,
             columnDefs: [
                 { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
-                { targets: [8, 9], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
+                { targets: [0], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
             ],
-            order: [[0, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
+            order: [[1, 'desc']], // เรียงลำดับคอลัมน์ที่ 1 จากมากไปน้อย
             buttons: [
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
-                        count_active_inactive(); // คำนวณ Active และ Inactive ใหม่
+                        table1.order([[1, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                     }
                 },
                 {
@@ -286,57 +351,27 @@
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
             },
             initComplete: function (settings, json) {
-                var footer = $("#longest_table tfoot tr");
-                $("#longest_table thead").append(footer);
-                count_active_inactive();
+                let footer1 = $("#longest_table tfoot tr");
+                $("#longest_table thead").append(footer1);
             }
         });
+    });
+
+    $("#longest_table tfoot th").each(function () {
+        if($(this).text()){
+            let title1 = $(this).text();
+            if(title1){
+                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
+            }
+        }
     });
 </script>
 
 <!-- car_table -->
-
-{{-- <script>
-    $(document).ready(function () {
-        //Only needed for the filename of export files.
-        //Normally set in the title tag of your page.
-        document.title = "check_in";
-        // Create search inputs in footer
-        $("#car_table tfoot th").each(function () {
-            var title = $(this).text();
-            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
-        // DataTable initialisation
-        var table = $("#car_table").DataTable({
-            dom: '<"dt-buttons"Bf><"clear">lirtp',
-            paging: true,
-            autoWidth: true,
-            lengthChange: false,
-            buttons: [
-                {
-                    extend: "excelHtml5",
-                    text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
-                },
-            ],
-            initComplete: function (settings, json) {
-                var footer = $("#car_table tfoot tr");
-                $("#car_table thead").append(footer);
-            }
-        });
-
-        // Apply the search
-        $("#car_table thead").on("keyup", "input", function () {
-                table.column($(this).parent().index())
-                .search(this.value)
-                .draw();
-            });
-    });
-</script> --}}
-
 <script>
     $(document).ready(function () {
        // DataTable initialisation
-        var table = $("#most_often_table").DataTable({
+        let table2 = $("#most_often_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
             paging: true,
             autoWidth: true,
@@ -344,15 +379,15 @@
             pageLength: 20,
             columnDefs: [
                 { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
-                { targets: [8, 9], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
+                { targets: [0], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
             ],
-            order: [[0, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
+            order: [[1, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
             buttons: [
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
-                        count_active_inactive(); // คำนวณ Active และ Inactive ใหม่
+                        table2.order([[1, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
+
                     }
                 },
                 {
@@ -364,11 +399,20 @@
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
             },
             initComplete: function (settings, json) {
-                var footer = $("#most_often_table tfoot tr");
-                $("#most_often_table thead").append(footer);
+                let footer2 = $("#most_often_table tfoot tr");
+                $("#most_often_table thead").append(footer2);
                 count_active_inactive();
             }
         });
+    });
+
+    $("#most_often_table tfoot th").each(function () {
+        if($(this).text()){
+            let title2 = $(this).text();
+            if(title2){
+                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title2 + '" />');
+            }
+        }
     });
 </script>
 
@@ -376,7 +420,7 @@
 <script>
     $(document).ready(function () {
        // DataTable initialisation
-        var table = $("#lastest_table").DataTable({
+        let table1 = $("#lastest_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
             paging: true,
             autoWidth: true,
@@ -384,15 +428,14 @@
             pageLength: 20,
             columnDefs: [
                 { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
-                { targets: [8, 9], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
+                { targets: [0], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
             ],
-            order: [[0, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
+            order: [[1, 'asc']], // เรียงลำดับคอลัมน์ที่ 1 จากมากไปน้อย
             buttons: [
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
-                        count_active_inactive(); // คำนวณ Active และ Inactive ใหม่
+                        table1.order([[1, 'asc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                     }
                 },
                 {
@@ -404,11 +447,19 @@
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
             },
             initComplete: function (settings, json) {
-                var footer = $("#lastest_table tfoot tr");
-                $("#lastest_table thead").append(footer);
-                count_active_inactive();
+                let footer1 = $("#lastest_table tfoot tr");
+                $("#lastest_table thead").append(footer1);
             }
         });
+    });
+
+    $("#lastest_table tfoot th").each(function () {
+        if($(this).text()){
+            let title1 = $(this).text();
+            if(title1){
+                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
+            }
+        }
     });
 </script>
 

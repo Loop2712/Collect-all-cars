@@ -1,6 +1,42 @@
 @extends('layouts.partners.theme_partner_new')
 
 <style>
+    .lds-ring {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border: 8px solid #2f0cf3;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: #1a6ce7 transparent transparent transparent;
+    }
+    .lds-ring div:nth-child(1) {
+        animation-delay: -0.45s;
+    }
+    .lds-ring div:nth-child(2) {
+        animation-delay: -0.3s;
+    }
+    .lds-ring div:nth-child(3) {
+        animation-delay: -0.15s;
+    }
+    @keyframes lds-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
     /* Style the tab */
     .tab {
       overflow: hidden;
@@ -30,23 +66,38 @@
       background-color: #ccc;
     }
 
+    #check_in_table_filter{
+        display: none;
+    }
+
+    #car_table_filter{
+        display: none;
+    }
+
+    #user_table_filter{
+        display: none;
+    }
 
     </style>
 
 @section('content')
 
 <div class="tab">
-    <button id="check_in_btn" class="tablinks" onclick="openTab(event, 'check_in')">check_in</button>
-    <button id="car_btn"  class="tablinks" onclick="openTab(event, 'car')">car</button>
-    <button id="user_btn"  class="tablinks" onclick="openTab(event, 'user')">user</button>
+    <button id="check_in_btn" class="tablinks" onclick="openTab(event, 'check_in')">บรอดแคสต์เช็คอิน</button>
+    <button id="car_btn"  class="tablinks" onclick="openTab(event, 'car')">บรอดแคสต์รถที่ลงทะเบียน</button>
+    <button id="user_btn"  class="tablinks" onclick="openTab(event, 'user')">บรอดแคสต์ผู้ใช้งาน</button>
 </div>
 
-<div id="check_in" class="tabcontent ">
+<div class="d-flex justify-content-center align-items-center">
+    <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>
+
+<div id="check_in" class="tabcontent d-none">
     <div class="card p-2">
         <div class="row">
             <div class="col-6">
                 <h3 class="font-weight-bold float-start mb-0">
-                    ข้อมูลรถที่ถูกรายงาน
+                    ข้อมูลบรอดแคสต์เช็คอิน
                 </h3>
             </div>
         </div>
@@ -62,7 +113,7 @@
                 <table id="check_in_table" class="table table-striped table-bordered align-middle">
                     <thead>
                         <tr>
-                            <th>ชื่อ_คอนเท้น</th>
+                            <th>ชื่อบรอดแคสต์</th>
                             <th>จำนวนคนที่ส่งหา</th>
                             <th>จำนวนคนที่กดดู</th>
                             <th>จำนวนการส่ง</th>
@@ -80,7 +131,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>ชื่อ_คอนเท้น</th>
+                            <th>ชื่อบรอดแคสต์</th>
                             <th>จำนวนคนที่ส่งหา</th>
                             <th>จำนวนคนที่กดดู</th>
                             <th>จำนวนการส่ง</th>
@@ -94,12 +145,12 @@
     </div>
 </div>
 
-<div id="car" class="tabcontent ">
+<div id="car" class="tabcontent d-none">
     <div class="card p-2">
         <div class="row">
             <div class="col-6">
                 <h3 class="font-weight-bold float-start mb-0">
-                    ข้อมูลประเภทรถ
+                    ข้อมูลบรอดแคสต์รถที่ลงทะเบียน
                 </h3>
             </div>
         </div>
@@ -117,7 +168,7 @@
                 <table id="car_table" class="table table-striped table-bordered align-middle">
                     <thead>
                         <tr>
-                            <th>ชื่อ_คอนเท้น</th>
+                            <th>ชื่อบรอดแคสต์</th>
                             <th>จำนวนคนที่ส่งหา</th>
                             <th>จำนวนคนที่กดดู</th>
                             <th>จำนวนการส่ง</th>
@@ -135,7 +186,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>ชื่อ_คอนเท้น</th>
+                            <th>ชื่อบรอดแคสต์</th>
                             <th>จำนวนคนที่ส่งหา</th>
                             <th>จำนวนคนที่กดดู</th>
                             <th>จำนวนการส่ง</th>
@@ -149,18 +200,17 @@
     </div>
 </div>
 
-<div id="user" class="tabcontent ">
+<div id="user" class="tabcontent d-none">
     <div class="card p-2">
         <div class="row">
             <div class="col-6">
                 <h3 class="font-weight-bold float-start mb-0">
-                    ข้อมูลยี่ห้อรถ
+                    ข้อมูลบรอดแคสต์ผู้ใช้งาน
                 </h3>
             </div>
         </div>
 
         <div id="" class="card-body">
-
 
             <style>
                 /* #user_table tr th{
@@ -172,7 +222,7 @@
                 <table id="user_table" class="table table-striped table-bordered align-middle">
                     <thead>
                         <tr>
-                            <th>ชื่อ_คอนเท้น</th>
+                            <th>ชื่อบรอดแคสต์</th>
                             <th>จำนวนคนที่ส่งหา</th>
                             <th>จำนวนคนที่กดดู</th>
                             <th>จำนวนการส่ง</th>
@@ -190,7 +240,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>ชื่อ_คอนเท้น</th>
+                            <th>ชื่อบรอดแคสต์</th>
                             <th>จำนวนคนที่ส่งหา</th>
                             <th>จำนวนคนที่กดดู</th>
                             <th>จำนวนการส่ง</th>
@@ -204,9 +254,6 @@
     </div>
 </div>
 
-
-<!-- Bootstrap JS -->
-<script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
 <!--plugins-->
 <script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 
@@ -217,6 +264,17 @@
         if (tabButton) {
             tabButton.click();
         }
+
+        let check_in = document.querySelector('#check_in');
+        let car = document.querySelector('#car');
+        let user = document.querySelector('#user');
+
+        setTimeout(() => {
+            document.querySelector('#lds-ring').remove();
+            check_in.classList.remove('d-none');
+            car.classList.remove('d-none');
+            user.classList.remove('d-none');
+        }, 1000);
     });
 </script>
 <!-- เปลี่ยน Tab -->
@@ -237,85 +295,7 @@
 </script>
 
 <!-- check_in_table -->
-
 <script>
-        document.addEventListener("DOMContentLoaded", function () {
-        // DataTable initialisation
-        var table1 = document.querySelector("#car_table");
-        var dataTable = new DataTable(table1, {
-            dom: '<"dt-buttons"Bf><"clear">lirtp',
-            paging: true,
-            autoWidth: true,
-            lengthChange: false,
-            pageLength: 20,
-            columnDefs: [
-                { type: "num", targets: 0 },
-                { targets: [8, 9], orderable: false }
-            ],
-            order: [[0, 'desc']],
-            buttons: [
-                {
-                    text: "คืนค่าเริ่มต้น",
-                    action: function () {
-                        dataTable.order([[0, 'desc']]).draw();
-                        countActiveInactive();
-                    }
-                },
-                {
-                    extend: "excelHtml5",
-                    text: "Export Excel"
-                },
-            ],
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
-            },
-            initComplete: function (settings, json) {
-                var footer1 = table.querySelector("tfoot tr");
-                table.querySelector("thead").appendChild(footer1);
-                countActiveInactive();
-            }
-        });
-    });
-</script>
-
-{{-- <script>
-    $(document).ready(function () {
-        //Only needed for the filename of export files.
-        //Normally set in the title tag of your page.
-        document.title = "check_in";
-        // Create search inputs in footer
-        $("#check_in_table tfoot th").each(function () {
-            var title = $(this).text();
-            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
-        // DataTable initialisation
-        var table = $("#check_in_table").DataTable({
-            dom: '<"dt-buttons"Bf><"clear">lirtp',
-            paging: true,
-            autoWidth: true,
-            lengthChange: false,
-            buttons: [
-                {
-                    extend: "excelHtml5",
-                    text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
-                },
-            ],
-            initComplete: function (settings, json) {
-                var footer = $("#check_in_table tfoot tr");
-                $("#check_in_table thead").append(footer);
-            }
-        });
-
-        // Apply the search
-        $("#check_in_table thead").on("keyup", "input", function () {
-                table.column($(this).parent().index())
-                .search(this.value)
-                .draw();
-            });
-    });
-</script> --}}
-
-{{-- <script>
     $(document).ready(function () {
         console.log("Here We Go");
        // DataTable initialisation
@@ -326,16 +306,15 @@
             lengthChange: false,
             pageLength: 20,
             columnDefs: [
-                { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
-                { targets: [8, 9], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
+                // { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
+                { targets: [0], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์
             ],
-            order: [[0, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
+            order: [[3, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
             buttons: [
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table1.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
-                        count_active_inactive(); // คำนวณ Active และ Inactive ใหม่
+                        table1.order([[3, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                     }
                 },
                 {
@@ -349,50 +328,22 @@
             initComplete: function (settings, json) {
                 let footer1 = $("#check_in_table tfoot tr");
                 $("#check_in_table thead").append(footer1);
-                count_active_inactive();
+
             }
         });
     });
-</script> --}}
+
+    $("#check_in_table tfoot th").each(function () {
+        if($(this).text()){
+            let title1 = $(this).text();
+            if(title1){
+                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
+            }
+        }
+    });
+</script>
 
 <!-- car_table -->
-{{-- <script>
-    $(document).ready(function () {
-        //Only needed for the filename of export files.
-        //Normally set in the title tag of your page.
-        document.title = "check_in";
-        // Create search inputs in footer
-        $("#car_table tfoot th").each(function () {
-            var title = $(this).text();
-            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
-        // DataTable initialisation
-        var table = $("#car_table").DataTable({
-            dom: '<"dt-buttons"Bf><"clear">lirtp',
-            paging: true,
-            autoWidth: true,
-            lengthChange: false,
-            buttons: [
-                {
-                    extend: "excelHtml5",
-                    text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
-                },
-            ],
-            initComplete: function (settings, json) {
-                var footer = $("#car_table tfoot tr");
-                $("#car_table thead").append(footer);
-            }
-        });
-
-        // Apply the search
-        $("#car_table thead").on("keyup", "input", function () {
-                table.column($(this).parent().index())
-                .search(this.value)
-                .draw();
-            });
-    });
-</script> --}}
-
 <script>
     $(document).ready(function () {
        // DataTable initialisation
@@ -403,16 +354,15 @@
             lengthChange: false,
             pageLength: 20,
             columnDefs: [
-                { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
-                { targets: [8, 9], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
+                // { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
+                { targets: [0], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์
             ],
-            order: [[0, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
+            order: [[3, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
             buttons: [
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table2.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
-                        count_active_inactive(); // คำนวณ Active และ Inactive ใหม่
+                        table1.order([[3, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                     }
                 },
                 {
@@ -430,6 +380,15 @@
             }
         });
     });
+
+    $("#car_table tfoot th").each(function () {
+            if($(this).text()){
+                let title2 = $(this).text();
+                if(title2){
+                    $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title2 + '" />');
+                }
+            }
+        });
 </script>
 
 <!-- user_table -->
@@ -443,16 +402,15 @@
             lengthChange: false,
             pageLength: 20,
             columnDefs: [
-                { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
-                { targets: [8, 9], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
+                // { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
+                { targets: [0], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์
             ],
-            order: [[0, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
+            order: [[3, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
             buttons: [
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table3.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
-                        count_active_inactive(); // คำนวณ Active และ Inactive ใหม่
+                        table1.order([[3, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                     }
                 },
                 {
@@ -470,6 +428,15 @@
             }
         });
     });
+
+    $("#user_table tfoot th").each(function () {
+            if($(this).text()){
+                let title3 = $(this).text();
+                if(title3){
+                    $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title3 + '" />');
+                }
+            }
+        });
 </script>
 
 

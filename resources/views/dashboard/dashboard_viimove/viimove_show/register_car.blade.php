@@ -1,19 +1,63 @@
 @extends('layouts.partners.theme_partner_new')
 
+<style>
+    .lds-ring {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border: 8px solid #2f0cf3;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: #1a6ce7 transparent transparent transparent;
+    }
+    .lds-ring div:nth-child(1) {
+        animation-delay: -0.45s;
+    }
+    .lds-ring div:nth-child(2) {
+        animation-delay: -0.3s;
+    }
+    .lds-ring div:nth-child(3) {
+        animation-delay: -0.15s;
+    }
+    @keyframes lds-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    #last_reg_car_table_filter{
+        display: none;
+    }
+</style>
+
 @section('content')
 
 <div class="card p-2">
     <div class="row">
         <div class="col-6">
             <h3 class="font-weight-bold float-start mb-0">
-                ข้อมูลการขอความช่วยเหลือ
+                ข้อมูลรถที่ลงทะเบียน
             </h3>
         </div>
     </div>
 
-    <div id="" class="card-body">
+    <div class="d-flex justify-content-center align-items-center">
+        <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
 
-
+    <div id="last_reg_car" class="card-body d-none">
         <style>
             /* #last_reg_car_table tr th{
                 min-width: 200px;
@@ -58,32 +102,40 @@
     </div>
 </div>
 
-
-<!-- Bootstrap JS -->
-<script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
 <!--plugins-->
 <script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 
 <script>
+     document.addEventListener("DOMContentLoaded", function() {
+
+        let last_reg_car = document.querySelector('#last_reg_car');
+
+        setTimeout(() => {
+            document.querySelector('#lds-ring').remove();
+            last_reg_car.classList.remove('d-none');
+        }, 500);
+    });
+</script>
+
+<script>
     $(document).ready(function () {
-       // DataTable initialisation
-        var table = $("#last_reg_car_table").DataTable({
+        // DataTable initialisation
+        let table1 = $("#last_reg_car_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
             paging: true,
             autoWidth: true,
             lengthChange: false,
             pageLength: 20,
             columnDefs: [
-                { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
-                { targets: [8, 9], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
+                // { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
+                { targets: [0, 1 ,2 ,3 ], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
             ],
-            order: [[0, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
+            order: [[4, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
             buttons: [
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table.order([[0, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
-                        count_active_inactive(); // คำนวณ Active และ Inactive ใหม่
+                        table1.order([[4, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                     }
                 },
                 {
@@ -95,12 +147,21 @@
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
             },
             initComplete: function (settings, json) {
-                var footer = $("#last_reg_car_table tfoot tr");
-                $("#last_reg_car_table thead").append(footer);
-                count_active_inactive();
+                let footer1 = $("#last_reg_car_table tfoot tr");
+                $("#last_reg_car_table thead").append(footer1);
             }
         });
     });
+
+    $("#last_reg_car_table tfoot th").each(function () {
+        if($(this).text()){
+            let title1 = $(this).text();
+            if(title1){
+                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
+            }
+        }
+    });
+
 </script>
 
 @endsection
