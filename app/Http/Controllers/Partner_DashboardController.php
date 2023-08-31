@@ -64,7 +64,6 @@ class Partner_DashboardController extends Controller
         ->get();
 
 
-
         //==================================================================================================================//
                                                         //  vii sos
         //==================================================================================================================//
@@ -115,13 +114,21 @@ class Partner_DashboardController extends Controller
             $sos_timeInCounts[$hour]++;
 
         }
-        $sos_maxValue = max($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-        $sos_maxTimeCounts = array_keys($sos_timeInCounts, $sos_maxValue);
-        $sos_maxTimeCounts = array_slice($sos_maxTimeCounts, 0, 2);
 
-        $sos_minValue = min($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-        $sos_minTimeCounts = array_keys($sos_timeInCounts, $sos_minValue);
-        $sos_minTimeCounts = array_slice($sos_minTimeCounts, 0, 2);
+        if(!empty($sos_timeInCounts)){
+            $sos_maxValue = max($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+            $sos_maxTimeCounts = array_keys($sos_timeInCounts, $sos_maxValue);
+            $sos_maxTimeCounts = array_slice($sos_maxTimeCounts, 0, 2);
+        }else{
+            $sos_maxTimeCounts = "ไม่มีข้อมูล";
+        }
+        if(!empty($sos_timeInCounts)){
+            $sos_minValue = min($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+            $sos_minTimeCounts = array_keys($sos_timeInCounts, $sos_minValue);
+            $sos_minTimeCounts = array_slice($sos_minTimeCounts, 0, 2);
+        }else{
+            $sos_minTimeCounts = "ไม่มีข้อมูล";
+        }
 
         // ข้อมูลการขอความช่วยเหลือ 10 ลำดับล่าสุด
         $all_data_sos = Sos_map::where('area',$user_login->organization)
@@ -215,13 +222,21 @@ class Partner_DashboardController extends Controller
                 $timeInCounts[$hour]++;
 
             }
-            $maxValue = max($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-            $maxTimeCounts = array_keys($timeInCounts, $maxValue);
-            $maxTimeCounts = array_slice($maxTimeCounts, 0, 2);
+            if(!empty($timeInCounts)){
+                $maxValue = max($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+                $maxTimeCounts = array_keys($timeInCounts, $maxValue);
+                $maxTimeCounts = array_slice($maxTimeCounts, 0, 2);
+            }else{
+                $maxTimeCounts = "ไม่มีข้อมูล";
+            }
 
-            $minValue = min($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-            $minTimeCounts = array_keys($timeInCounts, $minValue);
-            $minTimeCounts = array_slice($minTimeCounts, 0, 2);
+            if(!empty($timeInCounts)){
+                $minValue = min($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+                $minTimeCounts = array_keys($timeInCounts, $minValue);
+                $minTimeCounts = array_slice($minTimeCounts, 0, 2);
+            }else{
+                $minTimeCounts = "ไม่มีข้อมูล";
+            }
 
            // หาวันที่เช็คอินมากสุด และน้อยสุด
             $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
