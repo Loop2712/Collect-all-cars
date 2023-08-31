@@ -7,8 +7,8 @@
 		$data_sos = App\Models\Sos_help_center::where('photo_succeed', "!=" , null)->get();
 	@endphp
 
-	@foreach
-		<img src="{{ url('storage')}}/{{ $data_sos->photo_succeed }}" style="width: 30%;" class="m-3">
+	@foreach($data_sos as $eiei)
+		<img src="{{ url('storage')}}/{{ $eiei->photo_succeed }}" style="width: 30%;" class="m-3">
 	@endforeach
 
 @endsection
