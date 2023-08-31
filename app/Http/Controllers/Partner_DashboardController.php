@@ -115,16 +115,20 @@ class Partner_DashboardController extends Controller
 
         }
 
-        if(!empty($sos_timeInCounts)){
+        if (!empty($timeInCounts)) {
             $sos_maxValue = max($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
             $sos_maxTimeCounts = array_keys($sos_timeInCounts, $sos_maxValue);
             $sos_maxTimeCounts = array_slice($sos_maxTimeCounts, 0, 2);
-        }
-        if(!empty($sos_timeInCounts)){
+
             $sos_minValue = min($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
             $sos_minTimeCounts = array_keys($sos_timeInCounts, $sos_minValue);
             $sos_minTimeCounts = array_slice($sos_minTimeCounts, 0, 2);
+        }else{
+            // Handle the case when $timeInCounts is empty
+            $sos_maxTimeCounts = [];
+            $sos_minTimeCounts = [];
         }
+
 
         // ข้อมูลการขอความช่วยเหลือ 10 ลำดับล่าสุด
         $all_data_sos = Sos_map::where('area',$user_login->organization)
@@ -219,13 +223,19 @@ class Partner_DashboardController extends Controller
 
             }
 
-            $maxValue = max($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-            $maxTimeCounts = array_keys($timeInCounts, $maxValue);
-            $maxTimeCounts = array_slice($maxTimeCounts, 0, 2);
+            if (!empty($timeInCounts)) {
+                $maxValue = max($timeInCounts);
+                $maxTimeCounts = array_keys($timeInCounts, $maxValue);
+                $maxTimeCounts = array_slice($maxTimeCounts, 0, 2);
 
-            $minValue = min($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-            $minTimeCounts = array_keys($timeInCounts, $minValue);
-            $minTimeCounts = array_slice($minTimeCounts, 0, 2);
+                $minValue = min($timeInCounts);
+                $minTimeCounts = array_keys($timeInCounts, $minValue);
+                $minTimeCounts = array_slice($minTimeCounts, 0, 2);
+            } else {
+                // Handle the case when $timeInCounts is empty
+                $maxTimeCounts = [];
+                $minTimeCounts = [];
+            }
 
            // หาวันที่เช็คอินมากสุด และน้อยสุด
             $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
