@@ -297,7 +297,16 @@
 <!-- check_in_table -->
 <script>
     $(document).ready(function () {
-        console.log("Here We Go");
+
+        $("#check_in_table tfoot th").each(function () {
+            if($(this).text()){
+                let title1 = $(this).text();
+                if(title1){
+                    $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
+                }
+            }
+        });
+
        // DataTable initialisation
         let table1 = $("#check_in_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
@@ -306,7 +315,7 @@
             lengthChange: false,
             pageLength: 20,
             columnDefs: [
-                // { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
+                { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
                 { targets: [0], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์
             ],
             order: [[3, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
@@ -331,16 +340,15 @@
 
             }
         });
+
+        $("#check_in_table thead").on("keyup", "input", function () {
+            table1.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+
+        });
     });
 
-    $("#check_in_table tfoot th").each(function () {
-        if($(this).text()){
-            let title1 = $(this).text();
-            if(title1){
-                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
-            }
-        }
-    });
 </script>
 
 <!-- car_table -->
@@ -362,7 +370,7 @@
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table1.order([[3, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
+                        table2.order([[3, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                     }
                 },
                 {
@@ -376,12 +384,11 @@
             initComplete: function (settings, json) {
                 let footer2 = $("#car_table tfoot tr");
                 $("#car_table thead").append(footer2);
-                count_active_inactive();
+
             }
         });
-    });
 
-    $("#car_table tfoot th").each(function () {
+        $("#car_table tfoot th").each(function () {
             if($(this).text()){
                 let title2 = $(this).text();
                 if(title2){
@@ -389,6 +396,16 @@
                 }
             }
         });
+
+        $("#car_table thead").on("keyup", "input", function () {
+            table2.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+
+        });
+    });
+
+
 </script>
 
 <!-- user_table -->
@@ -410,7 +427,7 @@
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table1.order([[3, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
+                        table3.order([[3, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                     }
                 },
                 {
@@ -424,12 +441,11 @@
             initComplete: function (settings, json) {
                 var footer3 = $("#user_table tfoot tr");
                 $("#user_table thead").append(footer3);
-                count_active_inactive();
+
             }
         });
-    });
 
-    $("#user_table tfoot th").each(function () {
+        $("#user_table tfoot th").each(function () {
             if($(this).text()){
                 let title3 = $(this).text();
                 if(title3){
@@ -437,6 +453,16 @@
                 }
             }
         });
+
+        $("#user_table thead").on("keyup", "input", function () {
+            table3.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+
+        });
+    });
+
+
 </script>
 
 

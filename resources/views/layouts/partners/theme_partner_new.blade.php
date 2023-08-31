@@ -31,9 +31,6 @@
 
 
 	<link rel='stylesheet' href='https://unpkg.com/izitoast/dist/css/iziToast.min.css'>
-	<!-- loader-->
-	<link href="{{ asset('/css/pace.min.css') }}" rel="stylesheet" />
-	<script src="{{ asset('/js/pace.min.js') }}"></script>
 	<!-- Bootstrap CSS -->
 	<link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">

@@ -317,16 +317,25 @@
                 $("#report_car_table thead").append(footer1);
             }
         });
+
+        $("#report_car_table tfoot th").each(function () {
+            if($(this).text()){
+                let title1 = $(this).text();
+                if(title1){
+                    $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
+                }
+            }
+        });
+
+        $("#report_car_table thead").on("keyup", "input", function () {
+            table1.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+
+        });
     });
 
-    $("#report_car_table tfoot th").each(function () {
-        if($(this).text()){
-            let title1 = $(this).text();
-            if(title1){
-                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
-            }
-        }
-    });
+
 </script>
 
 <!-- ประเภทรถมากที่สุด -->
@@ -364,16 +373,26 @@
                 $("#type_car_registration_table thead").append(footer2);
             }
         });
+
+        $("#type_car_registration_table tfoot th").each(function () {
+            if($(this).text()){
+                let title2 = $(this).text();
+                if(title2){
+                    $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title2 + '" />');
+                }
+            }
+        });
+
+        $("#type_car_registration_table thead").on("keyup", "input", function () {
+            table2.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+
+        });
+
+
     });
 
-    $("#type_car_registration_table tfoot th").each(function () {
-        if($(this).text()){
-            let title2 = $(this).text();
-            if(title2){
-                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title2 + '" />');
-            }
-        }
-    });
 </script>
 
 <!-- ยี่ห้อรถมากที่สุด -->
@@ -411,16 +430,25 @@
                 $("#brand_car_table thead").append(footer3);
             }
         });
+
+        $("#brand_car_table tfoot th").each(function () {
+            if($(this).text()){
+                let title3 = $(this).text();
+                if(title3){
+                    $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title3 + '" />');
+                }
+            }
+        });
+
+        $("#brand_car_table thead").on("keyup", "input", function () {
+            table3.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+
+        });
     });
 
-    $("#brand_car_table tfoot th").each(function () {
-        if($(this).text()){
-            let title3 = $(this).text();
-            if(title3){
-                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title3 + '" />');
-            }
-        }
-    });
+
 </script>
 
 

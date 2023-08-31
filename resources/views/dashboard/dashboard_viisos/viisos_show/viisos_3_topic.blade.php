@@ -32,7 +32,6 @@
             <table id="all_score_unit_table" class="table align-middle mb-0" >
                 <thead class="fz_header">
                     <tr>
-                        <th>รหัสเคส</th>
                         <th>สถานที่</th>
                         <th>ชื่อเจ้าหน้าที่</th>
                         <th>ชื่อหน่วยปฏิบัติการ</th>
@@ -43,32 +42,31 @@
                 <tbody class="fz_body">
                     @foreach ($data_sos_score_time as $item)
                         @php
-                        $sos_score_time_sos_success = strtotime($item->time_sos_success);
-                        $sos_score_time_command = strtotime($item->time_command);
+                            $sos_score_time_sos_success = strtotime($item->help_complete_time);
+                            $sos_score_time_command = strtotime($item->time_go_to_help);
 
-                        $sos_score_timeDifference = abs($sos_score_time_sos_success - $sos_score_time_command);
+                            $sos_score_timeDifference = abs($sos_score_time_sos_success - $sos_score_time_command);
 
-                        if ($sos_score_timeDifference >= 3600) {
-                            $sos_score_time_hours = floor($sos_score_timeDifference / 3600);
-                            $sos_score_time_remainingMinutes = floor(($sos_score_timeDifference % 3600) / 60);
-                            $sos_score_time_remainingSeconds = $sos_score_timeDifference % 60;
+                            if ($sos_score_timeDifference >= 3600) {
+                                $sos_score_time_hours = floor($sos_score_timeDifference / 3600);
+                                $sos_score_time_remainingMinutes = floor(($sos_score_timeDifference % 3600) / 60);
+                                $sos_score_time_remainingSeconds = $sos_score_timeDifference % 60;
 
-                            $sos_score_time_unit = $sos_score_time_hours . ' ชั่วโมง ' . $sos_score_time_remainingMinutes . ' นาที ' . $sos_score_time_remainingSeconds . ' วินาที';
-                        } elseif ($sos_score_timeDifference >= 60) {
-                            $sos_score_time_minutes = floor($sos_score_timeDifference / 60);
-                            $sos_score_time_seconds = $sos_score_timeDifference % 60;
+                                $sos_score_time_unit = $sos_score_time_hours . ' ชั่วโมง ' . $sos_score_time_remainingMinutes . ' นาที ' . $sos_score_time_remainingSeconds . ' วินาที';
+                            } elseif ($sos_score_timeDifference >= 60) {
+                                $sos_score_time_minutes = floor($sos_score_timeDifference / 60);
+                                $sos_score_time_seconds = $sos_score_timeDifference % 60;
 
-                            $sos_score_time_unit = $sos_score_time_minutes . ' นาที ' . $sos_score_time_seconds . ' วินาที';
-                        } else {
-                            $sos_score_time_unit = $sos_score_timeDifference . ' วินาที';
-                        }
+                                $sos_score_time_unit = $sos_score_time_minutes . ' นาที ' . $sos_score_time_seconds . ' วินาที';
+                            } else {
+                                $sos_score_time_unit = $sos_score_timeDifference . ' วินาที';
+                            }
 
-                    @endphp
+                        @endphp
 
                     <tr class="mt_body_table">
-                        <td>{{ $item->operating_code ? $item->operating_code : "--"}}</td>
-                        <td>{{ $item->address ? $item->address : "--"}}</td>
-                        <td>{{ $item->name_helper ? $item->name_helper : "--"}}</td>
+                        <td>{{ $item->name_area ? $item->name_area : "--"}}</td>
+                        <td>{{ $item->helper ? $item->helper : "--"}}</td>
                         <td>{{ $item->organization_helper ? $item->organization_helper : "--"}}</td>
                         <td>{{ $sos_score_time_unit ? $sos_score_time_unit : "--" }}</td>
                         <td ><p class="ms-auto mt-2"><i class="bx bxs-star text-warning mr-1"></i>{{ $item->score_total ? $item->score_total : "--"}}</p></td>
@@ -77,7 +75,6 @@
                 </tbody>
                 <tfoot class="fz_header">
                     <tr>
-                        <th>รหัสเคส</th>
                         <th>สถานที่</th>
                         <th>ชื่อเจ้าหน้าที่</th>
                         <th>ชื่อหน่วยปฏิบัติการ</th>

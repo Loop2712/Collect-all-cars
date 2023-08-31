@@ -151,16 +151,25 @@
                 $("#last_reg_car_table thead").append(footer1);
             }
         });
+
+        $("#last_reg_car_table tfoot th").each(function () {
+            if($(this).text()){
+                let title1 = $(this).text();
+                if(title1){
+                    $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
+                }
+            }
+        });
+
+        $("#last_reg_car_table thead").on("keyup", "input", function () {
+            table1.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+
+        });
     });
 
-    $("#last_reg_car_table tfoot th").each(function () {
-        if($(this).text()){
-            let title1 = $(this).text();
-            if(title1){
-                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
-            }
-        }
-    });
+
 
 </script>
 

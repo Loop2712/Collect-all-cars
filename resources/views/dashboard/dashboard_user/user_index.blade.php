@@ -130,6 +130,12 @@
             }
         });
 
+        $("#user_data_table thead").on("keyup", "input", function () {
+            table1.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+
+        });
     });
 
 

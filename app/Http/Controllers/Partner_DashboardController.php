@@ -18,6 +18,7 @@ use App\Models\Check_in;
 use App\Models\Guest;
 use App\Models\Register_car;
 use App\Models\Sos_help_center;
+use App\Models\Sos_map;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Averages;
@@ -67,23 +68,25 @@ class Partner_DashboardController extends Controller
         //==================================================================================================================//
                                                         //  vii sos
         //==================================================================================================================//
-        $sos_all_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        $sos_all_data = Sos_map::where('area',$user_login->organization)
+        ->where('content','help_area')
         ->get();
 
         //หาจำนวนการขอความช่วยเหลือ
         $count_sos_all_data = count($sos_all_data);
 
         //หาระยะเวลาเฉลี่ยการขอความช่วยเหลือ
-        $average_sos_all_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-        ->where('status','=','เสร็จสิ้น')
+        $average_sos_all_data = Sos_map::where('area',$user_login->organization)
+        ->where('content','help_area')
+        ->where('help_complete','=','Yes')
         ->get();
 
         $totalDifference = 0;
         $count = 0;
 
         foreach ($average_sos_all_data as $data) {
-            $timeSosSuccess = strtotime($data->time_sos_success);
-            $timeCommand = strtotime($data->time_command);
+            $timeSosSuccess = strtotime($data->help_complete_time);
+            $timeCommand = strtotime($data->time_go_to_help);
 
             if ($timeSosSuccess !== false && $timeCommand !== false) {
                 $difference = $timeSosSuccess - $timeCommand;
@@ -102,8 +105,8 @@ class Partner_DashboardController extends Controller
         //หาเวลาที่เช็คอินมากสุด และน้อยสุด
         $sos_timeInCounts = array();
 
-        foreach ($average_sos_all_data as $index => $check_in) {
-            $timeIn = $check_in->created_at;
+        foreach ($average_sos_all_data as $index => $sos) {
+            $timeIn = $sos->created_at;
             $hour = date('H', strtotime($timeIn));
 
             if (!isset($sos_timeInCounts[$hour])) {
@@ -121,27 +124,31 @@ class Partner_DashboardController extends Controller
         $sos_minTimeCounts = array_slice($sos_minTimeCounts, 0, 2);
 
         // ข้อมูลการขอความช่วยเหลือ 10 ลำดับล่าสุด
-        $all_data_sos = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-        ->limit(10)
-        ->orderBy('id','desc')
-        ->get();
+        $all_data_sos = Sos_map::where('area',$user_login->organization)
+            ->where('content','help_area')
+            ->limit(10)
+            ->orderBy('id','desc')
+            ->get();
 
         // เวลาในการช่วยเหลือ เร็ว ที่สุด 5 อันดับ
-        $data_sos_fastest_5 = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-            ->where('status','=','เสร็จสิ้น')
+        $data_sos_fastest_5 = Sos_map::where('area',$user_login->organization)
+            ->where('content','help_area')
+            ->where('help_complete','=','Yes')
             ->limit(5)
-            ->orderByRaw('TIMESTAMPDIFF(SECOND, time_sos_success, time_command) desc')
+            ->orderByRaw('TIMESTAMPDIFF(SECOND, help_complete_time, time_go_to_help) desc')
             ->get();
 
         // เวลาในการช่วยเหลือ ช้า ที่สุด 5 อันดับ
-        $data_sos_slowest_5 = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-            ->where('status','=','เสร็จสิ้น')
+        $data_sos_slowest_5 = Sos_map::where('area',$user_login->organization)
+            ->where('content','help_area')
+            ->where('help_complete','=','Yes')
             ->limit(5)
-            ->orderByRaw('TIMESTAMPDIFF(SECOND, time_sos_success, time_command) asc')
+            ->orderByRaw('TIMESTAMPDIFF(SECOND, help_complete_time, time_go_to_help) asc')
             ->get();
 
         // คะแนนการช่วยเหลือต่อเคส มากที่สุด 5 อันดับ
-        $data_sos_score_best_5 = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        $data_sos_score_best_5 = Sos_map::where('area',$user_login->organization)
+            ->where('content','help_area')
             ->where('score_total','!=',null)
             ->limit(5)
             ->orderBy('score_total','desc')
@@ -149,9 +156,9 @@ class Partner_DashboardController extends Controller
 
         // MAP
         $sos_map_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-        ->where('lat','!=',null)
-        ->where('lng','!=',null)
-        ->get();
+            ->where('lat','!=',null)
+            ->where('lng','!=',null)
+            ->get();
 
         // การขอความช่วยเหลือในจังหวัด
         $amphoe_sos = Sos_help_center::where('sos_help_centers.address', '!=', null)
@@ -785,7 +792,9 @@ class Partner_DashboardController extends Controller
     function dashboard_viisos(Request $request){
         $user_login = Auth::user();
         // นับ sos ทั้งหมด
-        $data_sos = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")->get();
+        $data_sos = Sos_map::where('area',$user_login->organization)
+        ->where('content','help_area')
+        ->get();
 
         return view('dashboard.dashboard_viisos.viisos_show.all_sos_show', compact('data_sos') );
     }
@@ -794,9 +803,9 @@ class Partner_DashboardController extends Controller
         $user_login = Auth::user();
 
         // เวลาในการช่วยเหลือ เร็ว ที่สุด 5 อันดับ
-        $data_sos_score_time = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
-            ->where('status','=','เสร็จสิ้น')
-            ->orderByRaw('TIMESTAMPDIFF(SECOND, time_sos_success, time_command) desc')
+        $data_sos_score_time = Sos_map::where('area',$user_login->organization)
+            ->where('help_complete','=','Yes')
+            ->orderByRaw('TIMESTAMPDIFF(SECOND, help_complete_time, time_go_to_help) desc')
             ->get();
 
         return view('dashboard.dashboard_viisos.viisos_show.viisos_3_topic', compact('data_sos_score_time') );

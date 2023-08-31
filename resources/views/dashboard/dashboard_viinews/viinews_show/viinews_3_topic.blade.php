@@ -320,7 +320,7 @@
     }
 </script>
 
-<!-- check_in_table -->
+<!-- ไม่ได้เข้าพื้นที่นานที่สุด -->
 <script>
     $(document).ready(function () {
        // DataTable initialisation
@@ -331,7 +331,7 @@
             lengthChange: false,
             pageLength: 20,
             columnDefs: [
-                { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
+                // { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
                 { targets: [0], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
             ],
             order: [[1, 'desc']], // เรียงลำดับคอลัมน์ที่ 1 จากมากไปน้อย
@@ -355,19 +355,28 @@
                 $("#longest_table thead").append(footer1);
             }
         });
+
+        $("#longest_table tfoot th").each(function () {
+            if($(this).text()){
+                let title1 = $(this).text();
+                if(title1){
+                    $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
+                }
+            }
+        });
+
+        $("#longest_table thead").on("keyup", "input", function () {
+            table1.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+
+        });
     });
 
-    $("#longest_table tfoot th").each(function () {
-        if($(this).text()){
-            let title1 = $(this).text();
-            if(title1){
-                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
-            }
-        }
-    });
+
 </script>
 
-<!-- car_table -->
+<!-- เข้าพื้นที่บ่อยที่สุด -->
 <script>
     $(document).ready(function () {
        // DataTable initialisation
@@ -378,7 +387,7 @@
             lengthChange: false,
             pageLength: 20,
             columnDefs: [
-                { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
+                // { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
                 { targets: [0], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
             ],
             order: [[1, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
@@ -404,30 +413,40 @@
                 count_active_inactive();
             }
         });
+
+        $("#most_often_table tfoot th").each(function () {
+            if($(this).text()){
+                let title2 = $(this).text();
+                if(title2){
+                    $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title2 + '" />');
+                }
+            }
+        });
+
+        $("#most_often_table thead").on("keyup", "input", function () {
+            table2.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+
+        });
+
     });
 
-    $("#most_often_table tfoot th").each(function () {
-        if($(this).text()){
-            let title2 = $(this).text();
-            if(title2){
-                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title2 + '" />');
-            }
-        }
-    });
+
 </script>
 
-<!-- user_table -->
+<!-- เข้าพื้นที่ล่าสุด -->
 <script>
     $(document).ready(function () {
        // DataTable initialisation
-        let table1 = $("#lastest_table").DataTable({
+        let table3 = $("#lastest_table").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
             paging: true,
             autoWidth: true,
             lengthChange: false,
             pageLength: 20,
             columnDefs: [
-                { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
+                // { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
                 { targets: [0], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์ 9 และ 10
             ],
             order: [[1, 'asc']], // เรียงลำดับคอลัมน์ที่ 1 จากมากไปน้อย
@@ -435,7 +454,7 @@
                 {
                     text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
                     action: function () {
-                        table1.order([[1, 'asc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
+                        table3.order([[1, 'asc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
                     }
                 },
                 {
@@ -451,16 +470,25 @@
                 $("#lastest_table thead").append(footer1);
             }
         });
+
+        $("#lastest_table tfoot th").each(function () {
+            if($(this).text()){
+                let title1 = $(this).text();
+                if(title1){
+                    $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
+                }
+            }
+        });
+
+        $("#lastest_table thead").on("keyup", "input", function () {
+            table3.column($(this).parent().index())
+                .search(this.value)
+                .draw();
+
+        });
     });
 
-    $("#lastest_table tfoot th").each(function () {
-        if($(this).text()){
-            let title1 = $(this).text();
-            if(title1){
-                $(this).html('<input type="text" style="width:100%;" placeholder="🔎 ' + title1 + '" />');
-            }
-        }
-    });
+
 </script>
 
 

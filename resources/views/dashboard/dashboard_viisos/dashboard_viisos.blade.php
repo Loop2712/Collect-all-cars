@@ -148,10 +148,9 @@
                     <table class="table align-middle mb-0 ">
                         <thead>
                             <tr>
-                                <th>รหัสเคส</th>
+                                <th>สถานที่</th>
                                 <th>ชื่อผู้ขอความช่วยเหลือ</th>
-                                <th>ชื่อเจ้าหน้าที่สั่งการ</th>
-                                <th>ชื่อเจ้าหน้าที่หน่วยปฏิบัติการ</th>
+                                <th>ชื่อเจ้าหน้าที่</th>
                                 <th>ชื่อหน่วยปฏิบัติการ</th>
                                 <th>ระยะเวลาในการช่วยเหลือ</th>
                                 <th>สถานะ</th>
@@ -160,43 +159,39 @@
                         <tbody>
                             @foreach ($all_data_sos as $all_data_sos)
                             <tr>
-                                <!-- รหัสเคส -->
-                                <td>{{ $all_data_sos->operating_code ? $all_data_sos->operating_code : "--"}}</td>
-                                <!-- ชื่อผู้ขอความช่วยเหลือ -->
+                                <!-- สถานที่ -->
                                 <td>
-                                    @if( !empty($all_data_sos->name_user) )
-                                        {{ $all_data_sos->name_user }}
+                                    @if(!empty($all_data_sos->name) )
+                                        {{ $all_data_sos->name_area }}
                                     @else
-                                        @php
-                                            $command_create = App\Models\Data_1669_officer_command::where('id',$all_data_sos->command_by)->first();
-                                            $name_command_create = $command_create->name_officer_command ;
-                                        @endphp
-                                        {{ $name_command_create }} (เจ้าหน้าที่)
+                                        --
                                     @endif
                                 </td>
-                                <!-- ชื่อเจ้าหน้าที่สั่งการ -->
-                                @if (!empty($all_data_sos->command_by))
-                                    <td>{{ $all_data_sos->officers_command_by->name_officer_command ? $all_data_sos->officers_command_by->name_officer_command : "--"}}</td>
-                                @else
-                                    <td> -- </td>
-                                @endif
-                                <!-- ชื่อเจ้าหน้าที่หน่วยปฏิบัติการ -->
-                                @if (!empty($all_data_sos->helper_id))
-                                    <td> {{ $all_data_sos->operating_officer->name_officer}} </td>
+                                <!-- ชื่อผู้ขอความช่วยเหลือ -->
+                                <td>
+                                    @if( !empty($all_data_sos->name) )
+                                        {{ $all_data_sos->name }}
+                                    @else
+                                        --
+                                    @endif
+                                </td>
+                                <!-- ชื่อเจ้าหน้าที่ -->
+                                @if (!empty($all_data_sos->helper))
+                                    <td>{{ $all_data_sos->helper ? $all_data_sos->helper : "--"}}</td>
                                 @else
                                     <td> -- </td>
                                 @endif
                                 <!-- ชื่อหน่วยปฏิบัติการ -->
-                                @if (!empty($all_data_sos->operating_unit_id))
-                                    <td>{{ $all_data_sos->operating_unit->name ? $all_data_sos->operating_unit->name : "--"}}</td>
+                                @if (!empty($all_data_sos->organization_helper))
+                                    <td>{{ $all_data_sos->organization_helper ? $all_data_sos->organization_helper : "--"}}</td>
                                 @else
                                     <td> -- </td>
                                 @endif
                                 <!-- ระยะเวลาในการช่วยเหลือ -->
                                 @php
-                                    if(!empty($all_data_sos->time_sos_success)){
-                                        $all_data_sos_time_sos_success = strtotime($all_data_sos->time_sos_success);
-                                        $all_data_sos_time_command = strtotime($all_data_sos->time_command);
+                                    if(!empty($all_data_sos->help_complete_time)){
+                                        $all_data_sos_time_sos_success = strtotime($all_data_sos->help_complete_time);
+                                        $all_data_sos_time_command = strtotime($all_data_sos->time_go_to_help);
 
                                         $all_data_sos_timeDifference = abs($all_data_sos_time_sos_success - $all_data_sos_time_command);
 
@@ -219,7 +214,12 @@
                                 @endphp
                                 <td>{{ $all_data_sos_time_unit}}</td>
                                 <!-- สถานะ -->
-                                <td>{{ $all_data_sos->status ? $all_data_sos->status : "--"}}</td>
+                                @if ($all_data_sos->help_complete == "Yes")
+                                    <td class="text-success">เสร็จสิ้น</td>
+                                @else
+                                    <td class="text-danger">กำลังดำเนินการ</td>
+                                @endif
+
                             </tr>
                             @endforeach
                         </tbody>
@@ -256,9 +256,9 @@
                     @php
                         $fastest_5_user = App\User::where('id',$fastest_5->helper_id)->first();
 
-                        if(!empty($fastest_5->time_sos_success)){
-                            $sos_fastest_5_time_sos_success = strtotime($fastest_5->time_sos_success);
-                            $sos_fastest_5_time_command = strtotime($fastest_5->time_command);
+                        if(!empty($fastest_5->help_complete_time)){
+                            $sos_fastest_5_time_sos_success = strtotime($fastest_5->help_complete_time);
+                            $sos_fastest_5_time_command = strtotime($fastest_5->time_go_to_help);
 
                             $sos_fastest_5_timeDifference = abs($sos_fastest_5_time_sos_success - $sos_fastest_5_time_command);
 
@@ -294,8 +294,8 @@
                             @endif
                         </div>
                         <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">{{ $fastest_5->name_helper}}</h6>
-                            <p class="mb-0 font-weight-bold">รหัสเคส : {{ $fastest_5->operating_code}}</p>
+                            <h6 class="mb-0 font-weight-bold">{{ $fastest_5->helper}}</h6>
+                            <p class="mb-0 font-weight-bold">ชื่อหน่วย : {{ $fastest_5->organization_helper}}</p>
                         </div>
                         <p class="ms-auto mb-0 text-purple font-weight-bold font-16">{{ $sos_fastest_5_time_unit }}</p>
                     </div>
@@ -327,9 +327,9 @@
                     @php
                         $slowest_5_user = App\User::where('id',$slowest_5->helper_id)->first();
 
-                        if(!empty($slowest_5->time_sos_success)){
-                            $sos_slowest_5_time_sos_success = strtotime($slowest_5->time_sos_success);
-                            $sos_slowest_5_time_command = strtotime($slowest_5->time_command);
+                        if(!empty($slowest_5->help_complete_time)){
+                            $sos_slowest_5_time_sos_success = strtotime($slowest_5->help_complete_time);
+                            $sos_slowest_5_time_command = strtotime($slowest_5->time_go_to_help);
 
                             $sos_slowest_5_timeDifference = abs($sos_slowest_5_time_sos_success - $sos_slowest_5_time_command);
 
@@ -365,8 +365,8 @@
                             @endif
                         </div>
                         <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">{{ $slowest_5->name_helper}}</h6>
-                            <p class="mb-0 font-weight-bold">รหัสเคส : {{ $slowest_5->operating_code}}</p>
+                            <h6 class="mb-0 font-weight-bold">{{ $slowest_5->helper}}</h6>
+                            <p class="mb-0 font-weight-bold">ชื่อหน่วย : {{ $slowest_5->organization_helper}}</p>
                         </div>
                         <p class="ms-auto mb-0 text-purple font-weight-bold font-16">{{ $sos_slowest_5_time_unit }}</p>
                     </div>
@@ -412,8 +412,8 @@
                             @endif
                         </div>
                         <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">{{ $score_best_5->name_helper}}</h6>
-                            <p class="mb-0 font-weight-bold">รหัสเคส : {{ $slowest_5->operating_code}}</p>
+                            <h6 class="mb-0 font-weight-bold">{{ $score_best_5->helper}}</h6>
+                            <p class="mb-0 font-weight-bold">ชื่อหน่วย : {{ $score_best_5->organization_helper}}</p>
                         </div>
                         <p class="ms-auto mb-0 font-weight-bold font-16"><i class="bx bxs-star text-warning mr-1"></i> {{ $score_best_5->score_total}}</p>
                     </div>
