@@ -115,13 +115,18 @@ class Partner_DashboardController extends Controller
             $sos_timeInCounts[$hour]++;
 
         }
-        if (!empty($sos_timeInCounts)) {
-            $sos_maxValue = max($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-            $sos_maxTimeCounts = array_keys($sos_timeInCounts, $sos_maxValue);
+
+        $sos_nonZeroTimeInCounts = array_filter($sos_timeInCounts, function($value) {
+            return $value !== 0;
+        });
+
+        if (!empty($sos_nonZeroTimeInCounts)) {
+            $sos_maxValue = max($sos_nonZeroTimeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+            $sos_maxTimeCounts = array_keys($sos_nonZeroTimeInCounts, $sos_maxValue);
             $sos_maxTimeCounts = array_slice($sos_maxTimeCounts, 0, 2);
 
-            $sos_minValue = min($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-            $sos_minTimeCounts = array_keys($sos_timeInCounts, $sos_minValue);
+            $sos_minValue = min($sos_nonZeroTimeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+            $sos_minTimeCounts = array_keys($sos_nonZeroTimeInCounts, $sos_minValue);
             $sos_minTimeCounts = array_slice($sos_minTimeCounts, 0, 2);
         }else{
             $sos_maxTimeCounts = [];
@@ -223,13 +228,18 @@ class Partner_DashboardController extends Controller
                 $timeInCounts[$hour]++;
 
             }
-            if (!empty($sos_timeInCounts)) {
-                $maxValue = max($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-                $maxTimeCounts = array_keys($timeInCounts, $maxValue);
+
+            $nonZeroTimeInCounts = array_filter($timeInCounts, function($value) {
+                return $value !== 0;
+            });
+
+            if (!empty($nonZeroTimeInCounts)) {
+                $maxValue = max($nonZeroTimeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+                $maxTimeCounts = array_keys($nonZeroTimeInCounts, $maxValue);
                 $maxTimeCounts = array_slice($maxTimeCounts, 0, 2);
 
-                $minValue = min($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-                $minTimeCounts = array_keys($timeInCounts, $minValue);
+                $minValue = min($nonZeroTimeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+                $minTimeCounts = array_keys($nonZeroTimeInCounts, $minValue);
                 $minTimeCounts = array_slice($minTimeCounts, 0, 2);
             }else{
                 $maxTimeCounts = [];
