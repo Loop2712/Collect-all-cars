@@ -52,7 +52,7 @@
 <div id="all_dashboard" class="p-2">
     <h3 class="text-dark font-weight-bold">User</h3>
     <div id="dashboard_user" class="mb-3 bg_section1" >
-        @include ('dashboard.dashboard_user.dashboard_user')
+
     </div>
     <div style="margin: 70px 0 70px 0;">
         <hr>
@@ -84,7 +84,7 @@
 
     <h3 class="text-dark font-weight-bold">การประชาสัมพันธ์ข่าวสาร</h3>
     <div id="dashboard_boardcast" class="mb-3 bg_section1" >
-        @include ('dashboard.dashboard_boardcast.dashboard_boardcast')
+
     </div>
 </div>
 
