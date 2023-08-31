@@ -76,8 +76,9 @@ class Partner_DashboardController extends Controller
 
         //หาระยะเวลาเฉลี่ยการขอความช่วยเหลือ
         $average_sos_all_data = Sos_map::where('area',$user_login->organization)
-        ->where('content','help_area')
+        ->where('content','=','help_area')
         ->where('help_complete','=','Yes')
+        ->limit(5)
         ->get();
 
         $totalDifference = 0;
@@ -115,7 +116,7 @@ class Partner_DashboardController extends Controller
 
         }
 
-        if (!empty($timeInCounts)) {
+        if (!empty($sos_timeInCounts)) {
             $sos_maxValue = max($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
             $sos_maxTimeCounts = array_keys($sos_timeInCounts, $sos_maxValue);
             $sos_maxTimeCounts = array_slice($sos_maxTimeCounts, 0, 2);
