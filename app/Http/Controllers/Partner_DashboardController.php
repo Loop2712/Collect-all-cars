@@ -61,6 +61,7 @@ class Partner_DashboardController extends Controller
         ->select('users.location_P', DB::raw('COUNT(*) as user_location_count'))
         ->groupBy('users.location_P')
         ->orderBy('user_location_count','DESC')
+        ->limit(5)
         ->get();
 
 
