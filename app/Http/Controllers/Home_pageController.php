@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Register_car;
 use App\Models\Guest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Sos_help_center;
 use App\Models\Cancel_Profile;
 use App\User;
 use App\Models\Sos_map;
@@ -68,7 +69,9 @@ class Home_pageController extends Controller
             ->limit($count_partner_show)
             ->get();
 
-        return view('home_page.home_page', compact('count_user','count_vehicle','count_help','user_id' ,'cancel_ago','data_partner_show'));
+        $data_sos_1669 = Sos_help_center::where('status' , 'เสร็จสิ้น')->get();
+
+        return view('home_page.home_page', compact('count_user','count_vehicle','count_help','user_id' ,'cancel_ago','data_partner_show','data_sos_1669'));
     }
 
     public function check_ip()

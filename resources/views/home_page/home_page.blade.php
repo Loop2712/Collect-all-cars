@@ -383,7 +383,7 @@
               <i style="margin-top:-10px;">
                 <img width="200%" src="{{ asset('/img/stickerline/PNG/21.png') }}" alt="">
               </i>
-              <span data-purecounter-start="0" data-purecounter-end="{{ $count_help }}" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="{{ $count_help + count($data_sos_1669) }}" data-purecounter-duration="1" class="purecounter"></span>
               <p style="font-family: 'Kanit', sans-serif;"><b>ให้การช่วยเหลือ</b></p>
             </div>
           </div>
