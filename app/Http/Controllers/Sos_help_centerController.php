@@ -2433,7 +2433,7 @@ class Sos_help_centerController extends Controller
         $new_sos_by_joint['user_id'] = $data_sos_main->user_id ;
         $new_sos_by_joint['status'] = 'รอการยืนยัน' ;
         $new_sos_by_joint['create_by'] = 'joint_with - sos_id ' . $sos_1669_id;
-        $new_sos_by_joint['time_create_sos'] = date("Y-m-d h:i:s") ;
+        $new_sos_by_joint['time_create_sos'] = date("Y-m-d H:i:s") ;
         // $new_sos_by_joint['time_command'] = $data_sos_main->time_command ;
         $new_sos_by_joint['command_by'] = $command_by ;
         $new_sos_by_joint['address'] = $data_sos_main->address ;
