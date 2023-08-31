@@ -17,7 +17,6 @@
 	@foreach($photo_profile as $adsvgzd)
 		{{ $adsvgzd->id }} :: {{ $adsvgzd->name }}
 		<img src="{{ url('storage')}}/{{ $adsvgzd->photo }}" style="width: 20%;" class="m-3">
-		}
 	@endforeach
 	<br>
 	<hr>
