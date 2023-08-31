@@ -219,17 +219,13 @@ class Partner_DashboardController extends Controller
 
             }
 
-            if(!empty($timeInCounts)){
-                $maxValue = max($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-                $maxTimeCounts = array_keys($timeInCounts, $maxValue);
-                $maxTimeCounts = array_slice($maxTimeCounts, 0, 2);
-            }
+            $maxValue = max($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+            $maxTimeCounts = array_keys($timeInCounts, $maxValue);
+            $maxTimeCounts = array_slice($maxTimeCounts, 0, 2);
 
-            if(!empty($timeInCounts)){
-                $minValue = min($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-                $minTimeCounts = array_keys($timeInCounts, $minValue);
-                $minTimeCounts = array_slice($minTimeCounts, 0, 2);
-            }
+            $minValue = min($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+            $minTimeCounts = array_keys($timeInCounts, $minValue);
+            $minTimeCounts = array_slice($minTimeCounts, 0, 2);
 
            // หาวันที่เช็คอินมากสุด และน้อยสุด
             $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
