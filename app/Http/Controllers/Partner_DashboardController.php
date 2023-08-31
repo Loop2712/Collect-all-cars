@@ -61,8 +61,8 @@ class Partner_DashboardController extends Controller
         ->select('users.location_P', DB::raw('COUNT(*) as user_location_count'))
         ->groupBy('users.location_P')
         ->orderBy('user_location_count','DESC')
-        ->limit(5)
         ->get();
+
 
 
         //==================================================================================================================//
@@ -77,9 +77,8 @@ class Partner_DashboardController extends Controller
 
         //หาระยะเวลาเฉลี่ยการขอความช่วยเหลือ
         $average_sos_all_data = Sos_map::where('area',$user_login->organization)
-        ->where('content','=','help_area')
+        ->where('content','help_area')
         ->where('help_complete','=','Yes')
-        ->limit(5)
         ->get();
 
         $totalDifference = 0;
@@ -116,21 +115,13 @@ class Partner_DashboardController extends Controller
             $sos_timeInCounts[$hour]++;
 
         }
+        $sos_maxValue = max($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+        $sos_maxTimeCounts = array_keys($sos_timeInCounts, $sos_maxValue);
+        $sos_maxTimeCounts = array_slice($sos_maxTimeCounts, 0, 2);
 
-        if (!empty($sos_timeInCounts)) {
-            $sos_maxValue = max($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-            $sos_maxTimeCounts = array_keys($sos_timeInCounts, $sos_maxValue);
-            $sos_maxTimeCounts = array_slice($sos_maxTimeCounts, 0, 2);
-
-            $sos_minValue = min($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-            $sos_minTimeCounts = array_keys($sos_timeInCounts, $sos_minValue);
-            $sos_minTimeCounts = array_slice($sos_minTimeCounts, 0, 2);
-        }else{
-            // Handle the case when $timeInCounts is empty
-            $sos_maxTimeCounts = [];
-            $sos_minTimeCounts = [];
-        }
-
+        $sos_minValue = min($sos_timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+        $sos_minTimeCounts = array_keys($sos_timeInCounts, $sos_minValue);
+        $sos_minTimeCounts = array_slice($sos_minTimeCounts, 0, 2);
 
         // ข้อมูลการขอความช่วยเหลือ 10 ลำดับล่าสุด
         $all_data_sos = Sos_map::where('area',$user_login->organization)
@@ -224,20 +215,13 @@ class Partner_DashboardController extends Controller
                 $timeInCounts[$hour]++;
 
             }
+            $maxValue = max($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+            $maxTimeCounts = array_keys($timeInCounts, $maxValue);
+            $maxTimeCounts = array_slice($maxTimeCounts, 0, 2);
 
-            if (!empty($timeInCounts)) {
-                $maxValue = max($timeInCounts);
-                $maxTimeCounts = array_keys($timeInCounts, $maxValue);
-                $maxTimeCounts = array_slice($maxTimeCounts, 0, 2);
-
-                $minValue = min($timeInCounts);
-                $minTimeCounts = array_keys($timeInCounts, $minValue);
-                $minTimeCounts = array_slice($minTimeCounts, 0, 2);
-            } else {
-                // Handle the case when $timeInCounts is empty
-                $maxTimeCounts = [];
-                $minTimeCounts = [];
-            }
+            $minValue = min($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+            $minTimeCounts = array_keys($timeInCounts, $minValue);
+            $minTimeCounts = array_slice($minTimeCounts, 0, 2);
 
            // หาวันที่เช็คอินมากสุด และน้อยสุด
             $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
