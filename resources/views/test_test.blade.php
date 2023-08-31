@@ -4,7 +4,7 @@
 @section('content')
 	
 	@php
-		$data_sos = Sos_help_center::where('photo_succeed', "!=" , null)->get();
+		$data_sos = App\Models\Sos_help_center::where('photo_succeed', "!=" , null)->get();
 	@endphp
 
 	@foreach
