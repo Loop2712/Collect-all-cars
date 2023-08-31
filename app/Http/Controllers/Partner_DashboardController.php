@@ -158,11 +158,13 @@ class Partner_DashboardController extends Controller
         $sos_map_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
             ->where('lat','!=',null)
             ->where('lng','!=',null)
+            ->limit(10)
             ->get();
 
         // การขอความช่วยเหลือในจังหวัด
         $amphoe_sos = Sos_help_center::where('sos_help_centers.address', '!=', null)
             ->where('sos_help_centers.notify', 'LIKE', "%$user_login->sub_organization%")
+            ->limit(10)
             ->get('sos_help_centers.address');
 
         $decoded_districts = [];
