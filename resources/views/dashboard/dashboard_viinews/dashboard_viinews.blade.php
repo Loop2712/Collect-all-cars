@@ -69,7 +69,36 @@
                     <h6 class="text-center">ข้อมูลตั้งแต่วันที่ {{ $date_delete_15_thai}} - {{$date_now_thai}}</h6>
                 </div>
                 <div class="row p-3 mb-3 ">
-
+                    <div class="col-12 col-lg-2">
+                        <div class="card radius-10 border shadow-none">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0 text-secondary">จำนวนการเข้าพื้นที่</p>
+                                        <h4 class="mb-0">{{ $count_check_in_at_area }} คน</h4>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <img width="55px" src="{{ asset("/img/stickerline/PNG/37.2.png") }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-2">
+                        <div class="card radius-10 border shadow-none">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0 text-secondary">คนที่เกิดเดือนนี้</p>
+                                        <h4 class="mb-0">{{ $count_hbd }} คน</h4>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <img width="55px" src="{{ asset("/img/stickerline/PNG/48.png") }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-12 col-lg-4">
                         <div class="card radius-10 border shadow-none">
                             <div class="card-body">
