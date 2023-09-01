@@ -46,7 +46,7 @@
                                         $sos_time_unit = $averageDifference . ' วินาที';
                                     }
                                 }else{
-                                    $sos_time_unit  = "--";
+                                    $sos_time_unit  = "0 วินาที";
                                 }
                             @endphp
 
@@ -194,17 +194,25 @@
                                         $all_data_sos_time_command = strtotime($all_data_sos->time_go_to_help);
 
                                         $all_data_sos_timeDifference = abs($all_data_sos_time_sos_success - $all_data_sos_time_command);
+                                        if ($all_data_sos_timeDifference >= 86400) { // ถ้าเกิน 1 วัน (86400 วินาที)
+                                            $all_data_sos_days = floor($all_data_sos_timeDifference / 86400);
+                                            $all_data_sos_remainingHours = floor(($all_data_sos_timeDifference % 86400) / 3600);
 
-                                        if ($all_data_sos_timeDifference >= 3600) {
+                                            $all_data_sos_time_unit = $all_data_sos_days . ' วัน ' . $all_data_sos_remainingHours . ' ชั่วโมง ';
+
+                                        }elseif ($all_data_sos_timeDifference >= 3600) {
                                             $all_data_sos_hours = floor($all_data_sos_timeDifference / 3600);
                                             $all_data_sos_remainingMinutes = floor(($all_data_sos_timeDifference % 3600) / 60);
                                             $all_data_sos_remainingSeconds = $all_data_sos_timeDifference % 60;
 
                                             $all_data_sos_time_unit = $all_data_sos_hours . ' ชั่วโมง ' . $all_data_sos_remainingMinutes . ' นาที ' . $all_data_sos_remainingSeconds . ' วินาที';
+
                                         } elseif ($all_data_sos_timeDifference >= 60) {
                                             $all_data_sos_minutes = floor($all_data_sos_timeDifference / 60);
                                             $all_data_sos_seconds = $all_data_sos_timeDifference % 60;
+
                                             $all_data_sos_time_unit = $all_data_sos_minutes . ' นาที ' . $all_data_sos_seconds . ' วินาที';
+
                                         } else {
                                             $all_data_sos_time_unit = $all_data_sos_timeDifference . ' วินาที';
                                         }
@@ -254,15 +262,25 @@
                 @foreach ($data_sos_fastest_5 as $fastest_5)
 
                     @php
-                        $fastest_5_user = App\User::where('id',$fastest_5->helper_id)->first();
+                        if(!empty($fastest_5->helper_id)){
+                            $fastest_5_user = App\User::where('id',$fastest_5->helper_id)->first();
+                        }else{
+                            $fastest_5_user = "no_helper_id";
+                        }
+
 
                         if(!empty($fastest_5->help_complete_time)){
                             $sos_fastest_5_time_sos_success = strtotime($fastest_5->help_complete_time);
                             $sos_fastest_5_time_command = strtotime($fastest_5->time_go_to_help);
 
                             $sos_fastest_5_timeDifference = abs($sos_fastest_5_time_sos_success - $sos_fastest_5_time_command);
+                            if ($sos_fastest_5_timeDifference >= 86400) { // ถ้าเกิน 1 วัน (86400 วินาที)
+                                $sos_fastest_5_days = floor($sos_fastest_5_timeDifference / 86400);
+                                $sos_fastest_5_hours = floor(($sos_fastest_5_timeDifference % 86400) / 3600);
 
-                            if ($sos_fastest_5_timeDifference >= 3600) {
+                                $sos_fastest_5_time_unit = $sos_fastest_5_days . ' วัน ' . $sos_fastest_5_hours . ' ชั่วโมง ';
+
+                            }elseif ($sos_fastest_5_timeDifference >= 3600) {
                                 $sos_fastest_5_hours = floor($sos_fastest_5_timeDifference / 3600);
                                 $sos_fastest_5_remainingMinutes = floor(($sos_fastest_5_timeDifference % 3600) / 60);
                                 $sos_fastest_5_remainingSeconds = $sos_fastest_5_timeDifference % 60;
@@ -283,6 +301,9 @@
 
                     <div class="d-flex align-items-center">
                         <div class="product-img">
+                            @if ($fastest_5_user == "no_helper_id")
+                                <img src="{{ asset('/Medilab/img/icon.png') }}">
+                            @endif
                             @if(!empty($fastest_5_user->avatar) && empty($fastest_5_user->photo))
                                 <img src="{{ $fastest_5_user->avatar }}">
                             @endif
@@ -325,15 +346,25 @@
                 @foreach ($data_sos_slowest_5 as $slowest_5)
 
                     @php
-                        $slowest_5_user = App\User::where('id',$slowest_5->helper_id)->first();
+                        if(!empty($slowest_5->helper_id)){
+                            $slowest_5_user = App\User::where('id',$slowest_5->helper_id)->first();
+                        }else{
+                            $slowest_5_user = "no_helper_id";
+                        }
+
 
                         if(!empty($slowest_5->help_complete_time)){
                             $sos_slowest_5_time_sos_success = strtotime($slowest_5->help_complete_time);
                             $sos_slowest_5_time_command = strtotime($slowest_5->time_go_to_help);
 
                             $sos_slowest_5_timeDifference = abs($sos_slowest_5_time_sos_success - $sos_slowest_5_time_command);
+                            if ($sos_slowest_5_timeDifference >= 86400) { // ถ้าเกิน 1 วัน (86400 วินาที)
+                                $sos_slowest_5_days = floor($sos_slowest_5_timeDifference / 86400);
+                                $sos_slowest_5_hours = floor(($sos_slowest_5_timeDifference % 86400) / 3600);
 
-                            if ($sos_slowest_5_timeDifference >= 3600) {
+                                $sos_slowest_5_time_unit = $sos_slowest_5_days . ' วัน ' . $sos_slowest_5_hours . ' ชั่วโมง ';
+
+                            }elseif ($sos_slowest_5_timeDifference >= 3600) {
                                 $sos_slowest_5_hours = floor($sos_slowest_5_timeDifference / 3600);
                                 $sos_slowest_5_remainingMinutes = floor(($sos_slowest_5_timeDifference % 3600) / 60);
                                 $sos_slowest_5_remainingSeconds = $sos_slowest_5_timeDifference % 60;
@@ -354,6 +385,9 @@
 
                     <div class="d-flex align-items-center">
                         <div class="product-img">
+                            @if ($slowest_5_user == "no_helper_id")
+                                <img src="{{ asset('/Medilab/img/icon.png') }}">
+                            @endif
                             @if(!empty($slowest_5_user->avatar) && empty($slowest_5_user->photo))
                                 <img src="{{ $slowest_5_user->avatar }}">
                             @endif
@@ -396,11 +430,18 @@
                 @foreach ($data_sos_score_best_5 as $score_best_5)
 
                 @php
-                    $score_best_5_user = App\User::where('id',$score_best_5->helper_id)->first();
+                    if(!empty($score_best_5->helper_id)){
+                        $score_best_5_user = App\User::where('id',$score_best_5->helper_id)->first();
+                    }else{
+                        $score_best_5_user = "no_helper_id";
+                    }
                 @endphp
 
                     <div class="d-flex align-items-center">
                         <div class="product-img">
+                            @if ($score_best_5_user == "no_helper_id")
+                                <img src="{{ asset('/Medilab/img/icon.png') }}">
+                            @endif
                             @if(!empty($score_best_5_user->avatar) && empty($score_best_5_user->photo))
                                 <img src="{{ $score_best_5_user->avatar }}">
                             @endif

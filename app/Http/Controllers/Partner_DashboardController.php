@@ -107,7 +107,7 @@ class Partner_DashboardController extends Controller
             $averageDifference = $totalDifference / $count;
 
         } else {
-            $averageDifference = "--";
+            $averageDifference = "0";
         }
 
         //หาเวลาที่เช็คอินมากสุด และน้อยสุด
