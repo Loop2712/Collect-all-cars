@@ -84,7 +84,21 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="col-12 col-lg-2">
+                        <div class="card radius-10 border shadow-none">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0 text-secondary">คนที่เกิดเดือนนี้</p>
+                                        <h4 class="mb-0">{{ $count_hbd }} คน</h4>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <img width="55px" src="{{ asset("/img/stickerline/PNG/48.png") }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-12 col-lg-4">
                         <div class="card radius-10 border shadow-none">
                             <div class="card-body">
