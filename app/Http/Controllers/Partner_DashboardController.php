@@ -214,6 +214,7 @@ class Partner_DashboardController extends Controller
 
         //Check in
         $check_in_data = Partner::where('name' ,'=', $user_login->organization)
+        ->where('name_area' ,'=', null)
         ->get();
 
         $check_in_data_arr = array();
@@ -1216,8 +1217,8 @@ class Partner_DashboardController extends Controller
             $count_hbd = 0;
             $encounteredIds = array();
 
-            for ($i=0; $i < count($check_ins_finder); $i++) {
-                $finder_hbd = User::where('id',$check_ins_finder[$i]['user_id'])->first();
+            for ($isus=0; $isus < count($check_ins_finder); $isus++) {
+                $finder_hbd = User::where('id',$check_ins_finder[$isus]['user_id'])->first();
 
                 $userId = $finder_hbd->id;
                 if (in_array($userId, $encounteredIds)) {
