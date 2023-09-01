@@ -61,24 +61,15 @@
                             <th>เวลาช่วยเหลือเสร็จสิ้น</th>
                             <th>รวมเวลาในการช่วยเหลือ</th>
 
-                            <th>photo</th>
-                            <th>CountryCode</th>
+                            <th>คะแนนความประทับใจ</th>
+                            <th>คะแนนระยะเวลา</th>
+                            <th>คะแนนรวม</th>
+                            <th>คำแนะนำ/ติชม</th>
 
-                            <th>score_impression</th>
-                            <th>score_period</th>
-                            <th>score_total</th>
-                            <th>comment_help</th>
+                            <th>หมายเหตุจากเจ้าหน้าที่</th>
 
-                            <th>notify</th>
-                            <th>condo_id</th>
-
-                            <th>photo_succeed</th>
-                            <th>photo_succeed_by</th>
-                            <th>remark</th>
-
-                            <th>nationalities_id</th>
-                            <th>title_sos</th>
-                            <th>title_sos_other</th>
+                            <!-- <th>title_sos</th> -->
+                            <!-- <th>title_sos_other</th> -->
                         </tr>
                     </thead>
                     <tbody id="data_command_user_tbody">
@@ -134,24 +125,15 @@
                             @endphp
                             <td>{{ $s_time_unit }}</td>
 
-                            <td>{{ $item_sos->photo ? $item_sos->photo : "--" }}</td>
-                            <td>{{ $item_sos->CountryCode ? $item_sos->CountryCode : "--" }}</td>
-
                             <td>{{ $item_sos->score_impression ? $item_sos->score_impression : "--" }}</td>
                             <td>{{ $item_sos->score_period ? $item_sos->score_period : "--" }}</td>
                             <td>{{ $item_sos->score_total ? $item_sos->score_total : "--" }}</td>
                             <td>{{ $item_sos->comment_help ? $item_sos->comment_help : "--" }}</td>
 
-                            <td>{{ $item_sos->notify ? $item_sos->notify : "--" }}</td>
-                            <td>{{ $item_sos->condo_id ? $item_sos->condo_id : "--" }}</td>
-
-                            <td>{{ $item_sos->photo_succeed ? $item_sos->photo_succeed : "--" }}</td>
-                            <td>{{ $item_sos->photo_succeed_by ? $item_sos->photo_succeed_by : "--" }}</td>
                             <td>{{ $item_sos->remark ? $item_sos->remark : "--" }}</td>
 
-                            <td>{{ $item_sos->nationalities_id ? $item_sos->nationalities_id : "--" }}</td>
-                            <td>{{ $item_sos->title_sos ? $item_sos->title_sos : "--" }}</td>
-                            <td>{{ $item_sos->title_sos_other ? $item_sos->title_sos_other : "--" }}</td>
+                            <!-- <td>{{ $item_sos->title_sos ? $item_sos->title_sos : "--" }}</td>
+                            <td>{{ $item_sos->title_sos_other ? $item_sos->title_sos_other : "--" }}</td> -->
                         </tr>
                         @endforeach
                     </tbody>
@@ -167,26 +149,18 @@
                             <th>ชื่อหน่วยปฏบัติการ</th>
                             <th>เจ้าหน้าที่หน่วยปฏิบัติการ</th>
                             <th>เวลาออกไปช่วยเหลือ</th>
+                            <th>เวลาช่วยเหลือเสร็จสิ้น</th>
                             <th>รวมเวลาในการช่วยเหลือ</th>
 
-                            <th>photo</th>
-                            <th>CountryCode</th>
+                            <th>คะแนนความประทับใจ</th>
+                            <th>คะแนนระยะเวลา</th>
+                            <th>คะแนนรวม</th>
+                            <th>คำแนะนำ/ติชม</th>
 
-                            <th>score_impression</th>
-                            <th>score_period</th>
-                            <th>score_total</th>
-                            <th>comment_help</th>
+                            <th>หมายเหตุจากเจ้าหน้าที่</th>
 
-                            <th>notify</th>
-                            <th>condo_id</th>
-
-                            <th>photo_succeed</th>
-                            <th>photo_succeed_by</th>
-                            <th>remark</th>
-
-                            <th>nationalities_id</th>
-                            <th>title_sos</th>
-                            <th>title_sos_other</th>
+                            <!-- <th>title_sos</th> -->
+                            <!-- <th>title_sos_other</th> -->
                         </tr>
                     </tfoot>
 
