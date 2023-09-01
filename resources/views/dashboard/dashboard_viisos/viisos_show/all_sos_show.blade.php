@@ -79,7 +79,7 @@
                             @else
                                 <td class="text-danger">กำลังดำเนินการ</td>
                             @endif
-                            <td>{{ thaidate("j F Y" , strtotime($item_sos->created_at)) ? thaidate("j F Y" , strtotime($item_sos->created_at)) : "--" }}</td>
+                            <td>{{ thaidate("j F Y / H:i" , strtotime($item_sos->created_at)) ? thaidate("j F Y / H:i" , strtotime($item_sos->created_at)) : "--" }}</td>
                             <td>{{ $item_sos->lat ? $item_sos->lat : "--" }}</td>
                             <td>{{ $item_sos->lng ? $item_sos->lng : "--" }}</td>
                             <td>{{ $item_sos->name_area ? $item_sos->name_area : "--" }}</td>
