@@ -218,7 +218,7 @@ class Partner_DashboardController extends Controller
         ->get();
 
         $check_in_data_arr = array();
-
+        $count_hbd = 0;
         for ($i=0; $i < count($check_in_data); $i++) {
             $check_ins_finder = Check_in::where('partner_id',$check_in_data[$i]['id'])->get();
 
@@ -286,7 +286,7 @@ class Partner_DashboardController extends Controller
 
             // นับคนที่เกิดเดือนนี้
             $currentMonth = date('m');
-            $count_hbd = 0;
+
             $encounteredIds = array();
 
             // ddd($check_ins_finder);
