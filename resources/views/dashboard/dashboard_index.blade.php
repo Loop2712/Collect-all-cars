@@ -60,7 +60,7 @@
 
     <h3 class="text-dark font-weight-bold">ViiSOS</h3>
     <div id="dashboard_viisos" class="mb-3 bg_section1" >
-
+        @include ('dashboard.dashboard_viisos.dashboard_viisos')
     </div>
     <div style="margin: 70px 0 70px 0;">
         <hr>

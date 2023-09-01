@@ -76,136 +76,136 @@ class Partner_DashboardController extends Controller
         //==================================================================================================================//
                                                         //  vii sos
         //==================================================================================================================//
-        // $sos_all_data = Sos_map::where('area',$user_login->organization)
-        // ->where('content','help_area')
-        // ->get();
+        $sos_all_data = Sos_map::where('area',$user_login->organization)
+        ->where('content','help_area')
+        ->get();
 
-        // //หาจำนวนการขอความช่วยเหลือ
-        // $count_sos_all_data = count($sos_all_data);
+        //หาจำนวนการขอความช่วยเหลือ
+        $count_sos_all_data = count($sos_all_data);
 
-        // //หาระยะเวลาเฉลี่ยการขอความช่วยเหลือ
-        // $average_sos_all_data = Sos_map::where('area',$user_login->organization)
-        // ->where('content','help_area')
-        // ->where('help_complete','=','Yes')
-        // ->get();
+        //หาระยะเวลาเฉลี่ยการขอความช่วยเหลือ
+        $average_sos_all_data = Sos_map::where('area',$user_login->organization)
+        ->where('content','help_area')
+        ->where('help_complete','=','Yes')
+        ->get();
 
-        // $totalDifference = 0;
-        // $count = 0;
+        $totalDifference = 0;
+        $count = 0;
 
-        // foreach ($average_sos_all_data as $data) {
-        //     $timeSosSuccess = strtotime($data->help_complete_time);
-        //     $timeCommand = strtotime($data->time_go_to_help);
+        foreach ($average_sos_all_data as $data) {
+            $timeSosSuccess = strtotime($data->help_complete_time);
+            $timeCommand = strtotime($data->time_go_to_help);
 
-        //     if ($timeSosSuccess !== false && $timeCommand !== false) {
-        //         $difference = $timeSosSuccess - $timeCommand;
-        //         $totalDifference += $difference;
-        //         $count++;
-        //     }
-        // }
+            if ($timeSosSuccess !== false && $timeCommand !== false) {
+                $difference = $timeSosSuccess - $timeCommand;
+                $totalDifference += $difference;
+                $count++;
+            }
+        }
 
-        // if ($count > 0) {
-        //     $averageDifference = $totalDifference / $count;
+        if ($count > 0) {
+            $averageDifference = $totalDifference / $count;
 
-        // } else {
-        //     $averageDifference = "--";
-        // }
+        } else {
+            $averageDifference = "--";
+        }
 
-        // //หาเวลาที่เช็คอินมากสุด และน้อยสุด
-        // $sos_timeInCounts = array();
+        //หาเวลาที่เช็คอินมากสุด และน้อยสุด
+        $sos_timeInCounts = array();
 
-        // foreach ($average_sos_all_data as $index => $sos) {
-        //     $timeIn = $sos->created_at;
-        //     $hour = date('H', strtotime($timeIn));
+        foreach ($average_sos_all_data as $index => $sos) {
+            $timeIn = $sos->created_at;
+            $hour = date('H', strtotime($timeIn));
 
-        //     if (!isset($sos_timeInCounts[$hour])) {
-        //         $sos_timeInCounts[$hour] = 0;
-        //     }
-        //     $sos_timeInCounts[$hour]++;
+            if (!isset($sos_timeInCounts[$hour])) {
+                $sos_timeInCounts[$hour] = 0;
+            }
+            $sos_timeInCounts[$hour]++;
 
-        // }
+        }
 
-        // $sos_nonZeroTimeInCounts = array_filter($sos_timeInCounts, function($value) {
-        //     return $value !== 0;
-        // });
+        $sos_nonZeroTimeInCounts = array_filter($sos_timeInCounts, function($value) {
+            return $value !== 0;
+        });
 
-        // if (!empty($sos_nonZeroTimeInCounts)) {
-        //     $sos_maxValue = max($sos_nonZeroTimeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-        //     $sos_maxTimeCounts = array_keys($sos_nonZeroTimeInCounts, $sos_maxValue);
-        //     $sos_maxTimeCounts = array_slice($sos_maxTimeCounts, 0, 2);
+        if (!empty($sos_nonZeroTimeInCounts)) {
+            $sos_maxValue = max($sos_nonZeroTimeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+            $sos_maxTimeCounts = array_keys($sos_nonZeroTimeInCounts, $sos_maxValue);
+            $sos_maxTimeCounts = array_slice($sos_maxTimeCounts, 0, 2);
 
-        //     $sos_minValue = min($sos_nonZeroTimeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-        //     $sos_minTimeCounts = array_keys($sos_nonZeroTimeInCounts, $sos_minValue);
-        //     $sos_minTimeCounts = array_slice($sos_minTimeCounts, 0, 2);
-        // }else{
-        //     $sos_maxTimeCounts = [];
-        //     $sos_minTimeCounts = [];
-        // }
+            $sos_minValue = min($sos_nonZeroTimeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+            $sos_minTimeCounts = array_keys($sos_nonZeroTimeInCounts, $sos_minValue);
+            $sos_minTimeCounts = array_slice($sos_minTimeCounts, 0, 2);
+        }else{
+            $sos_maxTimeCounts = [];
+            $sos_minTimeCounts = [];
+        }
 
 
-        // // ข้อมูลการขอความช่วยเหลือ 10 ลำดับล่าสุด
-        // $all_data_sos = Sos_map::where('area',$user_login->organization)
-        //     ->where('content','help_area')
-        //     ->limit(10)
-        //     ->orderBy('id','desc')
-        //     ->get();
+        // ข้อมูลการขอความช่วยเหลือ 10 ลำดับล่าสุด
+        $all_data_sos = Sos_map::where('area',$user_login->organization)
+            ->where('content','help_area')
+            ->limit(10)
+            ->orderBy('id','desc')
+            ->get();
 
-        // // เวลาในการช่วยเหลือ เร็ว ที่สุด 5 อันดับ
-        // $data_sos_fastest_5 = Sos_map::where('area',$user_login->organization)
-        //     ->where('content','help_area')
-        //     ->where('help_complete','=','Yes')
-        //     ->limit(5)
-        //     ->orderByRaw('TIMESTAMPDIFF(SECOND, help_complete_time, time_go_to_help) desc')
-        //     ->get();
+        // เวลาในการช่วยเหลือ เร็ว ที่สุด 5 อันดับ
+        $data_sos_fastest_5 = Sos_map::where('area',$user_login->organization)
+            ->where('content','help_area')
+            ->where('help_complete','=','Yes')
+            ->limit(5)
+            ->orderByRaw('TIMESTAMPDIFF(SECOND, help_complete_time, time_go_to_help) desc')
+            ->get();
 
-        // // เวลาในการช่วยเหลือ ช้า ที่สุด 5 อันดับ
-        // $data_sos_slowest_5 = Sos_map::where('area',$user_login->organization)
-        //     ->where('content','help_area')
-        //     ->where('help_complete','=','Yes')
-        //     ->limit(5)
-        //     ->orderByRaw('TIMESTAMPDIFF(SECOND, help_complete_time, time_go_to_help) asc')
-        //     ->get();
+        // เวลาในการช่วยเหลือ ช้า ที่สุด 5 อันดับ
+        $data_sos_slowest_5 = Sos_map::where('area',$user_login->organization)
+            ->where('content','help_area')
+            ->where('help_complete','=','Yes')
+            ->limit(5)
+            ->orderByRaw('TIMESTAMPDIFF(SECOND, help_complete_time, time_go_to_help) asc')
+            ->get();
 
-        // // คะแนนการช่วยเหลือต่อเคส มากที่สุด 5 อันดับ
-        // $data_sos_score_best_5 = Sos_map::where('area',$user_login->organization)
-        //     ->where('content','help_area')
-        //     ->where('score_total','!=',null)
-        //     ->limit(5)
-        //     ->orderBy('score_total','desc')
-        //     ->get();
+        // คะแนนการช่วยเหลือต่อเคส มากที่สุด 5 อันดับ
+        $data_sos_score_best_5 = Sos_map::where('area',$user_login->organization)
+            ->where('content','help_area')
+            ->where('score_total','!=',null)
+            ->limit(5)
+            ->orderBy('score_total','desc')
+            ->get();
 
-        // // MAP
-        // $sos_map_data = Sos_map::where('area',$user_login->organization)
-        //     ->where('lat','!=',null)
-        //     ->where('lng','!=',null)
-        //     ->get();
+        // MAP
+        $sos_map_data = Sos_map::where('area',$user_login->organization)
+            ->where('lat','!=',null)
+            ->where('lng','!=',null)
+            ->get();
 
-        // // การขอความช่วยเหลือในจังหวัด
-        // $area_sos = Sos_map::where('area',$user_login->organization)
-        //     ->where('name_area', '!=', null)
-        //     ->get('name_area');
+        // การขอความช่วยเหลือในจังหวัด
+        $area_sos = Sos_map::where('area',$user_login->organization)
+            ->where('name_area', '!=', null)
+            ->get('name_area');
 
-        // $decoded_area = [];
+        $decoded_area = [];
 
-        // foreach ($area_sos as $item) {
-        //     $decoded = json_decode('"' . $item->name_area . '"'); // แปลง Unicode เป็นภาษาไทย
+        foreach ($area_sos as $item) {
+            $decoded = json_decode('"' . $item->name_area . '"'); // แปลง Unicode เป็นภาษาไทย
 
-        //     if (isset($decoded)) {
-        //         $decoded_area[] = $decoded;
-        //     }
-        // }
+            if (isset($decoded)) {
+                $decoded_area[] = $decoded;
+            }
+        }
 
-        // $districtCounts = collect($decoded_area)->countBy();
+        $districtCounts = collect($decoded_area)->countBy();
 
-        // // หา district ที่มากที่สุด
-        // $mostCommonDistrict = $districtCounts->sortDesc()->keys()->first();
-        // $countMostCommonDistrict = $districtCounts->sortDesc()->first();
+        // หา district ที่มากที่สุด
+        $mostCommonDistrict = $districtCounts->sortDesc()->keys()->first();
+        $countMostCommonDistrict = $districtCounts->sortDesc()->first();
 
-        // // ลบ district ที่มากที่สุดออกจาก districtCounts
-        // $districtCountsWithoutMostCommon = $districtCounts->except([$mostCommonDistrict]);
+        // ลบ district ที่มากที่สุดออกจาก districtCounts
+        $districtCountsWithoutMostCommon = $districtCounts->except([$mostCommonDistrict]);
 
-        // $orderedDistricts = $districtCountsWithoutMostCommon->sortByDesc(function ($count, $district) {
-        //     return $count;
-        // });
+        $orderedDistricts = $districtCountsWithoutMostCommon->sortByDesc(function ($count, $district) {
+            return $count;
+        });
 
 
         //==================================================================================================================//
@@ -764,18 +764,18 @@ class Partner_DashboardController extends Controller
             // 'resultArray',
             // 'timeArray',
             // 'check_in_chart_arr',
-            // 'data_sos_fastest_5',
-            // 'data_sos_slowest_5',
-            // 'data_sos_score_best_5',
-            // 'all_data_sos',
-            // 'mostCommonDistrict',
-            // 'orderedDistricts',
-            // 'countMostCommonDistrict',
-            // 'sos_map_data',
-            // 'count_sos_all_data',
-            // 'averageDifference',
-            // 'sos_maxTimeCounts',
-            // 'sos_minTimeCounts'
+            'data_sos_fastest_5',
+            'data_sos_slowest_5',
+            'data_sos_score_best_5',
+            'all_data_sos',
+            'mostCommonDistrict',
+            'orderedDistricts',
+            'countMostCommonDistrict',
+            'sos_map_data',
+            'count_sos_all_data',
+            'averageDifference',
+            'sos_maxTimeCounts',
+            'sos_minTimeCounts'
         ));
 
     }
