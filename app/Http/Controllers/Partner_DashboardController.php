@@ -290,13 +290,13 @@ class Partner_DashboardController extends Controller
 
             // ddd($check_ins_finder);
 
-            for ($i=0; $i < count($check_ins_finder); $i++) {
+            for ($isus=0; $isus < count($check_ins_finder); $isus++) {
 
-                $userId = $check_ins_finder[$i]['user_id'];
+                $userId = $check_ins_finder[$isus]['user_id'];
                 if (in_array($userId, $encounteredIds)) {
                     continue; // ถ้าเจอ id ที่ถูกนับแล้ว ข้ามไปเช็คคนถัดไป
                 }
-                $finder_hbd = User::where('id',$check_ins_finder[$i]['user_id'])->first('brith');
+                $finder_hbd = User::where('id',$check_ins_finder[$isus]['user_id'])->first('brith');
                 $birthDate = $finder_hbd;
                 $birthMonth = date('m', strtotime($birthDate));
 
@@ -305,7 +305,6 @@ class Partner_DashboardController extends Controller
                     $encounteredIds[] = $userId; // เพิ่ม id เข้าไปในอาร์เรย์เพื่อไม่นับซ้ำ
                 }
             }
-
 
             // // จำนวนการเข้าพื้นที่
             $count_check_in_at_area = count($check_ins_finder);
