@@ -288,21 +288,21 @@ class Partner_DashboardController extends Controller
             $count_hbd = 0;
             $encounteredIds = array();
 
-            // for ($i=0; $i < count($check_ins_finder); $i++) {
-            //     // $finder_hbd = User::where('id',$check_ins_finder[$i]['user_id'])->first();
-            //     $userId = $check_ins_finder[$i]['user_id'];
-            //     if (in_array($userId, $encounteredIds)) {
-            //         continue; // ถ้าเจอ id ที่ถูกนับแล้ว ข้ามไปเช็คคนถัดไป
-            //     }
-            //     $finder_hbd = User::where('id',$check_ins_finder[$i]['user_id'])->first('brith');
-            //     $birthDate = $finder_hbd;
-            //     $birthMonth = date('m', strtotime($birthDate));
+            for ($i=0; $i < count($check_ins_finder); $i++) {
 
-            //     if($birthMonth == $currentMonth){
-            //         $count_hbd++;
-            //         $encounteredIds[] = $userId; // เพิ่ม id เข้าไปในอาร์เรย์เพื่อไม่นับซ้ำ
-            //     }
-            // }
+                // $userId = $check_ins_finder[$i]['user_id'];
+                // if (in_array($userId, $encounteredIds)) {
+                //     continue; // ถ้าเจอ id ที่ถูกนับแล้ว ข้ามไปเช็คคนถัดไป
+                // }
+                // $finder_hbd = User::where('id',$check_ins_finder[$i]['user_id'])->first('brith');
+                // $birthDate = $finder_hbd;
+                // $birthMonth = date('m', strtotime($birthDate));
+
+                // if($birthMonth == $currentMonth){
+                //     $count_hbd++;
+                //     $encounteredIds[] = $userId; // เพิ่ม id เข้าไปในอาร์เรย์เพื่อไม่นับซ้ำ
+                // }
+            }
 
 
             // // จำนวนการเข้าพื้นที่
@@ -752,7 +752,7 @@ class Partner_DashboardController extends Controller
             'sorted_all_by_user_show_user',
             'all_by_user_send_round',
             'sorted_all_by_user_user_click',
-            // 'count_hbd',
+            'count_hbd',
             'count_check_in_at_area',
             'maxThaiDay',
             'minThaiDay',

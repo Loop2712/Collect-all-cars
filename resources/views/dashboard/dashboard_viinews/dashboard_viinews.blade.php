@@ -400,7 +400,7 @@
             type: 'area'
         },
         dataLabels: {
-            nabled: true
+            enabled: true,
         },
         stroke: {
             curve: 'smooth'
