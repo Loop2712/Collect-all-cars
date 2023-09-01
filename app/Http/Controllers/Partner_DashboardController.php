@@ -212,7 +212,7 @@ class Partner_DashboardController extends Controller
                                                         //  viinews
         //==================================================================================================================//
 
-        Check in
+        //Check in
         $check_in_data = Partner::where('name' ,'=', $user_login->organization)
         ->get();
 
