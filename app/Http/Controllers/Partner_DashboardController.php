@@ -22,6 +22,7 @@ use App\Models\Sos_map;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Averages;
+use SebastianBergmann\Environment\Console;
 
 class Partner_DashboardController extends Controller
 {
@@ -30,25 +31,31 @@ class Partner_DashboardController extends Controller
         $user_login = Auth::user();
 
         // เจ้าหน้าที่ในองค์กร
-        $data_officer = User::where('organization', '=', $user_login->organization)->orderBy('created_at','DESC')->get();
-
+        $data_officer_last5 = User::where('organization', '=', $user_login->organization)
+        ->orderBy('created_at','DESC')
+        ->limit(5)
+        ->get();
         // ผู้ใช้ที่มาจาก API
-        $data_user_from = User::where('user_from','LIKE',"%มีเงิน_จำกัด%")->get();
-
+        $data_user_from_last5 = User::where('user_from','LIKE',"%$user_login->user_from%")
+        ->orderBy('created_at','DESC')
+        ->limit(5)
+        ->get();
         // นับผู้ใช้ทั้งหมด
+        $data_officer = User::where('organization', '=', $user_login->organization)->orderBy('created_at','DESC')->get();
+        $data_user_from = User::where('user_from','LIKE',"%$user_login->user_from%")->get();
         $all_user = count($data_officer) + count($data_user_from);
 
         // นับผู้ใช้แต่ละเดือน
         $date_now = Carbon::now();
         $all_user_m = User::whereMonth('created_at', $date_now)
         ->where('organization', '=', $user_login->organization)
-        ->orWhere('user_from','LIKE',"%มีเงิน_จำกัด%")
+        ->orWhere('user_from','LIKE',"%$user_login->user_from%")
         ->count();
 
         // ช่องทางเข้าสู่ระบบ
         $count_type_login = DB::table('users')
         ->where('users.organization', '=', $user_login->organization)
-        ->orWhere('user_from','LIKE',"%มีเงิน_จำกัด%")
+        ->orWhere('user_from','LIKE',"%$user_login->user_from%")
         ->select('users.type', DB::raw('COUNT(*) as user_type_count'))
         ->groupBy('users.type')
         ->orderBy('user_type_count','DESC')
@@ -57,7 +64,7 @@ class Partner_DashboardController extends Controller
         // จังหวัดของผู้ใช้สูงสุด 5 อันดับ
         $count_user_location = DB::table('users')
         ->where('users.organization', '=', $user_login->organization)
-        ->orWhere('user_from','LIKE',"%มีเงิน_จำกัด%")
+        ->orWhere('user_from','LIKE',"%$user_login->user_from%")
         ->select('users.location_P', DB::raw('COUNT(*) as user_location_count'))
         ->groupBy('users.location_P')
         ->orderBy('user_location_count','DESC')
@@ -166,29 +173,29 @@ class Partner_DashboardController extends Controller
             ->get();
 
         // MAP
-        $sos_map_data = Sos_help_center::where('notify','LIKE',"%$user_login->sub_organization%")
+        $sos_map_data = Sos_map::where('area',$user_login->organization)
             ->where('lat','!=',null)
             ->where('lng','!=',null)
             ->limit(10)
             ->get();
 
         // การขอความช่วยเหลือในจังหวัด
-        $amphoe_sos = Sos_help_center::where('sos_help_centers.address', '!=', null)
-            ->where('sos_help_centers.notify', 'LIKE', "%$user_login->sub_organization%")
+        $area_sos = Sos_map::where('area',$user_login->organization)
+            ->where('name_area', '!=', null)
             ->limit(10)
-            ->get('sos_help_centers.address');
+            ->get('name_area');
 
-        $decoded_districts = [];
+        $decoded_area = [];
 
-        foreach ($amphoe_sos as $item) {
-            $decoded = json_decode('"' . $item->address . '"'); // แปลง Unicode เป็นภาษาไทย
-            $parts = explode('/', $decoded);
-            if (isset($parts[1])) {
-                $decoded_districts[] = $parts[1];
+        foreach ($area_sos as $item) {
+            $decoded = json_decode('"' . $item->name_area . '"'); // แปลง Unicode เป็นภาษาไทย
+
+            if (isset($decoded)) {
+                $decoded_area[] = $decoded;
             }
         }
 
-        $districtCounts = collect($decoded_districts)->countBy();
+        $districtCounts = collect($decoded_area)->countBy();
 
         // หา district ที่มากที่สุด
         $mostCommonDistrict = $districtCounts->sortDesc()->keys()->first();
@@ -714,6 +721,8 @@ class Partner_DashboardController extends Controller
         return view('dashboard.dashboard_index',  compact(
             'data_officer',
             'data_user_from',
+            'data_officer_last5',
+            'data_user_from_last5',
             'all_user',
             'all_user_m',
             'count_type_login',
@@ -1352,7 +1361,7 @@ class Partner_DashboardController extends Controller
 
         // $user_login = $request->user_login_organization;
 
-        $sos_map_data = Sos_help_center::where('notify','LIKE',"%$user_login_organization%")->get();
+        $sos_map_data = Sos_map::where('area',$user_login_organization)->get();
 
         return $sos_map_data;
     }

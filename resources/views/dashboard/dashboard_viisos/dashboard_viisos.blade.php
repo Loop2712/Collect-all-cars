@@ -98,9 +98,9 @@
             <div class="row g-0">
                 <div class="col-md-4 border-end">
                     <div class="card-body">
-                        <h5 class="card-title font-weight-bold ">การขอความช่วยเหลือในจังหวัด</h5>
+                        <h5 class="card-title font-weight-bold ">การขอความช่วยเหลือในพื้นที่</h5>
                         <h2 class="mt-4 mb-1 font-weight-bold">{{$mostCommonDistrict}} <span class="text-danger">{{$countMostCommonDistrict}}</span>  ครั้ง </h2>
-                        <p class="mb-0 text-secondary">{{$mostCommonDistrict}} เป็นอำเภอที่ขอความช่วยเหลือมากที่สุด</p>
+                        <p class="mb-0 text-secondary">{{$mostCommonDistrict}} เป็นพื้นที่ที่ขอความช่วยเหลือมากที่สุด</p>
                     </div>
 
                     <ul class="list-group mt-4 list-group-flush list-group-sos-province">
@@ -472,7 +472,7 @@
         var map_sos_organization;
         var marker_sos_organization;
 
-        let user_login_organization = '{{Auth::user()->sub_organization}}';
+        let user_login_organization = '{{Auth::user()->organization}}';
 
         let all_lat_lng = [];
 

@@ -159,7 +159,7 @@
                                 </tr>
                             </thead>
                             <tbody class="fz_body">
-                                @foreach ($data_officer as $user)
+                                @foreach ($data_officer_last5 as $user)
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
@@ -220,7 +220,7 @@
                             </tr>
                         </thead>
                         <tbody class="fz_body">
-                            @foreach ($data_user_from as $user)
+                            @foreach ($data_user_from_last5 as $user)
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
