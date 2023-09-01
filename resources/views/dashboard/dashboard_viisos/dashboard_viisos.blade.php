@@ -189,7 +189,7 @@
                                 @endif
                                 <!-- ระยะเวลาในการช่วยเหลือ -->
                                 @php
-                                    if(!empty($all_data_sos->help_complete_time)){
+                                    if(!empty($all_data_sos->help_complete_time) && !empty($all_data_sos->time_go_to_help)){
                                         $all_data_sos_time_sos_success = strtotime($all_data_sos->help_complete_time);
                                         $all_data_sos_time_command = strtotime($all_data_sos->time_go_to_help);
 
@@ -269,7 +269,7 @@
                         }
 
 
-                        if(!empty($fastest_5->help_complete_time)){
+                        if(!empty($fastest_5->help_complete_time) && !empty($fastest_5->time_go_to_help)){
                             $sos_fastest_5_time_sos_success = strtotime($fastest_5->help_complete_time);
                             $sos_fastest_5_time_command = strtotime($fastest_5->time_go_to_help);
 
@@ -315,10 +315,10 @@
                             @endif
                         </div>
                         <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">{{ $fastest_5->helper}}</h6>
-                            <p class="mb-0 font-weight-bold">ชื่อหน่วย : {{ $fastest_5->organization_helper}}</p>
+                            <h6 class="mb-0 font-weight-bold">{{ $fastest_5->helper ? $fastest_5->helper : "--"}}</h6>
+                            <p class="mb-0 font-weight-bold">ชื่อหน่วย : {{ $fastest_5->organization_helper ? $fastest_5->organization_helper : "--"}}</p>
                         </div>
-                        <p class="ms-auto mb-0 text-purple font-weight-bold font-16">{{ $sos_fastest_5_time_unit }}</p>
+                        <p class="ms-auto mb-0 text-purple font-weight-bold font-16">{{ $sos_fastest_5_time_unit ? $sos_fastest_5_time_unit : "--"}}</p>
                     </div>
                     <hr>
                 @endforeach
@@ -353,7 +353,7 @@
                         }
 
 
-                        if(!empty($slowest_5->help_complete_time)){
+                        if(!empty($slowest_5->help_complete_time) && !empty($slowest_5->time_go_to_help)){
                             $sos_slowest_5_time_sos_success = strtotime($slowest_5->help_complete_time);
                             $sos_slowest_5_time_command = strtotime($slowest_5->time_go_to_help);
 
@@ -399,10 +399,10 @@
                             @endif
                         </div>
                         <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">{{ $slowest_5->helper}}</h6>
-                            <p class="mb-0 font-weight-bold">ชื่อหน่วย : {{ $slowest_5->organization_helper}}</p>
+                            <h6 class="mb-0 font-weight-bold">{{ $slowest_5->helper ? $slowest_5->helper : "--"}}</h6>
+                            <p class="mb-0 font-weight-bold">ชื่อหน่วย : {{ $slowest_5->organization_helper ? $slowest_5->organization_helper : "--"}}</p>
                         </div>
-                        <p class="ms-auto mb-0 text-purple font-weight-bold font-16">{{ $sos_slowest_5_time_unit }}</p>
+                        <p class="ms-auto mb-0 text-purple font-weight-bold font-16">{{ $sos_slowest_5_time_unit ? $sos_slowest_5_time_unit : "--"}}</p>
                     </div>
                     <hr>
                 @endforeach
@@ -453,10 +453,10 @@
                             @endif
                         </div>
                         <div class="ps-3">
-                            <h6 class="mb-0 font-weight-bold">{{ $score_best_5->helper}}</h6>
-                            <p class="mb-0 font-weight-bold">ชื่อหน่วย : {{ $score_best_5->organization_helper}}</p>
+                            <h6 class="mb-0 font-weight-bold">{{ $score_best_5->helper ? $score_best_5->helper : "--"}}</h6>
+                            <p class="mb-0 font-weight-bold">ชื่อหน่วย : {{ $score_best_5->organization_helper ? $score_best_5->organization_helper : "--"}}</p>
                         </div>
-                        <p class="ms-auto mb-0 font-weight-bold font-16"><i class="bx bxs-star text-warning mr-1"></i> {{ $score_best_5->score_total}}</p>
+                        <p class="ms-auto mb-0 font-weight-bold font-16"><i class="bx bxs-star text-warning mr-1"></i> {{ $score_best_5->score_total ? $score_best_5->score_total : "--"}}</p>
                     </div>
                     <hr>
                 @endforeach
