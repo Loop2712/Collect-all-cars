@@ -373,7 +373,7 @@
               <i style="margin-top:-10px;">
                 <img width="200%" src="{{ asset('/img/stickerline/PNG/24.png') }}" alt="">
               </i>
-              <span data-purecounter-start="0" data-purecounter-end="{{ $count_vehicle * 3 }}" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="{{ ($count_vehicle * 3) + count($data_officer_all) }}" data-purecounter-duration="1" class="purecounter"></span>
               <p style="font-family: 'Kanit', sans-serif;"><b>ยานพาหนะ</b></p>
             </div>
           </div>

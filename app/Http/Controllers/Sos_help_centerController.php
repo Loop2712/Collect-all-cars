@@ -2433,7 +2433,7 @@ class Sos_help_centerController extends Controller
         $new_sos_by_joint['user_id'] = $data_sos_main->user_id ;
         $new_sos_by_joint['status'] = 'รอการยืนยัน' ;
         $new_sos_by_joint['create_by'] = 'joint_with - sos_id ' . $sos_1669_id;
-        $new_sos_by_joint['time_create_sos'] = date("Y-m-d h:i:s") ;
+        $new_sos_by_joint['time_create_sos'] = date("Y-m-d H:i:s") ;
         // $new_sos_by_joint['time_command'] = $data_sos_main->time_command ;
         $new_sos_by_joint['command_by'] = $command_by ;
         $new_sos_by_joint['address'] = $data_sos_main->address ;
@@ -2459,6 +2459,12 @@ class Sos_help_centerController extends Controller
 
         $id_of_new_sos = array() ;
         array_push($id_of_new_sos , (int)$sos_1669_id);
+
+        if(!empty($data_sos_main->joint_case)){
+            $joint_case_old = $data_sos_main->joint_case ;
+            $joint_case_old = json_decode($joint_case_old);
+            $joint_case_all = $joint_case_old;
+        }
 
         for ($i = 0; $i < (int)$count_new_create_sos; $i++){
 
@@ -2514,18 +2520,42 @@ class Sos_help_centerController extends Controller
 
             array_push($id_of_new_sos , $sos_help_center_last->id);
 
+            if(!empty($data_sos_main->joint_case)){
+                array_push($joint_case_all , $sos_help_center_last->id);
+            }
+
             Sos_1669_form_yellow::create($new_sos_by_joint);
 
         }
 
-        // update joint_case ใน เคสหลัก (เคสเดิมที่มีการขอร่วมมา)
-        DB::table('sos_help_centers')
-            ->where([ 
-                    [ 'id', $sos_1669_id ],
-                ])
-            ->update([
-                    'joint_case' => $id_of_new_sos,
-                ]);
+        if(!empty($data_sos_main->joint_case)){
+            $id_joint_case = $joint_case_all;
+        }else{
+            $id_joint_case = $id_of_new_sos;
+        }
+
+        // ตรวจสอบ ถ้ามีเคส join อยู่แล้วให้อัพเดทเคสเดิมทั้งหมด
+        if(!empty($data_sos_main->joint_case)){
+            for ($i_case_old=0; $i_case_old < count($joint_case_old) ; $i_case_old++) { 
+                // update joint_case ใน เคสหลัก (เคสเดิมที่มีการขอร่วมมา)
+                DB::table('sos_help_centers')
+                    ->where([ 
+                            [ 'id', $joint_case_old[$i_case_old] ],
+                        ])
+                    ->update([
+                            'joint_case' => $id_joint_case,
+                        ]);
+            }
+        }else{
+            // update joint_case ใน เคสหลัก (เคสเดิมที่มีการขอร่วมมา)
+            DB::table('sos_help_centers')
+                ->where([ 
+                        [ 'id', $sos_1669_id ],
+                    ])
+                ->update([
+                        'joint_case' => $id_joint_case,
+                    ]);
+        }
 
         // ดำเนินการส่งข้อมูลให้หน่วยปฏิบัติการตามเคส และอัพเดทเคสทั้งหมดให้มี joint_case ร่วมกัน
         for ($xi = 0; $xi < count($id_of_new_sos); $xi++){
@@ -2535,7 +2565,7 @@ class Sos_help_centerController extends Controller
                         [ 'id', $id_of_new_sos[$xi] ],
                     ])
                 ->update([
-                        'joint_case' => $id_of_new_sos,
+                        'joint_case' => $id_joint_case,
                     ]);
 
             if($xi != 0){
@@ -2933,12 +2963,14 @@ class Sos_help_centerController extends Controller
                 ->orderBy('number' , 'ASC')->first();
         
                 if (empty($data_askMore['noti_to'])) {
-                    $data_askMore['noti_to'] =  $data_officer_command_not_standby->user_id;
+                    if(empty($data_officer_command_not_standby)){
+                        $data_askMore['noti_to'] =  $data_officer_command->user_id;
+                    }else{
+                        $data_askMore['noti_to'] =  $data_officer_command_not_standby->user_id;
+                    }
                 }
 
-                if(empty($data_officer_command_not_standby)){
-                    $data_askMore['noti_to'] =  $data_officer_command->user_id;
-                }
+                
 
             }else {
                 // $test = "Standby";
