@@ -213,155 +213,155 @@ class Partner_DashboardController extends Controller
         //==================================================================================================================//
 
         //Check in
-        $check_in_data = Partner::where('name' ,'=', $user_login->organization)
-        ->get();
+        // $check_in_data = Partner::where('name' ,'=', $user_login->organization)
+        // ->get();
 
-        $check_in_data_arr = array();
+        // $check_in_data_arr = array();
 
-        for ($i=0; $i < count($check_in_data); $i++) {
-            $check_ins_finder = Check_in::where('partner_id',$check_in_data[$i]['id'])->get();
+        // for ($i=0; $i < count($check_in_data); $i++) {
+        //     $check_ins_finder = Check_in::where('partner_id',$check_in_data[$i]['id'])->get();
 
-            //หาเวลาที่เช็คอินมากสุด และน้อยสุด
-            $timeInCounts = array();
+        //     //หาเวลาที่เช็คอินมากสุด และน้อยสุด
+        //     $timeInCounts = array();
 
-            foreach ($check_ins_finder as $index => $check_in) {
-                $timeIn = $check_in->time_in;
-                $hour = date('H', strtotime($timeIn));
+        //     foreach ($check_ins_finder as $index => $check_in) {
+        //         $timeIn = $check_in->time_in;
+        //         $hour = date('H', strtotime($timeIn));
 
-                if (!isset($timeInCounts[$hour])) {
-                    $timeInCounts[$hour] = 0;
-                }
-                $timeInCounts[$hour]++;
+        //         if (!isset($timeInCounts[$hour])) {
+        //             $timeInCounts[$hour] = 0;
+        //         }
+        //         $timeInCounts[$hour]++;
 
-            }
+        //     }
 
-            $nonZeroTimeInCounts = array_filter($timeInCounts, function($value) {
-                return $value !== 0;
-            });
+        //     $nonZeroTimeInCounts = array_filter($timeInCounts, function($value) {
+        //         return $value !== 0;
+        //     });
 
-            if (!empty($nonZeroTimeInCounts)) {
-                $maxValue = max($nonZeroTimeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-                $maxTimeCounts = array_keys($nonZeroTimeInCounts, $maxValue);
-                $maxTimeCounts = array_slice($maxTimeCounts, 0, 2);
+        //     if (!empty($nonZeroTimeInCounts)) {
+        //         $maxValue = max($nonZeroTimeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+        //         $maxTimeCounts = array_keys($nonZeroTimeInCounts, $maxValue);
+        //         $maxTimeCounts = array_slice($maxTimeCounts, 0, 2);
 
-                $minValue = min($nonZeroTimeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-                $minTimeCounts = array_keys($nonZeroTimeInCounts, $minValue);
-                $minTimeCounts = array_slice($minTimeCounts, 0, 2);
-            }else{
-                $maxTimeCounts = [];
-                $minTimeCounts = [];
-            }
-           // หาวันที่เช็คอินมากสุด และน้อยสุด
-            $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            $thaiDays = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
+        //         $minValue = min($nonZeroTimeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+        //         $minTimeCounts = array_keys($nonZeroTimeInCounts, $minValue);
+        //         $minTimeCounts = array_slice($minTimeCounts, 0, 2);
+        //     }else{
+        //         $maxTimeCounts = [];
+        //         $minTimeCounts = [];
+        //     }
+        //    // หาวันที่เช็คอินมากสุด และน้อยสุด
+        //     $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        //     $thaiDays = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
 
-            $dayCount = array_fill_keys($daysOfWeek, 0); // เริ่มต้นนับทุกวันให้เป็น 0
+        //     $dayCount = array_fill_keys($daysOfWeek, 0); // เริ่มต้นนับทุกวันให้เป็น 0
 
-            foreach ($check_ins_finder as $check_in) {
-                $time_in = $check_in->time_in;
-                $dayOfWeek = date('l', strtotime($time_in));
+        //     foreach ($check_ins_finder as $check_in) {
+        //         $time_in = $check_in->time_in;
+        //         $dayOfWeek = date('l', strtotime($time_in));
 
-                $dayCount[$dayOfWeek]++; // เพิ่มจำนวนครั้งที่ปรากฏในวันนั้นๆ
-            }
+        //         $dayCount[$dayOfWeek]++; // เพิ่มจำนวนครั้งที่ปรากฏในวันนั้นๆ
+        //     }
 
-            $maxDayCount = max($dayCount);
-            $maxDays = array_keys($dayCount, $maxDayCount);
+        //     $maxDayCount = max($dayCount);
+        //     $maxDays = array_keys($dayCount, $maxDayCount);
 
-            $minDayCount = min($dayCount);
-            $minDays = array_keys($dayCount, $minDayCount);
+        //     $minDayCount = min($dayCount);
+        //     $minDays = array_keys($dayCount, $minDayCount);
 
-            $maxThaiDay = [];
-            foreach ($maxDays as $maxDay) {
-                $maxThaiDay[] = $thaiDays[array_search($maxDay, $daysOfWeek)];
-            }
-            $maxThaiDay = array_slice($maxThaiDay, 0, 2);
+        //     $maxThaiDay = [];
+        //     foreach ($maxDays as $maxDay) {
+        //         $maxThaiDay[] = $thaiDays[array_search($maxDay, $daysOfWeek)];
+        //     }
+        //     $maxThaiDay = array_slice($maxThaiDay, 0, 2);
 
-            $minThaiDay = [];
-            foreach ($minDays as $minDay) {
-                $minThaiDay[] = $thaiDays[array_search($minDay, $daysOfWeek)];
-            }
-            $minThaiDay = array_slice($minThaiDay, 0, 2);
+        //     $minThaiDay = [];
+        //     foreach ($minDays as $minDay) {
+        //         $minThaiDay[] = $thaiDays[array_search($minDay, $daysOfWeek)];
+        //     }
+        //     $minThaiDay = array_slice($minThaiDay, 0, 2);
 
-            // นับคนที่เกิดเดือนนี้
-            $currentMonth = date('m');
-            $count_hbd = 0;
-            $encounteredIds = array();
+        //     // นับคนที่เกิดเดือนนี้
+        //     $currentMonth = date('m');
+        //     $count_hbd = 0;
+        //     $encounteredIds = array();
 
-            for ($i=0; $i < count($check_ins_finder); $i++) {
-                $finder_hbd = User::where('id',$check_ins_finder[$i]['user_id'])->first();
+        //     for ($i=0; $i < count($check_ins_finder); $i++) {
+        //         $finder_hbd = User::where('id',$check_ins_finder[$i]['user_id'])->first();
 
-                $userId = $finder_hbd->id;
-                if (in_array($userId, $encounteredIds)) {
-                    continue; // ถ้าเจอ id ที่ถูกนับแล้ว ข้ามไปเช็คคนถัดไป
-                }
+        //         $userId = $finder_hbd->id;
+        //         if (in_array($userId, $encounteredIds)) {
+        //             continue; // ถ้าเจอ id ที่ถูกนับแล้ว ข้ามไปเช็คคนถัดไป
+        //         }
 
-                $birthDate = $finder_hbd->brith;
-                $birthMonth = date('m', strtotime($birthDate));
+        //         $birthDate = $finder_hbd->brith;
+        //         $birthMonth = date('m', strtotime($birthDate));
 
-                if($birthMonth == $currentMonth){
-                    $count_hbd++;
-                    $encounteredIds[] = $userId; // เพิ่ม id เข้าไปในอาร์เรย์เพื่อไม่นับซ้ำ
-                }
-            }
+        //         if($birthMonth == $currentMonth){
+        //             $count_hbd++;
+        //             $encounteredIds[] = $userId; // เพิ่ม id เข้าไปในอาร์เรย์เพื่อไม่นับซ้ำ
+        //         }
+        //     }
 
-            // จำนวนการเข้าพื้นที่
-            $count_check_in_at_area = count($check_ins_finder);
+        //     // จำนวนการเข้าพื้นที่
+        //     $count_check_in_at_area = count($check_ins_finder);
 
-        }
+        // }
 
         //========================== end =============================//
 
-        // $all_data_partner = Partner::where('name' ,'=', $user_login->organization)
-        // ->get();
+        $all_data_partner = Partner::where('name' ,'=', $user_login->organization)
+        ->get();
 
-        // $check_in_chart_arr = $this->check_in_all_area_chart($all_data_partner);
-        // //ใช้ 2 ตัวนี้ สำหรับกราฟ แสดง เวลาเช็คอินของแต่ละพื้นที่
-        // $resultArray = [];
-        // $timeArray = [];
+        $check_in_chart_arr = $this->check_in_all_area_chart($all_data_partner);
+        //ใช้ 2 ตัวนี้ สำหรับกราฟ แสดง เวลาเช็คอินของแต่ละพื้นที่
+        $resultArray = [];
+        $timeArray = [];
 
-        // for ($i=0; $i < count($all_data_partner); $i++) {
-        //     $check_ins_data = Check_in::where('partner_id',$all_data_partner[$i]['id'])->get();
+        for ($i=0; $i < count($all_data_partner); $i++) {
+            $check_ins_data = Check_in::where('partner_id',$all_data_partner[$i]['id'])->get();
 
-        //     $dataCounts = [];
-        //     $timeCount = [];
-        //     foreach ($check_ins_data as $index => $check_in) {
-        //         $timeIn = $check_in->time_in;
-        //         $hour = date('H:i', strtotime($timeIn));
+            $dataCounts = [];
+            $timeCount = [];
+            foreach ($check_ins_data as $index => $check_in) {
+                $timeIn = $check_in->time_in;
+                $hour = date('H:i', strtotime($timeIn));
 
-        //         if (!isset($dataCounts[$hour])) {
-        //             $dataCounts[$hour] = 0;
-        //         }
-        //         $dataCounts[$hour]++;
+                if (!isset($dataCounts[$hour])) {
+                    $dataCounts[$hour] = 0;
+                }
+                $dataCounts[$hour]++;
 
-        //         $formattime = date('H:i:s', strtotime($timeIn));
-        //         if (!isset($timeCount[$formattime])) {
-        //             $timeCount[$formattime] = 0;
-        //         }else{
+                $formattime = date('H:i:s', strtotime($timeIn));
+                if (!isset($timeCount[$formattime])) {
+                    $timeCount[$formattime] = 0;
+                }else{
 
-        //         }
+                }
 
 
-        //     }
+            }
 
-        //     // foreach ($check_ins_data as $time_check_in) {
-        //     //     $timeCount[] = $time_check_in['time_in'];
-        //     // }
+            // foreach ($check_ins_data as $time_check_in) {
+            //     $timeCount[] = $time_check_in['time_in'];
+            // }
 
-        //     if(!empty($all_data_partner[$i]['name_area'])){
-        //         $resultArray[] = [
-        //             'name' => $all_data_partner[$i]['name_area'],
-        //             'data' => $dataCounts,
-        //             'time' => $timeCount
-        //         ];
-        //     }else{
-        //         $resultArray[] = [
-        //             'name' => "รวม",
-        //             'data' => $dataCounts,
-        //             'time' => $timeCount
-        //         ];
-        //     }
+            if(!empty($all_data_partner[$i]['name_area'])){
+                $resultArray[] = [
+                    'name' => $all_data_partner[$i]['name_area'],
+                    'data' => $dataCounts,
+                    'time' => $timeCount
+                ];
+            }else{
+                $resultArray[] = [
+                    'name' => "รวม",
+                    'data' => $dataCounts,
+                    'time' => $timeCount
+                ];
+            }
 
-        // }
+        }
 
 
         //========================== end chart =============================//
@@ -751,18 +751,19 @@ class Partner_DashboardController extends Controller
             // 'sorted_all_by_user_show_user',
             // 'all_by_user_send_round',
             // 'sorted_all_by_user_user_click',
-            'count_hbd',
-            'count_check_in_at_area',
-            'maxThaiDay',
-            'minThaiDay',
-            'maxDayCount',
-            'minDayCount',
-            'maxTimeCounts',
-            'minTimeCounts',
-            'maxValue',
-            'minValue',
-            // 'resultArray',
-            // 'timeArray',
+
+            // 'count_hbd',
+            // 'count_check_in_at_area',
+            // 'maxThaiDay',
+            // 'minThaiDay',
+            // 'maxDayCount',
+            // 'minDayCount',
+            // 'maxTimeCounts',
+            // 'minTimeCounts',
+            // 'maxValue',
+            // 'minValue',
+            'resultArray',
+            'timeArray',
             'check_in_chart_arr',
             'data_sos_fastest_5',
             'data_sos_slowest_5',

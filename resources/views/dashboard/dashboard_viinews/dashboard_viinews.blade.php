@@ -11,187 +11,7 @@
     }
 
 </style>
-<!-- check_in แต่ละพื้นที่ -->
-<div class="row row-cols-1 row-cols-lg-1">
-    <div class="accordion" id="accordion_ByCheckIn">
-        <div class="card radius-10 w-100 ">
 
-            <div class="card-header">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <h5 class="font-weight-bold mb-0">
-                            <b>ข้อมูลการเข้าพื้นที่ 15 วัน</b>
-                        </h5>
-                    </div>
-                    <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
-
-
-                        <div class="btn-group" role="group">
-
-                            <div class="dropdown ms-auto">
-                                <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
-                                    <i class="bx bx-dots-horizontal-rounded"></i>
-                                </div>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    @foreach ($all_data_partner as $select_area)
-                                        @if (!empty($select_area->name_area))
-                                            <a class="dropdown-item" onclick="select_area_check_in('{{$select_area->id}}')" href="javaScript:;">พื้นที่ : {{ $select_area->name_area}}</a>
-                                        @else
-                                            <a class="dropdown-item" onclick="select_area_check_in('{{$select_area->id}}')" href="javaScript:;">พื้นที่ : รวม</a>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--  พื้นที่ : ทั้งหมด -->
-            <div id="area_div_checkin">
-                <div class="mt-3 mb-0">
-                    <h5 class="text-center font-weight-bold">พื้นที่ : รวม</h5>
-                    @php
-
-                        $today = \Carbon\Carbon::now()->addYears(543);
-
-                        $date_now_thai = $today->locale('th')->isoFormat('LL');
-
-                        // สร้างวัตถุ Carbon สำหรับวันที่คาดหวังให้ลบออกจากวันปัจจุบัน
-                        $date_delete_15_days_ago = $today->subDays(15);
-                        // แปลงรูปแบบวันที่เป็นภาษาไทย
-                        $date_delete_15_thai = $date_delete_15_days_ago->locale('th')->isoFormat('LL');
-
-
-
-                    @endphp
-                    <h6 class="text-center">ข้อมูลตั้งแต่วันที่ {{ $date_delete_15_thai}} - {{$date_now_thai}}</h6>
-                </div>
-                <div class="row p-3 mb-3 ">
-                    <div class="col-12 col-lg-2">
-                        <div class="card radius-10 border shadow-none">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <p class="mb-0 text-secondary">จำนวนการเข้าพื้นที่</p>
-                                        <h4 class="mb-0">{{ $count_check_in_at_area }} คน</h4>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <img width="55px" src="{{ asset("/img/stickerline/PNG/37.2.png") }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-2">
-                        <div class="card radius-10 border shadow-none">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <p class="mb-0 text-secondary">คนที่เกิดเดือนนี้</p>
-                                        <h4 class="mb-0">{{ $count_hbd }} คน</h4>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <img width="55px" src="{{ asset("/img/stickerline/PNG/48.png") }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <div class="card radius-10 border shadow-none">
-                            <div class="card-body">
-                                <div class=" row">
-                                    <div class="d-flex align-items-center justify-content-around col-12 col-lg-6" style="border-right: 1px solid rgb(216, 208, 208)">
-                                        <div>
-                                            <p class="mb-0 text-success">วันที่เข้ามากที่สุด</p>
-                                            <span class="mb-0 font-weight-bold font-18 m-1">
-                                                @if (count($maxThaiDay) === 1)
-                                                    {{$maxThaiDay[0]}}
-                                                @else
-                                                    @foreach ($maxThaiDay as $maxThaiDay )
-                                                        {{$maxThaiDay}}
-                                                    @endforeach
-                                                @endif
-
-                                            </span>
-                                        </div>
-                                        <div class="text-dark text-weight-bold">
-                                            <span class="font-30">{{ $maxDayCount }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-around col-12 col-lg-6 " >
-                                        <div>
-                                            <p class="mb-0 text-danger">วันที่เข้าน้อยที่สุด</p>
-                                            <span class="mb-0 font-weight-bold font-18 ">
-                                                @if (count($minThaiDay) === 1)
-                                                    {{$minThaiDay[0]}}
-                                                @else
-                                                    @foreach ($minThaiDay as $minThaiDay )
-                                                        {{$minThaiDay}}
-                                                    @endforeach
-                                                @endif
-                                            </span>
-                                        </div>
-                                        <div class="text-dark text-weight-bold">
-                                            <span class="font-30">{{ $minDayCount }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <div class="card radius-10 border shadow-none">
-                            <div class="card-body">
-                                <div class=" row">
-                                    <div class="d-flex align-items-center justify-content-around col-12 col-lg-6 " style="border-right: 1px solid rgb(216, 208, 208)">
-                                        <div>
-                                            <p class="mb-0 text-success">เวลาที่เข้ามากที่สุด</p>
-                                            <span class="mb-0 font-weight-bold font-18">
-                                                @if (count($maxTimeCounts) === 1)
-                                                    {{$maxTimeCounts[0]}}.00
-                                                @else
-                                                    @foreach ($maxTimeCounts as $index => $maxTimeCount)
-                                                        {{$maxTimeCount}}.00 {{$index !== count($maxTimeCounts) - 1 ? ', ' : ''}}
-                                                    @endforeach
-                                                @endif
-                                            </span>
-                                        </div>
-                                        <div class="text-dark text-weight-bold">
-                                            <span class="font-30">{{ $maxValue }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-around col-12 col-lg-6 ">
-                                        <div>
-                                            <p class="mb-0 text-danger">เวลาที่เข้าน้อยที่สุด</p>
-                                            <span class="mb-0 font-weight-bold font-18">
-                                                @if (count($minTimeCounts) === 1)
-                                                    {{$minTimeCounts[0]}}.00
-                                                @else
-                                                    @foreach ($minTimeCounts as $index => $minTimeCount)
-                                                        {{$minTimeCount}}.00 {{$index !== count($minTimeCounts) - 1 ? ', ' : ''}}
-                                                    @endforeach
-                                                @endif
-                                            </span>
-                                        </div>
-                                        <div class=" text-dark text-weight-bold ">
-                                            <span class="font-30">{{ $minValue }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- จบ พื้นที่ : ทั้งหมด -->
-
-
-        </div>
-    </div>
-</div>
 
 <!-- เวลาที่เช็คอินของแต่ละพื้นที่ -->
 <div class="card">
@@ -409,198 +229,40 @@
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-
-
-
 <script>
-    // document.document.querySelector('.top5_score_unit_toggleDataBtn').addEventListener('click', () => {
-    function select_area_check_in(area_id) {
-        console.log(area_id);
-        let user_login = '{{Auth::user()->organization}}';
-        let area_div = document.getElementById('area_div_checkin');
+    let chartData_arr = [];
+    let chartData = @json($check_in_chart_arr);
 
-        // ดึงข้อมูลผ่าน Fetch API จากหลังบ้าน
-        fetch("{{ url('/') }}/api/get_area_checkin" + '/' + area_id + '/' + user_login)
-            .then(response => response.json()) // แปลงข้อมูลเป็น JSON
-            .then(data => {
-                console.log(data);
-                console.log(data.count_check_in_at_area);
-                // ล้างข้อมูลในตาราง
-                area_div.innerHTML = '';
+    let options_ViiNews = {
+        series: chartData.series,
+        chart: {
+            height: 350,
+            type: 'area'
+        },
+        dataLabels: {
+            nabled: true
+        },
+        stroke: {
+            curve: 'smooth'
+        },
+        xaxis: {
+            type: 'time',
+            categories: chartData.categories,
+        },
+        tooltip: {
+            x: {
+                format: 'HH:mm'
+            },
+        },
+        };
 
-                let data_div;
-                // สร้างแถวและเพิ่มข้อมูลในตาราง
+        let chartViiNews = new ApexCharts(document.querySelector("#chartViiNews"), options_ViiNews);
+        chartViiNews.render();
 
-                //รูปภาพ icon
-                let img_count_user_check_in = '<img width="55px" src="{{ asset("/img/stickerline/PNG/37.2.png") }}">';
-                let img_count_birthday = '<img width="55px" src="{{ asset("/img/stickerline/PNG/48.png") }}">';
-
-                let maxThaiDay;
-                if (data.maxThaiDay.length === 1) {
-                    maxThaiDay = data.maxThaiDay[0];
-                } else  {
-                    maxThaiDay = data.maxThaiDay[0] + " " + data.maxThaiDay[1];
-                    // maxThaiDay = [...data.maxThaiDay];
-                }
-
-                let minThaiDay;
-                if (data.minThaiDay.length === 1) {
-                    minThaiDay = data.minThaiDay[0];
-                } else {
-                    minThaiDay = data.minThaiDay[0] + " " + data.minThaiDay[1];
-                }
-
-                let maxTimeCounts;
-                if (data.maxTimeCounts.length === 1) {
-                    maxTimeCounts = data.maxTimeCounts[0]+".00";
-                } else {
-                    maxTimeCounts = [...data.maxTimeCounts]+".00";
-                }
-
-                let minTimeCounts;
-                if (data.minTimeCounts.length === 1) {
-                    minTimeCounts = data.minTimeCounts[0]+".00";
-                } else {
-                    minTimeCounts = [...data.minTimeCounts]+".00";
-                }
-
-                // วันที่ปัจจุบัน
-
-                let currentDate = new Date();
-                let months = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
-
-                let dayOfMonth = currentDate.getDate();
-                let monthName = months[currentDate.getMonth()];
-                let yearBE = currentDate.getFullYear();
-                let yearThai = yearBE + 543;
-
-                let formattedDateNow =  dayOfMonth + ' ' + monthName + ' ' + yearThai;
-
-                // คำนวณวันที่ 15 วันก่อน
-                let dateDelete15 = new Date();
-                dateDelete15.setDate(currentDate.getDate() - 15);
-
-                let dayOfMonth15 = dateDelete15.getDate();
-                let monthName15 = months[dateDelete15.getMonth()];
-                let yearBE15 = dateDelete15.getFullYear();
-                let yearThai15 = yearBE15 + 543;
-
-                let formattedDate15 =  dayOfMonth15 + ' ' + monthName15 + ' ' + yearThai15;
-
-
-                if (data.name_area == 'all_area') {
-                    data.name_area = "รวม";
-                }
-
-                data_div = `
-                    <div class="mt-3 mb-0">
-                        <h5 class="text-center font-weight-bold">พื้นที่ : <span>` + data.name_area + `</span></h5>
-                        <h6 class="text-center">ข้อมูลตั้งแต่วันที่ `+ formattedDate15 + ` - `+ formattedDateNow +  `</h6>
-                    </div>
-                    <div class="row p-3 mb-3 ">
-                        <div class="col-12 col-lg-2">
-                            <div class="card radius-10 border shadow-none">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div>
-                                            <p class="mb-0 text-secondary">จำนวนการเข้าพื้นที่</p>
-                                            <h4 class="mb-0">`+ data.count_check_in_at_area + ` คน</h4>
-                                        </div>
-                                        <div class="ms-auto">
-                                            `+ img_count_user_check_in + `
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-2">
-                            <div class="card radius-10 border shadow-none">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div>
-                                            <p class="mb-0 text-secondary">คนที่เกิดเดือนนี้</p>
-                                            <h4 class="mb-0">`+ data.count_hbd + ` คน</h4>
-                                        </div>
-                                        <div class="ms-auto">
-                                            `+ img_count_birthday + `
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-lg-4">
-                            <div class="card radius-10 border shadow-none">
-                                <div class="card-body">
-                                    <div class=" row">
-                                        <div class="d-flex align-items-center justify-content-around col-12 col-lg-6 " style="border-right: 1px solid rgb(216, 208, 208)">
-                                            <div>
-                                                <p class="mb-0 text-success">วันที่เข้ามากที่สุด</p>
-                                                <span class="mb-0 font-weight-bold font-18 m-1">
-                                                    `+ maxThaiDay + `
-                                                </span>
-                                            </div>
-                                            <div class="text-dark text-weight-bold">
-                                                <span class="font-30">`+ data.maxDayCount + `</span>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-around col-12 col-lg-6 ">
-                                            <div>
-                                                <p class="mb-0 text-danger">วันที่เข้าน้อยที่สุด</p>
-                                                <span class="mb-0 font-weight-bold font-18 ">
-                                                    `+ minThaiDay + `
-                                                </span>
-                                            </div>
-                                            <div class="text-dark text-weight-bold">
-                                                <span class="font-30">`+ data.minDayCount + `</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-4">
-                            <div class="card radius-10 border shadow-none">
-                                <div class="card-body">
-                                    <div class=" row">
-                                        <div class="d-flex align-items-center justify-content-around col-12 col-lg-6 " style="border-right: 1px solid rgb(216, 208, 208)">
-                                            <div>
-                                                <p class="mb-0 text-success">เวลาที่เข้ามากที่สุด</p>
-                                                <span class="mb-0 font-weight-bold font-18">
-                                                    `+ maxTimeCounts + `
-                                                </span>
-                                            </div>
-                                            <div class="text-dark text-weight-bold">
-                                                <span class="font-30">`+ data.maxValue + `</span>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-around col-12 col-lg-6 ">
-                                            <div>
-                                                <p class="mb-0 text-danger">เวลาที่เข้าน้อยที่สุด</p>
-                                                <span class="mb-0 font-weight-bold font-18">
-                                                    `+ minTimeCounts + `
-                                                </span>
-                                            </div>
-                                            <div class=" text-dark text-weight-bold f">
-                                                <span class="font-30">`+ data.minValue + `</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                area_div.insertAdjacentHTML('afterbegin', data_div); // แทรกบนสุด
-
-
-            })
-            .catch(error => {
-                console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
-            });
-    };
 </script>
+
+
+
 
 
 <script>
