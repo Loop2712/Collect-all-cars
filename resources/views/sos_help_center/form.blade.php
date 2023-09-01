@@ -2589,7 +2589,7 @@ color: #ff9317;
         let infowindow = new google.maps.InfoWindow();
 
         document.getElementById("span_submit_locations_sos").addEventListener("click", () => {
-            
+            // คลิกยืนยันเพื่อเช็คว่าอยู่ในพื้นที่หรือไม่ และสร้าง operating_code
             geocodeLatLng(geocoder, map, infowindow);
         });
     }
@@ -2618,43 +2618,6 @@ color: #ff9317;
             zoom: m_numZoom,
         });
       
-        // Create the initial InfoWindow.
-        let infoWindow = new google.maps.InfoWindow({
-            // content: "คลิกที่แผนที่เพื่อรับโลเคชั่น",
-            // position: myLatlng,
-        });
-
-        infoWindow.open(mapMarkLocation);
-        // Configure the click listener.
-        mapMarkLocation.addListener("click", (mapsMouseEvent) => {
-            // Close the current InfoWindow.
-            infoWindow.close();
-            // Create a new InfoWindow.
-            infoWindow = new google.maps.InfoWindow({
-                // position: mapsMouseEvent.latLng,
-            });
-
-            infoWindow.setContent(
-                JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-            );
-
-            let text_content = infoWindow.content ;
-                console.log(text_content)
-
-            const contentArr = text_content.split(",");
-            const lat_Arr = contentArr[0].split(":");
-                let marker_lat = lat_Arr[1];
-            const lng_Arr = contentArr[1].split(":");
-                let marker_lng = lng_Arr[1].replace("\n}", "");
-
-            // console.log(marker_lat)
-            // console.log(marker_lng)
-            add_marker(marker_lat , marker_lng);
-            
-            infoWindow.open(mapMarkLocation);
-
-        });
-
     }
 
     function add_marker(marker_lat , marker_lng){
@@ -2791,27 +2754,18 @@ color: #ff9317;
               zoom: 13,
           });
 
-          // Create the initial InfoWindow.
-          let infoWindow = new google.maps.InfoWindow({
-              // content: "คลิกที่แผนที่เพื่อรับโลเคชั่น",
-              // position: myLatlng,
-          });
-
-          infoWindow.open(mapMarkLocation);
           // Configure the click listener.
           mapMarkLocation.addListener("click", (mapsMouseEvent) => {
-              // Close the current InfoWindow.
-              infoWindow.close();
-              // Create a new InfoWindow.
-              infoWindow = new google.maps.InfoWindow({
-                  // position: mapsMouseEvent.latLng,
-              });
+            // console.log("CLICK MAP MARK LOCATIONS search_by_latlong_2sec");
 
-              infoWindow.setContent(
+              let geocoder = new google.maps.Geocoder();
+              let infowindow = new google.maps.InfoWindow();
+              
+              infowindow.setContent(
                   JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
               );
 
-              let text_content = infoWindow.content ;
+              let text_content = infowindow.content ;
                   // console.log(text_content)
 
               const contentArr = text_content.split(",");
@@ -2822,9 +2776,22 @@ color: #ff9317;
 
               // console.log(marker_lat)
               // console.log(marker_lng)
-              add_marker(marker_lat , marker_lng);
-              
-              infoWindow.open(mapMarkLocation);
+              if (marker) {
+                  marker.setMap(null);
+              }
+
+              if (new_marker_places){
+                new_marker_places.setMap(null);
+              }
+
+              marker = new google.maps.Marker({
+                  position: {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) },
+                  map: mapMarkLocation,
+                  icon: image,
+              });
+              markers.push(marker);
+
+              check_LatLng_in_area(geocoder, infowindow,marker_lat,marker_lng);
 
           });
 
@@ -2892,18 +2859,15 @@ color: #ff9317;
                 infoWindow.open(mapMarkLocation);
                 // Configure the click listener.
                 mapMarkLocation.addListener("click", (mapsMouseEvent) => {
-                    // Close the current InfoWindow.
-                    infoWindow.close();
-                    // Create a new InfoWindow.
-                    infoWindow = new google.maps.InfoWindow({
-                        // position: mapsMouseEvent.latLng,
-                    });
-
-                    infoWindow.setContent(
+                    // console.log("CLICK MAP MARK LOCATIONS zoom_map");
+                    let geocoder = new google.maps.Geocoder();
+                    let infowindow = new google.maps.InfoWindow();
+                    
+                    infowindow.setContent(
                         JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
                     );
 
-                    let text_content = infoWindow.content ;
+                    let text_content = infowindow.content ;
                         // console.log(text_content)
 
                     const contentArr = text_content.split(",");
@@ -2914,9 +2878,22 @@ color: #ff9317;
 
                     // console.log(marker_lat)
                     // console.log(marker_lng)
-                    add_marker(marker_lat , marker_lng);
-                    
-                    infoWindow.open(mapMarkLocation);
+                    if (marker) {
+                        marker.setMap(null);
+                    }
+
+                    if (new_marker_places){
+                      new_marker_places.setMap(null);
+                    }
+
+                    marker = new google.maps.Marker({
+                        position: {lat: parseFloat(marker_lat) , lng: parseFloat(marker_lng) },
+                        map: mapMarkLocation,
+                        icon: image,
+                    });
+                    markers.push(marker);
+
+                    check_LatLng_in_area(geocoder, infowindow,marker_lat,marker_lng);
 
                 });
                     
@@ -3268,7 +3245,7 @@ color: #ff9317;
 
       map_search_by_current = search_by ;
 
-      console.log(map_search_by_current);
+      // console.log(map_search_by_current);
       
       document.querySelector('#div_for_find_a_place').classList.add('d-none');
 
@@ -3526,6 +3503,10 @@ color: #ff9317;
                 animated.onanimationend = () => {
                     document.querySelector('#alert_phone').classList.remove('up-down');
                 };
+
+                if (marker) {
+                    marker.setMap(null);
+                }
 
                 if (new_marker_places){
                   new_marker_places.setMap(null);
