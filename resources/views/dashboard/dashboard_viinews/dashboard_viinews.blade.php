@@ -99,49 +99,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-4">
-                        <div class="card radius-10 border shadow-none">
-                            <div class="card-body">
-                                <div class=" row">
-                                    <div class="d-flex align-items-center justify-content-around col-12 col-lg-6" style="border-right: 1px solid rgb(216, 208, 208)">
-                                        <div>
-                                            <p class="mb-0 text-success">วันที่เข้ามากที่สุด</p>
-                                            <span class="mb-0 font-weight-bold font-18 m-1">
-                                                @if (count($maxThaiDay) === 1)
-                                                    {{$maxThaiDay[0]}}
-                                                @else
-                                                    @foreach ($maxThaiDay as $maxThaiDay )
-                                                        {{$maxThaiDay}}
-                                                    @endforeach
-                                                @endif
 
-                                            </span>
-                                        </div>
-                                        <div class="text-dark text-weight-bold">
-                                            <span class="font-30">{{ $maxDayCount }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-around col-12 col-lg-6 " >
-                                        <div>
-                                            <p class="mb-0 text-danger">วันที่เข้าน้อยที่สุด</p>
-                                            <span class="mb-0 font-weight-bold font-18 ">
-                                                @if (count($minThaiDay) === 1)
-                                                    {{$minThaiDay[0]}}
-                                                @else
-                                                    @foreach ($minThaiDay as $minThaiDay )
-                                                        {{$minThaiDay}}
-                                                    @endforeach
-                                                @endif
-                                            </span>
-                                        </div>
-                                        <div class="text-dark text-weight-bold">
-                                            <span class="font-30">{{ $minDayCount }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>

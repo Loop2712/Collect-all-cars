@@ -253,35 +253,35 @@ class Partner_DashboardController extends Controller
             // }
 
            // หาวันที่เช็คอินมากสุด และน้อยสุด
-            $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            $thaiDays = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
+            // $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            // $thaiDays = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
 
-            $dayCount = array_fill_keys($daysOfWeek, 0); // เริ่มต้นนับทุกวันให้เป็น 0
+            // $dayCount = array_fill_keys($daysOfWeek, 0); // เริ่มต้นนับทุกวันให้เป็น 0
 
-            foreach ($check_ins_finder as $check_in) {
-                $time_in = $check_in->time_in;
-                $dayOfWeek = date('l', strtotime($time_in));
+            // foreach ($check_ins_finder as $check_in) {
+            //     $time_in = $check_in->time_in;
+            //     $dayOfWeek = date('l', strtotime($time_in));
 
-                $dayCount[$dayOfWeek]++; // เพิ่มจำนวนครั้งที่ปรากฏในวันนั้นๆ
-            }
+            //     $dayCount[$dayOfWeek]++; // เพิ่มจำนวนครั้งที่ปรากฏในวันนั้นๆ
+            // }
 
-            $maxDayCount = max($dayCount);
-            $maxDays = array_keys($dayCount, $maxDayCount);
+            // $maxDayCount = max($dayCount);
+            // $maxDays = array_keys($dayCount, $maxDayCount);
 
-            $minDayCount = min($dayCount);
-            $minDays = array_keys($dayCount, $minDayCount);
+            // $minDayCount = min($dayCount);
+            // $minDays = array_keys($dayCount, $minDayCount);
 
-            $maxThaiDay = [];
-            foreach ($maxDays as $maxDay) {
-                $maxThaiDay[] = $thaiDays[array_search($maxDay, $daysOfWeek)];
-            }
-            $maxThaiDay = array_slice($maxThaiDay, 0, 2);
+            // $maxThaiDay = [];
+            // foreach ($maxDays as $maxDay) {
+            //     $maxThaiDay[] = $thaiDays[array_search($maxDay, $daysOfWeek)];
+            // }
+            // $maxThaiDay = array_slice($maxThaiDay, 0, 2);
 
-            $minThaiDay = [];
-            foreach ($minDays as $minDay) {
-                $minThaiDay[] = $thaiDays[array_search($minDay, $daysOfWeek)];
-            }
-            $minThaiDay = array_slice($minThaiDay, 0, 2);
+            // $minThaiDay = [];
+            // foreach ($minDays as $minDay) {
+            //     $minThaiDay[] = $thaiDays[array_search($minDay, $daysOfWeek)];
+            // }
+            // $minThaiDay = array_slice($minThaiDay, 0, 2);
 
             // นับคนที่เกิดเดือนนี้
             $currentMonth = date('m');
@@ -755,14 +755,14 @@ class Partner_DashboardController extends Controller
 
             'count_hbd',
             'count_check_in_at_area',
-            'maxThaiDay',
-            'minThaiDay',
-            'maxDayCount',
-            'minDayCount',
+            // 'maxThaiDay',
+            // 'minThaiDay',
+            // 'maxDayCount',
+            // 'minDayCount',
             // 'maxTimeCounts',
             // 'minTimeCounts',
-            'maxValue',
-            'minValue',
+            // 'maxValue',
+            // 'minValue',
             'resultArray',
             'timeArray',
             'check_in_chart_arr',
