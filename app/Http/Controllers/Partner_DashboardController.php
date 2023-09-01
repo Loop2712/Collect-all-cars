@@ -289,16 +289,15 @@ class Partner_DashboardController extends Controller
 
             $encounteredIds = array();
 
-            // ddd($check_ins_finder);
-
             for ($isus=0; $isus < count($check_ins_finder); $isus++) {
+                $finder_hbd = User::where('id',$check_ins_finder[$isus]['user_id'])->first();
 
-                $userId = $check_ins_finder[$isus]['user_id'];
+                $userId = $finder_hbd->id;
                 if (in_array($userId, $encounteredIds)) {
                     continue; // ถ้าเจอ id ที่ถูกนับแล้ว ข้ามไปเช็คคนถัดไป
                 }
-                $finder_hbd = User::where('id',$check_ins_finder[$isus]['user_id'])->first('brith');
-                $birthDate = $finder_hbd;
+
+                $birthDate = $finder_hbd->brith;
                 $birthMonth = date('m', strtotime($birthDate));
 
                 if($birthMonth == $currentMonth){
