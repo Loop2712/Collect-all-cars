@@ -69,38 +69,92 @@
                     <h6 class="text-center">ข้อมูลตั้งแต่วันที่ {{ $date_delete_15_thai}} - {{$date_now_thai}}</h6>
                 </div>
                 <div class="row p-3 mb-3 ">
-                    <div class="col-12 col-lg-2">
+
+                    <div class="col-12 col-lg-4">
                         <div class="card radius-10 border shadow-none">
                             <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <p class="mb-0 text-secondary">จำนวนการเข้าพื้นที่</p>
-                                        <h4 class="mb-0">{{ $count_check_in_at_area }} คน</h4>
+                                <div class=" row">
+                                    <div class="d-flex align-items-center justify-content-around col-12 col-lg-6" style="border-right: 1px solid rgb(216, 208, 208)">
+                                        <div>
+                                            <p class="mb-0 text-success">วันที่เข้ามากที่สุด</p>
+                                            <span class="mb-0 font-weight-bold font-18 m-1">
+                                                @if (count($maxThaiDay) === 1)
+                                                    {{$maxThaiDay[0]}}
+                                                @else
+                                                    @foreach ($maxThaiDay as $maxThaiDay )
+                                                        {{$maxThaiDay}}
+                                                    @endforeach
+                                                @endif
+
+                                            </span>
+                                        </div>
+                                        <div class="text-dark text-weight-bold">
+                                            <span class="font-30">{{ $maxDayCount }}</span>
+                                        </div>
                                     </div>
-                                    <div class="ms-auto">
-                                        <img width="55px" src="{{ asset("/img/stickerline/PNG/37.2.png") }}">
+                                    <div class="d-flex align-items-center justify-content-around col-12 col-lg-6 " >
+                                        <div>
+                                            <p class="mb-0 text-danger">วันที่เข้าน้อยที่สุด</p>
+                                            <span class="mb-0 font-weight-bold font-18 ">
+                                                @if (count($minThaiDay) === 1)
+                                                    {{$minThaiDay[0]}}
+                                                @else
+                                                    @foreach ($minThaiDay as $minThaiDay )
+                                                        {{$minThaiDay}}
+                                                    @endforeach
+                                                @endif
+                                            </span>
+                                        </div>
+                                        <div class="text-dark text-weight-bold">
+                                            <span class="font-30">{{ $minDayCount }}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-2">
+                    <div class="col-12 col-lg-4">
                         <div class="card radius-10 border shadow-none">
                             <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <p class="mb-0 text-secondary">คนที่เกิดเดือนนี้</p>
-                                        <h4 class="mb-0">{{ $count_hbd }} คน</h4>
+                                <div class=" row">
+                                    <div class="d-flex align-items-center justify-content-around col-12 col-lg-6 " style="border-right: 1px solid rgb(216, 208, 208)">
+                                        <div>
+                                            <p class="mb-0 text-success">เวลาที่เข้ามากที่สุด</p>
+                                            <span class="mb-0 font-weight-bold font-18">
+                                                @if (count($maxTimeCounts) === 1)
+                                                    {{$maxTimeCounts[0]}}.00
+                                                @else
+                                                    @foreach ($maxTimeCounts as $index => $maxTimeCount)
+                                                        {{$maxTimeCount}}.00 {{$index !== count($maxTimeCounts) - 1 ? ', ' : ''}}
+                                                    @endforeach
+                                                @endif
+                                            </span>
+                                        </div>
+                                        <div class="text-dark text-weight-bold">
+                                            <span class="font-30">{{ $maxValue }}</span>
+                                        </div>
                                     </div>
-                                    <div class="ms-auto">
-                                        <img width="55px" src="{{ asset("/img/stickerline/PNG/48.png") }}">
+                                    <div class="d-flex align-items-center justify-content-around col-12 col-lg-6 ">
+                                        <div>
+                                            <p class="mb-0 text-danger">เวลาที่เข้าน้อยที่สุด</p>
+                                            <span class="mb-0 font-weight-bold font-18">
+                                                @if (count($minTimeCounts) === 1)
+                                                    {{$minTimeCounts[0]}}.00
+                                                @else
+                                                    @foreach ($minTimeCounts as $index => $minTimeCount)
+                                                        {{$minTimeCount}}.00 {{$index !== count($minTimeCounts) - 1 ? ', ' : ''}}
+                                                    @endforeach
+                                                @endif
+                                            </span>
+                                        </div>
+                                        <div class=" text-dark text-weight-bold ">
+                                            <span class="font-30">{{ $minValue }}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
             <!-- จบ พื้นที่ : ทั้งหมด -->

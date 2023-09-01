@@ -284,29 +284,29 @@ class Partner_DashboardController extends Controller
             // $minThaiDay = array_slice($minThaiDay, 0, 2);
 
             // นับคนที่เกิดเดือนนี้
-            $currentMonth = date('m');
-            $count_hbd = 0;
-            $encounteredIds = array();
+            // $currentMonth = date('m');
+            // $count_hbd = 0;
+            // $encounteredIds = array();
 
-            for ($i=0; $i < count($check_ins_finder); $i++) {
-                $finder_hbd = User::where('id',$check_ins_finder[$i]['user_id'])->first();
+            // for ($i=0; $i < count($check_ins_finder); $i++) {
+            //     $finder_hbd = User::where('id',$check_ins_finder[$i]['user_id'])->first();
 
-                $userId = $finder_hbd->id;
-                if (in_array($userId, $encounteredIds)) {
-                    continue; // ถ้าเจอ id ที่ถูกนับแล้ว ข้ามไปเช็คคนถัดไป
-                }
+            //     $userId = $finder_hbd->id;
+            //     if (in_array($userId, $encounteredIds)) {
+            //         continue; // ถ้าเจอ id ที่ถูกนับแล้ว ข้ามไปเช็คคนถัดไป
+            //     }
 
-                $birthDate = $finder_hbd->brith;
-                $birthMonth = date('m', strtotime($birthDate));
+            //     $birthDate = $finder_hbd->brith;
+            //     $birthMonth = date('m', strtotime($birthDate));
 
-                if($birthMonth == $currentMonth){
-                    $count_hbd++;
-                    $encounteredIds[] = $userId; // เพิ่ม id เข้าไปในอาร์เรย์เพื่อไม่นับซ้ำ
-                }
-            }
+            //     if($birthMonth == $currentMonth){
+            //         $count_hbd++;
+            //         $encounteredIds[] = $userId; // เพิ่ม id เข้าไปในอาร์เรย์เพื่อไม่นับซ้ำ
+            //     }
+            // }
 
-            // จำนวนการเข้าพื้นที่
-            $count_check_in_at_area = count($check_ins_finder);
+            // // จำนวนการเข้าพื้นที่
+            // $count_check_in_at_area = count($check_ins_finder);
 
         }
 
@@ -753,16 +753,16 @@ class Partner_DashboardController extends Controller
             // 'all_by_user_send_round',
             // 'sorted_all_by_user_user_click',
 
-            'count_hbd',
-            'count_check_in_at_area',
-            // 'maxThaiDay',
-            // 'minThaiDay',
-            // 'maxDayCount',
-            // 'minDayCount',
-            // 'maxTimeCounts',
-            // 'minTimeCounts',
-            // 'maxValue',
-            // 'minValue',
+            // 'count_hbd',
+            // 'count_check_in_at_area',
+            'maxThaiDay',
+            'minThaiDay',
+            'maxDayCount',
+            'minDayCount',
+            'maxTimeCounts',
+            'minTimeCounts',
+            'maxValue',
+            'minValue',
             'resultArray',
             'timeArray',
             'check_in_chart_arr',
