@@ -212,7 +212,7 @@
                                     $img_type_car = 'pickup-truck.png';
                                 break;
                             default:
-                                # code...
+                                    $img_type_car = 'driving-test.png';
                                 break;
                         }
                     @endphp
