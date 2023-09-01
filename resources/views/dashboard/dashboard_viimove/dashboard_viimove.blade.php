@@ -156,11 +156,9 @@
                         <div class="product-img ">
                             @if(!empty($report_car_top5->photo))
                                 <img src="{{ url('storage') }}/{{ $report_car_top5->photo }}" class="p-0" alt="">
-                            @endif
-                            @if(empty($report_car_top5->photo) && !empty($report_car_top5->avatar))
+                            @elseif(empty($report_car_top5->photo) && !empty($report_car_top5->avatar))
                                 <img src="{{ $report_car_top5->avatar }}" class="p-0" alt="">
-                            @endif
-                            @if(empty($report_car_top5->photo && empty($report_car_top5->avatar)))
+                            @elseif(empty($report_car_top5->photo && empty($report_car_top5->avatar)))
                                 <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                             @endif
                         </div>

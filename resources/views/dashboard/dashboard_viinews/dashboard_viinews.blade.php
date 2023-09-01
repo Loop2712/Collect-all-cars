@@ -240,11 +240,9 @@
                             <div class="recent-product-img">
                                 @if(!empty($last_checkIn_data->photo))
                                     <img src="{{ url('storage') }}/{{ $last_checkIn_data->photo }}" class="p-0" alt="">
-                                @endif
-                                @if(empty($last_checkIn_data->photo) && !empty($last_checkIn_data->avatar))
+                                @elseif(empty($last_checkIn_data->photo) && !empty($last_checkIn_data->avatar))
                                     <img src="{{ $last_checkIn_data->avatar }}" class="p-0" alt="">
-                                @endif
-                                @if(empty($last_checkIn_data->photo && empty($last_checkIn_data->avatar)))
+                                @elseif(empty($last_checkIn_data->photo && empty($last_checkIn_data->avatar)))
                                     <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                                 @endif
                             </div>
@@ -303,11 +301,9 @@
                             <div class="recent-product-img">
                                 @if(!empty($most_often_checkIn_data->photo))
                                     <img src="{{ url('storage') }}/{{ $most_often_checkIn_data->photo }}" class="p-0" alt="">
-                                @endif
-                                @if(empty($most_often_checkIn_data->photo) && !empty($most_often_checkIn_data->avatar))
+                                @elseif(empty($most_often_checkIn_data->photo) && !empty($most_often_checkIn_data->avatar))
                                     <img src="{{ $most_often_checkIn_data->avatar }}" class="p-0" alt="">
-                                @endif
-                                @if(empty($most_often_checkIn_data->photo && empty($most_often_checkIn_data->avatar)))
+                                @elseif(empty($most_often_checkIn_data->photo && empty($most_often_checkIn_data->avatar)))
                                     <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                                 @endif
                             </div>
@@ -348,11 +344,9 @@
                             <div class="recent-product-img">
                                 @if(!empty($lastest_checkIn_data->photo))
                                     <img src="{{ url('storage') }}/{{ $lastest_checkIn_data->photo }}" class="p-0" alt="">
-                                @endif
-                                @if(empty($lastest_checkIn_data->photo) && !empty($lastest_checkIn_data->avatar))
+                                @elseif(empty($lastest_checkIn_data->photo) && !empty($lastest_checkIn_data->avatar))
                                     <img src="{{ $lastest_checkIn_data->avatar }}" class="p-0" alt="">
-                                @endif
-                                @if(empty($lastest_checkIn_data->photo && empty($lastest_checkIn_data->avatar)))
+                                @elseif(empty($lastest_checkIn_data->photo && empty($lastest_checkIn_data->avatar)))
                                     <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
                                 @endif
                             </div>
