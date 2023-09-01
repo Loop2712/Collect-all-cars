@@ -409,37 +409,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-<script>
-    let chartData_arr = [];
-    let chartData = @json($check_in_chart_arr);
 
-    let options_ViiNews = {
-        series: chartData.series,
-        chart: {
-            height: 350,
-            type: 'area'
-        },
-        dataLabels: {
-            nabled: true
-        },
-        stroke: {
-            curve: 'smooth'
-        },
-        xaxis: {
-            type: 'time',
-            categories: chartData.categories,
-        },
-        tooltip: {
-            x: {
-                format: 'HH:mm'
-            },
-        },
-        };
-
-        let chartViiNews = new ApexCharts(document.querySelector("#chartViiNews"), options_ViiNews);
-        chartViiNews.render();
-
-</script>
 
 
 <script>

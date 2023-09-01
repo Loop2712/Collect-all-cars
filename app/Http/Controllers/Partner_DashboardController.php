@@ -311,57 +311,57 @@ class Partner_DashboardController extends Controller
 
         //========================== end =============================//
 
-        $all_data_partner = Partner::where('name' ,'=', $user_login->organization)
-        ->get();
+        // $all_data_partner = Partner::where('name' ,'=', $user_login->organization)
+        // ->get();
 
-        $check_in_chart_arr = $this->check_in_all_area_chart($all_data_partner);
-        //ใช้ 2 ตัวนี้ สำหรับกราฟ แสดง เวลาเช็คอินของแต่ละพื้นที่
-        $resultArray = [];
-        $timeArray = [];
+        // $check_in_chart_arr = $this->check_in_all_area_chart($all_data_partner);
+        // //ใช้ 2 ตัวนี้ สำหรับกราฟ แสดง เวลาเช็คอินของแต่ละพื้นที่
+        // $resultArray = [];
+        // $timeArray = [];
 
-        for ($i=0; $i < count($all_data_partner); $i++) {
-            $check_ins_data = Check_in::where('partner_id',$all_data_partner[$i]['id'])->get();
+        // for ($i=0; $i < count($all_data_partner); $i++) {
+        //     $check_ins_data = Check_in::where('partner_id',$all_data_partner[$i]['id'])->get();
 
-            $dataCounts = [];
-            $timeCount = [];
-            foreach ($check_ins_data as $index => $check_in) {
-                $timeIn = $check_in->time_in;
-                $hour = date('H:i', strtotime($timeIn));
+        //     $dataCounts = [];
+        //     $timeCount = [];
+        //     foreach ($check_ins_data as $index => $check_in) {
+        //         $timeIn = $check_in->time_in;
+        //         $hour = date('H:i', strtotime($timeIn));
 
-                if (!isset($dataCounts[$hour])) {
-                    $dataCounts[$hour] = 0;
-                }
-                $dataCounts[$hour]++;
+        //         if (!isset($dataCounts[$hour])) {
+        //             $dataCounts[$hour] = 0;
+        //         }
+        //         $dataCounts[$hour]++;
 
-                $formattime = date('H:i:s', strtotime($timeIn));
-                if (!isset($timeCount[$formattime])) {
-                    $timeCount[$formattime] = 0;
-                }else{
+        //         $formattime = date('H:i:s', strtotime($timeIn));
+        //         if (!isset($timeCount[$formattime])) {
+        //             $timeCount[$formattime] = 0;
+        //         }else{
 
-                }
+        //         }
 
 
-            }
+        //     }
 
-            // foreach ($check_ins_data as $time_check_in) {
-            //     $timeCount[] = $time_check_in['time_in'];
-            // }
+        //     // foreach ($check_ins_data as $time_check_in) {
+        //     //     $timeCount[] = $time_check_in['time_in'];
+        //     // }
 
-            if(!empty($all_data_partner[$i]['name_area'])){
-                $resultArray[] = [
-                    'name' => $all_data_partner[$i]['name_area'],
-                    'data' => $dataCounts,
-                    'time' => $timeCount
-                ];
-            }else{
-                $resultArray[] = [
-                    'name' => "รวม",
-                    'data' => $dataCounts,
-                    'time' => $timeCount
-                ];
-            }
+        //     if(!empty($all_data_partner[$i]['name_area'])){
+        //         $resultArray[] = [
+        //             'name' => $all_data_partner[$i]['name_area'],
+        //             'data' => $dataCounts,
+        //             'time' => $timeCount
+        //         ];
+        //     }else{
+        //         $resultArray[] = [
+        //             'name' => "รวม",
+        //             'data' => $dataCounts,
+        //             'time' => $timeCount
+        //         ];
+        //     }
 
-        }
+        // }
 
 
         //========================== end chart =============================//
@@ -761,8 +761,8 @@ class Partner_DashboardController extends Controller
             'minTimeCounts',
             'maxValue',
             'minValue',
-            'resultArray',
-            'timeArray',
+            // 'resultArray',
+            // 'timeArray',
             'check_in_chart_arr',
             'data_sos_fastest_5',
             'data_sos_slowest_5',
