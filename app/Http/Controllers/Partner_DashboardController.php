@@ -288,8 +288,6 @@ class Partner_DashboardController extends Controller
             $count_hbd = 0;
             $encounteredIds = array();
 
-
-            ddd($check_ins_finder);
             for ($i=0; $i < count($check_ins_finder); $i++) {
                 // $finder_hbd = User::where('id',$check_ins_finder[$i]['user_id'])->first();
                 $userId = $check_ins_finder[$i]['user_id'];
