@@ -340,7 +340,7 @@
 <style type="text/css">
     #sos_map_organization {
         min-height: calc(40vh);
-        height: 100%;
+        height: calc(100% - 10vh);
     }
 </style>
 

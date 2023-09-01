@@ -31,24 +31,28 @@
                         <div class="d-flex align-items-center">
                             <div>
                                 @php
-                                if(!empty($averageDifference)){
-                                    if ($averageDifference >= 3600) {
-                                        $sos_hours = floor($averageDifference / 3600);
-                                        $sos_remainingMinutes = floor(($averageDifference % 3600) / 60);
-                                        $sos_remainingSeconds = $averageDifference % 60;
+                                    if(!empty($averageDifference)){
+                                        if ($averageDifference >= 3600) {
+                                            $sos_hours = floor($averageDifference / 3600);
+                                            $sos_remainingMinutes = floor(($averageDifference % 3600) / 60);
 
-                                        $sos_time_unit = $sos_hours . ' ชั่วโมง ' . $sos_remainingMinutes . ' นาที ' . $sos_remainingSeconds . ' วินาที';
-                                    } elseif ($averageDifference >= 60) {
-                                        $sos_minutes = floor($averageDifference / 60);
-                                        $sos_seconds = $averageDifference % 60;
-                                        $sos_time_unit = $sos_minutes . ' นาที ' . $sos_seconds . ' วินาที';
-                                    } else {
-                                        $sos_time_unit = $averageDifference . ' วินาที';
+                                            $sos_remainingSeconds = $averageDifference % 60;
+                                            $sos_remainingSeconds = number_format($sos_remainingSeconds, 2);
+
+                                            $sos_time_unit = $sos_hours . ' ชั่วโมง ' . $sos_remainingMinutes . ' นาที ' . $sos_remainingSeconds . ' วินาที';
+                                        } elseif ($averageDifference >= 60) {
+                                            $sos_minutes = floor($averageDifference / 60);
+                                            $sos_seconds = $averageDifference % 60;
+                                            $sos_seconds = number_format($sos_seconds, 2);
+
+                                            $sos_time_unit = $sos_minutes . ' นาที ' . $sos_seconds . ' วินาที';
+                                        } else {
+                                            $sos_time_unit = number_format($averageDifference, 2) . ' วินาที';
+                                        }
+                                    }else{
+                                        $sos_time_unit  = "0 วินาที";
                                     }
-                                }else{
-                                    $sos_time_unit  = "0 วินาที";
-                                }
-                            @endphp
+                                @endphp
 
                                 <h5 class="mb-0 text-secondary">ระยะเวลาช่วยเหลือเฉลี่ย</h5>
                                 <h4 class="mb-0 font-weight-bold">{{ $sos_time_unit}}</h4>
@@ -474,7 +478,7 @@
 <style type="text/css">
     #sos_map_organization {
       min-height: calc(40vh);
-      height: 100%;
+      height: calc(100% - 10vh);
     }
 </style>
 
