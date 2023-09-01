@@ -410,13 +410,8 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <script>
-
-    console.log("Here We Go");
-
     let chartData_arr = [];
     let chartData = @json($check_in_chart_arr);
-
-    console.log(chartData);
 
     let options_ViiNews = {
         series: chartData.series,

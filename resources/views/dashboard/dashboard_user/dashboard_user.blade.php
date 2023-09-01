@@ -297,7 +297,7 @@
     let user_type_login_arr = [];
     let name_user_type_login_arr = [];
     let color_type_login_arr = [];
-    let logo_type_login_arr = [];
+
     @foreach ($count_type_login as $item)
         user_type_login_arr.push('{{ $item->user_type_count }}');
     @endforeach
@@ -315,27 +315,30 @@
     @endforeach
 
     let color_loop;
-    let logo_loop;
+
     @foreach ($count_type_login as $item)
         @if (empty($item->type))
             color_loop = '#546E7A';
-            // logo_loop = "https://www.viicheck.com/Medilab/img/icon.png";
+
         @elseif($item->type == 'line')
             color_loop = '#13d8aa';
-            // logo_loop = "https://www.viicheck.com/Medilab/img/icon.png";
+
         @elseif($item->type == 'google')
             color_loop = '#d4526e';
-            // logo_loop = "https://www.viicheck.com/Medilab/img/icon.png";
+
         @elseif($item->type == 'facebook')
             color_loop = '#33b2df';
-            // logo_loop = "https://www.viicheck.com/Medilab/img/icon.png";
+
         @endif
 
-        // logo_type_login_arr.push(logo_loop);
         color_type_login_arr.push(color_loop);
     @endforeach
 
-    var options = {
+    user_type_login_arr = user_type_login_arr.slice(0, 5);
+    name_user_type_login_arr = name_user_type_login_arr.slice(0, 5);
+    color_type_login_arr = color_type_login_arr.slice(0, 5);
+
+    let options_district_user = {
         series: [{
             data: user_type_login_arr,
         }],
@@ -398,8 +401,8 @@
 
     };
 
-    var chart = new ApexCharts(document.querySelector("#chartUser_from_Login"), options);
-    chart.render();
+    let chart_district_user = new ApexCharts(document.querySelector("#chartUser_from_Login"), options_district_user);
+    chart_district_user.render();
 
 
 </script>
