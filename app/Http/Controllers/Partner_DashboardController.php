@@ -30,32 +30,40 @@ class Partner_DashboardController extends Controller
     {
         $user_login = Auth::user();
 
+        $data_partner = Partner::where('name', '=', $user_login->organization)
+        ->where('name_area' , null)
+        ->first();
+
+        $text_user_form = str_replace( " ", "_", $data_partner->name );
+
         // เจ้าหน้าที่ในองค์กร
         $data_officer_last5 = User::where('organization', '=', $user_login->organization)
         ->orderBy('created_at','DESC')
         ->limit(5)
         ->get();
+
         // ผู้ใช้ที่มาจาก API
-        $data_user_from_last5 = User::where('user_from','LIKE',"%$user_login->user_from%")
+        $data_user_from_last5 = User::where('user_from','LIKE',"%$text_user_form%")
         ->orderBy('created_at','DESC')
         ->limit(5)
         ->get();
+
         // นับผู้ใช้ทั้งหมด
         $data_officer = User::where('organization', '=', $user_login->organization)->orderBy('created_at','DESC')->get();
-        $data_user_from = User::where('user_from','LIKE',"%$user_login->user_from%")->get();
+        $data_user_from = User::where('user_from','LIKE',"%$text_user_form%")->get();
         $all_user = count($data_officer) + count($data_user_from);
 
         // นับผู้ใช้แต่ละเดือน
         $date_now = Carbon::now();
         $all_user_m = User::whereMonth('created_at', $date_now)
         ->where('organization', '=', $user_login->organization)
-        ->orWhere('user_from','LIKE',"%$user_login->user_from%")
+        ->orWhere('user_from','LIKE',"%$text_user_form%")
         ->count();
 
         // ช่องทางเข้าสู่ระบบ
         $count_type_login = DB::table('users')
         ->where('users.organization', '=', $user_login->organization)
-        ->orWhere('user_from','LIKE',"%$user_login->user_from%")
+        ->orWhere('user_from','LIKE',"%$text_user_form%")
         ->select('users.type', DB::raw('COUNT(*) as user_type_count'))
         ->groupBy('users.type')
         ->orderBy('user_type_count','DESC')
@@ -64,7 +72,7 @@ class Partner_DashboardController extends Controller
         // จังหวัดของผู้ใช้สูงสุด 5 อันดับ
         $count_user_location = DB::table('users')
         ->where('users.organization', '=', $user_login->organization)
-        ->orWhere('user_from','LIKE',"%$user_login->user_from%")
+        ->orWhere('user_from','LIKE',"%$text_user_form%")
         ->select('users.location_P', DB::raw('COUNT(*) as user_location_count'))
         ->groupBy('users.location_P')
         ->orderBy('user_location_count','DESC')
