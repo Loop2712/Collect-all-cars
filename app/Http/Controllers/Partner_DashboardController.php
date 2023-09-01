@@ -91,16 +91,19 @@ class Partner_DashboardController extends Controller
 
         $totalDifference = 0;
         $count = 0;
-
+        $countloop_1 = 0;
         foreach ($average_sos_all_data as $data) {
-            $timeSosSuccess = strtotime($data->help_complete_time);
-            $timeCommand = strtotime($data->time_go_to_help);
+            if($countloop_1 < 5){
+                $timeSosSuccess = strtotime($data->help_complete_time);
+                $timeCommand = strtotime($data->time_go_to_help);
 
-            if ($timeSosSuccess !== false && $timeCommand !== false) {
-                $difference = $timeSosSuccess - $timeCommand;
-                $totalDifference += $difference;
-                $count++;
+                if ($timeSosSuccess !== false && $timeCommand !== false) {
+                    $difference = $timeSosSuccess - $timeCommand;
+                    $totalDifference += $difference;
+                    $count++;
+                }
             }
+            $countloop_1++;
         }
 
         if ($count > 0) {
@@ -112,16 +115,18 @@ class Partner_DashboardController extends Controller
 
         //หาเวลาที่เช็คอินมากสุด และน้อยสุด
         $sos_timeInCounts = array();
-
+        $countloop_2 = 0;
         foreach ($average_sos_all_data as $index => $sos) {
-            $timeIn = $sos->created_at;
-            $hour = date('H', strtotime($timeIn));
+            if($countloop_2 < 5){
+                $timeIn = $sos->created_at;
+                $hour = date('H', strtotime($timeIn));
 
-            if (!isset($sos_timeInCounts[$hour])) {
-                $sos_timeInCounts[$hour] = 0;
+                if (!isset($sos_timeInCounts[$hour])) {
+                    $sos_timeInCounts[$hour] = 0;
+                }
+                $sos_timeInCounts[$hour]++;
             }
-            $sos_timeInCounts[$hour]++;
-
+            $countloop_2++;
         }
 
         $sos_nonZeroTimeInCounts = array_filter($sos_timeInCounts, function($value) {
@@ -177,13 +182,11 @@ class Partner_DashboardController extends Controller
         $sos_map_data = Sos_map::where('area',$user_login->organization)
             ->where('lat','!=',null)
             ->where('lng','!=',null)
-            ->limit(10)
             ->get();
 
         // การขอความช่วยเหลือในจังหวัด
         $area_sos = Sos_map::where('area',$user_login->organization)
             ->where('name_area', '!=', null)
-            ->limit(10)
             ->get('name_area');
 
         $decoded_area = [];
