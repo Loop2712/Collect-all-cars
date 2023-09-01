@@ -84,7 +84,7 @@
 
     <h3 class="text-dark font-weight-bold">การประชาสัมพันธ์ข่าวสาร</h3>
     <div id="dashboard_boardcast" class="mb-3 bg_section1" >
-        @include ('dashboard.dashboard_boardcast.dashboard_boardcast')
+
     </div>
 </div>
 
