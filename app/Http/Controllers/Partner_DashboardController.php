@@ -36,6 +36,7 @@ class Partner_DashboardController extends Controller
 
         $text_user_form = str_replace( " ", "_", $data_partner->name );
 
+        ddd($text_user_form);
         // เจ้าหน้าที่ในองค์กร
         $data_officer_last5 = User::where('organization', '=', $user_login->organization)
         ->orderBy('created_at','DESC')
