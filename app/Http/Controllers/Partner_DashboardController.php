@@ -91,19 +91,16 @@ class Partner_DashboardController extends Controller
 
         $totalDifference = 0;
         $count = 0;
-        $countloop_1 = 0;
-        foreach ($average_sos_all_data as $data) {
-            if($countloop_1 < 5){
-                $timeSosSuccess = strtotime($data->help_complete_time);
-                $timeCommand = strtotime($data->time_go_to_help);
 
-                if ($timeSosSuccess !== false && $timeCommand !== false) {
-                    $difference = $timeSosSuccess - $timeCommand;
-                    $totalDifference += $difference;
-                    $count++;
-                }
+        foreach ($average_sos_all_data as $data) {
+            $timeSosSuccess = strtotime($data->help_complete_time);
+            $timeCommand = strtotime($data->time_go_to_help);
+
+            if ($timeSosSuccess !== false && $timeCommand !== false) {
+                $difference = $timeSosSuccess - $timeCommand;
+                $totalDifference += $difference;
+                $count++;
             }
-            $countloop_1++;
         }
 
         if ($count > 0) {
@@ -115,18 +112,16 @@ class Partner_DashboardController extends Controller
 
         //หาเวลาที่เช็คอินมากสุด และน้อยสุด
         $sos_timeInCounts = array();
-        $countloop_2 = 0;
-        foreach ($average_sos_all_data as $index => $sos) {
-            if($countloop_2 < 5){
-                $timeIn = $sos->created_at;
-                $hour = date('H', strtotime($timeIn));
 
-                if (!isset($sos_timeInCounts[$hour])) {
-                    $sos_timeInCounts[$hour] = 0;
-                }
-                $sos_timeInCounts[$hour]++;
+        foreach ($average_sos_all_data as $index => $sos) {
+            $timeIn = $sos->created_at;
+            $hour = date('H', strtotime($timeIn));
+
+            if (!isset($sos_timeInCounts[$hour])) {
+                $sos_timeInCounts[$hour] = 0;
             }
-            $countloop_2++;
+            $sos_timeInCounts[$hour]++;
+
         }
 
         $sos_nonZeroTimeInCounts = array_filter($sos_timeInCounts, function($value) {
@@ -543,7 +538,7 @@ class Partner_DashboardController extends Controller
                 $counts = array_count_values($all_by_checkin_Explode);
 
                 $all_by_checkin_counts = 0;
-                foreach ($counts as $key => $value) {
+                foreach ($counts as $key) {
                     $all_by_checkin_counts++;
                 }
 
@@ -578,7 +573,7 @@ class Partner_DashboardController extends Controller
                 $count_user_click = array_count_values($user_click_Explode);
 
                 $checkin_user_click = 0;
-                foreach ($count_user_click as $key => $value) {
+                foreach ($count_user_click as $key) {
                     $checkin_user_click++;
                 }
 
@@ -607,7 +602,7 @@ class Partner_DashboardController extends Controller
                 $counts = array_count_values($all_by_car_Explode);
 
                 $all_by_car_counts = 0;
-                foreach ($counts as $key => $value) {
+                foreach ($counts as $key) {
                     $all_by_car_counts++;
                 }
 
@@ -642,7 +637,7 @@ class Partner_DashboardController extends Controller
                 $count_user_click = array_count_values($user_click_Explode);
 
                 $checkin_user_click = 0;
-                foreach ($count_user_click as $key => $value) {
+                foreach ($count_user_click as $key) {
                     $checkin_user_click++;
                 }
 
@@ -671,7 +666,7 @@ class Partner_DashboardController extends Controller
                 $counts = array_count_values($all_by_user_Explode);
 
                 $all_by_user_counts = 0;
-                foreach ($counts as $key => $value) {
+                foreach ($counts as $key) {
                     $all_by_user_counts++;
                 }
 
@@ -706,7 +701,7 @@ class Partner_DashboardController extends Controller
                 $count_user_click = array_count_values($user_click_Explode);
 
                 $checkin_user_click = 0;
-                foreach ($count_user_click as $key => $value) {
+                foreach ($count_user_click as $key) {
                     $checkin_user_click++;
                 }
 
@@ -723,14 +718,14 @@ class Partner_DashboardController extends Controller
 
 
         return view('dashboard.dashboard_index',  compact(
-            'data_officer',
-            'data_user_from',
-            'data_officer_last5',
-            'data_user_from_last5',
-            'all_user',
-            'all_user_m',
-            'count_type_login',
-            'count_user_location',
+            // 'data_officer',
+            // 'data_user_from',
+            // 'data_officer_last5',
+            // 'data_user_from_last5',
+            // 'all_user',
+            // 'all_user_m',
+            // 'count_type_login',
+            // 'count_user_location',
             'all_data_partner',
             'sorted_last_checkIn_data',
             'most_often_checkIn_data',
