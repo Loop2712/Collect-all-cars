@@ -260,7 +260,7 @@
                                 @else
                                     <img src="{{ asset('img/logo_brand/logo-.png') }}" width="40" alt="" />
                                 @endif
-                                <span class="mb-0 text-dark font-22 ms-2">{{ $brand_car_top5->brand }}</span>
+                                <span class="mb-0 text-dark font-20 ms-2">{{ $brand_car_top5->brand }}</span>
                             </div>
                         </div>
                         <div class="count_checkin_number bg-gradient-moonlit text-white text-weight-bold ms-auto">

@@ -182,7 +182,7 @@
                                         <td>{{$user->sex ? $user->sex : "--"}}</td>
                                         <td>{{$user->brith ? $user->brith : "--"}}</td>
                                         <td ><span class="badge bg-light-success text-success w-40">{{$user->status ? $user->status : "--"}}</span></td>
-                                        <td>{{$user->created_at->diffForHumans() ? $user->created_at->diffForHumans() : "--"}}</td>
+                                        <td>{{$user->created_at->locale('th')->diffForHumans() ? $user->created_at->locale('th')->diffForHumans() : "--"}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -241,7 +241,7 @@
                                         </div>
                                     </td>
                                     <td>{{$user->sex  ? $user->sex : "--"}}</td>
-                                    <td>{{$user->created_at->diffForHumans()  ? $user->created_at->diffForHumans() : "--"}}</td>
+                                    <td>{{$user->created_at->locale('th')->diffForHumans()  ? $user->created_at->locale('th')->diffForHumans() : "--"}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
