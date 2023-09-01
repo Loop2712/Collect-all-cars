@@ -1164,7 +1164,50 @@ class PartnersController extends Controller
             ->orWhere('status' , null)
             ->get();
 
-        return view('view_map_officer_all', compact('data_officer_all','data_officer_ready','data_officer_helping','data_officer_Not_ready'));
+        $arr_vehicle = array();
+
+        $arr_vehicle['vehicle_car'] = 0 ;
+        $arr_vehicle['vehicle_aircraft'] = 0 ;
+        $arr_vehicle['vehicle_boat_1'] = 0 ;
+        $arr_vehicle['vehicle_boat_2'] = 0 ;
+        $arr_vehicle['vehicle_boat_3'] = 0 ;
+        $arr_vehicle['vehicle_boat_other'] = 0 ;
+
+        $arr_vehicle['vehicle_fr'] = 0 ;
+        $arr_vehicle['vehicle_bls'] = 0 ;
+        $arr_vehicle['vehicle_ils'] = 0 ;
+        $arr_vehicle['vehicle_als'] = 0 ;
+
+
+        foreach ($data_officer_all as $item) {
+            // ระดับ
+            if($item->level == 'FR'){
+                $arr_vehicle['vehicle_fr'] = $arr_vehicle['vehicle_fr'] + 1;
+            }else if($item->level == 'BLS'){
+                $arr_vehicle['vehicle_bls'] = $arr_vehicle['vehicle_bls'] + 1;
+            }else if($item->level == 'ILS'){
+                $arr_vehicle['vehicle_ils'] = $arr_vehicle['vehicle_ils'] + 1;
+            }else if($item->level == 'ALS'){
+                $arr_vehicle['vehicle_als'] = $arr_vehicle['vehicle_als'] + 1;
+            }
+
+            // ยานพาหนะ
+            if($item->vehicle_type == 'รถ'){
+                $arr_vehicle['vehicle_car'] = $arr_vehicle['vehicle_car'] + 1;
+            }else if($item->vehicle_type == 'อากาศยาน'){
+                $arr_vehicle['vehicle_aircraft'] = $arr_vehicle['vehicle_aircraft'] + 1;
+            }else if($item->vehicle_type == 'เรือ ป.1'){
+                $arr_vehicle['vehicle_boat_1'] = $arr_vehicle['vehicle_boat_1'] + 1;
+            }else if($item->vehicle_type == 'เรือ ป.2'){
+                $arr_vehicle['vehicle_boat_2'] = $arr_vehicle['vehicle_boat_2'] + 1;
+            }else if($item->vehicle_type == 'เรือ ป.3'){
+                $arr_vehicle['vehicle_boat_3'] = $arr_vehicle['vehicle_boat_3'] + 1;
+            }else if($item->vehicle_type == 'เรือประเภทอื่นๆ'){
+                $arr_vehicle['vehicle_boat_other'] = $arr_vehicle['vehicle_boat_other'] + 1;
+            }
+        }
+
+        return view('view_map_officer_all', compact('data_officer_all','data_officer_ready','data_officer_helping','data_officer_Not_ready','arr_vehicle'));
 
     }
 

@@ -10,6 +10,7 @@
     	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
     }
 </style>
+<!-- <link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet"> -->
 
 <div class="card" style="position:absolute;z-index: 99999;top: 10%;left: 1%;">
 	<div class="card-body">
@@ -21,6 +22,68 @@
 			พร้อมช่วยเหลือ : <b>{{ count($data_officer_ready) }}</b> <br>
 			กำลังช่วยเหลือ : <b>{{ count($data_officer_helping) }}</b> <br>
 			ไม่อยู่ : <b>{{ count($data_officer_Not_ready) }}</b> <br>
+		</p>
+	</div>
+	<hr>
+	<div class="card-body">
+		<div>
+			<h3 class="card-title">ประเภทยานพาหนะ</h3>
+		</div>
+		<p style="position:relative;padding-top: 10px;">
+			<img src="{{ url('/img/icon/car_img.png') }}" width="35" style="position: absolute;top:0px;"> 
+			<span style="margin-left:50px;">รถยนต์ : <b>{{ $arr_vehicle['vehicle_car'] }}</b></span>
+			<br>
+		</p>
+		<p style="position:relative;padding-top: 10px;">
+			<img src="{{ url('/img/icon/helicopter.png') }}" width="35" style="position: absolute;top:0px;"> 
+			<span style="margin-left:50px;">อากาศยาน : <b>{{ $arr_vehicle['vehicle_aircraft'] }}</b></span>
+			<br>
+		</p>
+		<p style="position:relative;padding-top: 10px;">
+			<img src="{{ url('/img/icon/ship1.png') }}" width="35" style="position: absolute;top:0px;"> 
+			<span style="margin-left:50px;">เรือ ป.1 : <b>{{ $arr_vehicle['vehicle_boat_1'] }}</b></span>
+			<br>
+		</p>
+		<p style="position:relative;padding-top: 10px;">
+			<img src="{{ url('/img/icon/ship2.png') }}" width="35" style="position: absolute;top:0px;"> 
+			<span style="margin-left:50px;">เรือ ป.2 : <b>{{ $arr_vehicle['vehicle_boat_2'] }}</b></span>
+			<br>
+		</p>
+		<p style="position:relative;padding-top: 10px;">
+			<img src="{{ url('/img/icon/ship3.png') }}" width="35" style="position: absolute;top:0px;"> 
+			<span style="margin-left:50px;">เรือ ป.3 : <b>{{ $arr_vehicle['vehicle_boat_3'] }}</b></span>
+			<br>
+		</p>
+		<p style="position:relative;padding-top: 10px;">
+			<img src="{{ url('/img/icon/ship4.png') }}" width="35" style="position: absolute;top:0px;"> 
+			<span style="margin-left:50px;">เรือประเภทอื่นๆ : <b>{{ $arr_vehicle['vehicle_boat_other'] }}</b></span>
+			<br>
+		</p>
+	</div>
+	<hr>
+	<div class="card-body">
+		<div>
+			<h3 class="card-title">ระดับปฏิบัติการ</h3>
+		</div>
+		<p style="position:relative;padding-top: 10px;">
+			<img src="{{ url('/img/icon/operating_unit/เขียว.png') }}" width="35" style="position: absolute;top:0px;"> 
+			<span style="margin-left:50px;">FR : <b>{{ $arr_vehicle['vehicle_fr'] }}</b></span>
+			<br>
+		</p>
+		<p style="position:relative;padding-top: 10px;">
+			<img src="{{ url('/img/icon/operating_unit/เหลือง.png') }}" width="35" style="position: absolute;top:0px;"> 
+			<span style="margin-left:50px;">BLS : <b>{{ $arr_vehicle['vehicle_bls'] }}</b></span>
+			<br>
+		</p>
+		<p style="position:relative;padding-top: 10px;">
+			<img src="{{ url('/img/icon/operating_unit/เหลือง.png') }}" width="35" style="position: absolute;top:0px;"> 
+			<span style="margin-left:50px;">ILS : <b>{{ $arr_vehicle['vehicle_ils'] }}</b></span>
+			<br>
+		</p>
+		<p style="position:relative;padding-top: 10px;">
+			<img src="{{ url('/img/icon/operating_unit/แดง.png') }}" width="35" style="position: absolute;top:0px;"> 
+			<span style="margin-left:50px;">ALS : <b>{{ $arr_vehicle['vehicle_als'] }}</b></span>
+			<br>
 		</p>
 	</div>
 </div>
