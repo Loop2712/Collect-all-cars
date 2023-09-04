@@ -283,9 +283,13 @@ Route::get('/nationalities/create_new_sos_group_line/{language}/{id_guoup_line}'
 // show user
 Route::get('/data_officer_go_to_help/{sos_id}', 'Sos_help_centerController@data_officer_go_to_help');
 
-////////////////////////////
-//////// Agora Chat ////////
-////////////////////////////
+//==========================//
+//======= Agora Chat =======//
+//==========================//
+Route::get('/video_call_4', 'Agora_4_Controller@token');
+Route::get('/join_room_4', 'Agora_4_Controller@join_room');
+Route::get('/left_room_4', 'Agora_4_Controller@left_room');
+
 Route::get('/video_call', 'AgoraController@token');
 Route::get('/join_room', 'AgoraController@join_room');
 Route::get('/left_room', 'AgoraController@left_room');
