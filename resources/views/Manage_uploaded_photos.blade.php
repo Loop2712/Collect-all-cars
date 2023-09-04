@@ -139,7 +139,7 @@
 
 
 	   	@endphp
-	    <div class="col-2 card" style="padding:10px;">
+	    <div class="col-2 card my-3" style="padding:10px;">
 	    	<h6> รูปที่ <b>{{ $iii }}</b> </h6>
 	    	<br>
 	    	<span> {{ $name_file }} </span>
