@@ -485,11 +485,12 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         initMap();
+        let maxTimeCount = 0;
+        let minTimeCount = 0;
 
-        let maxTimeCount = parseFloat('{{$sos_maxTimeCounts[0]}}');
-        let minTimeCount = parseFloat('{{$sos_minTimeCounts[0]}}');
-        console.log(maxTimeCount);
-        console.log(minTimeCount);
+        maxTimeCount = parseFloat('{{$sos_maxTimeCounts[0]}}');
+        minTimeCount = parseFloat('{{$sos_minTimeCounts[0]}}');
+
         //แสดงช่วงเวลาที่มีการขอความช่วยเหลือมากสุด
         if(maxTimeCount){
             let max_startTime = maxTimeCount.toFixed(2); // แปลงเป็นสตริงที่มี 2 ตำแหน่งทศนิยม

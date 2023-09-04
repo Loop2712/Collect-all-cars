@@ -14,16 +14,29 @@
 
     @php
          // % ของ content Check_In
-        $percent_by_checkin = ($count_all_by_checkin / $count_all_content) * 100;
-        $percent_by_checkin = number_format($percent_by_checkin,0);
+        if ($count_all_content != 0) {
+            $percent_by_checkin = ($count_all_by_checkin / $count_all_content) * 100;
+            $percent_by_checkin = number_format($percent_by_checkin, 0);
+        } else {
+            $percent_by_checkin = 0;
+        }
 
         // % ของ content By_user
-        $percent_by_user = ($count_all_by_user / $count_all_content) * 100;
-        $percent_by_user = number_format($percent_by_user,0);
+        if ($count_all_content != 0) {
+            $percent_by_user = ($count_all_by_user / $count_all_content) * 100;
+            $percent_by_user = number_format($percent_by_user, 0);
+        } else {
+            $percent_by_user = 0;
+        }
 
         // % ของ content By_car
-        $percent_by_car = ($count_all_by_car / $count_all_content) * 100;
-        $percent_by_car = number_format($percent_by_car,0);
+        if ($count_all_content != 0) {
+            $percent_by_car = ($count_all_by_car / $count_all_content) * 100;
+            $percent_by_car = number_format($percent_by_car, 0);
+        } else {
+            $percent_by_car = 0;
+        }
+
     @endphp
 
 <div class="row row-cols-1 row-cols-lg-4">
