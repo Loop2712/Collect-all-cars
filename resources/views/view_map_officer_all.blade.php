@@ -1,3 +1,6 @@
+@extends('layouts.viicheck_for_officer')
+
+@section('content')
 <style>
 	#map_show_officer_all {
       height: calc(100%);
@@ -5,6 +8,8 @@
 
     .card{
     	background-color: white;
+    	width: 20%;
+    	height: calc(80%);
     	padding: 20px;
     	border-radius: 15px;
     	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
@@ -15,7 +20,7 @@
 <div class="card" style="position:absolute;z-index: 99999;top: 10%;left: 1%;">
 	<div class="card-body">
 		<div>
-			<h3 class="card-title">ข้อมูลหน่วยปฏิบัติการ ทั่วประเทศ</h3>
+			<h4 class="card-title">ข้อมูลหน่วยปฏิบัติการ</h4>
 		</div>
 		<p class="card-text" style="line-height: 25px;">
 			จำนวนหน่วยปฏิบัติการทั้งหมด : <b>{{ count($data_officer_all) }}</b> <br>
@@ -24,10 +29,10 @@
 			ไม่อยู่ : <b>{{ count($data_officer_Not_ready) }}</b> <br>
 		</p>
 	</div>
-	<hr>
+	<hr style="margin-top: -5px;margin-bottom: -5px;">
 	<div class="card-body">
 		<div>
-			<h3 class="card-title">ประเภทยานพาหนะ</h3>
+			<h4 class="card-title">ประเภทยานพาหนะ</h4>
 		</div>
 		<p style="position:relative;padding-top: 10px;">
 			<img src="{{ url('/img/icon/car_img.png') }}" width="35" style="position: absolute;top:0px;"> 
@@ -60,31 +65,75 @@
 			<br>
 		</p>
 	</div>
-	<hr>
+	<hr style="margin-top: -5px;margin-bottom: -5px;">
 	<div class="card-body">
 		<div>
-			<h3 class="card-title">ระดับปฏิบัติการ</h3>
+			<h4 class="card-title">ระดับปฏิบัติการ</h4>
 		</div>
-		<p style="position:relative;padding-top: 10px;">
-			<img src="{{ url('/img/icon/operating_unit/เขียว.png') }}" width="35" style="position: absolute;top:0px;"> 
-			<span style="margin-left:50px;">FR : <b>{{ $arr_vehicle['vehicle_fr'] }}</b></span>
-			<br>
-		</p>
-		<p style="position:relative;padding-top: 10px;">
-			<img src="{{ url('/img/icon/operating_unit/เหลือง.png') }}" width="35" style="position: absolute;top:0px;"> 
-			<span style="margin-left:50px;">BLS : <b>{{ $arr_vehicle['vehicle_bls'] }}</b></span>
-			<br>
-		</p>
-		<p style="position:relative;padding-top: 10px;">
-			<img src="{{ url('/img/icon/operating_unit/เหลือง.png') }}" width="35" style="position: absolute;top:0px;"> 
-			<span style="margin-left:50px;">ILS : <b>{{ $arr_vehicle['vehicle_ils'] }}</b></span>
-			<br>
-		</p>
-		<p style="position:relative;padding-top: 10px;">
-			<img src="{{ url('/img/icon/operating_unit/แดง.png') }}" width="35" style="position: absolute;top:0px;"> 
-			<span style="margin-left:50px;">ALS : <b>{{ $arr_vehicle['vehicle_als'] }}</b></span>
-			<br>
-		</p>
+		<div class="row">
+			<div class="col-6">
+				<p style="position:relative;padding-top: 10px;">
+					<img src="{{ url('/img/icon/operating_unit/เขียว.png') }}" width="35" style="position: absolute;top:0px;"> 
+					<span style="margin-left:50px;">FR : <b>{{ $arr_vehicle['vehicle_fr'] }}</b></span>
+					<br>
+				</p>
+				<p style="position:relative;padding-top: 10px;">
+					<img src="{{ url('/img/icon/operating_unit/เหลือง.png') }}" width="35" style="position: absolute;top:0px;"> 
+					<span style="margin-left:50px;">BLS : <b>{{ $arr_vehicle['vehicle_bls'] }}</b></span>
+					<br>
+				</p>
+			</div>
+			<div class="col-6">
+				<p style="position:relative;padding-top: 10px;">
+					<img src="{{ url('/img/icon/operating_unit/เหลือง.png') }}" width="35" style="position: absolute;top:0px;"> 
+					<span style="margin-left:50px;">ILS : <b>{{ $arr_vehicle['vehicle_ils'] }}</b></span>
+					<br>
+				</p>
+				<p style="position:relative;padding-top: 10px;">
+					<img src="{{ url('/img/icon/operating_unit/แดง.png') }}" width="35" style="position: absolute;top:0px;"> 
+					<span style="margin-left:50px;">ALS : <b>{{ $arr_vehicle['vehicle_als'] }}</b></span>
+					<br>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="card" style="position:absolute;z-index: 99999;top: 10%;right: 1%;">
+	<div class="card-body">
+		<div>
+			<h4 class="card-title">พื้นที่การขอความช่วยเหลือ</h4>
+		</div>
+		<div class="row">
+			@foreach($orderedDistricts as $district => $count)
+            	<div class="col-9 mb-2">
+					{{$district}} 
+				</div>
+				<div class="col-3 mb-2">
+					<span class="float-end">
+						<b>{{$count}}</b> ครั้ง
+					</span>
+				</div>
+            @endforeach
+		</div>
+	</div>
+	<hr style="margin-top: -5px;margin-bottom: -5px;">
+	<div class="card-body">
+		<div>
+			<h4 class="card-title">เจ้าหน้าที่ออกปฏิบัติการ</h4>
+		</div>
+		<div class="row">
+			@foreach($data_officer_gotohelp as $officer_gotohelp)
+            	<div class="col-9 mb-2">
+					{{ $officer_gotohelp->name_officer }} 
+				</div>
+				<div class="col-3 mb-2">
+					<span class="float-end">
+						<b>{{ $officer_gotohelp->go_to_help }} </b> ครั้ง
+					</span>
+				</div>
+            @endforeach
+		</div>
 	</div>
 </div>
 
@@ -116,7 +165,7 @@
 	function open_map_show_data_officer_all() {
 
         let m_lat = parseFloat('12.870032');
-        let m_lng = parseFloat('100.992541');
+        let m_lng = parseFloat('100.992541') + 1;
         let m_numZoom = parseFloat('6.5');
 
         map_show_data_officer_all = new google.maps.Map(document.getElementById("map_show_officer_all"), {
@@ -147,3 +196,5 @@
     }
 
 </script>
+
+@endsection('content')

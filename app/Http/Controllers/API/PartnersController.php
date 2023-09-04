@@ -20,6 +20,7 @@ use App\Models\Time_zone;
 use App\Models\Disease;
 use App\Models\Data_1669_operating_officer;
 use App\Models\Data_1669_operating_unit;
+use App\Models\Sos_help_center;
 
 class PartnersController extends Controller
 {
@@ -1207,7 +1208,31 @@ class PartnersController extends Controller
             }
         }
 
-        return view('view_map_officer_all', compact('data_officer_all','data_officer_ready','data_officer_helping','data_officer_Not_ready','arr_vehicle'));
+        $amphoe_sos = Sos_help_center::where('address', '!=', null)
+            ->limit(10)
+            ->get('address');
+
+        $decoded_districts = [];
+        
+        foreach ($amphoe_sos as $item) {
+            $decoded = json_decode('"' . $item->address . '"'); // แปลง Unicode เป็นภาษาไทย
+            $parts = explode('/', $decoded);
+            if (isset($parts[1])) {
+                $decoded_districts[] = $parts[0] . "/" . $parts[1];
+            }
+        }
+
+        $districtCounts = collect($decoded_districts)->countBy();
+        $orderedDistricts = $districtCounts->sortByDesc(function ($count, $district) {
+            return $count;
+        });
+
+        $data_officer_gotohelp = Data_1669_operating_officer::where('go_to_help' , "!=" , null)
+            ->orderBy('go_to_help',"desc")
+            ->limit(10)
+            ->get();
+
+        return view('view_map_officer_all', compact('data_officer_all','data_officer_ready','data_officer_helping','data_officer_Not_ready','arr_vehicle','orderedDistricts','data_officer_gotohelp'));
 
     }
 
