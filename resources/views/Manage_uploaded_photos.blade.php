@@ -3,12 +3,66 @@
 @section('content')
 
 <h1 class="text-center mt-3">
-	{{ $text_hello_world }} -- {{ count($files) }}
+	<span class="text-primary">{{ $text_hello_world }}</span> -- มีรูปทั้งหมด {{ count($files) }}
 </h1>
 
 <div class="row" style="padding-left:30px;padding-right:30px;">
+
+	@php
+		$iii = 1 ;
+
+		$start = Request::get('start'); // ลำดับเริ่มต้น
+        $end = Request::get('end') ; // ลำดับสิ้นสุด
+
+        if(empty($start)){
+        	$start = 1 ;
+        }
+
+        if(empty($end)){
+        	$end = 20 ;
+        }
+
+        // ใช้ array_slice เพื่อดึงเฉพาะลำดับไฟล์ที่คุณต้องการ
+        $files = array_slice($files, $start - 1, $end - $start + 1);
+
+	@endphp
+
+	<div class="col-6">
+		<h3>
+			<br>
+			รูปภาพลำดับที่ : {{ $start }} ถึง {{ $end }}
+		</h3>
+	</div>
+	<div class="col-6">
+		<form action="{{ url('/Manage_uploaded_photos') }}" method="get">
+		    @csrf
+		    <div class="row">
+		    	<div class="col-5">
+		    		<div class="form-group">
+		    			<label for="start">ลำดับเริ่มต้น:</label>
+		    			<input class="form-control" type="number" id="start" name="start" min="1" placeholder="{{ $start }}">
+		    		</div>
+		    	</div>
+		    	<div class="col-5">
+		    		<div class="form-group">
+			    		<label for="end">ลำดับสิ้นสุด:</label>
+			    		<input class="form-control" type="number" id="end" name="end" min="1" placeholder="{{ $end }}">
+			    	</div>
+		    	</div>
+		    	<div class="col-2">
+		    		<button class="btn btn-info" type="submit" style="width:80%;margin-top:30px;">
+		    			ส่ง
+		    		</button>
+		    	</div>
+		    </div>
+		</form>
+	</div>
+
+	<hr>
+
 	@foreach ($files as $file) 
 		@php
+
 	    	$url = Storage::url($file);
 	    	$name_file = str_replace("public/uploads/" , "" , $file);
 	    	$name_db_file = 'uploads/' . $name_file;
@@ -86,7 +140,8 @@
 
 	   	@endphp
 	    <div class="col-2 card" style="padding:10px;">
-	    	<!-- <span> {{ $url }} </span> -->
+	    	<h6> รูปที่ <b>{{ $iii }}</b> </h6>
+	    	<br>
 	    	<span> {{ $name_file }} </span>
 	    	<br>
 	    	<span> {{ $address_img ? $address_img : "--" }} </span>
@@ -97,7 +152,11 @@
 		    	</span>
 		    	<img src="{{ url('/').$url }}" style="width:100%;">
 	    	</center>
-	    </div>	
+	    </div>
+
+	    @php
+	    	$iii = $iii + 1 ;
+	    @endphp
 	@endforeach
 </div>
 

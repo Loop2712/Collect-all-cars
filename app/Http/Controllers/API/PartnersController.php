@@ -1239,7 +1239,7 @@ class PartnersController extends Controller
 
     }
 
-    function Manage_uploaded_photos(){
+    function Manage_uploaded_photos(Request $request){
 
         $text_hello_world = "HELLO WORLD" ;
 
