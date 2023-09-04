@@ -147,7 +147,7 @@
 	    	<span> {{ $address_img ? $address_img : "--" }} </span>
 	    	<hr>
 	    	<center>
-	    		<span class="btn btn-sm btn-danger mb-3" style="width:80%;" onclick="delete_photo('{{ $name_file }}');">
+	    		<span class="btn btn-sm btn-danger mb-3" style="width:80%;" onclick="delete_photo('{{ $name_file }}','{{ $iii }}');">
 		    		ลบ
 		    	</span>
 		    	<img src="{{ url('/').$url }}" style="width:100%;">
@@ -162,7 +162,7 @@
 
 <script>
 	
-	function delete_photo(name_file){
+	function delete_photo(name_file,iii){
 
 		// alert(name_file);
 
@@ -173,7 +173,7 @@
 				let text_success = result.split(" - ")[1];
 				if(text_success == "ไฟล์ถูกลบออกแล้ว"){
 					// window.location.reload();
-					console.log('ไฟล์ถูกลบออกแล้ว');
+					console.log('ไฟล์ที่ ' + iii +' ถูกลบออกแล้ว');
 				}
 			});
 
