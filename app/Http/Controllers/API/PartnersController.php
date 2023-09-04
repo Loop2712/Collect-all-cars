@@ -1209,23 +1209,29 @@ class PartnersController extends Controller
         }
 
         $amphoe_sos = Sos_help_center::where('address', '!=', null)
-            ->get('address');
+            ->get();
 
         $decoded_districts = [];
         
         foreach ($amphoe_sos as $item) {
-            $decoded = json_decode('"' . $item->address . '"'); // แปลง Unicode เป็นภาษาไทย
-            $parts = explode('/', $decoded);
+            $parts = explode('/', $item->address);
             $text_p_a = $parts[0] . "/" . $parts[1];
             if (isset($text_p_a)) {
                 $decoded_districts[] = $text_p_a;
             }
         }
 
-        // ตัดให้เหลือแค่ 10 ตัว
-        $decoded_districts = array_slice($decoded_districts, 0, 10);
+        // echo "<pre>";
+        // print_r($decoded_districts);
+        // echo "<pre>";
+        // exit();
+
 
         $districtCounts = collect($decoded_districts)->countBy();
+        
+        // ตัดให้เหลือแค่ 10 ตัว
+        $districtCounts = array_slice($decoded_districts, 0, 10);
+
         $orderedDistricts = $districtCounts->sortByDesc(function ($count, $district) {
             return $count;
         });
