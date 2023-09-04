@@ -1229,7 +1229,7 @@ class PartnersController extends Controller
 
         $data_officer_gotohelp = Data_1669_operating_officer::where('go_to_help' , "!=" , null)
             ->orderBy('go_to_help',"desc")
-            ->limit(10)
+            ->limit(5)
             ->get();
 
         return view('view_map_officer_all', compact('data_officer_all','data_officer_ready','data_officer_helping','data_officer_Not_ready','arr_vehicle','orderedDistricts','data_officer_gotohelp'));
