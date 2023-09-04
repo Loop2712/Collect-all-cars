@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
+use App\Models\Ads_content;
+use App\Models\Guest;
+use App\Models\News;
+use App\Models\Parcel;
+use App\Models\Problem_report;
+use App\Models\Promotion;
+use App\Models\Sos_map;
+use App\User;
+
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToPartner_area;
 use App\Models\LineMessagingAPI;
@@ -1244,6 +1253,104 @@ class PartnersController extends Controller
         $text_hello_world = "HELLO WORLD" ;
 
         $files = Storage::files('public/uploads');
+
+        $iii = 0 ;
+        foreach ($files as $file) {
+
+            $iii = $iii + 1 ;
+
+            $url = Storage::url($file);
+            $name_file = str_replace("public/uploads/" , "" , $file);
+            $name_db_file = 'uploads/' . $name_file;
+
+            $address_img = "";
+
+            // --- ads_contents ---
+            $db_ads_contents = Ads_content::where('photo',$name_db_file)->first();
+            if(!empty($db_ads_contents)){
+                $address_img = $address_img . "/" . 'ads_contents' ;
+            }
+
+            // --- guests ---
+            $db_guests = Guest::where('photo',$name_db_file)->first();
+            if(!empty($db_guests)){
+                $address_img = $address_img . "/" . 'guests' ;
+            }
+
+            // --- news ---
+            $db_news = News::where('photo',$name_db_file)->first();
+            if(!empty($db_news)){
+                $address_img = $address_img . "/" . 'news' ;
+            }
+
+            // --- parcels ---
+            $db_parcels = Parcel::where('photo',$name_db_file)->first();
+            if(!empty($db_parcels)){
+                $address_img = $address_img . "/" . 'parcels' ;
+            }
+
+            // --- partners ---
+            $db_partners = Partner::where('logo',$name_db_file)->first();
+            if(!empty($db_partners)){
+                $address_img = $address_img . "/" . 'partners' ;
+            }
+
+            // --- problem_reports ---
+            $db_problem_reports = Problem_report::where('image',$name_db_file)->first();
+            if(!empty($db_problem_reports)){
+                $address_img = $address_img . "/" . 'problem_reports' ;
+            }
+
+            // --- promotions ---
+            $db_promotions = Promotion::where('photo',$name_db_file)->first();
+            if(!empty($db_promotions)){
+                $address_img = $address_img . "/" . 'promotions' ;
+            }
+
+            // --- sos_help_centers ---
+            $db_sos_help_centers = Sos_help_center::where('photo_sos',$name_db_file)
+                ->orWhere('photo_succeed',$name_db_file)
+                ->orWhere('photo_sos_by_officers',$name_db_file)
+                ->first();
+            if(!empty($db_sos_help_centers)){
+                $address_img = $address_img . "/" . 'sos_help_centers' ;
+            }
+
+            // --- sos_maps ---
+            $db_sos_maps = Sos_map::where('photo',$name_db_file)
+                ->orWhere('photo_succeed',$name_db_file)
+                ->first();
+            if(!empty($db_sos_maps)){
+                $address_img = $address_img . "/" . 'sos_maps' ;
+            }
+
+            // --- users ---
+            $db_users = User::where('photo',$name_db_file)
+                ->orWhere('driver_license',$name_db_file)
+                ->orWhere('driver_license2',$name_db_file)
+                ->first();
+            if(!empty($db_users)){
+                $address_img = $address_img . "/" . 'users' ;
+            }
+
+
+            // เช็ค address_img ถ้าว่าง ลบออก
+            if(empty($address_img)){
+                $filename_for_delete = 'public/uploads/' . $name_file;
+                echo $filename_for_delete ;
+                echo "<br>";
+            }
+
+        }
+
+        echo "<br>" ;
+        echo "---------------------" ;
+        echo "<br>" ;
+        echo "มีทั้งหมด : " . $iii ;
+        echo "<br>" ;
+        echo "---------------------" ;
+        echo "<br>" ;
+        exit();
 
         return view('Manage_uploaded_photos', compact('text_hello_world','files'));
     }
