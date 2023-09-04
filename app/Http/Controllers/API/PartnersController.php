@@ -1216,8 +1216,9 @@ class PartnersController extends Controller
         foreach ($amphoe_sos as $item) {
             $decoded = json_decode('"' . $item->address . '"'); // แปลง Unicode เป็นภาษาไทย
             $parts = explode('/', $decoded);
-            if (isset($parts[1])) {
-                $decoded_districts[] = $parts[0] . "/" . $parts[1];
+            $text_p_a = $parts[0] . "/" . $parts[1];
+            if (isset($text_p_a)) {
+                $decoded_districts[] = $text_p_a;
             }
         }
 
