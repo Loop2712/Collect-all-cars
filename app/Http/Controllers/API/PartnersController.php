@@ -1221,16 +1221,19 @@ class PartnersController extends Controller
             }
         }
 
+        $districtCounts = collect($decoded_districts)->countBy();
+
+        // ตัดให้เหลือแค่ 10 ตัว
+        // แปลงอาร์เรย์ให้เป็นวัตถุ
+        $districtCounts = (object) $districtCounts;
+
+        // ตัดให้เหลือแค่ 10 ตัวแรก
+        $districtCounts = (array) array_slice((array) $districtCounts, 0, 10);
+
         // echo "<pre>";
-        // print_r($decoded_districts);
+        // print_r($districtCounts);
         // echo "<pre>";
         // exit();
-
-
-        $districtCounts = collect($decoded_districts)->countBy();
-        
-        // ตัดให้เหลือแค่ 10 ตัว
-        $districtCounts = array_slice($decoded_districts, 0, 10);
 
         $orderedDistricts = $districtCounts->sortByDesc(function ($count, $district) {
             return $count;
