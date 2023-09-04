@@ -1222,7 +1222,7 @@ class PartnersController extends Controller
         }
 
         // ตัดให้เหลือแค่ 10 ตัว
-        $decoded_districts = array_slice($arr, 0, 10);
+        $decoded_districts = array_slice($decoded_districts, 0, 10);
 
         $districtCounts = collect($decoded_districts)->countBy();
         $orderedDistricts = $districtCounts->sortByDesc(function ($count, $district) {
