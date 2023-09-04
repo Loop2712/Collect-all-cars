@@ -35,13 +35,12 @@ class Agora_4_Controller extends Controller
 
     public function index(Request $request)
     {
-        $sos_id = $request->sos_id;
         $user = Auth::user();
 
         $appID = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
 
-        return view('video_call_4/video_call_4', compact('sos_id','user','appID','appCertificate'));
+        return view('video_call_4/video_call_4', compact('user','appID','appCertificate'));
 
     }
 
