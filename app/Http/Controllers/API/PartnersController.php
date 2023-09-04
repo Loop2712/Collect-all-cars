@@ -1209,7 +1209,6 @@ class PartnersController extends Controller
         }
 
         $amphoe_sos = Sos_help_center::where('address', '!=', null)
-            ->limit(10)
             ->get('address');
 
         $decoded_districts = [];
@@ -1221,6 +1220,9 @@ class PartnersController extends Controller
                 $decoded_districts[] = $parts[0] . "/" . $parts[1];
             }
         }
+
+        // ตัดให้เหลือแค่ 10 ตัว
+        $decoded_districts = array_slice($arr, 0, 10);
 
         $districtCounts = collect($decoded_districts)->countBy();
         $orderedDistricts = $districtCounts->sortByDesc(function ($count, $district) {
