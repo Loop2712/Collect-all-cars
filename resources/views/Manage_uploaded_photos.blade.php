@@ -110,10 +110,11 @@
 		fetch("{{ url('/') }}/api/delete_uploaded_photos" + "/" + name_file)
 			.then(response => response.text())
 			.then(result => {
-				alert(result);
+				// alert(result);
 				let text_success = result.split(" - ")[1];
 				if(text_success == "ไฟล์ถูกลบออกแล้ว"){
-					window.location.reload();
+					// window.location.reload();
+					console.log('ไฟล์ถูกลบออกแล้ว');
 				}
 			});
 
