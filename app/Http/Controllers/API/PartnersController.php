@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailToPartner_area;
@@ -1235,6 +1236,30 @@ class PartnersController extends Controller
         $sos_success = Sos_help_center::where('status', 'เสร็จสิ้น')->get();
 
         return view('view_map_officer_all', compact('data_officer_all','data_officer_ready','data_officer_helping','data_officer_Not_ready','arr_vehicle','orderedDistricts','data_officer_gotohelp','sos_success'));
+
+    }
+
+    function Manage_uploaded_photos(){
+
+        $text_hello_world = "HELLO WORLD" ;
+
+        $files = Storage::files('public/uploads');
+
+        return view('Manage_uploaded_photos', compact('text_hello_world','files'));
+    }
+
+    function delete_uploaded_photos($name_file){
+
+        $filename = 'public/uploads/' . $name_file;
+
+        if (Storage::exists($filename)) {
+            Storage::delete($filename);
+            $text = 'ไฟล์ถูกลบออกแล้ว';
+        } else {
+            $text = 'ไม่พบไฟล์ที่ต้องการลบ';
+        }
+
+        return $name_file . " - " . $text ;
 
     }
 

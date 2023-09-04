@@ -170,6 +170,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(function () {
 
 	Route::get('/view_map_officer_all', 'API\PartnersController@view_map_officer_all');
+	Route::get('/Manage_uploaded_photos', 'API\PartnersController@Manage_uploaded_photos');
+
 	Route::resource('ads_content', 'Ads_contentController')->except(['show','edit','index']);
 	// Route::get('/partner_theme', 'PartnerController@partner_theme');
 	Route::get('/partner_index', 'PartnerController@partner_index');
