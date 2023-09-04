@@ -14,6 +14,12 @@
     	border-radius: 15px;
     	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
     }
+
+    .flex-container {
+	  	display: flex;
+	  	height: auto; /* กำหนดความสูงของ flex container */
+	  	overflow: auto; /* เพิ่มการเลื่อนแนวตั้ง เมื่อเนื้อหาเกินขนาดของ flex container */
+	}
 </style>
 <!-- <link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet"> -->
 
@@ -104,17 +110,54 @@
 		<div>
 			<h4 class="card-title">พื้นที่การขอความช่วยเหลือ</h4>
 		</div>
-		<div class="row">
+		<div class="row flex-container">
+			<div class="col-12 mb-2">
+				13555351351351
+			</div>
+			<div class="col-12 mb-2">
+				13555351351351
+			</div>
+			<div class="col-12 mb-2">
+				13555351351351
+			</div>
+			<div class="col-12 mb-2">
+				13555351351351
+			</div>
+			<div class="col-12 mb-2">
+				13555351351351
+			</div>
+			<div class="col-12 mb-2">
+				13555351351351
+			</div>
+			<div class="col-12 mb-2">
+				13555351351351
+			</div>
+			<div class="col-12 mb-2">
+				13555351351351
+			</div>
+			<div class="col-12 mb-2">
+				13555351351351
+			</div>
+			<div class="col-12 mb-2">
+				13555351351351
+			</div>
+			<div class="col-12 mb-2">
+				13555351351351
+			</div>
+			<div class="col-12 mb-2">
+				13555351351351
+			</div>
 			@foreach($orderedDistricts as $district => $count)
-            	<div class="col-8 mb-2">
+            	<div class="col-9 mb-2">
 					{{$district}} 
 				</div>
-				<div class="col-4 mb-2">
+				<div class="col-3 mb-2">
 					<span class="float-end">
-						<b>{{$count}}</b> ครั้ง
+						<b>{{$count}}</b>
 					</span>
 				</div>
             @endforeach
+
 		</div>
 	</div>
 	<hr style="margin-top: -5px;margin-bottom: -5px;">
