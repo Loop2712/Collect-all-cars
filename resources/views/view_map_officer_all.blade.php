@@ -106,10 +106,10 @@
 		</div>
 		<div class="row">
 			@foreach($orderedDistricts as $district => $count)
-            	<div class="col-9 mb-2">
+            	<div class="col-8 mb-2">
 					{{$district}} 
 				</div>
-				<div class="col-3 mb-2">
+				<div class="col-4 mb-2">
 					<span class="float-end">
 						<b>{{$count}}</b> ครั้ง
 					</span>
