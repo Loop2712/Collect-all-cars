@@ -3,7 +3,7 @@
 @section('content')
 
 <h1 class="text-center mt-3">
-	{{ $text_hello_world }}
+	{{ $text_hello_world }} -- {{ count($files) }}
 </h1>
 
 <div class="row" style="padding-left:30px;padding-right:30px;">
