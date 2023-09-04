@@ -1232,7 +1232,9 @@ class PartnersController extends Controller
             ->limit(8)
             ->get();
 
-        return view('view_map_officer_all', compact('data_officer_all','data_officer_ready','data_officer_helping','data_officer_Not_ready','arr_vehicle','orderedDistricts','data_officer_gotohelp'));
+        $sos_success = Sos_help_center::where('status', 'เสร็จสิ้น')->get();
+
+        return view('view_map_officer_all', compact('data_officer_all','data_officer_ready','data_officer_helping','data_officer_Not_ready','arr_vehicle','orderedDistricts','data_officer_gotohelp','sos_success'));
 
     }
 

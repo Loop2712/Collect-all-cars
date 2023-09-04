@@ -105,7 +105,15 @@
 	</div>
 </div>
 
-<div class="card" style="position:absolute;z-index: 99999;top: 10%;right: 1%;">
+<div class="card" style="position:absolute;z-index: 99999;top: 5%;right: 1%;height: 5%!important;">
+	<div class="card-body text-center">
+		<div style="margin-top: -28px;">
+			ช่วยเหลือเสร็จสิ้น <b>{{ count($sos_success) }}</b> เคส
+		</div>
+	</div>
+</div>
+
+<div class="card" style="position:absolute;z-index: 99999;top: 11%;right: 1%;">
 	<div class="card-body">
 		<div>
 			<h4 class="card-title">พื้นที่การขอความช่วยเหลือ</h4>
