@@ -34,7 +34,7 @@
 		</h3>
 	</div>
 	<div class="col-6">
-		<form action="{{ url('/Manage_uploaded_photos') }}" method="get">
+		<form action="{{ url('/Manage_resize_photos') }}" method="get">
 		    @csrf
 		    <div class="row">
 		    	<div class="col-5">
