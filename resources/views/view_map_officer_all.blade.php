@@ -6,7 +6,7 @@
       height: calc(100%);
     }
 
-    .card{
+    .card_data{
     	background-color: white;
     	width: 20%;
     	height: calc(85%);
@@ -23,7 +23,7 @@
 </style>
 <!-- <link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet"> -->
 
-<div class="card" style="position:absolute;z-index: 99999;top: 10%;left: 1%;">
+<div class="card_data" style="position:absolute;z-index: 99999;top: 10%;left: 1%;">
 	<div class="card-body">
 		<div>
 			<h4 class="card-title">ข้อมูลหน่วยปฏิบัติการ</h4>
@@ -105,7 +105,7 @@
 	</div>
 </div>
 
-<div class="card" style="position:absolute;z-index: 99999;top: 5%;right: 1%;height: 5%!important;">
+<div class="card_data" style="position:absolute;z-index: 99999;top: 5%;right: 1%;height: 5%!important;">
 	<div class="card-body text-center">
 		<div style="margin-top: -28px;">
 			ช่วยเหลือเสร็จสิ้น <b>{{ count($sos_success) }}</b> เคส
@@ -113,7 +113,7 @@
 	</div>
 </div>
 
-<div class="card" style="position:absolute;z-index: 99999;top: 11%;right: 1%;">
+<div class="card_data" style="position:absolute;z-index: 99999;top: 11%;right: 1%;">
 	<div class="card-body">
 		<div>
 			<h4 class="card-title">พื้นที่การขอความช่วยเหลือ</h4>
@@ -152,6 +152,21 @@
 	</div>
 </div>
 
+<div class="card" style="position:absolute;z-index: 99999;bottom: 3.5%;right: 21.5%;">
+	<div class="card-body">
+		<div class="btn-group" role="group" aria-label="Basic example">
+			<button id="btn_view_officer" type="button" class="btn btn-sm btn-success" 
+			onclick="change_view_data_map('btn_view_officer');">
+				หน่วยปฏิบัติการ
+			</button>
+			<button id="btn_view_sos" type="button" class="btn btn-sm btn-outline-danger" 
+			onclick="change_view_data_map('btn_view_sos');">
+				&nbsp;&nbsp;&nbsp;จุดเกิดเหตุ&nbsp;&nbsp;&nbsp;
+			</button>
+		</div>
+	</div>
+</div>
+
 <div id="map_show_officer_all">
 	
 </div>
@@ -170,8 +185,10 @@
 
     let map_show_data_officer_all ;
     let marker ;
+    let marker_sos ;
     let markers = [] ;
 
+    let image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
     let image_operating_unit_red = "{{ url('/img/icon/operating_unit/แดง.png') }}";
     let image_operating_unit_yellow = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
     let image_operating_unit_green = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
@@ -188,7 +205,42 @@
             zoom: m_numZoom,
         });
 
-        let icon_level ;
+        change_view_data_map("btn_view_officer");
+    }
+
+    function change_view_data_map(type_view){
+    	
+    	for (var i = 0; i < markers.length; i++) {
+	        markers[i].setMap(null);
+	    }
+	    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
+
+    	if (type_view == "btn_view_officer") {
+    		btn_view_officer();
+
+    		document.querySelector('#btn_view_officer').classList.remove('btn-outline-success');
+    		document.querySelector('#btn_view_officer').classList.add('btn-success');
+
+    		document.querySelector('#btn_view_sos').classList.remove('btn-danger');
+    		document.querySelector('#btn_view_sos').classList.add('btn-outline-danger');
+
+    	}else if(type_view == "btn_view_sos"){
+    		btn_view_sos();
+
+    		document.querySelector('#btn_view_officer').classList.remove('btn-success');
+    		document.querySelector('#btn_view_officer').classList.add('btn-outline-success');
+
+    		document.querySelector('#btn_view_sos').classList.remove('btn-outline-danger');
+    		document.querySelector('#btn_view_sos').classList.add('btn-danger');
+    	}
+
+    }
+
+    function btn_view_officer(){
+    	// console.log('btn_view_officer');
+
+    	let icon_level ;
+
 
         @foreach($data_officer_ready as $item)
 
@@ -207,7 +259,22 @@
 	        });
 	        markers.push(marker);
 	    @endforeach
-      
+
+    }
+
+    function btn_view_sos(){
+    	// console.log('btn_view_sos');
+
+    	@foreach($sos_success as $item)
+
+	        marker_sos = new google.maps.Marker({
+	            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+	            map: map_show_data_officer_all,
+	            icon: image_sos,
+	        });
+	        markers.push(marker_sos);
+	    @endforeach
+
     }
 
 </script>
