@@ -15,11 +15,11 @@
         $end = Request::get('end') ; // ลำดับสิ้นสุด
 
         if(empty($start)){
-        	$start = 5 ;
+        	$start = 1 ;
         }
 
         if(empty($end)){
-        	$end = 10 ;
+        	$end = 12 ;
         }
 
         // ใช้ array_slice เพื่อดึงเฉพาะลำดับไฟล์ที่คุณต้องการ
