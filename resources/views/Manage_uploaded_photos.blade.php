@@ -15,11 +15,11 @@
         $end = Request::get('end') ; // ลำดับสิ้นสุด
 
         if(empty($start)){
-        	$start = 1 ;
+        	$start = 5 ;
         }
 
         if(empty($end)){
-        	$end = 20 ;
+        	$end = 10 ;
         }
 
         // ใช้ array_slice เพื่อดึงเฉพาะลำดับไฟล์ที่คุณต้องการ
@@ -28,8 +28,10 @@
 	@endphp
 
 	<div class="col-6">
+		<a href="{{ url('/Manage_resize_photos') }}" class="btn btn-success mb-2" >
+			ปรับขนาดรูปภาพ
+		</a>
 		<h3>
-			<br>
 			รูปภาพลำดับที่ : {{ $start }} ถึง {{ $end }}
 		</h3>
 	</div>
