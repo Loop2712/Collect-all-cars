@@ -188,7 +188,7 @@
     let marker_sos ;
     let markers = [] ;
 
-    let image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
+    let image_sos = "{{ url('/img/icon/operating_unit/viicheck.png') }}";
     let image_operating_unit_red = "{{ url('/img/icon/operating_unit/แดง.png') }}";
     let image_operating_unit_yellow = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
     let image_operating_unit_green = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
