@@ -66,8 +66,8 @@ Route::get('/check_sos_country/{user_id}','API\LocationController@check_sos_coun
 Route::get('/show_sos_area/{countryCode}','API\LocationController@show_sos_area');
 
 Route::get('/delete_uploaded_photos/{name_file}','API\PartnersController@delete_uploaded_photos');
-Route::get('/resize_img/{name_file}','API\PartnersController@resize_img');
-Route::get('/get_new_size_img/{name_file}','API\PartnersController@get_new_size_img');
+Route::get('/resize_img/{name_file}/{type_part}','API\PartnersController@resize_img');
+Route::get('/get_new_size_img/{name_file}/{type_part}','API\PartnersController@get_new_size_img');
 
 Route::get('/check_user/{id_user}','API\PartnersController@check_user');
 Route::get('/put_email/{put_email}/{id_user}/{put_username}','API\PartnersController@put_email');

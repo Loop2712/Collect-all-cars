@@ -64,8 +64,7 @@
 		@php
 
 	    	$url = Storage::url($file);
-	    	$name_file = str_replace("public/uploads/" , "" , $file);
-	    	$name_db_file = 'uploads/' . $name_file;
+	    	$name_file = str_replace("public/".$type_part."/" , "" , $file);
 
 	    	$part_file = url('/') . $url ;
 
@@ -122,7 +121,7 @@
 	    	</span>
 	    	<hr>
 	    	<center>
-	    		<span class="btn btn-sm btn-danger mb-3" style="width:80%;" onclick="resize_img('{{ $name_file }}','{{ $iii }}');">
+	    		<span class="btn btn-sm btn-danger mb-3" style="width:80%;" onclick="resize_img('{{ $name_file }}','{{ $iii }}','{{ $type_part }}');">
 		    		ปรับลดขนาดภาพ
 		    	</span>
 		    	<img src="{{ url('/').$url }}" style="width:100%;">
@@ -137,18 +136,18 @@
 
 <script>
 	
-	function resize_img(name_file,iii){
+	function resize_img(name_file,iii,type_part){
 
 		// alert(name_file);
 
-		fetch("{{ url('/') }}/api/resize_img" + "/" + name_file)
+		fetch("{{ url('/') }}/api/resize_img" + "/" + name_file + "/" + type_part)
 			.then(response => response.text())
 			.then(result_1 => {
 				// console.log(result_1);
 				let imageSizeInBytes_1 = result_1; // ตัวอย่างค่าขนาดรูปภาพในไบต์
 				let old_size = (imageSizeInBytes_1 / (1024 * 1024)).toFixed(2);
 				if(result_1){
-					fetch("{{ url('/') }}/api/get_new_size_img" + "/" + name_file)
+					fetch("{{ url('/') }}/api/get_new_size_img" + "/" + name_file + "/" + type_part)
 						.then(response => response.text())
 						.then(result_2 => {
 							// console.log(result_2);
