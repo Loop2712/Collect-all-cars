@@ -1256,11 +1256,11 @@ class PartnersController extends Controller
         // $files = Storage::files('public/uploads');
         // $type_part = "uploads";
 
-        // $files = Storage::files('public/1669');
-        // $type_part = "1669";
+        $files = Storage::files('public/1669');
+        $type_part = "1669";
 
-        $files = Storage::files('public/check_in');
-        $type_part = "check_in";
+        // $files = Storage::files('public/check_in');
+        // $type_part = "check_in";
 
         return view('Manage_uploaded_photos', compact('text_hello_world','files','type_part'));
     }
@@ -1272,11 +1272,11 @@ class PartnersController extends Controller
         // $files = Storage::files('public/uploads');
         // $type_part = "uploads";
 
-        // $files = Storage::files('public/1669');
-        // $type_part = "1669";
+        $files = Storage::files('public/1669');
+        $type_part = "1669";
 
-        $files = Storage::files('public/check_in');
-        $type_part = "check_in";
+        // $files = Storage::files('public/check_in');
+        // $type_part = "check_in";
 
         return view('Manage_resize_photos', compact('text_hello_world','files','type_part'));
     }
