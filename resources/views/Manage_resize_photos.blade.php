@@ -67,9 +67,9 @@
 
 	    	$full_patr_file = "public/".$type_part."/" ;
 	    	//$name_file = str_replace(" " , "" , $file);
-	    	$name_file = str_replace(" " , "%20" , $file);
 
 	    	$part_file = url('/') . $url ;
+	    	$part_file = str_replace(" " , "%20" , $part_file); ;
 
 	    	$img_size = '' ;
 	    	$img_width = '' ;
