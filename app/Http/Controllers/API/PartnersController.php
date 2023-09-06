@@ -1253,7 +1253,14 @@ class PartnersController extends Controller
 
         $text_hello_world = "HELLO WORLD" ;
 
-        $files = Storage::files('public/uploads');
+        // $files = Storage::files('public/uploads');
+        // $type_part = "uploads";
+
+        // $files = Storage::files('public/1669');
+        // $type_part = "1669";
+
+        $files = Storage::files('public/check_in');
+        $type_part = "check_in";
 
         return view('Manage_uploaded_photos', compact('text_hello_world','files'));
     }
@@ -1274,9 +1281,9 @@ class PartnersController extends Controller
         return view('Manage_resize_photos', compact('text_hello_world','files','type_part'));
     }
 
-    function delete_uploaded_photos($name_file){
+    function delete_uploaded_photos($name_file,$type_part){
 
-        $filename = 'public/uploads/' . $name_file;
+        $filename = 'public/'.$type_part.'/' . $name_file;
 
         if (Storage::exists($filename)) {
             Storage::delete($filename);
