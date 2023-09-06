@@ -8,22 +8,7 @@
 
  <!-- เปลี่ยนคลาสของ .video-container เพื่อแสดงตามจำนวนคนที่คุณมี -->
 <div id="divVideo_Parent" class="video-container ">
-    {{-- <div id="divVideo1" style="background-color: rgb(236, 116, 116)" class="video-box">
-        <!-- ใส่วิดีโอของคนที่ 1 ที่นี่ -->
-
-    </div>
-    <div id="divVideo2" style="background-color: rgb(120, 235, 91)" class="video-box">
-        <!-- ใส่วิดีโอของคนที่ 2 ที่นี่ -->
-
-    </div> --}}
-    {{-- <div id="divVideo3" style="background-color: rgb(27, 129, 143)" class="video-box">
-        <!-- ใส่วิดีโอของคนที่ 3 ที่นี่ -->
-
-    </div> --}}
-    {{-- <div id="divVideo4" style="background-color: rgb(224, 236, 116)" class="video-box">
-        <!-- ใส่วิดีโอของคนที่ 4 ที่นี่ -->
-
-    </div> --}}
+   <!-- ไว้ใส่ div ของ video -->
 </div>
 
 <div id="footer_div" class="footer p-2">
@@ -52,7 +37,7 @@
     var isMuteVideo = true;
     var isMuteAudio = true;
 
-    var userDivVideoMap = {}; // ใช้เก็บข้อมูลผู้ใช้และ divVideo ที่ถูกใช้
+    // var userDivVideoMap = {}; // ใช้เก็บข้อมูลผู้ใช้และ divVideo ที่ถูกใช้
 
     let user_id = '{{ Auth::user()->id }}';
     let appId = '{{ env("AGORA_APP_ID") }}';
@@ -130,6 +115,8 @@
 
             await agoraEngine.subscribe(user, mediaType);
             console.log("subscribe success");
+            console.log("agoraEngine");
+            console.log(agoraEngine);
 
             if (mediaType == "video")
             {
@@ -144,7 +131,8 @@
                 channelParameters.remoteUid = user.uid.toString();
 
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
-                create_element_video_call(user_id, remotePlayerContainer);
+
+                create_element_remotevideo_call(remotePlayerContainer);
 
                 // Play the remote video track.
                 channelParameters.remoteVideoTrack.play(remotePlayerContainer);
@@ -163,18 +151,55 @@
         agoraEngine.on("user-unpublished", user =>
         {
             console.log("เข้าสู่ user-unpublished");
-            if (!user.remoteVideoTrack) {
-            console.log("ไม่พบ remoteVideoTrack");
-            console.log("สร้าง Div_Dummy");
-            // สำหรับ สร้าง div_dummy ตอนผู้ใช้ไม่ได้เปิดกล้อง
-            create_dummy_videoTrack(user);
+            console.log("agoraEngine");
+            console.log(agoraEngine);
 
+            if (!user.remoteVideoTrack) {
+                console.log("ไม่พบ remoteVideoTrack");
+                console.log("สร้าง Div_Dummy ของ" + user.uid);
+                console.log(user);
+                // สำหรับ สร้าง div_dummy ตอนผู้ใช้ไม่ได้เปิดกล้อง
+                create_dummy_videoTrack(user);
             }
 
-
-            console.log(user.uid + "has left the channel");
         });
 
+        // เมื่อมีคนเข้าห้อง
+        agoraEngine.on("user-joined", function (evt) {
+            console.log("agoraEngine");
+            console.log(agoraEngine);
+
+            if(agoraEngine['remoteUsers'][0]){
+                if( agoraEngine['remoteUsers']['length'] != 0 ){
+                    for(let c_uid = 0; c_uid < agoraEngine['remoteUsers']['length']; c_uid++){
+
+                        const dummy_remote = agoraEngine['remoteUsers'][c_uid];
+                        console.log(dummy_remote);
+
+                        if(agoraEngine['remoteUsers'][c_uid]['hasVideo'] == false){ //ถ้าผ remote คนนี้ ไม่ได้เปิดกล้องไว้ --> ไปสร้าง div_dummy
+                            create_dummy_videoTrack(dummy_remote);
+                            console.log("agoraEngine User-Joined")
+                            console.log("Dummy Created !!!")
+                        }
+                    }
+                }
+            }
+
+        });
+
+        // ออกจากห้อง
+        agoraEngine.on("user-left", function (evt) {
+
+            console.log("ไอดี : " + evt.uid + " ออกจากห้อง");
+
+            if(document.getElementById('videoDiv_' + evt.uid)) {
+                document.getElementById('videoDiv_' + evt.uid).remove();
+            }
+
+            console.log("agoraEngine ของ user-left");
+            console.log(agoraEngine);
+
+        });
 
         window.onload = function ()
         {
@@ -246,8 +271,8 @@
                 btn_toggle_mic_camera();
 
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
-                create_element_video_call(user_id, localPlayerContainer);
-                // console.log(userDivVideoMap[user_id]);
+                create_element_localvideo_call(localPlayerContainer);
+
 
                 // Play the local video track.
                 channelParameters.localVideoTrack.play(localPlayerContainer);

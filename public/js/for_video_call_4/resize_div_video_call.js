@@ -54,8 +54,13 @@ function updateClassBasedOnCount() {
     divVideoParent.classList.remove(...classListToApply);
 
     // ใส่คลาสที่เหมาะสมตามจำนวน div ย่อย
-    if (numberOfVideoBoxes > 0 && numberOfVideoBoxes <= classListToApply.length) {
-        divVideoParent.classList.add(classListToApply[numberOfVideoBoxes - 1]);
+    if (numberOfVideoBoxes > 0) {
+        // ถ้ามีมากกว่า 4 div ย่อยให้ใช้คลาส "four-people"
+        if (numberOfVideoBoxes > 4) {
+            divVideoParent.classList.add("four-people");
+        } else {
+            divVideoParent.classList.add(classListToApply[numberOfVideoBoxes - 1]);
+        }
     }
 }
 

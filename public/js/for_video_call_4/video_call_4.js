@@ -72,36 +72,75 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
 }
 
 
-function create_element_video_call(user_id ,PlayerContainer) {
-    if (!userDivVideoMap[user_id]) {
-        userDivVideoMap[user_id] = user_id;
-        // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
-        const divVideo = document.createElement('div');
-        divVideo.setAttribute('id','videoDiv_' + PlayerContainer.id);
-        divVideo.setAttribute('class','video-box');
-        divVideo.setAttribute('style','background-color: rgb(224, 236, 116)');
-
-        divVideo.append(PlayerContainer);
-        document.querySelector('#divVideo_Parent').append(divVideo);
-    } else {
-        console.log('ผู้ใช้ ' + user_id + ' มีการใช้ divVideo ' + userDivVideoMap[user_id]);
+function create_element_localvideo_call(localPlayerContainer) {
+    // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
+    if(document.getElementById('videoDiv_' + localPlayerContainer.id)) {
+        document.getElementById('videoDiv_' + localPlayerContainer.id).remove();
     }
+
+    const divVideo = document.createElement('div');
+    divVideo.setAttribute('id','videoDiv_' + localPlayerContainer.id);
+    divVideo.setAttribute('class','video-box');
+    divVideo.setAttribute('style','background-color: black');
+
+    divVideo.append(localPlayerContainer);
+    document.querySelector('#divVideo_Parent').append(divVideo);
+
 }
 
+function create_element_remotevideo_call(remotePlayerContainer) {
 
-function create_dummy_videoTrack(user){
-
-    if(document.getElementById('video_trackRemoteDiv')) {
-        document.getElementById('video_trackRemoteDiv').remove();
+    if(document.getElementById('videoDiv_' + remotePlayerContainer.id)) {
+        document.getElementById('videoDiv_' + remotePlayerContainer.id).remove();
     }
 
-    //เพิ่มแท็กวิดีโอที่มีพื้นหลังแค่สีดำ
-    let remote_video_call = document.getElementById(user.uid.toString());
+    // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
+    const divVideo = document.createElement('div');
+    divVideo.setAttribute('id','videoDiv_' + remotePlayerContainer.id);
+    divVideo.setAttribute('class','video-box');
+    divVideo.setAttribute('style','background-color: grey');
+
+    divVideo.append(remotePlayerContainer);
+    document.querySelector('#divVideo_Parent').append(divVideo);
+
+}
+
+function create_dummy_videoTrack(user){
+    if(user.uid){
+        // ถ้ามี videoDiv อยู่แล้ว ลบอันเก่าก่อน
+        if(document.getElementById('videoDiv_' + user.uid.toString())) {
+            document.getElementById('videoDiv_' + user.uid.toString()).remove();
+        }
+
+        // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
+        const divVideo = document.createElement('div');
+        divVideo.setAttribute('id','videoDiv_' + user.uid.toString());
+        divVideo.setAttribute('class','video-box');
+        divVideo.setAttribute('style','background-color: black');
+
+        document.querySelector('#divVideo_Parent').append(divVideo);
+
+            // ถ้ามี videoDiv อยู่แล้ว ลบอันเก่าก่อน
+        if(document.getElementById('dummy_trackRemoteDiv' + user.uid.toString())) {
+            document.getElementById('dummy_trackRemoteDiv' + user.uid.toString()).remove();
+        }
+
+        //เพิ่มแท็กวิดีโอที่มีพื้นหลังแค่สีดำ
+        // const remote_video_call = document.getElementById(user.uid.toString());
         closeVideoHTML  =
-                        ' <div id="dummy_trackRemoteDiv" style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: gray;">' +
-                                '<video class="agora_video_player" playsinline="" muted="" style="width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; object-fit: cover;"></video>' +
-                            '</div>' ;
-        remote_video_call.insertAdjacentHTML('beforeend', closeVideoHTML); // แทรกล่างสุด
+                        ' <div id="dummy_trackRemoteDiv'+ user.uid.toString() +'" style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: gray;">' +
+                            '<video class="agora_video_player" playsinline="" muted="" style="width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; object-fit: cover;"></video>' +
+                        '</div>' ;
+
+        divVideo.insertAdjacentHTML('beforeend',closeVideoHTML); // แทรกล่างสุด
+
+        // divVideo.append(remote_video_call); // เพิ่มแท็กวิดีโอที่มีพื้นหลังแค่สีดำ เข้าไปใน div class="video-box"
+
+
+
+    }else{
+        console.log("------------------------------------------------------  หา user ไม่เจอ เลยขึ้น undifined ใน create_dummy_videoTrack()");
+    }
 
 }
 
