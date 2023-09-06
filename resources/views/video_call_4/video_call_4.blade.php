@@ -148,19 +148,28 @@
         });
 
         // Listen for the "user-unpublished" event.
-        agoraEngine.on("user-unpublished", user =>
+        agoraEngine.on("user-unpublished", async (user, mediaType) =>
         {
             console.log("เข้าสู่ user-unpublished");
             console.log("agoraEngine");
             console.log(agoraEngine);
 
-            if (!user.remoteVideoTrack) {
-                console.log("ไม่พบ remoteVideoTrack");
-                console.log("สร้าง Div_Dummy ของ" + user.uid);
-                console.log(user);
-                // สำหรับ สร้าง div_dummy ตอนผู้ใช้ไม่ได้เปิดกล้อง
-                create_dummy_videoTrack(user);
+            if(mediaType == "video"){
+                if (!user.remoteVideoTrack) {
+                    console.log("ไม่พบ remoteVideoTrack");
+                    console.log("สร้าง Div_Dummy ของ" + user.uid);
+                    console.log(user);
+                    // สำหรับ สร้าง div_dummy ตอนผู้ใช้ไม่ได้เปิดกล้อง
+                    create_dummy_videoTrack(user);
+                }
             }
+
+            if(mediaType == "audio"){
+                if (!user.remoteAudioTrack) {
+                    console.log("ไมโครโฟนปิดอยู่");
+                }
+            }
+
 
         });
 
