@@ -105,7 +105,7 @@
 			$class_img_size = '';
 			$text_img_size = '';
 
-			if($imageSizeInMB > 1.2){
+			if($imageSizeInMB > 0.5){
 				$class_img_size = "text-danger" ;
 				$text_img_size = '***';
 			}
