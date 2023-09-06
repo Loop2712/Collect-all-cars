@@ -64,7 +64,10 @@
 		@php
 
 	    	$url = Storage::url($file);
-	    	$name_file = str_replace("public/".$type_part."/" , "" , $file);
+
+	    	$full_patr_file = "public/".$type_part."/" ;
+	    	$name_file = str_replace($full_patr_file , "%20" , $file);
+	    	$name_file = str_replace(" " , "" , $file);
 
 	    	$part_file = url('/') . $url ;
 
