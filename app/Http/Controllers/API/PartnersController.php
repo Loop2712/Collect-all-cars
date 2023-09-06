@@ -1262,7 +1262,9 @@ class PartnersController extends Controller
 
         $text_hello_world = "HELLO WORLD" ;
 
-        $files = Storage::files('public/uploads');
+        // $files = Storage::files('public/uploads');
+        $files = Storage::files('public/1669');
+        // $files = Storage::files('public/check_in');
 
         return view('Manage_resize_photos', compact('text_hello_world','files'));
     }
