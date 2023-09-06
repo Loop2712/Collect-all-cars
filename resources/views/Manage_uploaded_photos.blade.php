@@ -65,7 +65,10 @@
 	@foreach ($files as $file) 
 		@php
 	    	$url = Storage::url($file);
-	    	$name_file = str_replace("public/'.$type_part.'/" , "" , $file);
+
+	    	$full_patr_file = "public/".$type_part."/" ;
+	    	$name_file = str_replace($full_patr_file , "" , $file);
+
 	    	$name_db_file = $type_part . '/' . $name_file;
 
 	    	$address_img = "";
