@@ -114,6 +114,10 @@ Auth::routes();
 // ADMIN VIICHECK
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
+	Route::get('/view_map_officer_all', 'API\PartnersController@view_map_officer_all');
+	Route::get('/Manage_uploaded_photos', 'API\PartnersController@Manage_uploaded_photos');
+	Route::get('/Manage_resize_photos', 'API\PartnersController@Manage_resize_photos');
+
 	Route::get('/dashboard', 'DashboardController@dashboard');
 	Route::get('/manage_user', 'Manage_userController@manage_user');
 	Route::get('/view_new_user', 'Manage_userController@view_new_user');
@@ -168,10 +172,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 //admin-partner
 Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(function () {
-
-	Route::get('/view_map_officer_all', 'API\PartnersController@view_map_officer_all');
-	Route::get('/Manage_uploaded_photos', 'API\PartnersController@Manage_uploaded_photos');
-	Route::get('/Manage_resize_photos', 'API\PartnersController@Manage_resize_photos');
 
 	Route::resource('ads_content', 'Ads_contentController')->except(['show','edit','index']);
 	// Route::get('/partner_theme', 'PartnerController@partner_theme');
