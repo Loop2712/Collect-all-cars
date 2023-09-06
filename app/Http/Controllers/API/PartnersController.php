@@ -1262,7 +1262,7 @@ class PartnersController extends Controller
         $files = Storage::files('public/check_in');
         $type_part = "check_in";
 
-        return view('Manage_uploaded_photos', compact('text_hello_world','files'));
+        return view('Manage_uploaded_photos', compact('text_hello_world','files','type_part'));
     }
 
     function Manage_resize_photos(Request $request){
