@@ -49,17 +49,22 @@ class Agora_4_Controller extends Controller
         // $appID = $request->appId;
         // $appCertificate = $request->appCertificate;
 
-        $appID = env('AGORA_APP_ID');
-        $appCertificate = env('AGORA_APP_CERTIFICATE');
+        $appID = "03039c40792e46bdbe46c16b1a338303";
+        $appCertificate = "cf9986c91db74f16879deead4a34dd03";
+
+        if(strlen($appID) < 32){
+            $appID = env('AGORA_APP_ID');
+            $appCertificate = env('AGORA_APP_CERTIFICATE');
+        }
 
         $data_user = User::where('id' ,$request->user_id)->first();
 
         $user = $data_user->id;
-        $channelName = 'sos_1669_id_' . $request->sos_1669_id;
+        $channelName = 'sos_4';
         // $channelName = 'sos_1669_id';
 
         $role = RtcTokenBuilder::RoleAttendee;
-        $expireTimeInSeconds = 1200;
+        $expireTimeInSeconds = 600;
         $currentTimestamp = now()->getTimestamp();
         $privilegeExpiredTs = $currentTimestamp + $expireTimeInSeconds;
 

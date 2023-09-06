@@ -47,7 +47,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      width: 100%;  
+      width: 100%;
     }
     .video-detail-officer-box *{
       margin: 0;
@@ -60,11 +60,11 @@
       width: 90%;
     }
     .video-officer-detail p{
-      white-space: nowrap; 
+      white-space: nowrap;
       width:100%;
       overflow: hidden;
-      text-overflow: ellipsis;  
-    } 
+      text-overflow: ellipsis;
+    }
     /* CSS สำหรับหน้าจอแท็บเล็ต */
     .video-call {
       outline: .5rem solid #000;
@@ -211,7 +211,7 @@
   }
 
   @media screen and (max-width: 768px) {
-    
+
     /* CSS สำหรับหน้าจอมือถือ */
     .hrNew,
     #join {
@@ -247,11 +247,11 @@
       width: 85%;
     }
     .video-officer-detail p{
-      white-space: nowrap; 
+      white-space: nowrap;
       width:100%;
       overflow: hidden;
-      text-overflow: ellipsis;  
-    } 
+      text-overflow: ellipsis;
+    }
     .video-header {
       /* outline: .5rem solid #db2d2e; */
       padding: 1rem;
@@ -879,7 +879,7 @@
       object-fit: cover;
     }
     .video-officer-detail{
-      margin-top: 1rem;      
+      margin-top: 1rem;
       text-align: center;
       color:#fff;
       width: 100%;
@@ -888,10 +888,10 @@
     .video-officer-detail p{
       margin: 0;
       font-weight: bold;
-      white-space: nowrap; 
+      white-space: nowrap;
       width:100%;
       overflow: hidden;
-      text-overflow: ellipsis; 
+      text-overflow: ellipsis;
     }
   }
 
@@ -970,12 +970,12 @@
         <p>เจ้าหน้าที่ : </p>
         <p>ศูนย์สั่งการ : </p>
         <small class="mt-3"></small>
-      
+
 
       </span>
-      
+
       <button class="btn btn-success d-none" id="join">join</button>
-      
+
     </div>
     <div class="box-pc-user">
       <div class="video-detail-box">
@@ -987,7 +987,7 @@
         <span class="video-user-detail">
           <p>{{ $user->name }}</p>
           <small>{{ $user->phone }}</small>
-          
+
         </span>
       </div>
       <hr class="hrNew">
@@ -1044,7 +1044,7 @@
           </span>
 
         </div>
-       
+
         <button class="btn btn-active" id="btnVideo">
           <i class="fas fa-video"></i>
         </button>
@@ -1217,7 +1217,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     startBasicCall();
 });
 
-  
+
 const channelName = "Viicheck";
 
 let channelParameters = {
@@ -1271,13 +1271,13 @@ function loop_check_command_in_room() {
             // ถ้าเจ้าหน้าที่เข้ามาแล้วออก
             if (command_entered_room == 'yes'){
               command_entered_room = 'no' ;
-              document.querySelector('#show_h6_wait_command').innerHTML = 
+              document.querySelector('#show_h6_wait_command').innerHTML =
                 ` เจ้าหน้าที่ออกจากการสนทนาแล้ว
                   <br>
                   กำลังนำคุณออกจากการสนทนา <b class="text-danger">(<span id="countdown_user_out_room"></span>)</b>
                 `;
               document.querySelector('#card_show_h6_wait_command').setAttribute('style','height: 4.5rem!important;')
-              document.querySelector('#show_icon_h6_wait_command').innerHTML = 
+              document.querySelector('#show_icon_h6_wait_command').innerHTML =
                 `<i class="fa-solid fa-arrow-right-from-bracket"></i>`;
 
               if(check_start_countdown_user_out_room == 'no'){
@@ -1456,7 +1456,7 @@ function start_countdown_user_out_room(){
     function onChangeVideoDevice() {
 
       old_activeVideoDeviceId = activeVideoDeviceId ;
-      
+
       const selectedVideoDeviceId = getCurrentVideoDeviceId();
       // console.log('เปลี่ยนอุปกรณ์กล้องเป็น:', selectedVideoDeviceId);
 
@@ -1504,7 +1504,7 @@ function start_countdown_user_out_room(){
                 channelParameters.remoteVideoTrack.play(localPlayerContainer);
               }
             }
-            
+
             // ส่ง local video track ใหม่ไปยังผู้ใช้คนที่สอง
             agoraEngine.publish([channelParameters.localVideoTrack]);
 
@@ -1669,7 +1669,7 @@ function start_countdown_user_out_room(){
             }, 2000);
 
           }
-          
+
         }
         // alert('มีคนเข้ามา');
         userJoinRoom = true;
@@ -1724,7 +1724,7 @@ function start_countdown_user_out_room(){
                 .then(response => response.json())
                 .then(result => {
                     console.log(result);
-                    
+
                     show_whene_video_no_active.innerHTML = '' ;
 
                     let data_command = result['data_command'];
@@ -1741,7 +1741,7 @@ function start_countdown_user_out_room(){
                     console.log('สร้าง DIV ปิดกล้อง');
             });
           }
-          
+
           //// จบ get_data_command เพื่อสร้าง div ปิดกล้อง ////
         }
       }
@@ -1838,11 +1838,11 @@ function start_countdown_user_out_room(){
 
     }
 
-        
+
     var now_Mobile_Devices = 1;
-    
+
     btn_switchCamera.onclick = async function() {
-      
+
       console.log('btn_switchCamera');
 
       console.log('activeVideoDeviceId');
@@ -2134,7 +2134,7 @@ function start_countdown_user_out_room(){
                 loop_check_command_in_room();
               }, 1000);
           });
-              
+
       }
 
       // Listen to the Leave button click event.
@@ -2225,7 +2225,7 @@ function start_countdown_user_out_room(){
 
 
 
- 
+
 <script>
   // Find necessary elements
   const videoBody = document.querySelector(".video-body");
