@@ -1253,11 +1253,11 @@ class PartnersController extends Controller
 
         $text_hello_world = "HELLO WORLD" ;
 
-        // $files = Storage::files('public/uploads');
-        // $type_part = "uploads";
+        $files = Storage::files('public/uploads');
+        $type_part = "uploads";
 
-        $files = Storage::files('public/1669');
-        $type_part = "1669";
+        // $files = Storage::files('public/1669');
+        // $type_part = "1669";
 
         // $files = Storage::files('public/check_in');
         // $type_part = "check_in";
@@ -1269,11 +1269,11 @@ class PartnersController extends Controller
 
         $text_hello_world = "HELLO WORLD" ;
 
-        // $files = Storage::files('public/uploads');
-        // $type_part = "uploads";
+        $files = Storage::files('public/uploads');
+        $type_part = "uploads";
 
-        $files = Storage::files('public/1669');
-        $type_part = "1669";
+        // $files = Storage::files('public/1669');
+        // $type_part = "1669";
 
         // $files = Storage::files('public/check_in');
         // $type_part = "check_in";

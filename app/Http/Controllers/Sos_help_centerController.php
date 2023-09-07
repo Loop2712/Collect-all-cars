@@ -21,6 +21,7 @@ use App\User;
 use App\Models\Data_1669_officer_command;
 use App\Models\Agora_chat;
 
+use Intervention\Image\ImageManagerStatic as Image;
 use \Carbon\Carbon;
 
 class Sos_help_centerController extends Controller
@@ -171,21 +172,67 @@ class Sos_help_centerController extends Controller
             $requestData['photo_succeed'] = $request->file('photo_succeed')
                 ->store('uploads', 'public');
         }
-        if ($request->hasFile('photo_succeed_by')) {
-            $requestData['photo_succeed_by'] = $request->file('photo_succeed_by')
-                ->store('uploads', 'public');
-        }
         if ($request->hasFile('photo_sos_by_officers')) {
             $requestData['photo_sos_by_officers'] = $request->file('photo_sos_by_officers')
                 ->store('uploads', 'public');
         }
-        if ($request->hasFile('photo_succeed')) {
-            $requestData['photo_succeed'] = $request->file('photo_succeed')
-                ->store('uploads', 'public');
-        }
+        // if ($request->hasFile('photo_succeed_by')) {
+        //     $requestData['photo_succeed_by'] = $request->file('photo_succeed_by')
+        //         ->store('uploads', 'public');
+        // }
+        // if ($request->hasFile('photo_succeed')) {
+        //     $requestData['photo_succeed'] = $request->file('photo_succeed')
+        //         ->store('uploads', 'public');
+        // }
 
         $sos_help_center = Sos_help_center::findOrFail($id);
         $sos_help_center->update($requestData);
+
+        // ----------- RESIZE ----------- //
+        // photo_sos
+        $filename_photo_sos = 'public/' . $sos_help_center->photo_sos;
+
+        $image_photo_sos = Image::make(storage_path("app/") . $filename_photo_sos);
+        
+        $size_photo_sos = $image_photo_sos->filesize();  
+
+        if($size_photo_sos > 524288 ){
+            $image_photo_sos->resize(
+                intval($image_photo_sos->width()/2) , 
+                intval($image_photo_sos->height()/2)
+            )->save(); 
+        }
+        // end photo_sos
+
+        // photo_succeed
+        $filename_photo_succeed = 'public/' . $sos_help_center->photo_succeed;
+
+        $image_photo_succeed = Image::make(storage_path("app/") . $filename_photo_succeed);
+        
+        $size_photo_succeed = $image_photo_succeed->filesize();  
+
+        if($size_photo_succeed > 524288 ){
+            $image_photo_succeed->resize(
+                intval($image_photo_succeed->width()/2) , 
+                intval($image_photo_succeed->height()/2)
+            )->save(); 
+        }
+        // end photo_succeed
+
+        // photo_sos_by_officers
+        $filename_photo_sos_by_officers = 'public/' . $sos_help_center->photo_sos_by_officers;
+
+        $image_photo_sos_by_officers = Image::make(storage_path("app/") . $filename_photo_sos_by_officers);
+        
+        $size_photo_sos_by_officers = $image_photo_sos_by_officers->filesize();  
+
+        if($size_photo_sos_by_officers > 112000 ){
+            $image_photo_sos_by_officers->resize(
+                intval($image_photo_sos_by_officers->width()/2) , 
+                intval($image_photo_sos_by_officers->height()/2)
+            )->save(); 
+        }
+        // end photo_sos_by_officers
         
         if ( !empty($requestData['form_blade']) && $requestData['form_blade'] == "form_modal_photo_sos") {
             return redirect('sos_help_center/' . $id . '/show_case')->with('flash_message', 'Sos_help_center updated!');

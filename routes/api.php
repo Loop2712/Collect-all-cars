@@ -65,10 +65,6 @@ Route::get('/check_sos_country/{user_id}','API\LocationController@check_sos_coun
 
 Route::get('/show_sos_area/{countryCode}','API\LocationController@show_sos_area');
 
-Route::get('/delete_uploaded_photos/{name_file}/{type_part}','API\PartnersController@delete_uploaded_photos');
-Route::get('/resize_img/{name_file}/{type_part}','API\PartnersController@resize_img');
-Route::get('/get_new_size_img/{name_file}/{type_part}','API\PartnersController@get_new_size_img');
-
 Route::get('/check_user/{id_user}','API\PartnersController@check_user');
 Route::get('/put_email/{put_email}/{id_user}/{put_username}','API\PartnersController@put_email');
 Route::get('/check_username/{put_username}/{id_user}','API\PartnersController@check_username');
@@ -286,6 +282,11 @@ Route::get('/nationalities/create_new_sos_group_line/{language}/{id_guoup_line}'
 
 // show user
 Route::get('/data_officer_go_to_help/{sos_id}', 'Sos_help_centerController@data_officer_go_to_help');
+
+// จัดการรูปภาพ
+Route::get('/delete_uploaded_photos/{name_file}/{type_part}','API\PartnersController@delete_uploaded_photos');
+Route::get('/resize_img/{name_file}/{type_part}','API\PartnersController@resize_img');
+Route::get('/get_new_size_img/{name_file}/{type_part}','API\PartnersController@get_new_size_img');
 
 //==========================//
 //======= Agora Chat =======//
