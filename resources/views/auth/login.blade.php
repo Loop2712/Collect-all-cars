@@ -144,7 +144,7 @@
                             }
                         </style>
                         <div class="col-12 col-md-6 text-center">
-                            <div style="position: absolute; width: 100%; height: 100%;z-index: 99999;top: 25%;right: 1%;">
+                            <div style="position: relative; width: 100%; height: 100%;z-index: 99999;top: 25%;right: 1%;">
                                 <img width="40%" src="{{ asset('/img/logo/logo-flex-line.png') }}">
                                 <h3 class="text-white" style="font-family: 'Kanit', sans-serif;">ขอขอบคุณ</h3>
                                 <div style="padding: 0px 5px 0px 5px;font-size: 30px!important;">
