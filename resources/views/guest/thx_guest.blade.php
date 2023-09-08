@@ -4,7 +4,13 @@
 
 <style>
 
-  footer , #topbar , #header{
+  footer {
+    display: none;
+  }
+  #topbar{
+    display: none;
+  }
+  #header{
     display: none;
   }
 </style>
@@ -13,7 +19,7 @@
 <center>
     <div class="row">
         <div class="col-12">
-      <img style="margin-top: -40px;" width="100%" src="{{ asset('/img/more/ทางเราได้รับข้อมูลของท่านแล้ว-02.jpg') }}">
+      <img style="margin-top: 20px;" width="100%" src="{{ asset('/img/more/ทางเราได้รับข้อมูลของท่านแล้ว-02.jpg') }}">
       <br><br>
       <div style="padding: 0px 5px 0px 5px;">
           @include ('layouts.partner_2_row')
