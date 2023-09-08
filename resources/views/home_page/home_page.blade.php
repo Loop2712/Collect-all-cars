@@ -34,7 +34,7 @@
   @endif
 
   <!-- Button trigger modal -->
-  <button id="btn_modal_addline" type="button" class="btn btn-primary " data-toggle="modal" data-target="#modal_addline">
+  <button id="btn_modal_addline" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_addline">
   </button>
 
   <!-- Modal -->

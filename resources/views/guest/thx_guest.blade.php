@@ -1,6 +1,15 @@
 @extends('layouts.viicheck')
 
 @section('content')
+
+<style>
+
+  footer , #topbar , #header{
+    display: none;
+  }
+</style>
+
+
 <center>
     <div class="row">
         <div class="col-12">
@@ -41,7 +50,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่</button>
         <a href="https://lin.ee/xnFKMfc">
-        	<button type="button" class="btn btn-primary" >ดูบริการอื่นๆ</button>
+          <button type="button" class="btn btn-primary" >ดูบริการอื่นๆ</button>
         </a>
       </div>
     </div>
@@ -49,10 +58,10 @@
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        console.log("START"); 
-        setTimeout(function(){ 
-          document.getElementById("btn_add_line").click(); 
-        }, 3500);
+        // console.log("START");
+        // setTimeout(function(){ 
+        //   document.getElementById("btn_add_line").click(); 
+        // }, 3500);
     });
 </script>
 @endsection
