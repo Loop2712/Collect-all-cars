@@ -114,6 +114,8 @@
 			}
 
 	   	@endphp
+
+	   	@if($imageSizeInMB > 0.5)
 	    <div class="col-2 card my-3" style="padding:10px;">
 	    	<h6> รูปที่ <b>{{ $iii }}</b> </h6>
 	    	<br>
@@ -131,6 +133,7 @@
 		    	<img src="{{ url('/').$url }}" style="width:100%;">
 	    	</center>
 	    </div>
+	    @endif
 
 	    @php
 	    	$iii = $iii + 1 ;
