@@ -132,15 +132,57 @@
 
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
 
-                create_element_remotevideo_call(remotePlayerContainer);
+                // create_element_remotevideo_call(remotePlayerContainer);
 
                 console.log("remotePlayerContainer");
                 console.log(remotePlayerContainer);
+                console.log("remotePlayerContainer.id");
                 console.log(remotePlayerContainer.id);
+                console.log("channelParameters.remoteUid");
                 console.log(channelParameters.remoteUid);
+                console.log("channelParameters.remoteVideoTrack");
                 console.log(channelParameters.remoteVideoTrack);
 
+                const containerId = 'videoDiv_' + remotePlayerContainer.id;
+
+                // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
+                if (document.getElementById(containerId)) {
+                    document.getElementById(containerId).remove();
+                }
+
+                // สร้าง div ใหม่
+                const divVideo = document.createElement('div');
+                divVideo.setAttribute('id', containerId);
+                divVideo.setAttribute('class', 'video-box');
+                divVideo.setAttribute('style', 'background-color: grey');
+
+                divVideo.append(remotePlayerContainer);
+
+                // เพิ่ม div ใหม่ลงใน div หลัก
+                document.querySelector('#divVideo_Parent').append(divVideo);
                 channelParameters.remoteVideoTrack.play(remotePlayerContainer)
+
+                // if(remotePlayerContainer.id == divVideo.id){
+                //     console.log("เข้า if play");
+                //     channelParameters.remoteVideoTrack.play(remotePlayerContainer)
+                //     console.log("ทำงานสำเร็จ");
+                // }else{
+                //     console.log("เข้า else play");
+                //     // หา div ที่มี id ตรงกับ channelParameters.remoteVideoTrack ภายใน divVideo_Parent
+                //     const divs = document.querySelectorAll('#divVideo_Parent > div');
+                //     for (const div of divs) {
+                //         if (div.id === remotePlayerContainer.id) {
+                //             // เรียกใช้งาน .play() บน remotePlayerContainer ใน div ที่พบ
+                //             const remotePlayerContainer = div.querySelector('video');
+                //             if (remotePlayerContainer) {
+                //                 channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+                //                 break; // เมื่อเจอ div ที่ตรงกับ channelParameters.remoteVideoTrack แล้วให้หยุดลูป
+                //             }
+                //         }
+                //     }
+                //     console.log("ทำงานสำเร็จ");
+                // }
+
 
             }
             // Subscribe and play the remote audio track If the remote user publishes the audio track only.

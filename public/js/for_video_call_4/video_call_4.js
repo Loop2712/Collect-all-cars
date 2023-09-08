@@ -90,19 +90,37 @@ function create_element_localvideo_call(localPlayerContainer) {
 
 function create_element_remotevideo_call(remotePlayerContainer) {
 
-    if(document.getElementById('videoDiv_' + remotePlayerContainer.id)) {
-        document.getElementById('videoDiv_' + remotePlayerContainer.id).remove();
-    }
+    // if(document.getElementById('videoDiv_' + remotePlayerContainer.id)) {
+    //     document.getElementById('videoDiv_' + remotePlayerContainer.id).remove();
+    // }
 
-    // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
-    const divVideo = document.createElement('div');
-    divVideo.setAttribute('id','videoDiv_' + remotePlayerContainer.id);
-    divVideo.setAttribute('class','video-box');
-    divVideo.setAttribute('style','background-color: grey');
+    // // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
+    // const divVideo = document.createElement('div');
+    // divVideo.setAttribute('id','videoDiv_' + remotePlayerContainer.id);
+    // divVideo.setAttribute('class','video-box');
+    // divVideo.setAttribute('style','background-color: grey');
 
-    divVideo.append(remotePlayerContainer);
+    // divVideo.append(remotePlayerContainer);
 
-    document.querySelector('#divVideo_Parent').append(divVideo);
+    // document.querySelector('#divVideo_Parent').append(divVideo);
+
+    // const containerId = 'videoDiv_' + remotePlayerContainer.id;
+
+    // // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
+    // if (document.getElementById(containerId)) {
+    //     document.getElementById(containerId).remove();
+    // }
+
+    // // สร้าง div ใหม่
+    // const divVideo = document.createElement('div');
+    // divVideo.setAttribute('id', containerId);
+    // divVideo.setAttribute('class', 'video-box');
+    // divVideo.setAttribute('style', 'background-color: grey');
+
+    // divVideo.append(remotePlayerContainer);
+
+    // // เพิ่ม div ใหม่ลงใน div หลัก
+    // document.querySelector('#divVideo_Parent').append(divVideo);
 }
 
 function create_dummy_videoTrack(user){
