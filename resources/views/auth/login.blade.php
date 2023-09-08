@@ -143,7 +143,7 @@
                                 width: 120% !important;
                             }
                             .partner_2_row_login {
-                              margin-top: 20px;
+                              margin-top: 100px!important;
                             }
                         </style>
                         <div class="col-12 col-md-6 text-center d-none d-md-block">
