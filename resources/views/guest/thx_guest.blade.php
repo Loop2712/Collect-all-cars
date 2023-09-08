@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.viicheck')
 
 @section('content')
 <center>
@@ -6,7 +6,9 @@
         <div class="col-12">
       <img style="margin-top: -40px;" width="100%" src="{{ asset('/img/more/ทางเราได้รับข้อมูลของท่านแล้ว-02.jpg') }}">
       <br><br>
-      
+      <div style="padding: 0px 5px 0px 5px;">
+          @include ('layouts.partner_2_row')
+      </div>
     </div>
   </div>
 </center>
