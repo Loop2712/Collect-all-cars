@@ -142,7 +142,7 @@
                             img.login-w-120{
                                 width: 120% !important;
                             }
-                            .partner_2_row_login .owl-carousel:nth-child(2) {
+                            .partner_2_row_login {
                               margin-top: 20px;
                             }
                         </style>
@@ -150,7 +150,7 @@
                             <div style="position: absolute; width: 100%; height: 100%;z-index: 99999;top: 25%;right: 1%;">
                                 <img width="40%" src="{{ asset('/img/logo/logo-flex-line.png') }}">
                                 <h3 class="text-white" style="font-family: 'Kanit', sans-serif;">ขอขอบคุณ</h3>
-                                <div class="partner_2_row_login" style="padding: 0px 5px 0px 5px;font-size: 30px!important;">
+                                <div style="padding: 0px 5px 0px 5px;font-size: 30px!important;">
                                     @include ('layouts.partner_2_row')
                                 </div>
                             </div>
