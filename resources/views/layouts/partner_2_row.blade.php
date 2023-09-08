@@ -12,7 +12,7 @@
             <div class="item" style="padding:5px;z-index:-1;">
                 <div class="testimon">
                     <a href="{{$item->link}}" target="bank">
-                        <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
+                        <img class="login-w-120 p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
                     </a>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div class="item" style="padding:5px;z-index:-1;">
                     <div class="testimon">
                         <a href="{{$item->link}}" target="bank">
-                            <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
+                            <img class="login-w-120 p-md-3 p-lg-3" style="width: 100%;object-fit: contain;max-height: 112px;" src="{{ url('storage/'.$item->logo )}}">
                         </a>
                     </div>
                 </div>

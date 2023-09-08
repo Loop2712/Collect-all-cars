@@ -7,7 +7,12 @@
         <div class="col-md-12">
             <div class="card main-shadow">
                 <!-- แสดงเฉพาะคอม -->
-                <img class="d-none d-md-block" style="position: absolute; width: 100%; height: 100%;"  src="{{ asset('/img/more/bg_login.png') }}">
+                <!-- <img class="d-none d-md-block" style="position: absolute; width: 100%; height: 100%;"  src="{{ asset('/img/more/bg_login.png') }}"> -->
+
+                <video class="d-none d-md-block" id="background-video" style="position: absolute; width: 100%; height: 100%;object-fit: cover;" autoplay loop muted poster="{{ asset('/img/more/bg_login_v2.mp4') }}">
+                    <source src="{{ asset('/img/more/bg_login_v2.mp4') }}" type="video/mp4">
+                </video>
+
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-md-6">
@@ -131,6 +136,20 @@
                                         <span style="color:red"><b>ข้อกำหนดและเงื่อนไขการใช้บริการบน เว็บไซต์ Viicheck.com</b></span>
                                     </a>
                                 </center>
+                            </div>
+                        </div>
+                        <style>
+                            img.login-w-120{
+                                width: 120% !important;
+                            }
+                        </style>
+                        <div class="col-12 col-md-6 text-center">
+                            <div style="position: absolute; width: 100%; height: 100%;z-index: 99999;top: 25%;right: 1%;">
+                                <img width="40%" src="{{ asset('/img/logo/logo-flex-line.png') }}">
+                                <h3 class="text-white" style="font-family: 'Kanit', sans-serif;">ขอขอบคุณ</h3>
+                                <div style="padding: 0px 5px 0px 5px;font-size: 30px!important;">
+                                    @include ('layouts.partner_2_row')
+                                </div>
                             </div>
                         </div>
                     </div>
