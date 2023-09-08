@@ -190,20 +190,20 @@ class Sos_help_centerController extends Controller
         $sos_help_center->update($requestData);
 
         // ----------- RESIZE ----------- //
-        $resize_photo = new ImageController();
+        // $resize_photo = new ImageController();
 
-        // photo_sos
-        if (!empty($requestData['photo_sos'])) {
-            $resize_photo->resize_photo($sos_help_center->photo_sos);
-        }
-        // photo_succeed
-        if (!empty($requestData['photo_succeed'])) {
-            $resize_photo->resize_photo($sos_help_center->photo_succeed);
-        }
-        // photo_sos_by_officers
-        if (!empty($requestData['photo_sos_by_officers'])) {
-            $resize_photo->resize_photo($sos_help_center->photo_sos_by_officers);
-        }
+        // // photo_sos
+        // if (!empty($requestData['photo_sos'])) {
+        //     $resize_photo->resize_photo($sos_help_center->photo_sos);
+        // }
+        // // photo_succeed
+        // if (!empty($requestData['photo_succeed'])) {
+        //     $resize_photo->resize_photo($sos_help_center->photo_succeed);
+        // }
+        // // photo_sos_by_officers
+        // if (!empty($requestData['photo_sos_by_officers'])) {
+        //     $resize_photo->resize_photo($sos_help_center->photo_sos_by_officers);
+        // }
 
 
         if ( !empty($requestData['form_blade']) && $requestData['form_blade'] == "form_modal_photo_sos") {
