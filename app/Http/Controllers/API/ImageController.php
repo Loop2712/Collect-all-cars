@@ -650,4 +650,36 @@ class ImageController extends Controller
         return "OK";
     }
 
+    // -------- RESIZE -------- //
+
+    function resize_photo($part_img){
+
+        $filename = 'public/' . $part_img;
+
+        $image = Image::make(storage_path("app/") . $filename);
+        
+        $size = $image->filesize();  
+
+        // if($size > 524288){
+        //     $image->resize(
+        //         intval($image->width()/2) , 
+        //         intval($image->height()/2)
+        //     )->save(); 
+        // }
+
+        while ($size > 524288) {
+            $image->resize(
+                intval($image->width() / 2),
+                intval($image->height() / 2)
+            )->save();
+        
+            if ($image->width() <= 750) {
+                break;
+            }
+
+        }
+
+        return "RESIZE OK" ;
+    }
+
 }

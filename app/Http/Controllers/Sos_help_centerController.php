@@ -22,6 +22,7 @@ use App\Models\Data_1669_officer_command;
 use App\Models\Agora_chat;
 
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Http\Controllers\API\ImageController;
 use \Carbon\Carbon;
 
 class Sos_help_centerController extends Controller
@@ -189,51 +190,22 @@ class Sos_help_centerController extends Controller
         $sos_help_center->update($requestData);
 
         // ----------- RESIZE ----------- //
+        $resize_photo = new ImageController();
+
         // photo_sos
-        $filename_photo_sos = 'public/' . $sos_help_center->photo_sos;
-
-        $image_photo_sos = Image::make(storage_path("app/") . $filename_photo_sos);
-        
-        $size_photo_sos = $image_photo_sos->filesize();  
-
-        if($size_photo_sos > 524288 ){
-            $image_photo_sos->resize(
-                intval($image_photo_sos->width()/2) , 
-                intval($image_photo_sos->height()/2)
-            )->save(); 
+        if (!empty($requestData['photo_sos'])) {
+            $resize_photo->resize_photo($sos_help_center->photo_sos);
         }
-        // end photo_sos
-
         // photo_succeed
-        $filename_photo_succeed = 'public/' . $sos_help_center->photo_succeed;
-
-        $image_photo_succeed = Image::make(storage_path("app/") . $filename_photo_succeed);
-        
-        $size_photo_succeed = $image_photo_succeed->filesize();  
-
-        if($size_photo_succeed > 524288 ){
-            $image_photo_succeed->resize(
-                intval($image_photo_succeed->width()/2) , 
-                intval($image_photo_succeed->height()/2)
-            )->save(); 
+        if (!empty($requestData['photo_succeed'])) {
+            $resize_photo->resize_photo($sos_help_center->photo_succeed);
         }
-        // end photo_succeed
-
         // photo_sos_by_officers
-        $filename_photo_sos_by_officers = 'public/' . $sos_help_center->photo_sos_by_officers;
-
-        $image_photo_sos_by_officers = Image::make(storage_path("app/") . $filename_photo_sos_by_officers);
-        
-        $size_photo_sos_by_officers = $image_photo_sos_by_officers->filesize();  
-
-        if($size_photo_sos_by_officers > 112000 ){
-            $image_photo_sos_by_officers->resize(
-                intval($image_photo_sos_by_officers->width()/2) , 
-                intval($image_photo_sos_by_officers->height()/2)
-            )->save(); 
+        if (!empty($requestData['photo_sos_by_officers'])) {
+            $resize_photo->resize_photo($sos_help_center->photo_sos_by_officers);
         }
-        // end photo_sos_by_officers
-        
+
+
         if ( !empty($requestData['form_blade']) && $requestData['form_blade'] == "form_modal_photo_sos") {
             return redirect('sos_help_center/' . $id . '/show_case')->with('flash_message', 'Sos_help_center updated!');
         }else{
