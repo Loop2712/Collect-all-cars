@@ -139,16 +139,8 @@
                 console.log(remotePlayerContainer.id);
                 console.log(channelParameters.remoteUid);
                 console.log(channelParameters.remoteVideoTrack);
-                // Play the remote video track.
 
-                // Ensure that the div with the matching id exists.
-                const check_PlayerContainer = document.getElementById(user.uid.toString());
-                if (check_PlayerContainer) {
-                    // Play the remote video track in the div with the matching id.
-                    channelParameters.remoteVideoTrack.play(remotePlayerContainer);
-                } else {
-                    console.log("Remote player container not found for user with id: " + user.uid.toString());
-                }
+                channelParameters.remoteVideoTrack.play(remotePlayerContainer)
 
             }
             // Subscribe and play the remote audio track If the remote user publishes the audio track only.

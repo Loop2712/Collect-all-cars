@@ -101,8 +101,8 @@ function create_element_remotevideo_call(remotePlayerContainer) {
     divVideo.setAttribute('style','background-color: grey');
 
     divVideo.append(remotePlayerContainer);
-    document.querySelector('#divVideo_Parent').append(divVideo);
 
+    document.querySelector('#divVideo_Parent').append(divVideo);
 }
 
 function create_dummy_videoTrack(user){
