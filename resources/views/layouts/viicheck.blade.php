@@ -1201,6 +1201,9 @@
         <div class="col-lg-1 col-md-1 col-2" style="padding-right:0px;">
           <div class="text-center">
             <!-- ตำแหน่ง DBD -->
+            <a href="https://www.trustmarkthai.com/callbackData/popup.php?data=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149&markID=firstmar" target="bank">
+              <img class="pt-4" style="width: 100%;object-fit: contain;" src="{{ asset('/img/logo/bns_registered.png') }}">
+            </a>
           </div>
         </div>
         <div class="col-10">
@@ -1226,7 +1229,7 @@
         <div class="col-md-1 col-lg-1 col-12">
           <div class="row">
             <div class="col-4">
-                <!-- @include ('counter') -->
+                @include ('counter')
             </div>
             <div class="col-8" style="font-size: 12px;">
               <div style="margin-left: -70px;margin-top: 12px;" class="text-center d-block d-md-none">
@@ -1280,7 +1283,7 @@
   <script src="{{ asset('Medilab/js/main.js') }}"></script>
 
   <!-- DBD -->
-  <!-- <script id="dbd-init" src="https://www.trustmarkthai.com/callbackData/initialize.js?t=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149"></script> -->
+  <script id="dbd-init" src="https://www.trustmarkthai.com/callbackData/initialize.js?t=0fb7dd20-26-5-1dd80cec414c4d670072026d423afa933e149"></script>
 
   <!-- Js Plugins -->
 
