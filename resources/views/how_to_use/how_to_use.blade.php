@@ -73,15 +73,6 @@
         </button>
       </div>
       <div class="modal-body">
-        <!-- <br>
-        <section id="about2" class="about2" style="padding:0px;">
-            <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
-                <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-12"></a>
-            </div>
-        </section>
-        <br>
-        <hr>
-        <br> -->
         <center><img src="{{ asset('/img/วิธีใช้งาน/2.jpg') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center><br>
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
           <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
@@ -161,15 +152,6 @@
         </button>
       </div>
       <div class="modal-body">
-        <!-- <br>
-        <section id="about2" class="about2" style="padding:0px;">
-            <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
-                <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-12"></a>
-            </div>
-        </section>
-        <br>
-        <hr>
-        <br> -->
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
           <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
             <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#register" aria-expanded="false" aria-controls="register">
@@ -262,15 +244,6 @@
         </button>
       </div>
       <div class="modal-body">
-        <!-- <br>
-        <section id="about2" class="about2" style="padding:0px;">
-            <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
-                <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-12"></a>
-            </div>
-        </section>
-        <br>
-        <hr>
-        <br> -->
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
           <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
             <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#sos1" aria-expanded="false" aria-controls="sos1">
@@ -441,15 +414,6 @@
         </button>
       </div>
       <div class="modal-body">
-        <!-- <br>
-          <section id="about2" class="about2" style="padding:0px;">
-              <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
-                  <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-12"></a>
-              </div>
-          </section>
-          <br>
-          <hr>
-          <br> -->
         <center><img src="{{ asset('/img/วิธีใช้งาน_p/1.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center><br>
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
           <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
@@ -509,15 +473,6 @@
         </button>
       </div>
       <div class="modal-body">
-        <!-- <br>
-          <section id="about2" class="about2" style="padding:0px;">
-              <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
-                  <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-12"></a>
-              </div>
-          </section>
-          <br>
-          <hr>
-          <br> -->
         <center><img src="{{ asset('/img/วิธีใช้งาน_p/3.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center><br>
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
           <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
@@ -577,15 +532,6 @@
         </button>
       </div>
       <div class="modal-body">
-        <!-- <br>
-          <section id="about2" class="about2" style="padding:0px;">
-              <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
-                  <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-12"></a>
-              </div>
-          </section>
-          <br>
-          <hr>
-          <br> -->
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
           <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
             <div class="col-10" style="margin-bottom:0px" data-toggle="collapse" data-target="#sos1" aria-expanded="false" aria-controls="sos1">
@@ -625,15 +571,6 @@
         </button>
       </div>
       <div class="modal-body">
-        <!-- <br>
-          <section id="about2" class="about2" style="padding:0px;">
-              <div style="border: 1px solid red; border-radius: 10px;" class="video-box d-flex justify-content-center align-items-stretch position-relative">
-                  <a href="{{ asset('Medilab/video/VII Video v4.mp4') }}" class="glightbox play-btn mb-12"></a>
-              </div>
-          </section>
-          <br>
-          <hr>
-          <br> -->
         <center><img src="{{ asset('/img/วิธีใช้งาน_p/7.png') }}" style="border: 2px solid #555;" width="100%" alt="Card image cap"></center><br>
         <div class="card col-12" style="font-family: 'Prompt', sans-serif; margin-bottom: 10px;">
           <div class="row col-12 card-body" style="padding: 15px 0px 15px 0px ;">
