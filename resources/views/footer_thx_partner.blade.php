@@ -6,7 +6,7 @@
                 <h2 class="text-info" style="font-family: 'Sarabun', sans-serif;font-weight:600;font-size:18px;">ขอขอบคุณ</h2>
             <hr style="margin-top:10px;padding:19;left:10px;">
             </div>
-            <div class="col-12" style="margin-bottom:-50px;">
+            <div class="col-12">
                 <br>
                 @include ('layouts.partner_2_row')
             </div>
