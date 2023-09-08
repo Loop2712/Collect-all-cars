@@ -145,8 +145,8 @@
                     // const containerId = 'videoDiv_' + remotePlayerContainer.id;
 
                     // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
-                    if (document.getElementById(containerId)) {
-                        document.getElementById(containerId).remove();
+                    if (document.getElementById("videoDiv_"+ user.uid.toString())) {
+                        document.getElementById("videoDiv_"+ user.uid.toString()).remove();
                     }
 
                     // // สร้าง div ใหม่
@@ -154,33 +154,20 @@
                     // divVideo.setAttribute('id', containerId);
                     // divVideo.setAttribute('class', 'video-box');
                     // divVideo.setAttribute('style', 'background-color: grey');
+                    // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
+                    const divVideo = document.createElement('div');
+                        divVideo.setAttribute('id','videoDiv_' + user.uid.toString());
+                        divVideo.setAttribute('class','video-box');
+                        divVideo.setAttribute('style','background-color: grey');
 
-                    // if(channelParameters.remoteUid === remotePlayerContainer.id){
-                    //     console.log("เข้า if append");
-                    //     divVideo.append(remotePlayerContainer);
-                    //     console.log("ทำงานสำเร็จ");
-                    // }else{
-                    //     console.log("เข้า else append");
-                    //     // หา div ที่มี id ตรงกับ channelParameters.remoteVideoTrack ภายใน divVideo_Parent
-                    //     const divs = document.querySelectorAll('#divVideo_Parent > div');
-                    //     for (const div of divs) {
-                    //         if (div.id === 'videoDiv_' +remotePlayerContainer.id) {
-                    //             // เรียกใช้งาน .play() บน remotePlayerContainer ใน div ที่พบ
-                    //             const remotePlayerContainer = div.querySelector('video');
-                    //             if (remotePlayerContainer) {
-                    //                 divVideo.append(remotePlayerContainer);
-                    //                 break; // เมื่อเจอ div ที่ตรงกับ channelParameters.remoteVideoTrack แล้วให้หยุดลูป
-                    //             }
-                    //         }
-                    //     }
-                    //     console.log("ทำงานสำเร็จ");
-                    // }
-
-                    // เพิ่ม div ใหม่ลงใน div หลัก
-                    remotePlayerContainer.classList.add('video-box');
-                    document.querySelector('#divVideo_Parent').append(remotePlayerContainer);
+                    document.querySelector('#divVideo_Parent').append(divVideo);
 
                     channelParameters.remoteVideoTrack.play(remotePlayerContainer)
+                    // เพิ่ม div ใหม่ลงใน div หลัก
+                    divVideo.append(remotePlayerContainer);
+                    // document.querySelector('#divVideo_Parent').append(remotePlayerContainer);
+
+
 
                     // if(remotePlayerContainer.id == divVideo.id){
                     //     console.log("เข้า if play");
