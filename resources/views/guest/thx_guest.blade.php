@@ -65,9 +65,9 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
-        // setTimeout(function(){ 
-        //   document.getElementById("btn_add_line").click(); 
-        // }, 3500);
+        setTimeout(function(){ 
+          document.getElementById("btn_add_line").click(); 
+        }, 3500);
     });
 </script>
 @endsection
