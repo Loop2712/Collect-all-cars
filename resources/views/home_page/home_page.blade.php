@@ -83,7 +83,7 @@
         font-family: 'Kanit', sans-serif;
         display: inline-flex;
         animation: myAnim 1s ease 0s 1 normal forwards;
-        opacity: 0;
+        opacity: 1;
         transition: all 0.5s;
       } .slogan-text{
         margin-bottom: 0;
@@ -104,7 +104,6 @@
 
         100% {
           opacity: 1;
-          display: none;
           transform: rotateX(0deg);
           transform-origin: top;
         }
