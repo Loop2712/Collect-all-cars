@@ -60,7 +60,7 @@
                         <h3 class="mb-0 text-white font-weight-bold">{{$all_user}}</h3>
                     </div>
                     <div class="ms-auto text-white">
-                        <img width="40" src="{{ asset('/img/icon/user_black.png') }}">
+                        <img width="40" src="{{ asset('/img/icon/user_white.png') }}">
                     </div>
                 </div>
                 <div class="progress progress_bg mt-4">
@@ -180,7 +180,9 @@
                                             </div>
                                         </td>
                                         <td>{{$user->sex ? $user->sex : "--"}}</td>
-                                        <td>{{$user->brith ? $user->brith : "--"}}</td>
+                                        <td>    
+                                            {{ thaidate("lที่ j F Y" , ($user->brith )? $user->brith : "--")  }}
+                                        </td>
                                         <td ><span class="badge bg-light-success text-success w-40">{{$user->status ? $user->status : "--"}}</span></td>
                                         <td>{{$user->created_at->locale('th')->diffForHumans() ? $user->created_at->locale('th')->diffForHumans() : "--"}}</td>
                                     </tr>
@@ -212,7 +214,7 @@
 
                 <div class="table-responsive mt-3">
                     <table class="table align-middle mb-0 ">
-                        <thead class="table-light fz_header">
+                        <thead class=" fz_header">
                             <tr>
                                 <th>ชื่อ</th>
                                 <th>เพศ</th>
@@ -429,21 +431,65 @@
     var options = {
         series: user_location_arr,
         chart: {
-            width: 500,
+            width: '120%',
             type: 'pie',
         },
         labels: type_location_arr,
-            responsive: [{
+        responsive: [{
                 breakpoint: 480,
                 options: {
                     chart: {
-                        width: 400
+                        width: '100%'
                     },
                     legend: {
                         position: 'bottom'
                     }
                 }
-            }]
+            },
+            {
+                breakpoint: 991,
+                options: {
+                    chart: {
+                        width: '130%'
+                    },
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            },
+            {
+                breakpoint: 1042,
+                options: {
+                    chart: {
+                        width: '100%'
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            },{
+                breakpoint: 1380,
+                options: {
+                    chart: {
+                        width: '130%'
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            },
+            {
+                breakpoint: 2541,
+                options: {
+                    chart: {
+                        width: '150%'
+                    },
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }]  
+
         };
 
     var chart = new ApexCharts(document.querySelector("#chartUser_Location"), options);

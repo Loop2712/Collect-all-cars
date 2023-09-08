@@ -393,7 +393,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	}
 	.data-menu{
 		/* display: none; */
-		position: absolute;
+		position: absolute !important;
 		border-radius: 25px;
 		width: 99%;
 		transform: translate(2.5%, -50%);
@@ -401,12 +401,18 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		justify-content: space-between;
 		align-items: center;
 		padding: 8px;
-		left: 2%;
+		left: 2%;	
+		
+	}	
+
+	.test{
+		top:50% !important;
 	}
 
 	.data-menu.show-data-menu menu{
 		opacity: 0;
 		animation: show-data-menu 0.5s ease 0s 1 normal forwards;
+		top:calc(100% - 10px);
 	}
 	.close-data-menu{
 		opacity: 0;
@@ -750,7 +756,7 @@ input:focus {
 
 
 	<!-- ////////////////////////////////////////// MENU 3 OFFICER ACTION ////////////////////////////////////////// -->
-	<div class="row data-menu show-data-menu p-0" id="menu_3" style="bottom: -2rem">
+	<div class="row data-menu show-data-menu p-0" id="menu_3" style=" top:calc(100% - 140px);">
 
 		<!-- ----------------------------------------- ช่องกรอกเลข กม. ทั้งหมด ------------------------------------------- -->
 		<div id="div_mileage" class=d-none  >
@@ -793,7 +799,7 @@ input:focus {
 
 		
 		<!-- -------------------------------------------  เลือกสถานะการณ์  ---------------------------------------------------- -->
-		<div id="div_event_level" class="d-none row  data-menu show-data-menu"  style="margin-top:-35%">
+		<div id="div_event_level" class="d-none row  data-menu show-data-menu" style="top:calc(100% - 50px);">
 			<menu class="col-6">
 				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-black" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
 						ดำ
@@ -823,7 +829,7 @@ input:focus {
 		<!-- -------------------------------------------  จบ เลือกสถานะการณ์  ---------------------------------------------------- -->
 
 		<!-- -------------------------------------------  เพิ่มเติมสถานะการสีดำ  ---------------------------------------------------- -->
-		<label for="rc_black_text" id="div_add_rc_black_text" class="d-none row  data-menu show-data-menu"  style="margin-top:-45%">
+		<label for="rc_black_text" id="div_add_rc_black_text" class="d-none row  data-menu show-data-menu"  style="top:calc(100% - -20px);">
 			<div class="card-body p-3 main-shadow" style="border-radius: 15px;">
 				<div class="d-flex align-items-center div-text-status" >
 					<p class="mb-0">สถานะการณ์ : ดำ</p>
@@ -838,104 +844,106 @@ input:focus {
 
 
 		<!-- --------------------------------------- เลือกการปฏิบัติการ -------------------------------------------------- -->
-		<div class="d-none row data-menu show-data-menu" id="div_select_treatment" style="margin-top:-30%">
+		<div class="d-none row data-menu show-data-menu" id="div_select_treatment" style="margin: 0 auto;">
+			<div class="row w-100 d-flex justify-content-center"style="margin-bottom:-75px;">
+				<!-- ---  เลือก รักษา / ไม่รักษา  --- -->
+				<menu class="col-6  p-0 m-0" >
+					<label >
+						<input type="radio"name="treatment" value="มีการรักษา"  class="card-input-red card-input-element d-none"  onchange="check_btn_select_treatment();">
+						<div class="card card-body d-flex flex-row justify-content-between align-items-center text-danger border-danger w-100" style="border-radius: 10px 0 0 10px;">
+							<b>
+								มีการรักษา
+							</b>
+						</div>
+					</label>
 
-			<!-- ---  เลือก รักษา / ไม่รักษา  --- -->
-			<menu class="col-6  p-0">
-				<label >
-					<input type="radio"name="treatment" value="มีการรักษา"  class="card-input-red card-input-element d-none"  onchange="check_btn_select_treatment();">
-					<div class="card card-body d-flex flex-row justify-content-between align-items-center text-danger border-danger w-100" style="border-radius: 10px 0 0 10px;">
-						<b>
-							มีการรักษา
-						</b>
-					</div>
-				</label>
+				</menu>
 
-			</menu>
-
-			<menu class="col-6 p-0">
-				<label >
-					<input type="radio" name="treatment" value="ไม่มีการรักษา"  class="card-input-element d-none"  onchange="check_btn_select_treatment();">
-					<div class="card card-body d-flex flex-row-reverse  justify-content-between align-items-center border-primary"style="border-radius: 0 10px 10px 0;">
-						<b>
-							ไม่มีการรักษา
-						</b>
-					</div>
-				</label>
-			</menu>
-			
-			<div class="col-12" style="margin-bottom: 5%;">
-
-				<!-- ---  เคสมีการรักษา  --- -->
-				<div class="row d-none mt-3" id="treatment_yes">
-					<div class="col-12 col-md-4 col-lg-4">
-						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
-							onclick="update_status('ออกจากที่เกิดเหตุ' , '{{ $data_sos->id }}' , null);">
-								นำส่ง
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4 mt-3">
-						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
-						onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า');">
-							ส่งต่อชุดปฏิบัติการ
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4 mt-3">
-						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่นำส่ง');">
-								ไม่นำส่ง
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4 mt-3">
-						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิตระหว่างนำส่ง');">
-								เสียชีวิตระหว่างนำส่ง
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4 mt-3">
-						<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ณ_จุดเกิดเหตุ');">
-							เสียชีวิต ณ จุดเกิดเหตุ
-						</span>
-					</div>
-				</div>
-
-				<!-- ---   เคส ไม่มี การรักษา  --- -->
-				<div class="row d-none mt-3" id="treatment_no">
-					<div class="col-6  col-md-4 col-lg-4">
-						<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ผู้ป่วยปฎิเสธการรักษา');">
-							ผู้ป่วยปฎิเสธการรักษา
-						</span>
-					</div>
-					<div class="col-6 col-md-4 col-lg-4">
-						<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ก่อนชุดปฏิบัติการไปถึง');">
-							เสียชีวิต ก่อนชุดปฏิบัติการไปถึง
-						</span>
-					</div>
-					<div class="col-6 mt-3 col-md-4 col-lg-4">
-						<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ยกเลิก');" >
-							ยกเลิก
-						</span>
-					</div>
-					<div class="col-6 mt-3 col-md-4 col-lg-4">
-						<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่พบเหตุ');" >
-								ไม่พบเหตุ
-						</span>
-					</div>
+				<menu class="col-6 p-0 m-0" >
+					<label >
+						<input type="radio" name="treatment" value="ไม่มีการรักษา"  class="card-input-element d-none"  onchange="check_btn_select_treatment();">
+						<div class="card card-body d-flex flex-row-reverse  justify-content-between align-items-center border-primary"style="border-radius: 0 10px 10px 0;">
+							<b>
+								ไม่มีการรักษา
+							</b>
+						</div>
+					</label>
+				</menu>
 				
+				<div class="col-12" >
+
+					<!-- ---  เคสมีการรักษา  --- -->
+					<div class="row d-none mt-3" id="treatment_yes">
+						<div class="col-12 col-md-4 col-lg-4">
+							<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
+								onclick="update_status('ออกจากที่เกิดเหตุ' , '{{ $data_sos->id }}' , null);">
+									นำส่ง
+							</span>
+						</div>
+						<div class="col-6 col-md-4 col-lg-4 mt-3">
+							<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
+							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า');">
+								ส่งต่อชุดปฏิบัติการ
+							</span>
+						</div>
+						<div class="col-6 col-md-4 col-lg-4 mt-3">
+							<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่นำส่ง');">
+									ไม่นำส่ง
+							</span>
+						</div>
+						<div class="col-6 col-md-4 col-lg-4 mt-3">
+							<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิตระหว่างนำส่ง');">
+									เสียชีวิตระหว่างนำส่ง
+							</span>
+						</div>
+						<div class="col-6 col-md-4 col-lg-4 mt-3">
+							<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ณ_จุดเกิดเหตุ');">
+								เสียชีวิต ณ จุดเกิดเหตุ
+							</span>
+						</div>
+					</div>
+
+					<!-- ---   เคส ไม่มี การรักษา  --- -->
+					<div class="row d-none mt-3" id="treatment_no">
+						<div class="col-6  col-md-4 col-lg-4">
+							<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ผู้ป่วยปฎิเสธการรักษา');">
+								ผู้ป่วยปฎิเสธการรักษา
+							</span>
+						</div>
+						<div class="col-6 col-md-4 col-lg-4">
+							<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ก่อนชุดปฏิบัติการไปถึง');">
+								เสียชีวิต ก่อนชุดปฏิบัติการไปถึง
+							</span>
+						</div>
+						<div class="col-6 mt-3 col-md-4 col-lg-4">
+							<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ยกเลิก');" >
+								ยกเลิก
+							</span>
+						</div>
+						<div class="col-6 mt-3 col-md-4 col-lg-4">
+							<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่พบเหตุ');" >
+									ไม่พบเหตุ
+							</span>
+						</div>
 					
+						
+					</div>
 				</div>
 			</div>
+			
 			
 		</div>
 		<!-- --------------------------------------- จบ เลือกการปฏิบัติการ -------------------------------------------------- -->
 
 		<!-- ----------------------------------------- ปุ่ม ถึงที่เกิดเหตุ ------------------------------------------- -->
-		<div id="div_btn_to_the_scene" class="d-none" style="margin-top:-5%">
+		<div id="div_btn_to_the_scene" class="d-none" style="margin-bottom:1%">
 			<menu class="col-12 " >
 				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" 
 					onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_to_the_scene_to_leave_the_scene' ,'ถึงที่เกิดเหตุ')">
@@ -945,7 +953,7 @@ input:focus {
 		</div>
 
 		<!-- --------------------------------------- ปุ่ม ถึงโรงพยาบาล -------------------------------------------------- -->
-		<div id="div_to_hospital" class="d-none"  style="margin-top:-5%">
+		<div id="div_to_hospital" class="d-none"  style="margin-bottom:2%">
 			<menu class="col-12 " >
 				<button class="btn btn-primary main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
 				onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_hospital' ,'ถึงโรงพยาบาล')">
@@ -955,7 +963,7 @@ input:focus {
 		</div>
 
 		<!-- --------------------------------------- ปุ่ม กลับถึงฐาน -------------------------------------------------- -->
-		<div id="div_operating_base" class="d-none"  style="margin-top: -5%">
+		<div id="div_operating_base" class="d-none"  style="margin-bottom: 2%">
 			<menu class="col-12 " >
 				<button id="btn_operating_base" class="btn btn-success main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;" 
 				onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_operating_base' ,'กลับถึงฐาน'); ">
@@ -1252,6 +1260,8 @@ input:focus {
     	</div>
   	</div>
 </div>
+
+@include ('layouts.modal_loading')
 
 <script>
 	const li1 = document.getElementById("li1");

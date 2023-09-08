@@ -51,7 +51,7 @@
 
 <div id="all_dashboard" class="p-2">
     <h3 class="text-dark font-weight-bold">User</h3>
-    <div id="dashboard_user" class="mb-3 bg_section1" >
+    <div id="dashboard_user" class="mb-3 " >
         @include ('dashboard.dashboard_user.dashboard_user')
     </div>
     <div style="margin: 70px 0 70px 0;">
@@ -59,7 +59,7 @@
     </div>
 
     <h3 class="text-dark font-weight-bold">ViiSOS</h3>
-    <div id="dashboard_viisos" class="mb-3 bg_section1" >
+    <div id="dashboard_viisos" class="mb-3 " >
         @include ('dashboard.dashboard_viisos.dashboard_viisos')
     </div>
     <div style="margin: 70px 0 70px 0;">
@@ -67,7 +67,7 @@
     </div>
 
     <h3 class="text-dark font-weight-bold">ViiNews</h3>
-    <div id="dashboard_viinews" class="mb-3 bg_section1" >
+    <div id="dashboard_viinews" class="mb-3 " >
         @include ('dashboard.dashboard_viinews.dashboard_viinews')
     </div>
     <div style="margin: 70px 0 70px 0;">
@@ -75,7 +75,7 @@
     </div>
 
     <h3 class="text-dark font-weight-bold">ViiMove</h3>
-    <div id="dashboard_viimove" class="mb-3 bg_section1" >
+    <div id="dashboard_viimove" class="mb-3 " >
         @include ('dashboard.dashboard_viimove.dashboard_viimove')
     </div>
     <div style="margin: 70px 0 70px 0;">
@@ -83,7 +83,7 @@
     </div>
 
     <h3 class="text-dark font-weight-bold">การประชาสัมพันธ์ข่าวสาร</h3>
-    <div id="dashboard_boardcast" class="mb-3 bg_section1" >
+    <div id="dashboard_boardcast" class="mb-3 " >
         @include ('dashboard.dashboard_boardcast.dashboard_boardcast')
     </div>
 </div>

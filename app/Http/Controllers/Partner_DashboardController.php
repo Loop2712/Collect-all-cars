@@ -176,12 +176,13 @@ class Partner_DashboardController extends Controller
             ->orderByRaw('TIMESTAMPDIFF(SECOND, help_complete_time, time_go_to_help) asc')
             ->get();
 
-        // คะแนนการช่วยเหลือต่อเคส มากที่สุด 5 อันดับ
-        $data_sos_score_best_5 = Sos_map::where('area',$user_login->organization)
-            ->where('content','help_area')
-            ->where('score_total','!=',null)
-            ->limit(5)
-            ->orderBy('score_total','desc')
+            $data_sos_score_best_5 = Sos_map::where('area', $user_login->organization)
+            ->where('content', 'help_area')
+            ->where('score_total', '!=', null)
+            ->groupBy('helper') // กลุ่มตามชื่อผู้ใช้
+            ->selectRaw('helper, AVG(score_total) as avg_score') 
+            ->orderByDesc('avg_score')
+            ->limit(5) 
             ->get();
 
         // MAP
@@ -222,16 +223,18 @@ class Partner_DashboardController extends Controller
         //==================================================================================================================//
                                                         //  viinews
         //==================================================================================================================//
-
+        $twoMonthsAgo = Carbon::now()->subMonths(2);
+        
         //Check in
-        $check_in_data = Partner::where('name' ,'=', $user_login->organization)
-        ->where('name_area' ,'=', null)
+        $check_in_data = Partner::where('name', '=', $user_login->organization)
+        ->where('name_area', '=', null)
         ->get();
+        
 
         $check_in_data_arr = array();
         $count_hbd = 0;
         for ($i=0; $i < count($check_in_data); $i++) {
-            $check_ins_finder = Check_in::where('partner_id',$check_in_data[$i]['id'])->get();
+            $check_ins_finder = Check_in::where('partner_id',$check_in_data[$i]['id'])->where('created_at', '>=', Carbon::now()->subMonths(2))->get();
 
             //หาเวลาที่เช็คอินมากสุด และน้อยสุด
             $timeInCounts = array();
@@ -332,8 +335,10 @@ class Partner_DashboardController extends Controller
         $timeArray = [];
 
         for ($i=0; $i < count($all_data_partner); $i++) {
-            $check_ins_data = Check_in::where('partner_id',$all_data_partner[$i]['id'])->get();
-
+            $check_ins_data = Check_in::where('partner_id',$all_data_partner[$i]['id'])
+            ->where('created_at', '>=', Carbon::now()->subMonths(2))
+            ->get();
+            // ddd($check_ins_data);
             $dataCounts = [];
             $timeCount = [];
             foreach ($check_ins_data as $index => $check_in) {
@@ -383,6 +388,7 @@ class Partner_DashboardController extends Controller
         //ไม่ได้เข้าพื้นที่นานที่สุด
         $last_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
         ->groupBy('user_id')
+        ->where('created_at', '>=', Carbon::now()->subMonths(2))
         ->select('user_id')
         ->get();
 
@@ -395,6 +401,7 @@ class Partner_DashboardController extends Controller
             $last_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
 
             $data_checkin_from_checkin = Check_in::where('user_id',$last_checkIn_data[$i]['user_id'])
+            ->where('created_at', '>=', Carbon::now()->subMonths(2))
             ->orderBy('time_out','desc')
             ->get();
 
@@ -414,6 +421,7 @@ class Partner_DashboardController extends Controller
         ->select('*',DB::raw('COUNT(user_id) as count_user_checkin'))
         ->groupBy('user_id')
         ->orderBy('count_user_checkin','desc')
+        ->where('created_at', '>=', Carbon::now()->subMonths(2))
         ->limit(5)
         ->get();
 
@@ -1170,7 +1178,9 @@ class Partner_DashboardController extends Controller
         $check_in_data = Partner::where('id' , $area_id)->get();
 
         for ($i=0; $i < count($check_in_data); $i++) {
-            $check_ins_finder = Check_in::where('partner_id',$check_in_data[$i]['id'])->get();
+            $check_ins_finder = Check_in::where('partner_id',$check_in_data[$i]['id'])
+            ->where('created_at', '>=', Carbon::now()->subMonths(2))
+            ->get();
 
             //หาเวลาที่เช็คอินมากสุด และน้อยสุด
             $timeInCounts = array();
@@ -1399,6 +1409,7 @@ class Partner_DashboardController extends Controller
 
             $data[$iii] = DB::table('check_ins')
                 ->where('partner_id',$key->id)
+                ->where('created_at', '>=', Carbon::now()->subMonths(2))
                 ->select(
                     DB::raw('TIME_FORMAT(time_in, "%H:00") as hour'),
                     DB::raw('COUNT(*) as count')

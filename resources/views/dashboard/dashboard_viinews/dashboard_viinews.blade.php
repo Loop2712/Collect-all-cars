@@ -20,7 +20,7 @@
                 <div class="d-flex align-items-center">
                     <div>
                         <h5 class="font-weight-bold mb-0">
-                            <b>ข้อมูลการเข้าพื้นที่ 15 วัน</b>
+                            <b>ข้อมูลการเข้าพื้นที่ 2 เดือน</b>
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
@@ -53,20 +53,17 @@
                 <div class="mt-3 mb-0">
                     <h5 class="text-center font-weight-bold">พื้นที่ : รวม</h5>
                     @php
-
                         $today = \Carbon\Carbon::now()->addYears(543);
-
                         $date_now_thai = $today->locale('th')->isoFormat('LL');
 
                         // สร้างวัตถุ Carbon สำหรับวันที่คาดหวังให้ลบออกจากวันปัจจุบัน
-                        $date_delete_15_days_ago = $today->subDays(15);
+                        $date_delete_2_months_ago = $today->subMonths(2);
                         // แปลงรูปแบบวันที่เป็นภาษาไทย
-                        $date_delete_15_thai = $date_delete_15_days_ago->locale('th')->isoFormat('LL');
-
-
-
+                        $date_delete_2_months_thai = $date_delete_2_months_ago->locale('th')->isoFormat('LL');
                     @endphp
-                    <h6 class="text-center">ข้อมูลตั้งแต่วันที่ {{ $date_delete_15_thai}} - {{$date_now_thai}}</h6>
+
+                    <h6 class="text-center">ข้อมูลตั้งแต่วันที่ {{ $date_delete_2_months_thai}} - {{$date_now_thai}}</h6>
+
                 </div>
                 <div class="row p-3 mb-3 ">
                     <div class="col-12 col-lg-2">
@@ -233,10 +230,10 @@
         <!-- ไม่ได้เข้าพื้นที่นานที่สุด -->
         <div class="col-12 col-md-4 d-flex">
             <div class="card radius-10 w-100">
-                <div class="card-header">
+                <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="col-10">
-                            <h5 class="font-weight-bold mb-0" >ไม่ได้เข้าพื้นที่นานที่สุด</h5>
+                            <h5 class="font-weight-bold mb-1" >ไม่ได้เข้าพื้นที่นานที่สุด</h5>
                         </div>
                         <div class="dropdown ms-auto">
                             <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -294,10 +291,10 @@
         <!-- เข้าพื้นที่บ่อยที่สุด -->
         <div class="col-12 col-md-4 d-flex">
             <div class="card radius-10 w-100">
-                <div class="card-header">
+                <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="col-10">
-                            <h5 class="font-weight-bold mb-0">เข้าพื้นที่บ่อยที่สุด</h5>
+                            <h5 class="font-weight-bold mb-1">เข้าพื้นที่บ่อยที่สุด</h5>
                         </div>
                         <div class="dropdown ms-auto">
                             <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -337,10 +334,10 @@
         <!-- เข้าพื้นที่ล่าสุด -->
         <div class="col-12 col-md-4 d-flex">
             <div class="card radius-10 w-100">
-                <div class="card-header">
+                <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="col-10">
-                            <h5 class="font-weight-bold mb-0">เข้าพื้นที่ล่าสุด</h5>
+                            <h5 class="font-weight-bold mb-1">เข้าพื้นที่ล่าสุด</h5>
                         </div>
                         <div class="dropdown ms-auto">
                             <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -824,10 +821,10 @@
 
                         <div class="col-12 col-md-4 d-flex">
                             <div class="card radius-10 w-100">
-                                <div class="card-header">
+                                <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="col-10">
-                                            <h5 class="font-weight-bold mb-0" >ไม่ได้เข้าพื้นที่นานที่สุด</h5>
+                                            <h5 class="font-weight-bold mb-1" >ไม่ได้เข้าพื้นที่นานที่สุด</h5>
                                         </div>
                                         <div class="dropdown ms-auto">
                                             <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -847,10 +844,10 @@
 
                         <div class="col-12 col-md-4 d-flex">
                             <div class="card radius-10 w-100">
-                                <div class="card-header">
+                                <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="col-10">
-                                            <h5 class="font-weight-bold mb-0">เข้าพื้นที่บ่อยที่สุด</h5>
+                                            <h5 class="font-weight-bold mb-1">เข้าพื้นที่บ่อยที่สุด</h5>
                                         </div>
                                         <div class="dropdown ms-auto">
                                             <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -870,10 +867,10 @@
 
                         <div class="col-12 col-md-4 d-flex">
                             <div class="card radius-10 w-100">
-                                <div class="card-header">
+                                <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="col-10">
-                                            <h5 class="font-weight-bold mb-0">เข้าพื้นที่ล่าสุด</h5>
+                                            <h5 class="font-weight-bold mb-1">เข้าพื้นที่ล่าสุด</h5>
                                         </div>
                                         <div class="dropdown ms-auto">
                                             <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"

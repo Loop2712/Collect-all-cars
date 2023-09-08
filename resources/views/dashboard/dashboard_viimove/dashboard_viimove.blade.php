@@ -79,26 +79,24 @@
 
 <div class="row row-cols-1 row-cols-lg-1">
     <div class="col"> <!-- Card 1 -->
-        <div id="last_reg_car_top10" class="card radius-10">
+        <div class="card radius-10" id="last_reg_car_top10">
             <div class="card-header border-bottom-0 bg-transparent">
-                <div class="d-lg-flex align-items-center">
-                    <div class="col-10">
-                        <h5 class="font-weight-bold mb-2 mb-lg-0" style="font-weight: bold">รถที่ลงทะเบียน {{ count($last_reg_car_top10) }} ลำดับล่าสุด</h5>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h5 class="font-weight-bold mb-0">รถที่ลงทะเบียน {{ count($last_reg_car_top10) }} ลำดับล่าสุด</h5>
                     </div>
                     <div class="dropdown ms-auto">
-                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
-                            data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="{{ url('/dashboard_viimove_register_car') }}" target="_blank">ดูข้อมูลเพิ่มเติม</a>
+                            <a class="dropdown-item" href="{{ url('/dashboard_viimove_register_car') }}">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="card">
+            <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table mb-0">
+                    <table class="table mb-0 align-middle">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -124,7 +122,6 @@
                     </table>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -134,10 +131,10 @@
     <!-- รถที่ถูกรายงานมากที่สุด -->
     <div class="col-12 col-md-4 d-flex">
         <div class="card radius-10 w-100">
-            <div class="card-header">
+            <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="col-10">
-                        <h5 class="font-weight-bold mb-0" >รถที่ถูกรายงานมากที่สุด {{ count($report_car_top5) }} อันดับ</h5>
+                        <h5 class="font-weight-bold mb-1" >รถที่ถูกรายงานมากที่สุด {{ count($report_car_top5) }} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -150,7 +147,7 @@
                 </div>
             </div>
 
-            <div class="p-3 mb-3">
+            <div class="card-body p-3 mb-3">
                 @foreach ($report_car_top5 as $report_car_top5)
                     <div class="d-flex align-items-center ">
                         <div class="product-img ">
@@ -179,10 +176,10 @@
     <!-- ประเภทรถมากที่สุด -->
     <div class="col-12 col-md-4 d-flex">
         <div class="card radius-10 w-100">
-            <div class="card-header">
+            <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="col-10">
-                        <h5 class="font-weight-bold mb-0" >ประเภทรถมากที่สุด {{ count($type_car_registration_top5)}} อันดับ</h5>
+                        <h5 class="font-weight-bold mb-1" >ประเภทรถมากที่สุด {{ count($type_car_registration_top5)}} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -195,7 +192,7 @@
                 </div>
             </div>
 
-            <div class="p-3 mb-3">
+            <div class="card-bodyp-3 mb-3">
                 @foreach ($type_car_registration_top5 as $type_car_top5)
 
                     @php
@@ -233,10 +230,10 @@
     <!-- ยี่ห้อรถมากที่สุด -->
     <div class="col-12 col-md-4 d-flex">
         <div class="card radius-10 w-100">
-            <div class="card-header">
+            <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="col-10">
-                        <h5 class="font-weight-bold mb-0" >ยี่ห้อรถมากที่สุด {{ count($brand_car_top5) }} อันดับ</h5>
+                        <h5 class="font-weight-bold mb-1" >ยี่ห้อรถมากที่สุด {{ count($brand_car_top5) }} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -249,7 +246,7 @@
                 </div>
             </div>
 
-            <div class="p-3 mb-3">
+            <div class="card-body p-3 mb-3">
                 @foreach ($brand_car_top5 as $brand_car_top5)
 
                     <div class="d-flex align-items-center ">
