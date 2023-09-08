@@ -837,7 +837,7 @@
                 <i>
                   <img width="150%" src="{{ asset('/img/stickerline/PNG/24.png') }}" alt="">
                 </i>
-                <span data-purecounter-start="0" data-purecounter-end="{{ $count_vehicle * 3 }}" data-purecounter-duration="1" class="purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="{{ ($count_vehicle * 3) + count($data_officer_all) }}" data-purecounter-duration="1" class="purecounter"></span>
                 <p>ยานพาหนะ</p>
               </div>
             </div>
@@ -847,7 +847,7 @@
                 <i>
                   <img width="150%" src="{{ asset('/img/stickerline/PNG/21.png') }}" alt="">
                 </i>
-                <span data-purecounter-start="0" data-purecounter-end="{{ $count_help }}" data-purecounter-duration="1" class="purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="{{ $count_help + count($data_sos_1669) }}" data-purecounter-duration="1" class="purecounter"></span>
                 <p>ให้การช่วยเหลือ</p>
               </div>
             </div>
