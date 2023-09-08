@@ -158,6 +158,16 @@
 
                 divVideo.append(remotePlayerContainer);
 
+                // สร้าง video element ใน div ใหม่
+                const videoElement = document.createElement('video');
+                videoElement.setAttribute('id', 'video_' + user.uid.toString()); // ใช้ uid ของผู้ใช้เป็น id ของ video element
+                videoElement.setAttribute('class', 'agora_video_player');
+                videoElement.setAttribute('playsinline', '');
+                videoElement.setAttribute('muted', '');
+                videoElement.setAttribute('style', 'width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; object-fit: cover;');
+
+                divVideo.appendChild(videoElement);
+
                 // เพิ่ม div ใหม่ลงใน div หลัก
                 document.querySelector('#divVideo_Parent').append(divVideo);
                 channelParameters.remoteVideoTrack.play(remotePlayerContainer)
