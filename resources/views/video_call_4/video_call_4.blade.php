@@ -96,7 +96,6 @@
         console.log(agoraEngine);
 
         const remotePlayerContainer = document.createElement("div");
-
         const localPlayerContainer = document.createElement('div');
         // Specify the ID of the DIV container. You can use the uid of the local user.
         localPlayerContainer.id = options.uid;
@@ -112,97 +111,111 @@
         // Listen for the "user-published" event to retrieve a AgoraRTCRemoteUser object.
         agoraEngine.on("user-published", async (user, mediaType) =>
         {
-
             await agoraEngine.subscribe(user, mediaType);
             console.log("subscribe success");
             console.log("agoraEngine");
             console.log(agoraEngine);
+             // ตรวจสอบว่า user.uid เป็นไอดีของ remote user ที่คุณเลือก
+            if (user.videoTrack) {
+                if (mediaType == "video")
+                {
+                    // Retrieve the remote video track.
+                    channelParameters.remoteVideoTrack = user.videoTrack;
+                    // Retrieve the remote audio track.
+                    channelParameters.remoteAudioTrack = user.audioTrack;
+                    // Save the remote user id for reuse.
+                    channelParameters.remoteUid = user.uid.toString();
+                    // Specify the ID of the DIV container. You can use the uid of the remote user.
+                    remotePlayerContainer.id = user.uid.toString();
+                    channelParameters.remoteUid = user.uid.toString();
 
-            if (mediaType == "video")
-            {
-                // Retrieve the remote video track.
-                channelParameters.remoteVideoTrack = user.videoTrack;
-                // Retrieve the remote audio track.
-                channelParameters.remoteAudioTrack = user.audioTrack;
-                // Save the remote user id for reuse.
-                channelParameters.remoteUid = user.uid.toString();
-                // Specify the ID of the DIV container. You can use the uid of the remote user.
-                remotePlayerContainer.id = user.uid.toString();
-                channelParameters.remoteUid = user.uid.toString();
+                    //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
 
-                //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
+                    // create_element_remotevideo_call(remotePlayerContainer);
 
-                // create_element_remotevideo_call(remotePlayerContainer);
+                    console.log("remotePlayerContainer");
+                    console.log(remotePlayerContainer);
+                    console.log("remotePlayerContainer.id");
+                    console.log(remotePlayerContainer.id);
+                    console.log("channelParameters.remoteUid");
+                    console.log(channelParameters.remoteUid);
+                    console.log("channelParameters.remoteVideoTrack");
+                    console.log(channelParameters.remoteVideoTrack);
 
-                console.log("remotePlayerContainer");
-                console.log(remotePlayerContainer);
-                console.log("remotePlayerContainer.id");
-                console.log(remotePlayerContainer.id);
-                console.log("channelParameters.remoteUid");
-                console.log(channelParameters.remoteUid);
-                console.log("channelParameters.remoteVideoTrack");
-                console.log(channelParameters.remoteVideoTrack);
+                    // const containerId = 'videoDiv_' + remotePlayerContainer.id;
 
-                const containerId = 'videoDiv_' + remotePlayerContainer.id;
+                    // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
+                    if (document.getElementById(containerId)) {
+                        document.getElementById(containerId).remove();
+                    }
 
-                // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
-                if (document.getElementById(containerId)) {
-                    document.getElementById(containerId).remove();
+                    // // สร้าง div ใหม่
+                    // const divVideo = document.createElement('div');
+                    // divVideo.setAttribute('id', containerId);
+                    // divVideo.setAttribute('class', 'video-box');
+                    // divVideo.setAttribute('style', 'background-color: grey');
+
+                    // if(channelParameters.remoteUid === remotePlayerContainer.id){
+                    //     console.log("เข้า if append");
+                    //     divVideo.append(remotePlayerContainer);
+                    //     console.log("ทำงานสำเร็จ");
+                    // }else{
+                    //     console.log("เข้า else append");
+                    //     // หา div ที่มี id ตรงกับ channelParameters.remoteVideoTrack ภายใน divVideo_Parent
+                    //     const divs = document.querySelectorAll('#divVideo_Parent > div');
+                    //     for (const div of divs) {
+                    //         if (div.id === 'videoDiv_' +remotePlayerContainer.id) {
+                    //             // เรียกใช้งาน .play() บน remotePlayerContainer ใน div ที่พบ
+                    //             const remotePlayerContainer = div.querySelector('video');
+                    //             if (remotePlayerContainer) {
+                    //                 divVideo.append(remotePlayerContainer);
+                    //                 break; // เมื่อเจอ div ที่ตรงกับ channelParameters.remoteVideoTrack แล้วให้หยุดลูป
+                    //             }
+                    //         }
+                    //     }
+                    //     console.log("ทำงานสำเร็จ");
+                    // }
+
+                    // เพิ่ม div ใหม่ลงใน div หลัก
+                    remotePlayerContainer.classList.add('video-box');
+                    document.querySelector('#divVideo_Parent').append(remotePlayerContainer);
+
+                    channelParameters.remoteVideoTrack.play(remotePlayerContainer)
+
+                    // if(remotePlayerContainer.id == divVideo.id){
+                    //     console.log("เข้า if play");
+                    //     channelParameters.remoteVideoTrack.play(remotePlayerContainer)
+                    //     console.log("ทำงานสำเร็จ");
+                    // }else{
+                    //     console.log("เข้า else play");
+                    //     // หา div ที่มี id ตรงกับ channelParameters.remoteVideoTrack ภายใน divVideo_Parent
+                    //     const divs = document.querySelectorAll('#divVideo_Parent > div');
+                    //     for (const div of divs) {
+                    //         if (div.id === remotePlayerContainer.id) {
+                    //             // เรียกใช้งาน .play() บน remotePlayerContainer ใน div ที่พบ
+                    //             const remotePlayerContainer = div.querySelector('video');
+                    //             if (remotePlayerContainer) {
+                    //                 channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+                    //                 break; // เมื่อเจอ div ที่ตรงกับ channelParameters.remoteVideoTrack แล้วให้หยุดลูป
+                    //             }
+                    //         }
+                    //     }
+                    //     console.log("ทำงานสำเร็จ");
+                    // }
+
+
                 }
-
-                // สร้าง div ใหม่
-                const divVideo = document.createElement('div');
-                divVideo.setAttribute('id', containerId);
-                divVideo.setAttribute('class', 'video-box');
-                divVideo.setAttribute('style', 'background-color: grey');
-
-                divVideo.append(remotePlayerContainer);
-
-                // สร้าง video element ใน div ใหม่
-                const videoElement = document.createElement('video');
-                videoElement.setAttribute('id', 'video_' + user.uid.toString()); // ใช้ uid ของผู้ใช้เป็น id ของ video element
-                videoElement.setAttribute('class', 'agora_video_player');
-                videoElement.setAttribute('playsinline', '');
-                videoElement.setAttribute('muted', '');
-                videoElement.setAttribute('style', 'width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; object-fit: cover;');
-
-                divVideo.appendChild(videoElement);
-
-                // เพิ่ม div ใหม่ลงใน div หลัก
-                document.querySelector('#divVideo_Parent').append(divVideo);
-                channelParameters.remoteVideoTrack.play(remotePlayerContainer)
-
-                // if(remotePlayerContainer.id == divVideo.id){
-                //     console.log("เข้า if play");
-                //     channelParameters.remoteVideoTrack.play(remotePlayerContainer)
-                //     console.log("ทำงานสำเร็จ");
-                // }else{
-                //     console.log("เข้า else play");
-                //     // หา div ที่มี id ตรงกับ channelParameters.remoteVideoTrack ภายใน divVideo_Parent
-                //     const divs = document.querySelectorAll('#divVideo_Parent > div');
-                //     for (const div of divs) {
-                //         if (div.id === remotePlayerContainer.id) {
-                //             // เรียกใช้งาน .play() บน remotePlayerContainer ใน div ที่พบ
-                //             const remotePlayerContainer = div.querySelector('video');
-                //             if (remotePlayerContainer) {
-                //                 channelParameters.remoteVideoTrack.play(remotePlayerContainer);
-                //                 break; // เมื่อเจอ div ที่ตรงกับ channelParameters.remoteVideoTrack แล้วให้หยุดลูป
-                //             }
-                //         }
-                //     }
-                //     console.log("ทำงานสำเร็จ");
-                // }
-
-
+                // Subscribe and play the remote audio track If the remote user publishes the audio track only.
+                if (mediaType == "audio")
+                {
+                    // Get the RemoteAudioTrack object in the AgoraRTCRemoteUser object.
+                    channelParameters.remoteAudioTrack = user.audioTrack;
+                    // Play the remote audio track. No need to pass any DOM element.
+                    channelParameters.remoteAudioTrack.play();
+                }
             }
-            // Subscribe and play the remote audio track If the remote user publishes the audio track only.
-            if (mediaType == "audio")
-            {
-                // Get the RemoteAudioTrack object in the AgoraRTCRemoteUser object.
-                channelParameters.remoteAudioTrack = user.audioTrack;
-                // Play the remote audio track. No need to pass any DOM element.
-                channelParameters.remoteAudioTrack.play();
-            }
+
+
         });
 
         // Listen for the "user-unpublished" event.
