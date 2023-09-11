@@ -192,7 +192,7 @@
                 </div>
             </div>
 
-            <div class="card-bodyp-3 mb-3">
+            <div class="card-body p-3 mb-3">
                 @foreach ($type_car_registration_top5 as $type_car_top5)
 
                     @php

@@ -21,16 +21,29 @@ class Agora_4_Controller extends Controller
     // // // // SOS 1669 // // // //
     // // // // -------- // // // //
 
-    public function get_appId()
+    // public function get_appId()
+    // {
+    //     $appID = env('AGORA_APP_ID');
+    //     $appCertificate = env('AGORA_APP_CERTIFICATE');
+
+    //     $data = [] ;
+    //     $data['appId'] = $appID ;
+    //     $data['appCertificate'] = $appCertificate ;
+
+    //     return $data ;
+    // }
+
+    public function before_video_call_4(Request $request)
     {
-        $appID = env('AGORA_APP_ID');
+        $user = Auth::user();
+
+        $appId = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
+        $sos_id = 555;
+        $consult_doctor_id = 123;
 
-        $data = [] ;
-        $data['appId'] = $appID ;
-        $data['appCertificate'] = $appCertificate ;
+        return view('video_call_4/before_video_call_4', compact('user','appId','appCertificate','sos_id','consult_doctor_id'));
 
-        return $data ;
     }
 
     public function index(Request $request)

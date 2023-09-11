@@ -113,94 +113,91 @@
         {
             await agoraEngine.subscribe(user, mediaType);
             console.log("subscribe success");
-            console.log("agoraEngine");
-            console.log(agoraEngine);
-             // ตรวจสอบว่า user.uid เป็นไอดีของ remote user ที่คุณเลือก
-            if (user.videoTrack) {
-                if (mediaType == "video")
-                {
-                    // Retrieve the remote video track.
-                    channelParameters.remoteVideoTrack = user.videoTrack;
-                    // Retrieve the remote audio track.
-                    channelParameters.remoteAudioTrack = user.audioTrack;
-                    // Save the remote user id for reuse.
-                    channelParameters.remoteUid = user.uid.toString();
-                    // Specify the ID of the DIV container. You can use the uid of the remote user.
-                    remotePlayerContainer.id = user.uid.toString();
-                    channelParameters.remoteUid = user.uid.toString();
+            console.log("user");
+            console.log(user);
 
-                    //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
+            const remotePlayer_check_arr = {}; // ใช้เก็บ remotePlayerContainer ของแต่ละ remote user
 
-                    // create_element_remotevideo_call(remotePlayerContainer);
+            // ตรวจสอบว่า user.uid เป็นไอดีของ remote user ที่คุณเลือก
+            if (mediaType == "video" && user.videoTrack)
+            {
+                // สร้างหรืออัปเดต remotePlayerContainer ของ remote user
+                remotePlayer_check_arr[user.uid.toString()] = remotePlayer_check_arr[user.uid.toString()];
+                // Retrieve the remote video track.
+                channelParameters.remoteVideoTrack = user.videoTrack;
+                // Retrieve the remote audio track.
+                channelParameters.remoteAudioTrack = user.audioTrack;
+                // Save the remote user id for reuse.
+                channelParameters.remoteUid = user.uid.toString();
+                // Specify the ID of the DIV container. You can use the uid of the remote user.
+                remotePlayerContainer.id = user.uid.toString();
 
-                    console.log("remotePlayerContainer");
-                    console.log(remotePlayerContainer);
-                    console.log("remotePlayerContainer.id");
-                    console.log(remotePlayerContainer.id);
-                    console.log("channelParameters.remoteUid");
-                    console.log(channelParameters.remoteUid);
-                    console.log("channelParameters.remoteVideoTrack");
-                    console.log(channelParameters.remoteVideoTrack);
+                //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
 
-                    // const containerId = 'videoDiv_' + remotePlayerContainer.id;
+                // create_element_remotevideo_call(remotePlayerContainer);
 
-                    // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
-                    if (document.getElementById("videoDiv_"+ user.uid.toString())) {
-                        document.getElementById("videoDiv_"+ user.uid.toString()).remove();
-                    }
+                console.log("remotePlayerContainer");
+                console.log(remotePlayerContainer);
+                console.log("remotePlayerContainer.id");
+                console.log(remotePlayerContainer.id);
+                console.log("channelParameters.remoteUid");
+                console.log(channelParameters.remoteUid);
+                console.log("channelParameters.remoteVideoTrack");
+                console.log(channelParameters.remoteVideoTrack);
 
-                    // // สร้าง div ใหม่
-                    // const divVideo = document.createElement('div');
-                    // divVideo.setAttribute('id', containerId);
-                    // divVideo.setAttribute('class', 'video-box');
-                    // divVideo.setAttribute('style', 'background-color: grey');
-                    // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
-                    const divVideo = document.createElement('div');
-                        divVideo.setAttribute('id','videoDiv_' + user.uid.toString());
-                        divVideo.setAttribute('class','video-box');
-                        divVideo.setAttribute('style','background-color: grey');
+                // const containerId = 'videoDiv_' + remotePlayerContainer.id;
 
-                    document.querySelector('#divVideo_Parent').append(divVideo);
-
-                    channelParameters.remoteVideoTrack.play(remotePlayerContainer)
-                    // เพิ่ม div ใหม่ลงใน div หลัก
-                    divVideo.append(remotePlayerContainer);
-                    // document.querySelector('#divVideo_Parent').append(remotePlayerContainer);
-
-
-
-                    // if(remotePlayerContainer.id == divVideo.id){
-                    //     console.log("เข้า if play");
-                    //     channelParameters.remoteVideoTrack.play(remotePlayerContainer)
-                    //     console.log("ทำงานสำเร็จ");
-                    // }else{
-                    //     console.log("เข้า else play");
-                    //     // หา div ที่มี id ตรงกับ channelParameters.remoteVideoTrack ภายใน divVideo_Parent
-                    //     const divs = document.querySelectorAll('#divVideo_Parent > div');
-                    //     for (const div of divs) {
-                    //         if (div.id === remotePlayerContainer.id) {
-                    //             // เรียกใช้งาน .play() บน remotePlayerContainer ใน div ที่พบ
-                    //             const remotePlayerContainer = div.querySelector('video');
-                    //             if (remotePlayerContainer) {
-                    //                 channelParameters.remoteVideoTrack.play(remotePlayerContainer);
-                    //                 break; // เมื่อเจอ div ที่ตรงกับ channelParameters.remoteVideoTrack แล้วให้หยุดลูป
-                    //             }
-                    //         }
-                    //     }
-                    //     console.log("ทำงานสำเร็จ");
-                    // }
-
-
+                // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
+                if (document.getElementById("videoDiv_"+ user.uid.toString())) {
+                    document.getElementById("videoDiv_"+ user.uid.toString()).remove();
                 }
-                // Subscribe and play the remote audio track If the remote user publishes the audio track only.
-                if (mediaType == "audio")
-                {
-                    // Get the RemoteAudioTrack object in the AgoraRTCRemoteUser object.
-                    channelParameters.remoteAudioTrack = user.audioTrack;
-                    // Play the remote audio track. No need to pass any DOM element.
-                    channelParameters.remoteAudioTrack.play();
+
+                // // สร้าง div ใหม่
+                // const divVideo = document.createElement('div');
+                // divVideo.setAttribute('id', containerId);
+                // divVideo.setAttribute('class', 'video-box');
+                // divVideo.setAttribute('style', 'background-color: grey');
+                // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
+                const divVideo = document.createElement('div');
+                    divVideo.setAttribute('id','videoDiv_' + user.uid.toString());
+                    divVideo.setAttribute('class','video-box');
+                    divVideo.setAttribute('style','background-color: grey');
+
+                if (remotePlayer_check_arr[user.uid.toString()]) {
+                    console.log("เข้า if play");
+                    divVideo.append(remotePlayer_check_arr[user.uid.toString()]);
+                }else{
+                    console.log("เข้า else play");
                 }
+
+                // if (divVideo.id === 'videoDiv_' + remotePlayerContainer.id) {
+                //     console.log("เข้า if play");
+                //     divVideo.append(remotePlayerContainer);
+
+                // }else{
+                //     console.log("เข้า else play");
+                // }
+
+                channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+                // เพิ่ม div ใหม่ลงใน div หลัก
+
+
+                document.querySelector('#divVideo_Parent').append(divVideo);
+                // Set a stream fallback option to automatically switch remote video quality when network conditions degrade.
+                agoraEngine.setStreamFallbackOption(channelParameters.remoteUid, 1);
+
+
             }
+
+            // Subscribe and play the remote audio track If the remote user publishes the audio track only.
+            if (mediaType == "audio")
+            {
+                // Get the RemoteAudioTrack object in the AgoraRTCRemoteUser object.
+                channelParameters.remoteAudioTrack = user.audioTrack;
+                // Play the remote audio track. No need to pass any DOM element.
+                channelParameters.remoteAudioTrack.play();
+            }
+
 
 
         });
@@ -233,7 +230,8 @@
 
         // เมื่อมีคนเข้าห้อง
         agoraEngine.on("user-joined", function (evt) {
-            console.log("agoraEngine");
+
+            console.log("agoraEngine มีคนเข้าห้องมา");
             console.log(agoraEngine);
 
             if(agoraEngine['remoteUsers'][0]){
@@ -273,7 +271,8 @@
             // Listen to the Join button click event.
             document.getElementById("join").onclick = async function (user_id)
             {
-
+                // Enable dual-stream mode.
+                agoraEngine.enableDualStream();
                 // Join a channel.
                 await agoraEngine.join(options.appId, options.channel, options.token, options.uid);
                 // Create a local audio track from the audio sampled by a microphone.
@@ -292,7 +291,9 @@
 
                 //หาไมโครโฟน
                 try {
-                    channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+                    channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                        {encoderConfig: "high_quality_stereo",}
+                    );
                     // Publish the local audio tracks in the channel.
                      await agoraEngine.publish([channelParameters.localAudioTrack]);
                 } catch (error) {
@@ -300,7 +301,9 @@
                     console.error('ไม่สามารถสร้างไมโครโฟนหรือไม่พบไมโครโฟน', error);
 
                     try { // เข้าใหม่ในสถานะปิดไมโครโฟนแทน
-                        channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+                        channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                            {encoderConfig: "high_quality_stereo",}
+                        );
                         // ปิดไมโครโฟนใหม่ทันที
                         await channelParameters.localAudioTrack.setEnabled(false);
                         //เปลี่ยนสถานะไมโครโฟน เป็น false
@@ -314,7 +317,17 @@
 
                 // หากล้อง
                 try {
-                    channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
+                    channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack({
+                        optimizationMode: "detail",
+                        encoderConfig:
+                        {
+                            width: 640,
+                            // Specify a value range and an ideal value
+                            height: { ideal: 480, min: 400, max: 500 },
+                            frameRate: 15,
+                            bitrateMin: 600, bitrateMax: 1000,
+                        },
+                    });
                     // Publish the local audio and video tracks in the channel.
                     await agoraEngine.publish([channelParameters.localVideoTrack]);
                 } catch (error) {
@@ -322,7 +335,17 @@
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
 
                     try { // เข้าใหม่ในสถานะปิดกล้องแทน
-                        channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
+                        channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack({
+                            optimizationMode: "detail",
+                            encoderConfig:
+                            {
+                                width: 640,
+                                // Specify a value range and an ideal value
+                                height: { ideal: 480, min: 400, max: 500 },
+                                frameRate: 15,
+                                bitrateMin: 600, bitrateMax: 1000,
+                            },
+                        });
                         // ปิดกล้องใหม่ทันที
                         await channelParameters.localVideoTrack.setEnabled(false);
                         //เปลี่ยนสถานะกล้อง เป็น false

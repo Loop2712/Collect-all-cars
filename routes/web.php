@@ -523,6 +523,7 @@ Route::get('/mockup_video_call', function () {
 Route::group(['middleware' => ['auth']], function () {
 
     // Video_call_4 //
+    Route::get('video_call_4/before_video_call_4', 'Agora_4_Controller@before_video_call_4'); // index
 	Route::get('video_call_4/video_call_4', 'Agora_4_Controller@index'); // index
 	// Route::post('/agora/call-user', 'AgoraController@callUser'); // ไม่ทราบ
 	// END Video_call_4 //
