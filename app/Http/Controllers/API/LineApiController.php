@@ -982,6 +982,8 @@ class LineApiController extends Controller
             $channel_access_token = env('CHANNEL_ACCESS_TOKEN') ;
         }
 
+        $data_partner = Partner::where('name' , $name_partner_helpers)->where('name_area' , null)->first();
+
         $users = DB::table('users')->where('id', $user_id)->get();
         $data_helpers = DB::table('users')->where('id', $helper_id)->get();
 
@@ -1054,6 +1056,9 @@ class LineApiController extends Controller
             $string_json = str_replace("name_helper",$name_helper,$string_json);
             $string_json = str_replace("https://scdn.line-apps.com/clip13.jpg",$photo_helper,$string_json);
             $string_json = str_replace("zzz",$name_partner_helpers,$string_json);
+
+            // LOGO PARTNER
+            $string_json = str_replace("LOGO_PARTNER",$data_partner->logo,$string_json);
             
             $messages = [ json_decode($string_json, true) ];
 
