@@ -16,6 +16,8 @@ use App\Http\Controllers\API\API_Time_zone;
 use App\Models\Text_topic;
 use App\User;
 use Carbon\Carbon;
+use Intervention\Image\ImageManagerStatic as Image;
+use App\Http\Controllers\API\ImageController;
 
 class LineMessagingAPI extends Model
 {
@@ -385,6 +387,17 @@ class LineMessagingAPI extends Model
                          $string_json = str_replace("https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip13.jpg",$photo_profile,$string_json);
 
                     }
+
+                    // Random logo partner
+                    $Random_logo = new ImageController();
+
+                    $img_partner = $Random_logo->Random_logo_partner(5) ;
+
+                    $string_json = str_replace("IMGPARTNER_1",$img_partner[0],$string_json);   
+                    $string_json = str_replace("IMGPARTNER_2",$img_partner[1],$string_json);   
+                    $string_json = str_replace("IMGPARTNER_3",$img_partner[2],$string_json);   
+                    $string_json = str_replace("IMGPARTNER_4",$img_partner[3],$string_json);   
+                    $string_json = str_replace("IMGPARTNER_5",$img_partner[4],$string_json);
 
                     // เพศ
                     // if (!empty($item->sex)) {

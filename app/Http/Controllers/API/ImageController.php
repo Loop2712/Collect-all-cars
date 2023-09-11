@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use Auth;
 use App\Models\Partner;
+use Illuminate\Support\Facades\DB;
 
 use Google\Cloud\Vision\VisionClient;
 
@@ -680,6 +681,27 @@ class ImageController extends Controller
         }
 
         return "RESIZE OK" ;
+    }
+
+    function Random_logo_partner($amount){
+        // Random logo partner
+        $partner = DB::table('partners')
+            ->where('show_homepage' , "show")
+            ->inRandomOrder()
+            ->limit($amount)
+            ->get();
+
+        $cout_partner = count($partner) - 1 ;
+
+        for ($i=0; $i <= $cout_partner; ) { 
+            foreach($partner as $item_partner ){
+                $img_partner[$i] = $item_partner->logo;
+                $i++;
+            }
+        }
+
+        return $img_partner ;
+    
     }
 
 }
