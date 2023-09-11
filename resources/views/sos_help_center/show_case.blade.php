@@ -396,7 +396,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		position: absolute !important;
 		border-radius: 25px;
 		width: 99%;
-		/* transform: translate(2.5%, -50%); */
+		transform: translate(2.5%, -50%);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
