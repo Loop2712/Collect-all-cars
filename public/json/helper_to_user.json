@@ -10,10 +10,28 @@
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/img/flex/sos/helper_to_user.png",
+            "url": "https://www.viicheck.com/img/flex/sos/helper_to_user_show_logo.png",
             "size": "full",
             "aspectRatio": "2500:3500",
             "aspectMode": "cover"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": "https://www.viicheck.com/img/logo-partner/logo%20250x250/LOGO_PARTNER.png",
+                "aspectMode": "fit"
+              }
+            ],
+            "position": "absolute",
+            "offsetTop": "15.2%",
+            "offsetStart": "8%",
+            "width": "20%",
+            "height": "15%",
+            "justifyContent": "center",
+            "alignItems": "center"
           },
           {
             "type": "box",
