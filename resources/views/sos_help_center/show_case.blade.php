@@ -799,7 +799,7 @@ input:focus {
 
 		
 		<!-- -------------------------------------------  เลือกสถานะการณ์  ---------------------------------------------------- -->
-		<div id="div_event_level" class="d-none row data-menu show-data-menu" style="">
+		<div id="div_event_level" class="d-none row data-menu show-data-menu" style="top:calc(100% - 70px) !important;">
 			<menu class="col-6">
 				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-black" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
 						ดำ
@@ -829,7 +829,7 @@ input:focus {
 		<!-- -------------------------------------------  จบ เลือกสถานะการณ์  ---------------------------------------------------- -->
 
 		<!-- -------------------------------------------  เพิ่มเติมสถานะการสีดำ  ---------------------------------------------------- -->
-		<label for="rc_black_text" id="div_add_rc_black_text" class="d-none row  data-menu show-data-menu"  style="top:calc(100% - -20px);">
+		<label for="rc_black_text" id="div_add_rc_black_text" class="d-none row  data-menu show-data-menu"  style="top:calc(100% - -20px)">
 			<div class="card-body p-3 main-shadow" style="border-radius: 15px;">
 				<div class="d-flex align-items-center div-text-status" >
 					<p class="mb-0">สถานะการณ์ : ดำ</p>
