@@ -2390,7 +2390,7 @@ input:focus {
 						document.querySelector('#div_mileage').classList.add('d-none');
 						document.querySelector('#' + div_id_next).classList.remove('d-none');
 
-						document.querySelector('#menu_3').style = "bottom: -2rem" ;
+						document.querySelector('#menu_3').style = "bottom: 7.5rem" ;
 			        }, 1000);
 					
 				break;
