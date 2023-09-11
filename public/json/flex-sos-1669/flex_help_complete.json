@@ -1,119 +1,217 @@
 {
-    "type": "flex",
-    "altText": "ตัวอย่าง",
-    "contents": {
-  "type": "bubble",
-  "size": "giga",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "type": "image",
-        "url": "https://www.viicheck.com/img/flex/1669/help%20complete.png",
-        "size": "full",
-        "aspectRatio": "2500:3500",
-        "aspectMode": "cover"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "NAME_USER_SOS",
-            "color": "#881111",
-            "wrap": false,
-            "size": "lg",
-            "weight": "bold"
+  "type": "flex",
+  "altText": "ตัวอย่าง",
+  "contents": {
+    "type": "bubble",
+    "size": "giga",
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "image",
+          "size": "full",
+          "aspectRatio": "2500:4000",
+          "aspectMode": "cover",
+          "url": "https://www.viicheck.com/img/flex/1669/help%20complete_show_logo.png"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "NAME_USER_SOS",
+              "color": "#881111",
+              "wrap": false,
+              "size": "lg",
+              "weight": "bold"
+            }
+          ],
+          "position": "absolute",
+          "offsetTop": "43%",
+          "offsetStart": "29%",
+          "width": "63%",
+          "justifyContent": "center",
+          "alignItems": "flex-start"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "NAME_OFFICER",
+              "color": "#2E3A8F",
+              "wrap": false,
+              "size": "lg",
+              "weight": "bold"
+            }
+          ],
+          "position": "absolute",
+          "offsetTop": "54.8%",
+          "offsetStart": "29%",
+          "width": "63%",
+          "justifyContent": "center",
+          "alignItems": "flex-start"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "xx มกราคม xxxx",
+              "color": "#2E3A8F",
+              "wrap": false,
+              "size": "lg",
+              "weight": "bold"
+            }
+          ],
+          "position": "absolute",
+          "offsetTop": "65.4%",
+          "offsetStart": "10%",
+          "width": "50%",
+          "justifyContent": "center",
+          "alignItems": "center"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "xx:xx น.",
+              "color": "#2E3A8F",
+              "wrap": false,
+              "size": "lg",
+              "weight": "bold"
+            }
+          ],
+          "position": "absolute",
+          "offsetTop": "65.4%",
+          "offsetStart": "64%",
+          "width": "26.5%",
+          "justifyContent": "center",
+          "alignItems": "center"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [],
+          "position": "absolute",
+          "offsetTop": "72.2%",
+          "offsetStart": "8.5%",
+          "width": "83%",
+          "alignItems": "flex-end",
+          "justifyContent": "center",
+          "height": "11.5%",
+          "action": {
+            "type": "uri",
+            "uri": "https://www.viicheck.com/sos_help_center/SOS_ID/rate_case?openExternalBrowser=1"
           }
-        ],
-        "position": "absolute",
-        "offsetTop": "49%",
-        "offsetStart": "29%",
-        "width": "63%",
-        "justifyContent": "center",
-        "alignItems": "flex-start"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "NAME_OFFICER",
-            "color": "#2E3A8F",
-            "wrap": false,
-            "size": "lg",
-            "weight": "bold"
-          }
-        ],
-        "position": "absolute",
-        "offsetTop": "63%",
-        "offsetStart": "29%",
-        "width": "63%",
-        "justifyContent": "center",
-        "alignItems": "flex-start"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "xx มกราคม xxxx",
-            "color": "#2E3A8F",
-            "wrap": false,
-            "size": "lg",
-            "weight": "bold"
-          }
-        ],
-        "position": "absolute",
-        "offsetTop": "74.5%",
-        "offsetStart": "17%",
-        "width": "63%",
-        "justifyContent": "center",
-        "alignItems": "flex-start"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-          {
-            "type": "text",
-            "text": "xx:xx น.",
-            "color": "#2E3A8F",
-            "wrap": false,
-            "size": "lg",
-            "weight": "bold"
-          }
-        ],
-        "position": "absolute",
-        "offsetTop": "74.5%",
-        "offsetStart": "68%",
-        "width": "63%",
-        "justifyContent": "center",
-        "alignItems": "flex-start"
-      },
-      {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [],
-        "position": "absolute",
-        "offsetTop": "86%",
-        "offsetStart": "8.5%",
-        "width": "83%",
-        "alignItems": "flex-end",
-        "justifyContent": "center",
-        "height": "9%",
-        "action": {
-          "type": "uri",
-          "uri": "https://www.viicheck.com/sos_help_center/SOS_ID/rate_case?openExternalBrowser=1"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://www.viicheck.com/storage/IMGPARTNER_1",
+                  "aspectMode": "fit"
+                }
+              ],
+              "width": "15%",
+              "height": "59.5%",
+              "offsetTop": "31%",
+              "offsetStart": "3.3%",
+              "cornerRadius": "99px",
+              "position": "absolute"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://www.viicheck.com/storage/IMGPARTNER_2",
+                  "aspectMode": "fit"
+                }
+              ],
+              "width": "15%",
+              "height": "59.5%",
+              "offsetTop": "31%",
+              "offsetStart": "23%",
+              "cornerRadius": "99px",
+              "position": "absolute"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://www.viicheck.com/storage/IMGPARTNER_3",
+                  "aspectMode": "fit"
+                }
+              ],
+              "width": "15%",
+              "height": "59.5%",
+              "offsetTop": "31%",
+              "offsetStart": "42.5%",
+              "cornerRadius": "99px",
+              "position": "absolute"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://www.viicheck.com/storage/IMGPARTNER_4",
+                  "aspectMode": "fit",
+                  "size": "full",
+                  "aspectRatio": "1:1"
+                }
+              ],
+              "width": "15%",
+              "height": "59.5%",
+              "offsetTop": "31%",
+              "offsetStart": "62%",
+              "cornerRadius": "99px",
+              "position": "absolute"
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "image",
+                  "url": "https://www.viicheck.com/storage/IMGPARTNER_5"
+                }
+              ],
+              "width": "15%",
+              "height": "59.5%",
+              "offsetTop": "31%",
+              "offsetStart": "81.2%",
+              "cornerRadius": "99px",
+              "position": "absolute"
+            }
+          ],
+          "position": "absolute",
+          "offsetTop": "84.5%",
+          "offsetStart": "8.5%",
+          "width": "83%",
+          "height": "13%",
+          "justifyContent": "center"
         }
-      }
-    ],
-    "position": "relative",
-    "paddingAll": "0px"
+      ],
+      "position": "relative",
+      "paddingAll": "0px"
+    }
   }
-}
 }
