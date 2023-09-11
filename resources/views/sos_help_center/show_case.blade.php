@@ -756,7 +756,7 @@ input:focus {
 
 
 	<!-- ////////////////////////////////////////// MENU 3 OFFICER ACTION ////////////////////////////////////////// -->
-	<div class="row data-menu show-data-menu p-0" id="menu_3" style=" top:calc(100% - 140px);">
+	<div class="row data-menu show-data-menu p-0" id="menu_3" style="top:calc(100% - 140px);">
 
 		<!-- ----------------------------------------- ช่องกรอกเลข กม. ทั้งหมด ------------------------------------------- -->
 		<div id="div_mileage" class=d-none  >
@@ -799,7 +799,7 @@ input:focus {
 
 		
 		<!-- -------------------------------------------  เลือกสถานะการณ์  ---------------------------------------------------- -->
-		<div id="div_event_level" class="d-none row data-menu show-data-menu" style="top:calc(100% - 70px);">
+		<div id="div_event_level" class="d-none row data-menu show-data-menu" style="bottom:calc(100% - 200px);">
 			<menu class="col-6">
 				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-black" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
 						ดำ
