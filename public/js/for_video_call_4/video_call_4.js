@@ -1,5 +1,5 @@
 
-function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน
+function btn_toggle_mic_camera(videoTrack,audioTrack){ // สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน
     //============== เมนูปุ่มด้านล่าง ==============
     const divForVideoButton = document.createElement('div');
     divForVideoButton.classList.add('buttonVideo');
@@ -27,18 +27,18 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
 
     muteButton.onclick = async function() {
         if (isMuteAudio == true) {
-            // Mute the local video.
-            channelParameters.localAudioTrack.setEnabled(false);
             // Update the button text.
             document.getElementById(`muteAudio`).innerHTML = '<i class="fa-solid fa-microphone-slash"></i>';
+            // Mute the local video.
+            channelParameters.localAudioTrack.setEnabled(false);
             // muteButton.classList.add('btn-disabled');
             // muteButton.classList.remove('btn-primary');
             isMuteAudio = false;
         } else {
-            // Unmute the local video.
-            channelParameters.localAudioTrack.setEnabled(true);
             // Update the button text.
             document.getElementById(`muteAudio`).innerHTML = '<i class="fa-solid fa-microphone"></i>';
+            // Unmute the local video.
+            channelParameters.localAudioTrack.setEnabled(true);
             // muteButton.classList.add('btn-primary');
             // muteButton.classList.remove('btn-disabled');
             isMuteAudio = true;
@@ -47,19 +47,19 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
 
     muteVideoButton.onclick = async function() {
         if (isMuteVideo == true) {
-            // Mute the local video.
-            channelParameters.localVideoTrack.setEnabled(false);
             // Update the button text.
             document.getElementById(`muteVideo`).innerHTML = '<i class="fa-solid fa-video-slash"></i>';
+            // Mute the local video.
+            channelParameters.localVideoTrack.setEnabled(false);
             muteVideoButton.classList.add('btn-disabled');
             // muteVideoButton.classList.remove('btn-success');
             isMuteVideo = false;
 
         } else {
-            // Unmute the local video.
-            channelParameters.localVideoTrack.setEnabled(true);
             // Update the button text.
             document.getElementById(`muteVideo`).innerHTML = '<i class="fa-solid fa-video"></i>';
+            // Unmute the local video.
+            channelParameters.localVideoTrack.setEnabled(true);
             // muteVideoButton.classList.add('btn-success');
             muteVideoButton.classList.remove('btn-disabled');
             isMuteVideo = true;
@@ -69,6 +69,7 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
             }
         }
     }
+
 }
 
 

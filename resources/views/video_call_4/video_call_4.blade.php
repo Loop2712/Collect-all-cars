@@ -6,14 +6,19 @@
 
 <!-- ========================================== html ========================================== -->
 
- <!-- เปลี่ยนคลาสของ .video-container เพื่อแสดงตามจำนวนคนที่คุณมี -->
+<!-- สำหรับ loading ก่อนเข้า videocall -->
+<div class="d-flex justify-content-center align-items-center">
+    <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>
+
+<!-- เปลี่ยนคลาสของ .video-container เพื่อแสดงตามจำนวนคนที่คุณมี -->
 <div id="divVideo_Parent" class="video-container ">
    <!-- ไว้ใส่ div ของ video -->
 </div>
 
 <div id="footer_div" class="footer p-2">
         <!-- ใส่วิดีโอของคนที่ 4 ที่นี่ -->
-        <button id="join" class="btn btn-success add-button ms-1 w-auto" >เข้าร่วม</button>
+        <button id="join" class="btn btn-success add-button ms-1 w-auto d-none" >เข้าร่วม</button>
         <button id="leave" class="btn btn-danger add-button ms-1 w-auto" >ออกห้อง</button>
         {{-- <button class="btn btn-success add-button" onclick="createVideoBox()">เพิ่ม</button>
         <button class="btn btn-danger delete-button"  onclick="removeVideoBox()">ลบ</button> --}}
@@ -37,6 +42,12 @@
     var isMuteVideo = true;
     var isMuteAudio = true;
 
+    // ใช้สำหรับ เช็คสถานะของปุ่มเปิด-ปิด วิดีโอและเสียง ตอนเริ่มเข้าวิดีโอคอล
+    var videoTrack = '{{$videoTrack}}';
+    var audioTrack = '{{$audioTrack}}';
+
+    console.log(videoTrack);
+    console.log(audioTrack);
     // var userDivVideoMap = {}; // ใช้เก็บข้อมูลผู้ใช้และ divVideo ที่ถูกใช้
 
     let user_id = '{{ Auth::user()->id }}';
@@ -57,19 +68,44 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
 
-    fetch("{{ url('/') }}/api/video_call_4" + "?user_id=" + user_id + '&appCertificate=' + appCertificate  + '&appId=' + appId)
-        .then(response => response.text())
-        .then(result => {
-            console.log("GET Token success");
-            console.log(result);
-
-            options['token'] = result;
+        function LoadingVideoCall() {
+            const loadingAnime = document.getElementById('lds-ring');
 
             setTimeout(() => {
-                // document.getElementById("join").click();
-            }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
+                if(loadingAnime){
+                    loadingAnime.classList.remove('d-none');
+                }
+                fetch("{{ url('/') }}/api/video_call_4" + "?user_id=" + user_id + '&appCertificate=' + appCertificate  + '&appId=' + appId)
+                    .then(response => response.text())
+                    .then(result => {
+                        console.log("GET Token success");
+                        console.log(result);
 
-        });
+                        options['token'] = result;
+
+                        // เอาหน้าโหลดออก
+                        loadingAnime.remove();
+
+                        setTimeout(() => {
+                            document.getElementById("join").click();
+                        }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
+                })
+                .catch(error => {
+                    if(loadingAnime){
+                        loadingAnime.classList.remove('d-none');
+                    }
+
+                    // เรียกใช้งานฟังก์ชัน retryFunction() อีกครั้งหลังจากเวลาหน่วงให้ผ่านไป
+                    setTimeout(() => {
+                        LoadingVideoCall();
+                    }, 2000);
+                });
+
+            }, 500);
+        }
+
+
+        LoadingVideoCall();
         startBasicCall();
     });
 
@@ -284,7 +320,7 @@
                 }
 
                 // ปิดไมโครโฟนเดิม (หากมีการสร้างไว้ก่อนหน้านี้)
-                 if (channelParameters.localAudioTrack) {
+                if (channelParameters.localAudioTrack) {
                     channelParameters.localAudioTrack.close();
                     channelParameters.localAudioTrack = null;
                 }
@@ -358,7 +394,36 @@
                 }
 
                 //======= สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน ==========//
-                btn_toggle_mic_camera();
+                btn_toggle_mic_camera(videoTrack,audioTrack);
+
+                try { // เช็คสถานะจากห้องทางเข้า แล้วเลือกกดเปิด-ปิด ตามสถานะ
+                    if(videoTrack == "open"){
+                        // เข้าห้องด้วย->สถานะเปิดกล้อง
+                        isMuteVideo = false;
+                        document.querySelector('#muteVideo').click();
+                        console.log("Click open video ===================");
+                    }else{
+                        // เข้าห้องด้วย->สถานะปิดกล้อง
+                        isMuteVideo = true;
+                        document.querySelector('#muteVideo').click();
+                        console.log("Click close video ===================");
+                    }
+
+                    if(audioTrack == "open"){
+                        // เข้าห้องด้วย->สถานะเปิดไมค์
+                        isMuteAudio = false;
+                        document.querySelector('#muteAudio').click();
+                        console.log("Click open audio ===================");
+                    }else{
+                        // เข้าห้องด้วย->สถานะปิดไมค์
+                        isMuteAudio = true;
+                        document.querySelector('#muteAudio').click();
+                        console.log("Click close audio ===================");
+                    }
+                }
+                catch (error) {
+                    console.log('ส่งตัวแปร videoTrack audioTrack ไม่สำเร็จ');
+                }
 
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
                 create_element_localvideo_call(localPlayerContainer);
@@ -386,7 +451,12 @@
                 await agoraEngine.leave();
                 console.log("You left the channel");
                 // Refresh the page for reuse
-                window.location.reload();
+                // window.location.reload();
+
+                function goBack(){
+                    window.history.back();
+                }
+                goBack();
             }
         }
     }

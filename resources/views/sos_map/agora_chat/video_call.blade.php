@@ -1553,9 +1553,6 @@ function start_countdown_user_out_room(){
     //     console.log('เปลี่ยนอุปกรณ์วิดีโอสำเร็จ');
     // }
 
-
-
-
     function getCurrentAudioDeviceId() {
       const audioDevices = document.getElementsByName('audio-device');
       for (let i = 0; i < audioDevices.length; i++) {
