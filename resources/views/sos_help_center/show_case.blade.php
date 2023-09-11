@@ -2384,7 +2384,8 @@ input:focus {
 				break;
 				case 'km_to_the_scene_to_leave_the_scene':
 					update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');
-
+					start_page();
+					
 					setTimeout(function() {
 			        	// เปิดปุ่มถัดไป
 						document.querySelector('#div_mileage').classList.add('d-none');
