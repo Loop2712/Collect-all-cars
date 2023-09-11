@@ -429,7 +429,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	
 	@keyframes show-data-menu {
 		0% {
-			transform: translateY(50%);
+			transform: translateY(50px);
 			opacity: 0;
 		}
 
