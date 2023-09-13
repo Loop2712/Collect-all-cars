@@ -292,8 +292,9 @@ Route::get('/get_new_size_img/{name_file}/{type_part}','API\PartnersController@g
 //======= Agora Chat =======//
 //==========================//
 Route::get('/video_call_4', 'Agora_4_Controller@token');
-Route::get('/join_room_4', 'Agora_4_Controller@join_room');
-Route::get('/left_room_4', 'Agora_4_Controller@left_room');
+Route::get('/join_room_4', 'Agora_4_Controller@join_room_4');
+Route::get('/left_room_4', 'Agora_4_Controller@left_room_4');
+Route::get('/check_user_in_room_4', 'AgoraController@check_user_in_room_4');
 
 Route::get('/video_call', 'AgoraController@token');
 Route::get('/join_room', 'AgoraController@join_room');

@@ -20,8 +20,30 @@
         <!-- ใส่วิดีโอของคนที่ 4 ที่นี่ -->
         <button id="join" class="btn btn-success add-button ms-1 w-auto d-none" >เข้าร่วม</button>
         <button id="leave" class="btn btn-danger add-button ms-1 w-auto" >ออกห้อง</button>
-        {{-- <button class="btn btn-success add-button" onclick="createVideoBox()">เพิ่ม</button>
-        <button class="btn btn-danger delete-button"  onclick="removeVideoBox()">ลบ</button> --}}
+
+        <button class="btn btn-secondary ms-1" id="btn_switchCamera" onclick="switchCamera();">
+            <i class="fa-solid fa-camera-rotate"></i>
+        </button>
+
+        <button class="btnDevice  btn dropdown-toggle btn_for_select_video_device d-none" type="button" data-toggle="modal" data-target="#test" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
+            <i class="fa-solid fa-chevron-down fa-2xs"></i>
+          </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="test" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button id="ปุ่มนี้สำหรับปิด_modal" type="button" class="btn m-2" data-dismiss="modal" aria-label="Close" style="position: absolute; top:10;right: 10px;color:#4d4d4d;z-index: 9999999999;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <div class="modal-body">
+                        <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
+                        <div id="video-device-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </div>
 
 <!-- ========================================== javascript ========================================== -->
@@ -50,9 +72,291 @@
     console.log(audioTrack);
     // var userDivVideoMap = {}; // ใช้เก็บข้อมูลผู้ใช้และ divVideo ที่ถูกใช้
 
-    let user_id = '{{ Auth::user()->id }}';
-    let appId = '{{ env("AGORA_APP_ID") }}';
-    let appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+    var user_id = '{{ Auth::user()->id }}';
+    var appId = '{{ env("AGORA_APP_ID") }}';
+    var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+    var sos_1669_id = '{{ $sos_id }}';
+
+    var activeVideoDeviceId
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // เรียกดูอุปกรณ์ทั้งหมด
+        const devices = await navigator.mediaDevices.enumerateDevices();
+
+        // เรียกดูอุปกรณ์ที่ใช้อยู่
+        const stream = await navigator.mediaDevices.getUserMedia({
+          audio: true,
+          video: true
+        });
+
+        const activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
+              activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
+
+        // แยกอุปกรณ์ตามประเภท
+        const audioDevices = devices.filter(device => device.kind === 'audioinput');
+
+        // สร้างรายการอุปกรณ์รับข้อมูลและเพิ่มลงในรายการ
+        const audioDeviceList = document.getElementById('audio-device-list');
+        audioDevices.forEach(device => {
+          const radio = document.createElement('input');
+          radio.type = 'radio';
+          radio.name = 'audio-device';
+          radio.value = device.deviceId;
+          radio.checked = device.deviceId === activeAudioDeviceId;
+
+          const label = document.createElement('label');
+          label.classList.add('dropdown-item');
+          label.appendChild(radio);
+          label.appendChild(document.createTextNode(device.label || `อุปกรณ์รับข้อมูล ${audioDeviceList.children.length + 1}`));
+
+          audioDeviceList.appendChild(label);
+          radio.addEventListener('change', onChangeAudioDevice);
+        });
+
+      } catch (error) {
+        console.error('เกิดข้อผิดพลาดในการเรียกดูอุปกรณ์:', error);
+      }
+    });
+
+    // เรียกใช้งานเมื่อต้องการเปลี่ยนอุปกรณ์เสียง
+    function onChangeAudioDevice() {
+        const selectedAudioDeviceId = getCurrentAudioDeviceId();
+        // console.log('เปลี่ยนอุปกรณ์เสียงเป็น:', selectedAudioDeviceId);
+
+        // หยุดการส่งเสียงจากอุปกรณ์ปัจจุบัน
+        channelParameters.localAudioTrack.setEnabled(false);
+
+        // สร้าง local audio track ใหม่โดยใช้อุปกรณ์ที่คุณต้องการ
+        AgoraRTC.createMicrophoneAudioTrack({
+            microphoneId: selectedAudioDeviceId
+        })
+        .then(newAudioTrack => {
+            // เปลี่ยน local audio track เป็นอุปกรณ์ใหม่
+            channelParameters.localAudioTrack = newAudioTrack;
+
+            // เริ่มส่งเสียงจากอุปกรณ์ใหม่
+            channelParameters.localAudioTrack.setEnabled(true);
+
+            // console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
+        })
+        .catch(error => {
+            console.error('เกิดข้อผิดพลาดในการสร้าง local audio track:', error);
+        });
+    }
+
+    var old_activeVideoDeviceId ;
+
+    function onChangeVideoDevice() {
+
+      old_activeVideoDeviceId = activeVideoDeviceId ;
+
+      const selectedVideoDeviceId = getCurrentVideoDeviceId();
+      // console.log('เปลี่ยนอุปกรณ์กล้องเป็น:', selectedVideoDeviceId);
+
+      activeVideoDeviceId = selectedVideoDeviceId ;
+
+
+      // สร้าง local video track ใหม่โดยใช้กล้องที่คุณต้องการ
+      AgoraRTC.createCameraVideoTrack({ cameraId: selectedVideoDeviceId })
+        .then(newVideoTrack => {
+
+          // console.log('------------ newVideoTrack ------------');
+          // console.log(newVideoTrack);
+
+          // // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
+          // channelParameters.localVideoTrack.setEnabled(false);
+          agoraEngine.unpublish([channelParameters.localVideoTrack]);
+
+          // ปิดการเล่นภาพวิดีโอกล้องเดิม
+          channelParameters.localVideoTrack.stop();
+          channelParameters.localVideoTrack.close();
+
+          // เปลี่ยน local video track เป็นอุปกรณ์ใหม่
+          channelParameters.localVideoTrack = newVideoTrack;
+
+          if (isMuteVideo == false) {
+
+            // เริ่มส่งภาพจากอุปกรณ์ใหม่
+            channelParameters.localVideoTrack.setEnabled(true);
+            // แสดงภาพวิดีโอใน <div>
+
+            try{
+              if (Screen_current == 'first'){
+                channelParameters.localVideoTrack.play(localPlayerContainer);
+                channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+              }else{
+                channelParameters.localVideoTrack.play(remotePlayerContainer);
+                channelParameters.remoteVideoTrack.play(localPlayerContainer);
+              }
+            }catch{
+              if (Screen_current == 'first'){
+                channelParameters.localVideoTrack.play(localPlayerContainer);
+                // channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+              }else{
+                // channelParameters.localVideoTrack.play(remotePlayerContainer);
+                channelParameters.remoteVideoTrack.play(localPlayerContainer);
+              }
+            }
+
+            // ส่ง local video track ใหม่ไปยังผู้ใช้คนที่สอง
+            agoraEngine.publish([channelParameters.localVideoTrack]);
+
+            // alert('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
+            // console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
+          } else {
+            // alert('ปิด');
+            channelParameters.localVideoTrack.setEnabled(false);
+          }
+
+        })
+        .catch(error => {
+          // alert('ไม่สามารถเปลี่ยนกล้องได้');
+          alertNoti('<i class="fa-solid fa-triangle-exclamation fa-shake"></i>', 'ไม่สามารถเปลี่ยนกล้องได้');
+
+          activeVideoDeviceId = old_activeVideoDeviceId ;
+
+          setTimeout(function() {
+            document.querySelector('#btn_switchCamera').click();
+          }, 2000);
+
+          console.error('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
+        });
+
+        document.querySelector('#ปุ่มนี้สำหรับปิด_modal').click();
+    }
+
+    function getCurrentAudioDeviceId() {
+        const audioDevices = document.getElementsByName('audio-device');
+        for (let i = 0; i < audioDevices.length; i++) {
+            if (audioDevices[i].checked) {
+                return audioDevices[i].value;
+            }
+        }
+        return null;
+    }
+
+    function getCurrentVideoDeviceId() {
+        const videoDevices = document.getElementsByName('video-device');
+        for (let i = 0; i < videoDevices.length; i++) {
+            if (videoDevices[i].checked) {
+            return videoDevices[i].value;
+            }
+        }
+        return null;
+    }
+
+    btn_switchCamera.onclick = async function()
+    {
+        console.log('btn_switchCamera');
+
+        console.log('activeVideoDeviceId');
+        console.log(activeVideoDeviceId);
+
+        // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
+        const deviceType = checkDeviceType();
+        console.log("Device Type:", deviceType);
+
+        // เรียกดูอุปกรณ์ทั้งหมด
+        const devices = await navigator.mediaDevices.enumerateDevices();
+
+        // เรียกดูอุปกรณ์ที่ใช้อยู่
+        const stream = await navigator.mediaDevices.getUserMedia({
+            audio: true,
+            video: true
+        });
+
+        // แยกอุปกรณ์ตามประเภท
+        let videoDevices = devices.filter(device => device.kind === 'videoinput');
+
+        console.log('------- videoDevices -------');
+        console.log(videoDevices);
+        console.log('length ==>> ' + videoDevices.length);
+        console.log('------- ------- -------');
+
+        // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
+        let videoDeviceList = document.getElementById('video-device-list');
+            videoDeviceList.innerHTML = '';
+
+        let count_i = 1 ;
+
+        videoDevices.forEach(device => {
+        let radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.id = 'video-device-' + count_i;
+            radio.name = 'video-device';
+            radio.value = device.deviceId;
+
+        if (deviceType == 'PC'){
+            radio.checked = device.deviceId === activeVideoDeviceId;
+        }
+
+        let label = document.createElement('label');
+            label.classList.add('dropdown-item');
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${videoDeviceList.children.length + 1}`));
+
+        videoDeviceList.appendChild(label);
+        radio.addEventListener('change', onChangeVideoDevice);
+
+        count_i = count_i + 1 ;
+        });
+
+        // ---------------------------
+
+        if (deviceType == 'PC'){
+            document.querySelector('.btn_for_select_video_device').click();
+        }else{
+
+        let check_videoDevices = document.getElementsByName('video-device');
+
+        if (now_Mobile_Devices == 1){
+            // console.log("now_Mobile_Devices == 1 // ให้คลิก ");
+            // console.log(check_videoDevices[1].id);
+            document.querySelector('#'+check_videoDevices[1].id).click();
+            now_Mobile_Devices = 2 ;
+        }else{
+            // console.log("now_Mobile_Devices == 2 // ให้คลิก ");
+            // console.log(check_videoDevices[0].id);
+            document.querySelector('#'+check_videoDevices[0].id).click();
+            now_Mobile_Devices = 1 ;
+        }
+
+        // for (let i = 0; i < check_videoDevices.length; i++) {
+        //   if (check_videoDevices[i].value != activeVideoDeviceId) {
+
+        //     console.log('********************');
+        //     console.log('value');
+        //     console.log(check_videoDevices[i].value);
+        //     console.log('id');
+        //     console.log(check_videoDevices[i].id);
+        //     console.log('********************');
+
+        //     activeVideoDeviceId = check_videoDevices[i].value ;
+        //     document.querySelector('#'+check_videoDevices[i].id).click();
+        //     break;
+        //   }
+        // }
+
+        }
+
+    }
+
+    // ตรวจสอบอุปกรณ์ที่ใช้งาน
+    function checkDeviceType() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // ตรวจสอบชนิดของอุปกรณ์
+        if (/android/i.test(userAgent)) {
+            return "Mobile (Android)";
+        }
+
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "Mobile (iOS)";
+        }
+
+         return "PC";
+    }
 
     options =
     {
@@ -107,6 +411,21 @@
 
         LoadingVideoCall();
         startBasicCall();
+
+        fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_1669_id=" + sos_1669_id)
+        .then(response => response.json())
+        .then(result => {
+            // console.log('check_user_in_room');
+            // console.log(result);
+            // console.log('-------------------------------------');
+
+            if(result['data'] != 'ไม่มีข้อมูล'){
+                console.log(result['data']);
+            }else{
+                console.log(result['data_agora']);
+            }
+
+        });
     });
 
     let channelParameters =
@@ -188,40 +507,27 @@
                     document.getElementById("videoDiv_"+ user.uid.toString()).remove();
                 }
 
-                // // สร้าง div ใหม่
-                // const divVideo = document.createElement('div');
-                // divVideo.setAttribute('id', containerId);
-                // divVideo.setAttribute('class', 'video-box');
-                // divVideo.setAttribute('style', 'background-color: grey');
                 // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
                 const divVideo = document.createElement('div');
                     divVideo.setAttribute('id','videoDiv_' + user.uid.toString());
                     divVideo.setAttribute('class','video-box');
                     divVideo.setAttribute('style','background-color: grey');
 
-                if (remotePlayer_check_arr[user.uid.toString()]) {
-                    console.log("เข้า if play");
-                    divVideo.append(remotePlayer_check_arr[user.uid.toString()]);
-                }else{
-                    console.log("เข้า else play");
-                }
 
-                // if (divVideo.id === 'videoDiv_' + remotePlayerContainer.id) {
+                // if (remotePlayer_check_arr[user.uid.toString()]) {
                 //     console.log("เข้า if play");
-                //     divVideo.append(remotePlayerContainer);
-
+                //
                 // }else{
                 //     console.log("เข้า else play");
                 // }
 
+                divVideo.append(remotePlayerContainer);
+
                 channelParameters.remoteVideoTrack.play(remotePlayerContainer);
                 // เพิ่ม div ใหม่ลงใน div หลัก
-
-
                 document.querySelector('#divVideo_Parent').append(divVideo);
                 // Set a stream fallback option to automatically switch remote video quality when network conditions degrade.
                 agoraEngine.setStreamFallbackOption(channelParameters.remoteUid, 1);
-
 
             }
 
@@ -233,8 +539,6 @@
                 // Play the remote audio track. No need to pass any DOM element.
                 channelParameters.remoteAudioTrack.play();
             }
-
-
 
         });
 
@@ -269,6 +573,17 @@
 
             console.log("agoraEngine มีคนเข้าห้องมา");
             console.log(agoraEngine);
+
+            fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + user_id + '&appCertificate=' + appCertificate  + '&appId=' + appId)
+                .then(response => response.text())
+                .then(result => {
+
+                console.log("บันทึกข้อมูล เมื่มีคนเข้าห้อง สำเร็จ");
+                console.log(result);
+            })
+            .catch(error => {
+                console.log("บันทึกข้อมูล เมื่มีคนเข้าห้อง ล้มเหลว");
+            });
 
             if(agoraEngine['remoteUsers'][0]){
                 if( agoraEngine['remoteUsers']['length'] != 0 ){
@@ -452,6 +767,12 @@
                 console.log("You left the channel");
                 // Refresh the page for reuse
                 // window.location.reload();
+
+                // fetch("{{ url('/') }}/api/left_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=user_left')
+                //     .then(response => response.json())
+                //     .then(result => {
+                //         // console.log(result);
+                // });
 
                 function goBack(){
                     window.history.back();

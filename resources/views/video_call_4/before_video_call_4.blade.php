@@ -75,14 +75,14 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-4 col-lg-4">
-                <div class="d-flex justify-content-center align-items-center">
+                <div class="d-flex justify-content-end">
                     <a id="btnJoinRoom" href="{{ url('/video_call_4/video_call_4' . '/' ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&sos_id={{$sos_id}}&consult_doctor_id={{$consult_doctor_id}}"
                         class="col-12 btn btn-info" style="font-size: 1rem;">เข้าร่วมห้องสนทนา</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row d-none">
         <div class="selectDivice mt-2 p-2 ">
             <div>
                 <label for="microphoneList">เลือกไมโครโฟน:</label>
