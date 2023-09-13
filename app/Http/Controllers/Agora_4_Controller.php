@@ -39,6 +39,7 @@ class Agora_4_Controller extends Controller
 
         $appId = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
+        // $sos_id = $request->sos_id;
         $sos_id = 555;
         $consult_doctor_id = 123;
         $request->user_to_call;
@@ -47,7 +48,7 @@ class Agora_4_Controller extends Controller
 
     }
 
-    public function index(Request $request)
+    public function index(Request $request ,$sos_id)
     {
         $user = Auth::user();
 
@@ -55,8 +56,7 @@ class Agora_4_Controller extends Controller
 
         // $appId = $requestData['appId'];
         // $appCertificate =  $requestData['appCertificate'];
-
-        $sos_id = $requestData['sos_id'];
+        // $sos_id = $requestData['sos_id'];
 
         $videoTrack = $requestData['videoTrack'];
         $audioTrack = $requestData['audioTrack'];
@@ -230,38 +230,38 @@ class Agora_4_Controller extends Controller
 
     }
 
-    function check_user_in_room_4(Request $request)
-    {
-        $sos_id = $request->sos_1669_id;
-        $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'meet_operating_1669')->first();
+    // function check_user_in_room_4(Request $request)
+    // {
+    //     $sos_id = $request->sos_1669_id;
+    //     $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'meet_operating_1669')->first();
 
-        $user_in_room = [];
-        $user_in_room['data'] = 'ไม่มีข้อมูล';
+    //     $user_in_room = [];
+    //     $user_in_room['data'] = 'ไม่มีข้อมูล';
 
-        if ( empty($agora_chat) ){
-            $data_create = [];
-            $data_create['room_for'] = 'meet_operating_1669';
-            $data_create['sos_id'] = $sos_id;
+    //     if ( empty($agora_chat) ){
+    //         $data_create = [];
+    //         $data_create['room_for'] = 'meet_operating_1669';
+    //         $data_create['sos_id'] = $sos_id;
 
-            Agora_chat::create($data_create);
-            $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'meet_operating_1669')->first();
-        }
+    //         Agora_chat::create($data_create);
+    //         $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , 'meet_operating_1669')->first();
+    //     }
 
-        $user_in_room['data_agora'] = $agora_chat;
+    //     $user_in_room['data_agora'] = $agora_chat;
 
-        if( !empty($agora_chat->member_in_room) ){
-            $data_member_in_room = $agora_chat->member_in_room;
+    //     if( !empty($agora_chat->member_in_room) ){
+    //         $data_member_in_room = $agora_chat->member_in_room;
 
-            $data_array = json_decode($data_member_in_room, true);
-            $check_user = $data_array['user'];
+    //         $data_array = json_decode($data_member_in_room, true);
+    //         $check_user = $data_array['user'];
 
-            if( !empty($check_user) ){
-                $user_in_room['data'] = User::where('id' , $check_user)->first();
-            }
-        }
+    //         if( !empty($check_user) ){
+    //             $user_in_room['data'] = User::where('id' , $check_user)->first();
+    //         }
+    //     }
 
-        return $user_in_room ;
-    }
+    //     return $user_in_room ;
+    // }
 
 
 }

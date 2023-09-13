@@ -62,7 +62,7 @@
 <!-- เปลี่ยนคลาสของ .video-container เพื่อแสดงตามจำนวนคนที่คุณมี -->
 <div id="container" class="container ">
     <div class="col-12 p-2 d-flex justify-content-center">
-        <span class="font-30 font-weight-bold align-middle ">ห้องสนทนาของ {{$user->name}}</span>
+        <span class="font-30 font-weight-bold align-middle ">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</span>
     </div>
     <div class="row mt-2 p-2 d-flex justify-content-center">
         <div class="row mt-2 p-2">
@@ -76,7 +76,7 @@
             </div>
             <div class="col-sm-12 col-md-4 col-lg-4">
                 <div class="d-flex justify-content-end">
-                    <a id="btnJoinRoom" href="{{ url('/video_call_4/video_call_4' . '/' ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&sos_id={{$sos_id}}&consult_doctor_id={{$consult_doctor_id}}"
+                    <a id="btnJoinRoom" href="{{ url('/video_call_4/video_call_4' . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}"
                         class="col-12 btn btn-info" style="font-size: 1rem;">เข้าร่วมห้องสนทนา</a>
                 </div>
             </div>
@@ -217,7 +217,7 @@
         function toggleCamera() {
             if (statusCamera == "open") {
                 statusCamera = "close"; //เซ็ต statusCamera เป็น close
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4/video_call_4' . '/' ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&sos_id="+sos_id+"&consult_doctor_id="+consult_doctor_id);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4/video_call_4' . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id);
                 // ตรวจสอบว่ากล้องถูกเปิดหรือไม่
                 navigator.mediaDevices.getUserMedia({ video: true })
                 .then(function(videoStream) {
@@ -237,7 +237,7 @@
 
             }else{
                 statusCamera = "open"; // เซ็ต statusCamera เป็น open
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4/video_call_4' . '/' ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&sos_id="+sos_id+"&consult_doctor_id="+consult_doctor_id);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4/video_call_4' . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id);
                 // เปิดกล้อง
                 navigator.mediaDevices.getUserMedia({ video: true })
                 .then(function(newVideoStream) {
@@ -277,7 +277,7 @@
         function toggleMicrophone() {
             if (statusMicrophone == 'open') {
                 statusMicrophone = "close"; // เซ็ต statusMicrophone เป็น close
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4/video_call_4' . '/' ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&sos_id="+sos_id+"&consult_doctor_id="+consult_doctor_id);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4/video_call_4' . '/' . $sos_id ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id);
                 navigator.mediaDevices.getUserMedia({ audio: true })
                 .then(function(audioStream) {
 
@@ -295,7 +295,7 @@
                 })
             }else{
                 statusMicrophone = "open"; // เซ็ต statusMicrophone เป็น open
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4/video_call_4' . '/' ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&sos_id="+sos_id+"&consult_doctor_id="+consult_doctor_id);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4/video_call_4' . '/' . $sos_id ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id);
                 navigator.mediaDevices.getUserMedia({ audio: true })
                 .then(function(newAudioStream) {
                     audioStream = newAudioStream;
@@ -310,7 +310,7 @@
             }
             setTimeout(() => {
                 console.log(statusMicrophone);
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4/video_call_4' . '/' ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&sos_id="+sos_id+"&consult_doctor_id="+consult_doctor_id);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4/video_call_4' . '/' . $sos_id ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id);
             }, 1000);
         }
     </script>
