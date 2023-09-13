@@ -87,7 +87,7 @@ class Sos_mapController extends Controller
         
         $requestData = $request->all();
 
-        ddd($requestData);
+        // ddd($requestData);
 
         if (!empty($requestData['title_sos'])){
             $requestData['title_sos'] = $requestData['title_sos'] ;
