@@ -633,7 +633,7 @@
 
             // ถ้าผู้ใช้ เหลือ 0 คน ให้ทำลายห้องทิ้ง
             if(rtcStats.UserCount < 1){
-                await agoraEngine.destroy();
+                agoraEngine.destroy();
             }
 
             console.log("agoraEngine ของ user-left");
