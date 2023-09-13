@@ -185,7 +185,7 @@ class Sos_mapController extends Controller
         // echo "<pre>"; 
         // exit();
         if ($request->hasFile('photo_area')) {
-            $requestData['photo'] = $request->file('photo_sos')
+            $requestData['photo'] = $request->file('photo_area')
                 ->store('uploads', 'public');
         }
         // if (!empty($requestData['photo'])) {
