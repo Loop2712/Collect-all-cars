@@ -378,62 +378,89 @@
                                 left:2rem;
                             }
                             </style>
-                            <div class="col-12 mt-3 d-flex justify-content-center" style="position: relative;">
+
+                            <label class="col-12 mt-3" style="padding:0px;" for="photo_sos_area" >
+                                <div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
+                                    <div class="form-group p-3"id="add_select_img_area">
+                                        <input class="form-control d-none" name="photo_area" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_area" value="" accept="image/*" onchange="document.getElementById('show_photo_sos_area').src = window.URL.createObjectURL(this.files[0]);check_add_img_area();">
+                                        <div  class="text-center">
+                                            <center>
+                                                <img id="img_sos_area" style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
+                                            </center>
+                                            <br>
+                                            <h3 class="text-center m-0">
+                                                <b>เพิ่มภาพถ่าย "คลิก"</b> 
+                                            </h3>
+                                        </div>
+                                        
+                                    </div>
+                                    <img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_sos_area" />
+                                    <div class="child">
+                                        <span>เลือกรูป</span>
+                                    </div>
+                                </div>
+                            </label>
+                            <!-- <div class="col-12 mt-3 d-flex justify-content-center" style="position: relative;"> -->
                                 <!-- <img class="collapse" style="filter: backscale(50%);margin-top:15px;" width="100%" src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}"> -->
-                                <img id="ex_img"src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}" class="img-car-parking d-none" alt="" >
+                                <!-- <img id="ex_img"src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}" class="img-car-parking d-none" alt="" >
                                 <video style="outline: #db2d2e 1px solid;" class="d-none" width="100%" height="100%" autoplay="true" id="videoElement"></video>
                                 
                                 <input class="d-none" type="text" name="text_img" id="text_img" value="">
                                 <canvas class="d-none"  id="canvas" width="266" height="400" ></canvas>
-                                <img class="d-none take-photo"  src=""  id="photo2">
+                                <img class="d-none take-photo"  src=""  id="photo2"> -->
 
-                                <div class="add-img" id="add_img">
+                                <!-- <div class="add-img" id="add_img">
                                     <img src="{{ asset('/img/icon/image.png') }}" class="img-car-parking" alt="" >
-                                </div>
+                                </div> -->
 <!--                                 
                                 <div class="add-img d-none" >
                                     <img src="{{ asset('/img/more/ป้ายอาคารจอดรถ.jpg') }}" class="img-car-parking" alt="" >
                                 </div> -->
 
-                                <span class="text-camera text-gps">
+                                <!-- <span class="text-camera text-gps">
                                     ถ่ายภาพเพื่อระบุตำแหน่งที่ชัดเจน 
                                 </span>
                                 <span class="text-camera btn btn-show-ex-img" style="background-color: #780908;color: #fff; padding:.5rem;top:2.5rem" onclick="show_ex_img()">
                                     <i class="fa-solid fa-image"></i> <i class="fa-solid fa-image-slash d-none"></i> &nbsp; ดูภาพตัวอย่าง
-                                </span>
-
+                                </span> -->
+                                
                                 <!-- เปิดกล้อง -->
-                                <a class="align-self-end text-white btn btn-primary btn-show-camera main-radius main-shadow" style="position: absolute; margin-bottom:10px" onclick="capture_registration();">
+                                <!-- <a class="align-self-end text-white btn btn-primary btn-show-camera main-radius main-shadow" style="position: absolute; margin-bottom:10px" onclick="capture_registration();">
                                     <i class="fas fa-camera"></i> เพิ่มภาพถ่าย
-                                </a>
+                                </a> -->
 
                                 <!-- ถ่าย -->
-                                <a class="align-self-end text-white btn-primary btn-circle d-none btn-take-photo" style="position: absolute; margin-bottom:10px" onclick="capture();">
+                                <!-- <a class="align-self-end text-white btn-primary btn-circle d-none btn-take-photo" style="position: absolute; margin-bottom:10px" onclick="capture();">
                                     <i class="fas fa-camera"></i>
                                 </a>
 
                                 <a class="align-self-end text-white btn-danger d-none btn-cancel-take-photo" onclick=" stop();">
                                     <i class="fa-duotone fa-camera-slash"></i>
-                                </a>
+                                </a> -->
 
 
                                 <!-- ถ่ายใหม่ -->
-                                <a class="align-self-end text-white btn-primary btn-circle d-none btn-retake-photo" style="position: absolute; margin-bottom:10px" onclick="document.querySelector('.btn-retake-photo').classList.add('d-none'),capture_registration();">
+                                <!-- <a class="align-self-end text-white btn-primary btn-circle d-none btn-retake-photo" style="position: absolute; margin-bottom:10px" onclick="document.querySelector('.btn-retake-photo').classList.add('d-none'),capture_registration();">
                                     <i class="fa-regular fa-arrow-rotate-right"></i>
-                                </a>
+                                </a> -->
                                 <script>
-                                    function show_ex_img() {
-                                        document.querySelector('#add_img').classList.toggle('d-none');
-                                        document.querySelector('#ex_img').classList.toggle('d-none');
-                                        document.querySelector('.fa-image').classList.toggle('d-none');
-                                        document.querySelector('.fa-image-slash').classList.toggle('d-none');
-                                        document.querySelector('.btn-show-ex-img').classList.toggle('slide-top');
-                                        document.querySelector('.text-gps').classList.toggle('d-none');
+                                    // function show_ex_img() {
+                                    //     document.querySelector('#add_img').classList.toggle('d-none');
+                                    //     document.querySelector('#ex_img').classList.toggle('d-none');
+                                    //     document.querySelector('.fa-image').classList.toggle('d-none');
+                                    //     document.querySelector('.fa-image-slash').classList.toggle('d-none');
+                                    //     document.querySelector('.btn-show-ex-img').classList.toggle('slide-top');
+                                    //     document.querySelector('.text-gps').classList.toggle('d-none');
+                                    // }
+
+                                    function check_add_img_area() {
+                                        document.querySelector('#show_photo_sos_area').classList.remove('d-none');
+                                        document.querySelector('#add_select_img_area').classList.add('d-none');
                                     }
                                 </script>
                                 
-                            </div>
-                            <span id="text_add_img" class="text-danger d-none">กรุณาเพิ่มภาพถ่าย</span>
+                            <!-- </div> -->
+                            <span id="text_add_img" class="text-danger dnone">กรุณาเพิ่มภาพถ่าย</span>
                             <div class="d-none form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
                                 <input class="form-control" name="photo" type="text" id="photo" value="{{ isset($sos_map->photo) ? $sos_map->photo : '' }}" >
                                 {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
@@ -1147,16 +1174,10 @@
 
         document.querySelector('.btn-show-camera').classList.add('d-none');
         document.querySelector('.btn-take-photo').classList.remove('d-none');
-        // var div_cam = document.querySelector("#div_cam");
-        //     div_cam.classList.remove('d-none');
-            
-            photo2.classList.add('d-none');
+        photo2.classList.add('d-none');
 
         if (navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" } } }) 
-        //   navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } }) 
-          // { video: true }
-          // { video: { facingMode: { exact: "environment" } } }
             .then(function (stream) {
               if (typeof video.srcObject == "object") {
                   video.srcObject = stream;
