@@ -231,9 +231,9 @@
 
 	// ฟังก์ชันสุ่มสี
 	function getRandomColor() {
-		var letters = "0123456789ABCDEF";
-		var color = "#";
-		for (var i = 0; i < 6; i++) {
+		let letters = "0123456789ABCDEF";
+		let color = "#";
+		for (let i = 0; i < 6; i++) {
 			color += letters[Math.floor(Math.random() * 16)];
 		}
 		return color;
@@ -246,9 +246,9 @@ function isInUserVideoCallBar(div) {
 
 // ตรวจสอบจำนวน div ที่มี class "custom-div" และปรับความกว้าง
 function updateDivWidth() {
-    var container = document.getElementById('container_user_video_call');
-    var customDivs = container.getElementsByClassName('custom-div');
-    var count = customDivs.length;
+    let container = document.getElementById('container_user_video_call');
+    let customDivs = container.getElementsByClassName('custom-div');
+    let count = customDivs.length;
 
     if (count > 1) {
         container.classList.add("grid-template");
@@ -258,34 +258,34 @@ function updateDivWidth() {
 }
 
 function createAndAttachCustomDiv() {
-    var randomColor = getRandomColor();
-    var newDiv = document.createElement("div");
+    let randomColor = getRandomColor();
+    let newDiv = document.createElement("div");
     newDiv.className = "custom-div";
     newDiv.style.backgroundColor = randomColor;
 
     // เพิ่ม div ด้านใน
-    var statusInputOutputDiv = document.createElement("div");
+    let statusInputOutputDiv = document.createElement("div");
     statusInputOutputDiv.className = "status-input-output";
 
-    var micDiv = document.createElement("div");
+    let micDiv = document.createElement("div");
     micDiv.className = "mic";
     micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
 
-    var cameraDiv = document.createElement("div");
+    let cameraDiv = document.createElement("div");
     cameraDiv.className = "camera";
     cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
 
     statusInputOutputDiv.appendChild(micDiv);
     statusInputOutputDiv.appendChild(cameraDiv);
 
-    var infomationUserDiv = document.createElement("div");
+    let infomationUserDiv = document.createElement("div");
     infomationUserDiv.className = "infomation-user";
 
-    var nameUserVideoCallDiv = document.createElement("div");
+    let nameUserVideoCallDiv = document.createElement("div");
     nameUserVideoCallDiv.className = "name-user-video-call";
     nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>lucky</b></h5>';
 
-    var roleUserVideoCallDiv = document.createElement("div");
+    let roleUserVideoCallDiv = document.createElement("div");
     roleUserVideoCallDiv.className = "role-user-video-call";
     roleUserVideoCallDiv.innerHTML = '<small class="d-block">ศูนย์สั่งการ</small>';
 
@@ -301,8 +301,8 @@ function createAndAttachCustomDiv() {
         handleClick(newDiv);
     });
 
-    var userVideoCallBar = document.querySelector(".user-video-call-bar");
-    var customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+    let userVideoCallBar = document.querySelector(".user-video-call-bar");
+    let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
 
     if (customDivsInUserVideoCallBar.length > 0) {
         userVideoCallBar.appendChild(newDiv);
@@ -316,9 +316,9 @@ function createAndAttachCustomDiv() {
 
 // ย้าย div ไปยัง .user-video-call-bar หากไม่อยู่ในนั้นและสลับ div
 function moveDivsToUserVideoCallBar(clickedDiv) {
-    var container = document.getElementById("container_user_video_call");
-    var customDivs = container.querySelectorAll(".custom-div");
-    var userVideoCallBar = document.querySelector(".user-video-call-bar");
+    let container = document.getElementById("container_user_video_call");
+    let customDivs = container.querySelectorAll(".custom-div");
+    let userVideoCallBar = document.querySelector(".user-video-call-bar");
 	document.querySelector(".user-video-call-contrainer").classList.remove("d-none");
 
     customDivs.forEach(function(div) {
@@ -339,13 +339,13 @@ function moveDivsToUserVideoCallBar(clickedDiv) {
 
 // สลับ div ระหว่าง .user-video-call-bar และ #container_user_video_call
 function swapDivsInContainerAndUserVideoCallBar(clickedDiv) {
-    var container = document.getElementById("container_user_video_call");
-    var customDivsInContainer = container.querySelectorAll(".custom-div");
-    var userVideoCallBar = document.querySelector(".user-video-call-bar");
-    var customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+    let container = document.getElementById("container_user_video_call");
+    let customDivsInContainer = container.querySelectorAll(".custom-div");
+    let userVideoCallBar = document.querySelector(".user-video-call-bar");
+    let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
 
     if (customDivsInContainer.length > 0 && customDivsInUserVideoCallBar.length > 0) {
-        var firstDivInContainer = customDivsInContainer[0];
+        let firstDivInContainer = customDivsInContainer[0];
 
         container.appendChild(clickedDiv);
         userVideoCallBar.appendChild(firstDivInContainer);
@@ -354,9 +354,9 @@ function swapDivsInContainerAndUserVideoCallBar(clickedDiv) {
 
 // ย้ายทุก div ใน .user-video-call-bar ไปยัง #container_user_video_call
 function moveAllDivsToContainer() {
-    var container = document.getElementById("container_user_video_call");
-    var userVideoCallBar = document.querySelector(".user-video-call-bar");
-    var customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+    let container = document.getElementById("container_user_video_call");
+    let userVideoCallBar = document.querySelector(".user-video-call-bar");
+    let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
 	document.querySelector(".user-video-call-contrainer").classList.add("d-none");
 
     customDivsInUserVideoCallBar.forEach(function(div) {
@@ -368,8 +368,8 @@ function moveAllDivsToContainer() {
 
 // จัดเรียกใช้งานเมื่อคลิกที่ div
 function handleClick(clickedDiv) {
-    var userVideoCallBar = document.querySelector(".user-video-call-bar");
-    var customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+    let userVideoCallBar = document.querySelector(".user-video-call-bar");
+    let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
 
     if (customDivsInUserVideoCallBar.length > 0) {
         moveAllDivsToContainer();
@@ -387,7 +387,4 @@ document.querySelector(".user-video-call-bar").addEventListener("click", functio
         handleClick(e.target);
     }
 });
-
-
-
 </script>
