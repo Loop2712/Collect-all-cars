@@ -283,7 +283,6 @@
                 channelParameters.remoteAudioTrack.play();
 
                 // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
-
                 agoraEngine.on("volume-indicator", volumes => {
                     volumes.forEach((volume, index) => {
 
@@ -321,18 +320,18 @@
             }
 
             if(mediaType == "audio"){
-
+                // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
                 agoraEngine.on("volume-indicator", volumes => {
                         volumes.forEach((volume, index) => {
                             if (channelParameters.remoteUid == volume.uid && volume.level > 50) {
-                                // console.log("ได้ยินเสียงแล้ววววววววววววววววววว");
-                                // console.log(volume.uid);
-                                // console.log(volume.level);
+
+                                console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
 
                                 document.querySelector('#dummy_trackRemoteDiv_'+channelParameters.remoteUid).classList.add('VoiceLocalEffect');
                             } else if (channelParameters.remoteUid == volume.uid && volume.level < 50) {
-                                // console.log("ไม่มีเสียง");
-                                // console.log(volume.level);
+
+                                console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
+
                                 document.querySelector('#dummy_trackRemoteDiv_'+channelParameters.remoteUid).classList.remove('VoiceLocalEffect');
                             }
                         });
