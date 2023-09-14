@@ -114,9 +114,10 @@
                         }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
                 })
                 .catch(error => {
-                    if(loadingAnime){
-                        loadingAnime.classList.remove('d-none');
-                    }
+
+                    // if(loadingAnime){
+                    //     loadingAnime.classList.remove('d-none');
+                    // }
 
                     // เรียกใช้งานฟังก์ชัน retryFunction() อีกครั้งหลังจากเวลาหน่วงให้ผ่านไป
                     setTimeout(() => {
@@ -186,6 +187,24 @@
         // Set the remote video container size.
         remotePlayerContainer.style.width = "100%";
         remotePlayerContainer.style.height = "100%";
+
+        // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
+        agoraEngine.enableAudioVolumeIndicator();
+
+        agoraEngine.on("volume-indicator", volumes => {
+            volumes.forEach((volume, index) => {
+
+                if (options.uid == volume.uid && volume.level >= 50) {
+                    console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
+
+                    localPlayerContainer.classList.add('VoiceLocalEffect');
+                } else if (options.uid == volume.uid && volume.level < 50) {
+                    console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
+
+                    localPlayerContainer.classList.remove('VoiceLocalEffect');
+                }
+            });
+        })
 
         // Listen for the "user-published" event to retrieve a AgoraRTCRemoteUser object.
         agoraEngine.on("user-published", async (user, mediaType) =>
@@ -262,6 +281,24 @@
                 channelParameters.remoteAudioTrack = user.audioTrack;
                 // Play the remote audio track. No need to pass any DOM element.
                 channelParameters.remoteAudioTrack.play();
+
+                // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
+
+                agoraEngine.on("volume-indicator", volumes => {
+                    volumes.forEach((volume, index) => {
+
+                        if (channelParameters.remoteUid == volume.uid && volume.level >= 50) {
+                            console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
+                            // console.log("Remote พูดแล้ว");
+
+                            remotePlayerContainer.classList.add('VoiceLocalEffect');
+                        } else if (channelParameters.remoteUid == volume.uid && volume.level < 50) {
+                            console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
+                            // console.log("Remote พูดไม่ออก");
+                            remotePlayerContainer.classList.remove('VoiceLocalEffect');
+                        }
+                    });
+                })
             }
 
         });
@@ -284,9 +321,22 @@
             }
 
             if(mediaType == "audio"){
-                if (!user.remoteAudioTrack) {
-                    console.log("ไมโครโฟนปิดอยู่");
-                }
+
+                agoraEngine.on("volume-indicator", volumes => {
+                        volumes.forEach((volume, index) => {
+                            if (channelParameters.remoteUid == volume.uid && volume.level > 50) {
+                                // console.log("ได้ยินเสียงแล้ววววววววววววววววววว");
+                                // console.log(volume.uid);
+                                // console.log(volume.level);
+
+                                document.querySelector('#dummy_trackRemoteDiv_'+channelParameters.remoteUid).classList.add('VoiceLocalEffect');
+                            } else if (channelParameters.remoteUid == volume.uid && volume.level < 50) {
+                                // console.log("ไม่มีเสียง");
+                                // console.log(volume.level);
+                                document.querySelector('#dummy_trackRemoteDiv_'+channelParameters.remoteUid).classList.remove('VoiceLocalEffect');
+                            }
+                        });
+                    })
             }
 
 
@@ -375,7 +425,9 @@
                         {encoderConfig: "high_quality_stereo",}
                     );
                     // Publish the local audio tracks in the channel.
-                     await agoraEngine.publish([channelParameters.localAudioTrack]);
+                    await agoraEngine.publish([channelParameters.localAudioTrack]);
+
+                    console.log('หาไมโครโฟน สำเร็จ');
                 } catch (error) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างไมโครโฟน
                     console.error('ไม่สามารถสร้างไมโครโฟนหรือไม่พบไมโครโฟน', error);
@@ -605,7 +657,6 @@
                 console.log('------------ localPlayerContainer ------------');
                 console.log(localPlayerContainer);
 
-
                 // // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
                 channelParameters.localVideoTrack.setEnabled(false);
 
@@ -624,25 +675,26 @@
 
                 channelParameters.localVideoTrack.play(localPlayerContainer);
 
-                if (isMuteVideo == false) {
+                if (isMuteVideo == true) {
 
                     // เริ่มส่งภาพจากอุปกรณ์ใหม่
                     channelParameters.localVideoTrack.setEnabled(true);
                     // แสดงภาพวิดีโอใน <div>
 
                     channelParameters.localVideoTrack.play(localPlayerContainer);
-                    // channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+                    channelParameters.remoteVideoTrack.play(remotePlayerContainer);
 
+                    // ส่ง local video track ใหม่ไปยังผู้ใช้คนที่สอง
+                    agoraEngine.publish([channelParameters.localVideoTrack]);
                     // alert('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
                     // console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
                 }
-                // else {
-                //     // alert('ปิด');
-                //     channelParameters.localVideoTrack.setEnabled(false);
-                // }
+                else {
+                    // alert('ปิด');
+                    channelParameters.localVideoTrack.setEnabled(false);
+                }
 
-                // ส่ง local video track ใหม่ไปยังผู้ใช้คนที่สอง
-                agoraEngine.publish([channelParameters.localVideoTrack]);
+
 
             })
             .catch(error => {
@@ -796,6 +848,7 @@
     //=============================================================================//
     //                              จบ -- สลับอุปกรณ์                                //
     //=============================================================================//
+
     }
 
     console.log();

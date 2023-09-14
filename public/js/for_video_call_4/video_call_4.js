@@ -140,14 +140,14 @@ function create_dummy_videoTrack(user){
         document.querySelector('#divVideo_Parent').append(divVideo);
 
             // ถ้ามี videoDiv อยู่แล้ว ลบอันเก่าก่อน
-        if(document.getElementById('dummy_trackRemoteDiv' + user.uid.toString())) {
-            document.getElementById('dummy_trackRemoteDiv' + user.uid.toString()).remove();
+        if(document.getElementById('dummy_trackRemoteDiv_' + user.uid.toString())) {
+            document.getElementById('dummy_trackRemoteDiv_' + user.uid.toString()).remove();
         }
 
         //เพิ่มแท็กวิดีโอที่มีพื้นหลังแค่สีดำ
         // const remote_video_call = document.getElementById(user.uid.toString());
         closeVideoHTML  =
-                        ' <div id="dummy_trackRemoteDiv'+ user.uid.toString() +'" style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: gray;">' +
+                        ' <div id="dummy_trackRemoteDiv_'+ user.uid.toString() +'" style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: gray;">' +
                             '<video class="agora_video_player" playsinline="" muted="" style="width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; object-fit: cover;"></video>' +
                         '</div>' ;
 

@@ -120,7 +120,7 @@
     }
 
     video{ /* ตกแต่ง tag video ที่ agora สร้างมา*/
-        border-color: #3490dc;
+        border-color: #000000;
         border-style: solid;
         border-radius: 10px;
         position: relative;
@@ -168,6 +168,11 @@
         }
     }
     /* ----------------- End ตัว loading animation ----------------- */
+
+    .VoiceLocalEffect{ /* animation ตอนมีคนพูด แสดงบนขอบ div */
+        box-shadow: rgb(31, 193, 27) 0px 0px 0px 3px;
+        border-radius: 10px;
+    }
 
 } /* แท็กปิด PC */
 
