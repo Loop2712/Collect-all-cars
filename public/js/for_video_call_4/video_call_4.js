@@ -139,7 +139,7 @@ function create_dummy_videoTrack(user){
 
         document.querySelector('#divVideo_Parent').append(divVideo);
 
-            // ถ้ามี videoDiv อยู่แล้ว ลบอันเก่าก่อน
+        // ถ้ามี videoDiv อยู่แล้ว ลบอันเก่าก่อน
         if(document.getElementById('dummy_trackRemoteDiv_' + user.uid.toString())) {
             document.getElementById('dummy_trackRemoteDiv_' + user.uid.toString()).remove();
         }

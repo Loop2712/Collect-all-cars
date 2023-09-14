@@ -25,12 +25,20 @@
             <i class="fa-solid fa-camera-rotate"></i>
         </button>
 
-        <button class="btnDevice  btn dropdown-toggle btn_for_select_video_device d-none" type="button" data-toggle="modal" data-target="#test" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
+        <button class="btn btn-secondary ms-1 d-none d-lg-block" id="btn_switchMicrophone" onclick="switchMicrophone();">
+            <i class="fa-solid fa-microphone"></i>
+        </button>
+
+        <button class="btnDevice  btn dropdown-toggle btn_for_select_video_device d-none" type="button" data-toggle="modal" data-target="#video_device" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
             <i class="fa-solid fa-chevron-down fa-2xs"></i>
-          </button>
+        </button>
+
+        <button class="btnDevice  btn dropdown-toggle btn_for_select_audio_device d-none" type="button" data-toggle="modal" data-target="#audio_device" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
+            <i class="fa-solid fa-chevron-down fa-2xs"></i>
+        </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="test" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="video_device" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <button id="ปุ่มนี้สำหรับปิด_modal" type="button" class="btn m-2" data-dismiss="modal" aria-label="Close" style="position: absolute; top:10;right: 10px;color:#4d4d4d;z-index: 9999999999;">
@@ -39,6 +47,21 @@
                     <div class="modal-body">
                         <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
                         <div id="video-device-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="audio_device" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button id="ปุ่มนี้สำหรับปิด_modal" type="button" class="btn m-2" data-dismiss="modal" aria-label="Close" style="position: absolute; top:10;right: 10px;color:#4d4d4d;z-index: 9999999999;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <div class="modal-body">
+                        <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
+                        <div id="audio-device-list"></div>
                     </div>
                 </div>
             </div>
@@ -175,6 +198,8 @@
 
         /////////////////////// ปุ่มสลับ กล้อง /////////////////////
         const btn_switchCamera = document.querySelector('#btn_switchCamera');
+        /////////////////////// ปุ่มสลับ ไมค์ /////////////////////
+        const btn_switchMicrophone = document.querySelector('#btn_switchMicrophone');
 
         const remotePlayerContainer = document.createElement("div");
         const localPlayerContainer = document.createElement('div');
@@ -194,11 +219,11 @@
         agoraEngine.on("volume-indicator", volumes => {
             volumes.forEach((volume, index) => {
 
-                if (options.uid == volume.uid && volume.level >= 50) {
+                if (localPlayerContainer.id == volume.uid && volume.level >= 50) {
                     console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
 
                     localPlayerContainer.classList.add('VoiceLocalEffect');
-                } else if (options.uid == volume.uid && volume.level < 50) {
+                } else if (localPlayerContainer.id == volume.uid && volume.level < 50) {
                     console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
 
                     localPlayerContainer.classList.remove('VoiceLocalEffect');
@@ -234,17 +259,8 @@
 
                 // create_element_remotevideo_call(remotePlayerContainer);
 
-                console.log("remotePlayerContainer");
-                console.log(remotePlayerContainer);
-                console.log("remotePlayerContainer.id");
-                console.log(remotePlayerContainer.id);
-                console.log("channelParameters.remoteUid");
-                console.log(channelParameters.remoteUid);
-                console.log("channelParameters.remoteVideoTrack");
-                console.log(channelParameters.remoteVideoTrack);
 
                 // const containerId = 'videoDiv_' + remotePlayerContainer.id;
-
                 // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
                 if (document.getElementById("videoDiv_"+ user.uid.toString())) {
                     document.getElementById("videoDiv_"+ user.uid.toString()).remove();
@@ -281,6 +297,9 @@
                 channelParameters.remoteAudioTrack = user.audioTrack;
                 // Play the remote audio track. No need to pass any DOM element.
                 channelParameters.remoteAudioTrack.play();
+
+                console.log('AudioTrack:');
+                console.log(channelParameters.localAudioTrack);
 
                 // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
                 agoraEngine.on("volume-indicator", volumes => {
@@ -321,6 +340,9 @@
 
             if(mediaType == "audio"){
                 // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
+                console.log('unpublished AudioTrack:');
+                console.log(channelParameters.localAudioTrack);
+
                 agoraEngine.on("volume-indicator", volumes => {
                         volumes.forEach((volume, index) => {
                             if (channelParameters.remoteUid == volume.uid && volume.level > 50) {
@@ -527,6 +549,9 @@
                 // Play the local video track.
                 channelParameters.localVideoTrack.play(localPlayerContainer);
 
+                console.log('AudioTrack:');
+                console.log(channelParameters.localAudioTrack);
+
             }
             // Listen to the Leave button click event.
             document.getElementById('leave').onclick = async function ()
@@ -566,6 +591,7 @@
     //=============================================================================//
 
         var activeVideoDeviceId
+        var activeAudioDeviceId
 
         window.addEventListener('DOMContentLoaded', async () => {
             try {
@@ -578,29 +604,29 @@
                     video: true
                 });
 
-                const activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
-                    activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
+                activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
+                activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
 
                 // แยกอุปกรณ์ตามประเภท
-                const audioDevices = devices.filter(device => device.kind === 'audioinput');
+                // const audioDevices = devices.filter(device => device.kind === 'audioinput');
 
-                // สร้างรายการอุปกรณ์รับข้อมูลและเพิ่มลงในรายการ
-                const audioDeviceList = document.getElementById('audio-device-list');
-                audioDevices.forEach(device => {
-                    const radio = document.createElement('input');
-                        radio.type = 'radio';
-                        radio.name = 'audio-device';
-                        radio.value = device.deviceId;
-                        radio.checked = device.deviceId === activeAudioDeviceId;
+                // // สร้างรายการอุปกรณ์รับข้อมูลและเพิ่มลงในรายการ
+                // const audioDeviceList = document.getElementById('audio-device-list');
+                // audioDevices.forEach(device => {
+                //     const radio = document.createElement('input');
+                //         radio.type = 'radio';
+                //         radio.name = 'audio-device';
+                //         radio.value = device.deviceId;
+                //         radio.checked = device.deviceId === activeAudioDeviceId;
 
-                    const label = document.createElement('label');
-                        label.classList.add('dropdown-item');
-                        label.appendChild(radio);
-                        label.appendChild(document.createTextNode(device.label || `อุปกรณ์รับข้อมูล ${audioDeviceList.children.length + 1}`));
+                //     const label = document.createElement('label');
+                //         label.classList.add('dropdown-item');
+                //         label.appendChild(radio);
+                //         label.appendChild(document.createTextNode(device.label || `อุปกรณ์รับข้อมูล ${audioDeviceList.children.length + 1}`));
 
-                        audioDeviceList.appendChild(label);
-                        radio.addEventListener('change', onChangeAudioDevice);
-                });
+                //         audioDeviceList.appendChild(label);
+                //         radio.addEventListener('change', onChangeAudioDevice);
+                // });
 
             } catch (error) {
                 console.error('เกิดข้อผิดพลาดในการเรียกดูอุปกรณ์:', error);
@@ -611,23 +637,35 @@
         // เรียกใช้งานเมื่อต้องการเปลี่ยนอุปกรณ์เสียง
         function onChangeAudioDevice() {
             const selectedAudioDeviceId = getCurrentAudioDeviceId();
-            // console.log('เปลี่ยนอุปกรณ์เสียงเป็น:', selectedAudioDeviceId);
+            console.log('เปลี่ยนอุปกรณ์เสียงเป็น:', selectedAudioDeviceId);
 
             // หยุดการส่งเสียงจากอุปกรณ์ปัจจุบัน
-            channelParameters.localAudioTrack.setEnabled(false);
+            // channelParameters.localAudioTrack.setEnabled(false);
+
+            // ปิด Local Audio Track อันเก่า
+            if (channelParameters.localAudioTrack) {
+                channelParameters.localAudioTrack.close();
+                channelParameters.localAudioTrack = null;
+                console.log("close localAudioTrack_old");
+            }
 
             // สร้าง local audio track ใหม่โดยใช้อุปกรณ์ที่คุณต้องการ
             AgoraRTC.createMicrophoneAudioTrack({
+                encoderConfig: "high_quality_stereo",
                 microphoneId: selectedAudioDeviceId
             })
             .then(newAudioTrack => {
                 // เปลี่ยน local audio track เป็นอุปกรณ์ใหม่
                 channelParameters.localAudioTrack = newAudioTrack;
 
+                console.log('newAudioTrack:');
+                console.log(channelParameters.localAudioTrack);
                 // เริ่มส่งเสียงจากอุปกรณ์ใหม่
                 channelParameters.localAudioTrack.setEnabled(true);
 
-                // console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
+                agoraEngine.publish([channelParameters.localAudioTrack]);
+
+                console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
             })
             .catch(error => {
                 console.error('เกิดข้อผิดพลาดในการสร้าง local audio track:', error);
@@ -649,28 +687,28 @@
             AgoraRTC.createCameraVideoTrack({ cameraId: selectedVideoDeviceId })
             .then(newVideoTrack => {
 
-                console.log('------------ newVideoTrack ------------');
-                console.log(newVideoTrack);
-                console.log('------------ channelParameters.localVideoTrack ------------');
-                console.log(channelParameters.localVideoTrack);
-                console.log('------------ localPlayerContainer ------------');
-                console.log(localPlayerContainer);
+                // console.log('------------ newVideoTrack ------------');
+                // console.log(newVideoTrack);
+                // console.log('------------ channelParameters.localVideoTrack ------------');
+                // console.log(channelParameters.localVideoTrack);
+                // console.log('------------ localPlayerContainer ------------');
+                // console.log(localPlayerContainer);
 
                 // // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
                 channelParameters.localVideoTrack.setEnabled(false);
 
                 agoraEngine.unpublish([channelParameters.localVideoTrack]);
-                console.log('------------unpublish localVideoTrack ------------');
+                // console.log('------------unpublish localVideoTrack ------------');
 
                 // ปิดการเล่นภาพวิดีโอกล้องเดิม
                 channelParameters.localVideoTrack.stop();
                 channelParameters.localVideoTrack.close();
-                console.log('------------stop localVideoTrack ------------');
-                console.log('------------close localVideoTrack ------------');
+                // console.log('------------stop localVideoTrack ------------');
+                // console.log('------------close localVideoTrack ------------');
                 // เปลี่ยน local video track เป็นอุปกรณ์ใหม่
                 channelParameters.localVideoTrack = newVideoTrack;
-                console.log('------------ channelParameters.localVideoTrack = newVideoTrack ------------');
-                console.log(channelParameters.localVideoTrack);
+                // console.log('------------ channelParameters.localVideoTrack = newVideoTrack ------------');
+                // console.log(channelParameters.localVideoTrack);
 
                 channelParameters.localVideoTrack.play(localPlayerContainer);
 
@@ -825,6 +863,70 @@
             //   }
             // }
 
+            }
+
+        }
+
+        btn_switchMicrophone.onclick = async function()
+        {
+            console.log('btn_switchMicrophone');
+
+            console.log('activeAudioDeviceId');
+            console.log(activeAudioDeviceId);
+
+            // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
+            const deviceType = checkDeviceType();
+            console.log("Device Type:", deviceType);
+
+            // เรียกดูอุปกรณ์ทั้งหมด
+            const devices = await navigator.mediaDevices.enumerateDevices();
+
+            // เรียกดูอุปกรณ์ที่ใช้อยู่
+            const stream = await navigator.mediaDevices.getUserMedia({
+                audio: true,
+                video: true
+            });
+
+            // แยกอุปกรณ์ตามประเภท
+            let audioDevices = devices.filter(device => device.kind === 'audioinput');
+
+            console.log('------- audioDevices -------');
+            console.log(audioDevices);
+            console.log('length ==>> ' + audioDevices.length);
+            console.log('------- ------- -------');
+
+            // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
+            let audioDeviceList = document.getElementById('audio-device-list');
+                audioDeviceList.innerHTML = '';
+
+            let count_i = 1 ;
+
+            audioDevices.forEach(device => {
+            let radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.id = 'audio-device-' + count_i;
+                radio.name = 'audio-device';
+                radio.value = device.deviceId;
+
+            if (deviceType == 'PC'){
+                radio.checked = device.deviceId === activeAudioDeviceId;
+            }
+
+            let label = document.createElement('label');
+                label.classList.add('dropdown-item');
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${audioDeviceList.children.length + 1}`));
+
+            audioDeviceList.appendChild(label);
+            radio.addEventListener('change', onChangeAudioDevice);
+
+            count_i = count_i + 1 ;
+            });
+
+            // ---------------------------
+
+            if (deviceType == 'PC'){
+                document.querySelector('.btn_for_select_audio_device').click();
             }
 
         }
