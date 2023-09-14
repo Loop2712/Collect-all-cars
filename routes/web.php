@@ -542,3 +542,7 @@ Route::resource('problem_report', 'Problem_reportController')->except(['show','e
 Route::resource('agora_chat', 'Agora_chatController');
 
 Route::resource('sos_1669_officer_ask_more', 'Sos_1669_officer_ask_moreController');
+
+Route::get('/layout_video_call', function () {
+    return view('layout_video_call_test');
+});
