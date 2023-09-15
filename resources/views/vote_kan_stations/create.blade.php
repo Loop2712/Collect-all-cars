@@ -54,7 +54,9 @@
                             <span class="input-group-text bg-transparent"><i class="fa-solid fa-map"></i></span>
                             <select name="amphoe" id="amphoe" class="form-control" required>
                                 <option value="" selected > - กรุณาเลือกอำเภอ  - </option>
-                                <option value="ทดสอบอำเภอ" >ทดสอบอำเภอ</option>
+                                @foreach($data as $item)
+                                    <option value="{{ $item->amphoe }}" >{{ $item->amphoe }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -114,7 +116,7 @@
         function show_location_A(){
             let province = document.querySelector("#province");
 
-            fetch("{{ url('/') }}/api/location/"+province.value+"/show_location_A")
+            fetch("{{ url('/') }}/api/get_location_kan/"+province.value+"/show_location_A")
                 .then(response => response.json())
                 .then(result => {
                     // console.log(result);

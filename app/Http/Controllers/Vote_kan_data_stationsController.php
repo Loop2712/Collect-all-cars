@@ -120,4 +120,14 @@ class Vote_kan_data_stationsController extends Controller
 
         return redirect('vote_kan_data_stations')->with('flash_message', 'Vote_kan_data_station deleted!');
     }
+
+    public function show_location_A($province)
+    {
+        $location_A = DB::table('vote_kan_data_stations')
+                        ->select('area','tambon')
+                        ->groupBy('amphoe')
+                        ->orderBy('amphoe', 'asc')
+                        ->get();
+        return $location_A;
+    }
 }

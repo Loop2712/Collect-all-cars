@@ -45,7 +45,9 @@ class Vote_kan_stationsController extends Controller
      */
     public function create()
     {
-        return view('vote_kan_stations.create');
+        $data = Vote_kan_data_station::groupBy('amphoe')->get();
+
+        return view('vote_kan_stations.create', compact('data'));
     }
 
     /**

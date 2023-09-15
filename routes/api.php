@@ -321,3 +321,7 @@ Route::get('/avg_score_by_case/{filter_data}/{user_login}', 'Dashboard_1669_Cont
 Route::get('/filter_data_command_unit', 'Dashboard_1669_Controller@filter_data_command_unit');
 Route::get('/get_location_ask_more_operating_unit/', 'Sos_help_centerController@get_location_ask_more_operating_unit');
 
+// Route::get('/location/{location_P}/show_location_A','API\LocationController@show_location_A');
+Route::get('/get_location_kan/{province}/show_location_A','API\LocationController@show_location_A');
+
+
