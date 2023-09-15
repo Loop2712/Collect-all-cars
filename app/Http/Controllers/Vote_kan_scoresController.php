@@ -122,4 +122,9 @@ class Vote_kan_scoresController extends Controller
 
         return redirect('vote_kan_scores')->with('flash_message', 'Vote_kan_score deleted!');
     }
+
+    public function show_score()
+    {
+        // 
+    }
 }

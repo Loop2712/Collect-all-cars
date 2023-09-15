@@ -548,3 +548,4 @@ Route::get('/layout_video_call', function () {
 });
 Route::resource('vote_kan_stations', 'Vote_kan_stationsController');
 Route::resource('vote_kan_scores', 'Vote_kan_scoresController');
+Route::get('vote_kan_admin/show_score', 'Vote_kan_scoresController@show_score');
