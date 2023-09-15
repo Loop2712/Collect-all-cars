@@ -1,0 +1,28 @@
+{
+    "fields": [
+        {
+            "name": "vote_kan_stations_id",
+            "type": "integer"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "last",
+            "type": "string"
+        },
+        {
+            "name": "number_1",
+            "type": "integer"
+        },
+        {
+            "name": "number_2",
+            "type": "integer"
+        },
+        {
+            "name": "number_3",
+            "type": "integer"
+        }
+    ]
+}

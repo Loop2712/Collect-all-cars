@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "province",
+            "type": "string"
+        },
+        {
+            "name": "amphoe",
+            "type": "string"
+        },
+        {
+            "name": "tambon",
+            "type": "string"
+        },
+        {
+            "name": "area",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "name_user",
+            "type": "string"
+        }
+    ]
+}

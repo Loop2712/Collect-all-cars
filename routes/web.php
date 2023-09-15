@@ -546,3 +546,5 @@ Route::resource('sos_1669_officer_ask_more', 'Sos_1669_officer_ask_moreControlle
 Route::get('/layout_video_call', function () {
     return view('layout_video_call_test');
 });
+Route::resource('vote_kan_stations', 'Vote_kan_stationsController');
+Route::resource('vote_kan_scores', 'Vote_kan_scoresController');
