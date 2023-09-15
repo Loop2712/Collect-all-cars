@@ -57,7 +57,7 @@ class Vote_kan_scoresController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->all();
-        
+
         $data_station = Vote_kan_station::where('user_id' , Auth::user()->id)->first();
 
         $requestData['vote_kan_stations_id'] = $data_station->id;
@@ -140,6 +140,9 @@ class Vote_kan_scoresController extends Controller
 
     public function show_score()
     {
+        $user_id = Auth::user()->id;
+
+
 
         return view('vote_kan_admin.vote_kan_admin');
     }

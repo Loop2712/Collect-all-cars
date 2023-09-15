@@ -37,7 +37,7 @@
 
 </style>
 
-<div class="row row-cols-1 row-cols-lg-3">
+<div class="row row-cols-1 row-cols-lg-3 ">
 
     <div class="col">
         <div class="card radius-10 overflow-hidden divScore">
@@ -97,5 +97,144 @@
     </div>
 
 </div><!--end row-->
+
+<div class="row mb-3">
+    <div class="col-12 col-lg-8">
+        <div class="card radius-10 w-100 h-100">
+            <h4 class="font-weight-bold m-3">คะแนนทั้งหมด</h4>
+            <hr class="m-0">
+            <div class="card-body">
+                <div class="table-responsive mt-4 mb-4">
+                    <table class="table align-middle mb-0">
+                        <tbody class="fz_body font-weight-bold">
+                            <tr>
+                                <td class="px-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ms-2">อำเภอ 1</div>
+                                    </div>
+                                </td>
+                                <td>5,555 คะแนน</td>
+                            </tr>
+                            <tr>
+                                <td class="px-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ms-2">อำเภอ 2</div>
+                                    </div>
+                                </td>
+                                <td>4,541 คะแนน</td>
+                            </tr>
+                            <tr>
+                                <td class="px-0">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ms-2">อำเภอ 3</div>
+                                    </div>
+                                </td>
+                                <td>3,000 คะแนน </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-4">
+        <div class="card radius-10 w-100 h-100">
+            <div id="amphoeSendScoreChart"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-lg-2 mb-4">
+    <div class="col">
+        <div class="card radius-10 h-100">
+            <div class="card-header">
+                <h3>อำเภอ 1</h3>
+            </div>
+            <div class="card-body">
+                <div id="amphoeChart"></div>
+            </div>
+
+        </div>
+    </div>
+
+</div><!--end row-->
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+    let options = {
+          series: [44, 55],
+          chart: {
+          type: 'donut',
+        },
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }]
+        };
+
+        let chart = new ApexCharts(document.querySelector("#amphoeSendScoreChart"), options);
+        chart.render();
+
+</script>
+
+<script>
+    let options_2 = {
+        series: [{
+            data: [21, 22, 10, 28, 16, 21, 13, 30]
+        }],
+            chart: {
+            height: 350,
+            type: 'bar',
+            events: {
+            click: function(chart, w, e) {
+                // console.log(chart, w, e)
+            }
+            }
+        },
+
+        plotOptions: {
+            bar: {
+            columnWidth: '45%',
+            distributed: true,
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            show: false
+        },
+        xaxis: {
+            categories: [
+                ['John', 'Doe'],
+                ['Joe', 'Smith'],
+                ['Jake', 'Williams'],
+                ['Peter', 'Brown'],
+                ['Mary', 'Evans'],
+                ['David', 'Wilson'],
+                ['Lily', 'Roberts'],
+            ],
+            labels: {
+                style: {
+
+                    fontSize: '12px'
+                }
+            }
+        }
+    };
+
+    let chart_2 = new ApexCharts(document.querySelector("#amphoeChart"), options_2);
+    chart_2.render();
+
+</script>
 
 @endsection
