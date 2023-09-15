@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.viicheck_for_vote_kan')
 
 @section('content')
     <div class="container">
