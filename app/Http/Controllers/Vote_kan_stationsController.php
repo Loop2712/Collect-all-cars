@@ -20,7 +20,7 @@ class Vote_kan_stationsController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 2500;
 
         if (!empty($keyword)) {
             $vote_kan_stations = Vote_kan_station::where('name', 'LIKE', "%$keyword%")
