@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Vote_kan_station;
 
 use App\Models\Vote_kan_score;
 use Illuminate\Http\Request;
@@ -54,12 +56,25 @@ class Vote_kan_scoresController extends Controller
      */
     public function store(Request $request)
     {
-
         $requestData = $request->all();
+        
+        $data_station = Vote_kan_station::where('user_id' , Auth::user()->id)->first();
 
+        $requestData['vote_kan_stations_id'] = $data_station->id;
+        $requestData['user_id'] = Auth::id();
+        $requestData['last'] = "Yes";
+
+        $data_scores = Vote_kan_score::where('user_id', Auth::user()->id)->get();
+
+        foreach ($data_scores as $item) {
+            $item->update(['last' => null]);
+        }
+        // ddd($data_scores);
         Vote_kan_score::create($requestData);
 
-        return redirect('vote_kan_scores')->with('flash_message', 'Vote_kan_score added!');
+        return redirect()->back();
+
+        // return redirect('vote_kan_scores')->with('flash_message', 'Vote_kan_score added!');
     }
 
     /**

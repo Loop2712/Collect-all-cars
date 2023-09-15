@@ -76,6 +76,7 @@
                 </div>
             </div>
             <!--navigation-->
+            @if(Auth::user()->user_from == "admin_vote_kan" )
             <ul class="metismenu" id="menu">
                 <li>
                     <a href="{{ url('/vote_kan_stations') }}" >
@@ -94,6 +95,7 @@
                     </a>
                 </li>
             </ul>
+            @endif
             <!--end navigation-->
         </div>
         <!--end sidebar wrapper -->
@@ -439,11 +441,6 @@
                     </div>
                     <div class="user-box dropdown">
                         <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            @if(!empty(Auth::user()->member_pic))
-                                <img src="{{ url('storage')}}/{{ Auth::user()->member_pic }}" class="user-img" alt="user avatar">
-                            @else
-                                <img class="user-img" src="{{asset('img/icon/user.jpg')}}" alt="user avatar">
-                            @endif
                             <div class="user-info ps-3">
                                 <p class="user-name mb-0" style="color: #ffffff!important;">{{Auth::user()->name}}</p>
                                 <p class="designattion mb-0" style="color: #ffffff!important;">{{Auth::user()->member_co}}</p>
@@ -452,9 +449,7 @@
                             <i class="fa-solid fa-bars text-white"></i>
                             </div>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item btn" href="{{ url('/show_profile/' . Auth::user()->id ) }}"><i class="bx bx-user"></i><span>Profile</span></a>
-                            </li>
+                        <ul class="dropdown-menu dropdown-menu-end">    
                             <div class="dropdown-divider mb-0"></div>
                             </li>
                             <li><a class="dropdown-item btn" onclick="before_logout();"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
@@ -484,7 +479,7 @@
         <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
         <footer class="page-footer">
-            <p class="mb-0">Power by <a href="mailto:contact.viicheck.com" class="link text-secondary">2B-Green</a></p>
+            <p class="mb-0">Power by <a href="mailto:contact.viicheck.com" class="link text-secondary">ViiCHECK</a></p>
         </footer>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
