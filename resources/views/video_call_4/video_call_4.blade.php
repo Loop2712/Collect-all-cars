@@ -84,8 +84,8 @@
 <script>
     var options;
     // ใช้สำหรับ เช็คสถานะของปุ่มเปิด-ปิด วิดีโอและเสียง
-    var isMuteVideo = true;
-    var isMuteAudio = true;
+    var isVideo = true;
+    var isAudio = true;
 
     // ใช้สำหรับ เช็คสถานะของปุ่มเปิด-ปิด วิดีโอและเสียง ตอนเริ่มเข้าวิดีโอคอล
     var videoTrack = '{{$videoTrack}}';
@@ -460,7 +460,7 @@
                         // ปิดไมโครโฟนใหม่ทันที
                         await channelParameters.localAudioTrack.setEnabled(false);
                         //เปลี่ยนสถานะไมโครโฟน เป็น false
-                        isMuteAudio = false;
+                        isAudio = false;
                         await agoraEngine.publish([channelParameters.localAudioTrack]);
                     } catch (newError) {
                         console.error('ไม่สามารถสร้างไมโครโฟนใหม่หรือปิดไมโครโฟนใหม่', newError);
@@ -502,7 +502,7 @@
                         // ปิดกล้องใหม่ทันที
                         await channelParameters.localVideoTrack.setEnabled(false);
                         //เปลี่ยนสถานะกล้อง เป็น false
-                        isMuteVideo = false;
+                        isVideo = false;
                         await agoraEngine.publish([channelParameters.localVideoTrack]);
                     } catch (newError) {
                         console.error('ไม่สามารถสร้างกล้องใหม่หรือปิดกล้องใหม่', newError);
@@ -516,24 +516,24 @@
                 try { // เช็คสถานะจากห้องทางเข้า แล้วเลือกกดเปิด-ปิด ตามสถานะ
                     if(videoTrack == "open"){
                         // เข้าห้องด้วย->สถานะเปิดกล้อง
-                        isMuteVideo = false;
+                        isVideo = false;
                         document.querySelector('#muteVideo').click();
                         console.log("Click open video ===================");
                     }else{
                         // เข้าห้องด้วย->สถานะปิดกล้อง
-                        isMuteVideo = true;
+                        isVideo = true;
                         document.querySelector('#muteVideo').click();
                         console.log("Click close video ===================");
                     }
 
                     if(audioTrack == "open"){
                         // เข้าห้องด้วย->สถานะเปิดไมค์
-                        isMuteAudio = false;
+                        isAudio = false;
                         document.querySelector('#muteAudio').click();
                         console.log("Click open audio ===================");
                     }else{
                         // เข้าห้องด้วย->สถานะปิดไมค์
-                        isMuteAudio = true;
+                        isAudio = true;
                         document.querySelector('#muteAudio').click();
                         console.log("Click close audio ===================");
                     }
@@ -579,6 +579,11 @@
                 //         // console.log(result);
                 // });
 
+                // function goBack() {
+                //     window.location.href = '{{ url('/video_call_4/before_video_call_4' . '/' . $sos_id , ['refresh' => true]) }}';
+                //     // location.reload();
+                // }
+
                 function goBack(){
                     window.history.back();
                 }
@@ -607,47 +612,34 @@
                 activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
                 activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
 
-                // แยกอุปกรณ์ตามประเภท
-                // const audioDevices = devices.filter(device => device.kind === 'audioinput');
-
-                // // สร้างรายการอุปกรณ์รับข้อมูลและเพิ่มลงในรายการ
-                // const audioDeviceList = document.getElementById('audio-device-list');
-                // audioDevices.forEach(device => {
-                //     const radio = document.createElement('input');
-                //         radio.type = 'radio';
-                //         radio.name = 'audio-device';
-                //         radio.value = device.deviceId;
-                //         radio.checked = device.deviceId === activeAudioDeviceId;
-
-                //     const label = document.createElement('label');
-                //         label.classList.add('dropdown-item');
-                //         label.appendChild(radio);
-                //         label.appendChild(document.createTextNode(device.label || `อุปกรณ์รับข้อมูล ${audioDeviceList.children.length + 1}`));
-
-                //         audioDeviceList.appendChild(label);
-                //         radio.addEventListener('change', onChangeAudioDevice);
-                // });
-
             } catch (error) {
                 console.error('เกิดข้อผิดพลาดในการเรียกดูอุปกรณ์:', error);
             }
 
         });
 
+        var old_activeAudioDeviceId ;
+
         // เรียกใช้งานเมื่อต้องการเปลี่ยนอุปกรณ์เสียง
         function onChangeAudioDevice() {
+
+            old_activeAudioDeviceId = activeAudioDeviceId;
+
             const selectedAudioDeviceId = getCurrentAudioDeviceId();
+            console.log('อุปกรณ์เสียงเดิม:', activeAudioDeviceId);
             console.log('เปลี่ยนอุปกรณ์เสียงเป็น:', selectedAudioDeviceId);
+
+            activeAudioDeviceId = selectedAudioDeviceId ;
 
             // หยุดการส่งเสียงจากอุปกรณ์ปัจจุบัน
             // channelParameters.localAudioTrack.setEnabled(false);
 
             // ปิด Local Audio Track อันเก่า
-            if (channelParameters.localAudioTrack) {
-                channelParameters.localAudioTrack.close();
-                channelParameters.localAudioTrack = null;
-                console.log("close localAudioTrack_old");
-            }
+            // if (channelParameters.localAudioTrack) {
+            //     channelParameters.localAudioTrack.close();
+            //     channelParameters.localAudioTrack = null;
+            //     console.log("close localAudioTrack_old");
+            // }
 
             // สร้าง local audio track ใหม่โดยใช้อุปกรณ์ที่คุณต้องการ
             AgoraRTC.createMicrophoneAudioTrack({
@@ -660,15 +652,28 @@
 
                 console.log('newAudioTrack:');
                 console.log(channelParameters.localAudioTrack);
-                // เริ่มส่งเสียงจากอุปกรณ์ใหม่
-                channelParameters.localAudioTrack.setEnabled(true);
 
-                agoraEngine.publish([channelParameters.localAudioTrack]);
+                if(isAudio == true){
+                    // เริ่มส่งเสียงจากอุปกรณ์ใหม่
+                    channelParameters.localAudioTrack.setEnabled(true);
+                    channelParameters.localAudioTrack.play();
 
-                console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
+                    agoraEngine.publish([channelParameters.localAudioTrack]);
+
+                    isAudio = true;
+                    console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
+                }
+                else {
+                    channelParameters.localAudioTrack.setEnabled(false);
+                    isAudio = false;
+
+                }
+
             })
             .catch(error => {
                 console.error('เกิดข้อผิดพลาดในการสร้าง local audio track:', error);
+
+                selectedAudioDeviceId = old_activeAudioDeviceId;
             });
         }
 
@@ -712,7 +717,7 @@
 
                 channelParameters.localVideoTrack.play(localPlayerContainer);
 
-                if (isMuteVideo == true) {
+                if (isVideo == true) {
 
                     // เริ่มส่งภาพจากอุปกรณ์ใหม่
                     channelParameters.localVideoTrack.setEnabled(true);
@@ -779,14 +784,14 @@
             console.log(activeVideoDeviceId);
 
             // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
-            const deviceType = checkDeviceType();
+            let deviceType = checkDeviceType();
             console.log("Device Type:", deviceType);
 
             // เรียกดูอุปกรณ์ทั้งหมด
-            const devices = await navigator.mediaDevices.enumerateDevices();
+            let devices = await navigator.mediaDevices.enumerateDevices();
 
             // เรียกดูอุปกรณ์ที่ใช้อยู่
-            const stream = await navigator.mediaDevices.getUserMedia({
+            let stream = await navigator.mediaDevices.getUserMedia({
                 audio: true,
                 video: true
             });
@@ -875,14 +880,14 @@
             console.log(activeAudioDeviceId);
 
             // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
-            const deviceType = checkDeviceType();
+            let deviceType = checkDeviceType();
             console.log("Device Type:", deviceType);
 
             // เรียกดูอุปกรณ์ทั้งหมด
-            const devices = await navigator.mediaDevices.enumerateDevices();
+            let devices = await navigator.mediaDevices.enumerateDevices();
 
             // เรียกดูอุปกรณ์ที่ใช้อยู่
-            const stream = await navigator.mediaDevices.getUserMedia({
+            let stream = await navigator.mediaDevices.getUserMedia({
                 audio: true,
                 video: true
             });
@@ -902,26 +907,27 @@
             let count_i = 1 ;
 
             audioDevices.forEach(device => {
-            let radio = document.createElement('input');
-                radio.type = 'radio';
-                radio.id = 'audio-device-' + count_i;
-                radio.name = 'audio-device';
-                radio.value = device.deviceId;
+            const radio2 = document.createElement('input');
+                radio2.type = 'radio';
+                radio2.id = 'audio-device-' + count_i;
+                radio2.name = 'audio-device';
+                radio2.value = device.deviceId;
 
             if (deviceType == 'PC'){
-                radio.checked = device.deviceId === activeAudioDeviceId;
+                radio2.checked = device.deviceId === activeAudioDeviceId;
             }
 
             let label = document.createElement('label');
                 label.classList.add('dropdown-item');
-                label.appendChild(radio);
+                label.appendChild(radio2);
                 label.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${audioDeviceList.children.length + 1}`));
 
             audioDeviceList.appendChild(label);
-            radio.addEventListener('change', onChangeAudioDevice);
+            radio2.addEventListener('change', onChangeAudioDevice);
 
             count_i = count_i + 1 ;
             });
+
 
             // ---------------------------
 

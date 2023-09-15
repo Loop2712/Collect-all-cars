@@ -23,17 +23,15 @@ function btn_toggle_mic_camera(videoTrack,audioTrack){ // สำหรับ ส
 
     document.querySelector('#footer_div').appendChild(divForVideoButton);
 
-
-
     muteButton.onclick = async function() {
-        if (isMuteAudio == true) {
+        if (isAudio == true) {
             // Update the button text.
             document.getElementById(`muteAudio`).innerHTML = '<i class="fa-solid fa-microphone-slash"></i>';
             // Mute the local video.
             channelParameters.localAudioTrack.setEnabled(false);
             // muteButton.classList.add('btn-disabled');
             // muteButton.classList.remove('btn-primary');
-            isMuteAudio = false;
+            isAudio = false;
         } else {
             // Update the button text.
             document.getElementById(`muteAudio`).innerHTML = '<i class="fa-solid fa-microphone"></i>';
@@ -41,19 +39,19 @@ function btn_toggle_mic_camera(videoTrack,audioTrack){ // สำหรับ ส
             channelParameters.localAudioTrack.setEnabled(true);
             // muteButton.classList.add('btn-primary');
             // muteButton.classList.remove('btn-disabled');
-            isMuteAudio = true;
+            isAudio = true;
         }
     }
 
     muteVideoButton.onclick = async function() {
-        if (isMuteVideo == true) {
+        if (isVideo == true) {
             // Update the button text.
             document.getElementById(`muteVideo`).innerHTML = '<i class="fa-solid fa-video-slash"></i>';
             // Mute the local video.
             channelParameters.localVideoTrack.setEnabled(false);
             muteVideoButton.classList.add('btn-disabled');
             // muteVideoButton.classList.remove('btn-success');
-            isMuteVideo = false;
+            isVideo = false;
 
         } else {
             // Update the button text.
@@ -62,7 +60,7 @@ function btn_toggle_mic_camera(videoTrack,audioTrack){ // สำหรับ ส
             channelParameters.localVideoTrack.setEnabled(true);
             // muteVideoButton.classList.add('btn-success');
             muteVideoButton.classList.remove('btn-disabled');
-            isMuteVideo = true;
+            isVideo = true;
 
             if(document.querySelector('.imgdivLocal')){
                 document.querySelector('.imgdivLocal').remove();
