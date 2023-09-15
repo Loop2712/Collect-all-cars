@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Vote_kan_data_station;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Vote_kan_data_stationsController extends Controller
 {
@@ -121,13 +122,37 @@ class Vote_kan_data_stationsController extends Controller
         return redirect('vote_kan_data_stations')->with('flash_message', 'Vote_kan_data_station deleted!');
     }
 
-    public function show_location_A($province)
+    public function show_area($amphoe)
     {
-        $location_A = DB::table('vote_kan_data_stations')
-                        ->select('area','tambon')
-                        ->groupBy('amphoe')
-                        ->orderBy('amphoe', 'asc')
+        $data_area = DB::table('vote_kan_data_stations')
+                        ->select('area')
+                        ->where('amphoe',$amphoe)
+                        ->groupBy('area')
                         ->get();
-        return $location_A;
+
+        return $data_area;
+    }
+
+    public function show_tambon($amphoe,$area)
+    {
+        $data_tambon = DB::table('vote_kan_data_stations')
+                        ->select('tambon')
+                        ->where('amphoe',$amphoe)
+                        ->where('area',$area)
+                        ->get();
+
+        return $data_tambon;
+    }
+
+    public function show_polling_station_at($amphoe,$area,$tambon)
+    {
+        $data_polling_station_at = DB::table('vote_kan_data_stations')
+                        ->select('not_registered')
+                        ->where('amphoe',$amphoe)
+                        ->where('area',$area)
+                        ->where('tambon',$tambon)
+                        ->get();
+
+        return $data_polling_station_at;
     }
 }
