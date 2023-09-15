@@ -54,9 +54,9 @@ class Vote_kan_scoresController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         Vote_kan_score::create($requestData);
 
         return redirect('vote_kan_scores')->with('flash_message', 'Vote_kan_score added!');
@@ -100,9 +100,9 @@ class Vote_kan_scoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $vote_kan_score = Vote_kan_score::findOrFail($id);
         $vote_kan_score->update($requestData);
 
@@ -125,6 +125,7 @@ class Vote_kan_scoresController extends Controller
 
     public function show_score()
     {
-        // 
+
+        return view('vote_kan_admin.vote_kan_admin');
     }
 }

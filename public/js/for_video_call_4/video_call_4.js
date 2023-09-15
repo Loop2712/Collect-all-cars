@@ -1,8 +1,9 @@
 
-function btn_toggle_mic_camera(videoTrack,audioTrack){ // สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน
+function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน
     //============== เมนูปุ่มด้านล่าง ==============
-    const divForVideoButton = document.createElement('div');
-    divForVideoButton.classList.add('buttonVideo');
+    // const divForVideoButton = document.createElement('div');
+    // divForVideoButton.classList.add('buttonVideo');
+    const divForVideoButton = document.querySelector('#divForVideoButton');
 
     const muteButton = document.createElement('button');
         muteButton.type = "button";
@@ -21,7 +22,7 @@ function btn_toggle_mic_camera(videoTrack,audioTrack){ // สำหรับ ส
 
     divForVideoButton.appendChild(muteVideoButton);
 
-    document.querySelector('#footer_div').appendChild(divForVideoButton);
+    // document.querySelector('#footer_div').appendChild(divForVideoButton);
 
     muteButton.onclick = async function() {
         if (isAudio == true) {
@@ -79,11 +80,11 @@ function create_element_localvideo_call(localPlayerContainer) {
 
     const divVideo = document.createElement('div');
     divVideo.setAttribute('id','videoDiv_' + localPlayerContainer.id);
-    divVideo.setAttribute('class','video-box');
-    divVideo.setAttribute('style','background-color: black');
+    divVideo.setAttribute('class','custom-div');
+    divVideo.setAttribute('style','background-color: yellow');
 
     divVideo.append(localPlayerContainer);
-    document.querySelector('#divVideo_Parent').append(divVideo);
+    document.querySelector('#container_user_video_call').append(divVideo);
 
 }
 
@@ -132,10 +133,10 @@ function create_dummy_videoTrack(user){
         // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
         const divVideo = document.createElement('div');
         divVideo.setAttribute('id','videoDiv_' + user.uid.toString());
-        divVideo.setAttribute('class','video-box');
-        divVideo.setAttribute('style','background-color: black');
+        divVideo.setAttribute('class','custom-div');
+        divVideo.setAttribute('style','background-color: grey');
 
-        document.querySelector('#divVideo_Parent').append(divVideo);
+        document.querySelector('#container_user_video_call').append(divVideo);
 
         // ถ้ามี videoDiv อยู่แล้ว ลบอันเก่าก่อน
         if(document.getElementById('dummy_trackRemoteDiv_' + user.uid.toString())) {
@@ -154,11 +155,25 @@ function create_dummy_videoTrack(user){
         // divVideo.append(remote_video_call); // เพิ่มแท็กวิดีโอที่มีพื้นหลังแค่สีดำ เข้าไปใน div class="video-box"
 
 
-
     }else{
         console.log("------------------------------------------------------  หา user ไม่เจอ เลยขึ้น undifined ใน create_dummy_videoTrack()");
     }
 
+}
+
+
+
+// ตรวจสอบจำนวน div ที่มี class "custom-div" และปรับความกว้าง
+function updateDivWidth() {
+    let container = document.getElementById('container_user_video_call');
+    let customDivs = container.getElementsByClassName('custom-div');
+    let count = customDivs.length;
+
+    if (count > 1) {
+        container.classList.add("grid-template");
+    } else {
+        container.classList.remove("grid-template");
+    }
 }
 
 

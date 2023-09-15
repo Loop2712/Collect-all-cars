@@ -1,11 +1,16 @@
-@extends('layouts.partners.theme_partner_new')
 
-<link href="{{ asset('css/video_call_4/video_call_4.css') }}" rel="stylesheet">
 
-@section('content')
+{{-- <link href="{{ asset('css/video_call_4/video_call_4.css') }}" rel="stylesheet"> --}}
+<link href="{{ asset('css/video_call_4/layout_video_call_4.css') }}" rel="stylesheet">
+
+<link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet">
+<link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
+<link href="https://kit-pro.fontawesome.com/releases/v6.4.2/css/pro.min.css" rel="stylesheet">
+
+
 
 <!-- ========================================== html ========================================== -->
-
+{{--
 <!-- สำหรับ loading ก่อนเข้า videocall -->
 <div class="d-flex justify-content-center align-items-center">
     <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
@@ -67,6 +72,89 @@
             </div>
         </div>
 
+</div> --}}
+
+
+<!-- ========================================== layout video call ========================================== -->
+
+<div class="row full-height">
+	<div class="Scenary"></div>
+	<div class="col-12 col-lg-2">
+		<div class="data-sos text-center p-3 d-flex row">
+			<h4 class="mt-3 col-12 ">รหัสเคส: {{$sos_id}}
+                <button id="join" class="btn btn-success d-none" >เข้าร่วม</button>
+                <button id="leave" class="btn btn-danger " >ออกห้อง</button>
+            </h4>
+			<div class="d-flex">
+				<div id="divForVideoButton" class="align-self-end w-100">
+
+                    <button class="btn btn-secondary " id="btn_switchCamera" onclick="switchCamera();">
+                        <i class="fa-solid fa-camera-rotate"></i>
+                    </button>
+                    <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
+                    <button class="btn btn-secondary d-none d-lg-block" id="btn_switchMicrophone" onclick="switchMicrophone();">
+                        <i class="fa-solid fa-microphone"></i>
+                    </button>
+                    <div class="row">
+                        <button class="btnDevice  btn dropdown-toggle btn_for_select_video_device d-none" type="button" data-toggle="modal" data-target="#video_device" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
+                            <i class="fa-solid fa-chevron-down fa-2xs"></i>
+                        </button>
+
+                        <button class="btnDevice  btn dropdown-toggle btn_for_select_audio_device d-none" type="button" data-toggle="modal" data-target="#audio_device" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
+                            <i class="fa-solid fa-chevron-down fa-2xs"></i>
+                        </button>
+                    </div>
+
+					{{-- <button class="btn btn-success">asd</button>
+					<button class="btn btn-success">asd</button>
+					<button class="btn btn-success">asd</button> --}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-12 col-lg-10 full-height d-flex row">
+		<div class="video-call">
+			<div class=" d-flex align-item-center justify-content-center h-100 row">
+				<div class="d-flex align-self-center">
+					<div class="row" id="container_user_video_call">
+						<!-- <div class="custom-div">
+							<div class="status-input-output">
+								<div class="mic"><i class="fa-duotone fa-microphone"></i></div>
+								<div class="camera"><i class="fa-solid fa-video"></i></div>
+							</div>
+
+							<div class="infomation-user">
+								<div class="name-user-video-call">
+									<h5 class="m-0 text-white float-end"><b>lucky</b></h5>
+								</div>
+								<div class="role-user-video-call">
+									<small class="d-block">ศูนย์สั่งการ</small>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+
+				<!-- <div class="bg-success test col">user4</div> -->
+				<div class="w-100 user-video-call-contrainer d-none">
+					<div class="d-flex justify-content-center align-self-end d-non user-video-call-bar">
+						<!-- <div class="parent">
+							<div class="child"></div>
+						</div>
+						<div class="parent">
+							<div class="child"></div>
+						</div>
+						<div class="parent">
+							<div class="child"></div>
+						</div> -->
+
+					</div>
+
+					<button class="btn-show-hide-user-video-call btn" onclick="document.querySelector('.user-video-call-bar').classList.toggle('d-none');">ลง</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- ========================================== javascript ========================================== -->
@@ -74,7 +162,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{{ asset('Agora_Web_SDK_FULL/AgoraRTC_N-4.17.0.js') }}"></script>
 
-<script src="{{ asset('js/for_video_call_4/resize_div_video_call.js') }}"></script>
+{{-- <script src="{{ asset('js/for_video_call_4/resize_div_video_call.js') }}"></script> --}}
 <script src="{{ asset('js/for_video_call_4/video_call_4.js') }}"></script>
 
 <script>
@@ -115,12 +203,12 @@
     document.addEventListener('DOMContentLoaded', (event) => {
 
         function LoadingVideoCall() {
-            const loadingAnime = document.getElementById('lds-ring');
+            // const loadingAnime = document.getElementById('lds-ring');
 
             setTimeout(() => {
-                if(loadingAnime){
-                    loadingAnime.classList.remove('d-none');
-                }
+                // if(loadingAnime){
+                //     loadingAnime.classList.remove('d-none');
+                // }
                 fetch("{{ url('/') }}/api/video_call_4" + "?user_id=" + user_id + '&appCertificate=' + appCertificate  + '&appId=' + appId)
                     .then(response => response.text())
                     .then(result => {
@@ -130,7 +218,7 @@
                         options['token'] = result;
 
                         // เอาหน้าโหลดออก
-                        loadingAnime.remove();
+                        // loadingAnime.remove();
 
                         setTimeout(() => {
                             document.getElementById("join").click();
@@ -269,7 +357,7 @@
                 // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
                 const divVideo = document.createElement('div');
                     divVideo.setAttribute('id','videoDiv_' + user.uid.toString());
-                    divVideo.setAttribute('class','video-box');
+                    divVideo.setAttribute('class','custom-div');
                     divVideo.setAttribute('style','background-color: grey');
 
 
@@ -284,7 +372,7 @@
 
                 channelParameters.remoteVideoTrack.play(remotePlayerContainer);
                 // เพิ่ม div ใหม่ลงใน div หลัก
-                document.querySelector('#divVideo_Parent').append(divVideo);
+                document.querySelector('#container_user_video_call').append(divVideo);
                 // Set a stream fallback option to automatically switch remote video quality when network conditions degrade.
                 agoraEngine.setStreamFallbackOption(channelParameters.remoteUid, 1);
 
@@ -396,6 +484,9 @@
                 }
             }
 
+            // อัพเดต Div ตามจำนวนคนในห้อง ให้รูปแบบเหมาะสม
+            updateDivWidth();
+
         });
 
         // ออกจากห้อง
@@ -414,6 +505,9 @@
 
             console.log("agoraEngine ของ user-left");
             console.log(agoraEngine);
+
+            // อัพเดต Div ตามจำนวนคนในห้อง ให้รูปแบบเหมาะสม
+            updateDivWidth();
 
         });
 
@@ -972,4 +1066,3 @@
 
 </script>
 
-@endsection
