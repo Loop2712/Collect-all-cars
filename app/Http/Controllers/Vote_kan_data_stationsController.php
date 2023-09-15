@@ -6,11 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Vote_kan_data_station;
-use App\Models\Vote_kan_station;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class Vote_kan_stationsController extends Controller
+class Vote_kan_data_stationsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,19 +21,16 @@ class Vote_kan_stationsController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $vote_kan_stations = Vote_kan_station::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('province', 'LIKE', "%$keyword%")
-                ->orWhere('amphoe', 'LIKE', "%$keyword%")
-                ->orWhere('tambon', 'LIKE', "%$keyword%")
+            $vote_kan_data_stations = Vote_kan_data_station::where('amphoe', 'LIKE', "%$keyword%")
                 ->orWhere('area', 'LIKE', "%$keyword%")
-                ->orWhere('user_id', 'LIKE', "%$keyword%")
-                ->orWhere('name_user', 'LIKE', "%$keyword%")
+                ->orWhere('tambon', 'LIKE', "%$keyword%")
+                ->orWhere('polling_station_at', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $vote_kan_stations = Vote_kan_station::latest()->paginate($perPage);
+            $vote_kan_data_stations = Vote_kan_data_station::latest()->paginate($perPage);
         }
 
-        return view('vote_kan_stations.index', compact('vote_kan_stations'));
+        return view('vote_kan_data_stations.index', compact('vote_kan_data_stations'));
     }
 
     /**
@@ -45,7 +40,7 @@ class Vote_kan_stationsController extends Controller
      */
     public function create()
     {
-        return view('vote_kan_stations.create');
+        return view('vote_kan_data_stations.create');
     }
 
     /**
@@ -60,9 +55,9 @@ class Vote_kan_stationsController extends Controller
         
         $requestData = $request->all();
         
-        Vote_kan_station::create($requestData);
+        Vote_kan_data_station::create($requestData);
 
-        return redirect('vote_kan_stations')->with('flash_message', 'Vote_kan_station added!');
+        return redirect('vote_kan_data_stations')->with('flash_message', 'Vote_kan_data_station added!');
     }
 
     /**
@@ -74,9 +69,9 @@ class Vote_kan_stationsController extends Controller
      */
     public function show($id)
     {
-        $vote_kan_station = Vote_kan_station::findOrFail($id);
+        $vote_kan_data_station = Vote_kan_data_station::findOrFail($id);
 
-        return view('vote_kan_stations.show', compact('vote_kan_station'));
+        return view('vote_kan_data_stations.show', compact('vote_kan_data_station'));
     }
 
     /**
@@ -88,9 +83,9 @@ class Vote_kan_stationsController extends Controller
      */
     public function edit($id)
     {
-        $vote_kan_station = Vote_kan_station::findOrFail($id);
+        $vote_kan_data_station = Vote_kan_data_station::findOrFail($id);
 
-        return view('vote_kan_stations.edit', compact('vote_kan_station'));
+        return view('vote_kan_data_stations.edit', compact('vote_kan_data_station'));
     }
 
     /**
@@ -106,10 +101,10 @@ class Vote_kan_stationsController extends Controller
         
         $requestData = $request->all();
         
-        $vote_kan_station = Vote_kan_station::findOrFail($id);
-        $vote_kan_station->update($requestData);
+        $vote_kan_data_station = Vote_kan_data_station::findOrFail($id);
+        $vote_kan_data_station->update($requestData);
 
-        return redirect('vote_kan_stations')->with('flash_message', 'Vote_kan_station updated!');
+        return redirect('vote_kan_data_stations')->with('flash_message', 'Vote_kan_data_station updated!');
     }
 
     /**
@@ -121,8 +116,8 @@ class Vote_kan_stationsController extends Controller
      */
     public function destroy($id)
     {
-        Vote_kan_station::destroy($id);
+        Vote_kan_data_station::destroy($id);
 
-        return redirect('vote_kan_stations')->with('flash_message', 'Vote_kan_station deleted!');
+        return redirect('vote_kan_data_stations')->with('flash_message', 'Vote_kan_data_station deleted!');
     }
 }
