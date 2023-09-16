@@ -187,7 +187,7 @@ class Vote_kan_data_stationsController extends Controller
                     ])
                 ->update(['user_from' => $update_user_from]);
 
-            return redirect('sos_map/create');
+            return redirect('vote_kan_stations/create');
         }else{
             return redirect('login/line/'.$user_from.'?redirectTo=vote_kan_stations/create');
         }
