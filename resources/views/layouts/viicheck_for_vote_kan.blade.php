@@ -478,13 +478,16 @@
                         <ul class="dropdown-menu dropdown-menu-end">    
                             <div class="dropdown-divider mb-0"></div>
                             </li>
-                            <li><a class="dropdown-item btn" onclick="before_logout();"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
+                            <li>
 
-                                <a id="btn_go_to_logout" href="{{ route('logout') }}"  class="dropdown-item d-none" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                                <a class="dropdown-item btn" onclick="event.preventDefault();document.getElementById('logout_form_vote_kan').submit();">
+                                    <i class='bx bx-log-out-circle'></i><span>Logout</span>
+                                </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                                <form id="logout_form_vote_kan" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                                
                             </li>
                         </ul>
                     </div>
