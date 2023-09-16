@@ -558,4 +558,4 @@ Route::get('/layout_video_call', function () {
 
 
 // VOTE KAN
-Route::get('vote_kan_admin/show_score_public', 'Vote_kan_scoresController@show_score_public');
+Route::get('/vote_kan_admin/show_score_public', 'Vote_kan_scoresController@show_score_public');
