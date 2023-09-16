@@ -147,6 +147,15 @@ class LoginController extends Controller
         return Socialite::driver('line')->redirect();
     }
 
+    // VOTE KAN
+    public function redirectToLine_vote_kan_login(Request $request, $user_from)
+    {
+        $request->session()->put('from', $user_from);
+        $request->session()->put('redirectTo', 'https://www.viicheck.com/vote_kan_stations/create');
+
+        return Socialite::driver('line')->redirect();
+    }
+    
     // Line login kmutnbs
     public function redirectToLine_check_in(Request $request)
     {

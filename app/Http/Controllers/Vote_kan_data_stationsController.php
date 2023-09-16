@@ -189,7 +189,7 @@ class Vote_kan_data_stationsController extends Controller
 
             return redirect('vote_kan_stations/create');
         }else{
-            return redirect('login/line/'.$user_from.'?redirectTo=vote_kan_stations/create');
+            return redirect('vote_kan_login/login/line/'.$user_from.'?redirectTo=vote_kan_stations/create');
         }
     }
 
