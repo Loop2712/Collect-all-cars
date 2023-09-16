@@ -45,7 +45,7 @@
     </div>
     <div class="col-6">
         <span class="float-end">
-            อัพเดทล่าสุด : <span id="time_update_data">{{ date("H:i") }}</span>
+            อัพเดทล่าสุด : <span id="time_update_data">{{ date("H:i") }} น.</span>
         </span>
     </div>
 </div>
@@ -71,7 +71,7 @@
     @endphp
 
     <div class="col">
-        <div class="card radius-10 overflow-hidden {{ $class_bg_1 }}">
+        <div id="card_num_1" class="card radius-10 overflow-hidden {{ $class_bg_1 }}">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="text-white">
@@ -82,7 +82,7 @@
                     </div>
                     <div class="text-center flex-grow-1"> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
                         <h3 class="mb-0 text-white font-weight-bold">นายสุกวี แสงเป่า</h3>
-                        <h3 class="mb-0 text-white font-weight-bold">{{ $score_num_1 }} คะแนน</h3>
+                        <h3 id="show_text_score_1" class="mb-0 text-white font-weight-bold">{{ $score_num_1 }} คะแนน</h3>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@
     </div>
 
     <div class="col">
-        <div class="card radius-10 overflow-hidden {{ $class_bg_2 }}">
+        <div id="card_num_2" class="card radius-10 overflow-hidden {{ $class_bg_2 }}">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="text-white">
@@ -101,7 +101,7 @@
                     </div>
                     <div class="text-center flex-grow-1"> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
                         <h3 class="mb-0 text-white font-weight-bold">นายประวัติ กิจธรรมกูลนิจ</h3>
-                        <h3 class="mb-0 text-white font-weight-bold">{{ $score_num_2 }} คะแนน</h3>
+                        <h3 id="show_text_score_2" class="mb-0 text-white font-weight-bold">{{ $score_num_2 }} คะแนน</h3>
                     </div>
                 </div>
             </div>
@@ -529,7 +529,8 @@
 
         var reface_Create_graph = setInterval(function() {
             loop_Create_graph();
-        }, 60000);
+        }, 5000);
+        // }, 60000);
 
     });
 
@@ -539,23 +540,97 @@
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
-                // console.log(result[0]['not_registered']);
-                
-            });
 
-        Create_graph('เมืองกาญจนบุรี' , '15' , '66');
+                document.querySelector('#show_text_score_1').innerHTML = result['sum_num_1'] + " คะแนน" ;
+                document.querySelector('#show_text_score_2').innerHTML = result['sum_num_2'] + " คะแนน" ;
+
+                counterAnim("#show_text_score_1", score_num_1, result['sum_num_1'], 1500); // 1.5 วินาที
+                counterAnim("#show_text_score_2", score_num_2, result['sum_num_2'], 1500); // 1.5 วินาที
+
+                score_num_1 = result['sum_num_1'] ;
+                score_num_2 = result['sum_num_2'] ;
+
+                let class_bg_1 = "gold_color_gradient";
+                let class_bg_2 = "divScore";
+
+                if(score_num_1 > score_num_2){
+                    class_bg_1 = "gold_color_gradient";
+                    class_bg_2 = "divScore";
+                }else if(score_num_1 == score_num_2){
+                    class_bg_1 = "divScore";
+                    class_bg_2 = "divScore";
+                }
+                else{
+                    class_bg_1 = "divScore";
+                    class_bg_2 = "gold_color_gradient";
+                }
+
+                let n11111 = document.querySelector('#card_num_1').classList[3];
+                let n22222 = document.querySelector('#card_num_2').classList[3];
+
+                document.querySelector('#card_num_1').classList.remove(n11111);
+                document.querySelector('#card_num_2').classList.remove(n22222);
+
+                document.querySelector('#card_num_1').classList.add(class_bg_1);
+                document.querySelector('#card_num_2').classList.add(class_bg_2);
+
+                update_score_num_1 = {
+                    "amphoe_1" : result['score_amphoe_num_1']['amphoe_1'],
+                    "amphoe_2" : result['score_amphoe_num_1']['amphoe_2'],
+                    "amphoe_3" : result['score_amphoe_num_1']['amphoe_3'],
+                    "amphoe_4" : result['score_amphoe_num_1']['amphoe_4'],
+                    "amphoe_5" : result['score_amphoe_num_1']['amphoe_5'],
+                    "amphoe_6" : result['score_amphoe_num_1']['amphoe_6'],
+                    "amphoe_7" : result['score_amphoe_num_1']['amphoe_7'],
+                    "amphoe_8" : result['score_amphoe_num_1']['amphoe_8'],
+                    "amphoe_9" : result['score_amphoe_num_1']['amphoe_9'],
+                    "amphoe_10" : result['score_amphoe_num_1']['amphoe_10'],
+                    "amphoe_11" : result['score_amphoe_num_1']['amphoe_11'],
+                    "amphoe_12" : result['score_amphoe_num_1']['amphoe_12'],
+                    "amphoe_13" : result['score_amphoe_num_1']['amphoe_13'],
+                };
+
+                update_score_num_2 = {
+                    "amphoe_1" : result['score_amphoe_num_2']['amphoe_1'],
+                    "amphoe_2" : result['score_amphoe_num_2']['amphoe_2'],
+                    "amphoe_3" : result['score_amphoe_num_2']['amphoe_3'],
+                    "amphoe_4" : result['score_amphoe_num_2']['amphoe_4'],
+                    "amphoe_5" : result['score_amphoe_num_2']['amphoe_5'],
+                    "amphoe_6" : result['score_amphoe_num_2']['amphoe_6'],
+                    "amphoe_7" : result['score_amphoe_num_2']['amphoe_7'],
+                    "amphoe_8" : result['score_amphoe_num_2']['amphoe_8'],
+                    "amphoe_9" : result['score_amphoe_num_2']['amphoe_9'],
+                    "amphoe_10" : result['score_amphoe_num_2']['amphoe_10'],
+                    "amphoe_11" : result['score_amphoe_num_2']['amphoe_11'],
+                    "amphoe_12" : result['score_amphoe_num_2']['amphoe_12'],
+                    "amphoe_13" : result['score_amphoe_num_2']['amphoe_13'],
+                };
+
+                for (let zi = 0; zi < 13; zi++) {
+                    let name_key = "amphoe_" + parseInt(zi + 1);
+
+                    Create_graph(
+                        name_amphoe[name_key],
+                        update_score_num_1[name_key],
+                        update_score_num_2[name_key]
+                    );
+                }
+
+            });
 
         let now = new Date();
         let hours = now.getHours().toString().padStart(2, '0'); // ชั่วโมง
         let minutes = now.getMinutes().toString().padStart(2, '0'); // นาที
         let formattedDate = `${hours}:${minutes}`;
 
-        document.querySelector('#time_update_data').innerHTML = formattedDate;
+        document.querySelector('#time_update_data').innerHTML = formattedDate + " น.";
+
     }
 
     
     // ---------------------------------------
-
+    var score_num_1 = "{{ $score_num_1 }}" ;
+    var score_num_2 = "{{ $score_num_2 }}" ;
     var update_score_num_1 = [];
     var update_score_num_2 = [];
     var name_amphoe = [];
@@ -609,10 +684,14 @@
     };
 
     // ---------------------------------------
+    let chart = [] ;
+    let options = [];
 
     function Create_graph(amphoe , score_num_1 , score_num_2 , ){
 
-        let options = {
+        document.querySelector("#"+amphoe).innerHTML = "" ;
+
+        options[amphoe] = {
             series: [{
                 data: [ score_num_1 , score_num_2 ]
             }],
@@ -652,8 +731,8 @@
             }
         };
 
-        let chart = new ApexCharts(document.querySelector("#"+amphoe), options);
-        chart.render();
+        chart[amphoe] = new ApexCharts(document.querySelector("#"+amphoe),  options[amphoe]);
+        chart[amphoe].render();
 
     }
 
