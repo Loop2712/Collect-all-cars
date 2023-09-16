@@ -126,6 +126,18 @@
             }
         });
 
+        let now = new Date();
+        let day = now.getDate().toString().padStart(2, '0'); // วัน
+        let month = (now.getMonth() + 1).toString().padStart(2, '0'); // เดือน (เพิ่ม 1 เพราะว่ามันเริ่มต้นที่ 0)
+        let year = now.getFullYear(); // ปี
+        let hours = now.getHours().toString().padStart(2, '0'); // ชั่วโมง
+        let minutes = now.getMinutes().toString().padStart(2, '0'); // นาที
+
+        let formattedDate = `${day}-${month}-${year} ${hours}-${minutes}`;
+
+
+        let file_name = "หน่วยเลือกตั้งที่ลงทะเบียนแล้ว " + formattedDate;
+
        // DataTable initialisation
         let table1 = $("#table_vote_kan_stations").DataTable({
             dom: '<"dt-buttons"Bf><"clear">lirtp',
@@ -142,7 +154,8 @@
             buttons: [
                 {
                     extend: "excelHtml5",
-                    text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
+                    text: "Export Excel",  // เปลี่ยนข้อความในปุ่มที่นี่
+                    filename: file_name + ".xlsx" // เปลี่ยนชื่อไฟล์ตามที่คุณต้องการ
                 },
             ],
             language: {

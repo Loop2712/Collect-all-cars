@@ -159,4 +159,164 @@ class Vote_kan_scoresController extends Controller
 
         return view('vote_kan_admin.vote_kan_admin', compact('score_num_1','score_num_2'));
     }
+
+    function get_data_show_score(){
+
+        // เมืองกาญจนบุรี
+        $data_amphoe_1 = Vote_kan_score::where('amphoe' , 'เมืองกาญจนบุรี')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_1_score_num_1 = 0 ;
+        $amphoe_1_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_1 as $amphoe_1) {
+            $amphoe_1_score_num_1 = $amphoe_1_score_num_1 + $amphoe_1->number_1 ;
+            $amphoe_1_score_num_2 = $amphoe_1_score_num_2 + $amphoe_1->number_2;
+        }
+
+        // ท่ามะกา
+        $data_amphoe_2 = App\Models\Vote_kan_score::where('amphoe' , 'ท่ามะกา')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_2_score_num_1 = 0 ;
+        $amphoe_2_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_2 as $amphoe_2) {
+            $amphoe_2_score_num_1 = $amphoe_2_score_num_1 + $amphoe_2->number_1 ;
+            $amphoe_2_score_num_2 = $amphoe_2_score_num_2 + $amphoe_2->number_2;
+        }
+
+        // ทองผาภูมิ
+        $data_amphoe_3 = App\Models\Vote_kan_score::where('amphoe' , 'ทองผาภูมิ')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_3_score_num_1 = 0 ;
+        $amphoe_3_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_3 as $amphoe_3) {
+            $amphoe_3_score_num_1 = $amphoe_3_score_num_1 + $amphoe_3->number_1 ;
+            $amphoe_3_score_num_2 = $amphoe_3_score_num_2 + $amphoe_3->number_2;
+        }
+
+        // สังขละบุรี
+        $data_amphoe_4 = App\Models\Vote_kan_score::where('amphoe' , 'สังขละบุรี')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_4_score_num_1 = 0 ;
+        $amphoe_4_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_4 as $amphoe_4) {
+            $amphoe_4_score_num_1 = $amphoe_4_score_num_1 + $amphoe_4->number_1 ;
+            $amphoe_4_score_num_2 = $amphoe_4_score_num_2 + $amphoe_4->number_2;
+        }
+
+        // พนมทวน 
+        $data_amphoe_5 = App\Models\Vote_kan_score::where('amphoe' , 'พนมทวน')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_5_score_num_1 = 0 ;
+        $amphoe_5_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_5 as $amphoe_5) {
+            $amphoe_5_score_num_1 = $amphoe_5_score_num_1 + $amphoe_5->number_1 ;
+            $amphoe_5_score_num_2 = $amphoe_5_score_num_2 + $amphoe_5->number_2;
+        }
+
+        // เลาขวัญ
+        $data_amphoe_6 = App\Models\Vote_kan_score::where('amphoe' , 'เลาขวัญ')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_6_score_num_1 = 0 ;
+        $amphoe_6_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_6 as $amphoe_6) {
+            $amphoe_6_score_num_1 = $amphoe_6_score_num_1 + $amphoe_6->number_1 ;
+            $amphoe_6_score_num_2 = $amphoe_6_score_num_2 + $amphoe_6->number_2;
+        }
+
+        // ศรีสวัสดิ์ 
+        $data_amphoe_7 = App\Models\Vote_kan_score::where('amphoe' , 'ศรีสวัสดิ์')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_7_score_num_1 = 0 ;
+        $amphoe_7_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_7 as $amphoe_7) {
+            $amphoe_7_score_num_1 = $amphoe_7_score_num_1 + $amphoe_7->number_1 ;
+            $amphoe_7_score_num_2 = $amphoe_7_score_num_2 + $amphoe_7->number_2;
+        }
+
+        // ด่านมะขามเตี้ย 
+        $data_amphoe_8 = App\Models\Vote_kan_score::where('amphoe' , 'ด่านมะขามเตี้ย')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_8_score_num_1 = 0 ;
+        $amphoe_8_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_8 as $amphoe_8) {
+            $amphoe_8_score_num_1 = $amphoe_8_score_num_1 + $amphoe_8->number_1 ;
+            $amphoe_8_score_num_2 = $amphoe_8_score_num_2 + $amphoe_8->number_2;
+        }
+
+        // หนองปรือ 
+        $data_amphoe_9 = App\Models\Vote_kan_score::where('amphoe' , 'หนองปรือ')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_9_score_num_1 = 0 ;
+        $amphoe_9_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_9 as $amphoe_9) {
+            $amphoe_9_score_num_1 = $amphoe_9_score_num_1 + $amphoe_9->number_1 ;
+            $amphoe_9_score_num_2 = $amphoe_9_score_num_2 + $amphoe_9->number_2;
+        }
+
+        // ห้วยกระเจา
+        $data_amphoe_10 = App\Models\Vote_kan_score::where('amphoe' , 'ห้วยกระเจา')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_10_score_num_1 = 0 ;
+        $amphoe_10_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_10 as $amphoe_10) {
+            $amphoe_10_score_num_1 = $amphoe_10_score_num_1 + $amphoe_10->number_1 ;
+            $amphoe_10_score_num_2 = $amphoe_10_score_num_2 + $amphoe_10->number_2;
+        }
+
+        // ท่าม่วง
+        $data_amphoe_11 = App\Models\Vote_kan_score::where('amphoe' , 'ท่าม่วง')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_11_score_num_1 = 0 ;
+        $amphoe_11_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_11 as $amphoe_11) {
+            $amphoe_11_score_num_1 = $amphoe_11_score_num_1 + $amphoe_11->number_1 ;
+            $amphoe_11_score_num_2 = $amphoe_11_score_num_2 + $amphoe_11->number_2;
+        }
+
+        // บ่อพลอย
+        $data_amphoe_12 = App\Models\Vote_kan_score::where('amphoe' , 'บ่อพลอย')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_12_score_num_1 = 0 ;
+        $amphoe_12_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_12 as $amphoe_12) {
+            $amphoe_12_score_num_1 = $amphoe_12_score_num_1 + $amphoe_12->number_1 ;
+            $amphoe_12_score_num_2 = $amphoe_12_score_num_2 + $amphoe_12->number_2;
+        }
+
+        // ไทรโยค
+        $data_amphoe_13 = App\Models\Vote_kan_score::where('amphoe' , 'ไทรโยค')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_13_score_num_1 = 0 ;
+        $amphoe_13_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_13 as $amphoe_13) {
+            $amphoe_13_score_num_1 = $amphoe_13_score_num_1 + $amphoe_13->number_1 ;
+            $amphoe_13_score_num_2 = $amphoe_13_score_num_2 + $amphoe_13->number_2;
+        }
+
+    }
 }

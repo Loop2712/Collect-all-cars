@@ -267,24 +267,24 @@
 
         function submit_vote_kan_stations() {
 
-        if ($("#vote_kan_stations")[0].checkValidity()) {
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'ลงทะเบียนเรียบร้อยแล้ว',
-                showConfirmButton: false,
-                timer: 1500
-            })
+            if ($("#vote_kan_stations")[0].checkValidity()) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'ลงทะเบียนเรียบร้อยแล้ว',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
 
-            setTimeout(() => {
-                document.querySelector('#btn_submit_submit_vote_kan_stations').click();
-            }, 1600);
-        } else {
-            // Validate Form
-            $("#vote_kan_stations")[0].reportValidity();
-            event.preventDefault();
+                setTimeout(() => {
+                    document.querySelector('#btn_submit_submit_vote_kan_stations').click();
+                }, 1000);
+            } else {
+                // Validate Form
+                $("#vote_kan_stations")[0].reportValidity();
+                event.preventDefault();
+            }
         }
-    }
 
     </script>
 @endsection

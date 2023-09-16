@@ -321,9 +321,8 @@ Route::get('/avg_score_by_case/{filter_data}/{user_login}', 'Dashboard_1669_Cont
 Route::get('/filter_data_command_unit', 'Dashboard_1669_Controller@filter_data_command_unit');
 Route::get('/get_location_ask_more_operating_unit/', 'Sos_help_centerController@get_location_ask_more_operating_unit');
 
-// Route::get('/location/{location_P}/show_location_A','API\LocationController@show_location_A');
+// VOTE KAN
 Route::get('/get_location_kan/{amphoe}/show_area','Vote_kan_data_stationsController@show_area');
 Route::get('/get_location_kan/{amphoe}/{area}/show_tambon','Vote_kan_data_stationsController@show_tambon');
 Route::get('/get_location_kan/{amphoe}/{area}/{tambon}/show_polling_station_at','Vote_kan_data_stationsController@show_polling_station_at');
-
-
+Route::get('/get_data_show_score','Vote_kan_scoresController@get_data_show_score');

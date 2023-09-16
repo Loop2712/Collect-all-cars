@@ -45,7 +45,7 @@
     </div>
     <div class="col-6">
         <span class="float-end">
-            อัพเดทล่าสุด : {{ date("H:i") }}
+            อัพเดทล่าสุด : <span id="time_update_data">{{ date("H:i") }}</span>
         </span>
     </div>
 </div>
@@ -59,7 +59,11 @@
         if($score_num_1 > $score_num_2){
             $class_bg_1 = "gold_color_gradient";
             $class_bg_2 = "divScore";
-        }else{
+        }else if($score_num_1 == $score_num_2){
+            $class_bg_1 = "divScore";
+            $class_bg_2 = "divScore";
+        }
+        else{
             $class_bg_1 = "divScore";
             $class_bg_2 = "gold_color_gradient";
         }
@@ -77,7 +81,7 @@
                         </div>
                     </div>
                     <div class="text-center flex-grow-1"> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
-                        <h3 class="mb-0 text-white font-weight-bold">นาย A</h3>
+                        <h3 class="mb-0 text-white font-weight-bold">นายสุกวี แสงเป่า</h3>
                         <h3 class="mb-0 text-white font-weight-bold">{{ $score_num_1 }} คะแนน</h3>
                     </div>
                 </div>
@@ -96,7 +100,7 @@
                         </div>
                     </div>
                     <div class="text-center flex-grow-1"> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
-                        <h3 class="mb-0 text-white font-weight-bold">นาย B</h3>
+                        <h3 class="mb-0 text-white font-weight-bold">นายประวัติ กิจธรรมกูลนิจ</h3>
                         <h3 class="mb-0 text-white font-weight-bold">{{ $score_num_2 }} คะแนน</h3>
                     </div>
                 </div>
@@ -332,6 +336,156 @@
         </div>
     </div>
 
+    <!-- ด่านมะขามเตี้ย -->
+    @php
+        $data_amphoe_8 = App\Models\Vote_kan_score::where('amphoe' , 'ด่านมะขามเตี้ย')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_8_score_num_1 = 0 ;
+        $amphoe_8_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_8 as $amphoe_8) {
+            $amphoe_8_score_num_1 = $amphoe_8_score_num_1 + $amphoe_8->number_1 ;
+            $amphoe_8_score_num_2 = $amphoe_8_score_num_2 + $amphoe_8->number_2;
+        }
+    @endphp
+    <div class="col mb-5">
+        <div class="card radius-10 h-100">
+            <div class="card-header">
+                <h3>ด่านมะขามเตี้ย</h3>
+            </div>
+            <div class="card-body">
+                <div id="ด่านมะขามเตี้ย"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- หนองปรือ -->
+    @php
+        $data_amphoe_9 = App\Models\Vote_kan_score::where('amphoe' , 'หนองปรือ')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_9_score_num_1 = 0 ;
+        $amphoe_9_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_9 as $amphoe_9) {
+            $amphoe_9_score_num_1 = $amphoe_9_score_num_1 + $amphoe_9->number_1 ;
+            $amphoe_9_score_num_2 = $amphoe_9_score_num_2 + $amphoe_9->number_2;
+        }
+    @endphp
+    <div class="col mb-5">
+        <div class="card radius-10 h-100">
+            <div class="card-header">
+                <h3>หนองปรือ</h3>
+            </div>
+            <div class="card-body">
+                <div id="หนองปรือ"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ห้วยกระเจา -->
+    @php
+        $data_amphoe_10 = App\Models\Vote_kan_score::where('amphoe' , 'ห้วยกระเจา')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_10_score_num_1 = 0 ;
+        $amphoe_10_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_10 as $amphoe_10) {
+            $amphoe_10_score_num_1 = $amphoe_10_score_num_1 + $amphoe_10->number_1 ;
+            $amphoe_10_score_num_2 = $amphoe_10_score_num_2 + $amphoe_10->number_2;
+        }
+    @endphp
+    <div class="col mb-5">
+        <div class="card radius-10 h-100">
+            <div class="card-header">
+                <h3>ห้วยกระเจา</h3>
+            </div>
+            <div class="card-body">
+                <div id="ห้วยกระเจา"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ท่าม่วง -->
+    @php
+        $data_amphoe_11 = App\Models\Vote_kan_score::where('amphoe' , 'ท่าม่วง')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_11_score_num_1 = 0 ;
+        $amphoe_11_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_11 as $amphoe_11) {
+            $amphoe_11_score_num_1 = $amphoe_11_score_num_1 + $amphoe_11->number_1 ;
+            $amphoe_11_score_num_2 = $amphoe_11_score_num_2 + $amphoe_11->number_2;
+        }
+    @endphp
+    <div class="col mb-5">
+        <div class="card radius-10 h-100">
+            <div class="card-header">
+                <h3>ท่าม่วง</h3>
+            </div>
+            <div class="card-body">
+                <div id="ท่าม่วง"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- บ่อพลอย -->
+    @php
+        $data_amphoe_12 = App\Models\Vote_kan_score::where('amphoe' , 'บ่อพลอย')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_12_score_num_1 = 0 ;
+        $amphoe_12_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_12 as $amphoe_12) {
+            $amphoe_12_score_num_1 = $amphoe_12_score_num_1 + $amphoe_12->number_1 ;
+            $amphoe_12_score_num_2 = $amphoe_12_score_num_2 + $amphoe_12->number_2;
+        }
+    @endphp
+    <div class="col mb-5">
+        <div class="card radius-10 h-100">
+            <div class="card-header">
+                <h3>บ่อพลอย</h3>
+            </div>
+            <div class="card-body">
+                <div id="บ่อพลอย"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ไทรโยค -->
+    @php
+        $data_amphoe_13 = App\Models\Vote_kan_score::where('amphoe' , 'ไทรโยค')
+            ->where('last', 'Yes')->get();
+
+        $amphoe_13_score_num_1 = 0 ;
+        $amphoe_13_score_num_2 = 0 ;
+
+        foreach ($data_amphoe_13 as $amphoe_13) {
+            $amphoe_13_score_num_1 = $amphoe_13_score_num_1 + $amphoe_13->number_1 ;
+            $amphoe_13_score_num_2 = $amphoe_13_score_num_2 + $amphoe_13->number_2;
+        }
+    @endphp
+    <div class="col mb-5">
+        <div class="card radius-10 h-100">
+            <div class="card-header">
+                <h3>ไทรโยค</h3>
+            </div>
+            <div class="card-body">
+                <div id="ไทรโยค"></div>
+            </div>
+
+        </div>
+    </div>
+
 </div><!--end row-->
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -365,317 +519,148 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         setTimeout(() => {
-            window.location.reload();
+
+            for (let i = 0; i < 13; i++) {
+                let name_key = "amphoe_" + parseInt(i + 1);
+                Create_graph(name_amphoe[name_key] , update_score_num_1[name_key] , update_score_num_2[name_key]);
+            }
+
+        }, 2000);
+
+        var reface_Create_graph = setInterval(function() {
+            loop_Create_graph();
         }, 60000);
+
     });
 
-    // เมืองกาญจนบุรี
-    let options_1 = {
-        series: [{
-            data: ['{{ $amphoe_1_score_num_1 }}', '{{ $amphoe_1_score_num_2 }}']
-        }],
-            chart: {
-            height: 350,
-            type: 'bar',
-            events: {
-            click: function(chart, w, e) {
-                // console.log(chart, w, e)
-            }
-            }
-        },
+    function loop_Create_graph(){
 
-        plotOptions: {
-            bar: {
-            columnWidth: '45%',
-            distributed: true,
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        legend: {
-            show: false
-        },
-        xaxis: {
-            categories: [
-                ['เบอร์ 1', 'นาย A','{{ $amphoe_1_score_num_1 }} คะแนน'],
-                ['เบอร์ 2', 'นาย B','{{ $amphoe_1_score_num_2 }} คะแนน'],
-            ],
-            labels: {
-                style: {
+        fetch("{{ url('/') }}/api/get_data_show_score")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                // console.log(result[0]['not_registered']);
+                
+            });
 
-                    fontSize: '12px'
-                }
-            }
-        }
+        Create_graph('เมืองกาญจนบุรี' , '15' , '66');
+
+        let now = new Date();
+        let hours = now.getHours().toString().padStart(2, '0'); // ชั่วโมง
+        let minutes = now.getMinutes().toString().padStart(2, '0'); // นาที
+        let formattedDate = `${hours}:${minutes}`;
+
+        document.querySelector('#time_update_data').innerHTML = formattedDate;
+    }
+
+    
+    // ---------------------------------------
+
+    var update_score_num_1 = [];
+    var update_score_num_2 = [];
+    var name_amphoe = [];
+
+    name_amphoe = {
+        "amphoe_1" : "เมืองกาญจนบุรี",
+        "amphoe_2" : "ท่ามะกา",
+        "amphoe_3" : "ทองผาภูมิ",
+        "amphoe_4" : "สังขละบุรี",
+        "amphoe_5" : "พนมทวน",
+        "amphoe_6" : "เลาขวัญ",
+        "amphoe_7" : "ศรีสวัสดิ์",
+        "amphoe_8" : "ด่านมะขามเตี้ย",
+        "amphoe_9" : "หนองปรือ",
+        "amphoe_10" : "ห้วยกระเจา",
+        "amphoe_11" : "ท่าม่วง",
+        "amphoe_12" : "บ่อพลอย",
+        "amphoe_13" : "ไทรโยค",
     };
 
-    let chart_1 = new ApexCharts(document.querySelector("#เมืองกาญจนบุรี"), options_1);
-    chart_1.render();
-
-    // ท่ามะกา
-    let options_2 = {
-        series: [{
-            data: ['{{ $amphoe_2_score_num_1 }}', '{{ $amphoe_2_score_num_2 }}']
-        }],
-            chart: {
-            height: 350,
-            type: 'bar',
-            events: {
-            click: function(chart, w, e) {
-                // console.log(chart, w, e)
-            }
-            }
-        },
-
-        plotOptions: {
-            bar: {
-            columnWidth: '45%',
-            distributed: true,
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        legend: {
-            show: false
-        },
-        xaxis: {
-            categories: [
-                ['เบอร์ 1', 'นาย A','{{ $amphoe_2_score_num_1 }} คะแนน'],
-                ['เบอร์ 2', 'นาย B','{{ $amphoe_2_score_num_2 }} คะแนน'],
-            ],
-            labels: {
-                style: {
-
-                    fontSize: '12px'
-                }
-            }
-        }
+    update_score_num_1 = {
+        "amphoe_1" : "{{ $amphoe_1_score_num_1 }}",
+        "amphoe_2" : "{{ $amphoe_2_score_num_1 }}",
+        "amphoe_3" : "{{ $amphoe_3_score_num_1 }}",
+        "amphoe_4" : "{{ $amphoe_4_score_num_1 }}",
+        "amphoe_5" : "{{ $amphoe_5_score_num_1 }}",
+        "amphoe_6" : "{{ $amphoe_6_score_num_1 }}",
+        "amphoe_7" : "{{ $amphoe_7_score_num_1 }}",
+        "amphoe_8" : "{{ $amphoe_8_score_num_1 }}",
+        "amphoe_9" : "{{ $amphoe_9_score_num_1 }}",
+        "amphoe_10" : "{{ $amphoe_10_score_num_1 }}",
+        "amphoe_11" : "{{ $amphoe_11_score_num_1 }}",
+        "amphoe_12" : "{{ $amphoe_12_score_num_1 }}",
+        "amphoe_13" : "{{ $amphoe_13_score_num_1 }}",
     };
 
-    let chart_2 = new ApexCharts(document.querySelector("#ท่ามะกา"), options_2);
-    chart_2.render();
-
-    // ทองผาภูมิ
-    let options_3 = {
-        series: [{
-            data: ['{{ $amphoe_3_score_num_1 }}', '{{ $amphoe_3_score_num_2 }}']
-        }],
-            chart: {
-            height: 350,
-            type: 'bar',
-            events: {
-            click: function(chart, w, e) {
-                // console.log(chart, w, e)
-            }
-            }
-        },
-
-        plotOptions: {
-            bar: {
-            columnWidth: '45%',
-            distributed: true,
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        legend: {
-            show: false
-        },
-        xaxis: {
-            categories: [
-                ['เบอร์ 1', 'นาย A','{{ $amphoe_3_score_num_1 }} คะแนน'],
-                ['เบอร์ 2', 'นาย B','{{ $amphoe_3_score_num_2 }} คะแนน'],
-            ],
-            labels: {
-                style: {
-
-                    fontSize: '12px'
-                }
-            }
-        }
+    update_score_num_2 = {
+        "amphoe_1" : "{{ $amphoe_1_score_num_2 }}",
+        "amphoe_2" : "{{ $amphoe_2_score_num_2 }}",
+        "amphoe_3" : "{{ $amphoe_3_score_num_2 }}",
+        "amphoe_4" : "{{ $amphoe_4_score_num_2 }}",
+        "amphoe_5" : "{{ $amphoe_5_score_num_2 }}",
+        "amphoe_6" : "{{ $amphoe_6_score_num_2 }}",
+        "amphoe_7" : "{{ $amphoe_7_score_num_2 }}",
+        "amphoe_8" : "{{ $amphoe_8_score_num_2 }}",
+        "amphoe_9" : "{{ $amphoe_9_score_num_2 }}",
+        "amphoe_10" : "{{ $amphoe_10_score_num_2 }}",
+        "amphoe_11" : "{{ $amphoe_11_score_num_2 }}",
+        "amphoe_12" : "{{ $amphoe_12_score_num_2 }}",
+        "amphoe_13" : "{{ $amphoe_13_score_num_2 }}",
     };
 
-    let chart_3 = new ApexCharts(document.querySelector("#ทองผาภูมิ"), options_3);
-    chart_3.render();
+    // ---------------------------------------
 
-    // สังขละบุรี
-    let options_4 = {
-        series: [{
-            data: ['{{ $amphoe_4_score_num_1 }}', '{{ $amphoe_4_score_num_2 }}']
-        }],
-            chart: {
-            height: 350,
-            type: 'bar',
-            events: {
-            click: function(chart, w, e) {
-                // console.log(chart, w, e)
-            }
-            }
-        },
+    function Create_graph(amphoe , score_num_1 , score_num_2 , ){
 
-        plotOptions: {
-            bar: {
-            columnWidth: '45%',
-            distributed: true,
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        legend: {
-            show: false
-        },
-        xaxis: {
-            categories: [
-                ['เบอร์ 1', 'นาย A','{{ $amphoe_4_score_num_1 }} คะแนน'],
-                ['เบอร์ 2', 'นาย B','{{ $amphoe_4_score_num_2 }} คะแนน'],
-            ],
-            labels: {
-                style: {
+        let options = {
+            series: [{
+                data: [ score_num_1 , score_num_2 ]
+            }],
+                chart: {
+                height: 350,
+                type: 'bar',
+                events: {
+                click: function(chart, w, e) {
+                    // console.log(chart, w, e)
+                }
+                }
+            },
 
-                    fontSize: '12px'
+            plotOptions: {
+                bar: {
+                columnWidth: '45%',
+                distributed: true,
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            legend: {
+                show: false
+            },
+            xaxis: {
+                categories: [
+                    ['เบอร์ 1', score_num_1 +' คะแนน'],
+                    ['เบอร์ 2', score_num_2 +' คะแนน'],
+                ],
+                labels: {
+                    style: {
+
+                        fontSize: '12px'
+                    }
                 }
             }
-        }
-    };
+        };
 
-    let chart_4 = new ApexCharts(document.querySelector("#สังขละบุรี"), options_4);
-    chart_4.render();
+        let chart = new ApexCharts(document.querySelector("#"+amphoe), options);
+        chart.render();
 
-    // พนมทวน
-    let options_5 = {
-        series: [{
-            data: ['{{ $amphoe_5_score_num_1 }}', '{{ $amphoe_5_score_num_2 }}']
-        }],
-            chart: {
-            height: 350,
-            type: 'bar',
-            events: {
-            click: function(chart, w, e) {
-                // console.log(chart, w, e)
-            }
-            }
-        },
+    }
 
-        plotOptions: {
-            bar: {
-            columnWidth: '45%',
-            distributed: true,
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        legend: {
-            show: false
-        },
-        xaxis: {
-            categories: [
-                ['เบอร์ 1', 'นาย A','{{ $amphoe_5_score_num_1 }} คะแนน'],
-                ['เบอร์ 2', 'นาย B','{{ $amphoe_5_score_num_2 }} คะแนน'],
-            ],
-            labels: {
-                style: {
-
-                    fontSize: '12px'
-                }
-            }
-        }
-    };
-
-    let chart_5 = new ApexCharts(document.querySelector("#พนมทวน"), options_5);
-    chart_5.render();
-
-    // เลาขวัญ
-    let options_6 = {
-        series: [{
-            data: ['{{ $amphoe_6_score_num_1 }}', '{{ $amphoe_6_score_num_2 }}']
-        }],
-            chart: {
-            height: 350,
-            type: 'bar',
-            events: {
-            click: function(chart, w, e) {
-                // console.log(chart, w, e)
-            }
-            }
-        },
-
-        plotOptions: {
-            bar: {
-            columnWidth: '45%',
-            distributed: true,
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        legend: {
-            show: false
-        },
-        xaxis: {
-            categories: [
-                ['เบอร์ 1', 'นาย A','{{ $amphoe_6_score_num_1 }} คะแนน'],
-                ['เบอร์ 2', 'นาย B','{{ $amphoe_6_score_num_2 }} คะแนน'],
-            ],
-            labels: {
-                style: {
-
-                    fontSize: '12px'
-                }
-            }
-        }
-    };
-
-    let chart_6 = new ApexCharts(document.querySelector("#เลาขวัญ"), options_6);
-    chart_6.render();
-
-    // ศรีสวัสดิ์
-    let options_7 = {
-        series: [{
-            data: ['{{ $amphoe_7_score_num_1 }}', '{{ $amphoe_7_score_num_2 }}']
-        }],
-            chart: {
-            height: 350,
-            type: 'bar',
-            events: {
-            click: function(chart, w, e) {
-                // console.log(chart, w, e)
-            }
-            }
-        },
-
-        plotOptions: {
-            bar: {
-            columnWidth: '45%',
-            distributed: true,
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        legend: {
-            show: false
-        },
-        xaxis: {
-            categories: [
-                ['เบอร์ 1', 'นาย A','{{ $amphoe_7_score_num_1 }} คะแนน'],
-                ['เบอร์ 2', 'นาย B','{{ $amphoe_7_score_num_2 }} คะแนน'],
-            ],
-            labels: {
-                style: {
-
-                    fontSize: '12px'
-                }
-            }
-        }
-    };
-
-    let chart_7 = new ApexCharts(document.querySelector("#ศรีสวัสดิ์"), options_7);
-    chart_7.render();
+    function myStop_reface_Create_graph() {
+        clearInterval(reface_Create_graph);
+        // console.log("STOP LOOP");
+    }
 
 </script>
 
