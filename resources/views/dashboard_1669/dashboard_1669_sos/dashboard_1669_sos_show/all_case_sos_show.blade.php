@@ -450,6 +450,7 @@
             paging: true,
             autoWidth: true,
             lengthChange: true,
+            deferRender: true,
             buttons: [
                 {
                     extend: "excelHtml5",

@@ -7,6 +7,8 @@ use App\Http\Requests;
 
 use App\Models\Vote_kan_data_station;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Vote_kan_data_stationsController extends Controller
 {
@@ -119,5 +121,93 @@ class Vote_kan_data_stationsController extends Controller
         Vote_kan_data_station::destroy($id);
 
         return redirect('vote_kan_data_stations')->with('flash_message', 'Vote_kan_data_station deleted!');
+    }
+
+    public function show_area($amphoe)
+    {
+        $data_area = DB::table('vote_kan_data_stations')
+                        ->select('area')
+                        ->where('amphoe',$amphoe)
+                        ->where('not_registered','!=',null)
+                        ->groupBy('area')
+                        ->get();
+
+        return $data_area;
+    }
+
+    public function show_tambon($amphoe,$area)
+    {
+        $data_tambon = DB::table('vote_kan_data_stations')
+                        ->select('tambon')
+                        ->where('amphoe',$amphoe)
+                        ->where('area',$area)
+                        ->where('not_registered','!=',null)
+                        ->get();
+
+        return $data_tambon;
+    }
+
+    public function show_polling_station_at($amphoe,$area,$tambon)
+    {
+        $data_polling_station_at = DB::table('vote_kan_data_stations')
+                        ->select('not_registered')
+                        ->where('amphoe',$amphoe)
+                        ->where('area',$area)
+                        ->where('tambon',$tambon)
+                        ->where('not_registered','!=',null)
+                        ->get();
+
+        return $data_polling_station_at;
+    }
+
+    public function vote_kan_login(Request $request , $user_from)
+    {
+        if(Auth::check()){
+
+            $data_user = Auth::user();
+
+            if ( !empty($data_user->user_from) ){
+
+                $check_user_from = explode(",",$data_user->user_from);
+
+                if ( in_array( $user_from , $check_user_from ) ){
+                    $update_user_from = $data_user->user_from ;
+                }else{
+                    $update_user_from = $data_user->user_from .','. $user_from ;
+                }
+
+            }else{
+                $update_user_from = $user_from ;
+            }
+
+            DB::table('users')
+                ->where([ 
+                        ['type', 'line'],
+                        ['provider_id', $data_user->provider_id],
+                    ])
+                ->update(['user_from' => $update_user_from]);
+
+            return redirect('vote_kan_stations/create');
+        }else{
+            return redirect('vote_kan_login/login/line/'.$user_from.'?redirectTo=vote_kan_stations/create');
+        }
+    }
+
+    public function not_registered(Request $request)
+    {
+        $keyword = $request->get('search');
+        $perPage = 150;
+
+        if (!empty($keyword)) {
+            $vote_kan_data_not_registered = Vote_kan_data_station::where('amphoe', 'LIKE', "%$keyword%")
+                ->orWhere('area', 'LIKE', "%$keyword%")
+                ->orWhere('tambon', 'LIKE', "%$keyword%")
+                ->orWhere('polling_station_at', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $vote_kan_data_not_registered = Vote_kan_data_station::where('not_registered', '!=' , null)->latest()->paginate($perPage);
+        }
+
+        return view('vote_kan_data_stations.vote_kan_stations_not_registered', compact('vote_kan_data_not_registered'));
     }
 }

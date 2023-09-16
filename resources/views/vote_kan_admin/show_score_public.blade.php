@@ -1,4 +1,4 @@
-@extends('layouts.viicheck_for_vote_kan')
+@extends('layouts.viicheck_for_vote_kan_public')
 
 @section('content')
 
@@ -44,9 +44,13 @@
         <h1>ผลการนับคะแนนอย่างไม่เป็นทางการ</h1>
     </div>
     <div class="col-6">
-        <span class="float-end">
+        <div class="justify-content-end float-end">
             อัพเดทล่าสุด : <span id="time_update_data">{{ date("H:i") }} น.</span>
-        </span>
+            <br>
+            <span class="float-end mt-2">
+                Powered by <img src="https://www.viicheck.com/img/logo/VII-check-LOGO-W-v1.png" style="width: 50px;">
+            </span>
+        </div>
     </div>
 </div>
 

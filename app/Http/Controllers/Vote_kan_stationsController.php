@@ -9,6 +9,7 @@ use App\Models\Vote_kan_data_station;
 use App\Models\Vote_kan_station;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Vote_kan_stationsController extends Controller
 {
@@ -20,7 +21,7 @@ class Vote_kan_stationsController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 2500;
 
         if (!empty($keyword)) {
             $vote_kan_stations = Vote_kan_station::where('name', 'LIKE', "%$keyword%")
@@ -45,7 +46,12 @@ class Vote_kan_stationsController extends Controller
      */
     public function create()
     {
-        return view('vote_kan_stations.create');
+        $data_user = Auth::user();
+
+        $data = Vote_kan_data_station::groupBy('amphoe')->get();
+        $check_user = Vote_kan_station::where('user_id',$data_user->id)->first();
+
+        return view('vote_kan_stations.create', compact('data','check_user'));
     }
 
     /**
@@ -62,7 +68,48 @@ class Vote_kan_stationsController extends Controller
         
         Vote_kan_station::create($requestData);
 
-        return redirect('vote_kan_stations')->with('flash_message', 'Vote_kan_station added!');
+        
+
+        $data_old = Vote_kan_data_station::where('amphoe' , $requestData['amphoe'])
+            ->where('area' , $requestData['area'])
+            ->where('tambon' , $requestData['tambon'])
+            ->first();
+
+        $old_not_registered = $data_old->not_registered;
+        $old_registered = $data_old->registered;
+
+        // ลงทะเบียนแล้ว
+        if(empty($old_registered)){
+            $update_registered = $requestData['polling_station_at'] ;
+        }else{
+            $update_registered = $old_registered . ',' . $requestData['polling_station_at'] ;
+        }
+
+        $old_not_registered_array = explode(",", $old_not_registered);
+
+        // ค่าที่คุณต้องการลบ
+        $valueToRemove = $requestData['polling_station_at'];
+
+        // ใช้ array_filter() เพื่อลบค่าที่เท่ากับ $valueToRemove
+        $filteredArray = array_filter($old_not_registered_array, function($value) use ($valueToRemove) {
+            return $value !== $valueToRemove;
+        });
+
+        $update_not_registered = implode(",", $filteredArray);
+
+        DB::table('vote_kan_data_stations')
+            ->where([ 
+                    ['amphoe', $requestData['amphoe']],
+                    ['area', $requestData['area']],
+                    ['tambon', $requestData['tambon']],
+                ])
+            ->update([
+                    'not_registered' => $update_not_registered,
+                    'registered' => $update_registered,
+                ]);
+
+        // return redirect('vote_kan_stations')->with('flash_message', 'Vote_kan_station added!');
+        return redirect()->back();
     }
 
     /**

@@ -27,5 +27,9 @@ class Vote_kan_station extends Model
      */
     protected $fillable = ['name', 'province', 'amphoe', 'tambon', 'area', 'user_id', 'name_user','phone','phone_2','polling_station_at'];
 
+    public function vote_kan_score(){
+        return $this->hasMany('App\Models\Vote_kan_score', 'vote_kan_stations_id');
+    }
+
     
 }

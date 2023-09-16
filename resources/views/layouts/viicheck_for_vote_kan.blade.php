@@ -78,22 +78,48 @@
             <!--navigation-->
             @if(Auth::user()->user_from == "admin_vote_kan" )
             <ul class="metismenu" id="menu">
-                <li>
+                <!-- <li>
                     <a href="{{ url('/vote_kan_stations') }}" >
                         <div class="parent-icon">
                             <i class="fa-solid fa-user-shield"></i>
                         </div>
                         <div class="menu-title">รายชื่อหน่วย</div>
                     </a>
-                </li>
+                </li> -->
                 <li>
-                    <a href="{{ url('/vote_kan_admin/show_score') }}" >
+					<a href="javascript:;" class="has-arrow" aria-expanded="false">
+						<div class="parent-icon"><i class="bx bx-grid-alt"></i>
+						</div>
+						<div class="menu-title">หน่วยเลือกตั้ง</div>
+					</a>
+					<ul class="mm-collapse">
+						<li> <a href="{{ url('/vote_kan_stations') }}"><i class="bx bx-right-arrow-alt"></i>ลงทะเบียนแล้ว</a>
+						</li>
+						<li> <a href="{{ url('/vote_kan_stations_not_registered') }}"><i class="bx bx-right-arrow-alt"></i>ยังไม่ได้ลงทะเบียน</a>
+						</li>
+					</ul>
+				</li>
+                <li>
+                    <a href="javascript:;" class="has-arrow" aria-expanded="false">
                         <div class="parent-icon">
-                            <i class="fa-solid fa-user-shield"></i>
+                            <i class="fa-duotone fa-hundred-points"></i>
                         </div>
                         <div class="menu-title">ผลคะแนน</div>
                     </a>
+                    <ul class="mm-collapse">
+                        <li> 
+                            <a href="{{ url('/vote_kan_admin/show_score') }}" >
+                                <i class="bx bx-right-arrow-alt"></i>คะแนนรวม
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/vote_kan_scores') }}">
+                                <i class="bx bx-right-arrow-alt"></i>การกรอกคะแนน
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+                
             </ul>
             @endif
             <!--end navigation-->
@@ -452,13 +478,16 @@
                         <ul class="dropdown-menu dropdown-menu-end">    
                             <div class="dropdown-divider mb-0"></div>
                             </li>
-                            <li><a class="dropdown-item btn" onclick="before_logout();"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
+                            <li>
 
-                                <a id="btn_go_to_logout" href="{{ route('logout') }}"  class="dropdown-item d-none" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                                <a class="dropdown-item btn" onclick="event.preventDefault();document.getElementById('logout_form_vote_kan').submit();">
+                                    <i class='bx bx-log-out-circle'></i><span>Logout</span>
+                                </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                                <form id="logout_form_vote_kan" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                                
                             </li>
                         </ul>
                     </div>
@@ -512,6 +541,21 @@
     <script src="{{ asset('partner_new/js/index.js') }}"></script>
     <!--app JS-->
     <script src="{{ asset('partner_new/js/app.js') }}"></script>
+    <script>
+        const counterAnim = (qSelector, start = 0, end, duration = 1000) => {
+            const target = document.querySelector(qSelector);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                target.innerText = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+    </script>
 </body>
 
 </html>
