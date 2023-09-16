@@ -29,9 +29,9 @@ class Vote_kan_scoresController extends Controller
                 ->orWhere('number_1', 'LIKE', "%$keyword%")
                 ->orWhere('number_2', 'LIKE', "%$keyword%")
                 ->orWhere('number_3', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+                ->get();
         } else {
-            $vote_kan_scores = Vote_kan_score::latest()->paginate($perPage);
+            $vote_kan_scores = Vote_kan_score::get();
         }
 
         return view('vote_kan_scores.index', compact('vote_kan_scores'));

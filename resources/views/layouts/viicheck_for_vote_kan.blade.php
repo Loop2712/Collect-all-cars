@@ -100,12 +100,24 @@
 					</ul>
 				</li>
                 <li>
-                    <a href="{{ url('/vote_kan_admin/show_score') }}" >
+                    <a href="javascript:;" class="has-arrow" aria-expanded="false">
                         <div class="parent-icon">
-                            <i class="fa-solid fa-user-shield"></i>
+                            <i class="fa-duotone fa-hundred-points"></i>
                         </div>
                         <div class="menu-title">ผลคะแนน</div>
                     </a>
+                    <ul class="mm-collapse">
+                        <li> 
+                            <a href="{{ url('/vote_kan_admin/show_score') }}" >
+                                <i class="bx bx-right-arrow-alt"></i>คะแนนรวม
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/vote_kan_scores') }}">
+                                <i class="bx bx-right-arrow-alt"></i>การกรอกคะแนน
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 
             </ul>
