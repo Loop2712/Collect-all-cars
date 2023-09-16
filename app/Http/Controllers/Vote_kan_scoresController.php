@@ -63,6 +63,7 @@ class Vote_kan_scoresController extends Controller
         $requestData['vote_kan_stations_id'] = $data_station->id;
         $requestData['user_id'] = Auth::id();
         $requestData['last'] = "Yes";
+        $requestData['amphoe'] = $data_station->amphoe;
 
         $data_scores = Vote_kan_score::where('user_id', Auth::user()->id)->get();
 

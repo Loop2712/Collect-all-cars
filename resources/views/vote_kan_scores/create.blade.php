@@ -53,45 +53,54 @@
         </div>
         <hr>
         @php
-        $data_station = App\Models\Vote_kan_station::where('user_id' , Auth::user()->id)->first();
-        $data_score = App\Models\Vote_kan_score::where('user_id' , Auth::user()->id)->orderBy('id', 'desc')->get();
-        $count_data_score = count($data_score);
+            $data_station = App\Models\Vote_kan_station::where('user_id' , Auth::user()->id)->first();
+            $data_score = App\Models\Vote_kan_score::where('user_id' , Auth::user()->id)->orderBy('id', 'desc')->get();
+            $count_data_score = count($data_score);
         @endphp
         @if($data_score != "[]")
-        <h4>คะแนนที่ลงไว้ล่าสุด</h4>
-        <ul class="list-group list-group-flush record-score">
-            @foreach($data_score as $item)
-            <li class="list-group-item d-flex align-items-center flex-wrap">
-                <div class="d-flex justify-content-center w-100">
-                    <h4 class="mb-0">ครั้งที่ {{$count_data_score}}</h4>
-                    @php
-                    $count_data_score = $count_data_score - 1;
-                    @endphp
-                </div>
-                <div class="d-flex justify-content-between w-100">
-                    <h6 class="mb-0">เบอร์ที่ 1</h6>
-                    <span class="text-secondary">{{$item->number_1}} คะแนน</span>
-                </div>
-                <div class="d-flex mt-2 justify-content-between w-100">
-                    <h6 class="mb-0">เบอร์ที่ 2</h6>
-                    <span class="text-secondary">{{$item->number_2}} คะแนน</span>
-                </div>
-                <div class="d-flex mt-2 justify-content-between w-100">
-                    <h6 class="mb-0">เบอร์ที่ 3</h6>
-                    <span class="text-secondary">{{$item->number_3}} คะแนน</span>
-                </div>
-                <div class="d-flex mt-2 justify-content-between w-100 align-items-center ">
-                    <h6 class="mb-0 name-user-score">โดย {{Auth::user()->name}}</h6>
-                    <span class="text-secondary">เวลา {{ (\Carbon\Carbon::parse($item->created_at))->format('H:i น.') }}</span>
-                </div>
-            </li>
-            @endforeach
-        </ul>
-        <br><br>
+            <h4>คะแนนที่ลงไว้ล่าสุด</h4>
+            <ul class="list-group list-group-flush record-score">
+                @foreach($data_score as $item)
+                <li class="list-group-item d-flex align-items-center flex-wrap">
+                    <div class="d-flex justify-content-center w-100">
+                        <h4 class="mb-0">ครั้งที่ {{$count_data_score}}</h4>
+                        @php
+                        $count_data_score = $count_data_score - 1;
+                        @endphp
+                    </div>
+                    <div class="d-flex justify-content-between w-100">
+                        <h6 class="mb-0">เบอร์ที่ 1</h6>
+                        <span class="text-secondary">{{$item->number_1}} คะแนน</span>
+                    </div>
+                    <div class="d-flex mt-2 justify-content-between w-100">
+                        <h6 class="mb-0">เบอร์ที่ 2</h6>
+                        <span class="text-secondary">{{$item->number_2}} คะแนน</span>
+                    </div>
+                    <!-- <div class="d-flex mt-2 justify-content-between w-100">
+                        <h6 class="mb-0">เบอร์ที่ 3</h6>
+                        <span class="text-secondary">{{$item->number_3}} คะแนน</span>
+                    </div> -->
+                    <div class="d-flex mt-2 justify-content-between w-100 align-items-center ">
+                        <h6 class="mb-0 name-user-score">โดย {{  $data_station->name }}</h6>
+                        <span class="text-secondary">เวลา {{ (\Carbon\Carbon::parse($item->created_at))->format('H:i น.') }}</span>
+                    </div>
+                </li>
+                @endforeach
+            </ul>
+            <br><br>
         @endif
-        <h6 class="mt-2">หน่วย {{$data_station->name}}</h6>
-        <h6 class="mt-2">เวลาปัจจุบัน <span id="current-time"></span></h6>
 
+
+        <!-- <h6 class="mt-2">หน่วย อ.{{$data_station->amphoe}} เขต{{$data_station->area}} ต.{{$data_station->tambon}} หน่วยเลือกตั้ง{{$data_station->polling_station_at}}</h6>
+        <h6 class="mt-2">เวลาปัจจุบัน <span id="current-time"></span></h6> -->
+        <div class="card-body  border-top p-0 pt-3">
+            <div class="float-end text-muted" >
+                <span>เวลาปัจจุบัน</span>
+                <span id="current-time"></span>
+            </div>
+            <h4 class="card-title">หน่วย</h4>
+            <p class="font-18">อ.{{$data_station->amphoe}} เขต{{$data_station->area}} ต.{{$data_station->tambon}} หน่วยเลือกตั้งที่ {{$data_station->polling_station_at}}</p>
+        </div>
         <form id="vote_kan_scores" method="POST" action="{{ url('/vote_kan_scores') }}" accept-charset="UTF-8" class="form-horizontal row g-3 needs-validation" enctype="multipart/form-data">
             {{ csrf_field() }}
 
