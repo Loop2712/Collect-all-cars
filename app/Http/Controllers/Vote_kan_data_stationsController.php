@@ -192,4 +192,22 @@ class Vote_kan_data_stationsController extends Controller
             return redirect('login/line/'.$user_from.'?redirectTo=vote_kan_stations/create');
         }
     }
+
+    public function not_registered(Request $request)
+    {
+        $keyword = $request->get('search');
+        $perPage = 150;
+
+        if (!empty($keyword)) {
+            $vote_kan_data_not_registered = Vote_kan_data_station::where('amphoe', 'LIKE', "%$keyword%")
+                ->orWhere('area', 'LIKE', "%$keyword%")
+                ->orWhere('tambon', 'LIKE', "%$keyword%")
+                ->orWhere('polling_station_at', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $vote_kan_data_not_registered = Vote_kan_data_station::where('not_registered', '!=' , null)->latest()->paginate($perPage);
+        }
+
+        return view('vote_kan_data_stations.vote_kan_stations_not_registered', compact('vote_kan_data_not_registered'));
+    }
 }

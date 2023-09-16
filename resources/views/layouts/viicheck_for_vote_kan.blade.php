@@ -78,14 +78,27 @@
             <!--navigation-->
             @if(Auth::user()->user_from == "admin_vote_kan" )
             <ul class="metismenu" id="menu">
-                <li>
+                <!-- <li>
                     <a href="{{ url('/vote_kan_stations') }}" >
                         <div class="parent-icon">
                             <i class="fa-solid fa-user-shield"></i>
                         </div>
                         <div class="menu-title">รายชื่อหน่วย</div>
                     </a>
-                </li>
+                </li> -->
+                <li>
+					<a href="javascript:;" class="has-arrow" aria-expanded="false">
+						<div class="parent-icon"><i class="bx bx-grid-alt"></i>
+						</div>
+						<div class="menu-title">หน่วยเลือกตั้ง</div>
+					</a>
+					<ul class="mm-collapse">
+						<li> <a href="{{ url('/vote_kan_stations') }}"><i class="bx bx-right-arrow-alt"></i>ลงทะเบียนแล้ว</a>
+						</li>
+						<li> <a href="{{ url('/vote_kan_stations_not_registered') }}"><i class="bx bx-right-arrow-alt"></i>ยังไม่ได้ลงทะเบียน</a>
+						</li>
+					</ul>
+				</li>
                 <li>
                     <a href="{{ url('/vote_kan_admin/show_score') }}" >
                         <div class="parent-icon">
@@ -94,6 +107,7 @@
                         <div class="menu-title">ผลคะแนน</div>
                     </a>
                 </li>
+                
             </ul>
             @endif
             <!--end navigation-->

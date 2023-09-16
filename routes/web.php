@@ -325,6 +325,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('vote_kan_scores', 'Vote_kan_scoresController');
 	Route::get('vote_kan_admin/show_score', 'Vote_kan_scoresController@show_score');
 	Route::resource('vote_kan_data_stations', 'Vote_kan_data_stationsController');
+	Route::get('vote_kan_stations_not_registered', 'Vote_kan_data_stationsController@not_registered'); // index
+
 
 });
 
