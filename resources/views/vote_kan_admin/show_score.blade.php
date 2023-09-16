@@ -82,7 +82,9 @@
                     </div>
                     <div class="text-center flex-grow-1"> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
                         <h3 class="mb-0 text-white font-weight-bold">นายสุกวี แสงเป่า</h3>
-                        <h3 id="show_text_score_1" class="mb-0 text-white font-weight-bold">{{ $score_num_1 }} คะแนน</h3>
+                        <h3 class="mb-0 text-white font-weight-bold">
+                            <span id="show_text_score_1">{{ $score_num_1 }}</span> คะแนน
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -101,7 +103,9 @@
                     </div>
                     <div class="text-center flex-grow-1"> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
                         <h3 class="mb-0 text-white font-weight-bold">นายประวัติ กิจธรรมกูลนิจ</h3>
-                        <h3 id="show_text_score_2" class="mb-0 text-white font-weight-bold">{{ $score_num_2 }} คะแนน</h3>
+                        <h3 class="mb-0 text-white font-weight-bold">
+                            <span id="show_text_score_2">{{ $score_num_2 }}</span> คะแนน
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -540,11 +544,16 @@
             .then(result => {
                 // console.log(result);
 
-                document.querySelector('#show_text_score_1').innerHTML = result['sum_num_1'] + " คะแนน" ;
-                document.querySelector('#show_text_score_2').innerHTML = result['sum_num_2'] + " คะแนน" ;
+                document.querySelector('#show_text_score_1').innerHTML = result['sum_num_1'] ;
+                document.querySelector('#show_text_score_2').innerHTML = result['sum_num_2'] ;
 
                 counterAnim("#show_text_score_1", score_num_1, result['sum_num_1'], 1500); // 1.5 วินาที
                 counterAnim("#show_text_score_2", score_num_2, result['sum_num_2'], 1500); // 1.5 วินาที
+
+                setTimeout(() => {
+                    document.querySelector('#show_text_score_1').innerHTML = result['sum_num_1'] ;
+                    document.querySelector('#show_text_score_2').innerHTML = result['sum_num_2'] ;
+                }, 1600);
 
                 score_num_1 = result['sum_num_1'] ;
                 score_num_2 = result['sum_num_2'] ;
