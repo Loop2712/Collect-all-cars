@@ -9,6 +9,7 @@ use App\Models\Vote_kan_data_station;
 use App\Models\Vote_kan_station;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Vote_kan_stationsController extends Controller
 {
@@ -45,9 +46,12 @@ class Vote_kan_stationsController extends Controller
      */
     public function create()
     {
-        $data = Vote_kan_data_station::groupBy('amphoe')->get();
+        $data_user = Auth::user();
 
-        return view('vote_kan_stations.create', compact('data'));
+        $data = Vote_kan_data_station::groupBy('amphoe')->get();
+        $check_user = Vote_kan_station::where('user_id',$data_user->id)->first();
+
+        return view('vote_kan_stations.create', compact('data','check_user'));
     }
 
     /**
@@ -104,7 +108,8 @@ class Vote_kan_stationsController extends Controller
                     'registered' => $update_registered,
                 ]);
 
-        return redirect('vote_kan_stations')->with('flash_message', 'Vote_kan_station added!');
+        // return redirect('vote_kan_stations')->with('flash_message', 'Vote_kan_station added!');
+        return redirect()->back();
     }
 
     /**

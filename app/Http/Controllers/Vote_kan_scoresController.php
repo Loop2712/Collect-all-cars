@@ -142,8 +142,20 @@ class Vote_kan_scoresController extends Controller
     {
         $user_id = Auth::user()->id;
 
+        $data_score = Vote_kan_score::where('last','Yes')->get();
 
+        $score_num_1 = 0 ;
+        $score_num_2 = 0 ;
 
-        return view('vote_kan_admin.vote_kan_admin');
+        foreach ($data_score as $item) {
+            $score_num_1 = $score_num_1 + $item->number_1 ;
+            $score_num_2 = $score_num_2 + $item->number_2;
+        }
+
+        // echo "score_num_1 >> " . $score_num_1;
+        // echo "<br>";
+        // echo "score_num_2 >> " . $score_num_2;
+
+        return view('vote_kan_admin.vote_kan_admin', compact('score_num_1','score_num_2'));
     }
 }

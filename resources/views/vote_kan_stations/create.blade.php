@@ -3,7 +3,8 @@
 @section('content')
     <div class="container">
 
-        <form method="POST" action="{{ url('/vote_kan_stations') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+        @if(empty($check_user))
+        <form id="vote_kan_stations" method="POST" action="{{ url('/vote_kan_stations') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="card border-top border-0 border-4 border-danger">
                 <div class="card-body p-5">
@@ -94,15 +95,71 @@
 
                     <hr>
                     <div class="col-12 mb-2 text-center">
-                        <button type="submit" class="btn btn-success px-5" style="width:80%;">
+                        <span class="btn btn-success px-5" style="width:80%;" onclick="submit_vote_kan_stations()">
                             ยืนยันข้อมูล
+                        </span>
+
+                        <button id="btn_submit_submit_vote_kan_stations" type="submit" class="btn btn-success px-5 d-none" >
+                            <!-- ยืนยันข้อมูล ปุ่มจริงซ่อนอยู่-->
                         </button>
                     </div>
                 </div>
             </div>
         </form>
+        @else
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                    <div class="mt-3">
+                        <h4>คุณลงทะเบียนหน่วยเลือกตั้งแล้ว</h4>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0">
+                            อำเภอ
+                        </h6>
+                        <span class="text-secondary">{{ $check_user->amphoe }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0">
+                            เขตเลือกตั้ง
+                        </h6>
+                        <span class="text-secondary">{{ $check_user->area }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0">
+                            ตำบล
+                        </h6>
+                        <span class="text-secondary">{{ $check_user->tambon }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0">
+                            หน่วยเลือกตั้ง
+                        </h6>
+                        <span class="text-secondary">{{ $check_user->polling_station_at }}</span>
+                    </li>
+                </ul>
+
+                <hr class="my-4">
+
+                <center>
+                    <a href="{{ url('/vote_kan_scores/create') }}" class="btn btn-success px-5" style="width:80%;">
+                        เพิ่มผลคะแนน
+                    </a>
+                </center>
+
+            </div>
+        </div>
+        @endif
 
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         
@@ -207,6 +264,27 @@
 
             return "OK";
         }
+
+        function submit_vote_kan_stations() {
+
+        if ($("#vote_kan_stations")[0].checkValidity()) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'ลงทะเบียนเรียบร้อยแล้ว',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
+            setTimeout(() => {
+                document.querySelector('#btn_submit_submit_vote_kan_stations').click();
+            }, 1600);
+        } else {
+            // Validate Form
+            $("#vote_kan_stations")[0].reportValidity();
+            event.preventDefault();
+        }
+    }
 
     </script>
 @endsection

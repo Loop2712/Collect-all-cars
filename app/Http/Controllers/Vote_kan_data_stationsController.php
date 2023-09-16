@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Vote_kan_data_station;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Vote_kan_data_stationsController extends Controller
 {
@@ -127,6 +128,7 @@ class Vote_kan_data_stationsController extends Controller
         $data_area = DB::table('vote_kan_data_stations')
                         ->select('area')
                         ->where('amphoe',$amphoe)
+                        ->where('not_registered','!=',null)
                         ->groupBy('area')
                         ->get();
 
@@ -139,6 +141,7 @@ class Vote_kan_data_stationsController extends Controller
                         ->select('tambon')
                         ->where('amphoe',$amphoe)
                         ->where('area',$area)
+                        ->where('not_registered','!=',null)
                         ->get();
 
         return $data_tambon;
@@ -151,8 +154,42 @@ class Vote_kan_data_stationsController extends Controller
                         ->where('amphoe',$amphoe)
                         ->where('area',$area)
                         ->where('tambon',$tambon)
+                        ->where('not_registered','!=',null)
                         ->get();
 
         return $data_polling_station_at;
+    }
+
+    public function vote_kan_login(Request $request , $user_from)
+    {
+        if(Auth::check()){
+
+            $data_user = Auth::user();
+
+            if ( !empty($data_user->user_from) ){
+
+                $check_user_from = explode(",",$data_user->user_from);
+
+                if ( in_array( $user_from , $check_user_from ) ){
+                    $update_user_from = $data_user->user_from ;
+                }else{
+                    $update_user_from = $data_user->user_from .','. $user_from ;
+                }
+
+            }else{
+                $update_user_from = $user_from ;
+            }
+
+            DB::table('users')
+                ->where([ 
+                        ['type', 'line'],
+                        ['provider_id', $data_user->provider_id],
+                    ])
+                ->update(['user_from' => $update_user_from]);
+
+            return redirect('sos_map/create');
+        }else{
+            return redirect('login/line/'.$user_from.'?redirectTo=vote_kan_stations/create');
+        }
     }
 }

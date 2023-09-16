@@ -70,17 +70,16 @@
     $count_vote_kan_stations = count($vote_kan_stations);
     @endphp
     <h1 class="text-center">
-        รายชื่อเจ้าหน้าที่ทั้งหมด   {{$count_vote_kan_stations}} ท่าน
+        หน่วยเลือกตั้งที่ลงทะเบียนแล้ว {{$count_vote_kan_stations}} หน่วย
     </h1>
     
     <div class="table-responsive">
                 <table id="table_vote_kan_stations" class="table table-striped table-bordered align-middle">
                     <thead>
                         <tr>
-                            <th>ชื่อ</th>
                             <th>อำเภอ</th>
-                            <th>ตำบล</th>
                             <th>เขตเลือกตั้ง</th>
+                            <th>ตำบล</th>
                             <th>หน่วยเลือกตั้ง</th>
                             <th>เจ้าหน้าที่ประจำหน่วย</th>
                             <th>เบอร์โทร</th>
@@ -90,12 +89,11 @@
                     <tbody>
                     @foreach($vote_kan_stations as $item)
                         <tr>
-                            <td>{{ $item->name }}</td>
                             <td>{{ $item->amphoe }}</td>
-                            <td>{{ $item->tambon}}</td>
                             <td>{{ $item->area}}</td>
+                            <td>{{ $item->tambon}}</td>
                             <td>{{ $item->polling_station_at}}</td>
-                            <td>{{ $item->name_user}}</td>
+                            <td>{{ $item->name }}</td>
                             <td>{{ $item->phone}}</td>
                             <td>{{ $item->phone_2}}</td>
                         </tr>
@@ -103,10 +101,9 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                        <th>ชื่อ</th>
                             <th>อำเภอ</th>
-                            <th>ตำบล</th>
                             <th>เขตเลือกตั้ง</th>
+                            <th>ตำบล</th>
                             <th>หน่วยเลือกตั้ง</th>
                             <th>เจ้าหน้าที่ประจำหน่วย</th>
                             <th>เบอร์โทร</th>

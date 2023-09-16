@@ -54,6 +54,7 @@ Route::get('login/line/tu_sos', 'Auth\LoginController@redirectToLine_TU_SOS');
 // Line login other app
 Route::get('login/line/{user_from}', 'Auth\LoginController@redirectToLine_other_app_SOS');
 Route::get('/sos_login/{user_from}', 'Sos_mapController@sos_login_other_app');
+Route::get('/vote_kan_login/{user_from}', 'Vote_kan_data_stationsController@vote_kan_login');
 
 
 // check_in
@@ -319,6 +320,11 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('nationalitie_sos/login_register_officer/{group_line_id}', 'Nationalitie_officersController@login_register_officer');
 	Route::get('nationalitie_sos/register_officer/{group_line_id}', 'Nationalitie_officersController@register_officer');
 
+	// VOTE KAN
+	Route::resource('vote_kan_stations', 'Vote_kan_stationsController');
+	Route::resource('vote_kan_scores', 'Vote_kan_scoresController');
+	Route::get('vote_kan_admin/show_score', 'Vote_kan_scoresController@show_score');
+	Route::resource('vote_kan_data_stations', 'Vote_kan_data_stationsController');
 
 });
 
@@ -546,7 +552,3 @@ Route::resource('sos_1669_officer_ask_more', 'Sos_1669_officer_ask_moreControlle
 Route::get('/layout_video_call', function () {
     return view('layout_video_call_test');
 });
-Route::resource('vote_kan_stations', 'Vote_kan_stationsController');
-Route::resource('vote_kan_scores', 'Vote_kan_scoresController');
-Route::get('vote_kan_admin/show_score', 'Vote_kan_scoresController@show_score');
-Route::resource('vote_kan_data_stations', 'Vote_kan_data_stationsController');
