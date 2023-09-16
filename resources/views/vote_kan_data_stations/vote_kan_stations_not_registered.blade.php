@@ -26,12 +26,13 @@ $totalCount = 0;
                 $notRegisteredArray = explode(',', $item->not_registered);
 
                 $totalCount += count($notRegisteredArray);
+                $not_registered = str_replace("," , "/" , $item->not_registered);
                 @endphp
             <tr>
                 <td>{{ $item->amphoe }}</td>
                 <td>{{ $item->area}}</td>
                 <td>{{ $item->tambon}}</td>
-                <td>{{ $item->not_registered }}</td>
+                <td>{{ $not_registered }}</td>
             </tr>
             @endforeach
         </tbody>
@@ -82,10 +83,7 @@ $totalCount = 0;
             lengthChange: false,
             pageLength: 2500,
             deferRender: true,
-            columnDefs: [{
-                    type: "num",
-                    targets: 0
-                }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
+            columnDefs: [
                 {
                     targets: [0],
                     orderable: false

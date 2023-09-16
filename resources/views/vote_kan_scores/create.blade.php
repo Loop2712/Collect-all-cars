@@ -1,36 +1,6 @@
 @extends('layouts.viicheck_for_vote_kan')
 
 @section('content')
-<!-- <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">Create New Vote_kan_score</div>
-                    <div class="card-body">
-                        <a href="{{ url('/vote_kan_scores') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
-
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-
-                        <form method="POST" action="{{ url('/vote_kan_scores') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-
-                            @include ('vote_kan_scores.form', ['formMode' => 'create'])
-
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 <style>
     .record-score {
         height: 300px;
@@ -52,15 +22,12 @@
             <h4 class="mb-0 text-danger">กรอกผลคะแนน</h4>
         </div>
         @php
-        $data_station = App\Models\Vote_kan_station::where('user_id' , Auth::user()->id)->first();
-        $data_score = App\Models\Vote_kan_score::where('user_id' , Auth::user()->id)->orderBy('id', 'desc')->get();
-        $count_data_score = count($data_score);
+            $data_station = App\Models\Vote_kan_station::where('user_id' , Auth::user()->id)->first();
+            $data_score = App\Models\Vote_kan_score::where('user_id' , Auth::user()->id)->orderBy('id', 'desc')->get();
+            $count_data_score = count($data_score);
         @endphp
 
-
-
-        <!-- <h6 class="mt-2">หน่วย อ.{{$data_station->amphoe}} เขต{{$data_station->area}} ต.{{$data_station->tambon}} หน่วยเลือกตั้ง{{$data_station->polling_station_at}}</h6>
-        <h6 class="mt-2">เวลาปัจจุบัน <span id="current-time"></span></h6> -->
+        
         <div class="card-body  border-top p-0 pt-3 mb-4">
             
             <h5 class="card-title text-center">หน่วยเลือกตั้ง</h5>
@@ -73,8 +40,12 @@
         <form id="vote_kan_scores" method="POST" action="{{ url('/vote_kan_scores') }}" accept-charset="UTF-8" class="form-horizontal row g-3 needs-validation" enctype="multipart/form-data">
             {{ csrf_field() }}
 
-            @include ('vote_kan_scores.form', ['formMode' => 'create'])
-
+            @include('vote_kan_scores.form', 
+            [
+            'formMode' => 'create',
+            'name_vote_score' => $data_station->name ,
+            ]
+        )
         </form>
 
     </div>
