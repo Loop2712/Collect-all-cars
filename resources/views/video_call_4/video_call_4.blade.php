@@ -1,14 +1,34 @@
 
-
 {{-- <link href="{{ asset('css/video_call_4/video_call_4.css') }}" rel="stylesheet"> --}}
 <link href="{{ asset('css/video_call_4/layout_video_call_4.css') }}" rel="stylesheet">
 
-<link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet">
 <link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
 <link href="https://kit-pro.fontawesome.com/releases/v6.4.2/css/pro.min.css" rel="stylesheet">
 
+<!-- Bootstrap CSS -->
+<link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet">
+
+{{-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<link href="{{ asset('partner_new/css/app.css') }}" rel="stylesheet">
+<link href="{{ asset('partner_new/css/icons.css') }}" rel="stylesheet"> --}}
 
 
+<style>
+@media screen and (min-width: 1024px)
+{
+    .grid-template {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(0, min(100%, 100%/1, max(50%, 100%/2)))) !important;
+
+    }
+
+    .video-call-contrainer {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    }
+}
+</style>
 <!-- ========================================== html ========================================== -->
 {{--
 <!-- สำหรับ loading ก่อนเข้า videocall -->
@@ -79,6 +99,12 @@
 
 <div class="row full-height">
 	<div class="Scenary"></div>
+
+    <!-- สำหรับ loading ก่อนเข้า videocall -->
+    <div class="d-flex justify-content-center align-items-center">
+        <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+
 	<div class="col-12 col-lg-2">
 		<div class="data-sos text-center p-3 d-flex row">
 			<h4 class="mt-3 col-12 ">รหัสเคส: {{$sos_id}}
@@ -92,18 +118,17 @@
                         <i class="fa-solid fa-camera-rotate"></i>
                     </button>
                     <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
-                    <button class="btn btn-secondary d-none d-lg-block" id="btn_switchMicrophone" onclick="switchMicrophone();">
+                    <button class="btn btn-secondary" id="btn_switchMicrophone" onclick="switchMicrophone();">
                         <i class="fa-solid fa-microphone"></i>
                     </button>
-                    <div class="row">
-                        <button class="btnDevice  btn dropdown-toggle btn_for_select_video_device d-none" type="button" data-toggle="modal" data-target="#video_device" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
-                            <i class="fa-solid fa-chevron-down fa-2xs"></i>
-                        </button>
 
-                        <button class="btnDevice  btn dropdown-toggle btn_for_select_audio_device d-none" type="button" data-toggle="modal" data-target="#audio_device" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
-                            <i class="fa-solid fa-chevron-down fa-2xs"></i>
-                        </button>
-                    </div>
+                    <button class="btnDevice  btn dropdown-toggle btn_for_select_video_device d-none" type="button" data-toggle="modal" data-target="#video_device" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
+                        <i class="fa-solid fa-chevron-down fa-2xs"></i>
+                    </button>
+                    <button class="btnDevice  btn dropdown-toggle btn_for_select_audio_device d-none" type="button" data-toggle="modal" data-target="#audio_device" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
+                        <i class="fa-solid fa-chevron-down fa-2xs"></i>
+                    </button>
+
 
 					{{-- <button class="btn btn-success">asd</button>
 					<button class="btn btn-success">asd</button>
@@ -112,26 +137,44 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="col-12 col-lg-10 full-height d-flex row">
 		<div class="video-call">
 			<div class=" d-flex align-item-center justify-content-center h-100 row">
+                <!-- Modal -->
+                <div class="modal fade" id="video_device" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <button id="ปุ่มนี้สำหรับปิด_modal" type="button" class="btn m-2" data-dismiss="modal" aria-label="Close" style="position: relative; top:10;right: 10px;color:#4d4d4d;z-index: 9999999999;">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                            <div class="modal-body">
+                                <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
+                                <div id="video-device-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="audio_device" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <button id="ปุ่มนี้สำหรับปิด_modal" type="button" class="btn m-2" data-dismiss="modal" aria-label="Close" style="position: relative; top:10;right: 10px;color:#4d4d4d;z-index: 9999999999;">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                            <div class="modal-body">
+                                <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
+                                <div id="audio-device-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 				<div class="d-flex align-self-center">
 					<div class="row" id="container_user_video_call">
-						<!-- <div class="custom-div">
-							<div class="status-input-output">
-								<div class="mic"><i class="fa-duotone fa-microphone"></i></div>
-								<div class="camera"><i class="fa-solid fa-video"></i></div>
-							</div>
 
-							<div class="infomation-user">
-								<div class="name-user-video-call">
-									<h5 class="m-0 text-white float-end"><b>lucky</b></h5>
-								</div>
-								<div class="role-user-video-call">
-									<small class="d-block">ศูนย์สั่งการ</small>
-								</div>
-							</div>
-						</div> -->
+
+
 					</div>
 				</div>
 
@@ -155,12 +198,20 @@
 			</div>
 		</div>
 	</div>
+
 </div>
 
 <!-- ========================================== javascript ========================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{{ asset('Agora_Web_SDK_FULL/AgoraRTC_N-4.17.0.js') }}"></script>
+
+<!-- Bootstrap JS -->
+<script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
+<!--plugins-->
+<script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 {{-- <script src="{{ asset('js/for_video_call_4/resize_div_video_call.js') }}"></script> --}}
 <script src="{{ asset('js/for_video_call_4/video_call_4.js') }}"></script>
@@ -203,22 +254,41 @@
     document.addEventListener('DOMContentLoaded', (event) => {
 
         function LoadingVideoCall() {
-            // const loadingAnime = document.getElementById('lds-ring');
+            const loadingAnime = document.getElementById('lds-ring');
 
             setTimeout(() => {
-                // if(loadingAnime){
-                //     loadingAnime.classList.remove('d-none');
-                // }
+                if(loadingAnime){
+                    loadingAnime.classList.remove('d-none');
+                }
                 fetch("{{ url('/') }}/api/video_call_4" + "?user_id=" + user_id + '&appCertificate=' + appCertificate  + '&appId=' + appId)
-                    .then(response => response.text())
+                    .then(response => response.json())
                     .then(result => {
                         console.log("GET Token success");
-                        console.log(result);
+                        // console.log(result);
+                        // console.log(result['privilegeExpiredTs']);
 
-                        options['token'] = result;
+                        options['token'] = result['token'];
+
+                        // ตั้งค่าเวลาที่ต้องการให้แจ้งเตือน
+                        const expirationTimestamp = result['privilegeExpiredTs']; // เปลี่ยนเป็นเวลาที่คุณต้องการ
+                        // เริ่มตรวจสอบเวลาและแจ้งเตือนในระยะเวลาที่กำหนด
+                                        // ห้องหมดเวลา
+                        function checkAndNotifyExpiration(expirationTimestamp) {
+                            const currentTimestamp = Math.floor(Date.now() / 1000); // แปลงเป็น timestamp ในรูปแบบวินาที
+
+                            if (currentTimestamp >= expirationTimestamp) {
+                                // เวลาหมดแล้ว ให้แสดงข้อความแจ้งเตือนหรือทำการแจ้งเตือนผ่านทาง UI ตามที่คุณต้องการ
+                                window.history.back();
+                            }
+                        }
+
+                        setInterval(() => {
+                            checkAndNotifyExpiration(expirationTimestamp);
+                        }, 1000);
+
 
                         // เอาหน้าโหลดออก
-                        // loadingAnime.remove();
+                        loadingAnime.remove();
 
                         setTimeout(() => {
                             document.getElementById("join").click();
@@ -226,9 +296,9 @@
                 })
                 .catch(error => {
 
-                    // if(loadingAnime){
-                    //     loadingAnime.classList.remove('d-none');
-                    // }
+                    if(loadingAnime){
+                        loadingAnime.classList.remove('d-none');
+                    }
 
                     // เรียกใช้งานฟังก์ชัน retryFunction() อีกครั้งหลังจากเวลาหน่วงให้ผ่านไป
                     setTimeout(() => {
@@ -295,11 +365,19 @@
         localPlayerContainer.id = options.uid;
 
         // Set the local video container size.
+        localPlayerContainer.style.backgroundColor = "gray";
         localPlayerContainer.style.width = "100%";
         localPlayerContainer.style.height = "100%";
+        localPlayerContainer.style.position = "absolute";
+        localPlayerContainer.style.left = "0";
+        localPlayerContainer.style.top = "0";
         // Set the remote video container size.
+        remotePlayerContainer.style.backgroundColor = "gray";
         remotePlayerContainer.style.width = "100%";
         remotePlayerContainer.style.height = "100%";
+        remotePlayerContainer.style.position = "absolute";
+        remotePlayerContainer.style.left = "0";
+        remotePlayerContainer.style.top = "0";
 
         // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
         agoraEngine.enableAudioVolumeIndicator();
@@ -359,7 +437,6 @@
                     divVideo.setAttribute('id','videoDiv_' + user.uid.toString());
                     divVideo.setAttribute('class','custom-div');
                     divVideo.setAttribute('style','background-color: grey');
-
 
                 // if (remotePlayer_check_arr[user.uid.toString()]) {
                 //     console.log("เข้า if play");
@@ -638,7 +715,6 @@
 
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
                 create_element_localvideo_call(localPlayerContainer);
-
 
                 // Play the local video track.
                 channelParameters.localVideoTrack.play(localPlayerContainer);
@@ -1052,6 +1128,85 @@
 
     }
 
+    //============ โยกย้าย Div   =================//
+
+    // ตรวจสอบว่า div อยู่ใน .user-video-call-bar หรือไม่
+    function isInUserVideoCallBar(div) {
+        return div.parentElement === document.querySelector(".user-video-call-bar");
+    }
+
+    // ย้าย div ไปยัง .user-video-call-bar หากไม่อยู่ในนั้นและสลับ div
+    function moveDivsToUserVideoCallBar(clickedDiv) {
+        let container = document.getElementById("container_user_video_call");
+        let customDivs = container.querySelectorAll(".custom-div");
+        let userVideoCallBar = document.querySelector(".user-video-call-bar");
+        document.querySelector(".user-video-call-contrainer").classList.remove("d-none");
+
+        customDivs.forEach(function(div) {
+            if (div !== clickedDiv) {
+                if (!isInUserVideoCallBar(div)) {
+                    userVideoCallBar.appendChild(div);
+                }
+            }
+        });
+
+        // ย้าย div ที่ถูกคลิกไปยังตำแหน่งที่ถูกคลิก
+        if (!isInUserVideoCallBar(clickedDiv)) {
+            container.appendChild(clickedDiv);
+        }
+
+        updateDivWidth();
+    }
+
+    // สลับ div ระหว่าง .user-video-call-bar และ #container_user_video_call
+    function swapDivsInContainerAndUserVideoCallBar(clickedDiv) {
+        let container = document.getElementById("container_user_video_call");
+        let customDivsInContainer = container.querySelectorAll(".custom-div");
+        let userVideoCallBar = document.querySelector(".user-video-call-bar");
+        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+        if (customDivsInContainer.length > 0 && customDivsInUserVideoCallBar.length > 0) {
+            let firstDivInContainer = customDivsInContainer[0];
+
+            container.appendChild(clickedDiv);
+            userVideoCallBar.appendChild(firstDivInContainer);
+        }
+    }
+
+    // ย้ายทุก div ใน .user-video-call-bar ไปยัง #container_user_video_call
+    function moveAllDivsToContainer() {
+        let container = document.getElementById("container_user_video_call");
+        let userVideoCallBar = document.querySelector(".user-video-call-bar");
+        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+        document.querySelector(".user-video-call-contrainer").classList.add("d-none");
+
+        customDivsInUserVideoCallBar.forEach(function(div) {
+            container.appendChild(div);
+        });
+
+        updateDivWidth();
+    }
+
+    // จัดเรียกใช้งานเมื่อคลิกที่ div
+    function handleClick(clickedDiv) {
+        let userVideoCallBar = document.querySelector(".user-video-call-bar");
+        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+        if (customDivsInUserVideoCallBar.length > 0) {
+            moveAllDivsToContainer();
+        } else {
+            moveDivsToUserVideoCallBar(clickedDiv);
+        }
+    }
+
+    // เพิ่ม event listener บน .user-video-call-bar สำหรับสลับ div
+    document.querySelector(".user-video-call-bar").addEventListener("click", function(e) {
+        if (e.target.classList.contains("custom-div")) {
+            handleClick(e.target);
+        }
+    });
+
+    //============ จบโยกย้าย Div   =================//
     console.log();
     // Remove the video stream from the container.
     function removeVideoDiv(elementId)
@@ -1063,6 +1218,7 @@
             Div.remove();
         }
     };
+
 
 </script>
 

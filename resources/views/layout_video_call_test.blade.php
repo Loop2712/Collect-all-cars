@@ -124,7 +124,7 @@
 		top: 0;
 		right: 0;
 		display: flex;
-		
+
 	}
 
 	.custom-div .infomation-user{

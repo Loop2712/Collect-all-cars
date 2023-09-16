@@ -8,7 +8,7 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
     const muteButton = document.createElement('button');
         muteButton.type = "button";
         muteButton.id = "muteAudio";
-        muteButton.classList.add('btn-secondary','ms-2');
+        muteButton.classList.add('btn','btn-secondary','mr-1');
         muteButton.innerHTML = '<i class="fa-solid fa-microphone"></i>';
 
     divForVideoButton.appendChild(muteButton);
@@ -17,7 +17,7 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
     const muteVideoButton = document.createElement('button');
         muteVideoButton.type = "button";
         muteVideoButton.id = "muteVideo";
-        muteVideoButton.classList.add('btn-secondary','ms-2');
+        muteVideoButton.classList.add('btn','btn-secondary','mr-1');
         muteVideoButton.innerHTML = '<i class="fa-solid fa-video"></i>';
 
     divForVideoButton.appendChild(muteVideoButton);
@@ -81,8 +81,43 @@ function create_element_localvideo_call(localPlayerContainer) {
     const divVideo = document.createElement('div');
     divVideo.setAttribute('id','videoDiv_' + localPlayerContainer.id);
     divVideo.setAttribute('class','custom-div');
-    divVideo.setAttribute('style','background-color: yellow');
+    divVideo.setAttribute('style','background-color: grey');
 
+    // เพิ่ม div ด้านใน
+    let statusInputOutputDiv = document.createElement("div");
+    statusInputOutputDiv.className = "status-input-output";
+    statusInputOutputDiv.setAttribute('style','z-index: 9999;');
+
+    let micDiv = document.createElement("div");
+    micDiv.className = "mic";
+    micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+
+    let cameraDiv = document.createElement("div");
+    cameraDiv.className = "camera";
+    cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
+
+    statusInputOutputDiv.appendChild(micDiv);
+    statusInputOutputDiv.appendChild(cameraDiv);
+
+    let infomationUserDiv = document.createElement("div");
+    infomationUserDiv.className = "infomation-user";
+    infomationUserDiv.setAttribute('style','z-index: 9999;');
+
+    let nameUserVideoCallDiv = document.createElement("div");
+    nameUserVideoCallDiv.className = "name-user-video-call";
+    nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>lucky</b></h5>';
+
+    let roleUserVideoCallDiv = document.createElement("div");
+    roleUserVideoCallDiv.className = "role-user-video-call";
+    roleUserVideoCallDiv.innerHTML = '<small class="d-block">ศูนย์สั่งการ</small>';
+
+    infomationUserDiv.appendChild(nameUserVideoCallDiv);
+    infomationUserDiv.appendChild(roleUserVideoCallDiv);
+
+    // เพิ่ม div ด้านในลงใน div หลัก
+    divVideo.appendChild(statusInputOutputDiv);
+    divVideo.appendChild(infomationUserDiv);
+    // เพิ่ม div หลักลงใน div รวม
     divVideo.append(localPlayerContainer);
     document.querySelector('#container_user_video_call').append(divVideo);
 

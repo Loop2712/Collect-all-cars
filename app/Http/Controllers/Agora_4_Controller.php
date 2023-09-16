@@ -93,13 +93,17 @@ class Agora_4_Controller extends Controller
         // $channelName = 'sos_1669_id';
 
         $role = RtcTokenBuilder::RoleAttendee;
-        $expireTimeInSeconds = 600;
+        $expireTimeInSeconds = 30;
         $currentTimestamp = now()->getTimestamp();
         $privilegeExpiredTs = $currentTimestamp + $expireTimeInSeconds;
 
         $token = RtcTokenBuilder::buildTokenWithUserAccount($appID, $appCertificate, $channelName, $user, $role, $privilegeExpiredTs);
 
-        return $token;
+        $agora_data = [
+            'token' => $token,
+            'privilegeExpiredTs' => $privilegeExpiredTs,
+        ];
+        return $agora_data;
     }
 
     public function callUser(Request $request)

@@ -1,4 +1,5 @@
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px)
+{
 
     html,
     body,
@@ -17,15 +18,14 @@
         outline: 1px solid #000;
         border-radius: 5px;
         min-height: 100%;
-        background-color: #2b2d31;
-        color: #fff !important;
+        /* background-color: #2b2d31; */
+        background-color: #fff;
+        /* color: #fff !important; */
+        color: #2b2d31 !important;
     }
     .data-sos *{
-        color: #fff;
-    }
-    .video-call-contrainer {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+        /* color: #fff; */
+        color: #2b2d31;
     }
 
     .item-video-call {
@@ -84,7 +84,8 @@
     .video-call {
         /* outline: #000 1px solid; */
         margin: 0;
-        background-color: #9e9696;
+        background-color: #ebebeb;
+        /* background-color: #9e9696; */
     }
 
     .user-video-call-contrainer {
@@ -94,12 +95,6 @@
 
     }
 
-    .grid-template {
-        display: grid;
-
-        grid-template-columns: repeat(auto-fit, minmax(0, min(100%, 100%/1, max(50%, 100%/2)))) !important;
-
-    }
 
     #container_user_video_call {
         width: 100%;
@@ -123,6 +118,8 @@
         display: flex;
 
     }
+
+
 
     .custom-div .infomation-user{
         position: absolute;
