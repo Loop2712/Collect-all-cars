@@ -529,8 +529,7 @@
 
         var reface_Create_graph = setInterval(function() {
             loop_Create_graph();
-        }, 5000);
-        // }, 60000);
+        }, 60000);
 
     });
 
