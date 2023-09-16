@@ -70,7 +70,7 @@
     $count_vote_kan_stations = count($vote_kan_stations);
     @endphp
     <h1 class="text-center">
-        หน่วยเลือกตั้งที่ลงทะเบียนแล้ว {{$count_vote_kan_stations}} หน่วย
+        หน่วยเลือกตั้งที่ลงทะเบียนแล้ว <span id="count_registred"></span> หน่วย
     </h1>
     
     <div class="table-responsive">
@@ -112,11 +112,11 @@
                     </tfoot>
                 </table>
             </div>
-
 <script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
 <script>
     $(document).ready(function () {
-
+        counterAnim("#count_registred", 0, <?php echo $count_vote_kan_stations; ?>, 1500);
+        
         $("#table_vote_kan_stations tfoot th").each(function () {
             if($(this).text()){
                 let title1 = $(this).text();
