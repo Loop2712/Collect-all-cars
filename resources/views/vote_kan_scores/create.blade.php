@@ -15,7 +15,7 @@
     }
 </style>
 <div class="card border-top border-0 border-4 border-danger m-2">
-    <div class="card-body p-5">
+    <div class="card-body  px-4 py-5">
         <div class="card-title d-flex align-items-center">
             <div><i class="bx bxs-user me-1 font-22 text-danger"></i>
             </div>

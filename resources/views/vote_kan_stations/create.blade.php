@@ -7,7 +7,7 @@
         <form id="vote_kan_stations" method="POST" action="{{ url('/vote_kan_stations') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="card border-top border-0 border-4 border-danger">
-                <div class="card-body p-5">
+                <div class="card-body px-4 py-5">
                     <div class="card-title d-flex align-items-center">
                         <div>
                             <i class="fa-duotone fa-building-flag  me-1 font-22 text-danger"></i>
