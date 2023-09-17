@@ -142,7 +142,7 @@
                             <div class="col-9">
                                 <span class="text-white">
                                     <br>
-                                    อบจ. กาญจนบุรี ร่วมกับ วีเช็ค <br>รายงานผลการนับคะแนน (ไม่เป็นทางการ)
+                                    อบจ. กาญจนบุรี ร่วมกับ วีเช็ค 
                                 </span>
                             </div>
                         </div>
@@ -534,8 +534,9 @@
         <!--end overlay-->
         <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
-        <footer class="page-footer">
-            <p class="mb-0">Power by <a href="mailto:contact.viicheck.com" class="link text-secondary">ViiCHECK</a></p>
+        <footer class="page-footer" style="z-index: 999999999;">
+            <p class="m-0">รายงานผลการนับคะแนน (อย่างไม่เป็นทางการ)</p>
+            <p class="mb-0">Powered by <a href="mailto:contact.viicheck.com" class="link text-secondary">ViiCHECK</a></p>
         </footer>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
