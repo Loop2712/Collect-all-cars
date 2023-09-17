@@ -77,7 +77,7 @@
         <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
         <footer class="page-footer">
-            <p class="mb-0">Power by <a href="mailto:contact.viicheck.com" class="link text-secondary">ViiCHECK</a></p>
+            <p class="mb-0">Powered by <a href="mailto:contact.viicheck.com" class="link text-secondary">ViiCHECK</a></p>
         </footer>
     </div>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>

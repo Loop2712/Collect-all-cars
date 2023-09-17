@@ -38,33 +38,30 @@
         .name-section{
             margin-top: 15px;
         }
+    }@media (max-width:768px) {
+        .banner_pc{
+            display: none;
+        }
     }
 
 </style>
 
 
 
-<div class="row d-none">
-    <div class="col-6">
-        <h1>ผลการนับคะแนนอย่างไม่เป็นทางการ</h1>
-    </div>
-    <div class="col-6">
-        <div class="justify-content-end float-end">
-            อัพเดทล่าสุด : <span id="time_update_data">{{ date("H:i") }} น.</span>
-            <br>
-            <span class="float-end mt-2">
-                Powered by <img src="https://www.viicheck.com/img/logo/VII-check-LOGO-W-v1.png" style="width: 50px;">
-            </span>
+    <div class="row">
+          <div class="col-12">
+            <div>
+                <img src="{{ asset('/img/vote_kan/banner.png') }}" class="banner_pc" style="width:100%;" alt="">
+                <img src="{{ asset('/img/vote_kan/banner_mobile.png') }}" class="d-block d-md-none" style="width:100%;" alt="">
+            </div>
+        </div>
+        <div class="col-12 mt-2 mt-lg-4">
+            <div class="justify-content-end float-end">
+                อัพเดทข้อมูลล่าสุด : <span id="time_update_data">{{ date("H:i") }} น.</span>
+            </div>
         </div>
     </div>
-</div>
-
-<div class="col-12">
-        <div class="banner mb-4">
-            <img src="{{ asset('/img/vote_kan/banner.png') }}" style="width:100%;" alt="">
-        </div>
-    </div>
-
+  
 <hr>
 
 <div class="row row-cols-1 row-cols-lg-2 ">

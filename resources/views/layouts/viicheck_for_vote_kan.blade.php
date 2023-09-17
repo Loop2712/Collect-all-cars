@@ -137,7 +137,7 @@
                     <div class="d-block d-md-none">
                         <div class="row">
                             <div class="col-3">
-                                <img width="80" src="{{ asset('/img/logo-partner/อบจ_กาญxวีเช็ค.png') }}">
+                                <img width="80" src="{{ asset('/img/vote_kan/อบจ_กาญxวีเช็ค.png') }}">
                             </div>
                             <div class="col-9 d-flex align-items-center justify-content-center">
                                 <span class="text-white">
@@ -153,7 +153,7 @@
                         <span class="text-white"> x </span>
                         <img width="45" src="{{ asset('/img/logo/logo_x-icon_facebook.png') }}">
                         <span class="text-white" style="margin-left: 10px;">
-                            องค์การบริหารส่วนจังหวัดกาญจนบุรี ร่วมกับ ViiCHECK<span style="font-size:10px;color:black;">(วีเช็ค)</span>  รายงานผลการนับคะแนน (อย่างไม่เป็นทางการ)
+                            องค์การบริหารส่วนจังหวัดกาญจนบุรี ร่วมกับ ViiCHECK  รายงานผลการนับคะแนน (อย่างไม่เป็นทางการ)
                         </span>
                     </div>
 
