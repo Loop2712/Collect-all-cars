@@ -129,8 +129,35 @@
         <header>
             <div class="topbar d-flex align-items-center" style="background-color:#3495c9!important;">
                 <nav class="navbar navbar-expand">
-                    <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
+                    <!-- <div class="mobile-toggle-menu"> -->
+                        <!-- <i class='bx bx-menu'></i> -->
+                    <!-- </div> -->
+
+                    <!-- แสดงเฉพาะมือถือ -->
+                    <div class="d-block d-md-none">
+                        <div class="row">
+                            <div class="col-3">
+                                <img width="80" src="{{ asset('/img/logo-partner/อบจ_กาญxวีเช็ค.png') }}">
+                            </div>
+                            <div class="col-9">
+                                <span class="text-white">
+                                    <br>
+                                    อบจ. กาญจนบุรี ร่วมกับ วีเช็ค <br>รายงานผลการนับคะแนน (ไม่เป็นทางการ)
+                                </span>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- แสดงเฉพาะคอม -->
+                    <div class="d-none d-lg-block">
+                        <img width="50" src="{{ asset('/img/logo-partner/command-center/กาญจนบุรี.png') }}">
+                        <span class="text-white"> x </span>
+                        <img width="45" src="{{ asset('/img/logo/logo_x-icon_facebook.png') }}">
+                        <span class="text-white" style="margin-left: 10px;">
+                            องค์การบริหารส่วนจังหวัดกาญจนบุรี ร่วมกับ ViiCHECK<span style="font-size:10px;color:black;">(วีเช็ค)</span>  รายงานผลการนับคะแนน (อย่างไม่เป็นทางการ)
+                        </span>
+                    </div>
+
                     <!-- <div class="top-menu-left d-none d-lg-block">
                         <ul class="nav">
                             <li class="nav-item">
@@ -465,8 +492,8 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="user-box dropdown">
-                        <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="user-box dropdown d-none d-lg-block">
+                        <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-top: 10px;">
                             <div class="user-info ps-3">
                                 <p class="user-name mb-0" style="color: #ffffff!important;">{{Auth::user()->name}}</p>
                                 <p class="designattion mb-0" style="color: #ffffff!important;">{{Auth::user()->member_co}}</p>

@@ -40,7 +40,7 @@
 
 
 
-<div class="row ">
+<div class="row d-none">
     <div class="col-6">
         <h1>ผลการนับคะแนนอย่างไม่เป็นทางการ</h1>
     </div>
@@ -53,6 +53,10 @@
             </span>
         </div>
     </div>
+</div>
+
+<div class="row">
+    <img src="{{ url('/img/logo-partner/x (2).png') }}">
 </div>
 
 <hr>

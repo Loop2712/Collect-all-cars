@@ -19,6 +19,7 @@ use App\Mail\MailToCompany;
 use App\Models\Mylog;
 use App\Models\Time_zone;
 use App\Http\Controllers\API\API_Time_zone;
+use App\Http\Controllers\API\ImageController;
 
 class GuestController extends Controller
 {
@@ -115,8 +116,6 @@ class GuestController extends Controller
             // }
         }
 
-
-
         $requestData['registration'] = str_replace(" ", "", $requestData['registration']);
         // แบนคำหยาบ
         $profanitie = DB::table('profanities')
@@ -129,6 +128,14 @@ class GuestController extends Controller
         }
        
         Guest::create($requestData);
+
+        // ----------- RESIZE PHOTO ----------- //
+        $data_for_resize = Guest::latest()->first();
+        $resize_photo = new ImageController();
+
+        if (!empty($requestData['photo'])) {
+           $resize_photo->resize_photo($data_for_resize->photo);
+        }
 
         DB::table('register_cars')
               ->where('registration_number', $requestData['registration'])
@@ -207,6 +214,13 @@ class GuestController extends Controller
 
         $guest = Guest::findOrFail($id);
         $guest->update($requestData);
+
+        // ----------- RESIZE PHOTO ----------- //
+        $resize_photo = new ImageController();
+
+        if (!empty($requestData['photo'])) {
+           $resize_photo->resize_photo($guest->photo);
+        }
 
         return redirect('guest')->with('flash_message', 'Guest updated!');
     }
