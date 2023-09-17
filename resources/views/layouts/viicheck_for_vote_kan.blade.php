@@ -139,9 +139,8 @@
                             <div class="col-3">
                                 <img width="80" src="{{ asset('/img/logo-partner/อบจ_กาญxวีเช็ค.png') }}">
                             </div>
-                            <div class="col-9">
+                            <div class="col-9 d-flex align-items-center justify-content-center">
                                 <span class="text-white">
-                                    <br>
                                     อบจ. กาญจนบุรี ร่วมกับ วีเช็ค 
                                 </span>
                             </div>
