@@ -84,6 +84,9 @@
                             <th>เจ้าหน้าที่ประจำหน่วย</th>
                             <th>เบอร์โทร</th>
                             <th>เบอร์โทร 2</th>
+                            <th>จำนวนการเพิ่มคะแนน</th>
+                            <th>จำนวนผู้มาลงคะแนน</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,6 +99,27 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->phone}}</td>
                             <td>{{ $item->phone_2}}</td>
+                            <td>
+                                @if(!empty($item->amount_add_score))
+                                    {{ $item->amount_add_score }}
+                                @else
+                                    <span class="text-danger">ยังไม่มีการเพิ่มคะแนน</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if(!empty($item->quantity_person))
+                                    {{ $item->quantity_person}}
+                                @else
+                                    <span class="text-danger">ไม่มีข้อมูล</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{ url('/vote_kan_stations/' . $item->id . '/edit') }}" title="Edit Vote_kan_station">
+                                    <button class="btn btn-warning btn-sm">
+                                        <i class="fa-solid fa-pen-to-square"></i> Edit
+                                    </button>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -108,6 +132,9 @@
                             <th>เจ้าหน้าที่ประจำหน่วย</th>
                             <th>เบอร์โทร</th>
                             <th>เบอร์โทร 2</th>
+                            <th>จำนวนการเพิ่มคะแนน</th>
+                            <th>จำนวนผู้มาลงคะแนน</th>
+                            <th></th>
                         </tr>
                     </tfoot>
                 </table>

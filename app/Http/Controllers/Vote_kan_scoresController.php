@@ -9,6 +9,7 @@ use App\Models\Vote_kan_station;
 
 use App\Models\Vote_kan_score;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Vote_kan_scoresController extends Controller
 {
@@ -72,6 +73,16 @@ class Vote_kan_scoresController extends Controller
         }
         // ddd($data_scores);
         Vote_kan_score::create($requestData);
+
+        $update_amount_add_score = intval($data_station->amount_add_score + 1) ;
+
+        DB::table('vote_kan_stations')
+            ->where([ 
+                    ['id', $data_station->id],
+                ])
+            ->update([
+                    'amount_add_score' => $update_amount_add_score,
+                ]);
 
         return redirect()->back();
 

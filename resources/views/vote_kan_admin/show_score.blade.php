@@ -15,6 +15,7 @@
         background-color: #ededed;
         border-radius: 50px;
         border-style: double;
+        margin-left: 45%;
     }
 
     .gold_color_gradient {
@@ -74,15 +75,17 @@
         <div id="card_num_1" class="card radius-10 overflow-hidden {{ $class_bg_1 }}">
             <div class="card-body">
                 <div class="d-flex align-items-center">
-                    <div class="text-white">
-                        <div class="rank_score divScore text-white">
-                            <span class="font-35">1</span>
-                            {{-- <img width="40" src="{{ asset('/img/icon/user_white.png') }}"> --}}
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-12">
+                                <img class="card-img" style="width: 70%;" src="{{ asset('/img/vote_kan/1.png') }}">
+                            </div>
                         </div>
                     </div>
                     <div class="text-center flex-grow-1"> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
+                        <span class="rank_score divScore text-white mb-3 font-35">1</span>
                         <h3 class="mb-0 text-white font-weight-bold">นายสุกวี แสงเป่า</h3>
-                        <h3 class="mb-0 text-white font-weight-bold">
+                        <h3 class="mb-0 mt-3 text-white font-weight-bold">
                             <span id="show_text_score_1">{{ $score_num_1 }}</span> คะแนน
                         </h3>
                     </div>
@@ -95,16 +98,18 @@
         <div id="card_num_2" class="card radius-10 overflow-hidden {{ $class_bg_2 }}">
             <div class="card-body">
                 <div class="d-flex align-items-center">
-                    <div class="text-white">
-                        <div class="rank_score divScore text-white">
-                            <span class="font-35">2</span>
-                            {{-- <img width="40" src="{{ asset('/img/icon/user_white.png') }}"> --}}
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-12">
+                                <img class="card-img" style="width: 86.5%;" src="{{ asset('/img/vote_kan/2.png') }}">
+                            </div>
                         </div>
                     </div>
                     <div class="text-center flex-grow-1"> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
+                        <span class="rank_score divScore text-white mb-3 font-35">2</span>
                         <h3 class="mb-0 text-white font-weight-bold">นายประวัติ กิจธรรมกูลนิจ</h3>
-                        <h3 class="mb-0 text-white font-weight-bold">
-                            <span id="show_text_score_2">{{ $score_num_2 }}</span> คะแนน
+                        <h3 class="mb-0 mt-3 text-white font-weight-bold">
+                            <span id="show_text_score_1">{{ $score_num_2 }}</span> คะแนน
                         </h3>
                     </div>
                 </div>

@@ -88,7 +88,6 @@
                             <span class="input-group-text bg-transparent"><i class="fa-solid fa-map"></i></span>
                             <select name="polling_station_at" id="polling_station_at" class="form-control" required>
                                 <option value="" selected > - กรุณาเลือกหน่วยเลือกตั้ง - </option>
-                                <option value="ทดสอบหน่วยเลือกตั้ง" >ทดสอบหน่วยเลือกตั้ง</option>
                             </select>
                         </div>
                     </div>
