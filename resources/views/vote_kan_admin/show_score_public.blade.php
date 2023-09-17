@@ -15,7 +15,7 @@
         background-color: #ededed;
         border-radius: 50px;
         border-style: double;
-        margin-left: 45%;
+        /* margin-left: 45%; */
     }
 
     .gold_color_gradient {
@@ -34,7 +34,11 @@
             radial-gradient(ellipse farthest-corner at right bottom, #CD7F32 0%, #A0522D 8%, #8B4513 30%, #704214 40%, transparent 80%),
             radial-gradient(ellipse farthest-corner at left top, #D2691E 0%, #A0522D 8%, #8B4513 25%, #704214 62.5%, #704214 100%);
     }
-
+    @media (max-width:576px) {
+        .name-section{
+            margin-top: 15px;
+        }
+    }
 
 </style>
 
@@ -55,9 +59,11 @@
     </div>
 </div>
 
-<div class="row">
-    <img src="{{ url('/img/logo-partner/x (2).png') }}">
-</div>
+<div class="col-12">
+        <div class="banner mb-4">
+            <img src="{{ asset('/img/vote_kan/banner.png') }}" style="width:100%;" alt="">
+        </div>
+    </div>
 
 <hr>
 
@@ -82,16 +88,17 @@
     <div class="col">
         <div id="card_num_1" class="card radius-10 overflow-hidden {{ $class_bg_1 }}">
             <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-12">
-                                <img class="card-img" style="width: 70%;" src="{{ asset('/img/vote_kan/1.png') }}">
-                            </div>
+                <div class="d-flex align-items-center row">
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-5  img-section">
+                        <div class="col-12 d-flex justify-content-center">
+                            <img class="card-img" style="width: clamp(140px, 75%, 208px);" src="{{ asset('/img/vote_kan/1.png') }}">
                         </div>
                     </div>
-                    <div class="text-center flex-grow-1"> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
-                        <span class="rank_score divScore text-white mb-3 font-35">1</span>
+                    <div class="col-12 col-md-6 col-lg-8 col-xl-7 name-section text-center mt-sm-3 mt-xs-3">
+                        <div class="d-flex justify-content-center">
+
+                            <span class="rank_score divScore text-white mb-3 font-35">1</span>
+                        </div> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
                         <h3 class="mb-0 text-white font-weight-bold">นายสุกวี แสงเป่า</h3>
                         <h3 class="mb-0 mt-3 text-white font-weight-bold">
                             <span id="show_text_score_1">{{ $score_num_1 }}</span> คะแนน
@@ -101,23 +108,23 @@
             </div>
         </div>
     </div>
-
     <div class="col">
-        <div id="card_num_2" class="card radius-10 overflow-hidden {{ $class_bg_2 }}">
+        <div id="card_num_1" class="card radius-10 overflow-hidden {{ $class_bg_2 }}">
             <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-12">
-                                <img class="card-img" style="width: 83%;" src="{{ asset('/img/vote_kan/2.png') }}">
-                            </div>
+                <div class="d-flex align-items-center row">
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-5  img-section">
+                        <div class="col-12 d-flex justify-content-center">
+                            <img class="card-img" style="width: clamp(140px, 75%, 208px);" src="{{ asset('/img/vote_kan/2.png') }}">
                         </div>
                     </div>
-                    <div class="text-center flex-grow-1"> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
-                        <span class="rank_score divScore text-white mb-3 font-35">2</span>
+                    <div class="col-12 col-md-6 col-lg-8 col-xl-7 name-section text-center mt-sm-3 mt-xs-3">
+                        <div class="d-flex justify-content-center">
+
+                            <span class="rank_score divScore text-white mb-3 font-35">2</span>
+                        </div> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
                         <h3 class="mb-0 text-white font-weight-bold">นายประวัติ กิจธรรมกูลนิจ</h3>
                         <h3 class="mb-0 mt-3 text-white font-weight-bold">
-                            <span id="show_text_score_1">{{ $score_num_2 }}</span> คะแนน
+                            <span id="show_text_score_/">{{ $score_num_2 }}</span> คะแนน
                         </h3>
                     </div>
                 </div>
@@ -191,7 +198,7 @@
             $amphoe_1_score_num_2 = $amphoe_1_score_num_2 + $amphoe_1->number_2;
         }
     @endphp
-    <div class="col mb-5">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
         <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>เมืองกาญจนบุรี</h3>
@@ -216,7 +223,7 @@
             $amphoe_2_score_num_2 = $amphoe_2_score_num_2 + $amphoe_2->number_2;
         }
     @endphp
-    <div class="col mb-5">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
         <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>ท่ามะกา</h3>
@@ -241,7 +248,7 @@
             $amphoe_3_score_num_2 = $amphoe_3_score_num_2 + $amphoe_3->number_2;
         }
     @endphp
-    <div class="col mb-5">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
         <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>ทองผาภูมิ</h3>
@@ -266,7 +273,7 @@
             $amphoe_4_score_num_2 = $amphoe_4_score_num_2 + $amphoe_4->number_2;
         }
     @endphp
-    <div class="col mb-5">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
         <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>สังขละบุรี</h3>
@@ -291,7 +298,7 @@
             $amphoe_5_score_num_2 = $amphoe_5_score_num_2 + $amphoe_5->number_2;
         }
     @endphp
-    <div class="col mb-5">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
         <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>พนมทวน</h3>
@@ -316,7 +323,7 @@
             $amphoe_6_score_num_2 = $amphoe_6_score_num_2 + $amphoe_6->number_2;
         }
     @endphp
-    <div class="col mb-5">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
         <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>เลาขวัญ</h3>
@@ -341,7 +348,7 @@
             $amphoe_7_score_num_2 = $amphoe_7_score_num_2 + $amphoe_7->number_2;
         }
     @endphp
-    <div class="col mb-5">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
         <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>ศรีสวัสดิ์</h3>
@@ -366,7 +373,7 @@
             $amphoe_8_score_num_2 = $amphoe_8_score_num_2 + $amphoe_8->number_2;
         }
     @endphp
-    <div class="col mb-5">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
         <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>ด่านมะขามเตี้ย</h3>
@@ -391,7 +398,7 @@
             $amphoe_9_score_num_2 = $amphoe_9_score_num_2 + $amphoe_9->number_2;
         }
     @endphp
-    <div class="col mb-5">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
         <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>หนองปรือ</h3>
@@ -416,7 +423,7 @@
             $amphoe_10_score_num_2 = $amphoe_10_score_num_2 + $amphoe_10->number_2;
         }
     @endphp
-    <div class="col mb-5">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
         <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>ห้วยกระเจา</h3>
@@ -441,7 +448,7 @@
             $amphoe_11_score_num_2 = $amphoe_11_score_num_2 + $amphoe_11->number_2;
         }
     @endphp
-    <div class="col mb-5">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
         <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>ท่าม่วง</h3>
@@ -466,7 +473,7 @@
             $amphoe_12_score_num_2 = $amphoe_12_score_num_2 + $amphoe_12->number_2;
         }
     @endphp
-    <div class="col mb-5">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
         <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>บ่อพลอย</h3>
@@ -491,7 +498,7 @@
             $amphoe_13_score_num_2 = $amphoe_13_score_num_2 + $amphoe_13->number_2;
         }
     @endphp
-    <div class="col mb-5">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-3 mb-5">
         <div class="card radius-10 h-100">
             <div class="card-header">
                 <h3>ไทรโยค</h3>
