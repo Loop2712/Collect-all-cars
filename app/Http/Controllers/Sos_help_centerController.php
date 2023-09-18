@@ -3104,8 +3104,11 @@ class Sos_help_centerController extends Controller
 
         $requestData = $request->all();
 
-        $data = sos_help_center::whereDate('created_at', '<', '2023-09-16')
-            ->where('status' , 'รับแจ้งเหตุ')
+        // $data = sos_help_center::whereDate('created_at', '<', '2023-09-16')
+        //     ->where('status' , 'รับแจ้งเหตุ')
+        //     ->get();
+
+        $data = sos_help_center::where('notify' ,"LIKE", '%นครนายก%')
             ->get();
 
         foreach ($data as $item) {
