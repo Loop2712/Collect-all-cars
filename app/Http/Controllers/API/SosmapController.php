@@ -148,7 +148,14 @@ class SosmapController extends Controller
 
         $sos_map_title = Sos_map_title::where('name_partner', $name_partner)->where('status','active')->get();
 
-        return $sos_map_title ;
+        if ($sos_map_title == '[]') {
+            $data['check_data'] = "No data" ;
+        }else{
+            $data['check_data'] = "Yes data" ;
+            $data['sos_map_title'] = $sos_map_title ;
+        }
+
+        return $data ;
 
     }
 

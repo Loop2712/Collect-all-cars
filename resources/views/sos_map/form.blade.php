@@ -1354,33 +1354,42 @@
         let name_partner = document.querySelector('#area_help').innerText ;
             console.log(name_partner);
 
+        if(!name_partner){
+            name_partner = "all_area" ;
+        }
+
         fetch("{{ url('/') }}/api/search_title_sos/" + name_partner)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
-                for(let item of result){
-                    let option = document.createElement("option");
-                    option.text = item.title;
-                    option.value = item.title;
-                    title_sos.add(option);
+                if(result['check_data'] == "Yes data"){
+                    for(let item of result['sos_map_title']){
+                        let option = document.createElement("option");
+                        option.text = item.title;
+                        option.value = item.title;
+                        title_sos.add(option);
 
-                    let option_class = document.createAttribute("class");
-                        option_class.value = "translate";
-                     
-                    option.setAttributeNode(option_class);
+                        let option_class = document.createAttribute("class");
+                            option_class.value = "translate";
+                         
+                        option.setAttributeNode(option_class);
 
+                    }
                 }
 
-                let option_other = document.createElement("option");
-                    option_other.text = "อื่นๆ";
-                    option_other.value = "อื่นๆ";
-                    title_sos.add(option_other); 
+                if(name_partner != "กลุ่มดิจิทัล สพฉ"){
 
-                    let option_other_class = document.createAttribute("class");
-                        option_other_class.value = "translate";
-                     
-                    option_other.setAttributeNode(option_other_class); 
+                    let option_other = document.createElement("option");
+                        option_other.text = "อื่นๆ";
+                        option_other.value = "อื่นๆ";
+                        title_sos.add(option_other); 
+
+                        let option_other_class = document.createAttribute("class");
+                            option_other_class.value = "translate";
+                         
+                        option_other.setAttributeNode(option_other_class); 
+                }
 
                 let html_option = `
                         <option class="translate" value="" selected > - เลือกหัวข้อการขอความช่วยเหลือ - </option>

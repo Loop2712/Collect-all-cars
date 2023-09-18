@@ -863,37 +863,6 @@
 			<!--navigation-->
 			<ul class="metismenu" id="menu" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
 
-				<!-- Dashboard Partner -->
-				@if(Auth::check())
-                    @if(Auth::user()->role == "admin-partner" and Auth::user()->organization != "สพฉ")
-					<li id="div_ll_Dashboard" class="">
-						<a href="#" class="has-arrow">
-							<div class="parent-icon">
-								<i class="fa-solid fa-chart-line"></i>
-							</div>
-							<div class="menu-title">Dashboard</div>
-						</a>
-	                    <ul>
-	                        <li>
-	                            <a href="{{ url('/dashboard_index#dashboard_user') }}"><i class='fas fa-users-cog'></i>User</a>
-	                        </li>
-	                        <li>
-	                            <a href="{{ url('/dashboard_index#dashboard_viisos') }}"><i class='fas fa-users-cog'></i>ViiSOS</a>
-	                        </li>
-	                        <li>
-								<a href="{{ url('/dashboard_index#dashboard_viinews') }}"><i class='fas fa-users-cog'></i>ViiNews</a>
-	                        </li>
-	                        <li>
-	                            <a href="{{ url('/dashboard_index#dashboard_viimove') }}"><i class='fas fa-users-cog'></i>ViiMove</a>
-	                        </li>
-	                        <li>
-	                            <a href="{{ url('/dashboard_index#dashboard_boardcast') }}"><i class='fas fa-users-cog'></i>Broadcast</a>
-	                        </li>
-	                    </ul>
-					</li>
-					@endif
-				@endif
-
 				<!-- Admin -->
 				@if(Auth::check())
                     @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "admin-condo")
@@ -934,6 +903,37 @@
 					@endif
 				@endif
 				<!-- Admin -->
+
+                <!-- Dashboard Partner -->
+                @if(Auth::check())
+                    @if(Auth::user()->role == "admin-partner" and Auth::user()->organization != "สพฉ")
+                    <li id="div_ll_Dashboard" class="">
+                        <a href="#" class="has-arrow">
+                            <div class="parent-icon">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <div class="menu-title">Dashboard</div>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="{{ url('/dashboard_index#dashboard_user') }}"><i class='fas fa-users-cog'></i>User</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/dashboard_index#dashboard_viisos') }}"><i class='fas fa-users-cog'></i>ViiSOS</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/dashboard_index#dashboard_viinews') }}"><i class='fas fa-users-cog'></i>ViiNews</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/dashboard_index#dashboard_viimove') }}"><i class='fas fa-users-cog'></i>ViiMove</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/dashboard_index#dashboard_boardcast') }}"><i class='fas fa-users-cog'></i>Broadcast</a>
+                            </li>
+                        </ul>
+                    </li>
+                    @endif
+                @endif
 
 				<!-- Broadcast -->
 				<!-- ใหม่ -->
@@ -1120,6 +1120,62 @@
 				<!-- care move sos -->
 				@if(Auth::check() && Auth::user()->organization != 'สพฉ')
 					@if( Auth::user()->role == "admin-partner" or Auth::user()->role == "partner" )
+                        <!-- Vii SOS -->
+                            <li class="main-submenu">
+                                <a href="#" class="has-arrow">
+                                    <div class="parent-icon"><i class="fas fa-siren-on"></i>
+                                    </div>
+                                    <div class="menu-title">Vii SOS</div>
+                                </a>
+                                <ul >
+                                    <li>
+                                        <a href="{{ url('/sos_partner') }}" data-submenu="{{ url('/sos_detail_partner') }}" data-submenu-2="{{ url('/sos_score_helper') }}" data-submenu-have-id="{{ url('/score_helper') }}/"class="d-block sub-menu">
+                                            <i class='fas fa-hands-helping'></i>
+
+                                            <span id="div_menu_help_1">
+                                                ให้ความช่วยเหลือ
+                                            </span>
+
+                                            <span id="div_menu_help" class="d-none">
+                                                <i  class="fas fa-exclamation-circle notify_alert float-end mt-1"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                    @if(Auth::check())
+                                        @if(Auth::user()->role == "admin-partner")
+                                            <li>
+                                                <a href="{{ url('/add_area') }}" data-submenu="{{ url('/service_current') }}" data-submenu-2="{{ url('/service_pending') }}" data-submenu-3="{{ url('/service_area') }}" class="sub-menu">
+                                                    <i class='far fa-map'></i>
+
+                                                    <span>
+                                                        &nbsp;พื้นที่บริการ
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        @endif
+                                    @endif
+
+                                    @if(Auth::user()->organization == "JS100 Radio" or Auth::user()->organization == "2บี กรีน จำกัด")
+                                        <li>
+
+                                            <a href="{{ url('/sos_emergency_js100') }}" data-submenu="{{ url('/sos_detail_js100') }}" class="d-block sub-menu">
+                                                <i class="fal fa-siren-on"></i>
+
+                                                <span id="div_menu_help_js100">
+                                                    SOS by calling
+                                                </span>
+
+                                                <span id="div_menu_alert_js100" class="d-none">
+                                                    <i  class="fas fa-exclamation-circle notify_alert float-end mt-1"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
+                        <!-- Vii SOS -->
+
 						<!-- ViiCare -->
 							<li>
 								<a href="#" class="has-arrow">
@@ -1156,61 +1212,6 @@
 							</li>
 						<!-- ViiMove -->
 
-						<!-- Vii SOS -->
-							<li class="main-submenu">
-								<a href="#" class="has-arrow">
-									<div class="parent-icon"><i class="fas fa-siren-on"></i>
-									</div>
-									<div class="menu-title">Vii SOS</div>
-								</a>
-								<ul >
-									<li>
-										<a href="{{ url('/sos_partner') }}" data-submenu="{{ url('/sos_detail_partner') }}" data-submenu-2="{{ url('/sos_score_helper') }}" data-submenu-have-id="{{ url('/score_helper') }}/"class="d-block sub-menu">
-											<i class='fas fa-hands-helping'></i>
-
-											<span id="div_menu_help_1">
-												ให้ความช่วยเหลือ
-											</span>
-
-											<span id="div_menu_help" class="d-none">
-												<i  class="fas fa-exclamation-circle notify_alert float-end mt-1"></i>
-											</span>
-										</a>
-									</li>
-
-									@if(Auth::check())
-					                    @if(Auth::user()->role == "admin-partner")
-											<li>
-												<a href="{{ url('/add_area') }}" data-submenu="{{ url('/service_current') }}" data-submenu-2="{{ url('/service_pending') }}" data-submenu-3="{{ url('/service_area') }}" class="sub-menu">
-													<i class='far fa-map'></i>
-
-													<span>
-														&nbsp;พื้นที่บริการ
-													</span>
-												</a>
-											</li>
-										@endif
-									@endif
-
-									@if(Auth::user()->organization == "JS100 Radio" or Auth::user()->organization == "2บี กรีน จำกัด")
-										<li>
-
-											<a href="{{ url('/sos_emergency_js100') }}" data-submenu="{{ url('/sos_detail_js100') }}" class="d-block sub-menu">
-												<i class="fal fa-siren-on"></i>
-
-												<span id="div_menu_help_js100">
-													SOS by calling
-												</span>
-
-												<span id="div_menu_alert_js100" class="d-none">
-													<i  class="fas fa-exclamation-circle notify_alert float-end mt-1"></i>
-												</span>
-											</a>
-										</li>
-									@endif
-								</ul>
-							</li>
-						<!-- Vii SOS -->
 					@endif
 				@endif
 				<!-- end care move sos -->
@@ -1932,6 +1933,12 @@
 							<span class="glider"></span>
 						</div>
 					</div>
+                    @else
+                    <div class="containerStatusofficer ms-auto">
+                        <div class="tabsStatusOfficer">
+                            <!-- ปุ่ม modal -->
+                        </div>
+                    </div>
 					@endif
 
 				 		<!-- switch officer 1669 -->
