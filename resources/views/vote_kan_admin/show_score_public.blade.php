@@ -106,7 +106,7 @@
         </div>
     </div>
     <div class="col">
-        <div id="card_num_1" class="card radius-10 overflow-hidden {{ $class_bg_2 }}">
+        <div id="card_num_2" class="card radius-10 overflow-hidden {{ $class_bg_2 }}">
             <div class="card-body">
                 <div class="d-flex align-items-center row">
                     <div class="col-12 col-md-6 col-lg-4 col-xl-5  img-section">
