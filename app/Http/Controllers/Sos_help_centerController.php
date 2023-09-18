@@ -3104,7 +3104,7 @@ class Sos_help_centerController extends Controller
 
         $requestData = $request->all();
 
-        $data = sos_help_center::whereDate('created_at', '<', '2023-09-10')
+        $data = sos_help_center::whereDate('created_at', '<', '2023-09-16')
             ->where('status' , 'รับแจ้งเหตุ')
             ->get();
 
