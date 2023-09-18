@@ -548,12 +548,9 @@
 
         }, 2000);
 
-        // var reface_Create_graph = setInterval(function() {
-        //     loop_Create_graph();
-        // }, 60000);
         var reface_Create_graph = setInterval(function() {
             loop_Create_graph();
-        }, 30000);
+        }, 60000);
 
     });
 
