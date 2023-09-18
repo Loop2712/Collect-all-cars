@@ -262,6 +262,7 @@ Route::get('/send_data_new_select_officer', 'Sos_help_centerController@send_data
 Route::get('/check_officer_command_in_call/{sos_id}', 'Sos_help_centerController@check_officer_command_in_call');
 Route::get('/real_time_check_refuse_and_call', 'Sos_help_centerController@real_time_check_refuse_and_call');
 Route::get('/delete_case', 'Sos_help_centerController@delete_case');
+Route::get('/delete_case_all', 'Sos_help_centerController@delete_case_all');
 
 Route::get('/check_data_form_yellow_show_case', 'Sos_help_centerController@check_data_form_yellow_show_case');
 Route::post('/officerSaveFormYellow', 'Sos_help_centerController@officerSaveFormYellow');

@@ -3099,4 +3099,25 @@ class Sos_help_centerController extends Controller
         return "OK" ;
 
     }
+
+    function delete_case_all(Request $request){
+
+        $requestData = $request->all();
+
+        $data = sos_help_center::whereDate('created_at', '<', '2023-09-10')
+            ->where('status' , 'รับแจ้งเหตุ')
+            ->get();
+
+        foreach ($data as $item) {
+            echo $item->id;
+            echo "<br>";
+
+            sos_help_center::where('id' , $item->id)->delete();
+            Sos_1669_form_yellow::where('sos_help_center_id' , $item->id)->delete();
+        }
+        // ddd($data);
+
+        return "OK" ;
+
+    }
 }
