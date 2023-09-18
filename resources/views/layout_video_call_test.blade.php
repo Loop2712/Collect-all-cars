@@ -98,10 +98,9 @@
 	}
 
 	.grid-template {
-		display: grid;
-
-		grid-template-columns: repeat(auto-fit, minmax(0, min(100%, 100%/1, max(50%, 100%/2)))) !important;
-
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 	}
 
 	#container_user_video_call {
@@ -109,7 +108,9 @@
 		height: 100%;
 		overflow: auto;
 		padding: 1px 2rem;
-
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 	}
 
 	#container_user_video_call .custom-div {
@@ -119,12 +120,19 @@
 		border-radius: 5px;
 		position: relative;
 	}
+
+	#container_user_video_call  .custom-div:only-child{
+		flex: 0 0 calc(100% - 40px);
+	}
+	#container_user_video_call  .custom-div:not(:only-child) {
+		flex: 0 0 calc(50% - 40px);
+	}
+	
 	.custom-div .status-input-output{
 		position: absolute;
 		top: 0;
 		right: 0;
 		display: flex;
-
 	}
 
 	.custom-div .infomation-user{
@@ -244,18 +252,6 @@ function isInUserVideoCallBar(div) {
     return div.parentElement === document.querySelector(".user-video-call-bar");
 }
 
-// ตรวจสอบจำนวน div ที่มี class "custom-div" และปรับความกว้าง
-function updateDivWidth() {
-    let container = document.getElementById('container_user_video_call');
-    let customDivs = container.getElementsByClassName('custom-div');
-    let count = customDivs.length;
-
-    if (count > 1) {
-        container.classList.add("grid-template");
-    } else {
-        container.classList.remove("grid-template");
-    }
-}
 
 function createAndAttachCustomDiv() {
     let randomColor = getRandomColor();
@@ -310,7 +306,7 @@ function createAndAttachCustomDiv() {
         document.getElementById("container_user_video_call").appendChild(newDiv);
     }
 
-    updateDivWidth();
+    
 }
 
 
@@ -334,7 +330,7 @@ function moveDivsToUserVideoCallBar(clickedDiv) {
         container.appendChild(clickedDiv);
     }
 
-    updateDivWidth();
+    
 }
 
 // สลับ div ระหว่าง .user-video-call-bar และ #container_user_video_call
@@ -363,7 +359,7 @@ function moveAllDivsToContainer() {
         container.appendChild(div);
     });
 
-    updateDivWidth();
+    
 }
 
 // จัดเรียกใช้งานเมื่อคลิกที่ div
