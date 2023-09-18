@@ -154,7 +154,7 @@
                                     @include ('layouts.partner_2_row')
                                 </div>
                                 <center>
-                                    <hr class="main-shadow main-radius text-white" style="width:70%;border: 2px solid white;">
+                                    <hr class="main-shadow main-radius text-white" style="width:70%;border: 2px solid white;margin-top: 100px">
                                 </center>
                             </div>
                         </div>
