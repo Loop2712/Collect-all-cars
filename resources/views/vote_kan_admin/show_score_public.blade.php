@@ -121,7 +121,7 @@
                         </div> <!-- เพิ่ม class flex-grow-1 เพื่อควบคุมการขยายของ div นี้ -->
                         <h3 class="mb-0 text-white font-weight-bold">นายประวัติ กิจธรรมกูลนิจ</h3>
                         <h3 class="mb-0 mt-3 text-white font-weight-bold">
-                            <span id="show_text_score_/">{{ $score_num_2 }}</span> คะแนน
+                            <span id="show_text_score_2">{{ $score_num_2 }}</span> คะแนน
                         </h3>
                     </div>
                 </div>
@@ -548,9 +548,12 @@
 
         }, 2000);
 
+        // var reface_Create_graph = setInterval(function() {
+        //     loop_Create_graph();
+        // }, 60000);
         var reface_Create_graph = setInterval(function() {
             loop_Create_graph();
-        }, 60000);
+        }, 30000);
 
     });
 
