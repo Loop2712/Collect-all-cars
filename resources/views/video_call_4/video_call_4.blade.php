@@ -16,17 +16,176 @@
 <style>
 @media screen and (min-width: 1024px)
 {
-    .grid-template {
-        display: grid;
 
-        grid-template-columns: repeat(auto-fit, minmax(0, min(100%, 100%/1, max(50%, 100%/2)))) !important;
+    html,
+	body,
+	.full-height,
+	.page-content,
+	.wrapper {
+		height: calc(100%);
+		min-height: calc(100% ) !important;
+		padding-bottom: 0;
+		/* padding-top: 0; */
+		/* margin-top: 0; */
+		margin-bottom: 0;
+	}
 
-    }
+	.data-sos {
+		outline: 1px solid #000;
+		border-radius: 5px;
+		min-height: 100%;
+		background-color: #2b2d31;
+		color: #fff !important;
+	}
+	.data-sos *{
+		color: #fff;
+	}
+	.video-call-contrainer {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+	}
 
-    .video-call-contrainer {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
-    }
+	.item-video-call {
+		aspect-ratio: 16/9;
+		/* outline: #000 1px solid; */
+		cursor: pointer;
+		/* เพิ่มคอร์เซอร์แสดงถึงว่าองค์ประกอบนี้สามารถคลิกได้ */
+		transition: all 0.3s ease-in-out;
+	}
+
+	.user-video-call-bar {
+		overflow: auto;
+	}
+
+	.user-video-call-bar .custom-div {
+		width: 200px;
+		margin: 0 5px;
+		aspect-ratio: 16/9;
+		height: 100px !important;
+		background: red;
+		/* padding-top: calc(9 / 16 * 100%); */
+		outline: #000 1px solid;
+		position: relative;
+	}
+
+	.btn-show-hide-user-video-call {
+		position: absolute;
+
+		color: #fff;
+		background-color: rgb(0, 0, 0, 0.4);
+		border-radius: 50px;
+		opacity: 0;
+		top: 10%;
+		left: 50%;
+		transform: translate(-50%, -10%);
+		padding: 5px 25px;
+		transition: all .15s ease-in-out;
+	}
+
+	.btn-show-hide-user-video-call:hover {
+		color: #fff;
+	}
+
+	.video-call:hover .btn-show-hide-user-video-call {
+		opacity: 1;
+	}
+
+	.video-call:hover {
+		/* box-shadow: inset 0px 0px 100px 0px rgba(0,0,0,0.1); */
+
+		transition: all .15s ease-in-out;
+		/* box-shadow: 0px 20px 42px -20px rgba(0, 0, 0, 0.45) inset,
+			0px -20px 42px -20px rgba(0, 0, 0, 0.45) inset; */
+	}
+
+	.video-call {
+		/* outline: #000 1px solid; */
+		margin: 0;
+		background-color: #000;
+	}
+
+	.user-video-call-contrainer {
+		/* display: flex;
+  		justify-content: center; */
+		position: relative;
+
+	}
+
+	.grid-template {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	#container_user_video_call {
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		padding: 1px 2rem;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	#container_user_video_call .custom-div {
+		aspect-ratio: 16/9;
+		width: 100%;
+		outline: #000 1px solid;
+		border-radius: 5px;
+		position: relative;
+        background-color: #4d4d4d;
+	}
+
+	#container_user_video_call  .custom-div:only-child{
+		flex: 0 0 calc(100% - 40px);
+	}
+	#container_user_video_call  .custom-div:not(:only-child) {
+		flex: 0 0 calc(50% - 40px);
+	}
+
+	.custom-div .status-input-output{
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: flex;
+	}
+
+	.custom-div .infomation-user{
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		background-color: rgb(0, 0, 0, 0.4);
+		padding: .5rem 1rem;
+		border-radius: 10px;
+		margin: 1rem;
+		color: #fff !important;
+	}
+
+	.infomation-user .role-user-video-call ,.infomation-user .name-user-video-call{
+		display: block;
+	}
+	.status-input-output .mic ,.status-input-output .camera{
+		margin: 5px;
+		background-color: rgb(0, 0, 0, 0.4);
+		padding: .5rem 1rem;
+		border-radius: 10px;
+		color: #fff;
+	}
+
+	.user-video-call-bar .custom-div .infomation-user{
+		transform: scale(0.5);
+		margin: 0;
+		bottom: -10px;
+		right: -10px;
+	}
+
+	.user-video-call-bar .custom-div .status-input-output{
+		transform: scale(0.7);
+		margin: 0;
+		top: -3px;
+		right: -10px;
+	}
+
 }
 </style>
 <!-- ========================================== html ========================================== -->
@@ -450,6 +609,10 @@
                 channelParameters.remoteVideoTrack.play(remotePlayerContainer);
                 // เพิ่ม div ใหม่ลงใน div หลัก
                 document.querySelector('#container_user_video_call').append(divVideo);
+
+                divVideo.addEventListener("click", function() {
+                    handleClick(divVideo);
+                });
                 // Set a stream fallback option to automatically switch remote video quality when network conditions degrade.
                 agoraEngine.setStreamFallbackOption(channelParameters.remoteUid, 1);
 
@@ -562,7 +725,7 @@
             }
 
             // อัพเดต Div ตามจำนวนคนในห้อง ให้รูปแบบเหมาะสม
-            updateDivWidth();
+
 
         });
 
@@ -582,9 +745,6 @@
 
             console.log("agoraEngine ของ user-left");
             console.log(agoraEngine);
-
-            // อัพเดต Div ตามจำนวนคนในห้อง ให้รูปแบบเหมาะสม
-            updateDivWidth();
 
         });
 
@@ -1155,23 +1315,23 @@
             container.appendChild(clickedDiv);
         }
 
-        updateDivWidth();
+
     }
 
     // สลับ div ระหว่าง .user-video-call-bar และ #container_user_video_call
-    function swapDivsInContainerAndUserVideoCallBar(clickedDiv) {
-        let container = document.getElementById("container_user_video_call");
-        let customDivsInContainer = container.querySelectorAll(".custom-div");
-        let userVideoCallBar = document.querySelector(".user-video-call-bar");
-        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+    // function swapDivsInContainerAndUserVideoCallBar(clickedDiv) {
+    //     let container = document.getElementById("container_user_video_call");
+    //     let customDivsInContainer = container.querySelectorAll(".custom-div");
+    //     let userVideoCallBar = document.querySelector(".user-video-call-bar");
+    //     let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
 
-        if (customDivsInContainer.length > 0 && customDivsInUserVideoCallBar.length > 0) {
-            let firstDivInContainer = customDivsInContainer[0];
+    //     if (customDivsInContainer.length > 0 && customDivsInUserVideoCallBar.length > 0) {
+    //         let firstDivInContainer = customDivsInContainer[0];
 
-            container.appendChild(clickedDiv);
-            userVideoCallBar.appendChild(firstDivInContainer);
-        }
-    }
+    //         container.appendChild(clickedDiv);
+    //         userVideoCallBar.appendChild(firstDivInContainer);
+    //     }
+    // }
 
     // ย้ายทุก div ใน .user-video-call-bar ไปยัง #container_user_video_call
     function moveAllDivsToContainer() {
@@ -1184,7 +1344,7 @@
             container.appendChild(div);
         });
 
-        updateDivWidth();
+
     }
 
     // จัดเรียกใช้งานเมื่อคลิกที่ div
@@ -1201,6 +1361,7 @@
 
     // เพิ่ม event listener บน .user-video-call-bar สำหรับสลับ div
     document.querySelector(".user-video-call-bar").addEventListener("click", function(e) {
+        console.log("Deer");
         if (e.target.classList.contains("custom-div")) {
             handleClick(e.target);
         }

@@ -121,6 +121,10 @@ function create_element_localvideo_call(localPlayerContainer) {
     divVideo.append(localPlayerContainer);
     document.querySelector('#container_user_video_call').append(divVideo);
 
+    divVideo.addEventListener("click", function() {
+        handleClick(divVideo);
+    });
+
 }
 
 function create_element_remotevideo_call(remotePlayerContainer) {
@@ -189,6 +193,10 @@ function create_dummy_videoTrack(user){
 
         // divVideo.append(remote_video_call); // เพิ่มแท็กวิดีโอที่มีพื้นหลังแค่สีดำ เข้าไปใน div class="video-box"
 
+        divVideo.addEventListener("click", function() {
+            handleClick(divVideo);
+        });
+
 
     }else{
         console.log("------------------------------------------------------  หา user ไม่เจอ เลยขึ้น undifined ใน create_dummy_videoTrack()");
@@ -198,18 +206,20 @@ function create_dummy_videoTrack(user){
 
 
 
-// ตรวจสอบจำนวน div ที่มี class "custom-div" และปรับความกว้าง
-function updateDivWidth() {
-    let container = document.getElementById('container_user_video_call');
-    let customDivs = container.getElementsByClassName('custom-div');
-    let count = customDivs.length;
 
-    if (count > 1) {
-        container.classList.add("grid-template");
-    } else {
-        container.classList.remove("grid-template");
-    }
-}
+
+// ตรวจสอบจำนวน div ที่มี class "custom-div" และปรับความกว้าง
+// function updateDivWidth() {
+//     let container = document.getElementById('container_user_video_call');
+//     let customDivs = container.getElementsByClassName('custom-div');
+//     let count = customDivs.length;
+
+//     if (count > 1) {
+//         container.classList.add("grid-template");
+//     } else {
+//         container.classList.remove("grid-template");
+//     }
+// }
 
 
 

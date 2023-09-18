@@ -127,7 +127,7 @@
 	#container_user_video_call  .custom-div:not(:only-child) {
 		flex: 0 0 calc(50% - 40px);
 	}
-	
+
 	.custom-div .status-input-output{
 		position: absolute;
 		top: 0;
@@ -306,7 +306,7 @@ function createAndAttachCustomDiv() {
         document.getElementById("container_user_video_call").appendChild(newDiv);
     }
 
-    
+
 }
 
 
@@ -330,7 +330,7 @@ function moveDivsToUserVideoCallBar(clickedDiv) {
         container.appendChild(clickedDiv);
     }
 
-    
+
 }
 
 // สลับ div ระหว่าง .user-video-call-bar และ #container_user_video_call
@@ -359,7 +359,7 @@ function moveAllDivsToContainer() {
         container.appendChild(div);
     });
 
-    
+
 }
 
 // จัดเรียกใช้งานเมื่อคลิกที่ div
