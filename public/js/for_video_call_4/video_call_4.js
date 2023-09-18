@@ -1,8 +1,6 @@
 
 function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน
-    //============== เมนูปุ่มด้านล่าง ==============
-    // const divForVideoButton = document.createElement('div');
-    // divForVideoButton.classList.add('buttonVideo');
+
     const divForVideoButton = document.querySelector('#divForVideoButton');
 
     const muteButton = document.createElement('button');
@@ -30,16 +28,19 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
             document.getElementById(`muteAudio`).innerHTML = '<i class="fa-solid fa-microphone-slash"></i>';
             // Mute the local video.
             channelParameters.localAudioTrack.setEnabled(false);
-            // muteButton.classList.add('btn-disabled');
-            // muteButton.classList.remove('btn-primary');
+
+            // เปลี่ยน icon microphone ให้เป็นปิด ใน divVideo_
+            document.getElementById(`mic_local`).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+
             isAudio = false;
         } else {
             // Update the button text.
             document.getElementById(`muteAudio`).innerHTML = '<i class="fa-solid fa-microphone"></i>';
             // Unmute the local video.
             channelParameters.localAudioTrack.setEnabled(true);
-            // muteButton.classList.add('btn-primary');
-            // muteButton.classList.remove('btn-disabled');
+            // เปลี่ยน icon microphone ให้เป็นเปิด ใน divVideo_
+            document.getElementById(`mic_local`).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+
             isAudio = true;
         }
     }
@@ -51,7 +52,12 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
             // Mute the local video.
             channelParameters.localVideoTrack.setEnabled(false);
             muteVideoButton.classList.add('btn-disabled');
-            // muteVideoButton.classList.remove('btn-success');
+            // เปลี่ยน icon camera ให้เป็นปิด ใน divVideo_
+            document.getElementById(`camera_local`).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+
+            // ซ่อนโปรไฟล์ ตอนเปิดกล้อง
+            document.querySelector('.profile-input-output').classList.remove('d-none');
+
             isVideo = false;
 
         } else {
@@ -61,6 +67,13 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
             channelParameters.localVideoTrack.setEnabled(true);
             // muteVideoButton.classList.add('btn-success');
             muteVideoButton.classList.remove('btn-disabled');
+
+            // เปลี่ยน icon camera ให้เป็นเปิด ใน divVideo_
+            document.getElementById(`camera_local`).innerHTML = '<i class="fa-duotone fa-video"></i>';
+
+            // ซ่อนโปรไฟล์ ตอนเปิดกล้อง
+            document.querySelector('.profile-input-output').classList.add('d-none');
+
             isVideo = true;
 
             if(document.querySelector('.imgdivLocal')){
@@ -72,53 +85,77 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
 }
 
 
-function create_element_localvideo_call(localPlayerContainer) {
+function create_element_localvideo_call(localPlayerContainer,profile_local) {
     // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
     if(document.getElementById('videoDiv_' + localPlayerContainer.id)) {
         document.getElementById('videoDiv_' + localPlayerContainer.id).remove();
     }
 
-    const divVideo = document.createElement('div');
+    let divVideo = document.createElement('div');
     divVideo.setAttribute('id','videoDiv_' + localPlayerContainer.id);
     divVideo.setAttribute('class','custom-div');
     divVideo.setAttribute('style','background-color: grey');
 
-    // เพิ่ม div ด้านใน
+    //======= สร้างปุ่มสถานะ && รูปโปรไฟล์ ==========
+
+    // สร้างแท็ก <img> สำหรับรูปโปรไฟล์
+    let ProfileInputOutputDiv = document.createElement("div");
+        ProfileInputOutputDiv.className = "profile-input-output";
+        ProfileInputOutputDiv.setAttribute('style','z-index: 9999; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);');
+
+    let profileImage = document.createElement('img');
+        profileImage.setAttribute('src', profile_local); // เปลี่ยน 'ลิงก์รูปโปรไฟล์' เป็น URL ของรูปโปรไฟล์ของผู้ใช้
+        profileImage.setAttribute('alt', 'โปรไฟล์');
+        profileImage.setAttribute('style', 'border-radius: 50%; width: 100px; height: 100px; max-width: 100%; max-height: 100%;');
+
+    // เพิ่มแท็ก <img> ลงใน ProfileInputOutputDiv
+    ProfileInputOutputDiv.appendChild(profileImage);
+
     let statusInputOutputDiv = document.createElement("div");
-    statusInputOutputDiv.className = "status-input-output";
-    statusInputOutputDiv.setAttribute('style','z-index: 9999;');
+        statusInputOutputDiv.className = "status-input-output";
+        statusInputOutputDiv.setAttribute('style','z-index: 9999;');
 
     let micDiv = document.createElement("div");
-    micDiv.className = "mic";
-    micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+        micDiv.id = "mic_local";
+        micDiv.className = "mic";
+        micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
 
     let cameraDiv = document.createElement("div");
-    cameraDiv.className = "camera";
-    cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
+        cameraDiv.id = "camera_local";
+        cameraDiv.className = "camera";
+        cameraDiv.innerHTML = '<i class="fa-duotone fa-video"></i>';
 
     statusInputOutputDiv.appendChild(micDiv);
     statusInputOutputDiv.appendChild(cameraDiv);
 
     let infomationUserDiv = document.createElement("div");
-    infomationUserDiv.className = "infomation-user";
-    infomationUserDiv.setAttribute('style','z-index: 9999;');
+        infomationUserDiv.id = "infomation-user-local";
+        infomationUserDiv.className = "infomation-user";
+        infomationUserDiv.setAttribute('style','z-index: 9999;');
 
     let nameUserVideoCallDiv = document.createElement("div");
-    nameUserVideoCallDiv.className = "name-user-video-call";
-    nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>lucky</b></h5>';
+        nameUserVideoCallDiv.id = "name_local_video_call";
+        nameUserVideoCallDiv.className = "name-user-video-call";
+        nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>ชื่อผู้ใช้</b></h5>';
 
     let roleUserVideoCallDiv = document.createElement("div");
-    roleUserVideoCallDiv.className = "role-user-video-call";
-    roleUserVideoCallDiv.innerHTML = '<small class="d-block">ศูนย์สั่งการ</small>';
+        roleUserVideoCallDiv.id = "role_local_video_call";
+        roleUserVideoCallDiv.className = "role-user-video-call";
+        roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
 
     infomationUserDiv.appendChild(nameUserVideoCallDiv);
     infomationUserDiv.appendChild(roleUserVideoCallDiv);
 
     // เพิ่ม div ด้านในลงใน div หลัก
+    divVideo.appendChild(ProfileInputOutputDiv);
     divVideo.appendChild(statusInputOutputDiv);
     divVideo.appendChild(infomationUserDiv);
+
+    //======= จบการ สร้างปุ่มสถานะ ==========
+
     // เพิ่ม div หลักลงใน div รวม
     divVideo.append(localPlayerContainer);
+
     document.querySelector('#container_user_video_call').append(divVideo);
 
     divVideo.addEventListener("click", function() {
@@ -129,40 +166,92 @@ function create_element_localvideo_call(localPlayerContainer) {
 
 function create_element_remotevideo_call(remotePlayerContainer) {
 
-    // if(document.getElementById('videoDiv_' + remotePlayerContainer.id)) {
-    //     document.getElementById('videoDiv_' + remotePlayerContainer.id).remove();
-    // }
+    const containerId = remotePlayerContainer.id;
 
-    // // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
-    // const divVideo = document.createElement('div');
-    // divVideo.setAttribute('id','videoDiv_' + remotePlayerContainer.id);
-    // divVideo.setAttribute('class','video-box');
-    // divVideo.setAttribute('style','background-color: grey');
+    // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
+    if (document.getElementById("videoDiv_"+ containerId)) {
+        document.getElementById("videoDiv_"+ containerId).remove();
+    }
 
-    // divVideo.append(remotePlayerContainer);
+    // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
+    let divVideo = document.createElement('div');
+        divVideo.setAttribute('id','videoDiv_' + containerId);
+        divVideo.setAttribute('class','custom-div');
+        divVideo.setAttribute('style','background-color: grey');
 
-    // document.querySelector('#divVideo_Parent').append(divVideo);
+        //======= สร้างปุ่มสถานะ && รูปโปรไฟล์ ==========
 
-    // const containerId = 'videoDiv_' + remotePlayerContainer.id;
+    // สร้างแท็ก <img> สำหรับรูปโปรไฟล์
+    // let ProfileInputOutputDiv = document.createElement("div");
+    //     ProfileInputOutputDiv.className = "profile-input-output";
+    //     ProfileInputOutputDiv.setAttribute('style','z-index: 9999; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);');
 
-    // // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
-    // if (document.getElementById(containerId)) {
-    //     document.getElementById(containerId).remove();
-    // }
+    // let profileImage = document.createElement('img');
+    //     profileImage.setAttribute('src', 'https://f.ptcdn.info/487/073/000/qt2wmw4n966a6s3VrFxT-o.jpg'); // เปลี่ยน 'ลิงก์รูปโปรไฟล์' เป็น URL ของรูปโปรไฟล์ของผู้ใช้
+    //     profileImage.setAttribute('alt', 'โปรไฟล์');
+    //     profileImage.setAttribute('style', 'border-radius: 50%; width: 100px; height: 100px; max-width: 100%; max-height: 100%;');
 
-    // // สร้าง div ใหม่
-    // const divVideo = document.createElement('div');
-    // divVideo.setAttribute('id', containerId);
-    // divVideo.setAttribute('class', 'video-box');
-    // divVideo.setAttribute('style', 'background-color: grey');
+    // เพิ่มแท็ก <img> ลงใน ProfileInputOutputDiv
+    ProfileInputOutputDiv.appendChild(profileImage);
 
-    // divVideo.append(remotePlayerContainer);
+    let statusInputOutputDiv = document.createElement("div");
+        statusInputOutputDiv.className = "status-input-output";
+        statusInputOutputDiv.setAttribute('style','z-index: 9999;');
 
-    // // เพิ่ม div ใหม่ลงใน div หลัก
-    // document.querySelector('#divVideo_Parent').append(divVideo);
+    let micDiv = document.createElement("div");
+        micDiv.className = "mic";
+        micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+
+    let cameraDiv = document.createElement("div");
+        cameraDiv.className = "camera";
+        cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
+
+    statusInputOutputDiv.appendChild(micDiv);
+    statusInputOutputDiv.appendChild(cameraDiv);
+
+    let infomationUserDiv = document.createElement("div");
+        infomationUserDiv.className = "infomation-user";
+        infomationUserDiv.setAttribute('style','z-index: 9999;');
+
+    let nameUserVideoCallDiv = document.createElement("div");
+        nameUserVideoCallDiv.className = "name-user-video-call";
+        nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>ชื่อผู้ใช้</b></h5>';
+
+    let roleUserVideoCallDiv = document.createElement("div");
+        roleUserVideoCallDiv.className = "role-user-video-call";
+        roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
+
+    infomationUserDiv.appendChild(nameUserVideoCallDiv);
+    infomationUserDiv.appendChild(roleUserVideoCallDiv);
+
+    // เพิ่ม div ด้านในลงใน div หลัก
+    divVideo.appendChild(ProfileInputOutputDiv);
+    divVideo.appendChild(statusInputOutputDiv);
+    divVideo.appendChild(infomationUserDiv);
+
+    //======= จบการ สร้างปุ่มสถานะ ==========
+
+    divVideo.append(remotePlayerContainer);
+
+    // เพิ่ม div ใหม่ลงใน div หลัก หรือ div bar
+    let userVideoCallBar = document.querySelector(".user-video-call-bar");
+    let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+    if (customDivsInUserVideoCallBar.length > 0) {
+        let firstCustomDiv = customDivsInUserVideoCallBar[0];
+        userVideoCallBar.insertBefore(divVideo, firstCustomDiv.nextSibling);
+    } else {
+        let container_user_video_call = document.querySelector("#container_user_video_call");
+        container_user_video_call.append(divVideo);
+    }
+
+    // คลิ๊ก div ให้เปลี่ยนขนาด
+    divVideo.addEventListener("click", function() {
+        handleClick(divVideo);
+    });
 }
 
-function create_dummy_videoTrack(user){
+function create_dummy_videoTrack(user,name_remote,profile_remote){
     if(user.uid){
         // ถ้ามี videoDiv อยู่แล้ว ลบอันเก่าก่อน
         if(document.getElementById('videoDiv_' + user.uid.toString())) {
@@ -170,14 +259,64 @@ function create_dummy_videoTrack(user){
         }
 
         // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
-        const divVideo = document.createElement('div');
+        let divVideo = document.createElement('div');
         divVideo.setAttribute('id','videoDiv_' + user.uid.toString());
         divVideo.setAttribute('class','custom-div');
         divVideo.setAttribute('style','background-color: grey');
 
-        document.querySelector('#container_user_video_call').append(divVideo);
+        //======= สร้างปุ่มสถานะ และรูปโปรไฟล์ ==========
 
-        // ถ้ามี videoDiv อยู่แล้ว ลบอันเก่าก่อน
+        // สร้างแท็ก <img> สำหรับรูปโปรไฟล์
+        let ProfileInputOutputDiv = document.createElement("div");
+            ProfileInputOutputDiv.className = "profile-input-output";
+            ProfileInputOutputDiv.setAttribute('style','z-index: 9999; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);');
+
+        let profileImage = document.createElement('img');
+            profileImage.setAttribute('src', profile_remote); // เปลี่ยน 'ลิงก์รูปโปรไฟล์' เป็น URL ของรูปโปรไฟล์ของผู้ใช้
+            profileImage.setAttribute('alt', 'โปรไฟล์');
+            profileImage.setAttribute('style', 'border-radius: 50%; width: 100px; height: 100px; max-width: 100%; max-height: 100%;');
+
+        // เพิ่มแท็ก <img> ลงใน ProfileInputOutputDiv
+        ProfileInputOutputDiv.appendChild(profileImage);
+
+        let statusInputOutputDiv = document.createElement("div");
+            statusInputOutputDiv.className = "status-input-output";
+            statusInputOutputDiv.setAttribute('style','z-index: 9999;');
+
+        let micDiv = document.createElement("div");
+            micDiv.className = "mic";
+            micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+
+        let cameraDiv = document.createElement("div");
+            cameraDiv.className = "camera";
+            cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
+
+        statusInputOutputDiv.appendChild(micDiv);
+        statusInputOutputDiv.appendChild(cameraDiv);
+
+        let infomationUserDiv = document.createElement("div");
+            infomationUserDiv.className = "infomation-user";
+            infomationUserDiv.setAttribute('style','z-index: 9999;');
+
+        let nameUserVideoCallDiv = document.createElement("div");
+            nameUserVideoCallDiv.className = "name-user-video-call";
+            nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>'+name_remote+'</b></h5>';
+
+        let roleUserVideoCallDiv = document.createElement("div");
+            roleUserVideoCallDiv.className = "role-user-video-call";
+            roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
+
+        infomationUserDiv.appendChild(nameUserVideoCallDiv);
+        infomationUserDiv.appendChild(roleUserVideoCallDiv);
+
+        // เพิ่ม div ด้านในลงใน div หลัก
+        divVideo.appendChild(ProfileInputOutputDiv);
+        divVideo.appendChild(statusInputOutputDiv);
+        divVideo.appendChild(infomationUserDiv);
+
+        //======= จบการ สร้างปุ่มสถานะ ==========
+
+        // ถ้ามี dummy_trackRemoteDiv_ อยู่แล้ว ลบอันเก่าก่อน
         if(document.getElementById('dummy_trackRemoteDiv_' + user.uid.toString())) {
             document.getElementById('dummy_trackRemoteDiv_' + user.uid.toString()).remove();
         }
@@ -196,6 +335,19 @@ function create_dummy_videoTrack(user){
         divVideo.addEventListener("click", function() {
             handleClick(divVideo);
         });
+
+        let userVideoCallBar = document.querySelector(".user-video-call-bar");
+        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+        if (customDivsInUserVideoCallBar.length > 0) {
+            let firstCustomDiv = customDivsInUserVideoCallBar[0];
+            userVideoCallBar.insertBefore(divVideo, firstCustomDiv.nextSibling);
+        } else {
+            let container_user_video_call = document.querySelector("#container_user_video_call");
+            container_user_video_call.append(divVideo);
+        }
+
+
 
 
     }else{

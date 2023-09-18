@@ -393,10 +393,15 @@
     console.log(audioTrack);
     // var userDivVideoMap = {}; // ใช้เก็บข้อมูลผู้ใช้และ divVideo ที่ถูกใช้
 
+    // เรียกสองอันเพราะไม่อยากไปยุ่งกับโค้ดเก่า
     var user_id = '{{ Auth::user()->id }}';
+    var user_data = @json(Auth::user());
+
     var appId = '{{ env("AGORA_APP_ID") }}';
     var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
     var sos_1669_id = '{{ $sos_id }}';
+
+    var remote_in_room = [];
 
     options =
     {
@@ -437,7 +442,7 @@
 
                             if (currentTimestamp >= expirationTimestamp) {
                                 // เวลาหมดแล้ว ให้แสดงข้อความแจ้งเตือนหรือทำการแจ้งเตือนผ่านทาง UI ตามที่คุณต้องการ
-                                window.history.back();
+                                document.getElementById('leave').click();
                             }
                         }
 
@@ -581,38 +586,10 @@
                 remotePlayerContainer.id = user.uid.toString();
 
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
-
-                // create_element_remotevideo_call(remotePlayerContainer);
-
-
-                // const containerId = 'videoDiv_' + remotePlayerContainer.id;
-                // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
-                if (document.getElementById("videoDiv_"+ user.uid.toString())) {
-                    document.getElementById("videoDiv_"+ user.uid.toString()).remove();
-                }
-
-                // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
-                const divVideo = document.createElement('div');
-                    divVideo.setAttribute('id','videoDiv_' + user.uid.toString());
-                    divVideo.setAttribute('class','custom-div');
-                    divVideo.setAttribute('style','background-color: grey');
-
-                // if (remotePlayer_check_arr[user.uid.toString()]) {
-                //     console.log("เข้า if play");
-                //
-                // }else{
-                //     console.log("เข้า else play");
-                // }
-
-                divVideo.append(remotePlayerContainer);
+                create_element_remotevideo_call(remotePlayerContainer);
 
                 channelParameters.remoteVideoTrack.play(remotePlayerContainer);
-                // เพิ่ม div ใหม่ลงใน div หลัก
-                document.querySelector('#container_user_video_call').append(divVideo);
 
-                divVideo.addEventListener("click", function() {
-                    handleClick(divVideo);
-                });
                 // Set a stream fallback option to automatically switch remote video quality when network conditions degrade.
                 agoraEngine.setStreamFallbackOption(channelParameters.remoteUid, 1);
 
@@ -658,11 +635,25 @@
 
             if(mediaType == "video"){
                 if (!user.remoteVideoTrack) {
-                    console.log("ไม่พบ remoteVideoTrack");
                     console.log("สร้าง Div_Dummy ของ" + user.uid);
                     console.log(user);
-                    // สำหรับ สร้าง div_dummy ตอนผู้ใช้ไม่ได้เปิดกล้อง
-                    create_dummy_videoTrack(user);
+
+                    remote_in_room.forEach(element => {
+                        if (element === user.uid) {
+                            let name_remote = element.name;
+                            let profile_remote;
+
+                            if (element.avatar !== '' && element.photo === '') {
+                                profile_remote = element.avatar;
+                            } else if (element.photo !== '') {
+                                profile_remote = "{{ url('/storage') }}" + "/" + "{{ Auth::user()->photo }}";
+                            } else {
+                                profile_remote = "https://www.viicheck.com/Medilab/img/icon.png";
+                            }
+                            // สำหรับ สร้าง div_dummy ตอนผู้ใช้ไม่ได้เปิดกล้อง
+                            create_dummy_videoTrack(user,name_remote,profile_remote);
+                        }
+                    });
                 }
             }
 
@@ -697,16 +688,33 @@
             console.log("agoraEngine มีคนเข้าห้องมา");
             console.log(agoraEngine);
 
-            // fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + user_id + '&appCertificate=' + appCertificate  + '&appId=' + appId)
-            //     .then(response => response.text())
-            //     .then(result => {
+            fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + evt.uid)
+                .then(response => response.json())
+                .then(result => {
+                    console.log("result");
+                    console.log(result);
 
-            //     console.log("บันทึกข้อมูล เมื่มีคนเข้าห้อง สำเร็จ");
-            //     console.log(result);
-            // })
-            // .catch(error => {
-            //     console.log("บันทึกข้อมูล เมื่มีคนเข้าห้อง ล้มเหลว");
-            // });
+                    //นำข้อมูล ผู้ที่เข้าห้องมาเก็ยไว้ใน array
+                    remote_in_room[result.id] = {
+                        name: result.name,
+                        avatar: result.avatar,
+                        photo: result.photo,
+                    };
+                    console.log("บันทึกข้อมูล เมื่อมีคนเข้าห้อง สำเร็จ");
+                    console.log(remote_in_room);
+
+            })
+            .catch(error => {
+                console.log("บันทึกข้อมูล เมื่มีคนเข้าห้อง ล้มเหลว");
+            });
+
+            // เช็คว่ามี div อยู่ใน divใหญ่
+            let userVideoCallBar = document.querySelector(".user-video-call-bar");
+            let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+            if (customDivsInUserVideoCallBar.length > 0) {
+                moveAllDivsToContainer();
+            }
 
             if(agoraEngine['remoteUsers'][0]){
                 if( agoraEngine['remoteUsers']['length'] != 0 ){
@@ -736,6 +744,14 @@
 
             if(document.getElementById('videoDiv_' + evt.uid)) {
                 document.getElementById('videoDiv_' + evt.uid).remove();
+            }
+
+            // เช็คว่ามี div อยู่ใน divใหญ่
+            let userVideoCallBar = document.querySelector(".user-video-call-bar");
+            let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+            if (customDivsInUserVideoCallBar.length > 0) {
+                moveAllDivsToContainer();
             }
 
             // ถ้าผู้ใช้ เหลือ 0 คน ให้ทำลายห้องทิ้ง
@@ -841,6 +857,23 @@
                     }
                 }
 
+                //ดึงข้อมูลผู้ใช้งานจาก auth
+                let profile_local;
+
+                if (user_data.avatar !== '' && user_data.photo === '') {
+                    profile_local = user_data.avatar;
+                } else if (user_data.photo !== '') {
+                    profile_local = "{{ url('/storage') }}" + "/" + "{{ Auth::user()->photo }}";
+                } else {
+                    profile_local = "https://www.viicheck.com/Medilab/img/icon.png";
+                }
+
+                //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
+                create_element_localvideo_call(localPlayerContainer,profile_local);
+
+                // Play the local video track.
+                channelParameters.localVideoTrack.play(localPlayerContainer);
+
                 //======= สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน ==========//
                 btn_toggle_mic_camera(videoTrack,audioTrack);
 
@@ -873,15 +906,8 @@
                     console.log('ส่งตัวแปร videoTrack audioTrack ไม่สำเร็จ');
                 }
 
-                //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
-                create_element_localvideo_call(localPlayerContainer);
-
-                // Play the local video track.
-                channelParameters.localVideoTrack.play(localPlayerContainer);
-
-                console.log('AudioTrack:');
-                console.log(channelParameters.localAudioTrack);
-
+                // console.log('AudioTrack:');
+                // console.log(channelParameters.localAudioTrack);
             }
             // Listen to the Leave button click event.
             document.getElementById('leave').onclick = async function ()
@@ -1319,19 +1345,19 @@
     }
 
     // สลับ div ระหว่าง .user-video-call-bar และ #container_user_video_call
-    // function swapDivsInContainerAndUserVideoCallBar(clickedDiv) {
-    //     let container = document.getElementById("container_user_video_call");
-    //     let customDivsInContainer = container.querySelectorAll(".custom-div");
-    //     let userVideoCallBar = document.querySelector(".user-video-call-bar");
-    //     let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+    function swapDivsInContainerAndUserVideoCallBar(clickedDiv) {
+        let container = document.getElementById("container_user_video_call");
+        let customDivsInContainer = container.querySelectorAll(".custom-div");
+        let userVideoCallBar = document.querySelector(".user-video-call-bar");
+        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
 
-    //     if (customDivsInContainer.length > 0 && customDivsInUserVideoCallBar.length > 0) {
-    //         let firstDivInContainer = customDivsInContainer[0];
+        if (customDivsInContainer.length > 0 && customDivsInUserVideoCallBar.length > 0) {
+            let firstDivInContainer = customDivsInContainer[0];
 
-    //         container.appendChild(clickedDiv);
-    //         userVideoCallBar.appendChild(firstDivInContainer);
-    //     }
-    // }
+            container.appendChild(clickedDiv);
+            userVideoCallBar.appendChild(firstDivInContainer);
+        }
+    }
 
     // ย้ายทุก div ใน .user-video-call-bar ไปยัง #container_user_video_call
     function moveAllDivsToContainer() {

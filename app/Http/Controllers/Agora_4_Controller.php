@@ -93,7 +93,7 @@ class Agora_4_Controller extends Controller
         // $channelName = 'sos_1669_id';
 
         $role = RtcTokenBuilder::RoleAttendee;
-        $expireTimeInSeconds = 600;
+        $expireTimeInSeconds = 300;
         $currentTimestamp = now()->getTimestamp();
         $privilegeExpiredTs = $currentTimestamp + $expireTimeInSeconds;
 
@@ -118,7 +118,12 @@ class Agora_4_Controller extends Controller
 
     function join_room_4(Request $request)
     {
-      //============== ยังไม่ได้ดำเนินการ ===============//
+        $user_id = $request->user_id;
+
+        $remote_data = User::where('id',$user_id)->first();
+
+
+        return $remote_data;
     }
 
     function left_room_4(Request $request)
@@ -236,6 +241,12 @@ class Agora_4_Controller extends Controller
         }
 
         return $check_data_array ;
+
+    }
+
+    function get_remote_data_4(Request $request){
+        $user_id = $request->user_id;
+
 
     }
 
