@@ -13,6 +13,7 @@ use App\Models\Register_car;
 use App\Models\Ads_content;
 use App\Models\Partner_premium;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Http\Controllers\API\ImageController;
 
 class CarbrandController extends Controller
 {
@@ -376,6 +377,14 @@ class CarbrandController extends Controller
             Ads_content::create($requestData);
 
             $data_Ads_content = Ads_content::latest()->first();
+
+            // ----------- RESIZE PHOTO ----------- //
+            $resize_photo = new ImageController();
+
+            if (!empty($requestData['photo'])) {
+               $resize_photo->resize_photo($data_Ads_content->photo);
+            }
+                
             $data_partner_premium = Partner_premium::where('id_partner' , $requestData['id_partner'])->first();
 
             $BC_by_car_sent = $data_partner_premium->BC_by_car_sent ;

@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Ads_content;
 use Illuminate\Http\Request;
+use App\Http\Controllers\API\ImageController;
 
 class Ads_contentController extends Controller
 {
@@ -66,6 +67,15 @@ class Ads_contentController extends Controller
 
         Ads_content::create($requestData);
 
+        $data_Ads_content = Ads_content::latest()->first();
+
+        // ----------- RESIZE PHOTO ----------- //
+        $resize_photo = new ImageController();
+
+        if (!empty($requestData['photo'])) {
+           $resize_photo->resize_photo($data_Ads_content->photo);
+        }
+
         return redirect('ads_content')->with('flash_message', 'Ads_content added!');
     }
 
@@ -116,6 +126,13 @@ class Ads_contentController extends Controller
 
         $ads_content = Ads_content::findOrFail($id);
         $ads_content->update($requestData);
+
+        // ----------- RESIZE PHOTO ----------- //
+        $resize_photo = new ImageController();
+
+        if (!empty($requestData['photo'])) {
+           $resize_photo->resize_photo($ads_content->photo);
+        }
 
         return redirect('ads_content')->with('flash_message', 'Ads_content updated!');
     }

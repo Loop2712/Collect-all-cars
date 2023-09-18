@@ -152,6 +152,9 @@
                                 <h3 class="text-white" style="font-family: 'Kanit', sans-serif;">ขอขอบคุณ</h3>
                                 <div style="padding: 0px 5px 0px 5px;font-size: 30px!important;">
                                     @include ('layouts.partner_2_row')
+                                    <center>
+                                        <hr class="main-shadow main-radius text-white" style="width:70%;border: 2px solid white;">
+                                    </center>
                                 </div>
                             </div>
                         </div>
