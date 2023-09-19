@@ -299,22 +299,22 @@
                                 </div>
                                 <hr>
                                 <div class="text-center h6 mt-3">
-                                    โปรดเลือกหัวข้อการขอความช่วยเหลือ
+                                    <b>โปรดเลือกหัวข้อการขอความช่วยเหลือ</b>
                                 </div>
                                 <div id="div_data_title_sos" class="form-group mt-3">
-                                    <select name="title_sos" id="title_sos" class="form-control" onchange="
+                                    <select name="title_sos" id="title_sos" class="form-control" >
+                                        <!-- onchange="
                                             if(this.value=='อื่นๆ'){ 
                                                 document.querySelector('#title_sos_other').classList.remove('d-none');
                                                 document.querySelector('#title_sos_other').focus();
                                             }else{ 
                                                 document.querySelector('#title_sos_other').classList.add('d-none');
                                                 document.querySelector('#title_sos_other').value = null;
-                                            }">
-                                        
+                                            }" -->
                                         <!-- แทรกหัวข้อของ องค์กรนั้นๆที่เพิ่มเข้ามา -->
 
                                     </select>
-                                    <textarea class="form-control mt-2 d-none" id="title_sos_other" name="title_sos_other" rows="3"></textarea>
+                                    <textarea class="form-control mt-2" id="title_sos_other" name="title_sos_other" rows="3" placeholder="เพิ่มรายละเอียด"></textarea>
                                 </div>
                             </div>
 
@@ -1352,7 +1352,7 @@
         let title_sos = document.querySelector('#title_sos');
             title_sos.innerHTML = '' ;
         let name_partner = document.querySelector('#area_help').innerText ;
-            console.log(name_partner);
+            // console.log(name_partner);
 
         if(!name_partner){
             name_partner = "all_area" ;
@@ -1361,7 +1361,7 @@
         fetch("{{ url('/') }}/api/search_title_sos/" + name_partner)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 if(result['check_data'] == "Yes data"){
                     for(let item of result['sos_map_title']){
@@ -1392,7 +1392,7 @@
                 }
 
                 let html_option = `
-                        <option class="translate" value="" selected > - เลือกหัวข้อการขอความช่วยเหลือ - </option>
+                        <option class="translate" value="การขอความช่วยเหลือ" selected > - เลือกหัวข้อการขอความช่วยเหลือ - </option>
                         <option class="translate" value="เหตุด่วนเหตุร้าย">เหตุด่วนเหตุร้าย</option>
                         <option class="translate" value="อุบัติเหตุ">อุบัติเหตุ</option>
                         <option class="translate" value="ไฟไหม้">ไฟไหม้</option>
