@@ -240,6 +240,8 @@
                             @if (!empty($item_sos->forward_operation_from))
                                 @if (!empty($forward_sos_from->operating_code))
                                     <td>{{ $forward_sos_from->operating_code }}</td>
+                                @else
+                                    <td>--</td>
                                 @endif
                             @else
                                 <td>--</td>
@@ -252,6 +254,8 @@
                             @if (!empty($item_sos->forward_operation_to))
                                 @if (!empty($forward_sos_to->operating_code))
                                     <td>{{ $forward_sos_to->operating_code }}</td>
+                                @else
+                                    <td>--</td>
                                 @endif
                             @else
                                 <td>--</td>
