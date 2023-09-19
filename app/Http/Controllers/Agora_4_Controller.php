@@ -247,7 +247,9 @@ class Agora_4_Controller extends Controller
     function get_remote_data_4(Request $request){
         $user_id = $request->user_id;
 
+        $remote_data = User::where('id',$user_id)->first();
 
+        return $remote_data;
     }
 
     // function check_user_in_room_4(Request $request)

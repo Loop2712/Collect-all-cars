@@ -14,9 +14,8 @@
 
 
 <style>
-@media screen and (min-width: 1024px)
-{
-
+/* @media screen and (min-width: 1024px)
+{ */
     html,
 	body,
 	.full-height,
@@ -40,10 +39,8 @@
 	.data-sos *{
 		color: #fff;
 	}
-	.video-call-contrainer {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
-	}
+
+
 
 	.item-video-call {
 		aspect-ratio: 16/9;
@@ -101,7 +98,7 @@
 	.video-call {
 		/* outline: #000 1px solid; */
 		margin: 0;
-		background-color: #000;
+		background-color: #b2edf5;
 	}
 
 	.user-video-call-contrainer {
@@ -111,11 +108,20 @@
 
 	}
 
-	.grid-template {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-	}
+    .user-video-call-bar div div { /* ของ bar ล่าง  */
+        border-radius: 10px;
+    }
+
+    .user-video-call-bar div div .profile_image{ /* ของ bar ล่าง  */
+        width: 50px;
+        border-radius: 50%; /* คงรูปร่างวงกลม */
+    }
+
+    #container_user_video_call div div .profile_image{ /* ของ container ใหญ่ */
+        width: 150px;
+        border-radius: 50%; /* คงรูปร่างวงกลม */
+    }
+
 
 	#container_user_video_call {
 		width: 100%;
@@ -172,6 +178,10 @@
 		color: #fff;
 	}
 
+    .user-video-call-bar .custom-div {
+		border-radius: 10px;
+	}
+
 	.user-video-call-bar .custom-div .infomation-user{
 		transform: scale(0.5);
 		margin: 0;
@@ -186,73 +196,19 @@
 		right: -10px;
 	}
 
-}
+    .video-call-contrainer {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+	}
+
+    .grid-template {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+/* } */
 </style>
-<!-- ========================================== html ========================================== -->
-{{--
-<!-- สำหรับ loading ก่อนเข้า videocall -->
-<div class="d-flex justify-content-center align-items-center">
-    <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
-</div>
-
-<!-- เปลี่ยนคลาสของ .video-container เพื่อแสดงตามจำนวนคนที่คุณมี -->
-<div id="divVideo_Parent" class="video-container ">
-   <!-- ไว้ใส่ div ของ video -->
-</div>
-
-<div id="footer_div" class="footer p-2">
-        <!-- ใส่วิดีโอของคนที่ 4 ที่นี่ -->
-        <button id="join" class="btn btn-success add-button ms-1 w-auto d-none" >เข้าร่วม</button>
-        <button id="leave" class="btn btn-danger add-button ms-1 w-auto" >ออกห้อง</button>
-
-        <button class="btn btn-secondary ms-1" id="btn_switchCamera" onclick="switchCamera();">
-            <i class="fa-solid fa-camera-rotate"></i>
-        </button>
-
-        <button class="btn btn-secondary ms-1 d-none d-lg-block" id="btn_switchMicrophone" onclick="switchMicrophone();">
-            <i class="fa-solid fa-microphone"></i>
-        </button>
-
-        <button class="btnDevice  btn dropdown-toggle btn_for_select_video_device d-none" type="button" data-toggle="modal" data-target="#video_device" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
-            <i class="fa-solid fa-chevron-down fa-2xs"></i>
-        </button>
-
-        <button class="btnDevice  btn dropdown-toggle btn_for_select_audio_device d-none" type="button" data-toggle="modal" data-target="#audio_device" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
-            <i class="fa-solid fa-chevron-down fa-2xs"></i>
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="video_device" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <button id="ปุ่มนี้สำหรับปิด_modal" type="button" class="btn m-2" data-dismiss="modal" aria-label="Close" style="position: absolute; top:10;right: 10px;color:#4d4d4d;z-index: 9999999999;">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                    <div class="modal-body">
-                        <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
-                        <div id="video-device-list"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="audio_device" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <button id="ปุ่มนี้สำหรับปิด_modal" type="button" class="btn m-2" data-dismiss="modal" aria-label="Close" style="position: absolute; top:10;right: 10px;color:#4d4d4d;z-index: 9999999999;">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                    <div class="modal-body">
-                        <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
-                        <div id="audio-device-list"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-</div> --}}
-
 
 <!-- ========================================== layout video call ========================================== -->
 
@@ -351,8 +307,9 @@
 						</div> -->
 
 					</div>
+                    <button class="btn-show-hide-user-video-call btn" style="z-index: 2" onclick="toggleUserVideoCallBar();">ซ่อน</button>
 
-					<button class="btn-show-hide-user-video-call btn" onclick="document.querySelector('.user-video-call-bar').classList.toggle('d-none');">ลง</button>
+					{{-- <button class="btn-show-hide-user-video-call btn" style="z-index: 2" onclick="document.querySelector('.user-video-call-bar').classList.toggle('d-none');">ซ่อน</button> --}}
 				</div>
 			</div>
 		</div>
@@ -389,8 +346,6 @@
     var videoTrack = '{{$videoTrack}}';
     var audioTrack = '{{$audioTrack}}';
 
-    console.log(videoTrack);
-    console.log(audioTrack);
     // var userDivVideoMap = {}; // ใช้เก็บข้อมูลผู้ใช้และ divVideo ที่ถูกใช้
 
     // เรียกสองอันเพราะไม่อยากไปยุ่งกับโค้ดเก่า
@@ -586,7 +541,38 @@
                 remotePlayerContainer.id = user.uid.toString();
 
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
-                create_element_remotevideo_call(remotePlayerContainer);
+                var name_remote;
+                fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + user.uid)
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log("result published");
+                        console.log(result);
+
+                        name_remote = result.name;
+
+                        console.log("โหลดข้อมูล RemoteUser สำเร็จ published");
+                        console.log(name_remote);
+                        if (name_remote) {
+                            // สำหรับ สร้าง div_dummy ตอนผู้ใช้เปิดกล้อง
+                            create_element_remotevideo_call(remotePlayerContainer, name_remote);
+                        } else {
+                            console.log("ไม่พบค่า name ในผลลัพธ์หรือผลลัพธ์ไม่ถูกต้อง");
+                        }
+                })
+                .catch(error => {
+                    console.log("โหลดข้อมูล RemoteUser ล้มเหลว published");
+                });
+
+                // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
+                document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
+
+                if(user.hasVideo == false){
+                    // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
+                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+                }else{
+                    // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
+                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+                }
 
                 channelParameters.remoteVideoTrack.play(remotePlayerContainer);
 
@@ -603,10 +589,21 @@
                 // Play the remote audio track. No need to pass any DOM element.
                 channelParameters.remoteAudioTrack.play();
 
-                console.log('AudioTrack:');
-                console.log(channelParameters.localAudioTrack);
+                // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
+                document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
 
-                // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
+                if(user.hasVideo == false){
+                    // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
+                    document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+                }else{
+                    // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
+                    document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
+                }
+
+                // console.log('AudioTrack:');
+                // console.log(channelParameters.localAudioTrack);
+
+                //ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
                 agoraEngine.on("volume-indicator", volumes => {
                     volumes.forEach((volume, index) => {
 
@@ -634,49 +631,78 @@
             console.log(agoraEngine);
 
             if(mediaType == "video"){
-                if (!user.remoteVideoTrack) {
+                if (user.hasVideo == false) {
+
                     console.log("สร้าง Div_Dummy ของ" + user.uid);
                     console.log(user);
+                    var name_remote_user_unpublished;
+                    var profile_remote_user_unpublished;
+                    fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + user.uid)
+                        .then(response => response.json())
+                        .then(result => {
+                            // console.log("result");
+                            // console.log(result);
+                            name_remote_user_unpublished = result.name;
 
-                    remote_in_room.forEach(element => {
-                        if (element === user.uid) {
-                            let name_remote = element.name;
-                            let profile_remote;
-
-                            if (element.avatar !== '' && element.photo === '') {
-                                profile_remote = element.avatar;
-                            } else if (element.photo !== '') {
-                                profile_remote = "{{ url('/storage') }}" + "/" + "{{ Auth::user()->photo }}";
-                            } else {
-                                profile_remote = "https://www.viicheck.com/Medilab/img/icon.png";
+                            if(result.photo){
+                                profile_remote_user_unpublished = "{{ url('/storage') }}" + "/" + result.photo;
+                            }else if(!result.photo && result.avatar){
+                                profile_remote_user_unpublished = result.avatar;
+                            }else{
+                                profile_remote_user_unpublished = "https://www.viicheck.com/Medilab/img/icon.png";
                             }
                             // สำหรับ สร้าง div_dummy ตอนผู้ใช้ไม่ได้เปิดกล้อง
-                            create_dummy_videoTrack(user,name_remote,profile_remote);
-                        }
+                            create_dummy_videoTrack(user,name_remote_user_unpublished,profile_remote_user_unpublished);
+
+                            // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
+                            document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+
+                            if(user.hasAudio == false){
+                                // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
+                                document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+                            }else{
+                                // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
+                                document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+                            }
+
+                    })
+                    .catch(error => {
+                        console.log("โหลดข้อมูล RemoteUser ล้มเหลว");
                     });
+
                 }
             }
 
             if(mediaType == "audio"){
                 // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
                 console.log('unpublished AudioTrack:');
-                console.log(channelParameters.localAudioTrack);
+                // console.log(channelParameters.localAudioTrack);
+                // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
+                document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+
+                if(user.hasVideo == false){
+                    // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
+                    document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+                }else{
+                    // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
+                    document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
+                }
 
                 agoraEngine.on("volume-indicator", volumes => {
-                        volumes.forEach((volume, index) => {
-                            if (channelParameters.remoteUid == volume.uid && volume.level > 50) {
+                    volumes.forEach((volume, index) => {
+                        if (channelParameters.remoteUid == volume.uid && volume.level > 50) {
 
-                                console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
+                            console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
 
-                                document.querySelector('#dummy_trackRemoteDiv_'+channelParameters.remoteUid).classList.add('VoiceLocalEffect');
-                            } else if (channelParameters.remoteUid == volume.uid && volume.level < 50) {
+                            document.querySelector('#dummy_trackRemoteDiv_'+channelParameters.remoteUid).classList.add('VoiceLocalEffect');
+                        } else if (channelParameters.remoteUid == volume.uid && volume.level < 50) {
 
-                                console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
+                            console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
 
-                                document.querySelector('#dummy_trackRemoteDiv_'+channelParameters.remoteUid).classList.remove('VoiceLocalEffect');
-                            }
-                        });
-                    })
+                            document.querySelector('#dummy_trackRemoteDiv_'+channelParameters.remoteUid).classList.remove('VoiceLocalEffect');
+                        }
+                    });
+                })
             }
 
 
@@ -688,25 +714,55 @@
             console.log("agoraEngine มีคนเข้าห้องมา");
             console.log(agoraEngine);
 
-            fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + evt.uid)
-                .then(response => response.json())
-                .then(result => {
-                    console.log("result");
-                    console.log(result);
 
-                    //นำข้อมูล ผู้ที่เข้าห้องมาเก็ยไว้ใน array
-                    remote_in_room[result.id] = {
-                        name: result.name,
-                        avatar: result.avatar,
-                        photo: result.photo,
-                    };
-                    console.log("บันทึกข้อมูล เมื่อมีคนเข้าห้อง สำเร็จ");
-                    console.log(remote_in_room);
+            if(agoraEngine['remoteUsers'][0]){
+                        if( agoraEngine['remoteUsers']['length'] != 0 ){
+                            for(let c_uid = 0; c_uid < agoraEngine['remoteUsers']['length']; c_uid++){
 
-            })
-            .catch(error => {
-                console.log("บันทึกข้อมูล เมื่มีคนเข้าห้อง ล้มเหลว");
-            });
+                                const dummy_remote = agoraEngine['remoteUsers'][c_uid];
+                                console.log(dummy_remote);
+
+                                if(agoraEngine['remoteUsers'][c_uid]['hasVideo'] == false){ //ถ้า remote คนนี้ ไม่ได้เปิดกล้องไว้ --> ไปสร้าง div_dummy
+                                    var name_remote_user_joined;
+                                    var profile_remote_user_joined;
+
+                                    fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + dummy_remote.uid)
+                                        .then(response => response.json())
+                                        .then(result => {
+                                            // console.log("result");
+                                            // console.log(result);
+                                            name_remote_user_joined = result.name;
+
+                                            if(result.photo){
+                                                profile_remote_user_joined = "{{ url('/storage') }}" + "/" + result.photo;
+                                            }else if(!result.photo && result.avatar){
+                                                profile_remote_user_joined = result.avatar;
+                                            }else{
+                                                profile_remote_user_joined = "https://www.viicheck.com/Medilab/img/icon.png";
+                                            }
+
+                                            create_dummy_videoTrack(dummy_remote,name_remote_user_joined,profile_remote_user_joined);
+                                            console.log("Dummy Created !!!");
+
+                                            // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
+                                            document.querySelector('#camera_remote_' + dummy_remote.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+
+                                            if(agoraEngine['remoteUsers'][c_uid]['hasAudio'] == false){ //ถ้า remote คนนี้ ไม่ได้เปิดไมไว้ --> ไปสร้าง div_dummy
+                                                // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
+                                                document.querySelector('#mic_remote_' + dummy_remote.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+                                            }
+                                    })
+                                    .catch(error => {
+                                        console.log("โหลด เมื่อมีคนเข้าห้อง ล้มเหลว");
+                                    });
+
+                                }
+
+
+                            }
+                        }
+                    }
+
 
             // เช็คว่ามี div อยู่ใน divใหญ่
             let userVideoCallBar = document.querySelector(".user-video-call-bar");
@@ -714,22 +770,6 @@
 
             if (customDivsInUserVideoCallBar.length > 0) {
                 moveAllDivsToContainer();
-            }
-
-            if(agoraEngine['remoteUsers'][0]){
-                if( agoraEngine['remoteUsers']['length'] != 0 ){
-                    for(let c_uid = 0; c_uid < agoraEngine['remoteUsers']['length']; c_uid++){
-
-                        const dummy_remote = agoraEngine['remoteUsers'][c_uid];
-                        console.log(dummy_remote);
-
-                        if(agoraEngine['remoteUsers'][c_uid]['hasVideo'] == false){ //ถ้าผ remote คนนี้ ไม่ได้เปิดกล้องไว้ --> ไปสร้าง div_dummy
-                            create_dummy_videoTrack(dummy_remote);
-                            console.log("agoraEngine User-Joined")
-                            console.log("Dummy Created !!!")
-                        }
-                    }
-                }
             }
 
             // อัพเดต Div ตามจำนวนคนในห้อง ให้รูปแบบเหมาะสม
@@ -753,6 +793,16 @@
             if (customDivsInUserVideoCallBar.length > 0) {
                 moveAllDivsToContainer();
             }
+
+            // หา index ของข้อมูลที่ต้องการลบ
+            // if(evt.uid){
+            //     let indexToDelete = remote_in_room.findIndex(element => element.id === evt.uid);
+            //     // ถ้าพบ index ที่ต้องการลบ
+            //     if (indexToDelete !== -1) {
+            //         // ใช้ splice() เพื่อลบข้อมูลที่ index นั้นออก
+            //         remote_in_room.splice(indexToDelete, 1);
+            //     }
+            // }
 
             // ถ้าผู้ใช้ เหลือ 0 คน ให้ทำลายห้องทิ้ง
             if(rtcStats.UserCount < 1){
@@ -858,18 +908,21 @@
                 }
 
                 //ดึงข้อมูลผู้ใช้งานจาก auth
+                let name_local = user_data.name;
+                console.log("name_local");
+                console.log(name_local);
                 let profile_local;
 
-                if (user_data.avatar !== '' && user_data.photo === '') {
+                if(user_data.photo){
+                    profile_local = "{{ url('/storage') }}" + "/" + user_data.photo;
+                }else if(!user_data.photo && user_data.avatar){
                     profile_local = user_data.avatar;
-                } else if (user_data.photo !== '') {
-                    profile_local = "{{ url('/storage') }}" + "/" + "{{ Auth::user()->photo }}";
-                } else {
+                }else{
                     profile_local = "https://www.viicheck.com/Medilab/img/icon.png";
                 }
 
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
-                create_element_localvideo_call(localPlayerContainer,profile_local);
+                create_element_localvideo_call(localPlayerContainer,name_local,profile_local);
 
                 // Play the local video track.
                 channelParameters.localVideoTrack.play(localPlayerContainer);
@@ -982,8 +1035,8 @@
             old_activeAudioDeviceId = activeAudioDeviceId;
 
             const selectedAudioDeviceId = getCurrentAudioDeviceId();
-            console.log('อุปกรณ์เสียงเดิม:', activeAudioDeviceId);
-            console.log('เปลี่ยนอุปกรณ์เสียงเป็น:', selectedAudioDeviceId);
+            // console.log('อุปกรณ์เสียงเดิม:', activeAudioDeviceId);
+            // console.log('เปลี่ยนอุปกรณ์เสียงเป็น:', selectedAudioDeviceId);
 
             activeAudioDeviceId = selectedAudioDeviceId ;
 
@@ -1006,8 +1059,8 @@
                 // เปลี่ยน local audio track เป็นอุปกรณ์ใหม่
                 channelParameters.localAudioTrack = newAudioTrack;
 
-                console.log('newAudioTrack:');
-                console.log(channelParameters.localAudioTrack);
+                // console.log('newAudioTrack:');
+                // console.log(channelParameters.localAudioTrack);
 
                 if(isAudio == true){
                     // เริ่มส่งเสียงจากอุปกรณ์ใหม่
@@ -1208,22 +1261,6 @@
                 now_Mobile_Devices = 1 ;
             }
 
-            // for (let i = 0; i < check_videoDevices.length; i++) {
-            //   if (check_videoDevices[i].value != activeVideoDeviceId) {
-
-            //     console.log('********************');
-            //     console.log('value');
-            //     console.log(check_videoDevices[i].value);
-            //     console.log('id');
-            //     console.log(check_videoDevices[i].id);
-            //     console.log('********************');
-
-            //     activeVideoDeviceId = check_videoDevices[i].value ;
-            //     document.querySelector('#'+check_videoDevices[i].id).click();
-            //     break;
-            //   }
-            // }
-
             }
 
         }
@@ -1405,6 +1442,21 @@
             Div.remove();
         }
     };
+
+    // สร้างฟังก์ชันสำหรับการสลับข้อความของปุ่ม
+    function toggleUserVideoCallBar() {
+        var button = document.querySelector('.btn-show-hide-user-video-call');
+        var videoCallBar = document.querySelector('.user-video-call-bar');
+
+        if (videoCallBar.classList.contains('d-none')) {
+            videoCallBar.classList.remove('d-none');
+            button.textContent = 'ซ่อน';
+        } else {
+            videoCallBar.classList.add('d-none');
+            button.textContent = 'แสดง';
+        }
+    }
+
 
 
 </script>
