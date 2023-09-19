@@ -207,6 +207,12 @@
 		justify-content: center;
 	}
 
+    .VoiceLocalEffect {
+        box-shadow: inset 0px 0px 0px 6px rgb(31, 193, 27), 0px 0px 0px 6px rgb(31, 193, 27);
+        border-radius: 10px;
+    }
+
+
 /* } */
 </style>
 
@@ -507,15 +513,35 @@
                 if (localPlayerContainer.id == volume.uid && volume.level >= 50) {
                     console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
 
-                    localPlayerContainer.classList.add('VoiceLocalEffect');
+                    agoraEngine['localTracks'].forEach(element => {
+                        if (element['enabled'] === true) {
+                            console.log('Enabled Device: ' + element['_deviceName']);
+                            // สามารถเพิ่มข้อมูลเพิ่มเติมได้ตามความต้องการ
+                        }
+                    });
+
+                    if(document.querySelector('#videoDiv_'+ volume.uid)){
+                        document.querySelector('#videoDiv_'+ volume.uid).classList.add('VoiceLocalEffect');
+                    }
+
+                    // localPlayerContainer.classList.add('VoiceLocalEffect');
                 } else if (localPlayerContainer.id == volume.uid && volume.level < 50) {
                     console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
 
-                    localPlayerContainer.classList.remove('VoiceLocalEffect');
+                    agoraEngine['localTracks'].forEach(element => {
+                        if (element['enabled'] === true) {
+                            console.log('Enabled Device: ' + element['_deviceName']);
+                            // สามารถเพิ่มข้อมูลเพิ่มเติมได้ตามความต้องการ
+                        }
+                    });
+
+                    if(document.querySelector('#videoDiv_'+ volume.uid)){
+                        document.querySelector('#videoDiv_'+ volume.uid).classList.remove('VoiceLocalEffect');
+                    }
+                    // localPlayerContainer.classList.remove('VoiceLocalEffect');
                 }
             });
         })
-
         // Listen for the "user-published" event to retrieve a AgoraRTCRemoteUser object.
         agoraEngine.on("user-published", async (user, mediaType) =>
         {
@@ -1040,27 +1066,27 @@
 
             activeAudioDeviceId = selectedAudioDeviceId ;
 
-            // หยุดการส่งเสียงจากอุปกรณ์ปัจจุบัน
-            // channelParameters.localAudioTrack.setEnabled(false);
-
-            // ปิด Local Audio Track อันเก่า
-            // if (channelParameters.localAudioTrack) {
-            //     channelParameters.localAudioTrack.close();
-            //     channelParameters.localAudioTrack = null;
-            //     console.log("close localAudioTrack_old");
-            // }
-
             // สร้าง local audio track ใหม่โดยใช้อุปกรณ์ที่คุณต้องการ
             AgoraRTC.createMicrophoneAudioTrack({
                 encoderConfig: "high_quality_stereo",
                 microphoneId: selectedAudioDeviceId
             })
             .then(newAudioTrack => {
+
+                // หยุดการส่งเสียงจากอุปกรณ์ปัจจุบัน
+                channelParameters.localAudioTrack.setEnabled(false);
+
+                agoraEngine.unpublish([channelParameters.localAudioTrack]);
+                // console.log('------------unpublish localAudioTrack ------------');
+
+                // ปิดการเล่นเสียงเดิม
+                channelParameters.localAudioTrack.stop();
+                channelParameters.localAudioTrack.close();
+
                 // เปลี่ยน local audio track เป็นอุปกรณ์ใหม่
                 channelParameters.localAudioTrack = newAudioTrack;
 
-                // console.log('newAudioTrack:');
-                // console.log(channelParameters.localAudioTrack);
+                channelParameters.localAudioTrack.play();
 
                 if(isAudio == true){
                     // เริ่มส่งเสียงจากอุปกรณ์ใหม่
@@ -1069,12 +1095,13 @@
 
                     agoraEngine.publish([channelParameters.localAudioTrack]);
 
-                    isAudio = true;
+                    // isAudio = true;
                     console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
                 }
                 else {
                     channelParameters.localAudioTrack.setEnabled(false);
-                    isAudio = false;
+                    // channelParameters.localAudioTrack.play();
+                    // isAudio = false;
 
                 }
 

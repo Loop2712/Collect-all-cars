@@ -41,11 +41,6 @@
     }
     /* ----------------- End ตัว loading animation ----------------- */
 
-    .VoiceLocalEffect{ /* animation ตอนมีคนพูด แสดงบนขอบ div */
-        box-shadow: rgb(31, 193, 27) 0px 0px 0px 3px;
-        border-radius: 10px;
-    }
-
 } /* แท็กปิด PC */
 
 
