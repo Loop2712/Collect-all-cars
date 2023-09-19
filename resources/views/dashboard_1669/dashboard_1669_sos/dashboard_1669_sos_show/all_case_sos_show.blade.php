@@ -250,7 +250,9 @@
                             @endphp
 
                             @if (!empty($item_sos->forward_operation_to))
-                                <td>{{ $forward_sos_to->operating_code }}</td>
+                                @if (!empty($forward_sos_to->operating_code))
+                                    <td>{{ $forward_sos_to->operating_code }}</td>
+                                @endif
                             @else
                                 <td>--</td>
                             @endif
