@@ -1,0 +1,309 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+        "type": "bubble",
+        "size": "giga",
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "image",
+                    "url": "https://www.viicheck.com/img/flex/sos/flex_sos_v2.png",
+                    "size": "full",
+                    "aspectRatio": "25:35",
+                    "aspectMode": "cover"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "image",
+                            "url": "https://www.viicheck.com/storage/photo_profile_user",
+                            "aspectRatio": "1:1",
+                            "aspectMode": "cover"
+                        }
+                    ],
+                    "position": "absolute",
+                    "offsetTop": "4.5%",
+                    "offsetStart": "8.5%",
+                    "cornerRadius": "8px",
+                    "width": "15.5%",
+                    "height": "11%"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "name_user",
+                            "color": "#ffffff",
+                            "size": "xl",
+                            "wrap": false
+                        }
+                    ],
+                    "position": "absolute",
+                    "offsetTop": "4.9%",
+                    "offsetStart": "25%",
+                    "width": "66%",
+                    "alignItems": "flex-start"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "พื้นที่ : area",
+                            "color": "#ffffff",
+                            "size": "18px",
+                            "wrap": false
+                        }
+                    ],
+                    "position": "absolute",
+                    "offsetTop": "10%",
+                    "offsetStart": "25%",
+                    "width": "55%",
+                    "alignItems": "flex-start"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "หัวข้อขอความช่วยเหลือ",
+                            "color": "#ffffff",
+                            "size": "19px",
+                            "wrap": false
+                        }
+                    ],
+                    "position": "absolute",
+                    "offsetTop": "20%",
+                    "offsetStart": "14%",
+                    "width": "60%",
+                    "alignItems": "flex-start"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "TAG_SOS",
+                            "color": "#ffffff",
+                            "size": "xxs"
+                        }
+                    ],
+                    "position": "absolute",
+                    "backgroundColor": "#888888",
+                    "cornerRadius": "xxl",
+                    "paddingStart": "10px",
+                    "paddingEnd": "10px",
+                    "offsetEnd": "10%",
+                    "offsetTop": "20%"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "รายละเอียดขอความช่วยเหลือ",
+                            "color": "#ffffff",
+                            "size": "16px",
+                            "maxLines": 3,
+                            "wrap": true
+                        }
+                    ],
+                    "position": "absolute",
+                    "offsetTop": "27%",
+                    "offsetStart": "14%",
+                    "width": "75%",
+                    "alignItems": "flex-start"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "วันที่แจ้ง",
+                            "color": "#ffffff",
+                            "size": "md",
+                            "wrap": false
+                        }
+                    ],
+                    "position": "absolute",
+                    "offsetTop": "45.1%",
+                    "offsetStart": "16%",
+                    "width": "31%",
+                    "alignItems": "center",
+                    "justifyContent": "center"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "เวลาที่แจ้ง",
+                            "color": "#ffffff",
+                            "size": "md",
+                            "wrap": false
+                        }
+                    ],
+                    "position": "absolute",
+                    "offsetTop": "45.1%",
+                    "offsetStart": "48%",
+                    "width": "36%",
+                    "alignItems": "center",
+                    "justifyContent": "center"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "image",
+                            "url": "https://www.viicheck.com/img/national-flag/flag/png_language.png",
+                            "aspectRatio": "149:100",
+                            "size": "45px"
+                        }
+                    ],
+                    "position": "absolute",
+                    "offsetTop": "58.5%",
+                    "offsetStart": "22.8%"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "png_national",
+                            "color": "#ffffff",
+                            "wrap": false,
+                            "size": "lg",
+                            "weight": "bold"
+                        }
+                    ],
+                    "position": "absolute",
+                    "offsetTop": "72.5%",
+                    "offsetStart": "10%",
+                    "width": "38.5%",
+                    "justifyContent": "center",
+                    "alignItems": "center"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "image",
+                            "url": "https://www.viicheck.com/storage/photo_sos.png",
+                            "aspectRatio": "5:9",
+                            "aspectMode": "cover",
+                            "action": {
+                                "type": "uri",
+                                "uri": "https://www.viicheck.com/storage/photo_sos.png"
+                            }
+                        }
+                    ],
+                    "position": "absolute",
+                    "offsetTop": "52.5%",
+                    "cornerRadius": "5px",
+                    "width": "25%",
+                    "action": {
+                        "type": "uri",
+                        "uri": "https://www.viicheck.com/storage/photo_sos.png"
+                    },
+                    "offsetEnd": "15.5%",
+                    "height": "26.7%"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "position": "absolute",
+                    "offsetTop": "73.5%",
+                    "cornerRadius": "15px",
+                    "width": "8%",
+                    "height": "5%",
+                    "action": {
+                        "type": "uri",
+                        "uri": "https://www.viicheck.com/storage/photo_sos.png"
+                    },
+                    "offsetEnd": "9%"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "กำลังไปช่วยเหลือ",
+                            "color": "#ffffff",
+                            "size": "md",
+                            "wrap": true,
+                            "weight": "bold",
+                            "maxLines": 2
+                        }
+                    ],
+                    "position": "absolute",
+                    "offsetTop": "83%",
+                    "offsetStart": "8.3%",
+                    "width": "51%",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "action": {
+                        "type": "postback",
+                        "data": "sos?id_sos_map/organization",
+                        "displayText": "กำลังไปช่วยเหลือ"
+                    },
+                    "height": "13%",
+                    "paddingTop": "2%"
+                },
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "position": "absolute",
+                    "offsetTop": "82.5%",
+                    "width": "30%",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "height": "5.9%",
+                    "action": {
+                        "type": "uri",
+                        "label": "action",
+                        "uri": "tel:0999999999"
+                    },
+                    "offsetEnd": "8.3%"
+                },
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [],
+                    "position": "absolute",
+                    "offsetTop": "89.5%",
+                    "width": "30%",
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "height": "6%",
+                    "action": {
+                        "type": "uri",
+                        "label": "google map",
+                        "uri": "https://www.google.co.th/maps/search/gg_lat,lng/gg_lat_mail,lng,16z"
+                    },
+                    "offsetEnd": "8.3%"
+                }
+            ],
+            "position": "relative",
+            "paddingAll": "0px"
+        }
+    }
+}
