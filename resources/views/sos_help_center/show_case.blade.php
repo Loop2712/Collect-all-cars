@@ -707,11 +707,9 @@ input:focus {
 
 		<menu class="col-12 " >
 			<button  class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" data-toggle="modal" data-target="#modalOfficerFormYellow" onclick="check_data_form_yellow_show_case('edit')">
-				แก้ไขข้อมูลผู้ป่วย
+				แก้ไขข้อมูลเคส
 			</button>
 		</menu>
-	
-
 		
 		<menu class="col-12 " >
 			<button class="btn btn-secondary main-shadow main-radius btn-update-status" style="width:100%;" data-toggle="modal" data-target="#modalAskMore">

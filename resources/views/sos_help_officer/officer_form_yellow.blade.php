@@ -236,6 +236,9 @@
                         }
                     </style>
                     <div id="buttonContainer" class="row">
+                        <div class="col-12 p-1">
+                            <button class="btn py-5 w-100 btn-success" onclick="showContent('button5')">แก้ไขเลข กม.</button>
+                        </div>
                         <div class="p-1 col-6">
                             <button class="btn py-5 w-100 btn-success" onclick="showContent('button1')">รหัสความรุนแรง ณ จุดเกิดเหตุ </button>
                         </div>
@@ -753,6 +756,42 @@
                                 <button class="btn btn-submit-edit-form-yellow" onclick="officer_save_data_form_yellow('button4Content');" data-number="4">ยืนยัน</button>
                             </div>
                         </div>
+                        <div id="button5Content" class="hidden w-100" data-button="button5">
+                            <div class="d-flex justify-content-start w-100">
+                                <h4 class="font-weight-bold">
+                                    <button class="btn btnBack " onclick="hideContent(); officer_save_data_form_yellow('button1Content');"><i class="fa-regular fa-chevron-left"></i></button>  เลขกม.
+                                </h4>
+                            </div>
+                            <div class="row px-4 py-2">
+                                <div class="col-12 col-md-4 col-lg-4">
+                                    <label for="" class="form-label">เลข กม. รถ ออกจากฐาน</label>
+                                    <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-user"></i></span>
+                                        <input type="text" class="form-control border-start-0 radius-2" name="edit_km_create_sos_to_go_to_help" id="edit_km_create_sos_to_go_to_help" value="" placeholder="โปรดกรอกเลข กม. รถ ออกจากฐาน">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-4 mt-3">
+                                    <label for="" class="form-label">เลข กม. รถ ถึงที่เกิดเหตุ</label>
+                                    <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-user"></i></span>
+                                        <input type="text" class="form-control border-start-0 radius-2" name="edit_km_to_the_scene_to_leave_the_scene" id="edit_km_to_the_scene_to_leave_the_scene" value="" placeholder="โปรดกรอกเลข กม. รถ ถึงที่เกิดเหตุ">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-4 mt-3">
+                                    <label for="" class="form-label">เลข กม. รถ ถึงโรงพยาบาล</label>
+                                    <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-user"></i></span>
+                                        <input type="text" class="form-control border-start-0 radius-2" name="edit_km_hospital" id="edit_km_hospital" value="" placeholder="โปรดกรอกเลข กม. รถ ถึงโรงพยาบาล">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 col-lg-4 mt-3">
+                                    <label for="" class="form-label">เลข กม. รถ ถึงฐาน</label>
+                                    <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-user"></i></span>
+                                        <input type="text" class="form-control border-start-0 radius-2" name="edit_km_operating_base" id="edit_km_operating_base" value="" placeholder="โปรดกรอกเลข กม. รถ ถึงฐาน">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
+                                <button class="btn btn-submit-edit-form-yellow" onclick="officer_save_data_form_yellow('button5Content');" data-number="4">ยืนยัน</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -790,24 +829,28 @@
                                 if (typecheck === "edit") {
                                     // console.log("check_data_form_yellow_show_case");
                                     //  INPUT RC
-                                    const rcInputs = document.querySelectorAll('input[name="rc"]');
-                                    setCheckedInputs(rcInputs, result.rc);
+                                    if (result.rc) {
+                                        const rcInputs = document.querySelectorAll('input[name="rc"]');
+                                        setCheckedInputs(rcInputs, result.rc);
+                                    }
+                                    
                                     document.querySelector('#rc_black_text').value = result.rc_black_text;
                                     //  INPUT RC
                                     // console.log(result.rc);
 
                                     //  INPUT treatment 
-                                    /////////////////////////////
-                                    // อย่าลืมแก้ไขชื่อ treatmenta //
-                                    ////////////////////////////
-                                    const treatmentInputs = document.querySelectorAll('input[name="treatmentOfficer"]');
-                                    setCheckedInputs(treatmentInputs, result.treatment);
-                                    check_treatment();
+                                    if (result.treatment) {
+                                         const treatmentInputs = document.querySelectorAll('input[name="treatmentOfficer"]');
+                                        setCheckedInputs(treatmentInputs, result.treatment);
+                                        check_treatment();
+                                    }
                                     //  INPUT treatment
 
                                     //  INPUT sub_treatment 
-                                    const sub_treatment_checkboxInputs = document.querySelectorAll('input[name="sub_treatmentOfficer"]');
-                                    setCheckedInputs(sub_treatment_checkboxInputs, result.sub_treatment);
+                                    if (result.sub_treatment) {
+                                        const sub_treatment_checkboxInputs = document.querySelectorAll('input[name="sub_treatmentOfficer"]');
+                                        setCheckedInputs(sub_treatment_checkboxInputs, result.sub_treatment);
+                                    }
                                     //  INPUT sub_treatment 
 
 
@@ -833,16 +876,20 @@
                                             }
                                         }
 
-                                    }
-
+                                    } 
+                                    
                                     //  INPUT submission_criteria 
-                                    const submission_criteria_checkboxInputs = document.querySelectorAll('input[name="submission_criteria"]');
+                                    if (result.submission_criteria) {
+                                     const submission_criteria_checkboxInputs = document.querySelectorAll('input[name="submission_criteria"]');
                                     setCheckedInputs(submission_criteria_checkboxInputs, result.submission_criteria);
+                                    }
                                     //  INPUT submission_criteria 
 
                                     //  INPUT communication_hospital 
-                                    const communication_hospital_checkboxInputs = document.querySelectorAll('input[name="communication_hospital"]');
-                                    setCheckedInputs(communication_hospital_checkboxInputs, result.communication_hospital);
+                                    if (result.communication_hospital) {
+                                      const communication_hospital_checkboxInputs = document.querySelectorAll('input[name="communication_hospital"]');
+                                        setCheckedInputs(communication_hospital_checkboxInputs, result.communication_hospital);
+                                    }
                                     //  INPUT communication_hospital 
 
 
@@ -852,9 +899,21 @@
                                     document.querySelector('#registration_number').value = result.registration_number;
                                     document.querySelector('#registration_province').value = result.registration_province;
                                     //  INPUT owner_registration 
-                                    const owner_registration_checkboxInputs = document.querySelectorAll('input[name="owner_registration"]');
-                                    setCheckedInputs(owner_registration_checkboxInputs, result.owner_registration);
+                                    if (result.owner_registration) {
+                                        const owner_registration_checkboxInputs = document.querySelectorAll('input[name="owner_registration"]');
+                                        setCheckedInputs(owner_registration_checkboxInputs, );
+                                    }
+                                 
                                     //  INPUT owner_registration 
+
+                                    // console.log(result);
+                                    // edit_km_car
+                                    document.querySelector('#edit_km_create_sos_to_go_to_help').value = result.km_create_sos_to_go_to_help;
+                                    document.querySelector('#edit_km_to_the_scene_to_leave_the_scene').value = result.km_to_the_scene_to_leave_the_scene;
+                                    document.querySelector('#edit_km_hospital').value = result.km_hospital;
+                                    document.querySelector('#edit_km_operating_base').value = result.km_operating_base;
+
+                                    // edit_km_car
 
                                 }else{
                                     // console.log(result);
@@ -1009,6 +1068,25 @@
                             let owner_registration = owner_registrationElement ? owner_registrationElement.value : '';
                             data_arr.owner_registration = owner_registration;
 
+
+                        } else if (divId === 'button5Content') {
+                            // console.log("button4Content");
+
+                            let km_create_sos_to_go_to_help = document.getElementById('edit_km_create_sos_to_go_to_help') ? document.getElementById('edit_km_create_sos_to_go_to_help').value : '';
+                            data_arr.km_create_sos_to_go_to_help = km_create_sos_to_go_to_help;
+                            console.log(km_create_sos_to_go_to_help);
+
+                            let km_to_the_scene_to_leave_the_scene = document.getElementById('edit_km_to_the_scene_to_leave_the_scene') ? document.getElementById('edit_km_to_the_scene_to_leave_the_scene').value : '';
+                            data_arr.km_to_the_scene_to_leave_the_scene = km_to_the_scene_to_leave_the_scene;
+                            console.log(km_to_the_scene_to_leave_the_scene);
+
+                            let km_hospital = document.getElementById('edit_km_hospital') ? document.getElementById('edit_km_hospital').value : '';
+                            data_arr.km_hospital = km_hospital;
+                            console.log(km_hospital);
+
+                            let km_operating_base = document.getElementById('edit_km_operating_base') ? document.getElementById('edit_km_operating_base').value : '';
+                            data_arr.km_operating_base = km_operating_base;
+                            console.log(km_operating_base);
 
                         }
                         // console.log("{{ $data_sos->id }}");
