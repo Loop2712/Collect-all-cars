@@ -1240,7 +1240,7 @@ class PartnersController extends Controller
 
         $data_officer_gotohelp = Data_1669_operating_officer::where('go_to_help' , "!=" , null)
             ->orderBy('go_to_help',"desc")
-            ->limit(20)
+            // ->limit(20)
             ->get();
 
         $sos_success = Sos_help_center::where('status', 'เสร็จสิ้น')->get();
