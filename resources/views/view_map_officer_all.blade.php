@@ -156,22 +156,22 @@
 							<h4 class="card-title">ระดับปฏิบัติการ</h4>
 						</div>
 						<p style="position:relative;padding-top: 10px;">
-							<img src="{{ url('/img/icon/operating_unit/เขียว.png') }}" width="35" style="position: absolute;top:0px;"> 
+							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">FR : <b>{{ $arr_vehicle['vehicle_fr'] }}</b></span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
-							<img src="{{ url('/img/icon/operating_unit/เหลือง.png') }}" width="35" style="position: absolute;top:0px;"> 
+							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">BLS : <b>{{ $arr_vehicle['vehicle_bls'] }}</b></span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
-							<img src="{{ url('/img/icon/operating_unit/เหลือง.png') }}" width="35" style="position: absolute;top:0px;"> 
+							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">ILS : <b>{{ $arr_vehicle['vehicle_ils'] }}</b></span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
-							<img src="{{ url('/img/icon/operating_unit/แดง.png') }}" width="35" style="position: absolute;top:0px;"> 
+							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">ALS : <b>{{ $arr_vehicle['vehicle_als'] }}</b></span>
 							<br>
 						</p>
@@ -184,28 +184,33 @@
 					<h4 class="card-title">ระดับเหตุการณ์</h4>
 				</div>
 				<p style="position:relative;padding-top: 10px;">
-					<img src="{{ url('/img/icon/operating_unit/เขียว.png') }}" width="35" style="position: absolute;top:0px;"> 
+					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}" width="35" style="position: absolute;top:0px;"> 
 					<span style="margin-left:50px;">ทั้งหมด</span>
 					<br>
 				</p>
 				<p style="position:relative;padding-top: 10px;">
-					<img src="{{ url('/img/icon/operating_unit/เหลือง.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">FR : <b>{{ $arr_vehicle['vehicle_bls'] }}</b></span>
+					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}" width="35" style="position: absolute;top:0px;"> 
+					<span style="margin-left:50px;">เขียว(ไม่รุนแรง)</span>
 					<br>
 				</p>
 				<p style="position:relative;padding-top: 10px;">
-					<img src="{{ url('/img/icon/operating_unit/เหลือง.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">BLS : <b>{{ $arr_vehicle['vehicle_bls'] }}</b></span>
+					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
+					<span style="margin-left:50px;">เหลือง(เร่งด่วน)</span>
 					<br>
 				</p>
 				<p style="position:relative;padding-top: 10px;">
-					<img src="{{ url('/img/icon/operating_unit/เหลือง.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">ILS : <b>{{ $arr_vehicle['vehicle_ils'] }}</b></span>
+					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}" width="35" style="position: absolute;top:0px;"> 
+					<span style="margin-left:50px;">แดง(วิกฤติ)</span>
 					<br>
 				</p>
 				<p style="position:relative;padding-top: 10px;">
-					<img src="{{ url('/img/icon/operating_unit/แดง.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">ALS : <b>{{ $arr_vehicle['vehicle_als'] }}</b></span>
+					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/5.png') }}" width="35" style="position: absolute;top:0px;"> 
+					<span style="margin-left:50px;">ขาว(ทั่วไป)</span>
+					<br>
+				</p>
+				<p style="position:relative;padding-top: 10px;">
+					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/6.png') }}" width="35" style="position: absolute;top:0px;"> 
+					<span style="margin-left:50px;">ดำ(รับบริการสาธารณสุขอื่น)  </span>
 					<br>
 				</p>
 			</div>
@@ -299,11 +304,42 @@
     let marker_sos ;
     let markers = [] ;
 
-    let image_sos = "{{ url('/img/icon/operating_unit/viicheck.png') }}";
-    let image_operating_unit_red = "{{ url('/img/icon/operating_unit/แดง.png') }}";
-    let image_operating_unit_yellow = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
-    let image_operating_unit_green = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
-    let image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
+    let image_sos_general = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}";
+    let image_sos_green = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}";
+    let image_sos_yellow = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}";
+    let image_sos_red = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}";
+    let image_sos_white = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/5.png') }}";
+    let image_sos_black = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/6.png') }}";
+
+    // FR
+    let img_green_car = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/7.png') }}";
+    let img_green_aircraft = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/8.png') }}";
+    let img_green_ship_1 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/9.png') }}";
+    let img_green_ship_2 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/10.png') }}";
+    let img_green_ship_3 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/11.png') }}";
+    let img_green_ship_other = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/12.png') }}";
+
+    // BLS / ILS
+    let img_yellow_car = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/13.png') }}";
+    let img_yellow_aircraft = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/14.png') }}";
+    let img_yellow_ship_1 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/15.png') }}";
+    let img_yellow_ship_2 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/16.png') }}";
+    let img_yellow_ship_3 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/17.png') }}";
+    let img_yellow_ship_other = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/18.png') }}";
+
+    // ALS
+    let img_red_car = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/19.png') }}";
+    let img_red_aircraft = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/20.png') }}";
+    let img_red_ship_1 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/21.png') }}";
+    let img_red_ship_2 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/22.png') }}";
+    let img_red_ship_3 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/23.png') }}";
+    let img_red_ship_other = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/24.png') }}";
+
+
+    // let image_operating_unit_red = "{{ url('/img/icon/operating_unit/แดง.png') }}";
+    // let image_operating_unit_yellow = "{{ url('/img/icon/operating_unit/เหลือง.png') }}";
+    // let image_operating_unit_green = "{{ url('/img/icon/operating_unit/เขียว.png') }}";
+    // let image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
 
 	function open_map_show_data_officer_all() {
 
@@ -355,12 +391,74 @@
 
         @foreach($data_officer_ready as $item)
 
+        	// FR
         	if( "{{ $item->level }}" === "FR" ){
-        		icon_level = image_operating_unit_green ;
-        	}else if( "{{ $item->level }}" === "BLS" ){
-        		icon_level = image_operating_unit_yellow ;
-        	}else{
-        		icon_level = image_operating_unit_red ;
+        		switch("{{ $item->vehicle_type }}") {
+				  	case "รถ":
+				    	icon_level = img_green_car ;
+				    break;
+				  	case "อากาศยาน":
+				    	icon_level = img_green_aircraft ;
+				    break;
+				    case "เรือ ป.1":
+				    	icon_level = img_green_ship_1 ;
+				    break;
+				    case "เรือ ป.2":
+				    	icon_level = img_green_ship_2 ;
+				    break;
+				    case "เรือ ป.3":
+				    	icon_level = img_green_ship_3 ;
+				    break;
+				    case "เรือประเภทอื่นๆ":
+				    	icon_level = img_green_ship_other ;
+				    break;
+				}
+        	}
+        	// BLS && ILS 
+        	else if( "{{ $item->level }}" === "BLS" || "{{ $item->level }}" === "ILS"){
+        		switch("{{ $item->vehicle_type }}") {
+				  	case "รถ":
+				    	icon_level = img_yellow_car ;
+				    break;
+				  	case "อากาศยาน":
+				    	icon_level = img_yellow_aircraft ;
+				    break;
+				    case "เรือ ป.1":
+				    	icon_level = img_yellow_ship_1 ;
+				    break;
+				    case "เรือ ป.2":
+				    	icon_level = img_yellow_ship_2 ;
+				    break;
+				    case "เรือ ป.3":
+				    	icon_level = img_yellow_ship_3 ;
+				    break;
+				    case "เรือประเภทอื่นๆ":
+				    	icon_level = img_yellow_ship_other ;
+				    break;
+				}
+        	}
+        	// ALS
+        	else{
+        		switch("{{ $item->vehicle_type }}") {
+				  	case "รถ":
+				    	icon_level = img_red_car ;
+				    break;
+				  	case "อากาศยาน":
+				    	icon_level = img_red_aircraft ;
+				    break;
+				    case "เรือ ป.1":
+				    	icon_level = img_red_ship_1 ;
+				    break;
+				    case "เรือ ป.2":
+				    	icon_level = img_red_ship_2 ;
+				    break;
+				    case "เรือ ป.3":
+				    	icon_level = img_red_ship_3 ;
+				    break;
+				    case "เรือประเภทอื่นๆ":
+				    	icon_level = img_red_ship_other ;
+				    break;
+				}
         	}
 
 	        marker = new google.maps.Marker({
@@ -375,13 +473,34 @@
 
     function btn_view_sos(){
     	// console.log('btn_view_sos');
+    	let icon_level ;
 
     	@foreach($sos_success as $item)
+
+    		switch("{{ $item->form_yellow->rc }}") {
+			  	case "แดง(วิกฤติ)":
+			    	icon_level = image_sos_red ;
+			    break;
+			  	case "เหลือง(เร่งด่วน)":
+			    	icon_level = image_sos_yellow ;
+			    break;
+			    case "เขียว(ไม่รุนแรง)":
+			    	icon_level = image_sos_green ;
+			    break;
+			    case "ขาว(ทั่วไป)":
+			    	icon_level = image_sos_white ;
+			    break;
+			    case "ดำ":
+			    	icon_level = image_sos_black ;
+			    break;
+			    default:
+			    	icon_level = image_sos_general ;
+			}
 
 	        marker_sos = new google.maps.Marker({
 	            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
 	            map: map_show_data_officer_all,
-	            icon: image_sos,
+	            icon: icon_level,
 	        });
 	        markers.push(marker_sos);
 	    @endforeach
