@@ -184,11 +184,6 @@
 					<h4 class="card-title">ระดับเหตุการณ์</h4>
 				</div>
 				<p style="position:relative;padding-top: 10px;">
-					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">ทั้งหมด</span>
-					<br>
-				</p>
-				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}" width="35" style="position: absolute;top:0px;"> 
 					<span style="margin-left:50px;">เขียว(ไม่รุนแรง)</span>
 					<br>
@@ -211,6 +206,11 @@
 				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/6.png') }}" width="35" style="position: absolute;top:0px;"> 
 					<span style="margin-left:50px;">ดำ(รับบริการสาธารณสุขอื่น)  </span>
+					<br>
+				</p>
+				<p style="position:relative;padding-top: 10px;">
+					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}" width="35" style="position: absolute;top:0px;"> 
+					<span style="margin-left:50px;">ไม่มีการประเมิน</span>
 					<br>
 				</p>
 			</div>
