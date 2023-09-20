@@ -33,6 +33,7 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
             document.getElementById(`mic_local`).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
 
             isAudio = false;
+
         } else {
             // Update the button text.
             document.getElementById(`muteAudio`).innerHTML = '<i class="fa-solid fa-microphone"></i>';
