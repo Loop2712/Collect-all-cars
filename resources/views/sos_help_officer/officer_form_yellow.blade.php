@@ -766,25 +766,25 @@
                                 <div class="col-12 col-md-4 col-lg-4">
                                     <label for="" class="form-label">เลข กม. รถ ออกจากฐาน</label>
                                     <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-user"></i></span>
-                                        <input type="text" class="form-control border-start-0 radius-2" name="edit_km_create_sos_to_go_to_help" id="edit_km_create_sos_to_go_to_help" value="" placeholder="โปรดกรอกเลข กม. รถ ออกจากฐาน">
+                                        <input type="number" class="form-control border-start-0 radius-2" name="edit_km_create_sos_to_go_to_help" id="edit_km_create_sos_to_go_to_help" value="" placeholder="โปรดกรอกเลข กม. รถ ออกจากฐาน">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4 col-lg-4 mt-3">
                                     <label for="" class="form-label">เลข กม. รถ ถึงที่เกิดเหตุ</label>
                                     <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-user"></i></span>
-                                        <input type="text" class="form-control border-start-0 radius-2" name="edit_km_to_the_scene_to_leave_the_scene" id="edit_km_to_the_scene_to_leave_the_scene" value="" placeholder="โปรดกรอกเลข กม. รถ ถึงที่เกิดเหตุ">
+                                        <input type="number" class="form-control border-start-0 radius-2" name="edit_km_to_the_scene_to_leave_the_scene" id="edit_km_to_the_scene_to_leave_the_scene" value="" placeholder="โปรดกรอกเลข กม. รถ ถึงที่เกิดเหตุ">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4 col-lg-4 mt-3">
                                     <label for="" class="form-label">เลข กม. รถ ถึงโรงพยาบาล</label>
                                     <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-user"></i></span>
-                                        <input type="text" class="form-control border-start-0 radius-2" name="edit_km_hospital" id="edit_km_hospital" value="" placeholder="โปรดกรอกเลข กม. รถ ถึงโรงพยาบาล">
+                                        <input type="number" class="form-control border-start-0 radius-2" name="edit_km_hospital" id="edit_km_hospital" value="" placeholder="โปรดกรอกเลข กม. รถ ถึงโรงพยาบาล">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4 col-lg-4 mt-3">
                                     <label for="" class="form-label">เลข กม. รถ ถึงฐาน</label>
                                     <div class="input-group"> <span class="input-group-text bg-white radius-1"><i class="fa-solid fa-user"></i></span>
-                                        <input type="text" class="form-control border-start-0 radius-2" name="edit_km_operating_base" id="edit_km_operating_base" value="" placeholder="โปรดกรอกเลข กม. รถ ถึงฐาน">
+                                        <input type="number" class="form-control border-start-0 radius-2" name="edit_km_operating_base" id="edit_km_operating_base" value="" placeholder="โปรดกรอกเลข กม. รถ ถึงฐาน">
                                     </div>
                                 </div>
                             </div>
@@ -1074,19 +1074,15 @@
 
                             let km_create_sos_to_go_to_help = document.getElementById('edit_km_create_sos_to_go_to_help') ? document.getElementById('edit_km_create_sos_to_go_to_help').value : '';
                             data_arr.km_create_sos_to_go_to_help = km_create_sos_to_go_to_help;
-                            console.log(km_create_sos_to_go_to_help);
 
                             let km_to_the_scene_to_leave_the_scene = document.getElementById('edit_km_to_the_scene_to_leave_the_scene') ? document.getElementById('edit_km_to_the_scene_to_leave_the_scene').value : '';
                             data_arr.km_to_the_scene_to_leave_the_scene = km_to_the_scene_to_leave_the_scene;
-                            console.log(km_to_the_scene_to_leave_the_scene);
 
                             let km_hospital = document.getElementById('edit_km_hospital') ? document.getElementById('edit_km_hospital').value : '';
                             data_arr.km_hospital = km_hospital;
-                            console.log(km_hospital);
 
                             let km_operating_base = document.getElementById('edit_km_operating_base') ? document.getElementById('edit_km_operating_base').value : '';
                             data_arr.km_operating_base = km_operating_base;
-                            console.log(km_operating_base);
 
                         }
                         // console.log("{{ $data_sos->id }}");
