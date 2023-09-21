@@ -328,7 +328,7 @@
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/6.png') }}" width="35" style="position: absolute;top:0px;"> 
 					<span style="margin-left:50px;">
 						ดำ(รับบริการสาธารณสุขอื่น) : <span id="show_amount_sos_black"></span>
-						<span class="float-end btn" onclick="btn_view_sos('ดำ(รับบริการสาธารณสุขอื่น)');">
+						<span class="float-end btn" onclick="btn_view_sos('ดำ');">
 							<i class="fa-sharp fa-solid fa-eye text-info"></i>
 						</span>
 					</span>
