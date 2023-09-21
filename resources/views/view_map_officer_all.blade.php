@@ -97,17 +97,32 @@
 						</div>
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/all-agree.png') }}" width="35" style="position: absolute;top:0px;"> 
-							<span style="margin-left:50px;">ทั้งหมด : <b>{{ count($data_officer_all) }}</b></span>
+							<span style="margin-left:50px;">
+								ทั้งหมด : <b>{{ count($data_officer_all) }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('status','all');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/checked.png') }}" width="35" style="position: absolute;top:0px;"> 
-							<span style="margin-left:50px;">พร้อมช่วยเหลือ : <b>{{ count($data_officer_ready) }}</b></span>
+							<span style="margin-left:50px;">
+								พร้อมช่วยเหลือ : <b>{{ count($data_officer_ready) }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('status','Standby');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/help.png') }}" width="35" style="position: absolute;top:0px;"> 
-							<span style="margin-left:50px;">กำลังช่วยเหลือ : <b>{{ count($data_officer_helping) }}</b></span>
+							<span style="margin-left:50px;">
+								กำลังช่วยเหลือ : <b>{{ count($data_officer_helping) }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('status','Helping');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
@@ -121,33 +136,76 @@
 							<h4 class="card-title">ประเภทยานพาหนะ</h4>
 						</div>
 						<p style="position:relative;padding-top: 10px;">
+							<img src="{{ url('/img/icon/all_vehicle.png') }}" width="35" style="position: absolute;top:0px;"> 
+							<span style="margin-left:50px;">
+								@php
+									$sum_vehicle = $arr_vehicle['vehicle_car'] + $arr_vehicle['vehicle_aircraft'] + $arr_vehicle['vehicle_boat_1'] + $arr_vehicle['vehicle_boat_2'] + $arr_vehicle['vehicle_boat_3'] + $arr_vehicle['vehicle_boat_other'] ;
+								@endphp
+								ทั้งหมด : <b>{{ $sum_vehicle }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','all');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
+							<br>
+						</p>
+						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/car_img.png') }}" width="35" style="position: absolute;top:0px;"> 
-							<span style="margin-left:50px;">รถยนต์ : <b>{{ $arr_vehicle['vehicle_car'] }}</b></span>
+							<span style="margin-left:50px;">
+								รถยนต์ : <b>{{ $arr_vehicle['vehicle_car'] }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','รถ');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/helicopter.png') }}" width="35" style="position: absolute;top:0px;"> 
-							<span style="margin-left:50px;">อากาศยาน : <b>{{ $arr_vehicle['vehicle_aircraft'] }}</b></span>
+							<span style="margin-left:50px;">
+								อากาศยาน : <b>{{ $arr_vehicle['vehicle_aircraft'] }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','อากาศยาน');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/ship1.png') }}" width="35" style="position: absolute;top:0px;"> 
-							<span style="margin-left:50px;">เรือ ป.1 : <b>{{ $arr_vehicle['vehicle_boat_1'] }}</b></span>
+							<span style="margin-left:50px;">
+								เรือ ป.1 : <b>{{ $arr_vehicle['vehicle_boat_1'] }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.1');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/ship2.png') }}" width="35" style="position: absolute;top:0px;"> 
-							<span style="margin-left:50px;">เรือ ป.2 : <b>{{ $arr_vehicle['vehicle_boat_2'] }}</b></span>
+							<span style="margin-left:50px;">
+								เรือ ป.2 : <b>{{ $arr_vehicle['vehicle_boat_2'] }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.2');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/ship3.png') }}" width="35" style="position: absolute;top:0px;"> 
-							<span style="margin-left:50px;">เรือ ป.3 : <b>{{ $arr_vehicle['vehicle_boat_3'] }}</b></span>
+							<span style="margin-left:50px;">
+								เรือ ป.3 : <b>{{ $arr_vehicle['vehicle_boat_3'] }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.3');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/ship4.png') }}" width="35" style="position: absolute;top:0px;"> 
-							<span style="margin-left:50px;">เรือประเภทอื่นๆ : <b>{{ $arr_vehicle['vehicle_boat_other'] }}</b></span>
+							<span style="margin-left:50px;">
+								เรือประเภทอื่นๆ : <b>{{ $arr_vehicle['vehicle_boat_other'] }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือประเภทอื่นๆ');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
 							<br>
 						</p>
 					</div>
@@ -156,23 +214,56 @@
 							<h4 class="card-title">ระดับปฏิบัติการ</h4>
 						</div>
 						<p style="position:relative;padding-top: 10px;">
+							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}" width="35" style="position: absolute;top:0px;"> 
+							<span style="margin-left:50px;">
+								@php
+									$sum_level = $arr_vehicle['vehicle_fr'] + $arr_vehicle['vehicle_bls'] + $arr_vehicle['vehicle_ils'] + $arr_vehicle['vehicle_als'] ;
+								@endphp
+								ทั้งหมด : <b>{{ $sum_level }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('level','all');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
+							<br>
+						</p>
+						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}" width="35" style="position: absolute;top:0px;"> 
-							<span style="margin-left:50px;">FR : <b>{{ $arr_vehicle['vehicle_fr'] }}</b></span>
+							<span style="margin-left:50px;">
+								FR : <b>{{ $arr_vehicle['vehicle_fr'] }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('level','FR');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
-							<span style="margin-left:50px;">BLS : <b>{{ $arr_vehicle['vehicle_bls'] }}</b></span>
+							<span style="margin-left:50px;">
+								BLS : <b>{{ $arr_vehicle['vehicle_bls'] }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('level','BLS');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
-							<span style="margin-left:50px;">ILS : <b>{{ $arr_vehicle['vehicle_ils'] }}</b></span>
+							<span style="margin-left:50px;">
+								ILS : <b>{{ $arr_vehicle['vehicle_ils'] }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('level','ILS');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
 							<br>
 						</p>
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}" width="35" style="position: absolute;top:0px;"> 
-							<span style="margin-left:50px;">ALS : <b>{{ $arr_vehicle['vehicle_als'] }}</b></span>
+							<span style="margin-left:50px;">
+								ALS : <b>{{ $arr_vehicle['vehicle_als'] }}</b>
+								<span class="float-end btn" onclick="view_offiecr_select('level','ALS');">
+									<i class="fa-sharp fa-solid fa-eye text-info"></i>
+								</span>
+							</span>
 							<br>
 						</p>
 					</div>
@@ -184,33 +275,73 @@
 					<h4 class="card-title">ระดับเหตุการณ์</h4>
 				</div>
 				<p style="position:relative;padding-top: 10px;">
+					<img src="{{ url('/img/icon/operating_unit/sos.png') }}" width="35" style="position: absolute;top:0px;"> 
+					<span style="margin-left:50px;">
+						ทั้งหมด : <span id="show_amount_sos_all"></span>
+						<span class="float-end btn" onclick="btn_view_sos('all');">
+							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+						</span>
+					</span>
+					<br>
+				</p>
+				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">เขียว(ไม่รุนแรง)</span>
+					<span style="margin-left:50px;">
+						เขียว(ไม่รุนแรง) : <span id="show_amount_sos_green"></span>
+						<span class="float-end btn" onclick="btn_view_sos('เขียว(ไม่รุนแรง)');">
+							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+						</span>
+					</span>
 					<br>
 				</p>
 				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">เหลือง(เร่งด่วน)</span>
+					<span style="margin-left:50px;">
+						เหลือง(เร่งด่วน) : <span id="show_amount_sos_yellow"></span>
+						<span class="float-end btn" onclick="btn_view_sos('เหลือง(เร่งด่วน)');">
+							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+						</span>
+					</span>
 					<br>
 				</p>
 				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">แดง(วิกฤติ)</span>
+					<span style="margin-left:50px;">
+						แดง(วิกฤติ) : <span id="show_amount_sos_red"></span>
+						<span class="float-end btn" onclick="btn_view_sos('แดง(วิกฤติ)');">
+							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+						</span>
+					</span>
 					<br>
 				</p>
 				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/5.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">ขาว(ทั่วไป)</span>
+					<span style="margin-left:50px;">
+						ขาว(ทั่วไป) : <span id="show_amount_sos_white"></span>
+						<span class="float-end btn" onclick="btn_view_sos('ขาว(ทั่วไป)');">
+							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+						</span>
+					</span>
 					<br>
 				</p>
 				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/6.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">ดำ(รับบริการสาธารณสุขอื่น)  </span>
+					<span style="margin-left:50px;">
+						ดำ(รับบริการสาธารณสุขอื่น) : <span id="show_amount_sos_black"></span>
+						<span class="float-end btn" onclick="btn_view_sos('ดำ(รับบริการสาธารณสุขอื่น)');">
+							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+						</span>
+					</span>
 					<br>
 				</p>
 				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">ไม่มีการประเมิน</span>
+					<span style="margin-left:50px;">
+						ไม่มีการประเมิน : <span id="show_amount_sos_general"></span>
+						<span class="float-end btn" onclick="btn_view_sos('general');">
+							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+						</span>
+					</span>
 					<br>
 				</p>
 			</div>
@@ -357,7 +488,7 @@
 
     function change_view_data_map(type_view){
     	
-    	for (var i = 0; i < markers.length; i++) {
+    	for (let i = 0; i < markers.length; i++) {
 	        markers[i].setMap(null);
 	    }
 	    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
@@ -372,7 +503,7 @@
     		document.querySelector('#btn_view_sos').classList.add('btn-outline-danger');
 
     	}else if(type_view == "btn_view_sos"){
-    		btn_view_sos();
+    		btn_view_sos('all');
 
     		document.querySelector('#btn_view_officer').classList.remove('btn-success');
     		document.querySelector('#btn_view_officer').classList.add('btn-outline-success');
@@ -389,7 +520,7 @@
     	let icon_level ;
 
 
-        @foreach($data_officer_ready as $item)
+        @foreach($data_officer_all as $item)
 
         	// FR
         	if( "{{ $item->level }}" === "FR" ){
@@ -471,41 +602,201 @@
 
     }
 
-    function btn_view_sos(){
+    function btn_view_sos(type){
     	// console.log('btn_view_sos');
+
+    	for (let i = 0; i < markers.length; i++) {
+	        markers[i].setMap(null);
+	    }
+	    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
+
     	let icon_level ;
+
+    	let show_amount_sos_red = 0 ;
+    	let show_amount_sos_yellow = 0 ;
+    	let show_amount_sos_green = 0 ;
+    	let show_amount_sos_white = 0 ;
+    	let show_amount_sos_black = 0 ;
+    	let show_amount_sos_general = 0 ;
 
     	@foreach($sos_success as $item)
 
     		switch("{{ $item->form_yellow->rc }}") {
 			  	case "แดง(วิกฤติ)":
 			    	icon_level = image_sos_red ;
+			    	show_amount_sos_red = show_amount_sos_red + 1 ;
 			    break;
 			  	case "เหลือง(เร่งด่วน)":
 			    	icon_level = image_sos_yellow ;
+			    	show_amount_sos_yellow = show_amount_sos_yellow + 1 ;
 			    break;
 			    case "เขียว(ไม่รุนแรง)":
 			    	icon_level = image_sos_green ;
+			    	show_amount_sos_green = show_amount_sos_green + 1 ;
 			    break;
 			    case "ขาว(ทั่วไป)":
 			    	icon_level = image_sos_white ;
+			    	show_amount_sos_white = show_amount_sos_white + 1 ;
 			    break;
 			    case "ดำ":
 			    	icon_level = image_sos_black ;
+			    	show_amount_sos_black = show_amount_sos_black + 1 ;
 			    break;
 			    default:
 			    	icon_level = image_sos_general ;
+			    	show_amount_sos_general = show_amount_sos_general + 1 ;
 			}
 
-	        marker_sos = new google.maps.Marker({
-	            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
-	            map: map_show_data_officer_all,
-	            icon: icon_level,
-	        });
-	        markers.push(marker_sos);
+			if(type == "{{ $item->form_yellow->rc }}" || type == 'all'){
+
+		        marker_sos = new google.maps.Marker({
+		            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+		            map: map_show_data_officer_all,
+		            icon: icon_level,
+		        });
+		        markers.push(marker_sos);
+		    }
+		    else if(type == 'general'){
+
+		    	if(!"{{ $item->form_yellow->rc }}"){
+		    		marker_sos = new google.maps.Marker({
+			            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+			            map: map_show_data_officer_all,
+			            icon: icon_level,
+			        });
+			        markers.push(marker_sos);
+		    	}
+
+		    }
+
 	    @endforeach
 
+	    let sum_sos = show_amount_sos_red + show_amount_sos_yellow + show_amount_sos_green + show_amount_sos_white + show_amount_sos_black + show_amount_sos_general ;
+
+    	document.querySelector('#show_amount_sos_all').innerHTML = sum_sos;
+    	document.querySelector('#show_amount_sos_red').innerHTML = show_amount_sos_red;
+    	document.querySelector('#show_amount_sos_yellow').innerHTML = show_amount_sos_yellow;
+    	document.querySelector('#show_amount_sos_green').innerHTML = show_amount_sos_green;
+    	document.querySelector('#show_amount_sos_white').innerHTML = show_amount_sos_white;
+    	document.querySelector('#show_amount_sos_black').innerHTML = show_amount_sos_black;
+    	document.querySelector('#show_amount_sos_general').innerHTML = show_amount_sos_general;
+
     }
+
+
+    function view_offiecr_select(type , data){
+
+    	console.log(type);
+    	
+    	for (let i = 0; i < markers.length; i++) {
+	        markers[i].setMap(null);
+	    }
+	    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
+
+	    let icon_level ;
+	    let i_check = 0 ;
+
+	    let type_select = "";
+
+        @foreach($data_officer_all as $item)
+
+        	if(type == "status"){
+		    	type_select = "{{ $item->status }}" ;
+		    }
+		    else if(type == "vehicle_type"){
+		    	type_select = "{{ $item->vehicle_type }}" ;
+		    }
+		    else if(type == 'level'){
+		    	type_select = "{{ $item->level }}" ;
+		    }
+
+        	// status = type_officer_status
+        	if(data === type_select || data === "all"){
+
+        		i_check = i_check + 1 ;
+
+	        	// FR
+	        	if( "{{ $item->level }}" === "FR" ){
+	        		switch("{{ $item->vehicle_type }}") {
+					  	case "รถ":
+					    	icon_level = img_green_car ;
+					    break;
+					  	case "อากาศยาน":
+					    	icon_level = img_green_aircraft ;
+					    break;
+					    case "เรือ ป.1":
+					    	icon_level = img_green_ship_1 ;
+					    break;
+					    case "เรือ ป.2":
+					    	icon_level = img_green_ship_2 ;
+					    break;
+					    case "เรือ ป.3":
+					    	icon_level = img_green_ship_3 ;
+					    break;
+					    case "เรือประเภทอื่นๆ":
+					    	icon_level = img_green_ship_other ;
+					    break;
+					}
+	        	}
+	        	// BLS && ILS 
+	        	else if( "{{ $item->level }}" === "BLS" || "{{ $item->level }}" === "ILS"){
+	        		switch("{{ $item->vehicle_type }}") {
+					  	case "รถ":
+					    	icon_level = img_yellow_car ;
+					    break;
+					  	case "อากาศยาน":
+					    	icon_level = img_yellow_aircraft ;
+					    break;
+					    case "เรือ ป.1":
+					    	icon_level = img_yellow_ship_1 ;
+					    break;
+					    case "เรือ ป.2":
+					    	icon_level = img_yellow_ship_2 ;
+					    break;
+					    case "เรือ ป.3":
+					    	icon_level = img_yellow_ship_3 ;
+					    break;
+					    case "เรือประเภทอื่นๆ":
+					    	icon_level = img_yellow_ship_other ;
+					    break;
+					}
+	        	}
+	        	// ALS
+	        	else{
+	        		switch("{{ $item->vehicle_type }}") {
+					  	case "รถ":
+					    	icon_level = img_red_car ;
+					    break;
+					  	case "อากาศยาน":
+					    	icon_level = img_red_aircraft ;
+					    break;
+					    case "เรือ ป.1":
+					    	icon_level = img_red_ship_1 ;
+					    break;
+					    case "เรือ ป.2":
+					    	icon_level = img_red_ship_2 ;
+					    break;
+					    case "เรือ ป.3":
+					    	icon_level = img_red_ship_3 ;
+					    break;
+					    case "เรือประเภทอื่นๆ":
+					    	icon_level = img_red_ship_other ;
+					    break;
+					}
+	        	}
+
+		        marker = new google.maps.Marker({
+		            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+		            map: map_show_data_officer_all,
+		            icon: icon_level,
+		        });
+		        markers.push(marker);
+			}
+		@endforeach
+
+		console.log(i_check);
+    }
+
 
 </script>
 

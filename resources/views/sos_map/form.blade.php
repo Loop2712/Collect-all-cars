@@ -298,6 +298,39 @@
                                     </div>
                                 </div>
                                 <hr>
+                                <div id="div_data_tag_sos" class="row">
+                                    <div class="col-6 text-center">
+                                        <input class="d-none" id="tag_sos" type="radio" name="tag_sos" checked>
+                                        <span id="btn_tag_sos" class="btn btn-sm btn-warning notranslate" style="width:100%;" onclick="change_tag_sos('SOS');">
+                                            SOS
+                                        </span>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <input class="d-none" id="tag_repair" type="radio" name="tag_sos">
+                                        <span id="btn_tag_repair" class="btn btn-sm btn-outline-info" style="width:100%;" onclick="change_tag_sos('repair');">
+                                            แจ้งซ่อม
+                                        </span>
+                                    </div>
+                                </div>
+                                <script>
+                                    function change_tag_sos(type){
+                                        if(type == 'SOS'){
+                                            document.querySelector('#tag_sos').click();
+                                            document.querySelector('#btn_tag_sos').classList.remove('btn-outline-warning');
+                                            document.querySelector('#btn_tag_sos').classList.add('btn-warning');
+
+                                            document.querySelector('#btn_tag_repair').classList.remove('btn-info');
+                                            document.querySelector('#btn_tag_repair').classList.add('btn-outline-info');
+                                        }else{
+                                            document.querySelector('#tag_repair').click();
+                                            document.querySelector('#btn_tag_sos').classList.add('btn-outline-warning');
+                                            document.querySelector('#btn_tag_sos').classList.remove('btn-warning');
+
+                                            document.querySelector('#btn_tag_repair').classList.add('btn-info');
+                                            document.querySelector('#btn_tag_repair').classList.remove('btn-outline-info');
+                                        }
+                                    }
+                                </script>
                                 <div class="text-center h6 mt-3">
                                     <b>โปรดเลือกหัวข้อการขอความช่วยเหลือ</b>
                                 </div>
@@ -1317,6 +1350,8 @@
 
         document.querySelector('#text_add_img').classList.remove('d-none');
         document.querySelector('#btn_help_area').disabled = true;
+
+        document.querySelector('#div_data_tag_sos').classList.add('d-none');
 
         document.querySelector("#a_help_modal").click();
 
