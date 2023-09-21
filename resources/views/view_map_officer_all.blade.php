@@ -686,7 +686,7 @@
 
     function view_offiecr_select(type , data){
 
-    	console.log(type);
+    	// console.log(type);
     	
     	for (let i = 0; i < markers.length; i++) {
 	        markers[i].setMap(null);
@@ -794,7 +794,7 @@
 			}
 		@endforeach
 
-		console.log(i_check);
+		// console.log(i_check);
     }
 
 
