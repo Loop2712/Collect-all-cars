@@ -29,6 +29,7 @@ use App\Models\Partner_condo;
 use App\Models\Group_line;
 use App\Models\Time_zone;
 use App\Models\Disease;
+use App\Models\Data_1669_officer_command;
 use App\Models\Data_1669_operating_officer;
 use App\Models\Data_1669_operating_unit;
 use App\Models\Sos_help_center;
@@ -1162,6 +1163,11 @@ class PartnersController extends Controller
 
     function view_map_officer_all(){
 
+        $data_area = Data_1669_officer_command::where('area' , "!=" , null)
+            ->groupBy('area')
+            ->orderBy('area' , 'ASC')
+            ->get();
+
         $data_officer_all = Data_1669_operating_officer::where('id' , "!=" , null)->get();
 
         $data_officer_ready = Data_1669_operating_officer::where('lat' , "!=" , null)
@@ -1245,7 +1251,7 @@ class PartnersController extends Controller
 
         $sos_success = Sos_help_center::where('status', 'เสร็จสิ้น')->get();
 
-        return view('view_map_officer_all', compact('data_officer_all','data_officer_ready','data_officer_helping','data_officer_Not_ready','arr_vehicle','orderedDistricts','data_officer_gotohelp','sos_success'));
+        return view('view_map_officer_all', compact('data_officer_all','data_officer_ready','data_officer_helping','data_officer_Not_ready','arr_vehicle','orderedDistricts','data_officer_gotohelp','sos_success','data_area'));
 
     }
 

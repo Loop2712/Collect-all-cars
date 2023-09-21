@@ -352,14 +352,33 @@
 <div class="card_data" style="position:absolute;z-index: 99999;top: 5%;right: 1%;height: 5%!important;">
 	<div class="card-body text-center">
 		<div style="margin-top: -28px;">
-			ช่วยเหลือเสร็จสิ้น <b>{{ count($sos_success) }}</b> เคส
+			ช่วยเหลือเสร็จสิ้น <b>{{ count($sos_success) }}</b> เคส (ทุกพื้นที่)
 		</div>
 	</div>
 </div>
 
 <div class="card_data" style="position:absolute;z-index: 99999;top: 11%;right: 1%;">
 	<div class="card-body">
-		<ul class="nav nav-tabs nav-primary" role="tablist">
+		<div class="row">
+			<div class="col-12">
+				<label for="select_area">เลือกพื้นที่</label>
+				<select name="select_area" id="select_area" class="form-control" >
+					<option class="notranslate" selected value="all">ทั้งหมด</option>
+					@foreach($data_area as $item_area)
+						<option class="notranslate" value="{{ $item_area->area }}">{{ $item_area->area }}</option>
+					@endforeach
+                </select>
+			</div>
+		</div>
+		<hr>
+		<h4 class="text-info">
+			เฉพาะเคสที่เสร็จสิ้น &nbsp;&nbsp;
+			<span class="float-end text-dark" style="font-size: 16px;margin-top: 6px;">
+				รวม <b id="show_amount_by_area">{{ count($sos_success) }}</b> เคส
+			</span>
+		</h4>
+
+		<ul class="nav nav-tabs nav-primary mt-3" role="tablist">
 			<li class="nav-item" role="presentation_2">
 				<a class="nav-link active" data-bs-toggle="tab" href="#primaryhome_2" role="tab" aria-selected="false">
 					<div class="d-flex align-items-center">
@@ -402,11 +421,42 @@
 				</div>
 				@foreach($data_officer_gotohelp as $officer_gotohelp)
 					<div class="mt-2">
-						{{ $officer_gotohelp->name_officer }} 
-						<span class="float-end">
-							<b>{{ $officer_gotohelp->go_to_help }} </b> ครั้ง
-						</span>
-						<br>
+						<div class="col-12">
+							ชื่อ : <b>{{ $officer_gotohelp->name_officer }}</b>
+							<span class="float-end">
+								<u><b>{{ $officer_gotohelp->go_to_help }} </b> ครั้ง</u>
+							</span>
+							<br>
+							พื้นที่ : {{ $officer_gotohelp->operating_unit->area }}
+							<br>
+							หน่วย : {{ $officer_gotohelp->operating_unit->name }}
+							<br>
+
+							ระดับ : 
+
+							@php
+								$color_level = '' ;
+								switch ($officer_gotohelp->level) {
+								  	case 'FR':
+								    	$color_level = 'success' ;
+								    break;
+								  	case 'BLS':
+								    	$color_level = 'warning' ;
+							    	break;
+								  	case 'ILS':
+								    	$color_level = 'warning' ;
+								    break;
+								    case 'ALS':
+								    	$color_level = 'danger' ;
+								    break;
+								}
+							@endphp
+							<span class="text-{{$color_level}}" >
+								<b>{{ $officer_gotohelp->level }}</b>
+							</span>
+							<br>
+						</div>
+						<hr>
 					</div>
 	            @endforeach
 			</div>
