@@ -277,7 +277,7 @@
 				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/sos.png') }}" width="35" style="position: absolute;top:0px;"> 
 					<span style="margin-left:50px;">
-						ทั้งหมด : <span id="show_amount_sos_all"></span>
+						ทั้งหมด : <b><span id="show_amount_sos_all"></span></b>
 						<span class="float-end btn" onclick="btn_view_sos('all');">
 							<i class="fa-sharp fa-solid fa-eye text-info"></i>
 						</span>
@@ -287,7 +287,7 @@
 				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}" width="35" style="position: absolute;top:0px;"> 
 					<span style="margin-left:50px;">
-						เขียว(ไม่รุนแรง) : <span id="show_amount_sos_green"></span>
+						เขียว(ไม่รุนแรง) : <b><span id="show_amount_sos_green"></span></b>
 						<span class="float-end btn" onclick="btn_view_sos('เขียว(ไม่รุนแรง)');">
 							<i class="fa-sharp fa-solid fa-eye text-info"></i>
 						</span>
@@ -297,7 +297,7 @@
 				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
 					<span style="margin-left:50px;">
-						เหลือง(เร่งด่วน) : <span id="show_amount_sos_yellow"></span>
+						เหลือง(เร่งด่วน) : <b><span id="show_amount_sos_yellow"></span></b>
 						<span class="float-end btn" onclick="btn_view_sos('เหลือง(เร่งด่วน)');">
 							<i class="fa-sharp fa-solid fa-eye text-info"></i>
 						</span>
@@ -307,7 +307,7 @@
 				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}" width="35" style="position: absolute;top:0px;"> 
 					<span style="margin-left:50px;">
-						แดง(วิกฤติ) : <span id="show_amount_sos_red"></span>
+						แดง(วิกฤติ) : <b><span id="show_amount_sos_red"></span></b>
 						<span class="float-end btn" onclick="btn_view_sos('แดง(วิกฤติ)');">
 							<i class="fa-sharp fa-solid fa-eye text-info"></i>
 						</span>
@@ -317,7 +317,7 @@
 				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/5.png') }}" width="35" style="position: absolute;top:0px;"> 
 					<span style="margin-left:50px;">
-						ขาว(ทั่วไป) : <span id="show_amount_sos_white"></span>
+						ขาว(ทั่วไป) : <b><span id="show_amount_sos_white"></span></b>
 						<span class="float-end btn" onclick="btn_view_sos('ขาว(ทั่วไป)');">
 							<i class="fa-sharp fa-solid fa-eye text-info"></i>
 						</span>
@@ -327,7 +327,7 @@
 				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/6.png') }}" width="35" style="position: absolute;top:0px;"> 
 					<span style="margin-left:50px;">
-						ดำ(รับบริการสาธารณสุขอื่น) : <span id="show_amount_sos_black"></span>
+						ดำ(รับบริการสาธารณสุขอื่น) : <b><span id="show_amount_sos_black"></span></b>
 						<span class="float-end btn" onclick="btn_view_sos('ดำ');">
 							<i class="fa-sharp fa-solid fa-eye text-info"></i>
 						</span>
@@ -337,7 +337,7 @@
 				<p style="position:relative;padding-top: 10px;">
 					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}" width="35" style="position: absolute;top:0px;"> 
 					<span style="margin-left:50px;">
-						ไม่มีการประเมิน : <span id="show_amount_sos_general"></span>
+						ไม่มีการประเมิน : <b><span id="show_amount_sos_general"></span></b>
 						<span class="float-end btn" onclick="btn_view_sos('general');">
 							<i class="fa-sharp fa-solid fa-eye text-info"></i>
 						</span>
