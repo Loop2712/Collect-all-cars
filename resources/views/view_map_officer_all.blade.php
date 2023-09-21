@@ -18,7 +18,7 @@
     .flex-container {
 	  	display: flex;
 		/*height: 350px;*/
-		height: calc(75%);
+		height: calc(72%);
 	  	overflow: auto; /* เพิ่มการเลื่อนแนวตั้ง เมื่อเนื้อหาเกินขนาดของ flex container */
 	}
 </style>
