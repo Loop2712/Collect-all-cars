@@ -9,7 +9,7 @@
     .card_data{
     	background-color: white;
     	width: auto;
-    	height: calc(85%);
+    	height: calc(75%);
     	padding: 20px;
     	border-radius: 15px;
     	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
