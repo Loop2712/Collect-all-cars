@@ -360,7 +360,7 @@
 <div class="card_data" style="position:absolute;z-index: 99999;top: 11%;right: 1%;">
 	<div class="card-body">
 		<div class="row">
-			<div class="col-12">
+			<div class="col-7">
 				<label for="select_area">เลือกพื้นที่</label>
 				<select name="select_area" id="select_area" class="form-control" >
 					<option class="notranslate" selected value="all">ทั้งหมด</option>
@@ -371,6 +371,19 @@
 						</option>
 						@endif
 					@endforeach
+                </select>
+			</div>
+
+			<div id="div_d_none_select_level" class="col-5"></div>
+
+			<div id="div_show_select_level" class="col-5 d-none">
+				<label for="select_level">เลือกระดับ</label>
+				<select name="select_level" id="select_level" class="form-control" >
+					<option class="notranslate" selected value="all">ทั้งหมด</option>
+					<option class="notranslate text-success" value="FR">FR</option>
+					<option class="notranslate text-warning" value="BLS">BLS</option>
+					<option class="notranslate text-warning" value="ILS">ILS</option>
+					<option class="notranslate text-danger" value="ALS">ALS</option>
                 </select>
 			</div>
 		</div>
@@ -384,7 +397,7 @@
 
 		<ul class="nav nav-tabs nav-primary mt-3" role="tablist">
 			<li class="nav-item" role="presentation_2">
-				<a class="nav-link active" data-bs-toggle="tab" href="#primaryhome_2" role="tab" aria-selected="false">
+				<a class="nav-link active" data-bs-toggle="tab" href="#primaryhome_2" role="tab" aria-selected="false" onclick="document.querySelector('#div_d_none_select_level').classList.remove('d-none');document.querySelector('#div_show_select_level').classList.add('d-none')">
 					<div class="d-flex align-items-center">
 						<div class="tab-icon">
 							<i class="fa-solid fa-map-location-dot font-18 me-1"></i>
@@ -394,7 +407,7 @@
 				</a>
 			</li>
 			<li class="nav-item" role="presentation_2">
-				<a class="nav-link" data-bs-toggle="tab" href="#primaryprofile_2" role="tab" aria-selected="true">
+				<a class="nav-link" data-bs-toggle="tab" href="#primaryprofile_2" role="tab" aria-selected="true" onclick="document.querySelector('#div_show_select_level').classList.remove('d-none');document.querySelector('#div_d_none_select_level').classList.add('d-none')">
 					<div class="d-flex align-items-center">
 						<div class="tab-icon">
 							<i class="fa-solid fa-arrow-down-9-1 font-18 me-1"></i>
