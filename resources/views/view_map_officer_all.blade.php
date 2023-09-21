@@ -9,7 +9,7 @@
     .card_data{
     	background-color: white;
     	width: auto;
-    	height: calc(75%);
+    	height: calc(85%);
     	padding: 20px;
     	border-radius: 15px;
     	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
@@ -18,7 +18,7 @@
     .flex-container {
 	  	display: flex;
 		/*height: 350px;*/
-		height: calc(85%);
+		height: calc(80%);
 	  	overflow: auto; /* เพิ่มการเลื่อนแนวตั้ง เมื่อเนื้อหาเกินขนาดของ flex container */
 	}
 </style>
