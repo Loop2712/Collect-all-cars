@@ -363,16 +363,38 @@ function moveAllDivsToContainer() {
 }
 
 // จัดเรียกใช้งานเมื่อคลิกที่ div
+// function handleClick(clickedDiv) {
+//     let userVideoCallBar = document.querySelector(".user-video-call-bar");
+//     let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+//     if (customDivsInUserVideoCallBar.length > 0) {
+//         moveAllDivsToContainer();
+//     } else {
+//         moveDivsToUserVideoCallBar(clickedDiv);
+//     }
+// }
+
 function handleClick(clickedDiv) {
     let userVideoCallBar = document.querySelector(".user-video-call-bar");
     let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+    let container = document.getElementById("container_user_video_call");
+    let customDivsInContainer = container.querySelectorAll(".custom-div");
 
-    if (customDivsInUserVideoCallBar.length > 0) {
+    if (customDivsInUserVideoCallBar.length > 0 && customDivsInContainer.length > 0) {
+        // ถ้ามี div ในทั้ง container และ user-video-call-bar
+        // ให้สลับ div และเอา div ใน container ไปใส่ใน userVideoCallBar
+        swapDivsInContainerAndUserVideoCallBar(clickedDiv);
+    } else if (customDivsInUserVideoCallBar.length > 0 && customDivsInContainer.length = 0) {
+        // ถ้ามี div อยู่ใน user-video-call-bar เท่านั้น
+        // ให้เอา div ใน container ไปใส่ใน userVideoCallBar
         moveAllDivsToContainer();
     } else {
+        // ถ้าไม่มี div ในทั้งสองฝั่ง
+        // ให้เอา div ที่คลิกไปใน userVideoCallBar
         moveDivsToUserVideoCallBar(clickedDiv);
     }
 }
+
 
 // เพิ่ม event listener บนปุ่ม "เพิ่ม div"
 document.getElementById("addButton").addEventListener("click", createAndAttachCustomDiv);

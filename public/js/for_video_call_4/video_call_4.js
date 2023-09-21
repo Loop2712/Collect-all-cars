@@ -15,7 +15,7 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
     const muteVideoButton = document.createElement('button');
         muteVideoButton.type = "button";
         muteVideoButton.id = "muteVideo";
-        muteVideoButton.classList.add('btn','btn-secondary','mr-1');
+        muteVideoButton.classList.add('btn','btn-secondary','ms-1');
         muteVideoButton.innerHTML = '<i class="fa-solid fa-video"></i>';
 
     divForVideoButton.appendChild(muteVideoButton);
@@ -110,8 +110,23 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
         // profileImage.setAttribute('style', 'border-radius: 50%; width: 100px; height: 100px; max-width: 100%; max-height: 30%;');
         profileImage.setAttribute('class', 'profile_image');
 
-    // เพิ่มแท็ก <img> ลงใน ProfileInputOutputDiv
+
     ProfileInputOutputDiv.appendChild(profileImage);
+
+    // เพิ่มแท็ก แสดงเสียงไมค์เวลาพูด
+    let statusMicrophoneOutput = document.createElement("div");
+    statusMicrophoneOutput.id = "statusMicrophoneOutput_local";
+    statusMicrophoneOutput.className = "status-sound-output d-none";
+    statusMicrophoneOutput.setAttribute('style','z-index: 1;');
+
+    let soundDiv = document.createElement("div");
+        soundDiv.id = "sound_local";
+        soundDiv.className = "sound";
+        soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #1b6600;"></i>';
+
+    statusMicrophoneOutput.appendChild(soundDiv);
+
+    // เพิ่มแท็ก ไมค์และกล้อง
 
     let statusInputOutputDiv = document.createElement("div");
         statusInputOutputDiv.className = "status-input-output";
@@ -129,6 +144,8 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
 
     statusInputOutputDiv.appendChild(micDiv);
     statusInputOutputDiv.appendChild(cameraDiv);
+
+    // เพิ่มแท็ก ชื่อและสถานะ
 
     let infomationUserDiv = document.createElement("div");
         infomationUserDiv.id = "infomation-user-local";
@@ -150,6 +167,7 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
 
     // เพิ่ม div ด้านในลงใน div หลัก
     divVideo.appendChild(ProfileInputOutputDiv);
+    divVideo.appendChild(statusMicrophoneOutput);
     divVideo.appendChild(statusInputOutputDiv);
     divVideo.appendChild(infomationUserDiv);
 
@@ -158,7 +176,17 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
     // เพิ่ม div หลักลงใน div รวม
     divVideo.append(localPlayerContainer);
 
-    document.querySelector('#container_user_video_call').append(divVideo);
+    // เพิ่ม div ใหม่ลงใน div หลัก หรือ div bar
+    let userVideoCallBar = document.querySelector(".user-video-call-bar");
+    let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+    if (customDivsInUserVideoCallBar.length > 0) {
+        let firstCustomDiv = customDivsInUserVideoCallBar[0];
+        userVideoCallBar.insertBefore(divVideo, firstCustomDiv.nextSibling);
+    } else {
+        let container_user_video_call = document.querySelector("#container_user_video_call");
+        container_user_video_call.append(divVideo);
+    }
 
     divVideo.addEventListener("click", function() {
         handleClick(divVideo);
@@ -183,6 +211,20 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote) {
 
     //======= สร้างปุ่มสถานะ && รูปโปรไฟล์ ==========
 
+    // เพิ่มแท็ก แสดงเสียงไมค์เวลาพูด
+    let statusMicrophoneOutput = document.createElement("div");
+    statusMicrophoneOutput.id = "statusMicrophoneOutput_remote_"+containerId;
+    statusMicrophoneOutput.className = "status-sound-output d-none";
+    statusMicrophoneOutput.setAttribute('style','z-index: 1;');
+
+    let soundDiv = document.createElement("div");
+        soundDiv.id = "sound_remote_" + containerId;
+        soundDiv.className = "sound";
+        soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #1b6600;"></i>';
+
+    statusMicrophoneOutput.appendChild(soundDiv);
+
+    // เพิ่มแท็ก ไมค์และกล้อง
     let statusInputOutputDiv = document.createElement("div");
         statusInputOutputDiv.className = "status-input-output";
         statusInputOutputDiv.setAttribute('style','z-index: 1;');
@@ -200,6 +242,7 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote) {
     statusInputOutputDiv.appendChild(micDiv);
     statusInputOutputDiv.appendChild(cameraDiv);
 
+      // เพิ่มแท็ก ชื่อและสถานะ
     let infomationUserDiv = document.createElement("div");
         infomationUserDiv.className = "infomation-user";
         infomationUserDiv.setAttribute('style','z-index: 1;');
@@ -216,7 +259,7 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote) {
     infomationUserDiv.appendChild(roleUserVideoCallDiv);
 
     // เพิ่ม div ด้านในลงใน div หลัก
-    // divVideo.appendChild(ProfileInputOutputDiv);
+    divVideo.appendChild(statusMicrophoneOutput);
     divVideo.appendChild(statusInputOutputDiv);
     divVideo.appendChild(infomationUserDiv);
 
@@ -240,6 +283,7 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote) {
     divVideo.addEventListener("click", function() {
         handleClick(divVideo);
     });
+
 }
 
 function create_dummy_videoTrack(user,name_remote,profile_remote){
@@ -270,6 +314,20 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
         // เพิ่มแท็ก <img> ลงใน ProfileInputOutputDiv
         ProfileInputOutputDiv.appendChild(profileImage);
 
+        // เพิ่มแท็ก แสดงเสียงไมค์เวลาพูด
+        let statusMicrophoneOutput = document.createElement("div");
+            statusMicrophoneOutput.id = "statusMicrophoneOutput_remote_"+user.uid.toString();
+            statusMicrophoneOutput.className = "status-sound-output d-none";
+            statusMicrophoneOutput.setAttribute('style','z-index: 1;');
+
+        let soundDiv = document.createElement("div");
+            soundDiv.id = "sound_remote_" + user.uid.toString();
+            soundDiv.className = "sound";
+            soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #1b6600;"></i>';
+
+        statusMicrophoneOutput.appendChild(soundDiv);
+
+        // เพิ่มแท็ก ไมค์และกล้อง
         let statusInputOutputDiv = document.createElement("div");
             statusInputOutputDiv.className = "status-input-output";
             statusInputOutputDiv.setAttribute('style','z-index: 1;');
@@ -287,6 +345,7 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
         statusInputOutputDiv.appendChild(micDiv);
         statusInputOutputDiv.appendChild(cameraDiv);
 
+        // เพิ่มแท็ก ชื่อและสถานะ
         let infomationUserDiv = document.createElement("div");
             infomationUserDiv.className = "infomation-user";
             infomationUserDiv.setAttribute('style','z-index: 1;');
@@ -348,23 +407,6 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
     }
 
 }
-
-
-
-
-
-// ตรวจสอบจำนวน div ที่มี class "custom-div" และปรับความกว้าง
-// function updateDivWidth() {
-//     let container = document.getElementById('container_user_video_call');
-//     let customDivs = container.getElementsByClassName('custom-div');
-//     let count = customDivs.length;
-
-//     if (count > 1) {
-//         container.classList.add("grid-template");
-//     } else {
-//         container.classList.remove("grid-template");
-//     }
-// }
 
 
 

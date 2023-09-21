@@ -118,6 +118,26 @@
 <script src="{{ asset('js/for_video_call_4/before_video_call_4.js') }}"></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded'), (event) => {
+
+            // fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_1669_id=" + sos_1669_id)
+            // .then(response => response.json())
+            // .then(result => {
+            //     // console.log('check_user_in_room');
+            //     // console.log(result);
+            //     // console.log('-------------------------------------');
+
+            //     if(result['data'] != 'ไม่มีข้อมูล'){
+            //         console.log(result['data']);
+            //     }else{
+            //         console.log(result['data_agora']);
+            //     }
+
+            // });
+        }
+    </script>
+
+    <script>
         document.addEventListener('DOMContentLoaded', (event) => {
 
             var CameraRetries = 0; // ตัวแปรเก็บจำนวนครั้งที่เรียกใช้งานกล้อง
