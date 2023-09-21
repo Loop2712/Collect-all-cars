@@ -365,7 +365,11 @@
 				<select name="select_area" id="select_area" class="form-control" >
 					<option class="notranslate" selected value="all">ทั้งหมด</option>
 					@foreach($data_area as $item_area)
-						<option class="notranslate" value="{{ $item_area->area }}">{{ $item_area->area }}</option>
+						@if($item_area->area != "ศูนย์ใหญ่")
+						<option class="notranslate" value="{{ $item_area->area }}">
+							{{ $item_area->area }}
+						</option>
+						@endif
 					@endforeach
                 </select>
 			</div>
