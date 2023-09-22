@@ -73,8 +73,11 @@ class Agora_4_Controller extends Controller
         // $appID = $request->appId;
         // $appCertificate = $request->appCertificate;
 
-        $appID = env('AGORA_APP_ID_MITHCARE');
-        $appCertificate = env('AGORA_APP_CERTIFICATE_MITHCARE');
+        // $appID = env('AGORA_APP_ID_MITHCARE');
+        // $appCertificate = env('AGORA_APP_CERTIFICATE_MITHCARE');
+
+        $appID = "acb41870f41c48d4a42b7b0ef1532351";
+        $appCertificate = "41aa313ac49f4e3d81f1a3056e122ca0";
 
         // if(strlen($appID) < 32){
         //     $appID = env('AGORA_APP_ID');
