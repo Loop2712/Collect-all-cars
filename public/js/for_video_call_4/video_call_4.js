@@ -39,6 +39,7 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
             document.getElementById(`muteAudio`).innerHTML = '<i class="fa-solid fa-microphone"></i>';
             // Unmute the local video.
             channelParameters.localAudioTrack.setEnabled(true);
+            channelParameters.localAudioTrack.play();
             // เปลี่ยน icon microphone ให้เป็นเปิด ใน divVideo_
             document.getElementById(`mic_local`).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
 
@@ -363,6 +364,7 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
 
         // เพิ่ม div ด้านในลงใน div หลัก
         divVideo.appendChild(ProfileInputOutputDiv);
+        divVideo.appendChild(statusMicrophoneOutput);
         divVideo.appendChild(statusInputOutputDiv);
         divVideo.appendChild(infomationUserDiv);
 
