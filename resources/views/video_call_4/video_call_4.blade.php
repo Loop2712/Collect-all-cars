@@ -575,6 +575,10 @@
                 channelParameters.remoteVideoTrack = user.videoTrack;
                 channelParameters.remoteAudioTrack = user.audioTrack;
 
+                console.log("============== channelParameters.remoteVideoTrack ใน published  ==================");
+                console.log(channelParameters.remoteVideoTrack.length);
+                console.log(channelParameters.remoteVideoTrack);
+
                 channelParameters.remoteUid = user.uid.toString();
                 remotePlayerContainer.id = user.uid.toString();
 
