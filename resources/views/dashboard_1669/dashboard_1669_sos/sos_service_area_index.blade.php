@@ -87,6 +87,34 @@
 
                         </div>
                     </div>
+                    <div class="m-2">
+                        <div class="row">
+                            <div class="col-4 mt-2">
+                                <img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}" width="35" > 
+                                เขียว(ไม่รุนแรง)
+                            </div>
+                            <div class="col-4 mt-2">
+                                <img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" > 
+                                เหลือง(เร่งด่วน)
+                            </div>
+                            <div class="col-4 mt-2">
+                                <img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}" width="35" > 
+                                แดง(วิกฤติ)
+                            </div>
+                            <div class="col-4 mt-2">
+                                <img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/5.png') }}" width="35" > 
+                                ขาว(ทั่วไป)
+                            </div>
+                            <div class="col-4 mt-2">
+                                <img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/6.png') }}" width="35" > 
+                                ดำ
+                            </div>
+                            <div class="col-4 mt-2">
+                                <img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}" width="35" > 
+                                ไม่มีการประเมิน
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
