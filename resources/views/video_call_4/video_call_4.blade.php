@@ -608,10 +608,16 @@
                     console.log("โหลดข้อมูล RemoteUser ล้มเหลว published");
                 });
 
-                // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
-                document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
 
                 if(user.hasVideo == false){
+                    // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
+                    document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+                }else{
+                    // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
+                    document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
+                }
+
+                if(user.hasAudio == false){
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
                     document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
                 }else{
@@ -634,15 +640,20 @@
                 // Play the remote audio track. No need to pass any DOM element.
                 channelParameters.remoteAudioTrack.play();
 
-                // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
-                document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
-
                 if(user.hasVideo == false){
-                    // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
+                    // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
                     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
                 }else{
-                    // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
+                    // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
                     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
+                }
+
+                if(user.hasAudio == false){
+                    // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
+                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+                }else{
+                    // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
+                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
                 }
 
                 // console.log('AudioTrack:');
