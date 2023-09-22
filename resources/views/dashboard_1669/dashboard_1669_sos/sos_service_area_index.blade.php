@@ -389,9 +389,41 @@
 
                     //ปักหมุด
                     // let image_marker_sos = "https://www.viicheck.com/img/icon/operating_unit/sos.png";
-                    let image_marker_sos = "{{ asset('/img/icon/operating_unit/sos.png') }}";
+                    // let image_marker_sos = "{{ asset('/img/icon/operating_unit/sos.png') }}";
+
+                    let image_marker_sos = "";
+
+                    let image_sos_general = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}";
+                    let image_sos_green = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}";
+                    let image_sos_yellow = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}";
+                    let image_sos_red = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}";
+                    let image_sos_white = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/5.png') }}";
+                    let image_sos_black = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/6.png') }}";
+
+
                     @foreach($sos_map_data as $sos_map_data)
                         @if(!empty($sos_map_data->lat))
+
+                            switch("{{ $sos_map_data->form_yellow->rc }}") {
+                                case "แดง(วิกฤติ)":
+                                    image_marker_sos = image_sos_red ;
+                                break;
+                                case "เหลือง(เร่งด่วน)":
+                                    image_marker_sos = image_sos_yellow ;
+                                break;
+                                case "เขียว(ไม่รุนแรง)":
+                                    image_marker_sos = image_sos_green ;
+                                break;
+                                case "ขาว(ทั่วไป)":
+                                    image_marker_sos = image_sos_white ;
+                                break;
+                                case "ดำ":
+                                    image_marker_sos = image_sos_black ;
+                                break;
+                                default:
+                                    image_marker_sos = image_sos_general ;
+                            }
+
                             marker_sos_organization = new google.maps.Marker({
                                 position: { lat: {{ $sos_map_data->lat }} , lng: {{ $sos_map_data->lng }}  },
                                 map: map_sos_organization,
