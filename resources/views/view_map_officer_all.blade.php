@@ -1059,7 +1059,7 @@
 	    fetch("{{ url('/') }}/api/view_map_officer_all/" + select_area + "/draw_select_area")
 	        .then(response => response.json())
 	        .then(result => {
-	            console.log(result);
+	            // console.log(result);
 
 	            // สร้าง Polygon ใหม่
 	            let polygon = new google.maps.Polygon({
