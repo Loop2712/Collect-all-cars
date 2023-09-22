@@ -440,7 +440,7 @@
 					<h4 class="card-title">เจ้าหน้าที่ออกปฏิบัติการ</h4>
 				</div>
 				@foreach($data_officer_gotohelp as $officer_gotohelp)
-					<div class="mt-2 show_officer" level="{{ $officer_gotohelp->level }}" area="{{ $officer_gotohelp->operating_unit->area }}">
+					<div class="mt-2 show_officer" level="{{ $officer_gotohelp->level }}" area="{{ $officer_gotohelp->operating_unit->area }}" lan_lng="{{ $officer_gotohelp->lat }},{{ $officer_gotohelp->lng }}" vehicle_type="{{ $officer_gotohelp->vehicle_type }}">
 						<div class="col-12">
 							ชื่อ : <b>{{ $officer_gotohelp->name_officer }}</b>
 							<span class="float-end">
@@ -915,6 +915,7 @@
 
 			})
 
+		// เซตแมพ วาดพื้นที่
 		if(select_area != 'all'){
 			draw_select_area(select_area);
 		}else{
@@ -929,6 +930,120 @@
 
 		    }
 		}
+
+		// mark จุดเจ้าหน้าที่
+		if(select_level != 'all'){
+
+			for (let i = 0; i < markers.length; i++) {
+		        markers[i].setMap(null);
+		    }
+		    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
+
+    		let tag_level_2 = document.querySelectorAll('.show_officer');
+
+			tag_level_2.forEach(tag_level_2 => {
+
+				let check_level_3 = tag_level_2.getAttribute('level');
+
+				if(check_level_3 == select_level){
+
+					let check_lat_lng = tag_level_2.getAttribute('lan_lng');
+					let vehicle_type = tag_level_2.getAttribute('vehicle_type');
+				        // console.log("check_lat_lng >> " + check_lat_lng) ;
+				        // console.log("vehicle_type >> " + vehicle_type) ;
+
+				    mark_location_officer(check_lat_lng , select_level , vehicle_type);
+				}
+			})
+
+		}else{
+			view_offiecr_select('level','all');
+		}
+
+    }
+
+    function mark_location_officer(check_lat_lng , select_level , vehicle_type){
+    	
+    	// FR
+    	if( select_level === "FR" ){
+    		switch(vehicle_type) {
+			  	case "รถ":
+			    	icon_level = img_green_car ;
+			    break;
+			  	case "อากาศยาน":
+			    	icon_level = img_green_aircraft ;
+			    break;
+			    case "เรือ ป.1":
+			    	icon_level = img_green_ship_1 ;
+			    break;
+			    case "เรือ ป.2":
+			    	icon_level = img_green_ship_2 ;
+			    break;
+			    case "เรือ ป.3":
+			    	icon_level = img_green_ship_3 ;
+			    break;
+			    case "เรือประเภทอื่นๆ":
+			    	icon_level = img_green_ship_other ;
+			    break;
+			}
+    	}
+    	// BLS && ILS 
+    	else if( select_level === "BLS" || select_level === "ILS"){
+    		switch(vehicle_type) {
+			  	case "รถ":
+			    	icon_level = img_yellow_car ;
+			    break;
+			  	case "อากาศยาน":
+			    	icon_level = img_yellow_aircraft ;
+			    break;
+			    case "เรือ ป.1":
+			    	icon_level = img_yellow_ship_1 ;
+			    break;
+			    case "เรือ ป.2":
+			    	icon_level = img_yellow_ship_2 ;
+			    break;
+			    case "เรือ ป.3":
+			    	icon_level = img_yellow_ship_3 ;
+			    break;
+			    case "เรือประเภทอื่นๆ":
+			    	icon_level = img_yellow_ship_other ;
+			    break;
+			}
+    	}
+    	// ALS
+    	else{
+    		switch(vehicle_type) {
+			  	case "รถ":
+			    	icon_level = img_red_car ;
+			    break;
+			  	case "อากาศยาน":
+			    	icon_level = img_red_aircraft ;
+			    break;
+			    case "เรือ ป.1":
+			    	icon_level = img_red_ship_1 ;
+			    break;
+			    case "เรือ ป.2":
+			    	icon_level = img_red_ship_2 ;
+			    break;
+			    case "เรือ ป.3":
+			    	icon_level = img_red_ship_3 ;
+			    break;
+			    case "เรือประเภทอื่นๆ":
+			    	icon_level = img_red_ship_other ;
+			    break;
+			}
+    	}
+
+    	let sp_lat_lng = check_lat_lng.split(',');
+    	let sp_lat = sp_lat_lng[0];
+    	let sp_lng = sp_lat_lng[1];
+
+        marker = new google.maps.Marker({
+            position: {lat: parseFloat(sp_lat) , lng: parseFloat(sp_lng) },
+            map: map_show_data_officer_all,
+            icon: icon_level,
+        });
+        markers.push(marker);
 
     }
 
