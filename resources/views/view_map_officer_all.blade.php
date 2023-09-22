@@ -388,7 +388,7 @@
 			</div>
 		</div>
 		<hr>
-		<h4 class="text-info">
+		<h4 id="h4_show_amount_by_area" class="text-info d-none">
 			ข้อมูลการออกปฏิบัติการ &nbsp;&nbsp;
 			<span class="float-end text-dark" style="font-size: 16px;margin-top: 6px;">
 				รวม <b id="show_amount_by_area"></b> เคส
@@ -397,7 +397,7 @@
 
 		<ul class="nav nav-tabs nav-primary mt-3" role="tablist">
 			<li class="nav-item" role="presentation_2">
-				<a class="nav-link active" data-bs-toggle="tab" href="#primaryhome_2" role="tab" aria-selected="false" onclick="document.querySelector('#div_d_none_select_level').classList.remove('d-none');document.querySelector('#div_show_select_level').classList.add('d-none')">
+				<a class="nav-link active" data-bs-toggle="tab" href="#primaryhome_2" role="tab" aria-selected="false" onclick="document.querySelector('#div_d_none_select_level').classList.remove('d-none');document.querySelector('#div_show_select_level').classList.add('d-none');document.querySelector('#h4_show_amount_by_area').classList.add('d-none');">
 					<div class="d-flex align-items-center">
 						<div class="tab-icon">
 							<i class="fa-solid fa-map-location-dot font-18 me-1"></i>
@@ -407,7 +407,7 @@
 				</a>
 			</li>
 			<li class="nav-item" role="presentation_2">
-				<a class="nav-link" data-bs-toggle="tab" href="#primaryprofile_2" role="tab" aria-selected="true" onclick="document.querySelector('#div_show_select_level').classList.remove('d-none');document.querySelector('#div_d_none_select_level').classList.add('d-none')">
+				<a class="nav-link" data-bs-toggle="tab" href="#primaryprofile_2" role="tab" aria-selected="true" onclick="document.querySelector('#div_show_select_level').classList.remove('d-none');document.querySelector('#div_d_none_select_level').classList.add('d-none');document.querySelector('#h4_show_amount_by_area').classList.remove('d-none');">
 					<div class="d-flex align-items-center">
 						<div class="tab-icon">
 							<i class="fa-solid fa-arrow-down-9-1 font-18 me-1"></i>
