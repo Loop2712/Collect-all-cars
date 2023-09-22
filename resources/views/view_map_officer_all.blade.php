@@ -362,7 +362,7 @@
 		<div class="row">
 			<div class="col-7">
 				<label for="select_area">เลือกพื้นที่</label>
-				<select name="select_area" id="select_area" class="form-control" >
+				<select name="select_area" id="select_area" class="form-control" onchange="func_select_area_and_level();">
 					<option class="notranslate" selected value="all">ทั้งหมด</option>
 					@foreach($data_area as $item_area)
 						@if($item_area->area != "ศูนย์ใหญ่")
@@ -378,7 +378,7 @@
 
 			<div id="div_show_select_level" class="col-5 d-none">
 				<label for="select_level">เลือกระดับ</label>
-				<select name="select_level" id="select_level" class="form-control" >
+				<select name="select_level" id="select_level" class="form-control" onchange="func_select_area_and_level();">
 					<option class="notranslate" selected value="all">ทั้งหมด</option>
 					<option class="notranslate text-success" value="FR">FR</option>
 					<option class="notranslate text-warning" value="BLS">BLS</option>
@@ -423,7 +423,10 @@
 					<h4 class="card-title">พื้นที่การขอความช่วยเหลือ</h4>
 				</div>
 				@foreach($orderedDistricts as $district => $count)
-					<div class="mt-2">
+					@php
+						$area_province = explode("/",$district)[0];
+					@endphp
+					<div class="mt-2 show_count_area" area="{{ $area_province }}">
 						{{$district}} 
 						<span class="float-end">
 							<b>{{$count}}</b>
@@ -437,7 +440,7 @@
 					<h4 class="card-title">เจ้าหน้าที่ออกปฏิบัติการ</h4>
 				</div>
 				@foreach($data_officer_gotohelp as $officer_gotohelp)
-					<div class="mt-2">
+					<div class="mt-2 show_officer" level="{{ $officer_gotohelp->level }}" area="{{ $officer_gotohelp->operating_unit->area }}">
 						<div class="col-12">
 							ชื่อ : <b>{{ $officer_gotohelp->name_officer }}</b>
 							<span class="float-end">
@@ -863,6 +866,111 @@
 
 		// console.log(i_check);
     }
+
+    function func_select_area_and_level(){
+
+    	let select_area = document.querySelector('#select_area').value ;
+    		// console.log(select_area);
+    	let select_level = document.querySelector('#select_level').value ;
+    		// console.log("select_level >> " + select_level);
+
+    	// LEVEL
+    	let tag_level = document.querySelectorAll('.show_officer');
+    		// console.log(tag_level);
+				
+			tag_level.forEach(tag_level => {
+				let check_area = tag_level.getAttribute('area');
+				let check_level = tag_level.getAttribute('level');
+			        // console.log("check_area >> " + check_area) ;
+			        // console.log("check_level >> " + check_level) ;
+
+			    if( (check_level == select_level && check_area == select_area) 
+			    	|| 
+			    	(check_level == select_level && select_area == 'all') 
+			    	|| 
+			    	(select_level == 'all' && check_area == select_area) 
+			    	|| 
+			    	(select_level == 'all' && select_area == 'all') 
+			    ){
+			        tag_level.classList.remove('d-none') ;
+			    }else{
+			        tag_level.classList.add('d-none') ;
+			    }
+
+			})
+
+		// AREA
+    	let tag_area = document.querySelectorAll('.show_count_area');
+    		// console.log(tag_area);
+				
+			tag_area.forEach(tag_area => {
+				let check_area_2 = tag_area.getAttribute('area');
+			        // console.log("check_area_2 >> " + check_area_2) ;
+
+			    if( (select_area == check_area_2) || (select_area == 'all')){
+			        tag_area.classList.remove('d-none') ;
+			    }else{
+			        tag_area.classList.add('d-none') ;
+			    }
+
+			})
+
+		if(select_area != 'all'){
+			draw_select_area(select_area);
+		}else{
+			if (currentPolygon) {
+		        currentPolygon.setMap(null);
+
+		        let m_lat = parseFloat('12.870032');
+		        let m_lng = parseFloat('100.992541');
+
+	            map_show_data_officer_all.setZoom(6);
+	            map_show_data_officer_all.setCenter({lat: m_lat, lng: m_lng });
+
+		    }
+		}
+
+    }
+
+    // สร้างตัวแปร global ไว้เก็บข้อมูล Polygon ปัจจุบัน
+	let currentPolygon = null;
+
+	function draw_select_area(select_area) {
+	    // หากมี Polygon อยู่แล้ว ให้ลบออก
+	    if (currentPolygon) {
+	        currentPolygon.setMap(null);
+	    }
+
+	    fetch("{{ url('/') }}/api/view_map_officer_all/" + select_area + "/draw_select_area")
+	        .then(response => response.json())
+	        .then(result => {
+	            console.log(result);
+
+	            // สร้าง Polygon ใหม่
+	            let polygon = new google.maps.Polygon({
+	                paths: JSON.parse(result['polygon']),
+	                strokeColor: "#008450",
+	                strokeOpacity: 0.8,
+	                strokeWeight: 1,
+	                fillColor: "#008450",
+	                fillOpacity: 0.25,
+	            });
+
+	            // กำหนด Polygon ใหม่ให้กับตัวแปร currentPolygon
+	            currentPolygon = polygon;
+
+	            // กำหนดให้ Polygon ใหม่แสดงบนแผนที่
+	            polygon.setMap(map_show_data_officer_all);
+
+	            // Fit map ให้เหมาะสมกับ Polygon ใหม่
+	            let bounds = new google.maps.LatLngBounds();
+	            polygon.getPath().forEach(function (point) {
+	                bounds.extend(point);
+	            });
+	            map_show_data_officer_all.fitBounds(bounds);
+	            map_show_data_officer_all.setZoom(9);
+	        });
+	}
 
 
 </script>

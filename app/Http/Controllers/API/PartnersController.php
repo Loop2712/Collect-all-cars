@@ -33,6 +33,7 @@ use App\Models\Data_1669_officer_command;
 use App\Models\Data_1669_operating_officer;
 use App\Models\Data_1669_operating_unit;
 use App\Models\Sos_help_center;
+use App\Models\Province_th;
 
 class PartnersController extends Controller
 {
@@ -1252,6 +1253,14 @@ class PartnersController extends Controller
         $sos_success = Sos_help_center::where('status', 'เสร็จสิ้น')->get();
 
         return view('view_map_officer_all', compact('data_officer_all','data_officer_ready','data_officer_helping','data_officer_Not_ready','arr_vehicle','orderedDistricts','data_officer_gotohelp','sos_success','data_area'));
+
+    }
+
+    function draw_select_area($select_area){
+
+        $data = Province_th::where('province_name' , $select_area)->first();
+
+        return $data ;
 
     }
 

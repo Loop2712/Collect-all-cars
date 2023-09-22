@@ -203,6 +203,7 @@ Route::get('/clear_area_new/{name_partner}/{name_area}', 'API\PartnersController
 Route::get('/delete_area/{id}', 'API\PartnersController@delete_area');
 
 Route::get('/show_logo_partner', 'API\PartnersController@show_logo_partner');
+Route::get('/view_map_officer_all/{select_area}/draw_select_area', 'API\PartnersController@draw_select_area');
 
 
 // API TU
