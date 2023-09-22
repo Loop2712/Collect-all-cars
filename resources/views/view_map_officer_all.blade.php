@@ -389,9 +389,9 @@
 		</div>
 		<hr>
 		<h4 class="text-info">
-			เฉพาะเคสที่เสร็จสิ้น &nbsp;&nbsp;
+			ข้อมูลการออกปฏิบัติการ &nbsp;&nbsp;
 			<span class="float-end text-dark" style="font-size: 16px;margin-top: 6px;">
-				รวม <b id="show_amount_by_area">{{ count($sos_success) }}</b> เคส
+				รวม <b id="show_amount_by_area"></b> เคส
 			</span>
 		</h4>
 
@@ -497,7 +497,7 @@
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
         open_map_show_data_officer_all();
-
+        func_select_area_and_level();
     });
 
     let map_show_data_officer_all ;
@@ -900,7 +900,7 @@
 			    }else{
 			        tag_level.classList.add('d-none') ;
 			    }
-			    
+
 			    document.querySelector('#show_amount_by_area').innerHTML = sum_amount_case ;
 
 			})
