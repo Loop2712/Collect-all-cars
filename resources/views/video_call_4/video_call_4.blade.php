@@ -593,10 +593,11 @@
                         if (name_remote) {
                             // สำหรับ สร้าง div_dummy ตอนผู้ใช้เปิดกล้อง
                             create_element_remotevideo_call(remotePlayerContainer, name_remote);
-                            // เล่นวิดีโอไปยัง remotePlayerContainer เฉพาะเมื่อ id เท่ากับ user.uid
-                            if (remotePlayerContainer.id == user.uid.toString()) {
-                                channelParameters.remoteVideoTrack.play(remotePlayerContainer);
 
+                            let containerToPlay = document.getElementById(remotePlayerContainer.id);
+
+                            if (containerToPlay) {
+                                channelParameters.remoteVideoTrack.play(containerToPlay);
                                 // Set a stream fallback option to automatically switch remote video quality when network conditions degrade.
                                 agoraEngine.setStreamFallbackOption(channelParameters.remoteUid, 1);
                             }
