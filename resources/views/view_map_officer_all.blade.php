@@ -877,7 +877,7 @@
     	// LEVEL
 		let sum_amount_case = 0 ;
     	let tag_level = document.querySelectorAll('.show_officer');
-    		// console.log(tag_level);
+    		// console.log(tag_level.length);
 				
 			tag_level.forEach(tag_level => {
 				let check_area = tag_level.getAttribute('area');
@@ -895,12 +895,12 @@
 			    	(select_level == 'all' && select_area == 'all') 
 			    ){
 			        tag_level.classList.remove('d-none') ;
+			     	sum_amount_case = sum_amount_case + parseInt(amount_case);
+
 			    }else{
 			        tag_level.classList.add('d-none') ;
 			    }
-
-			    sum_amount_case = parseInt(sum_amount_case + amount_case);
-
+			    
 			    document.querySelector('#show_amount_by_area').innerHTML = sum_amount_case ;
 
 			})
