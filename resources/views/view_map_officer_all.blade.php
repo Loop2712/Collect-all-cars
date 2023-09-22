@@ -440,7 +440,7 @@
 					<h4 class="card-title">เจ้าหน้าที่ออกปฏิบัติการ</h4>
 				</div>
 				@foreach($data_officer_gotohelp as $officer_gotohelp)
-					<div class="mt-2 show_officer" level="{{ $officer_gotohelp->level }}" area="{{ $officer_gotohelp->operating_unit->area }}" lan_lng="{{ $officer_gotohelp->lat }},{{ $officer_gotohelp->lng }}" vehicle_type="{{ $officer_gotohelp->vehicle_type }}">
+					<div class="mt-2 show_officer" level="{{ $officer_gotohelp->level }}" area="{{ $officer_gotohelp->operating_unit->area }}" lan_lng="{{ $officer_gotohelp->lat }},{{ $officer_gotohelp->lng }}" vehicle_type="{{ $officer_gotohelp->vehicle_type }}" amount_case="{{ $officer_gotohelp->go_to_help }}">
 						<div class="col-12">
 							ชื่อ : <b>{{ $officer_gotohelp->name_officer }}</b>
 							<span class="float-end">
@@ -875,12 +875,14 @@
     		// console.log("select_level >> " + select_level);
 
     	// LEVEL
+		let sum_amount_case = 0 ;
     	let tag_level = document.querySelectorAll('.show_officer');
     		// console.log(tag_level);
 				
 			tag_level.forEach(tag_level => {
 				let check_area = tag_level.getAttribute('area');
 				let check_level = tag_level.getAttribute('level');
+				let amount_case = tag_level.getAttribute('amount_case');
 			        // console.log("check_area >> " + check_area) ;
 			        // console.log("check_level >> " + check_level) ;
 
@@ -896,6 +898,10 @@
 			    }else{
 			        tag_level.classList.add('d-none') ;
 			    }
+
+			    sum_amount_case = parseInt(sum_amount_case + amount_case);
+
+			    document.querySelector('#show_amount_by_area').innerHTML = sum_amount_case ;
 
 			})
 
