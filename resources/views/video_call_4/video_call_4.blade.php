@@ -72,9 +72,9 @@
 		background-color: rgb(0, 0, 0, 0.4);
 		border-radius: 50px;
 		opacity: 0;
-		top: 10%;
+		top: 20%;
 		left: 50%;
-		transform: translate(-50%, -10%);
+		transform: translate(-50%, -20%);
 		padding: 5px 25px;
 		transition: all .15s ease-in-out;
 	}
@@ -114,11 +114,13 @@
 
     .user-video-call-bar div div .profile_image{ /* ของ bar ล่าง  */
         width: 50px;
+        height: 50px;
         border-radius: 50%; /* คงรูปร่างวงกลม */
     }
 
     #container_user_video_call div div .profile_image{ /* ของ container ใหญ่ */
         width: 150px;
+        height: 150px;
         border-radius: 50%; /* คงรูปร่างวงกลม */
     }
 
@@ -295,25 +297,14 @@
 
 				<div class="d-flex align-self-center">
 					<div class="row" id="container_user_video_call">
-
-
-
+                        <!--  วิดีโอคอล tag ถูกสร้างในนี้-->
 					</div>
 				</div>
 
 				<!-- <div class="bg-success test col">user4</div> -->
 				<div class="w-100 user-video-call-contrainer d-none">
 					<div class="d-flex justify-content-center align-self-end d-non user-video-call-bar">
-						<!-- <div class="parent">
-							<div class="child"></div>
-						</div>
-						<div class="parent">
-							<div class="child"></div>
-						</div>
-						<div class="parent">
-							<div class="child"></div>
-						</div> -->
-
+						<!--  วิดีโอคอล tag ถูกสร้างในนี้-->
 					</div>
                     <button class="btn-show-hide-user-video-call btn" style="z-index: 2" onclick="toggleUserVideoCallBar();">ซ่อน</button>
 
@@ -564,19 +555,18 @@
             console.log("user");
             console.log(user);
 
-            const remotePlayer_check_arr = {}; // ใช้เก็บ remotePlayerContainer ของแต่ละ remote user
+            // const remotePlayer_check_arr = {}; // ใช้เก็บ remotePlayerContainer ของแต่ละ remote user
 
             // ตรวจสอบว่า user.uid เป็นไอดีของ remote user ที่คุณเลือก
             if (mediaType == "video" && user.videoTrack)
             {
                 // สร้างหรืออัปเดต remotePlayerContainer ของ remote user
-                remotePlayer_check_arr[user.uid.toString()] = remotePlayer_check_arr[user.uid.toString()];
+                // remotePlayer_check_arr[user.uid.toString()] = remotePlayer_check_arr[user.uid.toString()];
 
                 channelParameters.remoteVideoTrack = user.videoTrack;
                 channelParameters.remoteAudioTrack = user.audioTrack;
 
                 console.log("============== channelParameters.remoteVideoTrack ใน published  ==================");
-                console.log(channelParameters.remoteVideoTrack.length);
                 console.log(channelParameters.remoteVideoTrack);
 
                 channelParameters.remoteUid = user.uid.toString();
@@ -594,33 +584,37 @@
 
                         console.log("โหลดข้อมูล RemoteUser สำเร็จ published");
                         console.log(name_remote);
-                        if (name_remote) {
-                            // สำหรับ สร้าง div_dummy ตอนผู้ใช้เปิดกล้อง
-                            create_element_remotevideo_call(remotePlayerContainer, name_remote);
 
-                            let containerToPlay = document.getElementById(remotePlayerContainer.id);
+                        // Map remotePlayerContainer
+                        const remotePlayerContainerMap = new Map();
 
-                            if (containerToPlay) {
-                                channelParameters.remoteVideoTrack.play(containerToPlay);
-                                // Set a stream fallback option to automatically switch remote video quality when network conditions degrade.
-                                agoraEngine.setStreamFallbackOption(channelParameters.remoteUid, 1);
-                            }
-                        } else {
-                            console.log("ไม่พบค่า name ในผลลัพธ์หรือผลลัพธ์ไม่ถูกต้อง");
-                        }
+                        // สำหรับ สร้าง divVideo ตอนผู้ใช้เปิดกล้อง
+                        create_element_remotevideo_call(remotePlayerContainer, name_remote, channelParameters.remoteVideoTrack);
+                        console.log("remotePlayerContainerMap");
+                        console.log(remotePlayerContainerMap);
+
+                        // let containerToPlay = document.getElementById(remotePlayerContainer.id);
+
+                        // if (containerToPlay) {
+                        //     channelParameters.remoteVideoTrack.play(containerToPlay);
+                        //     // Set a stream fallback option to automatically switch remote video quality when network conditions degrade.
+                        //     agoraEngine.setStreamFallbackOption(channelParameters.remoteUid, 1);
+                        // }
+
                 })
                 .catch(error => {
                     console.log("โหลดข้อมูล RemoteUser ล้มเหลว published");
                 });
 
+                document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
 
-                if(user.hasVideo == false){
-                    // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
-                    document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
-                }else{
-                    // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
-                    document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
-                }
+                // if(user.hasVideo == false){
+                //     // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
+                //     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+                // }else{
+                //     // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
+                //     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
+                // }
 
                 if(user.hasAudio == false){
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด

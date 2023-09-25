@@ -195,7 +195,9 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
 
 }
 
-function create_element_remotevideo_call(remotePlayerContainer,name_remote) {
+
+
+function create_element_remotevideo_call(remotePlayerContainer,name_remote ,user_videoTrack) {
 
     const containerId = remotePlayerContainer.id;
 
@@ -266,6 +268,9 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote) {
 
     //======= จบการ สร้างปุ่มสถานะ ==========
 
+    // เพิ่ม remotePlayerContainer เข้า Map โดยใช้ ID ของ <div> เป็น key
+    // remotePlayerContainerMap.set(containerId, remotePlayerContainer);
+
     divVideo.append(remotePlayerContainer);
 
     // เพิ่ม div ใหม่ลงใน div หลัก หรือ div bar
@@ -279,6 +284,10 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote) {
         let container_user_video_call = document.querySelector("#container_user_video_call");
         container_user_video_call.append(divVideo);
     }
+
+    user_videoTrack.play(remotePlayerContainer);
+    // Set a stream fallback option to automatically switch remote video quality when network conditions degrade.
+    agoraEngine.setStreamFallbackOption(channelParameters.remoteUid, 1);
 
     // คลิ๊ก div ให้เปลี่ยนขนาด
     divVideo.addEventListener("click", function() {
