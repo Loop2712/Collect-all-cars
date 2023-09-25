@@ -88,204 +88,214 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
 
 // สำหรับ Div ต่างๆของ Local
 function create_element_localvideo_call(localPlayerContainer,name_local,profile_local) {
-    // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
-    if(document.getElementById('videoDiv_' + localPlayerContainer.id)) {
-        document.getElementById('videoDiv_' + localPlayerContainer.id).remove();
-    }
+    if(localPlayerContainer.id){
+        // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
+        if(document.getElementById('videoDiv_' + localPlayerContainer.id)) {
+            document.getElementById('videoDiv_' + localPlayerContainer.id).remove();
+        }
 
-    let divVideo = document.createElement('div');
-    divVideo.setAttribute('id','videoDiv_' + localPlayerContainer.id);
-    divVideo.setAttribute('class','custom-div');
-    divVideo.setAttribute('style','background-color: grey');
-
-    //======= สร้างปุ่มสถานะ && รูปโปรไฟล์ ==========
-
-    // สร้างแท็ก <img> สำหรับรูปโปรไฟล์
-    let ProfileInputOutputDiv = document.createElement("div");
-        ProfileInputOutputDiv.className = "profile-input-output";
-        ProfileInputOutputDiv.setAttribute('style','z-index: 1; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);');
-
-    let profileImage = document.createElement('img');
-        profileImage.setAttribute('src', profile_local); // เปลี่ยน 'ลิงก์รูปโปรไฟล์' เป็น URL ของรูปโปรไฟล์ของผู้ใช้
-        profileImage.setAttribute('alt', 'โปรไฟล์');
-        // profileImage.setAttribute('style', 'border-radius: 50%; width: 100px; height: 100px; max-width: 100%; max-height: 30%;');
-        profileImage.setAttribute('class', 'profile_image');
-
-
-    ProfileInputOutputDiv.appendChild(profileImage);
-
-    // เพิ่มแท็ก แสดงเสียงไมค์เวลาพูด
-    let statusMicrophoneOutput = document.createElement("div");
-    statusMicrophoneOutput.id = "statusMicrophoneOutput_local";
-    statusMicrophoneOutput.className = "status-sound-output d-none";
-    statusMicrophoneOutput.setAttribute('style','z-index: 1;');
-
-    let soundDiv = document.createElement("div");
-        soundDiv.id = "sound_local";
-        soundDiv.className = "sound";
-        soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #ffffff;"></i>';
-
-    statusMicrophoneOutput.appendChild(soundDiv);
-
-    // เพิ่มแท็ก ไมค์และกล้อง
-
-    let statusInputOutputDiv = document.createElement("div");
-        statusInputOutputDiv.className = "status-input-output";
-        statusInputOutputDiv.setAttribute('style','z-index: 1;');
-
-    let micDiv = document.createElement("div");
-        micDiv.id = "mic_local";
-        micDiv.className = "mic";
-        micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
-
-    let cameraDiv = document.createElement("div");
-        cameraDiv.id = "camera_local";
-        cameraDiv.className = "camera";
-        cameraDiv.innerHTML = '<i class="fa-duotone fa-video"></i>';
-
-    statusInputOutputDiv.appendChild(micDiv);
-    statusInputOutputDiv.appendChild(cameraDiv);
-
-    // เพิ่มแท็ก ชื่อและสถานะ
-
-    let infomationUserDiv = document.createElement("div");
-        infomationUserDiv.id = "infomation-user-local";
-        infomationUserDiv.className = "infomation-user";
-        infomationUserDiv.setAttribute('style','z-index: 1;');
-
-    let nameUserVideoCallDiv = document.createElement("div");
-        nameUserVideoCallDiv.id = "name_local_video_call";
-        nameUserVideoCallDiv.className = "name-user-video-call";
-        nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>'+ name_local +'</b></h5>';
-
-    let roleUserVideoCallDiv = document.createElement("div");
-        roleUserVideoCallDiv.id = "role_local_video_call";
-        roleUserVideoCallDiv.className = "role-user-video-call";
-        roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
-
-    infomationUserDiv.appendChild(nameUserVideoCallDiv);
-    infomationUserDiv.appendChild(roleUserVideoCallDiv);
-
-    // เพิ่ม div ด้านในลงใน div หลัก
-    divVideo.appendChild(ProfileInputOutputDiv);
-    divVideo.appendChild(statusMicrophoneOutput);
-    divVideo.appendChild(statusInputOutputDiv);
-    divVideo.appendChild(infomationUserDiv);
-
-    //======= จบการ สร้างปุ่มสถานะ ==========
-
-    // เพิ่ม div หลักลงใน div รวม
-    divVideo.append(localPlayerContainer);
-
-    // เพิ่ม div ใหม่ลงใน div หลัก หรือ div bar
-    let userVideoCallBar = document.querySelector(".user-video-call-bar");
-    let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
-
-    if (customDivsInUserVideoCallBar.length > 0) {
-        let firstCustomDiv = customDivsInUserVideoCallBar[0];
-        userVideoCallBar.insertBefore(divVideo, firstCustomDiv.nextSibling);
-    } else {
-        let container_user_video_call = document.querySelector("#container_user_video_call");
-        container_user_video_call.append(divVideo);
-    }
-
-    divVideo.addEventListener("click", function() {
-        handleClick(divVideo);
-    });
-
-}
-
-// สำหรับ Div ต่างๆของ Remote ตอน published
-function create_element_remotevideo_call(remotePlayerContainer,name_remote) {
-
-    let containerId = remotePlayerContainer.id;
-
-    // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
-    if (document.getElementById("videoDiv_"+ containerId)) {
-        document.getElementById("videoDiv_"+ containerId).remove();
-    }
-
-    // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
-    let divVideo = document.createElement('div');
-        divVideo.setAttribute('id','videoDiv_' + containerId);
+        let divVideo = document.createElement('div');
+        divVideo.setAttribute('id','videoDiv_' + localPlayerContainer.id);
         divVideo.setAttribute('class','custom-div');
         divVideo.setAttribute('style','background-color: grey');
 
-    //======= สร้างปุ่มสถานะ && รูปโปรไฟล์ ==========
+        //======= สร้างปุ่มสถานะ && รูปโปรไฟล์ ==========
 
-    // เพิ่มแท็ก แสดงเสียงไมค์เวลาพูด
-    let statusMicrophoneOutput = document.createElement("div");
-    statusMicrophoneOutput.id = "statusMicrophoneOutput_remote_"+containerId;
-    statusMicrophoneOutput.className = "status-sound-output d-none";
-    statusMicrophoneOutput.setAttribute('style','z-index: 1;');
+        // สร้างแท็ก <img> สำหรับรูปโปรไฟล์
+        let ProfileInputOutputDiv = document.createElement("div");
+            ProfileInputOutputDiv.className = "profile-input-output";
+            ProfileInputOutputDiv.setAttribute('style','z-index: 1; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);');
 
-    let soundDiv = document.createElement("div");
-        soundDiv.id = "sound_remote_" + containerId;
-        soundDiv.className = "sound";
-        soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #ffffff;"></i>';
+        let profileImage = document.createElement('img');
+            profileImage.setAttribute('src', profile_local); // เปลี่ยน 'ลิงก์รูปโปรไฟล์' เป็น URL ของรูปโปรไฟล์ของผู้ใช้
+            profileImage.setAttribute('alt', 'โปรไฟล์');
+            // profileImage.setAttribute('style', 'border-radius: 50%; width: 100px; height: 100px; max-width: 100%; max-height: 30%;');
+            profileImage.setAttribute('class', 'profile_image');
 
-    statusMicrophoneOutput.appendChild(soundDiv);
 
-    // เพิ่มแท็ก ไมค์และกล้อง
-    let statusInputOutputDiv = document.createElement("div");
-        statusInputOutputDiv.className = "status-input-output";
-        statusInputOutputDiv.setAttribute('style','z-index: 1;');
+        ProfileInputOutputDiv.appendChild(profileImage);
 
-    let micDiv = document.createElement("div");
-        micDiv.id = "mic_remote_"+containerId;
-        micDiv.className = "mic";
-        micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+        // เพิ่มแท็ก แสดงเสียงไมค์เวลาพูด
+        let statusMicrophoneOutput = document.createElement("div");
+        statusMicrophoneOutput.id = "statusMicrophoneOutput_local";
+        statusMicrophoneOutput.className = "status-sound-output d-none";
+        statusMicrophoneOutput.setAttribute('style','z-index: 1;');
 
-    let cameraDiv = document.createElement("div");
-        cameraDiv.id = "camera_remote_"+containerId;
-        cameraDiv.className = "camera";
-        cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
+        let soundDiv = document.createElement("div");
+            soundDiv.id = "sound_local";
+            soundDiv.className = "sound";
+            soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #ffffff;"></i>';
 
-    statusInputOutputDiv.appendChild(micDiv);
-    statusInputOutputDiv.appendChild(cameraDiv);
+        statusMicrophoneOutput.appendChild(soundDiv);
 
-      // เพิ่มแท็ก ชื่อและสถานะ
-    let infomationUserDiv = document.createElement("div");
-        infomationUserDiv.className = "infomation-user";
-        infomationUserDiv.setAttribute('style','z-index: 1;');
+        // เพิ่มแท็ก ไมค์และกล้อง
 
-    let nameUserVideoCallDiv = document.createElement("div");
-        nameUserVideoCallDiv.className = "name-user-video-call";
-        nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>'+name_remote+'</b></h5>';
+        let statusInputOutputDiv = document.createElement("div");
+            statusInputOutputDiv.className = "status-input-output";
+            statusInputOutputDiv.setAttribute('style','z-index: 1;');
 
-    let roleUserVideoCallDiv = document.createElement("div");
-        roleUserVideoCallDiv.className = "role-user-video-call";
-        roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
+        let micDiv = document.createElement("div");
+            micDiv.id = "mic_local";
+            micDiv.className = "mic";
+            micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
 
-    infomationUserDiv.appendChild(nameUserVideoCallDiv);
-    infomationUserDiv.appendChild(roleUserVideoCallDiv);
+        let cameraDiv = document.createElement("div");
+            cameraDiv.id = "camera_local";
+            cameraDiv.className = "camera";
+            cameraDiv.innerHTML = '<i class="fa-duotone fa-video"></i>';
 
-    // เพิ่ม div ด้านในลงใน div หลัก
-    divVideo.appendChild(statusMicrophoneOutput);
-    divVideo.appendChild(statusInputOutputDiv);
-    divVideo.appendChild(infomationUserDiv);
+        statusInputOutputDiv.appendChild(micDiv);
+        statusInputOutputDiv.appendChild(cameraDiv);
 
-    //======= จบการ สร้างปุ่มสถานะ ==========
+        // เพิ่มแท็ก ชื่อและสถานะ
 
-    divVideo.append(remotePlayerContainer);
+        let infomationUserDiv = document.createElement("div");
+            infomationUserDiv.id = "infomation-user-local";
+            infomationUserDiv.className = "infomation-user";
+            infomationUserDiv.setAttribute('style','z-index: 1;');
 
-    // เพิ่ม div ใหม่ลงใน div หลัก หรือ div bar
-    let userVideoCallBar = document.querySelector(".user-video-call-bar");
-    let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+        let nameUserVideoCallDiv = document.createElement("div");
+            nameUserVideoCallDiv.id = "name_local_video_call";
+            nameUserVideoCallDiv.className = "name-user-video-call";
+            nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>'+ name_local +'</b></h5>';
 
-    if (customDivsInUserVideoCallBar.length > 0) {
-        let firstCustomDiv = customDivsInUserVideoCallBar[0];
-        userVideoCallBar.insertBefore(divVideo, firstCustomDiv.nextSibling);
-    } else {
-        let container_user_video_call = document.querySelector("#container_user_video_call");
-        container_user_video_call.append(divVideo);
+        let roleUserVideoCallDiv = document.createElement("div");
+            roleUserVideoCallDiv.id = "role_local_video_call";
+            roleUserVideoCallDiv.className = "role-user-video-call";
+            roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
+
+        infomationUserDiv.appendChild(nameUserVideoCallDiv);
+        infomationUserDiv.appendChild(roleUserVideoCallDiv);
+
+        // เพิ่ม div ด้านในลงใน div หลัก
+        divVideo.appendChild(ProfileInputOutputDiv);
+        divVideo.appendChild(statusMicrophoneOutput);
+        divVideo.appendChild(statusInputOutputDiv);
+        divVideo.appendChild(infomationUserDiv);
+
+        //======= จบการ สร้างปุ่มสถานะ ==========
+
+        // เพิ่ม div หลักลงใน div รวม
+        divVideo.append(localPlayerContainer);
+
+        // เพิ่ม div ใหม่ลงใน div หลัก หรือ div bar
+        let userVideoCallBar = document.querySelector(".user-video-call-bar");
+        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+        if (customDivsInUserVideoCallBar.length > 0) {
+            let firstCustomDiv = customDivsInUserVideoCallBar[0];
+            userVideoCallBar.insertBefore(divVideo, firstCustomDiv.nextSibling);
+        } else {
+            let container_user_video_call = document.querySelector("#container_user_video_call");
+            container_user_video_call.append(divVideo);
+        }
+
+        divVideo.addEventListener("click", function() {
+            handleClick(divVideo);
+        });
     }
+}
 
-    // คลิ๊ก div ให้เปลี่ยนขนาด
-    divVideo.addEventListener("click", function() {
-        handleClick(divVideo);
-    });
+// สำหรับ Div ต่างๆของ Remote ตอน published
+function create_element_remotevideo_call(remotePlayerContainer,name_remote ,user) {
+    if(remotePlayerContainer.id){
+        console.log("remotePlayerContainer");
+        console.log(remotePlayerContainer);
+        let containerId = remotePlayerContainer.id;
 
+        // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
+        if (document.getElementById("videoDiv_"+ containerId)) {
+            document.getElementById("videoDiv_"+ containerId).remove();
+        }
+
+        // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
+        let divVideo = document.createElement('div');
+            divVideo.setAttribute('id','videoDiv_' + containerId);
+            divVideo.setAttribute('class','custom-div');
+            divVideo.setAttribute('style','background-color: grey');
+
+        //======= สร้างปุ่มสถานะ && รูปโปรไฟล์ ==========
+
+        // เพิ่มแท็ก แสดงเสียงไมค์เวลาพูด
+        let statusMicrophoneOutput = document.createElement("div");
+        statusMicrophoneOutput.id = "statusMicrophoneOutput_remote_"+containerId;
+        statusMicrophoneOutput.className = "status-sound-output d-none";
+        statusMicrophoneOutput.setAttribute('style','z-index: 1;');
+
+        let soundDiv = document.createElement("div");
+            soundDiv.id = "sound_remote_" + containerId;
+            soundDiv.className = "sound";
+            soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #ffffff;"></i>';
+
+        statusMicrophoneOutput.appendChild(soundDiv);
+
+        // เพิ่มแท็ก ไมค์และกล้อง
+        let statusInputOutputDiv = document.createElement("div");
+            statusInputOutputDiv.className = "status-input-output";
+            statusInputOutputDiv.setAttribute('style','z-index: 1;');
+
+        let micDiv = document.createElement("div");
+            micDiv.id = "mic_remote_"+containerId;
+            micDiv.className = "mic";
+            if(user.hasAudio == false){
+                micDiv.innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+            }else{
+                micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+            }
+
+        let cameraDiv = document.createElement("div");
+            cameraDiv.id = "camera_remote_"+containerId;
+            cameraDiv.className = "camera";
+            if(user.hasVideo == false){
+                cameraDiv.innerHTML = '<i class="fa-solid fa-video-slash"></i>';
+            }else{
+                cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
+            }
+        statusInputOutputDiv.appendChild(micDiv);
+        statusInputOutputDiv.appendChild(cameraDiv);
+
+        // เพิ่มแท็ก ชื่อและสถานะ
+        let infomationUserDiv = document.createElement("div");
+            infomationUserDiv.className = "infomation-user";
+            infomationUserDiv.setAttribute('style','z-index: 1;');
+
+        let nameUserVideoCallDiv = document.createElement("div");
+            nameUserVideoCallDiv.className = "name-user-video-call";
+            nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>'+name_remote+'</b></h5>';
+
+        let roleUserVideoCallDiv = document.createElement("div");
+            roleUserVideoCallDiv.className = "role-user-video-call";
+            roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
+
+        infomationUserDiv.appendChild(nameUserVideoCallDiv);
+        infomationUserDiv.appendChild(roleUserVideoCallDiv);
+
+        // เพิ่ม div ด้านในลงใน div หลัก
+        divVideo.appendChild(statusMicrophoneOutput);
+        divVideo.appendChild(statusInputOutputDiv);
+        divVideo.appendChild(infomationUserDiv);
+
+        //======= จบการ สร้างปุ่มสถานะ ==========
+
+        divVideo.append(remotePlayerContainer);
+
+        // เพิ่ม div ใหม่ลงใน div หลัก หรือ div bar
+        let userVideoCallBar = document.querySelector(".user-video-call-bar");
+        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+        if (customDivsInUserVideoCallBar.length > 0) {
+            let firstCustomDiv = customDivsInUserVideoCallBar[0];
+            userVideoCallBar.insertBefore(divVideo, firstCustomDiv.nextSibling);
+        } else {
+            let container_user_video_call = document.querySelector("#container_user_video_call");
+            container_user_video_call.append(divVideo);
+        }
+
+        // คลิ๊ก div ให้เปลี่ยนขนาด
+        divVideo.addEventListener("click", function() {
+            handleClick(divVideo);
+        });
+    }
 }
 
 // สำหรับ Div Dummy ต่างๆของ Remote ตอน unpublished
@@ -319,12 +329,12 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
 
         // เพิ่มแท็ก แสดงเสียงไมค์เวลาพูด
         let statusMicrophoneOutput = document.createElement("div");
-            statusMicrophoneOutput.id = "statusMicrophoneOutput_remote_"+user.uid.toString();
+            statusMicrophoneOutput.id = "statusMicrophoneOutput_remote_dummy_" + user.uid.toString();
             statusMicrophoneOutput.className = "status-sound-output d-none";
             statusMicrophoneOutput.setAttribute('style','z-index: 1;');
 
         let soundDiv = document.createElement("div");
-            soundDiv.id = "sound_remote_" + user.uid.toString();
+            soundDiv.id = "sound_remote_dummy_" + user.uid.toString();
             soundDiv.className = "sound";
             soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #ffffff;"></i>';
 
@@ -336,14 +346,22 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
             statusInputOutputDiv.setAttribute('style','z-index: 1;');
 
         let micDiv = document.createElement("div");
-            micDiv.id = "mic_remote_"+ user.uid.toString();
+            micDiv.id = "mic_remote_dummy_"+ user.uid.toString();
             micDiv.className = "mic";
-            micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+            if(user.hasAudio == false){
+                micDiv.innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+            }else{
+                micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+            }
 
         let cameraDiv = document.createElement("div");
-            cameraDiv.id = "camera_remote_"+ user.uid.toString();
+            cameraDiv.id = "camera_remote_dummy_"+ user.uid.toString();
             cameraDiv.className = "camera";
-            cameraDiv.innerHTML = '<i class="fa-duotone fa-video"></i>';
+            if(user.hasVideo == false){
+                cameraDiv.innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+            }else{
+                cameraDiv.innerHTML = '<i class="fa-duotone fa-video"></i>';
+            }
 
         statusInputOutputDiv.appendChild(micDiv);
         statusInputOutputDiv.appendChild(cameraDiv);
