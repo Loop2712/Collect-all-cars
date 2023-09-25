@@ -1270,12 +1270,12 @@
 								</li>
 								<li>
 									<a href="#">
-										<i class="fa-solid fa-clock"></i> รอข้อมูล
+										<i class="fa-solid fa-file-pen"></i> ปรับปรุง / ยืนยัน
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<i class="fa-solid fa-paper-plane"></i> ส่งข้อมูล
+										<i class="fa-solid fa-money-check-dollar-pen"></i> ตรวจสอบ / ตั้งเบิก
 									</a>
 								</li>
 							</ul>
