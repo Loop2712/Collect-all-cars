@@ -86,7 +86,7 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
 
 }
 
-
+// สำหรับ Div ต่างๆของ Local
 function create_element_localvideo_call(localPlayerContainer,name_local,profile_local) {
     // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
     if(document.getElementById('videoDiv_' + localPlayerContainer.id)) {
@@ -123,7 +123,7 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
     let soundDiv = document.createElement("div");
         soundDiv.id = "sound_local";
         soundDiv.className = "sound";
-        soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #1b6600;"></i>';
+        soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #ffffff;"></i>';
 
     statusMicrophoneOutput.appendChild(soundDiv);
 
@@ -195,11 +195,10 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
 
 }
 
+// สำหรับ Div ต่างๆของ Remote ตอน published
+function create_element_remotevideo_call(remotePlayerContainer,name_remote) {
 
-
-function create_element_remotevideo_call(remotePlayerContainer,name_remote ,user_videoTrack) {
-
-    const containerId = remotePlayerContainer.id;
+    let containerId = remotePlayerContainer.id;
 
     // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
     if (document.getElementById("videoDiv_"+ containerId)) {
@@ -223,7 +222,7 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,user
     let soundDiv = document.createElement("div");
         soundDiv.id = "sound_remote_" + containerId;
         soundDiv.className = "sound";
-        soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #1b6600;"></i>';
+        soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #ffffff;"></i>';
 
     statusMicrophoneOutput.appendChild(soundDiv);
 
@@ -268,9 +267,6 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,user
 
     //======= จบการ สร้างปุ่มสถานะ ==========
 
-    // เพิ่ม remotePlayerContainer เข้า Map โดยใช้ ID ของ <div> เป็น key
-    // remotePlayerContainerMap.set(containerId, remotePlayerContainer);
-
     divVideo.append(remotePlayerContainer);
 
     // เพิ่ม div ใหม่ลงใน div หลัก หรือ div bar
@@ -285,10 +281,6 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,user
         container_user_video_call.append(divVideo);
     }
 
-    user_videoTrack.play(remotePlayerContainer);
-    // Set a stream fallback option to automatically switch remote video quality when network conditions degrade.
-    agoraEngine.setStreamFallbackOption(channelParameters.remoteUid, 1);
-
     // คลิ๊ก div ให้เปลี่ยนขนาด
     divVideo.addEventListener("click", function() {
         handleClick(divVideo);
@@ -296,6 +288,7 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,user
 
 }
 
+// สำหรับ Div Dummy ต่างๆของ Remote ตอน unpublished
 function create_dummy_videoTrack(user,name_remote,profile_remote){
     if(user.uid){
         // ถ้ามี videoDiv อยู่แล้ว ลบอันเก่าก่อน
@@ -333,7 +326,7 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
         let soundDiv = document.createElement("div");
             soundDiv.id = "sound_remote_" + user.uid.toString();
             soundDiv.className = "sound";
-            soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #1b6600;"></i>';
+            soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #ffffff;"></i>';
 
         statusMicrophoneOutput.appendChild(soundDiv);
 
@@ -410,14 +403,13 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
             container_user_video_call.append(divVideo);
         }
 
-
-
-
     }else{
         console.log("------------------------------------------------------  หา user ไม่เจอ เลยขึ้น undifined ใน create_dummy_videoTrack()");
     }
 
 }
+
+
 
 
 
