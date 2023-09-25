@@ -431,6 +431,19 @@
         LoadingVideoCall();
         startBasicCall();
 
+        // // ทุก 20 วิ
+        // setInterval(() => {
+
+        //     agoraEngine['remoteUsers'].addEventListener("change", function () {
+        //         let userVideoCallBar = document.querySelector(".user-video-call-bar");
+        //         let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+        //         if (customDivsInUserVideoCallBar.length > 0) {
+        //             moveAllDivsToContainer();
+        //         }
+        //     });
+        // }, 20000);
+
         // fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_1669_id=" + sos_1669_id)
         // .then(response => response.json())
         // .then(result => {
@@ -602,13 +615,13 @@
                     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
                 }
 
-                if(user.hasAudio == false){
-                    // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
-                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
-                }else{
-                    // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
-                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
-                }
+                // if(user.hasAudio == false){
+                //     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
+                //     document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+                // }else{
+                //     // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
+                //     document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+                // }
 
                 // channelParameters.remoteVideoTrack.play(remotePlayerContainer);
 
@@ -622,13 +635,13 @@
                 channelParameters.remoteAudioTrack = user.audioTrack;
                 channelParameters.remoteAudioTrack.play();
 
-                if(user.hasVideo == false){
-                    // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
-                    document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
-                }else{
-                    // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
-                    document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
-                }
+                // if(user.hasVideo == false){
+                //     // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
+                //     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+                // }else{
+                //     // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
+                //     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
+                // }
 
                 if(user.hasAudio == false){
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
@@ -697,19 +710,19 @@
                             // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
                             if(user.hasVideo == false){
                                 // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
-                                document.querySelector('#camera_remote_dummy_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+                                document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
                             }else{
                                 // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
-                                document.querySelector('#camera_remote_dummy_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
+                                document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
                             }
 
-                            if(user.hasAudio == false){
-                                // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
-                                document.querySelector('#mic_remote_dummy_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
-                            }else{
-                                // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
-                                document.querySelector('#mic_remote_dummy_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
-                            }
+                            // if(user.hasAudio == false){
+                            //     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
+                            //     document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+                            // }else{
+                            //     // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
+                            //     document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+                            // }
 
                     })
                     .catch(error => {
@@ -725,20 +738,20 @@
                 // console.log(channelParameters.localAudioTrack);
 
                 // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
-                if(user.hasVideo == false){
-                    // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
-                    document.querySelector('#camera_remote_dummy_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
-                }else{
-                    // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
-                    document.querySelector('#camera_remote_dummy_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
-                }
+                // if(user.hasVideo == false){
+                //     // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
+                //     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+                // }else{
+                //     // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
+                //     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video"></i>';
+                // }
 
                 if(user.hasAudio == false){
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
-                    document.querySelector('#mic_remote_dummy_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
                 }else{
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
-                    document.querySelector('#mic_remote_dummy_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
                 }
 
             }
@@ -791,15 +804,15 @@
                                     console.log("Dummy Created !!!");
 
                                     // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
-                                    document.querySelector('#camera_remote_dummy_' + dummy_remote.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+                                    document.querySelector('#camera_remote_' + dummy_remote.uid).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
 
                                     //เช็คว่าไมค์ของเขาเปิดหรือไม่
                                     if(dummy_remote['hasAudio'] == false){ //ถ้า remote คนนี้ ไม่ได้เปิดไมไว้ --> ไปสร้าง div_dummy
                                         // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
-                                        document.querySelector('#mic_remote_dummy_' + dummy_remote.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+                                        document.querySelector('#mic_remote_' + dummy_remote.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
                                     }else{
                                         // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
-                                        document.querySelector('#mic_remote_dummy_' + dummy_remote.uid).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+                                        document.querySelector('#mic_remote_' + dummy_remote.uid).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
 
                                         agoraEngine.on("volume-indicator", volumes => {
 
@@ -807,14 +820,14 @@
                                                 if (dummy_remote['uid'] == volume.uid && volume.level > 50) {
                                                     console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-                                                    if (document.querySelector('#statusMicrophoneOutput_remote_dummy_'+dummy_remote.uid).classList.contains('d-none')) {
-                                                        document.querySelector('#statusMicrophoneOutput_remote_dummy_'+dummy_remote.uid).classList.remove('d-none');
+                                                    if (document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.contains('d-none')) {
+                                                        document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.remove('d-none');
                                                     }
                                                 } else if (dummy_remote['uid'] == volume.uid && volume.level < 50) {
                                                     console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-                                                    if (!document.querySelector('#statusMicrophoneOutput_remote_dummy_'+dummy_remote.uid).classList.contains('d-none')) {
-                                                        document.querySelector('#statusMicrophoneOutput_remote_dummy_'+dummy_remote.uid).classList.add('d-none');
+                                                    if (!document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.contains('d-none')) {
+                                                        document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.add('d-none');
                                                     }
 
                                                 }
@@ -1472,6 +1485,16 @@
         }
     }
 
+    // ถ้าหาก div ใน container_user_video_call หายไป ให้ทุก div ใน .user-video-call-bar ย้ายไปใส่ container_user_video_call
+    document.getElementById("container_user_video_call").addEventListener("change", function () {
+        let userVideoCallBar = document.querySelector(".user-video-call-bar");
+        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+        if (customDivsInUserVideoCallBar.length > 0) {
+            moveAllDivsToContainer();
+        }
+    });
+
     // ย้ายทุก div ใน .user-video-call-bar ไปยัง #container_user_video_call
     function moveAllDivsToContainer() {
         let container = document.getElementById("container_user_video_call");
@@ -1497,6 +1520,7 @@
             moveDivsToUserVideoCallBar(clickedDiv);
         }
     }
+
 
     // เพิ่ม event listener บน .user-video-call-bar สำหรับสลับ div
     document.querySelector(".user-video-call-bar").addEventListener("click", function(e) {

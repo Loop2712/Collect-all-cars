@@ -329,12 +329,12 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
 
         // เพิ่มแท็ก แสดงเสียงไมค์เวลาพูด
         let statusMicrophoneOutput = document.createElement("div");
-            statusMicrophoneOutput.id = "statusMicrophoneOutput_remote_dummy_" + user.uid.toString();
+            statusMicrophoneOutput.id = "statusMicrophoneOutput_remote_" + user.uid.toString();
             statusMicrophoneOutput.className = "status-sound-output d-none";
             statusMicrophoneOutput.setAttribute('style','z-index: 1;');
 
         let soundDiv = document.createElement("div");
-            soundDiv.id = "sound_remote_dummy_" + user.uid.toString();
+            soundDiv.id = "sound_remote_" + user.uid.toString();
             soundDiv.className = "sound";
             soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #ffffff;"></i>';
 
@@ -346,7 +346,7 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
             statusInputOutputDiv.setAttribute('style','z-index: 1;');
 
         let micDiv = document.createElement("div");
-            micDiv.id = "mic_remote_dummy_"+ user.uid.toString();
+            micDiv.id = "mic_remote_"+ user.uid.toString();
             micDiv.className = "mic";
             if(user.hasAudio == false){
                 micDiv.innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
@@ -355,7 +355,7 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
             }
 
         let cameraDiv = document.createElement("div");
-            cameraDiv.id = "camera_remote_dummy_"+ user.uid.toString();
+            cameraDiv.id = "camera_remote_"+ user.uid.toString();
             cameraDiv.className = "camera";
             if(user.hasVideo == false){
                 cameraDiv.innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
@@ -422,14 +422,10 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
         }
 
     }else{
-        console.log("------------------------------------------------------  หา user ไม่เจอ เลยขึ้น undifined ใน create_dummy_videoTrack()");
+        console.log("------------------------------------------------------  หา user ไม่เจอ เลยขึ้น undifined ใน create_videoTrack()");
     }
 
 }
-
-
-
-
 
 
 
