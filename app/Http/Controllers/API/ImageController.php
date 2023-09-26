@@ -13,6 +13,38 @@ use Google\Cloud\Vision\VisionClient;
 
 class ImageController extends Controller
 {
+    public function test_color_img()
+    {
+        // create an image
+        $text_path = 'img/poster/Poster sos 1669 (officer).png';
+        $path = public_path($text_path);
+        $img = Image::make( $path );
+        // get file path
+        $aaa = $img->basePath();
+
+        // โหลดข้อมูลขนาดของรูปภาพ
+        list($width, $height) = getimagesize($path);
+
+        // หาจุดตรงกลาง
+        $centerX = $width / 2;
+        $centerY = $height / 2;
+
+        echo 'Center X: ' . $centerX . '<br>';
+        echo 'Center Y: ' . $centerY . '<br>';
+
+        // ตรวจสอบสีที่มีมากที่สุดในรูปภาพ
+        $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+
+        echo $aaa;
+        echo "<br>";
+        echo '<img style="width:10%;"src="'.url('/') . '/'. $text_path .'">';
+        echo "<br>";
+        echo "<h1> สี : <span style='color:".$hexcolor.";'>" . $hexcolor . "</span></h1>";
+        echo "<br>";
+
+        exit();
+    }
+
     public function img_register()
     {
     	$json = file_get_contents("php://input");

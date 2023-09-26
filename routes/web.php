@@ -54,6 +54,7 @@ Route::get('login/line/tu_sos', 'Auth\LoginController@redirectToLine_TU_SOS');
 // Line login other app
 Route::get('login/line/{user_from}', 'Auth\LoginController@redirectToLine_other_app_SOS');
 Route::get('/sos_login/{user_from}', 'Sos_mapController@sos_login_other_app');
+
 Route::get('/vote_kan_login/{user_from}', 'Vote_kan_data_stationsController@vote_kan_login');
 Route::get('/vote_kan_login/login/line/{user_from}', 'Auth\LoginController@redirectToLine_vote_kan_login');
 
@@ -482,6 +483,7 @@ Route::get('/notify_repair/{id}/NOCF', 'Notify_repairController@notify_repair_NO
 Route::get('set_new_richMenu', 'API\LineApiController@set_new_richMenu');
 
 // test_for_dev
+Route::get('test_color_img', 'API\ImageController@test_color_img');
 Route::get('test_for_dev/type_car_registration', 'test_for_devController@type_car_registration');
 Route::get('main_test', 'test_for_devController@main_test');
 Route::get('main_test_blade', 'test_for_devController@main_test_blade');
