@@ -10,7 +10,7 @@ use App\Models\Data_1669_officer_command;
 use App\Models\Sos_map;
 use App\Models\Sos_help_center;
 use App\Models\Agora_chat;
-
+use Intervention\Image\ImageManagerStatic as Image;
 // use App\Classes\AgoraDynamicKey\RtcTokenBuilder;
 use App\Events\MakeAgoraCall;
 use Willywes\AgoraSDK\RtcTokenBuilder;
@@ -129,6 +129,21 @@ class Agora_4_Controller extends Controller
 
         $remote_data = User::where('id',$user_id)->first();
 
+        $text_path = url('storage') . '/' . $remote_data->photo;
+        $img = Image::make( $text_path );
+        // get file path
+        $aaa = $img->basePath();
+        // โหลดข้อมูลขนาดของรูปภาพ
+        list($width, $height) = getimagesize($text_path);
+
+        // หาจุดตรงกลาง
+        $centerX = $width / 2;
+        $centerY = $height / 2;
+
+        // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
+        $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+
+        $remote_data['hexcolor'] = $hexcolor;
         return $remote_data;
     }
 

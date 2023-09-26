@@ -25,12 +25,12 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
     muteButton.onclick = async function() {
         if (isAudio == true) {
             // Update the button text.
-            document.getElementById(`muteAudio`).innerHTML = '<i class="fa-solid fa-microphone-slash"></i>';
+            document.getElementById(`muteAudio`).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #f00505; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
             // Mute the local video.
             channelParameters.localAudioTrack.setEnabled(false);
 
             // เปลี่ยน icon microphone ให้เป็นปิด ใน divVideo_
-            document.getElementById(`mic_local`).innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+            document.getElementById(`mic_local`).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #f00505; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
 
             isAudio = false;
 
@@ -41,7 +41,7 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
             channelParameters.localAudioTrack.setEnabled(true);
             channelParameters.localAudioTrack.play();
             // เปลี่ยน icon microphone ให้เป็นเปิด ใน divVideo_
-            document.getElementById(`mic_local`).innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+            document.getElementById(`mic_local`).innerHTML = '<i class="fa-solid fa-microphone"></i>';
 
             isAudio = true;
         }
@@ -50,12 +50,12 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
     muteVideoButton.onclick = async function() {
         if (isVideo == true) {
             // Update the button text.
-            document.getElementById(`muteVideo`).innerHTML = '<i class="fa-solid fa-video-slash"></i>';
+            document.getElementById(`muteVideo`).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
             // Mute the local video.
             channelParameters.localVideoTrack.setEnabled(false);
             muteVideoButton.classList.add('btn-disabled');
             // เปลี่ยน icon camera ให้เป็นปิด ใน divVideo_
-            document.getElementById(`camera_local`).innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+            document.getElementById(`camera_local`).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
 
             // ซ่อนโปรไฟล์ ตอนเปิดกล้อง
             document.querySelector('.profile-input-output').classList.remove('d-none');
@@ -71,7 +71,7 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
             muteVideoButton.classList.remove('btn-disabled');
 
             // เปลี่ยน icon camera ให้เป็นเปิด ใน divVideo_
-            document.getElementById(`camera_local`).innerHTML = '<i class="fa-duotone fa-video"></i>';
+            document.getElementById(`camera_local`).innerHTML = '<i class="fa-solid fa-video"></i>';
 
             // ซ่อนโปรไฟล์ ตอนเปิดกล้อง
             document.querySelector('.profile-input-output').classList.add('d-none');
@@ -97,7 +97,7 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
         let divVideo = document.createElement('div');
         divVideo.setAttribute('id','videoDiv_' + localPlayerContainer.id);
         divVideo.setAttribute('class','custom-div');
-        divVideo.setAttribute('style','background-color: grey');
+        divVideo.setAttribute('style','background-color: black');
 
         //======= สร้างปุ่มสถานะ && รูปโปรไฟล์ ==========
 
@@ -137,12 +137,12 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
         let micDiv = document.createElement("div");
             micDiv.id = "mic_local";
             micDiv.className = "mic";
-            micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+            micDiv.innerHTML = '<i class="fa-solid fa-microphone"></i>';
 
         let cameraDiv = document.createElement("div");
             cameraDiv.id = "camera_local";
             cameraDiv.className = "camera";
-            cameraDiv.innerHTML = '<i class="fa-duotone fa-video"></i>';
+            cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
 
         statusInputOutputDiv.appendChild(micDiv);
         statusInputOutputDiv.appendChild(cameraDiv);
@@ -197,7 +197,7 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
 }
 
 // สำหรับ Div ต่างๆของ Remote ตอน published
-function create_element_remotevideo_call(remotePlayerContainer,name_remote ,user) {
+function create_element_remotevideo_call(remotePlayerContainer,name_remote ,bg_remote,user) {
     if(remotePlayerContainer.id){
         console.log("remotePlayerContainer");
         console.log(remotePlayerContainer);
@@ -212,7 +212,7 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,user
         let divVideo = document.createElement('div');
             divVideo.setAttribute('id','videoDiv_' + containerId);
             divVideo.setAttribute('class','custom-div');
-            divVideo.setAttribute('style','background-color: grey');
+            divVideo.setAttribute('style', 'background-color:' + bg_remote);
 
         //======= สร้างปุ่มสถานะ && รูปโปรไฟล์ ==========
 
@@ -238,16 +238,16 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,user
             micDiv.id = "mic_remote_"+containerId;
             micDiv.className = "mic";
             if(user.hasAudio == false){
-                micDiv.innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+                micDiv.innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #f00505; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
             }else{
-                micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+                micDiv.innerHTML = '<i class="fa-solid fa-microphone"></i>';
             }
 
         let cameraDiv = document.createElement("div");
             cameraDiv.id = "camera_remote_"+containerId;
             cameraDiv.className = "camera";
             if(user.hasVideo == false){
-                cameraDiv.innerHTML = '<i class="fa-solid fa-video-slash"></i>';
+                cameraDiv.innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
             }else{
                 cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
             }
@@ -299,7 +299,7 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,user
 }
 
 // สำหรับ Div Dummy ต่างๆของ Remote ตอน unpublished
-function create_dummy_videoTrack(user,name_remote,profile_remote){
+function create_dummy_videoTrack(user,name_remote,profile_remote,bg_remote){
     if(user.uid){
         // ถ้ามี videoDiv อยู่แล้ว ลบอันเก่าก่อน
         if(document.getElementById('videoDiv_' + user.uid.toString())) {
@@ -310,7 +310,7 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
         let divVideo = document.createElement('div');
         divVideo.setAttribute('id','videoDiv_' + user.uid.toString());
         divVideo.setAttribute('class','custom-div');
-        divVideo.setAttribute('style','background-color: grey');
+        divVideo.setAttribute('style','background-color:'+bg_remote);
 
         //======= สร้างปุ่มสถานะ และรูปโปรไฟล์ ==========
 
@@ -349,18 +349,18 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
             micDiv.id = "mic_remote_"+ user.uid.toString();
             micDiv.className = "mic";
             if(user.hasAudio == false){
-                micDiv.innerHTML = '<i class="fa-duotone fa-microphone-slash"></i>';
+                micDiv.innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #f00505; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
             }else{
-                micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+                micDiv.innerHTML = '<i class="fa-solid fa-microphone"></i>';
             }
 
         let cameraDiv = document.createElement("div");
             cameraDiv.id = "camera_remote_"+ user.uid.toString();
             cameraDiv.className = "camera";
             if(user.hasVideo == false){
-                cameraDiv.innerHTML = '<i class="fa-duotone fa-video-slash"></i>';
+                cameraDiv.innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
             }else{
-                cameraDiv.innerHTML = '<i class="fa-duotone fa-video"></i>';
+                cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
             }
 
         statusInputOutputDiv.appendChild(micDiv);
@@ -398,7 +398,7 @@ function create_dummy_videoTrack(user,name_remote,profile_remote){
         //เพิ่มแท็กวิดีโอที่มีพื้นหลังแค่สีดำ
         // const remote_video_call = document.getElementById(user.uid.toString());
         closeVideoHTML  =
-                        ' <div id="dummy_trackRemoteDiv_'+ user.uid.toString() +'" style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: gray;">' +
+                        ' <div id="dummy_trackRemoteDiv_'+ user.uid.toString() +'" style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: '+bg_remote+';">' +
                             '<video class="agora_video_player" playsinline="" muted="" style="width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; object-fit: cover;"></video>' +
                         '</div>' ;
 
