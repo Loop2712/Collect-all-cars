@@ -67,17 +67,21 @@
 
 	.btn-show-hide-user-video-call {
 		position: absolute;
-
 		color: #fff;
-		background-color: rgb(0, 0, 0, 0.4);
+		background-color: #2c2e31;
+        border-color: #fff;
 		border-radius: 50px;
 		opacity: 0;
-		top: 20%;
+		top: 5%;
 		left: 50%;
-		transform: translate(-50%, -20%);
+		transform: translate(-50%, -5%);
 		padding: 5px 25px;
 		transition: all .15s ease-in-out;
 	}
+
+    #icon_show_hide{
+        transition: all .15s ease-in-out;
+    }
 
 	.btn-show-hide-user-video-call:hover {
 		color: #fff;
@@ -237,6 +241,7 @@
 			<h4 class="mt-3 col-12 ">รหัสเคส: {{$sos_id}}
                 <button id="join" class="btn btn-success d-none" >เข้าร่วม</button>
                 <button id="leave" class="btn btn-danger " >ออกห้อง</button>
+                {{-- <button id="addButton" style="position: absolute;top:10%;right: 0;">เพิ่ม div</button> --}}
             </h4>
 			<div class="d-flex">
 				<div id="divForVideoButton" class="align-self-end w-100">
@@ -309,7 +314,10 @@
 					<div class="d-flex justify-content-center align-self-end d-non user-video-call-bar">
 						<!--  วิดีโอคอล tag ถูกสร้างในนี้-->
 					</div>
-                    <button class="btn-show-hide-user-video-call btn" style="z-index: 2" onclick="toggleUserVideoCallBar();">ซ่อน</button>
+                    <button class="btn-show-hide-user-video-call btn" style="z-index: 2 " onclick="toggleUserVideoCallBar();">
+                        <i id="icon_show_hide" class="fa-duotone fa-chevrons-down"></i>
+                        <span id="text_show_hide"> ซ่อน</span>
+                    </button>
 
 					{{-- <button class="btn-show-hide-user-video-call btn" style="z-index: 2" onclick="document.querySelector('.user-video-call-bar').classList.toggle('d-none');">ซ่อน</button> --}}
 				</div>
@@ -434,19 +442,6 @@
         LoadingVideoCall();
         startBasicCall();
 
-        // // ทุก 20 วิ
-        // setInterval(() => {
-
-        //     agoraEngine['remoteUsers'].addEventListener("change", function () {
-        //         let userVideoCallBar = document.querySelector(".user-video-call-bar");
-        //         let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
-
-        //         if (customDivsInUserVideoCallBar.length > 0) {
-        //             moveAllDivsToContainer();
-        //         }
-        //     });
-        // }, 20000);
-
         // fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_1669_id=" + sos_1669_id)
         // .then(response => response.json())
         // .then(result => {
@@ -506,6 +501,32 @@
         localPlayerContainer.style.position = "absolute";
         localPlayerContainer.style.left = "0";
         localPlayerContainer.style.top = "0";
+        localPlayerContainer.classList.add('agora_create');
+
+        //======== ทุก 20 วิ ให้เช็คว่า div .custom-div ที่มี id ของคนที่ไม่ได้อยู่ในห้องนี้แล้ว --> ถ้าเจอให้ลบ div ทิ้ง =========
+        setInterval(() => {
+            let customDivAll = document.querySelectorAll(".custom-div");
+            let remoteUsers = agoraEngine['remoteUsers'];
+            console.log('remoteUsers :' + remoteUsers);
+            customDivAll.forEach(element => {
+                let id = element.id;
+
+                // ตรวจสอบว่า id ของ element เริ่มต้นด้วย "videoDiv"
+                if (id.startsWith("videoDiv")) {
+                    // แยก UID จาก id โดยตัด "videoDiv" ออก
+                    let uid = id.replace("videoDiv", "");
+
+                    // ตรวจสอบว่า UID นี้อยู่ใน remoteUsers หรือไม่
+                    if (!remoteUsers[uid]) {
+                        if(!localPlayerContainer.id){
+                            // ถ้าไม่มีให้ลบ element ออก
+                            element.remove();
+                        }
+                    }
+                }
+            });
+        }, 20000);
+        //=====================================================================================================
 
         // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
         agoraEngine.enableAudioVolumeIndicator();
@@ -599,7 +620,7 @@
 
                         console.log("โหลดข้อมูล RemoteUser สำเร็จ published");
                         console.log(name_remote);
-
+                        console.log(bg_remote);
                         // สำหรับ สร้าง divVideo ตอนผู้ใช้เปิดกล้อง
                         create_element_remotevideo_call(remotePlayerContainer[user.uid], name_remote , bg_remote ,user);
 
@@ -766,9 +787,11 @@
                 }
 
                 if(user.hasAudio == false){
+                    console.log("if unpublished");
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
                     document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
                 }else{
+                    console.log("else unpublished");
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
                     document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-solid fa-microphone"></i>';
                 }
@@ -784,6 +807,17 @@
             console.log("agoraEngine มีคนเข้าห้องมา");
             console.log(agoraEngine);
 
+            // เสียงแจ้งเตือน เวลาคนเข้า
+            let audio_ringtone_join = new Audio("{{ asset('sound/join_room_2.mp3') }}");
+                audio_ringtone_join.play();
+
+            // หยุดการเล่นเสียงหลังจาก 1 วินาที
+            setTimeout(function() {
+                audio_ringtone_join.pause();
+                audio_ringtone_join.currentTime = 0; // เริ่มเสียงใหม่เมื่อต้องการเล่นอีกครั้ง
+            }, 1000);
+
+            //=================     สำหรับ Senior Benze  =========================
             // fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + evt.uid)
             //     .then(response => response.json())
             //     .then(result => {
@@ -792,6 +826,7 @@
             // .catch(error => {
             //     console.log("โหลด เมื่อมีคนเข้าห้อง ล้มเหลว");
             // });
+            //=================     จบ สำหรับ Senior Benze  =========================
 
             if(agoraEngine['remoteUsers'][0]){
                 if( agoraEngine['remoteUsers']['length'] != 0 ){
@@ -864,13 +899,13 @@
                 }
             }
 
-            // เช็คว่ามี div อยู่ใน divใหญ่
-            let userVideoCallBar = document.querySelector(".user-video-call-bar");
-            let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+            // // เช็คว่ามี div อยู่ใน divใหญ่
+            // let userVideoCallBar = document.querySelector(".user-video-call-bar");
+            // let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
 
-            if (customDivsInUserVideoCallBar.length > 0) {
-                moveAllDivsToContainer();
-            }
+            // if (customDivsInUserVideoCallBar.length > 0) {
+            //     moveAllDivsToContainer();
+            // }
             // อัพเดต Div ตามจำนวนคนในห้อง ให้รูปแบบเหมาะสม
         });
 
@@ -883,23 +918,23 @@
                 document.getElementById('videoDiv_' + evt.uid).remove();
             }
 
-            // เช็คว่ามี div อยู่ใน divใหญ่
-            let userVideoCallBar = document.querySelector(".user-video-call-bar");
-            let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
-
-            if (customDivsInUserVideoCallBar.length > 0) {
+            // เช็คว่ามี div .custom-div อยู่ใน div container_user_video_call
+            let container = document.getElementById("container_user_video_call");
+            let customDivs = container.querySelectorAll(".custom-div");
+            //ถ้าไม่มีให้ ย้าย div ใน bar ข้างล่าง ขึ้นมาทั้งหมด
+            if (customDivs.length == 0) {
                 moveAllDivsToContainer();
             }
 
-            // หา index ของข้อมูลที่ต้องการลบ
-            // if(evt.uid){
-            //     let indexToDelete = remote_in_room.findIndex(element => element.id === evt.uid);
-            //     // ถ้าพบ index ที่ต้องการลบ
-            //     if (indexToDelete !== -1) {
-            //         // ใช้ splice() เพื่อลบข้อมูลที่ index นั้นออก
-            //         remote_in_room.splice(indexToDelete, 1);
-            //     }
-            // }
+            // เสียงแจ้งเตือน เวลาคนเข้า
+            let audio_ringtone_left = new Audio("{{ asset('sound/left_room_1.mp3') }}");
+            audio_ringtone_left.play();
+
+            // หยุดการเล่นเสียงหลังจาก 1 วินาที
+            setTimeout(function() {
+                audio_ringtone_left.pause();
+                audio_ringtone_left.currentTime = 0; // เริ่มเสียงใหม่เมื่อต้องการเล่นอีกครั้ง
+            }, 1000);
 
             // ถ้าผู้ใช้ เหลือ 0 คน ให้ทำลายห้องทิ้ง
             if(rtcStats.UserCount < 1){
@@ -1456,8 +1491,8 @@
         document.querySelector(".user-video-call-contrainer").classList.remove("d-none");
 
         customDivs.forEach(function(div) {
-            if (div !== clickedDiv) {
-                if (!isInUserVideoCallBar(div)) {
+            if (div !== clickedDiv) { //ถ้า div ไม่ใช่ div ที่ถูกคลิก
+                if (!isInUserVideoCallBar(div)) { //ถ้า div ไม่ได้อยู่ใน div .user-video-call-bar
                     userVideoCallBar.appendChild(div);
                 }
             }
@@ -1466,36 +1501,10 @@
         // ย้าย div ที่ถูกคลิกไปยังตำแหน่งที่ถูกคลิก
         if (!isInUserVideoCallBar(clickedDiv)) {
             container.appendChild(clickedDiv);
-            // swapDivsInContainerAndUserVideoCallBar(clickedDiv);
         }
 
 
     }
-
-    // สลับ div ระหว่าง .user-video-call-bar และ #container_user_video_call
-    function swapDivsInContainerAndUserVideoCallBar(clickedDiv) {
-        let container = document.getElementById("container_user_video_call");
-        let customDivsInContainer = container.querySelectorAll(".custom-div");
-        let userVideoCallBar = document.querySelector(".user-video-call-bar");
-        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
-
-        if (customDivsInContainer.length > 0 && customDivsInUserVideoCallBar.length > 0) {
-            let firstDivInContainer = customDivsInContainer[0];
-
-            container.appendChild(clickedDiv);
-            userVideoCallBar.appendChild(firstDivInContainer);
-        }
-    }
-
-    // ถ้าหาก div ใน container_user_video_call หายไป ให้ทุก div ใน .user-video-call-bar ย้ายไปใส่ container_user_video_call
-    document.getElementById("container_user_video_call").addEventListener("DOMNodeRemoved", function () {
-        let userVideoCallBar = document.querySelector(".user-video-call-bar");
-        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
-
-        if (customDivsInUserVideoCallBar.length > 0) {
-            moveAllDivsToContainer();
-        }
-    });
 
     // ย้ายทุก div ใน .user-video-call-bar ไปยัง #container_user_video_call
     function moveAllDivsToContainer() {
@@ -1507,7 +1516,6 @@
         customDivsInUserVideoCallBar.forEach(function(div) {
             container.appendChild(div);
         });
-
 
     }
 
@@ -1523,7 +1531,6 @@
         }
     }
 
-
     // เพิ่ม event listener บน .user-video-call-bar สำหรับสลับ div
     document.querySelector(".user-video-call-bar").addEventListener("click", function(e) {
         if (e.target.classList.contains("custom-div")) {
@@ -1538,10 +1545,12 @@
 
         if (videoCallBar.classList.contains('d-none')) {
             videoCallBar.classList.remove('d-none');
-            button.textContent = 'ซ่อน';
+            document.getElementById("icon_show_hide").style.transform = "rotate(0deg)";
+            // document.querySelector('#text_show_hide').innerHTML = '👇 ซ่อน';
         } else {
             videoCallBar.classList.add('d-none');
-            button.textContent = 'แสดง';
+            document.getElementById("icon_show_hide").style.transform = "rotate(180deg)";
+            // document.querySelector('#text_show_hide').innerHTML = '👆 แสดง';
         }
     }
 

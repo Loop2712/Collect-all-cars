@@ -197,7 +197,7 @@
   background-color: transparent;
 }
 
-/* on hover 
+/* on hover
  * ----------------------------------------------- */
 .masonry-folio:hover .masonry_thum a::before {
   opacity: 1;
@@ -264,10 +264,10 @@
   }
 }
 
-</style> 
+</style>
 
 <style>
-    
+
     #description {
       font-family: Roboto;
       font-size: 15px;
@@ -418,12 +418,12 @@
                                 </div>
                                 <div class="col-4">
                                     <select name="location_A" id="location_A" class="form-control" onchange="show_tambon();">
-                                        <option value="" selected > - เลือกอำเภอ - </option> 
+                                        <option value="" selected > - เลือกอำเภอ - </option>
                                     </select>
                                 </div>
                                 <div class="col-4">
                                     <select name="location_T" id="location_T" class="form-control" onchange="select_T();">
-                                        <option value="" selected > - เลือกตำบล - </option> 
+                                        <option value="" selected > - เลือกตำบล - </option>
                                     </select>
                                 </div>
                             </div>
@@ -455,7 +455,7 @@
                               </button>
                           </center>
                         </div>
-                        
+
                     </div>
                 </div>
                 <hr>
@@ -498,7 +498,7 @@
                     // ใช้ .classList.toggle() เพื่อเปิด/ปิด class "slide-switcher-close-place" และ "slide-switcher-open-place"
                     document.querySelector('.div_content_data_place').classList.toggle('slide-switcher-close-place');
                     document.querySelector('.div_content_data_place').classList.toggle('slide-switcher-open-place');
-                    
+
                     setTimeout(function() {
                       document.querySelector('#btn_switch_place_outline').classList.toggle('d-none');
                     }, 800);
@@ -597,9 +597,9 @@
                                         <h3 class="masonry_title">รูปภาพจากผู้ใช้</h3>
                                         <p class="masonry_cat">ผู้ใช้ไม่ได้เพิ่มรูปภาพ</p>
                                     @endif
-                                    
+
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -612,7 +612,7 @@
 
                                     @if( !empty($sos_help_center->photo_sos_by_officers))
                                         <img src="{{ url('storage')}}/{{ $sos_help_center->photo_sos_by_officers }}" class="img-fluid" alt="image" />
-                                        
+
                                         <a href="{{ url('storage')}}/{{ $sos_help_center->photo_sos_by_officers }}" class="glightbox" data-gallery="edu-gallery2"></a>
                                     @else
                                         <img src="https://www.viicheck.com/img/stickerline/PNG/49.png" class="img-fluid" alt="image" / >
@@ -631,7 +631,7 @@
                                     @else
                                         <a href="https://www.viicheck.com/img/stickerline/PNG/49.png" class="glightbox" data-gallery="edu-gallery2"></a>
                                     @endif
-                                    
+
                                     <style>
                                         .comment-sos{
                                             padding: .5rem;
@@ -661,21 +661,21 @@
                         <!-- end masonry_block -->
                     </div>
 
-                    
+
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="masonry_block">
                             <div class="masonry-folio">
                                 <div class="masonry_thum">
                                      @if( !empty($sos_help_center->photo_succeed))
                                         <img src="{{ url('storage')}}/{{ $sos_help_center->photo_succeed }}" class="img-fluid" alt="image" />
-                                        
+
                                         <a href="{{ url('storage')}}/{{ $sos_help_center->photo_succeed }}" class="glightbox" data-gallery="edu-gallery3"></a>
                                     @else
                                         <img src="https://www.viicheck.com/img/stickerline/PNG/49.png" class="img-fluid" alt="image" / >
 
                                         <a href="https://www.viicheck.com/img/stickerline/PNG/49.png" class="glightbox" data-gallery="edu-gallery3"></a>
                                     @endif
-                                    
+
                                     @if( !empty($sos_help_center->photo_sos_by_officers))
                                         <a href="{{ url('storage')}}/{{ $sos_help_center->photo_sos_by_officers }}" class="glightbox" data-gallery="edu-gallery3"></a>
                                     @else
@@ -728,7 +728,7 @@
                         @else
                             <img src="https://www.viicheck.com/img/stickerline/PNG/49.png" class="img-fluid rounded shadow-lg hover-zoom" style="width: 80%; cursor: pointer;" alt="Staff Photo">
                         @endif
-                        
+
                         <p style="margin-top: 20px;">รูปภาพจากเจ้าหน้าที่</p>
                    </div>
                 </div> -->
@@ -769,7 +769,7 @@ var glightbox = GLightbox({
   height: "auto",
   width: "100vw",
   height: "100vh"
-  
+
 });
 
 feather.replace();
@@ -787,15 +787,15 @@ feather.replace();
         align-items: center;
         padding: 0 0 0 2rem;
     }.gg-travel-guide-bottom {
-        width:88%;  
-        border-bottom: 1px solid #000; 
-        line-height:0.1em; 
-        margin:10px 0 20px; 
+        width:88%;
+        border-bottom: 1px solid #000;
+        line-height:0.1em;
+        margin:10px 0 20px;
 
-    } 
-    .gg-travel-guide-bottom span { 
-        background:#fff; 
-        padding:0 10px; 
+    }
+    .gg-travel-guide-bottom span {
+        background:#fff;
+        padding:0 10px;
     }
 </style>
 <!-- Modal steps_travel -->
@@ -1077,8 +1077,8 @@ color: #ff9317;
     transition: all .15s ease-in-out;
 }
 .sticky::-webkit-scrollbar-thumb:hover {
-    
-    cursor: -webkit-grab !important; 
+
+    cursor: -webkit-grab !important;
     cursor: grab !important;
     background-color:#a0a0a5;
     border:4px solid #f4f4f4;
@@ -1091,7 +1091,7 @@ color: #ff9317;
 </style>
 
 <div class="row" >
-    
+
     <div class="col-12 col-md-3 col-lg-3" >
         <div class="sticky" style="overflow: auto;height: 100%;">
             @if(!empty($sos_help_center->forward_operation_from) or ($sos_help_center->forward_operation_to))
@@ -1114,7 +1114,7 @@ color: #ff9317;
                     @if(!empty($sos_help_center->forward_operation_from))
                         รหัสปฏิบัติการนี้ถูกส่งต่อมาจาก <br><b>{{$data_forword_form->operating_code }}</b>
                     @endif
-                    
+
                     @if(!empty($sos_help_center->forward_operation_to))
                         รหัสปฏิบัติการนี้ถูกส่งต่อไปยัง <br><b>{{$data_forword_to->operating_code }}</b>
                     @endif
@@ -1126,7 +1126,7 @@ color: #ff9317;
                             <i class="fa-regular fa-message-arrow-up-right text-{{ $card_color }}"></i> ดูปฏิบัติการที่ส่งมา
                         </a>
                     @endif
-                    
+
                     @if(!empty($sos_help_center->forward_operation_to))
                         <a class="read-forword text-{{ $card_color }}" onmouseover="add_animation_icon()" onmouseout="add_animation_icon()" href="{{ url('/sos_help_center/' . $data_forword_to->id . '/edit') }}">
                             <i class="fa-regular fa-message-arrow-up-right text-{{ $card_color }}"></i> ดูปฏิบัติการที่ส่งต่อ
@@ -1134,7 +1134,7 @@ color: #ff9317;
                     @endif
                 </div>
             </div>
-                
+
             <script>
                     function add_animation_icon(){
                         document.querySelector('.fa-message-arrow-up-right').classList.toggle('fa-bounce')
@@ -1203,7 +1203,7 @@ color: #ff9317;
                         }
                     }
                 </style>
-                
+
                 <button id="btnVideoCall" class="btn btnVideoCall" data-animation-class="fa-bounce" onclick="start_video_call_command();" disabled>
                     <i id="iconVideoCall" class="fa-duotone fa-video-plus"> </i> Video Call
                 </button>
@@ -1215,7 +1215,7 @@ color: #ff9317;
                     </div>
                     <div class="col w-100 p-0 m-0">
                         <span class="btn btn-sm btn-danger" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#see_img_sos">
-                        <i class="fa-duotone fa-images"></i>รูปภาพ 
+                        <i class="fa-duotone fa-images"></i>รูปภาพ
                         </span>
                     </div>
                 </div>
@@ -1227,9 +1227,9 @@ color: #ff9317;
                     <a id="go_to_maps" href="" target="bank"></a>
                 </div>
             </div>
-            
+
             <!-- VIDEO CALL -->
-            @include('sos_help_center.command_video_call', 
+            @include('sos_help_center.command_video_call',
               [
               'sos_id' => $sos_1669_id ,
               'app_id' => $appID ,
@@ -1356,7 +1356,7 @@ color: #ff9317;
                                     @else
                                         <br>ไม่ได้ระบุ
                                     @endif
-                                    
+
                                 </div> -->
                             </div>
                             <!-- //// END PHP //// -->
@@ -1407,15 +1407,15 @@ color: #ff9317;
             /* border: #000000 solid 1px; */
         }
     </style>
-    
+
     <div class="col-12 col-md-9 col-lg-9  "  >
         <div class="tab-content" id="pills-tabContent">
 
-           
+
 
             <!-- ////////////////////////////////////// cardHeader ////////////////////////////////////// -->
-         
-           
+
+
             <div class="card radius-10">
                 <div class="row d-flex justify-content-between">
                     <div class="col-md-6 col-lg-4 col-12  menu-header bg-transparent d-inline">
@@ -1450,7 +1450,7 @@ color: #ff9317;
                                     </a>
                                 </li>
                                 <li id="btn_form_yellow" class="nav-item nav-pills nav-pills-warning m-2" role="presentation">
-                                    <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');update_page_before_click_button('yellow');"> 
+                                    <a class="nav-link btn-outline-warning btn active" data-bs-toggle="pill" href="#form_yellow" role="tab" aria-selected="true" onclick="show_div_sos_or_unit('show_sos');update_page_before_click_button('yellow');">
                                       <!-- document.querySelector('#form_data_1').click(); -->
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon"><i class="fa-solid fa-files-medical"></i>
@@ -1503,7 +1503,7 @@ color: #ff9317;
                                         height: 100% !important;
                                     }.btnOperating:hover {
                                         cursor: context-menu !important;
-                                        
+
                                     }.btnOperating:focus{
                                         border: #e7eaf3 1px solid !important;
                                         box-shadow: none;
@@ -1533,7 +1533,7 @@ color: #ff9317;
                                     </a>
                                 </li>
                                 <!-- <li id="btn_select_case_sos_joint" class="nav-item nav-pills nav-pills-orange m-2 ">
-                                    <a  class="nav-link btn-outline-orange btn" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();"> 
+                                    <a  class="nav-link btn-outline-orange btn" data-toggle="modal" data-target="#Modal-Mass-casualty-incident" onclick="document.querySelector('#btn_save').click();open_map_joint_sos_1669();">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
                                                 <i class="fa-solid fa-hospital-user"></i>
@@ -1547,7 +1547,7 @@ color: #ff9317;
                                     position: absolute;
                                     top: -18px;
                                     left: 75% !important;
-                                    background-color: red; 
+                                    background-color: red;
                                     color: white;
                                     width: 24px;
                                     height: 24px;
@@ -1561,7 +1561,7 @@ color: #ff9317;
                                     position: absolute;
                                     top: -18px;
                                     left: 90% !important;
-                                    background-color: #FF7700FF; 
+                                    background-color: #FF7700FF;
                                     color: #fff;
                                     width: 24px;
                                     height: 24px;
@@ -1573,7 +1573,7 @@ color: #ff9317;
                                   }
                                 </style>
                                 <li id="btn_show_wait_officer_joint" class="nav-item nav-pills nav-pills-info m-2 d-none" onclick="document.querySelector('#btn_save').click();show_wait_officer_joint();">
-                                    <a  class="nav-link btn-outline-info btn" data-toggle="modal" data-target="#modal_show_officer_joint" style="position: relative;"> 
+                                    <a  class="nav-link btn-outline-info btn" data-toggle="modal" data-target="#modal_show_officer_joint" style="position: relative;">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
                                                 <i class="fa-duotone fa-spinner fa-spin-pulse"></i>
@@ -1592,8 +1592,8 @@ color: #ff9317;
                                         </span>
                                     </a>
                                 </li>
-                                <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 d-none" role="presentation" onclick="document.querySelector('#btn_save').click();">
-                                    <a class="nav-link btn-outline-danger btn" data-bs-toggle="pill" href="#meet_sos" role="tab" aria-selected="false">
+                                <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 d-" role="presentation" onclick="document.querySelector('#btn_save').click();">
+                                    <a class="nav-link btn-outline-danger btn" href="{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}" target="_blank">
                                         <div class="d-flex align-items-center">
                                             <div class="tab-icon">
                                                 <i class="fa-solid fa-hospital-user"></i>
@@ -1667,13 +1667,13 @@ color: #ff9317;
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-12" style="position: relative;">
                             <span id="span_btn_steps_travel" class="btn btn-danger main-shadow main-radius d-none" style="position: absolute;top: 0.5rem;right: 5rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" data-toggle="modal" data-target="#modal_steps_travel">
                                 แนะนำการเดินทาง
                             </span>
                             <span class="btn btn-sm btn-danger"  style="position: absolute;top: 0.5rem;left: 13rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#see_img_sos">
-                                <i class="fa-duotone fa-images"></i>รูปภาพ 
+                                <i class="fa-duotone fa-images"></i>รูปภาพ
                             </span>
                             <div id="map_go_to_help"></div>
                         </div>
@@ -1710,7 +1710,7 @@ color: #ff9317;
                         </div>
                         <div class="col-3 float-end">
                             <h5 class="m-0 h5">
-                                <button style="width: 100%;margin-top: 7px;" id="btn_save" class=" btn btn-success d-flex justify-content-center btn-block" type="button" onclick="btn_save_data_animation();send_save_data(null , null);"> 
+                                <button style="width: 100%;margin-top: 7px;" id="btn_save" class=" btn btn-success d-flex justify-content-center btn-block" type="button" onclick="btn_save_data_animation();send_save_data(null , null);">
                                     <div id="icon_save_data" class="d-none">
                                         <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                                             <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
@@ -1721,7 +1721,7 @@ color: #ff9317;
                                     <span id="text_btn_save">
                                         บันทึก
                                     </span>
-                                    
+
                                 </button>
                             </h5>
                         </div>
@@ -1834,7 +1834,7 @@ color: #ff9317;
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
 
@@ -1919,7 +1919,7 @@ color: #ff9317;
     width: 100px;
     max-width: 70px;
     height: 60px;
-   
+
     font-size: 1.5rem;
     margin-left: 1rem;
 
@@ -1935,7 +1935,7 @@ color: #ff9317;
         <div class="alert-icon">
             <i class="fa-solid fa-xmark"></i>
         </div>
-        
+
     </div>
 </div>
 <!-- ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ - ห้ามลบ - ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ -->
@@ -2057,7 +2057,7 @@ color: #ff9317;
     #map_joint_sos_1669{
       height: calc(80vh);
     }
-    
+
     #map_new_select_officer{
       height: calc(80vh);
     }
@@ -2075,8 +2075,8 @@ color: #ff9317;
         open_map_go_to_help();
         let sos_id =  '{{ $sos_help_center->id }}' ;
 
-        let sos_lat = document.querySelector('#lat'); 
-        let sos_lng = document.querySelector('#lng'); 
+        let sos_lat = document.querySelector('#lat');
+        let sos_lng = document.querySelector('#lng');
         let m_lat = parseFloat(sos_lat.value);
         let m_lng = parseFloat(sos_lng.value);
 
@@ -2089,7 +2089,7 @@ color: #ff9317;
                 rc_old = start_result['rc'] ;
 
                 if (rc_old) {
-                    
+
                     let start_class_text_show_rc ;
                     let rc_black_text_old = "" ;
 
@@ -2175,7 +2175,7 @@ color: #ff9317;
                     // document.querySelector('#h4_show_distance').classList.remove('d-none');
 
                     set_marker_go_to_help(start_result['officer_lat'] , start_result['officer_lng'] , start_result['officer_level']);
-                    
+
                     // เส้นทาง
                     get_Directions_map_go_to_help(officer_go_to_help_marker,sos_go_to_help_marker);
 
@@ -2208,7 +2208,7 @@ color: #ff9317;
 
                         let img_stk = '{{ url("/") }}/img/stickerline/PNG/37.2.png' ;
                         alerts_status(img_stk , result['status_sos'] , 'status');
-                        
+
                         status_old = result['status_sos'] ;
                     }
 
@@ -2245,7 +2245,7 @@ color: #ff9317;
 
                         // let img_stk = '{{ url("/") }}/img/stickerline/PNG/37.2.png' ;
                         // alerts_status(img_stk , , 'rc');
-                        
+
                         rc_old = result['rc'] + rc_black_text_old ;
                     }
 
@@ -2270,7 +2270,7 @@ color: #ff9317;
                         document.querySelector('#text_remark_status').innerHTML = "";
                     }
 
-                    
+
 
                     if (result['status_sos'] === 'เสร็จสิ้น') {
                         // document.querySelector('#h4_show_distance').classList.add('d-none');
@@ -2309,8 +2309,8 @@ color: #ff9317;
 
     function open_map_go_to_help(){
 
-        let sos_lat = document.querySelector('#lat'); 
-        let sos_lng = document.querySelector('#lng'); 
+        let sos_lat = document.querySelector('#lat');
+        let sos_lng = document.querySelector('#lng');
         // console.log(parseFloat(sos_lat.value));
         // console.log(parseFloat(sos_lng.value));
 
@@ -2406,10 +2406,10 @@ color: #ff9317;
                     let distance_step = steps_travel[i].distance.text ; // ระยะทางก่อนเปลี่ยน
                     let instructions_step = steps_travel[i].instructions ; // คำอธิบาย
                     let maneuver = steps_travel[i].maneuver;
-                    
-                    
+
+
                     // console.log(i + "-" + steps_travel[i].maneuver);
-                    
+
                     if (maneuver) {
                         maneuver = steps_travel[i].maneuver ; // วิธีเปลี่ยนเส้นทาง
                     }else{
@@ -2430,7 +2430,7 @@ color: #ff9317;
                         }
 
                         if (instructions_step.includes("เบี่ยง")){
-                            
+
                             if (instructions_step.includes("ซ้าย")){
                                 maneuver = "deviate-left" ;
                             }
@@ -2442,17 +2442,17 @@ color: #ff9317;
                         if (instructions_step.includes("ตัดเข้าไปยัง")){
                             maneuver = "merge" ;
                         }
-                       
+
                     }
 
-                    
-                    
-                    let steps_travel_html = 
+
+
+                    let steps_travel_html =
                     '<div class="row gg-travel-guide">'+
                         '<div class=" gg-travel-guide-img">'+
                             '<img src="{{ url("/") }}/img/traffic sign/' + maneuver + '.png" width="70" height="70" >'+
                         '</div>'+
-                        '<div class="gg-travel-guide-text">' + 
+                        '<div class="gg-travel-guide-text">' +
                         '<div>' + instructions_step + '</div>' +
                         '</div>'+
                         '<div class="d-flex justify-content-end py-3">'+
@@ -2461,7 +2461,7 @@ color: #ff9317;
                         '    </div>'+
                         '</div>'+
                     '</div>';
-                    // let steps_travel_html = 
+                    // let steps_travel_html =
                     //     '<div class="col-2">'+
                     //         maneuver +
                     //     '</div>'+
@@ -2542,8 +2542,8 @@ color: #ff9317;
 
     function initMap() {
 
-        let lat = document.querySelector('#lat'); 
-        let lng = document.querySelector('#lng'); 
+        let lat = document.querySelector('#lat');
+        let lng = document.querySelector('#lng');
             // console.log(parseFloat(lat.value));
             // console.log(parseFloat(lng.value));
 
@@ -2562,7 +2562,7 @@ color: #ff9317;
             m_lng = parseFloat('100.992541');
             m_numZoom = parseFloat('6');
         }
-        
+
         map = new google.maps.Map(document.getElementById("map"), {
             center: {lat: m_lat, lng: m_lng },
             zoom: m_numZoom,
@@ -2606,7 +2606,7 @@ color: #ff9317;
             document.querySelector('#location_P').setAttribute('readonly', 'true');
             document.querySelector('#location_P').setAttribute('disabled', 'true');
             show_amphoe();
-            
+
         }
 
         m_lat = parseFloat(lat);
@@ -2617,7 +2617,7 @@ color: #ff9317;
             center: {lat: m_lat, lng: m_lng },
             zoom: m_numZoom,
         });
-      
+
     }
 
     function add_marker(marker_lat , marker_lng){
@@ -2718,7 +2718,7 @@ color: #ff9317;
     function search_by_latlong(){
         // Clear any pending delay timer
         clearTimeout(delayTimer);
-        
+
         // Start a new delay timer of 2 seconds before executing data_help_center()
         delayTimer = setTimeout(search_by_latlong_2sec, 2000);
     }
@@ -2760,7 +2760,7 @@ color: #ff9317;
 
               let geocoder = new google.maps.Geocoder();
               let infowindow = new google.maps.InfoWindow();
-              
+
               infowindow.setContent(
                   JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
               );
@@ -2800,8 +2800,8 @@ color: #ff9317;
           document.querySelector('#span_show_errorLatLong').classList.remove('d-none');
           document.querySelector('#span_show_errorLatLong').innerHTML = 'ค้นหา ' + input_search_by_latlong.value + ' ไม่พบ' ;
 
-        } 
-        
+        }
+
     }
 
     function zoom_map(province , amphoe , district){
@@ -2862,7 +2862,7 @@ color: #ff9317;
                     // console.log("CLICK MAP MARK LOCATIONS zoom_map");
                     let geocoder = new google.maps.Geocoder();
                     let infowindow = new google.maps.InfoWindow();
-                    
+
                     infowindow.setContent(
                         JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
                     );
@@ -2896,9 +2896,9 @@ color: #ff9317;
                     check_LatLng_in_area(geocoder, infowindow,marker_lat,marker_lng);
 
                 });
-                    
+
             });
-        
+
     }
 
     function re_mapMarkLocation(){
@@ -2988,13 +2988,13 @@ color: #ff9317;
             .geocode({ location: latlng })
             .then((response) => {
                 // console.log(response);
-                
+
                 let district_P ;
                 let district_A ;
                 let district_T ;
 
                 //// ถ้าอยากรับอย่างอื่นเข้าไปดูที่ results[0]['address_components']['types'] ////
-                
+
                 const resultType_P = "administrative_area_level_1";
                 const resultType_A = "administrative_area_level_2";
 
@@ -3019,7 +3019,7 @@ color: #ff9317;
                 // console.log(name_district_P);
 
                 if ( sub_organization != 'ศูนย์ใหญ่' && sub_organization != name_district_P ) { // ไม่อยู่ในพื้นที่
-                    
+
                     document.querySelector('#alert_phone').classList.add('up-down');
                     const animated = document.querySelector('.up-down');
                     animated.onanimationend = () => {
@@ -3205,7 +3205,7 @@ color: #ff9317;
 
                   }
               }
-                
+
 
           });
 
@@ -3246,7 +3246,7 @@ color: #ff9317;
       map_search_by_current = search_by ;
 
       // console.log(map_search_by_current);
-      
+
       document.querySelector('#div_for_find_a_place').classList.add('d-none');
 
       // map_places
@@ -3259,7 +3259,7 @@ color: #ff9317;
           document.querySelector('#map_places').classList.add('d-none');
           document.querySelector('#mapMarkLocation').classList.remove('d-none');
       }
-      
+
       // div ค้นหา
       document.querySelector('#div_search_by_district').classList.add('d-none');
       document.querySelector('#div_search_by_LatLong').classList.add('d-none');
@@ -3322,9 +3322,9 @@ color: #ff9317;
     });
 
     // Create the search box and link it to the UI element.
-    
+
     let searchBox = new google.maps.places.SearchBox(input);
-    
+
     // Bias the SearchBox results towards current map's viewport.
     map_places.addListener("bounds_changed", () => {
       searchBox.setBounds(map_places.getBounds());
@@ -3336,7 +3336,7 @@ color: #ff9317;
     // more details for that place.
     searchBox.addListener("places_changed", () => {
       let places = searchBox.getPlaces();
-        
+
       if (places.length == 0) {
         // console.log('start1');
         return;
@@ -3417,7 +3417,7 @@ color: #ff9317;
       });
 
       map_places.fitBounds(bounds);
-       
+
     });
 
     // Add a listener for click event on the map_places
@@ -3439,13 +3439,13 @@ color: #ff9317;
         map: map_places,
         icon: image,
       });
-      
+
       // Set the lat and lng of the clicked location to the input fields
       let place_lat = clickedLocation.lat();
       let place_lng = clickedLocation.lng();
 
       // console.log(place_lat);
-      // console.log(place_lng); 
+      // console.log(place_lng);
 
       let geocoder = new google.maps.Geocoder();
       let infowindow = new google.maps.InfoWindow();
@@ -3467,13 +3467,13 @@ color: #ff9317;
         .geocode({ location: latlng })
         .then((response) => {
             // console.log(response);
-            
+
             let district_P ;
             let district_A ;
             let district_T ;
 
             //// ถ้าอยากรับอย่างอื่นเข้าไปดูที่ results[0]['address_components']['types'] ////
-            
+
             const resultType_P = "administrative_area_level_1";
             const resultType_A = "administrative_area_level_2";
 
@@ -3497,7 +3497,7 @@ color: #ff9317;
             let sub_organization = "{{ Auth::user()->sub_organization }}";
 
             if ( sub_organization != 'ศูนย์ใหญ่' && sub_organization != district_P ) { // ไม่อยู่ในพื้นที่
-                
+
                 document.querySelector('#alert_phone').classList.add('up-down');
                 const animated = document.querySelector('.up-down');
                 animated.onanimationend = () => {
@@ -3528,7 +3528,7 @@ color: #ff9317;
 
   var input = document.getElementById("pac-input");
   var container = document.getElementById('id_tee_ja_sai');
-        
+
   container.appendChild(input);
   map_places.controls[google.maps.ControlPosition.TOP_LEFT].push(container);
 
@@ -3573,7 +3573,7 @@ color: #ff9317;
         })
         .catch((e) => window.alert("Geocoder failed due to: " + e));
   }
- 
+
 </script>
 
 
@@ -3650,14 +3650,14 @@ color: #ff9317;
                     if (closedBy === 'timeout') {
                         save_data(key , value , old);
                     }
-                   
+
                 },onOpening: function () {
                     // console.log(pass);
                     startTimer_nub_vi(pass);
                     let audio_alet_new_data = new Audio("{{ asset('sound/เตือน.mp3') }}");
                         audio_alet_new_data.play();
                 }
-            
+
             });
 
             // ----------------------------
@@ -3700,14 +3700,14 @@ color: #ff9317;
             }, false);
             // จบ เมาส์วาง
         }
-        
+
     }
 
     var timer_nub_vi = [] ;
 
     function startTimer(duration, display,pass) {
         let timer = duration, seconds;
-        
+
         timer_nub_vi[pass] = setInterval(function () {
 
             seconds = parseInt(timer % 60, 10);
@@ -3912,7 +3912,7 @@ color: #ff9317;
             case 'owner_registration':
                 text_key = "เพิ่มเติม เจ้าของ" ;
             break;
-            
+
             default:
                 text_key = "..." ;
         }
@@ -3922,3 +3922,4 @@ color: #ff9317;
 
 </script>
 <!-- END alet_new_data -->
+

@@ -40,11 +40,12 @@ class Agora_4_Controller extends Controller
         $appId = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
         // $sos_id = $request->sos_id;
+        $type = $request->type;
         $sos_id = 555;
         $consult_doctor_id = 123;
         $request->user_to_call;
 
-        return view('video_call_4/before_video_call_4', compact('user','appId','appCertificate','sos_id','consult_doctor_id'));
+        return view('video_call_4/before_video_call_4', compact('user','appId','appCertificate','sos_id','consult_doctor_id','type'));
 
     }
 

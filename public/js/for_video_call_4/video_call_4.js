@@ -91,13 +91,13 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
     if(localPlayerContainer.id){
         // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
         if(document.getElementById('videoDiv_' + localPlayerContainer.id)) {
-            document.getElementById('videoDiv_' + localPlayerContainer.id).remove();
+            var divVideo = document.getElementById('videoDiv_' + localPlayerContainer.id);
+        }else{
+            var divVideo = document.createElement('div');
+            divVideo.setAttribute('id','videoDiv_' + localPlayerContainer.id);
+            divVideo.setAttribute('class','custom-div');
+            divVideo.setAttribute('style','background-color: black');
         }
-
-        let divVideo = document.createElement('div');
-        divVideo.setAttribute('id','videoDiv_' + localPlayerContainer.id);
-        divVideo.setAttribute('class','custom-div');
-        divVideo.setAttribute('style','background-color: black');
 
         //======= สร้างปุ่มสถานะ && รูปโปรไฟล์ ==========
 
@@ -178,21 +178,29 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
         // เพิ่ม div หลักลงใน div รวม
         divVideo.append(localPlayerContainer);
 
-        // เพิ่ม div ใหม่ลงใน div หลัก หรือ div bar
-        let userVideoCallBar = document.querySelector(".user-video-call-bar");
-        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
-
-        if (customDivsInUserVideoCallBar.length > 0) {
-            let firstCustomDiv = customDivsInUserVideoCallBar[0];
-            userVideoCallBar.insertBefore(divVideo, firstCustomDiv.nextSibling);
-        } else {
-            let container_user_video_call = document.querySelector("#container_user_video_call");
-            container_user_video_call.append(divVideo);
-        }
+        let container_user_video_call = document.querySelector("#container_user_video_call");
+        container_user_video_call.append(divVideo);
 
         divVideo.addEventListener("click", function() {
             handleClick(divVideo);
         });
+
+        localPlayerContainer.addEventListener("click", function() {
+            let id_agora_create = localPlayerContainer.id;
+            console.log(id_agora_create);
+            let clickvideoDiv = document.querySelector('#videoDiv_'+id_agora_create);
+            clickvideoDiv.click();
+
+            let userVideoCallBar = document.querySelector(".user-video-call-bar");
+            let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+            if (customDivsInUserVideoCallBar.length > 0) {
+                moveAllDivsToContainer();
+            } else {
+                moveDivsToUserVideoCallBar(clickvideoDiv);
+            }
+        });
+
     }
 }
 
@@ -201,18 +209,13 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,bg_r
     if(remotePlayerContainer.id){
         console.log("remotePlayerContainer");
         console.log(remotePlayerContainer);
+
         let containerId = remotePlayerContainer.id;
 
-        // ตรวจสอบว่า div มีอยู่แล้วหรือไม่
-        if (document.getElementById("videoDiv_"+ containerId)) {
-            document.getElementById("videoDiv_"+ containerId).remove();
-        }
-
-        // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
-        let divVideo = document.createElement('div');
-            divVideo.setAttribute('id','videoDiv_' + containerId);
-            divVideo.setAttribute('class','custom-div');
-            divVideo.setAttribute('style', 'background-color:' + bg_remote);
+        let divVideo_New = document.createElement('div');
+        divVideo_New.setAttribute('id','videoDiv_' + containerId);
+        divVideo_New.setAttribute('class','custom-div');
+        divVideo_New.setAttribute('style', 'background-color:' + bg_remote);
 
         //======= สร้างปุ่มสถานะ && รูปโปรไฟล์ ==========
 
@@ -271,46 +274,69 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,bg_r
         infomationUserDiv.appendChild(roleUserVideoCallDiv);
 
         // เพิ่ม div ด้านในลงใน div หลัก
-        divVideo.appendChild(statusMicrophoneOutput);
-        divVideo.appendChild(statusInputOutputDiv);
-        divVideo.appendChild(infomationUserDiv);
+        divVideo_New.appendChild(statusMicrophoneOutput);
+        divVideo_New.appendChild(statusInputOutputDiv);
+        divVideo_New.appendChild(infomationUserDiv);
 
         //======= จบการ สร้างปุ่มสถานะ ==========
 
-        divVideo.append(remotePlayerContainer);
+        divVideo_New.append(remotePlayerContainer);
+
+        // หา div เดิมที่ต้องการแทนที่
+        let oldDiv = document.getElementById("videoDiv_"+ containerId);
 
         // เพิ่ม div ใหม่ลงใน div หลัก หรือ div bar
         let userVideoCallBar = document.querySelector(".user-video-call-bar");
         let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+        let container_user_video_call = document.querySelector("#container_user_video_call");
 
-        if (customDivsInUserVideoCallBar.length > 0) {
-            let firstCustomDiv = customDivsInUserVideoCallBar[0];
-            userVideoCallBar.insertBefore(divVideo, firstCustomDiv.nextSibling);
+        // ตรวจสอบว่าเจอ div เดิมหรือไม่
+        if (oldDiv) {
+            // ใช้ parentNode.replaceChild() เพื่อแทนที่ div เดิมด้วย div ใหม่
+            oldDiv.parentNode.replaceChild(divVideo_New, oldDiv);
         } else {
-            let container_user_video_call = document.querySelector("#container_user_video_call");
-            container_user_video_call.append(divVideo);
+            if (customDivsInUserVideoCallBar.length > 0) {
+                userVideoCallBar.append(divVideo_New);
+            } else {
+                container_user_video_call.append(divVideo_New);
+            }
         }
 
         // คลิ๊ก div ให้เปลี่ยนขนาด
-        divVideo.addEventListener("click", function() {
-            handleClick(divVideo);
+        divVideo_New.addEventListener("click", function() {
+            handleClick(divVideo_New);
         });
+
+        remotePlayerContainer.addEventListener("click", function() {
+            console.log("remotePlayerContainer Click ---->");
+            let id_agora_create = remotePlayerContainer.id;
+            console.log(id_agora_create);
+            let clickvideoDiv = document.querySelector('#videoDiv_'+id_agora_create);
+            clickvideoDiv.click();
+
+            let userVideoCallBar = document.querySelector(".user-video-call-bar");
+            let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+            if (customDivsInUserVideoCallBar.length > 0) {
+                moveAllDivsToContainer();
+            } else {
+                moveDivsToUserVideoCallBar(clickvideoDiv);
+            }
+        });
+    }else{
+        console.log("================ สร้าง divVideo_New remote ไม่สำเร็จ =================");
     }
 }
 
 // สำหรับ Div Dummy ต่างๆของ Remote ตอน unpublished
 function create_dummy_videoTrack(user,name_remote,profile_remote,bg_remote){
     if(user.uid){
-        // ถ้ามี videoDiv อยู่แล้ว ลบอันเก่าก่อน
-        if(document.getElementById('videoDiv_' + user.uid.toString())) {
-            document.getElementById('videoDiv_' + user.uid.toString()).remove();
-        }
 
         // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
-        let divVideo = document.createElement('div');
-        divVideo.setAttribute('id','videoDiv_' + user.uid.toString());
-        divVideo.setAttribute('class','custom-div');
-        divVideo.setAttribute('style','background-color:'+bg_remote);
+        let divVideo_New = document.createElement('div');
+        divVideo_New.setAttribute('id','videoDiv_' + user.uid.toString());
+        divVideo_New.setAttribute('class','custom-div');
+        divVideo_New.setAttribute('style','background-color:'+bg_remote);
 
         //======= สร้างปุ่มสถานะ และรูปโปรไฟล์ ==========
 
@@ -383,10 +409,10 @@ function create_dummy_videoTrack(user,name_remote,profile_remote,bg_remote){
         infomationUserDiv.appendChild(roleUserVideoCallDiv);
 
         // เพิ่ม div ด้านในลงใน div หลัก
-        divVideo.appendChild(ProfileInputOutputDiv);
-        divVideo.appendChild(statusMicrophoneOutput);
-        divVideo.appendChild(statusInputOutputDiv);
-        divVideo.appendChild(infomationUserDiv);
+        divVideo_New.appendChild(ProfileInputOutputDiv);
+        divVideo_New.appendChild(statusMicrophoneOutput);
+        divVideo_New.appendChild(statusInputOutputDiv);
+        divVideo_New.appendChild(infomationUserDiv);
 
         //======= จบการ สร้างปุ่มสถานะ ==========
 
@@ -402,30 +428,56 @@ function create_dummy_videoTrack(user,name_remote,profile_remote,bg_remote){
                             '<video class="agora_video_player" playsinline="" muted="" style="width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; object-fit: cover;"></video>' +
                         '</div>' ;
 
-        divVideo.insertAdjacentHTML('beforeend',closeVideoHTML); // แทรกล่างสุด
+        divVideo_New.insertAdjacentHTML('beforeend',closeVideoHTML); // แทรกล่างสุด
 
-        // divVideo.append(remote_video_call); // เพิ่มแท็กวิดีโอที่มีพื้นหลังแค่สีดำ เข้าไปใน div class="video-box"
-
-        divVideo.addEventListener("click", function() {
-            handleClick(divVideo);
-        });
+        // หา div เดิมที่ต้องการแทนที่
+        let oldDiv = document.getElementById("videoDiv_"+ user.uid.toString());
 
         let userVideoCallBar = document.querySelector(".user-video-call-bar");
         let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+        let container_user_video_call = document.querySelector("#container_user_video_call");
+        console.log("customDivsInUserVideoCallBar.length in Dummy = "+ customDivsInUserVideoCallBar.length);
 
-        if (customDivsInUserVideoCallBar.length > 0) {
-            let firstCustomDiv = customDivsInUserVideoCallBar[0];
-            userVideoCallBar.insertBefore(divVideo, firstCustomDiv.nextSibling);
+        // ตรวจสอบว่าเจอ div เดิมหรือไม่
+        if (oldDiv) {
+            // ใช้ parentNode.replaceChild() เพื่อแทนที่ div เดิมด้วย div ใหม่
+            oldDiv.parentNode.replaceChild(divVideo_New, oldDiv);
         } else {
-            let container_user_video_call = document.querySelector("#container_user_video_call");
-            container_user_video_call.append(divVideo);
+            if (customDivsInUserVideoCallBar.length > 0) {
+                userVideoCallBar.append(divVideo_New);
+            } else {
+                container_user_video_call.append(divVideo_New);
+            }
         }
+
+        divVideo_New.addEventListener("click", function() {
+            handleClick(divVideo_New);
+        });
+
+        document.querySelector('#dummy_trackRemoteDiv_'+user.uid.toString()).addEventListener("click", function() {
+
+            let id_agora_create = user.uid.toString();
+            console.log(id_agora_create);
+            let clickvideoDiv = document.querySelector('#videoDiv_'+id_agora_create);
+            clickvideoDiv.click();
+
+            let userVideoCallBar = document.querySelector(".user-video-call-bar");
+            let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+            if (customDivsInUserVideoCallBar.length > 0) {
+                moveAllDivsToContainer();
+            } else {
+                moveDivsToUserVideoCallBar(clickvideoDiv);
+            }
+        });
 
     }else{
         console.log("------------------------------------------------------  หา user ไม่เจอ เลยขึ้น undifined ใน create_videoTrack()");
     }
 
 }
+
+
 
 
 
