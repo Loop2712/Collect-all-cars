@@ -1,20 +1,20 @@
-@extends('layouts.partners.theme_partner_new')
-
 <link href="{{ asset('css/video_call_4/before_video_call_4.css') }}" rel="stylesheet">
+<link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet">
+<link href="https://kit-pro.fontawesome.com/releases/v6.4.2/css/pro.min.css" rel="stylesheet">
 
 <style>
-    .video_preview{
+    /* .video_preview{
         min-height: 20vh;
         height: 100%;
         max-height: 50vh;
         width: 100%;
         object-fit: cover;
-    }
+    } */
 
-    .row {
+    /* .row {
         display: flex;
         flex-wrap: nowrap;
-    }
+    } */
 
     .col-sm-12.col-md-8.col-lg-8.bg-secondary {
         flex: 0 0 calc(66.666% - 10px); /* 66.666% is 2/3 of the row width */
@@ -25,11 +25,11 @@
         flex: 0 0 calc(33.333% - 10px); /* 33.333% is 1/3 of the row width */
     }
 
-    .buttonDiv {
+    /* .buttonDiv {
         position: absolute;
-        left: 40%; /* ตั้งค่า left เป็น 0 เพื่อให้อยู่ที่ด้านซ้ายของ parent */
+        left: 40%;
         bottom: 1rem;
-    }
+    } */
 
     .toggleCameraButton{
         border-radius: 50%;
@@ -54,13 +54,101 @@
         background-color: rgb(226, 73, 73); /* เปลี่ยนสีเป็นแดงเมื่อถูกกด */
     }
 
+    .container-before-video-call{
+        width: 100%;
+        height: 100%;
+    }
+    .nav-bar-video-call{
+        padding: 1rem;
+    }
+    .nav-bar-video-call img{
+        max-width: 180px;
+    }
+    .main-content-video-call{
+        width: 100%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }.video_preview{
+        min-height: 20vh;
+        height: 100%;
+        max-height: 50vh;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+    }.btn-join-room{
+        border-radius: 50px;
+        font-weight: bold;
+    }
+    .selectDivice select{
+        width:20%;
+        padding: 5px 10px;
+        border-radius: 50px;
+        margin-right: 5px;
+        transition: all .15s ease-in-out;
 
+    }
+
+    .div-video{
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+    .div-video .user-img{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }.div-video .user-img img{
+        width: clamp(150px, 2vw, 250px); 
+        height: clamp(150px, 2vw, 250px); 
+        border-radius: 50%;
+    }
+    
+    .buttonDiv{
+        position: absolute;
+        bottom: 15px;
+    }
 </style>
-
-@section('content')
+<div class="container-before-video-call">
+    <div class="nav-bar-video-call">
+        <img src="{{ asset('/img/logo/logo-viicheck-outline.png') }}" alt="">
+    </div>
+    <div class="main-content-video-call">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-8 ">
+                <div class="div-video">
+                    <video id="videoDiv" class="video_preview" autoplay></video>
+                    <div class="buttonDiv d-none">
+                        <button id="toggleCameraButton" class="toggleCameraButton mr-3 btn"></button>
+                        <button id="toggleMicrophoneButton" class="toggleMicrophoneButton btn"></button>
+                    </div>
+                </div>
+                
+                <div class=" d-nne">
+                    <div class="selectDivice mt-2 p-2 row">
+                        <select id="microphoneList"></select>
+                        <select id="cameraList"></select>
+                        <select id="speakerList"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4  d-flex justify-content-center p-3 align-items-center">
+                <div class="text-center w-100">
+                    <h4 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h4>
+                     <h5 class="w-100">{{Auth::user()->name}}</h5>
+                     <a id="btnJoinRoom" class="btn btn-success href="{{ url('/video_call_4'.'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}">
+                        เข้าร่วมห้องสนทนา
+                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- เปลี่ยนคลาสของ .video-container เพื่อแสดงตามจำนวนคนที่คุณมี -->
-<div id="container" class="container ">
+<!-- <div id="container" class="container ">
     <div class="col-12 p-2 d-flex justify-content-center">
         <span class="font-30 font-weight-bold align-middle ">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</span>
     </div>
@@ -111,11 +199,15 @@
         </div>
     </div>
 
-</div>
-
+</div> -->
 
 
 <script src="{{ asset('js/for_video_call_4/before_video_call_4.js') }}"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<!-- <script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
 
     <script>
         document.addEventListener('DOMContentLoaded'), (event) => {
@@ -141,7 +233,7 @@
         document.addEventListener('DOMContentLoaded', (event) => {
 
             var CameraRetries = 0; // ตัวแปรเก็บจำนวนครั้งที่เรียกใช้งานกล้อง
-            var MicrophoneRetries = 0; // ตัวแปรเก็บจำนวนครั้งที่เรียกใช้งานไมค์
+            var MicrophoneRetries = 0; // ตัวแปรเก็บจำนวนครั้งที่เรียกใช้งานไมค์videoDiv
 
             //======================
             // เปิดกล้องตอนโหลดหน้านี้
@@ -460,23 +552,66 @@
                     });
 
                     // เมื่อเลือกไมโครโฟนใน dropdown
-                    microphoneList.addEventListener("change", () => {
-                        selectedMicrophone = devices.find((device) => device.deviceId === microphoneList.value);
-                    });
+                microphoneList.addEventListener("change", () => {
+                    selectedMicrophone = devices.find((device) => device.deviceId === microphoneList.value);
+                    updateMicrophone(); // เรียกใช้ฟังก์ชันเพื่ออัปเดตไมโครโฟน
+                });
 
                     // เมื่อเลือกกล้องใน dropdown
                     cameraList.addEventListener("change", () => {
                         selectedCamera = devices.find((device) => device.deviceId === cameraList.value);
+                        updateCamera(); // เรียกใช้ฟังก์ชันเพื่ออัปเดตกล้อง
                     });
 
-                    // เมื่อเลือกลำโพงใน dropdown
+                   // เมื่อเลือกลำโพงใน dropdown
                     speakerList.addEventListener("change", () => {
                         selectedSpeaker = devices.find((device) => device.deviceId === speakerList.value);
+                        updateSpeaker(); // เรียกใช้ฟังก์ชันเพื่ออัปเดตลำโพง
                     });
                 } catch (error) {
                     console.error("เกิดข้อผิดพลาดในการรับรายการอุปกรณ์:", error);
                 }
             }
+            function updateCamera() {
+                var videoElement = document.getElementById('videoDiv');
+                var selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
+                var constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+                navigator.mediaDevices.getUserMedia(constraints)
+                .then(function(videoStream) {
+                    videoElement.srcObject = videoStream; // กำหนดกล้องใหม่ให้แสดงบนอิลิเมนต์ video
+                    localStorage.setItem('selectedCameraId', selectedDeviceId); // บันทึกอุปกรณ์ที่เลือกลงใน localStorage
+                })
+                .catch(function(error) {
+                    console.error('เกิดข้อผิดพลาดในการอัปเดตกล้อง:', error);
+                });
+            }
+
+            // อัปเดตไมโครโฟนที่ใช้งาน
+                function updateMicrophone() {
+                    var audioTracks = selectedMicrophone.getAudioTracks();
+                    if (audioTracks.length > 0) {
+                        var audioStream = new MediaStream([audioTracks[0]]);
+                        var audioElement = document.getElementById('audioElement'); // เปลี่ยน 'audioElement' เป็น ID ของอิลิเมนต์ที่คุณใช้สำหรับการแสดงเสียง
+                        audioElement.srcObject = audioStream;
+                    }
+                }
+
+                // อัปเดตลำโพงที่ใช้งาน
+                function updateSpeaker() {
+                    var audioTracks = selectedSpeaker.getAudioTracks();
+                    if (audioTracks.length > 0) {
+                        var audioStream = new MediaStream([audioTracks[0]]);
+                        var audioElement = document.getElementById('audioElement'); // เปลี่ยน 'audioElement' เป็น ID ของอิลิเมนต์ที่คุณใช้สำหรับการแสดงเสียง
+                        audioElement.setSinkId(selectedSpeaker.deviceId)
+                            .then(function () {
+                                console.log('ลำโพงถูกอัปเดตเป็น: ' + selectedSpeaker.label);
+                            })
+                            .catch(function (error) {
+                                console.error('เกิดข้อผิดพลาดในการอัปเดตลำโพง:', error);
+                            });
+                    }
+                }
+
 
             // กำหนดตัววัดเสียง
             function setupAudioMeter(stream, meter) {
@@ -500,8 +635,47 @@
                 updateMeter();
             }
 
+        });function checkSelectedDevices() {
+            const selectedCameraId = localStorage.getItem('selectedCameraId');
+            const selectedMicrophoneId = localStorage.getItem('selectedMicrophoneId');
+            const selectedSpeakerId = localStorage.getItem('selectedSpeakerId');
+
+            if (selectedCameraId) {
+                // ถ้ามีการเลือกกล้องใน storage ให้กำหนดค่าให้กับ dropdown ของกล้อง
+                cameraList.value = selectedCameraId;
+                // และเรียกใช้ฟังก์ชัน updateCamera เพื่อแสดงกล้อง
+                updateCamera();
+            }
+
+            if (selectedMicrophoneId) {
+                // ถ้ามีการเลือกไมโครโฟนใน storage ให้กำหนดค่าให้กับ dropdown ของไมโครโฟน
+                microphoneList.value = selectedMicrophoneId;
+                // และเรียกใช้ฟังก์ชัน updateMicrophone เพื่อแสดงไมโครโฟน
+                updateMicrophone();
+            }
+
+            if (selectedSpeakerId) {
+                // ถ้ามีการเลือกลำโพงใน storage ให้กำหนดค่าให้กับ dropdown ของลำโพง
+                speakerList.value = selectedSpeakerId;
+                // และเรียกใช้ฟังก์ชัน updateSpeaker เพื่อแสดงลำโพง
+                updateSpeaker();
+            }
+        }
+
+        // เมื่อหน้าเว็บโหลดเสร็จให้เรียกใช้ฟังก์ชัน checkSelectedDevices
+        window.addEventListener('load', checkSelectedDevices);
+
+        // เมื่อเลือกอุปกรณ์ใน dropdown ให้บันทึกค่าลงใน localStorage
+        cameraList.addEventListener('change', () => {
+            localStorage.setItem('selectedCameraId', cameraList.value);
+            // alert(cameraList.value)
+        });
+
+        microphoneList.addEventListener('change', () => {
+            localStorage.setItem('selectedMicrophoneId', microphoneList.value);
+        });
+
+        speakerList.addEventListener('change', () => {
+            localStorage.setItem('selectedSpeakerId', speakerList.value);
         });
     </script>
-
-
-@endsection
