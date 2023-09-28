@@ -2,12 +2,6 @@
 
 <div class="d-none" id="btn_tel"></div>
 
-<div id="div_sos_warn" class="col-12 mb-2 d-none">
-    <span class="text-danger">
-        * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศ<span id="sos_warn"></span>
-    </span>
-</div>
-
 <!-- SOS ไทย -->
 <div id="sos_TH" class="row d-none" style="margin-top:10px">
     @if( !empty($user->nationalitie) && !empty($nationalitie_tel) && $user->nationalitie != "Thai")
