@@ -98,6 +98,11 @@
 <!-- SOS ลาว -->
 <div id="sos_LA" class="row  align-items-center d-none" style="margin-top:10px">
     <div class="col-12 mb-2">
+        <span class="text-danger">
+            * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศลาว
+        </span>
+    </div>
+    <div class="col-12 mb-2">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('embassy','856-20-5551-2228');" style="background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>&nbsp; สถานทูตไทย ณ เวียงจันทน์
         </a>
     </div>
@@ -187,6 +192,11 @@
 
 <!-- SOS พม่า -->
 <div id="sos_MM" class="row   align-items-center d-none" style="margin-top:10px;">
+    <div class="col-12 mb-2">
+        <span class="text-danger">
+            * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศเมียนม่า
+        </span>
+    </div>
     <div class="col-12 mb-2">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('embassy','95-979-700-2801');" style="background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>&nbsp; สถานทูตไทย ณ กรุงย่างกุ้ง
         </a>
@@ -283,6 +293,11 @@
 <!-- SOS บรูไน -->
 <div id="sos_BN" class="row  align-items-center d-none" style="margin-top:10px;">
     <div class="col-12 mb-2">
+        <span class="text-danger">
+            * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศบรูไน
+        </span>
+    </div>
+    <div class="col-12 mb-2">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('embassy','673-876-2849');" style="background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>&nbsp; สถานทูตไทย ณ บันดาร์เสรีเบกาวัน
         </a>
     </div>
@@ -372,6 +387,11 @@
 
 <!-- SOS กัมพูชา -->
 <div id="sos_KH" class="row  align-items-center d-none" style="margin-top:10px;">
+    <div class="col-12 mb-2">
+        <span class="text-danger">
+            * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศกัมพูชา
+        </span>
+    </div>
     <div class="col-12 mb-2">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('embassy','855-77-888-114');" style="background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>&nbsp; สถานทูตไทย ณ กรุงพนมเปญ
         </a>
@@ -463,6 +483,11 @@
 <!-- SOS อินโดนีเซีย -->
 <div id="sos_ID" class="row  align-items-center d-none" style="margin-top:10px;">
     <div class="col-12 mb-2">
+        <span class="text-danger">
+            * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศอินโดนีเซีย
+        </span>
+    </div>
+    <div class="col-12 mb-2">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('embassy','62-811-186-253');" style="background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>&nbsp; สถานทูตไทย ณ กรุงจาการ์ตา
         </a>
     </div>
@@ -551,6 +576,11 @@
 
 <!-- SOS มาเลเซีย -->
 <div id="sos_MY" class="row d-none align-items-center " style="margin-top:10px;">
+    <div class="col-12 mb-2">
+        <span class="text-danger">
+            * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศมาเลเซีย
+        </span>
+    </div>
     <div class="col-12 mb-2">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('embassy','60-17700-4822');" style="background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>&nbsp; สถานทูตไทย ณ กรุงกัวลาลัมเปอร์
         </a>
@@ -641,6 +671,11 @@
 
 <!-- SOS ฟิลิปปินส์ -->
 <div id="sos_PH" class="row d-none align-items-center " style="margin-top:10px;">
+    <div class="col-12 mb-2">
+        <span class="text-danger">
+            * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศฟิลิปปินส์
+        </span>
+    </div>
     <div class="col-12 mb-2">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('embassy','63-917-806-3977');" style="background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>&nbsp; สถานทูตไทย ณ กรุงมะนิลา
         </a>
@@ -824,6 +859,11 @@
 <!-- SOS เวียดนาม -->
 <div id="sos_VN" class="row d-none align-items-center " style="margin-top:10px;">
     <div class="col-12 mb-2">
+        <span class="text-danger">
+            * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศเวียดนาม
+        </span>
+    </div>
+    <div class="col-12 mb-2">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('embassy','84-904-544800');" style="background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>&nbsp; สถานทูตไทย ณ กรุงฮานอย
         </a>
     </div>
@@ -910,6 +950,11 @@
 <!-- จบ SOS เวียดนาม -->
 <!-- SOS ไต้หวัน -->
 <div id="sos_TW" class="row  align-items-center d-none" style="margin-top:10px;">
+    <div class="col-12 mb-2">
+        <span class="text-danger">
+            * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศไต้หวัน
+        </span>
+    </div>
     <div class="col-12 mb-2">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('embassy','8862 2775-2211');" style="background-color: #DB2D2E;font-size:12px;"><i class="fas fa-phone-alt"></i>&nbsp; สำนักงานการค้าและเศรษฐกิจไทย (ไทเป)
         </a>
