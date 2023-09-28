@@ -731,6 +731,11 @@
 <!-- SOS สิงคโปร์ -->
 <div id="sos_SG" class="row d-none align-items-center " style="margin-top:10px;">
     <div class="col-12 mb-2">
+        <span class="text-danger">
+            * เป็นการติดต่อเจ้าหน้าที่ภายในประเทศสิงคโปร์
+        </span>
+    </div>
+    <div class="col-12 mb-2">
         <a class="btn btn-danger btn-block shadow-box text-white" onclick="save_sos_content('embassy','65-84210105');" style="background-color: #DB2D2E;"><i class="fas fa-phone-alt"></i>&nbsp; สถานทูตไทย ณ สิงคโปร์
         </a>
     </div>
@@ -1009,11 +1014,9 @@
 
                     if (result['countryCode'] !== 'TH') {
                         document.querySelector('#btn_quick_help').classList.add('d-none');
-                        document.querySelector('#div_sos_warn').classList.remove('d-none');
                     }
 
                     document.querySelector('#sos_' + result['countryCode']).classList.remove('d-none');
-                    document.querySelector('#sos_warn').innerHTML = result['countryCode'];
                 }
 
             });
