@@ -20,7 +20,7 @@ use App\Mail\MailTo_sos_partner;
 use App\Models\Partner_condo;
 use App\Models\Sos_map_title;
 use App\User;
-
+use App\Http\Controllers\API\ImageController;
 
 class Sos_mapController extends Controller
 {
@@ -180,10 +180,6 @@ class Sos_mapController extends Controller
             }
         }
 
-        // echo "<pre>";
-        // print_r($requestData);
-        // echo "<pre>"; 
-        // exit();
         if ($request->hasFile('photo_area')) {
             $requestData['photo'] = $request->file('photo_area')
                 ->store('uploads', 'public');
@@ -214,13 +210,23 @@ class Sos_mapController extends Controller
 
         Sos_map::create($requestData);
 
-        // หา $id_sos_map
-        $sos_map_latests = Sos_map::get();
-        foreach ($sos_map_latests as $latest) {
-            $id_sos_map = $latest->id;
-            $requestData['name_partner'] = $latest->area ;
-            $requestData['name_area'] = $latest->name_area ;
+        $sos_map_latests = Sos_map::latest()->first();
+
+        // ----------- RESIZE PHOTO ----------- //
+        $resize_photo = new ImageController();
+
+        if (!empty($requestData['photo'])) {
+           $resize_photo->resize_photo($sos_map_latests->photo);
         }
+
+        $id_sos_map = $sos_map_latests->id;
+        $requestData['name_partner'] = $sos_map_latests->area ;
+        $requestData['name_area'] = $sos_map_latests->name_area ;
+
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>"; 
+        // exit();
 
         DB::table('users')
               ->where('id', $requestData['user_id'])
@@ -494,13 +500,16 @@ class Sos_mapController extends Controller
     {   
         $datetime =  date("d-m-Y  h:i:sa");
         $date_now =  date("d-m-Y");
-        $time_now =  date("h:i:sa");
+        $time_now =  date("H:i");
         $name_user = $data['name'];
         $phone_user = $data['phone'];
         $lat_user = $data['lat'];
         $lng_user = $data['lng'];
         $photo = $data['photo'];
         $user_id = $data['user_id'];
+        $title_sos = $data['title_sos'];
+        $title_sos_other = $data['title_sos_other'];
+        $tag_sos_or_repair = $data['tag_sos_or_repair'];
 
         $data_users = User::where('id' , $user_id)->first();
 
@@ -538,10 +547,8 @@ class Sos_mapController extends Controller
             $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
 
             $data_topic = [
-                        "ขอความช่วยเหลือ",
                         "กำลังไปช่วยเหลือ",
-                        "ดูแผนที่",
-                        "รูปภาพสถานที่",
+                        "พื้นที่",
                     ];
 
             for ($xi=0; $xi < count($data_topic); $xi++) { 
@@ -576,23 +583,31 @@ class Sos_mapController extends Controller
                 $email = "vii_test@gmail.com" ;
             }
             
-            Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
+            // Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
             
             // flex ask_for_help
+            $template_path = storage_path('../public/json/ask_for_help_tag_sos.json');
+            $string_json = file_get_contents($template_path);
+
             if (!empty($data['photo'])) {
-                $template_path = storage_path('../public/json/ask_for_help_photo_new.json');
-                $string_json = file_get_contents($template_path);
                 $string_json = str_replace("photo_sos.png",$photo,$string_json);
-            }else{
-                $template_path = storage_path('../public/json/ask_for_help_new.json');
-                $string_json = file_get_contents($template_path);
             }
                
-            $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+            $string_json = str_replace("ตัวอย่าง",$title_sos,$string_json);
 
-            $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
             $string_json = str_replace("name_user",$name_user,$string_json);
             $string_json = str_replace("area",$data_name_area_sp[$i],$string_json);
+
+            $string_json = str_replace("หัวข้อขอความช่วยเหลือ",$title_sos,$string_json);
+            $string_json = str_replace("รายละเอียดขอความช่วยเหลือ",$title_sos_other,$string_json);
+
+            if ($tag_sos_or_repair == 'tag_sos') {
+                $string_json = str_replace("TAG_SOS","SOS",$string_json);
+                $string_json = str_replace("#888888","#DD8F00",$string_json);
+            }else{
+                $string_json = str_replace("TAG_SOS","แจ้งซ่อม",$string_json);
+                $string_json = str_replace("#888888","#004AAD",$string_json);
+            }
 
             if (!empty($data_users->photo)) {
                 $string_json = str_replace("photo_profile_user",$data_users->photo,$string_json);
@@ -606,14 +621,13 @@ class Sos_mapController extends Controller
             $string_json = str_replace("วันที่แจ้ง",$date_now,$string_json);
             $string_json = str_replace("เวลาที่แจ้ง",$time_now,$string_json);
 
-            $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[1],$string_json);
+            $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[0],$string_json);
+            $string_json = str_replace("พื้นที่",$data_topic[1],$string_json);
+
             $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
             $string_json = str_replace("organization",$id_partner,$string_json);
 
             $string_json = str_replace("0999999999",$phone_user,$string_json);
-            $string_json = str_replace("ดูแผนที่",$data_topic[2],$string_json);
-
-            $string_json = str_replace("รูปภาพสถานที่",$data_topic[3],$string_json);
 
             $string_json = str_replace("gg_lat_mail",$text_at.$lat_user,$string_json);
             $string_json = str_replace("gg_lat",$lat_user,$string_json);

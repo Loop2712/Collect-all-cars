@@ -311,6 +311,7 @@
                                             แจ้งซ่อม
                                         </span>
                                     </div>
+                                    <input class="d-none" id="tag_sos_or_repair" type="text" name="tag_sos_or_repair" value="tag_sos">
                                 </div>
                                 <script>
                                     function change_tag_sos(type){
@@ -321,6 +322,7 @@
 
                                             document.querySelector('#btn_tag_repair').classList.remove('btn-info');
                                             document.querySelector('#btn_tag_repair').classList.add('btn-outline-info');
+                                            document.querySelector('#tag_sos_or_repair').value = 'tag_sos';
                                         }else{
                                             document.querySelector('#tag_repair').click();
                                             document.querySelector('#btn_tag_sos').classList.add('btn-outline-warning');
@@ -328,6 +330,8 @@
 
                                             document.querySelector('#btn_tag_repair').classList.add('btn-info');
                                             document.querySelector('#btn_tag_repair').classList.remove('btn-outline-info');
+                                            document.querySelector('#tag_sos_or_repair').value = 'tag_repair';
+
                                         }
                                     }
                                 </script>
@@ -415,7 +419,7 @@
                             <label class="col-12 mt-3" style="padding:0px;" for="photo_sos_area" >
                                 <div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
                                     <div class="form-group p-3"id="add_select_img_area">
-                                        <input class="form-control d-none" name="photo_area" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_area" value="" accept="image/*" onchange="document.getElementById('show_photo_sos_area').src = window.URL.createObjectURL(this.files[0]);check_add_img_area();">
+                                        <input class="form-control d-none" name="photo_area" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_area" value="" accept="image/*" onchange="document.getElementById('show_photo_sos_area').src = window.URL.createObjectURL(this.files[0]);check_add_img_area();document.querySelector('#btn_help_area').disabled = false;">
                                         <div  class="text-center">
                                             <center>
                                                 <img id="img_sos_area" style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">

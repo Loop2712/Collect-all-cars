@@ -81,13 +81,13 @@
 <script>
   document.addEventListener('DOMContentLoaded', (event) => {
 
-        document.getElementById("btn_modal").click();
+        // document.getElementById("btn_modal").click();
 
-        var delayInMilliseconds = 5000; 
+        // var delayInMilliseconds = 5000; 
 
-        setTimeout(function() {
-          document.getElementById("a_line").click();
-        }, delayInMilliseconds);
+        // setTimeout(function() {
+        //   document.getElementById("a_line").click();
+        // }, delayInMilliseconds);
     });
 
     document.addEventListener('DOMContentLoaded', (event) => {
