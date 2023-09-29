@@ -81,7 +81,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', (event) => {
 
-        // document.getElementById("btn_modal").click();
+        document.getElementById("btn_modal").click();
 
         // var delayInMilliseconds = 5000; 
 

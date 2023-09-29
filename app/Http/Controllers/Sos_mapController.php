@@ -592,22 +592,24 @@ class Sos_mapController extends Controller
             if (!empty($data['photo'])) {
                 $string_json = str_replace("photo_sos.png",$photo,$string_json);
             }
+
+            if ($tag_sos_or_repair == 'tag_sos') {
+                $string_json = str_replace("TAG_SOS","SOS",$string_json);
+                $string_json = str_replace("#888888","#DD8F00",$string_json);
+                $text_tag_sos = "SOS : " ;
+            }else{
+                $string_json = str_replace("TAG_SOS","แจ้งซ่อม",$string_json);
+                $string_json = str_replace("#888888","#004AAD",$string_json);
+                $text_tag_sos = "แจ้งซ่อม : " ;
+            }
                
-            $string_json = str_replace("ตัวอย่าง",$title_sos,$string_json);
+            $string_json = str_replace("ตัวอย่าง",$text_tag_sos.$title_sos,$string_json);
 
             $string_json = str_replace("name_user",$name_user,$string_json);
             $string_json = str_replace("area",$data_name_area_sp[$i],$string_json);
 
             $string_json = str_replace("หัวข้อขอความช่วยเหลือ",$title_sos,$string_json);
             $string_json = str_replace("รายละเอียดขอความช่วยเหลือ",$title_sos_other,$string_json);
-
-            if ($tag_sos_or_repair == 'tag_sos') {
-                $string_json = str_replace("TAG_SOS","SOS",$string_json);
-                $string_json = str_replace("#888888","#DD8F00",$string_json);
-            }else{
-                $string_json = str_replace("TAG_SOS","แจ้งซ่อม",$string_json);
-                $string_json = str_replace("#888888","#004AAD",$string_json);
-            }
 
             if (!empty($data_users->photo)) {
                 $string_json = str_replace("photo_profile_user",$data_users->photo,$string_json);
