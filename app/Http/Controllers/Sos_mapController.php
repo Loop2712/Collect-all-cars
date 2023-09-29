@@ -511,6 +511,14 @@ class Sos_mapController extends Controller
         $title_sos_other = $data['title_sos_other'];
         $tag_sos_or_repair = $data['tag_sos_or_repair'];
 
+        if(empty($title_sos)){
+            $title_sos = "ขอความช่วยเหลือ" ;
+        }
+
+        if(empty($title_sos_other)){
+            $title_sos_other = "ไม่ได้เพิ่มข้อมูล" ;
+        }
+
         $data_users = User::where('id' , $user_id)->first();
 
         $data_name_sp = explode("&",$data['area']);
