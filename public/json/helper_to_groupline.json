@@ -201,7 +201,7 @@
         "contents": [
           {
             "type": "text",
-            "text": "การช่วยเหลือเสร็จสิ้น",
+            "text": "ดำเนินการช่วยเหลือ",
             "weight": "bold",
             "size": "xs",
             "color": "#ffffff"
@@ -215,10 +215,8 @@
         "height": "7%",
         "justifyContent": "center",
         "action": {
-          "type": "postback",
-          "label": "การช่วยเหลือเสร็จสิ้น",
-          "data": "help_complete?id_sos_map",
-          "displayText": "การช่วยเหลือเสร็จสิ้น"
+          "type": "uri",
+          "uri": "https://www.viicheck.com/sos_map/check_tag_sos"
         }
       }
     ],
