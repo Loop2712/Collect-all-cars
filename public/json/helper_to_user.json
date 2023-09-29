@@ -68,16 +68,16 @@
           {
             "type": "text",
             "text": "UTC",
-            "size": "xl",
+            "size": "lg",
             "wrap": false,
             "weight": "bold",
             "color": "#ffffff"
           }
         ],
-        "width": "17%",
+        "width": "18%",
         "position": "absolute",
         "offsetStart": "14%",
-        "offsetTop": "34%",
+        "offsetTop": "34.5%",
         "alignItems": "center"
       },
       {
@@ -93,9 +93,9 @@
             "color": "#ffffff"
           }
         ],
-        "width": "28%",
+        "width": "28.5%",
         "position": "absolute",
-        "offsetStart": "45%",
+        "offsetStart": "45.5%",
         "offsetTop": "34%",
         "alignItems": "center"
       },
@@ -112,9 +112,9 @@
             "color": "#ffffff"
           }
         ],
-        "width": "20%",
+        "width": "20.5%",
         "position": "absolute",
-        "offsetStart": "74%",
+        "offsetStart": "74.5%",
         "offsetTop": "34%",
         "alignItems": "center"
       },
