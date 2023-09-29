@@ -999,7 +999,8 @@ class LineApiController extends Controller
             $time_zone_explode = explode(" ",$time_zone);
             
             $date = $time_zone_explode[0] ;
-            $time = $time_zone_explode[1] ;
+            // $time = $time_zone_explode[1] ;
+            $time = date("H:i") ;
             $utc = $time_zone_explode[3] ;
 
             $data_topic = [
