@@ -74,10 +74,10 @@
             "color": "#ffffff"
           }
         ],
-        "width": "18%",
+        "width": "18.5%",
         "position": "absolute",
-        "offsetStart": "14%",
-        "offsetTop": "34.5%",
+        "offsetStart": "13.5%",
+        "offsetTop": "34%",
         "alignItems": "center"
       },
       {
