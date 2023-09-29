@@ -75,7 +75,7 @@ $id_sos_map = "1" ;
               <img width="100%" src="{{ asset('/img/more/sos_thx/thx_vn.png') }}">
             </div>
             <style>
-              @media (width <= 369px) {
+              @media (width < 345px) {
                 .btn_line{
                   position:absolute;
                   bottom: 5%;  
@@ -83,7 +83,7 @@ $id_sos_map = "1" ;
                   transform: translate(-50%, -50%); 
                   width: 100%;
                 }
-              }@media (width > 369px) {
+              }@media (width >= 345px) {
                 .btn_line{
                   position:absolute;
                   bottom: 12%;  
