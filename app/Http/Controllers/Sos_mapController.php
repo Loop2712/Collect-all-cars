@@ -498,7 +498,6 @@ class Sos_mapController extends Controller
 
     protected function _pushLine($data , $id_sos_map)
     {   
-        $datetime =  date("d-m-Y  h:i:sa");
         $date_now =  date("d-m-Y");
         $time_now =  date("H:i");
         $name_user = $data['name'];
