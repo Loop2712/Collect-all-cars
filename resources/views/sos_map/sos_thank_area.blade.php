@@ -28,76 +28,98 @@ $id_sos_map = "1" ;
 <div class="modal fade" id="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
-      <div class="modal-body" style="margin:-16.5px;po">
+      <div class="modal-body" style="margin:-16.5px;">
         <center>
           <br>
           <h5 class="modal-title text-danger text-center" id="staticBackdropLabel"> <b>เจ้าหน้าที่กำลังเดินทางไปหาคุณ</b> <br><span style="font-size:18px;"> <b>โปรดรอสักครู่</b> </span></h5>
+          <div style="position: relative;">
 
-          <div id="sos_TH" class="d-">
-            <img width="100%" src="{{ asset('/img/more/sos_thx/thx_th.png') }}">
-          </div>
-          <div id="sos_JP" class="d-none">
-            <img width="100%" src="{{ asset('/img/more/sos_thx/thx_jp.png') }}">
-          </div>
-          <div id="sos_MM" class="d-none">
-            <img width="100%" src="{{ asset('/img/more/sos_thx/thx_mr.png') }}">
-          </div>
-          <div id="sos_BN" class="d-none">
-            <img width="100%" src="{{ asset('/img/more/sos_thx/thx_bn.png') }}">
-          </div>
-          <div id="sos_CN" class="d-none">
-            <img width="100%" src="{{ asset('/img/more/sos_thx/thx_cn.png') }}">
-          </div>
-          <div id="sos_ID" class="d-none">
-            <img width="100%" src="{{ asset('/img/more/sos_thx/thx_id.png') }}">
-          </div>
-          <div id="sos_KH" class="d-none">
-            <img width="100%" src="{{ asset('/img/more/sos_thx/thx_kh.png') }}">
-          </div>
-          <div id="sos_KR" class="d-none">
-            <img width="100%" src="{{ asset('/img/more/sos_thx/thx_kr.png') }}">
-          </div>
-          <div id="sos_LA" class="d-none">
-            <img width="100%" src="{{ asset('/img/more/sos_thx/thx_la.png') }}">
-          </div>
-          <div id="sos_MY" class="d-none">
-            <img width="100%" src="{{ asset('/img/more/sos_thx/thx_my.png') }}">
-          </div>
-          <div id="sos_PH" class="d-none">
-            <img width="100%" src="{{ asset('/img/more/sos_thx/thx_ph.png') }}">
-          </div>
-          <div id="sos_SG" class="d-none">
-            <img width="100%" src="{{ asset('/img/more/sos_thx/thx_sg.png') }}">
-          </div>
-          <div id="sos_VN" class="d-none">
-            <img width="100%" src="{{ asset('/img/more/sos_thx/thx_vn.png') }}">
-          </div>
-          <div class="row p-3" style="position:absolute;top: calc(100% - 350px);width: 100%;">
-            <div class="col-6 w-100">
-              <a href="{{ url('/sos_map/user_view_officer') . '/' . $id_sos_map }}" type="button" class="btn btn-block btn-primary main-shadow main-radius">
-                <i class="fa-sharp fa-solid fa-map-location-dot mr-1"></i>
-                ดูตำแหน่งเจ้าหน้าที่
-              </a>
+
+            <div id="sos_TH" class="d-">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_th.png') }}">
             </div>
-            <div class="col-6 w-100">
-              <a href="{{ $link_line_oa }}" type="button" class="btn btn-block btn-success main-shadow main-radius">
-                <i class="fa-brands fa-line mr-1"></i>
-                กลับไปที่ไลน์
-              </a>
+            <div id="sos_JP" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_jp.png') }}">
             </div>
+            <div id="sos_MM" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_mr.png') }}">
+            </div>
+            <div id="sos_BN" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_bn.png') }}">
+            </div>
+            <div id="sos_CN" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_cn.png') }}">
+            </div>
+            <div id="sos_ID" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_id.png') }}">
+            </div>
+            <div id="sos_KH" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_kh.png') }}">
+            </div>
+            <div id="sos_KR" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_kr.png') }}">
+            </div>
+            <div id="sos_LA" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_la.png') }}">
+            </div>
+            <div id="sos_MY" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_my.png') }}">
+            </div>
+            <div id="sos_PH" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_ph.png') }}">
+            </div>
+            <div id="sos_SG" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_sg.png') }}">
+            </div>
+            <div id="sos_VN" class="d-none">
+              <img width="100%" src="{{ asset('/img/more/sos_thx/thx_vn.png') }}">
+            </div>
+            <style>
+              @media (width < 421px) {
+                .btn_line{
+                  position:absolute;
+                  bottom: 5%;  
+                  left: 53%;
+                  transform: translate(-50%, -50%); 
+                  width: 100%;
+                }
+              }@media (width > 421px) {
+                .btn_line{
+                  position:absolute;
+                  bottom: 12%;  
+                  left: 53%;
+                  transform: translate(-50%, -50%); 
+                  width: 100%;
+                }
+              }
+            </style>
+            <div class="row btn_line" >
+              <div class="col-6 w-100 p-2 m-0">
+                <a href="{{ url('/sos_map/user_view_officer') . '/' . $id_sos_map }}" type="button" class="btn btn-block btn-primary main-shadow main-radius">
+                  <i class="fa-sharp fa-solid fa-map-location-dot mr-1"></i>
+                  ตำแหน่งเจ้าหน้าที่
+                </a>
+              </div>
+              <div class="col-6 w-100 p-2 m-0">
+                <a href="{{ $link_line_oa }}" type="button" class="btn btn-block btn-success main-shadow main-radius">
+                  <i class="fa-brands fa-line mr-1"></i>
+                  กลับไปที่ไลน์
+                </a>
+              </div>
 
 
 
-            <!-- <div class="col-12">
-              <a href="{{ url('/sos_map/user_view_officer') . '/' . $id_sos_map }}" type="button" class="btn btn-primary main-shadow main-radius">
-                <i class="fa-sharp fa-solid fa-map-location-dot mr-1"></i>
-                ดูตำแหน่งเจ้าหน้าที่
-              </a>
-              <a href="{{ $link_line_oa }}" type="button" class="btn btn-success main-shadow main-radius">
-                <i class="fa-brands fa-line mr-1"></i>
-                กลับไปที่ไลน์
-              </a>
-            </div> -->
+              <!-- <div class="col-12">
+                <a href="{{ url('/sos_map/user_view_officer') . '/' . $id_sos_map }}" type="button" class="btn btn-primary main-shadow main-radius">
+                  <i class="fa-sharp fa-solid fa-map-location-dot mr-1"></i>
+                  ดูตำแหน่งเจ้าหน้าที่
+                </a>
+                <a href="{{ $link_line_oa }}" type="button" class="btn btn-success main-shadow main-radius">
+                  <i class="fa-brands fa-line mr-1"></i>
+                  กลับไปที่ไลน์
+                </a>
+              </div> -->
+            </div>
           </div>
         </center>
         <br>
