@@ -886,13 +886,6 @@ class LineApiController extends Controller
             }
         }
 
-        // SAVE LOG
-        $test_log = [
-            "title" => "test_log",
-            "content" => 'test_log',
-        ];
-        MyLog::create($test_log);
-
         // TIME ZONE
         $API_Time_zone = new API_Time_zone();
         $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);

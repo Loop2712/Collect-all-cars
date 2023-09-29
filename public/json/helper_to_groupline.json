@@ -5,9 +5,6 @@
   "type": "bubble",
   "size": "giga",
   "body": {
-  "type": "bubble",
-  "size": "giga",
-  "body": {
     "type": "box",
     "layout": "vertical",
     "contents": [
