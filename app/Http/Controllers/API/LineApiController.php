@@ -1009,6 +1009,7 @@ class LineApiController extends Controller
                         "ข้อมูลเจ้าหน้าที่",
                         "เจ้าหน้าที่",
                         "จาก",
+                        "ดูตำแหน่งเจ้าหน้าที่",
                     ];
 
             for ($xi=0; $xi < count($data_topic); $xi++) { 

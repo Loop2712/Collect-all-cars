@@ -2,217 +2,241 @@
     "type": "flex",
     "altText": "ตัวอย่าง",
     "contents": {
-      "type": "bubble",
-      "size": "giga",
-      "body": {
+  "type": "bubble",
+  "size": "giga",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/img/flex/sos/helper_to_user.png",
+        "size": "full",
+        "aspectRatio": "2500:3500",
+        "aspectMode": "cover"
+      },
+      {
         "type": "box",
         "layout": "vertical",
         "contents": [
           {
             "type": "image",
-            "url": "https://www.viicheck.com/img/flex/sos/helper_to_user_show_logo.png",
-            "size": "full",
-            "aspectRatio": "2500:3500",
-            "aspectMode": "cover"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "image",
-                "url": "https://www.viicheck.com/storage/LOGO_PARTNER",
-                "aspectMode": "fit"
-              }
-            ],
-            "position": "absolute",
-            "offsetTop": "15.2%",
-            "offsetStart": "8%",
-            "width": "20%",
-            "height": "15%",
-            "justifyContent": "center",
-            "alignItems": "center"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "เรียนคุณ user_name",
-                "color": "#ffffff",
-                "weight": "bold",
-                "size": "md"
-              },
-              {
-                "type": "text",
-                "size": "md",
-                "text": "เจ้าหน้าที่กำลังเดินทางไปหาคุณ",
-                "color": "#ffffff",
-                "wrap": true,
-                "maxLines": 2
-              }
-            ],
-            "position": "absolute",
-            "offsetTop": "15%",
-            "offsetStart": "30%",
-            "width": "66%",
-            "height": "15%",
-            "justifyContent": "center",
-            "alignItems": "center"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "UTC",
-                "size": "xl",
-                "wrap": false,
-                "weight": "bold",
-                "color": "#ffffff"
-              }
-            ],
-            "width": "22%",
-            "position": "absolute",
-            "offsetStart": "44%",
-            "offsetTop": "35.3%"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "date",
-                "size": "xl",
-                "wrap": false,
-                "weight": "bold",
-                "color": "#ffffff"
-              }
-            ],
-            "width": "40%",
-            "position": "absolute",
-            "offsetStart": "10%",
-            "offsetTop": "47%",
-            "alignItems": "center"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "time",
-                "size": "xl",
-                "wrap": false,
-                "weight": "bold",
-                "color": "#ffffff"
-              }
-            ],
-            "width": "40%",
-            "position": "absolute",
-            "offsetStart": "53%",
-            "offsetTop": "47%",
-            "alignItems": "center"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "ข้อมูลเจ้าหน้าที่",
-                "size": "xl",
-                "wrap": false,
-                "weight": "bold",
-                "color": "#ffffff"
-              }
-            ],
-            "width": "90%",
-            "position": "absolute",
-            "offsetStart": "5%",
-            "offsetTop": "61%",
-            "alignItems": "center"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "image",
-                "url": "https://scdn.line-apps.com/clip13.jpg",
-                "aspectMode": "cover",
-                "size": "full"
-              }
-            ],
-            "width": "18%",
-            "position": "absolute",
-            "offsetStart": "42%",
-            "offsetTop": "69%",
-            "cornerRadius": "100px",
-            "height": "12.6%"
-          },
-          {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-              {
-                "type": "text",
-                "text": "hello, world",
-                "size": "xl",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "เจ้าหน้าที่",
-                    "weight": "bold",
-                    "color": "#ffffff"
-                  },
-                  {
-                    "type": "span",
-                    "text": " "
-                  },
-                  {
-                    "type": "span",
-                    "text": "name_helper",
-                    "color": "#Ffffff"
-                  }
-                ]
-              },
-              {
-                "type": "text",
-                "text": "hello, world",
-                "size": "xl",
-                "contents": [
-                  {
-                    "type": "span",
-                    "text": "จาก",
-                    "weight": "bold",
-                    "color": "#ffffff"
-                  },
-                  {
-                    "type": "span",
-                    "text": " "
-                  },
-                  {
-                    "type": "span",
-                    "text": "zzz",
-                    "color": "#ffffff"
-                  }
-                ]
-              }
-            ],
-            "width": "80%",
-            "position": "absolute",
-            "offsetStart": "10%",
-            "offsetTop": "83%",
-            "alignItems": "center",
-            "cornerRadius": "250px"
+            "url": "https://www.viicheck.com/storage/LOGO_PARTNER",
+            "aspectMode": "fit"
           }
         ],
-        "position": "relative",
-        "paddingAll": "0px"
+        "position": "absolute",
+        "offsetTop": "15.2%",
+        "offsetStart": "8%",
+        "width": "20%",
+        "height": "15%",
+        "justifyContent": "center",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "เรียนคุณ user_name",
+            "color": "#ffffff",
+            "weight": "bold",
+            "size": "md"
+          },
+          {
+            "type": "text",
+            "size": "md",
+            "text": "เจ้าหน้าที่กำลังเดินทางไปหาคุณ",
+            "color": "#ffffff",
+            "wrap": true,
+            "maxLines": 2
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "15%",
+        "offsetStart": "30%",
+        "width": "66%",
+        "height": "15%",
+        "justifyContent": "center",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "UTC",
+            "size": "xl",
+            "wrap": false,
+            "weight": "bold",
+            "color": "#ffffff"
+          }
+        ],
+        "width": "17%",
+        "position": "absolute",
+        "offsetStart": "14%",
+        "offsetTop": "34%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "date",
+            "size": "lg",
+            "wrap": false,
+            "weight": "bold",
+            "color": "#ffffff"
+          }
+        ],
+        "width": "28%",
+        "position": "absolute",
+        "offsetStart": "45%",
+        "offsetTop": "34%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "time",
+            "size": "lg",
+            "wrap": false,
+            "weight": "bold",
+            "color": "#ffffff"
+          }
+        ],
+        "width": "20%",
+        "position": "absolute",
+        "offsetStart": "74%",
+        "offsetTop": "34%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ข้อมูลเจ้าหน้าที่",
+            "size": "xl",
+            "wrap": false,
+            "weight": "bold",
+            "color": "#ffffff"
+          }
+        ],
+        "width": "90%",
+        "position": "absolute",
+        "offsetStart": "5%",
+        "offsetTop": "47%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://scdn.line-apps.com/clip13.jpg",
+            "aspectMode": "cover",
+            "size": "full"
+          }
+        ],
+        "width": "18%",
+        "position": "absolute",
+        "offsetStart": "42%",
+        "offsetTop": "57%",
+        "cornerRadius": "100px",
+        "height": "12.6%"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "hello, world",
+            "size": "xl",
+            "contents": [
+              {
+                "type": "span",
+                "text": "เจ้าหน้าที่",
+                "weight": "bold",
+                "color": "#ffffff"
+              },
+              {
+                "type": "span",
+                "text": " "
+              },
+              {
+                "type": "span",
+                "text": "name_helper",
+                "color": "#Ffffff"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "hello, world",
+            "size": "xl",
+            "contents": [
+              {
+                "type": "span",
+                "text": "จาก",
+                "weight": "bold",
+                "color": "#ffffff"
+              },
+              {
+                "type": "span",
+                "text": " "
+              },
+              {
+                "type": "span",
+                "text": "zzz",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        ],
+        "width": "82.5%",
+        "position": "absolute",
+        "offsetStart": "10%",
+        "offsetTop": "72%",
+        "alignItems": "center",
+        "cornerRadius": "250px"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "ดูตำแหน่งเจ้าหน้าที่",
+            "size": "xl",
+            "wrap": false,
+            "weight": "bold",
+            "color": "#ffffff"
+          }
+        ],
+        "width": "70%",
+        "position": "absolute",
+        "offsetStart": "22%",
+        "offsetTop": "88%",
+        "alignItems": "center",
+        "action": {
+          "type": "uri",
+          "uri": "https://www.viicheck.com/sos_map/user_view_officer/id_sos_map?openExternalBrowser=1"
+        }
       }
-    }
+    ],
+    "position": "relative",
+    "paddingAll": "0px"
+  }
+}
 }
