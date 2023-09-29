@@ -75,7 +75,7 @@ $id_sos_map = "1" ;
               <img width="100%" src="{{ asset('/img/more/sos_thx/thx_vn.png') }}">
             </div>
             <style>
-              @media (width < 421px) {
+              @media (width <= 369px) {
                 .btn_line{
                   position:absolute;
                   bottom: 5%;  
@@ -83,7 +83,7 @@ $id_sos_map = "1" ;
                   transform: translate(-50%, -50%); 
                   width: 100%;
                 }
-              }@media (width > 421px) {
+              }@media (width > 369px) {
                 .btn_line{
                   position:absolute;
                   bottom: 12%;  
@@ -95,7 +95,7 @@ $id_sos_map = "1" ;
             </style>
             <div class="row btn_line" >
               <div class="col-6 w-100 p-2 m-0">
-                <a href="{{ url('/sos_map/user_view_officer') . '/' . $id_sos_map }}" type="button" class="btn btn-block btn-primary main-shadow main-radius">
+                <a href="{{ url('/sos_map/user_view_officer') . '/' . $id_sos_map }}" type="button" class="btn btn-block btn-primary main-shadow main-radius px-1">
                   <i class="fa-sharp fa-solid fa-map-location-dot mr-1"></i>
                   ตำแหน่งเจ้าหน้าที่
                 </a>
