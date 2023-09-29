@@ -193,6 +193,11 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('/sos_score_helper', 'PartnerController@sos_score_helper');
 	Route::get('/score_helper/{user_id}', 'PartnerController@score_helper');
 
+	// SOS MAP
+	Route::get('sos_map/user_view_officer/{id_sos_map}', 'Sos_mapController@user_view_officer');
+	Route::get('sos_map/check_tag_sos/{id_sos_map}', 'Sos_mapController@check_tag_sos');
+
+
 	// BROADCAST
 	Route::get('/broadcast/dashboard', 'PartnerController@dashboard_broadcast');
 	Route::get('/broadcast/content', 'PartnerController@content_broadcast');
