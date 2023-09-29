@@ -852,6 +852,14 @@ class LineApiController extends Controller
 
     protected function _send_helper_to_groupline($data_sos_map , $data_partner_helpers , $name_helper , $helper_id, $condo_id)
     {   
+
+        // SAVE LOG
+        $test_log = [
+            "title" => "test_log",
+            "content" => 'test_log',
+        ];
+        MyLog::create($test_log);
+
         $data_line_group = DB::table('group_lines')
                     ->where('groupName', $data_partner_helpers->line_group)
                     ->get();
