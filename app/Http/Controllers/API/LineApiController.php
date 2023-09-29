@@ -900,7 +900,7 @@ class LineApiController extends Controller
         $data_topic = [
                     "การขอความช่วยเหลือ",
                     "เจ้าหน้าที่",
-                    "การช่วยเหลือเสร็จสิ้น",
+                    "ดำเนินการช่วยเหลือ",
                     "กำลังไปช่วยเหลือ",
                 ];
 
@@ -924,7 +924,7 @@ class LineApiController extends Controller
 
         $string_json = str_replace("การขอความช่วยเหลือ",$data_topic[0],$string_json);
         $string_json = str_replace("เจ้าหน้าที่",$data_topic[1],$string_json);
-        $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[2],$string_json);
+        $string_json = str_replace("ดำเนินการช่วยเหลือ",$data_topic[2],$string_json);
         $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[3],$string_json);
 
         // // user
