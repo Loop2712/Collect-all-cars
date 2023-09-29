@@ -1,5 +1,16 @@
 @extends('layouts.viicheck')
 @section('content')
+
+@php
+  if(empty($link_line_oa)){
+    $link_line_oa = "https://lin.ee/xnFKMfc" ;
+  }
+
+  if(empty($id_sos_map)){
+    $id_sos_map = "1" ;
+  }
+@endphp
+
 <div class="d-none">
   <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
         <label for="user_id" class="control-label">{{ 'User Id' }}</label>
@@ -60,6 +71,18 @@
             </div>
             <div id="sos_VN" class="d-none">
               <img width="100%" src="{{ asset('/img/more/sos_thx/thx_vn.png') }}">
+            </div>
+            <div class="row" style="position:absolute;top: 55%;width: 100%;">
+              <div class="col-12">
+                <a href="{{ url('/sos_map/user_view_officer') . '/' . $id_sos_map }}" type="button" class="btn btn-primary main-shadow main-radius">
+                  <i class="fa-sharp fa-solid fa-map-location-dot mr-1"></i>
+                  ดูตำแหน่งเจ้าหน้าที่
+                </a>
+                <a href="{{ $link_line_oa }}" type="button" class="btn btn-success main-shadow main-radius">
+                  <i class="fa-brands fa-line mr-1"></i>
+                  &nbsp;&nbsp;&nbsp;&nbsp;กลับไปที่ไลน์&nbsp;&nbsp;&nbsp;&nbsp;
+                </a>
+              </div>
             </div>
         </center>
         <br>

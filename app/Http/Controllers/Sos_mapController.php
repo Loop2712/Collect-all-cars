@@ -265,7 +265,7 @@ class Sos_mapController extends Controller
                 }
 
                 // return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
-                return view('sos_map.sos_thank_area', compact('link_line_oa'));
+                return view('sos_map.sos_thank_area', compact('link_line_oa' , 'id_sos_map'));
 
             }else{
                 return redirect('/sos_thank')->with('flash_message', 'Sos_map added!');
