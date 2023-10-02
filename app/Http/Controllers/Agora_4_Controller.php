@@ -53,12 +53,12 @@ class Agora_4_Controller extends Controller
         if (preg_match('/android/i', $userAgent)) {
             $type_device = "mobile_video_call";
         }
-
-        if (preg_match('/iPad|iPhone|iPod/', $userAgent) && !strpos($userAgent, 'MSStream')) {
+        else if (preg_match('/iPad|iPhone|iPod/', $userAgent) && !strpos($userAgent, 'MSStream')) {
             $type_device = "mobile_video_call";
         }
-
-        $type_device = "pc_video_call";
+        else{
+            $type_device = "pc_video_call";
+        }
 
         return view('video_call_4/before_video_call_4', compact('user','appId','appCertificate','sos_id','consult_doctor_id','type','type_device'));
 

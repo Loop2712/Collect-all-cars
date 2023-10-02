@@ -82,7 +82,7 @@
         font-weight: bold;
     }
     .selectDivice select{
-        width:20%;
+        width:40%;
         padding: 5px 10px;
         border-radius: 50px;
         margin-right: 5px;
@@ -174,7 +174,7 @@
                     <div class="selectDivice mt-2 p-2 row">
                         <select id="microphoneList"></select>
                         <select id="cameraList"></select>
-                        <select id="speakerList"></select>
+                        {{-- <select id="speakerList"></select> --}}
                         {{-- <label>
                             <div id="audioElement" controls>
                                 <button id="audioElement_btn" class="btn">
@@ -489,7 +489,7 @@
         document.addEventListener("DOMContentLoaded", async () => {
             const microphoneList = document.getElementById("microphoneList");
             const cameraList = document.getElementById("cameraList");
-            const speakerList = document.getElementById("speakerList");
+            // const speakerList = document.getElementById("speakerList");
             const startButton = document.getElementById("startButton");
             const stopButton = document.getElementById("stopButton");
             let selectedMicrophone = null;
@@ -604,9 +604,10 @@
                             microphoneList.appendChild(option);
                         } else if (device.kind === "videoinput") {
                             cameraList.appendChild(option);
-                        } else if (device.kind === "audiooutput") {
-                            speakerList.appendChild(option);
                         }
+                        // else if (device.kind === "audiooutput") {
+                        //     speakerList.appendChild(option);
+                        // }
                     });
 
                     // เมื่อเลือกไมโครโฟนใน dropdown
@@ -623,11 +624,11 @@
                     });
 
                    // เมื่อเลือกลำโพงใน dropdown
-                    speakerList.addEventListener("change", () => {
-                        selectedSpeaker = devices.find((device) => device.deviceId === speakerList.value);
-                        console.log(selectedSpeaker);
-                        updateSpeaker(selectedSpeaker); // เรียกใช้ฟังก์ชันเพื่ออัปเดตลำโพง
-                    });
+                    // speakerList.addEventListener("change", () => {
+                    //     selectedSpeaker = devices.find((device) => device.deviceId === speakerList.value);
+                    //     console.log(selectedSpeaker);
+                    //     updateSpeaker(selectedSpeaker); // เรียกใช้ฟังก์ชันเพื่ออัปเดตลำโพง
+                    // });
                 } catch (error) {
                     console.error("เกิดข้อผิดพลาดในการรับรายการอุปกรณ์:", error);
                 }
@@ -745,12 +746,12 @@
                 updateMicrophone();
             }
 
-            if (selectedSpeakerId) {
-                // ถ้ามีการเลือกลำโพงใน storage ให้กำหนดค่าให้กับ dropdown ของลำโพง
-                speakerList.value = selectedSpeakerId;
-                // และเรียกใช้ฟังก์ชัน updateSpeaker เพื่อแสดงลำโพง
-                updateSpeaker();
-            }
+            // if (selectedSpeakerId) {
+            //     // ถ้ามีการเลือกลำโพงใน storage ให้กำหนดค่าให้กับ dropdown ของลำโพง
+            //     speakerList.value = selectedSpeakerId;
+            //     // และเรียกใช้ฟังก์ชัน updateSpeaker เพื่อแสดงลำโพง
+            //     updateSpeaker();
+            // }
         }
 
         // เมื่อหน้าเว็บโหลดเสร็จให้เรียกใช้ฟังก์ชัน checkSelectedDevices
@@ -766,9 +767,9 @@
             localStorage.setItem('selectedMicrophoneId', microphoneList.value);
         });
 
-        speakerList.addEventListener('change', () => {
-            localStorage.setItem('selectedSpeakerId', speakerList.value);
-        });
+        // speakerList.addEventListener('change', () => {
+        //     localStorage.setItem('selectedSpeakerId', speakerList.value);
+        // });
 
 
         //=============================================================================================

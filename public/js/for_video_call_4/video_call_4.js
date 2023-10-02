@@ -1,5 +1,5 @@
 
-function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน
+function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน
 
     const divForVideoButton = document.querySelector('#divForVideoButton');
 
@@ -57,8 +57,10 @@ function btn_toggle_mic_camera(){ // สำหรับ สร้างปุ่
             // เปลี่ยน icon camera ให้เป็นปิด ใน divVideo_
             document.getElementById(`camera_local`).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
 
-            // ซ่อนโปรไฟล์ ตอนเปิดกล้อง
+            // แสดงโปรไฟล์ ตอนปิดกล้อง
             document.querySelector('.profile-input-output').classList.remove('d-none');
+
+            changeBgColor(bg_local);
 
             isVideo = false;
 
@@ -96,7 +98,7 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
             var divVideo = document.createElement('div');
             divVideo.setAttribute('id','videoDiv_' + localPlayerContainer.id);
             divVideo.setAttribute('class','custom-div');
-            divVideo.setAttribute('style','background-color: black');
+            divVideo.setAttribute('style','background-color:'+ bg_local);
         }
 
         //======= สร้างปุ่มสถานะ && รูปโปรไฟล์ ==========

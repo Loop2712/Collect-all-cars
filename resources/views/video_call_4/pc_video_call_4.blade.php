@@ -165,7 +165,6 @@
         background: rgba(255, 255, 255, 0);
     }
 
-
     .custom-div .status-sound-output{
 		position: absolute;
 		top: 0;
@@ -303,8 +302,10 @@
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
                             <div class="modal-body">
-                                <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
+                                <h6 class="dropdown-header">อุปกรณ์รับข้อมูล</h6>
                                 <div id="audio-device-list"></div>
+                                {{-- <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
+                                <div id="audio-device-output-list"></div> --}}
                             </div>
                         </div>
                     </div>
@@ -1067,7 +1068,7 @@
                 //===== จบส่วน สุ่มสีพื้นหลังของ localPlayerContainer =====
 
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
-                create_element_localvideo_call(localPlayerContainer,name_local,profile_local);
+                create_element_localvideo_call(localPlayerContainer,name_local,profile_local,bg_local);
                 // Play the local video track.
                 channelParameters.localVideoTrack.play(localPlayerContainer);
 
@@ -1075,7 +1076,7 @@
                 document.querySelector('#lds-ring').remove();
 
                 //======= สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน ==========//
-                btn_toggle_mic_camera(videoTrack,audioTrack);
+                btn_toggle_mic_camera(videoTrack,audioTrack,bg_local);
 
                 document.querySelector('#muteVideo').addEventListener("click", function(e) {
                     if (isVideo == false) {
@@ -1164,7 +1165,7 @@
 
         var activeVideoDeviceId
         var activeAudioDeviceId
-
+        // var activeAudioOutputDeviceId
         window.addEventListener('DOMContentLoaded', async () => {
             try {
                 // เรียกดูอุปกรณ์ทั้งหมด
@@ -1188,21 +1189,28 @@
                     activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
                 }
 
+                // if(useSpeaker){
+                //     activeAudioOutputDeviceId = useSpeaker;
+                // }else{
+                //     activeAudioOutputDeviceId = devices.find(device => device.kind === 'audiooutput' && device.deviceId === 'default').deviceId;
+                // }
 
             } catch (error) {
                 console.error('เกิดข้อผิดพลาดในการเรียกดูอุปกรณ์:', error);
             }
 
         });
-
+        // ไมโครโฟน -- Microphone
         var old_activeAudioDeviceId ;
 
         // เรียกใช้งานเมื่อต้องการเปลี่ยนอุปกรณ์เสียง
         function onChangeAudioDevice() {
 
             old_activeAudioDeviceId = activeAudioDeviceId;
+            // old_activeAudioOutputDeviceId = activeAudioOutputDeviceId;
 
             const selectedAudioDeviceId = getCurrentAudioDeviceId();
+            // const selectedAudioOutputDeviceId = getCurrentAudiooutputDeviceId();
             // console.log('อุปกรณ์เสียงเดิม:', activeAudioDeviceId);
             // console.log('เปลี่ยนอุปกรณ์เสียงเป็น:', selectedAudioDeviceId);
 
@@ -1214,7 +1222,8 @@
                 microphoneId: selectedAudioDeviceId
             })
             .then(newAudioTrack => {
-
+                console.log('newAudioTrack');
+                console.log(newAudioTrack);
                 // หยุดการส่งเสียงจากอุปกรณ์ปัจจุบัน
                 channelParameters.localAudioTrack.setEnabled(false);
 
@@ -1255,8 +1264,70 @@
                 console.error('เกิดข้อผิดพลาดในการสร้าง local audio track:', error);
 
                 selectedAudioDeviceId = old_activeAudioDeviceId;
+                selectedAudioOutputDeviceId = old_activeAudioOutputDeviceId;
             });
         }
+
+        // ลำโพง -- Speaker -- ยังหาฟังก์ชันเปลี่ยนไม่ได้
+        // var old_activeAudioOutputDeviceId ;
+        // function onChangeAudioOutputDevice() {
+        //     old_activeAudioOutputDeviceId = activeAudioOutputDeviceId;
+
+        //     const selectedAudioOutputDeviceId = getCurrentAudiooutputDeviceId();
+        //     // console.log('อุปกรณ์เสียงเดิม:', activeAudioDeviceId);
+        //     // console.log('เปลี่ยนอุปกรณ์เสียงเป็น:', selectedAudioDeviceId);
+
+        //     activeAudioOutputDeviceId = selectedAudioOutputDeviceId;
+        //     // สร้าง local audio track ใหม่โดยใช้อุปกรณ์ที่คุณต้องการ
+        //     AgoraRTC.createSpeakerAudioTrack({
+        //         deviceId: selectedAudioOutputDeviceId,
+        //     })
+        //     .then(newAudioTrack => {
+        //         console.log('newAudioTrack');
+        //         console.log(newAudioTrack);
+        //         // หยุดการส่งเสียงจากอุปกรณ์ปัจจุบัน
+        //         // channelParameters.localAudioTrack.setEnabled(false);
+
+        //         // agoraEngine.unpublish([channelParameters.localAudioTrack]);
+
+        //         // // ปิดการเล่นเสียงเดิม
+        //         // // channelParameters.localAudioTrack.stop();
+        //         // // channelParameters.localAudioTrack.close();
+
+        //         // // เปลี่ยน local audio track เป็นอุปกรณ์ใหม่
+        //         // channelParameters.localAudioTrack = newAudioTrack;
+
+        //         // channelParameters.localAudioTrack.play();
+
+        //         // if(isAudio == true){
+        //         //     // เริ่มส่งเสียงจากอุปกรณ์ใหม่
+        //         //     channelParameters.localAudioTrack.setEnabled(true);
+        //         //     channelParameters.localAudioTrack.play();
+
+        //         //     agoraEngine.publish([channelParameters.localAudioTrack]);
+
+        //         //     // isAudio = true;
+        //         //     console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
+        //         //     console.log('เข้า if => isAudio == true');
+        //         //     console.log(channelParameters.localAudioTrack);
+        //         // }
+        //         // else {
+        //         //     channelParameters.localAudioTrack.setEnabled(false);
+        //         //     // channelParameters.localAudioTrack.play();
+        //         //     // isAudio = false;
+        //         //     console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
+        //         //     console.log('เข้า else => isAudio == false');
+        //         //     console.log(channelParameters.localAudioTrack);
+        //         // }
+
+        //     })
+        //     .catch(error => {
+        //         console.error('เกิดข้อผิดพลาดในการสร้าง local audio track:', error);
+
+        //         selectedAudioDeviceId = old_activeAudioDeviceId;
+        //         selectedAudioOutputDeviceId = old_activeAudioOutputDeviceId;
+        //     });
+        // }
 
         var old_activeVideoDeviceId ;
 
@@ -1346,6 +1417,16 @@
             }
             return null;
         }
+
+        // function getCurrentAudiooutputDeviceId() {
+        //     const audiooutputDevices = document.getElementsByName('audio-device-output');
+        //     for (let i = 0; i < audiooutputDevices.length; i++) {
+        //         if (audiooutputDevices[i].checked) {
+        //             return audiooutputDevices[i].value;
+        //         }
+        //     }
+        //     return null;
+        // }
 
         function getCurrentVideoDeviceId() {
             const videoDevices = document.getElementsByName('video-device');
@@ -1459,8 +1540,10 @@
                 video: true
             });
 
-            // แยกอุปกรณ์ตามประเภท
+            // แยกอุปกรณ์ตามประเภท --> ไมโครโฟน
             let audioDevices = devices.filter(device => device.kind === 'audioinput');
+            // แยกอุปกรณ์ตามประเภท --> ลำโพง
+            let audioOutputDevices = devices.filter(device => device.kind === 'audiooutput');
 
             console.log('------- audioDevices -------');
             console.log(audioDevices);
@@ -1470,9 +1553,12 @@
             // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
             let audioDeviceList = document.getElementById('audio-device-list');
                 audioDeviceList.innerHTML = '';
+            // let audiooutputDeviceList = document.getElementById('audio-device-output-list');
+            //     audiooutputDeviceList.innerHTML = '';
 
             let count_i = 1 ;
-
+            let count_i_output = 1 ;
+            // ----------- Input ----------------
             audioDevices.forEach(device => {
             const radio2 = document.createElement('input');
                 radio2.type = 'radio';
@@ -1495,8 +1581,33 @@
             count_i = count_i + 1 ;
             });
 
+            let hr = document.createElement('hr');
+            audioDeviceList.appendChild(hr);
 
-            // ---------------------------
+            // ----------- Output ----------------
+            // audioOutputDevices.forEach(device => {
+            // const radio3 = document.createElement('input');
+            //     radio3.type = 'radio';
+            //     radio3.id = 'audio-device-output-' + count_i_output;
+            //     radio3.name = 'audio-device-output';
+            //     radio3.value = device.deviceId;
+
+            // if (deviceType == 'PC'){
+            //     radio3.checked = device.deviceId === activeAudioOutputDeviceId;
+            // }
+
+            // let label_output = document.createElement('label');
+            //     label_output.classList.add('dropdown-item');
+            //     label_output.appendChild(radio3);
+            //     label_output.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${audioDeviceList.children.length + 1}`));
+
+            // audiooutputDeviceList.appendChild(label_output);
+            // radio3.addEventListener('change', onChangeAudioOutputDevice);
+
+            // count_i_output = count_i_output + 1 ;
+            // });
+
+            // ---------------------------7
 
             if (deviceType == 'PC'){
                 document.querySelector('.btn_for_select_audio_device').click();
@@ -1619,10 +1730,17 @@
     function changeBgColor(bg_local){
         // เซ็ท bg-local เป็นสีที่ดูด
         console.log("ทำงาน "+bg_local)
+
         let agoraCreateLocalDiv = document.querySelector(".agora_create_local");
+
         let divsInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelectorAll("div");
             divsInsideAgoraCreateLocal.forEach(function(div) {
             div.style.backgroundColor = bg_local;
+        });
+
+        let videoInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelectorAll("video");
+            videoInsideAgoraCreateLocal.forEach(function(video) {
+                video.remove();
         });
     }
 
