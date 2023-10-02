@@ -167,12 +167,16 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
         infomationUserDiv.appendChild(nameUserVideoCallDiv);
         infomationUserDiv.appendChild(roleUserVideoCallDiv);
 
+        // สร้าง div โปร่งใส
+        let transparentDiv = document.createElement("div");
+        transparentDiv.classList.add("transparent-div"); // เพิ่มคลาส CSS
+
         // เพิ่ม div ด้านในลงใน div หลัก
         divVideo.appendChild(ProfileInputOutputDiv);
         divVideo.appendChild(statusMicrophoneOutput);
         divVideo.appendChild(statusInputOutputDiv);
         divVideo.appendChild(infomationUserDiv);
-
+        divVideo.appendChild(transparentDiv);
         //======= จบการ สร้างปุ่มสถานะ ==========
 
         // เพิ่ม div หลักลงใน div รวม
@@ -185,7 +189,7 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
             handleClick(divVideo);
         });
 
-        localPlayerContainer.addEventListener("click", function() {
+        transparentDiv.addEventListener("click", function() {
             let id_agora_create = localPlayerContainer.id;
             console.log(id_agora_create);
             let clickvideoDiv = document.querySelector('#videoDiv_'+id_agora_create);
@@ -408,12 +412,17 @@ function create_dummy_videoTrack(user,name_remote,profile_remote,bg_remote){
         infomationUserDiv.appendChild(nameUserVideoCallDiv);
         infomationUserDiv.appendChild(roleUserVideoCallDiv);
 
+        // สร้าง div โปร่งใส
+        let transparentDiv = document.createElement("div");
+        transparentDiv.classList.add("transparent-div"); // เพิ่มคลาส CSS
+
+
         // เพิ่ม div ด้านในลงใน div หลัก
         divVideo_New.appendChild(ProfileInputOutputDiv);
         divVideo_New.appendChild(statusMicrophoneOutput);
         divVideo_New.appendChild(statusInputOutputDiv);
         divVideo_New.appendChild(infomationUserDiv);
-
+        divVideo_New.appendChild(transparentDiv);
         //======= จบการ สร้างปุ่มสถานะ ==========
 
         // ถ้ามี dummy_trackRemoteDiv_ อยู่แล้ว ลบอันเก่าก่อน
@@ -454,7 +463,7 @@ function create_dummy_videoTrack(user,name_remote,profile_remote,bg_remote){
             handleClick(divVideo_New);
         });
 
-        document.querySelector('#dummy_trackRemoteDiv_'+user.uid.toString()).addEventListener("click", function() {
+        transparentDiv.addEventListener("click", function() {
 
             let id_agora_create = user.uid.toString();
             console.log(id_agora_create);

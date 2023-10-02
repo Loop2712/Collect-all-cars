@@ -110,6 +110,50 @@
         position: absolute;
         bottom: 15px;
     }
+
+    /*==============  เสียง ลำโพลง CSS ==================*/
+
+    /* เส้นของหลอดเสียง */
+    .sound-indicator {
+        width: 100px;
+        height: 10px;
+        background-color: #ccc;
+        position: relative;
+    }
+
+    /* หลอดเสียง */
+    .sound-bar {
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* อนิเมชันเสียง */
+    .sound-animation {
+        width: 0;
+        height: 100%;
+        background-color: #2ca2da;
+        position: absolute;
+        animation: soundAnimation 0.2s linear infinite;
+        transform-origin: left center; /* ตั้งค่าจุดเริ่มต้นของการขยับ */
+        opacity: 0.8;
+    }
+
+    @keyframes soundAnimation {
+        0% {
+            transform: scaleX(0);
+            opacity: 0;
+        }
+        100% {
+            transform: scaleX(1);
+            opacity: 0;
+        }
+    }
+
+
+
 </style>
 <div class="container-before-video-call">
     <div class="nav-bar-video-call">
@@ -131,6 +175,13 @@
                         <select id="microphoneList"></select>
                         <select id="cameraList"></select>
                         <select id="speakerList"></select>
+                        {{-- <label>
+                            <div id="audioElement" controls>
+                                <button id="audioElement_btn" class="btn">
+                                    <i class="fa-regular fa-circle-play font-30"></i>
+                                </button>
+                            </div>
+                        </label> --}}
                     </div>
                 </div>
             </div>
@@ -320,6 +371,9 @@
 
         var statusCamera = "open";
         var statusMicrophone = "open";
+        var useMicrophone = '';
+        var useSpeaker = '';
+        var useCamera = '';
 
         var appId = '{{ $appId }}';
         var appCertificate = '{{ $appCertificate }}';
@@ -329,7 +383,8 @@
         function toggleCamera() {
             if (statusCamera == "open") {
                 statusCamera = "close"; //เซ็ต statusCamera เป็น close
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+
                 // ตรวจสอบว่ากล้องถูกเปิดหรือไม่
                 navigator.mediaDevices.getUserMedia({ video: true })
                 .then(function(videoStream) {
@@ -349,7 +404,9 @@
 
             }else{
                 statusCamera = "open"; // เซ็ต statusCamera เป็น open
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+
+
                 // เปิดกล้อง
                 navigator.mediaDevices.getUserMedia({ video: true })
                 .then(function(newVideoStream) {
@@ -389,7 +446,9 @@
         function toggleMicrophone() {
             if (statusMicrophone == 'open') {
                 statusMicrophone = "close"; // เซ็ต statusMicrophone เป็น close
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+
+
                 navigator.mediaDevices.getUserMedia({ audio: true })
                 .then(function(audioStream) {
 
@@ -407,7 +466,9 @@
                 })
             }else{
                 statusMicrophone = "open"; // เซ็ต statusMicrophone เป็น open
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+
+
                 navigator.mediaDevices.getUserMedia({ audio: true })
                 .then(function(newAudioStream) {
                     audioStream = newAudioStream;
@@ -422,7 +483,9 @@
             }
             setTimeout(() => {
                 console.log(statusMicrophone);
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+
+
             }, 1000);
         }
     </script>
@@ -554,28 +617,38 @@
                     // เมื่อเลือกไมโครโฟนใน dropdown
                 microphoneList.addEventListener("change", () => {
                     selectedMicrophone = devices.find((device) => device.deviceId === microphoneList.value);
-                    updateMicrophone(); // เรียกใช้ฟังก์ชันเพื่ออัปเดตไมโครโฟน
+                    console.log(selectedMicrophone);
+                    updateMicrophone(selectedMicrophone); // เรียกใช้ฟังก์ชันเพื่ออัปเดตไมโครโฟน
                 });
 
                     // เมื่อเลือกกล้องใน dropdown
                     cameraList.addEventListener("change", () => {
                         selectedCamera = devices.find((device) => device.deviceId === cameraList.value);
-                        updateCamera(); // เรียกใช้ฟังก์ชันเพื่ออัปเดตกล้อง
+                        updateCamera(selectedCamera); // เรียกใช้ฟังก์ชันเพื่ออัปเดตกล้อง
                     });
 
                    // เมื่อเลือกลำโพงใน dropdown
                     speakerList.addEventListener("change", () => {
                         selectedSpeaker = devices.find((device) => device.deviceId === speakerList.value);
-                        updateSpeaker(); // เรียกใช้ฟังก์ชันเพื่ออัปเดตลำโพง
+                        console.log(selectedSpeaker);
+                        updateSpeaker(selectedSpeaker); // เรียกใช้ฟังก์ชันเพื่ออัปเดตลำโพง
                     });
                 } catch (error) {
                     console.error("เกิดข้อผิดพลาดในการรับรายการอุปกรณ์:", error);
                 }
             }
-            function updateCamera() {
-                var videoElement = document.getElementById('videoDiv');
-                var selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
-                var constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+            function updateCamera(selectedCamera) {
+                if(selectedCamera){
+                    useCamera = selectedCamera.deviceId;
+                    document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+                }else{
+                    document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+                }
+                console.log(useCamera);
+
+                let videoElement = document.getElementById('videoDiv');
+                let selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
+                let constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
                 navigator.mediaDevices.getUserMedia(constraints)
                 .then(function(videoStream) {
                     videoElement.srcObject = videoStream; // กำหนดกล้องใหม่ให้แสดงบนอิลิเมนต์ video
@@ -587,31 +660,52 @@
             }
 
             // อัปเดตไมโครโฟนที่ใช้งาน
-                function updateMicrophone() {
-                    var audioTracks = selectedMicrophone.getAudioTracks();
-                    if (audioTracks.length > 0) {
-                        var audioStream = new MediaStream([audioTracks[0]]);
-                        var audioElement = document.getElementById('audioElement'); // เปลี่ยน 'audioElement' เป็น ID ของอิลิเมนต์ที่คุณใช้สำหรับการแสดงเสียง
-                        audioElement.srcObject = audioStream;
-                    }
-                }
+            function updateMicrophone(selectedMicrophone) {
+                if(selectedMicrophone){
+                    useMicrophone = selectedMicrophone.deviceId;
+                    document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
-                // อัปเดตลำโพงที่ใช้งาน
-                function updateSpeaker() {
-                    var audioTracks = selectedSpeaker.getAudioTracks();
-                    if (audioTracks.length > 0) {
-                        var audioStream = new MediaStream([audioTracks[0]]);
-                        var audioElement = document.getElementById('audioElement'); // เปลี่ยน 'audioElement' เป็น ID ของอิลิเมนต์ที่คุณใช้สำหรับการแสดงเสียง
-                        audioElement.setSinkId(selectedSpeaker.deviceId)
-                            .then(function () {
-                                console.log('ลำโพงถูกอัปเดตเป็น: ' + selectedSpeaker.label);
-                            })
-                            .catch(function (error) {
-                                console.error('เกิดข้อผิดพลาดในการอัปเดตลำโพง:', error);
-                            });
-                    }
-                }
+                }else{
+                    document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
+                }
+                console.log(useMicrophone);
+
+                let microphoneElement = document.createElement('audio');
+                    microphoneElement.id = 'microphoneElement';
+
+                microphoneElement.setSinkId(selectedMicrophone.deviceId)
+                    .then(function () {
+                        console.log('ไมโครโฟนถูกอัปเดตเป็น: ' + selectedMicrophone.label);
+                    })
+                    .catch(function (error) {
+                        console.error('เกิดข้อผิดพลาดในการอัปเดตไมโครโฟน:', error);
+                    });
+            }
+
+            // อัปเดตลำโพงที่ใช้งาน
+            function updateSpeaker(selectedSpeaker) {
+                if(selectedSpeaker){
+                    useSpeaker = selectedSpeaker.deviceId;
+                                        document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+
+                }else{
+                                        document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+
+                }
+                console.log(useSpeaker);
+
+                let audioElement = document.createElement('audio');
+                    audioElement.id = 'audioElement';
+
+                audioElement.setSinkId(selectedSpeaker.deviceId)
+                    .then(function () {
+                        console.log('ลำโพงถูกอัปเดตเป็น: ' + selectedSpeaker.label);
+                    })
+                    .catch(function (error) {
+                        console.error('เกิดข้อผิดพลาดในการอัปเดตลำโพง:', error);
+                    });
+            }
 
             // กำหนดตัววัดเสียง
             function setupAudioMeter(stream, meter) {
@@ -635,7 +729,9 @@
                 updateMeter();
             }
 
-        });function checkSelectedDevices() {
+        });
+
+        function checkSelectedDevices() {
             const selectedCameraId = localStorage.getItem('selectedCameraId');
             const selectedMicrophoneId = localStorage.getItem('selectedMicrophoneId');
             const selectedSpeakerId = localStorage.getItem('selectedSpeakerId');
@@ -678,4 +774,49 @@
         speakerList.addEventListener('change', () => {
             localStorage.setItem('selectedSpeakerId', speakerList.value);
         });
+
+
+        //=============================================================================================
+
+        // ฟังก์ชันสำหรับอัปเดตอนิเมชันของหลอดเสียง
+        function updateSoundAnimation() {
+            const audioElement = document.getElementById('audioElement');
+            const soundAnimation = document.querySelector('.sound-animation');
+
+            // คำนวณความดังเสียงของลำโพง (ระหว่าง 0 ถึง 1)
+            const volume = audioElement.volume;
+            console.log(volume);
+            // ปรับขนาดอนิเมชันตามความดังของเสียง
+            soundAnimation.style.transform = `scaleX(${volume})`;
+        }
+
+        // เมื่อเริ่มเล่นเสียง
+        document.getElementById('audioElement').addEventListener('click', function () {
+            // อัปเดตอนิเมชันของหลอดเสียงเมื่อมีการเปิดเสียง
+            document.querySelector('#audioElement_btn').innerHTML = '<i class="fa-regular fa-circle-stop"></i>';
+
+            let audio_ringtone_join = new Audio("{{ asset('sound/join_room_1.mp3') }}");
+            audio_ringtone_join.play();
+
+            audio_ringtone_join.onended = function() {
+                document.querySelector('#audioElement_btn').innerHTML = '<i class="fa-regular fa-circle-play"></i>';
+            }
+
+            // updateSoundAnimation();
+        });
+
+        // เมื่อเปลี่ยนระดับเสียง
+        document.getElementById('audioElement').addEventListener('volumechange', function () {
+            // อัปเดตอนิเมชันของหลอดเสียงเมื่อมีการเปลี่ยนระดับเสียง
+            updateSoundAnimation();
+        });
+
+        // โหลดค่าเริ่มต้น
+        updateSoundAnimation();
+
+
     </script>
+
+
+
+

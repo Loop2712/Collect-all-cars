@@ -40,8 +40,6 @@
 		color: #fff;
 	}
 
-
-
 	.item-video-call {
 		aspect-ratio: 16/9;
 		/* outline: #000 1px solid; */
@@ -121,6 +119,7 @@
         height: 50px;
         border-radius: 50%; /* คงรูปร่างวงกลม */
         object-fit: cover;
+        pointer-events: none;
     }
 
     #container_user_video_call div div .profile_image{ /* ของ container ใหญ่ */
@@ -128,8 +127,8 @@
         height: 150px;
         border-radius: 50%; /* คงรูปร่างวงกลม */
         object-fit: cover;
+        pointer-events: none;
     }
-
 
 	#container_user_video_call {
 		width: 100%;
@@ -157,6 +156,15 @@
 	#container_user_video_call  .custom-div:not(:only-child) {
 		flex: 0 0 calc(50% - 40px);
 	}
+
+    .transparent-div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        background: rgba(255, 255, 255, 0);
+    }
+
 
     .custom-div .status-sound-output{
 		position: absolute;
@@ -227,15 +235,14 @@
 </style>
 
 <!-- ========================================== layout video call ========================================== -->
+<div class="d-flex justify-content-center align-items-center">
+    <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>
 
 <div class="row full-height">
+    <!-- สำหรับ loading ก่อนเข้า videocall -> จะลบออกหลังจากโหลดเสร็จ -->
+
 	<div class="Scenary"></div>
-
-    <!-- สำหรับ loading ก่อนเข้า videocall -->
-    <div class="d-flex justify-content-center align-items-center">
-        <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
-    </div>
-
 	<div class="col-12 col-lg-2">
 		<div class="data-sos text-center p-3 d-flex row">
 			<h4 class="mt-3 col-12 ">รหัสเคส: {{$sos_id}}
@@ -314,7 +321,7 @@
 					<div class="d-flex justify-content-center align-self-end d-non user-video-call-bar">
 						<!--  วิดีโอคอล tag ถูกสร้างในนี้-->
 					</div>
-                    <button class="btn-show-hide-user-video-call btn" style="z-index: 2 " onclick="toggleUserVideoCallBar();">
+                    <button class="btn-show-hide-user-video-call btn" style="z-index: 25 " onclick="toggleUserVideoCallBar();">
                         <i id="icon_show_hide" class="fa-duotone fa-chevrons-down"></i>
                         <span id="text_show_hide"> ซ่อน</span>
                     </button>
@@ -356,7 +363,12 @@
     var videoTrack = '{{$videoTrack}}';
     var audioTrack = '{{$audioTrack}}';
 
-    // var userDivVideoMap = {}; // ใช้เก็บข้อมูลผู้ใช้และ divVideo ที่ถูกใช้
+    var useSpeaker = '{{$useSpeaker}}';
+    var useMicrophone = '{{$useMicrophone}}';
+    var useCamera = '{{$useCamera}}';
+
+    //สำหรับกำหนดสี background localPlayerContainer
+    var bg_local;
 
     // เรียกสองอันเพราะไม่อยากไปยุ่งกับโค้ดเก่า
     var user_id = '{{ Auth::user()->id }}';
@@ -378,6 +390,8 @@
         token: '',
         // Set the user ID.
         uid: user_id,
+
+        role: '',
     };
 
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -386,6 +400,7 @@
             const loadingAnime = document.getElementById('lds-ring');
 
             setTimeout(() => {
+                //หลังจากสร้าง localPlayerContainer เสร็จให้เอา animation loading ออก
                 if(loadingAnime){
                     loadingAnime.classList.remove('d-none');
                 }
@@ -414,10 +429,6 @@
                         setInterval(() => {
                             checkAndNotifyExpiration(expirationTimestamp);
                         }, 1000);
-
-
-                        // เอาหน้าโหลดออก
-                        loadingAnime.remove();
 
                         setTimeout(() => {
                             document.getElementById("join").click();
@@ -501,7 +512,7 @@
         localPlayerContainer.style.position = "absolute";
         localPlayerContainer.style.left = "0";
         localPlayerContainer.style.top = "0";
-        localPlayerContainer.classList.add('agora_create');
+        localPlayerContainer.classList.add('agora_create_local');
 
         //======== ทุก 20 วิ ให้เช็คว่า div .custom-div ที่มี id ของคนที่ไม่ได้อยู่ในห้องนี้แล้ว --> ถ้าเจอให้ลบ div ทิ้ง =========
         setInterval(() => {
@@ -713,6 +724,7 @@
 
                     console.log("สร้าง Div_Dummy ของ" + user.uid);
                     console.log(user);
+
                     let name_remote_user_unpublished;
                     let profile_remote_user_unpublished;
                     let hexcolor;
@@ -808,7 +820,7 @@
             console.log(agoraEngine);
 
             // เสียงแจ้งเตือน เวลาคนเข้า
-            let audio_ringtone_join = new Audio("{{ asset('sound/join_room_2.mp3') }}");
+            let audio_ringtone_join = new Audio("{{ asset('sound/join_room_1.mp3') }}");
                 audio_ringtone_join.play();
 
             // หยุดการเล่นเสียงหลังจาก 1 วินาที
@@ -1038,14 +1050,39 @@
                     profile_local = "https://www.viicheck.com/Medilab/img/icon.png";
                 }
 
+                //===== สุ่มสีพื้นหลังของ localPlayerContainer=====
+                fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + options.uid)
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log("result local_data_4");
+                        console.log(result);
+
+                        bg_local = result.hexcolor;
+
+                        changeBgColor(bg_local);
+                })
+                .catch(error => {
+                    console.log("โหลดข้อมูล LocalUser ล้มเหลว ใน get_local_data_4");
+                });
+                //===== จบส่วน สุ่มสีพื้นหลังของ localPlayerContainer =====
+
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
                 create_element_localvideo_call(localPlayerContainer,name_local,profile_local);
-
                 // Play the local video track.
                 channelParameters.localVideoTrack.play(localPlayerContainer);
 
+                // เอาหน้าโหลดออก
+                document.querySelector('#lds-ring').remove();
+
                 //======= สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน ==========//
                 btn_toggle_mic_camera(videoTrack,audioTrack);
+
+                document.querySelector('#muteVideo').addEventListener("click", function(e) {
+                    if (isVideo == false) {
+                        console.log(bg_local);
+                        changeBgColor(bg_local);
+                    }
+                });
 
                 if(isAudio == true){
                     agoraEngine.publish([channelParameters.localAudioTrack]);
@@ -1139,8 +1176,18 @@
                     video: true
                 });
 
-                activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
-                activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
+                if(useMicrophone){
+                    activeAudioDeviceId = useMicrophone;
+                }else{
+                    activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
+                }
+
+                if(useCamera){
+                    activeVideoDeviceId = useCamera;
+                }else{
+                    activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
+                }
+
 
             } catch (error) {
                 console.error('เกิดข้อผิดพลาดในการเรียกดูอุปกรณ์:', error);
@@ -1309,6 +1356,8 @@
             }
             return null;
         }
+
+        var now_Mobile_Devices = 1;
 
         btn_switchCamera.onclick = async function()
         {
@@ -1565,6 +1614,16 @@
             Div.remove();
         }
     };
+
+    function changeBgColor(bg_local){
+        // เซ็ท bg-local เป็นสีที่ดูด
+        console.log("ทำงาน "+bg_local)
+        let agoraCreateLocalDiv = document.querySelector(".agora_create_local");
+        let divsInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelectorAll("div");
+            divsInsideAgoraCreateLocal.forEach(function(div) {
+            div.style.backgroundColor = bg_local;
+        });
+    }
 
 
     // เมื่อออกจากห้องโดยไม่ได้กดที่ปุ่ม

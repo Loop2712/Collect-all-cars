@@ -58,6 +58,9 @@ class Agora_4_Controller extends Controller
         // $appId = $requestData['appId'];
         // $appCertificate =  $requestData['appCertificate'];
         // $sos_id = $requestData['sos_id'];
+        $useSpeaker = $requestData['useSpeaker'];
+        $useMicrophone = $requestData['useMicrophone'];
+        $useCamera = $requestData['useCamera'];
 
         $videoTrack = $requestData['videoTrack'];
         $audioTrack = $requestData['audioTrack'];
@@ -65,7 +68,7 @@ class Agora_4_Controller extends Controller
         $appID = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
 
-        return view('video_call_4/video_call_4', compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id'));
+        return view('video_call_4/video_call_4', compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera'));
 
     }
 
@@ -123,6 +126,29 @@ class Agora_4_Controller extends Controller
     function left_room_4(Request $request)
     {
         //
+    }
+
+    function get_local_data_4(Request $request){
+        $user_id = $request->user_id;
+
+        $local_data = User::where('id',$user_id)->first();
+
+        $text_path = url('storage') . '/' . $local_data->photo;
+        $img = Image::make( $text_path );
+        // get file path
+        $aaa = $img->basePath();
+        // โหลดข้อมูลขนาดของรูปภาพ
+        list($width, $height) = getimagesize($text_path);
+
+        // หาจุดตรงกลาง
+        $centerX = $width / 2;
+        $centerY = $height / 2;
+
+        // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
+        $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+
+        $local_data['hexcolor'] = $hexcolor;
+        return $local_data;
     }
 
     function get_remote_data_4(Request $request){

@@ -158,6 +158,19 @@
     }
 
     /* =================ตัว loading animation==================== */
+    #lds-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 1); /* ปรับสีพื้นหลังตามความต้องการ */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; /* ให้มีค่า z-index สูงกว่าทุกอย่างบนหน้าเว็บ */
+    }
+
     .lds-ring {
         display: inline-block;
         position: relative;
