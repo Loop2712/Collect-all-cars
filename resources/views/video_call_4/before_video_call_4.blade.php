@@ -189,7 +189,7 @@
                 <div class="text-center w-100">
                     <h4 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h4>
                      <h5 class="w-100">{{Auth::user()->name}}</h5>
-                     <a id="btnJoinRoom" class="btn btn-success" href="{{ url('/video_call_4'.'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}">
+                     <a id="btnJoinRoom" class="btn btn-success" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}">
                         เข้าร่วมห้องสนทนา
                      </a>
                 </div>
@@ -259,9 +259,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
+<script>
+    var statusCamera = "open";
+    var statusMicrophone = "open";
+    var useMicrophone = '';
+    var useSpeaker = '';
+    var useCamera = '';
+
+    var appId = '{{ $appId }}';
+    var appCertificate = '{{ $appCertificate }}';
+    var sos_id = '{{ $sos_id }}'
+    var consult_doctor_id = '{{ $consult_doctor_id }}'
+</script>
 
     <script>
-        document.addEventListener('DOMContentLoaded'), (event) => {
+        document.addEventListener('DOMContentLoaded', (event) => {
 
             // fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_1669_id=" + sos_1669_id)
             // .then(response => response.json())
@@ -277,11 +289,6 @@
             //     }
 
             // });
-        }
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
 
             var CameraRetries = 0; // ตัวแปรเก็บจำนวนครั้งที่เรียกใช้งานกล้อง
             var MicrophoneRetries = 0; // ตัวแปรเก็บจำนวนครั้งที่เรียกใช้งานไมค์videoDiv
@@ -368,22 +375,10 @@
         //======================
         var toggleCameraButton = document.getElementById('toggleCameraButton');
             toggleCameraButton.addEventListener('click', toggleCamera);
-
-        var statusCamera = "open";
-        var statusMicrophone = "open";
-        var useMicrophone = '';
-        var useSpeaker = '';
-        var useCamera = '';
-
-        var appId = '{{ $appId }}';
-        var appCertificate = '{{ $appCertificate }}';
-        var sos_id = '{{ $sos_id }}'
-        var consult_doctor_id = '{{ $consult_doctor_id }}'
-
         function toggleCamera() {
             if (statusCamera == "open") {
                 statusCamera = "close"; //เซ็ต statusCamera เป็น close
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
                 // ตรวจสอบว่ากล้องถูกเปิดหรือไม่
                 navigator.mediaDevices.getUserMedia({ video: true })
@@ -404,7 +399,7 @@
 
             }else{
                 statusCamera = "open"; // เซ็ต statusCamera เป็น open
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
 
                 // เปิดกล้อง
@@ -446,7 +441,7 @@
         function toggleMicrophone() {
             if (statusMicrophone == 'open') {
                 statusMicrophone = "close"; // เซ็ต statusMicrophone เป็น close
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
 
                 navigator.mediaDevices.getUserMedia({ audio: true })
@@ -466,7 +461,7 @@
                 })
             }else{
                 statusMicrophone = "open"; // เซ็ต statusMicrophone เป็น open
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
 
                 navigator.mediaDevices.getUserMedia({ audio: true })
@@ -483,7 +478,7 @@
             }
             setTimeout(() => {
                 console.log(statusMicrophone);
-                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+                document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
 
             }, 1000);
@@ -640,9 +635,9 @@
             function updateCamera(selectedCamera) {
                 if(selectedCamera){
                     useCamera = selectedCamera.deviceId;
-                    document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+                    document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
                 }else{
-                    document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+                    document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
                 }
                 console.log(useCamera);
 
@@ -663,10 +658,10 @@
             function updateMicrophone(selectedMicrophone) {
                 if(selectedMicrophone){
                     useMicrophone = selectedMicrophone.deviceId;
-                    document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+                    document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
                 }else{
-                    document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+                    document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
                 }
                 console.log(useMicrophone);
@@ -687,10 +682,10 @@
             function updateSpeaker(selectedSpeaker) {
                 if(selectedSpeaker){
                     useSpeaker = selectedSpeaker.deviceId;
-                                        document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+                                        document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
                 }else{
-                                        document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/video_call_4' .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+                                        document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
                 }
                 console.log(useSpeaker);
@@ -816,6 +811,32 @@
 
 
     </script>
+
+
+
+
+
+
+
+
+
+{{-- <script>
+    // ตรวจสอบอุปกรณ์ที่ใช้งาน
+    function checkDeviceType() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // ตรวจสอบชนิดของอุปกรณ์
+        if (/android/i.test(userAgent)) {
+            return "Mobile (Android)";
+        }
+
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return "Mobile (iOS)";
+        }
+
+        return "PC";
+    }
+</script> --}}
 
 
 

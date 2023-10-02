@@ -45,11 +45,26 @@ class Agora_4_Controller extends Controller
         $consult_doctor_id = 123;
         $request->user_to_call;
 
-        return view('video_call_4/before_video_call_4', compact('user','appId','appCertificate','sos_id','consult_doctor_id','type'));
+
+        //ตรวจอุปกรณ์
+        $userAgent = $_SERVER['HTTP_USER_AGENT'];
+
+        // ตรวจสอบชนิดของอุปกรณ์
+        if (preg_match('/android/i', $userAgent)) {
+            $type_device = "mobile_video_call";
+        }
+
+        if (preg_match('/iPad|iPhone|iPod/', $userAgent) && !strpos($userAgent, 'MSStream')) {
+            $type_device = "mobile_video_call";
+        }
+
+        $type_device = "pc_video_call";
+
+        return view('video_call_4/before_video_call_4', compact('user','appId','appCertificate','sos_id','consult_doctor_id','type','type_device'));
 
     }
 
-    public function index(Request $request ,$sos_id)
+    public function pc_index(Request $request ,$sos_id)
     {
         $user = Auth::user();
 
@@ -68,8 +83,13 @@ class Agora_4_Controller extends Controller
         $appID = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
 
-        return view('video_call_4/video_call_4', compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera'));
+        return view('video_call_4/pc_video_call_4', compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera'));
 
+    }
+
+    public function mobile_index(Request $request ,$sos_id)
+    {
+        return view('video_call_4/mobile_video_call_4');
     }
 
     public function token(Request $request)

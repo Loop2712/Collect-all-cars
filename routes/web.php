@@ -541,7 +541,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Video_call_4 //
     Route::get('video_call_4/before_video_call_4', 'Agora_4_Controller@before_video_call_4'); // index
-	Route::get('video_call_4/{type}/{sos_id}', 'Agora_4_Controller@index'); // index
+	Route::get('pc_video_call/{type}/{sos_id}', 'Agora_4_Controller@pc_index'); // index
+    Route::get('mobile_video_call/{type}/{sos_id}', 'Agora_4_Controller@mobile_index'); // index
     //type จะมี 1.sos_1669 2.sos_map 3.consult_doctor
 	// Route::post('/agora/call-user', 'AgoraController@callUser'); // ไม่ทราบ
 	// END Video_call_4 //
