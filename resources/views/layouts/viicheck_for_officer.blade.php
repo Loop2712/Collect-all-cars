@@ -169,6 +169,22 @@
     <script src="{{ asset('carousel-12/js/main.js') }}"></script>
     <script src="{{ asset('Medilab/js/script.js') }}"></script>
 
+    <script>
+      function func_arrivalTime(duration){
+          // assuming you have already obtained the duration from Google Maps API and stored it in a variable called `duration`
+          let date_now = new Date(); // get the current time
+          let travelTimeInSeconds = duration; // get the travel time in seconds
+          let arrivalTime = new Date(date_now.getTime() + (travelTimeInSeconds * 1000)); // add the travel time to the current time and create a new date object
+          // let formattedTime = arrivalTime.toLocaleTimeString(); // format the arrival time as a string in a readable format
+          let options = { hourCycle: 'h24' };
+          let formattedTime = arrivalTime.toLocaleTimeString('th-TH', options);
+              let timeWithoutSeconds = formattedTime.slice(0, -3); // ตัดวินาทีออก
+              let timeWithSuffix = `${timeWithoutSeconds} น.`; // เติม "น." เข้าไป
+
+          return timeWithSuffix ;
+      }
+    </script>
+    
   </body>
 
 </html>

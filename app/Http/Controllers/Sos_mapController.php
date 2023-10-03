@@ -887,5 +887,39 @@ class Sos_mapController extends Controller
 
     }
 
+    function check_tag_sos($id_sos_map){
+
+        $data_sos_map = Sos_map::where('id',$id_sos_map)->first();
+
+        // echo $data_sos_map->tag_sos_or_repair ;
+
+        if($data_sos_map->tag_sos_or_repair == 'tag_sos'){
+            // ไปหน้า map เจ้าหน้าที่
+            return "sos_map/tag_sos/map_officer" . "/" . $id_sos_map ;
+        }else{
+            return "sos_map/report_repair" . "/" . $id_sos_map ;
+        }
+    }
+
+    function map_officer($id_sos_map){
+
+        $data_sos_map = Sos_map::where('id',$id_sos_map)->first();
+
+        return view('sos_map.map_officer', compact('data_sos_map'));
+
+    }
+
+    function user_view_officer($id_sos_map){
+        echo "<h1>user_view_officer</h1>";
+        echo "<br>";
+        echo $id_sos_map;
+    }
+
+    function report_repair($id_sos_map){
+
+        echo "<h1>report_repair</h1>";
+
+    }
+
 
 }
