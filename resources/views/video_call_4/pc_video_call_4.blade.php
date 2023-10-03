@@ -540,6 +540,12 @@
         }, 20000);
         //=====================================================================================================
 
+        AgoraRTC.onMicrophoneChanged = (info) => {
+            console.log("microphone changed!", info.state, info.device);
+            // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
+            agoraEngine.enableAudioVolumeIndicator();
+        };
+
         // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
         agoraEngine.enableAudioVolumeIndicator();
 
@@ -550,9 +556,9 @@
 
                 if (localPlayerContainer.id == volume.uid && volume.level >= 50) {
                     //ถ้า localAudioTrackCheck เป็นค่าเก่า ให้แทนที่ด้วยค่าใหม่
-                    if (localAudioTrackCheck !== channelParameters.localAudioTrack) {
-                        localAudioTrackCheck = channelParameters.localAudioTrack;
-                    }
+                    // if (localAudioTrackCheck !== channelParameters.localAudioTrack) {
+                    //     localAudioTrackCheck = channelParameters.localAudioTrack;
+                    // }
                     //แสดงชื่ออุปกรณ์ที่ใช้และระดับเสียง
                     if (localAudioTrackCheck) {
                         if (localAudioTrackCheck['enabled'] === true) {
@@ -671,14 +677,6 @@
             {
                 channelParameters.remoteAudioTrack = user.audioTrack;
                 channelParameters.remoteAudioTrack.play();
-
-                // if(user.hasVideo == false){
-                //     // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
-                //     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
-                // }else{
-                //     // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
-                //     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-solid fa-video"></i>';
-                // }
 
                 if(user.hasAudio == false){
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
@@ -987,7 +985,10 @@
                 //หาไมโครโฟน
                 try {
                     channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
-                        {encoderConfig: "high_quality_stereo",}
+                        {
+                            encoderConfig: "high_quality_stereo",
+                            microphoneId: useMicrophone
+                        }
                     );
                     // Publish the local audio tracks in the channel.
                     await agoraEngine.publish([channelParameters.localAudioTrack]);
@@ -999,7 +1000,10 @@
 
                     try { // เข้าใหม่ในสถานะปิดไมโครโฟนแทน
                         channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
-                            {encoderConfig: "high_quality_stereo",}
+                            {
+                                encoderConfig: "high_quality_stereo",
+                                microphoneId: useMicrophone
+                            }
                         );
                         // ปิดไมโครโฟนใหม่ทันที
                         await channelParameters.localAudioTrack.setEnabled(false);
@@ -1014,17 +1018,20 @@
 
                 // หากล้อง
                 try {
-                    channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack({
-                        optimizationMode: "detail",
-                        encoderConfig:
+                    channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
                         {
-                            width: 640,
-                            // Specify a value range and an ideal value
-                            height: { ideal: 480, min: 400, max: 500 },
-                            frameRate: 15,
-                            bitrateMin: 600, bitrateMax: 1000,
-                        },
-                    });
+                            cameraId: useCamera,
+                            optimizationMode: "detail",
+                            encoderConfig:
+                            {
+                                width: 640,
+                                // Specify a value range and an ideal value
+                                height: { ideal: 480, min: 400, max: 500 },
+                                frameRate: 15,
+                                bitrateMin: 600, bitrateMax: 1000,
+                            },
+                        }
+                    );
                     // Publish the local audio and video tracks in the channel.
                     await agoraEngine.publish([channelParameters.localVideoTrack]);
                 } catch (error) {
@@ -1254,6 +1261,7 @@
                     channelParameters.localAudioTrack.setEnabled(false);
                     // channelParameters.localAudioTrack.play();
                     // isAudio = false;
+
                     console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
                     console.log('เข้า else => isAudio == false');
                     console.log(channelParameters.localAudioTrack);
@@ -1581,8 +1589,8 @@
             count_i = count_i + 1 ;
             });
 
-            let hr = document.createElement('hr');
-            audioDeviceList.appendChild(hr);
+            // let hr = document.createElement('hr');
+            // audioDeviceList.appendChild(hr);
 
             // ----------- Output ----------------
             // audioOutputDevices.forEach(device => {
@@ -1738,10 +1746,13 @@
             div.style.backgroundColor = bg_local;
         });
 
-        let videoInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelectorAll("video");
-            videoInsideAgoraCreateLocal.forEach(function(video) {
-                video.remove();
-        });
+        if(isVideo == false){
+            let videoInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelectorAll("video");
+                videoInsideAgoraCreateLocal.forEach(function(video) {
+                    video.remove();
+            });
+        }
+
     }
 
 
