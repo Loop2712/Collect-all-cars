@@ -895,9 +895,9 @@ class Sos_mapController extends Controller
 
         if($data_sos_map->tag_sos_or_repair == 'tag_sos'){
             // ไปหน้า map เจ้าหน้าที่
-            return "sos_map/tag_sos/map_officer" . "/" . $id_sos_map ;
+            return redirect("sos_map/tag_sos/map_officer" . "/" . $id_sos_map) ;
         }else{
-            return "sos_map/report_repair" . "/" . $id_sos_map ;
+            return redirect("sos_map/report_repair" . "/" . $id_sos_map) ;
         }
     }
 
