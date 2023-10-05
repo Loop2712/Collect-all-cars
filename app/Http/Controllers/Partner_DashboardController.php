@@ -180,9 +180,9 @@ class Partner_DashboardController extends Controller
             ->where('content', 'help_area')
             ->where('score_total', '!=', null)
             ->groupBy('helper') // กลุ่มตามชื่อผู้ใช้
-            ->selectRaw('helper, AVG(score_total) as avg_score') 
+            ->selectRaw('helper, AVG(score_total) as avg_score')
             ->orderByDesc('avg_score')
-            ->limit(5) 
+            ->limit(5)
             ->get();
 
         // MAP
@@ -224,12 +224,12 @@ class Partner_DashboardController extends Controller
                                                         //  viinews
         //==================================================================================================================//
         $twoMonthsAgo = Carbon::now()->subMonths(2);
-        
+
         //Check in
         $check_in_data = Partner::where('name', '=', $user_login->organization)
         ->where('name_area', '=', null)
         ->get();
-        
+
 
         $check_in_data_arr = array();
         $count_hbd = 0;
@@ -391,6 +391,8 @@ class Partner_DashboardController extends Controller
         ->where('created_at', '>=', Carbon::now()->subMonths(2))
         ->select('user_id')
         ->get();
+
+        // ddd($last_checkIn_data);
 
         $sorted_last_checkIn_data = [];
 

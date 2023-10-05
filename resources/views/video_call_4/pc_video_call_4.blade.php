@@ -984,12 +984,21 @@
 
                 //หาไมโครโฟน
                 try {
-                    channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
-                        {
-                            encoderConfig: "high_quality_stereo",
-                            microphoneId: useMicrophone
-                        }
-                    );
+                    if(useMicrophone){
+                        channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                            {
+                                encoderConfig: "high_quality_stereo",
+                                microphoneId: useMicrophone
+                            }
+                        );
+                    }else{
+                        channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                            {
+                                encoderConfig: "high_quality_stereo",
+                            }
+                        );
+                    }
+
                     // Publish the local audio tracks in the channel.
                     await agoraEngine.publish([channelParameters.localAudioTrack]);
 
@@ -999,12 +1008,20 @@
                     console.error('ไม่สามารถสร้างไมโครโฟนหรือไม่พบไมโครโฟน', error);
 
                     try { // เข้าใหม่ในสถานะปิดไมโครโฟนแทน
-                        channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
-                            {
-                                encoderConfig: "high_quality_stereo",
-                                microphoneId: useMicrophone
-                            }
-                        );
+                        if(useMicrophone){
+                            channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                                {
+                                    encoderConfig: "high_quality_stereo",
+                                    microphoneId: useMicrophone
+                                }
+                            );
+                        }else{
+                            channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                                {
+                                    encoderConfig: "high_quality_stereo",
+                                }
+                            );
+                        }
                         // ปิดไมโครโฟนใหม่ทันที
                         await channelParameters.localAudioTrack.setEnabled(false);
                         //เปลี่ยนสถานะไมโครโฟน เป็น false
@@ -1018,20 +1035,37 @@
 
                 // หากล้อง
                 try {
-                    channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
-                        {
-                            cameraId: useCamera,
-                            optimizationMode: "detail",
-                            encoderConfig:
+                    if(useCamera){
+                        channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
                             {
-                                width: 640,
-                                // Specify a value range and an ideal value
-                                height: { ideal: 480, min: 400, max: 500 },
-                                frameRate: 15,
-                                bitrateMin: 600, bitrateMax: 1000,
-                            },
-                        }
-                    );
+                                cameraId: useCamera,
+                                optimizationMode: "detail",
+                                encoderConfig:
+                                {
+                                    width: 640,
+                                    // Specify a value range and an ideal value
+                                    height: { ideal: 480, min: 400, max: 500 },
+                                    frameRate: 15,
+                                    bitrateMin: 600, bitrateMax: 1000,
+                                },
+                            }
+                        );
+                    }else{
+                        channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
+                            {
+                                optimizationMode: "detail",
+                                encoderConfig:
+                                {
+                                    width: 640,
+                                    // Specify a value range and an ideal value
+                                    height: { ideal: 480, min: 400, max: 500 },
+                                    frameRate: 15,
+                                    bitrateMin: 600, bitrateMax: 1000,
+                                },
+                            }
+                        );
+                    }
+
                     // Publish the local audio and video tracks in the channel.
                     await agoraEngine.publish([channelParameters.localVideoTrack]);
                 } catch (error) {

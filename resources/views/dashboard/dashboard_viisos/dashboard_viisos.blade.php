@@ -81,17 +81,17 @@
                     <h5 class="mb-0">ข้อมูลการช่วยเหลือ</h5>
                 </div>
             </div>
-            <hr class="mb-0">    
+            <hr class="mb-0">
         </div>
-                        
+
         <div class="store-metrics p-3 mb-3 ps ps--active-y">
-            
+
             <div class="card mt-3 radius-10 border shadow-none">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">ขอความช่วยเหลือ</p>
-                            
+
                             <span class="mb-0 h4">{{ $count_sos_all_data }}</span> <small>ครั้ง</small>
                         </div>
                         <div class="widgets-icons bg-light-primary text-primary ms-auto">
@@ -162,7 +162,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 
@@ -327,7 +327,7 @@
                         <h5 class="mb-1">เคสที่ช่วยเหลือเร็วที่สุด {{count($data_sos_fastest_5)}} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
-                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        <div class="text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{ url('/dashboard_viisos_3_topic') }}">ดูข้อมูลเพิ่มเติม</a>
@@ -377,7 +377,7 @@
                         }
                     @endphp
 
-                    <div class="d-flex align-items-center py-3 border-bottom cursor-pointer">
+                    <div class="d-flex align-items-center py-3 border-bottom ">
                         <div class="product-img me-2">
                             @if ($fastest_5_user == "no_helper_id")
                                 <img src="{{ asset('/Medilab/img/icon.png') }}">
@@ -497,7 +497,7 @@
                         <h5 class="mb-1">เคสที่ช่วยเหลือช้าที่สุด {{count($data_sos_slowest_5)}} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
-                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        <div class=" text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{ url('/dashboard_viisos_3_topic') }}">ดูข้อมูลเพิ่มเติม</a>
@@ -547,7 +547,7 @@
                         }
                     @endphp
 
-                    <div class="d-flex align-items-center py-3 border-bottom cursor-pointer">
+                    <div class="d-flex align-items-center py-3 border-bottom">
                         <div class="product-img me-2">
                            @if ($slowest_5_user == "no_helper_id")
                                 <img src="{{ asset('/Medilab/img/icon.png') }}">
@@ -668,7 +668,7 @@
                         <h5 class="mb-1">คะแนนผู้ช่วยเหลือสูงสุด {{count($data_sos_score_best_5)}} อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
-                        <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
+                        <div class=" text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{ url('/dashboard_viisos_3_topic') }}">ดูข้อมูลเพิ่มเติม</a>
@@ -686,20 +686,18 @@
                             $score_best_5_user = "no_helper_id";
                         }
                     @endphp
-                    <div class="d-flex align-items-center py-3 border-bottom cursor-pointer">
+                    <div class="d-flex align-items-center py-3 border-bottom ">
                         <div class="product-img me-2">
-                             @if ($score_best_5_user == "no_helper_id")
+                            @if ($score_best_5_user == "no_helper_id")
                                 <img src="{{ asset('/Medilab/img/icon.png') }}">
-                            @endif
-                            @if(!empty($score_best_5_user->avatar) && empty($score_best_5_user->photo))
+                            @elseif(!empty($score_best_5_user->avatar) && empty($score_best_5_user->photo))
                                 <img src="{{ $score_best_5_user->avatar }}">
-                            @endif
-                            @if(!empty($score_best_5_user->photo))
+                            @elseif(!empty($score_best_5_user->photo))
                                 <img src="{{ url('storage') }}/{{ $score_best_5_user->photo }}">
-                            @endif
-                            @if(empty($score_best_5_user->avatar) && empty($score_best_5_user->photo))
+                            @elseif(empty($score_best_5_user->avatar) && empty($score_best_5_user->photo))
                                 <img src="{{ asset('/Medilab/img/icon.png') }}">
                             @endif
+
                         </div>
                         <div class="">
                             <h6 class="mb-0 font-14">{{ $score_best_5->helper ? $score_best_5->helper : "--"}}</h6>

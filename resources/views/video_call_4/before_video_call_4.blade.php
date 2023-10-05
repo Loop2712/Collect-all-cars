@@ -5,6 +5,12 @@
 <link href="https://kit-pro.fontawesome.com/releases/v6.4.2/css/pro.min.css" rel="stylesheet">
 
 <style>
+
+    /* .text_warning_fade_out {
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    } */
+
     /* .video_preview{
         min-height: 20vh;
         height: 100%;
@@ -121,34 +127,22 @@
     }
 
     /*==============  เสียง ลำโพลง CSS ==================*/
-
-    /* เส้นของหลอดเสียง */
-    .sound-indicator {
+    .soundTest {
         width: 100px;
-        height: 10px;
-        background-color: #ccc;
-        position: relative;
-    }
-
-    /* หลอดเสียง */
-    .sound-bar {
-        width: 100%;
-        height: 100%;
-        background-color: #ffffff;
+        height: 15px;
+        border: 1px solid #525252;
+        border-radius: 5px;
         position: relative;
         overflow: hidden;
     }
 
-    /* อนิเมชันเสียง */
-    .sound-animation {
+    .soundMeter {
         width: 0;
         height: 100%;
-        background-color: #2ca2da;
-        position: absolute;
-        animation: soundAnimation 0.2s linear infinite;
-        transform-origin: left center; /* ตั้งค่าจุดเริ่มต้นของการขยับ */
-        opacity: 0.8;
+        background-color: rgb(92, 228, 99);
+        transition: width 0.1s ease-in-out;
     }
+
 
     @keyframes soundAnimation {
         0% {
@@ -167,14 +161,20 @@
 <div class="container-before-video-call">
     <div class="nav-bar-video-call">
         <img src="{{ asset('/img/logo/logo-viicheck-outline.png') }}" alt="">
+        <div id="myAlert" class="alert alert-warning alert-dismissible fade" role="alert" style="display: none;">
+            <strong>จำนวนคนในห้องสูงสุดแล้ว
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
     <div class="main-content-video-call">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-8 ">
                 <div class="div-video">
                     <video id="videoDiv" class="video_preview" autoplay></video>
-                    <div class="soundTest">
-                        Sound Test
+                    <div id="soundTest" class="soundTest">
+                        <div class="soundMeter"></div>
                     </div>
                     <div class="buttonDiv d-none">
                         <button id="toggleCameraButton" class="toggleCameraButton mr-3 btn"></button>
@@ -198,72 +198,25 @@
                 </div>
             </div>
             <div class="col-12 col-sm-12 col-md-4  d-flex justify-content-center p-3 align-items-center">
-                <div class="text-center w-100">
+                <div id="before_join_message" class="text-center w-100">
                     <h4 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h4>
-                     <h5 class="w-100">{{Auth::user()->name}}</h5>
-                     <a id="btnJoinRoom" class="btn btn-success" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}">
-                        เข้าร่วมห้องสนทนา
-                     </a>
+                    <h5 class="w-100">{{Auth::user()->name}}</h5>
+                    @php
+                        $inRoomPeople = 4;
+                    @endphp
+                    @if ($inRoomPeople < 4)
+                        <a id="btnJoinRoom" class="btn btn-success" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
+                            เข้าร่วมห้องสนทนา
+                        </a>
+                    @else
+                        <a id="btnJoinRoom" class="btn btn-success" onclick="AlertPeopleInRoom()">เข้าร่วมห้องสนทนา</a>
+                    @endif
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- เปลี่ยนคลาสของ .video-container เพื่อแสดงตามจำนวนคนที่คุณมี -->
-<!-- <div id="container" class="container ">
-    <div class="col-12 p-2 d-flex justify-content-center">
-        <span class="font-30 font-weight-bold align-middle ">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</span>
-    </div>
-    <div class="row mt-2 p-2 d-flex justify-content-center">
-        <div class="row mt-2 p-2">
-            <div class="col-sm-12 col-md-8 col-lg-8" style="position: relative;">
-                <video id="videoDiv" class="video_preview" autoplay></video>
-                {{-- <div id="video_preview" class="bg-secondary video_preview"></div> --}}
-                <div class="buttonDiv d-none">
-                    <button id="toggleCameraButton" class="toggleCameraButton mr-3"></button>
-                    <button id="toggleMicrophoneButton" class="toggleMicrophoneButton"></button>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-4">
-                <div class="d-flex justify-content-end">
-                    <a id="btnJoinRoom" href="{{ url('/video_call_4/video_call_4' . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}"
-                        class="col-12 btn btn-info" style="font-size: 1rem;">เข้าร่วมห้องสนทนา</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row d-none">
-        <div class="selectDivice mt-2 p-2 ">
-            <div>
-                <label for="microphoneList">เลือกไมโครโฟน:</label>
-                <select id="microphoneList"></select>
-            </div>
-            <div>
-                <label for="cameraList">เลือกกล้อง:</label>
-                <select id="cameraList"></select>
-            </div>
-            <div>
-                <label for="speakerList">เลือกลำโพง:</label>
-                <select id="speakerList"></select>
-            </div>
-
-            <div>
-                <div id="microphoneMeter" class="meter"></div>
-                <label for="microphoneMeter">ไมค์:</label>
-            </div>
-            <div>
-                <div id="speakerMeter" class="meter"></div>
-                <label for="speakerMeter">ลำโพง:</label>
-            </div>
-
-            <button id="startButton">เริ่มใช้งาน</button>
-            <button id="stopButton" style="display: none;">หยุดใช้งาน</button>
-        </div>
-    </div>
-
-</div> -->
-
 
 <script src="{{ asset('js/for_video_call_4/before_video_call_4.js') }}"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
@@ -278,118 +231,46 @@
     var useSpeaker = '';
     var useCamera = '';
 
+    var audioTracks = ''; // สำหรับเก็บ tag เสียงแบบ global
     var appId = '{{ $appId }}';
     var appCertificate = '{{ $appCertificate }}';
     var sos_id = '{{ $sos_id }}'
     var consult_doctor_id = '{{ $consult_doctor_id }}'
+
+    var selectedMicrophone = null;
+    var selectedCamera = null;
+    var selectedSpeaker = null;
+    var microphoneStream = null;
+    var cameraStream = null;
+    var speakerStream = null;
 </script>
 
 <script>
     document.addEventListener("DOMContentLoaded", async () => {
+
         const microphoneList = document.getElementById("microphoneList");
         const cameraList = document.getElementById("cameraList");
-        // const speakerList = document.getElementById("speakerList");
-        // const startButton = document.getElementById("startButton");
-        const soundTest = document.getElementById("soundTest");
-        const stopButton = document.getElementById("stopButton");
-        let selectedMicrophone = null;
-        let selectedCamera = null;
-        let selectedSpeaker = null;
-        let microphoneStream = null;
-        let cameraStream = null;
-        let speakerStream = null;
+
+
+        startMicrophone();
+
+        // fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_1669_id=" + sos_1669_id)
+        // .then(response => response.json())
+        // .then(result => {
+        //     // console.log('check_user_in_room');
+        //     // console.log(result);
+        //     // console.log('-------------------------------------');
+
+        //     if(result['data'] != 'ไม่มีข้อมูล'){
+        //         console.log(result['data']);
+        //     }else{
+        //         console.log(result['data_agora']);
+        //     }
+
+        // });
 
         // เรียกฟังก์ชันเพื่อรับรายการอุปกรณ์
         await getDeviceList();
-
-        // // เมื่อคลิกที่ปุ่ม "เริ่มใช้งาน"
-        // startButton.addEventListener("click", async () => {
-        //     if (selectedMicrophone || selectedCamera || selectedSpeaker) {
-        //         try {
-        //             if (selectedMicrophone) {
-        //                 microphoneStream = await navigator.mediaDevices.getUserMedia({
-        //                     audio: { deviceId: selectedMicrophone.deviceId },
-        //                 });
-        //             }
-
-        //             if (selectedCamera) {
-        //                 cameraStream = await navigator.mediaDevices.getUserMedia({
-        //                     video: { deviceId: selectedCamera.deviceId },
-        //                 });
-        //             }
-
-        //             if (selectedSpeaker) {
-        //                 const audioContext = new AudioContext();
-        //                 const destination = audioContext.createMediaStreamDestination();
-        //                 const audioTracks = destination.stream.getAudioTracks();
-        //                 audioTracks[0].stop();
-
-        //                 speakerStream = destination.stream;
-        //             }
-
-        //             // ปิดปุ่มเริ่มใช้งานและเปิดปุ่มหยุดใช้งาน
-        //             startButton.style.display = "none";
-        //             stopButton.style.display = "inline-block";
-        //         } catch (error) {
-        //             console.error("เกิดข้อผิดพลาดในการเปิดอุปกรณ์:", error);
-        //         }
-        //     }
-        // });
-
-         // เมื่อคลิกที่ปุ่ม "เริ่มใช้งาน"
-        // startButton.addEventListener("click", async () => {
-        //     if (selectedMicrophone || selectedSpeaker) {
-        //         try {
-        //             if (selectedMicrophone) {
-        //                 microphoneStream = await navigator.mediaDevices.getUserMedia({
-        //                     audio: { deviceId: selectedMicrophone.deviceId },
-        //                 });
-        //                 setupAudioMeter(microphoneStream, microphoneMeter);
-        //             }
-
-        //             if (selectedSpeaker) {
-        //                 const audioContext = new AudioContext();
-        //                 const destination = audioContext.createMediaStreamDestination();
-        //                 const audioTracks = destination.stream.getAudioTracks();
-        //                 audioTracks[0].stop();
-
-        //                 speakerStream = destination.stream;
-        //                 setupAudioMeter(speakerStream, speakerMeter);
-        //             }
-
-        //             // ปิดปุ่มเริ่มใช้งานและเปิดปุ่มหยุดใช้งาน
-        //             startButton.style.display = "none";
-        //             stopButton.style.display = "inline-block";
-        //         } catch (error) {
-        //             console.error("เกิดข้อผิดพลาดในการเปิดอุปกรณ์:", error);
-        //         }
-        //     }
-        // });
-
-        // // เมื่อคลิกที่ปุ่ม "หยุดใช้งาน"
-        // stopButton.addEventListener("click", () => {
-        //     if (microphoneStream) {
-        //         microphoneStream.getTracks().forEach((track) => {
-        //             track.stop();
-        //         });
-        //     }
-
-        //     if (cameraStream) {
-        //         cameraStream.getTracks().forEach((track) => {
-        //             track.stop();
-        //         });
-        //     }
-
-        //     if (speakerStream) {
-        //         speakerStream.getTracks().forEach((track) => {
-        //             track.stop();
-        //         });
-        //     }
-
-        //     // ปิดปุ่มหยุดใช้งานและเปิดปุ่มเริ่มใช้งาน
-        //     startButton.style.display = "inline-block";
-        //     stopButton.style.display = "none";
-        // });
 
         // รับรายการอุปกรณ์และแสดงใน dropdown
         async function getDeviceList() {
@@ -422,6 +303,7 @@
                 microphoneList.addEventListener("change", () => {
                     selectedMicrophone = devices.find((device) => device.deviceId === microphoneList.value);
                     console.log(selectedMicrophone);
+
                     updateMicrophone(selectedMicrophone); // เรียกใช้ฟังก์ชันเพื่ออัปเดตไมโครโฟน
 
                 });
@@ -481,26 +363,31 @@
 
         // อัปเดตไมโครโฟนที่ใช้งาน
         function updateMicrophone(selectedMicrophone) {
+            console.log("เข้า updateMicrophone");
             if(selectedMicrophone){
                 useMicrophone = selectedMicrophone.deviceId;
                 document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
-
             }else{
                 document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
-
             }
-            console.log(useMicrophone);
+            console.log("เข้า updateMicrophone");
 
-            let microphoneElement = document.createElement('audio');
-                microphoneElement.id = 'microphoneElement';
-
-            microphoneElement.setSinkId(selectedMicrophone.deviceId)
-                .then(function () {
+            // ใช้ getMediaUser() เพื่อกำหนดไมโครโฟนที่ถูกเลือก
+            navigator.mediaDevices.getUserMedia({ audio: { deviceId: selectedMicrophone.deviceId } })
+                .then(function (stream) {
+                    // ตั้งค่าการใช้งานไมโครโฟนใน element audio
+                    audioTracks = stream;
                     console.log('ไมโครโฟนถูกอัปเดตเป็น: ' + selectedMicrophone.label);
+
                 })
                 .catch(function (error) {
                     console.error('เกิดข้อผิดพลาดในการอัปเดตไมโครโฟน:', error);
                 });
+
+                if(statusMicrophone == "open"){
+                    startMicrophone(selectedMicrophone);
+                }
+
         }
 
         // อัปเดตลำโพงที่ใช้งาน
@@ -525,27 +412,6 @@
                 });
         }
 
-        // // กำหนดตัววัดเสียง
-        // function setupAudioMeter(stream, meter) {
-        //     const audioContext = new AudioContext();
-        //     const analyser = audioContext.createAnalyser();
-        //     const source = audioContext.createMediaStreamSource(stream);
-        //     source.connect(analyser);
-
-        //     analyser.fftSize = 256;
-        //     const bufferLength = analyser.frequencyBinCount;
-        //     const dataArray = new Uint8Array(bufferLength);
-
-        //     function updateMeter() {
-        //         analyser.getByteFrequencyData(dataArray);
-        //         const volume = dataArray.reduce((acc, val) => acc + val, 0) / bufferLength;
-        //         const percentage = Math.min(100, volume * 2); // การแปลงค่าให้อยู่ในช่วง 0-100
-        //         meter.style.width = `${percentage}%`;
-        //         requestAnimationFrame(updateMeter);
-        //     }
-
-        //     updateMeter();
-        // }
 
     });
 
@@ -596,62 +462,10 @@
 
     //=============================================================================================
 
-    // ฟังก์ชันสำหรับอัปเดตอนิเมชันของหลอดเสียง
-    function updateSoundAnimation() {
-        const audioElement = document.getElementById('audioElement');
-        const soundAnimation = document.querySelector('.sound-animation');
-
-        // คำนวณความดังเสียงของลำโพง (ระหว่าง 0 ถึง 1)
-        const volume = audioElement.volume;
-        console.log(volume);
-        // ปรับขนาดอนิเมชันตามความดังของเสียง
-        soundAnimation.style.transform = `scaleX(${volume})`;
-    }
-
-    // เมื่อเริ่มเล่นเสียง
-    // document.getElementById('audioElement').addEventListener('click', function () {
-    //     // อัปเดตอนิเมชันของหลอดเสียงเมื่อมีการเปิดเสียง
-    //     document.querySelector('#audioElement_btn').innerHTML = '<i class="fa-regular fa-circle-stop"></i>';
-
-    //     let audio_ringtone_join = new Audio("{{ asset('sound/join_room_1.mp3') }}");
-    //     audio_ringtone_join.play();
-
-    //     audio_ringtone_join.onended = function() {
-    //         document.querySelector('#audioElement_btn').innerHTML = '<i class="fa-regular fa-circle-play"></i>';
-    //     }
-
-    //     // updateSoundAnimation();
-    // });
-
-    // // เมื่อเปลี่ยนระดับเสียง
-    // document.getElementById('audioElement').addEventListener('volumechange', function () {
-    //     // อัปเดตอนิเมชันของหลอดเสียงเมื่อมีการเปลี่ยนระดับเสียง
-    //     updateSoundAnimation();
-    // });
-
-    // // โหลดค่าเริ่มต้น
-    // updateSoundAnimation();
-
-
 </script>
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-
-        // fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_1669_id=" + sos_1669_id)
-        // .then(response => response.json())
-        // .then(result => {
-        //     // console.log('check_user_in_room');
-        //     // console.log(result);
-        //     // console.log('-------------------------------------');
-
-        //     if(result['data'] != 'ไม่มีข้อมูล'){
-        //         console.log(result['data']);
-        //     }else{
-        //         console.log(result['data_agora']);
-        //     }
-
-        // });
 
         var CameraRetries = 0; // ตัวแปรเก็บจำนวนครั้งที่เรียกใช้งานกล้อง
         var MicrophoneRetries = 0; // ตัวแปรเก็บจำนวนครั้งที่เรียกใช้งานไมค์videoDiv
@@ -811,38 +625,55 @@
             statusMicrophone = "close"; // เซ็ต statusMicrophone เป็น close
             document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
-
             navigator.mediaDevices.getUserMedia({ audio: true })
             .then(function(audioStream) {
 
                 // ปิดไมค์
-                let audioTracks = audioStream.getAudioTracks();
-                console.log("audioStream");
-                console.log(audioStream);
+                audioTracks = audioStream.getAudioTracks();
+                // console.log("audioStream");
+                // console.log(audioStream);
 
-                audioTracks[0].stop();
+                // ปิดทุก audio track ใน audioStream
+                for (const track of audioTracks) {
+                    track.stop();
+                }
 
                 document.querySelector('#toggleMicrophoneButton').classList.add('active');
                 document.querySelector('#toggleMicrophoneButton').innerHTML = '<i style="font-size: 25px;" class="fa-regular fa-microphone-slash"></i>'
                 // console.log('ปิดไมค์');
 
             })
+
+            //ปิดตัวทดสอบเสียง
+            stopMicrophone();
         }else{
             statusMicrophone = "open"; // เซ็ต statusMicrophone เป็น open
             document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
+            let constraints = selectedMicrophone;
+            let audioSelect;
+            if(constraints){
+                audioSelect = { video: { deviceId: constraints.deviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+            }else{
+                audioSelect = { video: true, }; // เลือกอุปกรณ์ที่ถูกเลือก
+            }
 
-            navigator.mediaDevices.getUserMedia({ audio: true })
+
+            navigator.mediaDevices.getUserMedia(audioSelect)
             .then(function(newAudioStream) {
-                audioStream = newAudioStream;
+                audioTracks = newAudioStream;
                 document.querySelector('#toggleMicrophoneButton').classList.remove('active');
                 document.querySelector('#toggleMicrophoneButton').innerHTML = '<i style="font-size: 25px;" class="fa-regular fa-microphone"></i>'
-                // console.log('เปิดสตรีมไมโครโฟน');
-                console.log(audioStream);
+                console.log('เปิดสตรีมไมโครโฟน');
+                console.log(audioTracks);
+
             })
             .catch(function(error) {
                 console.error('เกิดข้อผิดพลาดในการเข้าถึงไมโครโฟน:', error);
             });
+
+            //ปิดตัวทดสอบเสียง
+            startMicrophone(constraints);
         }
         setTimeout(() => {
             console.log(statusMicrophone);
@@ -851,10 +682,75 @@
 
         }, 1000);
     }
+
 </script>
 
+<script>
+    const soundTest = document.getElementById("soundTest");
+    const soundMeter = document.querySelector('.soundMeter');
 
+    let mediaStream;
+    // เริ่มการเข้าถึงไมโครโฟน
+    async function startMicrophone(selectedMicrophone) {
+        try {
+            let constraints;
+            if(selectedMicrophone){
+                constraints = {
+                    audio: { deviceId: selectedMicrophone.deviceId },
+                };
+            }else{
+                constraints = {
+                    audio: true, // ใช้อุปกรณ์เสียงปัจจุบันของผู้ใช้
+                };
+            }
 
+            mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
+            let audioContext = new AudioContext();
+            let microphone = audioContext.createMediaStreamSource(mediaStream);
+            let analyser = audioContext.createAnalyser();
+            microphone.connect(analyser);
+
+            // ตั้งค่า AnalyserNode เพื่อวัดความดัง
+            analyser.fftSize = 256;
+            let bufferLength = analyser.frequencyBinCount;
+            let dataArray = new Uint8Array(bufferLength);
+
+            // อัปเดต animation บนหน้าเว็บด้วยค่าความดัง
+            function updateAnimation() {
+                analyser.getByteFrequencyData(dataArray);
+                let averageVolume = dataArray.reduce((a, b) => a + b, 0) / bufferLength;
+                updateSoundMeter(averageVolume);
+                requestAnimationFrame(updateAnimation);
+            }
+
+            updateAnimation();
+        } catch (error) {
+            console.error('เกิดข้อผิดพลาดในการเริ่มต้นไมโครโฟน:', error);
+        }
+    }
+
+    // const soundMeter = document.querySelector('.soundMeter');
+
+        // หยุดการเข้าถึงไมโครโฟน
+    function stopMicrophone(selectedMicrophone) {
+        console.log("เข้า stopMicrophone มาแล้ว");
+        if (mediaStream) {
+            mediaStream.getTracks().forEach(track => track.stop());
+        }
+        soundMeter.style.width = '0';
+    }
+
+    // หยุดการเข้าถึงไมโครโฟนเมื่อหน้าเว็บปิด
+    window.addEventListener('beforeunload', stopMicrophone);
+
+    // Function to update the sound meter animation based on microphone input
+    function updateSoundMeter(volume) {
+        const maxWidth = soundTest.clientWidth;
+        const newWidth = (volume / 100) * maxWidth;
+        soundMeter.style.width = `${newWidth}px`;
+    }
+
+</script>
 
 {{-- <script>
     // ตรวจสอบอุปกรณ์ที่ใช้งาน
@@ -873,6 +769,33 @@
         return "PC";
     }
 </script> --}}
+
+<script>
+
+    let beforeJoinMessage = document.getElementById('before_join_message');
+    function AlertPeopleInRoom() {
+        console.log("AlertPeopleInRoom");
+
+        if (!document.querySelector('.text_warning_fade_out')) {
+            // ถ้าไม่มีให้สร้าง element ใหม่
+            let aElement = document.createElement('a');
+            aElement.setAttribute('class', 'text-danger text_warning_fade_out d-block');
+            aElement.textContent = 'ห้องสนทนานี้มีผู้ใช้สูงสุดแล้ว';
+
+            beforeJoinMessage.insertAdjacentElement('beforeend', aElement);
+
+            setTimeout(() => {
+                aElement.remove(); // ลบ element ที่ถูกสร้างขึ้น
+            }, 3000);
+        }
+
+
+    }
+
+
+</script>
+
+
 
 
 
