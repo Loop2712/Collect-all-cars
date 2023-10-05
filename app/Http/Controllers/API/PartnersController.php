@@ -1165,6 +1165,7 @@ class PartnersController extends Controller
     function view_map_officer_all(){
 
         $data_area = Data_1669_officer_command::where('area' , "!=" , null)
+            ->select('area')
             ->groupBy('area')
             ->orderBy('area' , 'ASC')
             ->get();

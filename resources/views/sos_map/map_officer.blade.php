@@ -48,7 +48,7 @@
     	padding: 20px;
     	border-radius: 15px;
     	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
-    	animation: moveAnimation_down 1.5s linear forwards;
+    	animation: moveAnimation_down 1s linear forwards;
     }
 
     @keyframes moveAnimation_down {
@@ -56,13 +56,13 @@
 	    	bottom: 1%;
 	  	}
 	  	100% {
-	    	bottom: -50%;
+	    	bottom: -100%;
 	  	}
 	}
 
 	@keyframes moveAnimation_up {
 	  	0% {
-	    	bottom: -50%;
+	    	bottom: -100%;
 	  	}
 	  	100% {
 	    	bottom: 1%;
@@ -70,11 +70,11 @@
 	}
 
 	.btn_show_menu_up{
-    	animation: moveAnimation_up 1.5s linear forwards;
+    	animation: moveAnimation_up 0.5s linear forwards;
 	}
 
 	.btn_show_menu_down{
-    	animation: moveAnimation_down 1.5s linear forwards;
+    	animation: moveAnimation_down 1s linear forwards;
 	}
 
 
@@ -104,14 +104,17 @@
 		<div class="tab-content">
 			<div class="tab-content">
 				<div class="tab-pane fade" id="tab_content_1" role="tabpanel">
-					<div class="mb-4">
-						<h4 class="card-title">MENU 1 </h4>
-						<h4 class="card-title">MENU 1 </h4>
-						<h4 class="card-title">MENU 1 </h4>
-						<h4 class="card-title">MENU 1 </h4>
-						<h4 class="card-title">MENU 1 </h4>
-						<h4 class="card-title">MENU 1 </h4>
+					<div>
+						<h4 class="card-title"><b>{{ $data_sos_map->title_sos }}</b></h4>
 					</div>
+					<hr style="width: 65%;border: red solid 0.5px;color: #fff;">
+					<p class="card-text" style="font-size:20px;">
+						@if($data_sos_map->title_sos_other)
+							{{ $data_sos_map->title_sos_other }}
+						@else
+							ไม่มีการเพิ่มข้อมูล
+						@endif
+					</p>
 				</div>
 				<div class="tab-pane fade active show" id="tab_content_2" role="tabpanel">
 					<button type="button" class="btn btn-warning main-shadow main-radius" style="width:100%;font-size: 20px;">
@@ -119,8 +122,22 @@
 					</button>
 				</div>
 				<div class="tab-pane fade" id="tab_content_3" role="tabpanel">
-					<div class="mb-4">
-						<h4 class="card-title">MENU 3</h4>
+					@php
+						$lat_gg = '@' . $data_sos_map->lat ;
+					@endphp
+					<a href="https://www.google.co.th/maps/dir//{{ $data_sos_map->lat }},{{ $data_sos_map->lng }}/{{ $lat_gg }},{{ $data_sos_map->lng }},16z" type="button" class="btn btn-danger main-shadow main-radius" style="width:100%;font-size: 20px;" target="bank">
+						<i class="fa-solid fa-map-location-dot"></i> Google Map
+					</a>
+					<br>
+					<div class="row mt-3">
+						<div class="col">
+							<h5>ระยะทาง</h5>
+							<b id="text_distance"></b>
+						</div>
+						<div class="col">
+							<h5>ถึงเวลาประมาณ</h5>
+							<b id="text_duration"></b>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -203,8 +220,8 @@
 	var sos_lat = "{{ $data_sos_map->lat }}" ;
     var sos_lng = "{{ $data_sos_map->lng }}" ;
 
-	const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
-	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
+	const image_sos = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}";
+	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/7.png') }}";
 
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
@@ -298,12 +315,12 @@
 
 	            // ระยะทาง
 	            let text_distance = response.routes[0].legs[0].distance.text ;
-	            	console.log("text_distance >> " + text_distance);
-	            // document.querySelector('#text_distance').innerHTML = text_distance ;
+	            	// console.log("text_distance >> " + text_distance);
+	            document.querySelector('#text_distance').innerHTML = text_distance ;
 	            // เวลาถึงโดยประมาณ func_arrivalTime ==> อยู่หน้า theme ทั้ง viicheck และ partner
                 let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value) ;
-                	console.log("text_arrivalTime >> " + text_arrivalTime);
-                // document.querySelector('#text_duration').innerHTML = text_arrivalTime ;
+                	// console.log("text_arrivalTime >> " + text_arrivalTime);
+                document.querySelector('#text_duration').innerHTML = text_arrivalTime ;
 
                 steps_travel = response.routes[0].legs[0].steps;
 
