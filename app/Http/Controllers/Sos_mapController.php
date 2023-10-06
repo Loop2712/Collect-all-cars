@@ -909,10 +909,31 @@ class Sos_mapController extends Controller
 
     }
 
+    function update_location_officer(Request $request)
+    {
+        $requestData = $request->all();
+
+        DB::table('users')
+            ->where([ 
+                    ['id', $requestData['officer_id'] ],
+                ])
+            ->update([
+                'lat' => $requestData['officer_lat'],
+                'lng' => $requestData['officer_lng'],
+            ]);
+
+        $data_sos_map = Sos_map::where('id' , $requestData['sos_map_id'])->select('user_id')->first();
+        $data_user = User::where('id' , $data_sos_map->user_id)->select('lat' , 'lng')->first();
+
+        return $data_user ;
+
+    }
+
     function user_view_officer($id_sos_map){
-        echo "<h1>user_view_officer</h1>";
-        echo "<br>";
-        echo $id_sos_map;
+
+        $data_sos_map = Sos_map::where('id' , $id_sos_map)->first();
+
+        return view('sos_map.user_view_officer', compact('data_sos_map'));
     }
 
     function report_repair($id_sos_map){

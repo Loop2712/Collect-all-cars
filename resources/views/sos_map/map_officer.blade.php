@@ -206,7 +206,7 @@
 					<div class="card-title d-flex align-items-center">
 						<h4 class="card-title">
 							<b>
-								<span class="mb-0 text-danger"> <i class="fa-solid fa-circle-info me-1 font-22 text-danger "></i> {{ $data_sos_map->title_sos }}เหตุด่วนเหตุร้าย </span>
+								<span class="mb-0 text-danger"> <i class="fa-solid fa-circle-info me-1 font-22 text-danger "></i> {{ $data_sos_map->title_sos }} </span>
 							</b>
 						</h4>
 					</div>
@@ -220,9 +220,29 @@
 					</p>
 				</div>
 				<div class="tab-pane fade active show" id="tab_content_2" role="tabpanel">
-					<button type="button" class="btn btn-warning main-shadow main-radius" style="width:100%;font-size: 20px;border-radius: 50px;">
-						<i class="fa-solid fa-location-crosshairs"></i> ถึงที่เกิดเหตุ
-					</button>
+
+					@switch($data_sos_map->status)
+					    @case('กำลังไปช่วยเหลือ')
+					        <button type="button" class="btn btn-warning main-shadow main-radius" style="width:100%;font-size: 20px;border-radius: 50px;" onclick="update_status('ถึงที่เกิดเหตุ');">
+								<i class="fa-solid fa-location-crosshairs"></i> ถึงที่เกิดเหตุ
+							</button>
+					    @break
+					    @case('ถึงที่เกิดเหตุ')
+					        <button type="button" class="btn btn-warning main-shadow main-radius" style="width:100%;font-size: 20px;border-radius: 50px;" onclick="update_status('ออกจากที่เกิดเหตุ');">
+								<i class="fa-solid fa-location-crosshairs"></i> ออกจากที่เกิดเหตุ
+							</button>
+					    @break
+					    @case('ออกจากที่เกิดเหตุ')
+					        <button type="button" class="btn btn-warning main-shadow main-radius" style="width:100%;font-size: 20px;border-radius: 50px;" onclick="update_status('เสร็จสิ้น');">
+								<i class="fa-solid fa-location-crosshairs"></i> เสร็จสิ้น
+							</button>
+					    @break
+					@endswitch
+
+					@if($data_sos_map->status == "ออกจากที่เกิดเหตุ")
+						<textarea class="form-control mt-3" id="remark_status" name="remark_status" rows="3" placeholder="ระบุหมายเหตุ เช่น ส่งต่อหน่วยงานที่เกี่ยวข้อง"></textarea>
+					@endif
+					
 				</div>
 				<div class="tab-pane fade" id="tab_content_3" role="tabpanel">
 					@php
@@ -234,12 +254,12 @@
 						<div class="col text-center">
 							<i class="fa-regular fa-map-location-dot text-danger mb-2" style="font-size: 2rem;"></i>
 							<h6 style="color:#a4a4a4;">ระยะทาง</h6>
-							<h4 id="text_distance">22 กม.</h4>
+							<h4 id="text_distance"></h4>
 						</div>
 						<div class="col text-center">
 							<i class="fa-solid fa-timer text-danger mb-2" style="font-size: 2rem;"></i>
 							<h6 style="color:#a4a4a4;">ถึงเวลา</h6>
-							<h4 id="text_duration">14.00 น.</h4>
+							<h4 id="text_duration"></h4>
 						</div>
 						<div class="col">
 							<a href="https://www.google.co.th/maps/dir//{{ $data_sos_map->lat }},{{ $data_sos_map->lng }}/{{ $lat_gg }},{{ $data_sos_map->lng }},16z" type="button" class="btn btn-danger main-shadow main-radius d-flex align-items-center" style="width:100%;font-size: 14px;border-radius: 10px;height: 100%;" target="bank">
@@ -440,6 +460,14 @@
 			zoom: 15
 		});
 
+		create_marker(sos_lat , sos_lng , start_officer_lat , start_officer_lng);
+
+		loop_check_marker();
+		
+	}
+
+	function create_marker(sos_lat , sos_lng , start_officer_lat , start_officer_lng){
+
 		// หมุดที่เกิดเหตุ 
 		if (sos_marker) {
 			sos_marker.setMap(null);
@@ -468,9 +496,69 @@
 
 		// สร้างเส้นทาง
 		// get_Directions_API(officer_marker, sos_marker);
-		// SET หมุดเจ้าหน้าที่
-		// set_watchPosition_officer_marker();
 
+	}
+
+	let reface_loop_check_marker ;
+
+	function loop_check_marker(){
+
+		reface_loop_check_marker = setInterval(function() {
+        	if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(update_location_officer);
+			} else {
+				// x.innerHTML = "Geolocation is not supported by this browser.";
+			}
+        }, 15000);
+
+	}
+
+	function Stop_reface_loop_check_marker() {
+        clearInterval(reface_loop_check_marker);
+    }
+
+	function update_location_officer(position){
+
+		let officer_lat = position.coords.latitude;
+		let officer_lng = position.coords.longitude;
+
+		console.log("officer_lat >> " + officer_lat);
+		console.log("officer_lng >> " + officer_lng);
+
+        let data_arr = [] ;
+
+        data_arr = {
+	        "sos_map_id" : "{{ $data_sos_map->id }}",
+	        "officer_id" : "{{ Auth::user()->id }}",
+	        "officer_lat" : officer_lat,
+	        "officer_lng" : officer_lng,
+	    }; 
+
+        fetch("{{ url('/') }}/api/sos_map/update_location_officer", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.json();
+        }).then(function(data){
+            console.log(data);
+
+            if(data){
+            	create_marker(data['lat'] , data['lng'] , officer_lat , officer_lng)
+            }
+
+        }).catch(function(error){
+            // console.error(error);
+        });
+
+	}
+
+	function update_status(status){
+
+        console.log(status);
+        
 	}
 
 	// <!-- --------------- ระยะทาง(เสียเงิน) --------------- -->

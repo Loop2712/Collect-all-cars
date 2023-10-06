@@ -179,6 +179,8 @@ Route::get('/check_notified_js100','API\PartnersController@check_notified_js100'
 Route::get('/update_new_sos_js100/{is_sos_map}','API\PartnersController@update_new_sos_js100');
 Route::get('/admin_click/{all_or_id}','API\PartnersController@admin_click');
 
+Route::post('/sos_map/update_location_officer','Sos_mapController@update_location_officer');
+
 Route::get('/check_sos_alarm/{check_name_partner}','API\PartnersController@check_sos_alarm');
 Route::get('/check_sos_alarm/notify/{check_name_partner}','API\PartnersController@check_sos_alarm_notify');
 
