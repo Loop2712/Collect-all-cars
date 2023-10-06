@@ -1573,31 +1573,22 @@
                                             <div>
                                                 {{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }} &nbsp;&nbsp;{{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}
 
-                                                @if($item->status == "เสร็จสิ้น")
-                                                    <br>
-                                                    <span class="btn btn-success main-shadow main-radius float-end mt-3">
-                                                        ส่งข้อมูล
-                                                    </span>
-                                                @endif
-
-                                                @if( Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '4' || Auth::user()->id == '11003429' )
-                                                    <br>
-                                                    <span class="btn btn-danger main-shadow main-radius float-end mt-3" onclick="delete_case('{{ $item->id }}');">
-                                                        ลบเคสนี้
-                                                    </span>
-                                                    <script>
-                                                        function delete_case(sos_id){
-                                                            fetch("{{ url('/') }}/api/delete_case" + "?sos_id=" + sos_id )
-                                                                .then(response => response.text())
-                                                                .then(result => {
-                                                                    // console.log(result);
-                                                                    if (result == "OK") {
-                                                                        window.location.reload();
-                                                                    }
-                                                                });
-                                                        }
-                                                    </script>
-                                                @endif
+                                                <br>
+                                                <span class="btn btn-danger main-shadow main-radius float-end mt-3" onclick="delete_case('{{ $item->id }}');">
+                                                    ลบเคสนี้
+                                                </span>
+                                                <script>
+                                                    function delete_case(sos_id){
+                                                        fetch("{{ url('/') }}/api/delete_case" + "?sos_id=" + sos_id )
+                                                            .then(response => response.text())
+                                                            .then(result => {
+                                                                // console.log(result);
+                                                                if (result == "OK") {
+                                                                    window.location.reload();
+                                                                }
+                                                            });
+                                                    }
+                                                </script>
                                             </div>
                                         </div>
                                     </a>
