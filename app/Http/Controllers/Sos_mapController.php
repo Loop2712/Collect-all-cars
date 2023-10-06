@@ -931,9 +931,9 @@ class Sos_mapController extends Controller
 
     function user_view_officer($id_sos_map){
 
-        $data_sos_map = Sos_map::where('id' , $id_sos_map)->first();
+        $data_sos = Sos_map::where('id' , $id_sos_map)->first();
 
-        return view('sos_map.user_view_officer', compact('data_sos_map'));
+        return view('sos_map.user_view_officer', compact('data_sos'));
     }
 
     function report_repair($id_sos_map){
