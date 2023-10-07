@@ -504,7 +504,8 @@
 		});
 
 		if(check_status != "เสร็จสิ้น"){
-			create_marker(sos_lat , sos_lng , start_officer_lat , start_officer_lng);
+			// create_marker(sos_lat , sos_lng , start_officer_lat , start_officer_lng);
+			navigator.geolocation.getCurrentPosition(update_location_officer);
 			loop_check_marker();
 		}
 		

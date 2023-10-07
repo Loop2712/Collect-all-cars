@@ -211,6 +211,8 @@ class Sos_mapController extends Controller
             $requestData['name_area']  = 'ชาลีกรุงเทพ' ;
         }
 
+        $requestData['status'] = "รับแจ้งเหตุ" ;
+
         Sos_map::create($requestData);
 
         $sos_map_latests = Sos_map::latest()->first();
