@@ -22,6 +22,9 @@ use App\Models\Sos_map_title;
 use App\User;
 use App\Http\Controllers\API\ImageController;
 
+use App\Http\Controllers\API\LineApiController;
+
+
 class Sos_mapController extends Controller
 {
     /**
@@ -229,10 +232,15 @@ class Sos_mapController extends Controller
         // exit();
 
         DB::table('users')
-              ->where('id', $requestData['user_id'])
-              ->update([
+            ->where([ 
+                    ['id', $requestData['user_id'] ],
+                ])
+            ->update([
+                'lat' => $requestData['lat'],
+                'lng' => $requestData['lng'],
                 'phone' => $requestData['phone'],
-          ]);
+            ]);
+
 
         switch ($requestData['content']) {
             case 'help_area':
@@ -887,7 +895,7 @@ class Sos_mapController extends Controller
 
     }
 
-    function check_tag_sos($id_sos_map){
+    function check_tag_sos($id_sos_map,$groupId){
 
         $data_sos_map = Sos_map::where('id',$id_sos_map)->first();
 
@@ -895,17 +903,17 @@ class Sos_mapController extends Controller
 
         if($data_sos_map->tag_sos_or_repair == 'tag_sos'){
             // ไปหน้า map เจ้าหน้าที่
-            return redirect("sos_map/tag_sos/map_officer" . "/" . $id_sos_map) ;
+            return redirect("sos_map/tag_sos/map_officer" . "/" . $id_sos_map . "/" . $groupId) ;
         }else{
-            return redirect("sos_map/report_repair" . "/" . $id_sos_map) ;
+            return redirect("sos_map/report_repair" . "/" . $id_sos_map . "/" . $groupId) ;
         }
     }
 
-    function map_officer($id_sos_map){
+    function map_officer($id_sos_map , $groupId){
 
         $data_sos_map = Sos_map::where('id',$id_sos_map)->first();
 
-        return view('sos_map.map_officer', compact('data_sos_map'));
+        return view('sos_map.map_officer', compact('data_sos_map','groupId'));
 
     }
 
@@ -929,6 +937,37 @@ class Sos_mapController extends Controller
 
     }
 
+    function update_status(Request $request)
+    {
+        $requestData = $request->all();
+
+        DB::table('sos_maps')
+            ->where([ 
+                    ['id', $requestData['sos_map_id'] ],
+                ])
+            ->update([
+                'status' => $requestData['status'],
+                'remark_status' => $requestData['remark_status'],
+            ]);
+
+        return "OK" ;
+
+    }
+
+    function help_complete(Request $request)
+    {
+        $requestData = $request->all();
+
+        $data_helpers = User::where('id' , $requestData["officer_id"])->first();
+
+        $event = [] ;
+        $event["source"]["userId"] = $data_helpers->provider_id;
+        $event["source"]["groupId"] = $requestData["groupId"]
+
+        $line = new LineApiController();
+        $line->check_help_complete_by_helper($event, 'help_complete', $requestData['sos_map_id']);
+    }
+
     function user_view_officer($id_sos_map){
 
         $data_sos = Sos_map::where('id' , $id_sos_map)->first();
@@ -936,7 +975,7 @@ class Sos_mapController extends Controller
         return view('sos_map.user_view_officer', compact('data_sos'));
     }
 
-    function report_repair($id_sos_map){
+    function report_repair($id_sos_map , $groupId){
 
         echo "<h1>report_repair</h1>";
 

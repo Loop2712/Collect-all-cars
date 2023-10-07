@@ -935,6 +935,7 @@ class LineApiController extends Controller
         $string_json = str_replace("TEXT_PHOTO_HELPER", $photo_helper,$string_json);
     
         $string_json = str_replace("id_sos_map",$data_sos_map->id,$string_json);
+        $string_json = str_replace("groupId",$groupId,$string_json);
         $string_json = str_replace("date",$date,$string_json);
         $string_json = str_replace("time",$time,$string_json);
         $string_json = str_replace("UTC", "UTC " . $utc,$string_json);
@@ -1327,12 +1328,34 @@ class LineApiController extends Controller
             
             $messages = [ json_decode($string_json, true) ];
 
+            // --- ตัวเก่าที่ กดเสร็จสิ้น จากกลุ่มไลน์ ---
+            // $body = [
+            //     "replyToken" => $event["replyToken"],
+            //     "messages" => $messages,
+            // ];
 
+            // $opts = [
+            //     'http' =>[
+            //         'method'  => 'POST',
+            //         'header'  => "Content-Type: application/json \r\n".
+            //                     'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+            //         'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+            //         //'timeout' => 60
+            //     ]
+            // ];
+                                
+            // $context  = stream_context_create($opts);
+            // //https://api-data.line.me/v2/bot/message/11914912908139/content
+            // $url = "https://api.line.me/v2/bot/message/reply";
+            // $result = file_get_contents($url, false, $context);
+
+            // --- ตัวใหม่ กดเสร็จสิ้น จากหน้าเว็บ MAP --
             $body = [
-                "replyToken" => $event["replyToken"],
+                "to" => $event['source']['groupId'],
                 "messages" => $messages,
             ];
 
+            // flex ask_for_help
             $opts = [
                 'http' =>[
                     'method'  => 'POST',
@@ -1344,8 +1367,7 @@ class LineApiController extends Controller
             ];
                                 
             $context  = stream_context_create($opts);
-            //https://api-data.line.me/v2/bot/message/11914912908139/content
-            $url = "https://api.line.me/v2/bot/message/reply";
+            $url = "https://api.line.me/v2/bot/message/push";
             $result = file_get_contents($url, false, $context);
 
             //SAVE LOG
@@ -1385,12 +1407,34 @@ class LineApiController extends Controller
 
             $messages = [ json_decode($string_json, true) ];
 
+            // --- ตัวเก่าที่ กดเสร็จสิ้น จากกลุ่มไลน์ ---
+            // $body = [
+            //     "replyToken" => $event["replyToken"],
+            //     "messages" => $messages,
+            // ];
 
+            // $opts = [
+            //     'http' =>[
+            //         'method'  => 'POST',
+            //         'header'  => "Content-Type: application/json \r\n".
+            //                     'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+            //         'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+            //         //'timeout' => 60
+            //     ]
+            // ];
+                                
+            // $context  = stream_context_create($opts);
+            // //https://api-data.line.me/v2/bot/message/11914912908139/content
+            // $url = "https://api.line.me/v2/bot/message/reply";
+            // $result = file_get_contents($url, false, $context);
+
+            // --- ตัวใหม่ กดเสร็จสิ้น จากหน้าเว็บ MAP --
             $body = [
-                "replyToken" => $event["replyToken"],
+                "to" => $event['source']['groupId'],
                 "messages" => $messages,
             ];
 
+            // flex ask_for_help
             $opts = [
                 'http' =>[
                     'method'  => 'POST',
@@ -1402,8 +1446,7 @@ class LineApiController extends Controller
             ];
                                 
             $context  = stream_context_create($opts);
-            //https://api-data.line.me/v2/bot/message/11914912908139/content
-            $url = "https://api.line.me/v2/bot/message/reply";
+            $url = "https://api.line.me/v2/bot/message/push";
             $result = file_get_contents($url, false, $context);
 
             //SAVE LOG

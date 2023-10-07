@@ -169,12 +169,23 @@
 	<!-- <i class="fa-solid fa-up-to-line mr-1"></i> -->
 	<i class="fa-solid fa-chevron-up"></i>
 </button>
+@php
+	$bg_status = '';
+	$text_status = '';
+	if($data_sos_map->status != 'เสร็จสิ้น'){
+		$bg_status = 'bg-warning';
+		$text_status = 'text-dark';
+	}else{
+		$bg_status = 'bg-success';
+		$text_status = 'text-white';
+	}
+@endphp
 <div class="status-bar">
-	<div class="show-status bg-warning text-dark" id="situation_of_status">
+	<div class="show-status {{ $bg_status }} {{ $text_status }}" id="situation_of_status">
 		<div class="ml-3">
 			<i class="fa-solid fa-truck-medical"></i>
 			&nbsp;
-			<small class="h6 text-bold p-0 m-0" id="show_status">ถึงที่เกิดเหตุ</small>
+			<small class="h6 text-bold p-0 m-0" id="show_status">{{ $data_sos_map->status }}</small>
 			<small class="p-0 m-0" id="show_remark_status"></small>
 		</div>
 		<div class="ml-3 d-none">
@@ -223,27 +234,44 @@
 
 					@switch($data_sos_map->status)
 					    @case('กำลังไปช่วยเหลือ')
-					        <button type="button" class="btn btn-warning main-shadow main-radius" style="width:100%;font-size: 20px;border-radius: 50px;" onclick="update_status('ถึงที่เกิดเหตุ');">
+					        <button type="button" class="btn btn-warning main-shadow main-radius" style="width:100%;font-size: 20px;border-radius: 50px;" onclick="update_status('ถึงที่เกิดเหตุ',null);">
 								<i class="fa-solid fa-location-crosshairs"></i> ถึงที่เกิดเหตุ
 							</button>
 					    @break
 					    @case('ถึงที่เกิดเหตุ')
-					        <button type="button" class="btn btn-warning main-shadow main-radius" style="width:100%;font-size: 20px;border-radius: 50px;" onclick="update_status('ออกจากที่เกิดเหตุ');">
-								<i class="fa-solid fa-location-crosshairs"></i> ออกจากที่เกิดเหตุ
+					        <button type="button" class="btn btn-warning main-shadow main-radius" style="width:100%;font-size: 20px;border-radius: 50px;" onclick="update_status('ออกจากที่เกิดเหตุ',null);">
+								<i class="fa-solid fa-right-from-bracket"></i> ออกจากที่เกิดเหตุ
 							</button>
 					    @break
 					    @case('ออกจากที่เกิดเหตุ')
-					        <button type="button" class="btn btn-warning main-shadow main-radius" style="width:100%;font-size: 20px;border-radius: 50px;" onclick="update_status('เสร็จสิ้น');">
-								<i class="fa-solid fa-location-crosshairs"></i> เสร็จสิ้น
+					    	<textarea class="form-control" id="remark_status" name="remark_status" rows="3" placeholder="ระบุหมายเหตุ เช่น ส่งต่อหน่วยงานที่เกี่ยวข้อง" oninput="check_remark_status();"></textarea>
+					    	<br>
+					        <button id="btn_status_success" type="button" class="btn btn-warning main-shadow main-radius mt-2" style="width:100%;font-size: 20px;border-radius: 50px;" onclick="update_status('เสร็จสิ้น',document.querySelector('#remark_status').value);" disabled>
+								<i class="fa-solid fa-shield-check"></i> เสร็จสิ้น
 							</button>
 					    @break
+					    @case('เสร็จสิ้น')
+					    	<center>
+								<img src="{{ url('/img/stickerline/PNG/6.png') }}" style="width:60%;">
+								<br>
+								<h5 class="text-danger mt-3"><b>ขอขอบคุณที่ร่วมสร้างสังคมที่ดีครับ</b></h5>
+							</center>
+					    @break
 					@endswitch
-
-					@if($data_sos_map->status == "ออกจากที่เกิดเหตุ")
-						<textarea class="form-control mt-3" id="remark_status" name="remark_status" rows="3" placeholder="ระบุหมายเหตุ เช่น ส่งต่อหน่วยงานที่เกี่ยวข้อง"></textarea>
-					@endif
-					
 				</div>
+
+				<script>
+					function check_remark_status(){
+						let remark_status = document.querySelector('#remark_status').value ;
+
+						if(remark_status){
+							document.querySelector('#btn_status_success').disabled = false;
+						}else{
+							document.querySelector('#btn_status_success').disabled = true;
+						}
+					}
+				</script>
+
 				<div class="tab-pane fade" id="tab_content_3" role="tabpanel">
 					@php
 					$lat_gg = '@' . $data_sos_map->lat ;
@@ -424,6 +452,8 @@
 	var sos_lat = "{{ $data_sos_map->lat }}";
 	var sos_lng = "{{ $data_sos_map->lng }}";
 
+	let check_status = "{{ $data_sos_map->status }}";
+
 	const image_sos = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}";
 	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/7.png') }}";
 
@@ -447,10 +477,10 @@
 		start_officer_lat = position.coords.latitude;
 		start_officer_lng = position.coords.longitude;
 
-		console.log("start_officer_lat > " + start_officer_lat);
-		console.log("start_officer_lng > " + start_officer_lng);
-		console.log("sos_lat > " + sos_lat);
-		console.log("sos_lng > " + sos_lng);
+		// console.log("start_officer_lat > " + start_officer_lat);
+		// console.log("start_officer_lng > " + start_officer_lng);
+		// console.log("sos_lat > " + sos_lat);
+		// console.log("sos_lng > " + sos_lng);
 
 		map_officer = new google.maps.Map(document.getElementById("map_officer"), {
 			center: {
@@ -460,9 +490,23 @@
 			zoom: 15
 		});
 
-		create_marker(sos_lat , sos_lng , start_officer_lat , start_officer_lng);
+		// หมุดที่เกิดเหตุ 
+		if (sos_marker) {
+			sos_marker.setMap(null);
+		}
+		sos_marker = new google.maps.Marker({
+			position: {
+				lat: parseFloat(sos_lat),
+				lng: parseFloat(sos_lng)
+			},
+			map: map_officer,
+			icon: image_sos,
+		});
 
-		loop_check_marker();
+		if(check_status != "เสร็จสิ้น"){
+			create_marker(sos_lat , sos_lng , start_officer_lat , start_officer_lng);
+			loop_check_marker();
+		}
 		
 	}
 
@@ -495,7 +539,7 @@
 		});
 
 		// สร้างเส้นทาง
-		// get_Directions_API(officer_marker, sos_marker);
+		get_Directions_API(officer_marker, sos_marker);
 
 	}
 
@@ -504,26 +548,39 @@
 	function loop_check_marker(){
 
 		reface_loop_check_marker = setInterval(function() {
-        	if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(update_location_officer);
-			} else {
-				// x.innerHTML = "Geolocation is not supported by this browser.";
+
+			if(check_status != "เสร็จสิ้น"){
+				
+				console.log(check_status);
+
+	        	if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(update_location_officer);
+				} else {
+					// x.innerHTML = "Geolocation is not supported by this browser.";
+				}
+			}else{
+				Stop_reface_loop_check_marker();
 			}
+
         }, 15000);
+
 
 	}
 
 	function Stop_reface_loop_check_marker() {
         clearInterval(reface_loop_check_marker);
+        return "stop success" ;
     }
 
 	function update_location_officer(position){
 
+		console.log("update_location_officer");
+
 		let officer_lat = position.coords.latitude;
 		let officer_lng = position.coords.longitude;
 
-		console.log("officer_lat >> " + officer_lat);
-		console.log("officer_lng >> " + officer_lng);
+		// console.log("officer_lat >> " + officer_lat);
+		// console.log("officer_lng >> " + officer_lng);
 
         let data_arr = [] ;
 
@@ -543,7 +600,7 @@
         }).then(function (response){
             return response.json();
         }).then(function(data){
-            console.log(data);
+            // console.log(data);
 
             if(data){
             	create_marker(data['lat'] , data['lng'] , officer_lat , officer_lng)
@@ -555,10 +612,136 @@
 
 	}
 
-	function update_status(status){
+	function update_status(status , remark_status){
 
-        console.log(status);
-        
+        // console.log(status);
+        // console.log(remark_status);
+
+        let data_arr = [] ;
+
+        data_arr = {
+	        "sos_map_id" : "{{ $data_sos_map->id }}",
+	        "status" : status,
+	        "remark_status" : remark_status,
+	    }; 
+
+        fetch("{{ url('/') }}/api/sos_map/update_status", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(data){
+            // console.log(data);
+
+            if (data == "OK") {
+
+            	let html_btn_status ;
+            	let bg_status ;
+            	let text_status ;
+
+            	switch(status) {
+				  	case 'ถึงที่เกิดเหตุ':
+				    	html_btn_status = `
+				    		<button type="button" class="btn btn-warning main-shadow main-radius" style="width:100%;font-size: 20px;border-radius: 50px;" onclick="update_status('ออกจากที่เกิดเหตุ',null);">
+								<i class="fa-solid fa-right-from-bracket"></i> ออกจากที่เกิดเหตุ
+							</button>
+				    	`;
+				    	bg_status = 'bg-warning';
+						text_status = 'text-dark';
+				    break;
+				  	case 'ออกจากที่เกิดเหตุ':
+				    	html_btn_status = `
+				    		<textarea class="form-control" id="remark_status" name="remark_status" rows="3" placeholder="ระบุหมายเหตุ เช่น ส่งต่อหน่วยงานที่เกี่ยวข้อง" oninput="check_remark_status();"></textarea>
+					    	<br>
+					        <button id="btn_status_success" type="button" class="btn btn-warning main-shadow main-radius mt-2" style="width:100%;font-size: 20px;border-radius: 50px;" onclick="update_status('เสร็จสิ้น',document.querySelector('#remark_status').value);" disabled>
+								<i class="fa-solid fa-shield-check"></i> เสร็จสิ้น
+							</button>
+				    	`;
+				    	bg_status = 'bg-warning';
+						text_status = 'text-dark';
+				    break;
+				    case 'เสร็จสิ้น':
+				    	html_btn_status = `
+				    		<center>
+								<img src="{{ url('/img/stickerline/PNG/6.png') }}" style="width:60%;">
+								<br>
+								<h5 class="text-danger mt-3"><b>ขอขอบคุณที่ร่วมสร้างสังคมที่ดีครับ</b></h5>
+							</center>
+				    	`;
+				    	bg_status = 'bg-success';
+						text_status = 'text-white';
+
+						if (directionsDisplay) {
+							directionsDisplay.setMap(null);
+						}
+
+				        // หมุดเจ้าหน้าที่
+						if (officer_marker) {
+							officer_marker.setMap(null);
+						}
+
+						// หมุดที่เกิดเหตุ 
+						if (sos_marker) {
+							sos_marker.setMap(null);
+						}
+						sos_marker = new google.maps.Marker({
+							position: {
+								lat: parseFloat(sos_lat),
+								lng: parseFloat(sos_lng)
+							},
+							map: map_officer,
+							icon: image_sos,
+						});
+
+						map_officer.setCenter(sos_marker.getPosition());
+						help_complete();
+				    break;
+				}
+
+				check_status = status;
+
+				let class_new_status = 'show-status ' + bg_status + ' ' + text_status ;
+				document.querySelector('#situation_of_status').setAttribute('class' , class_new_status );
+				document.querySelector('#show_status').innerHTML = status;
+
+				let tab_content_2 = document.querySelector('#tab_content_2');
+					tab_content_2.innerHTML = html_btn_status ;
+
+            }
+
+        }).catch(function(error){
+            // console.error(error);
+        });
+
+	}
+
+	function help_complete(){
+
+		let data_arr = [] ;
+
+        data_arr = {
+	        "sos_map_id" : "{{ $data_sos_map->id }}",
+	        "officer_id" : "{{ Auth::user()->id }}",
+	        "groupId" : "{{ $groupId }}",
+	    }; 
+
+		fetch("{{ url('/') }}/api/sos_map/help_complete", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(data){
+            // console.log(data);
+    	}).catch(function(error){
+        // console.error(error);
+    });
+
 	}
 
 	// <!-- --------------- ระยะทาง(เสียเงิน) --------------- -->

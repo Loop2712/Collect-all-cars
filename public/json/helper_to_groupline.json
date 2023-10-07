@@ -218,7 +218,7 @@
         "justifyContent": "center",
         "action": {
           "type": "uri",
-          "uri": "https://www.viicheck.com/sos_map/check_tag_sos/id_sos_map?openExternalBrowser=1"
+          "uri": "https://www.viicheck.com/sos_map/check_tag_sos/id_sos_map/groupId?openExternalBrowser=1"
         }
       }
     ],
