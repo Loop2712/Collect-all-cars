@@ -962,7 +962,7 @@ class Sos_mapController extends Controller
 
         $event = [] ;
         $event["source"]["userId"] = $data_helpers->provider_id;
-        $event["source"]["groupId"] = $requestData["groupId"]
+        $event["source"]["groupId"] = $requestData["groupId"];
 
         $line = new LineApiController();
         $line->check_help_complete_by_helper($event, 'help_complete', $requestData['sos_map_id']);
