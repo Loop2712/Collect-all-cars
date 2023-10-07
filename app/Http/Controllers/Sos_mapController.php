@@ -951,7 +951,7 @@ class Sos_mapController extends Controller
                     ])
                 ->update([
                     'status' => $requestData['status'],
-                    'time_to_the_scene' => date('Y-m-d\TH:i:s'),
+                    'time_to_the_scene' => date('Y-m-d H:i:s'),
                 ]);
         }else if($requestData['status'] == "ออกจากที่เกิดเหตุ"){
             DB::table('sos_maps')
@@ -960,7 +960,7 @@ class Sos_mapController extends Controller
                     ])
                 ->update([
                     'status' => $requestData['status'],
-                    'time_leave_the_scene' => date('Y-m-d\TH:i:s'),
+                    'time_leave_the_scene' => date('Y-m-d H:i:s'),
                 ]);
         }else if($requestData['status'] == "เสร็จสิ้น"){
             DB::table('sos_maps')
