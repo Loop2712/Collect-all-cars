@@ -943,14 +943,35 @@ class Sos_mapController extends Controller
     {
         $requestData = $request->all();
 
-        DB::table('sos_maps')
-            ->where([ 
-                    ['id', $requestData['sos_map_id'] ],
-                ])
-            ->update([
-                'status' => $requestData['status'],
-                'remark_status' => $requestData['remark_status'],
-            ]);
+        // เช็คสถานะ และอัพเดทเวลาตามสถานะ
+        if($requestData['status'] == "ถึงที่เกิดเหตุ"){
+            DB::table('sos_maps')
+                ->where([ 
+                        ['id', $requestData['sos_map_id'] ],
+                    ])
+                ->update([
+                    'status' => $requestData['status'],
+                    'time_to_the_scene' => date('Y-m-d\TH:i:s'),
+                ]);
+        }else if($requestData['status'] == "ออกจากที่เกิดเหตุ"){
+            DB::table('sos_maps')
+                ->where([ 
+                        ['id', $requestData['sos_map_id'] ],
+                    ])
+                ->update([
+                    'status' => $requestData['status'],
+                    'time_leave_the_scene' => date('Y-m-d\TH:i:s'),
+                ]);
+        }else if($requestData['status'] == "เสร็จสิ้น"){
+            DB::table('sos_maps')
+                ->where([ 
+                        ['id', $requestData['sos_map_id'] ],
+                    ])
+                ->update([
+                    'status' => $requestData['status'],
+                    'remark_status' => $requestData['remark_status'],
+                ]);
+        }
 
         return "OK" ;
 
