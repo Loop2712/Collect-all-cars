@@ -326,10 +326,16 @@ class Sos_mapController extends Controller
         
         $requestData = $request->all();
         
+        if ($request->hasFile('photo_succeed')) {
+            $requestData['photo_succeed'] = $request->file('photo_succeed')
+                ->store('uploads', 'public');
+        }
+
         $sos_map = Sos_map::findOrFail($id);
         $sos_map->update($requestData);
 
-        return redirect('sos_map')->with('flash_message', 'Sos_map updated!');
+        return redirect()->back();
+        // return redirect('sos_map')->with('flash_message', 'Sos_map updated!');
     }
 
     /**

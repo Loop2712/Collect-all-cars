@@ -172,7 +172,7 @@
 @php
 	$bg_status = '';
 	$text_status = '';
-	if($data_sos_map->status != 'เสร็จสิ้น'){
+	if(!empty($data_sos_map->status) && $data_sos_map->status != 'เสร็จสิ้น'){
 		$bg_status = 'bg-warning';
 		$text_status = 'text-dark';
 	}else{
@@ -185,8 +185,10 @@
 		<div class="ml-3">
 			<i class="fa-solid fa-truck-medical"></i>
 			&nbsp;
+			@if( !empty($data_sos_map->status) )
 			<small class="h6 text-bold p-0 m-0" id="show_status">{{ $data_sos_map->status }}</small>
 			<small class="p-0 m-0" id="show_remark_status"></small>
+			@endif
 		</div>
 		<div class="ml-3 d-none">
 			<p class="mt-2">
@@ -195,7 +197,7 @@
 				LONG : <span id="text_show_lng"></span>
 			</p>
 		</div>
-		<button class="btn btn-danger" style="padding: 12px;"> <i class="fa-duotone fa-camera-retro" onclick="$('#modal_add_photo_sos').modal('show');"></i></button>
+		<button class="btn btn-danger" style="padding: 12px;"> <i class="fa-duotone fa-camera-retro" onclick="$('#modal_add_photo_sos').modal('show');close_menu();"></i></button>
 	</div>
 	<div class="btn p-0 m-0" data-toggle="modal" data-target="#exampleModalCenter">
 		@if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
@@ -365,7 +367,7 @@
         		</button>
       		</div>
 
-      		<form method="POST" action="" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+      		<form method="POST" action="{{ url('/sos_map/' . $data_sos_map->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
            		{{ method_field('PATCH') }}
         		{{ csrf_field() }}
       			<div class="modal-body text-center">
@@ -397,41 +399,80 @@
 							<div class="tab-pane fade active show" id="danger-pills-photo_sos" role="tabpanel" style="border:solid #db2d2e ;border-radius:25px;padding: 15px;">
 								<label class="col-12" style="padding:0px;" for="photo_sos_by_officers" >
 									<div class="fill parent" style="padding:0px;object-fit: cover;">
-									<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/flex/1.png') }}" class="card-img-top center" style="padding: 10px;">
-										
-										<!-- <div class="child">
-											<span>เลือกรูป</span>
-										</div> -->
+									@if( empty($data_sos_map->photo) )
+										<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/flex/1.png') }}" class="card-img-top center" style="padding: 10px;">
+										<h4 class="mt-4">ผู้ใช้ไม่ได้เพิ่มภาพถ่าย</h4>
+									@else
+										<a href="{{ url('storage')}}/{{ $data_sos_map->photo }}" target="bank">
+											<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ url('storage')}}/{{ $data_sos_map->photo }}" class="card-img-top center" style="padding: 10px;">
+										</a>
+									@endif
 									</div>
-									<!-- <textarea class="form-control mt-3" id="remark_photo_sos" name="remark_photo_sos" rows="3" placeholder="หมายเหตุ">{{ isset( $data_sos->remark_photo_sos ) ? $data_sos->remark_photo_sos : ''}}</textarea> -->
 								</label>
 							</div>
 							<!-- ภาพถ่ายเสร็จสิ้น -->
 							<div class="tab-pane fade" id="danger-pills-success" role="tabpanel" style="border:solid green ;border-radius:25px;padding: 15px;">
 								<label class="col-12" style="padding:0px;" for="photo_succeed" >
-									<div class="fill parent" style="padding:0px;object-fit: cover;">
-									<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/20.png') }}" class="card-img-top center" style="padding: 10px;">
-										
+									<div class="fill parent" style="border:dotted green ;border-radius:25px;padding:0px;object-fit: cover;">
+										@if(empty($data_sos_map->photo_succeed))
+											<div class="form-group p-3" id="add_select_img_photo_succeed">
+												<input class="form-control d-none" name="photo_succeed" style="margin:20px 0px 10px 0px;" type="file" id="photo_succeed" accept="image/*" onchange="document.getElementById('show_photo_succeed').src = window.URL.createObjectURL(this.files[0]);check_add_img_succeed();">
+												<div  class="text-center">
+													<center>
+														<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/20.png') }}" class="card-img-top center" style="padding: 10px;">
+													</center>
+													<br>
+													<h4 class="text-center m-0">
+														<b>เลือก<u>รูปภาพเสร็จสิ้น</u> "คลิก"</b> 
+													</h4>
+												</div>
+												
+											</div>
+											<img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_succeed" />
+										@else
+											<div class="form-group p-3 d-none" id="add_select_img_photo_succeed">
+												<input class="form-control d-none" name="photo_succeed" style="margin:20px 0px 10px 0px;" type="file" id="photo_succeed" value="{{ isset($data_sos_map->photo_succeed) ? $data_sos_map->photo_succeed : ''}}" accept="image/*" onchange="document.getElementById('show_photo_succeed').src = window.URL.createObjectURL(this.files[0]);check_add_img_succeed();">
+												<div  class="text-center">
+													<center>
+														<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/20.png') }}" class="card-img-top center" style="padding: 10px;">
+													</center>
+													<br>
+													<h3 class="text-center m-0">
+														<b>กรุณาเลือกรูป "คลิก"</b> 
+													</h3>
+												</div>
+												
+											</div>
+											<img class="full_img" style="padding:0px ;" width="100%" alt="your image" src="{{ url('storage')}}/{{ $data_sos_map->photo_succeed }}" id="show_photo_succeed" />
+											
+										@endif
+										<div class="child">
+											<span>เลือกรูป</span>
+										</div>
 									</div>
-									<!-- <textarea class="form-control mt-3" id="remark_helper" name="remark_helper" rows="3" placeholder="หมายเหตุ">{{ isset( $data_sos->remark_helper ) ? $data_sos->remark_helper : ''}}</textarea> -->
+									<textarea class="form-control mt-3" id="remark" name="remark" rows="3" placeholder="หมายเหตุ">{{ isset( $data_sos_map->remark ) ? $data_sos_map->remark : ''}}</textarea>
 								</label>
+
+								<input name="photo_succeed_by" id="photo_succeed_by" class="d-none" value="{{ Auth::user()->id }}">
+				            	<div class="form-group d-none">
+							        <input id="btn_submit_form_photo" class="btn btn-primary" type="submit">
+							    </div>
+							    <button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#btn-loading" data-bs-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_submit_form_photo').click();">
+					           		ยืนยัน
+					        	</button>
+
 							</div>
 						</div>
 					</div>
-					<input name="form_blade" class="d-none" value="form_modal_photo_sos">
-	            	<div class="form-group d-none">
-				        <input id="btn_submit_form_photo" class="btn btn-primary" type="submit">
-				    </div>
       			</div>
       		</form>
 	      	<div class="modal-footer">
-	        	<button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#btn-loading" data-bs-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_submit_form_photo').click();">
-	           		ยืนยัน
-	        	</button>
+	        	<!--  -->
 	      	</div>
     	</div>
   	</div>
 </div>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 
 <script>
@@ -735,13 +776,13 @@
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(function (response){
-            return response.text();
-        }).then(function(data){
-            // console.log(data);
-    	}).catch(function(error){
-        // console.error(error);
-    });
+	        }).then(function (response){
+	            return response.text();
+	        }).then(function(data){
+	            // console.log(data);
+	    	}).catch(function(error){
+	        // console.error(error);
+	    });
 
 	}
 
@@ -794,6 +835,13 @@
 		});
 
 	}
+
+	function check_add_img_succeed(){
+		document.querySelector('#add_select_img_photo_succeed').classList.add('d-none')
+		document.querySelector('#photo_succeed').classList.add('d-none');
+		document.querySelector('#show_photo_succeed').classList.remove('d-none');
+	}
+
 </script>
 
 <!-- MENU BAR -->
@@ -803,6 +851,7 @@
 		var test = element.classList.contains('btn-danger');
 		// console.log(test)
 		// console.log(id)
+		active_menu = id;
 
 		for (let i = 1; i <= 3; i++) {
 			// document.querySelector('#menu_'+ [i]).classList.add('d-none');
@@ -813,6 +862,7 @@
 		if (test !== true) {
 			document.querySelector('#btn_menu_' + id).classList.add('btn-danger');
 			document.querySelector('#btn_menu_' + id).classList.remove('btn-outline-danger');
+			active_menu = id;
 		} else {
 			// console.log("พับเมนูเก็บ");
 			active_menu = id;
@@ -833,7 +883,7 @@
 
 	}
 
-	var active_menu;
+	var active_menu = '2' ;
 
 	function show_menu() {
 		let card = document.querySelector('.card_data_hide');
@@ -849,6 +899,11 @@
 
 		document.querySelector('#btn_show_menu').classList.remove('btn_show_menu_up');
 		document.querySelector('#btn_show_menu').classList.add('btn_show_menu_down');
+	}
+
+	function close_menu(){
+		let card = document.querySelector('#btn_menu_' + active_menu).click();
+
 	}
 </script>
 
