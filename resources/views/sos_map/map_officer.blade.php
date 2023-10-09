@@ -400,7 +400,7 @@
 								<label class="col-12" style="padding:0px;" for="photo_sos_by_officers" >
 									<div class="fill parent" style="padding:0px;object-fit: cover;">
 									@if( empty($data_sos_map->photo) )
-										<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/flex/1.png') }}" class="card-img-top center" style="padding: 10px;">
+										<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/Flex/1.png') }}" class="card-img-top center" style="padding: 10px;">
 										<h4 class="mt-4">ผู้ใช้ไม่ได้เพิ่มภาพถ่าย</h4>
 									@else
 										<a href="{{ url('storage')}}/{{ $data_sos_map->photo }}" target="bank">
