@@ -22,6 +22,10 @@
 		min-height: 100%;
 		background-color: #2b2d31;
 		color: #fff !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
 	}
 	.data-sos *{
 		color: #fff;
@@ -278,16 +282,76 @@
         cursor: pointer;
     }
 
+    .head_sidebar_div {
+        background-color: rgb(255, 255, 255);
+        height: 170px;
+        padding: 10px;
+        border-radius: 2px;
+        margin-left: 2px; /* เพิ่มระยะห่างจากขอบซ้าย 2px */
+    }
+
+    .neck_sidebar_div {
+        background-color: rgb(255, 255, 255);
+        height: 140px;
+        padding: 10px;
+        border-radius: 2px;
+        margin-left: 2px; /* เพิ่มระยะห่างจากขอบซ้าย 2px */
+    }
+
+    .body_sidebar_div {
+        background-color: rgb(255, 255, 255);
+        height: 500px;
+        padding: 10px;
+        border-radius: 2px;
+        margin-left: 2px; /* เพิ่มระยะห่างจากขอบซ้าย 2px */
+    }
+
+    .border-radius{
+        border-radius: 10px;
+    }
+
+    .nowordwarp{
+        word-wrap: break-word;
+    }
+
 
 </style>
 <button id="addButton" style="position: absolute;top:10%;right: 0;">เพิ่ม div</button>
 <div class="row full-height">
 	<div class="Scenary"></div>
 	<div class="col-12 col-lg-2">
-		<div class="data-sos text-center p-3 d-flex row">
-			<h4 class="mt-3 col-12 ">รหัสเคส:123</h4>
-			<div class="d-flex">
-				<div class="align-self-end w-100">
+		<div class="data-sos p-3 d-flex row">
+            <div class="head_sidebar_div overflow-auto text-center mb-2">
+                <p class="h4 text-secondary mt-3">2308-1406-0014</p>
+                <p class="h5 text-secondary ">สถานะ: เสร็จสิ้น</p>
+                <p class="h6 text-secondary ">การช่วยเหลือผ่านไปแล้ว</p>
+                <p class="h5 text-secondary ">25 นาที</p>
+            </div>
+
+            <div class="neck_sidebar_div overflow-auto text-center mt-0 mb-2">
+                <p class="h5 text-secondary mt-3">ข้อมูลผู้ขอความช่วยเหลือ</p>
+                <p class="h5 text-secondary ">ชื่อผู้ขอความช่วยเหลือ</p>
+                <p class="h6 text-secondary ">081-2345678</p>
+            </div>
+
+            <div class="body_sidebar_div overflow-auto mb-2 ">
+                <div class="d-flex justify-content-center text-center">
+                    <p class="bg-success p-2 m-1 col-5 border-radius">IDC : เขียว</p>
+                    <p class="bg-danger p-2 m-1 col-5 border-radius">RC : แดง</p>
+                </div>
+                <div class="p-2 nowordwarp">
+                    <p class="h5 text-secondary mt-1">รายละเอียดสถานที่</p>
+                    <p class="h6 text-secondary ">{รายละเอียดสถานที่}</p>
+                    <p class="h5 text-secondary mt-1">อาการ</p>
+                    <p class="h6 text-secondary ">1.{อาการ}</p>
+                    <p class="h5 text-secondary mt-1">รายละเอียดอาการ</p>
+                    <p class="h6 text-secondary ">{รายละเอียดอาการ}</p>
+                </div>
+
+            </div>
+
+			<div class="d-flex text-center">
+				<div class="align-self-end w-100 " style="position: absolute; bottom: 5;">
                         <div class="btn btnSpecial" >
                             <i class="fa-solid fa-microphone-stand"></i>
                             <div class="smallCircle" id="droptrigger">

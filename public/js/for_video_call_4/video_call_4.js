@@ -21,8 +21,6 @@ function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหร�
 
         div_for_VideoButton.appendChild(muteVideoButton);
 
-    // document.querySelector('#footer_div').appendChild(divForVideoButton);
-
     muteButton.onclick = async function() {
         if (isAudio == true) {
             // Update the button text.
