@@ -373,6 +373,9 @@ Route::get('/market/motercycle/{id}', 'MotercleyviewController@show');
 
 	Route::get('/line_mycar', 'ProfileController@line_mycar');
 	Route::get('/not_comfor_login/{license_plate_id}', 'Not_comforController@not_comfor_login');
+
+	Route::get('sos_map/check_tag_sos_log_in/{id_sos_map}/{groupId}', 'Sos_mapController@check_tag_sos_log_in');
+	
 // END AUTO LOHIN FROM FLEX LINE
 
 	Route::get('/edit_profile_facebook', 'ProfileController@edit_profile_facebook');

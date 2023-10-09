@@ -903,6 +903,16 @@ class Sos_mapController extends Controller
 
     }
 
+    function check_tag_sos_log_in($id_sos_map,$groupId){
+
+        if(Auth::check()){
+            return redirect("sos_map/check_tag_sos" . "/" . $id_sos_map . "/" . $groupId) ;
+        }else{
+            $re_to = "sos_map/check_tag_sos" . "/" . $id_sos_map . "/" . $groupId ;
+            return redirect('login/line?redirectTo=' . $re_to);
+        }
+    }
+
     function check_tag_sos($id_sos_map,$groupId){
 
         $data_sos_map = Sos_map::where('id',$id_sos_map)->first();
@@ -911,20 +921,9 @@ class Sos_mapController extends Controller
 
         if($data_sos_map->tag_sos_or_repair == 'tag_sos'){
             // ไปหน้า map เจ้าหน้าที่
-            if(Auth::check()){
-                return redirect("sos_map/tag_sos/map_officer" . "/" . $id_sos_map . "/" . $groupId) ;
-            }else{
-                $re_to = "sos_map/tag_sos/map_officer" . "/" . $id_sos_map . "/" . $groupId ;
-                return redirect('login/line?redirectTo=' . $re_to);
-            }
+            return redirect("sos_map/tag_sos/map_officer" . "/" . $id_sos_map . "/" . $groupId) ;
         }else{
-            if(Auth::check()){
-                return redirect("sos_map/report_repair" . "/" . $id_sos_map . "/" . $groupId) ;
-            }else{
-                $re_to = "sos_map/report_repair" . "/" . $id_sos_map . "/" . $groupId ;
-                return redirect('login/line?redirectTo=' . $re_to);
-            }
-            
+            return redirect("sos_map/report_repair" . "/" . $id_sos_map . "/" . $groupId) ;
         }
     }
 
