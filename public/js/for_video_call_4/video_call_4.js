@@ -1,24 +1,25 @@
 
 function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน
 
-    const divForVideoButton = document.querySelector('#divForVideoButton');
+    const div_for_AudioButton = document.querySelector('#div_for_AudioButton');
+    const div_for_VideoButton = document.querySelector('#div_for_VideoButton');
 
     const muteButton = document.createElement('button');
         muteButton.type = "button";
         muteButton.id = "muteAudio";
-        muteButton.classList.add('btn','btn-secondary','mr-1');
+        muteButton.classList.add('audio_button');
         muteButton.innerHTML = '<i class="fa-solid fa-microphone"></i>';
 
-    divForVideoButton.appendChild(muteButton);
+        div_for_AudioButton.appendChild(muteButton);
 
     //สร้างปุ่ม เปิด-ปิด วิดีโอ
     const muteVideoButton = document.createElement('button');
         muteVideoButton.type = "button";
         muteVideoButton.id = "muteVideo";
-        muteVideoButton.classList.add('btn','btn-secondary','ms-1');
+        muteVideoButton.classList.add('video_button');
         muteVideoButton.innerHTML = '<i class="fa-solid fa-video"></i>';
 
-    divForVideoButton.appendChild(muteVideoButton);
+        div_for_VideoButton.appendChild(muteVideoButton);
 
     // document.querySelector('#footer_div').appendChild(divForVideoButton);
 
@@ -26,6 +27,8 @@ function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหร�
         if (isAudio == true) {
             // Update the button text.
             document.getElementById(`muteAudio`).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #f00505; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
+            document.getElementById('div_for_AudioButton').classList.remove('btnSpecial_unmute');
+            document.getElementById('div_for_AudioButton').classList.add('btnSpecial_mute');
             // Mute the local video.
             channelParameters.localAudioTrack.setEnabled(false);
 
@@ -37,6 +40,8 @@ function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหร�
         } else {
             // Update the button text.
             document.getElementById(`muteAudio`).innerHTML = '<i class="fa-solid fa-microphone"></i>';
+            document.getElementById('div_for_AudioButton').classList.add('btnSpecial_unmute');
+            document.getElementById('div_for_AudioButton').classList.remove('btnSpecial_mute');
             // Unmute the local video.
             channelParameters.localAudioTrack.setEnabled(true);
             channelParameters.localAudioTrack.play();
@@ -51,6 +56,8 @@ function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหร�
         if (isVideo == true) {
             // Update the button text.
             document.getElementById(`muteVideo`).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
+            document.getElementById('div_for_VideoButton').classList.remove('btnSpecial_unmute');
+            document.getElementById('div_for_VideoButton').classList.add('btnSpecial_mute');
             // Mute the local video.
             channelParameters.localVideoTrack.setEnabled(false);
             muteVideoButton.classList.add('btn-disabled');
@@ -67,6 +74,8 @@ function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหร�
         } else {
             // Update the button text.
             document.getElementById(`muteVideo`).innerHTML = '<i class="fa-solid fa-video"></i>';
+            document.getElementById('div_for_VideoButton').classList.add('btnSpecial_unmute');
+            document.getElementById('div_for_VideoButton').classList.remove('btnSpecial_mute');
             // Unmute the local video.
             channelParameters.localVideoTrack.setEnabled(true);
             // muteVideoButton.classList.add('btn-success');

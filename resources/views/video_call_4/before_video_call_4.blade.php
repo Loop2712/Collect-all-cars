@@ -202,7 +202,7 @@
                     <h4 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h4>
                     <h5 class="w-100">{{Auth::user()->name}}</h5>
                     @php
-                        $inRoomPeople = 4;
+                        $inRoomPeople = 0;
                     @endphp
                     @if ($inRoomPeople < 4)
                         <a id="btnJoinRoom" class="btn btn-success" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">

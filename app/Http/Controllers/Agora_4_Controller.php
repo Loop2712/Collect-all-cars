@@ -64,7 +64,7 @@ class Agora_4_Controller extends Controller
 
     }
 
-    public function pc_index(Request $request ,$sos_id)
+    public function pc_index(Request $request ,$type,$sos_id)
     {
         $user = Auth::user();
 
@@ -73,6 +73,7 @@ class Agora_4_Controller extends Controller
         // $appId = $requestData['appId'];
         // $appCertificate =  $requestData['appCertificate'];
         // $sos_id = $requestData['sos_id'];
+
         $useSpeaker = $requestData['useSpeaker'];
         $useMicrophone = $requestData['useMicrophone'];
         $useCamera = $requestData['useCamera'];
@@ -83,7 +84,7 @@ class Agora_4_Controller extends Controller
         $appID = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
 
-        return view('video_call_4/pc_video_call_4', compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera'));
+        return view('video_call_4/pc_video_call_4', compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type'));
 
     }
 

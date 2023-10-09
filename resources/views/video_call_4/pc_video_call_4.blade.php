@@ -230,6 +230,178 @@
 		justify-content: center;
 	}
 
+    .radio_style:checked {
+        border-color: red; /* เปลี่ยนสีขอบของ radio input เป็นสีแดงเมื่อถูกเลือก */
+        background-color: red; /* เปลี่ยนสีพื้นหลังของ radio input เป็นสีแดงเมื่อถูกเลือก */
+    }
+
+    /* --------------------------  ฟังก์ชัน เปลี่ยนไมค์และกล้อง -------------------------------------*/
+
+    .dropcontent {
+        visibility: hidden;
+        width: 142px;
+        & a {
+            color: rgb(31, 193, 27);
+        }
+    }
+
+    .open_dropcontent {
+        visibility: visible;
+    }
+
+    .dropcontent2{
+        visibility: hidden;
+        width: 142px;
+        & a {
+            color: rgb(31, 193, 27);
+        }
+    }
+
+    .open_dropcontent2 {
+        visibility: visible;
+    }
+
+    .btnSpecial_mute{
+        background-color: #f03636 ; /* Discord's color */
+    }
+    .btnSpecial_mute:hover{
+        background-color: #fa3838 !important; /* Discord's color */
+    }
+
+    .btnSpecial_unmute{
+        background-color: #3f3e3e ; /* Discord's color */
+    }
+
+    .btn_leave{
+        background-color: #ff0000 ; /* Discord's color */
+    }
+
+    .btn_leave:hover{
+        background-color: #fa3838 !important; /* Discord's color */
+    }
+
+    .btnSpecial {
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin: 5px;
+        top: 0; /* ตำแหน่ง list ขึ้นด้านบนของปุ่ม */
+        left: 0;
+        border:#fff 1px solid;
+    }
+
+    .audio_button{
+        background: rgba(255, 255, 255, 0);
+        position: absolute;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        border:#fff 1px;
+    }
+
+    .video_button{
+        background: rgba(255, 255, 255, 0);
+        position: absolute;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        border:#fff 1px;
+    }
+
+    .btnSpecial:hover {
+        background-color: #292828; /* Discord's color */
+    }
+
+
+    .btnSpecial i{
+        color: #ffffff;
+        font-size: 1.3rem; /* 60% ของขนาดปัจจุบันของ i */
+        transition: transform 0.3s ease; /* เพิ่มการเปลี่ยนแปลงอย่างนุ่มนวล */
+    }
+
+    .smallCircle {
+        background-color: #3f3e3e; /* เปลี่ยนสีพื้นหลังตามที่คุณต้องการ */
+        border: none;
+        border-radius: 50%;
+        width: 25px; /* ปรับขนาดตามที่คุณต้องการ */
+        height: 25px; /* ปรับขนาดตามที่คุณต้องการ */
+        position: absolute;
+        bottom: 10;
+        right: 10;
+        transform: translate(50%, 50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border:#fff 1px solid;
+        z-index: 1;
+    }
+
+    .smallCircle:hover{
+        background-color: #292828; /* Discord's color */
+    }
+
+    .smallCircle i{
+        color: #ffffff;
+        font-size: 10px;
+    }
+
+    .fa-arrow-up {
+        color: #fff; /* เปลี่ยนสีไอคอนตามที่คุณต้องการ */
+        font-size: 20px; /* ปรับขนาดตามที่คุณต้องการ */
+    }
+
+    .ui-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        bottom: 100; /* ตำแหน่ง list ขึ้นด้านบนของปุ่ม */
+        left: 10;
+        background-color: #3f3e3e;
+        border-radius: 5px;
+        z-index: 1000; /* เพื่อให้แสดงอยู่ข้างบนของปุ่ม */
+        min-width: 250px; /* กำหนดความกว้างขั้นต่ำ */
+
+    }
+
+    .ui-list-item {
+        color: #ffffff; /* สีข้อความ */
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between; /* จัดตัว radio2 ไปทางขวา */
+        align-items: center; /* จัดให้เนื้อหาแนวตั้งกลาง */
+    }
+
+    .top-0 {
+        top: 0;
+    }
+
+    .top-50 {
+        top: 50px;
+    }
+
+    .top-100 {
+        top: 100px;
+    }
+
+    /* เมื่อเมาส์ hover บนรายการ */
+    .ui-list-item:hover {
+        background-color: #555555; /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+        cursor: pointer;
+    }
+
+    /* -------------------------- จบ ฟังก์ชัน เปลี่ยนไมค์และกล้อง -------------------------------------*/
+
 /* } */
 </style>
 
@@ -246,31 +418,46 @@
 		<div class="data-sos text-center p-3 d-flex row">
 			<h4 class="mt-3 col-12 ">รหัสเคส: {{$sos_id}}
                 <button id="join" class="btn btn-success d-none" >เข้าร่วม</button>
-                <button id="leave" class="btn btn-danger " >ออกห้อง</button>
-                {{-- <button id="addButton" style="position: absolute;top:10%;right: 0;">เพิ่ม div</button> --}}
+                <br>
+                <span>Type: {{$type}}</span>
             </h4>
+
 			<div class="d-flex">
 				<div id="divForVideoButton" class="align-self-end w-100">
+                    <div class="row d-flex justify-content-center">
+                        <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
+                        <div id="div_for_AudioButton" class="btn btnSpecial " >
+                            {{-- <i id="icon_muteAudio" class="fa-solid fa-microphone-stand"></i> --}}
+                            <button class="smallCircle" id="btn_switchMicrophone">
+                                <i class="fa-sharp fa-solid fa-angle-up"></i>
+                            </button>
+                        </div>
 
-                    <button class="btn btn-primary " id="btn_switchCamera" onclick="switchCamera();">
-                        <i class="fa-solid fa-camera-rotate"></i>
-                    </button>
-                    <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
-                    <button class="btn btn-primary" id="btn_switchMicrophone" onclick="switchMicrophone();">
-                        <i class="fa-solid fa-microphone-stand"></i>
-                    </button>
+                        <!-- เปลี่ยนกล้อง ให้กดได้แค่ในคอม -->
+                        <div id="div_for_VideoButton" class="btn btnSpecial " >
+                            {{-- <i id="icon_muteVideo" class="fa-solid fa-camera-rotate"></i> --}}
+                            <button class="smallCircle" id="btn_switchCamera">
+                                <i class="fa-sharp fa-solid fa-angle-up"></i>
+                            </button>
+                        </div>
 
-                    <button class="btnDevice  btn dropdown-toggle btn_for_select_video_device d-none" type="button" data-toggle="modal" data-target="#video_device" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
-                        <i class="fa-solid fa-chevron-down fa-2xs"></i>
-                    </button>
-                    <button class="btnDevice  btn dropdown-toggle btn_for_select_audio_device d-none" type="button" data-toggle="modal" data-target="#audio_device" style=" width: 20px !important;height: 20px !important; padding: 0 !important; ">
-                        <i class="fa-solid fa-chevron-down fa-2xs"></i>
-                    </button>
+                        <div class="btn btnSpecial btn_leave" id="leave">
+                            <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>
+                        </div>
 
+                    </div>
 
-					{{-- <button class="btn btn-success">asd</button>
-					<button class="btn btn-success">asd</button>
-					<button class="btn btn-success">asd</button> --}}
+                    <div class="dropcontent">
+                        <ul id="audio-device-list" class="ui-list">
+                        <!-- Created list-audio from Javascript Here -->
+                        </ul>
+                    </div>
+                    <div class="dropcontent2">
+                        <ul id="video-device-list" class="ui-list">
+                        <!-- Created list-video from Javascript Here -->
+                        </ul>
+                    </div>
+
 				</div>
 			</div>
 		</div>
@@ -280,7 +467,7 @@
 		<div class="video-call">
 			<div class=" d-flex align-item-center justify-content-center h-100 row">
                 <!-- Modal -->
-                <div class="modal fade" id="video_device" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                {{-- <div class="modal fade" id="video_device" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <button id="ปุ่มนี้สำหรับปิด_modal" type="button" class="btn m-2" data-dismiss="modal" aria-label="Close" style="position: relative; top:10;right: 10px;color:#4d4d4d;z-index: 9999999999;">
@@ -292,10 +479,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Modal -->
-                <div class="modal fade" id="audio_device" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                {{-- <div class="modal fade" id="audio_device" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                             <button id="ปุ่มนี้สำหรับปิด_modal" type="button" class="btn m-2" data-dismiss="modal" aria-label="Close" style="position: relative; top:10;right: 10px;color:#4d4d4d;z-index: 9999999999;">
@@ -303,13 +490,12 @@
                             </button>
                             <div class="modal-body">
                                 <h6 class="dropdown-header">อุปกรณ์รับข้อมูล</h6>
-                                <div id="audio-device-list"></div>
-                                {{-- <h6 class="dropdown-header">อุปกรณ์ส่งข้อมูล</h6>
-                                <div id="audio-device-output-list"></div> --}}
+                                <div id=""></div>
+
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
 				<div class="d-flex align-self-center">
 					<div class="row" id="container_user_video_call">
@@ -1513,53 +1699,60 @@
             // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
             let videoDeviceList = document.getElementById('video-device-list');
                 videoDeviceList.innerHTML = '';
+                videoDeviceList.appendChild(document.createTextNode("กล้อง"));
 
             let count_i = 1 ;
 
             videoDevices.forEach(device => {
-            let radio = document.createElement('input');
-                radio.type = 'radio';
-                radio.id = 'video-device-' + count_i;
-                radio.name = 'video-device';
-                radio.value = device.deviceId;
+                let radio = document.createElement('input');
+                    radio.type = 'radio';
+                    radio.classList.add('radio_style');
+                    radio.id = 'video-device-' + count_i;
+                    radio.name = 'video-device';
+                    radio.value = device.deviceId;
 
-            if (deviceType == 'PC'){
-                radio.checked = device.deviceId === activeVideoDeviceId;
-            }
+                if (deviceType == 'PC'){
+                    radio.checked = device.deviceId === activeVideoDeviceId;
+                }
 
-            let label = document.createElement('label');
-                label.classList.add('dropdown-item');
-                label.appendChild(radio);
-                label.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${videoDeviceList.children.length + 1}`));
+                let label = document.createElement('li');
+                    label.classList.add('ui-list-item');
+                    label.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${videoDeviceList.children.length + 1}`));
+                    label.appendChild(document.createTextNode("\u00A0")); // เพิ่ม non-breaking space
+                    label.appendChild(radio);
 
-            videoDeviceList.appendChild(label);
-            radio.addEventListener('change', onChangeVideoDevice);
+                if (deviceType == 'PC'){
+                    // สร้างเหตุการณ์คลิกที่ label เพื่อตรวจสอบ radio2
+                    label.addEventListener('click', () => {
+                        radio.checked = true;
+                        onChangeAudioDevice();
+                    });
+                }
 
-            count_i = count_i + 1 ;
+                videoDeviceList.appendChild(label);
+
+                radio.addEventListener('change', onChangeVideoDevice);
+
+                count_i = count_i + 1 ;
             });
 
             // ---------------------------
 
-            if (deviceType == 'PC'){
-                document.querySelector('.btn_for_select_video_device').click();
-            }else{
+            if (deviceType !== 'PC'){
+                let check_videoDevices = document.getElementsByName('video-device');
 
-            let check_videoDevices = document.getElementsByName('video-device');
-
-            if (now_Mobile_Devices == 1){
-                // console.log("now_Mobile_Devices == 1 // ให้คลิก ");
-                // console.log(check_videoDevices[1].id);
-                document.querySelector('#'+check_videoDevices[1].id).click();
-                now_Mobile_Devices = 2 ;
-            }else{
-                // console.log("now_Mobile_Devices == 2 // ให้คลิก ");
-                // console.log(check_videoDevices[0].id);
-                document.querySelector('#'+check_videoDevices[0].id).click();
-                now_Mobile_Devices = 1 ;
+                if (now_Mobile_Devices == 1){
+                    // console.log("now_Mobile_Devices == 1 // ให้คลิก ");
+                    // console.log(check_videoDevices[1].id);
+                    document.querySelector('#'+check_videoDevices[1].id).click();
+                    now_Mobile_Devices = 2 ;
+                }else{
+                    // console.log("now_Mobile_Devices == 2 // ให้คลิก ");
+                    // console.log(check_videoDevices[0].id);
+                    document.querySelector('#'+check_videoDevices[0].id).click();
+                    now_Mobile_Devices = 1 ;
+                }
             }
-
-            }
-
         }
 
         btn_switchMicrophone.onclick = async function()
@@ -1595,6 +1788,7 @@
             // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
             let audioDeviceList = document.getElementById('audio-device-list');
                 audioDeviceList.innerHTML = '';
+                audioDeviceList.appendChild(document.createTextNode("อุปกรณ์ส่งข้อมูล"));
             // let audiooutputDeviceList = document.getElementById('audio-device-output-list');
             //     audiooutputDeviceList.innerHTML = '';
 
@@ -1602,25 +1796,35 @@
             let count_i_output = 1 ;
             // ----------- Input ----------------
             audioDevices.forEach(device => {
-            const radio2 = document.createElement('input');
-                radio2.type = 'radio';
-                radio2.id = 'audio-device-' + count_i;
-                radio2.name = 'audio-device';
-                radio2.value = device.deviceId;
+                const radio2 = document.createElement('input');
+                    radio2.type = 'radio';
+                    radio2.classList.add('radio_style');
+                    radio2.id = 'audio-device-' + count_i;
+                    radio2.name = 'audio-device';
+                    radio2.value = device.deviceId;
 
-            if (deviceType == 'PC'){
-                radio2.checked = device.deviceId === activeAudioDeviceId;
-            }
+                if (deviceType == 'PC'){
+                    radio2.checked = device.deviceId === activeAudioDeviceId;
+                }
 
-            let label = document.createElement('label');
-                label.classList.add('dropdown-item');
-                label.appendChild(radio2);
-                label.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${audioDeviceList.children.length + 1}`));
 
-            audioDeviceList.appendChild(label);
-            radio2.addEventListener('change', onChangeAudioDevice);
+                let label = document.createElement('li');
+                    label.classList.add('ui-list-item');
+                    label.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${audioDeviceList.children.length + 1}`));
+                    label.appendChild(document.createTextNode("\u00A0")); // เพิ่ม non-breaking space
+                    label.appendChild(radio2);
 
-            count_i = count_i + 1 ;
+                    // สร้างเหตุการณ์คลิกที่ label เพื่อตรวจสอบ radio2
+                    label.addEventListener('click', () => {
+                        radio2.checked = true;
+                        onChangeAudioDevice();
+                    });
+
+
+                audioDeviceList.appendChild(label);
+                radio2.addEventListener('change', onChangeAudioDevice);
+
+                count_i = count_i + 1 ;
             });
 
             // let hr = document.createElement('hr');
@@ -1651,9 +1855,14 @@
 
             // ---------------------------7
 
-            if (deviceType == 'PC'){
-                document.querySelector('.btn_for_select_audio_device').click();
-            }
+            // เพิ่มเหตุการณ์คลิกที่หน้าจอที่ไม่ใช่ตัว audio-device-list ให้ปิด audio-device-list
+            // document.addEventListener('click', (event) => {
+            //     const target = event.target;
+
+            //     if (!target.closest('#audio-device-list')) {
+            //        document.querySelector('.dropcontent').classList.toggle('open');
+            //     }
+            // });
 
         }
 
@@ -1788,6 +1997,53 @@
         }
 
     }
+
+
+
+    // เปิด-ปิด list ของไมค์
+    $(document).ready(function() {
+        $("#btn_switchMicrophone").click(function(event) {
+            event.stopPropagation(); // หยุดการกระจายเหตุการณ์คลิกไปยัง document
+
+            var targetId = $(this).attr("id"); // รับ id ของปุ่มที่ถูกคลิก
+
+            if(document.querySelector('.open_dropcontent2')){
+                $(".dropcontent2").removeClass("open_dropcontent2");
+            }
+
+            $(".dropcontent").toggleClass("open_dropcontent");
+
+            // เพิ่มเหตุการณ์คลิกที่ document เพื่อปิด .dropcontent ถ้าคลิกที่นอกเหตุการณ์
+            $(document).click(function(event) {
+                if (!$(event.target).closest(".dropcontent").length) {
+                    $(".dropcontent").removeClass("open_dropcontent");
+                }
+            });
+        });
+    });
+
+    // เปิด-ปิด list ของกล้อง
+    $(document).ready(function() {
+        $("#btn_switchCamera").click(function(event) {
+            event.stopPropagation(); // หยุดการกระจายเหตุการณ์คลิกไปยัง document
+
+            var targetId = $(this).attr("id"); // รับ id ของปุ่มที่ถูกคลิก
+
+            if(document.querySelector('.open_dropcontent')){
+                $(".dropcontent").removeClass("open_dropcontent");
+            }
+
+            $(".dropcontent2").toggleClass("open_dropcontent2");
+
+            // เพิ่มเหตุการณ์คลิกที่ document เพื่อปิด .dropcontent2 ถ้าคลิกที่นอกเหตุการณ์
+            $(document).click(function(event) {
+                if (!$(event.target).closest(".dropcontent2").length) {
+                    $(".dropcontent2").removeClass("open_dropcontent2");
+                }
+            });
+        });
+    });
+
 
 
     // เมื่อออกจากห้องโดยไม่ได้กดที่ปุ่ม
