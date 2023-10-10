@@ -1406,7 +1406,7 @@ function start_countdown_user_out_room(){
 
       if (start_countdown < 0){
         myStop_countdown_user_out_room();
-        // document.querySelector('#leave').click();
+        document.querySelector('#leave').click();
       }
 
   }, 1000);
