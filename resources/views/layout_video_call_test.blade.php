@@ -339,7 +339,7 @@
                     <p class="bg-success p-2 m-1 col-5 border-radius">IDC : เขียว</p>
                     <p class="bg-danger p-2 m-1 col-5 border-radius">RC : แดง</p>
                 </div>
-                <div class="p-2 nowordwarp">
+                <div class="p-2 nowordwarp text-start">
                     <p class="h5 text-secondary mt-1">รายละเอียดสถานที่</p>
                     <p class="h6 text-secondary ">{รายละเอียดสถานที่}</p>
                     <p class="h5 text-secondary mt-1">อาการ</p>

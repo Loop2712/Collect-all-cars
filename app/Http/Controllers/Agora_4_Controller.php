@@ -13,6 +13,7 @@ use App\Models\Agora_chat;
 use Intervention\Image\ImageManagerStatic as Image;
 // use App\Classes\AgoraDynamicKey\RtcTokenBuilder;
 use App\Events\MakeAgoraCall;
+use App\Models\Sos_1669_form_yellow;
 use Willywes\AgoraSDK\RtcTokenBuilder;
 
 class Agora_4_Controller extends Controller
@@ -39,9 +40,10 @@ class Agora_4_Controller extends Controller
 
         $appId = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
-        // $sos_id = $request->sos_id;
+
+        $sos_id = $request->sos_id;
         $type = $request->type;
-        $sos_id = 555;
+
         $consult_doctor_id = 123;
         $request->user_to_call;
 
@@ -72,7 +74,8 @@ class Agora_4_Controller extends Controller
 
         // $appId = $requestData['appId'];
         // $appCertificate =  $requestData['appCertificate'];
-        // $sos_id = $requestData['sos_id'];
+
+        $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')->first();
 
         $useSpeaker = $requestData['useSpeaker'];
         $useMicrophone = $requestData['useMicrophone'];
@@ -84,7 +87,7 @@ class Agora_4_Controller extends Controller
         $appID = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
 
-        return view('video_call_4/pc_video_call_4', compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type'));
+        return view('video_call_4/pc_video_call_4', compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data'));
 
     }
 

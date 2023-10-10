@@ -30,15 +30,12 @@
         }
 
         .data-sos {
-            outline: 1px solid #000;
             border-radius: 5px;
-            min-height: 100%;
+            height: calc(87.5vh);
             background-color: #2b2d31;
             color: #fff !important;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
+            overflow: auto;
+
         }
         .data-sos *{
             color: #fff;
@@ -46,25 +43,26 @@
 
         .head_sidebar_div {
             background-color: rgb(255, 255, 255);
-            height: 170px;
+            height: auto;
             padding: 10px;
-            border-radius: 2px;
+            border-radius: 7px;
             margin-left: 2px; /* เพิ่มระยะห่างจากขอบซ้าย 2px */
+            border-top: red 5px solid;
         }
 
         .neck_sidebar_div {
             background-color: rgb(255, 255, 255);
-            height: 140px;
+            height: auto;
             padding: 10px;
-            border-radius: 2px;
+            border-radius: 7px;
             margin-left: 2px; /* เพิ่มระยะห่างจากขอบซ้าย 2px */
         }
 
         .body_sidebar_div {
             background-color: rgb(255, 255, 255);
-            height: 550px;
+            height: auto;
             padding: 10px;
-            border-radius: 2px;
+            border-radius: 7px;
             margin-left: 2px; /* เพิ่มระยะห่างจากขอบซ้าย 2px */
         }
 
@@ -271,6 +269,10 @@
             background-color: red; /* เปลี่ยนสีพื้นหลังของ radio input เป็นสีแดงเมื่อถูกเลือก */
         }
 
+        .font-weight-bold{
+            font-weight: bold !important;
+        }
+
         /* --------------------------  ฟังก์ชัน เปลี่ยนไมค์และกล้อง -------------------------------------*/
 
         .dropcontent {
@@ -436,6 +438,10 @@
             cursor: pointer;
         }
 
+        .overflow_auto_video_call{
+            overflow: auto;
+        }
+
         /* -------------------------- จบ ฟังก์ชัน เปลี่ยนไมค์และกล้อง -------------------------------------*/
 
     /* } */
@@ -453,36 +459,153 @@
 	<div class="col-12 col-lg-2">
         <button id="join" class="btn btn-success d-none" >เข้าร่วม</button>
 		<div class="data-sos text-center p-3 d-flex  row">
-            <div class="head_sidebar_div overflow-auto text-center mb-2">
-                <p class="h4 text-secondary mt-3">2308-1406-0014</p>
-                <p class="h5 text-secondary ">สถานะ: เสร็จสิ้น</p>
-                <p class="h6 text-secondary ">การช่วยเหลือผ่านไปแล้ว</p>
-                <p class="h5 text-secondary ">25 นาที</p>
-            </div>
+            @if ($type == "sos_1669")
+                <div class="" >
+                    <div class="head_sidebar_div text-center mb-2">
+                        <p class="h4 text-secondary mt-3 font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
+                        <p class="h5 text-secondary ">สถานะ:
+                            @php
+                                switch ($sos_data->status) {
+                                    case 'เสร็จสิ้น':
+                                        $color_text_status = "text-success";
+                                        break;
+                                    case 'รับแจ้งเหตุ':
+                                        $color_text_status = "text-danger";
+                                        break;
+                                    case 'กำลังดำเนินการ':
+                                        $color_text_status = "text-warning";
+                                        break;
+                                    default:
+                                        $color_text_status = "text-secondary";
+                                        break;
+                                }
+                            @endphp
+                            <a class="{{$color_text_status}} font-weight-bold">{{$sos_data->status ? $sos_data->status : "--"}}</a>
+                        </p>
 
-            <div class="neck_sidebar_div overflow-auto text-center mt-0 mb-2">
-                <p class="h5 text-secondary mt-3">ข้อมูลผู้ขอความช่วยเหลือ</p>
-                <p class="h5 text-secondary ">ชื่อผู้ขอความช่วยเหลือ</p>
-                <p class="h6 text-secondary ">081-2345678</p>
-            </div>
+                        @php
+                            if(!empty($sos_data->help_complete_time) && !empty($sos_data->time_go_to_help)){
+                                $sos_data_time_sos_success = strtotime($sos_data->help_complete_time);
+                                $sos_data_time_command = strtotime($sos_data->time_go_to_help);
 
-            <div class="body_sidebar_div overflow-auto mb-2 ">
-                <div class="d-flex  text-center">
-                    <p class="bg-success p-2 m-1 col-5 border-radius">IDC : เขียว</p>
-                    <p class="bg-danger p-2 m-1 col-5 border-radius">RC : แดง</p>
+                                $sos_data_timeDifference = abs($sos_data_time_sos_success - $sos_data_time_command);
+                                if ($sos_data_timeDifference >= 86400) { // ถ้าเกิน 1 วัน (86400 วินาที)
+                                    $sos_data_days = floor($sos_data_timeDifference / 86400);
+                                    $sos_data_hours = floor(($sos_data_timeDifference % 86400) / 3600);
+
+                                    $sos_data_time_unit = $sos_data_days . ' วัน ' . $sos_data_hours . ' ชั่วโมง ';
+
+                                }elseif ($sos_data_timeDifference >= 3600) {
+                                    $sos_data_hours = floor($sos_data_timeDifference / 3600);
+                                    $sos_data_remainingMinutes = floor(($sos_data_timeDifference % 3600) / 60);
+                                    $sos_data_remainingSeconds = $sos_data_timeDifference % 60;
+
+                                    $sos_data_time_unit = $sos_data_hours . ' ชั่วโมง ' . $sos_data_remainingMinutes . ' นาที ' . $sos_data_remainingSeconds . ' วินาที';
+                                } elseif ($sos_data_timeDifference >= 60) {
+                                    $sos_data_minutes = floor($sos_data_timeDifference / 60);
+                                    $sos_data_seconds = $sos_data_timeDifference % 60;
+
+                                    $sos_data_time_unit = $sos_data_minutes . ' นาที ' . $sos_data_seconds . ' วินาที';
+                                } else {
+                                    $sos_data_time_unit = $sos_data_timeDifference . ' วินาที';
+                                }
+                            }else{
+                                $sos_data_time_unit  = "--";
+                            }
+                        @endphp
+
+                        <p class="h6 text-secondary ">การช่วยเหลือผ่านไปแล้ว</p>
+                        @if (!empty($sos_data_time_unit))
+                            <p class="h5 text-secondary font-weight-bold">{{$sos_data_time_unit}}</p>
+                        @else
+                        <p class="h5 text-secondary "> -- </p>
+                        @endif
+
+                    </div>
+
+                    <div class="neck_sidebar_div text-center mt-0 mb-2">
+                        <p class="h5 text-secondary mt-3 font-weight-bold">ผู้ขอความช่วยเหลือ</p>
+                        <p class="h5 text-secondary ">{{$sos_data->name_user ? $sos_data->name_user : "--"}}</p>
+                        <p class="h6 text-secondary font-weight-bold">{{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
+                    </div>
+
+                    <div class="body_sidebar_div mb-2 ">
+                        <div class="d-flex text-center justify-content-center">
+                            @php
+                                switch ($sos_data->idc) {
+                                    case 'แดง(วิกฤติ)':
+                                        $bg_idc = "bg-danger";
+                                        $text_idc = "แดง";
+                                        break;
+                                    case 'เหลือง(เร่งด่วน)':
+                                        $bg_idc = "bg-warning";
+                                        $text_idc = "เหลือง";
+                                        break;
+                                    case 'เขียว(ไม่รุนแรง)':
+                                        $bg_idc = "bg-success";
+                                        $text_idc = "เขียว";
+                                        break;
+                                    case 'ขาว(ทั่วไป)':
+                                        $bg_idc = "bg-secondary";
+                                        $text_idc = "ขาว";
+                                        break;
+                                    case 'ดำ(รับบริการสาธารณสุขอื่น)':
+                                        $bg_idc = "bg-dark";
+                                        $text_idc = "ดำ";
+                                        break;
+                                    default:
+                                        $bg_idc = "bg-dark";
+                                        $text_idc = "--";
+                                        break;
+                                }
+
+
+                                switch ($sos_data->rc) {
+                                    case 'แดง(วิกฤติ)':
+                                        $bg_rc = "bg-danger";
+                                        $text_rc = "แดง";
+                                        break;
+                                    case 'เหลือง(เร่งด่วน)':
+                                        $bg_rc = "bg-warning";
+                                        $text_rc = "เหลือง";
+                                        break;
+                                    case 'เขียว(ไม่รุนแรง)':
+                                        $bg_rc = "bg-success";
+                                        $text_rc = "เขียว";
+                                        break;
+                                    case 'ขาว(ทั่วไป)':
+                                        $bg_rc = "bg-secondary";
+                                        $text_rc = "ขาว";
+                                        break;
+                                    case 'ดำ(รับบริการสาธารณสุขอื่น)':
+                                        $bg_rc = "bg-dark";
+                                        $text_rc = "ดำ";
+                                        break;
+                                    default:
+                                        $bg_rc = "bg-dark";
+                                        $text_rc = "--";
+                                        break;
+                                }
+                            @endphp
+                            <p class="{{$bg_idc}} p-2 m-1 col-5 border-radius font-weight-bold">IDC <br> {{$text_idc ? $text_idc : "--"}}</p>
+                            <p class="{{$bg_rc}} p-2 m-1 col-5 border-radius font-weight-bold">RC <br> {{$text_rc ? $text_rc : "--"}}</p>
+                        </div>
+                        <div class="p-3 nowordwarp text-start">
+                            <p class="h5 text-secondary mt-1 font-weight-bold">รายละเอียดสถานที่</p>
+                            <p class="h6 text-secondary ">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</p>
+                            <hr>
+                            <p class="h5 text-secondary mt-1 font-weight-bold">อาการ</p>
+                            <p class="h6 text-secondary ">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</p>
+                            <hr>
+                            <p class="h5 text-secondary mt-1 font-weight-bold">รายละเอียดอาการ</p>
+                            <p class="h6 text-secondary ">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-2 nowordwarp">
-                    <p class="h5 text-secondary mt-1">รายละเอียดสถานที่</p>
-                    <p class="h6 text-secondary ">{รายละเอียดสถานที่}</p>
-                    <p class="h5 text-secondary mt-1">อาการ</p>
-                    <p class="h6 text-secondary ">1.{อาการ}</p>
-                    <p class="h5 text-secondary mt-1">รายละเอียดอาการ</p>
-                    <p class="h6 text-secondary ">{รายละเอียดอาการ}</p>
-                </div>
+            @endif
+		</div>
 
-            </div>
-
-			<div class="d-flex">
+        <div class="d-flex overflow_auto_video_call row py-3" style="background-color: #2b2d31;">
 				<div id="" class="align-self-end w-100">
                     <div class="row d-flex justify-content-center">
                         <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
@@ -520,7 +643,6 @@
 
 				</div>
 			</div>
-		</div>
 	</div>
 
 	<div class="col-12 col-lg-10 full-height d-flex row">
@@ -1818,7 +1940,7 @@
             // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
             let audioDeviceList = document.getElementById('audio-device-list');
                 audioDeviceList.innerHTML = '';
-                audioDeviceList.appendChild(document.createTextNode("อุปกรณ์ส่งข้อมูล"));
+                audioDeviceList.appendChild(document.createTextNode("อุปกรณ์รับข้อมูล"));
             // let audiooutputDeviceList = document.getElementById('audio-device-output-list');
             //     audiooutputDeviceList.innerHTML = '';
 
@@ -1840,7 +1962,7 @@
 
                 let label = document.createElement('li');
                     label.classList.add('ui-list-item');
-                    label.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${audioDeviceList.children.length + 1}`));
+                    label.appendChild(document.createTextNode(device.label || `อุปกรณ์รับข้อมูล ${audioDeviceList.children.length + 1}`));
                     label.appendChild(document.createTextNode("\u00A0")); // เพิ่ม non-breaking space
                     label.appendChild(radio2);
 
