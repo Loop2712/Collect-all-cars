@@ -1014,20 +1014,28 @@ class Sos_mapController extends Controller
         return view('sos_map.user_view_officer', compact('data_sos'));
     }
 
-    function data_officer($id_sos_map){
+    function update_location_user(Request $request)
+    {
+        $requestData = $request->all();
 
-        $data_sos = Sos_map::where('id',$id_sos_map)->first();
-
-        $data_officer = User::where('id' , $data_sos->helper_id)
-            ->select('photo as officerPhoto', 'lat as latOfficer', 'lng as lngOfficer')
-            ->first();
+        DB::table('users')
+            ->where([ 
+                    ['id', $requestData['user_id'] ],
+                ])
+            ->update([
+                'lat' => $requestData['user_lat'],
+                'lng' => $requestData['user_lng'],
+            ]);
 
         $data = [];
-        $data['data_sos'] = $data_sos ;
-        $data['data_officer'] = $data_officer ;
+
+        $data_sos_map = Sos_map::where('id' , $requestData['sos_map_id'])->select('helper_id','status')->first();
+        $data_helper = User::where('id' , $data_sos_map->helper_id)->select('lat' , 'lng')->first();
+
+        $data['data_helper'] = $data_helper;
+        $data['status'] =  $data_sos_map->status ;
 
         return $data ;
-
     }
 
     function report_repair($id_sos_map , $groupId){

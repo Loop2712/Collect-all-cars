@@ -516,57 +516,40 @@
 </div>
 
 <!-- กำลังค้นหาเจ้าหน้าที่ -->
-<div id="Searching_officer" class="owl-carousel owl-theme carousalOfficerSOS d-none">
-    <div class="item">
-        <div class="container bg-white officer-arrive w-100" style="bottom: -4.5%;">
-            <div class="w-100 text-center">
-                <img src="{{ asset('/img/stickerline/PNG/34.png') }}" style="object-fit: contain;" width="80" height="80" alt="">
-                <br>
-                <h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #000;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
-                    <b>สวัสดีคุณ </b>
-                </h5>
-                <h5 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กำลังค้นหาหน่วยปฏิบัติการที่ใกล้คุณ</h5>
-                <h6 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กรุณารอสักครู่..</h6>
-                <a href="{{ url('/') }}/user_video_call/sos_help_center?sos_id={{ $data_sos->id }}" class="btn-outline-primary btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">ติดต่อเจ้าหน้าที่</a>
-            </div>
-        </div>
+<div id="Searching_officer" class="container bg-white officer-arrive w-100 d-none">
+    <div class="w-100 text-center mt-4">
+        <img src="{{ asset('/img/stickerline/Flex/2.png') }}" width="120" alt="">
+        <br>
+        <h5 class="mb-0 mt-4 notranslate mt-1" style="color: #808080;">กำลังค้นหาเจ้าหน้าที่ที่ใกล้คุณ</h5>
+        <h6 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กรุณารอสักครู่..</h6>
+        <a href="{{ url('/video_call_4/before_video_call_4?type=sos_map&sos_id=') . $data_sos->id }}" class="btn-outline-primary btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;" target="bank">ติดต่อเจ้าหน้าที่</a>
     </div>
 </div>
-<script>
-    $(function() {
-        // Owl Carousel
-        var owl = $(".carousalOfficerSOS");
-        owl.owlCarousel({
-            items: 1,
-            margin: 10,
-            loop: false,
-            nav: false,
-            dots: false,
-        });
-    });
-</script>
 
 <!-- เจ้าหน้าที่เดินทางมาถึงแล้ว -->
-<div id="div_officer_to_the_scene" class="container bg-white officer-arrive w-100 d-none" style="bottom: -4.5%;">
-    <div class="w-100 text-center">
-        <img src="{{ asset('/img/stickerline/PNG/34.png') }}" width="80" alt="">
+<div id="div_officer_to_the_scene" class="container bg-white officer-arrive w-100 d-none">
+    <div class="w-100 text-center mt-3">
+        <img src="{{ asset('/img/stickerline/PNG/34.png') }}" width="120" alt="">
         <br>
-        <h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #808080;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
-            สวัสดีคุณ <span id="name_user_in_to_the_scene">16516</span>
+        <h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: grey;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
+            สวัสดีคุณ
         </h5>
-        <h6 class="mb-0 notranslate mt-1" style="color: #808080;">เจ้าหน้าที่มาถึงแล้ว</h6>
+        <h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #000;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
+            <b>{{ $data_sos->name }}</b>
+        </h5>
+        <h6 class="mb-0 notranslate mt-2 text-info">เจ้าหน้าที่มาถึงแล้ว</h6>
         <a href="https://lin.ee/y3gA8A3" class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">เสร็จสิ้น</a>
     </div>
 </div>
 
 <!-- แสดงข้อมูลเจ้าหน้าที่ -->
-<div id="div_data_officer_help" class="container bg-white officer-arrive w-100 d-none" style="bottom: -4.5%;">
+<div id="div_data_officer_help" class="container bg-white officer-arrive w-100 d-none">
     <div class="container box-data-helper d-">
         <div>
             <span class="d-block">
                 <span class="distanceOfficer" id="text_distance">11</span>
                 <span class="distanceKmOfficer" id="text_distance_km">11</span>
-                <a href="{{ url('/video_call_4/before_video_call_4?type=sos_map&sos_id=') . $data_sos->id }}" class="distanceKmOfficer float-end btn btn-info" style="color:#ffffff;margin-top:25px;">
+                <a href="{{ url('/video_call_4/before_video_call_4?type=sos_map&sos_id=') . $data_sos->id }}" class="distanceKmOfficer float-end btn btn-info" style="color:#ffffff;margin-top:25px;" target="bank">
                     <i class="fa-solid fa-video"></i>
                 </a>
             </span>
@@ -578,12 +561,16 @@
             <div class="d-flex align-items-center ml-2">
                 <div class="centered">
                     <div class="badge-wrap">
-                        <img id="img_profile" src="" width="70" height="70" class="rounded-circle" alt="">
+                        @php
+                            $data_helper = App\User::where('id', $data_sos->helper_id )->first();
+                            $photo_helper = $data_helper->photo ;
+                        @endphp
+                        <img src="{{ url('storage')}}/{{ $photo_helper }}" width="70" height="70" class="rounded-circle" alt="">
                     </div>
                 </div>
                 <div class="flex-grow-1 ms-3 box-organization_helper">
-                    <p class="font-weight-bold mb-0 notranslate" id="name_helper">aaaa</p>
-                    <p class="font-weight-bold mb-0 notranslate text-organization" id="organization_helper">bbbb</p>
+                    <p class="font-weight-bold mb-0 notranslate">{{ $data_sos->helper }}</p>
+                    <p class="font-weight-bold mb-0 notranslate text-organization">{{ $data_sos->organization_helper }}</p>
                 </div>
             </div>
         </div>
@@ -593,48 +580,35 @@
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 <script>
-    var officer_lng
-    var officer_lat
-    var officer_id
-    var loop_officer_id;
+
+    var officer_id ;
+    let check_status ;
 
     document.addEventListener('DOMContentLoaded', (event) => {
 
         // console.log("START");
-        initMap(); //เปิดด้วย
+        open_map_show_user();
 
-        let check_status = "{{ $data_sos->status }}";
+        check_status = "{{ $data_sos->status }}";
             // console.log(check_status);
 
         if(check_status == "รับแจ้งเหตุ"){
             document.querySelector("#Searching_officer").classList.remove('d-none');
         }else if(check_status == "กำลังไปช่วยเหลือ"){
             document.querySelector("#div_data_officer_help").classList.remove('d-none');
-            getDataOfficerGoToHelp();
+            navigator.geolocation.getCurrentPosition(update_location_user);
+            // loop_check_status_officer();
         }else{
             document.querySelector("#div_officer_to_the_scene").classList.remove('d-none');
         }
 
     });
 
-
-    function getDataOfficerGoToHelp() {
-
-        fetch("{{ url('/') }}/api/sos_map/data_officer" + "/" + '{{ $data_sos->id }}')
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-
-
-            });
-
-    }
 </script>
 
 <script>
-    const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
-    const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
-    const image_empty = "{{ url('/img/icon/flag_empty.png') }}";
+    const image_sos = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}";
+    const image_operating_unit_general = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/7.png') }}";
 
     var officer_marker;
     var sos_marker;
@@ -647,7 +621,7 @@
 
     var time_to_the_scene;
 
-    function initMap() {
+    function open_map_show_user() {
 
         document.querySelector("#open_location_pls").classList.add('d-none');
 
@@ -657,20 +631,6 @@
                 lng: parseFloat(sos_lng)
             },
             zoom: 15
-        });
-
-        // หมุดเจ้าหน้าที่
-        if (officer_marker) {
-            officer_marker.setMap(null);
-        }
-
-        officer_marker = new google.maps.Marker({
-            position: {
-                lat: parseFloat(officer_lat),
-                lng: parseFloat(officer_lng)
-            },
-            map: map_show_user,
-            icon: image_operating_unit_general,
         });
 
         // หมุด SOS
@@ -686,37 +646,107 @@
             icon: image_sos,
         });
 
-        // loop_check_status_officer();
+    }
+
+    function create_marker(sos_lat , sos_lng , start_user_lat , start_user_lng){
+
+        // หมุดที่เกิดเหตุ 
+        if (sos_marker) {
+            sos_marker.setMap(null);
+        }
+        sos_marker = new google.maps.Marker({
+            position: {
+                lat: parseFloat(sos_lat),
+                lng: parseFloat(sos_lng)
+            },
+            map: map_show_user,
+            icon: image_sos,
+        });
+
+        // หมุดเจ้าหน้าที่
+        if (officer_marker) {
+            officer_marker.setMap(null);
+        }
+        officer_marker = new google.maps.Marker({
+            position: {
+                lat: parseFloat(start_officer_lat),
+                lng: parseFloat(start_officer_lng)
+            },
+            map: map_show_user,
+            icon: image_operating_unit_general,
+        });
+
+        // สร้างเส้นทาง
+        // get_Directions_API(officer_marker, sos_marker);
 
     }
 
     var check_status_officer;
 
     function loop_check_status_officer() {
+
         check_status_officer = setInterval(function() {
-            let sos_id = '{{ $data_sos->id }}';
-            // console.log('loop_check_status_officer');
-            func_check_status_officer(sos_id);
-        }, 6000);
+
+            console.log(check_status);
+
+            if(check_status == "กำลังไปช่วยเหลือ"){
+                
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(update_location_user);
+                } else {
+                    // x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }else{
+                Stop_loop_check_status_officer();
+            }
+
+        }, 15000);
+
     }
 
     function Stop_loop_check_status_officer() {
         clearInterval(check_status_officer);
     }
 
-    function func_check_status_officer(sos_id) {
-        fetch("{{ url('/') }}/api/check_status_officer" + "/" + sos_id)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                // console.log(result.helper_id);
-                if (result.helper_id) {
-                    Stop_loop_check_status_officer();
-                    document.querySelector('.carousalOfficerSOS').innerHTML = '';
+    function update_location_user(position){
 
-                    window.location.reload();
-                }
-            });
+        // console.log("update_location_user");
+
+        let user_lat = position.coords.latitude;
+        let user_lng = position.coords.longitude;
+
+        console.log("user_lat >> " + user_lat);
+        console.log("user_lng >> " + user_lng);
+
+        let data_arr = [] ;
+
+        data_arr = {
+            "sos_map_id" : "{{ $data_sos->id }}",
+            "user_id" : "{{ Auth::user()->id }}",
+            "user_lat" : user_lat,
+            "user_lng" : user_lng,
+        }; 
+
+        fetch("{{ url('/') }}/api/sos_map/update_location_user", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.json();
+        }).then(function(data){
+            console.log(data);
+
+            if(data){
+                check_status = data['status'];
+                create_marker(data['data_helper']['lat'] , data['data_helper']['lng'] , user_lat , user_lng)
+            }
+
+        }).catch(function(error){
+            // console.error(error);
+        });
+
     }
 </script>
 
@@ -763,7 +793,6 @@
                 let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value);
                 document.querySelector("#time_duration").innerHTML = "ถึงเวลา " + text_arrivalTime;
 
-                loop_check_location_officer();
 
                 // document.querySelector('#div_distance_and_duration').classList.remove('d-none');
             } else {
@@ -774,60 +803,7 @@
 
     }
 
-    function loop_check_location_officer() {
 
-        loop_check_officer = setInterval(function() {
-            // console.log(loop_officer_id);
-            // console.log('loop_check_location_officer');
-            check_location_officer(loop_officer_id);
-        }, 8000);
-    }
-
-    function Stop_loop_check_officer() {
-        clearInterval(loop_check_officer);
-    }
-
-    function check_location_officer(officer_id) {
-
-        fetch("{{ url('/') }}/api/check_location_officer" + "/" + officer_id)
-            .then(response => response.json())
-            .then(result => {
-                // console.log(result);
-                // console.log(result['officer_lat']);
-                // console.log(result['officer_lng']);
-
-                if (result['status'] != "ถึงที่เกิดเหตุ") {
-
-                    const newPosition = new google.maps.LatLng(parseFloat(result['officer_lat']), parseFloat(result['officer_lng']));
-                    officer_marker.setPosition(newPosition);
-
-                    let bounds = new google.maps.LatLngBounds();
-                    bounds.extend(new google.maps.LatLng(parseFloat(sos_lat), parseFloat(sos_lng)));
-                    bounds.extend(new google.maps.LatLng(parseFloat(result['officer_lat']), parseFloat(result['officer_lng'])));
-
-                    map_show_user.fitBounds(bounds);
-
-                } else {
-                    Stop_loop_check_officer();
-                    // document.querySelector('#btn_modal_officer_to_the_scene').click();
-                    document.querySelector('.box-data-helper-' + officer_id).innerHTML =
-                        `<div class="container bg-white officer-arrive w-100" style="bottom: -4.5%;">
-						<div class="w-100 text-center">
-							<img src="{{ asset('/img/stickerline/PNG/34.png') }}" style="object-fit: contain;" width="80" height="80" alt="">
-							<br>
-							<h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #808080;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">สวัสดีคุณ </h5>
-							<h6 class="mb-0 notranslate mt-1" style="color: #808080;">เจ้าหน้าที่` + result['name_officer'] + `มาถึงแล้ว</h6>
-							<a href="https://lin.ee/y3gA8A3" class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">เสร็จสิ้น</a>
-						</div>
-					</div>`;
-
-
-                    // document.querySelector('.officer-arrive').classList.remove('d-none');
-                    // document.querySelector('.officer-arrive').classList.add('show-data');
-                }
-            });
-
-    }
 </script>
 
 @endsection

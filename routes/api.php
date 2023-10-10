@@ -179,10 +179,10 @@ Route::get('/check_notified_js100','API\PartnersController@check_notified_js100'
 Route::get('/update_new_sos_js100/{is_sos_map}','API\PartnersController@update_new_sos_js100');
 Route::get('/admin_click/{all_or_id}','API\PartnersController@admin_click');
 
+Route::post('/sos_map/update_location_user','Sos_mapController@update_location_user');
 Route::post('/sos_map/update_location_officer','Sos_mapController@update_location_officer');
 Route::post('/sos_map/update_status','Sos_mapController@update_status');
 Route::post('/sos_map/help_complete','Sos_mapController@help_complete');
-Route::get('/sos_map/data_officer/{sos_id}','Sos_mapController@data_officer');
 
 Route::get('/check_sos_alarm/{check_name_partner}','API\PartnersController@check_sos_alarm');
 Route::get('/check_sos_alarm/notify/{check_name_partner}','API\PartnersController@check_sos_alarm_notify');
