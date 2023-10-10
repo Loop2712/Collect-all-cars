@@ -562,10 +562,17 @@
                 <div class="centered">
                     <div class="badge-wrap">
                         @php
-                            $data_helper = App\User::where('id', $data_sos->helper_id )->first();
-                            $photo_helper = $data_helper->photo ;
+                            if(!empty($data_sos->helper_id)){
+                                $data_helper = App\User::where('id', $data_sos->helper_id )->first();
+                                $photo_helper = $data_helper->photo ;
+                            }
                         @endphp
-                        <img src="{{ url('storage')}}/{{ $photo_helper }}" width="70" height="70" class="rounded-circle" alt="">
+
+                        @if(!empty($photo_helper))
+                            <img src="{{ url('storage')}}/{{ $photo_helper }}" width="70" height="70" class="rounded-circle" alt="">
+                        @else
+                            <img src="{{ asset('/img/stickerline/Flex/12.png') }}" width="70" height="70" class="rounded-circle" alt="">
+                        @endif
                     </div>
                 </div>
                 <div class="flex-grow-1 ms-3 box-organization_helper">
