@@ -75,7 +75,9 @@ class Agora_4_Controller extends Controller
         // $appId = $requestData['appId'];
         // $appCertificate =  $requestData['appCertificate'];
 
-        $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')->first();
+        $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+        ->where('sos_help_centers.id',$sos_id)
+        ->first();
 
         $useSpeaker = $requestData['useSpeaker'];
         $useMicrophone = $requestData['useMicrophone'];

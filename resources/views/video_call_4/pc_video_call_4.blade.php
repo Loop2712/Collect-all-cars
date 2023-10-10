@@ -30,7 +30,7 @@
         }
 
         .data-sos {
-            border-radius: 5px;
+            /* border-radius: 5px; */
             height: calc(87.5vh);
             background-color: #2b2d31;
             color: #fff !important;
@@ -56,6 +56,7 @@
             padding: 10px;
             border-radius: 7px;
             margin-left: 2px; /* เพิ่มระยะห่างจากขอบซ้าย 2px */
+            border-top: rgb(81, 255, 0) 5px solid;
         }
 
         .body_sidebar_div {
@@ -64,6 +65,7 @@
             padding: 10px;
             border-radius: 7px;
             margin-left: 2px; /* เพิ่มระยะห่างจากขอบซ้าย 2px */
+            border-top: rgb(0, 99, 247) 5px solid;
         }
 
         .border-radius{
@@ -484,11 +486,11 @@
                         </p>
 
                         @php
-                            if(!empty($sos_data->help_complete_time) && !empty($sos_data->time_go_to_help)){
-                                $sos_data_time_sos_success = strtotime($sos_data->help_complete_time);
-                                $sos_data_time_command = strtotime($sos_data->time_go_to_help);
+                            if( !empty($sos_data->time_create_sos)){
+                                $currentdate = date('H:i:s'); // เวลาปัจจุบันในรูปแบบ "H:i:s"
+                                $sos_data_time_command = strtotime($sos_data->time_create_sos); // แปลง $sos_data->time_create_sos เป็น timestamp
+                                $sos_data_timeDifference = abs( $sos_data_time_command - strtotime($currentdate) );
 
-                                $sos_data_timeDifference = abs($sos_data_time_sos_success - $sos_data_time_command);
                                 if ($sos_data_timeDifference >= 86400) { // ถ้าเกิน 1 วัน (86400 วินาที)
                                     $sos_data_days = floor($sos_data_timeDifference / 86400);
                                     $sos_data_hours = floor(($sos_data_timeDifference % 86400) / 3600);
@@ -534,27 +536,27 @@
                             @php
                                 switch ($sos_data->idc) {
                                     case 'แดง(วิกฤติ)':
-                                        $bg_idc = "bg-danger";
+                                        $bg_idc = "#db2d2e";
                                         $text_idc = "แดง";
                                         break;
                                     case 'เหลือง(เร่งด่วน)':
-                                        $bg_idc = "bg-warning";
+                                        $bg_idc = "#ffc30e";
                                         $text_idc = "เหลือง";
                                         break;
                                     case 'เขียว(ไม่รุนแรง)':
-                                        $bg_idc = "bg-success";
+                                        $bg_idc = "#29cc39";
                                         $text_idc = "เขียว";
                                         break;
                                     case 'ขาว(ทั่วไป)':
-                                        $bg_idc = "bg-secondary";
+                                        $bg_idc = "#0d6efd";
                                         $text_idc = "ขาว";
                                         break;
                                     case 'ดำ(รับบริการสาธารณสุขอื่น)':
-                                        $bg_idc = "bg-dark";
+                                        $bg_idc = "#000000";
                                         $text_idc = "ดำ";
                                         break;
                                     default:
-                                        $bg_idc = "bg-dark";
+                                        $bg_idc = "#000000";
                                         $text_idc = "--";
                                         break;
                                 }
@@ -562,33 +564,33 @@
 
                                 switch ($sos_data->rc) {
                                     case 'แดง(วิกฤติ)':
-                                        $bg_rc = "bg-danger";
+                                        $bg_rc = "#db2d2e";
                                         $text_rc = "แดง";
                                         break;
                                     case 'เหลือง(เร่งด่วน)':
-                                        $bg_rc = "bg-warning";
+                                        $bg_rc = "#ffc30e";
                                         $text_rc = "เหลือง";
                                         break;
                                     case 'เขียว(ไม่รุนแรง)':
-                                        $bg_rc = "bg-success";
+                                        $bg_rc = "#29cc39";
                                         $text_rc = "เขียว";
                                         break;
                                     case 'ขาว(ทั่วไป)':
-                                        $bg_rc = "bg-secondary";
+                                        $bg_rc = "#0d6efd";
                                         $text_rc = "ขาว";
                                         break;
                                     case 'ดำ(รับบริการสาธารณสุขอื่น)':
-                                        $bg_rc = "bg-dark";
+                                        $bg_rc = "#000000";
                                         $text_rc = "ดำ";
                                         break;
                                     default:
-                                        $bg_rc = "bg-dark";
+                                        $bg_rc = "#000000";
                                         $text_rc = "--";
                                         break;
                                 }
                             @endphp
-                            <p class="{{$bg_idc}} p-2 m-1 col-5 border-radius font-weight-bold">IDC <br> {{$text_idc ? $text_idc : "--"}}</p>
-                            <p class="{{$bg_rc}} p-2 m-1 col-5 border-radius font-weight-bold">RC <br> {{$text_rc ? $text_rc : "--"}}</p>
+                            <p style="background-color: {{$bg_idc}};" class=" p-2 m-1 col-5 border-radius font-weight-bold">IDC <br> {{$text_idc ? $text_idc : "--"}}</p>
+                            <p style="background-color: {{$bg_rc}};" class=" p-2 m-1 col-5 border-radius font-weight-bold">RC <br> {{$text_rc ? $text_rc : "--"}}</p>
                         </div>
                         <div class="p-3 nowordwarp text-start">
                             <p class="h5 text-secondary mt-1 font-weight-bold">รายละเอียดสถานที่</p>
