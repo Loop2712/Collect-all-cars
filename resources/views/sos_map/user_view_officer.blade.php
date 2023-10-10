@@ -547,15 +547,15 @@
     <div class="container box-data-helper d-">
         <div>
             <span class="d-block">
-                <span class="distanceOfficer" id="text_distance">11</span>
-                <span class="distanceKmOfficer" id="text_distance_km">11</span>
+                <span class="distanceOfficer" id="text_distance"></span>
+                <span class="distanceKmOfficer" id="text_distance_km"></span>
                 <a href="{{ url('/video_call_4/before_video_call_4?type=sos_map&sos_id=') . $data_sos->id }}" class="distanceKmOfficer float-end btn btn-info" style="color:#ffffff;margin-top:25px;" target="bank">
                     <i class="fa-solid fa-video"></i>
                 </a>
             </span>
             <div class="d-block">
-                <span class="durationOfficer" id="text_duration">22</span>
-                <span class="durationOfficer" id="time_duration">22</span>
+                <span class="durationOfficer" id="text_duration"></span>
+                <span class="durationOfficer" id="time_duration"></span>
             </div>
             <hr>
             <div class="d-flex align-items-center ml-2">
@@ -597,7 +597,7 @@
         }else if(check_status == "กำลังไปช่วยเหลือ"){
             document.querySelector("#div_data_officer_help").classList.remove('d-none');
             navigator.geolocation.getCurrentPosition(update_location_user);
-            // loop_check_status_officer();
+            loop_check_status_officer();
         }else{
             document.querySelector("#div_officer_to_the_scene").classList.remove('d-none');
         }
@@ -648,7 +648,7 @@
 
     }
 
-    function create_marker(sos_lat , sos_lng , start_user_lat , start_user_lng){
+    function create_marker(sos_lat , sos_lng , officer_lat , officer_lng){
 
         // หมุดที่เกิดเหตุ 
         if (sos_marker) {
@@ -669,15 +669,15 @@
         }
         officer_marker = new google.maps.Marker({
             position: {
-                lat: parseFloat(start_officer_lat),
-                lng: parseFloat(start_officer_lng)
+                lat: parseFloat(officer_lat),
+                lng: parseFloat(officer_lng)
             },
             map: map_show_user,
             icon: image_operating_unit_general,
         });
 
         // สร้างเส้นทาง
-        // get_Directions_API(officer_marker, sos_marker);
+        get_Directions_API(officer_marker, sos_marker);
 
     }
 
@@ -687,7 +687,7 @@
 
         check_status_officer = setInterval(function() {
 
-            console.log(check_status);
+            // console.log(check_status);
 
             if(check_status == "กำลังไปช่วยเหลือ"){
                 
@@ -706,6 +706,12 @@
 
     function Stop_loop_check_status_officer() {
         clearInterval(check_status_officer);
+
+        document.querySelector("#Searching_officer").classList.add('d-none');
+        document.querySelector("#div_data_officer_help").classList.add('d-none');
+
+        document.querySelector("#div_officer_to_the_scene").classList.remove('d-none');
+        
     }
 
     function update_location_user(position){
@@ -715,8 +721,8 @@
         let user_lat = position.coords.latitude;
         let user_lng = position.coords.longitude;
 
-        console.log("user_lat >> " + user_lat);
-        console.log("user_lng >> " + user_lng);
+        // console.log("user_lat >> " + user_lat);
+        // console.log("user_lng >> " + user_lng);
 
         let data_arr = [] ;
 
@@ -736,11 +742,11 @@
         }).then(function (response){
             return response.json();
         }).then(function(data){
-            console.log(data);
+            // console.log(data);
 
             if(data){
                 check_status = data['status'];
-                create_marker(data['data_helper']['lat'] , data['data_helper']['lng'] , user_lat , user_lng)
+                create_marker(user_lat , user_lng , data['data_helper']['lat'] , data['data_helper']['lng'])
             }
 
         }).catch(function(error){
@@ -751,7 +757,7 @@
 </script>
 
 <script>
-    function get_Directions_API(markerA, markerB, officer_id) {
+    function get_Directions_API(markerA, markerB) {
 
         if (directionsDisplay) {
             directionsDisplay.setMap(null);
