@@ -1687,7 +1687,7 @@ function start_countdown_user_out_room(){
 
       command_entered_room = 'in_room' ;
       // document.querySelector('#card_show_h6_wait_command').classList.add('d-none');
-      document.querySelector('#show_h6_wait_command').classList.add('d-none');
+      // document.querySelector('#show_h6_wait_command').classList.add('d-none');
 
       remotePlayerContainer.classList.remove('d-none');
       btnVideoRemote.classList.remove('d-none');
