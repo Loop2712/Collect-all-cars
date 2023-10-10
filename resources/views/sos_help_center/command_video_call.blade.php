@@ -241,7 +241,7 @@
 
     @endphp
 
-    <div id="divVideoCall" class="video-body fade-slide"style="display: none;">
+    <div id="divVideoCall" class="video-body fade-slide" style="display: none;margin-bottom: 120px;">
 
       <div id="div_for_alertTime">
         <div class="containerAlert">

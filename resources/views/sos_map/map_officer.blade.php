@@ -513,7 +513,7 @@
 	}
 
 	function open_map_officer(position) {
-		console.log("open_map_officer");
+		// console.log("open_map_officer");
 
 		start_officer_lat = position.coords.latitude;
 		start_officer_lng = position.coords.longitude;
@@ -593,7 +593,7 @@
 
 			if(check_status != "เสร็จสิ้น"){
 				
-				console.log(check_status);
+				// console.log(check_status);
 
 	        	if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(update_location_officer);
@@ -616,7 +616,7 @@
 
 	function update_location_officer(position){
 
-		console.log("update_location_officer");
+		// console.log("update_location_officer");
 
 		let officer_lat = position.coords.latitude;
 		let officer_lng = position.coords.longitude;

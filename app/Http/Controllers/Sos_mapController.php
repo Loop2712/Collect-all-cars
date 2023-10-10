@@ -1014,6 +1014,22 @@ class Sos_mapController extends Controller
         return view('sos_map.user_view_officer', compact('data_sos'));
     }
 
+    function data_officer($id_sos_map){
+
+        $data_sos = Sos_map::where('id',$id_sos_map)->first();
+
+        $data_officer = User::where('id' , $data_sos->helper_id)
+            ->select('photo as officerPhoto', 'lat as latOfficer', 'lng as lngOfficer')
+            ->first();
+
+        $data = [];
+        $data['data_sos'] = $data_sos ;
+        $data['data_officer'] = $data_officer ;
+
+        return $data ;
+
+    }
+
     function report_repair($id_sos_map , $groupId){
 
         echo "<h1>report_repair</h1>";

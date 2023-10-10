@@ -1,4 +1,4 @@
-@extends('layouts.viicheck')
+@extends('layouts.viicheck_for_officer')
 
 @section('content')
 <style>
@@ -434,77 +434,9 @@
         min-width: 70px !important;
     }
 </style>
-<div class="owl-carousel owl-theme carousalOfficerSOS d-none" id="divDataOfficer">
-    <div class="item">
-        <div class="container bg-white officer-arrive w-100" style="bottom: -4.5%;">
-            <div class="w-100 text-center">
-                <img src="{{ asset('/img/stickerline/PNG/34.png') }}" style="object-fit: contain;" width="80" height="80" alt="">
-                <br>
-                <h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #000;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
-                    <b>สวัสดีคุณ </b>
-                </h5>
-                <h5 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กำลังค้นหาหน่วยปฏิบัติการที่ใกล้คุณ</h5>
-                <h6 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กรุณารอสักครู่..</h6>
-                <a href="{{ url('/') }}/user_video_call/sos_help_center?sos_id={{ $data_sos->id }}" class="btn-outline-primary btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">ติดต่อเจ้าหน้าที่</a>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    $(function() {
-        // Owl Carousel
-        var owl = $(".carousalOfficerSOS");
-        owl.owlCarousel({
-            items: 1,
-            margin: 10,
-            loop: false,
-            nav: false,
-            dots: false,
-        });
-    });
-</script>
 
-<!-- <div class="container box-data-helper d-none">
-		<div>
-			<span class="d-block" >
-				<span id="text_distance"></span>
-				<span id="text_distance_km"></span>
-			</span>
-			<div class="d-block">
-				<span id="text_duration"></span>
-				<span id="time_duration"></span>
-			</div>
-			<hr>
-			<div class="d-flex align-items-center ml-2">
-				<div class="centered">
-					<div class="badge-wrap">
-						@if(!empty($data_sos->officers_user->photo))
-							<img id="img_profile" src="{{ url('storage')}}/{{ $data_sos->officers_user->photo }}" width="70" height="70" class="rounded-circle" alt="">
-						@else
-							<img id="img_profile" src="{{ asset('/img/stickerline/PNG/34.png') }}" width="70" height="70" class="rounded-circle" alt="">
-						@endif
-					</div>
-				</div>
-				<div class="flex-grow-1 ms-3 box-organization_helper">
-					<p class="font-weight-bold mb-0 notranslate">{{ $data_sos->name_helper }}</p>
-					<p class="font-weight-bold mb-0 notranslate text-organization">{{ $data_sos->organization_helper }}</p>
-					
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-<div class="container bg-white officer-arrive w-100 d-none" style="bottom: -4.5%;">
-    <div class="w-100 text-center">
-        <img src="{{ asset('/img/stickerline/PNG/34.png') }}" width="80" alt="">
-        <br>
-        <h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #808080;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">สวัสดีคุณ </h5>
-        <h6 class="mb-0 notranslate mt-1" style="color: #808080;">เจ้าหน้าที่มาถึงแล้ว</h6>
-        <a href="https://lin.ee/y3gA8A3" class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">เสร็จสิ้น</a>
-    </div>
-</div>
-
-<div class="container bg-white open-location-pls w-100 d-none" style="bottom: 5%;height:25% !important;">
+<!-- Div กำลังค้นหาตำแหน่งที่ตั้ง -->
+<div id="open_location_pls" class="container bg-white open-location-pls w-100" style="bottom: 5%;height:25% !important;">
     <div class="w-100 text-center" style="margin-top: -25%;">
         <div class="d-flex justify-content-center">
             <svg class="pl" viewBox="0 0 160 160" width="160px" height="160px" xmlns="http://www.w3.org/2000/svg">
@@ -576,301 +508,87 @@
             </svg>
         </div>
         <br>
-        <h5 style="margin-top: -45%;" class="font-weight-bold mb-0 notranslate">กรุณาเปิดตำแหน่งที่ตั้งด้วยค่ะ</h5>
+        <h5 style="margin-top: -45%;" class="font-weight-bold mb-0 notranslate">กำลังค้นหาตำแหน่งที่ตั้ง</h5>
         <span style="bottom: -20%;border-radius:10px" class="sry-open-location-text btn btn-md btn-warning main-shadow main-radius p-2" onclick="window.location.reload(true);">
             <i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
         </span>
     </div>
 </div>
-<!-- <div id="" class="col-12 ">
-		<h3 class="text-center text-info">
-			<b>เจ้าหน้าที่กำลังเดินทางมา</b>
-		</h3>
 
-		<h5 class="text-center mt-3">
-			ระยะทาง : <span id="text_distance"></span>
-		</h5>
-		<h5 class="text-center mt-2">
-			ระยะเวลาโดยประมาณ : <span id="text_duration"></span>
-		</h5>
-	</div>
-
-	<center>
-		<hr style="width:80%;">
-	</center> -->
-
-<!-- <div class="col-12 ">
-		<h3 class="text-center text-info">
-			<b>ข้อมูลเจ้าหน้าที่</b>
-		</h3>
-		<div class="row">
-			<div class="col-3">
-			</div>
-			<div class="col-9">
-				ชื่อ : {{ $data_sos->name_helper }}
-				<br>
-				หน่วยงาน : {{ $data_sos->organization_helper }}
-			</div>
-		</div>
-	</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-
-<style>
-	#map_show_user {
-      	height: calc(40vh);
-      	background-color: grey;
-      	border-radius: 20px;
-      	border: 1px solid red;
-      	width: 90%;
-      	margin-top:25px; 
-      	margin-bottom:10px;
-    }
-
-    :root {
-		--light: #ffffff;
-		--green: #7ED957;
-		--grey: grey;
-		--link: rgb(27, 129, 112);
-		--link-hover: rgb(24, 94, 82);
-	}
-	.toggle-switch {
-	  	position: relative;
-	  	width: 200px;
-	}
-
-	.switch-label {
-	  	position: absolute;
-	  	width: 100%;
-	  	height: 100px;
-	  	left: 50%;
-	  	background-color: var(--grey);
-	  	border-radius: 50px;
-	  	cursor: pointer;
-	}
-
-	.switch-input {
-	  	position: absolute;
-	  	display: none;
-	}
-
-	.slider {
-	  	position: absolute;
-	  	width: 100%;
-	  	height: 100%;
-	  	border-radius: 50px;
-	  	transition: 0.3s;
-	}
-
-	.switch-input:checked ~ .slider {
-	  	background-color: var(--green);
-	}
-
-	.slider::before {
-	  	content: "";
-	  	position: absolute;
-	  	top: 13px;
-	  	left: 16px;
-	  	width: 75px;
-	  	height: 75px;
-	  	border-radius: 50%;
-	  	box-shadow: inset 28px -4px 0px 0px var(--light);
-	  	background-color: var(--grey);
-	  	transition: 0.3s;
-	}
-
-	.switch-input:checked ~ .slider::before {
-	  	transform: translateX(95px);
-	  	background-color: var(--light);
-	  	box-shadow: none;
-	}
-	.div-data-officer{
-		position: relative;
-	}
-	.bordertest {
-		position: absolute;
-    height:300px;
-    width:100%;
-background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwMDAwMCIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC42NSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome4-9,Safari4-5 */
-background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
-background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Opera 11.10-11.50 */
-background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* IE10 preview */
-background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-8 */
-
-
-
-}
-</style>
-<br><br><br><br><br><br><br><br>
-<br><br><br><br><b><b>b
-	<br><br>
-</b></b>
-<div class="div-data-officer">
-	<div class="bordertest"></div>
-</div>
-<div class="row notranslate" style="margin-top:150px;">
-
-	<div class="col-12 text-center">
-		<center>
-            <div class="col-12 main-shadow main-radius p-0" id="map_show_user">
-                <img style=" object-fit: cover; border-radius:15px" width="100%" height="100%" src="{{ asset('/img/more/sorry-no-text.png') }}" class="card-img-top center" style="padding: 10px;">
-                <div style="position: relative; z-index: 5">
-                    <div class="translate">
-                    	<center>
-                    		<h4 style="top:-330px;left: 130px;position: absolute;font-family: 'Sarabun', sans-serif;">ขออภัยค่ะ</h4>
-                            <h5 style="top:-270px;left: 35px;width: 80%;position: absolute;font-family: 'Sarabun', sans-serif;">
-                            	ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ
-                            </h5>
-                            <br>
-                            <span style="top:-200px;left: 130px;position: absolute;" class="btn btn-sm btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
-                            	<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
-                            </span>
-                    	</center>
-                        
-                    </div>
-                </div>
+<!-- กำลังค้นหาเจ้าหน้าที่ -->
+<div id="Searching_officer" class="owl-carousel owl-theme carousalOfficerSOS d-none">
+    <div class="item">
+        <div class="container bg-white officer-arrive w-100" style="bottom: -4.5%;">
+            <div class="w-100 text-center">
+                <img src="{{ asset('/img/stickerline/PNG/34.png') }}" style="object-fit: contain;" width="80" height="80" alt="">
+                <br>
+                <h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #000;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
+                    <b>สวัสดีคุณ </b>
+                </h5>
+                <h5 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กำลังค้นหาหน่วยปฏิบัติการที่ใกล้คุณ</h5>
+                <h6 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กรุณารอสักครู่..</h6>
+                <a href="{{ url('/') }}/user_video_call/sos_help_center?sos_id={{ $data_sos->id }}" class="btn-outline-primary btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">ติดต่อเจ้าหน้าที่</a>
             </div>
-			<hr style="border: 1px solid red;width: 70%;color: red;">
-		</center>
-	</div>
-	<div id="" class="col-12 ">
-		<h3 class="text-center text-info">
-			<b>เจ้าหน้าที่กำลังเดินทางมา</b>
-		</h3>
-
-		<h5 class="text-center mt-3">
-			ระยะทาง : <span id="text_distance"></span>
-		</h5>
-		<h5 class="text-center mt-2">
-			ระยะเวลาโดยประมาณ : <span id="text_duration"></span>
-		</h5>
-	</div>
-
-	<center>
-		<hr style="width:80%;">
-	</center>
-
-	<div class="col-12 ">
-		<h3 class="text-center text-info">
-			<b>ข้อมูลเจ้าหน้าที่</b>
-		</h3>
-		<div class="row">
-			<div class="col-3">
-			</div>
-			<div class="col-9">
-				ชื่อ : {{ $data_sos->name_helper }}
-				<br>
-				หน่วยงาน : {{ $data_sos->organization_helper }}
-			</div>
-		</div>
-	</div>
-
-</div> -->
-
-<!-- Button modal -->
-<!-- <span id="btn_modal_officer_to_the_scene" style="z-index: 9999; position: absolute; top:50%; d-none" class="btn btn-primary " data-toggle="modal" data-target="#modal_sos_1669">ฟหกฟก</span> -->
-
-
-
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="modal_sos_1669" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="BackdropLabel_modal_sos_1669" aria-hidden="true" >
-    <div class="modal-dialog modal-dialog-centered ">
-        <div class="modal-content">
-
-            <div class="modal-header d-flex align-items-center">
-                <h4 class="modal-title" id="BackdropLabel_modal_sos_1669">
-                    สวัสดีคุณ<br>
-                    <b class="text-info"></b>
-                </h4>
-                <span class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa-solid fa-xmark-large"></i></span>
-                </span>
-            </div>
-
-            <div class="modal-body text-center">
-                <div class="col-12">
-                	<img width="50%" src="{{ asset('/img/stickerline/PNG/34.png') }}">
-                    <br><br>
-                    เจ้าหน้าที่เดินทางมาถึงคุณแล้ว
-                    <br>
-                    <a href="https://page.line.me/702ytkls?openQrModal=true" style="width:80%;" class="btn btn-sm btn-success main-shadow main-radius">
-                    	เสร็จสิ้น
-                    </a>
-                </div>
-            </div>
-			<style>
-				.alert-officer-arrive{
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
-				}.box-alert-officer-arrive{
-					border-radius: 10px;
-					background-color: #ffffff;
-					padding: 10px;
-				}
-			</style> 
-			
-			<div class="bg-success p-3">
-
-				<div class="box-alert-officer-arrive">
-					<div class="alert-officer-arrive">
-						<div class="p-2">
-							<span class="d-block font-weight-bold">สวัสดีคุณ </span>
-							<span class="d-block">เจ้าที่หน้ามาถึงคุณแล้ว</span>
-						</div>
-						<img src="{{ asset('/img/stickerline/PNG/34.png') }}" width="70rem" class="float-end" alt="">
-					</div>
-					<a class="btn btn-sm btn-success main-shadow main-radius">asd</a>
-				</div>
-				
-			</div>
         </div>
     </div>
-</div> -->
+</div>
+<script>
+    $(function() {
+        // Owl Carousel
+        var owl = $(".carousalOfficerSOS");
+        owl.owlCarousel({
+            items: 1,
+            margin: 10,
+            loop: false,
+            nav: false,
+            dots: false,
+        });
+    });
+</script>
+
+<!-- เจ้าหน้าที่เดินทางมาถึงแล้ว -->
+<div id="div_officer_to_the_scene" class="container bg-white officer-arrive w-100 d-none" style="bottom: -4.5%;">
+    <div class="w-100 text-center">
+        <img src="{{ asset('/img/stickerline/PNG/34.png') }}" width="80" alt="">
+        <br>
+        <h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #808080;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
+            สวัสดีคุณ <span id="name_user_in_to_the_scene">16516</span>
+        </h5>
+        <h6 class="mb-0 notranslate mt-1" style="color: #808080;">เจ้าหน้าที่มาถึงแล้ว</h6>
+        <a href="https://lin.ee/y3gA8A3" class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">เสร็จสิ้น</a>
+    </div>
+</div>
+
+<!-- แสดงข้อมูลเจ้าหน้าที่ -->
+<div id="div_data_officer_help" class="container bg-white officer-arrive w-100 d-none" style="bottom: -4.5%;">
+    <div class="container box-data-helper d-">
+        <div>
+            <span class="d-block">
+                <span class="distanceOfficer" id="text_distance">11</span>
+                <span class="distanceKmOfficer" id="text_distance_km">11</span>
+                <a href="{{ url('/video_call_4/before_video_call_4?type=sos_map&sos_id=') . $data_sos->id }}" class="distanceKmOfficer float-end btn btn-info" style="color:#ffffff;margin-top:25px;">
+                    <i class="fa-solid fa-video"></i>
+                </a>
+            </span>
+            <div class="d-block">
+                <span class="durationOfficer" id="text_duration">22</span>
+                <span class="durationOfficer" id="time_duration">22</span>
+            </div>
+            <hr>
+            <div class="d-flex align-items-center ml-2">
+                <div class="centered">
+                    <div class="badge-wrap">
+                        <img id="img_profile" src="" width="70" height="70" class="rounded-circle" alt="">
+                    </div>
+                </div>
+                <div class="flex-grow-1 ms-3 box-organization_helper">
+                    <p class="font-weight-bold mb-0 notranslate" id="name_helper">aaaa</p>
+                    <p class="font-weight-bold mb-0 notranslate text-organization" id="organization_helper">bbbb</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
@@ -882,132 +600,36 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
     document.addEventListener('DOMContentLoaded', (event) => {
 
-        getDataOfficerGoToHelp();
-
         // console.log("START");
+        initMap(); //เปิดด้วย
+
+        let check_status = "{{ $data_sos->status }}";
+            // console.log(check_status);
+
+        if(check_status == "รับแจ้งเหตุ"){
+            document.querySelector("#Searching_officer").classList.remove('d-none');
+        }else if(check_status == "กำลังไปช่วยเหลือ"){
+            document.querySelector("#div_data_officer_help").classList.remove('d-none');
+            getDataOfficerGoToHelp();
+        }else{
+            document.querySelector("#div_officer_to_the_scene").classList.remove('d-none');
+        }
+
     });
 
 
     function getDataOfficerGoToHelp() {
 
-
-        fetch("{{ url('/') }}/api/data_officer_go_to_help" + "/" + '{{ $data_sos->id }}')
+        fetch("{{ url('/') }}/api/sos_map/data_officer" + "/" + '{{ $data_sos->id }}')
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
-                var dataOfficer = '';
-                result.forEach(data_sos => {
-                    // สร้างสตริง HTML ด้วยข้อมูลในแต่ละรายการ
+                console.log(result);
 
-                    if (!officer_id) {
-                        officer_id = data_sos.id; // เก็บค่า officer_lat จากข้อมูลคนแรก
-                    }
-
-                    if (!loop_officer_id) {
-                        loop_officer_id = data_sos.id; // เก็บค่า officer_lat จากข้อมูลคนแรก
-                    }
-
-                    if (!officer_lng) {
-                        officer_lng = data_sos.lngOfficer; // เก็บค่า officer_lat จากข้อมูลคนแรก
-                    }
-                    if (!officer_lat) {
-                        officer_lat = data_sos.latOfficer;
-                    }
-
-                    let photoOfficer;
-                    if (data_sos.officerPhoto) {
-                        photoOfficer = '{{ url("/storage") }}' + '/' + data_sos.officerPhoto;
-                    } else {
-                        photoOfficer = `{{ url('/img/stickerline/PNG/21.png') }}`;
-                    }
-                    dataOfficer += `<div class="item">
-										<div class="container box-data-helper-` + data_sos.id + ` d-non">
-											<div>
-												<span class="d-block">
-													<span class="distanceOfficer" id="text_distance_` + data_sos.id + `"></span>
-													<span class="distanceKmOfficer" id="text_distance_km_` + data_sos.id + `"></span>
-													<a href="{{ url('/') }}/user_video_call/sos_help_center?sos_id={{ $data_sos->id }}" class="distanceKmOfficer float-end btn btn-info" style="color:#ffffff;margin-top:25px;">
-														<i class="fa-solid fa-video"></i>
-													</a>
-												</span>
-												<div class="d-block">
-													<span class="durationOfficer" id="text_duration_` + data_sos.id + `"></span>
-													<span class="durationOfficer" id="time_duration_` + data_sos.id + `"></span>
-												</div>
-												<hr>
-												<div class="d-flex align-items-center ml-2">
-													<div class="centered">
-														<div class="badge-wrap">
-															<img id="img_profile" src="` + photoOfficer + `" width="70" height="70" class="rounded-circle" alt="">
-														</div>
-													</div>
-													<div class="flex-grow-1 ms-3 box-organization_helper">
-														<p class="font-weight-bold mb-0 notranslate">` + data_sos.name_helper + `</p>
-														<p class="font-weight-bold mb-0 notranslate text-organization">` + data_sos.organization_helper + `</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-                                    <div class="item">
-                                        <div class="container bg-white officer-arrive w-100">
-                                            <div class="w-100 text-center">
-                                                <img src="{{ asset('/img/stickerline/flex/2.png') }}" style="object-fit: contain;" width="80" height="80" alt="">
-                                                <h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #000;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
-                                                    <b>สวัสดีคุณ Teerasak Senarak</b>
-                                                </h5>
-                                                <h5 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กำลังรอการตอบรับจากเจ้าหน้าที่</h5>
-                                                <h6 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กรุณารอสักครู่..</h6>
-                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                    <div class="container bg-white officer-arrive w-100">
-                                    <div class="w-100 text-center">
-                                        <img src="{{ asset('/img/stickerline/PNG/34.png') }}" style="object-fit: contain;" width="80" height="80" alt="">
-                                        <h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #808080;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">สวัสดีคุณ </h5>
-                                        <h6 class="mb-0 notranslate mt-1" style="color: #808080;">เจ้าหน้าที่ Thanakorn Tungkasopa มาถึงแล้ว</h6>
-                                        <a href="https://lin.ee/y3gA8A3" class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">เสร็จสิ้น</a>
-                                    </div>
-                                </div>
-                                    </div>`
-                    // เคลียร์ข้อมูลใน Owl Carousel
-                    var owl = $(".carousalOfficerSOS");
-                    owl.trigger('replace.owl.carousel', dataOfficer);
-                    owl.trigger('refresh.owl.carousel');
-
-
-                });
-                $(document).ready(function() {
-                    var owl = $(".carousalOfficerSOS");
-
-                    owl.on('changed.owl.carousel', function(event) {
-                        var currentSlide = event.item.index;
-
-                        var currentData = result[currentSlide]; // เข้าถึงข้อมูลใน result ที่ตรงกับสไลด์ปัจจุบัน
-                        officer_lng = currentData.lngOfficer; // เก็บค่า officer_lat จากข้อมูลคนแรก
-                        officer_lat = currentData.latOfficer;
-
-                        loop_officer_id = currentData.id;
-                        // // แสดงข้อมูลที่ต้องการใน alert
-                        // alert("ข้อมูล: " + currentData.id);
-                        // alert("ข้อมูล: " + officer_lat);
-                        initMap(currentData.id);
-                    });
-                });
-
-
-                initMap(officer_id); //เปิดด้วย
 
             });
 
-
     }
 </script>
-
-
-
 
 <script>
     const image_operating_unit_general = "{{ url('/img/icon/operating_unit/ทั่วไป.png') }}";
@@ -1025,10 +647,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
     var time_to_the_scene;
 
-    function initMap(officer_id) {
+    function initMap() {
 
-        document.querySelector("#divDataOfficer").classList.remove('d-none');
-        document.querySelector(".open-location-pls").classList.add('d-none');
+        document.querySelector("#open_location_pls").classList.add('d-none');
 
         map_show_user = new google.maps.Map(document.getElementById("map_show_user"), {
             center: {
@@ -1038,7 +659,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
             zoom: 15
         });
 
-
+        // หมุดเจ้าหน้าที่
         if (officer_marker) {
             officer_marker.setMap(null);
         }
@@ -1065,27 +686,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
             icon: image_sos,
         });
 
-        if (officer_id) {
-            get_Directions_API(officer_marker, sos_marker, officer_id);
-        } else {
-            document.querySelector('.carousalOfficerSOS').innerHTML =
-                `<div class="item"></div>
-					<div class="container bg-white officer-arrive w-100" style="bottom: -4.5%;">
-						<div class="w-100 text-center">
-							<img src="{{ asset('/img/stickerline/PNG/34.png') }}" style="object-fit: contain;" width="80" height="80" alt="">
-							<br>
-							<h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: #000;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
-								<b>สวัสดีคุณ </b>
-							</h5>
-							<h5 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กำลังค้นหาหน่วยปฏิบัติการที่ใกล้คุณ</h5>
-							<h6 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กรุณารอสักครู่..</h6>
-							<a href="{{ url('/') }}/user_video_call/sos_help_center?sos_id={{ $data_sos->id }}" class="btn-outline-primary btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">ติดต่อเจ้าหน้าที่</a>
-						</div>
-					</div>
-				</div>`;
+        // loop_check_status_officer();
 
-            loop_check_status_officer();
-        }
     }
 
     var check_status_officer;
@@ -1147,19 +749,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
                 // console.log(text_distance);
                 let text_distance_sp = text_distance.split(' ');
 
-                document.querySelector("#text_distance_" + officer_id).innerHTML = text_distance_sp[0];
+                document.querySelector("#text_distance").innerHTML = text_distance_sp[0];
 
-                document.querySelector("#text_distance_km_" + officer_id).innerHTML = text_distance_sp[1];
+                document.querySelector("#text_distance_km").innerHTML = text_distance_sp[1];
 
 
                 // เวลา
                 let text_duration = response.routes[0].legs[0].duration.text;
                 // console.log(text_duration);
 
-                document.querySelector("#text_duration_" + officer_id).innerHTML = text_duration;
+                document.querySelector("#text_duration").innerHTML = text_duration;
 
                 let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value);
-                document.querySelector("#time_duration_" + officer_id).innerHTML = "ถึงเวลา " + text_arrivalTime;
+                document.querySelector("#time_duration").innerHTML = "ถึงเวลา " + text_arrivalTime;
 
                 loop_check_location_officer();
 
