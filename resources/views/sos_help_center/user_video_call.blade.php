@@ -1099,7 +1099,7 @@
                <i class="fa-duotone fa-loader fa-spin-pulse"></i>
             </div>
             <div class="ms-3">
-              <h6 class="mt-2 d-" id="show_h6_wait_command">
+              <h6 class="mt-2 text-warning d-" id="show_h6_wait_command">
                 กรุณารอเจ้าหน้าที่สักครู่..
               </h6>
             </div>
