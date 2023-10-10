@@ -77,6 +77,7 @@ class Agora_4_Controller extends Controller
 
         $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
         ->where('sos_help_centers.id',$sos_id)
+        ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
         ->first();
 
         $useSpeaker = $requestData['useSpeaker'];

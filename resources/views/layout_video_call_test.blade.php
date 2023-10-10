@@ -322,10 +322,10 @@
 	<div class="col-12 col-lg-2">
 		<div class="data-sos p-3 d-flex row">
             <div class="head_sidebar_div overflow-auto text-center mb-2">
-                <p class="h4 text-secondary mt-3">2308-1406-0014</p>
-                <p class="h5 text-secondary ">สถานะ: เสร็จสิ้น</p>
-                <p class="h6 text-secondary ">การช่วยเหลือผ่านไปแล้ว</p>
-                <p class="h5 text-secondary ">25 นาที</p>
+                <p class="h4 text-dark mt-3">2308-1406-0014</p>
+                <p class="h5 text-dark ">สถานะ: เสร็จสิ้น</p>
+                <p class="h6 text-dark ">การช่วยเหลือผ่านไปแล้ว</p>
+                <p class="h5 text-dark ">25 นาที</p>
             </div>
 
             <div class="neck_sidebar_div overflow-auto text-center mt-0 mb-2">

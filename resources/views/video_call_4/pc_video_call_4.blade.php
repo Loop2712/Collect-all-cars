@@ -464,8 +464,8 @@
             @if ($type == "sos_1669")
                 <div class="" >
                     <div class="head_sidebar_div text-center mb-2">
-                        <p class="h4 text-secondary mt-3 font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
-                        <p class="h5 text-secondary ">สถานะ:
+                        <p class="h4 text-dark mt-3 font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
+                        <p class="h5 text-dark ">สถานะ:
                             @php
                                 switch ($sos_data->status) {
                                     case 'เสร็จสิ้น':
@@ -486,9 +486,9 @@
                         </p>
 
                         @php
-                            if( !empty($sos_data->time_create_sos)){
+                            if( !empty($sos_data->created_sos)){
                                 $currentdate = date('H:i:s'); // เวลาปัจจุบันในรูปแบบ "H:i:s"
-                                $sos_data_time_command = strtotime($sos_data->time_create_sos); // แปลง $sos_data->time_create_sos เป็น timestamp
+                                $sos_data_time_command = strtotime($sos_data->created_sos); // แปลง $sos_data->time_create_sos เป็น timestamp
                                 $sos_data_timeDifference = abs( $sos_data_time_command - strtotime($currentdate) );
 
                                 if ($sos_data_timeDifference >= 86400) { // ถ้าเกิน 1 วัน (86400 วินาที)
@@ -516,19 +516,19 @@
                             }
                         @endphp
 
-                        <p class="h6 text-secondary ">การช่วยเหลือผ่านไปแล้ว</p>
+                        <p class="h6 text-dark ">การช่วยเหลือผ่านไปแล้ว</p>
                         @if (!empty($sos_data_time_unit))
-                            <p class="h5 text-secondary font-weight-bold">{{$sos_data_time_unit}}</p>
+                            <p class="h5 text-dark font-weight-bold">{{$sos_data_time_unit}}</p>
                         @else
-                        <p class="h5 text-secondary "> -- </p>
+                        <p class="h5 text-dark "> -- </p>
                         @endif
 
                     </div>
 
                     <div class="neck_sidebar_div text-center mt-0 mb-2">
-                        <p class="h5 text-secondary mt-3 font-weight-bold">ผู้ขอความช่วยเหลือ</p>
-                        <p class="h5 text-secondary ">{{$sos_data->name_user ? $sos_data->name_user : "--"}}</p>
-                        <p class="h6 text-secondary font-weight-bold">{{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
+                        <p class="h5 text-dark mt-3 font-weight-bold">ผู้ขอความช่วยเหลือ</p>
+                        <p class="h5 text-dark ">{{$sos_data->name_user ? $sos_data->name_user : "--"}}</p>
+                        <p class="h6 text-dark font-weight-bold">{{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
                     </div>
 
                     <div class="body_sidebar_div mb-2 ">
@@ -593,14 +593,14 @@
                             <p style="background-color: {{$bg_rc}};" class=" p-2 m-1 col-5 border-radius font-weight-bold">RC <br> {{$text_rc ? $text_rc : "--"}}</p>
                         </div>
                         <div class="p-3 nowordwarp text-start">
-                            <p class="h5 text-secondary mt-1 font-weight-bold">รายละเอียดสถานที่</p>
-                            <p class="h6 text-secondary ">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</p>
+                            <p class="h5 text-dark mt-1 font-weight-bold">รายละเอียดสถานที่</p>
+                            <p class="h6 text-dark ">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</p>
                             <hr>
-                            <p class="h5 text-secondary mt-1 font-weight-bold">อาการ</p>
-                            <p class="h6 text-secondary ">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</p>
+                            <p class="h5 text-dark mt-1 font-weight-bold">อาการ</p>
+                            <p class="h6 text-dark ">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</p>
                             <hr>
-                            <p class="h5 text-secondary mt-1 font-weight-bold">รายละเอียดอาการ</p>
-                            <p class="h6 text-secondary ">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</p>
+                            <p class="h5 text-dark mt-1 font-weight-bold">รายละเอียดอาการ</p>
+                            <p class="h6 text-dark ">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</p>
                         </div>
                     </div>
                 </div>
@@ -880,62 +880,61 @@
         }, 20000);
         //=====================================================================================================
 
-        AgoraRTC.onMicrophoneChanged = (info) => {
-            console.log("microphone changed!", info.state, info.device);
-            // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
-            agoraEngine.enableAudioVolumeIndicator();
-        };
 
         // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
         agoraEngine.enableAudioVolumeIndicator();
 
-        agoraEngine.on("volume-indicator", volumes => {
-            volumes.forEach((volume) => {
-                // console.log("in to SoundCheck Local");
-                let localAudioTrackCheck = channelParameters.localAudioTrack;
+        function SoundTest() {
+            agoraEngine.on("volume-indicator", volumes => {
+                volumes.forEach((volume) => {
+                    // console.log("in to SoundCheck Local");
+                    let localAudioTrackCheck = channelParameters.localAudioTrack;
 
-                if (localPlayerContainer.id == volume.uid && volume.level >= 50) {
-                    //ถ้า localAudioTrackCheck เป็นค่าเก่า ให้แทนที่ด้วยค่าใหม่
-                    // if (localAudioTrackCheck !== channelParameters.localAudioTrack) {
-                    //     localAudioTrackCheck = channelParameters.localAudioTrack;
-                    // }
-                    //แสดงชื่ออุปกรณ์ที่ใช้และระดับเสียง
-                    if (localAudioTrackCheck) {
-                        if (localAudioTrackCheck['enabled'] === true) {
-                            console.log('Enabled Device: ' + localAudioTrackCheck['_deviceName']);
-                            console.log(`UID ${volume.uid} Level ${volume.level}`);
+                    if (localPlayerContainer.id == volume.uid && volume.level >= 50) {
+                        //ถ้า localAudioTrackCheck เป็นค่าเก่า ให้แทนที่ด้วยค่าใหม่
+                        // if (localAudioTrackCheck !== channelParameters.localAudioTrack) {
+                        //     localAudioTrackCheck = channelParameters.localAudioTrack;
+                        // }
+                        //แสดงชื่ออุปกรณ์ที่ใช้และระดับเสียง
+                        if (localAudioTrackCheck) {
+                            if (localAudioTrackCheck['enabled'] === true) {
+                                console.log('Enabled Device: ' + localAudioTrackCheck['_deviceName']);
+                                console.log(`UID ${volume.uid} Level ${volume.level}`);
+                            }
+                        } else {
+                            console.log('channelParameters.localAudioTrack is null');
                         }
-                    } else {
-                        console.log('channelParameters.localAudioTrack is null');
-                    }
 
-                    // แสดงปุ่มเสียงพูด"
-                    if (document.querySelector('#statusMicrophoneOutput_local').classList.contains('d-none')) {
-                        document.querySelector('#statusMicrophoneOutput_local').classList.remove('d-none');
-                    }
-
-                } else {
-                    //ถ้า localAudioTrackCheck เป็นค่าเก่า ให้แทนที่ด้วยค่าใหม่
-                    if (localAudioTrackCheck !== channelParameters.localAudioTrack) {
-                        localAudioTrackCheck = channelParameters.localAudioTrack;
-                    }
-                    //แสดงชื่ออุปกรณ์ที่ใช้และระดับเสียง
-                    if (localAudioTrackCheck) {
-                        if (localAudioTrackCheck['enabled'] === true) {
-                            console.log('Enabled Device: ' + localAudioTrackCheck['_deviceName']);
-                            console.log(`UID ${volume.uid} Level ${volume.level}`);
+                        // แสดงปุ่มเสียงพูด"
+                        if (document.querySelector('#statusMicrophoneOutput_local').classList.contains('d-none')) {
+                            document.querySelector('#statusMicrophoneOutput_local').classList.remove('d-none');
                         }
-                    } else {
-                        console.log('channelParameters.localAudioTrack is null');
-                    }
 
-                    // ซ่อนปุ่มเสียงพูด"
-                    if (!document.querySelector('#statusMicrophoneOutput_local').classList.contains('d-none')) {
-                        document.querySelector('#statusMicrophoneOutput_local').classList.add('d-none');
+                    } else {
+                        //ถ้า localAudioTrackCheck เป็นค่าเก่า ให้แทนที่ด้วยค่าใหม่
+                        if (localAudioTrackCheck !== channelParameters.localAudioTrack) {
+                            localAudioTrackCheck = channelParameters.localAudioTrack;
+                        }
+                        //แสดงชื่ออุปกรณ์ที่ใช้และระดับเสียง
+                        if (localAudioTrackCheck) {
+                            if (localAudioTrackCheck['enabled'] === true) {
+                                console.log('Enabled Device: ' + localAudioTrackCheck['_deviceName']);
+                                console.log(`UID ${volume.uid} Level ${volume.level}`);
+                            }
+                        } else {
+                            console.log('channelParameters.localAudioTrack is null');
+                        }
+
+                        // ซ่อนปุ่มเสียงพูด"
+                        if (!document.querySelector('#statusMicrophoneOutput_local').classList.contains('d-none')) {
+                            document.querySelector('#statusMicrophoneOutput_local').classList.add('d-none');
+                        }
                     }
-                }
-            });
-        })
+                });
+            })
+        }
+        SoundTest();
+
         // Listen for the "user-published" event to retrieve a AgoraRTCRemoteUser object.
         agoraEngine.on("user-published", async (user, mediaType) =>
         {
@@ -1153,7 +1152,8 @@
         });
 
         // เมื่อมีคนเข้าห้อง
-        agoraEngine.on("user-joined", function (evt) {
+        agoraEngine.on("user-joined", function (evt)
+        {
 
             console.log("agoraEngine มีคนเข้าห้องมา");
             console.log(agoraEngine);
@@ -1261,7 +1261,8 @@
         });
 
         // ออกจากห้อง
-        agoraEngine.on("user-left", function (evt) {
+        agoraEngine.on("user-left", function (evt)
+        {
 
             console.log("ไอดี : " + evt.uid + " ออกจากห้อง");
 
@@ -1459,10 +1460,18 @@
                 //======= สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน ==========//
                 btn_toggle_mic_camera(videoTrack,audioTrack,bg_local);
 
+                //ถ้ากดปุ่ม muteVideo แล้วกล้องอยู่ในสถานะปิด ให้เปลี่ยนสี bg ของ local
                 document.querySelector('#muteVideo').addEventListener("click", function(e) {
                     if (isVideo == false) {
                         console.log(bg_local);
                         changeBgColor(bg_local);
+                    }
+                });
+
+                //ถ้ากดปุ่ม muteVideo แล้วกล้องอยู่ในสถานะปิด ให้เปลี่ยนสี bg ของ local
+                document.querySelector('#muteAudio').addEventListener("click", function(e) {
+                    if (isAudio == true) {
+                        SoundTest();
                     }
                 });
 
@@ -1879,7 +1888,7 @@
                     // สร้างเหตุการณ์คลิกที่ label เพื่อตรวจสอบ radio2
                     label.addEventListener('click', () => {
                         radio.checked = true;
-                        onChangeAudioDevice();
+                        onChangeVideoDevice();
                     });
                 }
 
