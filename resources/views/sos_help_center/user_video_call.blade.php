@@ -1326,7 +1326,6 @@ function loop_check_command_in_room() {
             myStop_countdown_user_out_room();
 
             command_entered_room = 'yes' ;
-            // document.querySelector('#show_h6_wait_command').classList.add('d-none');
             document.querySelector('#card_show_h6_wait_command').classList.add('d-none');
 
             if (check_play_audio_in_room == 'เล่น'){
@@ -1353,7 +1352,6 @@ function loop_check_command_in_room() {
               myStop_timer_video_call();
             }
 
-            // document.querySelector('#show_h6_wait_command').classList.remove('d-none');
             document.querySelector('#card_show_h6_wait_command').classList.remove('d-none');
             check_play_audio_in_room = 'เล่น';
 
