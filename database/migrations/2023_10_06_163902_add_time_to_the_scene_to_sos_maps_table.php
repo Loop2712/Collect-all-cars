@@ -14,8 +14,8 @@ class AddTimeToTheSceneToSosMapsTable extends Migration
     public function up()
     {
         Schema::table('sos_maps', function (Blueprint $table) {
-            $table->string('time_to_the_scene')->nullable();
-            $table->string('time_leave_the_scene')->nullable();
+            $table->dateTime('time_to_the_scene')->nullable();
+            $table->dateTime('time_leave_the_scene')->nullable();
         });
     }
 

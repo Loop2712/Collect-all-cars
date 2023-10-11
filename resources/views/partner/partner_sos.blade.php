@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-partner-sos">
-  <div class="item sos-map col-md-12 col-12 col-lg-4">
+  <div class="item sos-map col-md-12 col-12 col-lg-3">
         <div class="row">
             <div class="col-6">
                 <a href="{{ url('/sos_partner') }}" style="float: left; background-color: green;" type="button" class="btn text-white" > <!-- onclick="initMap();" -->
@@ -30,7 +30,7 @@
             </div>
         </div>
   </div>
-  <div class="col-8 d-none d-lg-block">
+  <div class="col-9 d-none d-lg-block">
         <div class="row">
             <div class="col-3">
                 @if( $type_partner != 'volunteer')
@@ -66,36 +66,56 @@
                     </a>
                 </div>
             </div>
+
             <br><br>
+
+            <div class="card radius-10 d-none d-lg-block col-12" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+                <div class="row card-header border-bottom-0 bg-transparent my-3">
+                    <!-- หัวข้อ -->
+                    <div class="col-12">
+                        <h5 class="font-weight-bold mb-0" >
+                            การขอความช่วยเหลือ
+                            <span style="font-size: 15px; float: right; margin-top:5px;">
+                            จำนวนทั้งหมด <b>{{ $count_data }}</b> ครั้ง
+                            &nbsp;&nbsp; | &nbsp;&nbsp;
+                            @if(!empty($average_per_minute))
+                                @if($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                    ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
+                                @endif
+
+                                @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
+                                    ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
+                                @endif
+
+                                @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
+                                    ระยะเวลาโดยเฉลี่ย <b>{{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
+                                @endif
+
+                                @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] == "0")
+                                    ระยะเวลาโดยเฉลี่ย <b>น้อยกว่า 1 นาที</b> / เคส ({{ $average_per_minute['count_case'] }})
+                                @endif
+                            @endif
+                        </span>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card radius-10 d-none d-lg-block col-12" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+                <div class="row card-header border-bottom-0 bg-transparent my-3">
+                    <!-- เนื้อหา -->
+                    <div class="col-12">
+                        avd
+                    </div>
+                </div>
+            </div>
+
+
+
             <div class="card radius-10 d-none d-lg-block col-12" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
                 <div class="card-header border-bottom-0 bg-transparent" style="margin-top: 10px;">
                     <div class="d-flex align-items-center">
-                        <div class="col-12">
-                            <h5 class="font-weight-bold mb-0" style="margin-top:10px;">
-                                การขอความช่วยเหลือ
-                                <span style="font-size: 15px; float: right; margin-top:-5px;">
-                                จำนวนทั้งหมด <b>{{ $count_data }}</b> ครั้ง
-                                &nbsp;&nbsp; | &nbsp;&nbsp;
-                                @if(!empty($average_per_minute))
-                                    @if($average_per_minute['day'] != "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['day'] }} วัน {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
-                                    @endif
-
-                                    @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] != "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b> {{ $average_per_minute['hr'] }} ชม. {{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
-                                    @endif
-
-                                    @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] != "0")
-                                        ระยะเวลาโดยเฉลี่ย <b>{{ $average_per_minute['min'] }} นาที </b> / เคส ({{ $average_per_minute['count_case'] }})
-                                    @endif
-
-                                    @if($average_per_minute['day'] == "0" && $average_per_minute['hr'] == "0" && $average_per_minute['min'] == "0")
-                                        ระยะเวลาโดยเฉลี่ย <b>น้อยกว่า 1 นาที</b> / เคส ({{ $average_per_minute['count_case'] }})
-                                    @endif
-                                @endif
-                            </span>
-                            </h5>
-                        </div>
+                        
                     </div>
                 </div>
                 <hr style="color:black;background-color:black;height:2px;">
@@ -367,82 +387,83 @@
 
 
 
+<!----------------------------- mobile-------------------------------- -->
 
-<!------------------------------------------------ mobile---------------------------------------------------------------------- -->
 <div class="container-fluid card radius-10 d-block d-lg-none" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
-                        <div class="row">
-                            <div class="card-header border-bottom-0 bg-transparent">
-                                <div class="col-12"  style="margin-top:10px">
-                                    <div>
-                                        <h5 class="font-weight-bold mb-0">รถที่ถูกรายงานล่าสุด</h5> 
-                                    </div>
-                                    <span style="font-size: 15px; float: right; margin-top:-40px;">จำนวนทั้งหมด {{ $count_data }}</span>
-                                    <div class="d-flex justify-content-end" style="margin-top:10px">
-                                        <a href="{{ url('/sos_score_helper') }}" type="button" class="btn btn-white radius-10" ><i class="fas fa-chart-line"></i>ดูช่วงเวลา</a>
-                                    </div>
+    <div class="row">
+        <div class="card-header border-bottom-0 bg-transparent">
+            <div class="col-12"  style="margin-top:10px">
+                <div>
+                    <h5 class="font-weight-bold mb-0">รถที่ถูกรายงานล่าสุด</h5> 
+                </div>
+                <span style="font-size: 15px; float: right; margin-top:-40px;">จำนวนทั้งหมด {{ $count_data }}</span>
+                <div class="d-flex justify-content-end" style="margin-top:10px">
+                    <a href="{{ url('/sos_score_helper') }}" type="button" class="btn btn-white radius-10" ><i class="fas fa-chart-line"></i>ดูช่วงเวลา</a>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="card-body" style="padding: 0px 10px 0px 10px;">
+       
+        @foreach($view_maps as $item)
+                @foreach($data_partners as $data_partner)
+                @endforeach
+                <div class="card col-12 d-block d-lg-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
+                    <center>
+                    <div class="row col-12 card-body border border-bottom-0" style="padding:15px 0px 15px 0px ;border-radius: 25px;margin-bottom: -2px;">
+                                <div class="col-2 align-self-center" style="vertical-align: middle;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                    <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}' , '{{ $item->id }}');">
+                                        <i class="fas fa-map-marker-alt"></i> 
+                                        <br>
+                                        ดูหมุด
+                                    </a> 
                                     <br>
+                                    <a class="link text-info" href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
+                                        <i class="fas fa-location-arrow"></i> 
+                                        <br>
+                                        นำทาง
+                                    </a>
+                                </div>
+                                <div class="col-8 d-flex align-items-center" style="margin-bottom:0px;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                    <center class="col-12">
+                                        <h5 style="margin-bottom:0px; margin-top:0px; ">
+                                        <a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span>
+                                            {{ $item->name }}
+                                        </h5>
+                                    </center>
+                                </div> 
+                                <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#sos_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
+                                    <i class="fas fa-angle-down" ></i>
+                                </div>
+                                <div class="col-12 collapse" id="sos_{{ $item->id }}"> 
+                                    <hr>
+                                    <p style="font-size:18px;padding:0px"> เบอร์ :  {{ $item->phone }}  </p> <hr>
+                                    <p style="font-size:18px;padding:0px">วันที่แจ้ง <br> 
+                                        
+                                        {{ date("l d F Y" , strtotime($item->created_at)) }}
+                                        <br>
+                                    </p>  <hr>
+                                    <p style="font-size:18px;padding:0px"> เวลา:  {{ date("H:i" , strtotime($item->created_at)) }}
+                                        
+                                    </p>
+                                     <hr>
+                                    <p style="font-size:18px;padding:0px">รูปภาพ <br> 
+                                        <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
+                                            <img width="100%" src="{{ url('storage')}}/{{ $item->photo }}">
+                                        </a>
+                                    </p>  
                                 </div>
                             </div>
-                            <div class="card-body" style="padding: 0px 10px 0px 10px;">
-                           
-                            @foreach($view_maps as $item)
-                                    @foreach($data_partners as $data_partner)
-                                    @endforeach
-                                    <div class="card col-12 d-block d-lg-none" style="font-family: 'Prompt', sans-serif;border-radius: 25px;border-bottom-color:{{ $data_partner->color }};margin-bottom: 10px;border-style: solid;border-width: 0px 0px 4px 0px;">
-                                        <center>
-                                        <div class="row col-12 card-body border border-bottom-0" style="padding:15px 0px 15px 0px ;border-radius: 25px;margin-bottom: -2px;">
-                                                    <div class="col-2 align-self-center" style="vertical-align: middle;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                                        <a class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}' , '{{ $item->id }}');">
-                                                            <i class="fas fa-map-marker-alt"></i> 
-                                                            <br>
-                                                            ดูหมุด
-                                                        </a> 
-                                                        <br>
-                                                        <a class="link text-info" href="https://www.google.co.th/maps/search/{{$item->lat}},{{$item->lng}}/{{ $text_at }}{{$item->lat}},{{$item->lng}},16z" target="bank">
-                                                            <i class="fas fa-location-arrow"></i> 
-                                                            <br>
-                                                            นำทาง
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-8 d-flex align-items-center" style="margin-bottom:0px;padding:0px" data-toggle="collapse" data-target="#Line_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                                        <center class="col-12">
-                                                            <h5 style="margin-bottom:0px; margin-top:0px; ">
-                                                            <a target="break" href="{{ url('/').'/profile/'.$item->id }}"><i class="far fa-eye text-primary"></i></a></span>
-                                                                {{ $item->name }}
-                                                            </h5>
-                                                        </center>
-                                                    </div> 
-                                                    <div class="col-2 align-self-center" style="vertical-align: middle;" data-toggle="collapse" data-target="#sos_{{ $item->id }}" aria-expanded="false" aria-controls="form_delete_{{ $item->id }}" >
-                                                        <i class="fas fa-angle-down" ></i>
-                                                    </div>
-                                                    <div class="col-12 collapse" id="sos_{{ $item->id }}"> 
-                                                        <hr>
-                                                        <p style="font-size:18px;padding:0px"> เบอร์ :  {{ $item->phone }}  </p> <hr>
-                                                        <p style="font-size:18px;padding:0px">วันที่แจ้ง <br> 
-                                                            
-                                                            {{ date("l d F Y" , strtotime($item->created_at)) }}
-                                                            <br>
-                                                        </p>  <hr>
-                                                        <p style="font-size:18px;padding:0px"> เวลา:  {{ date("H:i" , strtotime($item->created_at)) }}
-                                                            
-                                                        </p>
-                                                         <hr>
-                                                        <p style="font-size:18px;padding:0px">รูปภาพ <br> 
-                                                            <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
-                                                                <img width="100%" src="{{ url('storage')}}/{{ $item->photo }}">
-                                                            </a>
-                                                        </p>  
-                                                    </div>
-                                                </div>
-                                            </center>   
-                                        </div>  
-                                    @endforeach
-                                    <div class="pagination-wrapper"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
-                            </div>
-                        </div>
-                    </div>
-                <!-------------------------------- end mobile--------------------------------------------- -->
-<!------------------------------------------- Modal ให้ความช่วยเหลือ ------------------------------------------->
+                        </center>   
+                    </div>  
+                @endforeach
+                <div class="pagination-wrapper"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
+        </div>
+    </div>
+</div>
+<!----------------------- end mobile-------------------------- -->
+
+<!------------------------------------------- Modal ให้ความช่วยเหลือ ------------------------->
 <div class="modal fade"  id="Partner_gsos" tabindex="-1" role="dialog" aria-labelledby="Partner_gsosTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" >
       <div class="modal-content" >
