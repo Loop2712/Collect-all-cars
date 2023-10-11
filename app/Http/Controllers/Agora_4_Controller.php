@@ -66,7 +66,7 @@ class Agora_4_Controller extends Controller
 
     }
 
-    public function pc_index(Request $request ,$type,$sos_id)
+    public function pc_index(Request $request ,$type ,$sos_id)
     {
         $user = Auth::user();
 
@@ -94,9 +94,32 @@ class Agora_4_Controller extends Controller
 
     }
 
-    public function mobile_index(Request $request ,$sos_id)
+    public function mobile_index(Request $request ,$type ,$sos_id)
     {
-        return view('video_call_4/mobile_video_call_4');
+        $user = Auth::user();
+
+        $requestData = $request->all();
+
+        // $appId = $requestData['appId'];
+        // $appCertificate =  $requestData['appCertificate'];
+
+        $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+        ->where('sos_help_centers.id',$sos_id)
+        ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
+        ->first();
+
+        $useSpeaker = $requestData['useSpeaker'];
+        $useMicrophone = $requestData['useMicrophone'];
+        $useCamera = $requestData['useCamera'];
+
+        $videoTrack = $requestData['videoTrack'];
+        $audioTrack = $requestData['audioTrack'];
+
+        $appID = env('AGORA_APP_ID');
+        $appCertificate = env('AGORA_APP_CERTIFICATE');
+
+
+        return view('video_call_4/mobile_video_call_4' , compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data'));
     }
 
     public function token(Request $request)

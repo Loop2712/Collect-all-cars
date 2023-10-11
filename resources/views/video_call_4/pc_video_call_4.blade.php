@@ -701,10 +701,6 @@
 <script src="{{ asset('js/for_video_call_4/video_call_4.js') }}"></script>
 
 <script>
-
-</script>
-
-<script>
     var options;
     // ใช้สำหรับ เช็คสถานะของปุ่มเปิด-ปิด วิดีโอและเสียง
     var isVideo = true;
@@ -2081,21 +2077,22 @@
         let container = document.getElementById("container_user_video_call");
         let customDivs = container.querySelectorAll(".custom-div");
         let userVideoCallBar = document.querySelector(".user-video-call-bar");
-        document.querySelector(".user-video-call-contrainer").classList.remove("d-none");
+        if(customDivs.length > 1){
+            document.querySelector(".user-video-call-contrainer").classList.remove("d-none");
 
-        customDivs.forEach(function(div) {
-            if (div !== clickedDiv) { //ถ้า div ไม่ใช่ div ที่ถูกคลิก
-                if (!isInUserVideoCallBar(div)) { //ถ้า div ไม่ได้อยู่ใน div .user-video-call-bar
-                    userVideoCallBar.appendChild(div);
+            customDivs.forEach(function(div) {
+                if (div !== clickedDiv) { //ถ้า div ไม่ใช่ div ที่ถูกคลิก
+                    if (!isInUserVideoCallBar(div)) { //ถ้า div ไม่ได้อยู่ใน div .user-video-call-bar
+                        userVideoCallBar.appendChild(div);
+                    }
                 }
+            });
+
+            // ย้าย div ที่ถูกคลิกไปยังตำแหน่งที่ถูกคลิก
+            if (!isInUserVideoCallBar(clickedDiv)) {
+                container.appendChild(clickedDiv);
             }
-        });
-
-        // ย้าย div ที่ถูกคลิกไปยังตำแหน่งที่ถูกคลิก
-        if (!isInUserVideoCallBar(clickedDiv)) {
-            container.appendChild(clickedDiv);
         }
-
 
     }
 
@@ -2178,7 +2175,6 @@
         }
 
     }
-
 
 
     // เปิด-ปิด list ของไมค์
