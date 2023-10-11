@@ -601,6 +601,7 @@
 
         if(check_status == "รับแจ้งเหตุ"){
             document.querySelector("#Searching_officer").classList.remove('d-none');
+            loop_check_status_sos_map();
         }else if(check_status == "กำลังไปช่วยเหลือ"){
             document.querySelector("#div_data_officer_help").classList.remove('d-none');
             navigator.geolocation.getCurrentPosition(update_location_user);
@@ -610,6 +611,46 @@
         }
 
     });
+
+    var check_status_sos_map;
+
+    function loop_check_status_sos_map() {
+
+        check_status_sos_map = setInterval(function() {
+
+            // console.log(check_status);
+
+            fetch("{{ url('/') }}/api/sos_map/loop_check_status_sos_map" + "/" + "{{ $data_sos->id }}")
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+
+                    check_status = result ;
+
+                    if (result != "รับแจ้งเหตุ") {
+                        Stop_loop_check_status_sos_map();
+                    }
+                });
+
+        }, 15000);
+
+    }
+
+    function Stop_loop_check_status_sos_map() {
+        clearInterval(check_status_sos_map);
+
+        if(check_status == "กำลังไปช่วยเหลือ"){
+            document.querySelector("#Searching_officer").classList.add('d-none');
+            document.querySelector("#div_data_officer_help").classList.remove('d-none');
+            navigator.geolocation.getCurrentPosition(update_location_user);
+            loop_check_status_officer();
+
+        }else{
+            document.querySelector("#Searching_officer").classList.add('d-none');
+            document.querySelector("#div_data_officer_help").classList.add('d-none');
+            document.querySelector("#div_officer_to_the_scene").classList.remove('d-none');
+        }
+    }
 
 </script>
 
@@ -718,6 +759,32 @@
         document.querySelector("#div_data_officer_help").classList.add('d-none');
 
         document.querySelector("#div_officer_to_the_scene").classList.remove('d-none');
+
+        // หมุดที่เกิดเหตุ 
+        if (sos_marker) {
+            sos_marker.setMap(null);
+        }
+        sos_marker = new google.maps.Marker({
+            position: {
+                lat: parseFloat(sos_lat),
+                lng: parseFloat(sos_lng)
+            },
+            map: map_show_user,
+            icon: image_sos,
+        });
+
+        // หมุดเจ้าหน้าที่
+        if (officer_marker) {
+            officer_marker.setMap(null);
+        }
+
+        // เส้นทาง
+        if (directionsDisplay) {
+            directionsDisplay.setMap(null);
+        }
+
+        map_show_user.setCenter(sos_marker.getPosition());
+        map_show_user.setZoom(15);
         
     }
 
@@ -753,7 +820,13 @@
 
             if(data){
                 check_status = data['status'];
-                create_marker(user_lat , user_lng , data['data_helper']['lat'] , data['data_helper']['lng'])
+
+                if(check_status == "กำลังไปช่วยเหลือ"){
+                    create_marker(user_lat , user_lng , data['data_helper']['lat'] , data['data_helper']['lng'])
+                }else{
+                    Stop_loop_check_status_officer();
+                }
+                
             }
 
         }).catch(function(error){

@@ -183,6 +183,7 @@ Route::post('/sos_map/update_location_user','Sos_mapController@update_location_u
 Route::post('/sos_map/update_location_officer','Sos_mapController@update_location_officer');
 Route::post('/sos_map/update_status','Sos_mapController@update_status');
 Route::post('/sos_map/help_complete','Sos_mapController@help_complete');
+Route::get('/sos_map/loop_check_status_sos_map/{id_sos_map}','Sos_mapController@loop_check_status_sos_map');
 
 Route::get('/check_sos_alarm/{check_name_partner}','API\PartnersController@check_sos_alarm');
 Route::get('/check_sos_alarm/notify/{check_name_partner}','API\PartnersController@check_sos_alarm_notify');

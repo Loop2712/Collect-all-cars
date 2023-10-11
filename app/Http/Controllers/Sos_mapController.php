@@ -1038,6 +1038,13 @@ class Sos_mapController extends Controller
         return $data ;
     }
 
+    function loop_check_status_sos_map($id_sos_map){
+        
+        $data_sos_map = Sos_map::where('id' , $id_sos_map)->select('status')->first();
+
+        return $data_sos_map->status ;
+    }
+
     function report_repair($id_sos_map , $groupId){
 
         echo "<h1>report_repair</h1>";
