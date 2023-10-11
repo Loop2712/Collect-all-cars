@@ -4985,13 +4985,13 @@
 
         let html_btn_command ;
             html_btn_command = `
-                <br><br>
+                <br>
                 <span class="btn btn-success main-shadow main-radius float-end mt-3 mx-2" onclick="sos_1669_command_by('{{ Auth::user()->id }}' , '`+result['id']+`');">
                     <i class="fa-solid fa-location-arrow fa-beat"></i> สั่งการ
                 </span>
             `;
 
-        new_div_data_sos.querySelector('[mock_up_mark="date_time"]').insertAdjacentHTML('afterbegin', html_btn_command);
+        new_div_data_sos.querySelector('[mock_up_mark="date_time"]').insertAdjacentHTML('beforeend', html_btn_command);
 
 		// status == เสร็จสิ้น >> show_min_case / grade
         if(result['status'] == "เสร็จสิ้น"){
