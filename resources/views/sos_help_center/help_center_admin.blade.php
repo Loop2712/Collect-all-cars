@@ -1568,15 +1568,21 @@
 
                                                 @endif
 
-                                                
                                             </div>
                                             <div>
                                                 {{ thaidate("วันlที่ j M Y" , strtotime($item->created_at)) }} &nbsp;&nbsp;{{ thaidate("เวลา H:i" , strtotime($item->created_at)) }}
 
                                                 <br>
                                                 <span class="btn btn-danger main-shadow main-radius float-end mt-3" onclick="delete_case('{{ $item->id }}');">
-                                                    ลบเคสนี้
+                                                    <i class="fa-solid fa-delete-right"></i> ลบเคสนี้
                                                 </span>
+
+                                                @if($item->status == "รับแจ้งเหตุ" && empty($item->command_by))
+                                                    <span class="btn btn-success main-shadow main-radius float-end mt-3 mx-2" onclick="sos_1669_command_by('{{ Auth::user()->id }}' , '{{ $item->id }}');">
+                                                        <i class="fa-solid fa-location-arrow fa-beat"></i> สั่งการ
+                                                    </span>
+                                                @endif
+
                                                 <script>
                                                     function delete_case(sos_id){
                                                         fetch("{{ url('/') }}/api/delete_case" + "?sos_id=" + sos_id )
