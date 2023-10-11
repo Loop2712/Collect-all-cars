@@ -27,11 +27,13 @@
             /* padding-top: 0; */
             /* margin-top: 0; */
             margin-bottom: 0;
+            max-width: 100%;
         }
 
         .data-sos {
             /* border-radius: 5px; */
-            height: calc(87.5vh);
+            height: calc(88.8vh);
+            max-height: 100% !important;
             background-color: #2b2d31;
             color: #fff !important;
             overflow: auto;
@@ -453,7 +455,6 @@
 <div class="d-flex justify-content-center align-items-center">
     <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
 </div>
-
 <div class="row full-height">
     <!-- สำหรับ loading ก่อนเข้า videocall -> จะลบออกหลังจากโหลดเสร็จ -->
 
@@ -475,6 +476,15 @@
                                         $color_text_status = "text-danger";
                                         break;
                                     case 'กำลังดำเนินการ':
+                                        $color_text_status = "text-warning";
+                                        break;
+                                    case 'รอการยืนยัน':
+                                        $color_text_status = "text-warning";
+                                        break;
+                                    case 'ถึงที่เกิดเหตุ':
+                                        $color_text_status = "text-warning";
+                                        break;
+                                    case 'ออกจากฐาน':
                                         $color_text_status = "text-warning";
                                         break;
                                     default:
@@ -1862,7 +1872,11 @@
             // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
             let videoDeviceList = document.getElementById('video-device-list');
                 videoDeviceList.innerHTML = '';
-                videoDeviceList.appendChild(document.createTextNode("กล้อง"));
+            let deviceText = document.createElement('li');
+                deviceText.classList.add('text-center','p-1','text-white');
+                deviceText.appendChild(document.createTextNode("กล้อง"));
+
+                videoDeviceList.appendChild(deviceText);
 
             let count_i = 1 ;
 
@@ -1951,7 +1965,11 @@
             // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
             let audioDeviceList = document.getElementById('audio-device-list');
                 audioDeviceList.innerHTML = '';
-                audioDeviceList.appendChild(document.createTextNode("อุปกรณ์รับข้อมูล"));
+            let deviceText = document.createElement('li');
+                deviceText.classList.add('text-center','p-1','text-white');
+                deviceText.appendChild(document.createTextNode("อุปกรณ์รับข้อมูล"));
+
+                audioDeviceList.appendChild(deviceText);
             // let audiooutputDeviceList = document.getElementById('audio-device-output-list');
             //     audiooutputDeviceList.innerHTML = '';
 
