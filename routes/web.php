@@ -194,8 +194,6 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('/score_helper/{user_id}', 'PartnerController@score_helper');
 
 	// -- SOS MAP --
-	// User
-	Route::get('sos_map/user_view_officer/{id_sos_map}', 'Sos_mapController@user_view_officer');
 	// Officer
 	Route::get('sos_map/check_tag_sos/{id_sos_map}/{groupId}', 'Sos_mapController@check_tag_sos');
 	Route::get('sos_map/tag_sos/map_officer/{id_sos_map}/{groupId}', 'Sos_mapController@map_officer');
@@ -325,6 +323,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('select_condo', 'Partner_condoController@select_condo');
 	Route::get('/data_user_of_condo', 'Partner_condoController@data_user_of_condo');
 	Route::resource('notify_repair', 'Notify_repairController')->except(['index','show','edit']);
+
+	// SOS MAP
 	Route::get('/sos_map/add_photo/{id_sos_map}', 'Sos_mapController@sos_map_add_photo');
 
 	// SOS 1669
@@ -374,7 +374,11 @@ Route::get('/market/motercycle/{id}', 'MotercleyviewController@show');
 	Route::get('/line_mycar', 'ProfileController@line_mycar');
 	Route::get('/not_comfor_login/{license_plate_id}', 'Not_comforController@not_comfor_login');
 
+	// sos map
 	Route::get('sos_map/check_tag_sos_log_in/{id_sos_map}/{groupId}', 'Sos_mapController@check_tag_sos_log_in');
+	// sos map User
+	Route::get('sos_map/user_view_officer_login/{id_sos_map}', 'Sos_mapController@user_view_officer_login');
+	Route::get('sos_map/user_view_officer/{id_sos_map}', 'Sos_mapController@user_view_officer');
 	
 // END AUTO LOHIN FROM FLEX LINE
 

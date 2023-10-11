@@ -971,11 +971,11 @@ class LineApiController extends Controller
         MyLog::create($data);
 
         // ส่งไลน์หา user ที่ขอความช่วยเหลือ
-        $this->_send_helper_to_user($helper_id , $data_sos_map->user_id , $data_partner_helpers->name , $condo_id);
+        $this->_send_helper_to_user($helper_id , $data_sos_map->user_id , $data_partner_helpers->name , $condo_id , $data_sos_map->id);
 
     }
 
-    protected function _send_helper_to_user($helper_id , $user_id , $name_partner_helpers , $condo_id)
+    protected function _send_helper_to_user($helper_id , $user_id , $name_partner_helpers , $condo_id , $sos_map_id)
     {
         if (!empty($condo_id)) {
             $data_condos = Partner_condo::where('id' , $condo_id)->first();
@@ -1060,6 +1060,7 @@ class LineApiController extends Controller
             $string_json = str_replace("name_helper",$name_helper,$string_json);
             $string_json = str_replace("https://scdn.line-apps.com/clip13.jpg",$photo_helper,$string_json);
             $string_json = str_replace("zzz",$name_partner_helpers,$string_json);
+            $string_json = str_replace("id_sos_map",$sos_map_id,$string_json);
 
             // LOGO PARTNER
             $string_json = str_replace("LOGO_PARTNER",$data_partner->logo,$string_json);

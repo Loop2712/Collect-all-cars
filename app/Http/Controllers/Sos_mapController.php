@@ -1007,6 +1007,15 @@ class Sos_mapController extends Controller
         $line->check_help_complete_by_helper($event, 'help_complete', $requestData['sos_map_id']);
     }
 
+    function user_view_officer_login($id_sos_map){
+        if(Auth::check()){
+            return redirect("sos_map/user_view_officer" . "/" . $id_sos_map) ;
+        }else{
+            $re_to = "sos_map/user_view_officer" . "/" . $id_sos_map ;
+            return redirect('login/line?redirectTo=' . $re_to);
+        }
+    }
+
     function user_view_officer($id_sos_map){
 
         $data_sos = Sos_map::where('id' , $id_sos_map)->first();
@@ -1039,10 +1048,13 @@ class Sos_mapController extends Controller
     }
 
     function loop_check_status_sos_map($id_sos_map){
-        
-        $data_sos_map = Sos_map::where('id' , $id_sos_map)->select('status')->first();
 
-        return $data_sos_map->status ;
+        $data_sos_map = Sos_map::where('id' , $id_sos_map)->first();
+
+        $data_helper = User::where('id', $data_sos_map->helper_id )->first();
+        $data_sos_map->photo_officer = $data_helper->photo ;
+
+        return $data_sos_map ;
     }
 
     function report_repair($id_sos_map , $groupId){

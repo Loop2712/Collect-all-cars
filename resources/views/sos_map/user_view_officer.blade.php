@@ -560,7 +560,7 @@
             <hr>
             <div class="d-flex align-items-center ml-2">
                 <div class="centered">
-                    <div class="badge-wrap">
+                    <div id="div_img_officer" class="badge-wrap">
                         @php
                             if(!empty($data_sos->helper_id)){
                                 $data_helper = App\User::where('id', $data_sos->helper_id )->first();
@@ -576,8 +576,8 @@
                     </div>
                 </div>
                 <div class="flex-grow-1 ms-3 box-organization_helper">
-                    <p class="font-weight-bold mb-0 notranslate">{{ $data_sos->helper }}</p>
-                    <p class="font-weight-bold mb-0 notranslate text-organization">{{ $data_sos->organization_helper }}</p>
+                    <p id="name_helper" class="font-weight-bold mb-0 notranslate">{{ $data_sos->helper }}</p>
+                    <p id="name_organization_helper" class="font-weight-bold mb-0 notranslate text-organization">{{ $data_sos->organization_helper }}</p>
                 </div>
             </div>
         </div>
@@ -621,13 +621,22 @@
             // console.log(check_status);
 
             fetch("{{ url('/') }}/api/sos_map/loop_check_status_sos_map" + "/" + "{{ $data_sos->id }}")
-                .then(response => response.text())
+                .then(response => response.json())
                 .then(result => {
                     // console.log(result);
 
-                    check_status = result ;
+                    check_status = result['status'] ;
 
-                    if (result != "รับแจ้งเหตุ") {
+                    if (result['status'] != "รับแจ้งเหตุ") {
+
+                        let html_img_officer = `
+                            <img src="{{ url('storage')}}/`+result['photo_officer']+`" width="70" height="70" class="rounded-circle" alt="">
+                        `;
+
+                        document.querySelector('#div_img_officer').innerHTML = html_img_officer ;
+                        document.querySelector('#name_helper').innerHTML = result['helper'] ;
+                        document.querySelector('#name_organization_helper').innerHTML = result['organization_helper'] ;
+                        
                         Stop_loop_check_status_sos_map();
                     }
                 });

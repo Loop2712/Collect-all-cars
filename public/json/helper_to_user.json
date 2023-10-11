@@ -231,7 +231,7 @@
         "alignItems": "center",
         "action": {
           "type": "uri",
-          "uri": "https://www.viicheck.com/sos_map/user_view_officer/id_sos_map?openExternalBrowser=1"
+          "uri": "https://www.viicheck.com/sos_map/user_view_officer_login/id_sos_map?openExternalBrowser=1"
         }
       }
     ],
