@@ -1783,6 +1783,9 @@
                 else {
                     // alert('ปิด');
                     channelParameters.localVideoTrack.setEnabled(false);
+
+                    changeBgColor(bg_local);
+
                 }
 
 
