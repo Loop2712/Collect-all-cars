@@ -90,6 +90,7 @@
 		/* outline: #000 1px solid; */
 		margin: 0;
 		background-color: #2b2d31;
+        outline: black;
 	}
 
 	.user-video-call-contrainer {
@@ -198,10 +199,19 @@
 		bottom: 0;
 		right: 0;
 		background-color: rgb(0, 0, 0, 0.4);
-		padding: .5rem 1rem;
+		padding: .5rem 1rem .5rem ;
 		border-radius: 10px;
 		margin: 1rem;
 		color: #fff !important;
+        font-size: 3em;
+        font-weight: bold;
+        /* word-wrap: break-word; */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: calc(100% - 10%);
+        /* width: 90%; */
+
 	}
 
 	.infomation-user .role-user-video-call,
@@ -213,7 +223,7 @@
 	.status-input-output .camera {
 		margin: 5px;
 		background-color: rgb(0, 0, 0, 0.4);
-		padding: .5rem 1rem;
+		padding: .5rem 1rem .5rem;
 		border-radius: 10px;
 		color: #fff;
         font-size: 50px !important;
@@ -224,6 +234,15 @@
 		margin: 0.5;
 		bottom: -5px;
 		right: -10px;
+        font-size: 2em;
+        font-weight: bold;
+        /* word-wrap: break-word; */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: calc(100% - 10%);
+        /* width: 90%; */
+
 	}
 
 	.user-video-call-bar .custom-div .status-input-output {
@@ -301,6 +320,8 @@
 		/* text-align: center; */
 		overflow: auto;
 		transition: opacity 0.5s, max-height 0.5s;
+        background-color: #2b2d31;
+        border-radius: 5px;
 	}
 
     .font-weight-bold{
@@ -534,6 +555,14 @@
         }
     }
     /* ----------------- End ตัว loading animation ----------------- */
+    .advice_text{
+        background-color: rgba(99, 90, 90, 0);
+        color: #ffffff;
+        font-size: 3rem;
+        position: absolute;
+        bottom: 20%;
+        padding: 1rem;
+    }
 </style>
 
 <button id="addButton" style="position: absolute;top:10%;right: 0;">เพิ่ม div</button>
@@ -552,7 +581,7 @@
 			<button class="btn btn-success" id="fadeButton"><i class="fa-solid fa-file-invoice" style="font-size: 45px;"></i></button>
 		</div>
 	</div>
-	<div class="col-12" style="height: calc(100% - 20%);">
+	<div class="col-12" style="height: calc(100% - 30%); ">
 		<div class="d-flex h-100 row">
 			<div class="video-call">
 				<div class=" d-flex align-item-center justify-content-center h-100 row">
@@ -562,13 +591,21 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
-	<div class="col-12 col-lg-2 pt-2" style="height: calc(100% - 90%);">
-		<div class="w-100 user-video-call-contrainer d-none">
-			<div class="d-flex justify-content-center align-self-end d-non user-video-call-bar">
+    <div id="adive_text_video_call" class="advice_text text-center">
+        <!-- ใส่ ข้อความที่มาจาก javascript -->
+    </div>
+    <div class="col-12 pt-3" style="height: calc(100% - 90%); background-color: #2b2d31; ">
+        <div class="w-100 user-video-call-contrainer d-none " >
+			<div class="d-flex justify-content-center align-self-end d-non user-video-call-bar" >
 			</div>
 		</div>
+    </div>
+
+	<div class="col-12" style="height: calc(100% - 90%);">
+
 		<div class="btn-video-call-container mt-4">
 			<div class="row d-flex justify-content-center" >
 
@@ -815,7 +852,8 @@
 
     //สำหรับกำหนดสี background localPlayerContainer
     var bg_local;
-
+    //สำหรับกำหนด text advice
+    var type_advice = "inc";
     // เรียกสองอันเพราะไม่อยากไปยุ่งกับโค้ดเก่า
     var user_id = '{{ Auth::user()->id }}';
     var user_data = @json(Auth::user());
@@ -2277,7 +2315,15 @@
             if (!isInUserVideoCallBar(clickedDiv)) {
                 container.appendChild(clickedDiv);
             }
-            document.querySelector(".btn-video-call-container").classList.add("d-none");
+            // document.querySelector(".btn-video-call-container").classList.add("d-none");
+
+            type_advice = "dec";
+            showTextAdvice(type_advice);
+            console.log(type_advice);
+        }else{
+            type_advice = "inc";
+            showTextAdvice(type_advice);
+            console.log(type_advice);
         }
 	}
 
@@ -2311,8 +2357,32 @@
 
 		document.querySelector(".btn-video-call-container").classList.remove("d-none");
 
+        type_advice = "inc";
+        showTextAdvice(type_advice);
+        console.log(type_advice);
+
+	}
+    let text_advice;
+
+    function showTextAdvice(type) {
+
+        let div_advice =  document.querySelector('#adive_text_video_call');
+		let container = document.getElementById("container_user_video_call");
+		let customDivs = container.querySelectorAll(".custom-div");
+		let userVideoCallBar = document.querySelector(".user-video-call-bar");
+        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+        div_advice.innerHTML = '';
+
+        // จะเปลี่ยนไปเช็คจากจำนวนคน หลังจากทำหลังบ้านเสร็จ
+        if(type == "inc"){
+                div_advice.innerHTML = '<p style="font-size: 36px;" class="font-14 text-danger">กดที่จอวิดีโอเพื่อขยาย*</p>';
+		} else {
+                div_advice.innerHTML = '<p style="font-size: 36px;" class="font-14 text-danger">กดที่จอวิดีโอเพื่อกลับขนาดปกติ*</p>';
+		}
 	}
 
+    showTextAdvice(type_advice);
 
 	function handleClick(clickedDiv) {
 		let userVideoCallBar = document.querySelector(".user-video-call-bar");

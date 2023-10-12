@@ -166,7 +166,9 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
         let nameUserVideoCallDiv = document.createElement("div");
             nameUserVideoCallDiv.id = "name_local_video_call";
             nameUserVideoCallDiv.className = "name-user-video-call";
-            nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>'+ name_local +'</b></h5>';
+            nameUserVideoCallDiv.innerHTML = '<p class=" m-0 text-white float-end">'+ name_local +'</p>';
+
+        let br = document.createElement('br'); // สร้าง <br> tag
 
         let roleUserVideoCallDiv = document.createElement("div");
             roleUserVideoCallDiv.id = "role_local_video_call";
@@ -174,6 +176,7 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
             roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
 
         infomationUserDiv.appendChild(nameUserVideoCallDiv);
+        infomationUserDiv.appendChild(br);
         infomationUserDiv.appendChild(roleUserVideoCallDiv);
 
         // สร้าง div โปร่งใส
@@ -279,11 +282,14 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,bg_r
             nameUserVideoCallDiv.className = "name-user-video-call";
             nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>'+name_remote+'</b></h5>';
 
+        let br = document.createElement('br'); // สร้าง <br> tag
+
         let roleUserVideoCallDiv = document.createElement("div");
             roleUserVideoCallDiv.className = "role-user-video-call";
             roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
 
         infomationUserDiv.appendChild(nameUserVideoCallDiv);
+        infomationUserDiv.appendChild(br);
         infomationUserDiv.appendChild(roleUserVideoCallDiv);
 
         // เพิ่ม div ด้านในลงใน div หลัก
@@ -414,11 +420,14 @@ function create_dummy_videoTrack(user,name_remote,profile_remote,bg_remote){
             nameUserVideoCallDiv.className = "name-user-video-call";
             nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>'+name_remote+'</b></h5>';
 
+        let br = document.createElement('br'); // สร้าง <br> tag
+
         let roleUserVideoCallDiv = document.createElement("div");
             roleUserVideoCallDiv.className = "role-user-video-call";
             roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
 
         infomationUserDiv.appendChild(nameUserVideoCallDiv);
+        infomationUserDiv.appendChild(br);
         infomationUserDiv.appendChild(roleUserVideoCallDiv);
 
         // สร้าง div โปร่งใส
