@@ -30,4 +30,9 @@ class Sos_map extends Model
     public function user(){
         return $this->belongsTo('App\User', 'user_id' , 'id'); 
     }
+
+    public function user_helper(){
+        return $this->belongsTo('App\User', 'helper_id' , 'id'); 
+    }
+
 }

@@ -1,6 +1,7 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
+
 <div class="container-partner-sos">
   <div class="item sos-map col-md-12 col-12 col-lg-3">
         <div class="row">
@@ -68,10 +69,9 @@
             </div>
 
             <br><br>
-
-            <div class="card radius-10 d-none d-lg-block col-12" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
+            <!-- หัวข้อ -->
+            <div class="card card border-top border-0 border-4 border-dark d-none d-lg-block col-12" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
                 <div class="row card-header border-bottom-0 bg-transparent my-3">
-                    <!-- หัวข้อ -->
                     <div class="col-12">
                         <h5 class="font-weight-bold mb-0" >
                             การขอความช่วยเหลือ
@@ -101,286 +101,274 @@
                 </div>
             </div>
 
-            <div class="card radius-10 d-none d-lg-block col-12" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
-                <div class="row card-header border-bottom-0 bg-transparent my-3">
-                    <!-- เนื้อหา -->
-                    <div class="col-12">
-                        avd
-                    </div>
-                </div>
-            </div>
+            @foreach($view_maps as $item)
+            <!-- เนื้อหา -->
+            @php
+                $class_border_card = '';
+                $card_background_color = '';
+                $btn_background_color = '';
 
-
-
-            <div class="card radius-10 d-none d-lg-block col-12" style="font-family: 'Baloo Bhaijaan 2', cursive;font-family: 'Prompt', sans-serif;">
-                <div class="card-header border-bottom-0 bg-transparent" style="margin-top: 10px;">
-                    <div class="d-flex align-items-center">
-                        
-                    </div>
-                </div>
-                <hr style="color:black;background-color:black;height:2px;">
+                if($item->tag_sos_or_repair == "tag_sos"){
+                    $class_border_card = 'border-warning' ;
+                    $card_background_color = 'bg-light-warning' ;
+                    $btn_background_color = 'bg-warning' ;
+                }else{
+                    $class_border_card = 'border-info' ;
+                    $card_background_color = 'bg-light-info' ;
+                    $btn_background_color = 'bg-info' ;
+                }
+            @endphp
+            
+            <div class="card card_sos_map radius-10 d-none d-lg-block border-top border-0 border-4 {{ $class_border_card }}" >
                 <div class="card-body">
-                <div class="row text-center">
-                    <div class="col-3">
-                        <b>ผู้ขอความช่วยเหลือ</b>
-                    </div>
-                    <div class="col-3">
-                        <b>เวลาแจ้งเหตุ</b>
-                    </div>
-                    <div class="col-3">
-                        <b>สถานะ</b>
-                    </div>
-                    <div class="col-2">
-                        <b>ระยะเวลา</b>
-                    </div>
-                    <div class="col-1">
-                        <b>ตำแหน่ง</b>
-                    </div>
+                    <div class="p-2">
+                        <div class="card-title">
+                            <div class="row">
+                                <div class="col-8">
+                                    @if($item->tag_sos_or_repair == "tag_sos")
+                                        <h2 class="text-warning">
+                                            <i class="fa-solid fa-truck-medical me-1 font-22 text-warning"></i> ขอความช่วยเหลือ
+                                            <span style="font-size:15px;color: black;">
+                                                เมื่อเวลา : <b>{{ $item->created_at }}</b>
+                                            </span>
+                                        </h2>
+                                    @else
+                                        <h2 class="text-info">
+                                            <i class="fa-regular fa-hammer me-1 font-22 text-info"></i> แจ้งซ่อม
+                                            <span style="font-size:15px;color: black;">
+                                                เมื่อเวลา : <b>{{ $item->created_at }}</b>
+                                            </span>
+                                        </h2>
+                                    @endif
 
-                    <br><br>
-                    <hr style="color:black;background-color:black;height:2px;">
-                </div>
-                </div>
-                <div class="card-body">
-                    @php
-                    $Number = 1 ;
-                    @endphp
+                                    @php
+                                        $time_created_at = strtotime($item->created_at);
 
-                    @foreach($view_maps as $item)
+                                        // ----- ใช้เวลาถึงที่เกิดเหตุ (หน่วยเป็นวินาที) -----
+                                        $time_to_the_scene = strtotime($item->time_to_the_scene);
+                                        $to_scene = $time_to_the_scene - $time_created_at ;
 
-                    @php
-                    $color_row = "" ;
+                                        // แปลงเวลาให้อยู่ในรูปแบบ วัน, ชั่วโมง, นาที
+                                        $days_to_scene = floor($to_scene / (60 * 60 * 24));
+                                        $hours_to_scene = floor(($to_scene % (60 * 60 * 24)) / (60 * 60));
+                                        $minutes_to_scene = floor(($to_scene % (60 * 60)) / 60);
 
-                    if( $Number%2 == 0 ){
-                        $color_row = "#FFEFD5" ;
-                    }
-                    @endphp
-                    <div class="row text-center"> 
-                        <div class="col-3">
-                        <div style="margin-top: -10px;" >
-                            <h5 class="text-success float-left">
-                                <span style="font-size: 15px;">
-                                    <a target="break" href="{{ url('/').'/profile/'.$item->user_id }}">
-                                    <i class="far fa-eye text-primary"></i>
-                                    </a>
-                                </span>&nbsp;{{ $item->name }}<br> 
-                            </h5>
-                            {{ $item->phone }}
-                        </div>
-                        </div>
-                        <div class="col-3">
-                        <div style="margin-top: -10px;">
-                            <p><b>
-                            {{ date("d/m/Y" , strtotime($item->created_at)) }} <br>
-                            {{ date("H:i" , strtotime($item->created_at)) }}
-                            </b></p>
-                            @if(!empty($item->photo))
-                            <br>
-                            <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
-                                <img class="main-shadow" style="border-radius: 50%; object-fit:cover;" width="150px" height="150px" src="{{ url('storage')}}/{{ $item->photo }}">
-                            </a>
-                            <br>
-                            <a class="btn btn-sm btn-outline-info px-3 radius-30 mt-3" href="{{ url('storage')}}/{{ $item->photo }}" download>
-                                <i class="fa-solid fa-download"></i> ดาวน์โหลด
-                            </a>
-                            <br><br>
-                            @endif
-                        </div>
-                        </div>
-                        <div class="col-3">
-                        <div style="margin-top: -10px;">
-                            @if( !empty($item->helper) and empty($item->help_complete) )
-                                <div class="dropdown">
-                                    <a class="btn btn-sm btn-warning radius-30 dropdown-toggle" id="dropdown_status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fadeIn animated bx bx-message-rounded-error"></i>ระหว่างดำเนินการ
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdown_status">
-                                        <a class="dropdown-item  btn" onclick="status_help_complete('{{ $item->id }}' , '{{ Auth::user()->id }}' );">
-                                            การช่วยเหลือเสร็จสิ้น
-                                        </a>
+
+                                        $time_start_to_scene = '' ;
+                                        if($days_to_scene != 0){
+                                            $time_start_to_scene = "$days_to_scene วัน $hours_to_scene ชั่วโมง $minutes_to_scene นาที";
+                                        }else if($days_to_scene == 0 && $hours_to_scene != 0 && $minutes_to_scene != 0){
+                                            $time_start_to_scene = "$hours_to_scene ชั่วโมง $minutes_to_scene นาที";
+                                        }else if($days_to_scene == 0 && $hours_to_scene == 0 && $minutes_to_scene != 0){
+                                            $time_start_to_scene = "$minutes_to_scene นาที";
+                                        }
+
+                                        // ----- ใช้เวลาในการช่วยเหลือ (หน่วยเป็นวินาที) -----
+                                        $time_sos_all = '';
+                                        if($item->status != "เสร็จสิ้น"){
+                                            $time_sos_all = '-' ;
+                                        }else{
+                                            $help_complete_time = strtotime($item->help_complete_time);
+                                            $sos_all = $help_complete_time - $time_created_at ;
+
+                                            // แปลงเวลาให้อยู่ในรูปแบบ วัน, ชั่วโมง, นาที
+                                            $days_sos_all = floor($sos_all / (60 * 60 * 24));
+                                            $hours_sos_all = floor(($sos_all % (60 * 60 * 24)) / (60 * 60));
+                                            $minutes_sos_all = floor(($sos_all % (60 * 60)) / 60);
+
+                                            if($days_sos_all != 0){
+                                                $time_sos_all = "$days_sos_all วัน $hours_sos_all ชั่วโมง $minutes_sos_all นาที";
+                                            }else if($days_sos_all == 0 && $hours_sos_all != 0 && $minutes_sos_all != 0){
+                                                $time_sos_all = "$hours_sos_all ชั่วโมง $minutes_sos_all นาที";
+                                            }else if($days_sos_all == 0 && $hours_sos_all == 0 && $minutes_sos_all != 0){
+                                                $time_sos_all = "$minutes_sos_all นาที";
+                                            }
+                                        }
+
+                                    @endphp
+
+                                    <span><b>ใช้เวลาถึงที่เกิดเหตุ</b></span>
+                                    <span style="font-size:18px;">{{ $time_start_to_scene }}</span>
+                                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                                    <span><b>ใช้เวลาในการช่วยเหลือ</b></span>
+                                    <span style="font-size:18px;">{{ $time_sos_all }}</span>
+                                </div>
+                                <div class="col-4">
+                                    @php
+                                        $class_div_status = '';
+                                        $text_div_status = '';
+                                        $class_tga_i_status = '';
+                                        $time_of_status = '';
+
+                                        if($item->status == "รับแจ้งเหตุ"){
+                                            $class_div_status = 'btn-danger' ;
+                                            $text_div_status = 'text-white' ;
+                                            $class_tga_i_status = 'fa-solid fa-light-emergency-on' ;
+                                            $time_of_status = $item->created_at ;
+                                        }else if($item->status == "กำลังไปช่วยเหลือ"){
+                                            $class_div_status = 'bg-warning' ;
+                                            $class_tga_i_status = 'fa-solid fa-truck-medical' ;
+                                            $time_of_status = $item->time_go_to_help ;
+                                        }else if($item->status == "ถึงที่เกิดเหตุ"){
+                                            $class_div_status = 'btn-warning' ;
+                                            $class_tga_i_status = 'fa-solid fa-location-dot' ;
+                                            $time_of_status = $item->time_to_the_scene ;
+                                        }else if($item->status == "ออกจากที่เกิดเหตุ"){
+                                            $class_div_status = 'bg-warning' ;
+                                            $class_tga_i_status = 'fa-duotone fa-person-walking-arrow-right' ;
+                                            $time_of_status = $item->time_leave_the_scene ;
+                                        }else if($item->status == "เสร็จสิ้น"){
+                                            $class_div_status = 'btn-success' ;
+                                            $text_div_status = 'text-white' ;
+                                            $class_tga_i_status = 'fa-solid fa-shield-check' ;
+                                            $time_of_status = $item->help_complete_time ;
+                                        }
+                                    @endphp
+                                    <div class="float-end btn btn-sm {{ $class_div_status }} radius-10 px-5 py-2">
+                                        <h6 class="{{ $text_div_status }}" >
+                                            <i class="{{ $class_tga_i_status }}"></i> {{ $item->status }}
+                                            <br>
+                                        </h6>
+                                        <b style="font-size:12px;">{{ $time_of_status }}</b>
                                     </div>
                                 </div>
-                            @elseif($item->helper == null)
-                                <a class="btn btn-sm btn-danger radius-30" >
-                                    <i class="fadeIn animated bx bx-x"></i>ยังไม่ได้ดำเนินการ
-                                </a>
-                                <a type="button" style="margin-top: 10px;" class="btn btn-sm radius-30 notify_alert_gotohelp" 
-                                onclick="go_to_help('{{ $item->id }}' , '{{ Auth::user()->id }}' )">
-                                    <i class="fa-solid fa-truck-medical"></i> กำลังไปช่วยเหลือ
-                                </a>
-                                
-                            @elseif($item->help_complete == "Yes" && $item->helper != null)
-                                <a class="btn btn-sm btn-success radius-30" >
-                                    <i class="bx bx-check-double"></i>ช่วยเหลือเสร็จสิ้น
-                                </a>
-                                @if(!empty($item->help_complete_time))
-                                    <p style="margin-top:8px;">
-                                        <b>
-                                            {{ date("d/m/Y" , strtotime($item->help_complete_time)) }} {{ date("H:i" , strtotime($item->help_complete_time)) }}
-                                        </b>
-                                    </p> 
-                                @endif 
-                                @if(!empty($item->photo_succeed))
-                                <a href="{{ url('storage')}}/{{ $item->photo_succeed }}" target="bank">
-                                    <img class="main-shadow" style="border-radius: 50%; object-fit:cover;" width="150px" height="150px" src="{{ url('storage')}}/{{ $item->photo_succeed }}">
-                                </a>
-                                <br>
-                                <a class="btn btn-sm btn-outline-info px-3 radius-30 mt-3" href="{{ url('storage')}}/{{ $item->photo_succeed }}" download>
-                                    <i class="fa-solid fa-download"></i> ดาวน์โหลด
-                                </a>
-                                <br><br>
-                                @endif
-                            @endif              
+                            </div>
                         </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-7">
+                                <!-- ข้อมูลผู้ขอความช่วยเหลือ -->
+                                <h4>{{ $item->name }}</h4>
+                                <span style="font-size:18px;">
+                                    <i class="fa-solid fa-circle-phone text-success"></i> {{ $item->phone }}
+                                </span>
+                                <!-- หัวข้อขอความช่วยเหลือ -->
+                                <h4 class="mt-3">{{ $item->title_sos }}</h4>
+                                <span>
+                                   {{ $item->title_sos_other }}
+                                </span>
+                            </div>
+                            <div class="col-5 row">
+                                <div class="col-6 text-center" >
+                                    <span style="font-size:16px;">
+                                        ภาพจากผู้ใช้
+                                    </span>
+                                    <div class="card mt-2" style="position:relative;">
+                                        <center>
+                                            @if(!empty($item->photo))
+                                            <a href="{{ url('storage')}}/{{ $item->photo }}" target="bank">
+                                                <img src="{{ url('storage')}}/{{ $item->photo }}" class="main-shadow" style="border-radius: 10%; object-fit:cover;" width="150px" height="150px">
+                                            </a>
+                                            <a href="{{ url('storage')}}/{{ $item->photo }}" download>
+                                                <i class="fa-solid fa-download btn {{ $btn_background_color }}" style="color: #fff;border-radius: 20%;position: absolute;z-index: 9999;bottom:5%;right: 15%;"></i>
+                                            </a>
+                                            @else
+                                                <img src="{{ url('/img/stickerline/PNG/17.png') }}" class="main-shadow" style="border-radius: 10%; object-fit:cover;" width="150px" height="150px">
+                                            @endif
+                                        </center>
+                                    </div>
+                                </div>
+                                <div class="col-6 text-center">
+                                    <span style="font-size:16px;">
+                                        ภาพจากเจ้าหน้าที่
+                                    </span>
+                                    <div class="card mt-2" style="position:relative;">
+                                        <center>
+                                            @if(!empty($item->photo_succeed))
+                                            <a href="{{ url('storage')}}/{{ $item->photo_succeed }}" target="bank">
+                                                <img src="{{ url('storage')}}/{{ $item->photo_succeed }}" class="main-shadow" style="border-radius: 10%; object-fit:cover;" width="150px" height="150px">
+                                            </a>
+                                            <a href="{{ url('storage')}}/{{ $item->photo_succeed }}" download>
+                                                <i class="fa-solid fa-download btn {{ $btn_background_color }}" style="color: #fff;border-radius: 20%;position: absolute;z-index: 9999;bottom:5%;right: 15%;"></i>
+                                            </a>
+                                            @else
+                                                <img src="{{ url('/img/stickerline/PNG/17.png') }}" class="main-shadow" style="border-radius: 10%; object-fit:cover;" width="150px" height="150px">
+                                            @endif
+                                        </center>
+                                    </div>
+                                    @if(!empty($item->photo_succeed))
+                                    <span class="mt-2">
+                                        {{ $item->remark }}
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-2">
-                        @if( !empty($item->created_at) && !empty($item->help_complete_time) )
-                            <!-- ปี -->
-                            @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y') != 0 )
-                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%y')}} ปี <br>
-                            @endif
-                            <!-- เดือน -->
-                            @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m') != 0 )
-                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%m')}} เดือน <br>
-                            @endif
-                            <!-- วัน -->
-                            @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d') != 0 )
-                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d')}} วัน <br>
-                            @endif
-                            <!-- ชัวโมง -->
-                            @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h') != 0 )
-                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%h')}} ชั่วโมง <br>
-                            @endif
-                            <!-- นาที -->
-                            @if(\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i') != 0 )
-                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%i')}} นาที <br>
-                            @endif
-                            <!-- วินาที -->
-                            @if( \Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s') != 0 )
-                                {{\Carbon\Carbon::parse($item->help_complete_time)->diff(\Carbon\Carbon::parse($item->created_at))->format('%s')}} วินาที <br>
-                            @endif
-                            
-                        @else
-                            <span>-</span>
-                        @endif
-                        </div>
-                        <div class="col-1">
-                        <div style="margin-top: -10px;">
-                            
-                            @if( $item->content == "help_area" )
-                                <a id="tag_a_view_marker" class="link text-danger" href="#map" onclick="view_marker('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}', '{{ $item->name_area }}');">
-                                    <i class="fas fa-map-marker-alt"></i> 
-                                    <br>
-                                    ดูหมุด
-                                </a>
-                            @else
-                                <a class="link text-danger" href="#map" onclick="view_marker_volunteer('{{ $item->lat }}' , '{{ $item->lng }}', '{{ $item->id }}', '{{ $item->name }}');">
-                                    <i class="fas fa-map-marker-alt"></i> 
-                                    <br>
-                                    ดูหมุด
-                                </a>
-                            @endif
-
-                            <a href="{{ url('/video_call/sos_map') }}?sos_id={{ $item->id }}" class="btn btn-primary main-shadow main-radius">
-                                <i class="fa-solid fa-list-check"></i>
-                            </a>
-                            
-                        </div>
-                        </div>
-                        <br>
-                        <div class="col-12">
-                        @if(Auth::check())
-                            @if(Auth::user()->role == 'admin-partner' or Auth::user()->id == $item->helper_id)
-                                @if($item->help_complete == "Yes" and $item->score_total != null)
-                                    <div class="col-12 text-left" style="margin-top:5px;">
-                                        <h5>คะแนนการช่วยเหลือ</h5>
-                                        <div class="row">
-                                            <div class="col-2" style="padding:0px">
-                                                <b>เจ้าหน้าที่ : </b><br>{{$item->helper}}
-                                            </div> 
-                                            <div class="col-2" style="padding:0px">
-                                                @if($item->score_impression < 3)
-                                                    <b>ความประทับใจ : </b><br>
-                                                    <span class="text-danger">{{$item->score_impression}}</span>
-                                                @elseif($item->score_impression == 3)
-                                                    <b>ความประทับใจ : </b><br>
-                                                    <span class="text-warning">{{$item->score_impression}}</span>
-                                                @elseif($item->score_impression > 3)
-                                                    <b>ความประทับใจ : </b><br>
-                                                    <span class="text-success">{{$item->score_impression}}</span>
-                                                @endif
+                        <!-- เคสที่เสร็จสิ้น แสดง div ด้านล่าง -->
+                        @if($item->status == "เสร็จสิ้น")
+                        <div class="row mt-2">
+                            <div class="col-4">
+                                <h5 class="mt-3"><b>หมายเหตุ ช่วยเหลือเสร็จสิ้น</b></h5>
+                                <span>
+                                    {{ $item->remark_status }}
+                                </span>
+                            </div>
+                            <div class="col-8">
+                                <div class="btn btn-sm radius-10 px-1 py-2 {{ $card_background_color }}" style="width:100%;">
+                                    <div class="row mt-2 mb-2">
+                                        <div class="col-5" style="border-right: white solid 2px;">
+                                            <span>เจ้าหน้าที่</span>
+                                            <br>
+                                            <span style="font-size:18px;">
+                                                {{ $item->helper }}
+                                            </span>
+                                        </div>
+                                        @if(!empty($item->score_total))
+                                        <div class="col-3" style="border-right: white solid 2px;">
+                                            <span>ความประทับใจ</span>
+                                            <br>
+                                            <span style="font-size:18px;">
+                                                {{ $item->score_impression }} คะแนน
+                                            </span>
+                                        </div>
+                                        <div class="col-2" style="border-right: white solid 2px;">
+                                            <span>ระยะเวลา</span>
+                                            <br>
+                                            <span style="font-size:18px;">
+                                                {{ $item->score_period }} คะแนน
+                                            </span>
+                                        </div>
+                                        <div class="col-2" style="border-right: white solid 2px;">
+                                            <span>ภาพรวม</span>
+                                            <br>
+                                            <span style="font-size:18px;">
+                                                {{ $item->score_total }} คะแนน
+                                            </span>
+                                        </div>
+                                        @else
+                                            <div class="col-6">
+                                                <center>
+                                                    <span>ไม่มีการประเมิน</span>
+                                                </center>
                                             </div>
-                                            <div class="col-2" style="padding:0px">
-                                                @if($item->score_period < 3)
-                                                    <b>ระยะเวลา : </b><br>
-                                                    <span class="text-danger">{{$item->score_period}}</span>
-                                                @elseif($item->score_period == 3)
-                                                    <b>ระยะเวลา : </b><br>
-                                                    <span class="text-warning">{{$item->score_period}}</span>
-                                                @elseif($item->score_period > 3)
-                                                    <b>ระยะเวลา : </b><br>
-                                                    <span class="text-success">{{$item->score_period}}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-2" style="padding:0px">
-                                                @if($item->score_total < 3)
-                                                    <b>ภาพรวม : </b><br>
-                                                    <span class="text-danger">{{$item->score_total}}</span>
-                                                @elseif($item->score_total == 3)
-                                                    <b>ภาพรวม : </b><br>
-                                                    <span class="text-warning">{{$item->score_total}}</span>
-                                                @elseif($item->score_total > 3)
-                                                    <b>ภาพรวม : </b><br>
-                                                    <span class="text-success">{{$item->score_total}}</span>
-                                                @endif
-                                            </div>
-                                            <div class="col-4" style="padding:0px">
-                                                <b>คำแนะนำ/ติชม : </b><br>{{$item->comment_help}}
-                                            </div> 
+                                        @endif
+                                    </div>
+                                    @if(!empty($item->comment_help))
+                                    <div class="col-12">
+                                        <div class="px-3 py-2">
+                                            <span style="float: left!important;">คำติชม</span>
+                                            <br>
+                                            <span style="font-size:18px;float: left!important;">
+                                                {{ $item->comment_help }}
+                                            </span>
                                         </div>
                                     </div>
-                                @elseif($item->help_complete == "Yes" and $item->score_total == null)
-                                    <h5>คะแนนการช่วยเหลือ</h5>
-                                    <div class="row">
-                                        <div class="col-6" style="padding:0px">
-                                            <b>เจ้าหน้าที่ : </b>{{$item->helper}}
-                                        </div> 
-                                        <div class="col-6" style="padding:0px">
-                                            <b>ไม่ได้ทำแบบประเมิน</b>
-                                        </div> 
-                                    </div>
-                                @elseif(!empty($item->helper) and empty($item->help_complete))
-                                    <h5>คะแนนการช่วยเหลือ</h5>
-                                    <div class="row">
-                                        <div class="col-12" style="padding:0px">
-                                            <b>เจ้าหน้าที่ : </b>{{$item->helper}}
-                                        </div> 
-                                    </div>
-                                @endif      
-                            @endif
-                            @endif
-                            <br>
-                        </div>
-                        @if(!empty($item->remark))
-                        <div class="col-12">
-                            <b>หมายเหตุจากเจ้าหน้าที่ : </b> {{ $item->remark }}
-                            <br><br>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                         @endif
-                        <hr>
-                        <br><br>
-                    </div>
-                    @php
-                        $Number = $Number + 1  ;
-                    @endphp
-                    @endforeach
-                    <div style="float: right;">
-                    </div>
-                    <div class="table-responsive">
-                        <div class="pagination round-pagination " style="margin-top:10px;"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
+
+                        <div class="col">
+                            <a href="{{ url('/sos_map/command') . '/' . $item->id }}" type="button" class="btn {{ $btn_background_color }} px-5">
+                                <i class="fa-duotone fa-bars-progress mr-1"></i> ดำเนินการ
+                            </a>
+                        </div>
+
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
   </div>
 </div>

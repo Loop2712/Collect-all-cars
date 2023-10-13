@@ -61,6 +61,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Sos_map', 'user_id');
     }
 
+    public function sos_map_helper(){
+        return $this->hasMany('App\Models\Sos_map', 'helper_id');
+    }
+
     public function officers_sos_help_center(){
         return $this->hasMany('App\Models\sos_help_center', 'helper_id');
     }

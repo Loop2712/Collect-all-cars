@@ -18,9 +18,11 @@ use App\Models\LineMessagingAPI;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailTo_sos_partner;
 use App\Models\Partner_condo;
+use App\Models\Partner;
 use App\Models\Sos_map_title;
 use App\User;
 use App\Http\Controllers\API\ImageController;
+use App\Models\Group_line;
 
 use App\Http\Controllers\API\LineApiController;
 
@@ -1055,6 +1057,36 @@ class Sos_mapController extends Controller
         $data_sos_map->photo_officer = $data_helper->photo ;
 
         return $data_sos_map ;
+    }
+
+    function sos_map_command($id_sos_map){
+
+        $data_sos_map = Sos_map::where('id' , $id_sos_map)->first();
+        $data_partner = Partner::where('name' , $data_sos_map->area)
+            ->where('name_area' , $data_sos_map->name_area)
+            ->first();
+
+        $data_groupline = Group_line::where('id' , $data_partner->group_line_id)->first();
+        $groupId = $data_groupline->groupId ;
+
+        return view('sos_map.sos_map_command', compact('data_sos_map' ,'groupId'));
+    }
+
+    function get_location_user_and_officer(Request $request)
+    {
+        $requestData = $request->all();
+        $data_sos_map = Sos_map::where('id' , $requestData['sos_map_id'])->first();
+
+        $data = [];
+
+        $data['status'] = $data_sos_map->status;
+        $data['user_lat'] = $data_sos_map->user->lat;
+        $data['user_lng'] = $data_sos_map->user->lng;
+        $data['officer_lat'] = $data_sos_map->user_helper->lat;
+        $data['officer_lng'] = $data_sos_map->user_helper->lng;
+
+        return $data ;
+
     }
 
     function report_repair($id_sos_map , $groupId){

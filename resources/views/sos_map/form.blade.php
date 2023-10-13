@@ -166,8 +166,8 @@
                                     <div class="d-flex align-items-center col-9 text-center">
                                         <div class="justify-content-center col-12">
                                             <b>
-                                                <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน</span>
-                                                <span class="d-block" style="color: #ffffff;">(1669)</span>
+                                                <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน (1669)</span>
+                                                <span id="name_area_1669" class="d-block" style="color: #ffffff;"></span>
                                             </b>
                                             
                                         </div>
@@ -1505,6 +1505,7 @@
                             
                             if ( inside_1669([ lat, lng ], area_arr) ) {
                                 // console.log('You inside area 1669!!');
+                                document.querySelector('#name_area_1669').innerHTML = result[ii]['province_name'];
                                 btn_ask_1669.classList.remove('d-none');
                                 document.querySelector('#btn_tel_1669').classList.add('d-none');
                                 break;
@@ -1524,6 +1525,7 @@
                         let check_organization = '{{ Auth::user()->organization }}' ;
 
                         if ( check_user_id == '1' || check_user_id == '64' || check_user_id == '2' || check_user_id == '11003429') { // check_user_id == '64' ||
+                            document.querySelector('#name_area_1669').innerHTML = result[ii]['province_name'];
                             btn_ask_1669.classList.remove('d-none');
                             break;
                         }else{
@@ -1531,6 +1533,7 @@
                         }
 
                         if (  check_organization == 'สพฉ' && check_role == 'admin-partner' || check_role == 'partner' ) {
+                            document.querySelector('#name_area_1669').innerHTML = result[ii]['province_name'];
                             btn_ask_1669.classList.remove('d-none');
                             break;
                         }else{

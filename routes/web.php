@@ -197,6 +197,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	// Officer
 	Route::get('sos_map/check_tag_sos/{id_sos_map}/{groupId}', 'Sos_mapController@check_tag_sos');
 	Route::get('sos_map/tag_sos/map_officer/{id_sos_map}/{groupId}', 'Sos_mapController@map_officer');
+	Route::get('sos_map/command/{id_sos_map}', 'Sos_mapController@sos_map_command');
 	
 	// -- SOS MAP repair --
 	Route::get('sos_map/report_repair/{id_sos_map}/{groupId}', 'Sos_mapController@report_repair');
@@ -582,3 +583,5 @@ Route::get('/layout_video_call', function () {
 
 // VOTE KAN
 Route::get('/show_score_public', 'Vote_kan_scoresController@show_score_public');
+
+Route::resource('phone_niems', 'Phone_niemsController');

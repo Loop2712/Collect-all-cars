@@ -1,0 +1,12 @@
+{
+    "fields": [
+        {
+            "name": "province",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        }
+    ]
+}
