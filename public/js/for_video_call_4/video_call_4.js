@@ -1,3 +1,15 @@
+//=========== เช็คอุปกรณ์ =================
+var type_device = '';
+const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+// ตรวจสอบชนิดของอุปกรณ์
+if (/android/i.test(userAgent)) {
+    type_device = "Mobile (Android)";
+}
+if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    type_device = "Mobile (iOS)";
+}
+    type_device = "PC";
+//========== จบ เช็คอุปกรณ์ =================
 
 function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน
 
@@ -166,7 +178,7 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
         let nameUserVideoCallDiv = document.createElement("div");
             nameUserVideoCallDiv.id = "name_local_video_call";
             nameUserVideoCallDiv.className = "name-user-video-call";
-            nameUserVideoCallDiv.innerHTML = '<p class=" m-0 text-white float-end">'+ name_local +'</p>';
+            nameUserVideoCallDiv.innerHTML = '<p class="m-0 text-white float-end">'+ name_local +'</p>';
 
         let br = document.createElement('br'); // สร้าง <br> tag
 
@@ -196,6 +208,11 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
 
         let container_user_video_call = document.querySelector("#container_user_video_call");
         container_user_video_call.append(divVideo);
+
+        //ถ้าไม่ใช่คอม
+        if(type_device != "PC"){
+            checkchild();
+        }
 
         divVideo.addEventListener("click", function() {
             handleClick(divVideo);
@@ -280,7 +297,7 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,bg_r
 
         let nameUserVideoCallDiv = document.createElement("div");
             nameUserVideoCallDiv.className = "name-user-video-call";
-            nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>'+name_remote+'</b></h5>';
+            nameUserVideoCallDiv.innerHTML = '<p class="m-0 text-white float-end">'+name_remote+'</p>';
 
         let br = document.createElement('br'); // สร้าง <br> tag
 
@@ -319,6 +336,11 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,bg_r
             } else {
                 container_user_video_call.append(divVideo_New);
             }
+        }
+
+        //ถ้าไม่ใช่คอม
+        if(type_device != "PC"){
+            checkchild();
         }
 
         // คลิ๊ก div ให้เปลี่ยนขนาด
@@ -418,7 +440,7 @@ function create_dummy_videoTrack(user,name_remote,profile_remote,bg_remote){
 
         let nameUserVideoCallDiv = document.createElement("div");
             nameUserVideoCallDiv.className = "name-user-video-call";
-            nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>'+name_remote+'</b></h5>';
+            nameUserVideoCallDiv.innerHTML = '<p class="m-0 text-white float-end">'+name_remote+'</p>';
 
         let br = document.createElement('br'); // สร้าง <br> tag
 
@@ -476,6 +498,11 @@ function create_dummy_videoTrack(user,name_remote,profile_remote,bg_remote){
                 container_user_video_call.append(divVideo_New);
             }
         }
+
+        //ถ้าไม่ใช่คอม
+        // if(type_device != "PC"){
+        //     checkchild();
+        // }
 
         divVideo_New.addEventListener("click", function() {
             handleClick(divVideo_New);
