@@ -1111,17 +1111,18 @@
                 fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + user.uid)
                     .then(response => response.json())
                     .then(result => {
-                        console.log("result published");
-                        console.log(result);
+                        // console.log("result published ---");
+                        // console.log(result);
 
                         bg_remote = result.hexcolor;
-                        name_remote = result.name;
+                        name_remote = result.name_user;
+                        type_remote = result.user_type;
 
-                        console.log("โหลดข้อมูล RemoteUser สำเร็จ published");
-                        console.log(name_remote);
-                        console.log(bg_remote);
+                        // console.log("โหลดข้อมูล RemoteUser สำเร็จ published");
+                        // console.log(name_remote);
+                        // console.log(bg_remote);
                         // สำหรับ สร้าง divVideo ตอนผู้ใช้เปิดกล้อง
-                        create_element_remotevideo_call(remotePlayerContainer[user.uid], name_remote , bg_remote ,user);
+                        create_element_remotevideo_call(remotePlayerContainer[user.uid], name_remote, type_remote , bg_remote ,user);
 
                         channelParameters.remoteVideoTrack.play(remotePlayerContainer[user.uid]);
                         // Set a stream fallback option to automatically switch remote video quality when network conditions degrade.
@@ -1206,6 +1207,7 @@
                     console.log(user);
 
                     let name_remote_user_unpublished;
+                    let type_remote_user_unpublished;
                     let profile_remote_user_unpublished;
                     let hexcolor;
                     fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + user.uid)
@@ -1213,8 +1215,9 @@
                         .then(result => {
                             // console.log("result");
                             // console.log(result);
-                            name_remote_user_unpublished = result.name;
                             hexcolor = result.hexcolor;
+                            name_remote_user_unpublished = result.name_user;
+                            type_remote_user_unpublished = result.user_type;
 
                             if(result.photo){
                                 profile_remote_user_unpublished = "{{ url('/storage') }}" + "/" + result.photo;
@@ -1224,7 +1227,7 @@
                                 profile_remote_user_unpublished = "https://www.viicheck.com/Medilab/img/icon.png";
                             }
                             // สำหรับ สร้าง div_dummy ตอนผู้ใช้ไม่ได้เปิดกล้อง
-                            create_dummy_videoTrack(user,name_remote_user_unpublished,profile_remote_user_unpublished,hexcolor);
+                            create_dummy_videoTrack(user ,name_remote_user_unpublished ,type_remote_user_unpublished ,profile_remote_user_unpublished, hexcolor);
 
                             // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
                             if(user.hasVideo == false){
@@ -1347,7 +1350,7 @@
                                         profile_remote_user_joined = "https://www.viicheck.com/Medilab/img/icon.png";
                                     }
 
-                                    create_dummy_videoTrack(dummy_remote,name_remote_user_joined,profile_remote_user_joined,hexcolor);
+                                    create_dummy_videoTrack(dummy_remote ,name_remote_user_joined ,type_remote_user_unpublished ,profile_remote_user_joined ,hexcolor);
                                     console.log("Dummy Created !!!");
 
                                     // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
@@ -1561,10 +1564,8 @@
 
                 }
 
-                //ดึงข้อมูลผู้ใช้งานจาก auth
-                let name_local = user_data.name;
-                console.log("name_local");
-                console.log(name_local);
+                let name_local;
+                let type_local;
                 let profile_local;
 
                 if(user_data.photo){
@@ -1574,7 +1575,6 @@
                 }else{
                     profile_local = "https://www.viicheck.com/Medilab/img/icon.png";
                 }
-
                 //===== สุ่มสีพื้นหลังของ localPlayerContainer=====
                 fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + options.uid)
                     .then(response => response.json())
@@ -1584,6 +1584,8 @@
 
                         bg_local = result.hexcolor;
 
+                        name_local = result.name_user;
+                        type_local = result.user_type;
                         changeBgColor(bg_local);
                 })
                 .catch(error => {
@@ -1592,7 +1594,7 @@
                 //===== จบส่วน สุ่มสีพื้นหลังของ localPlayerContainer =====
 
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
-                create_element_localvideo_call(localPlayerContainer,name_local,profile_local,bg_local);
+                create_element_localvideo_call(localPlayerContainer,name_local,type_local,profile_local,bg_local);
 
                 // Play the local video track.
                 channelParameters.localVideoTrack.play(localPlayerContainer);
@@ -2569,21 +2571,12 @@
     }
 
     // สำหรับ Div ต่างๆของ Local
-    function create_element_localvideo_call(localPlayerContainer,name_local,profile_local) {
+    function create_element_localvideo_call(localPlayerContainer ,name_local ,type_local ,profile_local, bg_local) {
         if(localPlayerContainer.id){
-
-            //=========== เช็คอุปกรณ์ =================
-            let type_device = '';
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            // ตรวจสอบชนิดของอุปกรณ์
-            if (/android/i.test(userAgent)) {
-                type_device = "Mobile (Android)";
-            }
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                type_device = "Mobile (iOS)";
-            }
-                type_device = "PC";
-            //========== จบ เช็คอุปกรณ์ =================
+            console.log("name_local here");
+            console.log(name_local);
+            console.log(type_local);
+            console.log(bg_local);
             // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
             if(document.getElementById('videoDiv_' + localPlayerContainer.id)) {
                 var divVideo = document.getElementById('videoDiv_' + localPlayerContainer.id);
@@ -2659,7 +2652,7 @@
             let roleUserVideoCallDiv = document.createElement("div");
                 roleUserVideoCallDiv.id = "role_local_video_call";
                 roleUserVideoCallDiv.className = "role-user-video-call";
-                roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
+                roleUserVideoCallDiv.innerHTML = '<small class="d-block">'+type_local+'</small>';
 
             infomationUserDiv.appendChild(nameUserVideoCallDiv);
             infomationUserDiv.appendChild(br);
@@ -2710,7 +2703,7 @@
     }
 
     // สำหรับ Div ต่างๆของ Remote ตอน published
-    function create_element_remotevideo_call(remotePlayerContainer,name_remote ,bg_remote,user) {
+    function create_element_remotevideo_call(remotePlayerContainer, name_remote , type_remote , bg_remote, user) {
         if(remotePlayerContainer.id){
             console.log("remotePlayerContainer");
             console.log(remotePlayerContainer);
@@ -2775,7 +2768,7 @@
 
             let roleUserVideoCallDiv = document.createElement("div");
                 roleUserVideoCallDiv.className = "role-user-video-call";
-                roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
+                roleUserVideoCallDiv.innerHTML = '<small class="d-block">'+type_remote+'</small>';
 
             infomationUserDiv.appendChild(nameUserVideoCallDiv);
             infomationUserDiv.appendChild(br);
@@ -2845,7 +2838,7 @@
     }
 
     // สำหรับ Div Dummy ต่างๆของ Remote ตอน unpublished
-    function create_dummy_videoTrack(user,name_remote,profile_remote,bg_remote){
+    function create_dummy_videoTrack(user,name_remote,type_remote,profile_remote,bg_remote){
         if(user.uid){
 
             // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
@@ -2921,7 +2914,7 @@
 
             let roleUserVideoCallDiv = document.createElement("div");
                 roleUserVideoCallDiv.className = "role-user-video-call";
-                roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
+                roleUserVideoCallDiv.innerHTML = '<small class="d-block">'+type_remote+'</small>';
 
             infomationUserDiv.appendChild(nameUserVideoCallDiv);
             infomationUserDiv.appendChild(br);

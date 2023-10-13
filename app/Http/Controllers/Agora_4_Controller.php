@@ -13,6 +13,7 @@ use App\Models\Agora_chat;
 use Intervention\Image\ImageManagerStatic as Image;
 // use App\Classes\AgoraDynamicKey\RtcTokenBuilder;
 use App\Events\MakeAgoraCall;
+use App\Models\Data_1669_operating_officer;
 use App\Models\Sos_1669_form_yellow;
 use Willywes\AgoraSDK\RtcTokenBuilder;
 
@@ -183,6 +184,24 @@ class Agora_4_Controller extends Controller
 
         $local_data = User::where('id',$user_id)->first();
 
+        $data = [];
+
+        $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
+        $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
+
+        if(!empty($data_command)){
+            $data['user_type'] = "ศูนย์อำนวยการ";
+            $data['name_user'] = $data_command->name_officer_command;
+            // $data['unit'] = '';
+        }else if(!empty($data_officer)){
+            $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
+            $data['name_user'] = $data_officer->name_officer;
+            // $data['unit'] = $data_officer->operating_unit->name;
+        }else{
+            $data['user_type'] = "--";
+            $data['name_user'] = $local_data->name;
+        }
+
         $text_path = url('storage') . '/' . $local_data->photo;
         $img = Image::make( $text_path );
         // get file path
@@ -197,14 +216,32 @@ class Agora_4_Controller extends Controller
         // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
         $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
 
-        $local_data['hexcolor'] = $hexcolor;
-        return $local_data;
+        $data['hexcolor'] = $hexcolor;
+        return $data;
     }
 
     function get_remote_data_4(Request $request){
         $user_id = $request->user_id;
 
         $remote_data = User::where('id',$user_id)->first();
+
+        $data = [];
+
+        $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
+        $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
+
+        if(!empty($data_command)){
+            $data['user_type'] = "ศูนย์อำนวยการ";
+            $data['name_user'] = $data_command->name_officer_command;
+            // $data['unit'] = '';
+        }else if(!empty($data_officer)){
+            $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
+            $data['name_user'] = $data_officer->name_officer;
+            // $data['unit'] = $data_officer->operating_unit->name;
+        }else{
+            $data['user_type'] = "--";
+            $data['name_user'] = $remote_data->name;
+        }
 
         $text_path = url('storage') . '/' . $remote_data->photo;
         $img = Image::make( $text_path );
@@ -220,8 +257,8 @@ class Agora_4_Controller extends Controller
         // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
         $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
 
-        $remote_data['hexcolor'] = $hexcolor;
-        return $remote_data;
+        $data['hexcolor'] = $hexcolor;
+        return $data;
     }
 
     function check_user_in_room_4(Request $request)
