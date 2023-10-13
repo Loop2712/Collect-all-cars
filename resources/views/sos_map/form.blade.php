@@ -1564,7 +1564,7 @@
                 && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
             if (intersect) inside = !inside;
         }
-        // console.log(inside);
+        console.log(inside);
         return inside;
 
     }
