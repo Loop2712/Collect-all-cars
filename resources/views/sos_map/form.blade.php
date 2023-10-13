@@ -1505,7 +1505,8 @@
                             }
                             
                             if ( inside_1669([ lat, lng ], area_arr) ) {
-                                // console.log('You inside area 1669!!');
+                                console.log('You inside area 1669!!');
+                                console.log('province_name >> ' + result[ii]['province_name']);
                                 province_name_show = result[ii]['province_name'] ;
                                 btn_ask_1669.classList.remove('d-none');
                                 document.querySelector('#btn_tel_1669').classList.add('d-none');
