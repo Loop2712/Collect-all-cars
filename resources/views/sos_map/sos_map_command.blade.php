@@ -321,13 +321,13 @@
 	var sos_lat = "{{ $data_sos_map->lat }}" ;
 	var sos_lng = "{{ $data_sos_map->lng }}" ;
 
-	if("{{ $data_sos_map->helper_id }}"){
+	@if(!empty($data_sos_map->helper_id))
 		var officer_lat = "{{ $data_sos_map->user_helper->lat }}" ;
 		var officer_lng = "{{ $data_sos_map->user_helper->lng }}" ;
-	}else{
+	@else
 		var officer_lat = "" ;
 		var officer_lng = "" ;
-	}
+	@endif
 
 	var map_command ;
 	var sos_marker;
