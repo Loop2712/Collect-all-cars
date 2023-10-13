@@ -1476,14 +1476,14 @@
         fetch("{{ url('/') }}/api/draw_area_help_center/" + "ศูนย์ใหญ่")
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 // alert('>> นอก for <<');
                 let province_name_show = '' ;
 
                 for (let ii = 0; ii < result.length; ii++) {
 
-                    console.log('>>> ' + result[ii]['province_name']);
+                    // console.log('>>> ' + result[ii]['province_name']);
                     // console.log(result[ii]['sos_1669_show']);
 
                     if (result[ii]['sos_1669_show'] == 'show') {
