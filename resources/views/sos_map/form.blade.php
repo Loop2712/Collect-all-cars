@@ -1479,6 +1479,7 @@
                 // console.log(result);
 
                 // alert('>> นอก for <<');
+                let province_name_show = '' ;
 
                 for (let ii = 0; ii < result.length; ii++) {
 
@@ -1505,7 +1506,7 @@
                             
                             if ( inside_1669([ lat, lng ], area_arr) ) {
                                 // console.log('You inside area 1669!!');
-                                document.querySelector('#name_area_1669').innerHTML = result[ii]['province_name'];
+                                province_name_show = result[ii]['province_name'] ;
                                 btn_ask_1669.classList.remove('d-none');
                                 document.querySelector('#btn_tel_1669').classList.add('d-none');
                                 break;
@@ -1540,6 +1541,8 @@
 
                     }
                 }
+
+                document.querySelector('#name_area_1669').innerHTML = province_name_show;
         });
 
         
