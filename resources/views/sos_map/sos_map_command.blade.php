@@ -95,6 +95,7 @@
 			</div>
 		</div>
 
+		@if(!empty($data_sos_map->helper_id))
 		<!-- ข้อมูลเจ้าหน้าที่ -->
 		<div class="card border-top border-0 border-4 border-success">
 			<div class="card-body p-3">
@@ -112,6 +113,7 @@
 				</div>
 			</div>
 		</div>
+		@endif
 
     </div>
     <div class="col-9">
