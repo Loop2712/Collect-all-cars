@@ -1476,10 +1476,9 @@
         fetch("{{ url('/') }}/api/draw_area_help_center/" + "ศูนย์ใหญ่")
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
 
                 // alert('>> นอก for <<');
-                let province_name_show = '' ;
 
                 for (let ii = 0; ii < result.length; ii++) {
 
@@ -1505,9 +1504,8 @@
                             }
                             
                             if ( inside_1669([ lat, lng ], area_arr) ) {
-                                console.log('You inside area 1669!!');
-                                console.log('province_name >> ' + result[ii]['province_name']);
-                                province_name_show = result[ii]['province_name'] ;
+                                // console.log('You inside area 1669!!');
+                                document.querySelector('#name_area_1669').innerHTML = result[ii]['province_name'];
                                 btn_ask_1669.classList.remove('d-none');
                                 document.querySelector('#btn_tel_1669').classList.add('d-none');
                                 break;
@@ -1526,24 +1524,22 @@
                         let check_role = '{{ Auth::user()->role }}' ;
                         let check_organization = '{{ Auth::user()->organization }}' ;
 
-                        if ( check_user_id == '1' || check_user_id == '64' || check_user_id == '2' || check_user_id == '11003429') { // check_user_id == '64' ||
-                            btn_ask_1669.classList.remove('d-none');
-                            break;
-                        }else{
-                            btn_ask_1669.classList.add('d-none');
-                        }
+                        // if ( check_user_id == '1' || check_user_id == '64' || check_user_id == '2' || check_user_id == '11003429') {
+                        //     btn_ask_1669.classList.remove('d-none');
+                        //     break;
+                        // }else{
+                        //     btn_ask_1669.classList.add('d-none');
+                        // }
 
-                        if (  check_organization == 'สพฉ' && check_role == 'admin-partner' || check_role == 'partner' ) {
-                            btn_ask_1669.classList.remove('d-none');
-                            break;
-                        }else{
-                            btn_ask_1669.classList.add('d-none');
-                        }
+                        // if (  check_organization == 'สพฉ' && check_role == 'admin-partner' || check_role == 'partner' ) {
+                        //     btn_ask_1669.classList.remove('d-none');
+                        //     break;
+                        // }else{
+                        //     btn_ask_1669.classList.add('d-none');
+                        // }
 
                     }
                 }
-
-                document.querySelector('#name_area_1669').innerHTML = province_name_show;
         });
 
         
@@ -1564,7 +1560,7 @@
                 && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
             if (intersect) inside = !inside;
         }
-        console.log(inside);
+        // console.log(inside);
         return inside;
 
     }
