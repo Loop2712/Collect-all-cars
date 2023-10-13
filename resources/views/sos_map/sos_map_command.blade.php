@@ -681,10 +681,18 @@
 		let remark_status = document.querySelector('#remark_status').value
         let data_arr = [] ;
 
+        let name_admin ;
+
+        @if(!empty($data_sos_map->helper_id))
+			name_admin = "{{ $data_sos_map->user_helper->name }}" ;
+		@else
+			name_admin = "" ;
+		@endif
+
         data_arr = {
 	        "sos_map_id" : "{{ $data_sos_map->id }}",
 	        "status" : "เสร็จสิ้น",
-	        "remark_status" : "อัพเดทสถานะเสร็จสิ้นโดย : " + "{{ $data_sos_map->user_helper->name }}" + " หมายเหตุ : " + remark_status,
+	        "remark_status" : "อัพเดทสถานะเสร็จสิ้นโดย : " + name_admin + " หมายเหตุ : " + remark_status,
 	    }; 
 
         fetch("{{ url('/') }}/api/sos_map/update_status", {
