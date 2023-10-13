@@ -1089,6 +1089,31 @@ class Sos_mapController extends Controller
 
     }
 
+    function search_phone_niems($cityName){
+
+        $data = [];
+
+        $phone_niems = DB::table('phone_niems')->where('province', 'LIKE', "%$cityName%")->get();
+        $province_ths = DB::table('province_ths')
+            ->where('province_name',  $cityName)
+            ->where('sos_1669_show',  "show")
+            ->first();
+
+        if(!empty($phone_niems)){
+            $data['phone_niems'] = $phone_niems;
+        }else{
+           $data['phone_niems'] = "no";
+        }
+
+        if(!empty($province_ths)){
+            $data['1669'] = $cityName;
+        }else{
+            $data['1669'] = "no";
+        }
+
+        return $data ;
+    }
+
     function report_repair($id_sos_map , $groupId){
 
         echo "<h1>report_repair</h1>";

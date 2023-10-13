@@ -60,10 +60,10 @@
 									<i class="fa-solid fa-right-to-line mr-1"></i>เลือกการส่งต่อ
 								</button>
 							</h2>
-							<div id="collapseOne" class="accordion-collapse collapse mt-2 show" aria-labelledby="headingOne" data-bs-parent="#accordion_Forward_sos">
+							<div id="collapseOne" class="accordion-collapse collapse mt-2" aria-labelledby="headingOne" data-bs-parent="#accordion_Forward_sos">
 								<div class="accordion-body">
 
-									<span id="btn_ask_1669" class="main-shadow btn btn-md btn-block d-"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
+									<span id="btn_ask_1669" class="main-shadow btn btn-md btn-block d-none"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
 		                                <div class="d-flex">
 		                                    <div class="col-3 p-0 d-flex align-items-center">
 		                                        <div class="justify-content-center col-12 p-0">
@@ -74,7 +74,7 @@
 		                                        <div class="justify-content-center col-12">
 		                                            <b>
 		                                                <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน (1669)</span>
-		                                                <span class="d-block" style="color: #ffffff;">กาญจนบุรี</span>
+		                                                <span id="name_1669_area" class="d-block" style="color: #ffffff;"></span>
 		                                            </b>
 		                                            
 		                                        </div>
@@ -84,11 +84,9 @@
 		                            </span>
 
 									<hr>
+									<label>หมายเลขโทรศัพท์ <br>ศูนย์รับแจ้งเหตุและสั่งการจังหวัดต่างๆ</label>
+									<div id="content_phone_niems" class="mt-2"></div>
 
-									<h4>สพฉ. ศูนย์นเรนทร</h4>
-									<span class="btn btn-sm bg-info" style="width:95%;">
-										02-872-1618 ถึง 19
-									</span>
 								</div>
 							</div>
 						</div>
@@ -367,6 +365,14 @@
 			map: map_command,
 			icon: image_sos,
 		});
+
+		const geocoder = new google.maps.Geocoder();
+        const infowindow = new google.maps.InfoWindow();
+
+        // หาชื่อจังหวัด
+		geocodeLatLng(geocoder, map_command, infowindow);
+
+		// ---------------
 		
 		if(check_status != "เสร็จสิ้น"){
 			if(check_status != "รับแจ้งเหตุ"){
@@ -391,6 +397,96 @@
 		}
 		
 	}
+
+	function geocodeLatLng(geocoder, map, infowindow) {
+		// console.log("geocodeLatLng");
+        const input = "{{ $data_sos_map->lat }}"+","+"{{ $data_sos_map->lng }}";
+        const latlngStr = input.split(",", 2);
+        const latlng = {
+            lat: parseFloat(latlngStr[0]),
+            lng: parseFloat(latlngStr[1]),
+        };
+        geocoder
+            .geocode({ location: latlng })
+            .then((response) => {
+                if (response.results[0]) {
+                    // เข้าถึงชื่อจังหวัดจากผลลัพธ์
+	                const addressComponents = response.results[0].address_components;
+	                let cityName = "";
+	                for (const component of addressComponents) {
+	                    for (const type of component.types) {
+	                        if (type === "locality" || type === "administrative_area_level_1") {
+	                            cityName = component.long_name;
+	                            break;
+	                        }
+	                    }
+	                }
+	                
+	                if (cityName) {
+	                	cityName = cityName.replaceAll("จังหวัด","");
+	                	cityName = cityName.replaceAll("จ.","");
+	                    // console.log("ชื่อจังหวัด: " + cityName);
+	                	search_phone_niems(cityName);
+	                } else {
+	                    // console.log("ไม่พบชื่อจังหวัด");
+	                }
+
+                } else {
+                    // window.alert("No results found");
+                }
+            })
+            .catch((e) => window.alert("Geocoder failed due to: " + e));
+    }
+
+    function search_phone_niems(cityName){
+
+    	fetch("{{ url('/') }}/api/sos_map/search_phone_niems/"+cityName)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                if(result['1669'] != "no"){
+                	document.querySelector('#name_1669_area').innerHTML = result['1669'] ;
+                	document.querySelector('#btn_ask_1669').classList.remove('d-none');
+                	document.querySelector('#btn_ask_1669').setAttribute('onclick' , "ask_to_1669('"+result['1669']+"')");
+                }
+
+                if(result['phone_niems'] != "no"){
+                	let html_main ;
+                	let html_sub ;
+                	let content_phone_niems = document.querySelector('#content_phone_niems');
+                	
+                	for (let i = 0; i < result['phone_niems'].length; i++) {
+
+                		let phone_sp = result['phone_niems'][i]['phone'].split(",");
+
+            			// console.log(phone_sp);
+
+            			let sum_html = '' ;
+
+            			for (let x = 0; x < phone_sp.length; x++) {
+            				html_sub = `
+            					<span class="btn bg-info mt-2" style="width:95%;">
+									`+phone_sp[x]+`
+								</span>
+								<br>
+            				`;
+            				sum_html = sum_html + html_sub ;
+            			}
+
+                		html = `
+	                		<h4>จ.`+result['phone_niems'][i]['province']+`</h4>
+							`+sum_html+`
+							<hr>
+	                	`;
+
+        				content_phone_niems.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+                	}
+                }
+        });
+
+    }
 
 	let reface_loop_check_marker ;
 
@@ -662,6 +758,15 @@
 	        // console.error(error);
 	    });
 
+	}
+
+</script>
+
+<!-- ASK TO 1669 -->
+<script>
+	
+	function ask_to_1669(province){
+		console.log("ask_to_1669 >> " + province);
 	}
 
 </script>
