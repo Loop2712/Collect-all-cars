@@ -320,8 +320,14 @@
 	
 	var sos_lat = "{{ $data_sos_map->lat }}" ;
 	var sos_lng = "{{ $data_sos_map->lng }}" ;
-	var officer_lat = "{{ $data_sos_map->user_helper->lat }}" ;
-	var officer_lng = "{{ $data_sos_map->user_helper->lng }}" ;
+
+	if("{{ $data_sos_map->helper_id }}"){
+		var officer_lat = "{{ $data_sos_map->user_helper->lat }}" ;
+		var officer_lng = "{{ $data_sos_map->user_helper->lng }}" ;
+	}else{
+		var officer_lat = "" ;
+		var officer_lng = "" ;
+	}
 
 	var map_command ;
 	var sos_marker;
