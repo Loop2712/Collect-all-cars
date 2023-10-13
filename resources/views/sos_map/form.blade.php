@@ -1524,19 +1524,19 @@
                         let check_role = '{{ Auth::user()->role }}' ;
                         let check_organization = '{{ Auth::user()->organization }}' ;
 
-                        // if ( check_user_id == '1' || check_user_id == '64' || check_user_id == '2' || check_user_id == '11003429') {
-                        //     btn_ask_1669.classList.remove('d-none');
-                        //     break;
-                        // }else{
-                        //     btn_ask_1669.classList.add('d-none');
-                        // }
+                        if ( check_user_id == '1' || check_user_id == '64' || check_user_id == '2' || check_user_id == '11003429') {
+                            btn_ask_1669.classList.remove('d-none');
+                            break;
+                        }else{
+                            btn_ask_1669.classList.add('d-none');
+                        }
 
-                        // if (  check_organization == 'สพฉ' && check_role == 'admin-partner' || check_role == 'partner' ) {
-                        //     btn_ask_1669.classList.remove('d-none');
-                        //     break;
-                        // }else{
-                        //     btn_ask_1669.classList.add('d-none');
-                        // }
+                        if (  check_organization == 'สพฉ' && check_role == 'admin-partner' || check_role == 'partner' ) {
+                            btn_ask_1669.classList.remove('d-none');
+                            break;
+                        }else{
+                            btn_ask_1669.classList.add('d-none');
+                        }
 
                     }
                 }
