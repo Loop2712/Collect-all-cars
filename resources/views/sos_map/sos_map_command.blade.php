@@ -171,7 +171,7 @@
 					<h4 class="mb-0 text-success">ข้อมูลเจ้าหน้าที่</h4>
 				</div>
 				<div style="font-size:22px;">
-					<h5>ชื่อผู้ขอความช่วยเหลือ</h5>
+					<h5>ชื่อเจ้าหน้าที่</h5>
 					<p>{{ $data_sos_map->user_helper->name }}</p>
 					<h5>เบอร์ติดต่อ</h5>
 					<p>{{ $data_sos_map->user_helper->phone }}</p>
@@ -791,7 +791,7 @@
         let name_admin ;
 
         @if(!empty($data_sos_map->helper_id))
-			name_admin = "{{ $data_sos_map->user_helper->name }}" ;
+			name_admin = "{{ Auth::user()->name }}" ;
 		@else
 			name_admin = "" ;
 		@endif
@@ -946,7 +946,7 @@
             return response.text();
         }).then(function(data){
             // console.log(data);
-        	let name_admin = "{{ $data_sos_map->user_helper->name }}" ;
+        	let name_admin = "{{ Auth::user()->name }}" ;
 
             if(data){
             	fetch("{{ url('/') }}/api/sos_map/update_sos_1669_id/"+data+"/"+"{{ $data_sos_map->id }}" +"/"+ district_P +"/"+ name_admin)
