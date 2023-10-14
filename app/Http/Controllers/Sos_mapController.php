@@ -925,7 +925,7 @@ class Sos_mapController extends Controller
             // ไปหน้า map เจ้าหน้าที่
             return redirect("sos_map/tag_sos/map_officer" . "/" . $id_sos_map . "/" . $groupId) ;
         }else{
-            return redirect("sos_map/report_repair" . "/" . $id_sos_map . "/" . $groupId) ;
+            return redirect("sos_map/report_repair" . "/" . $id_sos_map) ;
         }
     }
 
@@ -1114,7 +1114,37 @@ class Sos_mapController extends Controller
         return $data ;
     }
 
-    function report_repair($id_sos_map , $groupId){
+    function update_sos_1669_id($sos_1669_id , $sos_map_id ,$district_P,$name_admin){
+
+        DB::table('sos_maps')
+            ->where([ 
+                    ['id', $sos_map_id ],
+                ])
+            ->update([
+                'sos_1669_id' => $sos_1669_id,
+                'status' => "เสร็จสิ้น",
+                'remark_status' => "อัพเดทสถานะเสร็จสิ้นโดย : " . $name_admin . " หมายเหตุ : ส่งต่อ สพฉ. " . $district_P,
+            ]);
+
+        return "ok" ;
+
+    }
+
+    function report_repair($id_sos_map){
+
+        $data_sos_map = Sos_map::where('id' , $id_sos_map)->first();
+        $data_partner = Partner::where('name' , $data_sos_map->area)
+            ->where('name_area' , $data_sos_map->name_area)
+            ->first();
+
+        $data_groupline = Group_line::where('id' , $data_partner->group_line_id)->first();
+        $groupId = $data_groupline->groupId ;
+
+        return view('sos_map.sos_report_repair', compact('data_sos_map','groupId'));
+
+    }
+
+    function report_repair_for_user($id_sos_map){
 
         echo "<h1>report_repair</h1>";
 

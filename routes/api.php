@@ -186,6 +186,7 @@ Route::post('/sos_map/help_complete','Sos_mapController@help_complete');
 Route::get('/sos_map/loop_check_status_sos_map/{id_sos_map}','Sos_mapController@loop_check_status_sos_map');
 Route::post('/sos_map/get_location_user_and_officer','Sos_mapController@get_location_user_and_officer');
 Route::get('/sos_map/search_phone_niems/{cityName}','Sos_mapController@search_phone_niems');
+Route::get('/sos_map/update_sos_1669_id/{sos_1669_id}/{sos_map_id}/{district_P}/{name_admin}','Sos_mapController@update_sos_1669_id');
 
 Route::get('/check_sos_alarm/{check_name_partner}','API\PartnersController@check_sos_alarm');
 Route::get('/check_sos_alarm/notify/{check_name_partner}','API\PartnersController@check_sos_alarm_notify');

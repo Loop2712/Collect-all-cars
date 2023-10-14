@@ -359,11 +359,20 @@
                         </div>
                         @endif
 
+                        @if($item->tag_sos_or_repair == "tag_sos")
                         <div class="col">
                             <a href="{{ url('/sos_map/command') . '/' . $item->id }}" type="button" class="btn {{ $btn_background_color }} px-5">
                                 <i class="fa-duotone fa-bars-progress mr-1"></i> ดำเนินการ
                             </a>
                         </div>
+                        @else
+
+                        <div class="col">
+                            <a href="{{ url('/sos_map/report_repair') . '/' . $item->id }}" type="button" class="btn {{ $btn_background_color }} px-5">
+                                <i class="fa-duotone fa-bars-progress mr-1"></i> ดำเนินการ
+                            </a>
+                        </div>
+                        @endif
 
                     </div>
                 </div>

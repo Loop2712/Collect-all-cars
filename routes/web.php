@@ -200,7 +200,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('sos_map/command/{id_sos_map}', 'Sos_mapController@sos_map_command');
 	
 	// -- SOS MAP repair --
-	Route::get('sos_map/report_repair/{id_sos_map}/{groupId}', 'Sos_mapController@report_repair');
+	Route::get('sos_map/report_repair/{id_sos_map}', 'Sos_mapController@report_repair');
 
 
 	// BROADCAST
