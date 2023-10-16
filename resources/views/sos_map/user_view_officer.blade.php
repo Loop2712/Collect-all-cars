@@ -946,7 +946,7 @@
             fetch("{{ url('/') }}/api/sos_map/loop_check_status_sos_map" + "/" + "{{ $data_sos->id }}")
                 .then(response => response.json())
                 .then(result => {
-                    console.log(result);
+                    // console.log(result);
 
                     check_status = result['status'] ;
 
@@ -1039,7 +1039,7 @@
 
                 // document.querySelector('#div_distance_and_duration').classList.remove('d-none');
             } else {
-                console.log('Directions request failed due to ' + status);
+                // console.log('Directions request failed due to ' + status);
 
             }
         });
