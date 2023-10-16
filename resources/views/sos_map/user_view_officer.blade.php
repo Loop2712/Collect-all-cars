@@ -552,7 +552,7 @@
         </h5>
         <h5 class="mb-0 notranslate mt-2 text-info">การดำเนินการเสร็จสิ้นแล้ว</h5>
         <h6 class="mb-0 notranslate mt-2 text-info">
-            หมายเหตุ : <span id="remark_status">{{ $data_sos->remark_status }}</span>
+            <span id="remark_status">{{ $data_sos->remark_status }}</span>
         </h6>
         <div id="div_btn_status_success">
             @if(!empty($data_sos->sos_1669_id))
@@ -954,8 +954,9 @@
                         let html_div_btn_status_success ;
 
                         if(result['sos_1669_id']){
+                            let url = "{{ url('/') }}" + "/sos_help_center/" +result['sos_1669_id']+ "/show_user" ;
                             html_div_btn_status_success = `
-                                <a href="{{ url('/') . '/sos_help_center/' . `+result['sos_1669_id']+` . '/show_user' }}" class="btn-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
+                                <a href="`+url+`" class="btn-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
                                     ดำเนินการต่อ
                                 </a>
                             `;
