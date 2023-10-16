@@ -1054,7 +1054,9 @@ class Sos_mapController extends Controller
         $data_sos_map = Sos_map::where('id' , $id_sos_map)->first();
 
         $data_helper = User::where('id', $data_sos_map->helper_id )->first();
-        $data_sos_map->photo_officer = $data_helper->photo ;
+        if(!empty($data_helper)){
+            $data_sos_map->photo_officer = $data_helper->photo ;
+        }
 
         return $data_sos_map ;
     }
