@@ -81,9 +81,21 @@ class Agora_4_Controller extends Controller
         ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
         ->first();
 
-        $useSpeaker = $requestData['useSpeaker'];
-        $useMicrophone = $requestData['useMicrophone'];
-        $useCamera = $requestData['useCamera'];
+        if (!empty($useSpeaker)) {
+            $useSpeaker = $requestData['useSpeaker'];
+        } else {
+            $useSpeaker = '';
+        }
+        if (!empty($useMicrophone)) {
+            $useMicrophone = $requestData['useMicrophone'];
+        } else {
+            $useMicrophone = '';
+        }
+        if (!empty($useCamera)) {
+            $useCamera = $requestData['useCamera'];
+        } else {
+            $useCamera = '';
+        }
 
         $videoTrack = $requestData['videoTrack'];
         $audioTrack = $requestData['audioTrack'];
@@ -109,9 +121,21 @@ class Agora_4_Controller extends Controller
         ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
         ->first();
 
-        $useSpeaker = $requestData['useSpeaker'];
-        $useMicrophone = $requestData['useMicrophone'];
-        $useCamera = $requestData['useCamera'];
+        if (!empty($useSpeaker)) {
+            $useSpeaker = $requestData['useSpeaker'];
+        } else {
+            $useSpeaker = '';
+        }
+        if (!empty($useMicrophone)) {
+            $useMicrophone = $requestData['useMicrophone'];
+        } else {
+            $useMicrophone = '';
+        }
+        if (!empty($useCamera)) {
+            $useCamera = $requestData['useCamera'];
+        } else {
+            $useCamera = '';
+        }
 
         $videoTrack = $requestData['videoTrack'];
         $audioTrack = $requestData['audioTrack'];

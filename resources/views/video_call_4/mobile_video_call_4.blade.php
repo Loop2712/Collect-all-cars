@@ -320,7 +320,7 @@
 		/* text-align: center; */
 		overflow: auto;
 		transition: opacity 0.5s, max-height 0.5s;
-        background-color: #2b2d31;
+        background-color: #f3f5fa;
         border-radius: 5px;
 	}
 
@@ -648,7 +648,7 @@
 
 <div class="fadeDiv" id="dataDiv" style="display: none; z-index: 5000;">
 	<div class="card m-4 text-dark">
-		<div class="head_sidebar_div text-center">
+		<div class="head_sidebar_div p-4 text-center">
 			{{-- <h1>2308-1406-0014</h1>
 			<h1>สถานะ : เสร็จสิ้น</h1> --}}
             <p class="h1 text-dark font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
@@ -725,7 +725,7 @@
 	</div>
 
 	<div class="card m-4">
-		<div class="neck_sidebar_div text-center">
+		<div class="neck_sidebar_div p-4 text-center">
 			<p class="h1 mb-1 font-weight-bold text-center">ผู้ขอความช่วยเหลือ</p>
 			<p class="h2 text-dark">{{$sos_data->name_user ? $sos_data->name_user : "--"}}</p>
 			<p class="h2 text-dark">{{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
@@ -733,7 +733,7 @@
 	</div>
 
 	<div class="card m-4">
-		<div class="body_sidebar_div text-center">
+		<div class="body_sidebar_div p-4 text-center">
 			<div class="row mb-3">
                 @php
                     switch ($sos_data->idc) {
@@ -852,6 +852,9 @@
 
     //สำหรับกำหนดสี background localPlayerContainer
     var bg_local;
+    var name_local;
+    var type_local;
+    var profile_local;
     //สำหรับกำหนด text advice
     var type_advice = "inc";
     // เรียกสองอันเพราะไม่อยากไปยุ่งกับโค้ดเก่า
@@ -860,6 +863,10 @@
 
     var appId = '{{ env("AGORA_APP_ID") }}';
     var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+
+    // var appId = localStorage.getItem('appId');
+    // var appCertificate = localStorage.getItem('appCertificate');
+
     var sos_1669_id = '{{ $sos_id }}';
 
     var remote_in_room = [];
@@ -879,6 +886,33 @@
     };
 
     document.addEventListener('DOMContentLoaded', (event) => {
+
+        if(user_data.photo){
+            profile_local = "{{ url('/storage') }}" + "/" + user_data.photo;
+        }else if(!user_data.photo && user_data.avatar){
+            profile_local = user_data.avatar;
+        }else{
+            profile_local = "https://www.viicheck.com/Medilab/img/icon.png";
+        }
+        //===== สุ่มสีพื้นหลังของ localPlayerContainer=====
+        fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + options.uid)
+            .then(response => response.json())
+            .then(result => {
+
+                console.log("result local_data_4");
+                console.log(result);
+
+                bg_local = result.hexcolor;
+
+                name_local = result.name_user;
+                type_local = result.user_type;
+
+                changeBgColor(bg_local);
+
+        })
+        .catch(error => {
+            console.log("โหลดข้อมูล LocalUser ล้มเหลว ใน get_local_data_4");
+        });
 
         function LoadingVideoCall() {
             const loadingAnime = document.getElementById('lds-ring');
@@ -980,7 +1014,7 @@
         /////////////////////// ปุ่มสลับ กล้อง /////////////////////
         const btn_switchCamera = document.querySelector('#btn_switchCamera');
         /////////////////////// ปุ่มสลับ ไมค์ /////////////////////
-        const btn_switchMicrophone = document.querySelector('#btn_switchMicrophone');
+        // const btn_switchMicrophone = document.querySelector('#btn_switchMicrophone');
 
         let remotePlayerContainer = [];
 
@@ -1107,7 +1141,8 @@
                 remotePlayerContainer[user.uid].id = user.uid.toString();
 
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
-                var name_remote;
+                let name_remote;
+                let type_remote;
                 fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + user.uid)
                     .then(response => response.json())
                     .then(result => {
@@ -1118,9 +1153,6 @@
                         name_remote = result.name_user;
                         type_remote = result.user_type;
 
-                        // console.log("โหลดข้อมูล RemoteUser สำเร็จ published");
-                        // console.log(name_remote);
-                        // console.log(bg_remote);
                         // สำหรับ สร้าง divVideo ตอนผู้ใช้เปิดกล้อง
                         create_element_remotevideo_call(remotePlayerContainer[user.uid], name_remote, type_remote , bg_remote ,user);
 
@@ -1333,6 +1365,7 @@
 
                         if(dummy_remote['hasVideo'] == false){ //ถ้า remote คนนี้ ไม่ได้เปิดกล้องไว้ --> ไปสร้าง div_dummy
                             let name_remote_user_joined;
+                            let type_remote_user_joined;
                             let profile_remote_user_joined;
                             let hexcolor;
                             fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + dummy_remote.uid)
@@ -1340,7 +1373,8 @@
                                 .then(result => {
                                     // console.log("result");
                                     // console.log(result);
-                                    name_remote_user_joined = result.name;
+                                    name_remote_user_joined = result.name_user;
+                                    type_remote_user_joined = result.user_type
                                     hexcolor = result.hexcolor;
                                     if(result.photo){
                                         profile_remote_user_joined = "{{ url('/storage') }}" + "/" + result.photo;
@@ -1350,7 +1384,7 @@
                                         profile_remote_user_joined = "https://www.viicheck.com/Medilab/img/icon.png";
                                     }
 
-                                    create_dummy_videoTrack(dummy_remote ,name_remote_user_joined ,type_remote_user_unpublished ,profile_remote_user_joined ,hexcolor);
+                                    create_dummy_videoTrack(dummy_remote ,name_remote_user_joined ,type_remote_user_joined ,profile_remote_user_joined ,hexcolor);
                                     console.log("Dummy Created !!!");
 
                                     // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
@@ -1442,7 +1476,6 @@
             console.log(agoraEngine);
 
         });
-
 
         // local_join
         window.onload = function ()
@@ -1564,36 +1597,16 @@
 
                 }
 
-                let name_local;
-                let type_local;
-                let profile_local;
-
-                if(user_data.photo){
-                    profile_local = "{{ url('/storage') }}" + "/" + user_data.photo;
-                }else if(!user_data.photo && user_data.avatar){
-                    profile_local = user_data.avatar;
-                }else{
-                    profile_local = "https://www.viicheck.com/Medilab/img/icon.png";
-                }
-                //===== สุ่มสีพื้นหลังของ localPlayerContainer=====
-                fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + options.uid)
-                    .then(response => response.json())
-                    .then(result => {
-                        console.log("result local_data_4");
-                        console.log(result);
-
-                        bg_local = result.hexcolor;
-
-                        name_local = result.name_user;
-                        type_local = result.user_type;
-                        changeBgColor(bg_local);
-                })
-                .catch(error => {
-                    console.log("โหลดข้อมูล LocalUser ล้มเหลว ใน get_local_data_4");
-                });
                 //===== จบส่วน สุ่มสีพื้นหลังของ localPlayerContainer =====
-
+                if(name_local && type_local){
+                    name_local = name_local;
+                    type_local = type_local;
+                }else{
+                    name_local = "--";
+                    type_local = "--";
+                }
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
+
                 create_element_localvideo_call(localPlayerContainer,name_local,type_local,profile_local,bg_local);
 
                 // Play the local video track.
@@ -2067,120 +2080,120 @@
             }
         }
 
-        btn_switchMicrophone.onclick = async function()
-        {
-            console.log('btn_switchMicrophone');
+        // btn_switchMicrophone.onclick = async function()
+        // {
+        //     console.log('btn_switchMicrophone');
 
-            console.log('activeAudioDeviceId');
-            console.log(activeAudioDeviceId);
+        //     console.log('activeAudioDeviceId');
+        //     console.log(activeAudioDeviceId);
 
-            // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
-            let deviceType = checkDeviceType();
-            console.log("Device Type:", deviceType);
+        //     // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
+        //     let deviceType = checkDeviceType();
+        //     console.log("Device Type:", deviceType);
 
-            // เรียกดูอุปกรณ์ทั้งหมด
-            let devices = await navigator.mediaDevices.enumerateDevices();
+        //     // เรียกดูอุปกรณ์ทั้งหมด
+        //     let devices = await navigator.mediaDevices.enumerateDevices();
 
-            // เรียกดูอุปกรณ์ที่ใช้อยู่
-            let stream = await navigator.mediaDevices.getUserMedia({
-                audio: true,
-                video: true
-            });
+        //     // เรียกดูอุปกรณ์ที่ใช้อยู่
+        //     let stream = await navigator.mediaDevices.getUserMedia({
+        //         audio: true,
+        //         video: true
+        //     });
 
-            // แยกอุปกรณ์ตามประเภท --> ไมโครโฟน
-            let audioDevices = devices.filter(device => device.kind === 'audioinput');
-            // แยกอุปกรณ์ตามประเภท --> ลำโพง
-            let audioOutputDevices = devices.filter(device => device.kind === 'audiooutput');
+        //     // แยกอุปกรณ์ตามประเภท --> ไมโครโฟน
+        //     let audioDevices = devices.filter(device => device.kind === 'audioinput');
+        //     // แยกอุปกรณ์ตามประเภท --> ลำโพง
+        //     let audioOutputDevices = devices.filter(device => device.kind === 'audiooutput');
 
-            console.log('------- audioDevices -------');
-            console.log(audioDevices);
-            console.log('length ==>> ' + audioDevices.length);
-            console.log('------- ------- -------');
+        //     console.log('------- audioDevices -------');
+        //     console.log(audioDevices);
+        //     console.log('length ==>> ' + audioDevices.length);
+        //     console.log('------- ------- -------');
 
-            // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
-            let audioDeviceList = document.getElementById('audio-device-list');
-                audioDeviceList.innerHTML = '';
-            let deviceText = document.createElement('li');
-                deviceText.classList.add('text-center','p-1','text-white');
-                deviceText.appendChild(document.createTextNode("อุปกรณ์รับข้อมูล"));
+        //     // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
+        //     let audioDeviceList = document.getElementById('audio-device-list');
+        //         audioDeviceList.innerHTML = '';
+        //     let deviceText = document.createElement('li');
+        //         deviceText.classList.add('text-center','p-1','text-white');
+        //         deviceText.appendChild(document.createTextNode("อุปกรณ์รับข้อมูล"));
 
-                audioDeviceList.appendChild(deviceText);
-            // let audiooutputDeviceList = document.getElementById('audio-device-output-list');
-            //     audiooutputDeviceList.innerHTML = '';
+        //         audioDeviceList.appendChild(deviceText);
+        //     // let audiooutputDeviceList = document.getElementById('audio-device-output-list');
+        //     //     audiooutputDeviceList.innerHTML = '';
 
-            let count_i = 1 ;
-            let count_i_output = 1 ;
-            // ----------- Input ----------------
-            audioDevices.forEach(device => {
-                const radio2 = document.createElement('input');
-                    radio2.type = 'radio';
-                    radio2.classList.add('radio_style');
-                    radio2.id = 'audio-device-' + count_i;
-                    radio2.name = 'audio-device';
-                    radio2.value = device.deviceId;
+        //     let count_i = 1 ;
+        //     let count_i_output = 1 ;
+        //     // ----------- Input ----------------
+        //     audioDevices.forEach(device => {
+        //         const radio2 = document.createElement('input');
+        //             radio2.type = 'radio';
+        //             radio2.classList.add('radio_style');
+        //             radio2.id = 'audio-device-' + count_i;
+        //             radio2.name = 'audio-device';
+        //             radio2.value = device.deviceId;
 
-                if (deviceType == 'PC'){
-                    radio2.checked = device.deviceId === activeAudioDeviceId;
-                }
-
-
-                let label = document.createElement('li');
-                    label.classList.add('ui-list-item');
-                    label.appendChild(document.createTextNode(device.label || `อุปกรณ์รับข้อมูล ${audioDeviceList.children.length + 1}`));
-                    label.appendChild(document.createTextNode("\u00A0")); // เพิ่ม non-breaking space
-                    label.appendChild(radio2);
-
-                    // สร้างเหตุการณ์คลิกที่ label เพื่อตรวจสอบ radio2
-                    label.addEventListener('click', () => {
-                        radio2.checked = true;
-                        onChangeAudioDevice();
-                    });
+        //         if (deviceType == 'PC'){
+        //             radio2.checked = device.deviceId === activeAudioDeviceId;
+        //         }
 
 
-                audioDeviceList.appendChild(label);
-                radio2.addEventListener('change', onChangeAudioDevice);
+        //         let label = document.createElement('li');
+        //             label.classList.add('ui-list-item');
+        //             label.appendChild(document.createTextNode(device.label || `อุปกรณ์รับข้อมูล ${audioDeviceList.children.length + 1}`));
+        //             label.appendChild(document.createTextNode("\u00A0")); // เพิ่ม non-breaking space
+        //             label.appendChild(radio2);
 
-                count_i = count_i + 1 ;
-            });
+        //             // สร้างเหตุการณ์คลิกที่ label เพื่อตรวจสอบ radio2
+        //             label.addEventListener('click', () => {
+        //                 radio2.checked = true;
+        //                 onChangeAudioDevice();
+        //             });
 
-            // let hr = document.createElement('hr');
-            // audioDeviceList.appendChild(hr);
 
-            // ----------- Output ----------------
-            // audioOutputDevices.forEach(device => {
-            // const radio3 = document.createElement('input');
-            //     radio3.type = 'radio';
-            //     radio3.id = 'audio-device-output-' + count_i_output;
-            //     radio3.name = 'audio-device-output';
-            //     radio3.value = device.deviceId;
+        //         audioDeviceList.appendChild(label);
+        //         radio2.addEventListener('change', onChangeAudioDevice);
 
-            // if (deviceType == 'PC'){
-            //     radio3.checked = device.deviceId === activeAudioOutputDeviceId;
-            // }
+        //         count_i = count_i + 1 ;
+        //     });
 
-            // let label_output = document.createElement('label');
-            //     label_output.classList.add('dropdown-item');
-            //     label_output.appendChild(radio3);
-            //     label_output.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${audioDeviceList.children.length + 1}`));
+        //     // let hr = document.createElement('hr');
+        //     // audioDeviceList.appendChild(hr);
 
-            // audiooutputDeviceList.appendChild(label_output);
-            // radio3.addEventListener('change', onChangeAudioOutputDevice);
+        //     // ----------- Output ----------------
+        //     // audioOutputDevices.forEach(device => {
+        //     // const radio3 = document.createElement('input');
+        //     //     radio3.type = 'radio';
+        //     //     radio3.id = 'audio-device-output-' + count_i_output;
+        //     //     radio3.name = 'audio-device-output';
+        //     //     radio3.value = device.deviceId;
 
-            // count_i_output = count_i_output + 1 ;
-            // });
+        //     // if (deviceType == 'PC'){
+        //     //     radio3.checked = device.deviceId === activeAudioOutputDeviceId;
+        //     // }
 
-            // ---------------------------7
+        //     // let label_output = document.createElement('label');
+        //     //     label_output.classList.add('dropdown-item');
+        //     //     label_output.appendChild(radio3);
+        //     //     label_output.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${audioDeviceList.children.length + 1}`));
 
-            // เพิ่มเหตุการณ์คลิกที่หน้าจอที่ไม่ใช่ตัว audio-device-list ให้ปิด audio-device-list
-            // document.addEventListener('click', (event) => {
-            //     const target = event.target;
+        //     // audiooutputDeviceList.appendChild(label_output);
+        //     // radio3.addEventListener('change', onChangeAudioOutputDevice);
 
-            //     if (!target.closest('#audio-device-list')) {
-            //        document.querySelector('.dropcontent').classList.toggle('open');
-            //     }
-            // });
+        //     // count_i_output = count_i_output + 1 ;
+        //     // });
 
-        }
+        //     // ---------------------------7
+
+        //     // เพิ่มเหตุการณ์คลิกที่หน้าจอที่ไม่ใช่ตัว audio-device-list ให้ปิด audio-device-list
+        //     // document.addEventListener('click', (event) => {
+        //     //     const target = event.target;
+
+        //     //     if (!target.closest('#audio-device-list')) {
+        //     //        document.querySelector('.dropcontent').classList.toggle('open');
+        //     //     }
+        //     // });
+
+        // }
 
         // ตรวจสอบอุปกรณ์ที่ใช้งาน
         function checkDeviceType() {
@@ -2652,7 +2665,7 @@
             let roleUserVideoCallDiv = document.createElement("div");
                 roleUserVideoCallDiv.id = "role_local_video_call";
                 roleUserVideoCallDiv.className = "role-user-video-call";
-                roleUserVideoCallDiv.innerHTML = '<small class="d-block">'+type_local+'</small>';
+                roleUserVideoCallDiv.innerHTML = '<small class="d-block float-end">'+type_local+'</small>';
 
             infomationUserDiv.appendChild(nameUserVideoCallDiv);
             infomationUserDiv.appendChild(br);
@@ -2768,7 +2781,7 @@
 
             let roleUserVideoCallDiv = document.createElement("div");
                 roleUserVideoCallDiv.className = "role-user-video-call";
-                roleUserVideoCallDiv.innerHTML = '<small class="d-block">'+type_remote+'</small>';
+                roleUserVideoCallDiv.innerHTML = '<small class="d-block float-end">'+type_remote+'</small>';
 
             infomationUserDiv.appendChild(nameUserVideoCallDiv);
             infomationUserDiv.appendChild(br);
@@ -2914,7 +2927,7 @@
 
             let roleUserVideoCallDiv = document.createElement("div");
                 roleUserVideoCallDiv.className = "role-user-video-call";
-                roleUserVideoCallDiv.innerHTML = '<small class="d-block">'+type_remote+'</small>';
+                roleUserVideoCallDiv.innerHTML = '<small class="d-block float-end">'+type_remote+'</small>';
 
             infomationUserDiv.appendChild(nameUserVideoCallDiv);
             infomationUserDiv.appendChild(br);

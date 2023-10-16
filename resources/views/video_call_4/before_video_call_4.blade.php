@@ -6,24 +6,6 @@
 
 <style>
 
-    /* .text_warning_fade_out {
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-    } */
-
-    /* .video_preview{
-        min-height: 20vh;
-        height: 100%;
-        max-height: 50vh;
-        width: 100%;
-        object-fit: cover;
-    } */
-
-    /* .row {
-        display: flex;
-        flex-wrap: nowrap;
-    } */
-
     .col-sm-12.col-md-8.col-lg-8.bg-secondary {
         flex: 0 0 calc(66.666% - 10px); /* 66.666% is 2/3 of the row width */
         margin-right: 10px; /* Adjust this value as needed for spacing */
@@ -32,12 +14,6 @@
     .col-sm-12.col-md-4.col-lg-4.bg-secondary {
         flex: 0 0 calc(33.333% - 10px); /* 33.333% is 1/3 of the row width */
     }
-
-    /* .buttonDiv {
-        position: absolute;
-        left: 40%;
-        bottom: 1rem;
-    } */
 
     .toggleCameraButton{
         border-radius: 50%;
@@ -170,47 +146,85 @@
     </div>
     <div class="main-content-video-call">
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-8 ">
-                <div class="div-video">
-                    <video id="videoDiv" class="video_preview" autoplay></video>
-                    <div id="soundTest" class="soundTest">
-                        <div class="soundMeter"></div>
+            <div class="col-12 col-sm-12 col-lg-8 p-2">
+                @if ($type_device == "pc")
+                    <div class="div-video">
+                        <video id="videoDiv" class="video_preview" autoplay></video>
+                        <div id="soundTest" class="soundTest">
+                            <div class="soundMeter"></div>
+                        </div>
+                        <div class="buttonDiv d-none">
+                            <button id="toggleCameraButton" class="toggleCameraButton mr-3 btn"></button>
+                            <button id="toggleMicrophoneButton" class="toggleMicrophoneButton btn"></button>
+                        </div>
                     </div>
-                    <div class="buttonDiv d-none">
-                        <button id="toggleCameraButton" class="toggleCameraButton mr-3 btn"></button>
-                        <button id="toggleMicrophoneButton" class="toggleMicrophoneButton btn"></button>
+                @else
+                    <div class="div-video m-4">
+                        <video id="videoDiv" class="video_preview" autoplay></video>
+                        <div id="soundTest" class="soundTest">
+                            <div class="soundMeter"></div>
+                        </div>
+                        <div class="buttonDiv d-none">
+                            <button id="toggleCameraButton" class="toggleCameraButton mr-3 btn"></button>
+                            <button id="toggleMicrophoneButton" class="toggleMicrophoneButton btn"></button>
+                        </div>
                     </div>
-                </div>
+                @endif
+
 
                 <div class=" d-nne">
-                    <div class="selectDivice mt-2 p-2 row">
-                        <select id="microphoneList"></select>
-                        <select id="cameraList"></select>
-                        {{-- <select id="speakerList"></select> --}}
-                        {{-- <label>
-                            <div id="audioElement" controls>
-                                <button id="audioElement_btn" class="btn">
-                                    <i class="fa-regular fa-circle-play font-30"></i>
-                                </button>
-                            </div>
-                        </label> --}}
-                    </div>
+                    @if ($type_device == "pc")
+                        <div class="selectDivice mt-2 p-2 row">
+                            <select id="microphoneList"></select>
+                            <select id="cameraList"></select>
+                            {{-- <select id="speakerList"></select> --}}
+                            {{-- <label>
+                                <div id="audioElement" controls>
+                                    <button id="audioElement_btn" class="btn">
+                                        <i class="fa-regular fa-circle-play font-30"></i>
+                                    </button>
+                                </div>
+                            </label> --}}
+                        </div>
+                    @else
+                        <div class="selectDivice mt-2 p-2 row d-none">
+                            <select id="microphoneList"></select>
+                            <select id="cameraList"></select>
+                            {{-- <select id="speakerList"></select> --}}
+                        </div>
+                    @endif
                 </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-4  d-flex justify-content-center p-3 align-items-center">
+            <div class="col-12 col-sm-12 col-lg-4  d-flex justify-content-center p-3 align-items-center">
                 <div id="before_join_message" class="text-center w-100">
-                    <h4 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h4>
-                    <h5 class="w-100">{{Auth::user()->name}}</h5>
-                    @php
-                        $inRoomPeople = 0;
-                    @endphp
-                    @if ($inRoomPeople < 4)
-                        <a id="btnJoinRoom" class="btn btn-success" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
-                            เข้าร่วมห้องสนทนา
-                        </a>
+                    @if ($type_device == "pc")
+                        <h4 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h4>
+                        <h5 class="w-100">{{Auth::user()->name}}</h5>
+                        @php
+                            $inRoomPeople = 0;
+                        @endphp
+                        @if ($inRoomPeople < 4)
+                            <a id="btnJoinRoom" class="btn btn-success" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
+                                เข้าร่วมห้องสนทนา
+                            </a>
+                        @else
+                            <a id="btnJoinRoom" class="btn btn-success" onclick="AlertPeopleInRoom()">เข้าร่วมห้องสนทนา</a>
+                        @endif
                     @else
-                        <a id="btnJoinRoom" class="btn btn-success" onclick="AlertPeopleInRoom()">เข้าร่วมห้องสนทนา</a>
+                        <h2 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h2>
+                        <h3 class="w-100">{{Auth::user()->name}}</h3>
+                        @php
+                            $inRoomPeople = 0;
+                        @endphp
+                        @if ($inRoomPeople < 4)
+                            <a style="font-size: 40px; border-radius: 10px;" id="btnJoinRoom" class="btn btn-success " href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
+                                เข้าร่วมห้องสนทนา
+                            </a>
+                        @else
+                            <a style="font-size: 40px; border-radius: 10px;" id="btnJoinRoom" class="btn btn-success" onclick="AlertPeopleInRoom()">เข้าร่วมห้องสนทนา</a>
+                        @endif
                     @endif
+
 
                 </div>
             </div>
@@ -219,6 +233,7 @@
 </div>
 
 <script src="{{ asset('js/for_video_call_4/before_video_call_4.js') }}"></script>
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <!-- <script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
@@ -232,8 +247,10 @@
     var useCamera = '';
 
     var audioTracks = ''; // สำหรับเก็บ tag เสียงแบบ global
-    var appId = '{{ $appId }}';
-    var appCertificate = '{{ $appCertificate }}';
+
+    // var appId = localStorage.getItem('appId');
+    // var appCertificate = localStorage.getItem('appCertificate');
+
     var sos_id = '{{ $sos_id }}'
     var consult_doctor_id = '{{ $consult_doctor_id }}'
 

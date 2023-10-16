@@ -1,15 +1,3 @@
-//=========== เช็คอุปกรณ์ =================
-var type_device = '';
-const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-// ตรวจสอบชนิดของอุปกรณ์
-if (/android/i.test(userAgent)) {
-    type_device = "Mobile (Android)";
-}
-if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    type_device = "Mobile (iOS)";
-}
-    type_device = "PC";
-//========== จบ เช็คอุปกรณ์ =================
 
 function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน
 
@@ -108,8 +96,11 @@ function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหร�
 }
 
 // สำหรับ Div ต่างๆของ Local
-function create_element_localvideo_call(localPlayerContainer,name_local,profile_local) {
+function create_element_localvideo_call(localPlayerContainer ,name_local ,type_local ,profile_local, bg_local) {
     if(localPlayerContainer.id){
+        console.log("create_element_localvideo_call Here");
+        console.log(name_local);
+        console.log(type_local);
         // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
         if(document.getElementById('videoDiv_' + localPlayerContainer.id)) {
             var divVideo = document.getElementById('videoDiv_' + localPlayerContainer.id);
@@ -185,7 +176,7 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
         let roleUserVideoCallDiv = document.createElement("div");
             roleUserVideoCallDiv.id = "role_local_video_call";
             roleUserVideoCallDiv.className = "role-user-video-call";
-            roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
+            roleUserVideoCallDiv.innerHTML = '<small class="d-block float-end">'+type_local+'</small>';
 
         infomationUserDiv.appendChild(nameUserVideoCallDiv);
         infomationUserDiv.appendChild(br);
@@ -208,11 +199,6 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
 
         let container_user_video_call = document.querySelector("#container_user_video_call");
         container_user_video_call.append(divVideo);
-
-        //ถ้าไม่ใช่คอม
-        if(type_device != "PC"){
-            checkchild();
-        }
 
         divVideo.addEventListener("click", function() {
             handleClick(divVideo);
@@ -238,7 +224,7 @@ function create_element_localvideo_call(localPlayerContainer,name_local,profile_
 }
 
 // สำหรับ Div ต่างๆของ Remote ตอน published
-function create_element_remotevideo_call(remotePlayerContainer,name_remote ,bg_remote,user) {
+function create_element_remotevideo_call(remotePlayerContainer, name_remote , type_remote , bg_remote, user) {
     if(remotePlayerContainer.id){
         console.log("remotePlayerContainer");
         console.log(remotePlayerContainer);
@@ -303,7 +289,7 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,bg_r
 
         let roleUserVideoCallDiv = document.createElement("div");
             roleUserVideoCallDiv.className = "role-user-video-call";
-            roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
+            roleUserVideoCallDiv.innerHTML = '<small class="d-block float-end">'+type_remote+'</small>';
 
         infomationUserDiv.appendChild(nameUserVideoCallDiv);
         infomationUserDiv.appendChild(br);
@@ -338,11 +324,6 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,bg_r
             }
         }
 
-        //ถ้าไม่ใช่คอม
-        if(type_device != "PC"){
-            checkchild();
-        }
-
         // คลิ๊ก div ให้เปลี่ยนขนาด
         divVideo_New.addEventListener("click", function() {
             handleClick(divVideo_New);
@@ -370,7 +351,7 @@ function create_element_remotevideo_call(remotePlayerContainer,name_remote ,bg_r
 }
 
 // สำหรับ Div Dummy ต่างๆของ Remote ตอน unpublished
-function create_dummy_videoTrack(user,name_remote,profile_remote,bg_remote){
+function create_dummy_videoTrack(user,name_remote,type_remote,profile_remote,bg_remote){
     if(user.uid){
 
         // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
@@ -446,7 +427,7 @@ function create_dummy_videoTrack(user,name_remote,profile_remote,bg_remote){
 
         let roleUserVideoCallDiv = document.createElement("div");
             roleUserVideoCallDiv.className = "role-user-video-call";
-            roleUserVideoCallDiv.innerHTML = '<small class="d-block">ชื่อหน่วย</small>';
+            roleUserVideoCallDiv.innerHTML = '<small class="d-block float-end">'+type_remote+'</small>';
 
         infomationUserDiv.appendChild(nameUserVideoCallDiv);
         infomationUserDiv.appendChild(br);
@@ -498,11 +479,6 @@ function create_dummy_videoTrack(user,name_remote,profile_remote,bg_remote){
                 container_user_video_call.append(divVideo_New);
             }
         }
-
-        //ถ้าไม่ใช่คอม
-        // if(type_device != "PC"){
-        //     checkchild();
-        // }
 
         divVideo_New.addEventListener("click", function() {
             handleClick(divVideo_New);
