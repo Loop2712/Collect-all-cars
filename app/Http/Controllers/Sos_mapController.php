@@ -693,6 +693,146 @@ class Sos_mapController extends Controller
         
     }
 
+    // send data to groupline Charlie
+    protected function _pushLine_to_Charlie($data , $id_sos_map)
+    {   
+        $datetime =  date("d-m-Y  h:i:sa");
+        $date_now =  date("d-m-Y");
+        $time_now =  date("h:i:sa");
+
+        $name_user = $data['name'];
+        $user_id = $data['user_id'];
+        $phone_user = $data['phone'];
+        $lat_user = $data['lat'];
+        $lng_user = $data['lng'];
+        $photo = $data['photo'];
+
+        $title_sos = $data['title_sos'];
+        $title_sos_other = $data['title_sos_other'];
+        $tag_sos_or_repair = $data['tag_sos_or_repair'];
+
+        if(empty($title_sos)){
+            $title_sos = "ขอความช่วยเหลือ" ;
+        }
+
+        if(empty($title_sos_other)){
+            $title_sos_other = "ไม่ได้เพิ่มข้อมูล" ;
+        }
+
+        $data_users = User::where('id' , $user_id)->first();
+
+        $data_line_group = DB::table('group_lines')->where('system', 'emergency_Charlie')->first();
+
+        $groupId = $data_line_group->groupId ;
+        $name_time_zone = $data_line_group->time_zone ;
+        $group_language = $data_line_group->language ;
+        $id_partner = $data_line_group->partner_id ;
+
+        // TIME ZONE
+        $API_Time_zone = new API_Time_zone();
+        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
+
+        $data_topic = [
+                    "กำลังไปช่วยเหลือ",
+                    "พื้นที่",
+                ];
+
+        for ($xi=0; $xi < count($data_topic); $xi++) { 
+
+            $text_topic = DB::table('text_topics')
+                    ->select($group_language)
+                    ->where('th', $data_topic[$xi])
+                    ->where('en', "!=", null)
+                    ->get();
+
+            foreach ($text_topic as $item_of_text_topic) {
+                $data_topic[$xi] = $item_of_text_topic->$group_language ;
+            }
+        }
+        
+        $text_at = '@' ;
+
+        $template_path = storage_path('../public/json/flex_volunteer/flex_sos_chalie_v2.json');
+        $string_json = file_get_contents($template_path);
+
+        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
+
+        $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[0],$string_json);
+        $string_json = str_replace("พื้นที่",$data_topic[1],$string_json);
+
+        if (!empty($data_users->photo)) {
+            $string_json = str_replace("IMG_USER",$data_users->photo,$string_json);
+        }else{
+            $string_json = str_replace("https://www.peddyhub.com/storage/IMG_USER","https://www.viicheck.com/img/stickerline/Flex/12.png",$string_json);
+        }
+
+        if ($tag_sos_or_repair == 'tag_sos') {
+            $string_json = str_replace("TAG_SOS","SOS",$string_json);
+            $string_json = str_replace("#888888","#DD8F00",$string_json);
+            $text_tag_sos = "SOS : " ;
+        }else{
+            $string_json = str_replace("TAG_SOS","แจ้งซ่อม",$string_json);
+            $string_json = str_replace("#888888","#004AAD",$string_json);
+            $text_tag_sos = "แจ้งซ่อม : " ;
+        }
+
+        $string_json = str_replace("NAME_USER",$name_user,$string_json);
+
+        if (!empty($data_users->language)) {
+            $string_json = str_replace("PNG_LANGUAGE",$data_users->language,$string_json);
+        }else{
+            $string_json = str_replace("PNG_LANGUAGE","-",$string_json);
+        }
+
+        if (!empty($data_users->nationalitie)) {
+            $string_json = str_replace("USER_NATIONAL",$data_users->nationalitie,$string_json);
+        }else{
+            $string_json = str_replace("USER_NATIONAL","-",$string_json);
+        }
+
+        $string_json = str_replace("PHOTO_SOS",$photo,$string_json);
+        $string_json = str_replace("PHONE_USER",$phone_user,$string_json);
+        $string_json = str_replace("DATE_SOS",$date_now,$string_json);
+        $string_json = str_replace("TIME_SOS",$time_now,$string_json);
+
+        $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
+        $string_json = str_replace("organization",$id_partner,$string_json);
+
+        $string_json = str_replace("gg_lat_mail",$text_at.$lat_user,$string_json);
+        $string_json = str_replace("gg_lat",$lat_user,$string_json);
+        $string_json = str_replace("lng",$lng_user,$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $groupId,
+            "messages" => $messages,
+        ];
+
+        // flex ask_for_help
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        // SAVE LOG
+        $data = [
+            "title" => "ข้อมูลขอความช่วยเหลือ Charlie" ,
+            "content" => "จากคุณ" . $name_user,
+        ];
+        MyLog::create($data);
+
+    }
+
     // send data to grouplin js100
     protected function _pushLine_to_js100($data , $id_sos_map)
     {   
@@ -773,132 +913,6 @@ class Sos_mapController extends Controller
         // SAVE LOG
         $data = [
             "title" => "ข้อมูลขอความช่วยเหลือ JS100" ,
-            "content" => "จากคุณ" . $name_user,
-        ];
-        MyLog::create($data);
-
-    }
-
-    // send data to groupline Charlie
-    protected function _pushLine_to_Charlie($data , $id_sos_map)
-    {   
-        $datetime =  date("d-m-Y  h:i:sa");
-        $date_now =  date("d-m-Y");
-        $time_now =  date("h:i:sa");
-
-        $name_user = $data['name'];
-        $user_id = $data['user_id'];
-        $phone_user = $data['phone'];
-        $lat_user = $data['lat'];
-        $lng_user = $data['lng'];
-        $photo = $data['photo'];
-
-        $data_users = User::where('id' , $user_id)->first();
-
-        $data_line_group = DB::table('group_lines')->where('system', 'emergency_Charlie')->first();
-
-        $groupId = $data_line_group->groupId ;
-        $name_time_zone = $data_line_group->time_zone ;
-        $group_language = $data_line_group->language ;
-        $id_partner = $data_line_group->partner_id ;
-
-        // TIME ZONE
-        $API_Time_zone = new API_Time_zone();
-        $time_zone = $API_Time_zone->change_Time_zone($name_time_zone);
-
-        $data_topic = [
-                    "ขอความช่วยเหลือ",
-                    "ภาษา",
-                    "สัญชาติ",
-                    "กำลังไปช่วยเหลือ",
-                    "ช่วยเหลือ",
-                    "แผนที่",
-                ];
-
-        for ($xi=0; $xi < count($data_topic); $xi++) { 
-
-            $text_topic = DB::table('text_topics')
-                    ->select($group_language)
-                    ->where('th', $data_topic[$xi])
-                    ->where('en', "!=", null)
-                    ->get();
-
-            foreach ($text_topic as $item_of_text_topic) {
-                $data_topic[$xi] = $item_of_text_topic->$group_language ;
-            }
-        }
-        
-        $text_at = '@' ;
-
-        $template_path = storage_path('../public/json/flex_volunteer/flex_sos_chalie.json');
-        $string_json = file_get_contents($template_path);
-
-        $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
-
-        $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[0],$string_json);
-        $string_json = str_replace("ภาษา",$data_topic[1],$string_json);
-        $string_json = str_replace("สัญชาติ",$data_topic[2],$string_json);
-        $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[3],$string_json);
-        $string_json = str_replace("ช่วยเหลือ",$data_topic[4],$string_json);
-        $string_json = str_replace("แผนที่",$data_topic[5],$string_json);
-
-        if (!empty($data_users->photo)) {
-            $string_json = str_replace("IMG_USER",$data_users->photo,$string_json);
-        }else{
-            $string_json = str_replace("https://www.peddyhub.com/storage/IMG_USER","https://www.viicheck.com/img/stickerline/Flex/12.png",$string_json);
-        }
-
-        $string_json = str_replace("NAME_USER",$name_user,$string_json);
-
-        if (!empty($data_users->language)) {
-            $string_json = str_replace("PNG_LANGUAGE",$data_users->language,$string_json);
-        }else{
-            $string_json = str_replace("PNG_LANGUAGE","-",$string_json);
-        }
-
-        if (!empty($data_users->nationalitie)) {
-            $string_json = str_replace("USER_NATIONAL",$data_users->nationalitie,$string_json);
-        }else{
-            $string_json = str_replace("USER_NATIONAL","-",$string_json);
-        }
-
-        $string_json = str_replace("PHOTO_SOS",$photo,$string_json);
-        $string_json = str_replace("PHONE_USER",$phone_user,$string_json);
-        $string_json = str_replace("DATE_SOS",$date_now,$string_json);
-        $string_json = str_replace("TIME_SOS",$time_now,$string_json);
-
-        $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
-        $string_json = str_replace("organization",$id_partner,$string_json);
-
-        $string_json = str_replace("gg_lat_mail",$text_at.$lat_user,$string_json);
-        $string_json = str_replace("gg_lat",$lat_user,$string_json);
-        $string_json = str_replace("lng",$lng_user,$string_json);
-
-        $messages = [ json_decode($string_json, true) ];
-
-        $body = [
-            "to" => $groupId,
-            "messages" => $messages,
-        ];
-
-        // flex ask_for_help
-        $opts = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
-                            
-        $context  = stream_context_create($opts);
-        $url = "https://api.line.me/v2/bot/message/push";
-        $result = file_get_contents($url, false, $context);
-
-        // SAVE LOG
-        $data = [
-            "title" => "ข้อมูลขอความช่วยเหลือ Charlie" ,
             "content" => "จากคุณ" . $name_user,
         ];
         MyLog::create($data);

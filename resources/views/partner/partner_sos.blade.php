@@ -231,6 +231,8 @@
                                         <h6 class="{{ $text_div_status }}" >
                                             @if($item->tag_sos_or_repair != "tag_sos" && $item->status == "กำลังไปช่วยเหลือ")
                                                 <i class="fa-regular fa-screwdriver-wrench"></i> อยู่ระหว่างดำเนินการ
+                                            @elseif($item->tag_sos_or_repair != "tag_sos" && $item->status == "รับแจ้งเหตุ")
+                                                <i class="fa-sharp fa-solid fa-timer"></i> รอดำเนินการ
                                             @else
                                                 <i class="{{ $class_tga_i_status }}"></i> {{ $item->status }}
                                             @endif
