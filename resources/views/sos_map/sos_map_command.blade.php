@@ -463,8 +463,12 @@
                 .then(response => response.json())
                 .then(result => {
                     // console.log(result);
-
-                    check_status = result['status'] ;
+                    
+                	if(result['status'] != check_status){
+		            	// แจ้งเตือนเปลี่ยนสถานะ
+		            	Status_change_notification(result['status']);
+		            	check_status = result['status'];
+		            }
 
                     if(check_status != "เสร็จสิ้น"){
 
@@ -684,12 +688,6 @@
             return response.json();
         }).then(function(data){
             // console.log(data);
-
-            if(data['status'] != check_status){
-            	// แจ้งเตือนเปลี่ยนสถานะ
-            	Status_change_notification(data['status']);
-            	check_status = data['status'];
-            }
 
             if(data['status'] != "เสร็จสิ้น"){
             	create_marker(data['user_lat'] , data['user_lng'] , data['officer_lat'] , data['officer_lng'])
