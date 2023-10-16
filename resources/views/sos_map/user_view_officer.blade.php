@@ -542,6 +542,32 @@
     </div>
 </div>
 
+<!-- เคสเสร็จสิ้นแล้ว -->
+<div id="div_case_success" class="container bg-white officer-arrive w-100 d-none">
+    <div class="w-100 text-center mt-3">
+        <img src="{{ asset('/img/stickerline/PNG/34.png') }}" width="120" alt="">
+        <br>
+        <h5 class="font-weight-bold mb-0 notranslate mt-2" style="color: grey;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">
+            สวัสดีคุณ : <b style="color: #000;">{{ $data_sos->name }}</b>
+        </h5>
+        <h5 class="mb-0 notranslate mt-2 text-info">การดำเนินการเสร็จสิ้นแล้ว</h5>
+        <h6 class="mb-0 notranslate mt-2 text-info">
+            หมายเหตุ : <span id="remark_status">{{ $data_sos->remark_status }}</span>
+        </h6>
+        <div id="div_btn_status_success">
+            @if(!empty($data_sos->sos_1669_id))
+                <a href="{{ url('/') . '/sos_help_center/' . $data_sos->sos_1669_id . '/show_user' }}" class="btn-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
+                    ดำเนินการต่อ
+                </a>
+            @else
+                <a href="https://lin.ee/y3gA8A3" class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
+                    เสร็จสิ้น
+                </a>
+            @endif
+        </div>
+    </div>
+</div>
+
 <!-- แสดงข้อมูลเจ้าหน้าที่ -->
 <div id="div_data_officer_help" class="container bg-white officer-arrive w-100 d-none">
     <div class="container box-data-helper d-">
@@ -606,7 +632,10 @@
             document.querySelector("#div_data_officer_help").classList.remove('d-none');
             navigator.geolocation.getCurrentPosition(update_location_user);
             loop_check_status_officer();
+        }else if(check_status == "เสร็จสิ้น"){
+            document.querySelector('#div_case_success').classList.remove('d-none');
         }else{
+            loop_status_sos();
             document.querySelector("#div_officer_to_the_scene").classList.remove('d-none');
         }
 
@@ -636,6 +665,29 @@
                         document.querySelector('#div_img_officer').innerHTML = html_img_officer ;
                         document.querySelector('#name_helper').innerHTML = result['helper'] ;
                         document.querySelector('#name_organization_helper').innerHTML = result['organization_helper'] ;
+
+                        if(result['status'] == "เสร็จสิ้น"){
+
+                            let html_div_btn_status_success ;
+
+                            if(result['sos_1669_id']){
+                                html_div_btn_status_success = `
+                                    <a href="{{ url('/') . '/sos_help_center/' . `+result['sos_1669_id']+` . '/show_user' }}" class="btn-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
+                                        ดำเนินการต่อ
+                                    </a>
+                                `;
+                            }else{
+                                html_div_btn_status_success = `
+                                    <a href="https://lin.ee/y3gA8A3" class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
+                                        เสร็จสิ้น
+                                    </a>
+                                `;
+                            }
+
+                            document.querySelector('#remark_status').innerHTML = result['remark_status'] ;
+                            document.querySelector('#div_btn_status_success').innerHTML = html_div_btn_status_success ;
+                            document.querySelector('#div_case_success').classList.remove('d-none');
+                        }
                         
                         Stop_loop_check_status_sos_map();
                     }
@@ -651,12 +703,19 @@
         if(check_status == "กำลังไปช่วยเหลือ"){
             document.querySelector("#Searching_officer").classList.add('d-none');
             document.querySelector("#div_data_officer_help").classList.remove('d-none');
+            document.querySelector('#div_case_success').classList.add('d-none');
             navigator.geolocation.getCurrentPosition(update_location_user);
             loop_check_status_officer();
 
+        }else if(check_status == "เสร็จสิ้น"){
+            document.querySelector("#Searching_officer").classList.add('d-none');
+            document.querySelector("#div_data_officer_help").classList.add('d-none');
+            document.querySelector("#div_officer_to_the_scene").classList.add('d-none');
+            document.querySelector('#div_case_success').classList.remove('d-none');
         }else{
             document.querySelector("#Searching_officer").classList.add('d-none');
             document.querySelector("#div_data_officer_help").classList.add('d-none');
+            document.querySelector('#div_case_success').classList.add('d-none');
             document.querySelector("#div_officer_to_the_scene").classList.remove('d-none');
         }
     }
@@ -764,10 +823,21 @@
     function Stop_loop_check_status_officer() {
         clearInterval(check_status_officer);
 
-        document.querySelector("#Searching_officer").classList.add('d-none');
-        document.querySelector("#div_data_officer_help").classList.add('d-none');
+        if(check_status == "เสร็จสิ้น"){
+            document.querySelector("#Searching_officer").classList.add('d-none');
+            document.querySelector("#div_data_officer_help").classList.add('d-none');
+            document.querySelector("#div_officer_to_the_scene").classList.add('d-none');
 
-        document.querySelector("#div_officer_to_the_scene").classList.remove('d-none');
+            document.querySelector('#div_case_success').classList.remove('d-none');
+        }else{
+            document.querySelector('#div_case_success').classList.add('d-none');
+            document.querySelector("#Searching_officer").classList.add('d-none');
+            document.querySelector("#div_data_officer_help").classList.add('d-none');
+
+            document.querySelector("#div_officer_to_the_scene").classList.remove('d-none');
+
+            loop_status_sos();
+        }
 
         // หมุดที่เกิดเหตุ 
         if (sos_marker) {
@@ -833,6 +903,29 @@
                 if(check_status == "กำลังไปช่วยเหลือ"){
                     create_marker(user_lat , user_lng , data['data_helper']['lat'] , data['data_helper']['lng'])
                 }else{
+
+                    if(check_status == "เสร็จสิ้น"){
+                        let html_div_btn_status_success ;
+
+                        if(result['sos_1669_id']){
+                            html_div_btn_status_success = `
+                                <a href="{{ url('/') . '/sos_help_center/' . `+result['sos_1669_id']+` . '/show_user' }}" class="btn-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
+                                    ดำเนินการต่อ
+                                </a>
+                            `;
+                        }else{
+                            html_div_btn_status_success = `
+                                <a href="https://lin.ee/y3gA8A3" class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
+                                    เสร็จสิ้น
+                                </a>
+                            `;
+                        }
+
+                        document.querySelector('#remark_status').innerHTML = result['remark_status'] ;
+                        document.querySelector('#div_btn_status_success').innerHTML = html_div_btn_status_success ;
+                        document.querySelector('#div_case_success').classList.remove('d-none');
+                    }
+
                     Stop_loop_check_status_officer();
                 }
                 
@@ -841,6 +934,61 @@
         }).catch(function(error){
             // console.error(error);
         });
+
+    }
+
+    function loop_status_sos() {
+
+        check_status_sos = setInterval(function() {
+
+            // console.log('loop_status_sos');
+
+            fetch("{{ url('/') }}/api/sos_map/loop_check_status_sos_map" + "/" + "{{ $data_sos->id }}")
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+
+                    check_status = result['status'] ;
+
+                    if(check_status == "เสร็จสิ้น"){
+                        let html_div_btn_status_success ;
+
+                        if(result['sos_1669_id']){
+                            html_div_btn_status_success = `
+                                <a href="{{ url('/') . '/sos_help_center/' . `+result['sos_1669_id']+` . '/show_user' }}" class="btn-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
+                                    ดำเนินการต่อ
+                                </a>
+                            `;
+                        }else{
+                            html_div_btn_status_success = `
+                                <a href="https://lin.ee/y3gA8A3" class="btn-outline-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
+                                    เสร็จสิ้น
+                                </a>
+                            `;
+                        }
+
+                        document.querySelector('#remark_status').innerHTML = result['remark_status'] ;
+                        document.querySelector('#div_btn_status_success').innerHTML = html_div_btn_status_success ;
+                        document.querySelector('#div_case_success').classList.remove('d-none');
+
+                        Stop_loop_status_sos();
+                    }
+            });
+
+        }, 15000);
+
+    }
+
+    function Stop_loop_status_sos() {
+        clearInterval(check_status_sos);
+
+        if(check_status == "เสร็จสิ้น"){
+            document.querySelector("#Searching_officer").classList.add('d-none');
+            document.querySelector("#div_data_officer_help").classList.add('d-none');
+            document.querySelector("#div_officer_to_the_scene").classList.add('d-none');
+
+            document.querySelector('#div_case_success').classList.remove('d-none');
+        }
 
     }
 </script>
