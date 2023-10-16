@@ -503,7 +503,7 @@
 
                     	reset_map();
 
-				    	help_complete()
+				    	// help_complete()
                     	Stop_onload_check_status_sos_map();
                     }
             });
