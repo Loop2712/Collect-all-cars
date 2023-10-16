@@ -804,12 +804,8 @@
 
         let name_admin ;
 
-        @if(!empty($data_sos_map->helper_id))
-			name_admin = "{{ Auth::user()->name }}" ;
-		@else
-			name_admin = "" ;
-		@endif
-
+		name_admin = "{{ Auth::user()->name }}" ;
+		
         data_arr = {
 	        "sos_map_id" : "{{ $data_sos_map->id }}",
 	        "status" : "เสร็จสิ้น",
