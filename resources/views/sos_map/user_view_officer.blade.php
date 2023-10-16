@@ -805,22 +805,16 @@
 
             // console.log(check_status);
 
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(update_location_user);
-            } else {
-                // x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-
-            // if(check_status == "กำลังไปช่วยเหลือ"){
+            if(check_status == "กำลังไปช่วยเหลือ"){
                 
-            //     if (navigator.geolocation) {
-            //         navigator.geolocation.getCurrentPosition(update_location_user);
-            //     } else {
-            //         // x.innerHTML = "Geolocation is not supported by this browser.";
-            //     }
-            // }else{
-            //     Stop_loop_check_status_officer();
-            // }
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(update_location_user);
+                } else {
+                    // x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }else{
+                Stop_loop_check_status_officer();
+            }
 
         }, 15000);
 
