@@ -724,11 +724,19 @@
 		</div>
 	</div>
 
-	<div class="card m-4">
+	{{-- <div class="card m-4">
 		<div class="neck_sidebar_div p-4 text-center">
 			<p class="h1 mb-1 font-weight-bold text-center">ผู้ขอความช่วยเหลือ</p>
 			<p class="h2 text-dark">{{$sos_data->name_user ? $sos_data->name_user : "--"}}</p>
 			<p class="h2 text-dark">{{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
+		</div>
+	</div> --}}
+
+    <div class="card m-4">
+		<div class="neck_sidebar_div p-4 text-center">
+			<p style="font-size: 45px;" class=" mb-1 font-weight-bold text-center">ผู้ขอความช่วยเหลือ</p>
+			<p style="font-size: 45px;" class="font-weight-bold text-dark">{{$sos_data->name_user ? $sos_data->name_user : "--"}}</p>
+			<p style="font-size: 45px;" class="font-weight-bold text-dark">{{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
 		</div>
 	</div>
 
@@ -802,17 +810,31 @@
 					</div>
 				</div>
 			</div>
-			<div class="mb-5">
-				<h1 class="d-flex align-items-center mb-2 font-weight-bold">รายละเอียดสถานที่</h1>
-				<h2 class="text-muted font-size-xl">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</h2>
+
+			{{-- <div class="mb-5">
+				<p class="h1 d-flex align-items-center mb-2 font-weight-bold">รายละเอียดสถานที่</p>
+				<p class="h2 text-muted font-size-xl">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</p>
 			</div>
 			<div class="mb-5">
-				<h1 class="d-flex align-items-center mb-2 font-weight-bold">อาการ</h1>
-				<h2 class="text-muted font-size-xl">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</h2>
+				<p class="h1 d-flex align-items-center mb-2 font-weight-bold">อาการ</p>
+				<p class="h2 text-muted font-size-xl">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</p>
 			</div>
 			<div class="mb-5">
-				<h1 class="d-flex align-items-center mb-2 font-weight-bold">รายละเอียดอาการ</h1>
-				<h2 class="text-muted font-size-xl">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</h2>
+				<p class="h1 d-flex align-items-center mb-2 font-weight-bold">รายละเอียดอาการ</p>
+				<p class="h2 text-muted font-size-xl">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</p>
+			</div> --}}
+
+            <div class="mb-5">
+				<p style="font-size: 40px;" class="d-flex align-items-center mb-2 font-weight-bold">รายละเอียดสถานที่</p>
+				<p style="font-size: 40px;" class=" ">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</p>
+			</div>
+			<div class="mb-5">
+				<p style="font-size: 40px;" class="d-flex align-items-center mb-2 font-weight-bold">อาการ</p>
+				<p style="font-size: 40px;" class=" ">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</p>
+			</div>
+			<div class="mb-5">
+				<p style="font-size: 40px;" class="d-flex align-items-center mb-2 font-weight-bold">รายละเอียดอาการ</p>
+				<p style="font-size: 40px;" class=" ">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</p>
 			</div>
 		</div>
 	</div>
@@ -1954,7 +1976,7 @@
                 console.error('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
             });
 
-            document.querySelector('#ปุ่มนี้สำหรับปิด_modal').click();
+            // document.querySelector('#ปุ่มนี้สำหรับปิด_modal').click();
         }
 
         function getCurrentAudioDeviceId() {
