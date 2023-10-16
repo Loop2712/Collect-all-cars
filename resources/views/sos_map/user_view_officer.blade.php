@@ -671,8 +671,9 @@
                             let html_div_btn_status_success ;
 
                             if(result['sos_1669_id']){
+                                let url = "{{ url('/') }}" + "/sos_help_center/" +result['sos_1669_id']+ "/show_user" ;
                                 html_div_btn_status_success = `
-                                    <a href="{{ url('/') . '/sos_help_center/' . `+result['sos_1669_id']+` . '/show_user' }}" class="btn-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
+                                    <a href="`+url+`" class="btn-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
                                         ดำเนินการต่อ
                                     </a>
                                 `;
@@ -908,8 +909,9 @@
                         let html_div_btn_status_success ;
 
                         if(data['sos_1669_id']){
+                            let url = "{{ url('/') }}" + "/sos_help_center/" +data['sos_1669_id']+ "/show_user" ;
                             html_div_btn_status_success = `
-                                <a href="{{ url('/') . '/sos_help_center/' . `+data['sos_1669_id']+` . '/show_user' }}" class="btn-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
+                                <a href="`+url+`" class="btn-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
                                     ดำเนินการต่อ
                                 </a>
                             `;
