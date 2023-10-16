@@ -794,6 +794,7 @@
 
                     if(check_status != "เสร็จสิ้น" && check_status != "รับแจ้งเหตุ"){
                     	get_location_user_and_officer();
+                    	Stop_loop_status_sos();
                     }else if(check_status == "เสร็จสิ้น"){
 
                     	if (directionsDisplay) {
