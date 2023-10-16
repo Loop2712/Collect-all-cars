@@ -145,22 +145,25 @@
                                         $time_created_at = strtotime($item->created_at);
 
                                         // ----- ใช้เวลาถึงที่เกิดเหตุ (หน่วยเป็นวินาที) -----
-                                        $time_to_the_scene = strtotime($item->time_to_the_scene);
-                                        $to_scene = $time_to_the_scene - $time_created_at ;
+                                        $time_start_to_scene = '';
+                                        if(empty($item->time_to_the_scene)){
+                                            $time_start_to_scene = '-' ;
+                                        }else{
+                                            $time_to_the_scene = strtotime($item->time_to_the_scene);
+                                            $to_scene = $time_to_the_scene - $time_created_at ;
 
-                                        // แปลงเวลาให้อยู่ในรูปแบบ วัน, ชั่วโมง, นาที
-                                        $days_to_scene = floor($to_scene / (60 * 60 * 24));
-                                        $hours_to_scene = floor(($to_scene % (60 * 60 * 24)) / (60 * 60));
-                                        $minutes_to_scene = floor(($to_scene % (60 * 60)) / 60);
+                                            // แปลงเวลาให้อยู่ในรูปแบบ วัน, ชั่วโมง, นาที
+                                            $days_to_scene = floor($to_scene / (60 * 60 * 24));
+                                            $hours_to_scene = floor(($to_scene % (60 * 60 * 24)) / (60 * 60));
+                                            $minutes_to_scene = floor(($to_scene % (60 * 60)) / 60);
 
-
-                                        $time_start_to_scene = '' ;
-                                        if($days_to_scene != 0){
-                                            $time_start_to_scene = "$days_to_scene วัน $hours_to_scene ชั่วโมง $minutes_to_scene นาที";
-                                        }else if($days_to_scene == 0 && $hours_to_scene != 0 && $minutes_to_scene != 0){
-                                            $time_start_to_scene = "$hours_to_scene ชั่วโมง $minutes_to_scene นาที";
-                                        }else if($days_to_scene == 0 && $hours_to_scene == 0 && $minutes_to_scene != 0){
-                                            $time_start_to_scene = "$minutes_to_scene นาที";
+                                            if($days_to_scene != 0){
+                                                $time_start_to_scene = "$days_to_scene วัน $hours_to_scene ชั่วโมง $minutes_to_scene นาที";
+                                            }else if($days_to_scene == 0 && $hours_to_scene != 0 && $minutes_to_scene != 0){
+                                                $time_start_to_scene = "$hours_to_scene ชั่วโมง $minutes_to_scene นาที";
+                                            }else if($days_to_scene == 0 && $hours_to_scene == 0 && $minutes_to_scene != 0){
+                                                $time_start_to_scene = "$minutes_to_scene นาที";
+                                            }
                                         }
 
                                         // ----- ใช้เวลาในการช่วยเหลือ (หน่วยเป็นวินาที) -----
@@ -226,7 +229,11 @@
                                     @endphp
                                     <div class="float-end btn btn-sm {{ $class_div_status }} radius-10 px-5 py-2">
                                         <h6 class="{{ $text_div_status }}" >
-                                            <i class="{{ $class_tga_i_status }}"></i> {{ $item->status }}
+                                            @if($item->tag_sos_or_repair != "tag_sos" && $item->status == "กำลังไปช่วยเหลือ")
+                                                <i class="fa-regular fa-screwdriver-wrench"></i> อยู่ระหว่างดำเนินการ
+                                            @else
+                                                <i class="{{ $class_tga_i_status }}"></i> {{ $item->status }}
+                                            @endif
                                             <br>
                                         </h6>
                                         <b style="font-size:12px;">{{ $time_of_status }}</b>
@@ -359,11 +366,20 @@
                         </div>
                         @endif
 
+                        @if($item->tag_sos_or_repair == "tag_sos")
                         <div class="col">
                             <a href="{{ url('/sos_map/command') . '/' . $item->id }}" type="button" class="btn {{ $btn_background_color }} px-5">
                                 <i class="fa-duotone fa-bars-progress mr-1"></i> ดำเนินการ
                             </a>
                         </div>
+                        @else
+
+                        <div class="col">
+                            <a href="{{ url('/sos_map/report_repair') . '/' . $item->id }}" type="button" class="btn {{ $btn_background_color }} px-5">
+                                <i class="fa-duotone fa-bars-progress mr-1"></i> ดำเนินการ
+                            </a>
+                        </div>
+                        @endif
 
                     </div>
                 </div>

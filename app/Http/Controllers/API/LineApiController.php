@@ -1263,10 +1263,15 @@ class LineApiController extends Controller
         $time_help_complete = $data_sos_map->help_complete_time;
         $time_go_to_help = $data_sos_map->time_go_to_help;
 
-        $count_time_help = $this->count_range_time($time_created , $time_go_to_help);
-        $count_success = $this->count_range_time($time_go_to_help , $time_help_complete);
-        $count_complete = $this->count_range_time($time_created , $time_help_complete);
-
+        if(!empty($time_go_to_help)){
+            $count_time_help = $this->count_range_time($time_created , $time_go_to_help);
+            $count_success = $this->count_range_time($time_go_to_help , $time_help_complete);
+            $count_complete = $this->count_range_time($time_created , $time_help_complete);
+        }else{
+            $count_time_help = "-";
+            $count_success = "-";
+            $count_complete = "-";
+        }
 
 
         if ( empty($data_sos_map->help_complete) ) {
@@ -1707,9 +1712,15 @@ class LineApiController extends Controller
         $time_help_complete = $data_sos_map->help_complete_time;
         $time_go_to_help = $data_sos_map->time_go_to_help;
 
-        $count_time_help = $this->count_range_time($time_created , $time_go_to_help);
-        $count_success = $this->count_range_time($time_go_to_help , $time_help_complete);
-        $count_complete = $this->count_range_time($time_created , $time_help_complete);
+        if(!empty($time_go_to_help)){
+            $count_time_help = $this->count_range_time($time_created , $time_go_to_help);
+            $count_success = $this->count_range_time($time_go_to_help , $time_help_complete);
+            $count_complete = $this->count_range_time($time_created , $time_help_complete);
+        }else{
+            $count_time_help = "-";
+            $count_success = "-";
+            $count_complete = "-";
+        }
 
         $data_topic = [
                     "ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",

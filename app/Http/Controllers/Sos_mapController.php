@@ -925,7 +925,7 @@ class Sos_mapController extends Controller
             // ไปหน้า map เจ้าหน้าที่
             return redirect("sos_map/tag_sos/map_officer" . "/" . $id_sos_map . "/" . $groupId) ;
         }else{
-            return redirect("sos_map/report_repair" . "/" . $id_sos_map . "/" . $groupId) ;
+            return redirect("sos_map/report_repair" . "/" . $id_sos_map) ;
         }
     }
 
@@ -1040,11 +1040,13 @@ class Sos_mapController extends Controller
 
         $data = [];
 
-        $data_sos_map = Sos_map::where('id' , $requestData['sos_map_id'])->select('helper_id','status')->first();
+        $data_sos_map = Sos_map::where('id' , $requestData['sos_map_id'])->select('helper_id','status','remark_status','sos_1669_id')->first();
         $data_helper = User::where('id' , $data_sos_map->helper_id)->select('lat' , 'lng')->first();
 
         $data['data_helper'] = $data_helper;
         $data['status'] =  $data_sos_map->status ;
+        $data['remark_status'] =  $data_sos_map->remark_status ;
+        $data['sos_1669_id'] =  $data_sos_map->sos_1669_id ;
 
         return $data ;
     }
@@ -1054,7 +1056,9 @@ class Sos_mapController extends Controller
         $data_sos_map = Sos_map::where('id' , $id_sos_map)->first();
 
         $data_helper = User::where('id', $data_sos_map->helper_id )->first();
-        $data_sos_map->photo_officer = $data_helper->photo ;
+        if(!empty($data_helper)){
+            $data_sos_map->photo_officer = $data_helper->photo ;
+        }
 
         return $data_sos_map ;
     }
@@ -1089,7 +1093,79 @@ class Sos_mapController extends Controller
 
     }
 
-    function report_repair($id_sos_map , $groupId){
+    function search_phone_niems($cityName){
+
+        $data = [];
+
+        $phone_niems = DB::table('phone_niems')->where('province', 'LIKE', "%$cityName%")->get();
+        $province_ths = DB::table('province_ths')
+            ->where('province_name',  $cityName)
+            ->where('sos_1669_show',  "show")
+            ->first();
+
+        if(!empty($phone_niems)){
+            $data['phone_niems'] = $phone_niems;
+        }else{
+           $data['phone_niems'] = "no";
+        }
+
+        if(!empty($province_ths)){
+            $data['1669'] = $cityName;
+        }else{
+            $data['1669'] = "no";
+        }
+
+        return $data ;
+    }
+
+    function update_sos_1669_id($sos_1669_id , $sos_map_id ,$district_P,$name_admin){
+
+        DB::table('sos_maps')
+            ->where([ 
+                    ['id', $sos_map_id ],
+                ])
+            ->update([
+                'sos_1669_id' => $sos_1669_id,
+                'status' => "เสร็จสิ้น",
+                'remark_status' => "อัพเดทสถานะเสร็จสิ้นโดย : " . $name_admin . " หมายเหตุ : ส่งต่อ สพฉ. " . $district_P,
+            ]);
+
+        return "ok" ;
+
+    }
+
+    function update_helper_id($admin_id , $sos_map_id){
+
+        $data_user = User::where('id' , $admin_id)->first();
+
+        DB::table('sos_maps')
+            ->where([ 
+                    ['id', $sos_map_id ],
+                ])
+            ->update([
+                'helper' => $data_user->name,
+                'helper_id' => $data_user->id,
+                'organization_helper' => $data_user->organization,
+            ]);
+
+        return $data_user->id ;
+    }
+
+    function report_repair($id_sos_map){
+
+        $data_sos_map = Sos_map::where('id' , $id_sos_map)->first();
+        $data_partner = Partner::where('name' , $data_sos_map->area)
+            ->where('name_area' , $data_sos_map->name_area)
+            ->first();
+
+        $data_groupline = Group_line::where('id' , $data_partner->group_line_id)->first();
+        $groupId = $data_groupline->groupId ;
+
+        return view('sos_map.sos_report_repair', compact('data_sos_map','groupId'));
+
+    }
+
+    function report_repair_for_user($id_sos_map){
 
         echo "<h1>report_repair</h1>";
 
