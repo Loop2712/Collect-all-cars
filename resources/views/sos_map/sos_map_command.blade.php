@@ -793,7 +793,7 @@
                     check_status = result['status'] ;
 
                     if(check_status != "เสร็จสิ้น" && check_status != "รับแจ้งเหตุ"){
-                    	get_location_user_and_officer();
+                    	loop_check_marker();
                     	Status_change_notification(check_status)
                     	Stop_loop_status_sos();
                     }else if(check_status == "เสร็จสิ้น"){
