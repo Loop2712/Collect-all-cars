@@ -15,22 +15,61 @@
         flex: 0 0 calc(33.333% - 10px); /* 33.333% is 1/3 of the row width */
     }
 
-    .toggleCameraButton{
-        border-radius: 50%;
-        width: 60px !important;
-        height: 60px !important;
-        border: 1px solid rgb(4, 80, 20);
-        background-color: rgba(68, 230, 116, 0.6);
-        color: #ffffff;
+    @media screen and (min-width: 1024px)
+    {
+        .toggleCameraButton{
+            border-radius: 50%;
+            width: 60px !important;
+            height: 60px !important;
+            border: 1px solid rgb(4, 80, 20);
+            background-color: rgba(68, 230, 116, 0.6);
+            color: #ffffff;
+        }
+        .toggleMicrophoneButton{
+            border-radius: 50%;
+            width: 60px !important;
+            height: 60px !important;
+            border: 1px solid rgb(4, 80, 20);
+            background-color: rgba(68, 230, 116, 0.6);
+            color: #ffffff;
+        }
+
+        .toggleCameraButton i{
+           font-size: 25px;
+        }
+        .toggleMicrophoneButton i{
+            font-size: 25px;
+        }
     }
-    .toggleMicrophoneButton{
-        border-radius: 50%;
-        width: 60px !important;
-        height: 60px !important;
-        border: 1px solid rgb(4, 80, 20);
-        background-color: rgba(68, 230, 116, 0.6);
-        color: #ffffff;
+
+    @media screen and (max-width: 1024px)
+    {
+        .toggleCameraButton{
+            border-radius: 50%;
+            width: 120px !important;
+            height: 120px !important;
+            border: 1px solid rgb(4, 80, 20);
+            background-color: rgba(68, 230, 116, 0.6);
+            color: #ffffff;
+        }
+        .toggleMicrophoneButton{
+            border-radius: 50%;
+            width: 120px !important;
+            height: 120px !important;
+            border: 1px solid rgb(4, 80, 20);
+            background-color: rgba(68, 230, 116, 0.6);
+            color: #ffffff;
+        }
+
+        .toggleCameraButton i{
+           font-size: 50px;
+        }
+        .toggleMicrophoneButton i{
+            font-size: 50px;
+        }
+
     }
+
 
     .toggleCameraButton.active,
     .toggleMicrophoneButton.active {
@@ -147,7 +186,7 @@
     <div class="main-content-video-call">
         <div class="row">
             <div class="col-12 col-sm-12 col-lg-8 p-2">
-                @if ($type_device == "pc")
+                @if ($type_device == "pc_video_call")
                     <div class="div-video">
                         <video id="videoDiv" class="video_preview" autoplay></video>
                         <div id="soundTest" class="soundTest">
@@ -173,7 +212,7 @@
 
 
                 <div class=" d-nne">
-                    @if ($type_device == "pc")
+                    @if ($type_device == "pc_video_call")
                         <div class="selectDivice mt-2 p-2 row">
                             <select id="microphoneList"></select>
                             <select id="cameraList"></select>
@@ -197,7 +236,7 @@
             </div>
             <div class="col-12 col-sm-12 col-lg-4  d-flex justify-content-center p-3 align-items-center">
                 <div id="before_join_message" class="text-center w-100">
-                    @if ($type_device == "pc")
+                    @if ($type_device == "pc_video_call")
                         <h4 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h4>
                         <h5 class="w-100">{{Auth::user()->name}}</h5>
                         @php
@@ -232,7 +271,7 @@
     </div>
 </div>
 
-<script src="{{ asset('js/for_video_call_4/before_video_call_4.js') }}"></script>
+{{-- <script src="{{ asset('js/for_video_call_4/before_video_call_4.js') }}"></script> --}}
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <!-- <script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script> -->
@@ -264,10 +303,32 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", async () => {
+        // เรียกใช้ฟังก์ชันเมื่อหน้าเว็บโหลด
+
+        function retrieveAgoraKeys() {
+            let agoraAppId = '';
+            let agoraAppCertificate = '';
+            // ตรวจสอบว่าคีย์และรหัสลับมีค่าความยาวมากกว่า 0 หรือไม่
+            while (agoraAppId.length === 0 || agoraAppCertificate.length === 0) {
+                agoraAppId = '{{ env("AGORA_APP_ID") }}';
+                agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+            }
+
+            return { agoraAppId, agoraAppCertificate };
+        }
+
+        // สร้างฟังก์ชันสำหรับบันทึกคีย์และรหัสลับลงใน sessionStorage
+        function saveAgoraKeys() {
+            const keys = retrieveAgoraKeys();
+
+            sessionStorage.setItem('agora_app_id', keys.agoraAppId);
+            sessionStorage.setItem('agora_app_certificate', keys.agoraAppCertificate);
+        }
+
+        saveAgoraKeys();
 
         const microphoneList = document.getElementById("microphoneList");
         const cameraList = document.getElementById("cameraList");
-
 
         startMicrophone();
 
@@ -501,7 +562,7 @@
                 .then(function(videoStream) {
                     // ได้รับสตรีมวิดีโอสำเร็จ
                     document.querySelector('.buttonDiv').classList.remove('d-none');
-                    document.querySelector('#toggleCameraButton').innerHTML = '<i style="font-size: 25px;" class="fa-regular fa-camera"></i>';
+                    document.querySelector('#toggleCameraButton').innerHTML = '<i class="fa-regular fa-camera"></i>';
                     var videoElement = document.getElementById('videoDiv');
                     videoElement.srcObject = videoStream;
 
@@ -533,7 +594,7 @@
                 navigator.mediaDevices.getUserMedia({ audio: true })
                 .then(function(newAudioStream) {
                     audioStream = newAudioStream;
-                    document.querySelector('#toggleMicrophoneButton').innerHTML = '<i style="font-size: 25px;" class="fa-regular fa-microphone"></i>'
+                    document.querySelector('#toggleMicrophoneButton').innerHTML = '<i class="fa-regular fa-microphone"></i>'
 
                 })
                 .catch(function(error) {
@@ -589,7 +650,7 @@
 
                 videoTracks[0].stop();
                 document.querySelector('#toggleCameraButton').classList.add('active');
-                document.querySelector('#toggleCameraButton').innerHTML = '<i style="font-size: 25px;" class="fa-regular fa-camera-slash"></i>'
+                document.querySelector('#toggleCameraButton').innerHTML = '<i class="fa-regular fa-camera-slash"></i>'
                 // console.log('ปิดกล้อง');
             })
 
@@ -610,7 +671,7 @@
                 videoElement.srcObject = videoStream;
 
                 document.querySelector('#toggleCameraButton').classList.remove('active');
-                document.querySelector('#toggleCameraButton').innerHTML = '<i style="font-size: 25px;" class="fa-regular fa-camera"></i>'
+                document.querySelector('#toggleCameraButton').innerHTML = '<i class="fa-regular fa-camera"></i>'
                 // console.log('เปิดกล้อง');
 
                 // console.log(videoStream);
@@ -656,7 +717,7 @@
                 }
 
                 document.querySelector('#toggleMicrophoneButton').classList.add('active');
-                document.querySelector('#toggleMicrophoneButton').innerHTML = '<i style="font-size: 25px;" class="fa-regular fa-microphone-slash"></i>'
+                document.querySelector('#toggleMicrophoneButton').innerHTML = '<i class="fa-regular fa-microphone-slash"></i>'
                 // console.log('ปิดไมค์');
 
             })
@@ -680,7 +741,7 @@
             .then(function(newAudioStream) {
                 audioTracks = newAudioStream;
                 document.querySelector('#toggleMicrophoneButton').classList.remove('active');
-                document.querySelector('#toggleMicrophoneButton').innerHTML = '<i style="font-size: 25px;" class="fa-regular fa-microphone"></i>'
+                document.querySelector('#toggleMicrophoneButton').innerHTML = '<i class="fa-regular fa-microphone"></i>'
                 console.log('เปิดสตรีมไมโครโฟน');
                 console.log(audioTracks);
 

@@ -149,25 +149,19 @@ class Agora_4_Controller extends Controller
 
     public function token(Request $request)
     {
-        // $appID = $request->appId;
-        // $appCertificate = $request->appCertificate;
 
-        // $appID = env('AGORA_APP_ID_MITHCARE');
-        // $appCertificate = env('AGORA_APP_CERTIFICATE_MITHCARE');
-
-        $appID = "acb41870f41c48d4a42b7b0ef1532351";
-        $appCertificate = "41aa313ac49f4e3d81f1a3056e122ca0";
-
-        // if(strlen($appID) < 32){
-        //     $appID = env('AGORA_APP_ID');
-        //     $appCertificate = env('AGORA_APP_CERTIFICATE');
-        // }
+        if (!empty($request->appId) && !empty($request->appCertificate)) {
+            $appID = $request->appId;
+            $appCertificate = $request->appCertificate;
+        } else {
+            $appID = env('AGORA_APP_ID_MITHCARE');
+            $appCertificate = env('AGORA_APP_CERTIFICATE_MITHCARE');
+        }
 
         $data_user = User::where('id' ,$request->user_id)->first();
 
         $user = $data_user->id;
         $channelName = 'sos_4';
-        // $channelName = 'sos_1669_id';
 
         $role = RtcTokenBuilder::RoleAttendee;
         $expireTimeInSeconds = 600;

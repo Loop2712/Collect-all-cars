@@ -240,7 +240,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: calc(100% - 10%);
+        max-width: calc(100% - 5%);
         /* width: 90%; */
 
 	}
@@ -883,15 +883,17 @@
     var user_id = '{{ Auth::user()->id }}';
     var user_data = @json(Auth::user());
 
-    var appId = '{{ env("AGORA_APP_ID") }}';
-    var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
-
-    // var appId = localStorage.getItem('appId');
-    // var appCertificate = localStorage.getItem('appCertificate');
+    const appId = sessionStorage.getItem('agora_app_id');
+    const appCertificate = sessionStorage.getItem('agora_app_certificate');
 
     var sos_1669_id = '{{ $sos_id }}';
 
     var remote_in_room = [];
+
+    function decodeString(encodedStr) {
+        return encodedStr.replace(/#/g, '');
+    }
+
 
     options =
     {

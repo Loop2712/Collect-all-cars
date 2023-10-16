@@ -750,11 +750,17 @@
     var user_id = '{{ Auth::user()->id }}';
     var user_data = @json(Auth::user());
 
-    var appId = '{{ env("AGORA_APP_ID") }}';
-    var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+    // var appId = '{{ env("AGORA_APP_ID") }}';
+    // var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+
+    const appId = sessionStorage.getItem('agora_app_id');
+    const appCertificate = sessionStorage.getItem('agora_app_certificate');
+
     var sos_1669_id = '{{ $sos_id }}';
 
     var remote_in_room = [];
+
+
 
     options =
     {
@@ -1775,6 +1781,8 @@
             // สร้าง local video track ใหม่โดยใช้กล้องที่คุณต้องการ
             AgoraRTC.createCameraVideoTrack({ cameraId: selectedVideoDeviceId })
             .then(newVideoTrack => {
+                //เปลี่ยนสี bg
+                changeBgColor(bg_local);
 
                 // console.log('------------ newVideoTrack ------------');
                 // console.log(newVideoTrack);
@@ -1818,9 +1826,6 @@
                 else {
                     // alert('ปิด');
                     channelParameters.localVideoTrack.setEnabled(false);
-
-                    changeBgColor(bg_local);
-
                 }
 
 
