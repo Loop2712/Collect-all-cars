@@ -409,6 +409,8 @@
 	const image_sos = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}";
 	const image_operating_unit_general = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/7.png') }}";
 
+	// -------------------------------------------------------------------
+
 	document.addEventListener('DOMContentLoaded', (event) => {
 		// console.log("START");
 		open_map_command();
@@ -447,31 +449,118 @@
 
 		// ---------------
 		
-		if(check_status != "เสร็จสิ้น"){
-			if(check_status != "รับแจ้งเหตุ"){
-				// หมุดเจ้าหน้าที่
-				if (officer_marker) {
-					officer_marker.setMap(null);
-				}
-				officer_marker = new google.maps.Marker({
-					position: {
-						lat: parseFloat(officer_lat),
-						lng: parseFloat(officer_lng)
-					},
-					map: map_command,
-					icon: image_operating_unit_general,
-				});
+		onload_check_status_sos_map();
 
-				// สร้างเส้นทาง
-				get_Directions_API(officer_marker, sos_marker);
+		// if(check_status != "เสร็จสิ้น"){
+		// 	if(check_status != "รับแจ้งเหตุ"){
+		// 		// หมุดเจ้าหน้าที่
+		// 		if (officer_marker) {
+		// 			officer_marker.setMap(null);
+		// 		}
+		// 		officer_marker = new google.maps.Marker({
+		// 			position: {
+		// 				lat: parseFloat(officer_lat),
+		// 				lng: parseFloat(officer_lng)
+		// 			},
+		// 			map: map_command,
+		// 			icon: image_operating_unit_general,
+		// 		});
 
-				loop_check_marker();
-			}else{
-            	loop_status_sos();
-			}
-		}
+		// 		// สร้างเส้นทาง
+		// 		get_Directions_API(officer_marker, sos_marker);
+
+		// 		loop_check_marker();
+		// 	}else{
+        //     	loop_status_sos();
+		// 	}
+		// }
 		
 	}
+
+	function onload_check_status_sos_map() {
+
+        onload_check_status_sos_map = setInterval(function() {
+
+            console.log('loop_status_sos');
+
+            fetch("{{ url('/') }}/api/sos_map/loop_check_status_sos_map" + "/" + "{{ $data_sos_map->id }}")
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                    check_status = result['status'] ;
+
+                    if(check_status != "เสร็จสิ้น"){
+
+                    	if(check_status == "กำลังไปช่วยเหลือ"){
+							// หมุดเจ้าหน้าที่
+							if (officer_marker) {
+								officer_marker.setMap(null);
+							}
+							officer_marker = new google.maps.Marker({
+								position: {
+									lat: parseFloat(officer_lat),
+									lng: parseFloat(officer_lng)
+								},
+								map: map_command,
+								icon: image_operating_unit_general,
+							});
+
+                    		get_location_user_and_officer();
+
+						}else{
+							reset_map();
+						}
+
+                    }else if(check_status == "เสร็จสิ้น"){
+
+                    	reset_map();
+
+						let html_show_status = `
+				    		<button type="button" class="btn btn-success text-white py-2 px-5 float-end">
+								<i class="fa-solid fa-shield-check mr-1"></i>เสร็จสิ้น
+							</button>
+				    	`;
+				    	document.querySelector('#div_show_status').innerHTML = html_show_status ;
+
+                    	Stop_onload_check_status_sos_map();
+                    }
+            });
+
+        }, 15000);
+
+    }
+
+    function Stop_onload_check_status_sos_map() {
+           console.log('Stop_onload_check_status_sos_map');
+        clearInterval(onload_check_status_sos_map);
+    }
+
+    function reset_map(){
+    	if (directionsDisplay) {
+			directionsDisplay.setMap(null);
+		}
+
+        // หมุดเจ้าหน้าที่
+		if (officer_marker) {
+			officer_marker.setMap(null);
+		}
+
+		// หมุดที่เกิดเหตุ 
+		if (sos_marker) {
+			sos_marker.setMap(null);
+		}
+		sos_marker = new google.maps.Marker({
+			position: {
+				lat: parseFloat("{{ $data_sos_map->lat }}"),
+				lng: parseFloat("{{ $data_sos_map->lng }}")
+			},
+			map: map_command,
+			icon: image_sos,
+		});
+
+		map_command.setCenter(sos_marker.getPosition());
+    }
 
 	var all_address ;
 	function geocodeLatLng(geocoder, map, infowindow) {
@@ -599,37 +688,6 @@
 
     }
 
-	let reface_loop_check_marker ;
-
-	function loop_check_marker(){
-
-		reface_loop_check_marker = setInterval(function() {
-
-			// console.log(check_status);
-
-			if(check_status != "เสร็จสิ้น"){
-				get_location_user_and_officer();
-			}else{
-				let html_show_status = `
-		    		<button type="button" class="btn btn-success text-white py-2 px-5 float-end">
-						<i class="fa-solid fa-shield-check mr-1"></i>เสร็จสิ้น
-					</button>
-		    	`;
-		    	document.querySelector('#div_show_status').innerHTML = html_show_status ;
-				Stop_reface_loop_check_marker();
-			}
-
-        }, 15000);
-
-
-	}
-
-	function Stop_reface_loop_check_marker() {
-        clearInterval(reface_loop_check_marker);
-		// console.log("stop success");
-        return "stop success" ;
-    }
-
     function get_location_user_and_officer(){
 
 		// console.log("update_location");
@@ -661,31 +719,8 @@
             	create_marker(data['user_lat'] , data['user_lng'] , data['officer_lat'] , data['officer_lng'])
             }else{
             	check_status = "เสร็จสิ้น";
-        		Stop_reface_loop_check_marker();
-
-        		if (directionsDisplay) {
-					directionsDisplay.setMap(null);
-				}
-
-		        // หมุดเจ้าหน้าที่
-				if (officer_marker) {
-					officer_marker.setMap(null);
-				}
-
-				// หมุดที่เกิดเหตุ 
-				if (sos_marker) {
-					sos_marker.setMap(null);
-				}
-				sos_marker = new google.maps.Marker({
-					position: {
-						lat: parseFloat("{{ $data_sos_map->lat }}"),
-						lng: parseFloat("{{ $data_sos_map->lng }}")
-					},
-					map: map_command,
-					icon: image_sos,
-				});
-
-				map_command.setCenter(sos_marker.getPosition());
+        		
+        		reset_map();
             }
 
         }).catch(function(error){
@@ -779,62 +814,7 @@
 
 	}
 
-	function loop_status_sos() {
-
-        check_status_sos = setInterval(function() {
-
-            console.log('loop_status_sos');
-
-            fetch("{{ url('/') }}/api/sos_map/loop_check_status_sos_map" + "/" + "{{ $data_sos_map->id }}")
-                .then(response => response.json())
-                .then(result => {
-                    // console.log(result);
-
-                    check_status = result['status'] ;
-
-                    if(check_status != "เสร็จสิ้น" && check_status != "รับแจ้งเหตุ"){
-                    	loop_check_marker();
-                    	Status_change_notification(check_status)
-                    	Stop_loop_status_sos();
-                    }else if(check_status == "เสร็จสิ้น"){
-
-                    	if (directionsDisplay) {
-							directionsDisplay.setMap(null);
-						}
-
-				        // หมุดเจ้าหน้าที่
-						if (officer_marker) {
-							officer_marker.setMap(null);
-						}
-
-						// หมุดที่เกิดเหตุ 
-						if (sos_marker) {
-							sos_marker.setMap(null);
-						}
-						sos_marker = new google.maps.Marker({
-							position: {
-								lat: parseFloat("{{ $data_sos_map->lat }}"),
-								lng: parseFloat("{{ $data_sos_map->lng }}")
-							},
-							map: map_command,
-							icon: image_sos,
-						});
-
-						map_command.setCenter(sos_marker.getPosition());
-
-                    	Stop_loop_status_sos();
-                    }
-            });
-
-        }, 15000);
-
-    }
-
-    function Stop_loop_status_sos() {
-        clearInterval(check_status_sos);
-
-    }
-
+	
 </script>
 
 <!-- UPDATE STATUS -->
@@ -881,31 +861,9 @@
 				check_status = "เสร็จสิ้น";
 
 				help_complete();
-        		Stop_reface_loop_check_marker();
+        		Stop_onload_check_status_sos_map();
 
-        		if (directionsDisplay) {
-					directionsDisplay.setMap(null);
-				}
-
-		        // หมุดเจ้าหน้าที่
-				if (officer_marker) {
-					officer_marker.setMap(null);
-				}
-
-				// หมุดที่เกิดเหตุ 
-				if (sos_marker) {
-					sos_marker.setMap(null);
-				}
-				sos_marker = new google.maps.Marker({
-					position: {
-						lat: parseFloat("{{ $data_sos_map->lat }}"),
-						lng: parseFloat("{{ $data_sos_map->lng }}")
-					},
-					map: map_command,
-					icon: image_sos,
-				});
-
-				map_command.setCenter(sos_marker.getPosition());
+        		reset_map();
 
 				document.querySelector('#alert_text').innerHTML = 'อัพเดทสถานะ "เสร็จสิ้น" เรียบร้อยแล้ว';
 	            document.querySelector('#alert_copy').classList.add('up_down');
@@ -927,25 +885,42 @@
 
 		let data_arr = [] ;
 
-        data_arr = {
-	        "sos_map_id" : "{{ $data_sos_map->id }}",
-	        "officer_id" : "{{ $data_sos_map->helper_id }}",
-	        "groupId" : "{{ $groupId }}",
-	    }; 
+		let officer_id ;
 
-		fetch("{{ url('/') }}/api/sos_map/help_complete", {
-            method: 'post',
-            body: JSON.stringify(data_arr),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-	        }).then(function (response){
-	            return response.text();
-	        }).then(function(data){
-	            // console.log(data);
-	    	}).catch(function(error){
-	        // console.error(error);
-	    });
+		@if(!empty($data_sos_map->helper_id))
+			officer_id = "{{ $data_sos_map->helper_id }}" ;
+		@else
+			fetch("{{ url('/') }}/api/sos_map/update_helper_id" + "/" + "{{ Auth::user()->id }}" + "/" + "{{ $data_sos_map->id }}")
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                    officer_id = result ;
+            	});
+		@endif
+
+		setTimeout(function() {
+                    
+	        data_arr = {
+		        "sos_map_id" : "{{ $data_sos_map->id }}",
+		        "officer_id" : officer_id,
+		        "groupId" : "{{ $groupId }}",
+		    }; 
+
+			fetch("{{ url('/') }}/api/sos_map/help_complete", {
+	            method: 'post',
+	            body: JSON.stringify(data_arr),
+	            headers: {
+	                'Content-Type': 'application/json'
+	            }
+		        }).then(function (response){
+		            return response.text();
+		        }).then(function(data){
+		            // console.log(data);
+		    	}).catch(function(error){
+		        // console.error(error);
+		    });
+		    	
+		}, 1500);
 
 	}
 
@@ -1030,31 +1005,9 @@
 							check_status = "เสร็จสิ้น";
 
 							help_complete();
-			        		Stop_reface_loop_check_marker();
+			        		Stop_onload_check_status_sos_map();
 
-			        		if (directionsDisplay) {
-								directionsDisplay.setMap(null);
-							}
-
-					        // หมุดเจ้าหน้าที่
-							if (officer_marker) {
-								officer_marker.setMap(null);
-							}
-
-							// หมุดที่เกิดเหตุ 
-							if (sos_marker) {
-								sos_marker.setMap(null);
-							}
-							sos_marker = new google.maps.Marker({
-								position: {
-									lat: parseFloat("{{ $data_sos_map->lat }}"),
-									lng: parseFloat("{{ $data_sos_map->lng }}")
-								},
-								map: map_command,
-								icon: image_sos,
-							});
-
-							map_command.setCenter(sos_marker.getPosition());
+			        		reset_map();
 
 			                document.querySelector('#alert_text').innerHTML = "ส่งต่อ 1669 เรียบร้อยแล้ว";
 				            document.querySelector('#alert_copy').classList.add('up_down');

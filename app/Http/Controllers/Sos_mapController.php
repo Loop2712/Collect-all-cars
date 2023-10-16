@@ -1134,6 +1134,23 @@ class Sos_mapController extends Controller
 
     }
 
+    function update_helper_id($admin_id , $sos_map_id){
+
+        $data_user = User::where('id' , $admin_id)->first();
+
+        DB::table('sos_maps')
+            ->where([ 
+                    ['id', $sos_map_id ],
+                ])
+            ->update([
+                'helper' => $data_user->name,
+                'helper_id' => $data_user->id,
+                'organization_helper' => $data_user->organization,
+            ]);
+
+        return $data_user->id ;
+    }
+
     function report_repair($id_sos_map){
 
         $data_sos_map = Sos_map::where('id' , $id_sos_map)->first();
