@@ -450,30 +450,6 @@
 		// ---------------
 		
 		onload_check_status_sos_map();
-
-		// if(check_status != "เสร็จสิ้น"){
-		// 	if(check_status != "รับแจ้งเหตุ"){
-		// 		// หมุดเจ้าหน้าที่
-		// 		if (officer_marker) {
-		// 			officer_marker.setMap(null);
-		// 		}
-		// 		officer_marker = new google.maps.Marker({
-		// 			position: {
-		// 				lat: parseFloat(officer_lat),
-		// 				lng: parseFloat(officer_lng)
-		// 			},
-		// 			map: map_command,
-		// 			icon: image_operating_unit_general,
-		// 		});
-
-		// 		// สร้างเส้นทาง
-		// 		get_Directions_API(officer_marker, sos_marker);
-
-		// 		loop_check_marker();
-		// 	}else{
-        //     	loop_status_sos();
-		// 	}
-		// }
 		
 	}
 
@@ -919,7 +895,7 @@
 		    	}).catch(function(error){
 		        // console.error(error);
 		    });
-		    	
+
 		}, 1500);
 
 	}
