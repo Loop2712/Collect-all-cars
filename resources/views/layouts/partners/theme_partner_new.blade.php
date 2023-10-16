@@ -2342,18 +2342,16 @@
 	  	<div class="modal-dialog modal-dialog-centered modal-md" role="document">
 	    	<div class="modal-content">
 		      	<div class="modal-header " style="background-color:#D85261;">
-		        	<h4 class="modal-title text-white text-center"  id="exampleModalLabel"> <b>แจ้งเตือน<br>การขอความช่วยเหลือ</b> </h4>
-					<img width="45%" src="{{ asset('/img/stickerline/PNG/21.png') }}">
+		        	<h4 class="modal-title text-white text-center"  id="exampleModalLabel">
+                        <b>แจ้งเตือน<br>การขอความช่วยเหลือ</b>
+                    </h4>
+					<img id="img_sos_map" width="180px" height="180px" style="border-radius: 10%; object-fit:cover;" src="{{ asset('/img/stickerline/PNG/21.png') }}">
 		      	</div>
       			<div class="modal-body text-center" style="padding:0px;">
 			  		<br>
 			  		<div class="row">
 				  		<div class="col-12">
-		                    <h2 class="text-info"><b id="modal_notify_name">คุณ : </b>
-								<button type="button" class="btn btn-primary text-center d-none" id="btn_modal_notify_img" data-toggle="modal" data-target="#asd" style="border-radius: 50px;">
-									<i class="fad fa-images"></i>
-								</button>
-							</h2>
+		                    <h2 class="text-info"><b id="modal_notify_name">คุณ : </b></h2>
 						</div>
 						<div class="card-body">
 							<ul class="list-group list-group-flush">
@@ -2373,13 +2371,13 @@
 						</div>
 	      			</div>
 			     	<div class="modal-footer">
-				     	<button id="btn_go_to_help" type="button" style="border-radius: 25px;" class="btn notify_alert_gotohelp" >
+				     	<!-- <button id="btn_go_to_help" type="button" style="border-radius: 25px;" class="btn notify_alert_gotohelp" >
 				     		<i class="fa-solid fa-truck-medical"></i> กำลังไปช่วยเหลือ
-				     	</button>
+				     	</button> -->
 
-				        <button type="button" style="border-radius: 25px; background-color:#408AF4" class="btn text-white" onclick="document.querySelector('#div_menu_help_1').click();">
-				        	<i class="fal fa-eye"></i>ดูข้อมูล
-				        </button>
+				        <a id="btn_view_data" type="button" style="border-radius: 25px; background-color:#408AF4" class="btn text-white">
+				        	<i class="fal fa-eye"></i> ดำเนินการ
+				        </a>
 				        <a id="tag_a_link_ggmap" target="bank" class="btn text-white" style="border-radius: 25px; background-color:#26A664">
 				        	<i class="far fa-map-marker-alt"></i>ดูแผนที่
 				        </a>
@@ -2871,30 +2869,10 @@
 								document.querySelector('#modal_notify_name_area').innerHTML = result[0]['name_area'];
 
 								if (result[0]['photo']) {
-									document.querySelector('#btn_modal_notify_img').classList.remove('d-none');
-
-									let tag_a_modal_notify_img = document.querySelector('#tag_a_modal_notify_img');
-									let tag_a_notify_img_href = document.createAttribute("href");
-									tag_a_notify_img_href.value = "{{ url('storage' )}}"+"/"+ result[0]['photo'];
-									tag_a_modal_notify_img.setAttributeNode(tag_a_notify_img_href);
-
-									let modal_notify_img = document.querySelector('#modal_notify_img');
-
-				                	let modal_notify_img_src = document.createAttribute("src");
-									modal_notify_img_src.value = "{{ url('storage' )}}"+"/"+ result[0]['photo'];
-
-									modal_notify_img.setAttributeNode(modal_notify_img_src);
-
-								}else {
-									document.querySelector('#btn_modal_notify_img').classList.add('d-none');
+                                    let img_sos_map = document.querySelector('#img_sos_map');
+                                    let url_img = "{{ url('storage' )}}"+"/"+ result[0]['photo'];
+                                        img_sos_map.setAttribute('src' , url_img);
 								}
-
-								let btn_go_to_help = document.querySelector('#btn_go_to_help');
-									let btn_go_to_help_onclick = document.createAttribute("onclick");
-				                  		btn_go_to_help_onclick.value = "go_to_help(" + result[0]['id'] + "," +  {{ Auth::user()->id }} + ")";
-
-								btn_go_to_help.setAttributeNode(btn_go_to_help_onclick);
-
 
 								let tag_a_link_ggmap = document.querySelector('#tag_a_link_ggmap');
 
@@ -2903,11 +2881,10 @@
 
 				                  	tag_a_link_ggmap.setAttributeNode(tag_a_class);
 
-								document.querySelector('#btn_modal_notify').click();
+                                let url_command = "{{ url('/') }}" + "/sos_map/command" + "/" + result[0]['id'];
+                                document.querySelector('#btn_view_data').setAttribute('href', url_command)
 
-								if (result[0]['photo']) {
-									document.querySelector('#btn_modal_notify_img').click();
-								}
+								document.querySelector('#btn_modal_notify').click();
 
 								audio.play();
 			                }
