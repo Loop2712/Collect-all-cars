@@ -741,7 +741,7 @@
 
 	// <!-- --------------- ระยะทาง(เสียเงิน) --------------- -->
 	function get_Directions_API(markerA, markerB) {
-		// console.log( "get_Directions_API" );
+		console.log( "get_Directions_API" );
 
 		// document.querySelector('#show_travel_guide').classList.remove('d-none');
 
