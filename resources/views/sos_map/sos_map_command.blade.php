@@ -449,23 +449,25 @@
 		
 		if(check_status != "เสร็จสิ้น"){
 			if(check_status != "รับแจ้งเหตุ"){
-			// หมุดเจ้าหน้าที่
-			if (officer_marker) {
-				officer_marker.setMap(null);
-			}
-			officer_marker = new google.maps.Marker({
-				position: {
-					lat: parseFloat(officer_lat),
-					lng: parseFloat(officer_lng)
-				},
-				map: map_command,
-				icon: image_operating_unit_general,
-			});
+				// หมุดเจ้าหน้าที่
+				if (officer_marker) {
+					officer_marker.setMap(null);
+				}
+				officer_marker = new google.maps.Marker({
+					position: {
+						lat: parseFloat(officer_lat),
+						lng: parseFloat(officer_lng)
+					},
+					map: map_command,
+					icon: image_operating_unit_general,
+				});
 
-			// สร้างเส้นทาง
-			get_Directions_API(officer_marker, sos_marker);
+				// สร้างเส้นทาง
+				get_Directions_API(officer_marker, sos_marker);
 
-			loop_check_marker();
+				loop_check_marker();
+			}else{
+            	loop_status_sos();
 			}
 		}
 		
@@ -776,6 +778,60 @@
 		});
 
 	}
+
+	function loop_status_sos() {
+
+        check_status_sos = setInterval(function() {
+
+            console.log('loop_status_sos');
+
+            fetch("{{ url('/') }}/api/sos_map/loop_check_status_sos_map" + "/" + "{{ $data_sos_map->id }}")
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+
+                    check_status = result['status'] ;
+
+                    if(check_status != "เสร็จสิ้น" && check_status != "รับแจ้งเหตุ"){
+                    	get_location_user_and_officer();
+                    }else if(check_status == "เสร็จสิ้น"){
+
+                    	if (directionsDisplay) {
+							directionsDisplay.setMap(null);
+						}
+
+				        // หมุดเจ้าหน้าที่
+						if (officer_marker) {
+							officer_marker.setMap(null);
+						}
+
+						// หมุดที่เกิดเหตุ 
+						if (sos_marker) {
+							sos_marker.setMap(null);
+						}
+						sos_marker = new google.maps.Marker({
+							position: {
+								lat: parseFloat("{{ $data_sos_map->lat }}"),
+								lng: parseFloat("{{ $data_sos_map->lng }}")
+							},
+							map: map_command,
+							icon: image_sos,
+						});
+
+						map_command.setCenter(sos_marker.getPosition());
+
+                    	Stop_loop_status_sos();
+                    }
+            });
+
+        }, 15000);
+
+    }
+
+    function Stop_loop_status_sos() {
+        clearInterval(check_status_sos);
+
+    }
 
 </script>
 
