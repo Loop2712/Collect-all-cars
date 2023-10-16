@@ -463,7 +463,7 @@
                 .then(response => response.json())
                 .then(result => {
                     // console.log(result);
-                    
+
                 	if(result['status'] != check_status){
 		            	// แจ้งเตือนเปลี่ยนสถานะ
 		            	Status_change_notification(result['status']);
@@ -540,6 +540,7 @@
 		});
 
 		map_command.setCenter(sos_marker.getPosition());
+		map_command.setZoom(15);
     }
 
 	var all_address ;
