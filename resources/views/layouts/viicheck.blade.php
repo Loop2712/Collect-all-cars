@@ -1228,10 +1228,10 @@
         <br class="d-block d-md-none"><br class="d-block d-md-none"><br class="d-block d-md-none">
         <div class="col-md-1 col-lg-1 col-12">
           <div class="row">
-            <div class="col-4">
-                @include ('counter')
-            </div>
-            <div class="col-8" style="font-size: 12px;">
+            <!-- <div class="col-4"> -->
+                <!-- include ('counter') เติม @ ด้วย -->
+            <!-- </div> -->
+            <div class="col-12" style="font-size: 12px;">
               <div style="margin-left: -70px;margin-top: 12px;" class="text-center d-block d-md-none">
                 <span class="text-dark">WWW.ViiCHECK.com</span>
                 <br>
