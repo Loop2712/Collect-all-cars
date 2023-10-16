@@ -1267,6 +1267,10 @@ class LineApiController extends Controller
             $count_time_help = $this->count_range_time($time_created , $time_go_to_help);
             $count_success = $this->count_range_time($time_go_to_help , $time_help_complete);
             $count_complete = $this->count_range_time($time_created , $time_help_complete);
+        }else{
+            $count_time_help = "-";
+            $count_success = "-";
+            $count_complete = "-";
         }
 
 
@@ -1712,8 +1716,12 @@ class LineApiController extends Controller
             $count_time_help = $this->count_range_time($time_created , $time_go_to_help);
             $count_success = $this->count_range_time($time_go_to_help , $time_help_complete);
             $count_complete = $this->count_range_time($time_created , $time_help_complete);
+        }else{
+            $count_time_help = "-";
+            $count_success = "-";
+            $count_complete = "-";
         }
-        
+
         $data_topic = [
                     "ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",
                     "การช่วยเหลือเสร็จสิ้น",

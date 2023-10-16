@@ -1146,8 +1146,6 @@ class Sos_mapController extends Controller
                 'helper' => $data_user->name,
                 'helper_id' => $data_user->id,
                 'organization_helper' => $data_user->organization,
-                'time_go_to_help' => date("Y-m-d H:i:s"),
-                'help_complete_time' => date("Y-m-d H:i:s"),
             ]);
 
         return $data_user->id ;
