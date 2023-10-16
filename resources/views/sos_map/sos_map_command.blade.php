@@ -494,8 +494,6 @@
 
                     }else if(check_status == "เสร็จสิ้น"){
 
-                    	reset_map();
-
 						let html_show_status = `
 				    		<button type="button" class="btn btn-success text-white py-2 px-5 float-end">
 								<i class="fa-solid fa-shield-check mr-1"></i>เสร็จสิ้น
@@ -503,6 +501,9 @@
 				    	`;
 				    	document.querySelector('#div_show_status').innerHTML = html_show_status ;
 
+                    	reset_map();
+
+				    	help_complete()
                     	Stop_onload_check_status_sos_map();
                     }
             });
