@@ -895,7 +895,7 @@
         }).then(function (response){
             return response.json();
         }).then(function(data){
-            // console.log(data);
+            console.log(data);
 
             if(data){
                 check_status = data['status'];
@@ -907,9 +907,9 @@
                     if(check_status == "เสร็จสิ้น"){
                         let html_div_btn_status_success ;
 
-                        if(result['sos_1669_id']){
+                        if(data['sos_1669_id']){
                             html_div_btn_status_success = `
-                                <a href="{{ url('/') . '/sos_help_center/' . `+result['sos_1669_id']+` . '/show_user' }}" class="btn-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
+                                <a href="{{ url('/') . '/sos_help_center/' . `+data['sos_1669_id']+` . '/show_user' }}" class="btn-success btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">
                                     ดำเนินการต่อ
                                 </a>
                             `;
@@ -921,7 +921,7 @@
                             `;
                         }
 
-                        document.querySelector('#remark_status').innerHTML = result['remark_status'] ;
+                        document.querySelector('#remark_status').innerHTML = data['remark_status'] ;
                         document.querySelector('#div_btn_status_success').innerHTML = html_div_btn_status_success ;
                         document.querySelector('#div_case_success').classList.remove('d-none');
                     }
