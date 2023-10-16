@@ -1040,11 +1040,13 @@ class Sos_mapController extends Controller
 
         $data = [];
 
-        $data_sos_map = Sos_map::where('id' , $requestData['sos_map_id'])->select('helper_id','status')->first();
+        $data_sos_map = Sos_map::where('id' , $requestData['sos_map_id'])->select('helper_id','status','remark_status','sos_1669_id')->first();
         $data_helper = User::where('id' , $data_sos_map->helper_id)->select('lat' , 'lng')->first();
 
         $data['data_helper'] = $data_helper;
         $data['status'] =  $data_sos_map->status ;
+        $data['remark_status'] =  $data_sos_map->remark_status ;
+        $data['sos_1669_id'] =  $data_sos_map->sos_1669_id ;
 
         return $data ;
     }
