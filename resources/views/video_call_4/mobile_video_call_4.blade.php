@@ -883,17 +883,21 @@
     var user_id = '{{ Auth::user()->id }}';
     var user_data = @json(Auth::user());
 
-    const appId = sessionStorage.getItem('agora_app_id');
-    const appCertificate = sessionStorage.getItem('agora_app_certificate');
+    // var appId = sessionStorage.getItem('agora_app_id');
+    // var appCertificate = sessionStorage.getItem('agora_app_certificate');
+
+    var appId = '';
+    var appCertificate = '';
 
     var sos_1669_id = '{{ $sos_id }}';
 
     var remote_in_room = [];
 
-    function decodeString(encodedStr) {
-        return encodedStr.replace(/#/g, '');
+    while (appId.length === 0 || appCertificate.length === 0) {
+        appId = '{{ env("AGORA_APP_ID") }}';
+        appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+        console.log("เข้า while หา appId and appCertificate");
     }
-
 
     options =
     {
@@ -2095,12 +2099,21 @@
                     // console.log(check_videoDevices[1].id);
                     document.querySelector('#'+check_videoDevices[1].id).click();
                     now_Mobile_Devices = 2 ;
+
                 }else{
                     // console.log("now_Mobile_Devices == 2 // ให้คลิก ");
                     // console.log(check_videoDevices[0].id);
                     document.querySelector('#'+check_videoDevices[0].id).click();
                     now_Mobile_Devices = 1 ;
+
                 }
+            }
+
+            if (isVideo == false) {
+                setTimeout(() => {
+                    console.log("bg_local ddddddddddddddddddddddd");
+                    changeBgColor(bg_local);
+                }, 50);
             }
         }
 
@@ -2238,6 +2251,14 @@
         //=============================================================================//
         //                              จบ -- สลับอุปกรณ์                                //
         //=============================================================================//
+
+        // สำหรับเปลี่ยนสีพื้นหลังของ local หลังจากกดเปลี่ยนกล้อง
+        // btn_switchCamera.onclick = async function(){
+        //     if (isVideo == false) {
+        //             console.log("bg_local ddddddddddddddddddddddd");
+        //             changeBgColor(bg_local);
+        //     }
+        // };
 
     }
 </script>
@@ -2401,6 +2422,7 @@
         showTextAdvice(type_advice);
         console.log(type_advice);
 
+        checkchild();
 	}
     let text_advice;
 
@@ -2841,11 +2863,6 @@
                 }
             }
 
-            // console.log("type_device");
-            // console.log(type_device);
-            // //ถ้าไม่ใช่คอม
-            // checkchild();
-
             // คลิ๊ก div ให้เปลี่ยนขนาด
             divVideo_New.addEventListener("click", function() {
                 handleClick(divVideo_New);
@@ -3004,11 +3021,6 @@
                     container_user_video_call.append(divVideo_New);
                 }
             }
-
-            // console.log("type_device");
-            // console.log(type_device);
-            // //ถ้าไม่ใช่คอม
-            // checkchild();
 
             divVideo_New.addEventListener("click", function() {
                 handleClick(divVideo_New);

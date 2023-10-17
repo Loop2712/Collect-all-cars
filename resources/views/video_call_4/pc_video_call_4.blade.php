@@ -753,14 +753,18 @@
     // var appId = '{{ env("AGORA_APP_ID") }}';
     // var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
 
-    const appId = sessionStorage.getItem('agora_app_id');
-    const appCertificate = sessionStorage.getItem('agora_app_certificate');
+    var appId = sessionStorage.getItem('agora_app_id');
+    var appCertificate = sessionStorage.getItem('agora_app_certificate');
 
     var sos_1669_id = '{{ $sos_id }}';
 
     var remote_in_room = [];
 
-
+    while (appId.length === 0 || appCertificate.length === 0) {
+        appId = '{{ env("AGORA_APP_ID") }}';
+        appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+        console.log("เข้า while หา appId and appCertificate");
+    }
 
     options =
     {
