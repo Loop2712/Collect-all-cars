@@ -457,7 +457,7 @@
 
         onload_check_status_sos_map = setInterval(function() {
 
-            console.log('loop_status_sos');
+            // console.log('loop_status_sos');
 
             fetch("{{ url('/') }}/api/sos_map/loop_check_status_sos_map" + "/" + "{{ $data_sos_map->id }}")
                 .then(response => response.json())
@@ -513,7 +513,7 @@
     }
 
     function Stop_onload_check_status_sos_map() {
-           console.log('Stop_onload_check_status_sos_map');
+           // console.log('Stop_onload_check_status_sos_map');
         clearInterval(onload_check_status_sos_map);
     }
 
@@ -741,7 +741,7 @@
 
 	// <!-- --------------- ระยะทาง(เสียเงิน) --------------- -->
 	function get_Directions_API(markerA, markerB) {
-		console.log( "get_Directions_API" );
+		// console.log( "get_Directions_API" );
 
 		// document.querySelector('#show_travel_guide').classList.remove('d-none');
 
