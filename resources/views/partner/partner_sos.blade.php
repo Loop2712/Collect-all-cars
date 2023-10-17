@@ -108,7 +108,7 @@
                 $card_background_color = '';
                 $btn_background_color = '';
 
-                if($item->tag_sos_or_repair == "tag_sos"){
+                if($item->tag_sos_or_repair != "tag_repair"){
                     $class_border_card = 'border-warning' ;
                     $card_background_color = 'bg-light-warning' ;
                     $btn_background_color = 'bg-warning' ;
@@ -125,7 +125,7 @@
                         <div class="card-title">
                             <div class="row">
                                 <div class="col-8">
-                                    @if($item->tag_sos_or_repair == "tag_sos")
+                                    @if($item->tag_sos_or_repair != "tag_repair")
                                         <h2 class="text-warning">
                                             <i class="fa-solid fa-truck-medical me-1 font-22 text-warning"></i> ขอความช่วยเหลือ
                                             <span style="font-size:15px;color: black;">
@@ -229,9 +229,9 @@
                                     @endphp
                                     <div class="float-end btn btn-sm {{ $class_div_status }} radius-10 px-5 py-2">
                                         <h6 class="{{ $text_div_status }}" >
-                                            @if($item->tag_sos_or_repair != "tag_sos" && $item->status == "กำลังไปช่วยเหลือ")
+                                            @if($item->tag_sos_or_repair == "tag_repair" && $item->status == "กำลังไปช่วยเหลือ")
                                                 <i class="fa-regular fa-screwdriver-wrench"></i> อยู่ระหว่างดำเนินการ
-                                            @elseif($item->tag_sos_or_repair != "tag_sos" && $item->status == "รับแจ้งเหตุ")
+                                            @elseif($item->tag_sos_or_repair == "tag_repair" && $item->status == "รับแจ้งเหตุ")
                                                 <i class="fa-sharp fa-solid fa-timer"></i> รอดำเนินการ
                                             @else
                                                 <i class="{{ $class_tga_i_status }}"></i> {{ $item->status }}
@@ -368,7 +368,7 @@
                         </div>
                         @endif
 
-                        @if($item->tag_sos_or_repair == "tag_sos")
+                        @if($item->tag_sos_or_repair != "tag_repair")
                         <div class="col">
                             <a href="{{ url('/sos_map/command') . '/' . $item->id }}" type="button" class="btn {{ $btn_background_color }} px-5">
                                 <i class="fa-duotone fa-bars-progress mr-1"></i> ดำเนินการ
