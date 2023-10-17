@@ -346,4 +346,4 @@ Route::get('/get_location_kan/{amphoe}/{area}/{tambon}/show_polling_station_at',
 Route::get('/get_data_show_score','Vote_kan_scoresController@get_data_show_score');
 
 
-Route::post('update_data_report_repair', 'Sos_mapController@update_data_report_repair');
+Route::post('/update_data_report_repair', 'Sos_mapController@update_data_report_repair');

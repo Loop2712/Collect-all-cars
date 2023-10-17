@@ -1198,6 +1198,18 @@ class Sos_mapController extends Controller
 
     }
 
+    
+    function update_data_report_repair(Request $request)
+    {
+
+        $data = $request->all();
+
+        $sos_map = Report_repair::findOrFail($data['sos_map_id']);
+        $sos_map->update($data);
+
+        return "a";
+    }
+
     function report_repair_for_user($id_sos_map){
 
         echo "<h1>report_repair</h1>";
