@@ -258,6 +258,8 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 
 	Route::get('all_name_user_partner', 'Sos_help_centerController@all_name_user_partner');
 	Route::resource('data_1669_officer_command', 'Data_1669_officer_commandController');
+	Route::get('case_officer', 'Sos_help_centerController@case_officer');
+	Route::get('officer_edit_form/{sos_id}', 'Sos_help_centerController@officer_edit_form');
 
 
 	// ------- CONDO -------
@@ -271,7 +273,6 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('delete_title_sos', 'Sos_map_titleController@delete_title_sos');
 	Route::get('change_status_title', 'Sos_map_titleController@change_status_title');
 	Route::get('add_title_by_user', 'Sos_map_titleController@add_title_by_user');
-
 
 });
 // end admin-partner
@@ -537,6 +538,7 @@ Route::resource('sos_1669_province_code', 'Sos_1669_province_codeController');
 
 
 Route::get('officer_form_yellow/{sos_id}', 'Sos_help_centerController@sos_help_officer_yellow');
+
 
 
 
