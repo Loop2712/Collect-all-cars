@@ -257,7 +257,8 @@ class Sos_mapController extends Controller
                 break;
             case 'emergency_Charlie_Bangkok':
                 // send data to groupline Charlie_Bangkok
-                $this->_pushLine_to_Charlie($requestData , $id_sos_map);
+                // $this->_pushLine_to_Charlie($requestData , $id_sos_map);
+                $this->_pushLine($requestData , $id_sos_map);
                 break;   
         }
         
@@ -591,28 +592,37 @@ class Sos_mapController extends Controller
             
             $text_at = '@' ;
 
-            //ส่งเมล
-            $data_send_mail = array();
-            $data_send_mail['photo'] = $photo ;
-            $data_send_mail['name_partner'] = $name_partner ;
-            $data_send_mail['time_zone'] = $time_zone ;
-            $data_send_mail['name_user'] = $name_user ;
-            $data_send_mail['phone_user'] = $phone_user ;
-            $data_send_mail['lat'] = $lat_user ;
-            $data_send_mail['lng'] = $lng_user ;
-            $data_send_mail['lat_mail'] = $text_at.$lat_user;
+            // FLEX SOS เอกชน ทั่วไป
+            if ($requestData['content'] == 'help_area') {
+                //ส่งเมล
+                $data_send_mail = array();
+                $data_send_mail['photo'] = $photo ;
+                $data_send_mail['name_partner'] = $name_partner ;
+                $data_send_mail['time_zone'] = $time_zone ;
+                $data_send_mail['name_user'] = $name_user ;
+                $data_send_mail['phone_user'] = $phone_user ;
+                $data_send_mail['lat'] = $lat_user ;
+                $data_send_mail['lng'] = $lng_user ;
+                $data_send_mail['lat_mail'] = $text_at.$lat_user;
 
-            $email = $mail_partner ;
+                $email = $mail_partner ;
 
-            if ($email == "-" or $email == null) {
-                $email = "vii_test@gmail.com" ;
+                if ($email == "-" or $email == null) {
+                    $email = "vii_test@gmail.com" ;
+                }
+                
+                // Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
+                
+                // flex ask_for_help
+                $template_path = storage_path('../public/json/ask_for_help_tag_sos.json');
+                $string_json = file_get_contents($template_path);
+
+            }else if($requestData['content'] == 'emergency_Charlie_Bangkok'){
+                // FLEX SOS ชาลี
+                $template_path = storage_path('../public/json/flex_sos_chalie_v2.json');
+                $string_json = file_get_contents($template_path);
             }
             
-            // Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
-            
-            // flex ask_for_help
-            $template_path = storage_path('../public/json/ask_for_help_tag_sos.json');
-            $string_json = file_get_contents($template_path);
 
             if (!empty($data['photo'])) {
                 $string_json = str_replace("photo_sos.png",$photo,$string_json);
