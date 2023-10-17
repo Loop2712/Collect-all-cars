@@ -23,6 +23,7 @@ use App\Models\Sos_map_title;
 use App\User;
 use App\Http\Controllers\API\ImageController;
 use App\Models\Group_line;
+use App\Models\Report_repair;
 
 use App\Http\Controllers\API\LineApiController;
 
@@ -218,6 +219,13 @@ class Sos_mapController extends Controller
         Sos_map::create($requestData);
 
         $sos_map_latests = Sos_map::latest()->first();
+
+        if ($sos_map_latests->tag_sos_or_repair == "tag_repair") {
+            
+            $requestData['sos_map_id'] = $sos_map_latests->id ;
+            Report_repair::create($requestData);
+
+        }
 
         // ----------- RESIZE PHOTO ----------- //
         $resize_photo = new ImageController();
@@ -1177,15 +1185,15 @@ class Sos_mapController extends Controller
 
     function report_repair($id_sos_map){
 
-        $data_sos_map = Sos_map::where('id' , $id_sos_map)->first();
-        $data_partner = Partner::where('name' , $data_sos_map->area)
-            ->where('name_area' , $data_sos_map->name_area)
+        $data_report = Report_repair::where('sos_map_id' , $id_sos_map)->first();
+        $data_partner = Partner::where('name' , $data_report->sos_map->area)
+            ->where('name_area' , $data_report->sos_map->name_area)
             ->first();
 
         $data_groupline = Group_line::where('id' , $data_partner->group_line_id)->first();
         $groupId = $data_groupline->groupId ;
 
-        return view('sos_map.sos_report_repair', compact('data_sos_map','groupId'));
+        return view('sos_map.sos_report_repair', compact('groupId' ,'data_report'));
 
     }
 
