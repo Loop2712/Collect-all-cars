@@ -121,8 +121,11 @@
 
 	SELECT#status option {
 		margin: 100px;
-	}
+	}#status option:checked {
+    display: none;
+}
 </style>
+
 <div class="container-partner-sos row">
 	<div class="card">
 		<div class="row g-0">
@@ -208,38 +211,38 @@
 	let isAnimating = true;
 
 	function save_data() {
+		if (isAnimating) {
+			let data_arr = [];
 
-		let data_arr = [] ;
+			let status = document.querySelector('.badge-status select').value;
+			let link = document.querySelector('#link').value;
+			let how_to_fix = document.querySelector('#how_to_fix').value;
 
-		let status = document.querySelector('.badge-status select').value ;
-		let link = document.querySelector('#link').value ;
-		let how_to_fix = document.querySelector('#how_to_fix').value ;
+			data_arr = {
+				"sos_map_id": "{{$data_report->sos_map_id}}",
+				"status": status,
+				"link": link,
+				"how_to_fix": how_to_fix,
+				"user_id": "{{$data_report->sos_map->user_id}}",
+			};
 
-        data_arr = {
-			"sos_map_id": "{{$data_report->sos_map_id}}",
-			"status": status,
-			"link": link,
-			"how_to_fix": how_to_fix,
-			"user_id": "{{$data_report->sos_map->user_id}}",
-	    }; 
+			// console.log(data_arr);
 
-	    console.log(data_arr);
-
-        fetch("{{ url('/') }}/api/update_data_report_repair", {
-            method: 'post',
-            body: JSON.stringify(data_arr),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(function (response){
-            return response.text();
-        }).then(function(data){
-            console.log(data);
-
-        }).catch(function(error){
-            // console.error(error);
-        });
-
+			fetch("{{ url('/') }}/api/update_data_report_repair", {
+				method: 'post',
+				body: JSON.stringify(data_arr),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			}).then(function(response) {
+				return response.text();
+			}).then(function(data) {
+				// console.log(data);
+				animation_save_data();
+			}).catch(function(error) {
+				// console.error(error);
+			});
+		}
 	}
 
 	function animation_save_data() {

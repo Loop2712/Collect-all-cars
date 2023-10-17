@@ -1203,6 +1203,8 @@ class Sos_mapController extends Controller
     {
         $requestData = $request->all();
 
+        $data_user = User::where('id' , $requestData['user_id'])->first();
+        $datetime = now();
         DB::table('report_repair')
             ->where([ 
                     ['sos_map_id',$requestData['sos_map_id'] ],
@@ -1212,13 +1214,22 @@ class Sos_mapController extends Controller
                 'link' => $requestData['link'],
             ]);
 
-        DB::table('sos_maps')
-            ->where([ 
-                    ['id',$requestData['sos_map_id'] ],
-                ])
-            ->update([
+            $sos_map = DB::table('sos_maps')->where('id', $requestData['sos_map_id']);
+
+            $sos_map->update([
                 'status' => $requestData['status'],
+                'helper_id' => $data_user->id,
+                'helper' => $data_user->name,
+                'organization_helper' => $data_user->organization,
+               
             ]);
+
+            if ($requestData['status'] === "กำลังไปช่วยเหลือ") {
+                $sos_map->update(['time_go_to_help' => $datetime]);
+            } elseif ($requestData['status'] === "เสร็จสิ้น") {
+                $sos_map->update(['help_complete_time' => $datetime]);
+            }
+        
 
         $this->sent_line_repair_to_user($requestData['sos_map_id'] , $requestData['user_id'] , $requestData['status']);
 
@@ -1227,11 +1238,73 @@ class Sos_mapController extends Controller
 
     function report_repair_for_user($id_sos_map){
 
-        echo "<h1>report_repair</h1>";
+        $data_report = Report_repair::where('sos_map_id' , $id_sos_map)->first();
+        $data_helper = User::where('id' ,$data_report->sos_map->helper_id)->first();
 
+        return view('sos_map.sos_report_repair_for_user', compact('data_report','data_helper'));
     }
 
     function sent_line_repair_to_user($sos_map_id , $user_id , $status){
+
+        $data_sos_map = Sos_map::where('id' , $sos_map_id)->first();
+        $data_user = User::where('id' , $user_id)->first();
+
+        $title_sos_other = '';
+        if(!empty($data_sos_map->title_sos_other)){
+            $title_sos_other = $data_sos_map->title_sos_other ;
+        }
+
+        $datetime =  date("d-m-Y  h:i:sa");
+        $date_now =  date("d-m-Y");
+        $time_now =  date("h:i");
+
+        if($status == "กำลังไปช่วยเหลือ"){
+            $template_path = storage_path('../public/json/flex-repair/flxe_line_repair_process.json');
+        }else if($status == "เสร็จสิ้น"){
+            $template_path = storage_path('../public/json/flex-repair/flxe_line_repair_success.json');
+        }
+
+        $string_json = file_get_contents($template_path);
+           
+        $string_json = str_replace("ตัวอย่าง","การแจ้งซ่อมของคุณ..",$string_json);
+
+        $string_json = str_replace("สวัสดีคุณ","สวัสดีคุณ " . $data_user->name,$string_json);
+
+        $string_json = str_replace("date",$date_now,$string_json);
+        $string_json = str_replace("time",$time_now,$string_json);
+
+        $string_json = str_replace("หัวข้อ",$data_sos_map->title_sos,$string_json);
+        $string_json = str_replace("รายละเอียด",$title_sos_other,$string_json);
+
+        $string_json = str_replace("id_sos_map",$sos_map_id,$string_json);
+
+        $messages = [ json_decode($string_json, true) ];
+
+        $body = [
+            "to" => $data_user->provider_id,
+            "messages" => $messages,
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        $url = "https://api.line.me/v2/bot/message/push";
+        $result = file_get_contents($url, false, $context);
+
+        // SAVE LOG
+        $data = [
+            "title" => "อัพเดทสถานะแจ้งซ่อม : " . $status,
+            "content" => $data_user->name,
+        ];
+        MyLog::create($data);
 
     }
 
