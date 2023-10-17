@@ -37,8 +37,8 @@ Route::get('/share_1669', function () {
 
 // registe re-to line
 // https://www.viicheck.com/login/line/to_line_oa
-Route::get('login/line/to_line_oa', 'Auth\LoginController@redirectToLine_OA');
-Route::get('re_to_line_oa', 'Home_pageController@re_to_line_oa');
+Route::get('login/line/to_line_oa', 'Home_pageController@re_to_line_oa');
+Route::get('re_to_line_oa_2', 'Home_pageController@re_to_line_oa_2');
 
 
 // Google login

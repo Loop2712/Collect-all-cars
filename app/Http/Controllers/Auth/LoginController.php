@@ -129,13 +129,6 @@ class LoginController extends Controller
         return Socialite::driver('line')->redirect();
     }
 
-    public function redirectToLine_OA(Request $request)
-    {
-        $request->session()->put('redirectTo', 'https://www.viicheck.com/re_to_line_oa');
-
-        return Socialite::driver('line')->redirect();
-    }
-
     // Line login TU
     public function redirectToLine_TU_SOS(Request $request)
     {
@@ -391,6 +384,19 @@ class LoginController extends Controller
                             ['provider_id', $user->provider_id],
                         ])
                     ->update(['add_line' => 'Yes']);
+
+            }else if($from == "re_to_line_oa"){
+
+                DB::table('users')
+                    ->where([ 
+                            ['type', 'line'],
+                            ['provider_id', $user->provider_id],
+                        ])
+                    ->update(
+                        ['country' => 'TH'],
+                        ['language' => 'th']
+                    );
+                    
             }else{
 
                 if ( !empty($data_user->user_from) ){
