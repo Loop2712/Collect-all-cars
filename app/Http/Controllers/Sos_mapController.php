@@ -1220,6 +1220,8 @@ class Sos_mapController extends Controller
                 'status' => $requestData['status'],
             ]);
 
+        $this->sent_line_repair_to_user($requestData['sos_map_id'] , $requestData['user_id'] , $requestData['status']);
+
         return "ok";
     }
 
@@ -1229,5 +1231,8 @@ class Sos_mapController extends Controller
 
     }
 
+    function sent_line_repair_to_user($sos_map_id , $user_id , $status){
+
+    }
 
 }

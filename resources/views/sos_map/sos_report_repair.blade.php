@@ -220,6 +220,7 @@
 			"status": status,
 			"link": link,
 			"how_to_fix": how_to_fix,
+			"user_id": "{{$data_report->sos_map->user_id}}",
 	    }; 
 
 	    console.log(data_arr);
