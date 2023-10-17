@@ -619,7 +619,7 @@ class Sos_mapController extends Controller
 
             }else if($data['content'] == 'emergency_Charlie_Bangkok'){
                 // FLEX SOS ชาลี
-                $template_path = storage_path('../public/json/flex_sos_chalie_v2.json');
+                $template_path = storage_path('../public/json/flex_volunteer/flex_sos_chalie_v2.json');
                 $string_json = file_get_contents($template_path);
             }
             
