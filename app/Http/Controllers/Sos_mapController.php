@@ -617,7 +617,7 @@ class Sos_mapController extends Controller
                 $template_path = storage_path('../public/json/ask_for_help_tag_sos.json');
                 $string_json = file_get_contents($template_path);
 
-            }else if($requestData['content'] == 'emergency_Charlie_Bangkok'){
+            }else if($data['content'] == 'emergency_Charlie_Bangkok'){
                 // FLEX SOS ชาลี
                 $template_path = storage_path('../public/json/flex_sos_chalie_v2.json');
                 $string_json = file_get_contents($template_path);
