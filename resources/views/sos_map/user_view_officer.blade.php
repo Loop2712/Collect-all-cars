@@ -647,12 +647,12 @@
 
         check_status_sos_map = setInterval(function() {
 
-            console.log('loop_check_status_sos_map');
+            // console.log('loop_check_status_sos_map');
 
             fetch("{{ url('/') }}/api/sos_map/loop_check_status_sos_map" + "/" + "{{ $data_sos->id }}")
                 .then(response => response.json())
                 .then(result => {
-                    console.log(result);
+                    // console.log(result);
 
                     check_status = result['status'] ;
 
@@ -870,7 +870,7 @@
 
     function update_location_user(position){
 
-        console.log("update_location_user");
+        // console.log("update_location_user");
 
         let user_lat = position.coords.latitude;
         let user_lng = position.coords.longitude;
@@ -896,7 +896,7 @@
         }).then(function (response){
             return response.json();
         }).then(function(data){
-            console.log(data);
+            // console.log(data);
 
             if(data){
                 check_status = data['status'];
