@@ -393,8 +393,8 @@ class LoginController extends Controller
                             ['provider_id', $user->provider_id],
                         ])
                     ->update([
-                        'nationalitie' => 'Thai'
-                        'language' => 'th'
+                        'nationalitie' => 'Thai',
+                        'language' => 'th',
                     ]);
 
             }else{

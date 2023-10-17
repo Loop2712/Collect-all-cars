@@ -171,8 +171,8 @@ class Home_pageController extends Controller
                         ['provider_id', $user->provider_id],
                     ])
                 ->update([
-                    'nationalitie' => 'Thai'
-                    'language' => 'th'
+                    'nationalitie' => 'Thai',
+                    'language' => 'th',
                 ]);
 
             return view('return_line');
