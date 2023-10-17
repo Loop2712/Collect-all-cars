@@ -165,6 +165,16 @@ class Home_pageController extends Controller
     function re_to_line_oa(){
 
         if(Auth::check()){
+            DB::table('users')
+                ->where([ 
+                        ['type', 'line'],
+                        ['provider_id', $user->provider_id],
+                    ])
+                ->update([ 
+                        ['nationalitie', 'Thai'],
+                        ['language', 'th'],
+                    ]);
+
             return view('return_line');
         }else{
             $re_to = "re_to_line_oa_2" ;
