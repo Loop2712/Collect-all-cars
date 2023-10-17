@@ -1,0 +1,155 @@
+{
+    "type": "flex",
+    "altText": "ตัวอย่าง",
+    "contents": {
+  "type": "bubble",
+  "size": "giga",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://www.viicheck.com/img/flex/sos/flxe_line_repair_success.png",
+        "size": "full",
+        "aspectRatio": "2500:3500",
+        "aspectMode": "cover"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "สวัสดีคุณ",
+            "color": "#ffffff",
+            "weight": "bold",
+            "size": "lg"
+          }
+        ],
+        "position": "absolute",
+        "offsetTop": "16%",
+        "offsetStart": "28%",
+        "width": "68%",
+        "justifyContent": "center",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "date",
+            "size": "xl",
+            "wrap": false,
+            "weight": "bold",
+            "color": "#ffffff"
+          }
+        ],
+        "width": "30%",
+        "position": "absolute",
+        "offsetStart": "17%",
+        "offsetTop": "49%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "time",
+            "size": "xl",
+            "wrap": false,
+            "weight": "bold",
+            "color": "#ffffff"
+          }
+        ],
+        "width": "30%",
+        "position": "absolute",
+        "offsetStart": "53%",
+        "offsetTop": "49%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "หัวข้อ",
+            "size": "xl",
+            "wrap": false,
+            "weight": "bold",
+            "color": "#ffffff"
+          }
+        ],
+        "width": "80%",
+        "position": "absolute",
+        "offsetStart": "9%",
+        "offsetTop": "60%",
+        "alignItems": "center"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "รายละเอียด",
+            "size": "md",
+            "wrap": true,
+            "color": "#ffffff",
+            "maxLines": 3
+          }
+        ],
+        "width": "74%",
+        "position": "absolute",
+        "offsetStart": "12%",
+        "offsetTop": "68.5%",
+        "alignItems": "flex-start",
+        "height": "12%"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [],
+        "width": "59%",
+        "position": "absolute",
+        "offsetStart": "10%",
+        "offsetTop": "86%",
+        "alignItems": "center",
+        "cornerRadius": "250px",
+        "height": "10.5%",
+        "justifyContent": "center",
+        "paddingStart": "15%",
+        "action": {
+          "type": "uri",
+          "uri": "https://www.viicheck.com/sos_map/report_repair_for_user/id_sos_map"
+        }
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [],
+        "width": "21%",
+        "position": "absolute",
+        "offsetStart": "71%",
+        "offsetTop": "86%",
+        "alignItems": "center",
+        "cornerRadius": "250px",
+        "height": "10.5%",
+        "justifyContent": "center",
+        "paddingStart": "15%",
+        "action": {
+          "type": "uri",
+          "uri": "https://www.viicheck.com/sos_map/rate_help/id_sos_map"
+        }
+      }
+    ],
+    "position": "relative",
+    "paddingAll": "0px"
+  }
+}
+}
