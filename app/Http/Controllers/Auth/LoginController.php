@@ -397,6 +397,13 @@ class LoginController extends Controller
                         'language' => 'th',
                     ]);
 
+                $users_re_to_line_oa = DB::table('users')
+                    ->where('provider_id', $user->provider_id)
+                    ->get();
+
+                $line_API = new LineApiController();
+                $line_API->check_language_user($users_re_to_line_oa);
+
             }else{
 
                 if ( !empty($data_user->user_from) ){
