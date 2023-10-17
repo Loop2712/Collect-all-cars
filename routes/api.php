@@ -287,6 +287,10 @@ Route::get('/check_old_officer/{user_id}', 'Sos_help_centerController@check_old_
     Route::get('/check_unit_cf_sos_form_user/{sos_id}', 'Sos_help_centerController@check_unit_cf_sos_form_user');
     Route::get('/check_location_officer/{sos_id}', 'Sos_help_centerController@check_location_officer');
     Route::get('/check_status_officer/{sos_id}', 'Sos_help_centerController@check_status_officer');
+    Route::get('case_officer', 'Sos_help_centerController@case_officer');
+    // SOS HELP CENTER FORM officer
+	Route::get('officer_edit_form/{sos_id}', 'Sos_help_centerController@officer_edit_form');
+	Route::post('update_data_form_officer', 'Sos_help_centerController@update_data_form_officer');
 
 // SOS nationalities
 Route::get('/nationalities/send_pass_code_to_line/{language}/{id_guoup_line}', 'Nationalitie_group_linesController@send_pass_code_to_line');
@@ -340,3 +344,6 @@ Route::get('/get_location_kan/{amphoe}/show_area','Vote_kan_data_stationsControl
 Route::get('/get_location_kan/{amphoe}/{area}/show_tambon','Vote_kan_data_stationsController@show_tambon');
 Route::get('/get_location_kan/{amphoe}/{area}/{tambon}/show_polling_station_at','Vote_kan_data_stationsController@show_polling_station_at');
 Route::get('/get_data_show_score','Vote_kan_scoresController@get_data_show_score');
+
+
+Route::post('/update_data_report_repair', 'Sos_mapController@update_data_report_repair');

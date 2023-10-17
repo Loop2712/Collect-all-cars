@@ -35,6 +35,11 @@ Route::get('/share_1669', function () {
     return view('share_to_facebook/share_1669');
 });
 
+// registe re-to line
+// https://www.viicheck.com/login/line/to_line_oa
+Route::get('login/line/to_line_oa', 'Home_pageController@re_to_line_oa');
+Route::get('re_to_line_oa_2', 'Home_pageController@re_to_line_oa_2');
+
 
 // Google login
 Route::get('login/google', 'Auth\LoginController@redirectToGoogle')->name('login.google');
@@ -258,6 +263,8 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 
 	Route::get('all_name_user_partner', 'Sos_help_centerController@all_name_user_partner');
 	Route::resource('data_1669_officer_command', 'Data_1669_officer_commandController');
+	Route::get('case_officer', 'Sos_help_centerController@case_officer');
+	Route::get('officer_edit_form/{sos_id}', 'Sos_help_centerController@officer_edit_form');
 
 
 	// ------- CONDO -------
@@ -271,7 +278,6 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('delete_title_sos', 'Sos_map_titleController@delete_title_sos');
 	Route::get('change_status_title', 'Sos_map_titleController@change_status_title');
 	Route::get('add_title_by_user', 'Sos_map_titleController@add_title_by_user');
-
 
 });
 // end admin-partner
@@ -327,6 +333,8 @@ Route::middleware(['auth'])->group(function () {
 
 	// SOS MAP
 	Route::get('/sos_map/add_photo/{id_sos_map}', 'Sos_mapController@sos_map_add_photo');
+	// SOS MAP REPAIR
+	Route::get('sos_map/report_repair_for_user/{id_sos_map}', 'Sos_mapController@report_repair_for_user');
 
 	// SOS 1669
 	Route::get('sos_help_center/{sos_id}/show_user', 'Sos_help_centerController@show_user_sos');
@@ -535,6 +543,7 @@ Route::resource('sos_1669_province_code', 'Sos_1669_province_codeController');
 
 
 Route::get('officer_form_yellow/{sos_id}', 'Sos_help_centerController@sos_help_officer_yellow');
+
 
 
 

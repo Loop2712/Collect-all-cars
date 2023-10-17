@@ -384,6 +384,26 @@ class LoginController extends Controller
                             ['provider_id', $user->provider_id],
                         ])
                     ->update(['add_line' => 'Yes']);
+
+            }else if($from == "re_to_line_oa"){
+
+                DB::table('users')
+                    ->where([ 
+                            ['type', 'line'],
+                            ['provider_id', $user->provider_id],
+                        ])
+                    ->update([
+                        'nationalitie' => 'Thai',
+                        'language' => 'th',
+                    ]);
+
+                $users_re_to_line_oa = DB::table('users')
+                    ->where('provider_id', $user->provider_id)
+                    ->get();
+
+                $line_API = new LineApiController();
+                $line_API->check_language_user($users_re_to_line_oa);
+
             }else{
 
                 if ( !empty($data_user->user_from) ){

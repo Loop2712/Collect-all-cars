@@ -23,6 +23,7 @@ use App\Models\Sos_map_title;
 use App\User;
 use App\Http\Controllers\API\ImageController;
 use App\Models\Group_line;
+use App\Models\Report_repair;
 
 use App\Http\Controllers\API\LineApiController;
 
@@ -218,6 +219,14 @@ class Sos_mapController extends Controller
         Sos_map::create($requestData);
 
         $sos_map_latests = Sos_map::latest()->first();
+        $tag_sos_or_repair = $sos_map_latests->tag_sos_or_repair;
+
+        if ($tag_sos_or_repair == "tag_repair") {
+            
+            $requestData['sos_map_id'] = $sos_map_latests->id ;
+            Report_repair::create($requestData);
+
+        }
 
         // ----------- RESIZE PHOTO ----------- //
         $resize_photo = new ImageController();
@@ -257,7 +266,8 @@ class Sos_mapController extends Controller
                 break;
             case 'emergency_Charlie_Bangkok':
                 // send data to groupline Charlie_Bangkok
-                $this->_pushLine_to_Charlie($requestData , $id_sos_map);
+                // $this->_pushLine_to_Charlie($requestData , $id_sos_map);
+                $this->_pushLine($requestData , $id_sos_map);
                 break;   
         }
         
@@ -277,7 +287,7 @@ class Sos_mapController extends Controller
                 }
 
                 // return redirect('/sos_thank_area')->with('flash_message', 'Sos_map added!');
-                return view('sos_map.sos_thank_area', compact('link_line_oa' , 'id_sos_map'));
+                return view('sos_map.sos_thank_area', compact('link_line_oa' , 'id_sos_map' , 'tag_sos_or_repair'));
 
             }else{
                 return redirect('/sos_thank')->with('flash_message', 'Sos_map added!');
@@ -591,28 +601,37 @@ class Sos_mapController extends Controller
             
             $text_at = '@' ;
 
-            //ส่งเมล
-            $data_send_mail = array();
-            $data_send_mail['photo'] = $photo ;
-            $data_send_mail['name_partner'] = $name_partner ;
-            $data_send_mail['time_zone'] = $time_zone ;
-            $data_send_mail['name_user'] = $name_user ;
-            $data_send_mail['phone_user'] = $phone_user ;
-            $data_send_mail['lat'] = $lat_user ;
-            $data_send_mail['lng'] = $lng_user ;
-            $data_send_mail['lat_mail'] = $text_at.$lat_user;
+            // FLEX SOS เอกชน ทั่วไป
+            if ($data['content'] == 'help_area') {
+                //ส่งเมล
+                $data_send_mail = array();
+                $data_send_mail['photo'] = $photo ;
+                $data_send_mail['name_partner'] = $name_partner ;
+                $data_send_mail['time_zone'] = $time_zone ;
+                $data_send_mail['name_user'] = $name_user ;
+                $data_send_mail['phone_user'] = $phone_user ;
+                $data_send_mail['lat'] = $lat_user ;
+                $data_send_mail['lng'] = $lng_user ;
+                $data_send_mail['lat_mail'] = $text_at.$lat_user;
 
-            $email = $mail_partner ;
+                $email = $mail_partner ;
 
-            if ($email == "-" or $email == null) {
-                $email = "vii_test@gmail.com" ;
+                if ($email == "-" or $email == null) {
+                    $email = "vii_test@gmail.com" ;
+                }
+                
+                // Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
+                
+                // flex ask_for_help
+                $template_path = storage_path('../public/json/ask_for_help_tag_sos.json');
+                $string_json = file_get_contents($template_path);
+
+            }else if($data['content'] == 'emergency_Charlie_Bangkok'){
+                // FLEX SOS ชาลี
+                $template_path = storage_path('../public/json/flex_volunteer/flex_sos_chalie_v2.json');
+                $string_json = file_get_contents($template_path);
             }
             
-            // Mail::to($email)->send(new MailTo_sos_partner($data_send_mail));
-            
-            // flex ask_for_help
-            $template_path = storage_path('../public/json/ask_for_help_tag_sos.json');
-            $string_json = file_get_contents($template_path);
 
             if (!empty($data['photo'])) {
                 $string_json = str_replace("photo_sos.png",$photo,$string_json);
@@ -1167,16 +1186,28 @@ class Sos_mapController extends Controller
 
     function report_repair($id_sos_map){
 
-        $data_sos_map = Sos_map::where('id' , $id_sos_map)->first();
-        $data_partner = Partner::where('name' , $data_sos_map->area)
-            ->where('name_area' , $data_sos_map->name_area)
+        $data_report = Report_repair::where('sos_map_id' , $id_sos_map)->first();
+        $data_partner = Partner::where('name' , $data_report->sos_map->area)
+            ->where('name_area' , $data_report->sos_map->name_area)
             ->first();
 
         $data_groupline = Group_line::where('id' , $data_partner->group_line_id)->first();
         $groupId = $data_groupline->groupId ;
 
-        return view('sos_map.sos_report_repair', compact('data_sos_map','groupId'));
+        return view('sos_map.sos_report_repair', compact('groupId' ,'data_report'));
 
+    }
+
+    
+    function update_data_report_repair(Request $request)
+    {
+
+        $data = $request->all();
+
+        $sos_map = Report_repair::findOrFail($data['sos_map_id']);
+        $sos_map->update($data);
+
+        return "a";
     }
 
     function report_repair_for_user($id_sos_map){

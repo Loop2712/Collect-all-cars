@@ -161,4 +161,19 @@ class Home_pageController extends Controller
 
         exit();
     }
+
+    function re_to_line_oa(){
+
+        if(Auth::check()){
+            return view('return_line');
+        }else{
+            $re_to = "re_to_line_oa_2" ;
+            return redirect('login/line?redirectTo=' . $re_to . "&from=re_to_line_oa");
+        }
+        
+    }
+
+    function re_to_line_oa_2(){
+        return view('return_line');
+    }
 }
