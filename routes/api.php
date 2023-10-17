@@ -281,6 +281,7 @@ Route::post('/officerAskMore', 'Sos_help_centerController@officerAskMore');
 Route::get('/update_noti_ask_mores/{ask_mores_id}', 'Sos_help_centerController@update_noti_ask_mores');
 
 Route::get('/check_old_officer/{user_id}', 'Sos_help_centerController@check_old_officer');
+Route::get('/CF_Change_name_officer/{id_officer}/{new_name_officer}', 'Data_1669_operating_unitController@CF_Change_name_officer');
 
 
     // SOS HELP CENTER FORM USER

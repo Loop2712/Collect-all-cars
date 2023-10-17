@@ -2,6 +2,55 @@
 
 @section('content')
 
+<!-- เปลี่ยนชื่อเจ้าหน้าที่ -->
+<!-- Modal -->
+<div class="modal fade" id="Change_name_officer" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_Change_name_officer" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Label_Change_name_officer">เปลี่ยนชื่อเจ้าหน้าที่</h5>
+                <span id="btn_close_Change_name_officer" type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </span>
+            </div>
+            <div class="modal-body">
+                <div class="card border-top border-0 border-4 border-primary">
+                    <div class="card-body p-5">
+                        <div class="card-title d-flex align-items-center">
+                            <div>
+                                <i class="fa-duotone fa-repeat me-1 font-22 text-primary"></i>
+                            </div>
+                            <h5 class="mb-0 text-primary">เปลี่ยนชื่อเจ้าหน้าที่</h5>
+                        </div>
+                        <hr>
+                        <form class="row g-3">
+                            <div class="col-md-12">
+                                <label for="old_name_officer" class="form-label">ชื่อเดิม</label>
+                                <input type="text" class="form-control" id="old_name_officer" readonly>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="new_name_officer" class="form-label">ชื่อใหม่</label>
+                                <input type="text" class="form-control" id="new_name_officer">
+                            </div>
+                            <div class="col-12">
+                                <center>
+                                    <span id="btn_cf_Change_name_officer" style="width:80%;" class="btn btn-success px-5">
+                                        <i class="fa-solid fa-octagon-check"></i> ยืนยัน
+                                    </span>
+                                </center>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-none">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="card radius-10 d-none d-lg-block">
     <div class="card-header border-bottom-0 bg-transparent">
@@ -107,7 +156,8 @@
                                 <tbody>
                                     @foreach($data_officer as $item)
                                         <tr role="row" class="odd">
-                                            <td class="sorting_1">
+                                            <td class="sorting_1" id="td_{{ $item->id }}">
+                                                <i class="fa-duotone fa-pen-to-square text-warning btn mr-1" data-toggle="modal" data-target="#Change_name_officer" onclick="show_modal_Change_name_officer('{{ $item->name_officer }}' , '{{ $item->id }}');"></i>
                                                 {{ $item->name_officer }}
                                             </td>
                                             <td>
@@ -439,6 +489,40 @@
           }
         }
 
+    </script>
+
+    <script>
+        function show_modal_Change_name_officer(name_officer , id_officer){
+            
+            document.querySelector('#new_name_officer').value = '' ;
+            document.querySelector('#btn_cf_Change_name_officer').setAttribute('onclick','CF_Change_name_officer('+id_officer+');');
+            document.querySelector('#old_name_officer').value = name_officer;
+            document.querySelector('#new_name_officer').setAttribute('id','new_name_officer_'+id_officer);
+
+        }
+
+        function CF_Change_name_officer(id_officer){
+            let new_name_officer = document.querySelector('#new_name_officer_'+id_officer).value;
+            // console.log(new_name_officer);
+
+            fetch("{{ url('/') }}/api/CF_Change_name_officer" + "/" +id_officer+ "/" +new_name_officer)
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+
+                    let td_name = document.querySelector('#td_' + id_officer);
+                    let html = `
+                        <i class="fa-duotone fa-pen-to-square text-warning btn mr-1" data-toggle="modal" data-target="#Change_name_officer" onclick="show_modal_Change_name_officer('`+new_name_officer+`' , '`+id_officer+`');"></i>
+                                `+new_name_officer+`
+                    `;
+
+                    td_name.innerHTML = html ;
+                    document.querySelector('#new_name_officer_'+id_officer).setAttribute('id','new_name_officer');
+                    document.querySelector('#btn_close_Change_name_officer').click();
+            });
+
+            
+        }
     </script>
 
 @endsection

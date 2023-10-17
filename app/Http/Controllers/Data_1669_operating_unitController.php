@@ -172,4 +172,17 @@ class Data_1669_operating_unitController extends Controller
 
         return redirect('data_1669_operating_unit')->with('flash_message', 'Data_1669_operating_unit deleted!');
     }
+
+    function CF_Change_name_officer($id_officer , $new_name_officer){
+
+        DB::table('data_1669_operating_officers')
+            ->where([ 
+                    ['id',$id_officer ],
+                ])
+            ->update([
+                'name_officer' => $new_name_officer,
+            ]);
+
+        return "OK" ;
+    }
 }
