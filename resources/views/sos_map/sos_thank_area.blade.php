@@ -95,10 +95,17 @@ $id_sos_map = "1" ;
             </style>
             <div class="row btn_line" >
               <div class="col-6 w-100 p-2 m-0">
+                @if($tag_sos_or_repair != "tag_repair")
                 <a href="{{ url('/sos_map/user_view_officer') . '/' . $id_sos_map }}" type="button" class="btn btn-block btn-primary main-shadow main-radius px-1">
                   <i class="fa-sharp fa-solid fa-map-location-dot mr-1"></i>
                   ตำแหน่งเจ้าหน้าที่
                 </a>
+                @else
+                <a href="{{ url('/sos_map/report_repair_for_user') . '/' . $id_sos_map }}" type="button" class="btn btn-block btn-primary main-shadow main-radius px-1">
+                  <i class="fa-solid fa-screwdriver-wrench mr-1"></i>
+                  ดูรายละเอียด
+                </a>
+                @endif
               </div>
               <div class="col-6 w-100 p-2 m-0">
                 <a href="{{ $link_line_oa }}" type="button" class="btn btn-block btn-success main-shadow main-radius">

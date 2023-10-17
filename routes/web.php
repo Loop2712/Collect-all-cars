@@ -327,6 +327,8 @@ Route::middleware(['auth'])->group(function () {
 
 	// SOS MAP
 	Route::get('/sos_map/add_photo/{id_sos_map}', 'Sos_mapController@sos_map_add_photo');
+	// SOS MAP REPAIR
+	Route::get('sos_map/report_repair_for_user/{id_sos_map}', 'Sos_mapController@report_repair_for_user');
 
 	// SOS 1669
 	Route::get('sos_help_center/{sos_id}/show_user', 'Sos_help_centerController@show_user_sos');
