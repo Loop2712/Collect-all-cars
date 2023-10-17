@@ -170,10 +170,10 @@ class Home_pageController extends Controller
                         ['type', 'line'],
                         ['provider_id', $user->provider_id],
                     ])
-                ->update([ 
-                        ['nationalitie', 'Thai'],
-                        ['language', 'th'],
-                    ]);
+                ->update([
+                    'nationalitie' => 'Thai'
+                    'language' => 'th'
+                ]);
 
             return view('return_line');
         }else{

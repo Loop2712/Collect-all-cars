@@ -392,11 +392,11 @@ class LoginController extends Controller
                             ['type', 'line'],
                             ['provider_id', $user->provider_id],
                         ])
-                    ->update([ 
-                            ['nationalitie', 'Thai'],
-                            ['language', 'th'],
-                        ]);
-                    
+                    ->update([
+                        'nationalitie' => 'Thai'
+                        'language' => 'th'
+                    ]);
+
             }else{
 
                 if ( !empty($data_user->user_from) ){
