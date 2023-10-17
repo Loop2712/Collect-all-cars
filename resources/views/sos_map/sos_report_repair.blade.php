@@ -211,16 +211,20 @@
 
 		let data_arr = [] ;
 
+		let status = document.querySelector('.badge-status select').value ;
+		let link = document.querySelector('#link').value ;
+		let how_to_fix = document.querySelector('#how_to_fix').value ;
+
         data_arr = {
 			"sos_map_id": "{{$data_report->sos_map_id}}",
-			"status": document.querySelector('.badge-status select').value,
-			"link": document.querySelector('#link').value,
-			"how_to_fix": document.querySelector('#how_to_fix').value,
+			"status": status,
+			"link": link,
+			"how_to_fix": how_to_fix,
 	    }; 
-		
-		console.log(data_arr);
 
-        fetch("{{ url('/') }}/update_data_report_repair", {
+	    console.log(data_arr);
+
+        fetch("{{ url('/') }}/api/update_data_report_repair", {
             method: 'post',
             body: JSON.stringify(data_arr),
             headers: {
@@ -229,11 +233,12 @@
         }).then(function (response){
             return response.text();
         }).then(function(data){
-            // console.log(data);
-			animation_save_data();
+            console.log(data);
+
         }).catch(function(error){
             // console.error(error);
         });
+
 	}
 
 	function animation_save_data() {

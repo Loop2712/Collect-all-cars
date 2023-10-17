@@ -1201,13 +1201,26 @@ class Sos_mapController extends Controller
     
     function update_data_report_repair(Request $request)
     {
+        $requestData = $request->all();
 
-        $data = $request->all();
+        DB::table('report_repair')
+            ->where([ 
+                    ['sos_map_id',$requestData['sos_map_id'] ],
+                ])
+            ->update([
+                'how_to_fix' => $requestData['how_to_fix'],
+                'link' => $requestData['link'],
+            ]);
 
-        $sos_map = Report_repair::findOrFail($data['sos_map_id']);
-        $sos_map->update($data);
+        DB::table('sos_maps')
+            ->where([ 
+                    ['id',$requestData['sos_map_id'] ],
+                ])
+            ->update([
+                'status' => $requestData['status'],
+            ]);
 
-        return "a";
+        return "ok";
     }
 
     function report_repair_for_user($id_sos_map){
