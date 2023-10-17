@@ -129,6 +129,13 @@ class LoginController extends Controller
         return Socialite::driver('line')->redirect();
     }
 
+    public function redirectToLine_OA(Request $request)
+    {
+        $request->session()->put('redirectTo', 'https://www.viicheck.com/re_to_line_oa');
+
+        return Socialite::driver('line')->redirect();
+    }
+
     // Line login TU
     public function redirectToLine_TU_SOS(Request $request)
     {

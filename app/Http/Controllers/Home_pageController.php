@@ -161,4 +161,10 @@ class Home_pageController extends Controller
 
         exit();
     }
+
+    function re_to_line_oa(){
+
+        return view('return_line');
+
+    }
 }
