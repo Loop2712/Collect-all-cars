@@ -593,7 +593,7 @@ class Sos_mapController extends Controller
             $text_at = '@' ;
 
             // FLEX SOS เอกชน ทั่วไป
-            if ($requestData['content'] == 'help_area') {
+            if ($data['content'] == 'help_area') {
                 //ส่งเมล
                 $data_send_mail = array();
                 $data_send_mail['photo'] = $photo ;
