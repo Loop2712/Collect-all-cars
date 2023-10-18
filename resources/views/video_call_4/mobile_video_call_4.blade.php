@@ -655,8 +655,8 @@
                 <div class="head_sidebar_div p-4 text-center">
                     {{-- <h1>2308-1406-0014</h1>
                     <h1>สถานะ : เสร็จสิ้น</h1> --}}
-                    <p class="h1 text-dark font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
-                    <p class="h1 text-dark ">สถานะ:
+                    <p style="font-size: 45px;" class="h1 text-dark font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
+                    <p style="font-size: 45px;" class="h1 text-dark ">สถานะ:
                         @php
                             switch ($sos_data->status) {
                                 case 'เสร็จสิ้น':
@@ -682,7 +682,7 @@
                                     break;
                             }
                         @endphp
-                        <a class="{{$color_text_status}} font-weight-bold">{{$sos_data->status ? $sos_data->status : "--"}}</a>
+                        <a style="font-size: 45px;" class="{{$color_text_status}} font-weight-bold">{{$sos_data->status ? $sos_data->status : "--"}}</a>
                     </p>
 
                     {{-- <p class="text-muted font-size-md">การช่วยเหลือผ่านไปแล้ว</p>
@@ -718,12 +718,12 @@
                         }
                     @endphp
 
-                    <p class="h2 text-secondary mt-2">การช่วยเหลือผ่านไปแล้ว</p>
+                    <p style="font-size: 35px;" class="h2 text-secondary mt-2">การช่วยเหลือผ่านไปแล้ว</p>
 
                     @if (!empty($sos_data_time_unit))
-                        <p class="h1 text-dark font-weight-bold">{{$sos_data_time_unit}}</p>
+                        <p style="font-size: 45px;" class="h1 text-dark font-weight-bold">{{$sos_data_time_unit}}</p>
                     @else
-                        <p class="h1 text-dark font-weight-bold"> -- </p>
+                        <p style="font-size: 45px;" class="h1 text-dark font-weight-bold"> -- </p>
                     @endif
                 </div>
             </div>
@@ -744,7 +744,7 @@
             </div>
 
             <div class="card m-4">
-                <div class="body_sidebar_div p-4 text-center">
+                <div class="body_sidebar_div p-4 text-center text-dark">
                     <div class="row mb-3">
                         @php
                             switch ($sos_data->idc) {
@@ -846,7 +846,140 @@
 
     @if ($type === 'sos_map')
         <div class="fadeDiv" id="dataDiv" style="display: none; z-index: 5000;">
-                <div>hello world</div>
+            <div class="card border-top border-0 border-4 border-danger">
+                <div class="card-body p-3">
+
+                    <!-- ข้อมูลผู้ขอความช่วยเหลือ -->
+                    {{-- <div class="text-center">
+                        <div>
+                            <i class="bx bxs-user me-1 font-22 text-info"></i>
+                        </div>
+                        <h4 style="font-size:45px;" class="mb-0 text-info">ข้อมูลผู้ขอความช่วยเหลือ</h4>
+                    </div>
+                    <div style="font-size:35px;" class="text-center font-weight-bold">
+                        <p>
+                            <b>ชื่อ : </b> {{ $data_sos_map->name }} <br>
+                            <b>เบอร์ : </b> {{ $data_sos_map->phone }} <br>
+                        </p>
+                    </div> --}}
+
+                    <div class="card m-4">
+                        <div class="neck_sidebar_div p-4 ">
+                            <div class="text-center">
+                                <div>
+                                    <i class="bx bxs-user me-1 font-22 text-info"></i>
+                                </div>
+                                <h4 style="font-size:45px;" class="mb-0 text-info font-weight-bold">ข้อมูลผู้ขอความช่วยเหลือ</h4>
+                            </div>
+                            <p style="font-size: 45px;" class="text-dark d-flex justify-content-center align-items-center font-weight-bold">{{$data_sos_map->name ? $data_sos_map->name : "--"}} | {{$data_sos_map->phone ? $data_sos_map->phone : "--"}}</p>
+                        </div>
+                    </div>
+
+                    <!-- หัวข้อการขอความช่วยเหลือ -->
+                    <div class="card-title d-flex align-items-center">
+                        <div>
+                            <i class="fa-solid fa-subtitles me-1 font-22 text-danger"></i>
+                        </div>
+                        <h4 class="mb-0 text-danger">ข้อมูล</h4>
+                    </div>
+                    <div style="font-size:35px;" class="text-dark ">
+                        <p>
+                            <b>หัวข้อ : </b> <b class="text-center">{{ $data_sos_map->title_sos }}</b> <br>
+                            <b>รายละเอียด : </b> {{ $data_sos_map->title_sos }} <br>
+                            <b>สถานะ : </b> {{ $data_sos_map->title_sos }} <br>
+                        </p>
+                        <p>
+                            <b>{{ $data_sos_map->title_sos }}</b>
+                            <br>
+                            {{ $data_sos_map->title_sos_other }}
+                        </p>
+                        <p>
+                            <b>Lat : </b>{{ $data_sos_map->lat }}
+                            <br>
+                            <b>Long : </b>{{ $data_sos_map->lng }}
+                        </p>
+                    </div>
+                    <hr>
+                    <center>
+                        <a href="{{ url('/video_call_4/before_video_call_4?type=sos_map&sos_id=') . $data_sos_map->id }}" type="button" class="btn btn-primary p-2" style="width:90%;">
+                            <i class="fa-solid fa-video mr-1"></i>Video Call
+                        </a>
+                        <br>
+                        <div class="accordion" id="accordion_Forward_sos">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                      <button type="button" class="btn btn-info p-2 mt-2" style="width:90%;" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <i class="fa-sharp fa-solid fa-share mr-1"></i>เลือกการส่งต่อ
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse mt-2" aria-labelledby="headingOne" data-bs-parent="#accordion_Forward_sos">
+                                    <div class="accordion-body">
+
+                                        <span id="btn_ask_1669" class="main-shadow btn btn-md btn-block d-none"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
+                                            <div class="d-flex">
+                                                <div class="col-3 p-0 d-flex align-items-center">
+                                                    <div class="justify-content-center col-12 p-0">
+                                                        <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%">
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-center col-9 text-center">
+                                                    <div id="content_1669" class="justify-content-center col-12">
+                                                        @if(empty($data_sos_map->sos_1669_id))
+                                                        <b>
+                                                            <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน (1669)</span>
+                                                            <span id="name_1669_area" class="d-block" style="color: #ffffff;"></span>
+                                                        </b>
+                                                        @else
+                                                        <b>
+                                                            <span class="d-block" style="color: #ffffff;">ส่งต่อ 1669 แล้ว</span>
+                                                        </b>
+                                                        @endif
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </span>
+
+                                        <hr>
+                                        <label>หมายเลขโทรศัพท์ <br>ศูนย์รับแจ้งเหตุและสั่งการจังหวัดต่างๆ</label>
+                                        <div id="content_phone_niems" class="mt-2"></div>
+
+                                        <div class="d-none">
+                                            <input type="text" name="name" id="name" value="{{ $data_sos_map->name }}">
+                                            <input type="text" name="phone" id="phone" value="{{ $data_sos_map->phone }}">
+                                            <input type="text" name="user_id" id="user_id" value="{{ $data_sos_map->user_id }}">
+                                            <input type="text" name="lat" id="lat" value="{{ $data_sos_map->lat }}">
+                                            <input type="text" name="lng" id="lng" value="{{ $data_sos_map->lng }}">
+                                            <input type="text" name="photo_sos_1669" id="photo_sos_1669" value="{{ $data_sos_map->photo }}">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+            </div>
+
+            @if(!empty($data_sos_map->helper_id))
+            <!-- ข้อมูลเจ้าหน้าที่ -->
+            <div class="card border-top border-0 border-4 border-success">
+                <div class="card-body p-3">
+                    <div class="card-title d-flex align-items-center">
+                        <div>
+                            <i class="fa-solid fa-user-police-tie me-1 font-22 text-success"></i>
+                        </div>
+                        <h4 class="mb-0 text-success">ข้อมูลเจ้าหน้าที่</h4>
+                    </div>
+                    <div style="font-size:22px;">
+                        <h5>ชื่อเจ้าหน้าที่</h5>
+                        <p>{{ $data_sos_map->user_helper->name }}</p>
+                        <h5>เบอร์ติดต่อ</h5>
+                        <p>{{ $data_sos_map->user_helper->phone }}</p>
+                    </div>
+                </div>
+            </div>
+            @endif
         </div>
     @endif
 

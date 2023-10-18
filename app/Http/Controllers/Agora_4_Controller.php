@@ -14,6 +14,8 @@ use Intervention\Image\ImageManagerStatic as Image;
 // use App\Classes\AgoraDynamicKey\RtcTokenBuilder;
 use App\Events\MakeAgoraCall;
 use App\Models\Data_1669_operating_officer;
+use App\Models\Group_line;
+use App\Models\Partner;
 use App\Models\Sos_1669_form_yellow;
 use Willywes\AgoraSDK\RtcTokenBuilder;
 
@@ -128,6 +130,11 @@ class Agora_4_Controller extends Controller
         ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
         ->first();
 
+        $data_sos_map = Sos_map::where('id' , $sos_id)->first();
+        $data_partner = Partner::where('name' , $data_sos_map->area)
+            ->where('name_area' , $data_sos_map->name_area)
+            ->first();
+
         if (!empty($useSpeaker)) {
             $useSpeaker = $requestData['useSpeaker'];
         } else {
@@ -160,7 +167,7 @@ class Agora_4_Controller extends Controller
         $appCertificate = env('AGORA_APP_CERTIFICATE');
 
 
-        return view('video_call_4/mobile_video_call_4' , compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data'));
+        return view('video_call_4/mobile_video_call_4' , compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data','data_sos_map'));
     }
 
     public function token(Request $request)

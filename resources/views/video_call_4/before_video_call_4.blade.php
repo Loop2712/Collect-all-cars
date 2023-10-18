@@ -95,8 +95,8 @@
         align-items: center;
     }.video_preview{
         min-height: 20vh;
-        height: 100%;
-        max-height: 50vh;
+        height: 40vh;
+        max-height: 40vh;
         width: 100%;
         object-fit: cover;
         border-radius: 15px;
@@ -189,7 +189,7 @@
             <div class="col-12 col-sm-12 col-lg-8 p-2">
                 @if ($type_device == "pc_video_call")
                     <div class="div-video">
-                        <video id="videoDiv" class="video_preview" autoplay></video>
+                        <video id="videoDiv" style="background-color: #000000;" class="video_preview" autoplay></video>
                         <div id="soundTest" class="soundTest">
                             <div class="soundMeter"></div>
                         </div>
@@ -200,7 +200,7 @@
                     </div>
                 @else
                     <div class="div-video m-5">
-                        <video id="videoDiv" class="video_preview" autoplay></video>
+                        <video id="videoDiv" style="background-color: #000000;" class="video_preview" autoplay></video>
                         <div id="soundTest" class="soundTest">
                             <div class="soundMeter"></div>
                         </div>
@@ -310,9 +310,12 @@
             let agoraAppId = '';
             let agoraAppCertificate = '';
             // ตรวจสอบว่าคีย์และรหัสลับมีค่าความยาวมากกว่า 0 หรือไม่
-            while (agoraAppId.length === 0 || agoraAppCertificate.length === 0) {
-                agoraAppId = '{{ env("AGORA_APP_ID") }}';
-                agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+            let amount_loop = 7;
+            for (let amount = 0; amount < amount_loop; amount++) {
+                if (agoraAppId.length === 0 || agoraAppCertificate.length === 0) {
+                    agoraAppId = '{{ env("AGORA_APP_ID") }}';
+                    agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+                }
             }
 
             // agoraAppId = '{{ env("AGORA_APP_ID") }}';
