@@ -11,7 +11,10 @@
 		height: 100%;
 		min-height: calc(100%) !important;
         max-height: calc(100%) !important;
-
+        padding-bottom: 0;
+		/* padding-top: 0; */
+		/* margin-top: 0; */
+		margin-bottom: 0;
 	}
 
 	.data-sos {
@@ -565,9 +568,9 @@
         color: #ffffff;
         font-size: 3rem;
         position: absolute;
-        bottom: 0; /* เปลี่ยนจาก 20% เป็น 0 เพื่อให้อยู่ชิดขอบล่าง */
-        left: 0; /* ตั้งค่าตำแหน่งแนวนอนให้ชิดขอบซ้าย */
-        right: 0; /* ตั้งค่าตำแหน่งแนวนอนให้ชิดขอบขวา */
+        bottom: 2;
+        left: 0;
+        right: 0;
         padding: 1rem;
         text-align: center; /* ตั้งค่าการจัดวางข้อความในกลาง */
     }
@@ -590,16 +593,16 @@
 	</div>
 	<div class="col-12" style="height: 70%; ">
 		<div class="d-flex h-100 row">
-			<div class="video-call">
-				<div style="position: relative;" class=" d-flex align-item-center justify-content-center h-100 row">
+			<div style="position: relative;" class="video-call">
+				<div class=" d-flex align-item-center justify-content-center h-100 row">
 					<div class="d-flex align-self-center justify-content-center mb-3">
 						<div class="row mb-4" id="container_user_video_call">
 						</div>
 					</div>
-                    <div id="adive_text_video_call" class="advice_text text-center mt-1">
-                        <!-- ใส่ ข้อความที่มาจาก javascript -->
-                    </div>
 				</div>
+                <div id="adive_text_video_call" class="advice_text d-block text-center mt-1">
+                    <!-- ใส่ ข้อความที่มาจาก javascript -->
+                </div>
 			</div>
 		</div>
 	</div>
