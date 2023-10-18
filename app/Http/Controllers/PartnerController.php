@@ -799,7 +799,11 @@ class PartnerController extends Controller
 
         $our_line_group = Group_line::where('owner', $data_user->organization." (Partner)")->get();
 
-        return view('partner.service_area.partner_add_area', compact('data_partners' , 'data_time_zone' ,'group_line' ,'all_area_partners','our_line_group'));
+        if($data_user->organization == "ชาลีกรุงเทพ"){
+            return redirect('404');
+        }else{
+            return view('partner.service_area.partner_add_area', compact('data_partners' , 'data_time_zone' ,'group_line' ,'all_area_partners','our_line_group'));
+        }
     }
 
     public function service_area(Request $request)
