@@ -1236,17 +1236,23 @@ class Sos_mapController extends Controller
         return "ok";
     }
 
-    function report_repair_for_user($id_sos_map){
+    function report_repair_for_user_check_login($id_sos_map){
 
         if(Auth::check()){
-            $data_report = Report_repair::where('sos_map_id' , $id_sos_map)->first();
-            $data_helper = User::where('id' ,$data_report->sos_map->helper_id)->first();
-
-            return view('sos_map.sos_report_repair_for_user', compact('data_report','data_helper'));
+            return redirect("sos_map/report_repair_for_user_success" . "/" . $id_sos_map);
         }else{
-            $re_to = "sos_map/report_repair_for_user" . "/" . $id_sos_map ;
+            $re_to = "sos_map/report_repair_for_user_success" . "/" . $id_sos_map ;
             return redirect('login/line?redirectTo=' . $re_to);
         }
+        
+    }
+
+    function report_repair_for_user_success($id_sos_map){
+
+        $data_report = Report_repair::where('sos_map_id' , $id_sos_map)->first();
+        $data_helper = User::where('id' ,$data_report->sos_map->helper_id)->first();
+
+        return view('sos_map.sos_report_repair_for_user', compact('data_report','data_helper'));
         
     }
 

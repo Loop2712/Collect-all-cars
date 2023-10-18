@@ -334,7 +334,7 @@ Route::middleware(['auth'])->group(function () {
 	// SOS MAP
 	Route::get('/sos_map/add_photo/{id_sos_map}', 'Sos_mapController@sos_map_add_photo');
 	// SOS MAP REPAIR
-	Route::get('sos_map/report_repair_for_user/{id_sos_map}', 'Sos_mapController@report_repair_for_user');
+	Route::get('sos_map/report_repair_for_user_success/{id_sos_map}', 'Sos_mapController@report_repair_for_user_success');
 
 	// SOS 1669
 	Route::get('sos_help_center/{sos_id}/show_user', 'Sos_help_centerController@show_user_sos');
@@ -388,6 +388,8 @@ Route::get('/market/motercycle/{id}', 'MotercleyviewController@show');
 	// sos map User
 	Route::get('sos_map/user_view_officer_login/{id_sos_map}', 'Sos_mapController@user_view_officer_login');
 	Route::get('sos_map/user_view_officer/{id_sos_map}', 'Sos_mapController@user_view_officer');
+	Route::get('sos_map/report_repair_for_user/{id_sos_map}', 'Sos_mapController@report_repair_for_user_check_login');
+	
 	
 // END AUTO LOHIN FROM FLEX LINE
 
