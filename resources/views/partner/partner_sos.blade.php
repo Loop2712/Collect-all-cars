@@ -373,11 +373,9 @@
                             <a href="{{ url('/sos_map/command') . '/' . $item->id }}" type="button" class="btn {{ $btn_background_color }} px-5">
                                 <i class="fa-duotone fa-bars-progress mr-1"></i> ดำเนินการ
                             </a>
-                            @if(Auth::user()->id == "1")
-                                <a href="{{ url('/sos_map/delete_case') . '/' . $item->id }}" type="button" class="btn btn-danger px-5 mr-2 ml-2">
-                                    <i class="fa-solid fa-delete-right mr-1"></i> ลบ
-                                </a>
-                            @endif
+                            <a href="{{ url('/sos_map/delete_case') . '/' . $item->id }}" type="button" class="btn btn-danger px-5 mr-2 ml-2">
+                                <i class="fa-solid fa-delete-right mr-1"></i> ลบ
+                            </a>
                         </div>
                         @else
 
@@ -385,11 +383,9 @@
                             <a href="{{ url('/sos_map/report_repair') . '/' . $item->id }}" type="button" class="btn {{ $btn_background_color }} px-5">
                                 <i class="fa-duotone fa-bars-progress mr-1"></i> ดำเนินการ
                             </a>
-                            @if(Auth::user()->id == "1")
-                                <a href="{{ url('/sos_map/delete_case') . '/' . $item->id }}" type="button" class="btn btn-danger px-5 mr-2 ml-2">
-                                    <i class="fa-solid fa-delete-right mr-1"></i> ลบ
-                                </a>
-                            @endif
+                            <a href="{{ url('/sos_map/delete_case') . '/' . $item->id }}" type="button" class="btn btn-danger px-5 mr-2 ml-2">
+                                <i class="fa-solid fa-delete-right mr-1"></i> ลบ
+                            </a>
                         </div>
                         @endif
 
