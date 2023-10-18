@@ -232,9 +232,10 @@ class Agora_4_Controller extends Controller
         $centerY = $height / 2;
 
         // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
-        try{
-            $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
-        }catch{
+        try {
+          $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+        }
+        catch(Exception $e) {
             $hexcolor = '#27D7D1FF';
         }
 
@@ -277,9 +278,10 @@ class Agora_4_Controller extends Controller
         $centerY = $height / 2;
 
         // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
-        try{
-            $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
-        }catch{
+        try {
+          $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+        }
+        catch(Exception $e) {
             $hexcolor = '#27D7D1FF';
         }
 
