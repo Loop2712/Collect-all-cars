@@ -576,71 +576,67 @@
         <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
 
-    @if ($type == "sos_1669")
-        <div class="col-12" style="height: calc(100% - 90%);">
-            <div class="status-case-bar text-center">
-                <p class="font-30">สถานะ : {{$sos_data->status ? $sos_data->status : "--"}} <br> เวลาห้องสนทนา : -- </p>
-                <button class="btn btn-success" id="fadeButton"><i class="fa-solid fa-file-invoice" style="font-size: 45px;"></i></button>
-            </div>
+    <div class="col-12" style="height: calc(100% - 90%);">
+        <div class="status-case-bar text-center">
+            <p class="font-30">สถานะ : {{$sos_data->status ? $sos_data->status : "--"}} <br> เวลาห้องสนทนา : -- </p>
+            <button class="btn btn-success" id="fadeButton"><i class="fa-solid fa-file-invoice" style="font-size: 45px;"></i></button>
         </div>
-        <div class="col-12" style="height: calc(100% - 30%); border: 0;">
-            <div class="d-flex h-100 row">
-                <div style="position: relative;"  class="video-call">
-                    <div class=" d-flex align-item-center justify-content-center h-100 row">
-                        <div class="d-flex align-self-center justify-content-center mb-3">
-                            <div class="row mb-4" id="container_user_video_call">
-                            </div>
+    </div>
+    <div class="col-12" style="height: calc(100% - 30%); border: 0;">
+        <div class="d-flex h-100 row">
+            <div style="position: relative;"  class="video-call">
+                <div class=" d-flex align-item-center justify-content-center h-100 row">
+                    <div class="d-flex align-self-center justify-content-center mb-3">
+                        <div class="row mb-4" id="container_user_video_call">
                         </div>
                     </div>
-                    <div id="adive_text_video_call" class="advice_text d-block text-center">
-                        <!-- ใส่ ข้อความที่มาจาก javascript -->
-                    </div>
+                </div>
+                <div id="adive_text_video_call" class="advice_text d-block text-center">
+                    <!-- ใส่ ข้อความที่มาจาก javascript -->
                 </div>
             </div>
         </div>
-        <div class="col-12 pt-3" style="height: calc(100% - 89%); background-color: #2b2d31; border: 0;">
-            <div class="w-100 user-video-call-contrainer d-none " >
-                <div class="d-flex justify-content-center align-self-end d-non user-video-call-bar mb-2" >
-                </div>
+    </div>
+    <div class="col-12 pt-3" style="height: calc(100% - 89%); background-color: #2b2d31; border: 0;">
+        <div class="w-100 user-video-call-contrainer d-none " >
+            <div class="d-flex justify-content-center align-self-end d-non user-video-call-bar mb-2" >
             </div>
         </div>
-        <div class="col-12" style="height: calc(100% - 91%); background-color: #ffffff; ">
-            <div class="btn-video-call-container mt-2">
-                <div class="row d-flex justify-content-center" >
+    </div>
+    <div class="col-12" style="height: calc(100% - 91%); background-color: #ffffff; ">
+        <div class="btn-video-call-container mt-2">
+            <div class="row d-flex justify-content-center" >
 
-                    <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
-                    <div id="div_for_AudioButton" class="btn btnSpecial">
-                        {{-- <i id="icon_muteAudio" class="fa-solid fa-microphone-stand"></i> --}}
-                        {{-- <button class="smallCircle" id="btn_switchMicrophone">
-                            <i class="fa-sharp fa-solid fa-angle-up"></i>
-                        </button> --}}
-                    </div>
-
-                    <!-- เปลี่ยนกล้อง ให้กดได้แค่ในคอม -->
-                    <div id="div_for_VideoButton" class="btn btnSpecial">
-                        {{-- <i id="icon_muteVideo" class="fa-solid fa-camera-rotate"></i> --}}
-                    </div>
-
-                    <div class="btn btnSpecial btnSpecial_switch" id="btn_switchCamera">
-                        <i class="fa-duotone fa-camera-rotate" style="--fa-primary-color: #26076e; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>
-                    </div>
-
-                    <div class="btn btnSpecial btn_leave" id="addButton">
-                        <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-                    </div>
-
-
-
-                    <div class="btn btnSpecial btn_leave" id="leave">
-                        <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>
-                    </div>
-
+                <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
+                <div id="div_for_AudioButton" class="btn btnSpecial">
+                    {{-- <i id="icon_muteAudio" class="fa-solid fa-microphone-stand"></i> --}}
+                    {{-- <button class="smallCircle" id="btn_switchMicrophone">
+                        <i class="fa-sharp fa-solid fa-angle-up"></i>
+                    </button> --}}
                 </div>
+
+                <!-- เปลี่ยนกล้อง ให้กดได้แค่ในคอม -->
+                <div id="div_for_VideoButton" class="btn btnSpecial">
+                    {{-- <i id="icon_muteVideo" class="fa-solid fa-camera-rotate"></i> --}}
+                </div>
+
+                <div class="btn btnSpecial btnSpecial_switch" id="btn_switchCamera">
+                    <i class="fa-duotone fa-camera-rotate" style="--fa-primary-color: #26076e; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>
+                </div>
+
+                <div class="btn btnSpecial btn_leave" id="addButton">
+                    <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+                </div>
+
+
+
+                <div class="btn btnSpecial btn_leave" id="leave">
+                    <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>
+                </div>
+
             </div>
         </div>
-    @endif
-
-
+    </div>
 </div>
 
 <div class="dropcontent">
@@ -653,199 +649,207 @@
         <!-- Created list-video from Javascript Here -->
     </ul>
 </div>
+    @if ($type === 'sos_1669')
+        <div class="fadeDiv" id="dataDiv" style="display: none; z-index: 5000;">
+            <div class="card m-4 text-dark">
+                <div class="head_sidebar_div p-4 text-center">
+                    {{-- <h1>2308-1406-0014</h1>
+                    <h1>สถานะ : เสร็จสิ้น</h1> --}}
+                    <p class="h1 text-dark font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
+                    <p class="h1 text-dark ">สถานะ:
+                        @php
+                            switch ($sos_data->status) {
+                                case 'เสร็จสิ้น':
+                                    $color_text_status = "text-success";
+                                    break;
+                                case 'รับแจ้งเหตุ':
+                                    $color_text_status = "text-danger";
+                                    break;
+                                case 'กำลังดำเนินการ':
+                                    $color_text_status = "text-warning";
+                                    break;
+                                case 'รอการยืนยัน':
+                                    $color_text_status = "text-warning";
+                                    break;
+                                case 'ถึงที่เกิดเหตุ':
+                                    $color_text_status = "text-warning";
+                                    break;
+                                case 'ออกจากฐาน':
+                                    $color_text_status = "text-warning";
+                                    break;
+                                default:
+                                    $color_text_status = "text-secondary";
+                                    break;
+                            }
+                        @endphp
+                        <a class="{{$color_text_status}} font-weight-bold">{{$sos_data->status ? $sos_data->status : "--"}}</a>
+                    </p>
 
-<div class="fadeDiv" id="dataDiv" style="display: none; z-index: 5000;">
-	<div class="card m-4 text-dark">
-		<div class="head_sidebar_div p-4 text-center">
-			{{-- <h1>2308-1406-0014</h1>
-			<h1>สถานะ : เสร็จสิ้น</h1> --}}
-            <p class="h1 text-dark font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
-            <p class="h1 text-dark ">สถานะ:
-                @php
-                    switch ($sos_data->status) {
-                        case 'เสร็จสิ้น':
-                            $color_text_status = "text-success";
-                            break;
-                        case 'รับแจ้งเหตุ':
-                            $color_text_status = "text-danger";
-                            break;
-                        case 'กำลังดำเนินการ':
-                            $color_text_status = "text-warning";
-                            break;
-                        case 'รอการยืนยัน':
-                            $color_text_status = "text-warning";
-                            break;
-                        case 'ถึงที่เกิดเหตุ':
-                            $color_text_status = "text-warning";
-                            break;
-                        case 'ออกจากฐาน':
-                            $color_text_status = "text-warning";
-                            break;
-                        default:
-                            $color_text_status = "text-secondary";
-                            break;
-                    }
-                @endphp
-                <a class="{{$color_text_status}} font-weight-bold">{{$sos_data->status ? $sos_data->status : "--"}}</a>
-            </p>
+                    {{-- <p class="text-muted font-size-md">การช่วยเหลือผ่านไปแล้ว</p>
+                    <h3 class="text-danger">25 นาที</h3> --}}
+                    @php
+                        if( !empty($sos_data->created_sos)){
+                            $currentdate = date('H:i:s'); // เวลาปัจจุบันในรูปแบบ "H:i:s"
+                            $sos_data_time_command = strtotime($sos_data->created_sos); // แปลง $sos_data->time_create_sos เป็น timestamp
+                            $sos_data_timeDifference = abs( $sos_data_time_command - strtotime($currentdate) );
 
-			{{-- <p class="text-muted font-size-md">การช่วยเหลือผ่านไปแล้ว</p>
-			<h3 class="text-danger">25 นาที</h3> --}}
-            @php
-                if( !empty($sos_data->created_sos)){
-                    $currentdate = date('H:i:s'); // เวลาปัจจุบันในรูปแบบ "H:i:s"
-                    $sos_data_time_command = strtotime($sos_data->created_sos); // แปลง $sos_data->time_create_sos เป็น timestamp
-                    $sos_data_timeDifference = abs( $sos_data_time_command - strtotime($currentdate) );
+                            if ($sos_data_timeDifference >= 86400) { // ถ้าเกิน 1 วัน (86400 วินาที)
+                                $sos_data_days = floor($sos_data_timeDifference / 86400);
+                                $sos_data_hours = floor(($sos_data_timeDifference % 86400) / 3600);
 
-                    if ($sos_data_timeDifference >= 86400) { // ถ้าเกิน 1 วัน (86400 วินาที)
-                        $sos_data_days = floor($sos_data_timeDifference / 86400);
-                        $sos_data_hours = floor(($sos_data_timeDifference % 86400) / 3600);
+                                $sos_data_time_unit = $sos_data_days . ' วัน ' . $sos_data_hours . ' ชั่วโมง ';
 
-                        $sos_data_time_unit = $sos_data_days . ' วัน ' . $sos_data_hours . ' ชั่วโมง ';
+                            }elseif ($sos_data_timeDifference >= 3600) {
+                                $sos_data_hours = floor($sos_data_timeDifference / 3600);
+                                $sos_data_remainingMinutes = floor(($sos_data_timeDifference % 3600) / 60);
+                                $sos_data_remainingSeconds = $sos_data_timeDifference % 60;
 
-                    }elseif ($sos_data_timeDifference >= 3600) {
-                        $sos_data_hours = floor($sos_data_timeDifference / 3600);
-                        $sos_data_remainingMinutes = floor(($sos_data_timeDifference % 3600) / 60);
-                        $sos_data_remainingSeconds = $sos_data_timeDifference % 60;
+                                $sos_data_time_unit = $sos_data_hours . ' ชั่วโมง ' . $sos_data_remainingMinutes . ' นาที ' . $sos_data_remainingSeconds . ' วินาที';
+                            } elseif ($sos_data_timeDifference >= 60) {
+                                $sos_data_minutes = floor($sos_data_timeDifference / 60);
+                                $sos_data_seconds = $sos_data_timeDifference % 60;
 
-                        $sos_data_time_unit = $sos_data_hours . ' ชั่วโมง ' . $sos_data_remainingMinutes . ' นาที ' . $sos_data_remainingSeconds . ' วินาที';
-                    } elseif ($sos_data_timeDifference >= 60) {
-                        $sos_data_minutes = floor($sos_data_timeDifference / 60);
-                        $sos_data_seconds = $sos_data_timeDifference % 60;
+                                $sos_data_time_unit = $sos_data_minutes . ' นาที ' . $sos_data_seconds . ' วินาที';
+                            } else {
+                                $sos_data_time_unit = $sos_data_timeDifference . ' วินาที';
+                            }
+                        }else{
+                            $sos_data_time_unit  = "--";
+                        }
+                    @endphp
 
-                        $sos_data_time_unit = $sos_data_minutes . ' นาที ' . $sos_data_seconds . ' วินาที';
-                    } else {
-                        $sos_data_time_unit = $sos_data_timeDifference . ' วินาที';
-                    }
-                }else{
-                    $sos_data_time_unit  = "--";
-                }
-            @endphp
+                    <p class="h2 text-secondary mt-2">การช่วยเหลือผ่านไปแล้ว</p>
 
-            <p class="h2 text-secondary mt-2">การช่วยเหลือผ่านไปแล้ว</p>
+                    @if (!empty($sos_data_time_unit))
+                        <p class="h1 text-dark font-weight-bold">{{$sos_data_time_unit}}</p>
+                    @else
+                        <p class="h1 text-dark font-weight-bold"> -- </p>
+                    @endif
+                </div>
+            </div>
 
-            @if (!empty($sos_data_time_unit))
-                <p class="h1 text-dark font-weight-bold">{{$sos_data_time_unit}}</p>
-            @else
-                <p class="h1 text-dark font-weight-bold"> -- </p>
-            @endif
-		</div>
-	</div>
+            {{-- <div class="card m-4">
+                <div class="neck_sidebar_div p-4 text-center">
+                    <p class="h1 mb-1 font-weight-bold text-center">ผู้ขอความช่วยเหลือ</p>
+                    <p class="h2 text-dark">{{$sos_data->name_user ? $sos_data->name_user : "--"}}</p>
+                    <p class="h2 text-dark">{{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
+                </div>
+            </div> --}}
 
-	{{-- <div class="card m-4">
-		<div class="neck_sidebar_div p-4 text-center">
-			<p class="h1 mb-1 font-weight-bold text-center">ผู้ขอความช่วยเหลือ</p>
-			<p class="h2 text-dark">{{$sos_data->name_user ? $sos_data->name_user : "--"}}</p>
-			<p class="h2 text-dark">{{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
-		</div>
-	</div> --}}
+            <div class="card m-4">
+                <div class="neck_sidebar_div p-4 text-center">
+                    <p style="font-size: 45px;" class=" mb-1 font-weight-bold text-center">ผู้ขอความช่วยเหลือ</p>
+                    <p style="font-size: 45px;" class="font-weight-bold text-dark">{{$sos_data->name_user ? $sos_data->name_user : "--"}} {{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
+                </div>
+            </div>
 
-    <div class="card m-4">
-		<div class="neck_sidebar_div p-4 text-center">
-			<p style="font-size: 45px;" class=" mb-1 font-weight-bold text-center">ผู้ขอความช่วยเหลือ</p>
-			<p style="font-size: 45px;" class="font-weight-bold text-dark">{{$sos_data->name_user ? $sos_data->name_user : "--"}} {{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
-		</div>
-	</div>
-
-	<div class="card m-4">
-		<div class="body_sidebar_div p-4 text-center">
-			<div class="row mb-3">
-                @php
-                    switch ($sos_data->idc) {
-                        case 'แดง(วิกฤติ)':
-                            $bg_idc = "#db2d2e";
-                            $text_idc = "แดง";
-                            break;
-                        case 'เหลือง(เร่งด่วน)':
-                            $bg_idc = "#ffc30e";
-                            $text_idc = "เหลือง";
-                            break;
-                        case 'เขียว(ไม่รุนแรง)':
-                            $bg_idc = "#29cc39";
-                            $text_idc = "เขียว";
-                            break;
-                        case 'ขาว(ทั่วไป)':
-                            $bg_idc = "#0d6efd";
-                            $text_idc = "ขาว";
-                            break;
-                        case 'ดำ(รับบริการสาธารณสุขอื่น)':
-                            $bg_idc = "#000000";
-                            $text_idc = "ดำ";
-                            break;
-                        default:
-                            $bg_idc = "#000000";
-                            $text_idc = "--";
-                            break;
-                    }
+            <div class="card m-4">
+                <div class="body_sidebar_div p-4 text-center">
+                    <div class="row mb-3">
+                        @php
+                            switch ($sos_data->idc) {
+                                case 'แดง(วิกฤติ)':
+                                    $bg_idc = "#db2d2e";
+                                    $text_idc = "แดง";
+                                    break;
+                                case 'เหลือง(เร่งด่วน)':
+                                    $bg_idc = "#ffc30e";
+                                    $text_idc = "เหลือง";
+                                    break;
+                                case 'เขียว(ไม่รุนแรง)':
+                                    $bg_idc = "#29cc39";
+                                    $text_idc = "เขียว";
+                                    break;
+                                case 'ขาว(ทั่วไป)':
+                                    $bg_idc = "#0d6efd";
+                                    $text_idc = "ขาว";
+                                    break;
+                                case 'ดำ(รับบริการสาธารณสุขอื่น)':
+                                    $bg_idc = "#000000";
+                                    $text_idc = "ดำ";
+                                    break;
+                                default:
+                                    $bg_idc = "#000000";
+                                    $text_idc = "--";
+                                    break;
+                            }
 
 
-                    switch ($sos_data->rc) {
-                        case 'แดง(วิกฤติ)':
-                            $bg_rc = "#db2d2e";
-                            $text_rc = "แดง";
-                            break;
-                        case 'เหลือง(เร่งด่วน)':
-                            $bg_rc = "#ffc30e";
-                            $text_rc = "เหลือง";
-                            break;
-                        case 'เขียว(ไม่รุนแรง)':
-                            $bg_rc = "#29cc39";
-                            $text_rc = "เขียว";
-                            break;
-                        case 'ขาว(ทั่วไป)':
-                            $bg_rc = "#0d6efd";
-                            $text_rc = "ขาว";
-                            break;
-                        case 'ดำ(รับบริการสาธารณสุขอื่น)':
-                            $bg_rc = "#000000";
-                            $text_rc = "ดำ";
-                            break;
-                        default:
-                            $bg_rc = "#000000";
-                            $text_rc = "--";
-                            break;
-                    }
-                @endphp
-				<div class="col ">
-					<div style="background-color: {{$bg_idc}}; border-radius: 15px;" class="p-2 text-center">
-						<h1 class="text-white font-weight-bold">IDC : {{$text_idc ? $text_idc : "--"}}</h1>
-					</div>
-				</div>
-				<div class="col ">
-					<div style="background-color: {{$bg_rc}}; border-radius: 15px;" class="p-2 text-center">
-						<h1 class="text-white font-weight-bold">RC : {{$text_rc ? $text_rc : "--"}}</h1>
-					</div>
-				</div>
-			</div>
+                            switch ($sos_data->rc) {
+                                case 'แดง(วิกฤติ)':
+                                    $bg_rc = "#db2d2e";
+                                    $text_rc = "แดง";
+                                    break;
+                                case 'เหลือง(เร่งด่วน)':
+                                    $bg_rc = "#ffc30e";
+                                    $text_rc = "เหลือง";
+                                    break;
+                                case 'เขียว(ไม่รุนแรง)':
+                                    $bg_rc = "#29cc39";
+                                    $text_rc = "เขียว";
+                                    break;
+                                case 'ขาว(ทั่วไป)':
+                                    $bg_rc = "#0d6efd";
+                                    $text_rc = "ขาว";
+                                    break;
+                                case 'ดำ(รับบริการสาธารณสุขอื่น)':
+                                    $bg_rc = "#000000";
+                                    $text_rc = "ดำ";
+                                    break;
+                                default:
+                                    $bg_rc = "#000000";
+                                    $text_rc = "--";
+                                    break;
+                            }
+                        @endphp
+                        <div class="col ">
+                            <div style="background-color: {{$bg_idc}}; border-radius: 15px;" class="p-2 text-center">
+                                <h1 class="text-white font-weight-bold">IDC : {{$text_idc ? $text_idc : "--"}}</h1>
+                            </div>
+                        </div>
+                        <div class="col ">
+                            <div style="background-color: {{$bg_rc}}; border-radius: 15px;" class="p-2 text-center">
+                                <h1 class="text-white font-weight-bold">RC : {{$text_rc ? $text_rc : "--"}}</h1>
+                            </div>
+                        </div>
+                    </div>
 
-			{{-- <div class="mb-5">
-				<p class="h1 d-flex align-items-center mb-2 font-weight-bold">รายละเอียดสถานที่</p>
-				<p class="h2 text-muted font-size-xl">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</p>
-			</div>
-			<div class="mb-5">
-				<p class="h1 d-flex align-items-center mb-2 font-weight-bold">อาการ</p>
-				<p class="h2 text-muted font-size-xl">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</p>
-			</div>
-			<div class="mb-5">
-				<p class="h1 d-flex align-items-center mb-2 font-weight-bold">รายละเอียดอาการ</p>
-				<p class="h2 text-muted font-size-xl">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</p>
-			</div> --}}
+                    {{-- <div class="mb-5">
+                        <p class="h1 d-flex align-items-center mb-2 font-weight-bold">รายละเอียดสถานที่</p>
+                        <p class="h2 text-muted font-size-xl">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</p>
+                    </div>
+                    <div class="mb-5">
+                        <p class="h1 d-flex align-items-center mb-2 font-weight-bold">อาการ</p>
+                        <p class="h2 text-muted font-size-xl">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</p>
+                    </div>
+                    <div class="mb-5">
+                        <p class="h1 d-flex align-items-center mb-2 font-weight-bold">รายละเอียดอาการ</p>
+                        <p class="h2 text-muted font-size-xl">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</p>
+                    </div> --}}
 
-            <div class="mb-5">
-				<p style="font-size: 40px;" class="d-flex align-items-center mb-2 font-weight-bold">รายละเอียดสถานที่</p>
-				<p style="font-size: 40px;" class=" ">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</p>
-			</div>
-			<div class="mb-5">
-				<p style="font-size: 40px;" class="d-flex align-items-center mb-2 font-weight-bold">อาการ</p>
-				<p style="font-size: 40px;" class=" ">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</p>
-			</div>
-			<div class="mb-5">
-				<p style="font-size: 40px;" class="d-flex align-items-center mb-2 font-weight-bold">รายละเอียดอาการ</p>
-				<p style="font-size: 40px;" class=" ">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</p>
-			</div>
-		</div>
-	</div>
-</div>
+                    <div class="mb-5">
+                        <p style="font-size: 40px;" class="d-flex align-items-center mb-2 font-weight-bold">รายละเอียดสถานที่</p>
+                        <p style="font-size: 40px;" class=" ">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</p>
+                    </div>
+                    <div class="mb-5">
+                        <p style="font-size: 40px;" class="d-flex align-items-center mb-2 font-weight-bold">อาการ</p>
+                        <p style="font-size: 40px;" class=" ">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</p>
+                    </div>
+                    <div class="mb-5">
+                        <p style="font-size: 40px;" class="d-flex align-items-center mb-2 font-weight-bold">รายละเอียดอาการ</p>
+                        <p style="font-size: 40px;" class=" ">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if ($type === 'sos_map')
+        <div class="fadeDiv" id="dataDiv" style="display: none; z-index: 5000;">
+                <div>hello world</div>
+        </div>
+    @endif
+
 
 
 {{-- <script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
