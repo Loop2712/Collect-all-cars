@@ -314,6 +314,12 @@
                 agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
             }
 
+            // agoraAppId = '{{ env("AGORA_APP_ID") }}';
+            // agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+
+            // agoraAppId = btoa(agoraAppId);
+            // agoraAppCertificate = btoa(agoraAppCertificate);
+
             return { agoraAppId, agoraAppCertificate };
         }
 

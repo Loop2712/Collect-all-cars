@@ -252,6 +252,13 @@
             border-radius: 10px;
             margin: 1rem;
             color: #ffffff !important;
+            font-size: 1em;
+            font-weight: bold;
+            /* word-wrap: break-word; */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: calc(100% - 10%);
         }
 
         .infomation-user .role-user-video-call ,.infomation-user .name-user-video-call{
@@ -270,10 +277,17 @@
         }
 
         .user-video-call-bar .custom-div .infomation-user{
-            transform: scale(0.5);
+            transform: scale(0.6);
             margin: 0;
-            bottom: -10px;
-            right: -10px;
+            bottom: -12px;
+            right: -30px;
+            font-size: 1.3em;
+            font-weight: bold;
+            /* word-wrap: break-word; */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: calc(100%);
         }
 
         .user-video-call-bar .custom-div .status-input-output{
@@ -487,6 +501,7 @@
 	{{-- <div class="Scenary"></div> --}}
 	<div class="col-12 col-lg-2">
         <button id="join" class="btn btn-success d-none" >เข้าร่วม</button>
+        <button id="addButton" style="position: absolute;top:10%;right: 0;">เพิ่ม div</button>
 		<div class="data-sos text-center p-3 d-flex  row">
             @if ($type == "sos_1669")
                 <div class="" >
@@ -958,9 +973,12 @@
         agoraEngine.enableAudioVolumeIndicator();
 
         function SoundTest() {
+            console.log("เข้า SoundTest");
             agoraEngine.on("volume-indicator", volumes => {
+                console.log("agoraEngine in soundtest");
+                console.log(agoraEngine);
+
                 volumes.forEach((volume) => {
-                    // console.log("in to SoundCheck Local");
                     let localAudioTrackCheck = channelParameters.localAudioTrack;
 
                     if (localPlayerContainer.id == volume.uid && volume.level >= 50) {
@@ -1189,7 +1207,7 @@
             if(mediaType == "audio"){
                 // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
                 console.log('unpublished AudioTrack:');
-                // console.log(channelParameters.localAudioTrack);
+                console.log(channelParameters.localAudioTrack);
 
                 // ถ้าไมค์ทำงานใน unpublished จะพบเมื่อผู้ใช้เข้ามาครั้งแรกแล้ว ปิดกล้อง แต่ เปิดไมค์
                 if(user.hasAudio == true){
@@ -1832,7 +1850,12 @@
                     channelParameters.localVideoTrack.setEnabled(false);
                 }
 
-
+                if (isVideo == false) {
+                    setTimeout(() => {
+                        console.log("bg_local ddddddddddddddddddddddd");
+                        changeBgColor(bg_local);
+                    }, 50);
+                }
 
             })
             .catch(error => {
@@ -1847,6 +1870,13 @@
                 // }, 2000);
 
                 console.error('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
+
+                if (isVideo == false) {
+                    setTimeout(() => {
+                        console.log("bg_local ddddddddddddddddddddddd");
+                        changeBgColor(bg_local);
+                    }, 50);
+                }
             });
 
             // document.querySelector('#ปุ่มนี้สำหรับปิด_modal').click();
@@ -1973,6 +2003,7 @@
                     now_Mobile_Devices = 1 ;
                 }
             }
+
         }
 
         btn_switchMicrophone.onclick = async function()
@@ -2268,7 +2299,72 @@
         });
     });
 
+    // เพิ่ม event listener บนปุ่ม "เพิ่ม div"
+    document.getElementById("addButton").addEventListener("click", createAndAttachCustomDiv);
 
+    // ฟังก์ชันสุ่มสี
+	function getRandomColor() {
+		let letters = "0123456789ABCDEF";
+		let color = "#";
+		for (let i = 0; i < 6; i++) {
+			color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
+	}
+
+    function createAndAttachCustomDiv() {
+		let randomColor = getRandomColor();
+		let newDiv = document.createElement("div");
+		newDiv.className = "custom-div";
+		newDiv.style.backgroundColor = randomColor;
+
+		// เพิ่ม div ด้านใน
+		let statusInputOutputDiv = document.createElement("div");
+		statusInputOutputDiv.className = "status-input-output";
+
+		let micDiv = document.createElement("div");
+		micDiv.className = "mic";
+		micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+
+		let cameraDiv = document.createElement("div");
+		cameraDiv.className = "camera";
+		cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
+
+		statusInputOutputDiv.appendChild(micDiv);
+		statusInputOutputDiv.appendChild(cameraDiv);
+
+		let infomationUserDiv = document.createElement("div");
+		infomationUserDiv.className = "infomation-user";
+
+		let nameUserVideoCallDiv = document.createElement("div");
+		nameUserVideoCallDiv.className = "name-user-video-call";
+		nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>lucky</b></h5>';
+
+		let roleUserVideoCallDiv = document.createElement("div");
+		roleUserVideoCallDiv.className = "role-user-video-call";
+		roleUserVideoCallDiv.innerHTML = '<small class="d-block">ศูนย์สั่งการ</small>';
+
+		infomationUserDiv.appendChild(nameUserVideoCallDiv);
+		infomationUserDiv.appendChild(roleUserVideoCallDiv);
+
+		// เพิ่ม div ด้านในลงใน div หลัก
+		newDiv.appendChild(statusInputOutputDiv);
+		newDiv.appendChild(infomationUserDiv);
+
+		// เพิ่ม event listener สำหรับการคลิก
+		newDiv.addEventListener("click", function() {
+			handleClick(newDiv);
+		});
+
+		let userVideoCallBar = document.querySelector(".user-video-call-bar");
+		let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+		if (customDivsInUserVideoCallBar.length > 0) {
+			userVideoCallBar.appendChild(newDiv);
+		} else {
+			document.getElementById("container_user_video_call").appendChild(newDiv);
+		}
+	}
 
     // เมื่อออกจากห้องโดยไม่ได้กดที่ปุ่ม
     // window.addEventListener('beforeunload', function(event) {

@@ -735,8 +735,7 @@
     <div class="card m-4">
 		<div class="neck_sidebar_div p-4 text-center">
 			<p style="font-size: 45px;" class=" mb-1 font-weight-bold text-center">ผู้ขอความช่วยเหลือ</p>
-			<p style="font-size: 45px;" class="font-weight-bold text-dark">{{$sos_data->name_user ? $sos_data->name_user : "--"}}</p>
-			<p style="font-size: 45px;" class="font-weight-bold text-dark">{{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
+			<p style="font-size: 45px;" class="font-weight-bold text-dark">{{$sos_data->name_user ? $sos_data->name_user : "--"}} {{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
 		</div>
 	</div>
 
@@ -883,21 +882,32 @@
     var user_id = '{{ Auth::user()->id }}';
     var user_data = @json(Auth::user());
 
-    // var appId = sessionStorage.getItem('agora_app_id');
-    // var appCertificate = sessionStorage.getItem('agora_app_certificate');
+    var appId = sessionStorage.getItem('agora_app_id');
+    var appCertificate = sessionStorage.getItem('agora_app_certificate');
 
-    var appId = '';
-    var appCertificate = '';
+    // var encodedData_appId = localStorage.getItem("agora_app_id");
+    // var encodedData_appCertificate = localStorage.getItem("agora_app_certificate");
+
+    // console.log("Session HERE");
+    // console.log(encodedData_appId);
+    // console.log(encodedData_appCertificate);
+
+    // var appId = atob(encodedData_appId);
+    // var appCertificate = atob(encodedData_appCertificate);
+
+    // console.log("Session HERE");
+    // console.log(appId);
+    // console.log(appCertificate);
 
     var sos_1669_id = '{{ $sos_id }}';
 
     var remote_in_room = [];
 
-    while (appId.length === 0 || appCertificate.length === 0) {
-        appId = '{{ env("AGORA_APP_ID") }}';
-        appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
-        console.log("เข้า while หา appId and appCertificate");
-    }
+    // while (appId.length === 0 || appCertificate.length === 0) {
+    //     appId = '{{ env("AGORA_APP_ID") }}';
+    //     appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+    //     console.log("เข้า while หา appId and appCertificate");
+    // }
 
     options =
     {
@@ -914,6 +924,8 @@
     };
 
     document.addEventListener('DOMContentLoaded', (event) => {
+
+
 
         if(user_data.photo){
             profile_local = "{{ url('/storage') }}" + "/" + user_data.photo;
@@ -935,7 +947,7 @@
                 name_local = result.name_user;
                 type_local = result.user_type;
 
-                changeBgColor(bg_local);
+                // changeBgColor(bg_local);
 
         })
         .catch(error => {
@@ -1650,7 +1662,7 @@
                 document.querySelector('#muteVideo').addEventListener("click", function(e) {
                     if (isVideo == false) {
                         console.log(bg_local);
-                        changeBgColor(bg_local);
+                        // changeBgColor(bg_local);
                     }
                 });
 
@@ -2112,7 +2124,7 @@
             if (isVideo == false) {
                 setTimeout(() => {
                     console.log("bg_local ddddddddddddddddddddddd");
-                    changeBgColor(bg_local);
+                    // changeBgColor(bg_local);
                 }, 50);
             }
         }
@@ -2599,7 +2611,7 @@
                 // แสดงโปรไฟล์ ตอนปิดกล้อง
                 document.querySelector('.profile-input-output').classList.remove('d-none');
 
-                changeBgColor(bg_local);
+                // changeBgColor(bg_local);
 
                 isVideo = false;
 
