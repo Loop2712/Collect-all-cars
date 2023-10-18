@@ -87,6 +87,8 @@
                         <!-- a_help click modal -->
                         <a id="a_help_modal" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" data-toggle="modal" data-target="#staticBackdrop" onclick="search_title_sos();"></a>
 
+                        <a id="a_help_modal_for_charlie" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" data-toggle="modal" data-target="#staticBackdrop" onclick="search_title_sos_charlie();"></a>
+
                         <!-- <a id="a_help" style="font-family: 'Kanit', sans-serif;border-radius:15px" class="order-1 shadow btn btn-warning btn-block shadow-box  d-none text-center" onclick="area_help_general();">
                             <i class="fas fa-bullhorn"></i> <b>Ask for HELP </b>
                             <br>
@@ -177,7 +179,7 @@
                             </span>
                             <!-- /////// END BTN SOS 1669 /////// -->
 
-                            <span  class="main-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();search_title_sos_charlie();">
+                            <span  class="main-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
                                 <div class="d-flex">
                                     <div class="col-3 p-0 d-flex align-items-center">
                                         <div class="justify-content-center col-12 p-0">
@@ -1357,7 +1359,7 @@
 
         document.querySelector('#div_data_tag_sos').classList.add('d-none');
 
-        document.querySelector("#a_help_modal").click();
+        document.querySelector("#a_help_modal_for_charlie").click();
 
     }
 
