@@ -576,68 +576,71 @@
         <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
 
-	{{-- <div class="Scenary"></div> --}}
-	<div class="col-12" style="height: calc(100% - 90%);">
-		<div class="status-case-bar text-center">
-			<p class="font-30">สถานะ : {{$sos_data->status ? $sos_data->status : "--"}} <br> เวลาห้องสนทนา : -- </p>
-			<button class="btn btn-success" id="fadeButton"><i class="fa-solid fa-file-invoice" style="font-size: 45px;"></i></button>
-		</div>
-	</div>
-	<div class="col-12" style="height: calc(100% - 30%); border: 0;">
-		<div class="d-flex h-100 row">
-			<div style="position: relative;"  class="video-call">
-				<div class=" d-flex align-item-center justify-content-center h-100 row">
-					<div class="d-flex align-self-center justify-content-center mb-3">
-						<div class="row mb-4" id="container_user_video_call">
-						</div>
-					</div>
-				</div>
-                <div id="adive_text_video_call" class="advice_text d-block text-center">
-                    <!-- ใส่ ข้อความที่มาจาก javascript -->
+    @if ($type == "sos_1669")
+        <div class="col-12" style="height: calc(100% - 90%);">
+            <div class="status-case-bar text-center">
+                <p class="font-30">สถานะ : {{$sos_data->status ? $sos_data->status : "--"}} <br> เวลาห้องสนทนา : -- </p>
+                <button class="btn btn-success" id="fadeButton"><i class="fa-solid fa-file-invoice" style="font-size: 45px;"></i></button>
+            </div>
+        </div>
+        <div class="col-12" style="height: calc(100% - 30%); border: 0;">
+            <div class="d-flex h-100 row">
+                <div style="position: relative;"  class="video-call">
+                    <div class=" d-flex align-item-center justify-content-center h-100 row">
+                        <div class="d-flex align-self-center justify-content-center mb-3">
+                            <div class="row mb-4" id="container_user_video_call">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="adive_text_video_call" class="advice_text d-block text-center">
+                        <!-- ใส่ ข้อความที่มาจาก javascript -->
+                    </div>
                 </div>
-			</div>
-		</div>
-	</div>
-    <div class="col-12 pt-3" style="height: calc(100% - 89%); background-color: #2b2d31; border: 0;">
-        <div class="w-100 user-video-call-contrainer d-none " >
-			<div class="d-flex justify-content-center align-self-end d-non user-video-call-bar mb-2" >
-			</div>
-		</div>
-    </div>
-	<div class="col-12" style="height: calc(100% - 91%); background-color: #ffffff; ">
-		<div class="btn-video-call-container mt-2">
-			<div class="row d-flex justify-content-center" >
-
-                <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
-                <div id="div_for_AudioButton" class="btn btnSpecial">
-                    {{-- <i id="icon_muteAudio" class="fa-solid fa-microphone-stand"></i> --}}
-                    {{-- <button class="smallCircle" id="btn_switchMicrophone">
-                        <i class="fa-sharp fa-solid fa-angle-up"></i>
-                    </button> --}}
+            </div>
+        </div>
+        <div class="col-12 pt-3" style="height: calc(100% - 89%); background-color: #2b2d31; border: 0;">
+            <div class="w-100 user-video-call-contrainer d-none " >
+                <div class="d-flex justify-content-center align-self-end d-non user-video-call-bar mb-2" >
                 </div>
+            </div>
+        </div>
+        <div class="col-12" style="height: calc(100% - 91%); background-color: #ffffff; ">
+            <div class="btn-video-call-container mt-2">
+                <div class="row d-flex justify-content-center" >
 
-                <!-- เปลี่ยนกล้อง ให้กดได้แค่ในคอม -->
-                <div id="div_for_VideoButton" class="btn btnSpecial">
-                    {{-- <i id="icon_muteVideo" class="fa-solid fa-camera-rotate"></i> --}}
+                    <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
+                    <div id="div_for_AudioButton" class="btn btnSpecial">
+                        {{-- <i id="icon_muteAudio" class="fa-solid fa-microphone-stand"></i> --}}
+                        {{-- <button class="smallCircle" id="btn_switchMicrophone">
+                            <i class="fa-sharp fa-solid fa-angle-up"></i>
+                        </button> --}}
+                    </div>
+
+                    <!-- เปลี่ยนกล้อง ให้กดได้แค่ในคอม -->
+                    <div id="div_for_VideoButton" class="btn btnSpecial">
+                        {{-- <i id="icon_muteVideo" class="fa-solid fa-camera-rotate"></i> --}}
+                    </div>
+
+                    <div class="btn btnSpecial btnSpecial_switch" id="btn_switchCamera">
+                        <i class="fa-duotone fa-camera-rotate" style="--fa-primary-color: #26076e; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>
+                    </div>
+
+                    <div class="btn btnSpecial btn_leave" id="addButton">
+                        <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+                    </div>
+
+
+
+                    <div class="btn btnSpecial btn_leave" id="leave">
+                        <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>
+                    </div>
+
                 </div>
-
-                <div class="btn btnSpecial btnSpecial_switch" id="btn_switchCamera">
-                    <i class="fa-duotone fa-camera-rotate" style="--fa-primary-color: #26076e; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>
-                </div>
-
-                <div class="btn btnSpecial btn_leave" id="addButton">
-                    <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-                </div>
+            </div>
+        </div>
+    @endif
 
 
-
-                <div class="btn btnSpecial btn_leave" id="leave">
-                    <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>
-                </div>
-
-			</div>
-		</div>
-	</div>
 </div>
 
 <div class="dropcontent">
