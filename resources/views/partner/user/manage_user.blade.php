@@ -99,8 +99,8 @@
                                 </td>
                                 <td class="text-center">
                                     @if($item->role != 'admin-partner')
-                                        <button class="btn btn-sm btn-warning main-shadow main-radius text-white" onclick="cancel_membership('{{ $item->id }}');">
-                                            ยกเลิกสถานะ
+                                        <button class="btn btn-sm btn-danger main-shadow main-radius text-white" onclick="cancel_membership('{{ $item->id }}');">
+                                            <i class="fa-solid fa-delete-right"></i> ลบบัญชี
                                         </button>
                                     @else
                                         <!--  -->
