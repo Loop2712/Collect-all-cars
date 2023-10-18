@@ -97,7 +97,10 @@ hr:not([size]) {
         <div class="col py-2">
             <div class="card radius-15 shadow">
                 <div class="card-body">
-                    <div class="float-end text-muted">{{ thaidate("lที่ j F Y H:i น." , strtotime($data_report->sos_map->created_at)) }}</div>
+                    <div class="float-end text-muted">
+                        {{ thaidate("lที่ j F Y H:i น." , strtotime($data_report->sos_map->created_at)) }}
+                    </div>
+                    <br>
                     <h4 class="card-title text-primary"><b>หัวข้อ : {{$data_report->sos_map->title_sos}}</b></h4>
                     <p>{{$data_report->sos_map->title_sos_other}}</p>
 
@@ -114,7 +117,10 @@ hr:not([size]) {
                         $link_url = str_replace("https://","",$link_url);
 
                     @endphp
-                    <a href="http://{{$link_url}}"  class="btn btn-primary">ลิงก์คู่มือ</a>
+
+                    @if(!empty($data_report->link))
+                        <a href="http://{{$link_url}}"  class="btn btn-primary">ลิงก์คู่มือ</a>
+                    @endif
 
                     @if(!empty($data_report->sos_map->helper))
                         <hr>
@@ -238,7 +244,7 @@ hr:not([size]) {
                     <h4 class="card-title text-success"><b>เสร็จสิ้น</b></h4>
                     <p class="card-text">{{ thaidate("lที่ j F Y H:i น." , strtotime($data_report->sos_map->help_complete_time)) }}</p>
                     <p class="card-text">
-                    ใช้เวลาซ่อม {{ \Carbon\Carbon::parse($data_report->sos_map->time_go_to_help)->locale('th')->diffForHumans(\Carbon\Carbon::parse($data_report->sos_map->help_complete_time), true) }}</p>
+                    ใช้เวลาดำเนินการ {{ \Carbon\Carbon::parse($data_report->sos_map->time_go_to_help)->locale('th')->diffForHumans(\Carbon\Carbon::parse($data_report->sos_map->help_complete_time), true) }}</p>
                     
                 </div>
             </div>

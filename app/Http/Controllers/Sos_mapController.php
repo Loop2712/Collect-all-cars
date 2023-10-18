@@ -1238,10 +1238,16 @@ class Sos_mapController extends Controller
 
     function report_repair_for_user($id_sos_map){
 
-        $data_report = Report_repair::where('sos_map_id' , $id_sos_map)->first();
-        $data_helper = User::where('id' ,$data_report->sos_map->helper_id)->first();
+        if(Auth::check()){
+            $data_report = Report_repair::where('sos_map_id' , $id_sos_map)->first();
+            $data_helper = User::where('id' ,$data_report->sos_map->helper_id)->first();
 
-        return view('sos_map.sos_report_repair_for_user', compact('data_report','data_helper'));
+            return view('sos_map.sos_report_repair_for_user', compact('data_report','data_helper'));
+        }else{
+            $re_to = "sos_map/report_repair_for_user" . "/" . $id_sos_map ;
+            return redirect('login/line?redirectTo=' . $re_to);
+        }
+        
     }
 
     function sent_line_repair_to_user($sos_map_id , $user_id , $status){
