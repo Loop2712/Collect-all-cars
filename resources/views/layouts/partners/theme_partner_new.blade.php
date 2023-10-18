@@ -882,7 +882,7 @@
 									</li>
 								</ul>
 							@else
-                                <ul>
+                                <ul class="d-none">
                                     <li>
                                         <a href="#"><i class="fa-duotone fa-sitemap"></i> จัดการข้อมูลองค์กร</a>
                                     </li>
