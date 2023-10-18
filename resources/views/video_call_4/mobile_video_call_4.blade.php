@@ -8,7 +8,7 @@
 	.full-height,
 	.page-content,
 	.wrapper {
-		height: calc(100%);
+		height: 100%;
 		min-height: calc(100%) !important;
         max-height: calc(100%) !important;
 		padding-bottom: 0;
@@ -110,7 +110,7 @@
 		width: 100%;
 		height: 100%;
 		overflow: auto;
-		padding: 1px 2rem;
+		padding: 1px 3rem;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
@@ -565,7 +565,6 @@
     }
 </style>
 
-<button id="addButton" style="position: absolute;top:10%;right: 0;">เพิ่ม div</button>
 <button id="join" class="btn btn-success d-none" >เข้าร่วม</button>
 
 <div class="row full-height">
@@ -585,8 +584,8 @@
 		<div class="d-flex h-100 row">
 			<div class="video-call">
 				<div class=" d-flex align-item-center justify-content-center h-100 row">
-					<div class="d-flex align-self-center">
-						<div class="row" id="container_user_video_call">
+					<div class="d-flex align-self-center justify-content-center">
+						<div class="row mb-4" id="container_user_video_call">
 						</div>
 					</div>
 				</div>
@@ -625,6 +624,12 @@
                 <div class="btn btnSpecial btnSpecial_switch" id="btn_switchCamera">
                     <i class="fa-duotone fa-camera-rotate" style="--fa-primary-color: #26076e; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>
                 </div>
+
+                <div class="btn btnSpecial btn_leave" id="addButton">
+                    <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+                </div>
+
+
 
                 <div class="btn btnSpecial btn_leave" id="leave">
                     <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>

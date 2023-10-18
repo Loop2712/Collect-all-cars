@@ -118,6 +118,7 @@
         position: relative;
         display: flex;
         justify-content: center;
+        width: calc(100% - 10%);
     }
     .div-video .soundTest{
         position: absolute;
@@ -198,7 +199,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="div-video m-4">
+                    <div class="div-video m-5">
                         <video id="videoDiv" class="video_preview" autoplay></video>
                         <div id="soundTest" class="soundTest">
                             <div class="soundMeter"></div>
