@@ -567,10 +567,10 @@
         background-color: rgba(99, 90, 90, 0);
         color: #ffffff;
         font-size: 3rem;
-        position: absolute;
+        /* position: absolute;
         top: -20px;
         left: 0;
-        right: 0;
+        right: 0; */
         padding: 1rem;
         text-align: center; /* ตั้งค่าการจัดวางข้อความในกลาง */
     }
@@ -591,7 +591,7 @@
 			<button class="btn btn-success" id="fadeButton"><i class="fa-solid fa-file-invoice" style="font-size: 45px;"></i></button>
 		</div>
 	</div>
-	<div class="col-12" style="height: calc(100% - 30%);">
+	<div class="col-12" style="height: calc(100% - 35%);">
 		<div class="d-flex h-100 row">
 			<div  class="video-call">
 				<div class=" d-flex align-item-center justify-content-center h-100 row">
@@ -604,10 +604,10 @@
 			</div>
 		</div>
 	</div>
-    <div class="col-12 pt-3" style="height: calc(100% - 89%); position: relative;  background-color: #2b2d31;">
-        <div id="adive_text_video_call" class="advice_text d-block text-center mt-1">
-            <!-- ใส่ ข้อความที่มาจาก javascript -->
-        </div>
+    <div id="adive_text_video_call" style="height: calc(100% - 95%); background-color: #2b2d31;" class="advice_text d-block text-center mt-1">
+        <!-- ใส่ ข้อความที่มาจาก javascript -->
+    </div>
+    <div class="col-12 pt-3" style="height: calc(100% - 89%); background-color: #2b2d31;">
         <div class="w-100 user-video-call-contrainer d-none " >
 			<div class="d-flex justify-content-center align-self-end d-non user-video-call-bar mb-2" >
 			</div>
