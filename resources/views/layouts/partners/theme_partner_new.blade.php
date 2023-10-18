@@ -1095,8 +1095,10 @@
 								<ul>
 									<li> <a href="{{ url('/sos_partner') }}"><i class='fas fa-hands-helping'></i> ให้ความช่วยเหลือ</a>
 									</li>
+                                    @if(Auth::user()->organization != "ชาลีกรุงเทพ")
 									<li> <a href="{{ url('/add_area') }}"><i class='far fa-map'></i> พื้นที่บริการ</a>
 									</li>
+                                    @endif
 									<li> <a href="{{ url('/parcel') }}"><i class="fas fa-truck-loading"></i> พัสดุ</a>
 									</li>
 									<li> <a href="{{ url('/notify_repair') }}"><i class="fas fa-tools"></i> แจ้งซ่อม</a>
