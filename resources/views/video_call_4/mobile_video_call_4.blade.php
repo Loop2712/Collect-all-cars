@@ -591,9 +591,9 @@
 			<button class="btn btn-success" id="fadeButton"><i class="fa-solid fa-file-invoice" style="font-size: 45px;"></i></button>
 		</div>
 	</div>
-	<div class="col-12" style="height: calc(100% - 30%);">
+	<div class="col-12" style="height: calc(100% - 40%);">
 		<div class="d-flex h-100 row">
-			<div style="position: relative;" class="video-call">
+			<div  class="video-call">
 				<div class=" d-flex align-item-center justify-content-center h-100 row">
 					<div class="d-flex align-self-center justify-content-center mb-3">
 						<div class="row mb-4" id="container_user_video_call">
@@ -604,7 +604,7 @@
 			</div>
 		</div>
 	</div>
-    <div class="col-12 pt-3" style="height: calc(100% - 89%);  background-color: #2b2d31;">
+    <div class="col-12 pt-3" style="height: calc(100% - 79%); position: relative;  background-color: #2b2d31;">
         <div id="adive_text_video_call" class="advice_text d-block text-center mt-1">
             <!-- ใส่ ข้อความที่มาจาก javascript -->
         </div>
