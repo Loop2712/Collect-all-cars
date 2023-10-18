@@ -126,7 +126,7 @@
 	}
 
 	#container_user_video_call .custom-div:only-child {
-		flex: 0 0 calc(100% - 40px);
+		flex: 0 0 calc(100% - 100px);
 		aspect-ratio: 3/4;
 	}
 
@@ -555,25 +555,28 @@
         }
     }
     /* ----------------- End ตัว loading animation ----------------- */
-    /* .advice_text{
+    .advice_text{
         background-color: rgba(99, 90, 90, 0);
         color: #ffffff;
         font-size: 3rem;
         position: absolute;
+        left: 0;
+        right: 0;
         bottom: 1;
         padding: 1rem;
-    } */
-    .advice_text {
+        text-align: center;
+    }
+    /* .advice_text {
         background-color: rgba(99, 90, 90, 0);
         color: #ffffff;
         font-size: 3rem;
-        /* position: absolute;
+         position: absolute;
         top: -20px;
         left: 0;
-        right: 0; */
+        right: 0;
         padding: 1rem;
-        text-align: center; /* ตั้งค่าการจัดวางข้อความในกลาง */
-    }
+        text-align: center;
+    } */
 </style>
 
 <button id="join" class="btn btn-success d-none" >เข้าร่วม</button>
@@ -591,22 +594,21 @@
 			<button class="btn btn-success" id="fadeButton"><i class="fa-solid fa-file-invoice" style="font-size: 45px;"></i></button>
 		</div>
 	</div>
-	<div class="col-12" style="height: calc(100% - 35%);">
+	<div class="col-12" style="height: calc(100% - 30%);">
 		<div class="d-flex h-100 row">
-			<div  class="video-call">
+			<div style="position: relative;"  class="video-call">
 				<div class=" d-flex align-item-center justify-content-center h-100 row">
 					<div class="d-flex align-self-center justify-content-center mb-3">
 						<div class="row mb-4" id="container_user_video_call">
 						</div>
 					</div>
 				</div>
-
+                <div id="adive_text_video_call" class="advice_text d-block text-center">
+                    <!-- ใส่ ข้อความที่มาจาก javascript -->
+                </div>
 			</div>
 		</div>
 	</div>
-    <div id="adive_text_video_call" style="height: calc(100% - 95%); background-color: #2b2d31;" class="advice_text d-block text-center mt-1">
-        <!-- ใส่ ข้อความที่มาจาก javascript -->
-    </div>
     <div class="col-12 pt-3" style="height: calc(100% - 89%); background-color: #2b2d31;">
         <div class="w-100 user-video-call-contrainer d-none " >
 			<div class="d-flex justify-content-center align-self-end d-non user-video-call-bar mb-2" >
