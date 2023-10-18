@@ -568,7 +568,7 @@
         color: #ffffff;
         font-size: 3rem;
         position: absolute;
-        bottom: -5;
+        top: -10px;
         left: 0;
         right: 0;
         padding: 1rem;
@@ -585,13 +585,13 @@
     </div>
 
 	{{-- <div class="Scenary"></div> --}}
-	<div class="col-12" style="height: 10%;">
+	<div class="col-12" style="height: calc(100% - 90%);">
 		<div class="status-case-bar text-center">
 			<p class="font-30">สถานะ : {{$sos_data->status ? $sos_data->status : "--"}} <br> เวลาห้องสนทนา : -- </p>
 			<button class="btn btn-success" id="fadeButton"><i class="fa-solid fa-file-invoice" style="font-size: 45px;"></i></button>
 		</div>
 	</div>
-	<div class="col-12" style="height: 70%; ">
+	<div class="col-12" style="height: calc(100% - 30%);">
 		<div class="d-flex h-100 row">
 			<div style="position: relative;" class="video-call">
 				<div class=" d-flex align-item-center justify-content-center h-100 row">
@@ -600,19 +600,20 @@
 						</div>
 					</div>
 				</div>
-                <div id="adive_text_video_call" class="advice_text d-block text-center mt-1">
-                    <!-- ใส่ ข้อความที่มาจาก javascript -->
-                </div>
+
 			</div>
 		</div>
 	</div>
-    <div class="col-12 pt-3" style="height: 11%;  background-color: #2b2d31;">
+    <div class="col-12 pt-3" style="height: calc(100% - 89%);  background-color: #2b2d31;">
+        <div id="adive_text_video_call" class="advice_text d-block text-center mt-1">
+            <!-- ใส่ ข้อความที่มาจาก javascript -->
+        </div>
         <div class="w-100 user-video-call-contrainer d-none " >
 			<div class="d-flex justify-content-center align-self-end d-non user-video-call-bar mb-2" >
 			</div>
 		</div>
     </div>
-	<div class="col-12" style="height: 9%; background-color: #ffffff; ">
+	<div class="col-12" style="height: calc(100% - 91%); background-color: #ffffff; ">
 		<div class="btn-video-call-container mt-2">
 			<div class="row d-flex justify-content-center" >
 
