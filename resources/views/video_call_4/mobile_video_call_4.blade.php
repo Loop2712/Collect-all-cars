@@ -562,7 +562,7 @@
         position: absolute;
         left: 0;
         right: 0;
-        bottom: -10%;
+        bottom: 10%;
         padding: 1rem;
     }
 
