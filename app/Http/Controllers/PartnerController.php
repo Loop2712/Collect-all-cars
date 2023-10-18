@@ -288,30 +288,35 @@ class PartnerController extends Controller
     {
         $data_user = Auth::user();
 
-        $data_partners = Partner::where("name", $data_user->organization)
-            ->where("name_area", null)
-            ->get();
+        if($data_user != "admin-partner"){
+            return redirect('404');
+        }else{
 
-        foreach ($data_partners as $data_partner) {
-            $name_partner = $data_partner->name ;
+            $data_partners = Partner::where("name", $data_user->organization)
+                ->where("name_area", null)
+                ->get();
+
+            foreach ($data_partners as $data_partner) {
+                $name_partner = $data_partner->name ;
+            }
+
+            $keyword = $request->get('search');
+            $perPage = 25;
+
+            if (!empty($keyword)) {
+                $all_user = User::Where('organization', $name_partner)->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
+                    ->Where('name', 'LIKE', "%$keyword%")
+                    ->latest()->paginate($perPage);
+            } else {
+                $all_user = User::Where('organization', $name_partner)->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
+                    ->latest()->paginate($perPage);
+            }
+
+            $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
+
+
+            return view('partner.user.manage_user', compact('data_partners','all_user','data_time_zone'));
         }
-
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        if (!empty($keyword)) {
-            $all_user = User::Where('organization', $name_partner)->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
-                ->Where('name', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $all_user = User::Where('organization', $name_partner)->orderByRaw("CASE WHEN role = 'admin-partner' THEN 0 ELSE 1 END, name ASC")
-                ->latest()->paginate($perPage);
-        }
-
-        $data_time_zone = Time_zone::groupBy('TimeZone')->orderBy('CountryCode' , 'ASC')->get();
-
-
-        return view('partner.user.manage_user', compact('data_partners','all_user','data_time_zone'));
     }
 
     // public function create_user_partner(Request $request)

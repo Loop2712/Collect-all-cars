@@ -22,18 +22,23 @@ class Sos_map_titleController extends Controller
     {
         $user = Auth::user();
 
-        $data_partner = DB::table('partners')
-            ->where('name', $user->organization)
-            ->where('name_area', null)
-            ->first();
+        if($data_user != "admin-partner"){
+            return redirect('404');
+        }else{
 
-        $name_partner = $data_partner->name ;
+            $data_partner = DB::table('partners')
+                ->where('name', $user->organization)
+                ->where('name_area', null)
+                ->first();
 
-        $sos_map_title = Sos_map_title::where('name_partner', $name_partner)->get();
+            $name_partner = $data_partner->name ;
 
-        $sos_map_title_by_user = Sos_map_title::where('ask_to_partner', $name_partner)->get();
+            $sos_map_title = Sos_map_title::where('name_partner', $name_partner)->get();
 
-        return view('sos_map_title.index', compact('sos_map_title','name_partner','sos_map_title_by_user'));
+            $sos_map_title_by_user = Sos_map_title::where('ask_to_partner', $name_partner)->get();
+
+            return view('sos_map_title.index', compact('sos_map_title','name_partner','sos_map_title_by_user'));
+        }
     }
 
     /**
