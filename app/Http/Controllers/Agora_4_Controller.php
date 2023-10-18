@@ -162,7 +162,6 @@ class Agora_4_Controller extends Controller
             $audioTrack = '';
         }
 
-
         $appID = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
 

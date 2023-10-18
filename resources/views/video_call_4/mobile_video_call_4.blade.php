@@ -315,6 +315,7 @@
 		left: 0;
 		right: 0;
 		max-height: 50%;
+        max-width: 100%;
 		/* background-color: #f0f0f0; */
 		opacity: 0;
 		/* text-align: center; */
@@ -848,70 +849,60 @@
         <div class="fadeDiv" id="dataDiv" style="display: none; z-index: 5000;">
             <div class="card border-top border-0 border-4 border-danger">
                 <div class="card-body p-3">
-
-                    <!-- ข้อมูลผู้ขอความช่วยเหลือ -->
-                    {{-- <div class="text-center">
-                        <div>
-                            <i class="bx bxs-user me-1 font-22 text-info"></i>
-                        </div>
-                        <h4 style="font-size:45px;" class="mb-0 text-info">ข้อมูลผู้ขอความช่วยเหลือ</h4>
-                    </div>
-                    <div style="font-size:35px;" class="text-center font-weight-bold">
-                        <p>
-                            <b>ชื่อ : </b> {{ $data_sos_map->name }} <br>
-                            <b>เบอร์ : </b> {{ $data_sos_map->phone }} <br>
-                        </p>
-                    </div> --}}
-
                     <div class="card m-4">
-                        <div class="neck_sidebar_div p-4 ">
+                        <div class="head_sidebar_div p-4 ">
                             <div class="text-center">
-                                <div>
-                                    <i class="bx bxs-user me-1 font-22 text-info"></i>
-                                </div>
-                                <h4 style="font-size:45px;" class="mb-0 text-info font-weight-bold">ข้อมูลผู้ขอความช่วยเหลือ</h4>
+                                <h4 style="font-size:45px;" class="mb-0 text-info font-weight-bold">
+                                    <i style="font-size: 45px;" class="fa-solid fa-user-injured me-1 text-info"></i>ข้อมูลผู้ขอความช่วยเหลือ
+                                </h4>
                             </div>
                             <p style="font-size: 45px;" class="text-dark d-flex justify-content-center align-items-center font-weight-bold">{{$data_sos_map->name ? $data_sos_map->name : "--"}} | {{$data_sos_map->phone ? $data_sos_map->phone : "--"}}</p>
                         </div>
                     </div>
 
                     <!-- หัวข้อการขอความช่วยเหลือ -->
-                    <div class="card-title d-flex align-items-center">
-                        <div>
-                            <i class="fa-solid fa-subtitles me-1 font-22 text-danger"></i>
+                    <div class="card m-4">
+                        <div class="neck_sidebar_div p-4 ">
+                            <div class="text-center">
+                                <div>
+                                    <h4 style="font-size:45px;" class="mb-0 text-danger font-weight-bold">
+                                        <i style="font-size: 45px;" class="fa-solid fa-subtitles me-1 text-danger"></i>ข้อมูล
+                                    </h4>
+                                </div>
+                            </div>
+                            <div style="font-size:35px; " class="text-dark">
+                                <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                                    <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">หัวข้อ : {{$data_sos_map->title_sos ? $data_sos_map->title_sos : "--"}}</p>
+                                </div>
+                                <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                                    <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">รายละเอียด : {{$data_sos_map->title_sos_other ? $data_sos_map->title_sos_other : "--"}} </p>
+                                </div>
+                                <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                                    <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">สถานะ : {{$data_sos_map->status ? $data_sos_map->status : "--"}}</p>
+                                </div>
+                                <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                                    <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">Lat : {{$data_sos_map->lat ? $data_sos_map->lat : "--"}}</p>
+                                </div>
+                                <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                                    <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">Long : {{$data_sos_map->lng ? $data_sos_map->lng : "--"}}</p>
+                                </div>
+                            </div>
                         </div>
-                        <h4 class="mb-0 text-danger">ข้อมูล</h4>
                     </div>
-                    <div style="font-size:35px;" class="text-dark ">
-                        <p>
-                            <b>หัวข้อ : </b> <b class="text-center">{{ $data_sos_map->title_sos }}</b> <br>
-                            <b>รายละเอียด : </b> {{ $data_sos_map->title_sos }} <br>
-                            <b>สถานะ : </b> {{ $data_sos_map->title_sos }} <br>
-                        </p>
-                        <p>
-                            <b>{{ $data_sos_map->title_sos }}</b>
-                            <br>
-                            {{ $data_sos_map->title_sos_other }}
-                        </p>
-                        <p>
-                            <b>Lat : </b>{{ $data_sos_map->lat }}
-                            <br>
-                            <b>Long : </b>{{ $data_sos_map->lng }}
-                        </p>
-                    </div>
+
                     <hr>
                     <center>
-                        <a href="{{ url('/video_call_4/before_video_call_4?type=sos_map&sos_id=') . $data_sos_map->id }}" type="button" class="btn btn-primary p-2" style="width:90%;">
-                            <i class="fa-solid fa-video mr-1"></i>Video Call
+                        <a href="{{ url('/video_call_4/before_video_call_4?type=sos_map&sos_id=') . $data_sos_map->id }}" type="button" class="btn btn-primary p-2" style="width:90%; font-size: 45px;">
+                            ค้นหาเบอร์ ศสก ของแต่ละจังหวัด
                         </a>
                         <br>
-                        <div class="accordion" id="accordion_Forward_sos">
+                        <div class="accordion" id="accordion_Forward_sos" >
                             <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                      <button type="button" class="btn btn-info p-2 mt-2" style="width:90%;" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <i class="fa-sharp fa-solid fa-share mr-1"></i>เลือกการส่งต่อ
+                                <p class="h2 accordion-header" id="headingOne" >
+                                      <button type="button" class="btn btn-info p-2 mt-2" style="width:90%; font-size: 45px;" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <i  class="fa-sharp fa-solid fa-share mr-1"></i>เลือกการส่งต่อ
                                     </button>
-                                </h2>
+                                </p>
                                 <div id="collapseOne" class="accordion-collapse collapse mt-2" aria-labelledby="headingOne" data-bs-parent="#accordion_Forward_sos">
                                     <div class="accordion-body">
 
@@ -963,22 +954,17 @@
 
             @if(!empty($data_sos_map->helper_id))
             <!-- ข้อมูลเจ้าหน้าที่ -->
-            <div class="card border-top border-0 border-4 border-success">
-                <div class="card-body p-3">
-                    <div class="card-title d-flex align-items-center">
-                        <div>
-                            <i class="fa-solid fa-user-police-tie me-1 font-22 text-success"></i>
-                        </div>
-                        <h4 class="mb-0 text-success">ข้อมูลเจ้าหน้าที่</h4>
+            <div class="card m-4">
+                <div class="body_sidebar_div p-4 text-center">
+                    <div class="text-center">
+                        <h4 style="font-size:45px;" class="mb-0 text-success font-weight-bold">
+                            <i class="fa-solid fa-user me-1 text-success"></i>ข้อมูลเจ้าหน้าที่
+                        </h4>
                     </div>
-                    <div style="font-size:22px;">
-                        <h5>ชื่อเจ้าหน้าที่</h5>
-                        <p>{{ $data_sos_map->user_helper->name }}</p>
-                        <h5>เบอร์ติดต่อ</h5>
-                        <p>{{ $data_sos_map->user_helper->phone }}</p>
-                    </div>
+                    <p style="font-size: 45px;" class="font-weight-bold text-dark">{{$data_sos_map->user_helper->name ? $data_sos_map->user_helper->name : "--"}} | {{$data_sos_map->user_helper->phone ? $data_sos_map->user_helper->phone : "--"}}</p>
                 </div>
             </div>
+
             @endif
         </div>
     @endif
