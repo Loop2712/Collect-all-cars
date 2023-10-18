@@ -1256,6 +1256,13 @@ class Sos_mapController extends Controller
         
     }
 
+    function delete_case($id_sos_map){
+        
+        Sos_map::where('id' , $id_sos_map)->delete();
+
+        return redirect()->back();
+    }
+
     function sent_line_repair_to_user($sos_map_id , $user_id , $status){
 
         $data_sos_map = Sos_map::where('id' , $sos_map_id)->first();
