@@ -11,10 +11,7 @@
 		height: 100%;
 		min-height: calc(100%) !important;
         max-height: calc(100%) !important;
-		padding-bottom: 0;
-		/* padding-top: 0; */
-		/* margin-top: 0; */
-		margin-bottom: 0;
+
 	}
 
 	.data-sos {
@@ -555,13 +552,24 @@
         }
     }
     /* ----------------- End ตัว loading animation ----------------- */
-    .advice_text{
+    /* .advice_text{
         background-color: rgba(99, 90, 90, 0);
         color: #ffffff;
         font-size: 3rem;
         position: absolute;
-        bottom: 20%;
+        bottom: 1;
         padding: 1rem;
+    } */
+    .advice_text {
+        background-color: rgba(99, 90, 90, 0);
+        color: #ffffff;
+        font-size: 3rem;
+        position: absolute;
+        bottom: 0; /* เปลี่ยนจาก 20% เป็น 0 เพื่อให้อยู่ชิดขอบล่าง */
+        left: 0; /* ตั้งค่าตำแหน่งแนวนอนให้ชิดขอบซ้าย */
+        right: 0; /* ตั้งค่าตำแหน่งแนวนอนให้ชิดขอบขวา */
+        padding: 1rem;
+        text-align: center; /* ตั้งค่าการจัดวางข้อความในกลาง */
     }
 </style>
 
@@ -583,29 +591,26 @@
 	<div class="col-12" style="height: calc(100% - 30%); ">
 		<div class="d-flex h-100 row">
 			<div class="video-call">
-				<div class=" d-flex align-item-center justify-content-center h-100 row">
+				<div style="position: relative;" class=" d-flex align-item-center justify-content-center h-100 row">
 					<div class="d-flex align-self-center justify-content-center">
 						<div class="row mb-4" id="container_user_video_call">
 						</div>
 					</div>
+                    <div id="adive_text_video_call" class="advice_text text-center">
+                        <!-- ใส่ ข้อความที่มาจาก javascript -->
+                    </div>
 				</div>
 			</div>
-
 		</div>
 	</div>
-    <div id="adive_text_video_call" class="advice_text text-center">
-        <!-- ใส่ ข้อความที่มาจาก javascript -->
-    </div>
-    <div class="col-12 pt-3" style="height: calc(100% - 90%); background-color: #2b2d31; ">
+    <div class="col-12 pt-3" style="height: calc(100% - 87%);  background-color: #2b2d31;">
         <div class="w-100 user-video-call-contrainer d-none " >
-			<div class="d-flex justify-content-center align-self-end d-non user-video-call-bar" >
+			<div class="d-flex justify-content-center align-self-end d-non user-video-call-bar mb-2" >
 			</div>
 		</div>
     </div>
-
-	<div class="col-12" style="height: calc(100% - 90%);">
-
-		<div class="btn-video-call-container mt-4">
+	<div class="col-12" style="height: calc(100% - 93%); background-color: #ffffff; ">
+		<div class="btn-video-call-container mt-2">
 			<div class="row d-flex justify-content-center" >
 
                 <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
