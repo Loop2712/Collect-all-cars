@@ -2881,7 +2881,14 @@
 
 				                  	tag_a_link_ggmap.setAttributeNode(tag_a_class);
 
-                                let url_command = "{{ url('/') }}" + "/sos_map/command" + "/" + result[0]['id'];
+                                let url_command ;
+
+                                if(result[0]['tag_sos_or_repair'] == "tag_repair"){
+                                    url_command = "{{ url('/') }}" + "/sos_map/report_repair" + "/" + result[0]['id'];
+                                }else{
+                                    url_command = "{{ url('/') }}" + "/sos_map/command" + "/" + result[0]['id'];
+                                }
+
                                 document.querySelector('#btn_view_data').setAttribute('href', url_command)
 
 								document.querySelector('#btn_modal_notify').click();
