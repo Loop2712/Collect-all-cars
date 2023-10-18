@@ -177,7 +177,7 @@
                             </span>
                             <!-- /////// END BTN SOS 1669 /////// -->
 
-                            <span  class="main-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();">
+                            <span  class="main-shadow btn btn-md btn-block"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#0006ff;" onclick="sos_of_Charlie_Bangkok();search_title_sos_charlie();">
                                 <div class="d-flex">
                                     <div class="col-3 p-0 d-flex align-items-center">
                                         <div class="justify-content-center col-12 p-0">
@@ -1384,6 +1384,60 @@
 
         window.location.href = window.location.href;
         // document.querySelector('#btn_close_pls_input_phone').click();
+    }
+
+    function search_title_sos_charlie(){
+
+        let title_sos = document.querySelector('#title_sos');
+            title_sos.innerHTML = '' ;
+
+        let name_partner = "ชาลีกรุงเทพ" ;
+
+        fetch("{{ url('/') }}/api/search_title_sos/" + name_partner)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                if(result['check_data'] == "Yes data"){
+                    for(let item of result['sos_map_title']){
+                        let option = document.createElement("option");
+                        option.text = item.title;
+                        option.value = item.title;
+                        title_sos.add(option);
+
+                        let option_class = document.createAttribute("class");
+                            option_class.value = "translate";
+                         
+                        option.setAttributeNode(option_class);
+
+                    }
+                }
+
+                if(name_partner != "กลุ่มดิจิทัล สพฉ"){
+
+                    let option_other = document.createElement("option");
+                        option_other.text = "อื่นๆ";
+                        option_other.value = "อื่นๆ";
+                        title_sos.add(option_other); 
+
+                        let option_other_class = document.createAttribute("class");
+                            option_other_class.value = "translate";
+                         
+                        option_other.setAttributeNode(option_other_class); 
+                }
+
+                let html_option = `
+                        <option class="translate" value="การขอความช่วยเหลือ" selected > - เลือกหัวข้อการขอความช่วยเหลือ - </option>
+                        <option class="translate" value="เหตุด่วนเหตุร้าย">เหตุด่วนเหตุร้าย</option>
+                        <option class="translate" value="อุบัติเหตุ">อุบัติเหตุ</option>
+                        <option class="translate" value="ไฟไหม้">ไฟไหม้</option>
+                    `;
+
+                title_sos.insertAdjacentHTML('afterbegin', html_option); // แทรกบนสุด
+
+
+            });
+
     }
 
     function search_title_sos(){
