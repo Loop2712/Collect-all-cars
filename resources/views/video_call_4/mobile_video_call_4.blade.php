@@ -583,7 +583,7 @@
 			<button class="btn btn-success" id="fadeButton"><i class="fa-solid fa-file-invoice" style="font-size: 45px;"></i></button>
 		</div>
 	</div>
-	<div class="col-12" style="height: calc(100% - 30%);">
+	<div class="col-12" style="height: calc(100% - 30%); border: 0;">
 		<div class="d-flex h-100 row">
 			<div style="position: relative;"  class="video-call">
 				<div class=" d-flex align-item-center justify-content-center h-100 row">
@@ -598,7 +598,7 @@
 			</div>
 		</div>
 	</div>
-    <div class="col-12 pt-3" style="height: calc(100% - 89%); background-color: #2b2d31;">
+    <div class="col-12 pt-3" style="height: calc(100% - 89%); background-color: #2b2d31; border: 0;">
         <div class="w-100 user-video-call-contrainer d-none " >
 			<div class="d-flex justify-content-center align-self-end d-non user-video-call-bar mb-2" >
 			</div>
@@ -2364,6 +2364,12 @@
 
 		if (customDivsInUserVideoCallBar.length > 0) {
 			userVideoCallBar.appendChild(newDiv);
+
+            let infomationUser = newDiv.querySelector(".infomation-user");
+                    if (infomationUser) {
+                        // เพิ่มคลาส "d-none" เข้าไปใน div ที่ไม่ใช่ clickedDiv
+                        infomationUser.classList.add("d-none");
+                    }
 		} else {
 			document.getElementById("container_user_video_call").appendChild(newDiv);
 		}
@@ -2383,6 +2389,14 @@
 
             customDivs.forEach(function(div) {
                 if (div !== clickedDiv) {
+
+                    // ตรวจสอบว่า div นี้มีคลาส "information-user" หรือไม่
+                    let infomationUser = div.querySelector(".infomation-user");
+                    if (infomationUser) {
+                        // เพิ่มคลาส "d-none" เข้าไปใน div ที่ไม่ใช่ clickedDiv
+                        infomationUser.classList.add("d-none");
+                    }
+
                     if (!isInUserVideoCallBar(div)) {
                         userVideoCallBar.appendChild(div);
                     }
@@ -2391,6 +2405,13 @@
 
             // ย้าย div ที่ถูกคลิกไปยังตำแหน่งที่ถูกคลิก
             if (!isInUserVideoCallBar(clickedDiv)) {
+
+                let infomationUser = clickedDiv.querySelector(".infomation-user");
+                if (infomationUser) {
+                    // เพิ่มคลาส "d-none" เข้าไปใน div ที่ไม่ใช่ clickedDiv
+                    infomationUser.classList.remove("d-none");
+                }
+
                 container.appendChild(clickedDiv);
             }
             // document.querySelector(".btn-video-call-container").classList.add("d-none");
@@ -2406,21 +2427,21 @@
 	}
 
 	// สลับ div ระหว่าง .user-video-call-bar และ #container_user_video_call
-	function swapDivsInContainerAndUserVideoCallBar(clickedDiv) {
-		let container = document.getElementById("container_user_video_call");
-		let customDivsInContainer = container.querySelectorAll(".custom-div");
-		let userVideoCallBar = document.querySelector(".user-video-call-bar");
-		let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+	// function swapDivsInContainerAndUserVideoCallBar(clickedDiv) {
+	// 	let container = document.getElementById("container_user_video_call");
+	// 	let customDivsInContainer = container.querySelectorAll(".custom-div");
+	// 	let userVideoCallBar = document.querySelector(".user-video-call-bar");
+	// 	let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
 
-		if (customDivsInContainer.length > 0 && customDivsInUserVideoCallBar.length > 0) {
-			let firstDivInContainer = customDivsInContainer[0];
+	// 	if (customDivsInContainer.length > 0 && customDivsInUserVideoCallBar.length > 0) {
+	// 		let firstDivInContainer = customDivsInContainer[0];
 
-			container.appendChild(clickedDiv);
-			userVideoCallBar.appendChild(firstDivInContainer);
-		}
+	// 		container.appendChild(clickedDiv);
+	// 		userVideoCallBar.appendChild(firstDivInContainer);
+	// 	}
 
 
-	}
+	// }
 
 	// ย้ายทุก div ใน .user-video-call-bar ไปยัง #container_user_video_call
 	function moveAllDivsToContainer() {
@@ -2430,6 +2451,13 @@
 		document.querySelector(".user-video-call-contrainer").classList.add("d-none");
 
 		customDivsInUserVideoCallBar.forEach(function(div) {
+
+            let infomationUser = div.querySelector(".infomation-user");
+                if (infomationUser) {
+                    // เพิ่มคลาส "d-none" เข้าไปใน div ที่ไม่ใช่ clickedDiv
+                    infomationUser.classList.remove("d-none");
+                }
+
 			container.appendChild(div);
 		});
 
@@ -2875,6 +2903,12 @@
             } else {
                 if (customDivsInUserVideoCallBar.length > 0) {
                     userVideoCallBar.append(divVideo_New);
+
+                    let infomationUser = divVideo_New.querySelector(".infomation-user");
+                    if (infomationUser) {
+                        // เพิ่มคลาส "d-none" เข้าไปใน div ที่ไม่ใช่ clickedDiv
+                        infomationUser.classList.add("d-none");
+                    }
                 } else {
                     container_user_video_call.append(divVideo_New);
                 }
@@ -3034,6 +3068,12 @@
             } else {
                 if (customDivsInUserVideoCallBar.length > 0) {
                     userVideoCallBar.append(divVideo_New);
+
+                    let infomationUser = divVideo_New.querySelector(".infomation-user");
+                    if (infomationUser) {
+                        // เพิ่มคลาส "d-none" เข้าไปใน div ที่ไม่ใช่ clickedDiv
+                        infomationUser.classList.add("d-none");
+                    }
                 } else {
                     container_user_video_call.append(divVideo_New);
                 }
