@@ -223,11 +223,11 @@ class Agora_4_Controller extends Controller
         $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
         $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
 
-        if(!empty($data_command)){
+        if(!empty($data_command->name_officer_command)){
             $data['user_type'] = "ศูนย์อำนวยการ";
             $data['name_user'] = $data_command->name_officer_command;
             // $data['unit'] = '';
-        }else if(!empty($data_officer)){
+        }else if(!empty($data_officer->name_officer)){
             $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
             $data['name_user'] = $data_officer->name_officer;
             // $data['unit'] = $data_officer->operating_unit->name;
@@ -236,23 +236,22 @@ class Agora_4_Controller extends Controller
             $data['name_user'] = $local_data->name;
         }
 
-        $text_path = url('storage') . '/' . $local_data->photo;
-        $img = Image::make( $text_path );
-        // get file path
-        $aaa = $img->basePath();
-        // โหลดข้อมูลขนาดของรูปภาพ
-        list($width, $height) = getimagesize($text_path);
+        if (!empty($local_data->photo)) {
+            $text_path = url('storage') . '/' . $local_data->photo;
+            $img = Image::make( $text_path );
+            // get file path
+            $aaa = $img->basePath();
+            // โหลดข้อมูลขนาดของรูปภาพ
+            list($width, $height) = getimagesize($text_path);
 
-        // หาจุดตรงกลาง
-        $centerX = $width / 2;
-        $centerY = $height / 2;
+            // หาจุดตรงกลาง
+            $centerX = $width / 2;
+            $centerY = $height / 2;
 
-        // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
-        try {
-          $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
-        }
-        catch(Exception $e) {
-            $hexcolor = '#27D7D1FF';
+            // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
+            $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+        } else {
+            $hexcolor = '#2b2d31';
         }
 
         $data['hexcolor'] = $hexcolor;
@@ -269,11 +268,11 @@ class Agora_4_Controller extends Controller
         $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
         $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
 
-        if(!empty($data_command)){
+        if(!empty($data_command->name_officer_command)){
             $data['user_type'] = "ศูนย์อำนวยการ";
             $data['name_user'] = $data_command->name_officer_command;
             // $data['unit'] = '';
-        }else if(!empty($data_officer)){
+        }else if(!empty($data_officer->name_officer)){
             $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
             $data['name_user'] = $data_officer->name_officer;
             // $data['unit'] = $data_officer->operating_unit->name;
@@ -282,23 +281,22 @@ class Agora_4_Controller extends Controller
             $data['name_user'] = $remote_data->name;
         }
 
-        $text_path = url('storage') . '/' . $remote_data->photo;
-        $img = Image::make( $text_path );
-        // get file path
-        $aaa = $img->basePath();
-        // โหลดข้อมูลขนาดของรูปภาพ
-        list($width, $height) = getimagesize($text_path);
+        if (!empty($remote_data->photo)) {
+            $text_path = url('storage') . '/' . $remote_data->photo;
+            $img = Image::make( $text_path );
+            // get file path
+            $aaa = $img->basePath();
+            // โหลดข้อมูลขนาดของรูปภาพ
+            list($width, $height) = getimagesize($text_path);
 
-        // หาจุดตรงกลาง
-        $centerX = $width / 2;
-        $centerY = $height / 2;
+            // หาจุดตรงกลาง
+            $centerX = $width / 2;
+            $centerY = $height / 2;
 
-        // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
-        try {
-          $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
-        }
-        catch(Exception $e) {
-            $hexcolor = '#27D7D1FF';
+            // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
+            $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+        } else {
+            $hexcolor = '#2b2d26';
         }
 
         $data['hexcolor'] = $hexcolor;
