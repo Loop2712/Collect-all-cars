@@ -568,7 +568,7 @@
         color: #ffffff;
         font-size: 3rem;
         position: absolute;
-        bottom: 2;
+        bottom: -5;
         left: 0;
         right: 0;
         padding: 1rem;
