@@ -22,7 +22,7 @@ class Sos_map_titleController extends Controller
     {
         $user = Auth::user();
 
-        if($user != "admin-partner"){
+        if($user->role != "admin-partner"){
             return redirect('404');
         }else{
 

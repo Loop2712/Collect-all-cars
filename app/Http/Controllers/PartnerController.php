@@ -288,7 +288,7 @@ class PartnerController extends Controller
     {
         $data_user = Auth::user();
 
-        if($data_user != "admin-partner"){
+        if($data_user->role != "admin-partner"){
             return redirect('404');
         }else{
 
