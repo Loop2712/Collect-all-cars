@@ -666,15 +666,10 @@
                 // ปิดกล้อง
                 let videoElement = document.getElementById('videoDiv');
                 let stramVideo = videoElement.srcObject;
-                // // videoElement.stop(); // หยุดวิดีโอชั่วคราว
-                // stramVideo.stop();
-                let videoTracks = stramVideo.getVideoTracks();
-                videoTracks.forEach((track) => {
-                    track.stop();
-                });
 
-                // let videoTracks = stramVideo.getVideoTracks();
-                // videoTracks[0].stop();
+                let videoTracks = stramVideo.getVideoTracks();
+                videoTracks[1].stop();
+
                 document.querySelector('#toggleCameraButton').classList.add('active');
                 document.querySelector('#toggleCameraButton').innerHTML = '<i class="fa-regular fa-camera-slash"></i>'
                 // console.log('ปิดกล้อง');
