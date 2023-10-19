@@ -131,9 +131,6 @@ class Agora_4_Controller extends Controller
         ->first();
 
         $data_sos_map = Sos_map::where('id' , $sos_id)->first();
-        $data_partner = Partner::where('name' , $data_sos_map->area)
-            ->where('name_area' , $data_sos_map->name_area)
-            ->first();
 
         if (!empty($useSpeaker)) {
             $useSpeaker = $requestData['useSpeaker'];
