@@ -572,7 +572,6 @@
                 // รองรับการเข้าถึงกล้อง
                 // var constraints = { video: { facingMode: 'user' } }; // เพิ่มออปชัน facingMode เพื่อเลือกกล้องหน้า
                 // let constraints = { video: { facingMode: 'environment' } }; // เพิ่มออปชัน facingMode เพื่อเลือกกล้องหน้า
-
                 let selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
                 constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
                 navigator.mediaDevices.getUserMedia(constraints)
@@ -671,13 +670,17 @@
                 let stramVideo = videoElement.srcObject;
                 // // videoElement.stop(); // หยุดวิดีโอชั่วคราว
                 // stramVideo.stop();
-                // let videoTracks = stramVideo.getVideoTracks();
-                // videoTracks.forEach((track) => {
-                //     track.stop();
-                // });
-
                 let videoTracks = stramVideo.getVideoTracks();
-                videoTracks[1].stop();
+                    videoTracks.forEach((track) => {
+                        track.stop();
+                    });
+
+                // ตัดการทำงานกล้องออกจากองค์ประกอบวิดีโอ
+                videoElement.srcObject = null;
+
+                // let videoTracks = stramVideo.getVideoTracks();
+                // videoTracks[0].stop();
+
                 document.querySelector('#toggleCameraButton').classList.add('active');
                 document.querySelector('#toggleCameraButton').innerHTML = '<i class="fa-regular fa-camera-slash"></i>'
                 // console.log('ปิดกล้อง');
