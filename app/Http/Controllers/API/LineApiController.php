@@ -121,7 +121,7 @@ class LineApiController extends Controller
 
     }
 
-    function help_complete_by_command($event, $data_postback, $id_sos_map , $name_command , $name_helper){
+    function help_complete_by_command($event, $data_postback, $id_sos_map){
         $data_sos_map = Sos_map::where("id" , $id_sos_map)->first();
         $data_helpers = User::where('provider_id' , $event["source"]["userId"])->first();
 
@@ -131,7 +131,7 @@ class LineApiController extends Controller
 
         $helper_id_explode = explode(",",$data_sos_map->helper_id);
 
-        $this->reply_success_groupline_by_command($event , $data_postback, $id_sos_map , $name_command , $name_helper);
+        $this->reply_success_groupline_by_command($event , $data_postback, $id_sos_map);
         $this->help_complete($id_sos_map);
     }
 
@@ -1237,7 +1237,7 @@ class LineApiController extends Controller
 
     }
 
-    public function reply_success_groupline_by_command($event , $data_postback , $id_sos_map, $name_command , $name_helper){
+    public function reply_success_groupline_by_command(){
 
         $data_sos_map = Sos_map::where("id" , $id_sos_map)->first();
 
@@ -1273,10 +1273,15 @@ class LineApiController extends Controller
 
         $time_created = $data_sos_map->created_at;
         $time_help_complete = $data_sos_map->help_complete_time;
+        $time_go_to_help = $data_sos_map->time_go_to_help;
 
-        if(!empty($time_help_complete)){
+        if(!empty($time_go_to_help)){
+            $count_time_help = $this->count_range_time($time_created , $time_go_to_help);
+            $count_success = $this->count_range_time($time_go_to_help , $time_help_complete);
             $count_complete = $this->count_range_time($time_created , $time_help_complete);
         }else{
+            $count_time_help = "-";
+            $count_success = "-";
             $count_complete = "-";
         }
 
@@ -1288,9 +1293,6 @@ class LineApiController extends Controller
                     "กำลังไปช่วยเหลือ",
                     "ช่วยเหลือเสร็จสิ้น",
                     "ใช้เวลา",
-                    "อัพเดทสถานะโดยศูนย์ควบคุม",
-                    "ศูนย์ควบคุม",
-                    "เจ้าหน้าที่",
                 ];
 
         for ($xi=0; $xi < count($data_topic); $xi++) { 
@@ -1306,7 +1308,7 @@ class LineApiController extends Controller
             }
         }
 
-        $template_path = storage_path('../public/json/sos_map_success_by_command.json');   
+        $template_path = storage_path('../public/json/sos_map_success.json');   
 
         $string_json = file_get_contents($template_path);
 
@@ -1315,29 +1317,30 @@ class LineApiController extends Controller
         $string_json = str_replace("date_sos",$date_sos,$string_json);
         $string_json = str_replace("time_sos",$time_sos,$string_json);
 
+        //help
+        $string_json = str_replace("name_help",$data_sos_map->helper,$string_json);
+        $string_json = str_replace("date_help",$date_help,$string_json);
+        $string_json = str_replace("time_help",$time_help,$string_json);
+        $string_json = str_replace("count_help",$count_time_help,$string_json);
+
         // success
         $string_json = str_replace("date_success",$date_success,$string_json);
         $string_json = str_replace("time_success",$time_success,$string_json);
+        $string_json = str_replace("count_success",$count_success,$string_json);
 
         $string_json = str_replace("count_complete",$count_complete,$string_json);
         $string_json = str_replace("date_time",$time_zone,$string_json);
         $string_json = str_replace("id_sos_map",$id_sos_map,$string_json);
         $string_json = str_replace("groupId",$event['source']['groupId'],$string_json);
 
-        $string_json = str_replace("name_command",$name_command,$string_json);
-        $string_json = str_replace("name_helper",$name_helper,$string_json);
-
         $string_json = str_replace("ตัวอย่าง",$data_topic[0],$string_json);
         $string_json = str_replace("ขอขอบคุณที่ร่วมสร้างสังคมที่ดีค่ะ",$data_topic[0],$string_json);
         $string_json = str_replace("การช่วยเหลือเสร็จสิ้น",$data_topic[1],$string_json);
         $string_json = str_replace("เพิ่มภาพถ่าย",$data_topic[2],$string_json);
         $string_json = str_replace("ขอความช่วยเหลือ",$data_topic[3],$string_json);
+        $string_json = str_replace("กำลังไปช่วยเหลือ",$data_topic[4],$string_json);
         $string_json = str_replace("ช่วยเหลือเสร็จสิ้น",$data_topic[5],$string_json);
         $string_json = str_replace("ใช้เวลา",$data_topic[6],$string_json);
-
-        $string_json = str_replace("อัพเดทสถานะโดยศูนย์ควบคุม",$data_topic[7],$string_json);
-        $string_json = str_replace("ศูนย์ควบคุม",$data_topic[8],$string_json);
-        $string_json = str_replace("เจ้าหน้าที่",$data_topic[9],$string_json);
 
         
         $messages = [ json_decode($string_json, true) ];
