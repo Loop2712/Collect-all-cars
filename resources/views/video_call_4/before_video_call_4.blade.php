@@ -422,20 +422,20 @@
 
             console.log(selectedCamera.label);
             let device_type = '{{$type_device}}';
+            let videoElement = videoElement = document.getElementById('videoDiv');
+            let selectedDeviceId;
+            let constraints;
             if(device_type === 'pc_video_call'){
-                let videoElement = document.getElementById('videoDiv');
-                let selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
-                let constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+                selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
+                constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
             }else{
-
+                constraints = { video: true }; // เลือกอุปกรณ์ที่ถูกเลือก
             }
-
 
             navigator.mediaDevices.getUserMedia(constraints)
             .then(function(videoStream) {
                 if(statusCamera == "open"){
                     videoElement.srcObject = videoStream; // กำหนดกล้องใหม่ให้แสดงบนอิลิเมนต์ video
-                    // localStorage.setItem('selectedCameraId', selectedDeviceId); // บันทึกอุปกรณ์ที่เลือกลงใน localStorage
                 }else{
                     videoElement.srcObject = videoStream; // กำหนดกล้องใหม่ให้แสดงบนอิลิเมนต์ video
 
@@ -446,7 +446,6 @@
                     // document.querySelector('#toggleCameraButton').classList.add('active');
                     // document.querySelector('#toggleCameraButton').innerHTML = '<i style="font-size: 25px;" class="fa-regular fa-camera-slash"></i>'
 
-                    // localStorage.setItem('selectedCameraId', selectedDeviceId); // บันทึกอุปกรณ์ที่เลือกลงใน localStorage
                 }
             })
             .catch(function(error) {
