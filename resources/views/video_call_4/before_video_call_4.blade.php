@@ -425,7 +425,7 @@
             let videoElement = videoElement = document.getElementById('videoDiv');
             let selectedDeviceId;
             let constraints;
-            if(device_type === 'pc_video_call'){
+            if(selectedDeviceId){
                 selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
                 constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
             }else{
