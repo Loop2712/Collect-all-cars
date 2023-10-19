@@ -1033,15 +1033,20 @@ class Sos_mapController extends Controller
     function help_complete(Request $request)
     {
         $requestData = $request->all();
+        $command_id = $requestData["command_id"] ;
+
+        $data_command = User::where('id' , $requestData["command_id"])->select('name')->first();
+        $name_command = $data_command->name ;
 
         $data_helpers = User::where('id' , $requestData["officer_id"])->first();
+        $name_helper = $data_helpers->name ;
 
         $event = [] ;
         $event["source"]["userId"] = $data_helpers->provider_id;
         $event["source"]["groupId"] = $requestData["groupId"];
 
         $line = new LineApiController();
-        $line->help_complete_by_command($event, 'help_complete', $requestData['sos_map_id']);
+        $line->help_complete_by_command($event, 'help_complete', $requestData['sos_map_id'] , $name_command , $name_helper);
     }
 
     function user_view_officer_login($id_sos_map){
