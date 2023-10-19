@@ -98,6 +98,8 @@
         height: 40vh;
         max-height: 40vh;
         width: 100%;
+        min-width: 100%;
+        max-width: 100%;
         object-fit: cover;
         border-radius: 15px;
         background-color: #000000;
