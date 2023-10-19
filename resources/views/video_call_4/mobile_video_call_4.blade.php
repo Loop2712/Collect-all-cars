@@ -872,19 +872,39 @@
                             </div>
                             <div style="font-size:35px; " class="text-dark">
                                 <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
-                                    <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">หัวข้อ : {{$data_sos_map->title_sos ? $data_sos_map->title_sos : "--"}}</p>
+                                    @if ($data_sos_map->title_sos)
+                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">หัวข้อ : {{$data_sos_map->title_sos ? $data_sos_map->title_sos : "--"}}</p>
+                                    @else
+                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">หัวข้อ : -- </p>
+                                    @endif
                                 </div>
                                 <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
-                                    <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">รายละเอียด : {{$data_sos_map->title_sos_other ? $data_sos_map->title_sos_other : "--"}} </p>
+                                    @if ($data_sos_map->title_sos_other)
+                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">รายละเอียด : {{$data_sos_map->title_sos_other ? $data_sos_map->title_sos_other : "--"}} </p>
+                                    @else
+                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">รายละเอียด : -- </p>
+                                    @endif
                                 </div>
                                 <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
-                                    <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">สถานะ : {{$data_sos_map->status ? $data_sos_map->status : "--"}}</p>
+                                    @if ($data_sos_map->status)
+                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">สถานะ : {{$data_sos_map->status ? $data_sos_map->status : "--"}}</p>
+                                    @else
+                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">สถานะ : -- </p>
+                                    @endif
                                 </div>
                                 <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
-                                    <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">Lat : {{$data_sos_map->lat ? $data_sos_map->lat : "--"}}</p>
+                                    @if ($data_sos_map->lat)
+                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">Lat : {{$data_sos_map->lat ? $data_sos_map->lat : "--"}}</p>
+                                    @else
+                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">Lat : -- </p>
+                                    @endif
                                 </div>
                                 <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
-                                    <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">Long : {{$data_sos_map->lng ? $data_sos_map->lng : "--"}}</p>
+                                    @if ($data_sos_map->lng)
+                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">Long : {{$data_sos_map->lng ? $data_sos_map->lng : "--"}}</p>
+                                    @else
+                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">Long : -- </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -892,7 +912,7 @@
 
                     <hr>
                     <center>
-                        <a href="{{ url('/video_call_4/before_video_call_4?type=sos_map&sos_id=') . $data_sos_map->id }}" type="button" class="btn btn-primary p-2" style="width:90%; font-size: 45px;">
+                        <a href="" type="button" class="btn btn-primary p-2" style="width:90%; font-size: 45px;">
                             ค้นหาเบอร์ ศสก ของแต่ละจังหวัด
                         </a>
                         <br>

@@ -421,10 +421,15 @@
             }
 
             console.log(selectedCamera.label);
+            let device_type = '{{$type_device}}';
+            if(device_type === 'pc_video_call'){
+                let videoElement = document.getElementById('videoDiv');
+                let selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
+                let constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+            }else{
 
-            let videoElement = document.getElementById('videoDiv');
-            let selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
-            let constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+            }
+
 
             navigator.mediaDevices.getUserMedia(constraints)
             .then(function(videoStream) {
@@ -645,10 +650,16 @@
             statusCamera = "close"; //เซ็ต statusCamera เป็น close
             document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
-            // ตรวจสอบว่ากล้องถูกเปิดหรือไม่
-            let videoElement = document.getElementById('videoDiv');
-            let selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
-            let constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+            let type_device = '{{$type_device}}';
+            let selectedDeviceId;
+            let constraints;
+            if (type_device) {
+                selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
+                constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+            } else {
+                selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
+                constraints = { video: true }; // เลือกอุปกรณ์ที่ถูกเลือก
+            }
 
             navigator.mediaDevices.getUserMedia(constraints)
             .then(function(videoStream) {
@@ -668,10 +679,16 @@
             statusCamera = "open"; // เซ็ต statusCamera เป็น open
             document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
-            // เปิดกล้อง
-            let videoElement = document.getElementById('videoDiv');
-            let selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
-            let constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+            let type_device = '{{$type_device}}';
+            let selectedDeviceId;
+            let constraints;
+            if (type_device) {
+                selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
+                constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+            } else {
+                selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
+                constraints = { video: true }; // เลือกอุปกรณ์ที่ถูกเลือก
+            }
 
             navigator.mediaDevices.getUserMedia(constraints)
             .then(function(newVideoStream) {
@@ -741,9 +758,9 @@
             let constraints = selectedMicrophone;
             let audioSelect;
             if(constraints){
-                audioSelect = { video: { deviceId: constraints.deviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+                audioSelect = { audio: { deviceId: constraints.deviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
             }else{
-                audioSelect = { video: true, }; // เลือกอุปกรณ์ที่ถูกเลือก
+                audioSelect = { audio: true, }; // เลือกอุปกรณ์ที่ถูกเลือก
             }
 
 
