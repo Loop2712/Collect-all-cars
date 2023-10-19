@@ -1178,19 +1178,26 @@ class Sos_mapController extends Controller
 
     function update_helper_id($admin_id , $sos_map_id){
 
-        $data_user = User::where('id' , $admin_id)->first();
+        $data_sos_map = Sos_map::where('id' , $sos_map_id)->first();
 
-        DB::table('sos_maps')
-            ->where([ 
-                    ['id', $sos_map_id ],
-                ])
-            ->update([
-                'helper' => $data_user->name,
-                'helper_id' => $data_user->id,
-                'organization_helper' => $data_user->organization,
-            ]);
+        if(empty($data_sos_map->helper_id)){
+            $data_user = User::where('id' , $admin_id)->first();
 
-        return $data_user->id ;
+            DB::table('sos_maps')
+                ->where([ 
+                        ['id', $sos_map_id ],
+                    ])
+                ->update([
+                    'helper' => $data_user->name,
+                    'helper_id' => $data_user->id,
+                    'organization_helper' => $data_user->organization,
+                ]);
+
+            return $data_user->id ;
+        }else{
+            return $data_sos_map->helper_id ;
+        }
+
     }
 
     function report_repair($id_sos_map){
