@@ -1033,13 +1033,18 @@ class Sos_mapController extends Controller
     function help_complete(Request $request)
     {
         $requestData = $request->all();
-        $command_id = $requestData["command_id"] ;
-
-        $data_command = User::where('id' , $requestData["command_id"])->select('name')->first();
-        $name_command = $data_command->name ;
 
         $data_helpers = User::where('id' , $requestData["officer_id"])->first();
         $name_helper = $data_helpers->name ;
+
+        if(!empty($requestData["command_id"])){
+            $command_id = $requestData["command_id"] ;
+
+            $data_command = User::where('id' , $requestData["command_id"])->select('name')->first();
+            $name_command = $data_command->name ;
+        }else{
+            $name_command = $name_helper ;
+        }
 
         $event = [] ;
         $event["source"]["userId"] = $data_helpers->provider_id;
