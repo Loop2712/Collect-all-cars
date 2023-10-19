@@ -135,7 +135,7 @@ class LineApiController extends Controller
         $this->help_complete($id_sos_map);
     }
 
-    }
+    
 
     function check_help_complete_by_helper($event, $data_postback, $id_sos_map){
         $data_sos_map = Sos_map::where("id" , $id_sos_map)->first();
