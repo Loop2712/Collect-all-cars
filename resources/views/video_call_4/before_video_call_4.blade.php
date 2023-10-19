@@ -666,8 +666,8 @@
                 // ปิดกล้อง
                 let videoElement = document.getElementById('videoDiv');
                 let stramVideo = videoElement.srcObject;
-                videoElement.pause(); // หยุดวิดีโอชั่วคราว
-
+                // videoElement.stop(); // หยุดวิดีโอชั่วคราว
+                stramVideo.stop();
                 // let videoTracks = stramVideo.getVideoTracks();
                 // videoTracks[0].stop();
                 document.querySelector('#toggleCameraButton').classList.add('active');
