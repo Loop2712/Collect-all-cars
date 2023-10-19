@@ -420,17 +420,9 @@
                 document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
             }
 
-            console.log(selectedCamera.label);
-            let device_type = '{{$type_device}}';
             let videoElement = videoElement = document.getElementById('videoDiv');
-            let selectedDeviceId;
-            let constraints;
-            if(selectedDeviceId){
-                selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
-                constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
-            }else{
-                constraints = { video: true }; // เลือกอุปกรณ์ที่ถูกเลือก
-            }
+            let selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
+            let constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
 
             navigator.mediaDevices.getUserMedia(constraints)
             .then(function(videoStream) {
