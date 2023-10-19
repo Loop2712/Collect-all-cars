@@ -98,16 +98,9 @@ class Agora_4_Controller extends Controller
         } else {
             $useCamera = '';
         }
-        if (!empty($videoTrack)) {
-            $videoTrack = $requestData['videoTrack'];
-        }else{
-            $videoTrack = '';
-        }
-        if (!empty($audioTrack)) {
-            $audioTrack = $requestData['audioTrack'];
-        }else{
-            $audioTrack = '';
-        }
+
+        $videoTrack = $requestData['videoTrack'];
+        $audioTrack = $requestData['audioTrack'];
 
         $appID = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
@@ -148,16 +141,8 @@ class Agora_4_Controller extends Controller
             $useCamera = '';
         }
 
-        if (!empty($videoTrack)) {
-            $videoTrack = $requestData['videoTrack'];
-        }else{
-            $videoTrack = '';
-        }
-        if (!empty($audioTrack)) {
-            $audioTrack = $requestData['audioTrack'];
-        }else{
-            $audioTrack = '';
-        }
+        $videoTrack = $requestData['videoTrack'];
+        $audioTrack = $requestData['audioTrack'];
 
         $appID = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
