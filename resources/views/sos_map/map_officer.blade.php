@@ -261,29 +261,7 @@
 					    @break
 					@endswitch
 
-					<div class="mt-3">
-						<label><b>หมายเหตุจากศูนย์ฯ</b></label>
-						<p id="text_remark_command">
-							@if(!empty($data_sos_map->remark_command))
-								{{ $data_sos_map->remark_command }}
-							@else
-								ไม่มีข้อมูล
-							@endif
-						</p>
-					</div>
 				</div>
-
-				<script>
-					function check_remark_status(){
-						let remark_status = document.querySelector('#remark_status').value ;
-
-						if(remark_status){
-							document.querySelector('#btn_status_success').disabled = false;
-						}else{
-							document.querySelector('#btn_status_success').disabled = true;
-						}
-					}
-				</script>
 
 				<div class="tab-pane fade" id="tab_content_3" role="tabpanel">
 					@php
@@ -310,6 +288,29 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="mt-3">
+				<label><b>หมายเหตุจากศูนย์ฯ</b></label>
+				<p id="text_remark_command">
+					@if(!empty($data_sos_map->remark_command))
+						{{ $data_sos_map->remark_command }}
+					@else
+						ไม่มีข้อมูล
+					@endif
+				</p>
+			</div>
+
+			<script>
+				function check_remark_status(){
+					let remark_status = document.querySelector('#remark_status').value ;
+
+					if(remark_status){
+						document.querySelector('#btn_status_success').disabled = false;
+					}else{
+						document.querySelector('#btn_status_success').disabled = true;
+					}
+				}
+			</script>
 
 			<hr>
 			<div class="row text-center">
@@ -661,7 +662,7 @@
             	}else{
             		document.querySelector('#text_remark_command').innerHTML = "ไม่มีข้อมูล" ;
             	}
-            	
+
             	create_marker(data['lat'] , data['lng'] , officer_lat , officer_lng)
             }
 
