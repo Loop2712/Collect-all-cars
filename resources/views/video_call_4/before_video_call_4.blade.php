@@ -95,7 +95,7 @@
         align-items: center;
     }.video_preview{
         min-height: 20vh;
-        height: 100%vh;
+        height: 100%;
         max-height: 40vh;
         object-fit: cover;
         border-radius: 15px;
