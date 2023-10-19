@@ -227,7 +227,7 @@
                             </label> --}}
                         </div>
                     @else
-                        <div class="selectDivice mt-2 p-2 row d-none">
+                        <div class="selectDivice mt-2 p-2 row d-non">
                             <select id="microphoneList"></select>
                             <select id="cameraList"></select>
                             {{-- <select id="speakerList"></select> --}}
@@ -646,32 +646,42 @@
             document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
             // ตรวจสอบว่ากล้องถูกเปิดหรือไม่
-            let videoElement = document.getElementById('videoDiv');
+
             let selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
             let constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
 
-            navigator.mediaDevices.getUserMedia(constraints)
-            .then(function(videoStream) {
+            let videoElement = document.getElementById('videoDiv');
+            let stramViddeo = videoElement.srcObject;
 
-                // ปิดกล้อง
-                let videoElement = document.getElementById('videoDiv');
-                let stramViddeo = videoElement.srcObject;
+            let videoTracks = stramViddeo.getVideoTracks();
 
-                let videoTracks = stramVideo.getVideoTracks();
-                    videoTracks.forEach((track) => {
-                        track.stop();
-                    });
+            videoTracks[0].stop();
 
-                // ตัดการทำงานกล้องออกจากองค์ประกอบวิดีโอ
-                videoElement.srcObject = null;
+            document.querySelector('#toggleCameraButton').classList.add('active');
+            document.querySelector('#toggleCameraButton').innerHTML = '<i class="fa-regular fa-camera-slash"></i>'
 
-                // let videoTracks = stramVideo.getVideoTracks();
-                // videoTracks[0].stop();
+            // navigator.mediaDevices.getUserMedia(constraints)
+            // .then(function(videoStream) {
 
-                document.querySelector('#toggleCameraButton').classList.add('active');
-                document.querySelector('#toggleCameraButton').innerHTML = '<i class="fa-regular fa-camera-slash"></i>'
-                // console.log('ปิดกล้อง');
-            })
+            //     // ปิดกล้อง
+            //     let videoElement = document.getElementById('videoDiv');
+            //     let stramViddeo = videoElement.srcObject;
+
+            //     // let videoTracks = stramVideo.getVideoTracks();
+            //     //     videoTracks.forEach((track) => {
+            //     //         track.stop();
+            //     //     });
+
+            //     // ตัดการทำงานกล้องออกจากองค์ประกอบวิดีโอ
+            //     // videoElement.srcObject = null;
+
+            //     let videoTracks = stramViddeo.getVideoTracks();
+            //     videoTracks[0].stop();
+
+            //     document.querySelector('#toggleCameraButton').classList.add('active');
+            //     document.querySelector('#toggleCameraButton').innerHTML = '<i class="fa-regular fa-camera-slash"></i>'
+            //     // console.log('ปิดกล้อง');
+            // })
 
         }else{
             statusCamera = "open"; // เซ็ต statusCamera เป็น open
