@@ -95,9 +95,8 @@
         align-items: center;
     }.video_preview{
         min-height: 20vh;
-        height: 40vh;
+        height: 100%vh;
         max-height: 40vh;
-        width: 100%;
         object-fit: cover;
         border-radius: 15px;
         background-color: #000000;
@@ -567,7 +566,7 @@
                 // let constraints = { video: { facingMode: 'user' } }; // เพิ่มออปชัน facingMode เพื่อเลือกกล้องหน้า
                 // let constraints = { video: { facingMode: 'environment' } }; // เพิ่มออปชัน facingMode เพื่อเลือกกล้องหน้า
                 let selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
-                constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+                let constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
                 navigator.mediaDevices.getUserMedia(constraints)
                 .then(function(videoStream) {
                     // ได้รับสตรีมวิดีโอสำเร็จ
