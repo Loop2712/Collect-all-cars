@@ -654,15 +654,18 @@
             .then(function(videoStream) {
 
                 // ปิดกล้อง
-                let videoElement = document.getElementById('videoDiv');
-                let stramVideo = videoElement.srcObject;
+                // let videoElement = document.getElementById('videoDiv');
+                // let stramViddeo = videoElement.srcObject;
+
+                let stramVideo = videoStream;
 
                 let videoTracks = stramVideo.getVideoTracks();
                     videoTracks.forEach((track) => {
                         track.stop();
                     });
+
                 // ตัดการทำงานกล้องออกจากองค์ประกอบวิดีโอ
-                videoElement.srcObject = null;
+                // videoElement.srcObject = null;
 
                 // let videoTracks = stramVideo.getVideoTracks();
                 // videoTracks[0].stop();
