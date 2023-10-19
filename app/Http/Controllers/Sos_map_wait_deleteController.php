@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Sos_map_wait_delete;
 use Illuminate\Http\Request;
+use Auth;
 
 class Sos_map_wait_deleteController extends Controller
 {
