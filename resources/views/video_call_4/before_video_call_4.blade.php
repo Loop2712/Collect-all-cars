@@ -100,7 +100,7 @@
         width: 100%;
         min-width: 100%;
         max-width: 100%;
-        object-fit: cover;
+        /* object-fit: cover; */
         border-radius: 15px;
         background-color: #000000;
     }.btn-join-room{
