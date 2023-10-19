@@ -97,6 +97,7 @@
         min-height: 20vh;
         height: 100%;
         max-height: 40vh;
+        width: 100%;
         object-fit: cover;
         border-radius: 15px;
         background-color: #000000;
