@@ -664,16 +664,13 @@
             .then(function(videoStream) {
 
                 // ปิดกล้อง
-                // let videoElement = document.getElementById('videoDiv');
-                // let stramVideo = videoElement.srcObject;
+                let videoElement = document.getElementById('videoDiv');
+                let stramVideo = videoElement.srcObject;
                 // // videoElement.stop(); // หยุดวิดีโอชั่วคราว
                 // stramVideo.stop();
                 let videoTracks = stramVideo.getVideoTracks();
-
                 videoTracks.forEach((track) => {
-                    if (track.readyState === 'live') {
-                        track.stop();
-                    }
+                    track.stop();
                 });
 
                 // let videoTracks = stramVideo.getVideoTracks();
