@@ -1043,7 +1043,7 @@ class Sos_mapController extends Controller
             $data_command = User::where('id' , $requestData["command_id"])->select('name')->first();
             $name_command = $data_command->name ;
         }else{
-            $name_command = $name_helper ;
+            $name_command = 'no_name_command' ;
         }
 
         $event = [] ;
@@ -1051,7 +1051,13 @@ class Sos_mapController extends Controller
         $event["source"]["groupId"] = $requestData["groupId"];
 
         $line = new LineApiController();
-        $line->help_complete_by_command($event, 'help_complete', $requestData['sos_map_id'] , $name_command , $name_helper);
+        
+        if($name_command != 'no_name_command'){
+            $line->help_complete_by_command($event, 'help_complete', $requestData['sos_map_id'] , $name_command , $name_helper);
+        }else{
+            $line->check_help_complete_by_helper($event, 'help_complete', $requestData['sos_map_id']);
+        }
+    
     }
 
     function user_view_officer_login($id_sos_map){
