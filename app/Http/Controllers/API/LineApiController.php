@@ -1277,7 +1277,9 @@ class LineApiController extends Controller
         if(!empty($time_help_complete)){
             $count_complete = $this->count_range_time($time_created , $time_help_complete);
         }else{
-            $count_complete = "-";
+            $date_now = date('Y-m-d H:i:s');
+            $count_complete = $this->count_range_time($time_created , $date_now);
+            // $count_complete = "-";
         }
 
         $data_topic = [
