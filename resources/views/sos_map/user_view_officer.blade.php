@@ -879,10 +879,17 @@
         // console.log("user_lng >> " + user_lng);
 
         let data_arr = [] ;
+        let auth_id ;
+
+        @if(Auth::check())
+            auth_id = "{{ Auth::user()->id }}";
+        @else
+            auth_id = null;
+        @endif
 
         data_arr = {
             "sos_map_id" : "{{ $data_sos->id }}",
-            "user_id" : "{{ Auth::user()->id }}",
+            "user_id" : auth_id,
             "user_lat" : user_lat,
             "user_lng" : user_lng,
         }; 

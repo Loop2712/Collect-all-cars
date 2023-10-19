@@ -93,7 +93,7 @@ class Sos_mapController extends Controller
         
         $requestData = $request->all();
 
-        // ddd($requestData);
+        // dd($requestData);
 
         if (!empty($requestData['title_sos'])){
             $requestData['title_sos'] = $requestData['title_sos'] ;
@@ -1069,14 +1069,16 @@ class Sos_mapController extends Controller
     {
         $requestData = $request->all();
 
-        DB::table('users')
-            ->where([ 
-                    ['id', $requestData['user_id'] ],
-                ])
-            ->update([
-                'lat' => $requestData['user_lat'],
-                'lng' => $requestData['user_lng'],
-            ]);
+        if(!empty($requestData['user_id'])){
+            DB::table('users')
+                ->where([ 
+                        ['id', $requestData['user_id'] ],
+                    ])
+                ->update([
+                    'lat' => $requestData['user_lat'],
+                    'lng' => $requestData['user_lng'],
+                ]);
+        }
 
         $data = [];
 
