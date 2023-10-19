@@ -50,7 +50,91 @@
             transform: translateY(0);
         }
     }
+	#btn_cf_remark_command {
+        min-height: 38px;
+        min-width: 64px;
+    }
 
+    #btn_cf_remark_command.loading::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 23px;
+        height: 20px;
+        border: 2px solid #fff;
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+	.spinner {
+        display: inline-block;
+        margin: 0 8px;
+        border-radius: 50%;
+        width: 1.5em;
+        height: 1.5em;
+        border: .215em solid transparent;
+        vertical-align: middle;
+        font-size: 16px;
+        border-top-color: white;
+        animation: spiner 1s cubic-bezier(.55, .15, .45, .85) infinite;
+    }
+
+    @keyframes spiner {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .v-btn-label-enter-active {
+        animation: slide-in-down 260ms cubic-bezier(.0, .0, .2, 1);
+    }
+
+    .v-btn-label-leave-active {
+        animation: slide-out-down 260ms cubic-bezier(.4, .0, 1, 1);
+    }
+
+    .icon-save-btn {
+        display: inline-block;
+
+    }
+
+    @keyframes slide-in-down {
+        0% {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+
+        50% {
+            opacity: .8;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-out-down {
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        40% {
+            opacity: .2;
+        }
+
+        100% {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+    }
 </style>
 
 <div id="alert_copy" class="div_alert" role="alert">
@@ -166,15 +250,27 @@
 				</div>
 				<textarea class="form-control mt-2" id="remark_command" name="remark_command" rows="3" placeholder="เพิ่มหมายเหตุจากศูนย์ฯ" oninput="check_data_remark_command();">{{ isset($data_sos_map->remark_command) ? $data_sos_map->remark_command : ''}}</textarea>
 				
-				<span class="mt-2 mb-2 float-start text-success">
-					<b>บันทึกเรียบร้อย</b>
-				</span>
-                <button id="btn_cf_remark_command" class="btn btn-sm btn-success mt-2 mb-2 float-end" style="width:50%;" disabled >
-                	ยืนยัน
-                </button>
+				
+				<button id="btn_cf_remark_command" class="btn btn-sm btn-success mt-2 mb-2 float-end" style="width:50%;" disabled onclick="saveData()">
+					<span class="text-save-btn d-non" style="display: inline-block;">ยืนยัน</span>
+
+					<div class="spinner-save-btn d-none">
+						<span class="spinner"></span>
+					</div>
+
+					<span class="icon-save-btn d-none my-1">
+						<i class="fa-solid fa-check"></i>
+					</span>
+				</button>
 			</div>
 		</div>
-
+<!-- <span class="mt-2 mb-2 float-start text-success">
+					<b>บันทึกเรียบร้อย</b>
+				</span> -->
+				<!-- ปุม่บันทึก -->
+                <!-- <button id="btn_cf_remark_command" class="btn btn-sm btn-success mt-2 mb-2 float-end" style="width:50%;" disabled >
+                	ยืนยัน
+                </button> -->
 		@if(!empty($data_sos_map->helper_id))
 		<!-- ข้อมูลเจ้าหน้าที่ -->
 		<div class="card border-top border-0 border-4 border-success">
@@ -379,6 +475,7 @@
 </div>
 
 <script>
+	let isAnimating = true;
 	
 	function check_remark_status(){
 
@@ -947,6 +1044,8 @@
             return response.text();
         }).then(function(data){
             // console.log(data);
+			//annimation
+			animation_save_data();
         }).catch(function(error){
             // console.error(error);
         });
@@ -1112,7 +1211,50 @@
         }
 
 	}
+	function animation_save_data() {
 
+		if (isAnimating) {
+			isAnimating = false;
+
+			document.querySelector('.text-save-btn').classList.remove('v-btn-label-enter-active');
+			document.querySelector('.text-save-btn').classList.add('v-btn-label-leave-active');
+
+			setTimeout(() => {
+				document.querySelector('.text-save-btn').classList.add('d-none');
+
+
+				document.querySelector('.text-save-btn').classList.remove('v-btn-label-leave-active');
+				document.querySelector('.spinner-save-btn').classList.remove('d-none');
+				document.querySelector('.spinner-save-btn').classList.add('v-btn-label-enter-active');
+			}, 200);
+
+			setTimeout(() => {
+				document.querySelector('.spinner-save-btn').classList.add('v-btn-label-leave-active');
+			}, 1280);
+
+			setTimeout(() => {
+				document.querySelector('.spinner-save-btn').classList.add('d-none');
+				document.querySelector('.spinner-save-btn').classList.remove('v-btn-label-enter-active');
+				document.querySelector('.spinner-save-btn').classList.remove('v-btn-label-leave-active');
+
+				document.querySelector('.icon-save-btn').classList.add('v-btn-label-enter-active');
+				document.querySelector('.icon-save-btn').classList.remove('d-none');
+			}, 1500);
+
+			setTimeout(() => {
+				document.querySelector('.icon-save-btn').classList.add('v-btn-label-leave-active');
+			}, 2000);
+
+			setTimeout(() => {
+				document.querySelector('.icon-save-btn').classList.add('d-none');
+				document.querySelector('.icon-save-btn').classList.remove('v-btn-label-enter-active');
+				document.querySelector('.icon-save-btn').classList.remove('v-btn-label-leave-active');
+				document.querySelector('.text-save-btn').classList.remove('d-none');
+				document.querySelector('.text-save-btn').classList.add('v-btn-label-enter-active');
+				isAnimating = true;
+			}, 2200);
+		}
+	}
 </script>
 
 @endsection
