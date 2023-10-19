@@ -157,6 +157,21 @@
 						</div>
 					</div>
 				</center>
+				<hr>
+				<div class="card-title d-flex align-items-center">
+					<div>
+						<i class="fa-solid fa-file me-1 font-22 text-info"></i>
+					</div>
+					<h4 class="mb-0 text-info">หมายเหตุจากศูนย์ฯ</h4>
+				</div>
+				<textarea class="form-control mt-2" id="remark_command" name="remark_command" rows="3" placeholder="เพิ่มหมายเหตุจากศูนย์ฯ" oninput="check_data_remark_command();">{{ isset($data_sos_map->remark_command) ? $data_sos_map->remark_command : ''}}</textarea>
+				
+				<span class="mt-2 mb-2 float-start text-success">
+					<b>บันทึกเรียบร้อย</b>
+				</span>
+                <button id="btn_cf_remark_command" class="btn btn-sm btn-success mt-2 mb-2 float-end" style="width:50%;" disabled >
+                	ยืนยัน
+                </button>
 			</div>
 		</div>
 
@@ -894,6 +909,47 @@
 
 		}, 1500);
 
+	}
+
+	var old_remark_command = "{{ $data_sos_map->remark_command }}";
+
+	function check_data_remark_command(){
+		let remark_command = document.querySelector('#remark_command').value;
+
+		if(old_remark_command != remark_command){
+			document.querySelector('#btn_cf_remark_command').disabled = false ;
+			document.querySelector('#btn_cf_remark_command').setAttribute('onclick' , 'submit_remark_command();') ;
+		}else{
+			document.querySelector('#btn_cf_remark_command').disabled = true ;
+			document.querySelector('#btn_cf_remark_command').setAttribute('onclick' , '') ;
+		}
+	}
+
+	function submit_remark_command(){
+		let remark_command = document.querySelector('#remark_command').value;
+
+		old_remark_command = remark_command ;
+
+		let data_arr = [] ;
+
+        data_arr = {
+	        "sos_map_id" : "{{ $data_sos_map->id }}",
+	        "remark_command" : remark_command,
+	    }; 
+
+        fetch("{{ url('/') }}/api/sos_map/submit_remark_command", {
+            method: 'post',
+            body: JSON.stringify(data_arr),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(data){
+            // console.log(data);
+        }).catch(function(error){
+            // console.error(error);
+        });
 	}
 
 </script>

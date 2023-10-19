@@ -983,8 +983,10 @@ class Sos_mapController extends Controller
                 'lng' => $requestData['officer_lng'],
             ]);
 
-        $data_sos_map = Sos_map::where('id' , $requestData['sos_map_id'])->select('user_id')->first();
+        $data_sos_map = Sos_map::where('id' , $requestData['sos_map_id'])->select('user_id','remark_command')->first();
         $data_user = User::where('id' , $data_sos_map->user_id)->select('lat' , 'lng')->first();
+
+        $data_user->remark_command = $data_sos_map->remark_command ;
 
         return $data_user ;
 
@@ -1325,6 +1327,21 @@ class Sos_mapController extends Controller
         ];
         MyLog::create($data);
 
+    }
+
+    function submit_remark_command(Request $request)
+    {
+        $requestData = $request->all();
+
+        DB::table('sos_maps')
+            ->where([ 
+                    ['id',$requestData['sos_map_id'] ],
+                ])
+            ->update([
+                'remark_command' => $requestData['remark_command'],
+            ]);
+
+        return "ok" ;
     }
 
 }

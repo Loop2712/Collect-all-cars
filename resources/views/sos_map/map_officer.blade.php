@@ -260,6 +260,17 @@
 							</center>
 					    @break
 					@endswitch
+
+					<div class="mt-3">
+						<label><b>หมายเหตุจากศูนย์ฯ</b></label>
+						<p id="text_remark_command">
+							@if(!empty($data_sos_map->remark_command))
+								{{ $data_sos_map->remark_command }}
+							@else
+								ไม่มีข้อมูล
+							@endif
+						</p>
+					</div>
 				</div>
 
 				<script>
@@ -645,6 +656,12 @@
             // console.log(data);
 
             if(data){
+            	if(data['remark_command']){
+            		document.querySelector('#text_remark_command').innerHTML = data['remark_command'] ;
+            	}else{
+            		document.querySelector('#text_remark_command').innerHTML = "ไม่มีข้อมูล" ;
+            	}
+            	
             	create_marker(data['lat'] , data['lng'] , officer_lat , officer_lng)
             }
 
