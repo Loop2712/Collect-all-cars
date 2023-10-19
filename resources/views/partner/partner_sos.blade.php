@@ -256,6 +256,14 @@
                                 <span>
                                    {{ $item->title_sos_other }}
                                 </span>
+                                <label><b>หมายเหตุจากศูนย์ฯ</b></label>
+                                <p class="mt-1">
+                                    @if(!empty($data_sos_map->remark_command))
+                                        {{ $data_sos_map->remark_command }}
+                                    @else
+                                        ไม่มีข้อมูล
+                                    @endif
+                                </p>
                             </div>
                             <div class="col-5 row">
                                 <div class="col-6 text-center" >
@@ -307,9 +315,18 @@
                         @if($item->status == "เสร็จสิ้น")
                         <div class="row mt-2">
                             <div class="col-4">
-                                <h5 class="mt-3"><b>หมายเหตุ ช่วยเหลือเสร็จสิ้น</b></h5>
+                                <h5 class="mt-3"><b>การช่วยเหลือเสร็จสิ้น</b></h5>
+                                @php
+                                    $remark_status = '';
+                                    if (stripos($item->remark_status, 'หมายเหตุ') !== false) {
+                                        $remark_status = $item->remark_status ;
+                                    } else {
+                                        $remark_status = 'หมายเหตุ : ' . $item->remark_status;
+                                    }
+                                @endphp
+
                                 <span>
-                                    {{ $item->remark_status }}
+                                    {{ $remark_status }}
                                 </span>
                             </div>
                             <div class="col-8">
@@ -369,21 +386,21 @@
                         @endif
 
                         @if($item->tag_sos_or_repair != "tag_repair")
-                        <div class="col">
+                        <div class="col mt-2">
                             <a href="{{ url('/sos_map/command') . '/' . $item->id }}" type="button" class="btn {{ $btn_background_color }} px-5">
                                 <i class="fa-duotone fa-bars-progress mr-1"></i> ดำเนินการ
                             </a>
-                            <a href="{{ url('/sos_map/delete_case') . '/' . $item->id }}" type="button" class="btn btn-danger px-5 mr-2 ml-2">
+                            <a href="{{ url('/sos_map/delete_case') . '/' . $item->id }}" type="button" class="btn btn-danger mr-2 ml-2 float-end">
                                 <i class="fa-solid fa-delete-right mr-1"></i> ลบ
                             </a>
                         </div>
                         @else
 
-                        <div class="col">
+                        <div class="col mt-2">
                             <a href="{{ url('/sos_map/report_repair') . '/' . $item->id }}" type="button" class="btn {{ $btn_background_color }} px-5">
                                 <i class="fa-duotone fa-bars-progress mr-1"></i> ดำเนินการ
                             </a>
-                            <a href="{{ url('/sos_map/delete_case') . '/' . $item->id }}" type="button" class="btn btn-danger px-5 mr-2 ml-2">
+                            <a href="{{ url('/sos_map/delete_case') . '/' . $item->id }}" type="button" class="btn btn-danger mr-2 ml-2 float-end">
                                 <i class="fa-solid fa-delete-right mr-1"></i> ลบ
                             </a>
                         </div>
