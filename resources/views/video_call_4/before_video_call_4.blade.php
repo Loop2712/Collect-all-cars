@@ -227,7 +227,7 @@
                             </label> --}}
                         </div>
                     @else
-                        <div class="selectDivice mt-2 p-2 row d-none">
+                        <div class="selectDivice mt-2 p-2 row d-non">
                             <select id="microphoneList"></select>
                             <select id="cameraList"></select>
                             {{-- <select id="speakerList"></select> --}}
