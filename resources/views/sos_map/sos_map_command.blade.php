@@ -988,6 +988,7 @@
 		        "sos_map_id" : "{{ $data_sos_map->id }}",
 		        "officer_id" : officer_id,
 		        "groupId" : "{{ $groupId }}",
+		        "command_id" : "{{ Auth::user()->id }}",
 		    }; 
 
 			fetch("{{ url('/') }}/api/sos_map/help_complete", {
