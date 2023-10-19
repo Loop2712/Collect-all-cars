@@ -227,7 +227,7 @@
                             </label> --}}
                         </div>
                     @else
-                        <div class="selectDivice mt-2 p-2 row d-non">
+                        <div class="selectDivice mt-2 p-2 row d-none">
                             <select id="microphoneList"></select>
                             <select id="cameraList"></select>
                             {{-- <select id="speakerList"></select> --}}
@@ -654,10 +654,8 @@
             .then(function(videoStream) {
 
                 // ปิดกล้อง
-                // let videoElement = document.getElementById('videoDiv');
-                // let stramViddeo = videoElement.srcObject;
-
-                let stramVideo = videoStream;
+                let videoElement = document.getElementById('videoDiv');
+                let stramViddeo = videoElement.srcObject;
 
                 let videoTracks = stramVideo.getVideoTracks();
                     videoTracks.forEach((track) => {
@@ -665,7 +663,7 @@
                     });
 
                 // ตัดการทำงานกล้องออกจากองค์ประกอบวิดีโอ
-                // videoElement.srcObject = null;
+                videoElement.srcObject = null;
 
                 // let videoTracks = stramVideo.getVideoTracks();
                 // videoTracks[0].stop();
