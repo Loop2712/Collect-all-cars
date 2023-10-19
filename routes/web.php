@@ -204,6 +204,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('sos_map/tag_sos/map_officer/{id_sos_map}/{groupId}', 'Sos_mapController@map_officer');
 	Route::get('sos_map/command/{id_sos_map}', 'Sos_mapController@sos_map_command');
 	Route::get('sos_map/delete_case/{id_sos_map}', 'Sos_mapController@delete_case');
+	Route::get('sos_map/delete_case_from_wait_delete/{id_sos_map}', 'Sos_mapController@delete_case_from_wait_delete');
 	
 	// -- SOS MAP repair --
 	Route::get('sos_map/report_repair/{id_sos_map}', 'Sos_mapController@report_repair');
@@ -279,6 +280,9 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('delete_title_sos', 'Sos_map_titleController@delete_title_sos');
 	Route::get('change_status_title', 'Sos_map_titleController@change_status_title');
 	Route::get('add_title_by_user', 'Sos_map_titleController@add_title_by_user');
+
+	// sos map wait delete
+	Route::resource('sos_map_wait_delete', 'Sos_map_wait_deleteController');
 
 });
 // end admin-partner

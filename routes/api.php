@@ -189,6 +189,7 @@ Route::get('/sos_map/search_phone_niems/{cityName}','Sos_mapController@search_ph
 Route::get('/sos_map/update_sos_1669_id/{sos_1669_id}/{sos_map_id}/{district_P}/{name_admin}','Sos_mapController@update_sos_1669_id');
 Route::get('/sos_map/update_helper_id/{admin_id}/{sos_map_id}','Sos_mapController@update_helper_id');
 Route::post('/sos_map/submit_remark_command','Sos_mapController@submit_remark_command');
+Route::get('/sos_map/request_delete_case/{sos_map_id}/{officer_id}','Sos_mapController@request_delete_case');
 
 Route::get('/check_sos_alarm/{check_name_partner}','API\PartnersController@check_sos_alarm');
 Route::get('/check_sos_alarm/notify/{check_name_partner}','API\PartnersController@check_sos_alarm_notify');

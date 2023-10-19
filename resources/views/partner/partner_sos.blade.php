@@ -2,6 +2,53 @@
 
 @section('content')
 
+<!-- MODAL DELETE CASE -->
+<!-- Modal -->
+<div class="modal fade" id="modal_delete_case" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_modal_delete_case" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Label_modal_delete_case">
+                    ยืนยันการลบ ?
+                </h5>
+                <button id="close_modal_delete_case" type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="div_content_modal_delete_case_1" class="">
+                    <center>
+                        <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width:60%;">
+                        <h3 class="mt-3 mb-2">
+                            คุณยืนยันการลบหรือไม่ ?
+                        </h3>
+                    </center>
+                </div>
+                <div id="div_content_modal_delete_case_2" class="d-none">
+                    <center>
+                        <img src="{{ url('/img/stickerline/PNG/22.png') }}" style="width:60%;">
+                        <h3 class="mt-3 mb-2 text-success">
+                            ส่งคำขอลบเรียบร้อยแล้ว
+                        </h3>
+                    </center>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                @if(Auth::user()->role == "admin-partner")
+                    <a id="a_delete_case" type="button" class="btn btn-danger mr-2 ml-2 float-end">
+                        <i class="fa-solid fa-delete-right mr-1"></i> ลบ
+                    </a>
+                @else
+                    <a id="a_request_delete_case" type="button" class="btn btn-danger mr-2 ml-2 float-end">
+                        <i class="fa-solid fa-delete-right mr-1"></i> ส่งคำขอลบ
+                    </a>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container-partner-sos">
   <div class="item sos-map col-md-12 col-12 col-lg-3">
         <div class="row">
@@ -258,8 +305,8 @@
                                 </span>
                                 <label><b>หมายเหตุจากศูนย์ฯ</b></label>
                                 <p class="mt-1">
-                                    @if(!empty($data_sos_map->remark_command))
-                                        {{ $data_sos_map->remark_command }}
+                                    @if(!empty($item->remark_command))
+                                        {{ $item->remark_command }}
                                     @else
                                         ไม่มีข้อมูล
                                     @endif
@@ -390,9 +437,17 @@
                             <a href="{{ url('/sos_map/command') . '/' . $item->id }}" type="button" class="btn {{ $btn_background_color }} px-5">
                                 <i class="fa-duotone fa-bars-progress mr-1"></i> ดำเนินการ
                             </a>
-                            <a href="{{ url('/sos_map/delete_case') . '/' . $item->id }}" type="button" class="btn btn-danger mr-2 ml-2 float-end">
-                                <i class="fa-solid fa-delete-right mr-1"></i> ลบ
-                            </a>
+                            @if( empty($item->wait_delete) )
+                            <span id="span_btn_delete_case_{{ $item->id }}">
+                                <span class="btn btn-danger mr-2 ml-2 float-end" data-toggle="modal" data-target="#modal_delete_case" onclick="open_modal_delete_case('{{ $item->id }}');">
+                                    <i class="fa-solid fa-delete-right mr-1"></i> ลบ
+                                </span>
+                            </span>
+                            @elseif($item->wait_delete == "Yes")
+                            <span class="btn btn-danger mr-2 ml-2 float-end" >
+                                <i class="fa-solid fa-delete-right mr-1"></i> ส่งคำขอลบแล้ว
+                            </span>
+                            @endif
                         </div>
                         @else
 
@@ -400,9 +455,17 @@
                             <a href="{{ url('/sos_map/report_repair') . '/' . $item->id }}" type="button" class="btn {{ $btn_background_color }} px-5">
                                 <i class="fa-duotone fa-bars-progress mr-1"></i> ดำเนินการ
                             </a>
-                            <a href="{{ url('/sos_map/delete_case') . '/' . $item->id }}" type="button" class="btn btn-danger mr-2 ml-2 float-end">
-                                <i class="fa-solid fa-delete-right mr-1"></i> ลบ
-                            </a>
+                            @if( empty($item->wait_delete) )
+                            <span id="span_btn_delete_case_{{ $item->id }}">
+                                <span class="btn btn-danger mr-2 ml-2 float-end" data-toggle="modal" data-target="#modal_delete_case" onclick="open_modal_delete_case('{{ $item->id }}');">
+                                    <i class="fa-solid fa-delete-right mr-1"></i> ลบ
+                                </span>
+                            </span>
+                            @elseif($item->wait_delete == "Yes")
+                            <span class="btn btn-danger mr-2 ml-2 float-end" >
+                                <i class="fa-solid fa-delete-right mr-1"></i> ส่งคำขอลบแล้ว
+                            </span>
+                            @endif
                         </div>
                         @endif
 
@@ -413,6 +476,48 @@
         </div>
   </div>
 </div>
+
+<script>
+    
+    function open_modal_delete_case(sos_map_id){
+
+        // console.log(sos_map_id);
+        let a_delete_case = document.querySelector('#a_delete_case');
+        let a_request_delete_case = document.querySelector('#a_request_delete_case');
+
+        if(a_delete_case){
+            a_delete_case.setAttribute('href' , "{{ url('/sos_map/delete_case') }}" + "/" + sos_map_id);
+        }
+
+        if(a_request_delete_case){
+            a_request_delete_case.setAttribute('onclick' , 'request_delete_case('+sos_map_id+');');
+        }
+    }
+
+    function request_delete_case(sos_map_id){
+
+        let officer_id = "{{ Auth::user()->id }}";
+
+        fetch("{{ url('/') }}/api/sos_map/request_delete_case" + '/' + sos_map_id + "/" + officer_id)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                if(result == "ok"){
+                    document.querySelector('#a_request_delete_case').classList.add('d-none');
+                    document.querySelector('#div_content_modal_delete_case_1').classList.add('d-none');
+                    document.querySelector('#div_content_modal_delete_case_2').classList.remove('d-none');
+
+                    document.querySelector('#span_btn_delete_case_'+sos_map_id).innerHTML = `
+                        <span class="btn btn-danger mr-2 ml-2 float-end" >
+                            <i class="fa-solid fa-delete-right mr-1"></i> ส่งคำขอลบแล้ว
+                        </span>
+                    `;
+                }
+        });
+
+    }
+
+</script>
 
 
 
