@@ -17,18 +17,24 @@ class Sos_map_wait_deleteController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
+        $user = Auth::user();
+        
+        if($user->role != "admin-partner"){
+            return redirect('404');
+        }else{
+            $keyword = $request->get('search');
+            $perPage = 25;
 
-        if (!empty($keyword)) {
-            $sos_map_wait_delete = Sos_map_wait_delete::where('sos_map_id', 'LIKE', "%$keyword%")
-                ->orWhere('officer_id', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $sos_map_wait_delete = Sos_map_wait_delete::latest()->paginate($perPage);
+            if (!empty($keyword)) {
+                $sos_map_wait_delete = Sos_map_wait_delete::where('sos_map_id', 'LIKE', "%$keyword%")
+                    ->orWhere('officer_id', 'LIKE', "%$keyword%")
+                    ->latest()->paginate($perPage);
+            } else {
+                $sos_map_wait_delete = Sos_map_wait_delete::latest()->paginate($perPage);
+            }
+
+            return view('sos_map_wait_delete.index', compact('sos_map_wait_delete'));
         }
-
-        return view('sos_map_wait_delete.index', compact('sos_map_wait_delete'));
     }
 
     /**
