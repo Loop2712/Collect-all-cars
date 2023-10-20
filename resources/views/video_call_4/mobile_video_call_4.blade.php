@@ -914,9 +914,8 @@
 
                     <hr>
                     <center>
-                        <a href="" type="button" class="btn btn-primary p-2" style="width:90%; font-size: 45px;">
-                            ค้นหาเบอร์ ศสก ของแต่ละจังหวัด
-                        </a>
+                        <label class="h1 font-weight-bold">หมายเลขโทรศัพท์ <br>ศูนย์รับแจ้งเหตุและสั่งการจังหวัดต่างๆ</label>
+                        <div id="content_phone_niems" class="mt-2"></div>
                         <br>
                         <div class="accordion" id="accordion_Forward_sos" >
                             <div class="accordion-item">
@@ -953,9 +952,9 @@
                                             </div>
                                         </span>
 
-                                        <hr>
-                                        <label>หมายเลขโทรศัพท์ <br>ศูนย์รับแจ้งเหตุและสั่งการจังหวัดต่างๆ</label>
-                                        <div id="content_phone_niems" class="mt-2"></div>
+                                        {{-- <hr>
+                                        <label class="h1 font-weight-bold">หมายเลขโทรศัพท์ <br>ศูนย์รับแจ้งเหตุและสั่งการจังหวัดต่างๆ</label>
+                                        <div id="content_phone_niems" class="mt-2"></div> --}}
 
                                         <div class="d-none">
                                             <input type="text" name="name" id="name" value="{{ $sos_data->name }}">
@@ -999,6 +998,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{{ asset('Agora_Web_SDK_FULL/AgoraRTC_N-4.17.0.js') }}"></script>
+<!-- Google Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 
 <!-- Bootstrap JS -->
 <script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
@@ -3264,7 +3265,7 @@
         const infowindow = new google.maps.InfoWindow();
 
         // หาชื่อจังหวัด
-		geocodeLatLng(geocoder, map_command, infowindow);
+		geocodeLatLng(geocoder, infowindow);
 
 		// ---------------
 
@@ -3348,7 +3349,8 @@
         fetch("{{ url('/') }}/api/video_call_4/search_phone_niems/"+cityName)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log("result phoneniems");
+                console.log(result);
 
 
                     if(result['1669'] != "no"){
@@ -3376,7 +3378,7 @@
 
                         for (let x = 0; x < phone_sp.length; x++) {
                             html_sub = `
-                                <span class="btn bg-info mt-2" style="width:95%;">
+                                <span class="btn btn-outline-primary mt-1 font-weight-bold" style="width:80%; font-size: 40px;">
                                     `+phone_sp[x]+`
                                 </span>
                                 <br>
@@ -3385,7 +3387,7 @@
                         }
 
                         html = `
-                            <h4>จ.`+result['phone_niems'][i]['province']+`</h4>
+                            <p class="font-weight-bold text-dark" style="font-size: 40px;">จ.`+result['phone_niems'][i]['province']+`</p>
                             `+sum_html+`
                             <hr>
                         `;
