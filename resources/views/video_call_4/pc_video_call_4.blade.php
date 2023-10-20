@@ -771,7 +771,9 @@
     var appId = sessionStorage.getItem('agora_app_id');
     var appCertificate = sessionStorage.getItem('agora_app_certificate');
 
-    var sos_1669_id = '{{ $sos_id }}';
+
+    var sos_id = '{{ $sos_id }}';
+    var type_video_call = '{{ $type }}';
 
     var remote_in_room = [];
 
@@ -786,7 +788,7 @@
         // Pass your App ID here.
         appId: appId,
         // Set the channel name.
-        channel: 'sos_4',
+        channel: type_video_call+sos_id,
         // Pass your temp token here.
         token: '',
         // Set the user ID.
@@ -833,12 +835,10 @@
                 if(loadingAnime){
                     loadingAnime.classList.remove('d-none');
                 }
-                fetch("{{ url('/') }}/api/video_call_4" + "?user_id=" + user_id + '&appCertificate=' + appCertificate  + '&appId=' + appId)
+                fetch("{{ url('/') }}/api/video_call_4" + "?user_id=" + user_id + '&appCertificate=' + appCertificate  + '&appId=' + appId + '&type=' + type_video_call + '&sos_id=' + sos_id)
                     .then(response => response.json())
                     .then(result => {
                         console.log("GET Token success");
-                        // console.log(result);
-                        // console.log(result['privilegeExpiredTs']);
 
                         options['token'] = result['token'];
 
@@ -882,7 +882,7 @@
         LoadingVideoCall();
         startBasicCall();
 
-        // fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_1669_id=" + sos_1669_id)
+        // fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_id=" + sos_id)
         // .then(response => response.json())
         // .then(result => {
         //     // console.log('check_user_in_room');
@@ -1600,7 +1600,7 @@
                 // Refresh the page for reuse
                 // window.location.reload();
 
-                // fetch("{{ url('/') }}/api/left_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=user_left')
+                // fetch("{{ url('/') }}/api/left_room" + "?sos_id=" + sos_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=user_left')
                 //     .then(response => response.json())
                 //     .then(result => {
                 //         // console.log(result);

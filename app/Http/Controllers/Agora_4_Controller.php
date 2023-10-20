@@ -117,13 +117,26 @@ class Agora_4_Controller extends Controller
 
         // $appId = $requestData['appId'];
         // $appCertificate =  $requestData['appCertificate'];
+        if($type == 'sos_1669'){
+            $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+            ->where('sos_help_centers.id',$sos_id)
+            ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
+            ->first();
 
-        $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
-        ->where('sos_help_centers.id',$sos_id)
-        ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
-        ->first();
+            if($user->id == $sos_data->user_id){
+                $role_permission = 'help_seeker';
+            }else{
+                $role_permission = 'helper';
+            }
+        }else{
+            $sos_data = Sos_map::where('id' , $sos_id)->first();
 
-        $data_sos_map = Sos_map::where('id' , $sos_id)->first();
+            if($user->id == $sos_data->user_id){
+                $role_permission = 'help_seeker';
+            }else{
+                $role_permission = 'helper';
+            }
+        }
 
         if (!empty($useSpeaker)) {
             $useSpeaker = $requestData['useSpeaker'];
@@ -148,7 +161,7 @@ class Agora_4_Controller extends Controller
         $appCertificate = env('AGORA_APP_CERTIFICATE');
 
 
-        return view('video_call_4/mobile_video_call_4' , compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data','data_sos_map'));
+        return view('video_call_4/mobile_video_call_4' , compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data','role_permission'));
     }
 
     public function token(Request $request)
@@ -165,7 +178,7 @@ class Agora_4_Controller extends Controller
         $data_user = User::where('id' ,$request->user_id)->first();
 
         $user = $data_user->id;
-        $channelName = 'sos_4';
+        $channelName = $request->type . $request->sos_id;
 
         $role = RtcTokenBuilder::RoleAttendee;
         $expireTimeInSeconds = 600;
@@ -177,6 +190,7 @@ class Agora_4_Controller extends Controller
         $agora_data = [
             'token' => $token,
             'privilegeExpiredTs' => $privilegeExpiredTs,
+            'channel' => $channelName,
         ];
         return $agora_data;
     }
@@ -203,26 +217,71 @@ class Agora_4_Controller extends Controller
 
     function get_local_data_4(Request $request){
         $user_id = $request->user_id;
+        $type = $request->type;
+        $sos_id = $request->sos_id;
+
+        if($type == 'sos_1669'){
+            $data_sos = Sos_help_center::where('id',$sos_id)->first();
+        }else{
+            $data_sos = Sos_map::where('id',$sos_id)->first();
+        }
 
         $local_data = User::where('id',$user_id)->first();
 
         $data = [];
 
-        $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
-        $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
+        if($type == 'sos_1669'){
+            $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
+            $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
 
-        if(!empty($data_command->name_officer_command)){
-            $data['user_type'] = "ศูนย์อำนวยการ";
-            $data['name_user'] = $data_command->name_officer_command;
-            // $data['unit'] = '';
-        }else if(!empty($data_officer->name_officer)){
-            $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
-            $data['name_user'] = $data_officer->name_officer;
-            // $data['unit'] = $data_officer->operating_unit->name;
+            if(!empty($data_command->name_officer_command)){
+                $data['user_type'] = "ศูนย์อำนวยการ";
+                $data['name_user'] = $data_command->name_officer_command;
+                // $data['unit'] = '';
+            }else if(!empty($data_officer->name_officer)){
+                $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
+                $data['name_user'] = $data_officer->name_officer;
+                // $data['unit'] = $data_officer->operating_unit->name;
+            }else{
+                $data['user_type'] = "--";
+                $data['name_user'] = $local_data->name;
+            }
         }else{
-            $data['user_type'] = "--";
-            $data['name_user'] = $local_data->name;
+            $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
+            $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
+
+            if(!empty($data_command->name_officer_command)){
+                if($user_id == $data_sos->user_id){
+                    $data['user_type'] = "ผู้ขอความช่วยเหลือ";
+                }elseif($user_id == $data_sos->helper_id){
+                    $data['user_type'] = "เจ้าหน้าที่";
+                }else{
+                    $data['user_type'] = "ศูนย์ควบคุม";
+                }
+                $data['name_user'] = $data_command->name_officer_command;
+                // $data['unit'] = '';
+            }else if(!empty($data_officer->name_officer)){
+                if($user_id == $data_sos->user_id){
+                    $data['user_type'] = "ผู้ขอความช่วยเหลือ";
+                }elseif($user_id == $data_sos->helper_id){
+                    $data['user_type'] = "เจ้าหน้าที่";
+                }else{
+                    $data['user_type'] = "ศูนย์ควบคุม";
+                }
+                $data['name_user'] = $data_officer->name_officer;
+                // $data['unit'] = $data_officer->operating_unit->name;
+            }else{
+                if($user_id == $data_sos->user_id){
+                    $data['user_type'] = "ผู้ขอความช่วยเหลือ";
+                }elseif($user_id == $data_sos->helper_id){
+                    $data['user_type'] = "เจ้าหน้าที่";
+                }else{
+                    $data['user_type'] = "ศูนย์ควบคุม";
+                }
+                $data['name_user'] = $local_data->name;
+            }
         }
+
 
         if (!empty($local_data->photo)) {
             $text_path = url('storage') . '/' . $local_data->photo;
@@ -248,26 +307,71 @@ class Agora_4_Controller extends Controller
 
     function get_remote_data_4(Request $request){
         $user_id = $request->user_id;
+        $type = $request->type;
+        $sos_id = $request->sos_id;
+
+        if($type == 'sos_1669'){
+            $data_sos = Sos_help_center::where('id',$sos_id)->first();
+        }else{
+            $data_sos = Sos_map::where('id',$sos_id)->first();
+        }
 
         $remote_data = User::where('id',$user_id)->first();
 
         $data = [];
 
-        $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
-        $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
+        if($type == 'sos_1669'){
+            $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
+            $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
 
-        if(!empty($data_command->name_officer_command)){
-            $data['user_type'] = "ศูนย์อำนวยการ";
-            $data['name_user'] = $data_command->name_officer_command;
-            // $data['unit'] = '';
-        }else if(!empty($data_officer->name_officer)){
-            $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
-            $data['name_user'] = $data_officer->name_officer;
-            // $data['unit'] = $data_officer->operating_unit->name;
+            if(!empty($data_command->name_officer_command)){
+                $data['user_type'] = "ศูนย์อำนวยการ";
+                $data['name_user'] = $data_command->name_officer_command;
+                // $data['unit'] = '';
+            }else if(!empty($data_officer->name_officer)){
+                $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
+                $data['name_user'] = $data_officer->name_officer;
+                // $data['unit'] = $data_officer->operating_unit->name;
+            }else{
+                $data['user_type'] = "--";
+                $data['name_user'] = $remote_data->name;
+            }
         }else{
-            $data['user_type'] = "--";
-            $data['name_user'] = $remote_data->name;
+            $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
+            $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
+
+            if(!empty($data_command->name_officer_command)){
+                if($user_id == $data_sos->user_id){
+                    $data['user_type'] = "ผู้ขอความช่วยเหลือ";
+                }elseif($user_id == $data_sos->helper_id){
+                    $data['user_type'] = "เจ้าหน้าที่";
+                }else{
+                    $data['user_type'] = "ศูนย์ควบคุม";
+                }
+                $data['name_user'] = $data_command->name_officer_command;
+                // $data['unit'] = '';
+            }else if(!empty($data_officer->name_officer)){
+                if($user_id == $data_sos->user_id){
+                    $data['user_type'] = "ผู้ขอความช่วยเหลือ";
+                }elseif($user_id == $data_sos->helper_id){
+                    $data['user_type'] = "เจ้าหน้าที่";
+                }else{
+                    $data['user_type'] = "ศูนย์ควบคุม";
+                }
+                $data['name_user'] = $data_officer->name_officer;
+                // $data['unit'] = $data_officer->operating_unit->name;
+            }else{
+                if($user_id == $data_sos->user_id){
+                    $data['user_type'] = "ผู้ขอความช่วยเหลือ";
+                }elseif($user_id == $data_sos->helper_id){
+                    $data['user_type'] = "เจ้าหน้าที่";
+                }else{
+                    $data['user_type'] = "ศูนย์ควบคุม";
+                }
+                $data['name_user'] = $remote_data->name;
+            }
         }
+
 
         if (!empty($remote_data->photo)) {
             $text_path = url('storage') . '/' . $remote_data->photo;
@@ -294,6 +398,31 @@ class Agora_4_Controller extends Controller
     function check_user_in_room_4(Request $request)
     {
        //
+    }
+
+    function search_phone_niems($cityName){
+
+        $data = [];
+
+        $phone_niems = DB::table('phone_niems')->where('province', 'LIKE', "%$cityName%")->get();
+        $province_ths = DB::table('province_ths')
+            ->where('province_name',  $cityName)
+            ->where('sos_1669_show',  "show")
+            ->first();
+
+        if(!empty($phone_niems)){
+            $data['phone_niems'] = $phone_niems;
+        }else{
+           $data['phone_niems'] = "no";
+        }
+
+        if(!empty($province_ths)){
+            $data['1669'] = $cityName;
+        }else{
+            $data['1669'] = "no";
+        }
+
+        return $data ;
     }
 
 

@@ -403,7 +403,7 @@
 <script>
     let chartData_arr = [];
     let chartData = @json($check_in_chart_arr);
-
+    console.log(chartData);
     let options_ViiNews = {
         series: chartData.series,
         chart: {
