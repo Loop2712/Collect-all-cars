@@ -1400,14 +1400,10 @@ class Sos_help_centerController extends Controller
         $data_officers = User::where('id' , $user_id)->first();
         $data_sos = Sos_help_center::where('id' , $sos_id)->first();
         $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id' , $sos_id)->first();
-        // $data_command = Data_1669_officer_command::where('id' , $data_sos->command_by)->first();
+        $data_command = Data_1669_officer_command::where('id' , $data_sos->command_by)->first();
         $data_officer_1669 = Data_1669_operating_officer::where('user_id' , $user_id)->first();
 
-        // if ($data_command->area == "กาญจนบุรี") {
-        //     $name_area_command = $data_command->area ;
-        // }else{
-        //     $name_area_command = "วีเช็ค" ;
-        // }
+        $name_area_command = $data_command->area ;
 
         $date_now = date("Y-m-d H:i:s");
         $time_now = date("H:i:s");
@@ -1425,7 +1421,7 @@ class Sos_help_centerController extends Controller
         $string_json = str_replace("ปฏิเสธ","ปฏิเสธ",$string_json);
 
         // โลโก้ของแต่ละจังหวัด
-        $string_json = str_replace("niemslogo","กาญจนบุรี",$string_json);
+        $string_json = str_replace("niemslogo",$name_area_command,$string_json);
 
         // รูปภาพ SOS
         if (!empty($data_sos->photo_sos)) {

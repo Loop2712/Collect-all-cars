@@ -1,0 +1,12 @@
+{
+    "fields": [
+        {
+            "name": "sos_map_id",
+            "type": "string"
+        },
+        {
+            "name": "officer_id",
+            "type": "string"
+        }
+    ]
+}

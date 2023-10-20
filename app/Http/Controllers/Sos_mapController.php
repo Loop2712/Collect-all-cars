@@ -24,6 +24,7 @@ use App\User;
 use App\Http\Controllers\API\ImageController;
 use App\Models\Group_line;
 use App\Models\Report_repair;
+use App\Models\Sos_map_wait_delete;
 
 use App\Http\Controllers\API\LineApiController;
 
@@ -1033,20 +1034,31 @@ class Sos_mapController extends Controller
     function help_complete(Request $request)
     {
         $requestData = $request->all();
-        $command_id = $requestData["command_id"] ;
-
-        $data_command = User::where('id' , $requestData["command_id"])->select('name')->first();
-        $name_command = $data_command->name ;
 
         $data_helpers = User::where('id' , $requestData["officer_id"])->first();
         $name_helper = $data_helpers->name ;
+
+        if(!empty($requestData["command_id"])){
+            $command_id = $requestData["command_id"] ;
+
+            $data_command = User::where('id' , $requestData["command_id"])->select('name')->first();
+            $name_command = $data_command->name ;
+        }else{
+            $name_command = 'no_name_command' ;
+        }
 
         $event = [] ;
         $event["source"]["userId"] = $data_helpers->provider_id;
         $event["source"]["groupId"] = $requestData["groupId"];
 
         $line = new LineApiController();
-        $line->help_complete_by_command($event, 'help_complete', $requestData['sos_map_id'] , $name_command , $name_helper);
+
+        if($name_command != 'no_name_command'){
+            $line->help_complete_by_command($event, 'help_complete', $requestData['sos_map_id'] , $name_command , $name_helper);
+        }else{
+            $line->check_help_complete_by_helper($event, 'help_complete', $requestData['sos_map_id']);
+        }
+    
     }
 
     function user_view_officer_login($id_sos_map){
@@ -1178,19 +1190,26 @@ class Sos_mapController extends Controller
 
     function update_helper_id($admin_id , $sos_map_id){
 
-        $data_user = User::where('id' , $admin_id)->first();
+        $data_sos_map = Sos_map::where('id' , $sos_map_id)->first();
 
-        DB::table('sos_maps')
-            ->where([ 
-                    ['id', $sos_map_id ],
-                ])
-            ->update([
-                'helper' => $data_user->name,
-                'helper_id' => $data_user->id,
-                'organization_helper' => $data_user->organization,
-            ]);
+        if(empty($data_sos_map->helper_id)){
+            $data_user = User::where('id' , $admin_id)->first();
 
-        return $data_user->id ;
+            DB::table('sos_maps')
+                ->where([ 
+                        ['id', $sos_map_id ],
+                    ])
+                ->update([
+                    'helper' => $data_user->name,
+                    'helper_id' => $data_user->id,
+                    'organization_helper' => $data_user->organization,
+                ]);
+
+            return $data_user->id ;
+        }else{
+            return $data_sos_map->helper_id ;
+        }
+
     }
 
     function report_repair($id_sos_map){
@@ -1272,6 +1291,15 @@ class Sos_mapController extends Controller
         return redirect()->back();
     }
 
+    function delete_case_from_wait_delete($id_sos_map){
+        
+        Sos_map::where('id' , $id_sos_map)->delete();
+        Sos_map_wait_delete::where('sos_map_id' , $id_sos_map)->delete();
+
+        return redirect()->back();
+        
+    }
+
     function sent_line_repair_to_user($sos_map_id , $user_id , $status){
 
         $data_sos_map = Sos_map::where('id' , $sos_map_id)->first();
@@ -1349,6 +1377,27 @@ class Sos_mapController extends Controller
             ]);
 
         return "ok" ;
+    }
+
+    function request_delete_case($sos_map_id , $officer_id){
+
+        DB::table('sos_maps')
+            ->where([ 
+                    ['id',$sos_map_id ],
+                ])
+            ->update([
+                'wait_delete' => "Yes",
+            ]);
+
+        $data = [];
+
+        $data['sos_map_id'] = $sos_map_id;
+        $data['officer_id'] = $officer_id;
+        
+        Sos_map_wait_delete::create($data);
+
+        return "ok" ;
+
     }
 
 }

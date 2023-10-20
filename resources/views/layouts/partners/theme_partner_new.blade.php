@@ -898,6 +898,12 @@
 										หัวข้อขอความช่วยเหลือ</a>
 									</li>
 								</ul>
+                                <ul>
+                                    <li>
+                                        <a href="{{ url('/sos_map_wait_delete') }}"><i class="fa-solid fa-trash-clock"></i>
+                                        คำขอลบเคส</a>
+                                    </li>
+                                </ul>
 							@endif
 						</li>
 					@endif
