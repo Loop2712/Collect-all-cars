@@ -475,14 +475,24 @@
                 if (data.maxTimeCounts.length === 1) {
                     maxTimeCounts = data.maxTimeCounts[0]+".00";
                 } else {
-                    maxTimeCounts = [...data.maxTimeCounts]+".00";
+                    if(data.maxTimeCounts[0]){
+                        maxTimeCounts = [...data.maxTimeCounts]+".00";
+                    }else{
+                        maxTimeCounts = "--";
+                    }
+
                 }
 
                 let minTimeCounts;
                 if (data.minTimeCounts.length === 1) {
                     minTimeCounts = data.minTimeCounts[0]+".00";
                 } else {
-                    minTimeCounts = [...data.minTimeCounts]+".00";
+                    if(data.minTimeCounts[0]){
+                        minTimeCounts = [...data.minTimeCounts]+".00";
+                    }else{
+                        minTimeCounts = "--";
+                    }
+
                 }
 
                 // วันที่ปัจจุบัน

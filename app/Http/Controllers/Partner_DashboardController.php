@@ -234,7 +234,7 @@ class Partner_DashboardController extends Controller
         $check_in_data_arr = array();
         $count_hbd = 0;
         for ($i=0; $i < count($check_in_data); $i++) {
-            $check_ins_finder = Check_in::where('partner_id',$check_in_data[$i]['id'])->where('created_at', '>=', Carbon::now()->subMonths(2))->get();
+            $check_ins_finder = Check_in::where('partner_id',$check_in_data[$i]['id'])->where('created_at', '>=', $twoMonthsAgo)->get();
 
             //หาเวลาที่เช็คอินมากสุด และน้อยสุด
             $timeInCounts = array();
@@ -388,34 +388,37 @@ class Partner_DashboardController extends Controller
         //ไม่ได้เข้าพื้นที่นานที่สุด
         $last_checkIn_data = Check_in::where('partner_id',$data_checkin->id)
         ->groupBy('user_id')
-        ->where('created_at', '>=', Carbon::now()->subMonths(2))
         ->select('user_id')
         ->get();
 
-        // ddd($last_checkIn_data);
+        if(!empty($last_checkIn_data)){
 
-        $sorted_last_checkIn_data = [];
+            $sorted_last_checkIn_data = [];
 
-        for ($i=0; $i < count($last_checkIn_data); $i++) {
-            $data_user_from_checkin = User::where('id','=',$last_checkIn_data[$i]['user_id'])->first();
-            $last_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
-            $last_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
-            $last_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
+            for ($i=0; $i < count($last_checkIn_data); $i++) {
+                $data_user_from_checkin = User::where('id','=',$last_checkIn_data[$i]['user_id'])->first();
+                $last_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
+                $last_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
+                $last_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
 
-            $data_checkin_from_checkin = Check_in::where('user_id',$last_checkIn_data[$i]['user_id'])
-            ->where('created_at', '>=', Carbon::now()->subMonths(2))
-            ->orderBy('time_out','desc')
-            ->get();
+                $data_checkin_from_checkin = Check_in::where('user_id',$last_checkIn_data[$i]['user_id'])
+                ->orderBy('time_out','desc')
+                ->get();
 
-            $last_checkIn_data[$i]['time_out'] = $data_checkin_from_checkin[0]['time_out'];
+                $last_checkIn_data[$i]['time_out'] = $data_checkin_from_checkin[0]['time_out'];
 
-            // เก็บข้อมูลที่ปรับแต่งเพื่อใช้ในการเรียงลำดับลงในอาร์เรย์
-            $sorted_last_checkIn_data[] = $last_checkIn_data[$i];
+
+                // เก็บข้อมูลที่ปรับแต่งเพื่อใช้ในการเรียงลำดับลงในอาร์เรย์
+                $sorted_last_checkIn_data[] = $last_checkIn_data[$i];
+
+            }
+
+            usort($sorted_last_checkIn_data, function ($a, $b) {
+                return strtotime($a['time_out']) - strtotime($b['time_out']);
+            });
+        }else{
+            $sorted_last_checkIn_data = [];
         }
-
-        usort($sorted_last_checkIn_data, function ($a, $b) {
-            return strtotime($a['time_out']) - strtotime($b['time_out']);
-        });
 
 
         //เข้าพื้นที่บ่อยที่สุด
@@ -423,7 +426,6 @@ class Partner_DashboardController extends Controller
         ->select('*',DB::raw('COUNT(user_id) as count_user_checkin'))
         ->groupBy('user_id')
         ->orderBy('count_user_checkin','desc')
-        ->where('created_at', '>=', Carbon::now()->subMonths(2))
         ->limit(5)
         ->get();
 
@@ -441,28 +443,32 @@ class Partner_DashboardController extends Controller
         ->limit(5)
         ->get();
 
-        $sorted_lastest_checkIn_data = [];
+        if(!empty($lastest_checkIn_data)){
+            $sorted_lastest_checkIn_data = [];
 
-        for ($i=0; $i < count($lastest_checkIn_data); $i++) {
-            $data_user_from_checkin = User::where('id','=',$lastest_checkIn_data[$i]['user_id'])->first();
-            $lastest_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
-            $lastest_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
-            $lastest_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
+            for ($i=0; $i < count($lastest_checkIn_data); $i++) {
+                $data_user_from_checkin = User::where('id','=',$lastest_checkIn_data[$i]['user_id'])->first();
+                $lastest_checkIn_data[$i]['name'] = $data_user_from_checkin->name;
+                $lastest_checkIn_data[$i]['avatar'] = $data_user_from_checkin->avatar;
+                $lastest_checkIn_data[$i]['photo'] = $data_user_from_checkin->photo;
 
-            $data_checkin_from_checkin = Check_in::where('user_id',$last_checkIn_data[$i]['user_id'])
-            ->orderBy('time_in','desc')
-            ->get();
+                $data_checkin_from_checkin = Check_in::where('user_id',$last_checkIn_data[$i]['user_id'])
+                ->orderBy('time_in','desc')
+                ->get();
 
-            $lastest_checkIn_data[$i]['time_in'] = $data_checkin_from_checkin[0]['time_in'];
 
-            // เก็บข้อมูลที่ปรับแต่งเพื่อใช้ในการเรียงลำดับลงในอาร์เรย์
-            $sorted_lastest_checkIn_data[] = $lastest_checkIn_data[$i];
+                $lastest_checkIn_data[$i]['time_in'] = $data_checkin_from_checkin[0]['time_in'];
+
+                // เก็บข้อมูลที่ปรับแต่งเพื่อใช้ในการเรียงลำดับลงในอาร์เรย์
+                $sorted_lastest_checkIn_data[] = $lastest_checkIn_data[$i];
+            }
+
+            usort($sorted_lastest_checkIn_data, function ($a, $b) {
+                return strtotime($b['time_in']) - strtotime($a['time_in']);
+            });
+        }else{
+            $sorted_lastest_checkIn_data = [];
         }
-
-        usort($sorted_lastest_checkIn_data, function ($a, $b) {
-            return strtotime($b['time_in']) - strtotime($a['time_in']);
-        });
-
         //==================================================================================================================//
                                                         //  viimove
         //==================================================================================================================//
@@ -1177,108 +1183,142 @@ class Partner_DashboardController extends Controller
 
     function get_area_checkin(Request $request , $area_id , $user_login){
 
-        $check_in_data = Partner::where('id' , $area_id)->get();
+        $check_in_data = Partner::where('id' , $area_id)
+        ->get();
 
-        for ($i=0; $i < count($check_in_data); $i++) {
-            $check_ins_finder = Check_in::where('partner_id',$check_in_data[$i]['id'])
-            ->where('created_at', '>=', Carbon::now()->subMonths(2))
-            ->get();
+        if(!empty($check_in_data)){
+            for ($i=0; $i < count($check_in_data); $i++) {
+                $check_ins_finder = Check_in::where('partner_id',$check_in_data[$i]['id'])
+                ->where('created_at', '>=', Carbon::now()->subMonths(2))
+                ->get();
 
-            //หาเวลาที่เช็คอินมากสุด และน้อยสุด
-            $timeInCounts = array();
+                //หาเวลาที่เช็คอินมากสุด และน้อยสุด
+                $timeInCounts = array();
 
-            foreach ($check_ins_finder as $index => $check_in) {
-                $timeIn = $check_in->time_in;
-                $hour = date('H', strtotime($timeIn));
+                foreach ($check_ins_finder as $index => $check_in) {
+                    $timeIn = $check_in->time_in;
+                    $hour = date('H', strtotime($timeIn));
 
-                if (!isset($timeInCounts[$hour])) {
-                    $timeInCounts[$hour] = 0;
-                }
-                $timeInCounts[$hour]++;
+                    if (!isset($timeInCounts[$hour])) {
+                        $timeInCounts[$hour] = 0;
+                    }
+                    $timeInCounts[$hour]++;
 
-            }
-            $maxValue = max($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-            $maxTimeCounts = array_keys($timeInCounts, $maxValue);
-
-            $minValue = min($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
-            $minTimeCounts = array_keys($timeInCounts, $minValue);
-
-            //หาวันที่เช็คอินมากสุด และน้อยสุด
-           // หาวันที่เช็คอินมากสุด และน้อยสุด
-            $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            $thaiDays = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
-
-            $dayCount = array_fill_keys($daysOfWeek, 0); // เริ่มต้นนับทุกวันให้เป็น 0
-
-            foreach ($check_ins_finder as $check_in) {
-                $time_in = $check_in->time_in;
-                $dayOfWeek = date('l', strtotime($time_in));
-
-                $dayCount[$dayOfWeek]++; // เพิ่มจำนวนครั้งที่ปรากฏในวันนั้นๆ
-            }
-
-            $maxDayCount = max($dayCount);
-            $maxDays = array_keys($dayCount, $maxDayCount);
-
-            $minDayCount = min($dayCount);
-            $minDays = array_keys($dayCount, $minDayCount);
-
-            $maxThaiDay = [];
-            foreach ($maxDays as $maxDay) {
-                $maxThaiDay[] = $thaiDays[array_search($maxDay, $daysOfWeek)];
-            }
-
-            $minThaiDay = [];
-            foreach ($minDays as $minDay) {
-                $minThaiDay[] = $thaiDays[array_search($minDay, $daysOfWeek)];
-            }
-
-            // นับคนที่เกิดเดือนนี้
-            $currentMonth = date('m');
-            $count_hbd = 0;
-            $encounteredIds = array();
-
-            for ($isus=0; $isus < count($check_ins_finder); $isus++) {
-                $finder_hbd = User::where('id',$check_ins_finder[$isus]['user_id'])->first();
-
-                $userId = $finder_hbd->id;
-                if (in_array($userId, $encounteredIds)) {
-                    continue; // ถ้าเจอ id ที่ถูกนับแล้ว ข้ามไปเช็คคนถัดไป
                 }
 
-                $birthDate = $finder_hbd->brith;
-                $birthMonth = date('m', strtotime($birthDate));
+                $maxValue = 0; // กำหนดค่าเริ่มต้นสำหรับ $maxValue
+                $minValue = 0; // กำหนดค่าเริ่มต้นสำหรับ $minValue
 
-                if($birthMonth == $currentMonth){
-                    $count_hbd++;
-                    $encounteredIds[] = $userId; // เพิ่ม id เข้าไปในอาร์เรย์เพื่อไม่นับซ้ำ
+                if (!empty($timeInCounts)) {
+                    $maxValue = max($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+                    $maxTimeCounts = array_keys($timeInCounts, $maxValue);
+                    $maxTimeCounts = array_slice($maxTimeCounts, 0, 2);
+
+                    $minValue = min($timeInCounts); // หาค่าที่มากที่สุดในอาร์เรย์
+                    $minTimeCounts = array_keys($timeInCounts, $minValue);
+                    $minTimeCounts = array_slice($minTimeCounts, 0, 2);
+                }else{
+                    $maxTimeCounts = [];
+                    $minTimeCounts = [];
                 }
+
+                //หาวันที่เช็คอินมากสุด และน้อยสุด
+               // หาวันที่เช็คอินมากสุด และน้อยสุด
+                $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                $thaiDays = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
+
+                $dayCount = array_fill_keys($daysOfWeek, 0); // เริ่มต้นนับทุกวันให้เป็น 0
+
+                foreach ($check_ins_finder as $check_in) {
+                    $time_in = $check_in->time_in;
+                    $dayOfWeek = date('l', strtotime($time_in));
+
+                    $dayCount[$dayOfWeek]++; // เพิ่มจำนวนครั้งที่ปรากฏในวันนั้นๆ
+                }
+
+                $maxDayCount = max($dayCount);
+                $maxDays = array_keys($dayCount, $maxDayCount);
+
+                $minDayCount = min($dayCount);
+                $minDays = array_keys($dayCount, $minDayCount);
+
+                $maxThaiDay = [];
+                foreach ($maxDays as $maxDay) {
+                    $maxThaiDay[] = $thaiDays[array_search($maxDay, $daysOfWeek)];
+                }
+
+                $minThaiDay = [];
+                foreach ($minDays as $minDay) {
+                    $minThaiDay[] = $thaiDays[array_search($minDay, $daysOfWeek)];
+                }
+
+                // นับคนที่เกิดเดือนนี้
+                $currentMonth = date('m');
+                $count_hbd = 0;
+                $encounteredIds = array();
+
+                for ($isus=0; $isus < count($check_ins_finder); $isus++) {
+                    $finder_hbd = User::where('id',$check_ins_finder[$isus]['user_id'])->first();
+
+                    $userId = $finder_hbd->id;
+                    if (in_array($userId, $encounteredIds)) {
+                        continue; // ถ้าเจอ id ที่ถูกนับแล้ว ข้ามไปเช็คคนถัดไป
+                    }
+
+                    $birthDate = $finder_hbd->brith;
+                    $birthMonth = date('m', strtotime($birthDate));
+
+                    if($birthMonth == $currentMonth){
+                        $count_hbd++;
+                        $encounteredIds[] = $userId; // เพิ่ม id เข้าไปในอาร์เรย์เพื่อไม่นับซ้ำ
+                    }
+                }
+
+                // จำนวนการเข้าพื้นที่
+                $count_check_in_at_area = count($check_ins_finder);
+
             }
 
-            // จำนวนการเข้าพื้นที่
-            $count_check_in_at_area = count($check_ins_finder);
+            // เปลี่ยนค่าว่างของพื้นที่รวม ให้เป็นรวม
+            if(empty($check_in_data->name_area)){
+                $name_area_show = "รวม";
+            }
 
+            // นำตัวแปรมาเรียงเป็น Associative Array
+            $responseData = [
+                'count_hbd' => $count_hbd,
+                'count_check_in_at_area' => $count_check_in_at_area,
+                'maxThaiDay' => $maxThaiDay,
+                'minThaiDay' => $minThaiDay,
+                'maxDayCount' => $maxDayCount,
+                'minDayCount' => $minDayCount,
+                'maxTimeCounts' => $maxTimeCounts,
+                'minTimeCounts' => $minTimeCounts,
+                'maxValue' => $maxValue,
+                'minValue' => $minValue,
+                'name_area' => $name_area_show,
+            ];
+        }else{
+            // เปลี่ยนค่าว่างของพื้นที่รวม ให้เป็นรวม
+            if(empty($check_in_data->name_area)){
+                $name_area_show = "รวม";
+            }
+
+            // นำตัวแปรมาเรียงเป็น Associative Array
+            $responseData = [
+                'count_hbd' => 0,
+                'count_check_in_at_area' => 0,
+                'maxThaiDay' => ['--'],
+                'minThaiDay' => ['--'],
+                'maxDayCount' => 0,
+                'minDayCount' => 0,
+                'maxTimeCounts' => ['--'],
+                'minTimeCounts' => ['--'],
+                'maxValue' => 0,
+                'minValue' => 0,
+                'name_area' => $name_area_show,
+            ];
         }
-
-        // เปลี่ยนค่าว่างของพื้นที่รวม ให้เป็นรวม
-        if(empty($check_in_data->name_area)){
-            $name_area_show = "รวม";
-        }
-
-        // นำตัวแปรมาเรียงเป็น Associative Array
-        $responseData = [
-            'count_hbd' => $count_hbd,
-            'count_check_in_at_area' => $count_check_in_at_area,
-            'maxThaiDay' => $maxThaiDay,
-            'minThaiDay' => $minThaiDay,
-            'maxDayCount' => $maxDayCount,
-            'minDayCount' => $minDayCount,
-            'maxTimeCounts' => $maxTimeCounts,
-            'minTimeCounts' => $minTimeCounts,
-            'maxValue' => $maxValue,
-            'minValue' => $minValue,
-            'name_area' => $name_area_show,
-        ];
 
         // ส่งข้อมูลกลับไปยัง client ในรูปแบบ JSON
         return response()->json($responseData);
