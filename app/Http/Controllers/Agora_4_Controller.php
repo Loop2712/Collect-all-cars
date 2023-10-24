@@ -245,6 +245,8 @@ class Agora_4_Controller extends Controller
         $local_data = User::where('id',$user_id)->first();
 
         $data = [];
+        $data['photo'] = $local_data->photo;
+        $data['avatar'] = $local_data->avatar;
 
         if($type == 'sos_1669'){
             $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
@@ -335,6 +337,8 @@ class Agora_4_Controller extends Controller
         $remote_data = User::where('id',$user_id)->first();
 
         $data = [];
+        $data['photo'] = $remote_data->photo;
+        $data['avatar'] = $remote_data->avatar;
 
         if($type == 'sos_1669'){
             $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
