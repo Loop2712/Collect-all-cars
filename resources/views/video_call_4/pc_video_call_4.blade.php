@@ -1929,8 +1929,6 @@
             // สร้าง local video track ใหม่โดยใช้กล้องที่คุณต้องการ
             AgoraRTC.createCameraVideoTrack({ cameraId: selectedVideoDeviceId })
             .then(newVideoTrack => {
-                //เปลี่ยนสี bg
-                changeBgColor(bg_local);
 
                 // console.log('------------ newVideoTrack ------------');
                 // console.log(newVideoTrack);
@@ -2364,20 +2362,16 @@
         // เซ็ท bg-local เป็นสีที่ดูด
         console.log("ทำงาน "+bg_local)
 
-        let agoraCreateLocalDiv = document.querySelector(".agora_create_local");
+        let agoraCreateLocalDiv = document.querySelector("#videoDiv_"+user_id);
 
-        let divsInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelectorAll("div");
-            divsInsideAgoraCreateLocal.forEach(function(div) {
-            div.style.backgroundColor = bg_local;
-        });
+        let divsInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelector(".agora_create_local");
+            let sub_div = divsInsideAgoraCreateLocal.querySelector("div");
+                sub_div.style.backgroundColor = bg_local;
 
-        if(isVideo == false){
-            let videoInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelectorAll("video");
-                videoInsideAgoraCreateLocal.forEach(function(video) {
-                    video.remove();
-            });
-        }
-
+            if(isVideo == false){
+                let video_tag = divsInsideAgoraCreateLocal.querySelector("video");
+                    video_tag.remove();
+            }
     }
 
 
