@@ -1185,7 +1185,7 @@
                 let name_remote;
                 let type_remote;
 
-                fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + user.uid)
+                fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + user.uid + "&type=" + type_video_call + "&sos_id=" + sos_id)
                     .then(response => response.json())
                     .then(result => {
                         console.log("result published");
@@ -1286,7 +1286,7 @@
                     let type_remote_user_unpublished;
                     let profile_remote_user_unpublished;
                     let hexcolor;
-                    fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + user.uid)
+                    fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + user.uid + "&type=" + type_video_call + "&sos_id=" + sos_id)
                         .then(response => response.json())
                         .then(result => {
                             // console.log("result");
@@ -1412,7 +1412,7 @@
                             let type_remote_user_joined;
                             let profile_remote_user_joined;
                             let hexcolor;
-                            fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + dummy_remote.uid)
+                            fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + dummy_remote.uid + "&type=" + type_video_call + "&sos_id=" + sos_id)
                                 .then(response => response.json())
                                 .then(result => {
                                     // console.log("result");
@@ -2618,7 +2618,7 @@
 
                         for (let x = 0; x < phone_sp.length; x++) {
                             html_sub = `
-                                <span class="btn btn-outline-primary mt-1 font-weight-bold text-dark" style="width:80%;">
+                                <span class="border border-primary mt-1 font-weight-bold text-primary p-2" style="width:80%; border-radius:5px;">
                                     `+phone_sp[x]+`
                                 </span>
                                 <br>

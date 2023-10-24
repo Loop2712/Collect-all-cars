@@ -364,7 +364,6 @@ class Agora_4_Controller extends Controller
                 }else{
                     $data['user_type'] = "ศูนย์ควบคุม";
                 }
-                $data['user_type'] = "เจ้าหน้าที่";
                 $data['name_user'] = $data_command->name_officer_command;
             }else if(!empty($data_officer->name_officer)){
                 if($user_id == $data_sos->user_id){
