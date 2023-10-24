@@ -344,7 +344,7 @@ class Agora_4_Controller extends Controller
                 $data['user_type'] = "ศูนย์อำนวยการ";
                 $data['name_user'] = $data_command->name_officer_command;
                 // $data['unit'] = '';
-            }else if(!empty($data_officer->name_officer)){
+            }elseif(!empty($data_officer->name_officer)){
                 $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
                 $data['name_user'] = $data_officer->name_officer;
                 // $data['unit'] = $data_officer->operating_unit->name;
@@ -364,8 +364,8 @@ class Agora_4_Controller extends Controller
                 }else{
                     $data['user_type'] = "ศูนย์ควบคุม";
                 }
+                $data['user_type'] = "เจ้าหน้าที่";
                 $data['name_user'] = $data_command->name_officer_command;
-                // $data['unit'] = '';
             }else if(!empty($data_officer->name_officer)){
                 if($user_id == $data_sos->user_id){
                     $data['user_type'] = "ผู้ขอความช่วยเหลือ";
@@ -386,8 +386,8 @@ class Agora_4_Controller extends Controller
                 }
                 $data['name_user'] = $remote_data->name;
             }
-        }
 
+        }
 
         if (!empty($remote_data->photo)) {
             $text_path = url('storage') . '/' . $remote_data->photo;

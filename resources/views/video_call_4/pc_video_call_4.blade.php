@@ -658,154 +658,121 @@
             @elseif ($type == "sos_map")
                 <div class="" >
                     <div class="head_sidebar_div text-center mb-2">
-                        <p class="h4 text-dark mt-3 font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
-                        <p class="h5 text-dark ">สถานะ:
-                            @php
-                                switch ($sos_data->status) {
-                                    case 'เสร็จสิ้น':
-                                        $color_text_status = "text-success";
-                                        break;
-                                    case 'รับแจ้งเหตุ':
-                                        $color_text_status = "text-danger";
-                                        break;
-                                    case 'กำลังดำเนินการ':
-                                        $color_text_status = "text-warning";
-                                        break;
-                                    case 'รอการยืนยัน':
-                                        $color_text_status = "text-warning";
-                                        break;
-                                    case 'ถึงที่เกิดเหตุ':
-                                        $color_text_status = "text-warning";
-                                        break;
-                                    case 'ออกจากฐาน':
-                                        $color_text_status = "text-warning";
-                                        break;
-                                    default:
-                                        $color_text_status = "text-secondary";
-                                        break;
-                                }
-                            @endphp
-                            <a class="{{$color_text_status}} font-weight-bold">{{$sos_data->status ? $sos_data->status : "--"}}</a>
-                        </p>
-
-                        @php
-                            if( !empty($sos_data->created_sos)){
-                                $currentdate = date('H:i:s'); // เวลาปัจจุบันในรูปแบบ "H:i:s"
-                                $sos_data_time_command = strtotime($sos_data->created_sos); // แปลง $sos_data->time_create_sos เป็น timestamp
-                                $sos_data_timeDifference = abs( $sos_data_time_command - strtotime($currentdate) );
-
-                                if ($sos_data_timeDifference >= 86400) { // ถ้าเกิน 1 วัน (86400 วินาที)
-                                    $sos_data_days = floor($sos_data_timeDifference / 86400);
-                                    $sos_data_hours = floor(($sos_data_timeDifference % 86400) / 3600);
-
-                                    $sos_data_time_unit = $sos_data_days . ' วัน ' . $sos_data_hours . ' ชั่วโมง ';
-
-                                }elseif ($sos_data_timeDifference >= 3600) {
-                                    $sos_data_hours = floor($sos_data_timeDifference / 3600);
-                                    $sos_data_remainingMinutes = floor(($sos_data_timeDifference % 3600) / 60);
-                                    $sos_data_remainingSeconds = $sos_data_timeDifference % 60;
-
-                                    $sos_data_time_unit = $sos_data_hours . ' ชั่วโมง ' . $sos_data_remainingMinutes . ' นาที ' . $sos_data_remainingSeconds . ' วินาที';
-                                } elseif ($sos_data_timeDifference >= 60) {
-                                    $sos_data_minutes = floor($sos_data_timeDifference / 60);
-                                    $sos_data_seconds = $sos_data_timeDifference % 60;
-
-                                    $sos_data_time_unit = $sos_data_minutes . ' นาที ' . $sos_data_seconds . ' วินาที';
-                                } else {
-                                    $sos_data_time_unit = $sos_data_timeDifference . ' วินาที';
-                                }
-                            }else{
-                                $sos_data_time_unit  = "--";
-                            }
-                        @endphp
-
-                        <p class="h6 text-dark ">การช่วยเหลือผ่านไปแล้ว</p>
-                        @if (!empty($sos_data_time_unit))
-                            <p class="h5 text-dark font-weight-bold">{{$sos_data_time_unit}}</p>
-                        @else
-                        <p class="h5 text-dark "> -- </p>
-                        @endif
-
+                        <h5 class="mb-0 text-info font-weight-bold">
+                            <i class="fa-solid fa-user-injured me-1 text-info"></i>ผู้ขอความช่วยเหลือ
+                        </h5>
+                        <p class="text-dark d-flex justify-content-center align-items-center font-weight-bold">{{$sos_data->name ? $sos_data->name : "--"}} | {{$sos_data->phone ? $sos_data->phone : "--"}}</p>
                     </div>
 
                     <div class="neck_sidebar_div text-center mt-0 mb-2">
-                        <p class="h5 text-dark mt-3 font-weight-bold">ผู้ขอความช่วยเหลือ</p>
-                        <p class="h5 text-dark ">{{$sos_data->name_user ? $sos_data->name_user : "--"}}</p>
-                        <p class="h6 text-dark font-weight-bold">{{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
+                        <h5 class="mb-0 text-danger font-weight-bold">
+                            <i class="fa-solid fa-subtitles me-1 text-danger"></i>ข้อมูล
+                        </h5>
+
+                        <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                            @if ($sos_data->title_sos)
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">หัวข้อ : {{$sos_data->title_sos ? $sos_data->title_sos : "--"}}</p>
+                            @else
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">หัวข้อ : -- </p>
+                            @endif
+                        </div>
+                        <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                            @if ($sos_data->title_sos_other)
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">รายละเอียด : {{$sos_data->title_sos_other ? $sos_data->title_sos_other : "--"}} </p>
+                            @else
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">รายละเอียด : -- </p>
+                            @endif
+                        </div>
+                        <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                            @if ($sos_data->status)
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">สถานะ : {{$sos_data->status ? $sos_data->status : "--"}}</p>
+                            @else
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">สถานะ : -- </p>
+                            @endif
+                        </div>
+                        <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                            @if ($sos_data->lat)
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">Lat : {{$sos_data->lat ? $sos_data->lat : "--"}}</p>
+                            @else
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">Lat : -- </p>
+                            @endif
+                        </div>
+                        <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                            @if ($sos_data->lng)
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">Long : {{$sos_data->lng ? $sos_data->lng : "--"}}</p>
+                            @else
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">Long : -- </p>
+                            @endif
+                        </div>
+
+                        <hr class="text-dark">
+                        <center>
+                            <label class="text-dark">หมายเลขโทรศัพท์ <br>ศูนย์รับแจ้งเหตุและสั่งการจังหวัดต่างๆ</label>
+                            <div id="content_phone_niems" class="mt-2 text-dark"></div>
+                            <hr class="text-dark">
+                            <div class="accordion" id="accordion_Forward_sos">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button type="button" class="btn btn-info p-2 mt-2" style="width:90%;" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <i class="fa-sharp fa-solid fa-share mr-1"></i>เลือกการส่งต่อ
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse mt-2" aria-labelledby="headingOne" data-bs-parent="#accordion_Forward_sos">
+                                        <div class="accordion-body">
+
+                                            <span id="btn_ask_1669" class="main-shadow btn btn-md btn-block d-none"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
+                                                <div class="d-flex">
+                                                    <div class="col-3 p-0 d-flex align-items-center">
+                                                        <div class="justify-content-center col-12 p-0">
+                                                            <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%">
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center col-9 text-center">
+                                                        <div id="content_1669" class="justify-content-center col-12">
+                                                            @if(empty($sos_data->sos_1669_id))
+                                                            <b>
+                                                                <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน (1669)</span>
+                                                                <span id="name_1669_area" class="d-block" style="color: #ffffff;"></span>
+                                                            </b>
+                                                            @else
+                                                            <b>
+                                                                <span class="d-block" style="color: #ffffff;">ส่งต่อ 1669 แล้ว</span>
+                                                            </b>
+                                                            @endif
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </span>
+
+
+                                            <div class="d-none">
+                                                <input type="text" name="name" id="name" value="{{ $sos_data->name }}">
+                                                <input type="text" name="phone" id="phone" value="{{ $sos_data->phone }}">
+                                                <input type="text" name="user_id" id="user_id" value="{{ $sos_data->user_id }}">
+                                                <input type="text" name="lat" id="lat" value="{{ $sos_data->lat }}">
+                                                <input type="text" name="lng" id="lng" value="{{ $sos_data->lng }}">
+                                                <input type="text" name="photo_sos_1669" id="photo_sos_1669" value="{{ $sos_data->photo }}">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+
                     </div>
 
-                    <div class="body_sidebar_div mb-2 ">
-                        <div class="d-flex text-center justify-content-center">
-                            @php
-                                switch ($sos_data->idc) {
-                                    case 'แดง(วิกฤติ)':
-                                        $bg_idc = "#db2d2e";
-                                        $text_idc = "แดง";
-                                        break;
-                                    case 'เหลือง(เร่งด่วน)':
-                                        $bg_idc = "#ffc30e";
-                                        $text_idc = "เหลือง";
-                                        break;
-                                    case 'เขียว(ไม่รุนแรง)':
-                                        $bg_idc = "#29cc39";
-                                        $text_idc = "เขียว";
-                                        break;
-                                    case 'ขาว(ทั่วไป)':
-                                        $bg_idc = "#0d6efd";
-                                        $text_idc = "ขาว";
-                                        break;
-                                    case 'ดำ(รับบริการสาธารณสุขอื่น)':
-                                        $bg_idc = "#000000";
-                                        $text_idc = "ดำ";
-                                        break;
-                                    default:
-                                        $bg_idc = "#000000";
-                                        $text_idc = "--";
-                                        break;
-                                }
-
-
-                                switch ($sos_data->rc) {
-                                    case 'แดง(วิกฤติ)':
-                                        $bg_rc = "#db2d2e";
-                                        $text_rc = "แดง";
-                                        break;
-                                    case 'เหลือง(เร่งด่วน)':
-                                        $bg_rc = "#ffc30e";
-                                        $text_rc = "เหลือง";
-                                        break;
-                                    case 'เขียว(ไม่รุนแรง)':
-                                        $bg_rc = "#29cc39";
-                                        $text_rc = "เขียว";
-                                        break;
-                                    case 'ขาว(ทั่วไป)':
-                                        $bg_rc = "#0d6efd";
-                                        $text_rc = "ขาว";
-                                        break;
-                                    case 'ดำ(รับบริการสาธารณสุขอื่น)':
-                                        $bg_rc = "#000000";
-                                        $text_rc = "ดำ";
-                                        break;
-                                    default:
-                                        $bg_rc = "#000000";
-                                        $text_rc = "--";
-                                        break;
-                                }
-                            @endphp
-                            <p style="background-color: {{$bg_idc}};" class=" p-2 m-1 col-5 border-radius font-weight-bold">IDC <br> {{$text_idc ? $text_idc : "--"}}</p>
-                            <p style="background-color: {{$bg_rc}};" class=" p-2 m-1 col-5 border-radius font-weight-bold">RC <br> {{$text_rc ? $text_rc : "--"}}</p>
+                    @if(!empty($sos_data->helper_id))
+                        <!-- ข้อมูลเจ้าหน้าที่ -->
+                        <div class="body_sidebar_div text-center">
+                            <h5  class="mb-0 text-success font-weight-bold">
+                                <i class="fa-solid fa-user me-1 text-success"></i>ข้อมูลเจ้าหน้าที่
+                            </h5>
+                            <p  class="font-weight-bold text-dark">{{$sos_data->user_helper->name ? $sos_data->user_helper->name : "--"}} | {{$sos_data->user_helper->phone ? $sos_data->user_helper->phone : "--"}}</p>
                         </div>
-                        <div class="p-3 nowordwarp text-start">
-                            <p class="h5 text-dark mt-1 font-weight-bold">รายละเอียดสถานที่</p>
-                            <p class="h6 text-dark ">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</p>
-                            <hr>
-                            <p class="h5 text-dark mt-1 font-weight-bold">อาการ</p>
-                            <p class="h6 text-dark ">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</p>
-                            <hr>
-                            <p class="h5 text-dark mt-1 font-weight-bold">รายละเอียดอาการ</p>
-                            <p class="h6 text-dark ">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</p>
-                        </div>
-                    </div>
+                    @endif
+
                 </div>
             @endif
 		</div>
@@ -882,6 +849,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{{ asset('Agora_Web_SDK_FULL/AgoraRTC_N-4.17.0.js') }}"></script>
+
+<!-- Google Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 
 <!-- Bootstrap JS -->
 <script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
@@ -1029,9 +999,14 @@
             }, 500);
         }
 
-
+        //แสดง animation โหลด
         LoadingVideoCall();
+        //เริ่มทำการสร้าง channel Video_call
         startBasicCall();
+        //หาตำแหน่งของผู้ใช้ --> แสดงข้อมูล sos_map ตามจังหวัด
+        if(type_video_call === "sos_map"){
+            find_location();
+        }
 
         // fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_id=" + sos_id)
         // .then(response => response.json())
@@ -1098,7 +1073,7 @@
         setInterval(() => {
             let customDivAll = document.querySelectorAll(".custom-div");
             let remoteUsers = agoraEngine['remoteUsers'];
-            console.log('remoteUsers :' + remoteUsers);
+            // console.log('remoteUsers :' + remoteUsers);
             customDivAll.forEach(element => {
                 let id = element.id;
 
@@ -2522,5 +2497,146 @@
     //     document.getElementById('leave').click();
     // });
 
+</script>
+
+<script>
+    function find_location() {
+		const geocoder = new google.maps.Geocoder();
+        const infowindow = new google.maps.InfoWindow();
+
+        // หาชื่อจังหวัด
+		geocodeLatLng(geocoder, infowindow);
+
+		// ---------------
+
+		// onload_check_status_sos_map();
+
+	}
+
+    var all_address ;
+	function geocodeLatLng(geocoder, map, infowindow) {
+		// console.log("geocodeLatLng");
+        const input = "{{ $sos_data->lat }}"+","+"{{ $sos_data->lng }}";
+        const latlngStr = input.split(",", 2);
+        const latlng = {
+            lat: parseFloat(latlngStr[0]),
+            lng: parseFloat(latlngStr[1]),
+        };
+        geocoder
+            .geocode({ location: latlng })
+            .then((response) => {
+                if (response.results[0]) {
+
+                	all_address = response.results[0].formatted_address ;
+
+	                // console.log(response.results[0]);
+
+                    // เข้าถึงชื่อจังหวัดจากผลลัพธ์
+	                const addressComponents = response.results[0].address_components;
+
+	                let cityName = ""; // ชื่อจังหวัด
+	                let districtName = ""; // ชื่ออำเภอ (เขต)
+	                let subdistrictName = ""; // ชื่อตำบล (แขวง)
+
+	                for (const component of addressComponents) {
+	                    for (const type of component.types) {
+	                        if (type === "locality" || type === "administrative_area_level_1") {
+	                            cityName = component.long_name;
+	                        }
+	                        if (type === "administrative_area_level_2") {
+	                            districtName = component.long_name;
+	                        }
+	                        if (type === "administrative_area_level_3" || type === "locality") {
+	                            subdistrictName = component.long_name;
+	                        }
+	                    }
+	                }
+
+	                if (cityName) {
+	                    cityName = cityName.replaceAll("จังหวัด","");
+	                	cityName = cityName.replaceAll("จ.","");
+	                	cityName = cityName.replaceAll(" ","");
+	                    // console.log("ชื่อจังหวัด: " + cityName);
+	                }
+	                if (districtName) {
+	                    districtName = districtName.replaceAll("อำเภอ","");
+	                	districtName = districtName.replaceAll("อ.","");
+	                	districtName = districtName.replaceAll(" ","");
+	                    // console.log("ชื่ออำเภอ (เขต): " + districtName);
+	                }
+	                if (subdistrictName) {
+	                    subdistrictName = subdistrictName.replaceAll("ตำบล","");
+	                	subdistrictName = subdistrictName.replaceAll("ต.","");
+	                	subdistrictName = subdistrictName.replaceAll(" ","");
+	                    // console.log("ชื่อตำบล (แขวง): " + subdistrictName);
+	                }
+
+	                if (cityName) {
+	                	search_phone_niems(cityName ,districtName ,subdistrictName);
+	                } else {
+	                    // console.log("ไม่พบชื่อจังหวัด");
+	                }
+
+                } else {
+                    // window.alert("No results found");
+                }
+            })
+            .catch((e) => window.alert("Geocoder failed due to: " + e));
+    }
+
+    function search_phone_niems(cityName ,districtName ,subdistrictName){
+
+        fetch("{{ url('/') }}/api/video_call_4/search_phone_niems/"+cityName)
+            .then(response => response.json())
+            .then(result => {
+                console.log("result phoneniems");
+                console.log(result);
+
+
+                    if(result['1669'] != "no"){
+                        @if(empty($sos_data->sos_1669_id))
+                            document.querySelector('#name_1669_area').innerHTML = result['1669'] ;
+                            document.querySelector('#btn_ask_1669').setAttribute('onclick' ,
+                            "ask_to_1669('"+cityName+"','"+districtName+"','"+subdistrictName+"')");
+                        @endif
+
+                        document.querySelector('#btn_ask_1669').classList.remove('d-none');
+                    }
+
+                if(result['phone_niems'] != "no"){
+                    let html_main ;
+                    let html_sub ;
+                    let content_phone_niems = document.querySelector('#content_phone_niems');
+
+                    for (let i = 0; i < result['phone_niems'].length; i++) {
+
+                        let phone_sp = result['phone_niems'][i]['phone'].split(",");
+
+                        // console.log(phone_sp);
+
+                        let sum_html = '' ;
+
+                        for (let x = 0; x < phone_sp.length; x++) {
+                            html_sub = `
+                                <span class="btn btn-outline-primary mt-1 font-weight-bold text-dark" style="width:80%;">
+                                    `+phone_sp[x]+`
+                                </span>
+                                <br>
+                            `;
+                            sum_html = sum_html + html_sub ;
+                        }
+
+                        html = `
+                            <p class="font-weight-bold text-dark">จ.`+result['phone_niems'][i]['province']+`</p>
+                            `+sum_html+`
+                            <hr>
+                        `;
+
+                        content_phone_niems.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+                    }
+                }
+        });
+    }
 </script>
 

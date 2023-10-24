@@ -855,7 +855,7 @@
                         <div class="head_sidebar_div p-4 ">
                             <div class="text-center">
                                 <h4 style="font-size:45px;" class="mb-0 text-info font-weight-bold">
-                                    <i style="font-size: 45px;" class="fa-solid fa-user-injured me-1 text-info"></i>ข้อมูลผู้ขอความช่วยเหลือ
+                                    <i style="font-size: 45px;" class="fa-solid fa-user-injured me-1 text-info"></i>ผู้ขอความช่วยเหลือ
                                 </h4>
                             </div>
                             <p style="font-size: 45px;" class="text-dark d-flex justify-content-center align-items-center font-weight-bold">{{$sos_data->name ? $sos_data->name : "--"}} | {{$sos_data->phone ? $sos_data->phone : "--"}}</p>
