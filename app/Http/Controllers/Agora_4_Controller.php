@@ -78,10 +78,26 @@ class Agora_4_Controller extends Controller
         // $appId = $requestData['appId'];
         // $appCertificate =  $requestData['appCertificate'];
 
-        $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
-        ->where('sos_help_centers.id',$sos_id)
-        ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
-        ->first();
+        if($type == 'sos_1669'){
+            $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+            ->where('sos_help_centers.id',$sos_id)
+            ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
+            ->first();
+
+            if($user->id == $sos_data->user_id){
+                $role_permission = 'help_seeker';
+            }else{
+                $role_permission = 'helper';
+            }
+        }else{
+            $sos_data = Sos_map::where('id' , $sos_id)->first();
+
+            if($user->id == $sos_data->user_id){
+                $role_permission = 'help_seeker';
+            }else{
+                $role_permission = 'helper';
+            }
+        }
 
         if (!empty($useSpeaker)) {
             $useSpeaker = $requestData['useSpeaker'];
@@ -105,7 +121,7 @@ class Agora_4_Controller extends Controller
         $appID = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
 
-        return view('video_call_4/pc_video_call_4', compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data'));
+        return view('video_call_4/pc_video_call_4', compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data','role_permission'));
 
     }
 

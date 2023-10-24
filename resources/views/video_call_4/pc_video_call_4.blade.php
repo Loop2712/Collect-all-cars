@@ -655,6 +655,158 @@
                         </div>
                     </div>
                 </div>
+            @elseif ($type == "sos_map")
+                <div class="" >
+                    <div class="head_sidebar_div text-center mb-2">
+                        <p class="h4 text-dark mt-3 font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
+                        <p class="h5 text-dark ">สถานะ:
+                            @php
+                                switch ($sos_data->status) {
+                                    case 'เสร็จสิ้น':
+                                        $color_text_status = "text-success";
+                                        break;
+                                    case 'รับแจ้งเหตุ':
+                                        $color_text_status = "text-danger";
+                                        break;
+                                    case 'กำลังดำเนินการ':
+                                        $color_text_status = "text-warning";
+                                        break;
+                                    case 'รอการยืนยัน':
+                                        $color_text_status = "text-warning";
+                                        break;
+                                    case 'ถึงที่เกิดเหตุ':
+                                        $color_text_status = "text-warning";
+                                        break;
+                                    case 'ออกจากฐาน':
+                                        $color_text_status = "text-warning";
+                                        break;
+                                    default:
+                                        $color_text_status = "text-secondary";
+                                        break;
+                                }
+                            @endphp
+                            <a class="{{$color_text_status}} font-weight-bold">{{$sos_data->status ? $sos_data->status : "--"}}</a>
+                        </p>
+
+                        @php
+                            if( !empty($sos_data->created_sos)){
+                                $currentdate = date('H:i:s'); // เวลาปัจจุบันในรูปแบบ "H:i:s"
+                                $sos_data_time_command = strtotime($sos_data->created_sos); // แปลง $sos_data->time_create_sos เป็น timestamp
+                                $sos_data_timeDifference = abs( $sos_data_time_command - strtotime($currentdate) );
+
+                                if ($sos_data_timeDifference >= 86400) { // ถ้าเกิน 1 วัน (86400 วินาที)
+                                    $sos_data_days = floor($sos_data_timeDifference / 86400);
+                                    $sos_data_hours = floor(($sos_data_timeDifference % 86400) / 3600);
+
+                                    $sos_data_time_unit = $sos_data_days . ' วัน ' . $sos_data_hours . ' ชั่วโมง ';
+
+                                }elseif ($sos_data_timeDifference >= 3600) {
+                                    $sos_data_hours = floor($sos_data_timeDifference / 3600);
+                                    $sos_data_remainingMinutes = floor(($sos_data_timeDifference % 3600) / 60);
+                                    $sos_data_remainingSeconds = $sos_data_timeDifference % 60;
+
+                                    $sos_data_time_unit = $sos_data_hours . ' ชั่วโมง ' . $sos_data_remainingMinutes . ' นาที ' . $sos_data_remainingSeconds . ' วินาที';
+                                } elseif ($sos_data_timeDifference >= 60) {
+                                    $sos_data_minutes = floor($sos_data_timeDifference / 60);
+                                    $sos_data_seconds = $sos_data_timeDifference % 60;
+
+                                    $sos_data_time_unit = $sos_data_minutes . ' นาที ' . $sos_data_seconds . ' วินาที';
+                                } else {
+                                    $sos_data_time_unit = $sos_data_timeDifference . ' วินาที';
+                                }
+                            }else{
+                                $sos_data_time_unit  = "--";
+                            }
+                        @endphp
+
+                        <p class="h6 text-dark ">การช่วยเหลือผ่านไปแล้ว</p>
+                        @if (!empty($sos_data_time_unit))
+                            <p class="h5 text-dark font-weight-bold">{{$sos_data_time_unit}}</p>
+                        @else
+                        <p class="h5 text-dark "> -- </p>
+                        @endif
+
+                    </div>
+
+                    <div class="neck_sidebar_div text-center mt-0 mb-2">
+                        <p class="h5 text-dark mt-3 font-weight-bold">ผู้ขอความช่วยเหลือ</p>
+                        <p class="h5 text-dark ">{{$sos_data->name_user ? $sos_data->name_user : "--"}}</p>
+                        <p class="h6 text-dark font-weight-bold">{{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
+                    </div>
+
+                    <div class="body_sidebar_div mb-2 ">
+                        <div class="d-flex text-center justify-content-center">
+                            @php
+                                switch ($sos_data->idc) {
+                                    case 'แดง(วิกฤติ)':
+                                        $bg_idc = "#db2d2e";
+                                        $text_idc = "แดง";
+                                        break;
+                                    case 'เหลือง(เร่งด่วน)':
+                                        $bg_idc = "#ffc30e";
+                                        $text_idc = "เหลือง";
+                                        break;
+                                    case 'เขียว(ไม่รุนแรง)':
+                                        $bg_idc = "#29cc39";
+                                        $text_idc = "เขียว";
+                                        break;
+                                    case 'ขาว(ทั่วไป)':
+                                        $bg_idc = "#0d6efd";
+                                        $text_idc = "ขาว";
+                                        break;
+                                    case 'ดำ(รับบริการสาธารณสุขอื่น)':
+                                        $bg_idc = "#000000";
+                                        $text_idc = "ดำ";
+                                        break;
+                                    default:
+                                        $bg_idc = "#000000";
+                                        $text_idc = "--";
+                                        break;
+                                }
+
+
+                                switch ($sos_data->rc) {
+                                    case 'แดง(วิกฤติ)':
+                                        $bg_rc = "#db2d2e";
+                                        $text_rc = "แดง";
+                                        break;
+                                    case 'เหลือง(เร่งด่วน)':
+                                        $bg_rc = "#ffc30e";
+                                        $text_rc = "เหลือง";
+                                        break;
+                                    case 'เขียว(ไม่รุนแรง)':
+                                        $bg_rc = "#29cc39";
+                                        $text_rc = "เขียว";
+                                        break;
+                                    case 'ขาว(ทั่วไป)':
+                                        $bg_rc = "#0d6efd";
+                                        $text_rc = "ขาว";
+                                        break;
+                                    case 'ดำ(รับบริการสาธารณสุขอื่น)':
+                                        $bg_rc = "#000000";
+                                        $text_rc = "ดำ";
+                                        break;
+                                    default:
+                                        $bg_rc = "#000000";
+                                        $text_rc = "--";
+                                        break;
+                                }
+                            @endphp
+                            <p style="background-color: {{$bg_idc}};" class=" p-2 m-1 col-5 border-radius font-weight-bold">IDC <br> {{$text_idc ? $text_idc : "--"}}</p>
+                            <p style="background-color: {{$bg_rc}};" class=" p-2 m-1 col-5 border-radius font-weight-bold">RC <br> {{$text_rc ? $text_rc : "--"}}</p>
+                        </div>
+                        <div class="p-3 nowordwarp text-start">
+                            <p class="h5 text-dark mt-1 font-weight-bold">รายละเอียดสถานที่</p>
+                            <p class="h6 text-dark ">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</p>
+                            <hr>
+                            <p class="h5 text-dark mt-1 font-weight-bold">อาการ</p>
+                            <p class="h6 text-dark ">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</p>
+                            <hr>
+                            <p class="h5 text-dark mt-1 font-weight-bold">รายละเอียดอาการ</p>
+                            <p class="h6 text-dark ">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</p>
+                        </div>
+                    </div>
+                </div>
             @endif
 		</div>
 
@@ -807,7 +959,7 @@
             profile_local = "https://www.viicheck.com/Medilab/img/icon.png";
         }
         //===== สุ่มสีพื้นหลังของ localPlayerContainer=====
-        fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + options.uid)
+        fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + options.uid + "&type=" + type_video_call + "&sos_id=" + sos_id)
             .then(response => response.json())
             .then(result => {
 
@@ -818,8 +970,7 @@
 
                 name_local = result.name_user;
                 type_local = result.user_type;
-                console.log(name_local);
-                console.log(type_local);
+
                 changeBgColor(bg_local);
         })
         .catch(error => {

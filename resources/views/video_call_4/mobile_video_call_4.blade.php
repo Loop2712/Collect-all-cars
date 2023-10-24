@@ -1098,7 +1098,7 @@
                 name_local = result.name_user;
                 type_local = result.user_type;
 
-                // changeBgColor(bg_local);
+                changeBgColor(bg_local);
 
         })
         .catch(error => {
@@ -1165,7 +1165,9 @@
         //เริ่มทำการสร้าง channel Video_call
         startBasicCall();
         //หาตำแหน่งของผู้ใช้ --> แสดงข้อมูล sos_map ตามจังหวัด
-        find_location();
+        if(type_video_call === "sos_map"){
+            find_location();
+        }
 
         // fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_id=" + sos_id)
         // .then(response => response.json())
@@ -1818,7 +1820,7 @@
                 document.querySelector('#muteVideo').addEventListener("click", function(e) {
                     if (isVideo == false) {
                         console.log(bg_local);
-                        // changeBgColor(bg_local);
+                        changeBgColor(bg_local);
                     }
                 });
 
@@ -2280,7 +2282,7 @@
             if (isVideo == false) {
                 setTimeout(() => {
                     console.log("bg_local ddddddddddddddddddddddd");
-                    // changeBgColor(bg_local);
+                    changeBgColor(bg_local);
                 }, 50);
             }
         }
@@ -2419,14 +2421,6 @@
         //=============================================================================//
         //                              จบ -- สลับอุปกรณ์                                //
         //=============================================================================//
-
-        // สำหรับเปลี่ยนสีพื้นหลังของ local หลังจากกดเปลี่ยนกล้อง
-        // btn_switchCamera.onclick = async function(){
-        //     if (isVideo == false) {
-        //             console.log("bg_local ddddddddddddddddddddddd");
-        //             changeBgColor(bg_local);
-        //     }
-        // };
 
     }
 </script>
@@ -2710,20 +2704,16 @@
         // เซ็ท bg-local เป็นสีที่ดูด
         console.log("ทำงาน "+bg_local)
 
-        let agoraCreateLocalDiv = document.querySelector(".agora_create_local");
+        let agoraCreateLocalDiv = document.querySelector("#videoDiv_"+user_id);
 
-        let divsInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelectorAll("div");
-            divsInsideAgoraCreateLocal.forEach(function(div) {
-            div.style.backgroundColor = bg_local;
-        });
+        let divsInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelector(".agora_create_local");
+            let sub_div = divsInsideAgoraCreateLocal.querySelector("div");
+                sub_div.style.backgroundColor = bg_local;
 
-        if(isVideo == false){
-            let videoInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelectorAll("video");
-                videoInsideAgoraCreateLocal.forEach(function(video) {
-                    video.remove();
-            });
-        }
-
+            if(isVideo == false){
+                let video_tag = divsInsideAgoraCreateLocal.querySelector("video");
+                    video_tag.remove();
+            }
     }
 </script>
 
@@ -2795,7 +2785,7 @@
                 // แสดงโปรไฟล์ ตอนปิดกล้อง
                 document.querySelector('.profile-input-output').classList.remove('d-none');
 
-                // changeBgColor(bg_local);
+                changeBgColor(bg_local);
 
                 isVideo = false;
 
