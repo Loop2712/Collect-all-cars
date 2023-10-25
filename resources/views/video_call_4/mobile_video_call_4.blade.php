@@ -277,7 +277,7 @@
 
 	.status-case-bar p {
 		width: calc(100% - 15%);
-		background-color: #f5b905;
+		background-color: #c7c5bf;
 		font-size: 40px;
         font-weight: bold;
 		border-radius: 20px;
@@ -559,9 +559,33 @@
     /* ----------------- End ตัว loading animation ----------------- */
 
     /* ----------------- ตัว Popup แจ้งเตือน----------------- */
+    .div_alert {
+	    position: fixed;
+	    top: -100px;
+	    bottom: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100px;
+	    text-align: center;
+	    font-family: 'Kanit', sans-serif;
+	    z-index: 9999;
+	    font-size: 18px;
+
+	}
+
+	.div_alert span {
+	    background-color: #2DD284;
+	    border-radius: 10px;
+	    color: white;
+	    padding: 30px;
+	    font-family: 'Kanit', sans-serif;
+	    z-index: 9999;
+	    font-size: 3em;
+	}
+
     .up_down {
 	    animation-name: slideDownAndUp;
-	    animation-duration:3s;
+	    animation-duration:10s;
 	}
 
 	@keyframes slideDownAndUp {
@@ -606,11 +630,11 @@
     }
 @endphp
 
-{{-- <div id="alert_copy" class="div_alert" role="alert">
+<div id="alert_copy" class="div_alert" role="alert">
     <span id="alert_text">
         คัดลอกเรียบร้อย
     </span>
-</div> --}}
+</div>
 
 <button id="join" class="btn btn-success d-none" >เข้าร่วม</button>
 
@@ -677,6 +701,19 @@
                 <div class="btn btnSpecial btn_leave" id="addButton">
                     <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
                 </div>
+                {{-- <button class="btn btnSpecial " onclick="alertText()">
+                    <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+                </button>
+                <script>
+                    function alertText(){
+                        document.querySelector('#alert_copy').classList.add('up_down');
+
+                        const animated = document.querySelector('.up_down');
+                        animated.onanimationend = () => {
+                            document.querySelector('#alert_copy').classList.remove('up_down');
+                        };
+                    }
+                </script> --}}
 
 
 
@@ -3281,6 +3318,13 @@
 	}
 
     var all_address ;
+    var check_status_done = 'yes'; // ไว้เช็คว่าทำตัวอัพเดตสถานะไปหรือยัง
+    if ('{{$sos_data->status}}' === "เสร็จสิ้น") {
+        check_status_done = 'yes';
+    } else {
+        check_status_done = 'no';
+    }
+
 	function geocodeLatLng(geocoder, map, infowindow) {
 		// console.log("geocodeLatLng");
         const input = "{{ $sos_data->lat }}"+","+"{{ $sos_data->lng }}";
@@ -3475,13 +3519,15 @@
                             help_complete();
 
                             document.querySelector('#status_of_Room').innerHTML = 'สถานะ : <b class="text-success">เสร็จสิ้น</b>';
-                            // document.querySelector('#alert_text').innerHTML = "ส่งต่อ 1669 เรียบร้อยแล้ว";
-                            // document.querySelector('#alert_copy').classList.add('up_down');
+                            document.querySelector('#alert_text').innerHTML = "ส่งต่อ 1669 เรียบร้อยแล้ว";
+                            document.querySelector('#alert_copy').classList.add('up_down');
 
-                            // const animated = document.querySelector('.up_down');
-                            // animated.onanimationend = () => {
-                            //     document.querySelector('#alert_copy').classList.remove('up_down');
-                            // };
+                            const animated = document.querySelector('.up_down');
+                            animated.onanimationend = () => {
+                                document.querySelector('#alert_copy').classList.remove('up_down');
+                            };
+
+                            check_status_done = 'yes';
                         }
                 });
             }
@@ -3535,7 +3581,45 @@
         }, 1500);
 
     }
+
+    function check_status_sos(){
+        fetch("{{ url('/') }}/api/check_status_sos_video_call" + "?sos_id="+'{{ $sos_data->id }}')
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                    if(result === "yes"){
+                        let html = `
+                                <b>
+                                    <span class="d-block" style="color: #ffffff; font-size: 40px;">ส่งต่อ 1669 แล้ว</span>
+                                </b>
+                            `;
+                            document.querySelector('#content_1669').innerHTML = html ;
+                            document.querySelector('#btn_ask_1669').setAttribute('onclick' ,"");
+
+                            document.querySelector('#status_of_Room').innerHTML = 'สถานะ : <b class="text-success">เสร็จสิ้น</b>';
+                            document.querySelector('#alert_text').innerHTML = "ส่งต่อ 1669 เรียบร้อยแล้ว";
+                            document.querySelector('#alert_copy').classList.add('up_down');
+
+                            const animated = document.querySelector('.up_down');
+                            animated.onanimationend = () => {
+                                document.querySelector('#alert_copy').classList.remove('up_down');
+                            };
+
+                        check_status_done = 'yes';
+                    }
+                });
+    }
+
+    window.addEventListener('load', () => {
+        // เรียกฟังก์ชัน check_status_sos() ทุก 10 วินาที
+        setInterval(() => {
+            if (check_status_done === 'no') {
+                check_status_sos();
+            }
+        }, 10000);
+    });
 </script>
+
 
 
 

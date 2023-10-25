@@ -462,5 +462,18 @@ class Agora_4_Controller extends Controller
         return $data ;
     }
 
+    function check_status_sos_video_call(Request $request){
+        $sos_id = $request->sos_id;
+
+        $sos_data = Sos_map::where('id',$sos_id)->first();
+
+        if($sos_data->status == "เสร็จสิ้น"){
+            return "yes";
+        }else{
+            return "no";
+        }
+
+    }
+
 
 }

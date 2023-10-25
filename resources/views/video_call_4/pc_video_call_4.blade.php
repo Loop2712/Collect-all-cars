@@ -488,8 +488,74 @@
 
         /* -------------------------- จบ ฟังก์ชัน เปลี่ยนไมค์และกล้อง -------------------------------------*/
 
+         /* ----------------- ตัว Popup แจ้งเตือน----------------- */
+        .div_alert {
+            position: fixed;
+            top: -100px;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            font-family: 'Kanit', sans-serif;
+            z-index: 9999;
+            font-size: 18px;
+
+        }
+
+        .div_alert span {
+            background-color: #2DD284;
+            border-radius: 10px;
+            color: white;
+            padding: 30px;
+            font-family: 'Kanit', sans-serif;
+            z-index: 9999;
+            font-size: 1em;
+        }
+
+        .up_down {
+            animation-name: slideDownAndUp;
+            animation-duration:10s;
+        }
+
+        @keyframes slideDownAndUp {
+            0% {
+                transform: translateY(0);
+            }
+            10% {
+                transform: translateY(180px);
+            }
+            90% {
+                transform: translateY(180px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        /* ----------------- End ตัว Popup แจ้งเตือน----------------- */
+
     /* } */
 </style>
+<!-- ใช้ในการเปลี่ยนสีสถานะ ของหน้านี้ -->
+@php
+switch ($sos_data->status) {
+    case 'เสร็จสิ้น':
+        $color_text_status = "text-success";
+        break;
+    case 'รับแจ้งเหตุ':
+        $color_text_status = "text-danger";
+        break;
+    default:
+        $color_text_status = "text-warning";
+        break;
+}
+@endphp
+
+<div id="alert_copy" class="div_alert" role="alert">
+    <span id="alert_text">
+        คัดลอกเรียบร้อย
+    </span>
+</div>
 
 <!-- ========================================== layout video call ========================================== -->
 <div class="d-flex justify-content-center align-items-center">
@@ -508,31 +574,6 @@
                     <div class="head_sidebar_div text-center mb-2">
                         <p class="h4 text-dark mt-3 font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
                         <p class="h5 text-dark ">สถานะ:
-                            @php
-                                switch ($sos_data->status) {
-                                    case 'เสร็จสิ้น':
-                                        $color_text_status = "text-success";
-                                        break;
-                                    case 'รับแจ้งเหตุ':
-                                        $color_text_status = "text-danger";
-                                        break;
-                                    case 'กำลังดำเนินการ':
-                                        $color_text_status = "text-warning";
-                                        break;
-                                    case 'รอการยืนยัน':
-                                        $color_text_status = "text-warning";
-                                        break;
-                                    case 'ถึงที่เกิดเหตุ':
-                                        $color_text_status = "text-warning";
-                                        break;
-                                    case 'ออกจากฐาน':
-                                        $color_text_status = "text-warning";
-                                        break;
-                                    default:
-                                        $color_text_status = "text-secondary";
-                                        break;
-                                }
-                            @endphp
                             <a class="{{$color_text_status}} font-weight-bold">{{$sos_data->status ? $sos_data->status : "--"}}</a>
                         </p>
 
@@ -671,9 +712,9 @@
 
                         <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
                             @if ($sos_data->title_sos)
-                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">หัวข้อ : {{$sos_data->title_sos ? $sos_data->title_sos : "--"}}</p>
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">หัวข้อ : <b class="text-dark">{{$sos_data->title_sos ? $sos_data->title_sos : "--"}}</b></p>
                             @else
-                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">หัวข้อ : -- </p>
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">หัวข้อ : <b class="text-dark">--</b> </p>
                             @endif
                         </div>
                         <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
@@ -685,9 +726,9 @@
                         </div>
                         <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
                             @if ($sos_data->status)
-                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">สถานะ : {{$sos_data->status ? $sos_data->status : "--"}}</p>
+                                <p id="status_of_Room" style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">สถานะ : <b class="{{$color_text_status}}">{{$sos_data->status ? $sos_data->status : "--"}}</b></p>
                             @else
-                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">สถานะ : -- </p>
+                                <p id="status_of_Room" style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">สถานะ : -- </p>
                             @endif
                         </div>
                         <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
@@ -705,10 +746,7 @@
                             @endif
                         </div>
 
-                        <hr class="text-dark">
                         <center>
-                            <label class="text-dark">หมายเลขโทรศัพท์ <br>ศูนย์รับแจ้งเหตุและสั่งการจังหวัดต่างๆ</label>
-                            <div id="content_phone_niems" class="mt-2 text-dark"></div>
                             <hr class="text-dark">
                             <div class="accordion" id="accordion_Forward_sos">
                                 <div class="accordion-item">
@@ -731,8 +769,8 @@
                                                         <div id="content_1669" class="justify-content-center col-12">
                                                             @if(empty($sos_data->sos_1669_id))
                                                             <b>
-                                                                <span class="d-block" style="color: #ffffff;">แพทย์ฉุกเฉิน (1669)</span>
-                                                                <span id="name_1669_area" class="d-block" style="color: #ffffff;"></span>
+                                                                <span class="d-block" style="color: #ffffff; font-size:0.8em;">แพทย์ฉุกเฉิน (1669)</span>
+                                                                <span id="name_1669_area" class="d-block" style="color: #ffffff; font-size:0.7em;"></span>
                                                             </b>
                                                             @else
                                                             <b>
@@ -744,7 +782,9 @@
                                                     </div>
                                                 </div>
                                             </span>
-
+                                            <hr class="text-dark">
+                                            <label class="text-dark">หมายเลขโทรศัพท์ <br>ศูนย์รับแจ้งเหตุและสั่งการจังหวัดต่างๆ</label>
+                                            <div id="content_phone_niems" class="mt-2 text-dark"></div>
 
                                             <div class="d-none">
                                                 <input type="text" name="name" id="name" value="{{ $sos_data->name }}">
@@ -799,6 +839,20 @@
                         <div class="btn btnSpecial btn_leave" id="leave">
                             <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>
                         </div>
+
+                        {{-- <button class="btn btnSpecial " onclick="alertText()">
+                            <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+                        </button>
+                        <script>
+                            function alertText(){
+                                document.querySelector('#alert_copy').classList.add('up_down');
+
+                                const animated = document.querySelector('.up_down');
+                                animated.onanimationend = () => {
+                                    document.querySelector('#alert_copy').classList.remove('up_down');
+                                };
+                            }
+                        </script> --}}
 
                     </div>
 
@@ -1101,8 +1155,8 @@
         function SoundTest() {
             console.log("เข้า SoundTest");
             agoraEngine.on("volume-indicator", volumes => {
-                console.log("agoraEngine in soundtest");
-                console.log(agoraEngine);
+                // console.log("agoraEngine in soundtest");
+                // console.log(agoraEngine);
 
                 volumes.forEach((volume) => {
                     let localAudioTrackCheck = channelParameters.localAudioTrack;
@@ -2508,6 +2562,13 @@
 	}
 
     var all_address ;
+    var check_status_done = 'yes'; // ไว้เช็คว่าทำตัวอัพเดตสถานะไปหรือยัง
+    if ('{{$sos_data->status}}' === "เสร็จสิ้น") {
+        check_status_done = 'yes';
+    } else {
+        check_status_done = 'no';
+    }
+
 	function geocodeLatLng(geocoder, map, infowindow) {
 		// console.log("geocodeLatLng");
         const input = "{{ $sos_data->lat }}"+","+"{{ $sos_data->lng }}";
@@ -2580,7 +2641,7 @@
 
     function search_phone_niems(cityName ,districtName ,subdistrictName){
 
-        fetch("{{ url('/') }}/api/video_call_4/search_phone_niems/"+cityName)
+        fetch("{{ url('/') }}/api/sos_map/search_phone_niems/"+cityName)
             .then(response => response.json())
             .then(result => {
                 console.log("result phoneniems");
@@ -2612,7 +2673,7 @@
 
                         for (let x = 0; x < phone_sp.length; x++) {
                             html_sub = `
-                                <span class="border border-primary mt-1 font-weight-bold text-primary p-2" style="width:80%; border-radius:5px;">
+                                <span class="mt-1 font-weight-bold text-primary p-2" style="width:80%; border-radius:5px;">
                                     `+phone_sp[x]+`
                                 </span>
                                 <br>
@@ -2621,7 +2682,7 @@
                         }
 
                         html = `
-                            <p class="font-weight-bold text-dark">จ.`+result['phone_niems'][i]['province']+`</p>
+                            <p class="font-weight-bold text-dark" style="width:90%;">จ.`+result['phone_niems'][i]['province']+`</p>
                             `+sum_html+`
                             <hr>
                         `;
@@ -2632,5 +2693,182 @@
                 }
         });
     }
+
+    function ask_to_1669(cityName ,districtName ,subdistrictName){
+
+        // console.log("ask_to_1669 >> " + cityName);
+
+        let name = '{{ $sos_data->name }}';
+        let phone = '{{ $sos_data->phone }}';
+        let user_id = '{{ $sos_data->user_id }}';
+        let lat = '{{ $sos_data->lat }}';
+        let lng = '{{ $sos_data->lng }}';
+        // let photo_sos_1669 = document.querySelector("#photo_sos_1669");
+        let district_P = cityName;
+        let district_A = districtName;
+        let district_T = subdistrictName;
+
+        // API UPLOAD IMG //
+        let formData = new FormData();
+        let imageFile = document.getElementById('photo_sos_1669').value;
+            formData.append('photo_sos', imageFile);
+
+        let data_sos_1669 = {
+            "name_user" : name.value,
+            "phone_user" : phone.value,
+            "user_id" : user_id.value,
+            "lat" : lat.value,
+            "lng" : lng.value,
+            "changwat" : district_P,
+            "amphoe" : district_A,
+            "tambon" : district_T,
+            "all_address" : all_address,
+        }
+        // console.log(data_sos_1669);
+
+        formData.append('name_user', data_sos_1669.name_user);
+        formData.append('phone_user', data_sos_1669.phone_user);
+        formData.append('user_id', data_sos_1669.user_id);
+        formData.append('lat', data_sos_1669.lat);
+        formData.append('lng', data_sos_1669.lng);
+        formData.append('changwat', data_sos_1669.changwat);
+        formData.append('amphoe', data_sos_1669.amphoe);
+        formData.append('tambon', data_sos_1669.tambon);
+        formData.append('all_address', data_sos_1669.all_address);
+        formData.append('sos_map_id', "{{ $sos_data->id }}");
+
+        fetch("{{ url('/') }}/api/create_new_sos_by_user", {
+            method: 'POST',
+            body: formData
+        }).then(function (response){
+            return response.text();
+        }).then(function(data){
+            // console.log(data);
+            let name_admin = "{{ Auth::user()->name }}" ;
+
+            if(data){
+                fetch("{{ url('/') }}/api/sos_map/update_sos_1669_id/"+data+"/"+"{{ $sos_data->id }}" +"/"+ district_P +"/"+ name_admin)
+                    .then(response => response.text())
+                    .then(result => {
+                        console.log(result);
+                        if(result == "ok"){
+                            let html = `
+                                <b>
+                                    <span class="d-block" style="color: #ffffff;">ส่งต่อ 1669 แล้ว</span>
+                                </b>
+                            `;
+                            document.querySelector('#content_1669').innerHTML = html ;
+                            document.querySelector('#btn_ask_1669').setAttribute('onclick' ,"");
+
+                            help_complete();
+
+                            document.querySelector('#status_of_Room').innerHTML = 'สถานะ : <b class="text-success">เสร็จสิ้น</b>';
+                            document.querySelector('#alert_text').innerHTML = "ส่งต่อ 1669 เรียบร้อยแล้ว";
+                            document.querySelector('#alert_copy').classList.add('up_down');
+
+                            const animated = document.querySelector('.up_down');
+                            animated.onanimationend = () => {
+                                document.querySelector('#alert_copy').classList.remove('up_down');
+                            };
+
+                            check_status_done = 'yes';
+
+                            // เสียงแจ้งเตือน เวลาคนเข้า
+                            let audio_ringtone_success = new Audio("{{ asset('sound/ยืนยัน.mp3') }}");
+                            audio_ringtone_success.play();
+
+                        }
+                });
+            }
+
+        }).catch(function(error){
+            // console.error(error);
+        });
+    }
+
+    function help_complete(){
+
+        let data_arr = [] ;
+
+        let officer_id ;
+
+        @if(!empty($sos_data->helper_id))
+            officer_id = "{{ $sos_data->helper_id }}" ;
+        @else
+            fetch("{{ url('/') }}/api/sos_map/update_helper_id" + "/" + "{{ Auth::user()->id }}" + "/" + "{{ $sos_data->id }}")
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                    officer_id = result ;
+                });
+        @endif
+
+        setTimeout(function() {
+
+            data_arr = {
+                "sos_map_id" : "{{ $sos_data->id }}",
+                "officer_id" : officer_id,
+                "groupId" : "{{ $groupId }}",
+                "command_id" : "{{ Auth::user()->id }}",
+            };
+
+            fetch("{{ url('/') }}/api/sos_map/help_complete", {
+                method: 'post',
+                body: JSON.stringify(data_arr),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+                }).then(function (response){
+                    return response.text();
+                }).then(function(data){
+                    // console.log(data);
+                }).catch(function(error){
+                // console.error(error);
+            });
+
+        }, 1500);
+
+    }
+
+    function check_status_sos(){
+        fetch("{{ url('/') }}/api/check_status_sos_video_call" + "?sos_id="+'{{ $sos_data->id }}')
+                .then(response => response.text())
+                .then(result => {
+                    // console.log(result);
+                    if(result === "yes"){
+                        let html = `
+                                <b>
+                                    <span class="d-block" style="color: #ffffff;">ส่งต่อ 1669 แล้ว</span>
+                                </b>
+                            `;
+                            document.querySelector('#content_1669').innerHTML = html ;
+                            document.querySelector('#btn_ask_1669').setAttribute('onclick' ,"");
+
+                            document.querySelector('#status_of_Room').innerHTML = 'สถานะ : <b class="text-success">เสร็จสิ้น</b>';
+                            document.querySelector('#alert_text').innerHTML = "ส่งต่อ 1669 เรียบร้อยแล้ว";
+                            document.querySelector('#alert_copy').classList.add('up_down');
+
+                            const animated = document.querySelector('.up_down');
+                            animated.onanimationend = () => {
+                                document.querySelector('#alert_copy').classList.remove('up_down');
+                            };
+
+                            check_status_done = 'yes';
+
+                            // เสียงแจ้งเตือน เวลาคนเข้า
+                            let audio_ringtone_success = new Audio("{{ asset('sound/ยืนยัน.mp3') }}");
+                            audio_ringtone_success.play();
+                    }
+                });
+    }
+
+    window.addEventListener('load', () => {
+        // เรียกฟังก์ชัน check_status_sos() ทุก 10 วินาที
+        setInterval(() => {
+            if (check_status_done === 'no') {
+                check_status_sos();
+            }
+        }, 10000);
+    });
 </script>
 
