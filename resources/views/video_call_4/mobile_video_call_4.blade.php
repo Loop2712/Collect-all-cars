@@ -591,12 +591,26 @@
     }
 
 </style>
+<!-- ใช้ในการเปลี่ยนสีสถานะ ของหน้านี้ -->
+@php
+    switch ($sos_data->status) {
+        case 'เสร็จสิ้น':
+            $color_text_status = "text-success";
+            break;
+        case 'รับแจ้งเหตุ':
+            $color_text_status = "text-danger";
+            break;
+        default:
+            $color_text_status = "text-warning";
+            break;
+    }
+@endphp
 
-<div id="alert_copy" class="div_alert" role="alert">
+{{-- <div id="alert_copy" class="div_alert" role="alert">
     <span id="alert_text">
         คัดลอกเรียบร้อย
     </span>
-</div>
+</div> --}}
 
 <button id="join" class="btn btn-success d-none" >เข้าร่วม</button>
 
@@ -609,7 +623,7 @@
     <div class="col-12" style="height: calc(100% - 90%);">
         <div class="status-case-bar d-flex justify-content-center align-items-center">
             <p class="font-30 row text-center">
-                <span class="m-2" id="status_of_Room">สถานะ : {{$sos_data->status ? $sos_data->status : "--"}}</span>
+                <span class="m-2" id="status_of_Room">สถานะ : <b class="{{$color_text_status}}">{{$sos_data->status ? $sos_data->status : "--"}}</b></span>
                 <span class="m-2">เวลาห้องสนทนา : -- </span>
             </p>
 
@@ -691,31 +705,6 @@
                 <div class="head_sidebar_div p-4 text-center">
                     <p style="font-size: 45px;" class="h1 text-dark font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
                     <p style="font-size: 45px;" class="h1 text-dark ">สถานะ:
-                        @php
-                            switch ($sos_data->status) {
-                                case 'เสร็จสิ้น':
-                                    $color_text_status = "text-success";
-                                    break;
-                                case 'รับแจ้งเหตุ':
-                                    $color_text_status = "text-danger";
-                                    break;
-                                // case 'กำลังดำเนินการ':
-                                //     $color_text_status = "text-warning";
-                                //     break;
-                                // case 'รอการยืนยัน':
-                                //     $color_text_status = "text-warning";
-                                //     break;
-                                // case 'ถึงที่เกิดเหตุ':
-                                //     $color_text_status = "text-warning";
-                                //     break;
-                                // case 'ออกจากฐาน':
-                                //     $color_text_status = "text-warning";
-                                //     break;
-                                default:
-                                    $color_text_status = "text-warning";
-                                    break;
-                            }
-                        @endphp
                         <a style="font-size: 45px;" class="{{$color_text_status}} font-weight-bold">{{$sos_data->status ? $sos_data->status : "--"}}</a>
                     </p>
 
@@ -958,7 +947,7 @@
                                         <span id="btn_ask_1669" class="main-shadow btn btn-md btn-block d-none"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
                                             <div class="d-flex">
                                                 <div class="col-3 p-0 d-flex align-items-center">
-                                                    <div class="justify-content-center col-12 p-0">
+                                                    <div class="justify-content-center col-12 p-2">
                                                         <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%">
                                                     </div>
                                                 </div>
@@ -3485,8 +3474,8 @@
 
                             help_complete();
 
-                            document.querySelector('#status_of_Room').innerHTML = 'สถานะ : เสร็จสิ้น';
-                            document.querySelector('#alert_text').innerHTML = "ส่งต่อ 1669 เรียบร้อยแล้ว";
+                            document.querySelector('#status_of_Room').innerHTML = 'สถานะ : <b class="text-success">เสร็จสิ้น</b>';
+                            // document.querySelector('#alert_text').innerHTML = "ส่งต่อ 1669 เรียบร้อยแล้ว";
                             // document.querySelector('#alert_copy').classList.add('up_down');
 
                             // const animated = document.querySelector('.up_down');
