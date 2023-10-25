@@ -84,6 +84,8 @@ class Agora_4_Controller extends Controller
             ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
             ->first();
 
+            $groupId = '';
+
             if($user->id == $sos_data->user_id){
                 $role_permission = 'help_seeker';
             }else{
@@ -91,6 +93,13 @@ class Agora_4_Controller extends Controller
             }
         }else{
             $sos_data = Sos_map::where('id' , $sos_id)->first();
+
+            $data_partner = Partner::where('name' , $sos_data->area)
+            ->where('name_area' , $sos_data->name_area)
+            ->first();
+
+            $data_groupline = Group_line::where('id' , $data_partner->group_line_id)->first();
+            $groupId = $data_groupline->groupId ;
 
             if($user->id == $sos_data->user_id){
                 $role_permission = 'help_seeker';
@@ -121,7 +130,7 @@ class Agora_4_Controller extends Controller
         $appID = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
 
-        return view('video_call_4/pc_video_call_4', compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data','role_permission'));
+        return view('video_call_4/pc_video_call_4', compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data','role_permission','groupId'));
 
     }
 
@@ -139,6 +148,8 @@ class Agora_4_Controller extends Controller
             ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
             ->first();
 
+            $groupId = '';
+
             if($user->id == $sos_data->user_id){
                 $role_permission = 'help_seeker';
             }else{
@@ -146,6 +157,13 @@ class Agora_4_Controller extends Controller
             }
         }else{
             $sos_data = Sos_map::where('id' , $sos_id)->first();
+
+            $data_partner = Partner::where('name' , $sos_data->area)
+            ->where('name_area' , $sos_data->name_area)
+            ->first();
+
+            $data_groupline = Group_line::where('id' , $data_partner->group_line_id)->first();
+            $groupId = $data_groupline->groupId ;
 
             if($user->id == $sos_data->user_id){
                 $role_permission = 'help_seeker';
@@ -177,7 +195,7 @@ class Agora_4_Controller extends Controller
         $appCertificate = env('AGORA_APP_CERTIFICATE');
 
 
-        return view('video_call_4/mobile_video_call_4' , compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data','role_permission'));
+        return view('video_call_4/mobile_video_call_4' , compact('user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data','role_permission','groupId'));
     }
 
     public function token(Request $request)
