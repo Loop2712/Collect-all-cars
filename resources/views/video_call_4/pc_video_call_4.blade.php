@@ -565,7 +565,7 @@ switch ($sos_data->status) {
     <!-- สำหรับ loading ก่อนเข้า videocall -> จะลบออกหลังจากโหลดเสร็จ -->
 
 	{{-- <div class="Scenary"></div> --}}
-	<div class="col-12 col-lg-2">
+	<div class="col-12 col-lg-2" style="background-color: #2b2d31;">
         <button id="join" class="btn btn-success d-none" >เข้าร่วม</button>
         <button id="addButton" style="position: absolute;top:10%;right: 0;">เพิ่ม div</button>
 		<div class="data-sos text-center p-3 d-flex  row">
