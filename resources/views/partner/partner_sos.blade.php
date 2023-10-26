@@ -483,11 +483,15 @@
 
         document.querySelector('#div_content_modal_delete_case_1').classList.remove('d-none');
         document.querySelector('#div_content_modal_delete_case_2').classList.add('d-none');
-        document.querySelector('#a_request_delete_case').classList.remove('d-none');
-
+        
+        
         // console.log(sos_map_id);
         let a_delete_case = document.querySelector('#a_delete_case');
         let a_request_delete_case = document.querySelector('#a_request_delete_case');
+
+        if(a_request_delete_case){
+            document.querySelector('#a_request_delete_case').classList.remove('d-none');
+        }
 
         if(a_delete_case){
             a_delete_case.setAttribute('href' , "{{ url('/sos_map/delete_case') }}" + "/" + sos_map_id);
