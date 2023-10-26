@@ -710,39 +710,39 @@ switch ($sos_data->status) {
                             <i class="fa-solid fa-subtitles me-1 text-danger"></i>ข้อมูล
                         </h5>
 
-                        <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                        <div  class="d-flex align-items-center">
                             @if ($sos_data->title_sos)
-                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">หัวข้อ : <b class="text-dark">{{$sos_data->title_sos ? $sos_data->title_sos : "--"}}</b></p>
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold text-start">หัวข้อ : <b class="text-dark">{{$sos_data->title_sos ? $sos_data->title_sos : "--"}}</b></p>
                             @else
-                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">หัวข้อ : <b class="text-dark">--</b> </p>
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold text-start">หัวข้อ : <b class="text-dark">--</b> </p>
                             @endif
                         </div>
-                        <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                        <div  class="d-flex align-items-center">
                             @if ($sos_data->title_sos_other)
-                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">รายละเอียด : {{$sos_data->title_sos_other ? $sos_data->title_sos_other : "--"}} </p>
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold text-start">รายละเอียด : {{$sos_data->title_sos_other ? $sos_data->title_sos_other : "--"}} </p>
                             @else
-                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">รายละเอียด : -- </p>
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold text-start">รายละเอียด : -- </p>
                             @endif
                         </div>
-                        <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                        <div  class="d-flex align-items-center">
                             @if ($sos_data->status)
-                                <p id="status_of_Room" style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">สถานะ : <b class="{{$color_text_status}}">{{$sos_data->status ? $sos_data->status : "--"}}</b></p>
+                                <p id="status_of_Room" style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold text-start">สถานะ : <b class="{{$color_text_status}}">{{$sos_data->status ? $sos_data->status : "--"}}</b></p>
                             @else
-                                <p id="status_of_Room" style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">สถานะ : -- </p>
+                                <p id="status_of_Room" style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold text-start">สถานะ : -- </p>
                             @endif
                         </div>
-                        <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                        <div  class="d-flex align-items-center">
                             @if ($sos_data->lat)
-                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">Lat : {{$sos_data->lat ? $sos_data->lat : "--"}}</p>
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold text-start">Lat : {{$sos_data->lat ? $sos_data->lat : "--"}}</p>
                             @else
-                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">Lat : -- </p>
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold text-start">Lat : -- </p>
                             @endif
                         </div>
-                        <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
+                        <div  class="d-flex align-items-center">
                             @if ($sos_data->lng)
-                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">Long : {{$sos_data->lng ? $sos_data->lng : "--"}}</p>
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold text-start">Long : {{$sos_data->lng ? $sos_data->lng : "--"}}</p>
                             @else
-                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold">Long : -- </p>
+                                <p style="white-space: pre-line;" class="text-dark mb-2 font-weight-bold text-start">Long : -- </p>
                             @endif
                         </div>
 
@@ -1888,15 +1888,23 @@ switch ($sos_data->status) {
                     console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
                     console.log('เข้า if => isAudio == true');
                     console.log(channelParameters.localAudioTrack);
+                    console.log(agoraEngine);
+
                 }
                 else {
+                    channelParameters.localAudioTrack.setEnabled(true);
+                    channelParameters.localAudioTrack.play();
+                    agoraEngine.publish([channelParameters.localAudioTrack]);
+
                     channelParameters.localAudioTrack.setEnabled(false);
+                    agoraEngine.unpublish([channelParameters.localAudioTrack]);
                     // channelParameters.localAudioTrack.play();
                     // isAudio = false;
 
                     console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
                     console.log('เข้า else => isAudio == false');
                     console.log(channelParameters.localAudioTrack);
+                    console.log(agoraEngine);
                 }
 
             })
@@ -2629,11 +2637,11 @@ switch ($sos_data->status) {
 	                if (cityName) {
 	                	search_phone_niems(cityName ,districtName ,subdistrictName);
 	                } else {
-	                    // console.log("ไม่พบชื่อจังหวัด");
+	                    console.log("ไม่พบชื่อจังหวัด");
 	                }
 
                 } else {
-                    // window.alert("No results found");
+                    console.log("No results found");
                 }
             })
             .catch((e) => window.alert("Geocoder failed due to: " + e));
@@ -2862,13 +2870,16 @@ switch ($sos_data->status) {
                 });
     }
 
-    window.addEventListener('load', () => {
-        // เรียกฟังก์ชัน check_status_sos() ทุก 10 วินาที
-        setInterval(() => {
-            if (check_status_done === 'no') {
-                check_status_sos();
-            }
-        }, 10000);
-    });
+    if(type_video_call == "sos_map"){
+        window.addEventListener('load', () => {
+            // เรียกฟังก์ชัน check_status_sos() ทุก 10 วินาที
+            setInterval(() => {
+                if (check_status_done === 'no') {
+                    check_status_sos();
+                }
+            }, 10000);
+        });
+    }
+
 </script>
 

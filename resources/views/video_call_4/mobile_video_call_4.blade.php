@@ -194,6 +194,13 @@
 		display: flex;
 	}
 
+    .custom-div .status-sound-output{
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+    }
+
 	.custom-div .infomation-user {
 		position: absolute;
 		bottom: 0;
@@ -220,7 +227,8 @@
 	}
 
 	.status-input-output .mic,
-	.status-input-output .camera {
+	.status-input-output .camera,
+    .status-sound-output .sound {
 		margin: 5px;
 		background-color: rgb(0, 0, 0, 0.4);
 		padding: .5rem 1rem .5rem;
@@ -250,6 +258,13 @@
 		margin: 0.5;
 		top: -5px;
 		right: -10px;
+	}
+
+    .user-video-call-bar .custom-div .status-sound-output{
+		transform: scale(0.8);
+		margin: 0.5;
+		top: -5px;
+		left: -10px;
 	}
 
     .user-video-call-bar div div .profile_image{ /* ของ bar ล่าง  */
@@ -428,11 +443,11 @@
         background-color: #3f3e3e; /* เปลี่ยนสีพื้นหลังตามที่คุณต้องการ */
         border: none;
         border-radius: 50%;
-        width: 25px; /* ปรับขนาดตามที่คุณต้องการ */
-        height: 25px; /* ปรับขนาดตามที่คุณต้องการ */
+        width: 60px; /* ปรับขนาดตามที่คุณต้องการ */
+        height: 60px; /* ปรับขนาดตามที่คุณต้องการ */
         position: absolute;
-        bottom: 10;
-        right: 10;
+        bottom: 20;
+        right: 20;
         transform: translate(50%, 50%);
         display: flex;
         justify-content: center;
@@ -447,7 +462,7 @@
 
     .smallCircle i{
         color: #ffffff;
-        font-size: 10px;
+        font-size: 1em;
     }
 
     .fa-arrow-up {
@@ -460,12 +475,14 @@
         padding: 0;
         margin: 0;
         position: absolute;
-        bottom: 100; /* ตำแหน่ง list ขึ้นด้านบนของปุ่ม */
+        bottom: 10%; /* ตำแหน่ง list ขึ้นด้านบนของปุ่ม */
         left: 10;
+        /* right: 0;
+        top: 0; */
         background-color: #3f3e3e;
         border-radius: 5px;
-        z-index: 1000; /* เพื่อให้แสดงอยู่ข้างบนของปุ่ม */
-        min-width: 250px; /* กำหนดความกว้างขั้นต่ำ */
+        z-index: 9999; /* เพื่อให้แสดงอยู่ข้างบนของปุ่ม */
+        min-width: 50%; /* กำหนดความกว้างขั้นต่ำ */
 
     }
 
@@ -479,6 +496,7 @@
         display: flex;
         justify-content: space-between; /* จัดตัว radio2 ไปทางขวา */
         align-items: center; /* จัดให้เนื้อหาแนวตั้งกลาง */
+        font-size: 2em;
     }
 
     .top-0 {
@@ -647,7 +665,11 @@
     <div class="col-12" style="height: calc(100% - 90%);">
         <div class="status-case-bar d-flex justify-content-center align-items-center">
             <p class="font-30 row text-center">
-                <span class="m-2" id="status_of_Room">สถานะ : <b class="{{$color_text_status}}">{{$sos_data->status ? $sos_data->status : "--"}}</b></span>
+                @if (!empty($sos_data->status))
+                    <span class="m-2" id="status_of_Room">สถานะ : <b class="{{$color_text_status}}">{{ $sos_data->status }}</b></span>
+                @else
+                    <span class="m-2" id="status_of_Room">สถานะ : <b class="text-dark">--</b></span>
+                @endif
                 <span class="m-2">เวลาห้องสนทนา : -- </span>
             </p>
 
@@ -683,10 +705,13 @@
 
                 <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
                 <div id="div_for_AudioButton" class="btn btnSpecial">
-                    {{-- <i id="icon_muteAudio" class="fa-solid fa-microphone-stand"></i> --}}
-                    {{-- <button class="smallCircle" id="btn_switchMicrophone">
+                    @if (Auth::user()->id == 1 || Auth::user()->id == 2 || Auth::user()->id == 64 || Auth::user()->id == 11003429)
+                        {{-- <i id="icon_muteAudio" class="fa-solid fa-microphone-stand"></i> --}}
+                            <button class="smallCircle" id="btn_switchMicrophone">
                         <i class="fa-sharp fa-solid fa-angle-up"></i>
-                    </button> --}}
+                    </button>
+                    @endif
+
                 </div>
 
                 <!-- เปลี่ยนกล้อง ให้กดได้แค่ในคอม -->
@@ -726,16 +751,17 @@
     </div>
 </div>
 
-<div class="dropcontent">
-    <ul id="audio-device-list" class="ui-list">
-        <!-- Created list-audio from Javascript Here -->
-    </ul>
-</div>
-<div class="dropcontent2">
-    <ul id="video-device-list" class="ui-list">
-        <!-- Created list-video from Javascript Here -->
-    </ul>
-</div>
+    <div class="dropcontent">
+        <ul id="audio-device-list" class="ui-list">
+            <!-- Created list-audio from Javascript Here -->
+        </ul>
+    </div>
+    <div class="dropcontent2">
+        <ul id="video-device-list" class="ui-list">
+            <!-- Created list-video from Javascript Here -->
+        </ul>
+    </div>
+
     @if ($type === 'sos_1669')
         <div class="fadeDiv" id="dataDiv" style="display: none; z-index: 5000;">
             <div class="card m-4 text-dark">
@@ -1266,7 +1292,7 @@
         /////////////////////// ปุ่มสลับ กล้อง /////////////////////
         const btn_switchCamera = document.querySelector('#btn_switchCamera');
         /////////////////////// ปุ่มสลับ ไมค์ /////////////////////
-        // const btn_switchMicrophone = document.querySelector('#btn_switchMicrophone');
+        const btn_switchMicrophone = document.querySelector('#btn_switchMicrophone');
 
         let remotePlayerContainer = [];
 
@@ -2341,120 +2367,142 @@
             }
         }
 
-        // btn_switchMicrophone.onclick = async function()
-        // {
-        //     console.log('btn_switchMicrophone');
+        btn_switchMicrophone.onclick = async function()
+        {
+            console.log('btn_switchMicrophone');
 
-        //     console.log('activeAudioDeviceId');
-        //     console.log(activeAudioDeviceId);
+            console.log('activeAudioDeviceId');
+            console.log(activeAudioDeviceId);
 
-        //     // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
-        //     let deviceType = checkDeviceType();
-        //     console.log("Device Type:", deviceType);
+            // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
+            let deviceType = checkDeviceType();
+            console.log("Device Type:", deviceType);
 
-        //     // เรียกดูอุปกรณ์ทั้งหมด
-        //     let devices = await navigator.mediaDevices.enumerateDevices();
+            // เรียกดูอุปกรณ์ทั้งหมด
+            let devices = await navigator.mediaDevices.enumerateDevices();
 
-        //     // เรียกดูอุปกรณ์ที่ใช้อยู่
-        //     let stream = await navigator.mediaDevices.getUserMedia({
-        //         audio: true,
-        //         video: true
-        //     });
+            // เรียกดูอุปกรณ์ที่ใช้อยู่
+            let stream = await navigator.mediaDevices.getUserMedia({
+                audio: true,
+                video: true
+            });
 
-        //     // แยกอุปกรณ์ตามประเภท --> ไมโครโฟน
-        //     let audioDevices = devices.filter(device => device.kind === 'audioinput');
-        //     // แยกอุปกรณ์ตามประเภท --> ลำโพง
-        //     let audioOutputDevices = devices.filter(device => device.kind === 'audiooutput');
+            // แยกอุปกรณ์ตามประเภท --> ไมโครโฟน
+            let audioDevices = devices.filter(device => device.kind === 'audioinput');
+            // แยกอุปกรณ์ตามประเภท --> ลำโพง
+            let audioOutputDevices = devices.filter(device => device.kind === 'audiooutput');
 
-        //     console.log('------- audioDevices -------');
-        //     console.log(audioDevices);
-        //     console.log('length ==>> ' + audioDevices.length);
-        //     console.log('------- ------- -------');
+            console.log('------- audioDevices -------');
+            console.log(audioDevices);
+            console.log('length ==>> ' + audioDevices.length);
+            console.log('------- ------- -------');
 
-        //     // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
-        //     let audioDeviceList = document.getElementById('audio-device-list');
-        //         audioDeviceList.innerHTML = '';
-        //     let deviceText = document.createElement('li');
-        //         deviceText.classList.add('text-center','p-1','text-white');
-        //         deviceText.appendChild(document.createTextNode("อุปกรณ์รับข้อมูล"));
+            // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
+            let audioDeviceList = document.getElementById('audio-device-list');
+                audioDeviceList.innerHTML = '';
+            let deviceText = document.createElement('li');
+                deviceText.classList.add('text-center','p-1','text-white');
+                deviceText.appendChild(document.createTextNode("อุปกรณ์รับข้อมูล"));
 
-        //         audioDeviceList.appendChild(deviceText);
-        //     // let audiooutputDeviceList = document.getElementById('audio-device-output-list');
-        //     //     audiooutputDeviceList.innerHTML = '';
+                audioDeviceList.appendChild(deviceText);
+            // let audiooutputDeviceList = document.getElementById('audio-device-output-list');
+            //     audiooutputDeviceList.innerHTML = '';
 
-        //     let count_i = 1 ;
-        //     let count_i_output = 1 ;
-        //     // ----------- Input ----------------
-        //     audioDevices.forEach(device => {
-        //         const radio2 = document.createElement('input');
-        //             radio2.type = 'radio';
-        //             radio2.classList.add('radio_style');
-        //             radio2.id = 'audio-device-' + count_i;
-        //             radio2.name = 'audio-device';
-        //             radio2.value = device.deviceId;
+            let count_i = 1 ;
+            let count_i_output = 1 ;
+            // ----------- Input ----------------
+            audioDevices.forEach(device => {
+                const radio2 = document.createElement('input');
+                    radio2.type = 'radio';
+                    radio2.classList.add('radio_style');
+                    radio2.id = 'audio-device-' + count_i;
+                    radio2.name = 'audio-device';
+                    radio2.value = device.deviceId;
 
-        //         if (deviceType == 'PC'){
-        //             radio2.checked = device.deviceId === activeAudioDeviceId;
-        //         }
-
-
-        //         let label = document.createElement('li');
-        //             label.classList.add('ui-list-item');
-        //             label.appendChild(document.createTextNode(device.label || `อุปกรณ์รับข้อมูล ${audioDeviceList.children.length + 1}`));
-        //             label.appendChild(document.createTextNode("\u00A0")); // เพิ่ม non-breaking space
-        //             label.appendChild(radio2);
-
-        //             // สร้างเหตุการณ์คลิกที่ label เพื่อตรวจสอบ radio2
-        //             label.addEventListener('click', () => {
-        //                 radio2.checked = true;
-        //                 onChangeAudioDevice();
-        //             });
+                if (deviceType == 'PC'){
+                    radio2.checked = device.deviceId === activeAudioDeviceId;
+                }
 
 
-        //         audioDeviceList.appendChild(label);
-        //         radio2.addEventListener('change', onChangeAudioDevice);
+                let label = document.createElement('li');
+                    label.classList.add('ui-list-item');
+                    label.appendChild(document.createTextNode(device.label || `อุปกรณ์รับข้อมูล ${audioDeviceList.children.length + 1}`));
+                    label.appendChild(document.createTextNode("\u00A0")); // เพิ่ม non-breaking space
+                    label.appendChild(radio2);
 
-        //         count_i = count_i + 1 ;
-        //     });
+                    // สร้างเหตุการณ์คลิกที่ label เพื่อตรวจสอบ radio2
+                    label.addEventListener('click', () => {
+                        radio2.checked = true;
+                        onChangeAudioDevice();
+                    });
 
-        //     // let hr = document.createElement('hr');
-        //     // audioDeviceList.appendChild(hr);
 
-        //     // ----------- Output ----------------
-        //     // audioOutputDevices.forEach(device => {
-        //     // const radio3 = document.createElement('input');
-        //     //     radio3.type = 'radio';
-        //     //     radio3.id = 'audio-device-output-' + count_i_output;
-        //     //     radio3.name = 'audio-device-output';
-        //     //     radio3.value = device.deviceId;
+                audioDeviceList.appendChild(label);
+                radio2.addEventListener('change', onChangeAudioDevice);
 
-        //     // if (deviceType == 'PC'){
-        //     //     radio3.checked = device.deviceId === activeAudioOutputDeviceId;
-        //     // }
+                count_i = count_i + 1 ;
+            });
 
-        //     // let label_output = document.createElement('label');
-        //     //     label_output.classList.add('dropdown-item');
-        //     //     label_output.appendChild(radio3);
-        //     //     label_output.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${audioDeviceList.children.length + 1}`));
+            // let hr = document.createElement('hr');
+            // audioDeviceList.appendChild(hr);
 
-        //     // audiooutputDeviceList.appendChild(label_output);
-        //     // radio3.addEventListener('change', onChangeAudioOutputDevice);
+            // ----------- Output ----------------
+            // audioOutputDevices.forEach(device => {
+            // const radio3 = document.createElement('input');
+            //     radio3.type = 'radio';
+            //     radio3.id = 'audio-device-output-' + count_i_output;
+            //     radio3.name = 'audio-device-output';
+            //     radio3.value = device.deviceId;
 
-        //     // count_i_output = count_i_output + 1 ;
-        //     // });
+            // if (deviceType == 'PC'){
+            //     radio3.checked = device.deviceId === activeAudioOutputDeviceId;
+            // }
 
-        //     // ---------------------------7
+            // let label_output = document.createElement('label');
+            //     label_output.classList.add('dropdown-item');
+            //     label_output.appendChild(radio3);
+            //     label_output.appendChild(document.createTextNode(device.label || `อุปกรณ์ส่งข้อมูล ${audioDeviceList.children.length + 1}`));
 
-        //     // เพิ่มเหตุการณ์คลิกที่หน้าจอที่ไม่ใช่ตัว audio-device-list ให้ปิด audio-device-list
-        //     // document.addEventListener('click', (event) => {
-        //     //     const target = event.target;
+            // audiooutputDeviceList.appendChild(label_output);
+            // radio3.addEventListener('change', onChangeAudioOutputDevice);
 
-        //     //     if (!target.closest('#audio-device-list')) {
-        //     //        document.querySelector('.dropcontent').classList.toggle('open');
-        //     //     }
-        //     // });
+            // count_i_output = count_i_output + 1 ;
+            // });
 
-        // }
+            // ---------------------------7
+
+            // เพิ่มเหตุการณ์คลิกที่หน้าจอที่ไม่ใช่ตัว audio-device-list ให้ปิด audio-device-list
+            // document.addEventListener('click', (event) => {
+            //     const target = event.target;
+
+            //     if (!target.closest('#audio-device-list')) {
+            //        document.querySelector('.dropcontent').classList.toggle('open');
+            //     }
+            // });
+
+        }
+
+        // เปิด-ปิด list ของไมค์
+        $(document).ready(function() {
+            $("#btn_switchMicrophone").click(function(event) {
+                event.stopPropagation(); // หยุดการกระจายเหตุการณ์คลิกไปยัง document
+
+                var targetId = $(this).attr("id"); // รับ id ของปุ่มที่ถูกคลิก
+
+                if(document.querySelector('.open_dropcontent2')){
+                    $(".dropcontent2").removeClass("open_dropcontent2");
+                }
+
+                $(".dropcontent").toggleClass("open_dropcontent");
+
+                // เพิ่มเหตุการณ์คลิกที่ document เพื่อปิด .dropcontent ถ้าคลิกที่นอกเหตุการณ์
+                $(document).click(function(event) {
+                    if (!$(event.target).closest(".dropcontent").length) {
+                        $(".dropcontent").removeClass("open_dropcontent");
+                    }
+                });
+            });
+        });
 
         // ตรวจสอบอุปกรณ์ที่ใช้งาน
         function checkDeviceType() {
@@ -3610,14 +3658,16 @@
                 });
     }
 
-    window.addEventListener('load', () => {
-        // เรียกฟังก์ชัน check_status_sos() ทุก 10 วินาที
-        setInterval(() => {
-            if (check_status_done === 'no') {
-                check_status_sos();
-            }
-        }, 10000);
-    });
+    if(type_video_call == "sos_map"){
+        window.addEventListener('load', () => {
+            // เรียกฟังก์ชัน check_status_sos() ทุก 10 วินาที
+            setInterval(() => {
+                if (check_status_done === 'no') {
+                    check_status_sos();
+                }
+            }, 10000);
+        });
+    }
 </script>
 
 
