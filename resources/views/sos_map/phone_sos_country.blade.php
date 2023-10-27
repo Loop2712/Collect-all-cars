@@ -2,6 +2,7 @@
 
 <div class="d-none" id="btn_tel"></div>
 
+<div class="notranslate">
 <!-- SOS ไทย -->
 <div id="sos_TH" class="row d-none" style="margin-top:10px">
     @if( !empty($user->nationalitie) && !empty($nationalitie_tel) && $user->nationalitie != "Thai")
@@ -1041,6 +1042,8 @@
 
 </div>
 <!----- จบ SOS ไต้หวัน -->
+
+</div>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
