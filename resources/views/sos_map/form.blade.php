@@ -1574,7 +1574,7 @@
                     }else{
 
                         // alert('>> else 775 ' + result[ii]['sos_1669_show'] + " <<");
-                        document.querySelector('#btn_tel_1669').classList.remove('d-none');
+                        // document.querySelector('#btn_tel_1669').classList.remove('d-none');
 
                         let check_user_id = '{{ Auth::user()->id }}' ;
                         let check_role = '{{ Auth::user()->role }}' ;
