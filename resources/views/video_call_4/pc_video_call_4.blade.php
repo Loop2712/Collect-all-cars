@@ -944,20 +944,22 @@ switch ($sos_data->status) {
     // var appId = '{{ env("AGORA_APP_ID") }}';
     // var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
 
-    var appId = sessionStorage.getItem('agora_app_id');
-    var appCertificate = sessionStorage.getItem('agora_app_certificate');
-
+    var appId = sessionStorage.getItem('Viicheck001');
+    var appCertificate = sessionStorage.getItem('Viicheck002');
 
     var sos_id = '{{ $sos_id }}';
     var type_video_call = '{{ $type }}';
 
     var remote_in_room = [];
 
-    while (appId.length === 0 || appCertificate.length === 0) {
-        appId = '{{ env("AGORA_APP_ID") }}';
-        appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
-        console.log("เข้า while หา appId and appCertificate");
-    }
+    // while (appId.length === 0 || appCertificate.length === 0) {
+    //     // appId = '{{ env("AGORA_APP_ID") }}';
+    //     // appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+
+    //     appId = '{{ env("AGORA_APP_ID_MITHCARE") }}';
+    //     appCertificate = '{{ env("AGORA_APP_CERTIFICATE_MITHCARE") }}';
+
+    // }
 
     options =
     {
@@ -1689,9 +1691,10 @@ switch ($sos_data->status) {
                 } catch (error) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
+                    alert('ไม่สามารถโหลดข้อมูลกล้องได้ กำลังรีเฟรชหน้าเว็บไซต์');
 
                     setTimeout(() => {
-                        alert('ไม่สามารถโหลดข้อมูลกล้องได้ กรุณารีเฟรชหน้าจอ');
+                        window.location.reload(); // รีเฟรชหน้าเว็บ
                     }, 2000);
 
                 }

@@ -825,7 +825,7 @@
             <div class="card m-4">
                 <div class="neck_sidebar_div p-4 text-center">
                     <p style="font-size: 45px;" class=" mb-1 font-weight-bold text-center">ผู้ขอความช่วยเหลือ</p>
-                    <p style="font-size: 45px;" class="font-weight-bold text-dark">{{$sos_data->name_user ? $sos_data->name_user : "--"}} {{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
+                    <p style="font-size: 45px;" class="font-weight-bold text-dark">{{$sos_data->name_user ? $sos_data->name_user : "--"}}  {{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
                 </div>
             </div>
 
@@ -1116,8 +1116,8 @@
     var user_id = '{{ Auth::user()->id }}';
     var user_data = @json(Auth::user());
 
-    var appId = sessionStorage.getItem('agora_app_id');
-    var appCertificate = sessionStorage.getItem('agora_app_certificate');
+    var appId = sessionStorage.getItem('Viicheck001');
+    var appCertificate = sessionStorage.getItem('Viicheck002');
 
     // var encodedData_appId = localStorage.getItem("agora_app_id");
     // var encodedData_appCertificate = localStorage.getItem("agora_app_certificate");

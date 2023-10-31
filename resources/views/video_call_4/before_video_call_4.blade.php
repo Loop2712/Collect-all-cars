@@ -15,7 +15,7 @@
         flex: 0 0 calc(33.333% - 10px); /* 33.333% is 1/3 of the row width */
     }
 
-    @media screen and (min-width: 1024px)
+    @media screen and (min-width: 1024px) /* โหมดคอมพิวเตอร์ */
     {
         .toggleCameraButton{
             border-radius: 50%;
@@ -40,9 +40,27 @@
         .toggleMicrophoneButton i{
             font-size: 25px;
         }
+
+        .avatar {
+            display: inline-block;
+            border-radius: 50%;
+            overflow: hidden;
+            width: 50px; /* ลดขนาดลง 1 เท่า */
+        }
+
+        .avatar:not(:first-child) {
+            margin-left: -30px; /* ลดขนาด margin ลง 1 เท่า */
+            -webkit-mask: radial-gradient(circle 27.5px at 2.5px 50%, transparent 99%, #fff 100%); /* ลดขนาด radial-gradient ลง 1 เท่า */
+            mask: radial-gradient(circle 27.5px at 2.5px 50%, transparent 99%, #fff 100%); /* ลดขนาด radial-gradient ลง 1 เท่า */
+        }
+
+        .avatar img {
+            width: 100%;
+            display: block;
+        }
     }
 
-    @media screen and (max-width: 1024px)
+    @media screen and (max-width: 1024px) /* โหมดมือถือ */
     {
         .toggleCameraButton{
             border-radius: 50%;
@@ -66,6 +84,25 @@
         }
         .toggleMicrophoneButton i{
             font-size: 50px;
+        }
+
+        .avatar {
+            display: inline-block;
+            border-radius: 50%; /* ให้ครึ่งขนาดของ width */
+            overflow: hidden;
+            width: 75px; /* กำหนด width เป็น 75px */
+        }
+
+        .avatar:not(:first-child) {
+            margin-left: -37.5px; /* ให้ครึ่งขนาดของ width */
+            -webkit-mask: radial-gradient(circle 33.75px at 3.75px 50%, transparent 99%, #fff 100%); /* ให้ครึ่งขนาดของ width */
+            mask: radial-gradient(circle 33.75px at 3.75px 50%, transparent 99%, #fff 100%); /* ให้ครึ่งขนาดของ width */
+        }
+
+
+        .avatar img {
+            width: 100%;
+            display: block;
         }
 
     }
@@ -171,9 +208,12 @@
         }
     }
 
-
+    .font-weight-bold{
+        font-weight: bold !important;
+    }
 
 </style>
+
 <div class="container-before-video-call">
     <div class="nav-bar-video-call">
         <img src="{{ asset('/img/logo/logo-viicheck-outline.png') }}" alt="">
@@ -239,28 +279,54 @@
                 <div id="before_join_message" class="text-center w-100">
                     @if ($type_device == "pc_video_call")
                         <h4 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h4>
-                        <h5 class="w-100">{{Auth::user()->name}}</h5>
+                        <div class="avatars">
+                            <span class="avatar">
+                                <img src="https://picsum.photos/70">
+                            </span>
+                            <span class="avatar">
+                                <img src="https://picsum.photos/80">
+                            </span>
+                            <span class="avatar">
+                                <img src="https://picsum.photos/90">
+                            </span>
+                        </div>
+                        <h5 class="w-100">{{Auth::user()->name}} และอีก 2 คนในห้องสนทนา</h5>
                         @php
-                            $inRoomPeople = 0;
+                            $inRoomPeople = 4;
                         @endphp
                         @if ($inRoomPeople < 4)
+                            <br>
                             <a id="btnJoinRoom" class="btn btn-success" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
                                 เข้าร่วมห้องสนทนา
                             </a>
                         @else
+                            <br>
                             <a id="btnJoinRoom" class="btn btn-success" onclick="AlertPeopleInRoom()">เข้าร่วมห้องสนทนา</a>
                         @endif
                     @else
-                        <h2 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h2>
-                        <h3 class="w-100">{{Auth::user()->name}}</h3>
+                        <h1 class="w-100 font-weight-bold">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h1>
+                        <div class="avatars">
+                            <span class="avatar">
+                                <img src="https://picsum.photos/70">
+                            </span>
+                            <span class="avatar">
+                                <img src="https://picsum.photos/80">
+                            </span>
+                            <span class="avatar">
+                                <img src="https://picsum.photos/90">
+                            </span>
+                        </div>
+                        <h2 class="w-100">{{Auth::user()->name}} และอีก 2 คนในห้องสนทนา</h2>
                         @php
                             $inRoomPeople = 0;
                         @endphp
                         @if ($inRoomPeople < 4)
+                            <br>
                             <a style="font-size: 40px; border-radius: 10px;" id="btnJoinRoom" class="btn btn-success " href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
                                 เข้าร่วมห้องสนทนา
                             </a>
                         @else
+                            <br>
                             <a style="font-size: 40px; border-radius: 10px;" id="btnJoinRoom" class="btn btn-success" onclick="AlertPeopleInRoom()">เข้าร่วมห้องสนทนา</a>
                         @endif
                     @endif
@@ -313,8 +379,10 @@
             let amount_loop = 7;
             for (let amount = 0; amount < amount_loop; amount++) {
                 if (agoraAppId.length === 0 || agoraAppCertificate.length === 0) {
-                    agoraAppId = '{{ env("AGORA_APP_ID") }}';
-                    agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+
+                    agoraAppId = '{{ env("AGORA_APP_ID_MITHCARE") }}';
+                    agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE_MITHCARE") }}';
+
                 }
             }
 
@@ -331,8 +399,8 @@
         function saveAgoraKeys() {
             const keys = retrieveAgoraKeys();
 
-            sessionStorage.setItem('agora_app_id', keys.agoraAppId);
-            sessionStorage.setItem('agora_app_certificate', keys.agoraAppCertificate);
+            sessionStorage.setItem('Viicheck001', keys.agoraAppId);
+            sessionStorage.setItem('Viicheck002', keys.agoraAppCertificate);
         }
 
         saveAgoraKeys();
@@ -878,7 +946,6 @@
 </script> --}}
 
 <script>
-
     let beforeJoinMessage = document.getElementById('before_join_message');
     function AlertPeopleInRoom() {
         console.log("AlertPeopleInRoom");
@@ -895,11 +962,7 @@
                 aElement.remove(); // ลบ element ที่ถูกสร้างขึ้น
             }, 3000);
         }
-
-
     }
-
-
 </script>
 
 
