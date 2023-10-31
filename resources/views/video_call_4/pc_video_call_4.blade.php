@@ -400,6 +400,16 @@
             background-color: #292828; /* Discord's color */
         }
 
+        .time_of_room{
+            position: absolute;
+            padding: 5px;
+            border-radius: 10px;
+            bottom: 1%;
+            right: 1%;
+            background-color: #292828; /* Discord's color */
+            color: #ffffff;
+        }
+
 
         .btnSpecial i{
             color: #ffffff;
@@ -819,6 +829,7 @@ switch ($sos_data->status) {
 
         <div class="d-flex overflow_auto_video_call row py-3" style="background-color: #2b2d31;">
 				<div id="" class="align-self-end w-100">
+                    <span id="time_of_room" class="time_of_room" style="font-size: 1em;">--</span>
                     <div class="row d-flex justify-content-center">
                         <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
                         <div id="div_for_AudioButton" class="btn btnSpecial " >
@@ -947,9 +958,8 @@ switch ($sos_data->status) {
     var appId = '{{ env("AGORA_APP_ID_MITHCARE") }}';
     var appCertificate = '{{ env("AGORA_APP_CERTIFICATE_MITHCARE") }}';
 
-
     if (appId.length === 0 || appCertificate.length === 0) {
-        let loop7 = 5;
+        let loop7 = 7;
         for (let index = 0; index < loop7; index++) {
             appId = '{{ env("AGORA_APP_ID_MITHCARE") }}';
             appCertificate = '{{ env("AGORA_APP_CERTIFICATE_MITHCARE") }}';
@@ -983,10 +993,6 @@ switch ($sos_data->status) {
         fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + options.uid + "&type=" + type_video_call + "&sos_id=" + sos_id)
             .then(response => response.json())
             .then(result => {
-
-                console.log("result local_data_4");
-                console.log(result);
-
                 bg_local = result.hexcolor;
 
                 name_local = result.name_user;
@@ -1208,8 +1214,12 @@ switch ($sos_data->status) {
         {
             await agoraEngine.subscribe(user, mediaType);
             console.log("subscribe success");
-            console.log("user");
-            console.log(user);
+            // console.log("user");
+            // console.log(user);
+
+            setTimeout(() => {
+                StatsVideoUpdate();
+            }, 2500);
 
             // Set the remote video container size.
             remotePlayerContainer[user.uid] = document.createElement("div");
@@ -1576,6 +1586,11 @@ switch ($sos_data->status) {
         // local_join
         window.onload = function ()
         {
+            let people4 = 2;
+            if (people4 >= 4) {
+                alert("จำนวนผู้ใช้ในห้องสนทนาสูงสุดแล้ว");
+                window.history.back();
+            }
             // Listen to the Join button click event.
             document.getElementById("join").onclick = async function (user_id)
             {
@@ -1683,10 +1698,11 @@ switch ($sos_data->status) {
 
                     // Publish the local audio and video tracks in the channel.
                     await agoraEngine.publish([channelParameters.localVideoTrack]);
+                    StatsVideoUpdate();
                 } catch (error) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
-                    alert('ไม่สามารถโหลดข้อมูลกล้องได้ กำลังรีเฟรชหน้าเว็บไซต์');
+                    alert('ไม่สามารถโหลดข้อมูลกล้องได้ รีเฟรชหน้าเว็บไซต์');
 
                     setTimeout(() => {
                         window.location.reload(); // รีเฟรชหน้าเว็บ
@@ -2514,18 +2530,18 @@ switch ($sos_data->status) {
 		statusInputOutputDiv.appendChild(cameraDiv);
 
 		let infomationUserDiv = document.createElement("div");
-		infomationUserDiv.className = "infomation-user";
+		// infomationUserDiv.className = "infomation-user";
 
-		let nameUserVideoCallDiv = document.createElement("div");
-		nameUserVideoCallDiv.className = "name-user-video-call";
-		nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>lucky</b></h5>';
+		// let nameUserVideoCallDiv = document.createElement("div");
+		// nameUserVideoCallDiv.className = "name-user-video-call";
+		// nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>lucky</b></h5>';
 
-		let roleUserVideoCallDiv = document.createElement("div");
-		roleUserVideoCallDiv.className = "role-user-video-call";
-		roleUserVideoCallDiv.innerHTML = '<small class="d-block">ศูนย์สั่งการ</small>';
+		// let roleUserVideoCallDiv = document.createElement("div");
+		// roleUserVideoCallDiv.className = "role-user-video-call";
+		// roleUserVideoCallDiv.innerHTML = '<small class="d-block">ศูนย์สั่งการ</small>';
 
-		infomationUserDiv.appendChild(nameUserVideoCallDiv);
-		infomationUserDiv.appendChild(roleUserVideoCallDiv);
+		// infomationUserDiv.appendChild(nameUserVideoCallDiv);
+		// infomationUserDiv.appendChild(roleUserVideoCallDiv);
 
 		// เพิ่ม div ด้านในลงใน div หลัก
 		newDiv.appendChild(statusInputOutputDiv);
@@ -2877,6 +2893,57 @@ switch ($sos_data->status) {
                 }
             }, 10000);
         });
+    }
+
+    function StatsVideoUpdate(){
+        // fetch("{{ url('/') }}/api/check_status_sos_video_call" + "?sos_id="+'{{ $sos_data->id }}')
+        //     .then(response => response.text())
+        //     .then(result => {
+                setInterval(() => {
+                    let time_of_room = document.getElementById("time_of_room");
+                    // วันที่และเวลาปัจจุบัน
+                    let currentDate = new Date();
+                    let currentTime = currentDate.getTime();
+
+                    // วันที่และเวลาที่กำหนด
+                    // let targetDate = new Date(response['data']);
+                    let targetDate = new Date('2023-10-31T10:30:00');
+                    let targetTime = targetDate.getTime();
+
+                    // คำนวณเวลาที่ผ่านไปในมิลลิวินาที
+                    let elapsedTime = currentTime - targetTime;
+                    let elapsedMinutes = Math.floor(elapsedTime / (1000 * 60));
+
+                    // แปลงเวลาที่ผ่านไปให้เป็นรูปแบบชั่วโมง:นาที:วินาที
+                    let hours = Math.floor(elapsedMinutes / 60);
+                    let minutes = elapsedMinutes % 60;
+                    let seconds = Math.floor((elapsedTime / 1000) % 60);
+                    let minsec = minutes + '.' + seconds;
+
+                    // console.log(minsec);
+                    // console.log(typeof(minsec));
+
+                    let showTimeCountVideo;
+
+                    // แสดงผลลัพธ์
+                    if (hours > 0) {
+                        if (minutes < 10) {  // ใส่ 0 ข้างหน้า นาที กรณีเลขยังไม่ถึง 10
+                            showTimeCountVideo = hours + ':' + '0' + minutes + ':' + seconds + "&nbsp;/ 10 นาที";
+                        }else{
+                            showTimeCountVideo = hours + ':' + minutes + ':' + seconds + "&nbsp;/ 10 นาที";
+                        }
+                    } else {
+                        if(seconds < 10){  // ใส่ 0 ข้างหน้า วินาที กรณีเลขยังไม่ถึง 10
+                            showTimeCountVideo =  minutes + ':' + '0' + seconds + "&nbsp;/ 10 นาที";
+                        }else{
+                            showTimeCountVideo = minutes + ':' + seconds + "&nbsp;/ 10 นาที";
+                        }
+                    }
+
+                    // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
+                    time_of_room.innerHTML = '<i class="fa-regular fa-clock fa-fade" style="color: #11b06b; font-size: 16px;"></i>&nbsp;' + ": " + showTimeCountVideo;
+                }, 1000);
+            // });
     }
 
 </script>

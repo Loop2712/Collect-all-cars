@@ -925,16 +925,16 @@
                                 <a href="{{ url('/dashboard_index#dashboard_user') }}"><i class='fas fa-users-cog'></i>User</a>
                             </li>
                             <li>
-                                <a href="{{ url('/dashboard_index#dashboard_viisos') }}"><i class='fas fa-users-cog'></i>ViiSOS</a>
+                                <a href="{{ url('/dashboard_index#dashboard_viisos') }}"><i class='fas fa-siren-on'></i>ViiSOS</a>
                             </li>
                             <li>
-                                <a href="{{ url('/dashboard_index#dashboard_viinews') }}"><i class='fas fa-users-cog'></i>ViiNews</a>
+                                <a href="{{ url('/dashboard_index#dashboard_viinews') }}"><i class="fa-solid fa-newspaper"></i>ViiNews</a>
                             </li>
                             <li>
-                                <a href="{{ url('/dashboard_index#dashboard_viimove') }}"><i class='fas fa-users-cog'></i>ViiMove</a>
+                                <a href="{{ url('/dashboard_index#dashboard_viimove') }}"><i class="fa-duotone fa-car"></i>ViiMove</a>
                             </li>
                             <li>
-                                <a href="{{ url('/dashboard_index#dashboard_boardcast') }}"><i class='fas fa-users-cog'></i>Broadcast</a>
+                                <a href="{{ url('/dashboard_index#dashboard_boardcast') }}"><i class='fas fa-bullhorn'></i>Broadcast</a>
                             </li>
                         </ul>
                     </li>
@@ -2601,7 +2601,7 @@
 <script src="{{ asset('partner_new/plugins/highcharts/js/variable-pie.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/highcharts/js/export-data.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/highcharts/js/accessibility.js') }}"></script>
-<script src="{{ asset('partner_new/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script><!-- apexcharts -->
 <script src="{{ asset('partner_new/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('partner_new/plugins/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>

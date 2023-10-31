@@ -296,7 +296,7 @@
                         @endphp
                         @if ($inRoomPeople < 4)
                             <br>
-                            <a id="btnJoinRoom" class="btn btn-success" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
+                            <a id="btnJoinRoom" class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
                                 เข้าร่วมห้องสนทนา
                             </a>
                             <a id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
@@ -305,7 +305,7 @@
                             <a id="btnJoinRoom" class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
                                 เข้าร่วมห้องสนทนา
                             </a>
-                            <a id="full_room" class="btn btn-secondary" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
+                            <a id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
                         @endif
                     @else
                         <h1 class="w-100 font-weight-bold">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h1>
@@ -326,7 +326,7 @@
                         @endphp
                         @if ($inRoomPeople < 4)
                             <br>
-                            <a style="font-size: 40px; border-radius: 10px;" id="btnJoinRoom" class="btn btn-success " href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
+                            <a style="font-size: 40px; border-radius: 10px;" id="btnJoinRoom" class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
                                 เข้าร่วมห้องสนทนา
                             </a>
                             <a style="font-size: 40px; border-radius: 10px;" id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
@@ -335,7 +335,7 @@
                             <a id="btnJoinRoom"  class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
                                 เข้าร่วมห้องสนทนา
                             </a>
-                            <a style="font-size: 40px; border-radius: 10px;" id="full_room" class="btn btn-secondary" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
+                            <a style="font-size: 40px; border-radius: 10px;" id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
                         @endif
                     @endif
 
@@ -382,44 +382,7 @@
     document.addEventListener("DOMContentLoaded", async () => {
         // เรียกใช้ฟังก์ชันเมื่อหน้าเว็บโหลด
 
-        // ============   บันทึก ข้อมูลลง session storage   ================
-        function retrieveAgoraKeys() {
-            let agoraAppId = '';
-            let agoraAppCertificate = '';
-            // ตรวจสอบว่าคีย์และรหัสลับมีค่าความยาวมากกว่า 0 หรือไม่
-            let amount_loop = 7;
-            for (let amount = 0; amount < amount_loop; amount++) {
-                if (agoraAppId.length === 0 || agoraAppCertificate.length === 0) {
-
-                    agoraAppId = '{{ env("AGORA_APP_ID_MITHCARE") }}';
-                    agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE_MITHCARE") }}';
-
-                }
-            }
-
-            // agoraAppId = '{{ env("AGORA_APP_ID") }}';
-            // agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
-
-            // agoraAppId = btoa(agoraAppId);
-            // agoraAppCertificate = btoa(agoraAppCertificate);
-
-            return { agoraAppId, agoraAppCertificate };
-        }
-
-        // สร้างฟังก์ชันสำหรับบันทึกคีย์และรหัสลับลงใน sessionStorage
-        function saveAgoraKeys() {
-            const keys = retrieveAgoraKeys();
-
-            sessionStorage.setItem('Viicheck001', keys.agoraAppId);
-            sessionStorage.setItem('Viicheck002', keys.agoraAppCertificate);
-        }
-
-        saveAgoraKeys();
-
-        // ============   จบส่วน บันทึก ข้อมูลลง session storage   ================
-
         // ============   เช็คคนในห้องสนทนาก่อนเข้าร่วม   ================
-
         Check_video_call_room();
         // ============  จบส่วน เช็คคนในห้องสนทนาก่อนเข้าร่วม   ================
 

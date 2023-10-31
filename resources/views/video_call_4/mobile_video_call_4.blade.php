@@ -670,7 +670,7 @@
                 @else
                     <span class="m-2" id="status_of_Room">สถานะ : <b class="text-dark">--</b></span>
                 @endif
-                <span class="m-2">เวลาห้องสนทนา : -- </span>
+                <span id="time_of_room" class="m-2"></span>
             </p>
 
             @if ($role_permission !== 'help_seeker')
@@ -1123,7 +1123,7 @@
     var appCertificate = '{{ env("AGORA_APP_CERTIFICATE_MITHCARE") }}';
 
     if (appId.length === 0 || appCertificate.length === 0) {
-        let loop7 = 5;
+        let loop7 = 7;
         for (let index = 0; index < loop7; index++) {
             appId = '{{ env("AGORA_APP_ID_MITHCARE") }}';
             appCertificate = '{{ env("AGORA_APP_CERTIFICATE_MITHCARE") }}';
@@ -1156,9 +1156,6 @@
         fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + options.uid + "&type=" + type_video_call + "&sos_id=" + sos_id)
             .then(response => response.json())
             .then(result => {
-
-                console.log("result local_data_4");
-                console.log(result);
 
                 bg_local = result.hexcolor;
 
@@ -1381,8 +1378,12 @@
         {
             await agoraEngine.subscribe(user, mediaType);
             console.log("subscribe success");
-            console.log("user");
-            console.log(user);
+            // console.log("user");
+            // console.log(user);
+
+            setTimeout(() => {
+                StatsVideoUpdate();
+            }, 2500);
 
             // Set the remote video container size.
             remotePlayerContainer[user.uid] = document.createElement("div");
@@ -1745,6 +1746,11 @@
         // local_join
         window.onload = function ()
         {
+            let people4 = 3;
+            if (people4 >= 4) {
+                alert("จำนวนผู้ใช้ในห้องสนทนาสูงสุดแล้ว");
+                window.history.back();
+            }
             // Listen to the Join button click event.
             document.getElementById("join").onclick = async function (user_id)
             {
@@ -1852,12 +1858,14 @@
 
                     // Publish the local audio and video tracks in the channel.
                     await agoraEngine.publish([channelParameters.localVideoTrack]);
+                    StatsVideoUpdate();
                 } catch (error) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
+                    alert('ไม่สามารถโหลดข้อมูลกล้องได้ รีเฟรชหน้าเว็บไซต์');
 
                     setTimeout(() => {
-                        alert('ไม่สามารถโหลดข้อมูลกล้องได้ กรุณารีเฟรชหน้าจอ');
+                        window.location.reload(); // รีเฟรชหน้าเว็บ
                     }, 2000);
 
                 }
@@ -3619,30 +3627,30 @@
 
     function check_status_sos(){
         fetch("{{ url('/') }}/api/check_status_sos_video_call" + "?sos_id="+'{{ $sos_data->id }}')
-                .then(response => response.text())
-                .then(result => {
-                    // console.log(result);
-                    if(result === "yes"){
-                        let html = `
-                                <b>
-                                    <span class="d-block" style="color: #ffffff; font-size: 40px;">ส่งต่อ 1669 แล้ว</span>
-                                </b>
-                            `;
-                            document.querySelector('#content_1669').innerHTML = html ;
-                            document.querySelector('#btn_ask_1669').setAttribute('onclick' ,"");
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+                if(result === "yes"){
+                    let html = `
+                            <b>
+                                <span class="d-block" style="color: #ffffff; font-size: 40px;">ส่งต่อ 1669 แล้ว</span>
+                            </b>
+                        `;
+                        document.querySelector('#content_1669').innerHTML = html ;
+                        document.querySelector('#btn_ask_1669').setAttribute('onclick' ,"");
 
-                            document.querySelector('#status_of_Room').innerHTML = 'สถานะ : <b class="text-success">เสร็จสิ้น</b>';
-                            document.querySelector('#alert_text').innerHTML = "ส่งต่อ 1669 เรียบร้อยแล้ว";
-                            document.querySelector('#alert_copy').classList.add('up_down');
+                        document.querySelector('#status_of_Room').innerHTML = 'สถานะ : <b class="text-success">เสร็จสิ้น</b>';
+                        document.querySelector('#alert_text').innerHTML = "ส่งต่อ 1669 เรียบร้อยแล้ว";
+                        document.querySelector('#alert_copy').classList.add('up_down');
 
-                            const animated = document.querySelector('.up_down');
-                            animated.onanimationend = () => {
-                                document.querySelector('#alert_copy').classList.remove('up_down');
-                            };
+                        const animated = document.querySelector('.up_down');
+                        animated.onanimationend = () => {
+                            document.querySelector('#alert_copy').classList.remove('up_down');
+                        };
 
-                        check_status_done = 'yes';
-                    }
-                });
+                    check_status_done = 'yes';
+                }
+            });
     }
 
     if(type_video_call == "sos_map"){
@@ -3654,6 +3662,57 @@
                 }
             }, 10000);
         });
+    }
+
+    function StatsVideoUpdate(){
+        // fetch("{{ url('/') }}/api/check_status_sos_video_call" + "?sos_id="+'{{ $sos_data->id }}')
+        //     .then(response => response.text())
+        //     .then(result => {
+                setInterval(() => {
+                    let time_of_room = document.getElementById("time_of_room");
+                    // วันที่และเวลาปัจจุบัน
+                    let currentDate = new Date();
+                    let currentTime = currentDate.getTime();
+
+                    // วันที่และเวลาที่กำหนด
+                    // let targetDate = new Date(response['data']);
+                    let targetDate = new Date('2023-10-31T10:30:00');
+                    let targetTime = targetDate.getTime();
+
+                    // คำนวณเวลาที่ผ่านไปในมิลลิวินาที
+                    let elapsedTime = currentTime - targetTime;
+                    let elapsedMinutes = Math.floor(elapsedTime / (1000 * 60));
+
+                    // แปลงเวลาที่ผ่านไปให้เป็นรูปแบบชั่วโมง:นาที:วินาที
+                    let hours = Math.floor(elapsedMinutes / 60);
+                    let minutes = elapsedMinutes % 60;
+                    let seconds = Math.floor((elapsedTime / 1000) % 60);
+                    let minsec = minutes + '.' + seconds;
+
+                    // console.log(minsec);
+                    // console.log(typeof(minsec));
+
+                    let showTimeCountVideo;
+
+                    // แสดงผลลัพธ์
+                    if (hours > 0) {
+                        if (minutes < 10) {  // ใส่ 0 ข้างหน้า นาที กรณีเลขยังไม่ถึง 10
+                            showTimeCountVideo = hours + ':' + '0' + minutes + ':' + seconds + "&nbsp;/ 10 นาที";
+                        }else{
+                            showTimeCountVideo = hours + ':' + minutes + ':' + seconds + "&nbsp;/ 10 นาที";
+                        }
+                    } else {
+                        if(seconds < 10){  // ใส่ 0 ข้างหน้า วินาที กรณีเลขยังไม่ถึง 10
+                            showTimeCountVideo =  minutes + ':' + '0' + seconds + "&nbsp;/ 10 นาที";
+                        }else{
+                            showTimeCountVideo = minutes + ':' + seconds + "&nbsp;/ 10 นาที";
+                        }
+                    }
+
+                    // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
+                    time_of_room.innerHTML = '<i class="fa-regular fa-clock fa-fade" style="color: #11b06b; font-size: 30px;"></i>&nbsp;' + ": " + showTimeCountVideo;
+                }, 1000);
+            // });
     }
 </script>
 
