@@ -299,9 +299,13 @@
                             <a id="btnJoinRoom" class="btn btn-success" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
                                 เข้าร่วมห้องสนทนา
                             </a>
+                            <a id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
                         @else
                             <br>
-                            <a id="btnJoinRoom" class="btn btn-success" onclick="AlertPeopleInRoom()">เข้าร่วมห้องสนทนา</a>
+                            <a id="btnJoinRoom" class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
+                                เข้าร่วมห้องสนทนา
+                            </a>
+                            <a id="full_room" class="btn btn-secondary" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
                         @endif
                     @else
                         <h1 class="w-100 font-weight-bold">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h1>
@@ -325,9 +329,13 @@
                             <a style="font-size: 40px; border-radius: 10px;" id="btnJoinRoom" class="btn btn-success " href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
                                 เข้าร่วมห้องสนทนา
                             </a>
+                            <a style="font-size: 40px; border-radius: 10px;" id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
                         @else
                             <br>
-                            <a style="font-size: 40px; border-radius: 10px;" id="btnJoinRoom" class="btn btn-success" onclick="AlertPeopleInRoom()">เข้าร่วมห้องสนทนา</a>
+                            <a id="btnJoinRoom"  class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
+                                เข้าร่วมห้องสนทนา
+                            </a>
+                            <a style="font-size: 40px; border-radius: 10px;" id="full_room" class="btn btn-secondary" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
                         @endif
                     @endif
 
@@ -358,6 +366,7 @@
     // var appCertificate = localStorage.getItem('appCertificate');
 
     var sos_id = '{{ $sos_id }}'
+    var type_sos = '{{ $type }}'
     var consult_doctor_id = '{{ $consult_doctor_id }}'
 
     var selectedMicrophone = null;
@@ -369,9 +378,11 @@
 </script>
 
 <script>
+
     document.addEventListener("DOMContentLoaded", async () => {
         // เรียกใช้ฟังก์ชันเมื่อหน้าเว็บโหลด
 
+        // ============   บันทึก ข้อมูลลง session storage   ================
         function retrieveAgoraKeys() {
             let agoraAppId = '';
             let agoraAppCertificate = '';
@@ -405,25 +416,17 @@
 
         saveAgoraKeys();
 
+        // ============   จบส่วน บันทึก ข้อมูลลง session storage   ================
+
+        // ============   เช็คคนในห้องสนทนาก่อนเข้าร่วม   ================
+
+        Check_video_call_room();
+        // ============  จบส่วน เช็คคนในห้องสนทนาก่อนเข้าร่วม   ================
+
         const microphoneList = document.getElementById("microphoneList");
         const cameraList = document.getElementById("cameraList");
 
         startMicrophone();
-
-        // fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_1669_id=" + sos_1669_id)
-        // .then(response => response.json())
-        // .then(result => {
-        //     // console.log('check_user_in_room');
-        //     // console.log(result);
-        //     // console.log('-------------------------------------');
-
-        //     if(result['data'] != 'ไม่มีข้อมูล'){
-        //         console.log(result['data']);
-        //     }else{
-        //         console.log(result['data_agora']);
-        //     }
-
-        // });
 
         // เรียกฟังก์ชันเพื่อรับรายการอุปกรณ์
         await getDeviceList();
@@ -948,13 +951,18 @@
 <script>
     let beforeJoinMessage = document.getElementById('before_join_message');
     function AlertPeopleInRoom() {
-        console.log("AlertPeopleInRoom");
+        let type_device = '{{ $type_device }}';
 
         if (!document.querySelector('.text_warning_fade_out')) {
             // ถ้าไม่มีให้สร้าง element ใหม่
             let aElement = document.createElement('a');
-            aElement.setAttribute('class', 'text-danger text_warning_fade_out d-block');
-            aElement.textContent = 'ห้องสนทนานี้มีผู้ใช้สูงสุดแล้ว';
+                aElement.textContent = 'ห้องสนทนานี้มีผู้ใช้สูงสุดแล้ว';
+            if (type_device == "pc_video_call") {
+                aElement.setAttribute('class', 'text-danger text_warning_fade_out d-block');
+            } else {
+                aElement.setAttribute('class', 'text-danger text_warning_fade_out d-block');
+                aElement.setAttribute('style', 'font-size: 35px;');
+            }
 
             beforeJoinMessage.insertAdjacentElement('beforeend', aElement);
 
@@ -963,6 +971,45 @@
             }, 3000);
         }
     }
+
+    function Check_video_call_room(){
+        fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_id=" + sos_id + "&type=" + type_sos)
+        .then(response => response.text())
+        .then(result => {
+            if(result === "ok"){
+                document.querySelector('#btnJoinRoom').classList.remove('d-none');
+                document.querySelector('#full_room').classList.add('d-none');
+
+                // if (!document.querySelector('#btnJoinRoom')) {
+                //     document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
+
+                // }
+
+                // if (document.querySelector('#full_room')) {
+                //     document.querySelector('#full_room').remove();
+                // }
+            }else{
+                document.querySelector('#btnJoinRoom').classList.add('d-none');
+                document.querySelector('#full_room').classList.remove('d-none');
+                // if (document.querySelector('#btnJoinRoom')) {
+                //     document.querySelector('#btnJoinRoom').remove();
+                // }
+
+                // if(!document.querySelector('#full_room')){
+                //     document.querySelector('#full_room').innerHTML = '<a id="full_room" class="btn btn-secondary" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>';
+                // }
+            }
+
+        });
+    }
+
+    window.addEventListener('load', () => {
+        // เรียกฟังก์ชัน check_status_sos() ทุก 10 วินาที
+        setInterval(() => {
+            Check_video_call_room();
+        }, 5000);
+    });
+
 </script>
 
 

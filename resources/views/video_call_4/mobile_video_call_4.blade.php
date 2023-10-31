@@ -1116,32 +1116,19 @@
     var user_id = '{{ Auth::user()->id }}';
     var user_data = @json(Auth::user());
 
-    var appId = sessionStorage.getItem('Viicheck001');
-    var appCertificate = sessionStorage.getItem('Viicheck002');
-
-    // var encodedData_appId = localStorage.getItem("agora_app_id");
-    // var encodedData_appCertificate = localStorage.getItem("agora_app_certificate");
-
-    // console.log("Session HERE");
-    // console.log(encodedData_appId);
-    // console.log(encodedData_appCertificate);
-
-    // var appId = atob(encodedData_appId);
-    // var appCertificate = atob(encodedData_appCertificate);
-
-    // console.log("Session HERE");
-    // console.log(appId);
-    // console.log(appCertificate);
-
     var sos_id = '{{ $sos_id }}';
     var type_video_call = '{{ $type }}';
-    var remote_in_room = [];
 
-    // while (appId.length === 0 || appCertificate.length === 0) {
-    //     appId = '{{ env("AGORA_APP_ID") }}';
-    //     appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
-    //     console.log("เข้า while หา appId and appCertificate");
-    // }
+    var appId = '{{ env("AGORA_APP_ID_MITHCARE") }}';
+    var appCertificate = '{{ env("AGORA_APP_CERTIFICATE_MITHCARE") }}';
+
+    if (appId.length === 0 || appCertificate.length === 0) {
+        let loop7 = 5;
+        for (let index = 0; index < loop7; index++) {
+            appId = '{{ env("AGORA_APP_ID_MITHCARE") }}';
+            appCertificate = '{{ env("AGORA_APP_CERTIFICATE_MITHCARE") }}';
+        }
+    }
 
     options =
     {

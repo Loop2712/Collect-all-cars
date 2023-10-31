@@ -434,7 +434,24 @@ class Agora_4_Controller extends Controller
 
     function check_user_in_room_4(Request $request)
     {
-       //
+        $sos_id = $request->sos_id;
+        $type_sos = $request->type;
+
+        if($type_sos == 'sos_1669'){
+            $type_text = "meet_operating_1669";
+        }else{
+            $type_text = "sos_map";
+        }
+
+        $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , $type_text)->first();
+
+        if($agora_chat->member_in_room < 4){
+            $check_status = "ok";
+        }else{
+            $check_status = "no";
+        }
+
+        return $check_status;
     }
 
     function search_phone_niems($cityName){
@@ -474,6 +491,5 @@ class Agora_4_Controller extends Controller
         }
 
     }
-
 
 }
