@@ -541,27 +541,26 @@ class Partner_DashboardController extends Controller
         $all_show_user = Ads_content::where('name_partner',$user_login->organization)
         ->get();
 
-        // broadcast ที่ส่งเยอะที่สุด
+        // broadcast ที่ส่ง
         $most_send_round = Ads_content::where('name_partner', $user_login->organization)
         ->where('send_round', $all_show_user->max('send_round'))
         ->first();
 
+        // broadcast ที่ส่งหาผู้ใช้ทั้งหมด และ ส่งหาผู้ใช้แบบไม่ซ้ำทั้งหมด
         for ($i=0; $i < count($all_show_user); $i++) {
             if(!empty($all_show_user[$i]['show_user'])){
                 $all_Explode = json_decode($all_show_user[$i]['show_user']);
 
-                $counts = array_count_values($all_Explode);
-
+                $counts = array_count_values($all_Explode); // นับโดยสนคนซ้ำ
                 $all_counts = 0;
                 foreach ($counts as $key) {
                     $all_counts++;
                 }
 
-                $all_show_user[$i]['count_show_user'] = $all_counts;
+                $all_show_user[$i]['count_show_user'] = $all_counts; // ส่งหาผู้ใช้แบบไม่ซ้ำทั้งหมด
             }else{
                 $all_show_user[$i]['count_show_user'] = 0;
             }
-
         }
 
         $show_user_maxCount = 0; // ระบุค่าสูงสุดเริ่มต้น
@@ -576,21 +575,24 @@ class Partner_DashboardController extends Controller
                 }
             }
         }
-
+        // broadcast ที่มีคนดู
         for ($i=0; $i < count($all_show_user); $i++) {
             if(!empty($all_show_user[$i]['user_click'])){
                 $user_click_Explode = json_decode($all_show_user[$i]['user_click']);
 
-                $count_user_click = array_count_values($user_click_Explode);
+                $counts_amount_user_click = count($user_click_Explode); // จำนวนคนคลิ๊ก โดยไม่สนคนซ้ำ
 
+                $count_user_click = array_count_values($user_click_Explode); // จำนวนคนคลิ๊ก โดยสนคนซ้ำ
                 $user_click = 0;
                 foreach ($count_user_click as $key) {
                     $user_click++;
                 }
 
-                $all_show_user[$i]['count_user_click'] = $user_click;
+                $all_show_user[$i]['count_user_click'] = $user_click;  // จำนวนคนคลิ๊ก แบบไม่รวมคนซ้ำ
+                $all_show_user[$i]['count_amount_user_click'] = $counts_amount_user_click; // จำนวนคนคลิ๊ก แบบรวมคนซ้ำ
             }else{
                 $all_show_user[$i]['count_user_click'] = 0;
+                $all_show_user[$i]['count_amount_user_click'] = 0;
             }
         }
 
@@ -606,6 +608,20 @@ class Partner_DashboardController extends Controller
                 }
             }
         }
+
+        $user_click_maxCount_2 = 0; // ระบุค่าสูงสุดเริ่มต้น
+        $most_amount_user_click = null; // ระบุตัวแปรเพื่อเก็บผลลัพธ์
+
+        //หา count_user_click ที่มีค่าสูงสุด
+        foreach ($all_show_user as $item3) {
+            if(!empty($item3['count_amount_user_click'])){
+                if ($item3['count_amount_user_click'] > $user_click_maxCount_2) {
+                    $user_click_maxCount_2 = $item3['count_amount_user_click'];
+                    $most_amount_user_click = $item3;
+                }
+            }
+        }
+
 
         $count_all_content = Ads_content::where('name_partner',$user_login->organization)
         ->count();
@@ -633,14 +649,13 @@ class Partner_DashboardController extends Controller
             if(!empty($all_by_checkin_show_user[$i]['show_user'])){
                 $all_by_checkin_Explode = json_decode($all_by_checkin_show_user[$i]['show_user']);
 
-                $counts = array_count_values($all_by_checkin_Explode);
-
+                $counts = array_count_values($all_by_checkin_Explode);// นับโดยสนคนซ้ำ
                 $all_by_checkin_counts = 0;
                 foreach ($counts as $key) {
                     $all_by_checkin_counts++;
                 }
 
-                $all_by_checkin_show_user[$i]['count_show_user'] = $all_by_checkin_counts;
+                $all_by_checkin_show_user[$i]['count_show_user'] = $all_by_checkin_counts; // ส่งหาผู้ใช้แบบไม่ซ้ำ เฉพาะ by_checkin
             }else{
                 $all_by_checkin_show_user[$i]['count_show_user'] = 0;
             }
@@ -668,22 +683,30 @@ class Partner_DashboardController extends Controller
             if(!empty($all_by_checkin_user_click[$i]['user_click'])){
                 $user_click_Explode = json_decode($all_by_checkin_user_click[$i]['user_click']);
 
-                $count_user_click = array_count_values($user_click_Explode);
+                $counts_by_checkin_user_click = count($user_click_Explode); // นับโดยไม่สนคนซ้ำ
 
+                $count_user_click = array_count_values($user_click_Explode); // นับโดยสนคนซ้ำ
                 $checkin_user_click = 0;
                 foreach ($count_user_click as $key) {
                     $checkin_user_click++;
                 }
 
-                $all_by_checkin_user_click[$i]['count_user_click'] = $checkin_user_click;
+                $all_by_checkin_user_click[$i]['count_user_click'] = $checkin_user_click; // จำนวนผู้ใช้ที่คลิ๊กแบบไม่ซ้ำ เฉพาะ by_checkin
+                $all_by_checkin_user_click[$i]['count_amount_user_click'] = $counts_by_checkin_user_click; // จำนวนผู้ใช้ที่คลิ๊ก เฉพาะ by_checkin
             }else{
                 $all_by_checkin_user_click[$i]['count_user_click'] = 0;
+                $all_by_checkin_user_click[$i]['count_amount_user_click'] = 0;
             }
 
         }
         // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
         $sorted_all_by_checkin_user_click = $all_by_checkin_user_click->sortByDesc(function ($item) {
             return $item->count_user_click;
+        })->take(5);
+
+        // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
+        $sorted_all_by_checkin_amount_user_click = $all_by_checkin_user_click->sortByDesc(function ($item) {
+            return $item->count_amount_user_click;
         })->take(5);
 
         // ======================== by_car =============================
@@ -697,16 +720,19 @@ class Partner_DashboardController extends Controller
             if(!empty($all_by_car_show_user[$i]['show_user'])){
                 $all_by_car_Explode = json_decode($all_by_car_show_user[$i]['show_user']);
 
-                $counts = array_count_values($all_by_car_Explode);
+                $counts_by_car_amount = count($all_by_car_Explode); // นับโดยไม่สนคนซ้ำ
 
+                $counts = array_count_values($all_by_car_Explode); // นับโดยสนคนซ้ำ
                 $all_by_car_counts = 0;
                 foreach ($counts as $key) {
                     $all_by_car_counts++;
                 }
 
-                $all_by_car_show_user[$i]['count_show_user'] = $all_by_car_counts;
+                $all_by_car_show_user[$i]['count_show_user'] = $all_by_car_counts; // ส่งหาผู้ใช้แบบไม่ซ้ำ เฉพาะ by_car
+                $all_by_car_show_user[$i]['count_amount_user'] = $counts_by_car_amount; //ที่ส่งหาผู้ใช้ เฉพาะ by_car
             }else{
                 $all_by_car_show_user[$i]['count_show_user'] = 0;
+                $all_by_car_show_user[$i]['count_amount_user'] = 0;
             }
 
         }
@@ -732,22 +758,30 @@ class Partner_DashboardController extends Controller
             if(!empty($all_by_car_user_click[$i]['user_click'])){
                 $user_click_Explode = json_decode($all_by_car_user_click[$i]['user_click']);
 
-                $count_user_click = array_count_values($user_click_Explode);
+                $counts_by_car_user_click = count($user_click_Explode); // นับโดยไม่สนคนซ้ำ
 
+                $count_user_click = array_count_values($user_click_Explode); // นับโดยสนคนซ้ำ
                 $checkin_user_click = 0;
                 foreach ($count_user_click as $key) {
                     $checkin_user_click++;
                 }
 
-                $all_by_car_user_click[$i]['count_user_click'] = $checkin_user_click;
+                $all_by_car_user_click[$i]['count_user_click'] = $checkin_user_click; // จำนวนผู้ใช้ที่คลิ๊กแบบไม่ซ้ำ เฉพาะ by_car
+                $all_by_car_user_click[$i]['count_amount_user_click'] = $counts_by_car_user_click; // จำนวนผู้ใช้ที่คลิ๊ก เฉพาะ by_car
             }else{
                 $all_by_car_user_click[$i]['count_user_click'] = 0;
+                $all_by_car_user_click[$i]['count_amount_user_click'] = 0;
             }
 
         }
         // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
         $sorted_all_by_car_user_click = $all_by_car_user_click->sortByDesc(function ($item) {
             return $item->count_user_click;
+        })->take(5);
+
+        // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
+        $sorted_all_by_car_amount_user_click = $all_by_car_user_click->sortByDesc(function ($item) {
+            return $item->count_amount_user_click;
         })->take(5);
 
         // ======================== by_user =============================
@@ -761,16 +795,19 @@ class Partner_DashboardController extends Controller
             if(!empty($all_by_user_show_user[$i]['show_user'])){
                 $all_by_user_Explode = json_decode($all_by_user_show_user[$i]['show_user']);
 
-                $counts = array_count_values($all_by_user_Explode);
+                $counts_by_user_amount = count($all_by_user_Explode); // นับโดยไม่สนคนซ้ำ
 
+                $counts = array_count_values($all_by_user_Explode);  // นับโดยสนคนซ้ำ
                 $all_by_user_counts = 0;
                 foreach ($counts as $key) {
                     $all_by_user_counts++;
                 }
 
-                $all_by_user_show_user[$i]['count_show_user'] = $all_by_user_counts;
+                $all_by_user_show_user[$i]['count_show_user'] = $all_by_user_counts; //ส่งหาผู้ใช้แบบไม่ซ้ำ เฉพาะ by_user
+                $all_by_user_show_user[$i]['count_amount_user'] = $counts_by_user_amount; //ที่ส่งหาผู้ใช้ เฉพาะ by_user
             }else{
                 $all_by_user_show_user[$i]['count_show_user'] = 0;
+                $all_by_user_show_user[$i]['count_amount_user'] = 0;
             }
 
         }
@@ -796,22 +833,30 @@ class Partner_DashboardController extends Controller
             if(!empty($all_by_user_user_click[$i]['user_click'])){
                 $user_click_Explode = json_decode($all_by_user_user_click[$i]['user_click']);
 
-                $count_user_click = array_count_values($user_click_Explode);
+                $counts_by_user_user_click = count($user_click_Explode); // นับโดยไม่สนคนซ้ำ
 
+                $count_user_click = array_count_values($user_click_Explode); // นับโดยสนคนซ้ำ
                 $checkin_user_click = 0;
                 foreach ($count_user_click as $key) {
                     $checkin_user_click++;
                 }
 
-                $all_by_user_user_click[$i]['count_user_click'] = $checkin_user_click;
+                $all_by_user_user_click[$i]['count_user_click'] = $checkin_user_click; // จำนวนผู้ใช้ที่คลิ๊กแบบไม่ซ้ำ เฉพาะ by_user
+                $all_by_user_user_click[$i]['count_amount_user_click'] = $counts_by_user_user_click; // จำนวนผู้ใช้ที่คลิ๊ก เฉพาะ by_user
             }else{
                 $all_by_user_user_click[$i]['count_user_click'] = 0;
+                $all_by_user_user_click[$i]['count_amount_user_click'] = 0;
             }
 
         }
         // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
         $sorted_all_by_user_user_click = $all_by_user_user_click->sortByDesc(function ($item) {
             return $item->count_user_click;
+        })->take(5);
+
+        // เรียงลำดับ มากไปน้อยสุด และจำกัดเอาแค่ 5 ลำดับ
+        $sorted_all_by_user_amount_user_click = $all_by_user_user_click->sortByDesc(function ($item) {
+            return $item->count_amount_user_click;
         })->take(5);
 
 
@@ -843,12 +888,15 @@ class Partner_DashboardController extends Controller
             'sorted_all_by_checkin_show_user',
             'all_by_checkin_send_round',
             'sorted_all_by_checkin_user_click',
+            'sorted_all_by_checkin_amount_user_click',
             'sorted_all_by_car_show_user',
             'all_by_car_send_round',
             'sorted_all_by_car_user_click',
+            'sorted_all_by_car_amount_user_click',
             'sorted_all_by_user_show_user',
             'all_by_user_send_round',
             'sorted_all_by_user_user_click',
+            'sorted_all_by_user_amount_user_click',
             'count_hbd',
             'count_check_in_at_area',
             'maxThaiDay',
@@ -878,7 +926,8 @@ class Partner_DashboardController extends Controller
             'all_show_user',
             'most_send_round',
             'most_show_user',
-            'most_user_click'
+            'most_user_click',
+            'most_amount_user_click'
         ));
 
     }

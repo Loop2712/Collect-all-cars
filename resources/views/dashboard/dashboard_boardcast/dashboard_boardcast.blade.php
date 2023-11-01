@@ -159,13 +159,16 @@
 
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a data-toggle="collapse" data-target="#collapse_check_in_1" aria-expanded="true" aria-controls="collapse_check_in_1" href="javaScript:;" class="dropdown-item">
-                                    บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด
+                                    บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด(ไม่ซ้ำผู้ใช้)
                                 </a>
                                 <a data-toggle="collapse" data-target="#collapse_check_in_2" aria-expanded="true" aria-controls="collapse_check_in_2" href="javaScript:;" class="dropdown-item">
                                     บรอดแคสต์ที่ส่งบ่อยที่สุด
                                 </a>
                                 <a data-toggle="collapse" data-target="#collapse_check_in_3" aria-expanded="true" aria-controls="collapse_check_in_3" href="javaScript:;" class="dropdown-item">
-                                    บรอดแคสต์ที่มีคนดูมากที่สุด
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด
+                                </a>
+                                <a data-toggle="collapse" data-target="#collapse_check_in_4" aria-expanded="true" aria-controls="collapse_check_in_4" href="javaScript:;" class="dropdown-item">
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด(ไม่ซ้ำผู้ใช้)
                                 </a>
                             </div>
                         </div>
@@ -246,14 +249,50 @@
             </div>
             <!-- จบ บรอดแคสต์ที่ส่งบ่อยที่สุด -->
 
-            <!-- บรอดแคสต์ที่มีคนดูมากที่สุด -->
+            <!-- บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
             <div id="collapse_check_in_3" class="collapse" data-parent="#accordion_of_check_in">
                 <div class="card-body">
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
-                                    บรอดแคสต์ที่มีคนดูมากที่สุด
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด
+                                </span>
+                                <hr>
+                                @foreach ($sorted_all_by_checkin_amount_user_click as $checkin_user_click)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            @if (!empty($checkin_user_click->photo))
+                                                <img src="{{ asset('/storage').'/' }}{{ $checkin_user_click->photo}}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $checkin_user_click->name_content ? $checkin_user_click->name_content : "--"}}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $checkin_user_click->count_amount_user_click ? $checkin_user_click->count_amount_user_click : "0"}} ครั้ง</p>
+                                    </div>
+                                    <hr>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- จบ บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
+
+            <!-- บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
+            <div id="collapse_check_in_4" class="collapse" data-parent="#accordion_of_check_in">
+                <div class="card-body">
+                    <div class="col d-flex">
+                        <div class="card radius-10 w-100">
+                            <div class="best-selling-products p-3 mb-3">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด(ไม่ซ้ำผู้ใช้)
                                 </span>
                                 <hr>
                                 @foreach ($sorted_all_by_checkin_user_click as $checkin_user_click)
@@ -314,7 +353,10 @@
                                     บรอดแคสต์ที่ส่งบ่อยที่สุด
                                 </a>
                                 <a data-toggle="collapse" data-target="#collapse_car_3" aria-expanded="true" aria-controls="collapse_car_3" href="javaScript:;" class="dropdown-item">
-                                    บรอดแคสต์ที่มีคนดูมากที่สุด
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด
+                                </a>
+                                <a data-toggle="collapse" data-target="#collapse_car_4" aria-expanded="true" aria-controls="collapse_car_4" href="javaScript:;" class="dropdown-item">
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด(ไม่ซ้ำผู้ใช้)
                                 </a>
                             </div>
                         </div>
@@ -394,14 +436,50 @@
             </div>
             <!-- จบ การคลิกมากที่สุด -->
 
-            <!-- บรอดแคสต์ที่มีคนดูมากที่สุด -->
+            <!-- บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
             <div id="collapse_car_3" class="collapse" data-parent="#accordion_of_car">
                 <div class="card-body">
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
-                                    บรอดแคสต์ที่มีคนดูมากที่สุด
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด
+                                </span>
+                                <hr>
+                                @foreach ($sorted_all_by_car_amount_user_click as $by_car_user_click)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            @if (!empty($by_car_user_click->photo))
+                                                <img src="{{ asset('/storage').'/' }}{{ $by_car_user_click->photo}}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $by_car_user_click->name_content ? $by_car_user_click->name_content : "--"}}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $by_car_user_click->count_amount_user_click ? $by_car_user_click->count_amount_user_click : "0"}} ครั้ง</p>
+                                    </div>
+                                    <hr>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- จบ บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
+
+            <!-- บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
+            <div id="collapse_car_4" class="collapse" data-parent="#accordion_of_car">
+                <div class="card-body">
+                    <div class="col d-flex">
+                        <div class="card radius-10 w-100">
+                            <div class="best-selling-products p-3 mb-3">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด(ไม่ซ้ำผู้ใช้)
                                 </span>
                                 <hr>
                                 @foreach ($sorted_all_by_car_user_click as $by_car_user_click)
@@ -419,7 +497,7 @@
                                         <div class="ps-3">
                                             <h5 class="mb-0 font-weight-bold">{{ $by_car_user_click->name_content ? $by_car_user_click->name_content : "--"}}</h5>
                                         </div>
-                                        <p class="ms-auto mb-0 text-purple">{{ $by_car_user_click->count_user_click}} ครั้ง</p>
+                                        <p class="ms-auto mb-0 text-purple">{{ $by_car_user_click->count_user_click ? $by_car_user_click->count_user_click : "0"}} ครั้ง</p>
                                     </div>
                                     <hr>
                                 @endforeach
@@ -428,7 +506,7 @@
                     </div>
                 </div>
             </div>
-            <!-- จบ บรอดแคสต์ที่มีคนดูมากที่สุด -->
+            <!-- จบ บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
 
 
         </div>
@@ -463,7 +541,10 @@
                                     บรอดแคสต์ที่ส่งบ่อยที่สุด
                                 </a>
                                 <a data-toggle="collapse" data-target="#collapse_user_3" aria-expanded="true" aria-controls="collapse_user_3" href="javaScript:;" class="dropdown-item">
-                                    บรอดแคสต์ที่มีคนดูมากที่สุด
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด
+                                </a>
+                                <a data-toggle="collapse" data-target="#collapse_user_4" aria-expanded="true" aria-controls="collapse_user_4" href="javaScript:;" class="dropdown-item">
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด(ไม่ซ้ำผู้ใช้)
                                 </a>
                             </div>
                         </div>
@@ -543,14 +624,50 @@
             </div>
             <!-- จบ การคลิกมากที่สุด -->
 
-            <!-- บรอดแคสต์ที่มีคนดูมากที่สุด -->
-            <div id="collapse_user_3" class="collapse" data-parent="#accordion_of_car">
+            <!-- บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
+            <div id="collapse_user_3" class="collapse" data-parent="#accordion_of_user">
                 <div class="card-body">
                     <div class="col d-flex">
                         <div class="card radius-10 w-100">
                             <div class="best-selling-products p-3 mb-3">
                                 <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
-                                    บรอดแคสต์ที่มีคนดูมากที่สุด
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด
+                                </span>
+                                <hr>
+                                @foreach ($sorted_all_by_user_amount_user_click as $by_user_user_click)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            @if (!empty($by_user_user_click->photo))
+                                                <img src="{{ asset('/storage').'/' }}{{ $by_user_user_click->photo}}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $by_user_user_click->name_content ? $by_user_user_click->name_content : "--"}}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $by_user_user_click->count_amount_user_click ? $by_user_user_click->count_amount_user_click : "0"}} ครั้ง</p>
+                                    </div>
+                                    <hr>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- จบ บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
+
+            <!-- บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
+            <div id="collapse_user_4" class="collapse" data-parent="#accordion_of_user">
+                <div class="card-body">
+                    <div class="col d-flex">
+                        <div class="card radius-10 w-100">
+                            <div class="best-selling-products p-3 mb-3">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด(ไม่ซ้ำผู้ใช้)
                                 </span>
                                 <hr>
                                 @foreach ($sorted_all_by_user_user_click as $by_user_user_click)
@@ -568,7 +685,7 @@
                                         <div class="ps-3">
                                             <h5 class="mb-0 font-weight-bold">{{ $by_user_user_click->name_content ? $by_user_user_click->name_content : "--"}}</h5>
                                         </div>
-                                        <p class="ms-auto mb-0 text-purple">{{ $by_user_user_click->count_user_click}} ครั้ง</p>
+                                        <p class="ms-auto mb-0 text-purple">{{ $by_user_user_click->count_user_click ? $by_user_user_click->count_user_click : "0"}} ครั้ง</p>
                                     </div>
                                     <hr>
                                 @endforeach
@@ -577,7 +694,7 @@
                     </div>
                 </div>
             </div>
-            <!-- จบ บรอดแคสต์ที่มีคนดูมากที่สุด -->
+            <!-- จบ บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
 
         </div>
     </div>
@@ -596,33 +713,33 @@
                     </div>
                     <div class="font-22 ms-auto">
                         <!-- <i class="bx bx-dots-horizontal-rounded"></i> -->
-                        <a href="{{ url('/broadcast/content') }}" class="btn btn-primary main-shadow main-radius text-white" style="width:100%;">
+                        <!-- <a href="{{ url('/broadcast/content') }}" class="btn btn-primary main-shadow main-radius text-white" style="width:100%;">
                             ดูข้อมูลเพิ่มเติม
-                        </a>
+                        </a> -->
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-3">
-                        <b>บรอดแคสต์ที่คนดูมากที่สุด</b>
+                        <b>บรอดแคสต์ที่ผู้ใช้ดูมากที่สุด</b>
                         <br><br>
-                        @if(!empty($most_user_click))
+                        @if(!empty($most_amount_user_click))
                             <div class="card" style="width: 18rem;">
                                 <center>
-                                    @if (!empty($most_user_click->photo))
-                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_user_click->photo }}" class="main-shadow main-radius">
+                                    @if (!empty($most_amount_user_click->photo))
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_amount_user_click->photo }}" class="main-shadow main-radius">
                                     @else
                                         <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
                                     @endif
                                 </center>
                                 <div class="card-body text-center">
                                     <h5 class="card-title">
-                                        {{ $most_user_click->name_content }}
+                                        {{ $most_amount_user_click->name_content }}
                                     </h5>
                                     <p class="card-text">
-                                        จำนวนทั้งหมด : <b>{{ $most_user_click->count_user_click }}</b> ครั้ง
+                                        จำนวนทั้งหมด : <b>{{ $most_amount_user_click->count_amount_user_click }}</b> ครั้ง
                                         <br>
-                                        @switch($most_user_click->type_content)
+                                        @switch($most_amount_user_click->type_content)
                                             @case('BC_by_check_in')
                                                 ประเภท :
                                                 <span class="px-3 bg-gradient-burning text-white radius-30">
@@ -650,25 +767,25 @@
                         @endif
                     </div>
                     <div class="col-3">
-                        <b>บรอดแคสต์ที่คนดูไม่ซ้ำคนมากที่สุด</b>
+                        <b>บรอดแคสต์ที่ผู้ใช้ดูมากที่สุด(ไม่ซ้ำผู้ใช้)</b>
                         <br><br>
-                        @if(!empty($check_user_click))
+                        @if(!empty($most_user_click))
                             <div class="card" style="width: 18rem;">
                                 <center>
-                                    @if (!empty($ads_contents_most_click_unique->photo))
-                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $ads_contents_most_click_unique->photo }}" class="main-shadow main-radius">
+                                    @if (!empty($most_user_click->photo))
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_user_click->photo }}" class="main-shadow main-radius">
                                     @else
                                         <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
                                     @endif
                                 </center>
                                 <div class="card-body text-center">
                                     <h5 class="card-title">
-                                        {{ $ads_contents_most_click_unique->name_content }}
+                                        {{ $most_user_click->name_content }}
                                     </h5>
                                     <p class="card-text">
-                                        จำนวนทั้งหมด : <b>{{ $i_click_unique }}</b> คน
+                                        จำนวนทั้งหมด : <b>{{ $most_user_click->count_user_click }}</b> คน
                                         <br>
-                                        @switch($ads_contents_most_click_unique->type_content)
+                                        @switch($most_user_click->type_content)
                                             @case('BC_by_check_in')
                                                 ประเภท :
                                                 <span class="px-3 bg-gradient-burning text-white radius-30">
@@ -805,9 +922,9 @@
                         </h3>
                     </div>
                     <div class="ms-auto">
-                        <a href="{{ url('/broadcast/content') }}" class="btn btn-primary main-shadow main-radius text-white" style="width:100%;">
+                        <!-- <a href="{{ url('/broadcast/content') }}" class="btn btn-primary main-shadow main-radius text-white" style="width:100%;">
                             ดูข้อมูลเพิ่มเติม
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>
@@ -819,8 +936,9 @@
                                 <th>รูป</th>
                                 <th>ชื่อ</th>
                                 <th>จำนวนบรอดแคสต์ที่ส่ง</th>
-                                <th>จำนวนบรอดแคสต์ที่ส่งถึงผู้ใช้</th>
-                                <th>จำนวนคนที่ดูบรอดแคสต์</th>
+                                <th>จำนวนบรอดแคสต์ที่ส่งถึงผู้ใช้(ไม่ซ้ำผู้ใช้)</th>
+                                <th>จำนวนผู้ใช้ที่ดูบรอดแคสต์</th>
+                                <th>จำนวนผู้ใช้ที่ดูบรอดแคสต์(ไม่ซ้ำผู้ใช้)</th>
                                 <th>ประเภท</th>
                             </tr>
                         </thead>
@@ -839,6 +957,7 @@
                                     <td>{{ $item_contents->name_content }}</td>
                                     <td>{{ $item_contents->send_round }}</td>
                                     <td>{{ $item_contents->count_show_user }}</td>
+                                    <td>{{ $item_contents->count_amount_user_click }}</td>
                                     <td>{{ $item_contents->count_user_click }}</td>
                                     <td>
                                         @switch($item_contents->type_content)
@@ -897,7 +1016,7 @@
             pageLength: 7,
             columnDefs: [
                 // { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
-                { targets: [0,1,5], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์
+                { targets: [0,1,6], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์
             ],
             order: [[2, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
             buttons: [
