@@ -9,6 +9,10 @@
         font-weight: bold !important;
     }
 
+    #all_broadcast_table_filter{
+        display: none;
+    }
+
 </style>
 <!--========================== 4 Content ===============================-->
 
@@ -133,7 +137,6 @@
 
 <!--========================== Most Often Content ===============================-->
 <div class="row row-cols-1 row-cols-lg-3">
-
     <!-- CHECK IN  -->
     <div class="accordion" id="accordion_of_check_in">
         <div class="card">
@@ -189,7 +192,7 @@
                                             @if (!empty($checkin_show_user->photo))
                                                 <img src="{{ asset('/storage').'/' }}{{ $checkin_show_user->photo}}" class="p-1" alt="">
                                             @else
-                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
                                             @endif
                                         </div>
                                         <div class="ps-3">
@@ -225,7 +228,7 @@
                                             @if (!empty($checkin_send_round->photo))
                                                 <img src="{{ asset('/storage').'/' }}{{ $checkin_send_round->photo}}" class="p-1" alt="">
                                             @else
-                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
                                             @endif
                                         </div>
                                         <div class="ps-3">
@@ -262,7 +265,7 @@
                                             @if (!empty($checkin_user_click->photo))
                                                 <img src="{{ asset('/storage').'/' }}{{ $checkin_user_click->photo}}" class="p-1" alt="">
                                             @else
-                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
                                             @endif
                                         </div>
                                         <div class="ps-3">
@@ -338,7 +341,7 @@
                                             @if (!empty($by_car_show_user->photo))
                                                 <img src="{{ asset('/storage').'/' }}{{ $by_car_show_user->photo}}" class="p-1" alt="">
                                             @else
-                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
                                             @endif
                                         </div>
                                         <div class="ps-3">
@@ -374,7 +377,7 @@
                                             @if (!empty($by_car_send_round->photo))
                                                 <img src="{{ asset('/storage').'/' }}{{ $by_car_send_round->photo}}" class="p-1" alt="">
                                             @else
-                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
                                             @endif
                                         </div>
                                         <div class="ps-3">
@@ -410,7 +413,7 @@
                                             @if (!empty($by_car_user_click->photo))
                                                 <img src="{{ asset('/storage').'/' }}{{ $by_car_user_click->photo}}" class="p-1" alt="">
                                             @else
-                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
                                             @endif
                                         </div>
                                         <div class="ps-3">
@@ -487,7 +490,7 @@
                                             @if (!empty($by_user_show_user->photo))
                                                 <img src="{{ asset('/storage').'/' }}{{ $by_user_show_user->photo}}" class="p-1" alt="">
                                             @else
-                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
                                             @endif
                                         </div>
                                         <div class="ps-3">
@@ -523,7 +526,7 @@
                                         @if (!empty($by_user_send_round->photo))
                                             <img src="{{ asset('/storage').'/' }}{{ $by_user_send_round->photo}}" class="p-1" alt="">
                                         @else
-                                            <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                            <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
                                         @endif
                                     </div>
                                     <div class="ps-3">
@@ -559,7 +562,7 @@
                                             @if (!empty($by_user_user_click->photo))
                                                 <img src="{{ asset('/storage').'/' }}{{ $by_user_user_click->photo}}" class="p-1" alt="">
                                             @else
-                                                <img src="{{ asset('/Medilab/img/icon.png') }}" class="p-0" alt="">
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
                                             @endif
                                         </div>
                                         <div class="ps-3">
@@ -580,6 +583,365 @@
     </div>
     <!-- END User  -->
 </div>
+
+<div class="row">
+    <div class="col-12 col-lg-12 d-flex">
+        <div class="card radius-10 w-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h3 class="mb-0">
+                            <b>เนื้อหาที่โดดเด่น</b>
+                        </h3>
+                    </div>
+                    <div class="font-22 ms-auto">
+                        <!-- <i class="bx bx-dots-horizontal-rounded"></i> -->
+                        <a href="{{ url('/broadcast/content') }}" class="btn btn-primary main-shadow main-radius text-white" style="width:100%;">
+                            ดูข้อมูลเพิ่มเติม
+                        </a>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <b>บรอดแคสต์ที่คนดูมากที่สุด</b>
+                        <br><br>
+                        @if(!empty($most_user_click))
+                            <div class="card" style="width: 18rem;">
+                                <center>
+                                    @if (!empty($most_user_click->photo))
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_user_click->photo }}" class="main-shadow main-radius">
+                                    @else
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
+                                    @endif
+                                </center>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        {{ $most_user_click->name_content }}
+                                    </h5>
+                                    <p class="card-text">
+                                        จำนวนทั้งหมด : <b>{{ $most_user_click->count_user_click }}</b> ครั้ง
+                                        <br>
+                                        @switch($most_user_click->type_content)
+                                            @case('BC_by_check_in')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-burning text-white radius-30">
+                                                    By Check in
+                                                </span>
+                                                @break
+                                            @case('BC_by_car')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-Ohhappiness text-white radius-30">
+                                                    By Cars
+                                                </span>
+                                                @break
+                                            @case('BC_by_user')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-moonlit text-white radius-30">
+                                                    By User
+                                                </span>
+                                                @break
+                                        @endswitch
+                                    </p>
+                                </div>
+                            </div>
+                        @else
+                            ไม่มีข้อมูล
+                        @endif
+                    </div>
+                    <div class="col-3">
+                        <b>บรอดแคสต์ที่คนดูไม่ซ้ำคนมากที่สุด</b>
+                        <br><br>
+                        @if(!empty($check_user_click))
+                            <div class="card" style="width: 18rem;">
+                                <center>
+                                    @if (!empty($ads_contents_most_click_unique->photo))
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $ads_contents_most_click_unique->photo }}" class="main-shadow main-radius">
+                                    @else
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
+                                    @endif
+                                </center>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        {{ $ads_contents_most_click_unique->name_content }}
+                                    </h5>
+                                    <p class="card-text">
+                                        จำนวนทั้งหมด : <b>{{ $i_click_unique }}</b> คน
+                                        <br>
+                                        @switch($ads_contents_most_click_unique->type_content)
+                                            @case('BC_by_check_in')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-burning text-white radius-30">
+                                                    By Check in
+                                                </span>
+                                                @break
+                                            @case('BC_by_car')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-Ohhappiness text-white radius-30">
+                                                    By Cars
+                                                </span>
+                                                @break
+                                            @case('BC_by_user')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-moonlit text-white radius-30">
+                                                    By User
+                                                </span>
+                                                @break
+                                        @endswitch
+                                    </p>
+                                </div>
+                            </div>
+                        @else
+                            ไม่มีข้อมูล
+                        @endif
+                    </div>
+                    <div class="col-3">
+                        <b>บรอดแคสต์ที่ส่งถึงผู้ใช้มากที่สุด</b>
+                        <br><br>
+                        @if(!empty($most_show_user))
+                            <div class="card" style="width: 18rem;">
+                                <center>
+                                    @if (!empty($most_show_user->photo))
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_show_user->photo }}" class="main-shadow main-radius">
+                                    @else
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
+                                    @endif
+                                </center>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        {{ $most_show_user->name_content }}
+                                    </h5>
+                                    <p class="card-text">
+                                        จำนวนทั้งหมด : <b>{{ $most_show_user->count_show_user }}</b> ครั้ง
+                                        <br>
+                                        @switch($most_show_user->type_content)
+                                            @case('BC_by_check_in')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-burning text-white radius-30">
+                                                    By Check in
+                                                </span>
+                                                @break
+                                            @case('BC_by_car')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-Ohhappiness text-white radius-30">
+                                                    By Cars
+                                                </span>
+                                                @break
+                                            @case('BC_by_user')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-moonlit text-white radius-30">
+                                                    By User
+                                                </span>
+                                                @break
+                                        @endswitch
+                                    </p>
+                                </div>
+                            </div>
+                        @else
+                            ไม่มีข้อมูล
+                        @endif
+                    </div>
+                    <div class="col-3">
+                        <b>บรอดแคสต์ที่ส่งมากที่สุด(รอบ)</b>
+                        <br><br>
+                        @if(!empty($most_send_round))
+                            <div class="card" style="width: 18rem;">
+                                <center>
+                                    @if (!empty($most_send_round->photo))
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_send_round->photo }}" class="main-shadow main-radius">
+                                    @else
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
+                                    @endif
+                                </center>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        {{ $most_send_round->name_content }}
+                                    </h5>
+                                    <p class="card-text">
+                                        จำนวนทั้งหมด : <b>{{ $most_send_round->send_round }}</b> รอบ
+                                        <br>
+                                        @switch($most_send_round->type_content)
+                                            @case('BC_by_check_in')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-burning text-white radius-30">
+                                                    By Check in
+                                                </span>
+                                                @break
+                                            @case('BC_by_car')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-Ohhappiness text-white radius-30">
+                                                    By Cars
+                                                </span>
+                                                @break
+                                            @case('BC_by_user')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-moonlit text-white radius-30">
+                                                    By User
+                                                </span>
+                                                @break
+                                        @endswitch
+                                    </p>
+                                </div>
+                            </div>
+                        @else
+                            ไม่มีข้อมูล
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-lg-1">
+    <div class="col">
+        <!-- Content เรียงลำดับ ทั้งหมด -->
+        <div class="card radius-10">
+            <div class="card-header border-bottom-0 bg-transparent">
+                <div class="d-flex align-items-center" style="margin-top:10px;">
+                    <div>
+                        <h3 class="mb-0">
+                            <b>การจัดอันดับ</b> <span class="text-secondary" style="font-size:15px;">(รวม)</span>
+                        </h3>
+                    </div>
+                    <div class="ms-auto">
+                        <a href="{{ url('/broadcast/content') }}" class="btn btn-primary main-shadow main-radius text-white" style="width:100%;">
+                            ดูข้อมูลเพิ่มเติม
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="all_broadcast_table" class="table table-striped  align-middle" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>รูป</th>
+                                <th>ชื่อ</th>
+                                <th>จำนวนบรอดแคสต์ที่ส่ง</th>
+                                <th>จำนวนบรอดแคสต์ที่ส่งถึงผู้ใช้</th>
+                                <th>จำนวนคนที่ดูบรอดแคสต์</th>
+                                <th>ประเภท</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($all_show_user as $item_contents)
+                                <tr>
+                                    <td class="d-flex align-items-center">
+                                        <div class="product-img bg-transparent border">
+                                            @if (!empty($item_contents->photo))
+                                                <img src="{{ url('storage')}}/{{ $item_contents->photo }}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-1" alt="">
+                                            @endif
+                                        </div>
+                                    </td>
+                                    <td>{{ $item_contents->name_content }}</td>
+                                    <td>{{ $item_contents->send_round }}</td>
+                                    <td>{{ $item_contents->count_show_user }}</td>
+                                    <td>{{ $item_contents->count_user_click }}</td>
+                                    <td>
+                                        @switch($item_contents->type_content)
+                                                @case('BC_by_check_in')
+                                                    <span class="px-2 bg-gradient-burning text-white radius-30">
+                                                        By Check in
+                                                    </span>
+                                                    @break
+                                                @case('BC_by_car')
+                                                    <span class="px-2 bg-gradient-Ohhappiness text-white radius-30">
+                                                        By Cars
+                                                    </span>
+                                                    @break
+                                                @case('BC_by_user')
+                                                    <span class="px-2 bg-gradient-moonlit text-white radius-30">
+                                                        By User
+                                                    </span>
+                                                    @break
+                                        @endswitch
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        {{-- <tfoot>
+                            <tr>
+                                <th>รูป</th>
+                                <th>ชื่อ</th>
+                                <th>จำนวนบรอดแคสต์ที่ส่ง</th>
+                                <th>จำนวนบรอดแคสต์ที่ส่งถึงผู้ใช้</th>
+                                <th>จำนวนคนที่ดูบรอดแคสต์</th>
+                                <th>ประเภท</th>
+                            </tr>
+                        </tfoot> --}}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- END Content เรียงลำดับ ทั้งหมด -->
+    </div>
+
+</div>
+
+<!--plugins-->
+<script src="{{ asset('partner_new/js/jquery.min.js') }}"></script>
+
+<!-- user_table -->
+<script>
+    $(document).ready(function () {
+       // DataTable initialisation
+        let table3 = $("#all_broadcast_table").DataTable({
+            dom: '<"dt-buttons"Bf><"clear">lirtp',
+            buttons: false,
+            paging: true,
+            autoWidth: true,
+            lengthChange: false,
+            pageLength: 7,
+            columnDefs: [
+                // { type: "num", targets: 0 }, // กำหนดประเภทของข้อมูลในคอลัมน์ที่ 0 เป็นรูปแบบตัวเลข
+                { targets: [0,1,5], orderable: false } // ปิดการเรียงลำดับสำหรับคอลัมน์
+            ],
+            order: [[2, 'desc']], // เรียงลำดับคอลัมน์ที่ 0 จากมากไปน้อย
+            buttons: [
+                {
+                    text: "คืนค่าเริ่มต้น", // ข้อความที่จะแสดงในปุ่ม
+                    action: function () {
+                        table3.order([[2, 'desc']]).draw(); // เรียกใช้การเรียงลำดับเริ่มต้นและวาดตารางใหม่
+                    }
+                },
+                // {
+                //     extend: "excelHtml5",
+                //     text: "Export Excel"  // เปลี่ยนข้อความในปุ่มที่นี่
+                // },
+            ],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json',
+            },
+            // initComplete: function (settings, json) {
+            //     let footer3 = $("#all_broadcast_table tfoot tr");
+            //     $("#all_broadcast_table thead").append(footer3);
+
+            // }
+        });
+
+        // $("#all_broadcast_table tfoot th").each(function () {
+        //     if($(this).text()){
+        //         let title3 = $(this).text();
+        //         if(title3){
+        //             $(this).html('<input type="text" style="width:100%; " placeholder="🔎 ' + title3 + '" />');
+        //         }
+        //     }
+        // });
+
+        // $("#all_broadcast_table thead").on("keyup", "input", function () {
+        //     table3.column($(this).parent().index())
+        //         .search(this.value)
+        //         .draw();
+
+        // });
+    });
+</script>
+
+
+
 
 
 

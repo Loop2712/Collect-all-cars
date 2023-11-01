@@ -535,7 +535,77 @@ class Partner_DashboardController extends Controller
                                                         //  Dashboard BoardCast
         //==================================================================================================================//
 
-        $all_ads_content = Ads_content::where('name_partner',$user_login->organization)->get();
+        $all_ads_content = Ads_content::where('name_partner',$user_login->organization)->limit(5)->get();
+
+        // เนื้อหาที่ส่งถึงผู้ใช้เยอะที่สุด
+        $all_show_user = Ads_content::where('name_partner',$user_login->organization)
+        ->get();
+
+        // broadcast ที่ส่งเยอะที่สุด
+        $most_send_round = Ads_content::where('name_partner', $user_login->organization)
+        ->where('send_round', $all_show_user->max('send_round'))
+        ->first();
+
+        for ($i=0; $i < count($all_show_user); $i++) {
+            if(!empty($all_show_user[$i]['show_user'])){
+                $all_Explode = json_decode($all_show_user[$i]['show_user']);
+
+                $counts = array_count_values($all_Explode);
+
+                $all_counts = 0;
+                foreach ($counts as $key) {
+                    $all_counts++;
+                }
+
+                $all_show_user[$i]['count_show_user'] = $all_counts;
+            }else{
+                $all_show_user[$i]['count_show_user'] = 0;
+            }
+
+        }
+
+        $show_user_maxCount = 0; // ระบุค่าสูงสุดเริ่มต้น
+        $most_show_user = null; // ระบุตัวแปรเพื่อเก็บผลลัพธ์
+
+        //หา count_show_user ที่มีค่าสูงสุด
+        foreach ($all_show_user as $item) {
+            if(!empty($item['count_show_user'])){
+                if ($item['count_show_user'] > $show_user_maxCount) {
+                    $show_user_maxCount = $item['count_show_user'];
+                    $most_show_user = $item;
+                }
+            }
+        }
+
+        for ($i=0; $i < count($all_show_user); $i++) {
+            if(!empty($all_show_user[$i]['user_click'])){
+                $user_click_Explode = json_decode($all_show_user[$i]['user_click']);
+
+                $count_user_click = array_count_values($user_click_Explode);
+
+                $user_click = 0;
+                foreach ($count_user_click as $key) {
+                    $user_click++;
+                }
+
+                $all_show_user[$i]['count_user_click'] = $user_click;
+            }else{
+                $all_show_user[$i]['count_user_click'] = 0;
+            }
+        }
+
+        $user_click_maxCount = 0; // ระบุค่าสูงสุดเริ่มต้น
+        $most_user_click = null; // ระบุตัวแปรเพื่อเก็บผลลัพธ์
+
+        //หา count_user_click ที่มีค่าสูงสุด
+        foreach ($all_show_user as $item2) {
+            if(!empty($item2['count_user_click'])){
+                if ($item2['count_user_click'] > $user_click_maxCount) {
+                    $user_click_maxCount = $item2['count_user_click'];
+                    $most_user_click = $item2;
+                }
+            }
+        }
 
         $count_all_content = Ads_content::where('name_partner',$user_login->organization)
         ->count();
@@ -803,7 +873,12 @@ class Partner_DashboardController extends Controller
             'count_sos_all_data',
             'averageDifference',
             'sos_maxTimeCounts',
-            'sos_minTimeCounts'
+            'sos_minTimeCounts',
+            'all_ads_content',
+            'all_show_user',
+            'most_send_round',
+            'most_show_user',
+            'most_user_click'
         ));
 
     }
@@ -1019,6 +1094,8 @@ class Partner_DashboardController extends Controller
     function boardcast_3_topic(Request $request){
         $user_login = Auth::user();
         $type_page = $request->get('type_page');
+
+        $ads_contents_all = Ads_content::where('name_partner',$user_login->organization)->get();
 
         //========================== by check_in =============================
 

@@ -404,8 +404,11 @@
             position: absolute;
             padding: 5px;
             border-radius: 10px;
-            bottom: 1%;
-            right: 1%;
+            top: 3%;
+            right: 40%;
+            /* bottom: 11%;
+            left: 3%; */
+            z-index: 9999;
             background-color: #292828; /* Discord's color */
             color: #ffffff;
         }
@@ -828,8 +831,8 @@ switch ($sos_data->status) {
 		</div>
 
         <div class="d-flex overflow_auto_video_call row py-3" style="background-color: #2b2d31;">
-				<div id="" class="align-self-end w-100">
-                    <span id="time_of_room" class="time_of_room" style="font-size: 1em;">--</span>
+				<div id="video_call_sidebar" class="align-self-end w-100">
+
                     <div class="row d-flex justify-content-center">
                         <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
                         <div id="div_for_AudioButton" class="btn btnSpecial " >
@@ -1698,7 +1701,12 @@ switch ($sos_data->status) {
 
                     // Publish the local audio and video tracks in the channel.
                     await agoraEngine.publish([channelParameters.localVideoTrack]);
+                    // สร้าง span สำหรับใส่เวลาห้อง
+                    let time_of_room_span = '<span id="time_of_room" class="time_of_room" style="font-size: 1em;">--</span>';
+                    document.querySelector('#video_call_sidebar').insertAdjacentHTML('beforeend', time_of_room_span);
+                    // ฟังก์ชัน สำหรับสร้างเวลาห้อง
                     StatsVideoUpdate();
+
                 } catch (error) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
@@ -2900,6 +2908,7 @@ switch ($sos_data->status) {
         //     .then(response => response.text())
         //     .then(result => {
                 setInterval(() => {
+
                     let time_of_room = document.getElementById("time_of_room");
                     // วันที่และเวลาปัจจุบัน
                     let currentDate = new Date();
@@ -2907,7 +2916,7 @@ switch ($sos_data->status) {
 
                     // วันที่และเวลาที่กำหนด
                     // let targetDate = new Date(response['data']);
-                    let targetDate = new Date('2023-10-31T10:30:00');
+                    let targetDate = new Date('2023-11-01T13:40:00');
                     let targetTime = targetDate.getTime();
 
                     // คำนวณเวลาที่ผ่านไปในมิลลิวินาที

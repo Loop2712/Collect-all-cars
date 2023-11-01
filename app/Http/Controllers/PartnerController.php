@@ -69,7 +69,7 @@ class PartnerController extends Controller
     {
         // $name_partner = $request->get('name_partner');
         $perPage = 25;
-        
+
         $partner = Partner::where('name', $name_partner)
                 ->where('name_area', "!=" , null)
                 ->latest()
@@ -101,9 +101,9 @@ class PartnerController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         if ($request->hasFile('logo')) {
             $requestData['logo'] = $request->file('logo')->store('uploads', 'public');
         }
@@ -117,7 +117,7 @@ class PartnerController extends Controller
             $save_Partner_condo = [
                 "name" => $requestData['name'],
             ];
-            
+
             Partner_condo::firstOrCreate($save_Partner_condo);
 
             $data_Partner_condo = Partner_condo::get();
@@ -129,7 +129,7 @@ class PartnerController extends Controller
             $requestData['condo_id'] = $condo_id ;
 
         }
-        
+
         Partner::create($requestData);
 
         $data_partners = Partner::where("name", $requestData['name'])->get();
@@ -149,7 +149,7 @@ class PartnerController extends Controller
                         'partner_id' => $key_1->id,
                 ]);
             }
-            
+
         }
 
         $group_line = Group_line::where('groupName', $requestData['line_group'])->get();
@@ -176,7 +176,7 @@ class PartnerController extends Controller
 
         $requestData['phone'] = str_replace("-", "", $requestData['phone']);
         $requestData['phone'] = str_replace(" ", "", $requestData['phone']);
-        
+
         Partner::create($requestData);
 
         $data_partners = Partner::where("name", $requestData['name'])->where('name_area' , $requestData['name_area'])->first();
@@ -263,7 +263,7 @@ class PartnerController extends Controller
                     ]);
             }
         }
-        
+
         $partner = Partner::findOrFail($id);
         $partner->update($requestData);
 
@@ -375,7 +375,7 @@ class PartnerController extends Controller
         }else{
             $sub_partners = $data_user->sub_organization ;
         }
-        
+
 
         $type_user = $requestData['type_user'];
         $name = $requestData['name'];
@@ -519,7 +519,7 @@ class PartnerController extends Controller
                 ->selectRaw('count(register_car_id) as count , registration , county , register_car_id')
                 ->orderByRaw('count DESC')
                 ->latest()->paginate($perPage);
-       
+
         if (count($guest) == 0) {
             $i = (count($guest)) ;
             $count_per_month[$i] = array();
@@ -544,7 +544,7 @@ class PartnerController extends Controller
                     ->selectRaw('count(register_car_id) as count   , register_car_id')
                     ->orderByRaw('count DESC')
                     ->get();
-                    
+
                     if (count($monthly_reports) == 0) {
                         $count_per_month[$i] = 0 ;
                     } else {
@@ -672,7 +672,7 @@ class PartnerController extends Controller
 
         $perPage = 20;
 
-       
+
         $view_maps_all = DB::table('sos_maps')
             ->where('content', "emergency_js100")
             ->latest()->paginate($perPage);
@@ -696,7 +696,7 @@ class PartnerController extends Controller
         $data_average = [] ;
 
         foreach ($view_maps_all as $item) {
-            
+
             if(!empty($item->created_at) && !empty($item->help_complete_time)){
                 $minute_row = \Carbon\Carbon::parse($item->help_complete_time)->diffinMinutes(\Carbon\Carbon::parse($item->created_at)) ;
 
@@ -706,7 +706,7 @@ class PartnerController extends Controller
                 $minute_row = 0 ;
             }
 
-            $minute_all = $minute_all + (int)$minute_row ; 
+            $minute_all = $minute_all + (int)$minute_row ;
 
             if($count_case != 0){
               $minute_per_case = $minute_all / $count_case ;
@@ -718,19 +718,19 @@ class PartnerController extends Controller
 
         if (!empty($minute_per_case)) {
             //  วัน
-            $data_day = (int)$minute_per_case / 1440 ; 
+            $data_day = (int)$minute_per_case / 1440 ;
             $data_day_sp = explode("." , $data_day) ;
             $data_average['day'] = $data_day_sp[0] ;
 
             // ชม.
-            $data_hr = (int)$minute_per_case / 60 - ($data_average['day'] * 24) ; 
+            $data_hr = (int)$minute_per_case / 60 - ($data_average['day'] * 24) ;
             $data_hr_sp = explode("." , $data_hr) ;
             $data_average['hr'] = $data_hr_sp[0] ;
 
             // นาที
             if (!empty($data_hr_sp[1])) {
-                $data_min_1 = "0." . $data_hr_sp[1] ; 
-                $data_min_2 = (float)$data_min_1 * 60 ; 
+                $data_min_1 = "0." . $data_hr_sp[1] ;
+                $data_min_2 = (float)$data_min_1 * 60 ;
                 $data_average['min'] = (int)$data_min_2 ;
             }else{
                 $data_average['min'] = 0 ;
@@ -739,7 +739,7 @@ class PartnerController extends Controller
             // เคส
             $data_average['count_case'] = $count_case ;
         }
-        
+
 
         // echo "เวลาทั้งหมด : " . $minute_all;
         // echo "<br>";
@@ -832,11 +832,11 @@ class PartnerController extends Controller
             $all_area_partners = Partner::where("name", $data_user->organization)
                             ->where("name_area", "!=" , null)
                             ->get();
-                            
+
             return view('partner.service_area.partner_add_area', compact('data_partners' , 'data_time_zone' ,'group_line' ,'all_area_partners'));
         }
 
-        
+
     }
 
      public function service_area_pending(Request $request)
@@ -1041,7 +1041,7 @@ class PartnerController extends Controller
     }
 
     function add_new_check_in(Request $request){
-        
+
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)
             ->where("name_area", null)
@@ -1060,7 +1060,7 @@ class PartnerController extends Controller
     }
 
     function gallery(Request $request){
-        
+
         $data_user = Auth::user();
         $data_partners = Partner::where("name", $data_user->organization)
             ->where("name_area", null)
@@ -1156,7 +1156,7 @@ class PartnerController extends Controller
             }else{
                 $BC_by_user_sent = $partner_premium->BC_by_user_sent ;
             }
-            
+
 
             if (!empty($BC_By)) {
                 $ads_contents = Ads_content::where('id_partner' , $id_partner)
@@ -1221,7 +1221,7 @@ class PartnerController extends Controller
             //             if ($value > $click_max) {
             //                 $click_max = $value ;
             //             }
-                         
+
             //         }
 
             //         echo "<br>";
@@ -1241,7 +1241,7 @@ class PartnerController extends Controller
             //         $count_user_click = '0' ;
             //     }
 
-                
+
             //     echo "<br>";
             //     echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
             //     echo "<br>";
@@ -1259,7 +1259,7 @@ class PartnerController extends Controller
     }
 
     function broadcast_by_check_in(Request $request){
-        
+
         $data_user = Auth::user();
 
         $data_partners = Partner::where("name", $data_user->organization)
@@ -1300,6 +1300,11 @@ class PartnerController extends Controller
 
     function broadcast_by_user(Request $request){
         echo "broadcast_by_user" ;
+        exit();
+    }
+
+    function broadcast_by_sos(Request $request){
+        echo "broadcast_by_sos" ;
         exit();
     }
 

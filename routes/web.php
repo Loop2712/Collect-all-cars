@@ -205,7 +205,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('sos_map/command/{id_sos_map}', 'Sos_mapController@sos_map_command');
 	Route::get('sos_map/delete_case/{id_sos_map}', 'Sos_mapController@delete_case');
 	Route::get('sos_map/delete_case_from_wait_delete/{id_sos_map}', 'Sos_mapController@delete_case_from_wait_delete');
-	
+
 	// -- SOS MAP repair --
 	Route::get('sos_map/report_repair/{id_sos_map}', 'Sos_mapController@report_repair');
 
@@ -216,7 +216,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('/broadcast/broadcast_by_car', 'PartnerController@broadcast_by_car');
 	Route::get('/broadcast/broadcast_by_check_in', 'PartnerController@broadcast_by_check_in');
 	Route::get('/broadcast/broadcast_by_user', 'PartnerController@broadcast_by_user');
-
+    Route::get('/broadcast/broadcast_by_sos', 'PartnerController@broadcast_by_sos');
 	// DASHBOARD
     Route::get('/dashboard_index', 'Partner_DashboardController@dashboard_index');
     Route::get('/dashboard_user_index', 'Partner_DashboardController@dashboard_user_index');
@@ -394,8 +394,8 @@ Route::get('/market/motercycle/{id}', 'MotercleyviewController@show');
 	Route::get('sos_map/user_view_officer_login/{id_sos_map}', 'Sos_mapController@user_view_officer_login');
 	Route::get('sos_map/user_view_officer/{id_sos_map}', 'Sos_mapController@user_view_officer');
 	Route::get('sos_map/report_repair_for_user/{id_sos_map}', 'Sos_mapController@report_repair_for_user_check_login');
-	
-	
+
+
 // END AUTO LOHIN FROM FLEX LINE
 
 	Route::get('/edit_profile_facebook', 'ProfileController@edit_profile_facebook');
