@@ -331,6 +331,9 @@ Route::get('/get_appId', 'AgoraController@get_appId');
 //     DashBoard
 //========================//
 
+//==========  Dashboard old  ===============//
+Route::get('/select_content_broadcast/{type}/{name_partner}', 'PartnerController@select_content_broadcast');
+
 //========== User ==============//
 Route::get('/filter_user', 'Partner_DashboardController@filter_user');
 Route::get('/get_area_checkin/{area_id}/{user_login}', 'Partner_DashboardController@get_area_checkin');

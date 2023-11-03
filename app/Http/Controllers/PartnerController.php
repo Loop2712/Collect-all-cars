@@ -10,8 +10,7 @@ use App\Models\Partner_premium;
 use App\Models\Partner_condo;
 use Illuminate\Http\Request;
 use App\Models\Group_line;
-use Auth;
-
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\CarModel;
 use App\Models\Ads_content;
@@ -42,7 +41,7 @@ class PartnerController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        // $perPage = 25;
+        $perPage = 25;
 
         if (!empty($keyword)) {
             $partner = Partner::where('name', 'LIKE', "%$keyword%")
@@ -1165,7 +1164,6 @@ class PartnerController extends Controller
             }else{
                 $ads_contents = Ads_content::where('id_partner' , $id_partner)->get();
             }
-
             // --------------------------------------------------------------------
             // foreach($ads_contents as $item){
 
@@ -1299,8 +1297,18 @@ class PartnerController extends Controller
     }
 
     function broadcast_by_user(Request $request){
-        echo "broadcast_by_user" ;
-        exit();
+
+        $data_auth_user = Auth::user();
+
+        $data_partner = Partner::where("name", $data_auth_user->organization)
+            ->where("name_area", null)
+            ->first();
+
+        $data_users_organization = User::where("organization", $data_partner->name)->get();
+
+        $data_user_from = User::where("user_from", 'LIKE' , "%$data_partner->organization%")->get();
+
+        return view('partner.broadcast.broadcast_by_user', compact('data_users_organization','data_user_from'));
     }
 
     function broadcast_by_sos(Request $request){
@@ -1364,6 +1372,21 @@ class PartnerController extends Controller
         }else{
             return redirect('404');
         }
+    }
+
+    function select_content_broadcast(Request $request,$type_content,$name_partner){
+        // $type_content = $request->get('type');
+        // $name_partner = $request->get('name_partner');
+
+        if (!empty($type_content)) {
+            $ads_contents = Ads_content::where('name_partner' , $name_partner)
+                ->where('type_content' , $type_content)
+                ->get();
+        }else{
+            $ads_contents = Ads_content::where('name_partner' , $name_partner)->get();
+        }
+
+        return $ads_contents;
     }
 
 }

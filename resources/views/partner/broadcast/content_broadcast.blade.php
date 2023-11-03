@@ -15,14 +15,28 @@
    background-color: white;
    border: 1px solid #db2d2e;
    color: #db2d2e;
-   
+
 }
 .boardcast-content .header .btn-content:hover{
    border-radius: 10px;
    background-color: #db2d2e;
    border: 1px solid #db2d2e;
    color: white;
-   
+
+}
+.boardcast-content .header .btn-content_selected{
+   border-radius: 10px;
+   background-color: white;
+   border: 1px solid #8833ff;
+   color: #8833ff;
+
+}
+.boardcast-content .header .btn-content_selected:hover{
+   border-radius: 10px;
+   background-color: #8833ff;
+   border: 1px solid #8833ff;
+   color: white;
+
 }.boardcast-content .content{
     border-radius: 20px;
     background-color: white;
@@ -33,9 +47,9 @@
    background-color: #898989;
    object-fit: contain;
    border-radius: 20px 20px 0 0;
-}.boardcast-content .content .detail{   
+}.boardcast-content .content .detail{
     padding: 20px;
-   
+
 }.content .detail h4{
      width: 100%;
     text-overflow: ellipsis;
@@ -45,19 +59,19 @@
 .btn{
     border-radius: 10px;
 }
-.text-on-line { 
-    width:100%; 
-    text-align:center; 
-    border-bottom: 1px solid #000; 
-    line-height:0.1em; 
-    margin:10px 0 10px; 
+.text-on-line {
+    width:100%;
+    text-align:center;
+    border-bottom: 1px solid #000;
+    line-height:0.1em;
+    margin:10px 0 10px;
     font-size: 16px;
-} 
-.text-on-line  .line { 
-    background:#fff; 
-    padding:0 10px; 
 }
-</style> 
+.text-on-line  .line {
+    background:#fff;
+    padding:0 10px;
+}
+</style>
 
 
 
@@ -71,29 +85,29 @@
                 All
             </a>
             @if( !empty($partner_premium->BC_by_check_in_max) )
-                <a id="btn_BC_by_check_in" href="{{ url('/broadcast/content') }}?By=BC_by_check_in" class="btn btn-content" >
+                <a id="btn_BC_by_check_in"  onclick="select_content('BC_by_check_in')" class="btn btn-content" >
                     <i class="fa-duotone fa-map-location-dot"></i> By check in
                 </a>
-            @endif  
+            @endif
             @if( !empty($partner_premium->BC_by_car_max))
-                <a id="btn_BC_by_car" href="{{ url('/broadcast/content') }}?By=BC_by_car" class="btn btn-content" >
+                <a id="btn_BC_by_car"  onclick="select_content('BC_by_car')" class="btn btn-content" >
                     <i class="fa-duotone fa-cars"></i> By cars
                 </a>
             @endif
             @if( !empty($partner_premium->BC_by_user_max))
-                <a id="btn_BC_by_user" href="{{ url('/broadcast/content') }}?By=BC_by_user" class="btn btn-content" >
+                <a id="btn_BC_by_user" onclick="select_content('BC_by_user')" class="btn btn-content" >
                     <i class="fa-duotone fa-users"></i>By user
                 </a>
             @endif
         </span>
-        
+
     </div>
     <style>
         .div-tooltip{
             position: relative;
     overflow: hidden;
-    text-overflow: ellipsis; 
-    white-space: nowrap; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
     cursor: pointer;
     }
     .div-tooltip:hover{
@@ -141,15 +155,15 @@
     border:10px solid;
     border-color:  transparent transparent #333 transparent;
 
-    } 
+    }
     </style>
     <div class="content">
         <div class="row">
             <div class="col-12 float-end">
-                <a id="btn_BC_by_user" href="{{ url('/broadcast/content') }}?By=BC_by_user" class="btn btn-outline-success" >
+                <!-- <a id="btn_BC_by_user" href="{{ url('/broadcast/content') }}?By=BC_by_user" class="btn btn-outline-success" >
                     <i class="fa-duotone fa-circle-plus"></i> เพิ่มเนื้อหาใหม่
-                </a>
-                <a id="btn_BC_by_user" href="{{ url('/broadcast/content') }}?By=BC_by_user" class="btn btn-outline-secondary " >
+                </a> -->
+                <a id="btn_BC_by_user" href="{{ url('/dashboard_boardcast_3_topic?type_page=car_btn') }}" class="btn btn-outline-secondary " >
                     <i class="fa-duotone fa-file-pdf"></i> Export PDF
                 </a>
             </div>
@@ -185,51 +199,56 @@
                             if ($value > $click_max) {
                                 $click_max = $value ;
                             }
-                                
+
                         }
 
                     }else{
                         $count_user_click = '0' ;
                     }
+                    $type_content = '';
 
                     if($item->type_content == "BC_by_car"){
                         $type_content = "ส่งข้อมูลโดยกรองจากรถ";
-                    }if($item->type_content == "BC_by_user"){
+                    }elseif($item->type_content == "BC_by_user"){
                         $type_content = "ส่งข้อมูลโดยกรองจากผู้ใช้";
-                    }if($item->type_content == "BC_by_chcekin"){
+                    }elseif($item->type_content == "BC_by_chcekin"){
                         $type_content = "ส่งข้อมูลโดยกรองจากสถานที่";
                     }
                 @endphp
                 <div class="col-12 col-md-4 col-lg-3 mt-3">
                     <div class="main-shadow" style="border-radius: 20px;">
-                        <img src="{{ url('storage')}}/{{ $item->photo }}" class=" main-radius img-content">
+                        @if (!empty($item->photo))
+                            <img src="{{ url('storage')}}/{{ $item->photo }}" class=" main-radius img-content">
+                        @else
+                            <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class=" main-radius img-content">
+                        @endif
                         <div class="detail">
                             <h4>{{ $item->name_content }}</h4>
                             <div class="row">
                                 <div class="div-tooltip col-6">
                                     <span><b><i class="fa-solid fa-calendar-lines-pen">
-                                    <span class="tooltip">วันที่สร้าง วัน{{ thaidate("lที่ j F Y" , strtotime($item->created_at)) }} <br> เวลา {{ thaidate("H:i:s" , strtotime($item->created_at)) }}</span> 
+                                    <span class="tooltip">วันที่สร้าง วัน{{ thaidate("lที่ j F Y" , strtotime($item->created_at)) }} <br> เวลา {{ thaidate("H:i:s" , strtotime($item->created_at)) }}</span>
                                     </i></b></span>
                                     <span>{{ $item->created_at->format('d/m/Y') }}</span>
                                 </div>
                                 <div class="div-tooltip col-6">
                                     <span><b><i class="fa-solid fa-arrow-rotate-right"></i></b></span>
-                                    <span class="tooltip">อัพเดตล่าสุด วัน{{ thaidate("lที่ j F Y" , strtotime($item->updated_at)) }} <br> เวลา {{ thaidate("H:i:s" , strtotime($item->updated_at)) }}</span> 
+                                    <span class="tooltip">อัพเดตล่าสุด วัน{{ thaidate("lที่ j F Y" , strtotime($item->updated_at)) }} <br> เวลา {{ thaidate("H:i:s" , strtotime($item->updated_at)) }}</span>
                                     <span>{{ $item->updated_at->format('d/m/Y') }}</span>
                                 </div>
                                 <div class="div-tooltip">
                                     <span><b><i class="fa-solid fa-shapes"></i></b></span>
-                                
-                                    <span class="tooltip">ประเภท : {{$type_content}} <br> </span> 
+
+                                    <span class="tooltip">ประเภท : {{$type_content}} <br> </span>
                                     <span>{{$type_content}}</span>
                                 </div>
                                 <div class="div-tooltip">
                                     <span><b><i class="fa-solid fa-paper-plane"></i></i></b></span>
-                                    <span class="tooltip">ส่งแล้ว : {{ $item->send_round }} ครั้ง </span> 
+                                    <span class="tooltip">ส่งแล้ว : {{ $item->send_round }} ครั้ง </span>
                                     <span>{{ $item->send_round }} ครั้ง</span>
                                 </div>
                             </div>
-                            
+
 
                             <!-- <div class="d-flex justify-content-between">
                                 <span><b>วันที่สร้าง</b></span>
@@ -260,7 +279,7 @@
                                             <p class="p-0 m-0">การแสดงผลทั้งหมด : {{ $count_show_user }} ครั้ง</p>
                                             <p class="p-0 m-0">การแสดงผลแบบไม่ซ้ำกับผู้ใช้เดิม : {{ $count_show_user_unique }} คน</p>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <p class="text-on-line "><span class="line">การเข้าถึง</span></p>
                                 <div class="row text-center mt-0 div-tooltip">
@@ -285,11 +304,11 @@
                                             <p class="p-0 m-0">การเข้าถึงซึ้งมากที่สุด : {{ $click_max }} ครั้ง</p>
 
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                         </div>
                     </div>
-                    
+
                 </div>
 
                 <!-- <div class="col-3">
@@ -315,7 +334,7 @@
                             <span><b>ผู้ที่คลิกซ้ำ</b> &nbsp; {{ $count_Repeated_users }} &nbsp; คน</span><br>
                             <span><b>จำนวนที่คลิกซ้ำมากที่สุดต่อ 1 คน</b> &nbsp; {{ $click_max }} &nbsp; ครั้ง</span><br>
                         </div>
-                    </div> 
+                    </div>
                 </div> -->
             @endforeach
         </div>
@@ -349,7 +368,7 @@
         // console.log("start");
         let full_url = window.location.href ;
         const url_sp = full_url.split("=");
-        
+
         if (url_sp.length > 1) {
             document.querySelector('#btn_BC_all').classList.remove('btn-info','text-white');
             document.querySelector('#btn_BC_all').classList.add('btn-outline-info');
@@ -365,18 +384,33 @@
 
         switch(bc_by) {
             case 'BC_by_car':
-                document.querySelector('#btn_BC_by_car').classList.remove('btn-outline-info');
-                document.querySelector('#btn_BC_by_car').classList.add('btn-info','text-white');
+                document.querySelector('#btn_BC_by_car').classList.remove('btn-content');
+                document.querySelector('#btn_BC_by_car').classList.add('btn-content_selected');
+
                 break;
             case 'BC_by_check_in':
-                document.querySelector('#btn_BC_by_check_in').classList.remove('btn-outline-info');
-                document.querySelector('#btn_BC_by_check_in').classList.add('btn-info','text-white');
+                document.querySelector('#btn_BC_by_check_in').classList.remove('btn-content');
+                document.querySelector('#btn_BC_by_check_in').classList.add('btn-content_selected');
+
                 break;
             case 'BC_by_user':
-                document.querySelector('#btn_BC_by_user').classList.remove('btn-outline-info');
-                document.querySelector('#btn_BC_by_user').classList.add('btn-info','text-white');
+                document.querySelector('#btn_BC_by_user').classList.remove('btn-content');
+                document.querySelector('#btn_BC_by_user').classList.add('btn-content_selected');
+
                 break;
         }
+    }
+
+    function select_content(type){
+        // ดึงข้อมูลผ่าน Fetch API จากหลังบ้าน
+        name_partner = '{{ $name_partner }}';
+        console.log(type);
+        console.log(name_partner);
+        fetch("{{ url('/') }}/api/select_content_broadcast" + '/' + type + '/' + name_partner)
+            .then(response => response.json()) // แปลงข้อมูลเป็น JSON
+            .then(data => {
+                console.log(data);
+            });
     }
 
 </script>

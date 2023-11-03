@@ -44,14 +44,13 @@
     @endphp
 
 <div class="row row-cols-1 row-cols-lg-4">
-    <div class="col">
+    {{-- <div class="col">
         <div class="card radius-10">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <h5 class="mb-0 font-weight-bold text-dark">บรอดแคสต์ทั้งหมด</h5>
                         <h3 class="font-weight-bold">{{ $count_all_content }}
-                            {{-- <small class="text-success font-13"> (+2 วันนี้) </small> --}}
                         </h3>
                     </div>
                     <div class="widgets-icons bg-gradient-cosmic text-white">
@@ -65,16 +64,16 @@
                 <br>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="col">
         <div class="card radius-10">
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <h5 class="mb-0 font-weight-bold text-dark">บรอดแคสต์เช็คอิน</h5>
-                        <h3 class="font-weight-bold">{{ $count_all_by_checkin }}
-                            {{-- <small class="text-success font-13"> (+2 วันนี้) </small> --}}
-                        </h3>
+                        <span class="h3 font-weight-bold">{{ $count_all_by_checkin }}
+                            <span class="h3 text-secondary font-weight-bold" style="font-size: 20px;"> ({{ $count_all_content }})</span>
+                        </span>
                     </div>
                     <div class="widgets-icons bg-gradient-Ohhappiness text-white">
                         <img width="35px" src="{{ asset('/img/icon/check-in.png') }}">
@@ -94,9 +93,9 @@
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <h5 class="mb-0 font-weight-bold text-dark">บรอดแคสต์รถที่ลงทะเบียน</h5>
-                        <h3 class="font-weight-bold"> {{ $count_all_by_car }}
-                            {{-- <small class="text-dark font-13">(+0 วันนี้)</small> --}}
-                        </h3>
+                        <span class="h3 font-weight-bold"> {{ $count_all_by_car }}
+                            <span class="h3 text-secondary font-weight-bold" style="font-size: 20px;"> ({{ $count_all_content }})</span>
+                        </span>
                     </div>
                     <div class="widgets-icons bg-gradient-kyoto text-white">
                         <img width="35px" src="{{ asset('/img/icon/car.png') }}">
@@ -116,9 +115,9 @@
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
                         <h5 class="mb-0 font-weight-bold text-dark">บรอดแคสต์ผู้ใช้งาน</h5>
-                        <h3 class="font-weight-bold">{{ $count_all_by_user }}
-                            {{-- <small class="text-dark font-13"> (+0 วันนี้) </small> --}}
-                        </h3>
+                        <span class="h3 font-weight-bold">{{ $count_all_by_user }}
+                            <span class="h3 text-secondary font-weight-bold" style="font-size: 20px;"> ({{ $count_all_content }})</span>
+                        </span>
                     </div>
                     <div class="widgets-icons bg-gradient-blues text-white">
                         <img width="35px" src="{{ asset('/img/icon/user.png') }}">
@@ -132,11 +131,342 @@
             </div>
         </div>
     </div>
+    <div class="col">
+        <div class="card radius-10">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <h5 class="mb-0 font-weight-bold text-dark">บรอดแคสต์ขอความช่วยเหลือ</h5>
+                        <span class="h3 font-weight-bold"> 0
+                            <span class="h3 text-secondary font-weight-bold" style="font-size: 20px;"> ({{ $count_all_content }})</span>
+                        </span>
+                    </div>
+                    <div class="widgets-icons bg-gradient-burning text-white">
+                        <img width="35px" src="{{ asset('/img/icon/sos.png') }}">
+                    </div>
+                </div>
+                <div class="progress bg-dark-2 radius-10 mt-4" style="height:4.5px;">
+                    <div class="progress-bar bg-dark" role="progressbar" style="width: 0%"></div>
+                </div>
+                <br>
+                <h6 class="text-dark font-weight-bold ">คิดเป็น : 0 % จากบรอดแคสต์ทั้งหมด</h6>
+            </div>
+        </div>
+    </div>
 
 </div>
 
 <!--========================== Most Often Content ===============================-->
-<div class="row row-cols-1 row-cols-lg-3">
+<div class="row">
+    <div class="col-12 col-lg-12 d-flex">
+        <div class="card radius-10 w-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h3 class="mb-0">
+                            <b>เนื้อหาที่โดดเด่น</b>
+                        </h3>
+                    </div>
+                    <div class="font-22 ms-auto">
+                        <!-- <i class="bx bx-dots-horizontal-rounded"></i> -->
+                         <a href="{{ url('/broadcast/content') }}" class="btn btn-primary main-shadow main-radius text-white" style="width:100%;">
+                            ดูข้อมูลเพิ่มเติม
+                        </a>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <b>บรอดแคสต์ที่ผู้ใช้ดูมากที่สุด</b>
+                        <br><br>
+                        @if(!empty($most_amount_user_click))
+                            <div class="card" style="width: 18rem;">
+                                <center>
+                                    @if (!empty($most_amount_user_click->photo))
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_amount_user_click->photo }}" class="main-shadow main-radius">
+                                    @else
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
+                                    @endif
+                                </center>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        {{ $most_amount_user_click->name_content }}
+                                    </h5>
+                                    <p class="card-text">
+                                        จำนวนทั้งหมด : <b>{{ $most_amount_user_click->count_amount_user_click }}</b> ครั้ง
+                                        <br>
+                                        @switch($most_amount_user_click->type_content)
+                                            @case('BC_by_check_in')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-burning text-white radius-30">
+                                                    By Check in
+                                                </span>
+                                                @break
+                                            @case('BC_by_car')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-Ohhappiness text-white radius-30">
+                                                    By Cars
+                                                </span>
+                                                @break
+                                            @case('BC_by_user')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-moonlit text-white radius-30">
+                                                    By User
+                                                </span>
+                                                @break
+                                        @endswitch
+                                    </p>
+                                </div>
+                            </div>
+                        @else
+                            ไม่มีข้อมูล
+                        @endif
+                    </div>
+                    <div class="col-3">
+                        <b>บรอดแคสต์ที่ผู้ใช้ดูมากที่สุด(ไม่ซ้ำผู้ใช้)</b>
+                        <br><br>
+                        @if(!empty($most_user_click))
+                            <div class="card" style="width: 18rem;">
+                                <center>
+                                    @if (!empty($most_user_click->photo))
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_user_click->photo }}" class="main-shadow main-radius">
+                                    @else
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
+                                    @endif
+                                </center>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        {{ $most_user_click->name_content }}
+                                    </h5>
+                                    <p class="card-text">
+                                        จำนวนทั้งหมด : <b>{{ $most_user_click->count_user_click }}</b> คน
+                                        <br>
+                                        @switch($most_user_click->type_content)
+                                            @case('BC_by_check_in')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-burning text-white radius-30">
+                                                    By Check in
+                                                </span>
+                                                @break
+                                            @case('BC_by_car')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-Ohhappiness text-white radius-30">
+                                                    By Cars
+                                                </span>
+                                                @break
+                                            @case('BC_by_user')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-moonlit text-white radius-30">
+                                                    By User
+                                                </span>
+                                                @break
+                                        @endswitch
+                                    </p>
+                                </div>
+                            </div>
+                        @else
+                            ไม่มีข้อมูล
+                        @endif
+                    </div>
+                    <div class="col-3">
+                        <b>บรอดแคสต์ที่ส่งถึงผู้ใช้มากที่สุด(ไม่ซ้ำผู้ใช้)</b>
+                        <br><br>
+                        @if(!empty($most_show_user))
+                            <div class="card" style="width: 18rem;">
+                                <center>
+                                    @if (!empty($most_show_user->photo))
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_show_user->photo }}" class="main-shadow main-radius">
+                                    @else
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
+                                    @endif
+                                </center>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        {{ $most_show_user->name_content }}
+                                    </h5>
+                                    <p class="card-text">
+                                        จำนวนทั้งหมด : <b>{{ $most_show_user->count_show_user }}</b> ครั้ง
+                                        <br>
+                                        @switch($most_show_user->type_content)
+                                            @case('BC_by_check_in')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-burning text-white radius-30">
+                                                    By Check in
+                                                </span>
+                                                @break
+                                            @case('BC_by_car')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-Ohhappiness text-white radius-30">
+                                                    By Cars
+                                                </span>
+                                                @break
+                                            @case('BC_by_user')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-moonlit text-white radius-30">
+                                                    By User
+                                                </span>
+                                                @break
+                                        @endswitch
+                                    </p>
+                                </div>
+                            </div>
+                        @else
+                            ไม่มีข้อมูล
+                        @endif
+                    </div>
+                    <div class="col-3">
+                        <b>บรอดแคสต์ที่ส่งมากที่สุด(รอบ)</b>
+                        <br><br>
+                        @if(!empty($most_send_round))
+                            <div class="card" style="width: 18rem;">
+                                <center>
+                                    @if (!empty($most_send_round->photo))
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_send_round->photo }}" class="main-shadow main-radius">
+                                    @else
+                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
+                                    @endif
+                                </center>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        {{ $most_send_round->name_content }}
+                                    </h5>
+                                    <p class="card-text">
+                                        จำนวนทั้งหมด : <b>{{ $most_send_round->send_round }}</b> รอบ
+                                        <br>
+                                        @switch($most_send_round->type_content)
+                                            @case('BC_by_check_in')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-burning text-white radius-30">
+                                                    By Check in
+                                                </span>
+                                                @break
+                                            @case('BC_by_car')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-Ohhappiness text-white radius-30">
+                                                    By Cars
+                                                </span>
+                                                @break
+                                            @case('BC_by_user')
+                                                ประเภท :
+                                                <span class="px-3 bg-gradient-moonlit text-white radius-30">
+                                                    By User
+                                                </span>
+                                                @break
+                                        @endswitch
+                                    </p>
+                                </div>
+                            </div>
+                        @else
+                            ไม่มีข้อมูล
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-lg-1">
+    <div class="col">
+        <!-- Content เรียงลำดับ ทั้งหมด -->
+        <div class="card radius-10">
+            <div class="card-header border-bottom-0 bg-transparent">
+                <div class="d-flex align-items-center" style="margin-top:10px;">
+                    <div>
+                        <h3 class="mb-0">
+                            <b>การจัดอันดับ</b> <span class="text-secondary" style="font-size:15px;">(รวม)</span>
+                        </h3>
+                    </div>
+                    <div class="ms-auto">
+                        <a href="{{ url('/broadcast/content') }}" class="btn btn-primary main-shadow main-radius text-white" style="width:100%;">
+                            ดูข้อมูลเพิ่มเติม
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="all_broadcast_table" class="table table-striped  align-middle" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>รูป</th>
+                                <th>ชื่อ</th>
+                                <th>จำนวนบรอดแคสต์ที่ส่ง</th>
+                                <th>จำนวนบรอดแคสต์ที่ส่งถึงผู้ใช้(ไม่ซ้ำผู้ใช้)</th>
+                                <th>จำนวนผู้ใช้ที่ดูบรอดแคสต์</th>
+                                <th>จำนวนผู้ใช้ที่ดูบรอดแคสต์(ไม่ซ้ำผู้ใช้)</th>
+                                <th>ประเภท</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($all_show_user as $item_contents)
+                                <tr>
+                                    <td class="d-flex align-items-center">
+                                        <div class="product-img bg-transparent border">
+                                            @if (!empty($item_contents->photo))
+                                                <img src="{{ url('storage')}}/{{ $item_contents->photo }}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-1" alt="">
+                                            @endif
+                                        </div>
+                                    </td>
+                                    <td>{{ $item_contents->name_content }}</td>
+                                    <td>{{ $item_contents->send_round }}</td>
+                                    <td>{{ $item_contents->count_show_user }}</td>
+                                    <td>{{ $item_contents->count_amount_user_click }}</td>
+                                    <td>{{ $item_contents->count_user_click }}</td>
+                                    <td>
+                                        @switch($item_contents->type_content)
+                                                @case('BC_by_check_in')
+                                                    <span class="px-2 bg-gradient-burning text-white radius-30">
+                                                        By Check in
+                                                    </span>
+                                                    @break
+                                                @case('BC_by_car')
+                                                    <span class="px-2 bg-gradient-Ohhappiness text-white radius-30">
+                                                        By Cars
+                                                    </span>
+                                                    @break
+                                                @case('BC_by_user')
+                                                    <span class="px-2 bg-gradient-blues text-white radius-30">
+                                                        By User
+                                                    </span>
+                                                    @break
+                                                @case('BC_by_sos')
+                                                    <span class="px-2 bg-gradient-kyoto text-white radius-30">
+                                                        By Sos
+                                                    </span>
+                                                    @break
+                                                @default
+                                                    <span class="px-2 bg-gradient-moonlit text-white radius-30">
+                                                        --
+                                                    </span>
+                                                    @break
+                                        @endswitch
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        {{-- <tfoot>
+                            <tr>
+                                <th>รูป</th>
+                                <th>ชื่อ</th>
+                                <th>จำนวนบรอดแคสต์ที่ส่ง</th>
+                                <th>จำนวนบรอดแคสต์ที่ส่งถึงผู้ใช้</th>
+                                <th>จำนวนคนที่ดูบรอดแคสต์</th>
+                                <th>ประเภท</th>
+                            </tr>
+                        </tfoot> --}}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- END Content เรียงลำดับ ทั้งหมด -->
+    </div>
+
+</div>
+
+<div class="row row-cols-1 row-cols-lg-4">
     <!-- CHECK IN  -->
     <div class="accordion" id="accordion_of_check_in">
         <div class="card">
@@ -148,13 +478,13 @@
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
-                        <a href="{{ url('/dashboard_boardcast_3_topic?type_page=check_in_btn') }}" type="button" class="btn btn-sm btn-primary text-white">
-                            <img width="25px" src="{{ asset('/img/icon/eye_white.png') }}"> ดูเพิ่มเติม
+                        <a href="{{ url('/broadcast/content') }}" type="button" class="btn btn-sm btn-primary text-white">
+                            <img width="25px" src="{{ asset('/img/icon/eye_white.png') }}">
                         </a>
 
                         <div class="btn-group" role="group">
                             <button class="btn btn-sm btn-success dropdown-toggle" data-bs-toggle="dropdown">
-                                ตัวเลือก
+                                <i class="fa-sharp fa-solid fa-bars"></i>
                             </button>
 
                             <div class="dropdown-menu dropdown-menu-right">
@@ -336,13 +666,13 @@
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
-                        <a href="{{ url('/dashboard_boardcast_3_topic?type_page=car_btn') }}" type="button" class="btn btn-sm btn-primary text-white">
-                            <img width="25px" src="{{ asset('/img/icon/eye_white.png') }}"> ดูเพิ่มเติม
+                        <a href="{{ url('/broadcast/content') }}" type="button" class="btn btn-sm btn-primary text-white">
+                            <img width="25px" src="{{ asset('/img/icon/eye_white.png') }}">
                         </a>
 
                         <div class="btn-group" role="group">
                             <button class="btn btn-sm btn-success dropdown-toggle" data-bs-toggle="dropdown">
-                                ตัวเลือก
+                                <i class="fa-sharp fa-solid fa-bars"></i>
                             </button>
 
                             <div class="dropdown-menu dropdown-menu-right">
@@ -524,13 +854,13 @@
                         </h5>
                     </div>
                     <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
-                        <a href="{{ url('/dashboard_boardcast_3_topic?type_page=user_btn') }}" type="button" class="btn btn-sm btn-primary text-white">
-                            <img width="25px" src="{{ asset('/img/icon/eye_white.png') }}"> ดูเพิ่มเติม
+                        <a href="{{ url('/broadcast/content') }}" type="button" class="btn btn-sm btn-primary text-white">
+                            <img width="25px" src="{{ asset('/img/icon/eye_white.png') }}">
                         </a>
 
                         <div class="btn-group" role="group">
                             <button class="btn btn-sm btn-success dropdown-toggle" data-bs-toggle="dropdown">
-                                ตัวเลือก
+                                <i class="fa-sharp fa-solid fa-bars"></i>
                             </button>
 
                             <div class="dropdown-menu dropdown-menu-right">
@@ -699,305 +1029,193 @@
         </div>
     </div>
     <!-- END User  -->
-</div>
 
-<div class="row">
-    <div class="col-12 col-lg-12 d-flex">
-        <div class="card radius-10 w-100">
-            <div class="card-body">
+    <!-- Sos  -->
+    <div class="accordion" id="accordion_of_sos">
+        <div class="card">
+            <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div>
-                        <h3 class="mb-0">
-                            <b>เนื้อหาที่โดดเด่น</b>
-                        </h3>
+                        <h5 class="font-weight-bold mb-0">
+                            <b>บรอดแคสต์สำหรับขอความช่วยเหลือ</b>
+                        </h5>
                     </div>
-                    <div class="font-22 ms-auto">
-                        <!-- <i class="bx bx-dots-horizontal-rounded"></i> -->
-                        <!-- <a href="{{ url('/broadcast/content') }}" class="btn btn-primary main-shadow main-radius text-white" style="width:100%;">
-                            ดูข้อมูลเพิ่มเติม
-                        </a> -->
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-3">
-                        <b>บรอดแคสต์ที่ผู้ใช้ดูมากที่สุด</b>
-                        <br><br>
-                        @if(!empty($most_amount_user_click))
-                            <div class="card" style="width: 18rem;">
-                                <center>
-                                    @if (!empty($most_amount_user_click->photo))
-                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_amount_user_click->photo }}" class="main-shadow main-radius">
-                                    @else
-                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
-                                    @endif
-                                </center>
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">
-                                        {{ $most_amount_user_click->name_content }}
-                                    </h5>
-                                    <p class="card-text">
-                                        จำนวนทั้งหมด : <b>{{ $most_amount_user_click->count_amount_user_click }}</b> ครั้ง
-                                        <br>
-                                        @switch($most_amount_user_click->type_content)
-                                            @case('BC_by_check_in')
-                                                ประเภท :
-                                                <span class="px-3 bg-gradient-burning text-white radius-30">
-                                                    By Check in
-                                                </span>
-                                                @break
-                                            @case('BC_by_car')
-                                                ประเภท :
-                                                <span class="px-3 bg-gradient-Ohhappiness text-white radius-30">
-                                                    By Cars
-                                                </span>
-                                                @break
-                                            @case('BC_by_user')
-                                                ประเภท :
-                                                <span class="px-3 bg-gradient-moonlit text-white radius-30">
-                                                    By User
-                                                </span>
-                                                @break
-                                        @endswitch
-                                    </p>
-                                </div>
-                            </div>
-                        @else
-                            ไม่มีข้อมูล
-                        @endif
-                    </div>
-                    <div class="col-3">
-                        <b>บรอดแคสต์ที่ผู้ใช้ดูมากที่สุด(ไม่ซ้ำผู้ใช้)</b>
-                        <br><br>
-                        @if(!empty($most_user_click))
-                            <div class="card" style="width: 18rem;">
-                                <center>
-                                    @if (!empty($most_user_click->photo))
-                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_user_click->photo }}" class="main-shadow main-radius">
-                                    @else
-                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
-                                    @endif
-                                </center>
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">
-                                        {{ $most_user_click->name_content }}
-                                    </h5>
-                                    <p class="card-text">
-                                        จำนวนทั้งหมด : <b>{{ $most_user_click->count_user_click }}</b> คน
-                                        <br>
-                                        @switch($most_user_click->type_content)
-                                            @case('BC_by_check_in')
-                                                ประเภท :
-                                                <span class="px-3 bg-gradient-burning text-white radius-30">
-                                                    By Check in
-                                                </span>
-                                                @break
-                                            @case('BC_by_car')
-                                                ประเภท :
-                                                <span class="px-3 bg-gradient-Ohhappiness text-white radius-30">
-                                                    By Cars
-                                                </span>
-                                                @break
-                                            @case('BC_by_user')
-                                                ประเภท :
-                                                <span class="px-3 bg-gradient-moonlit text-white radius-30">
-                                                    By User
-                                                </span>
-                                                @break
-                                        @endswitch
-                                    </p>
-                                </div>
-                            </div>
-                        @else
-                            ไม่มีข้อมูล
-                        @endif
-                    </div>
-                    <div class="col-3">
-                        <b>บรอดแคสต์ที่ส่งถึงผู้ใช้มากที่สุด</b>
-                        <br><br>
-                        @if(!empty($most_show_user))
-                            <div class="card" style="width: 18rem;">
-                                <center>
-                                    @if (!empty($most_show_user->photo))
-                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_show_user->photo }}" class="main-shadow main-radius">
-                                    @else
-                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
-                                    @endif
-                                </center>
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">
-                                        {{ $most_show_user->name_content }}
-                                    </h5>
-                                    <p class="card-text">
-                                        จำนวนทั้งหมด : <b>{{ $most_show_user->count_show_user }}</b> ครั้ง
-                                        <br>
-                                        @switch($most_show_user->type_content)
-                                            @case('BC_by_check_in')
-                                                ประเภท :
-                                                <span class="px-3 bg-gradient-burning text-white radius-30">
-                                                    By Check in
-                                                </span>
-                                                @break
-                                            @case('BC_by_car')
-                                                ประเภท :
-                                                <span class="px-3 bg-gradient-Ohhappiness text-white radius-30">
-                                                    By Cars
-                                                </span>
-                                                @break
-                                            @case('BC_by_user')
-                                                ประเภท :
-                                                <span class="px-3 bg-gradient-moonlit text-white radius-30">
-                                                    By User
-                                                </span>
-                                                @break
-                                        @endswitch
-                                    </p>
-                                </div>
-                            </div>
-                        @else
-                            ไม่มีข้อมูล
-                        @endif
-                    </div>
-                    <div class="col-3">
-                        <b>บรอดแคสต์ที่ส่งมากที่สุด(รอบ)</b>
-                        <br><br>
-                        @if(!empty($most_send_round))
-                            <div class="card" style="width: 18rem;">
-                                <center>
-                                    @if (!empty($most_send_round->photo))
-                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ url('storage')}}/{{ $most_send_round->photo }}" class="main-shadow main-radius">
-                                    @else
-                                        <img style="margin-top:20px;width: 80%;max-height: 300px;" src="{{ asset("/img/stickerline/PNG/7.png") }}" class="main-shadow main-radius">
-                                    @endif
-                                </center>
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">
-                                        {{ $most_send_round->name_content }}
-                                    </h5>
-                                    <p class="card-text">
-                                        จำนวนทั้งหมด : <b>{{ $most_send_round->send_round }}</b> รอบ
-                                        <br>
-                                        @switch($most_send_round->type_content)
-                                            @case('BC_by_check_in')
-                                                ประเภท :
-                                                <span class="px-3 bg-gradient-burning text-white radius-30">
-                                                    By Check in
-                                                </span>
-                                                @break
-                                            @case('BC_by_car')
-                                                ประเภท :
-                                                <span class="px-3 bg-gradient-Ohhappiness text-white radius-30">
-                                                    By Cars
-                                                </span>
-                                                @break
-                                            @case('BC_by_user')
-                                                ประเภท :
-                                                <span class="px-3 bg-gradient-moonlit text-white radius-30">
-                                                    By User
-                                                </span>
-                                                @break
-                                        @endswitch
-                                    </p>
-                                </div>
-                            </div>
-                        @else
-                            ไม่มีข้อมูล
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                    <div class="btn-group ms-auto" role="group" aria-label="Button group with nested dropdown">
+                        <a href="{{ url('/broadcast/content') }}" type="button" class="btn btn-sm btn-primary text-white">
+                            <img width="25px" src="{{ asset('/img/icon/eye_white.png') }}">
+                        </a>
 
-<div class="row row-cols-1 row-cols-lg-1">
-    <div class="col">
-        <!-- Content เรียงลำดับ ทั้งหมด -->
-        <div class="card radius-10">
-            <div class="card-header border-bottom-0 bg-transparent">
-                <div class="d-flex align-items-center" style="margin-top:10px;">
-                    <div>
-                        <h3 class="mb-0">
-                            <b>การจัดอันดับ</b> <span class="text-secondary" style="font-size:15px;">(รวม)</span>
-                        </h3>
-                    </div>
-                    <div class="ms-auto">
-                        <!-- <a href="{{ url('/broadcast/content') }}" class="btn btn-primary main-shadow main-radius text-white" style="width:100%;">
-                            ดูข้อมูลเพิ่มเติม
-                        </a> -->
+                        <div class="btn-group" role="group">
+                            <button class="btn btn-sm btn-success dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="fa-sharp fa-solid fa-bars"></i>
+                            </button>
+
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a data-toggle="collapse" data-target="#collapse_sos_1" aria-expanded="true" aria-controls="collapse_sos_1" href="javaScript:;" class="dropdown-item">
+                                    บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด
+                                </a>
+                                <a data-toggle="collapse" data-target="#collapse_sos_2" aria-expanded="true" aria-controls="collapse_sos_2" href="javaScript:;" class="dropdown-item">
+                                    บรอดแคสต์ที่ส่งบ่อยที่สุด
+                                </a>
+                                <a data-toggle="collapse" data-target="#collapse_sos_3" aria-expanded="true" aria-controls="collapse_sos_3" href="javaScript:;" class="dropdown-item">
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด
+                                </a>
+                                <a data-toggle="collapse" data-target="#collapse_sos_4" aria-expanded="true" aria-controls="collapse_sos_4" href="javaScript:;" class="dropdown-item">
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด(ไม่ซ้ำผู้ใช้)
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="all_broadcast_table" class="table table-striped  align-middle" style="width: 100%;">
-                        <thead>
-                            <tr>
-                                <th>รูป</th>
-                                <th>ชื่อ</th>
-                                <th>จำนวนบรอดแคสต์ที่ส่ง</th>
-                                <th>จำนวนบรอดแคสต์ที่ส่งถึงผู้ใช้(ไม่ซ้ำผู้ใช้)</th>
-                                <th>จำนวนผู้ใช้ที่ดูบรอดแคสต์</th>
-                                <th>จำนวนผู้ใช้ที่ดูบรอดแคสต์(ไม่ซ้ำผู้ใช้)</th>
-                                <th>ประเภท</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($all_show_user as $item_contents)
-                                <tr>
-                                    <td class="d-flex align-items-center">
-                                        <div class="product-img bg-transparent border">
-                                            @if (!empty($item_contents->photo))
-                                                <img src="{{ url('storage')}}/{{ $item_contents->photo }}" class="p-1" alt="">
+
+            <!-- บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด -->
+            <div id="collapse_sos_1" class="collapse show" data-parent="#accordion_of_sos">
+                <div class="card-body">
+                    <div class="col d-flex">
+                        <div class="card radius-10 w-100">
+                            <div class="best-selling-products p-3 mb-3">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
+                                    บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด
+                                </span>
+                                <hr>
+                                @foreach ($sorted_all_by_user_show_user as $by_user_show_user)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            @if (!empty($by_user_show_user->photo))
+                                                <img src="{{ asset('/storage').'/' }}{{ $by_user_show_user->photo}}" class="p-1" alt="">
                                             @else
-                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-1" alt="">
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
                                             @endif
                                         </div>
-                                    </td>
-                                    <td>{{ $item_contents->name_content }}</td>
-                                    <td>{{ $item_contents->send_round }}</td>
-                                    <td>{{ $item_contents->count_show_user }}</td>
-                                    <td>{{ $item_contents->count_amount_user_click }}</td>
-                                    <td>{{ $item_contents->count_user_click }}</td>
-                                    <td>
-                                        @switch($item_contents->type_content)
-                                                @case('BC_by_check_in')
-                                                    <span class="px-2 bg-gradient-burning text-white radius-30">
-                                                        By Check in
-                                                    </span>
-                                                    @break
-                                                @case('BC_by_car')
-                                                    <span class="px-2 bg-gradient-Ohhappiness text-white radius-30">
-                                                        By Cars
-                                                    </span>
-                                                    @break
-                                                @case('BC_by_user')
-                                                    <span class="px-2 bg-gradient-moonlit text-white radius-30">
-                                                        By User
-                                                    </span>
-                                                    @break
-                                        @endswitch
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                        {{-- <tfoot>
-                            <tr>
-                                <th>รูป</th>
-                                <th>ชื่อ</th>
-                                <th>จำนวนบรอดแคสต์ที่ส่ง</th>
-                                <th>จำนวนบรอดแคสต์ที่ส่งถึงผู้ใช้</th>
-                                <th>จำนวนคนที่ดูบรอดแคสต์</th>
-                                <th>ประเภท</th>
-                            </tr>
-                        </tfoot> --}}
-                    </table>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $by_user_show_user->name_content ? $by_user_show_user->name_content : "--"}}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $by_user_show_user->count_show_user }} ครั้ง</p>
+                                    </div>
+                                    <hr>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- END Content เรียงลำดับ ทั้งหมด -->
-    </div>
+            <!-- จบ บรอดแคสต์ที่ส่งถึงผู้ใช้เยอะที่สุด -->
 
+            <!-- บรอดแคสต์ที่ส่งบ่อยที่สุด -->
+            <div id="collapse_sos_2" class="collapse" data-parent="#accordion_of_sos">
+                <div class="card-body">
+                    <div class="col d-flex">
+                        <div class="card radius-10 w-100">
+                            <div class="best-selling-products p-3 mb-3">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
+                                    บรอดแคสต์ที่ส่งบ่อยที่สุด
+                                </span>
+                                <hr>
+                                @foreach ($all_by_user_send_round as $by_user_send_round)
+                                <div class="d-flex align-items-center">
+                                    <div class="">
+                                        <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                    </div>
+                                    <div class="product-img">
+                                        @if (!empty($by_user_send_round->photo))
+                                            <img src="{{ asset('/storage').'/' }}{{ $by_user_send_round->photo}}" class="p-1" alt="">
+                                        @else
+                                            <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="ps-3">
+                                        <h5 class="mb-0 font-weight-bold">{{ $by_user_send_round->name_content ? $by_user_send_round->name_content : "--"}}</h5>
+                                    </div>
+                                    <p class="ms-auto mb-0 text-purple">{{ $by_user_send_round->send_round ? $by_user_send_round->send_round : "0"}} ครั้ง</p>
+                                </div>
+                                <hr>
+                            @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- จบ การคลิกมากที่สุด -->
+
+            <!-- บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
+            <div id="collapse_sos_3" class="collapse" data-parent="#accordion_of_sos">
+                <div class="card-body">
+                    <div class="col d-flex">
+                        <div class="card radius-10 w-100">
+                            <div class="best-selling-products p-3 mb-3">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด
+                                </span>
+                                <hr>
+                                @foreach ($sorted_all_by_user_amount_user_click as $by_user_user_click)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            @if (!empty($by_user_user_click->photo))
+                                                <img src="{{ asset('/storage').'/' }}{{ $by_user_user_click->photo}}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $by_user_user_click->name_content ? $by_user_user_click->name_content : "--"}}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $by_user_user_click->count_amount_user_click ? $by_user_user_click->count_amount_user_click : "0"}} ครั้ง</p>
+                                    </div>
+                                    <hr>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- จบ บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
+
+            <!-- บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
+            <div id="collapse_sos_4" class="collapse" data-parent="#accordion_of_sos">
+                <div class="card-body">
+                    <div class="col d-flex">
+                        <div class="card radius-10 w-100">
+                            <div class="best-selling-products p-3 mb-3">
+                                <span id="text_topic_check_in" class="text-dark font-weight-bold" style="font-size:16px;">
+                                    บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด(ไม่ซ้ำผู้ใช้)
+                                </span>
+                                <hr>
+                                @foreach ($sorted_all_by_user_user_click as $by_user_user_click)
+                                    <div class="d-flex align-items-center">
+                                        <div class="">
+                                            <p class="ms-auto mb-0 text-purple">{{ $loop->iteration }} &nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="product-img">
+                                            @if (!empty($by_user_user_click->photo))
+                                                <img src="{{ asset('/storage').'/' }}{{ $by_user_user_click->photo}}" class="p-1" alt="">
+                                            @else
+                                                <img src="{{ asset("/img/stickerline/PNG/7.png") }}" class="p-0" alt="">
+                                            @endif
+                                        </div>
+                                        <div class="ps-3">
+                                            <h5 class="mb-0 font-weight-bold">{{ $by_user_user_click->name_content ? $by_user_user_click->name_content : "--"}}</h5>
+                                        </div>
+                                        <p class="ms-auto mb-0 text-purple">{{ $by_user_user_click->count_user_click ? $by_user_user_click->count_user_click : "0"}} ครั้ง</p>
+                                    </div>
+                                    <hr>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- จบ บรอดแคสต์ที่มีผู้ใช้ดูมากที่สุด -->
+
+        </div>
+    </div>
+    <!-- END Sos  -->
 </div>
 
 <!--plugins-->

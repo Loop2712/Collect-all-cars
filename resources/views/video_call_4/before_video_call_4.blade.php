@@ -299,13 +299,13 @@
                             <a id="btnJoinRoom" class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
                                 เข้าร่วมห้องสนทนา
                             </a>
-                            <a id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
+                            <a id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องนี้ถึงจำนวนผู้ใช้สูงสุดแล้ว</a>
                         @else
                             <br>
                             <a id="btnJoinRoom" class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
                                 เข้าร่วมห้องสนทนา
                             </a>
-                            <a id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
+                            <a id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องนี้ถึงจำนวนผู้ใช้สูงสุดแล้ว</a>
                         @endif
                     @else
                         <h1 class="w-100 font-weight-bold">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h1>
@@ -329,13 +329,13 @@
                             <a style="font-size: 40px; border-radius: 10px;" id="btnJoinRoom" class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
                                 เข้าร่วมห้องสนทนา
                             </a>
-                            <a style="font-size: 40px; border-radius: 10px;" id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
+                            <a style="font-size: 40px; border-radius: 10px;" id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องนี้ถึงจำนวนผู้ใช้สูงสุดแล้ว</a>
                         @else
                             <br>
                             <a id="btnJoinRoom"  class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
                                 เข้าร่วมห้องสนทนา
                             </a>
-                            <a style="font-size: 40px; border-radius: 10px;" id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>
+                            <a style="font-size: 40px; border-radius: 10px;" id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องนี้ถึงจำนวนผู้ใช้สูงสุดแล้ว</a>
                         @endif
                     @endif
 
@@ -959,7 +959,7 @@
                 // }
 
                 // if(!document.querySelector('#full_room')){
-                //     document.querySelector('#full_room').innerHTML = '<a id="full_room" class="btn btn-secondary" onclick="AlertPeopleInRoom()">ห้องเต็มแล้ว</a>';
+                //     document.querySelector('#full_room').innerHTML = '<a id="full_room" class="btn btn-secondary" onclick="AlertPeopleInRoom()">ห้องนี้ถึงจำนวนผู้ใช้สูงสุดแล้ว</a>';
                 // }
             }
 
