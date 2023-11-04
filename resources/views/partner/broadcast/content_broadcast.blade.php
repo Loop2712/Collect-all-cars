@@ -81,23 +81,35 @@
             Content
         </span>
         <span class="float-end">
-            <a id="btn_BC_all" href="{{ url('/broadcast/content') }}" class="btn btn-content">
+            <a id="btn_BC_all" onclick="select_content('All')" class="btn btn-content">
                 All
             </a>
+            {{-- <a id="btn_BC_all" href="{{ url('/broadcast/content') }}" class="btn btn-content">
+                All
+            </a> --}}
             @if( !empty($partner_premium->BC_by_check_in_max) )
                 <a id="btn_BC_by_check_in"  onclick="select_content('BC_by_check_in')" class="btn btn-content" >
                     <i class="fa-duotone fa-map-location-dot"></i> By check in
                 </a>
+                {{-- <a id="btn_BC_by_check_in" href="{{ url('/broadcast/content') }}?By=BC_by_check_in" class="btn btn-content" >
+                    <i class="fa-duotone fa-map-location-dot"></i> By check in
+                </a> --}}
             @endif
             @if( !empty($partner_premium->BC_by_car_max))
                 <a id="btn_BC_by_car"  onclick="select_content('BC_by_car')" class="btn btn-content" >
                     <i class="fa-duotone fa-cars"></i> By cars
                 </a>
+                {{-- <a id="btn_BC_by_car" href="{{ url('/broadcast/content') }}?By=BC_by_car" class="btn btn-content" >
+                    <i class="fa-duotone fa-cars"></i> By cars
+                </a> --}}
             @endif
             @if( !empty($partner_premium->BC_by_user_max))
-                <a id="btn_BC_by_user" onclick="select_content('BC_by_user')" class="btn btn-content" >
+                 <a id="btn_BC_by_user" onclick="select_content('BC_by_user')" class="btn btn-content" >
                     <i class="fa-duotone fa-users"></i>By user
                 </a>
+                {{-- <a id="btn_BC_by_user" href="{{ url('/broadcast/content') }}?By=BC_by_user" class="btn btn-content" >
+                    <i class="fa-duotone fa-users"></i>By user
+                </a> --}}
             @endif
         </span>
 
@@ -167,7 +179,8 @@
                     <i class="fa-duotone fa-file-pdf"></i> Export PDF
                 </a>
             </div>
-            @foreach($ads_contents as $item)
+            <div id="card_broadcast" class="row">
+                @foreach($ads_contents as $item)
                 @php
                     $count_show_user_unique = 0 ;
                     $count_user_click_unique = 0 ;
@@ -211,11 +224,39 @@
                         $type_content = "ส่งข้อมูลโดยกรองจากรถ";
                     }elseif($item->type_content == "BC_by_user"){
                         $type_content = "ส่งข้อมูลโดยกรองจากผู้ใช้";
-                    }elseif($item->type_content == "BC_by_chcekin"){
+                    }elseif($item->type_content == "BC_by_check_in"){
                         $type_content = "ส่งข้อมูลโดยกรองจากสถานที่";
                     }
+                    //============= รูปแบบ วันที่สร้าง ==================
+                    $date1 = new DateTime($item->created_at);
+                    $day = $date1->format('d');
+                    $month = $date1->format('m');
+                    $year = $date1->format('Y');
+
+                    if (strlen($day) === 1) {
+                        $day = '0' . $day;
+                    }
+                    if (strlen($month) === 1) {
+                        $month = '0' . $month;
+                    }
+                    $year = (int)$year + 543;
+                    $date_created = $day . '/' . $month . '/' . $year;
+                    //============= รูปแบบ วันที่อัพเดต ==================
+                    $date2 = new DateTime($item->updated_at);
+                    $day = $date2->format('d');
+                    $month = $date2->format('m');
+                    $year = $date2->format('Y');
+
+                    if (strlen($day) === 1) {
+                        $day = '0' . $day;
+                    }
+                    if (strlen($month) === 1) {
+                        $month = '0' . $month;
+                    }
+                    $year = (int)$year + 543;
+                    $date_updated = $day . '/' . $month . '/' . $year;
                 @endphp
-                <div class="col-12 col-md-4 col-lg-3 mt-3">
+                <div id="" class="col-12 col-md-4 col-lg-3 mt-3">
                     <div class="main-shadow" style="border-radius: 20px;">
                         @if (!empty($item->photo))
                             <img src="{{ url('storage')}}/{{ $item->photo }}" class=" main-radius img-content">
@@ -229,12 +270,12 @@
                                     <span><b><i class="fa-solid fa-calendar-lines-pen">
                                     <span class="tooltip">วันที่สร้าง วัน{{ thaidate("lที่ j F Y" , strtotime($item->created_at)) }} <br> เวลา {{ thaidate("H:i:s" , strtotime($item->created_at)) }}</span>
                                     </i></b></span>
-                                    <span>{{ $item->created_at->format('d/m/Y') }}</span>
+                                    <span>{{ $date_created }}</span>
                                 </div>
                                 <div class="div-tooltip col-6">
                                     <span><b><i class="fa-solid fa-arrow-rotate-right"></i></b></span>
                                     <span class="tooltip">อัพเดตล่าสุด วัน{{ thaidate("lที่ j F Y" , strtotime($item->updated_at)) }} <br> เวลา {{ thaidate("H:i:s" , strtotime($item->updated_at)) }}</span>
-                                    <span>{{ $item->updated_at->format('d/m/Y') }}</span>
+                                    <span>{{ $date_updated }}</span>
                                 </div>
                                 <div class="div-tooltip">
                                     <span><b><i class="fa-solid fa-shapes"></i></b></span>
@@ -276,39 +317,38 @@
                                     </div>
                                     <div class="tooltip">
                                         <div class="collumn">
-                                            <p class="p-0 m-0">การแสดงผลทั้งหมด : {{ $count_show_user }} ครั้ง</p>
-                                            <p class="p-0 m-0">การแสดงผลแบบไม่ซ้ำกับผู้ใช้เดิม : {{ $count_show_user_unique }} คน</p>
+                                            <p class="p-0 m-0"><i class="fa-regular fa-screen-users"></i> การแสดงผลทั้งหมด : {{ $count_show_user }} ครั้ง</p>
+                                            <p class="p-0 m-0"><i class="fa-solid fa-users-rectangle"></i> การแสดงผลแบบไม่ซ้ำกับผู้ใช้เดิม : {{ $count_show_user_unique }} คน</p>
                                         </div>
                                     </div>
                                 </div>
                                 <p class="text-on-line "><span class="line">การเข้าถึง</span></p>
                                 <div class="row text-center mt-0 div-tooltip">
                                     <div class="col-6">
-                                        <i class="fa-solid fa-bullseye-pointer"></i> {{ $count_show_user }} ครั้ง
+                                        <i class="fa-solid fa-bullseye-pointer"></i> {{ $count_user_click }} ครั้ง
                                     </div>
                                     <div class="col-6">
-                                        <i class="fa-duotone fa-bullseye-pointer"></i> {{ $count_show_user_unique }} คน
+                                        <i class="fa-duotone fa-bullseye-pointer"></i> {{ $count_user_click_unique }} คน
                                     </div>
                                     <div class="col-12 mt-1"></div>
                                     <div class="col-6">
-                                        <i class="fa-solid fa-hand-pointer"></i> {{ $count_show_user }} คน
+                                        <i class="fa-solid fa-hand-pointer"></i> {{ $count_Repeated_users }} คน
                                     </div>
                                     <div class="col-6">
-                                        <i class="fa-duotone fa-hand-pointer"></i> {{ $count_show_user_unique }} ครั้ง
+                                        <i class="fa-duotone fa-hand-pointer"></i> {{ $click_max }} ครั้ง
                                     </div>
                                     <div class="tooltip">
                                         <div class="collumn">
-                                            <p class="p-0 m-0">การเข้าถึงทั้งหมด : {{ $count_user_click }}  ครั้ง</p>
-                                            <p class="p-0 m-0">การเข้าถึงแบบไม่ซ้ำผู้ใช้ : {{ $count_user_click_unique }} คน</p>
-                                            <p class="p-0 m-0">การเข้าถึงซ้ำ : {{ $count_Repeated_users }} คน</p>
-                                            <p class="p-0 m-0">การเข้าถึงซึ้งมากที่สุด : {{ $click_max }} ครั้ง</p>
+                                            <p class="p-0 m-0"><i class="fa-solid fa-bullseye-pointer"></i> การเข้าถึงทั้งหมด : {{ $count_user_click }}  ครั้ง</p>
+                                            <p class="p-0 m-0"><i class="fa-duotone fa-bullseye-pointer"></i> การเข้าถึงแบบไม่ซ้ำผู้ใช้ : {{ $count_user_click_unique }} คน</p>
+                                            <p class="p-0 m-0"><i class="fa-solid fa-hand-pointer"></i> การเข้าถึงซ้ำ : {{ $count_Repeated_users }} คน</p>
+                                            <p class="p-0 m-0"><i class="fa-duotone fa-hand-pointer"></i> การเข้าถึงซึ้งมากที่สุด : {{ $click_max }} ครั้ง</p>
 
                                         </div>
                                     </div>
                                 </div>
                         </div>
                     </div>
-
                 </div>
 
                 <!-- <div class="col-3">
@@ -337,6 +377,8 @@
                     </div>
                 </div> -->
             @endforeach
+            </div>
+
         </div>
     </div>
  </div>
@@ -379,40 +421,224 @@
 
     });
 
-    function add_color(bc_by){
-        // console.log(bc_by);
+    function add_color(type){
+        // console.log(type);
 
-        switch(bc_by) {
-            case 'BC_by_car':
-                document.querySelector('#btn_BC_by_car').classList.remove('btn-content');
-                document.querySelector('#btn_BC_by_car').classList.add('btn-content_selected');
-
-                break;
+        switch(type) {
             case 'BC_by_check_in':
+                //เปลี่ยนเป็น class ใหม่
                 document.querySelector('#btn_BC_by_check_in').classList.remove('btn-content');
                 document.querySelector('#btn_BC_by_check_in').classList.add('btn-content_selected');
 
+                //เปลี่ยนกลับ class เดิม
+                document.querySelector('#btn_BC_all').classList.add('btn-content');
+                document.querySelector('#btn_BC_all').classList.remove('btn-content_selected');
+                document.querySelector('#btn_BC_by_car').classList.add('btn-content');
+                document.querySelector('#btn_BC_by_car').classList.remove('btn-content_selected');
+                document.querySelector('#btn_BC_by_user').classList.add('btn-content');
+                document.querySelector('#btn_BC_by_user').classList.remove('btn-content_selected');
                 break;
+
+            case 'BC_by_car':
+                //เปลี่ยนเป็น class ใหม่
+                document.querySelector('#btn_BC_by_car').classList.remove('btn-content');
+                document.querySelector('#btn_BC_by_car').classList.add('btn-content_selected');
+
+                //เปลี่ยนกลับ class เดิม
+                document.querySelector('#btn_BC_all').classList.add('btn-content');
+                document.querySelector('#btn_BC_all').classList.remove('btn-content_selected');
+                document.querySelector('#btn_BC_by_check_in').classList.add('btn-content');
+                document.querySelector('#btn_BC_by_check_in').classList.remove('btn-content_selected');
+                document.querySelector('#btn_BC_by_user').classList.add('btn-content');
+                document.querySelector('#btn_BC_by_user').classList.remove('btn-content_selected');
+                break;
+
             case 'BC_by_user':
+                //เปลี่ยนเป็น class ใหม่
                 document.querySelector('#btn_BC_by_user').classList.remove('btn-content');
                 document.querySelector('#btn_BC_by_user').classList.add('btn-content_selected');
 
+                //เปลี่ยนกลับ class เดิม
+                document.querySelector('#btn_BC_all').classList.add('btn-content');
+                document.querySelector('#btn_BC_all').classList.remove('btn-content_selected');
+                document.querySelector('#btn_BC_by_check_in').classList.add('btn-content');
+                document.querySelector('#btn_BC_by_check_in').classList.remove('btn-content_selected');
+                document.querySelector('#btn_BC_by_car').classList.add('btn-content');
+                document.querySelector('#btn_BC_by_car').classList.remove('btn-content_selected');
+                break;
+
+            case 'All':
+                //เปลี่ยนเป็น class ใหม่
+                document.querySelector('#btn_BC_all').classList.remove('btn-content');
+                document.querySelector('#btn_BC_all').classList.add('btn-content_selected');
+
+                //เปลี่ยนกลับ class เดิม
+                document.querySelector('#btn_BC_by_user').classList.add('btn-content');
+                document.querySelector('#btn_BC_by_user').classList.remove('btn-content_selected');
+                document.querySelector('#btn_BC_by_check_in').classList.add('btn-content');
+                document.querySelector('#btn_BC_by_check_in').classList.remove('btn-content_selected');
+                document.querySelector('#btn_BC_by_car').classList.add('btn-content');
+                document.querySelector('#btn_BC_by_car').classList.remove('btn-content_selected');
                 break;
         }
     }
 
     function select_content(type){
-        // ดึงข้อมูลผ่าน Fetch API จากหลังบ้าน
         name_partner = '{{ $name_partner }}';
-        console.log(type);
-        console.log(name_partner);
+
+        //เปลี่ยนสีปุ่ม
+        add_color(type);
+
+        let card_broadcast = document.querySelector('#card_broadcast');
+
         fetch("{{ url('/') }}/api/select_content_broadcast" + '/' + type + '/' + name_partner)
             .then(response => response.json()) // แปลงข้อมูลเป็น JSON
             .then(data => {
-                console.log(data);
+                // console.log(data);
+
+                card_broadcast.innerHTML = '';
+
+                data.forEach(item => {
+
+                    // let count_show_user_unique = 0;
+                    // let count_user_click_unique = 0;
+                    let count_Repeated_users = 0;
+                    let click_max = 0;
+
+                    //รูปภาพ บรอดแคสต์
+                    let img_content = '';
+                    if (item.photo) {
+                        img_content = `<img src="{{ url('storage') }}/`+item.photo +`" class=" main-radius img-content">`;
+                    }else{
+                        img_content = `<img src="{{ asset("/img/stickerline/PNG/7.png") }}" class=" main-radius img-content">`;
+                    }
+
+                    //วันที่สร้าง ===========================
+                    let date_created = new Date(item.created_at).toLocaleDateString('th-TH', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    });
+                    // $item->created_at มีค่าเป็น timestamp หรือวันที่ที่คุณต้องการ
+                    let createdTimestamp = item.created_at;
+                    let dateCreatedTooltipElement = '';
+                        dateCreatedTooltipElement = formatThaiDate(createdTimestamp);
+
+                    //วันที่อัพเดต ==========================
+                    let date_updated = new Date(item.updated_at).toLocaleDateString('th-TH', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    });
+                    // $item->updated_at มีค่าเป็น timestamp หรือวันที่ที่คุณต้องการ
+                    let updatedTimestamp = item.updated_at;
+                    let dateUpdatedTooltipElement = '';
+                        dateUpdatedTooltipElement = formatThaiDate(updatedTimestamp);
+
+                    let type_content = '';
+                    if(item.type_content == "BC_by_car"){
+                        type_content = "ส่งข้อมูลโดยกรองจากรถ";
+                    }else if(item.type_content == "BC_by_user"){
+                        type_content = "ส่งข้อมูลโดยกรองจากผู้ใช้";
+                    }else if(item.type_content == "BC_by_check_in"){
+                        type_content = "ส่งข้อมูลโดยกรองจากสถานที่";
+                    }
+
+                    html = `<div class="col-12 col-md-4 col-lg-3 mt-3">
+                                <div class="main-shadow" style="border-radius: 20px;">
+                                    `+ img_content +`
+                                    <div class="detail">
+                                        <h4>`+item.name_content+`</h4>
+                                        <div class="row">
+                                            <div class="div-tooltip col-6">
+                                                <span><b><i class="fa-solid fa-calendar-lines-pen">
+                                                <span class="tooltip">`+dateCreatedTooltipElement+`</span>
+                                                </i></b></span>
+                                                <span> `+ date_created +`</span>
+                                            </div>
+                                            <div class="div-tooltip col-6">
+                                                <span><b><i class="fa-solid fa-arrow-rotate-right"></i></b></span>
+                                                <span class="tooltip">`+dateUpdatedTooltipElement+`</span>
+                                                <span> `+ date_updated +`</span>
+                                            </div>
+                                            <div class="div-tooltip">
+                                                <span><b><i class="fa-solid fa-shapes"></i></b></span>
+
+                                                <span class="tooltip">ประเภท : `+ type_content +` <br> </span>
+                                                <span>`+ type_content +`</span>
+                                            </div>
+                                            <div class="div-tooltip">
+                                                <span><b><i class="fa-solid fa-paper-plane"></i></i></b></span>
+                                                <span class="tooltip">ส่งแล้ว : `+ item.send_round +` ครั้ง </span>
+                                                <span>`+ item.send_round +` ครั้ง</span>
+                                            </div>
+                                        </div>
+
+                                        <p class="text-on-line "><span class="line">การแสดงผล</span></p>
+                                        <div class="row text-center mt-0 div-tooltip">
+                                            <div class="col-6">
+                                                <i class="fa-regular fa-screen-users"></i> `+item.count_amount_show_user+` ครั้ง
+                                            </div>
+                                            <div class="col-6">
+                                                <i class="fa-solid fa-users-rectangle"></i> `+item.count_show_user+` ครั้ง
+                                            </div>
+                                            <div class="tooltip">
+                                                <div class="collumn">
+                                                    <p class="p-0 m-0"><i class="fa-regular fa-screen-users"></i> การแสดงผลทั้งหมด : `+item.count_amount_show_user+` ครั้ง</p>
+                                                    <p class="p-0 m-0"><i class="fa-solid fa-users-rectangle"></i> การแสดงผลแบบไม่ซ้ำกับผู้ใช้เดิม : `+item.count_show_user+` คน</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <p class="text-on-line "><span class="line">การเข้าถึง</span></p>
+                                        <div class="row text-center mt-0 div-tooltip">
+                                            <div class="col-6">
+                                                <i class="fa-solid fa-bullseye-pointer"></i> `+item.count_amount_user_click+` ครั้ง
+                                            </div>
+                                            <div class="col-6">
+                                                <i class="fa-duotone fa-bullseye-pointer"></i> `+item.count_user_click+` คน
+                                            </div>
+                                            <div class="col-12 mt-1"></div>
+                                            <div class="col-6">
+                                                <i class="fa-solid fa-hand-pointer"></i> `+item.count_Repeated_users+` คน
+                                            </div>
+                                            <div class="col-6">
+                                                <i class="fa-duotone fa-hand-pointer"></i> `+item.click_max+` ครั้ง
+                                            </div>
+                                            <div class="tooltip">
+                                                <div class="collumn">
+                                                    <p class="p-0 m-0"><i class="fa-solid fa-bullseye-pointer"></i> การเข้าถึงทั้งหมด : `+item.count_amount_user_click+` ครั้ง</p>
+                                                    <p class="p-0 m-0"><i class="fa-duotone fa-bullseye-pointer"></i> การเข้าถึงแบบไม่ซ้ำผู้ใช้ : `+item.count_user_click+`คน</p>
+                                                    <p class="p-0 m-0"><i class="fa-solid fa-hand-pointer"></i> การเข้าถึงซ้ำ : `+item.count_Repeated_users+`คน</p>
+                                                    <p class="p-0 m-0"><i class="fa-duotone fa-hand-pointer"></i> การเข้าถึงซึ้งมากที่สุด : `+item.click_max+` ครั้ง</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>`;
+
+                    card_broadcast.insertAdjacentHTML('afterbegin', html);
+                });
             });
     }
 
+</script>
+
+<script>
+    function formatThaiDate(timestamp) {
+        let thaiDate = new Date(timestamp);
+        let options = {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+        };
+        let thaiTime = thaiDate.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+        return "วัน" + thaiDate.toLocaleDateString('th-TH', options) + "<br> เวลา " + thaiTime;
+    }
 </script>
 
 

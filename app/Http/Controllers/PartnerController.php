@@ -1160,9 +1160,10 @@ class PartnerController extends Controller
             if (!empty($BC_By)) {
                 $ads_contents = Ads_content::where('id_partner' , $id_partner)
                     ->where('type_content' , $BC_By)
+                    ->orderBy('created_at', 'asc')
                     ->get();
             }else{
-                $ads_contents = Ads_content::where('id_partner' , $id_partner)->get();
+                $ads_contents = Ads_content::where('id_partner' , $id_partner)->orderBy('created_at', 'asc')->get();
             }
             // --------------------------------------------------------------------
             // foreach($ads_contents as $item){
@@ -1378,12 +1379,133 @@ class PartnerController extends Controller
         // $type_content = $request->get('type');
         // $name_partner = $request->get('name_partner');
 
-        if (!empty($type_content)) {
+        if (!empty($type_content) && $type_content !== "All") {
             $ads_contents = Ads_content::where('name_partner' , $name_partner)
                 ->where('type_content' , $type_content)
+                ->orderBy('created_at', 'desc')
                 ->get();
+
+            for ($i=0; $i < count($ads_contents); $i++) {
+                if(!empty($ads_contents[$i]['show_user'])){
+                    $all_by_checkin_Explode = json_decode($ads_contents[$i]['show_user']);
+
+                    $counts_show_user = count($all_by_checkin_Explode); // นับโดยไม่สนคนซ้ำ
+
+                    $counts = array_count_values($all_by_checkin_Explode);// นับโดยสนคนซ้ำ
+                    $all_by_checkin_counts = 0;
+                    foreach ($counts as $key) {
+                        $all_by_checkin_counts++;
+                    }
+
+                    $ads_contents[$i]['count_show_user'] = $all_by_checkin_counts; // ส่งหาผู้ใช้แบบไม่ซ้ำ เฉพาะ by_checkin
+                    $ads_contents[$i]['count_amount_show_user'] = $counts_show_user; // จำนวนผู้ใช้ที่คลิ๊ก เฉพาะ by_checkin
+
+                }else{
+                    $ads_contents[$i]['count_show_user'] = 0;
+                    $ads_contents[$i]['count_amount_show_user'] = 0; // จำนวนผู้ใช้ที่คลิ๊ก เฉพาะ by_checkin
+                }
+
+            }
+
+            for ($i=0; $i < count($ads_contents); $i++) {
+
+                if(!empty($ads_contents[$i]['user_click'])){
+                    $user_click_Explode = json_decode($ads_contents[$i]['user_click']);
+
+                    $counts_by_checkin_user_click = count($user_click_Explode); // นับโดยไม่สนคนซ้ำ
+
+                    $count_user_click = array_count_values($user_click_Explode); // นับโดยสนคนซ้ำ
+                    $checkin_user_click = 0;
+
+                    $count_Repeated_users = 0 ; // นับจำนวนคนซ้ำ
+                    $click_max = 0 ; // นับจำนวนคลิ๊กของคนซ้ำ ที่คลิ๊กมากที่สุด
+
+                    foreach ($count_user_click as $key => $value) {
+                        $checkin_user_click++;
+
+                        if ($value > 1) {
+                            $count_Repeated_users = $count_Repeated_users + 1 ;
+                        }
+                        if ($value > $click_max) {
+                            $click_max = $value ;
+                        }
+                    }
+
+                    $ads_contents[$i]['count_user_click'] = $checkin_user_click; // จำนวนผู้ใช้ที่คลิ๊กแบบไม่ซ้ำ เฉพาะ by_checkin
+                    $ads_contents[$i]['count_amount_user_click'] = $counts_by_checkin_user_click; // จำนวนผู้ใช้ที่คลิ๊ก เฉพาะ by_checkin
+                    $ads_contents[$i]['count_Repeated_users'] = $count_Repeated_users; // จำนวนคนซ้ำ
+                    $ads_contents[$i]['click_max'] = $click_max; // จำนวนคลิ๊กของคนซ้ำ ที่คลิ๊กมากที่สุด
+                }else{
+                    $ads_contents[$i]['count_user_click'] = 0;
+                    $ads_contents[$i]['count_amount_user_click'] = 0;
+                    $ads_contents[$i]['count_Repeated_users'] = 0; // จำนวนคนซ้ำ
+                    $ads_contents[$i]['click_max'] = 0; // จำนวนคลิ๊กของคนซ้ำ ที่คลิ๊กมากที่สุด
+                }
+
+            }
         }else{
-            $ads_contents = Ads_content::where('name_partner' , $name_partner)->get();
+            $ads_contents = Ads_content::where('name_partner' , $name_partner)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+            for ($i=0; $i < count($ads_contents); $i++) {
+                if(!empty($ads_contents[$i]['show_user'])){
+                    $all_by_checkin_Explode = json_decode($ads_contents[$i]['show_user']);
+
+                    $counts_show_user = count($all_by_checkin_Explode); // นับโดยไม่สนคนซ้ำ
+
+                    $counts = array_count_values($all_by_checkin_Explode);// นับโดยสนคนซ้ำ
+                    $all_by_checkin_counts = 0;
+                    foreach ($counts as $key) {
+                        $all_by_checkin_counts++;
+                    }
+
+                    $ads_contents[$i]['count_show_user'] = $all_by_checkin_counts; // ส่งหาผู้ใช้แบบไม่ซ้ำ เฉพาะ by_checkin
+                    $ads_contents[$i]['count_amount_show_user'] = $counts_show_user; // จำนวนผู้ใช้ที่คลิ๊ก เฉพาะ by_checkin
+
+                }else{
+                    $ads_contents[$i]['count_show_user'] = 0;
+                    $ads_contents[$i]['count_amount_show_user'] = 0; // จำนวนผู้ใช้ที่คลิ๊ก เฉพาะ by_checkin
+                }
+
+            }
+
+            for ($i=0; $i < count($ads_contents); $i++) {
+
+                if(!empty($ads_contents[$i]['user_click'])){
+                    $user_click_Explode = json_decode($ads_contents[$i]['user_click']);
+
+                    $counts_by_checkin_user_click = count($user_click_Explode); // นับโดยไม่สนคนซ้ำ
+
+                    $count_user_click = array_count_values($user_click_Explode); // นับโดยสนคนซ้ำ
+                    $checkin_user_click = 0;
+
+                    $count_Repeated_users = 0 ; // นับจำนวนคนซ้ำ
+                    $click_max = 0 ; // นับจำนวนคลิ๊กของคนซ้ำ ที่คลิ๊กมากที่สุด
+
+                    foreach ($count_user_click as $key => $value) {
+                        $checkin_user_click++;
+
+                        if ($value > 1) {
+                            $count_Repeated_users = $count_Repeated_users + 1 ;
+                        }
+                        if ($value > $click_max) {
+                            $click_max = $value ;
+                        }
+                    }
+
+                    $ads_contents[$i]['count_user_click'] = $checkin_user_click; // จำนวนผู้ใช้ที่คลิ๊กแบบไม่ซ้ำ เฉพาะ by_checkin
+                    $ads_contents[$i]['count_amount_user_click'] = $counts_by_checkin_user_click; // จำนวนผู้ใช้ที่คลิ๊ก เฉพาะ by_checkin
+                    $ads_contents[$i]['count_Repeated_users'] = $count_Repeated_users; // จำนวนคนซ้ำ
+                    $ads_contents[$i]['click_max'] = $click_max; // จำนวนคลิ๊กของคนซ้ำ ที่คลิ๊กมากที่สุด
+                }else{
+                    $ads_contents[$i]['count_user_click'] = 0;
+                    $ads_contents[$i]['count_amount_user_click'] = 0;
+                    $ads_contents[$i]['count_Repeated_users'] = 0; // จำนวนคนซ้ำ
+                    $ads_contents[$i]['click_max'] = 0; // จำนวนคลิ๊กของคนซ้ำ ที่คลิ๊กมากที่สุด
+                }
+
+            }
         }
 
         return $ads_contents;
