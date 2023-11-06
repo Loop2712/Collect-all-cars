@@ -97,7 +97,8 @@ Route::post('/send_content_BC_by_car','API\CarbrandController@send_content_BC_by
 // check in
 Route::post('/search_data_broadcast_by_check_in','API\API_Broadcast@search_data_broadcast_by_check_in');
 Route::post('/send_content_BC_by_check_in','API\API_Broadcast@send_content_BC_by_check_in');
-
+// user
+Route::post('/search_data_broadcast_by_user','API\CarbrandController@search_data_broadcast_by_user');
 ///////////////////////////
 ////// END BROADCAST//////
 //////////////////////////

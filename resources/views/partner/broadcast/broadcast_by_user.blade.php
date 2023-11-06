@@ -651,7 +651,6 @@ display:none;
 </div>
 </form>
 
-
 <div class="container-data-car">
     <div class="row">
         <div class="col-12 col-lg-3 col-md-3 ">
@@ -666,25 +665,21 @@ display:none;
                                         <span id="tell_BC_by_user_max" class="d-none">
                                             (ไม่เกิน <span id="amount_remain"></span>)
                                         </span>
-
                                     </div>
                                     <div class="col-12 mt-2">
                                         <div class="row">
                                             <div class="col-7">
                                                 <span id="tell_BC_by_user_max" class=""></span>
-                                            <input min="1" max="" style="width:100%;" placeholder="ไม่เกิน 0 คน"  class="form-control" type="number" name="select_amount" id="select_amount"
-                                            oninput="document.querySelector('#span_select_from_amount').innerHTML = '(' + document.querySelector('#select_amount').value + ')' ">
+                                                <input min="1" max="" style="width:100%;" placeholder="ไม่เกิน 0 คน"  class="form-control" type="number" name="select_amount" id="select_amount"
+                                                oninput="document.querySelector('#span_select_from_amount').innerHTML = '(' + document.querySelector('#select_amount').value + ')' ">
+                                            </div>
+                                            <div class="col-5">
+                                                <button id="btn_select_from_amount" style="width: 100%;" class="btn-select btn btn-primary btn-md" onclick="select_from_amount();">
+                                                    เลือก<span id="span_select_from_amount" class="d-none"></span>
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div class="col-5">
-                                            <button id="btn_select_from_amount" style="width: 100%;" class="btn-select btn btn-primary btn-md" onclick="select_from_amount();">
-                                                เลือก<span id="span_select_from_amount" class="d-none"></span>
-                                            </button>
-                                        </div>
-                                        </div>
-
                                     </div>
-
-                                    </div> -->
                                     <div class="col-12 mt-3">
                                         <button id="btn_amount_remain_all" style="margin-top: 0px;width: 100%;" class="btn btn-md btn-info text-white btn-select" onclick="click_select_car_all();">
                                             เลือกทั้งหมด&nbsp;(<span id="amount_remain_all"></span>)
@@ -727,7 +722,7 @@ display:none;
                     </div>
                     <div class="plans">
                         <label class="plan basic-plan" for="basic">
-                            <input type="radio" name="plan" id="basic" onclick="select_type_car('car');search_data();"/>
+                            <input type="radio" name="plan" id="basic" onclick="select_type_user('organization');search_data();"/>
                             <div class="plan-content">
                                 <img loading="lazy" src="{{ asset('/img/icon/businessman.png') }}" alt="" />
                                 <div class="plan-details">
@@ -737,7 +732,7 @@ display:none;
                         </label>
 
                         <label class="plan complete-plan" for="complete">
-                            <input type="radio" id="complete" name="plan"  onclick="select_type_car('motorcycle');search_data();"/>
+                            <input type="radio" id="complete" name="plan"  onclick="select_type_user('user_from');search_data();"/>
                             <div class="plan-content">
                                 <img loading="lazy" src="{{ asset('/img/icon/anonymity.png') }}" alt="" />
 
@@ -747,31 +742,32 @@ display:none;
                             </div>
                         </label>
                     </div>
-                    <input class="form-control d-none" type="text" name="car_type" id="car_type" value="">
+                    <input class="form-control d-none" type="text" name="user_type" id="user_type" value="">
                     <div  class="form-filter d-none" id="div_filter">
                         <hr>
                         <!-- ผู้ใช้ในองค์กร -->
-                        <div class="col-12 d-none" id="div_car_brand">
-                            <div class="row">
+                        <div class="col-12 d-none" id="div_user_organzation">
+                            {{-- <div class="row">
                                 <div class="col-md-6">
-                                    <label for="input_car_brand" class="form-label">เพศ</label>
-                                    <select name="input_car_brand" class="notranslate form-control select-form" id="input_car_brand" onchange="">
+                                    <!-- input_car_brand ==> input_gender -->
+                                    <label for="input_gender" class="form-label">เพศ</label>
+                                    <select name="input_gender" class="notranslate form-control select-form" id="input_gender" onchange="">
                                         <option class="translate" value="ผู้ชาย"> ชาย </option>
                                         <option class="translate" value="ผู้หญิง"> หญิง </option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="input_car_model" class="form-label">รุ่นรถ</label>
-                                    <select name="input_car_model" class="notranslate form-control select-form" id="input_car_model" onchange="search_data();">
+                                    <!-- input_car_model ==> input_age -->
+                                    <label for="input_age" class="form-label">อายุ</label>
+                                    <select name="input_age" class="notranslate form-control select-form" id="input_age" onchange="search_data();">
                                         <option class="translate" value="" selected> - เลือกรุ่น - </option>
                                     </select>
                                 </div>
-                            </div>
-
+                            </div> --}}
                         </div>
                         <!-- ผู้ใช้จาก API -->
-                        <div class="col-12  d-none" id="div_motor_brand">
-                            <div class="row">
+                        <div class="col-12  d-none" id="div_user_from">
+                            {{-- <div class="row">
                                 <div class="col-md-6">
                                     <label for="input_motor_brand" class="form-label">ยี่ห้อรถ</label>
                                     <select name="input_motor_brand" class="notranslate form-control select-form" id="input_motor_brand"  onchange="showMotor_model();search_data();">
@@ -784,10 +780,113 @@ display:none;
                                         <option class="translate" value="" selected> - เลือกรุ่น - </option>
                                     </select>
                                 </div>
+                            </div> --}}
+                        </div>
+
+                        <!-- เพศ && อายุ -->
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- input_car_brand ==> gender_user -->
+                                    <label for="gender_user" class="form-label">เพศ</label>
+                                    <select name="gender_user" class="notranslate form-control select-form" id="gender_user" onchange="">
+                                        <option class="translate" value="" selected> - เลือกเพศ - </option>
+                                        <option class="translate" value="ผู้ชาย"> ชาย </option>
+                                        <option class="translate" value="ผู้หญิง"> หญิง </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- input_car_model ==> age_user -->
+                                    <label for="age_user" class="form-label">อายุ</label>
+                                    <select name="age_user" class="notranslate form-control select-form" id="age_user" onchange="search_data();">
+                                        <option class="translate" value="" selected> - เลือกช่วงอายุ - </option>
+                                        <option class="translate" value="" > - น้อยกว่า 12 ปี - </option>
+                                        <option class="translate" value="" > - 12 ถึง 25 ปี - </option>
+                                        <option class="translate" value="" > - 16 ถึง 41 ปี - </option>
+                                        <option class="translate" value="" > - 42 ถึง 59 ปี - </option>
+                                        <option class="translate" value="" > - 60 ปีขึ้นไป - </option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
+                        <!-- ประเทศ && สัญชาติ-->
                         <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="country_user" class="form-label">ประเทศ</label>
+                                    <select name="country_user" class="notranslate form-control select-form" id="country_user" onchange="search_data();">
+                                        <option class="translate" value="" selected> - เลือกประเทศ - </option>
+                                        <option class="translate" value="">
+                                        </option>
+
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nationalitie_user" class="form-label">สัญชาติ</label>
+                                    <select name="nationalitie_user" class="notranslate form-control select-form" id="nationalitie_user" onchange="search_data();">
+                                        <option class="translate" value="" selected> - เลือกสัญชาติ - </option>
+                                        <option class="translate" value="">
+                                        </option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ภาษาที่ใช้ && time_zone-->
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="language_user" class="form-label">ภาษาที่ใช้</label>
+                                    <select name="language_user" class="notranslate form-control select-form" id="language_user" onchange="search_data();">
+                                        <option class="translate" value="" selected> - เลือกภาษาที่ใช้ - </option>
+                                        <option class="translate" value="">
+                                        </option>
+
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="time_zone_user" class="form-label">time_zone</label>
+                                    <select name="time_zone_user" class="notranslate form-control select-form" id="time_zone_user" onchange="search_data();">
+                                        <option class="translate" value="" selected> - เลือก time_zone - </option>
+                                        <option class="translate" value="">
+                                        </option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- จังหวัดของผู้ใช้ -->
+                        <div class="col-md-12">
+                            <label for="province_user" class="form-label">จังหวัดของผู้ใช้</label>
+                            <select name="province_user" class="notranslate form-control select-form" id="province_user" onchange="show_location_A();">
+                                <option class="translate" value="" selected> - เลือกจังหวัด - </option>
+                            </select>
+                        </div>
+                        <!-- อำเภอของผู้ใช้ -->
+                        <div class="col-md-12">
+                            <label for="district_user" class="form-label">อำเภอของผู้ใช้</label>
+                            <select name="district_user" class="notranslate form-control select-form" id="district_user" >
+                                <option class="translate" value="" selected> - เลือกอำเภอ - </option>
+                            </select>
+                        </div>
+
+                        <!-- ภายในรัศมี(กม.)-->
+                        <div class="col-md-12">
+                            <label for="radius_user" class="form-label">ภายในรัศมี .. กม.</label>
+                            <select name="radius_user" class="notranslate form-control select-form" id="radius_user" onchange="search_data();">
+                                <option class="translate" value="" selected> - เลือก ภายในรัศมี .. กม. - </option>
+                                <option class="translate" value="">
+                                </option>
+
+                            </select>
+                        </div>
+
+
+                        <!-- // ============ D-NONE ============= //-->
+                        <div class="col-md-12 d-none">
                             <label for="location_user" class="form-label">พื้นที่ผู้ลงทะเบียนรถ</label>
                             <select name="location_user" class="notranslate form-control select-form" id="location_user" onchange="search_data();">
                                 <option class="translate" value="" selected> - เลือกพื้นที่ - </option>
@@ -798,7 +897,7 @@ display:none;
 
                             </select>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12 d-none">
                             <label for="province_registration" class="form-label">จังหวัดของทะเบียนรถ</label>
                             <select name="province_registration" class="notranslate form-control select-form" id="province_registration" onchange="search_data();">
                                 <option class="translate" value="" selected> - เลือกพื้นที่ - </option>
@@ -809,7 +908,7 @@ display:none;
 
                             </select>
                         </div>
-                        <div id="type_car_registration" class="col-12 d-none">
+                        <div id="type_car_registration d-none" class="col-12 d-none">
                             <div class="form-group">
                                 <label for="type_registration" class="control-label">{{ 'ประเภท' }}</label>
                                 <select name="type_registration" class="notranslate form-control" id="type_registration" onchange="search_data();">
@@ -823,7 +922,7 @@ display:none;
                             </div>
                             <br>
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 d-none">
                             <div class="form-group">
                                 <label for="birth_month" class="control-label">{{ 'เดือนเกิดเจ้าของรถ' }}</label>
                                 <select name="birth_month" class="notranslate form-control" id="birth_month" onchange="search_data();">
@@ -905,11 +1004,10 @@ display:none;
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         <div>
+
     </div>
 </div>
 
@@ -940,54 +1038,347 @@ display:none;
         count_arr_car_id = JSON.parse(arr_car_id_selected.value).length ;
     }
 
-    var remain = {{ $BC_by_car_max - $BC_by_car_sent }} - count_arr_car_id ; // จำนวนคงเหลือ
+    // var remain =  $BC_by_car_max - $BC_by_car_sent  - count_arr_car_id ; // จำนวนคงเหลือ
 
     //===============================================================================================
 
     // เลือกประเภทรถ
-    function select_type_car(type){
-        document.querySelector('#select_amount').value = "" ;
-        document.querySelector('#span_select_from_amount').innerHTML = "" ;
-        document.querySelector('#tell_BC_by_user_max').classList.remove('text-danger');
-        document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
+    function select_type_user(type){
+        // document.querySelector('#select_amount').value = "" ;
+        // document.querySelector('#span_select_from_amount').innerHTML = "" ;
+        // document.querySelector('#tell_BC_by_user_max').classList.remove('text-danger');
+        // document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
 
-        document.querySelector('#car_type').value = type ;
-        document.querySelector('#div_btn_search').classList.remove('d-none');
+        document.querySelector('#user_type').value = type ;
+        // document.querySelector('#div_btn_search').classList.remove('d-none');
 
-        document.querySelector("#birth_month").value = "";
-        let location_user = document.querySelector("#location_user").value = "";
-        let province_registration = document.querySelector("#province_registration").value = "";
-        let type_registration = document.querySelector("#type_registration").value = "";
+        // document.querySelector("#birth_month").value = "";
+        // let location_user = document.querySelector("#location_user").value = "";
+        // let province_registration = document.querySelector("#province_registration").value = "";
+        // let type_registration = document.querySelector("#type_registration").value = "";
 
+        if (type === "organization") {
 
-        if (type === "car") {
-
-            showCar_brand();
-
-            let input_motor_brand = document.querySelector("#input_motor_brand").innerHTML = "";
-            let input_motor_model = document.querySelector("#input_motor_model").innerHTML = "";
+            // showCar_brand();
+            show_location_P();
+            // let input_motor_brand = document.querySelector("#input_motor_brand").innerHTML = "";
+            // let input_motor_model = document.querySelector("#input_motor_model").innerHTML = "";
 
             document.querySelector('#div_filter').classList.remove('d-none');
-            document.querySelector('#div_car_brand').classList.remove('d-none');
-            document.querySelector('#div_motor_brand').classList.add('d-none');
-            document.querySelector('#type_car_registration').classList.remove('d-none');
+            document.querySelector('#div_user_organzation').classList.remove('d-none');
+            document.querySelector('#div_user_from').classList.add('d-none');
+            // document.querySelector('#type_car_registration').classList.remove('d-none');
         }else{
 
-            showMotor_brand();
-
-            let input_car_brand = document.querySelector("#input_car_brand").innerHTML = "";
-            let input_car_model = document.querySelector("#input_car_model").innerHTML = "";
+            // showMotor_brand();
+            show_location_P();
+            // let input_gender = document.querySelector("#input_gender").innerHTML = "";
+            // let input_age = document.querySelector("#input_age").innerHTML = "";
 
             document.querySelector('#div_filter').classList.remove('d-none');
-            document.querySelector('#div_motor_brand').classList.remove('d-none');
-            document.querySelector('#div_car_brand').classList.add('d-none');
-            document.querySelector('#type_car_registration').classList.add('d-none');
+            document.querySelector('#div_user_from').classList.remove('d-none');
+            document.querySelector('#div_user_organzation').classList.add('d-none');
+            // document.querySelector('#type_car_registration').classList.add('d-none');
 
             document.querySelector('#type_registration').value = "";
         }
 
     }
 
+    // ล้างการค้นหา
+    function clear_search_input_data(){
+
+        let user_type = document.querySelector("#user_type").value;
+
+    let gender_user = document.querySelector("#gender_user").innerHTML = '';
+    let age_user = document.querySelector("#age_user").innerHTML = '';
+    let country_user = document.querySelector("#country_user").innerHTML = '';
+    let nationalitie_user = document.querySelector("#nationalitie_user").innerHTML = '';
+    let language_user = document.querySelector("#language_user").innerHTML = '';
+    let time_zone_user = document.querySelector("#time_zone_user").innerHTML = '';
+    let province_user = document.querySelector("#province_user").innerHTML = '';
+    let district_user = document.querySelector("#district_user").innerHTML = '';
+    let radius_user = document.querySelector("#radius_user").innerHTML = '';
+
+
+    // if (user_type === "organization") {
+    //     showCar_brand();
+    // }else{
+    //     showMotor_brand();
+    // }
+    // search_data();
+
+    }
+
+    // ค้นหารถและโชว์ content
+    function search_data(){
+        let user_type = document.querySelector("#user_type").value;
+
+        let gender_user = document.querySelector("#gender_user").value;
+        let age_user = document.querySelector("#age_user").value;
+        let country_user = document.querySelector("#country_user").value;
+        let nationalitie_user = document.querySelector("#nationalitie_user").value;
+        let language_user = document.querySelector("#language_user").value;
+        let time_zone_user = document.querySelector("#time_zone_user").value;
+        let province_user = document.querySelector("#province_user").value;
+        let district_user = document.querySelector("#district_user").value;
+        let radius_user = document.querySelector("#radius_user").value;
+
+        let input_gender = document.querySelector("#input_gender").value;
+        let input_age = document.querySelector("#input_age").value;
+        let input_motor_brand = document.querySelector("#input_motor_brand").value;
+        let input_motor_model = document.querySelector("#input_motor_model").value;
+        let location_user = document.querySelector("#location_user").value;
+        let province_registration = document.querySelector("#province_registration").value;
+        let type_registration = document.querySelector("#type_registration").value;
+        let birth_month = document.querySelector("#birth_month").value;
+        let id_partner = document.querySelector("#id_partner");
+
+        let data_search_data ;
+
+        if (user_type == "organization") {
+
+            data_search_data = {
+                'user_type' : user_type,
+                'gender_user' : gender_user,
+                'age_user' : age_user,
+                'country_user' : country_user,
+                'nationalitie_user' : nationalitie_user,
+                'language_user' : language_user,
+                'time_zone_user' : time_zone_user,
+                'province_user' : province_user,
+                'district_user' : district_user,
+                'radius_user' : radius_user,
+
+                'brand' : input_gender,
+                'model' : input_age,
+                'location_user' : location_user,
+                'province_registration' : province_registration,
+                'type_registration' : type_registration,
+                'birth_month' : birth_month,
+                'id_partner' : id_partner.value,
+            };
+
+        }else{
+
+            data_search_data = {
+                'user_type' : user_type,
+                'gender_user' : gender_user,
+                'age_user' : age_user,
+                'country_user' : country_user,
+                'nationalitie_user' : nationalitie_user,
+                'language_user' : language_user,
+                'time_zone_user' : time_zone_user,
+                'province_user' : province_user,
+                'district_user' : district_user,
+                'radius_user' : radius_user,
+
+                'brand' : input_motor_brand,
+                'model' : input_motor_model,
+                'location_user' : location_user,
+                'province_registration' : province_registration,
+                'type_registration' : null,
+                'birth_month' : birth_month,
+                'id_partner' : id_partner.value,
+            };
+
+        }
+
+        fetch("{{ url('/') }}/api/search_data_broadcast_by_car",
+        {
+            method: 'post',
+            body: JSON.stringify(data_search_data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+            .then(result => {
+                try {
+                    // console.log(result);
+                    document.querySelector('#count_search_data').innerHTML = result['length'] ;
+
+                    let content_search_data = document.querySelector('#content_search_data');
+                        content_search_data.innerHTML = "" ;
+
+                    if (arr_car_id_selected.value) {
+                        arr_car_id = JSON.parse(arr_car_id_selected.value) ;
+                    }
+
+                    let content_count = 1 ;
+
+                    for(let item of result){
+
+                        let div_data_car = document.createElement("div");
+                        let class_div_data_car = document.createAttribute("class");
+                            class_div_data_car.value = "col-12 col-md-3 col-lg-3 p-1";
+                            div_data_car.setAttributeNode(class_div_data_car);
+
+                        let div_result_content = document.createElement("div");
+                        let class_div_result_content = document.createAttribute("class");
+                            class_div_result_content.value = "result-content";
+                            div_result_content.setAttributeNode(class_div_result_content);
+                        div_data_car.appendChild(div_result_content);
+
+
+                        let div_result_car = document.createElement("div");
+                        let class_div_result_car = document.createAttribute("class");
+                            class_div_result_car.value = "result-car";
+                            div_result_car.setAttributeNode(class_div_result_car);
+                        div_result_content.appendChild(div_result_car);
+
+                        let div_result_img = document.createElement("div");
+                        let class_div_result_img = document.createAttribute("class");
+                            class_div_result_img.value = "result-car";
+                            div_result_img.setAttributeNode(class_div_result_img);
+                        div_result_car.appendChild(div_result_img);
+
+                        let result_img = document.createElement("img");
+                        let src_result_img = document.createAttribute("src");
+                            if (item.car_type == "car") {
+                            src_result_img.value = "{{ asset('/img/icon/car1.png') }}";
+                            }else{
+                            src_result_img.value = "{{ asset('/img/icon/car2.png') }}";
+                            }
+                            result_img.setAttributeNode(src_result_img);
+                        div_result_img.appendChild(result_img);
+
+                        let div_result_header = document.createElement("div");
+                        let class_div_result_header = document.createAttribute("class");
+                            class_div_result_header.value = "result-header";
+                            div_result_header.setAttributeNode(class_div_result_header);
+                            div_result_car.appendChild(div_result_header);
+
+                        let span_brand = document.createElement("span");
+                        let class_span_brand = document.createAttribute("class");
+                            class_span_brand.value = "name-brand";
+                            span_brand.setAttributeNode(class_span_brand);
+                            span_brand.innerHTML = item.brand;
+                            div_result_header.appendChild(span_brand);
+
+                        let span_generation = document.createElement("span");
+                            span_generation.innerHTML = item.generation;
+                            div_result_header.appendChild(span_generation);
+
+                        let div_status = document.createElement("div");
+                        let class_div_status = document.createAttribute("class");
+                            class_div_status.value = "status";
+                            div_status.setAttributeNode(class_div_status);
+                        div_result_car.appendChild(div_status);
+
+                        let btn_select = document.createElement("i");
+                        let name_btn_select = document.createAttribute("name");
+                            name_btn_select.value = "i_btn_select_"  + content_count;
+                        btn_select.setAttributeNode(name_btn_select);
+                        let uid = document.createAttribute("data");
+                            uid.value = item.user_id ;
+                        btn_select.setAttributeNode(uid);
+
+                        let class_btn_select = document.createAttribute("class");
+
+                        let text_car_id = item.id.toString();
+
+                            if ( arr_car_id.includes(text_car_id) ) {
+                                // console.log("เลือกแล้ว");
+                                class_btn_select.value = "fas fa-check-circle btn text-success";
+                            }else{
+                                class_btn_select.value = "far fa-circle btn";
+                                // console.log("ยังไม่ได้เลือก");
+                            }
+
+                        btn_select.setAttributeNode(class_btn_select);
+
+                        let onclick_btn_select = document.createAttribute("onclick");
+                            onclick_btn_select.value = "click_select_car('" + item.user_id + "','" + item.id + "')";
+                            div_result_content.setAttributeNode(onclick_btn_select);
+                        let id_div_result_content = document.createAttribute("id");
+                            id_div_result_content.value = "div_result_content_count_" + content_count ;
+                            div_result_content.setAttributeNode(id_div_result_content);
+
+                        let id_btn_select = document.createAttribute("id");
+                            id_btn_select.value = "btn_select_car_id_" + item.id ;
+                            btn_select.setAttributeNode(id_btn_select);
+
+                        div_status.appendChild(btn_select);
+
+                        let div_license_plate = document.createElement("div");
+                        let class_div_license_plate = document.createAttribute("class");
+                            class_div_license_plate.value = "license-plate";
+                            div_license_plate.setAttributeNode(class_div_license_plate);
+                        div_result_content.appendChild(div_license_plate);
+
+
+                        let h5_license_plate = document.createElement("h5");
+                            h5_license_plate.innerHTML = item.registration_number;
+                            div_license_plate.appendChild(h5_license_plate);
+
+
+                        let span_province = document.createElement("span");
+                            span_province.innerHTML = item.province;
+                            div_license_plate.appendChild(span_province);
+
+                        content_search_data.appendChild(div_data_car);
+
+                        content_count = content_count + 1 ;
+                    }
+                }
+                catch(err) {
+                    // console.log(err);
+                }
+
+            });
+    }
+
+    function show_location_P(){
+        fetch("{{ url('/') }}/api/location/show_location_P")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                //UPDATE SELECT OPTION
+                let location_P = document.querySelector("#province_user");
+                    // location_P.innerHTML = "";
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.province;
+                    option.value = item.province;
+                    location_P.add(option);
+                }
+
+            });
+
+            // return location_P.value;
+    }
+
+    function show_location_A(){
+        let location_P = document.querySelector("#province_user");
+        console.log("location_P.value");
+        console.log(location_P.value);
+        fetch("{{ url('/') }}/api/location/"+location_P.value+"/show_location_A")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                //UPDATE SELECT OPTION
+                let location_A = document.querySelector("#district_user");
+                    location_A.innerHTML = "";
+
+                let option_start_A = document.createElement("option");
+                    option_start_A.text = " - เลือกอำเภอ - ";
+                    option_start_A.value = "";
+                    location_A.add(option_start_A);
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.amphoe;
+                    option.value = item.amphoe;
+                    location_A.add(option);
+                }
+            });
+
+            // change_language_user();
+
+            // return location_A.value;
+    }
 
 </script>
 

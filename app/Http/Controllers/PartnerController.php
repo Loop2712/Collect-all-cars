@@ -1301,6 +1301,23 @@ class PartnerController extends Controller
 
         $data_auth_user = Auth::user();
 
+        // หา ประเทศของคนใน องค์กร
+        $country_all_of_user = User::where('country','!=',null)
+            ->where('organization',$data_auth_user->organization)
+            ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
+            ->groupBy('country')
+            ->select('country')
+            ->get();
+
+        // หา ประเทศของคนใน องค์กร
+        $nationalitie_all_of_user = User::where('nationalitie','!=',null)
+            ->where('organization',$data_auth_user->organization)
+            ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
+            ->groupBy('nationalitie')
+            ->select('nationalitie')
+            ->get();
+        ddd($country_all_of_user);
+
         $data_partner = Partner::where("name", $data_auth_user->organization)
             ->where("name_area", null)
             ->first();
@@ -1309,7 +1326,7 @@ class PartnerController extends Controller
 
         $data_user_from = User::where("user_from", 'LIKE' , "%$data_partner->organization%")->get();
 
-        return view('partner.broadcast.broadcast_by_user', compact('data_users_organization','data_user_from'));
+        return view('partner.broadcast.broadcast_by_user', compact('data_users_organization','data_user_from','country_all_of_user'));
     }
 
     function broadcast_by_sos(Request $request){
