@@ -249,7 +249,10 @@ class Sos_help_centerController extends Controller
         if ($sub_organization == "ศูนย์ใหญ่") {
 
             $data_sos = Sos_help_center::get();
-            $show_data_sos = Sos_help_center::latest()->paginate($perPage);
+            $show_data_sos = Sos_help_center::orderBy('created_at' , 'DESC')
+                ->latest()
+                ->limit(10)
+                ->get();
 
             $polygon_provinces = DB::table('province_ths')
                 ->where('polygon' , '!=' , null)
@@ -263,7 +266,9 @@ class Sos_help_centerController extends Controller
 
             $show_data_sos = Sos_help_center::where('notify', 'LIKE', "%$sub_organization%")
                 ->orderBy('created_at' , 'DESC')
-                ->latest()->paginate($perPage);
+                ->latest()
+                ->limit(10)
+                ->get();
 
             $polygon_provinces = DB::table('province_ths')
                 ->where('polygon' , '!=' , null)

@@ -1221,7 +1221,7 @@
                         </style>
                         
                         <div class="pagination-wrapper"> 
-                            {!! $show_data_sos->appends(['search' => Request::get('search')])->render() !!} 
+                            <!-- $show_data_sos->appends(['search' => Request::get('search')])->render()  -->
                         </div>
 
                         @foreach($show_data_sos as $item)
