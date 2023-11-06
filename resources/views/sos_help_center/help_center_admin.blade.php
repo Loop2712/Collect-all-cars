@@ -813,102 +813,16 @@
                             </div>
                         </div>
                     </div>
-                    <!-- เวลาโดยเฉลี่ย -->
-                    @php
-                        $count_success = 0 ;
-                        $all_time = [] ;
-
-                        foreach($data_sos as $sos){
-
-                            if($sos->status == "เสร็จสิ้น"){
-
-                                $count_success = $count_success + 1 ;
-
-                                if($sos->form_yellow->time_create_sos){
-                                    $zone1_time1 = $sos->form_yellow->time_create_sos  ;
-                                }
-
-                                if($sos->form_yellow->time_command){
-                                    $zone1_time2 = $sos->form_yellow->time_command  ;
-                                }
-                                if($sos->form_yellow->time_go_to_help){
-                                    $zone1_time2 = $sos->form_yellow->time_go_to_help  ;
-                                }
-                                if($sos->form_yellow->time_to_the_scene){
-                                    $zone1_time2 = $sos->form_yellow->time_to_the_scene  ;
-                                }
-                                if($sos->form_yellow->time_leave_the_scene){
-                                    $zone1_time2 = $sos->form_yellow->time_leave_the_scene  ;
-                                }
-                                if($sos->form_yellow->time_hospital){
-                                    $zone1_time2 = $sos->form_yellow->time_hospital  ;
-                                }
-
-                                list($zone1_hours1, $zone1_minutes1, $zone1_seconds1) = explode(':', $zone1_time1);
-                                list($zone1_hours2, $zone1_minutes2, $zone1_seconds2) = explode(':', $zone1_time2);
-
-
-                                $zone1_totalSeconds1 = intval($zone1_hours1) * 3600 + intval($zone1_minutes1) * 60 + intval($zone1_seconds1);
-                                $zone1_totalSeconds2 = intval($zone1_hours2) * 3600 + intval($zone1_minutes2) * 60 + intval($zone1_seconds2);
-
-                                $zone1_TotalSeconds = $zone1_totalSeconds2 - $zone1_totalSeconds1;
-
-                                $zone1_Time_min = floor($zone1_TotalSeconds / 60);
-                                $zone1_Time_Seconds = $zone1_TotalSeconds - ($zone1_Time_min * 60);
-
-                                $min_1_to_sec = $zone1_Time_min * 60 ;
-                                $all_time[$count_success] = $min_1_to_sec + $zone1_Time_Seconds ;
-                            } 
-
-
-                        }
-
-                        $sum_time_total_help = 0 ;
-
-                        foreach($all_time as $element){
-                            $sum_time_total_help += $element ;
-                        }
-
-                        if($count_success != 0){
-                            $sum_time_total_help = $sum_time_total_help / $count_success ;
-                        }else{
-                            $sum_time_total_help = $sum_time_total_help / 1 ;
-                        }
-
-                        $hours_all_time = floor($sum_time_total_help / 3600);
-                        $minutes_all_time = floor(($sum_time_total_help % 3600) / 60);
-                        $seconds_all_time = floor($sum_time_total_help % 60);
-
-                        $text_all_time = '';
-                        if ($hours_all_time > 0) {
-                          $text_all_time .= "{$hours_all_time} ชั่วโมง".($hours_all_time > 1 ? '' : '')." ";
-                        }
-                        $text_all_time .= "{$minutes_all_time} นาที".($minutes_all_time > 1 ? '' : '')." ";
-                        $text_all_time .= "{$seconds_all_time} วินาที".($seconds_all_time > 1 ? '' : '');
-                          
-                        $show_min_average_per_case = $text_all_time;
-
-                        // ตรวจสอบว่าเกิน 8 หรือ 12 หรือไม่
-
-                        if($sum_time_total_help < 480){
-                            $bg_average = "bg-gradient-Ohhappiness";
-                        }else if($sum_time_total_help >= 480 && $sum_time_total_help < 720){
-                            $bg_average = "bg-gradient-kyoto";
-                        }else if($sum_time_total_help >= 720){
-                            $bg_average = "bg-gradient-burning";
-                        }
-                        
-
-                    @endphp
+                    
                     <div class="col">
-                        <div id="div_card_average" class="card radius-10 overflow-hidden {{ $bg_average }}">
+                        <div id="div_card_average" class="card radius-10 overflow-hidden bg-gradient-kyoto">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
                                         <p class="mb-0 text-white">เวลาโดยเฉลี่ย (เสร็จสิ้น)</p>
                                         <h5 class="mb-0 text-white"> 
-                                            <b><span id="span_min_average_per_case">
-                                            {{ $show_min_average_per_case }}</span></b> / เคส (<span id="span_count_success_average">{{ $count_success }}</span>)
+                                            <b><span id="span_min_average_per_case">กำลังโหลดข้อมูล
+                                            ..</span></b> / เคส (<span id="span_count_success_average">..</span>)
                                         </h5>
                                     </div>
                                     <div class="ms-auto text-white">
@@ -923,40 +837,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="col-12">
-                <div class="row mt-2">
-                    <div class="col-4  ">
-                        <div class="card p-3 radius-10 ">
-                            <p class="m-0">พื้นที่</p>
-                            @if( Auth::user()->sub_organization != "ศูนย์ใหญ่")
-                                <h5><span class="text-info">{{ Auth::user()->sub_organization }}</span></h5>
-                            @else
-                                <h5><span class="text-info" id="span_text_show_area">ทั้งหมด</span></h5>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card p-3 radius-10" >
-                            <p class="m-0">จำนวนทั้งหมด</p>
-                            <h5><span id="span_count_data">{{ count($data_sos) }}</span> รายการ</h5>
-                        </div>
-                    </div>
-
-                    
-
-                    <div class="col-4">
-                        <div class="card p-3 radius-10" >
-                            <p class="m-0">เวลาโดยเฉลี่ย (เสร็จสิ้น)</p>
-                            <h5> <b><span id="span_min_average_per_case">
-                                {{ $show_min_average_per_case }}</span></b> นาที / เคส (<span id="span_count_success_average">{{ $count_success }}</span>)
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- <hr style="border: 2px solid {{ $color_theme }};border-radius: 30%;"> -->
 
             <style>
                 .card-data-sos{
@@ -1014,83 +894,6 @@
 
                     <div class="row" id="data_help">
 
-                    
-                        <!-- <div class="card cardAlertOfficer" style="width:80%">
-                            <div class="card-body">
-                                <h5 class="headerCardOfficer">
-                                    <p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">
-                                        ชื่อผู้ขอความช่วยเหลือ : TNK
-                                    </p>
-                                    <p class="mt-2" style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                                        เบอร์โทร : 0998823219
-                                    </p>
-                                </h5>
-                                <p class="headerOwl">
-                                    <span>ส่งต่อเคสนี้ไปยัง</span>
-                                </p>
-                                <div class="owl-carousel owlOfficer owl-theme">
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/12.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.1</div>
-                                        </div>
-                                        <span class="owlNameOfficer">Teerasak</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/1.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.2</div>
-                                        </div>
-                                        <span class="owlNameOfficer">ThanaKron</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/2.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.3</div>
-                                        </div>
-                                        <span class="owlNameOfficer">Teerasak</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/3.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.4</div>
-                                        </div>
-                                        <span class="owlNameOfficer">ThanaKron</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/4.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.5</div>
-                                        </div>
-                                        <span class="owlNameOfficer">Teerasak</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/5.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.6</div>
-                                        </div>
-                                        <span class="owlNameOfficer">ThanaKron</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/4.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.7</div>
-                                        </div>
-                                        <span class="owlNameOfficer">Teerasak</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/5.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.8</div>
-                                        </div>
-                                        <span class="owlNameOfficer">ThanaKron</span>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div> -->
-
-                    
                         <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
                         <div class="div_card_mook_up col-12 d-none">
                             <a mock_up_mark="link_data_sos" class="a_data_user data-show">
@@ -1220,8 +1023,9 @@
                             }
                         </style>
                         
-                        <div class="pagination-wrapper"> 
-                            {!! $show_data_sos->appends(['search' => Request::get('search')])->render() !!} 
+                        <div class="pagination-wrapper mb-3"> 
+                            <!-- $show_data_sos->appends(['search' => Request::get('search')])->render()  -->
+                            <b class="text-danger">แสดงผล 10 เคสล่าสุด (เคสอื่นๆ สามารถค้นหาได้ที่ด้านบนขวา)</b>
                         </div>
 
                         @foreach($show_data_sos as $item)
@@ -2325,9 +2129,39 @@
             show_location_A();
         }
 
-        fist_real_time_check_refuse_and_call();
-
     });
+
+    var show_min_average_per_case ;
+    var show_count_success_average ;
+    var show_div_card_average ;
+
+    function show_average_time(){
+
+        let area = "{{ Auth::user()->sub_organization }}" ;
+
+        fetch("{{ url('/') }}/api/sos_help_center/show_average_time/" + area)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                if(result){
+                    show_min_average_per_case = result['show_min_average_per_case'] ;
+                    show_count_success_average = result['count_success'] ;
+                    show_div_card_average = result['bg_average'] ;
+
+                    document.querySelector('#span_min_average_per_case').innerHTML = show_min_average_per_case ;
+                    document.querySelector('#span_count_success_average').innerHTML = show_count_success_average ;
+
+                    let div_card_average = document.querySelector('#div_card_average');
+                    // console.log(div_card_average.classList[3]);
+
+                    let drop_class_div_card_average = div_card_average.classList[3] ;
+
+                    document.querySelector('#div_card_average').classList.remove(drop_class_div_card_average);
+                    document.querySelector('#div_card_average').classList.add(show_div_card_average);
+                }
+        });
+    }
     
     const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
 
@@ -2350,6 +2184,8 @@
             });
         @endforeach
         
+        show_average_time();
+        click_select_area_map("{{ Auth::user()->sub_organization }}");
 
         if ('{{ Auth::user()->organization }}' == 'สพฉ' && '{{ Auth::user()->sub_organization }}' != 'ศูนย์ใหญ่') {
             draw_area_help_center('{{ Auth::user()->sub_organization }}') ;
@@ -2429,6 +2265,8 @@
 
     function click_select_area_map(province_name){
 
+        // console.log("click_select_area_map >> " + province_name);
+
         document.querySelector('#span_text_show_area').innerHTML = province_name ;
 
         if(province_name == "ทั้งหมด"){
@@ -2443,8 +2281,8 @@
             document.querySelector('#data_help').classList.remove('d-none');
             document.querySelector('#span_count_data').innerHTML = "{{ count($data_sos) }}";
 
-            document.querySelector('#span_min_average_per_case').innerHTML = "{{ $show_min_average_per_case }}" ;
-            document.querySelector('#span_count_success_average').innerHTML = "{{ $count_success }}" ;
+            document.querySelector('#span_min_average_per_case').innerHTML = show_min_average_per_case ;
+            document.querySelector('#span_count_success_average').innerHTML = show_count_success_average ;
 
         }else{
 
@@ -3047,7 +2885,8 @@
 
     }
 
-    var old_bg_average = "{{ $bg_average }}" ;
+    // var old_bg_average = "{ $bg_average }" ;
+    var old_bg_average = "bg-gradient-kyoto" ;
 
     function clear_search_data_help(){
 
@@ -3101,8 +2940,9 @@
         document.querySelector('#div_body_help').classList.add('d-none');
         document.querySelector('#data_help').classList.remove('d-none');
         document.querySelector('#span_count_data').innerHTML = "{{ count($data_sos) }}";
-        document.querySelector('#span_min_average_per_case').innerHTML = "{{ $show_min_average_per_case }}" ;
-        document.querySelector('#span_count_success_average').innerHTML = "{{ $count_success }}" ;
+
+        document.querySelector('#span_min_average_per_case').innerHTML = show_min_average_per_case ;
+        document.querySelector('#span_count_success_average').innerHTML = show_count_success_average ;
 
         if('{{ Auth::user()->organization }}' == 'สพฉ' && '{{ Auth::user()->sub_organization }}' == 'ศูนย์ใหญ่'){
             click_select_area_map('ทั้งหมด');

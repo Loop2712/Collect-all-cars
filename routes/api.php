@@ -285,7 +285,7 @@ Route::get('/update_noti_ask_mores/{ask_mores_id}', 'Sos_help_centerController@u
 
 Route::get('/check_old_officer/{user_id}', 'Sos_help_centerController@check_old_officer');
 Route::get('/CF_Change_name_officer/{id_officer}/{new_name_officer}', 'Data_1669_operating_unitController@CF_Change_name_officer');
-
+Route::get('/sos_help_center/show_average_time/{area}', 'Sos_help_centerController@show_average_time');
 
     // SOS HELP CENTER FORM USER
     Route::get('/check_unit_cf_sos_form_user/{sos_id}', 'Sos_help_centerController@check_unit_cf_sos_form_user');
