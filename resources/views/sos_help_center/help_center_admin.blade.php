@@ -821,7 +821,7 @@
                                     <div>
                                         <p class="mb-0 text-white">เวลาโดยเฉลี่ย (เสร็จสิ้น)</p>
                                         <h5 class="mb-0 text-white"> 
-                                            <b><span id="span_min_average_per_case">
+                                            <b><span id="span_min_average_per_case">กำลังโหลดข้อมูล
                                             ..</span></b> / เคส (<span id="span_count_success_average">..</span>)
                                         </h5>
                                     </div>
@@ -894,83 +894,6 @@
 
                     <div class="row" id="data_help">
 
-                    
-                        <!-- <div class="card cardAlertOfficer" style="width:80%">
-                            <div class="card-body">
-                                <h5 class="headerCardOfficer">
-                                    <p style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;margin: 0;padding:0;">
-                                        ชื่อผู้ขอความช่วยเหลือ : TNK
-                                    </p>
-                                    <p class="mt-2" style="width:33rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-                                        เบอร์โทร : 0998823219
-                                    </p>
-                                </h5>
-                                <p class="headerOwl">
-                                    <span>ส่งต่อเคสนี้ไปยัง</span>
-                                </p>
-                                <div class="owl-carousel owlOfficer owl-theme">
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/12.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.1</div>
-                                        </div>
-                                        <span class="owlNameOfficer">Teerasak</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/1.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.2</div>
-                                        </div>
-                                        <span class="owlNameOfficer">ThanaKron</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/2.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.3</div>
-                                        </div>
-                                        <span class="owlNameOfficer">Teerasak</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/3.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.4</div>
-                                        </div>
-                                        <span class="owlNameOfficer">ThanaKron</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/4.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.5</div>
-                                        </div>
-                                        <span class="owlNameOfficer">Teerasak</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/5.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.6</div>
-                                        </div>
-                                        <span class="owlNameOfficer">ThanaKron</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/4.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.7</div>
-                                        </div>
-                                        <span class="owlNameOfficer">Teerasak</span>
-                                    </a>
-                                    <a class="item owlItemOfficer">
-                                        <div class="badgeImg">
-                                            <img style="opacity: 1 !important;" src="{{ url('/img/stickerline/Flex/5.png') }}" class="rounded-circle" width="46" height="46">
-                                            <div class="badgeOnImg">NO.8</div>
-                                        </div>
-                                        <span class="owlNameOfficer">ThanaKron</span>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div> -->
-
-                    
                         <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
                         <div class="div_card_mook_up col-12 d-none">
                             <a mock_up_mark="link_data_sos" class="a_data_user data-show">
@@ -1100,8 +1023,9 @@
                             }
                         </style>
                         
-                        <div class="pagination-wrapper"> 
+                        <div class="pagination-wrapper mb-3"> 
                             <!-- $show_data_sos->appends(['search' => Request::get('search')])->render()  -->
+                            <b class="text-danger">แสดงผล 10 เคสล่าสุด (เคสอื่นๆ สามารถค้นหาได้ที่ด้านบนขวา)</b>
                         </div>
 
                         @foreach($show_data_sos as $item)
