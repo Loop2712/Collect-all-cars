@@ -817,8 +817,11 @@ display:none;
                                     <label for="country_user" class="form-label">ประเทศ</label>
                                     <select name="country_user" class="notranslate form-control select-form" id="country_user" onchange="search_data();">
                                         <option class="translate" value="" selected> - เลือกประเทศ - </option>
-                                        <option class="translate" value="">
-                                        </option>
+                                        @foreach($country_all_of_user as $item)
+                                            <option class="translate" value="{{ $item->country }}">
+                                                {{ $item->country }}
+                                            </option>
+                                        @endforeach
 
                                     </select>
                                 </div>
@@ -826,8 +829,11 @@ display:none;
                                     <label for="nationalitie_user" class="form-label">สัญชาติ</label>
                                     <select name="nationalitie_user" class="notranslate form-control select-form" id="nationalitie_user" onchange="search_data();">
                                         <option class="translate" value="" selected> - เลือกสัญชาติ - </option>
-                                        <option class="translate" value="">
-                                        </option>
+                                        @foreach($nationalitie_all_of_user as $item)
+                                            <option class="translate" value="{{ $item->nationalitie }}">
+                                                {{ $item->nationalitie }}
+                                            </option>
+                                        @endforeach
 
                                     </select>
                                 </div>
@@ -841,8 +847,11 @@ display:none;
                                     <label for="language_user" class="form-label">ภาษาที่ใช้</label>
                                     <select name="language_user" class="notranslate form-control select-form" id="language_user" onchange="search_data();">
                                         <option class="translate" value="" selected> - เลือกภาษาที่ใช้ - </option>
-                                        <option class="translate" value="">
-                                        </option>
+                                        @foreach($language_all_of_user as $item)
+                                            <option class="translate" value="{{ $item->language }}">
+                                                {{ $item->language }}
+                                            </option>
+                                        @endforeach
 
                                     </select>
                                 </div>
@@ -850,8 +859,11 @@ display:none;
                                     <label for="time_zone_user" class="form-label">time_zone</label>
                                     <select name="time_zone_user" class="notranslate form-control select-form" id="time_zone_user" onchange="search_data();">
                                         <option class="translate" value="" selected> - เลือก time_zone - </option>
-                                        <option class="translate" value="">
-                                        </option>
+                                        @foreach($time_zone_all_of_user as $item)
+                                            <option class="translate" value="{{ $item->time_zone }}">
+                                                {{ $item->time_zone }}
+                                            </option>
+                                        @endforeach
 
                                     </select>
                                 </div>
@@ -1063,6 +1075,15 @@ display:none;
             show_location_P();
             // let input_motor_brand = document.querySelector("#input_motor_brand").innerHTML = "";
             // let input_motor_model = document.querySelector("#input_motor_model").innerHTML = "";
+            let gender_user = document.querySelector("#gender_user").innerHTML = "";
+            let age_user = document.querySelector("#age_user").innerHTML = "";
+            let country_user = document.querySelector("#country_user").innerHTML = "";
+            let nationalitie_user = document.querySelector("#nationalitie_user").innerHTML = "";
+            let language_user = document.querySelector("#language_user").innerHTML = "";
+            let time_zone_user = document.querySelector("#time_zone_user").innerHTML = "";
+            let province_user = document.querySelector("#province_user").innerHTML = "";
+            let district_user = document.querySelector("#district_user").innerHTML = "";
+            let radius_user = document.querySelector("#radius_user").innerHTML = "";
 
             document.querySelector('#div_filter').classList.remove('d-none');
             document.querySelector('#div_user_organzation').classList.remove('d-none');
@@ -1074,6 +1095,15 @@ display:none;
             show_location_P();
             // let input_gender = document.querySelector("#input_gender").innerHTML = "";
             // let input_age = document.querySelector("#input_age").innerHTML = "";
+            let gender_user = document.querySelector("#gender_user").innerHTML = "";
+            let age_user = document.querySelector("#age_user").innerHTML = "";
+            let country_user = document.querySelector("#country_user").innerHTML = "";
+            let nationalitie_user = document.querySelector("#nationalitie_user").innerHTML = "";
+            let language_user = document.querySelector("#language_user").innerHTML = "";
+            let time_zone_user = document.querySelector("#time_zone_user").innerHTML = "";
+            let province_user = document.querySelector("#province_user").innerHTML = "";
+            let district_user = document.querySelector("#district_user").innerHTML = "";
+            let radius_user = document.querySelector("#radius_user").innerHTML = "";
 
             document.querySelector('#div_filter').classList.remove('d-none');
             document.querySelector('#div_user_from').classList.remove('d-none');
@@ -1106,7 +1136,7 @@ display:none;
     // }else{
     //     showMotor_brand();
     // }
-    // search_data();
+    search_data();
 
     }
 
@@ -1336,7 +1366,12 @@ display:none;
                 // console.log(result);
                 //UPDATE SELECT OPTION
                 let location_P = document.querySelector("#province_user");
-                    // location_P.innerHTML = "";
+                    location_P.innerHTML = "";
+
+                let option_start_P = document.createElement("option");
+                    option_start_P.text = " - เลือกจังหวัด - ";
+                    option_start_P.value = "";
+                    location_P.add(option_start_P);
 
                 for(let item of result){
                     let option = document.createElement("option");

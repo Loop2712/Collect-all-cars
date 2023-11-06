@@ -1309,14 +1309,29 @@ class PartnerController extends Controller
             ->select('country')
             ->get();
 
-        // หา ประเทศของคนใน องค์กร
+        // หา nationalitie ของคนใน องค์กร
         $nationalitie_all_of_user = User::where('nationalitie','!=',null)
             ->where('organization',$data_auth_user->organization)
             ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
             ->groupBy('nationalitie')
             ->select('nationalitie')
             ->get();
-        ddd($country_all_of_user);
+
+        // หา language ของคนใน องค์กร
+        $language_all_of_user = User::where('language','!=',null)
+            ->where('organization',$data_auth_user->organization)
+            ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
+            ->groupBy('language')
+            ->select('language')
+            ->get();
+
+        // หา time_zone ของคนใน องค์กร
+        $time_zone_all_of_user = User::where('time_zone','!=',null)
+            ->where('organization',$data_auth_user->organization)
+            ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
+            ->groupBy('time_zone')
+            ->select('time_zone')
+            ->get();
 
         $data_partner = Partner::where("name", $data_auth_user->organization)
             ->where("name_area", null)
@@ -1326,7 +1341,7 @@ class PartnerController extends Controller
 
         $data_user_from = User::where("user_from", 'LIKE' , "%$data_partner->organization%")->get();
 
-        return view('partner.broadcast.broadcast_by_user', compact('data_users_organization','data_user_from','country_all_of_user'));
+        return view('partner.broadcast.broadcast_by_user', compact('data_users_organization','data_user_from','country_all_of_user','time_zone_all_of_user','language_all_of_user','nationalitie_all_of_user'));
     }
 
     function broadcast_by_sos(Request $request){
