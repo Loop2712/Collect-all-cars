@@ -822,7 +822,7 @@
                                         <p class="mb-0 text-white">เวลาโดยเฉลี่ย (เสร็จสิ้น)</p>
                                         <h5 class="mb-0 text-white"> 
                                             <b><span id="span_min_average_per_case">
-                                            { $show_min_average_per_case }</span></b> / เคส (<span id="span_count_success_average">{ $count_success }</span>)
+                                            ..</span></b> / เคส (<span id="span_count_success_average">..</span>)
                                         </h5>
                                     </div>
                                     <div class="ms-auto text-white">
@@ -2230,6 +2230,7 @@
             });
         @endforeach
         
+        click_select_area_map("{{ Auth::user()->sub_organization }}");
 
         if ('{{ Auth::user()->organization }}' == 'สพฉ' && '{{ Auth::user()->sub_organization }}' != 'ศูนย์ใหญ่') {
             draw_area_help_center('{{ Auth::user()->sub_organization }}') ;
@@ -2308,6 +2309,8 @@
     }
 
     function click_select_area_map(province_name){
+
+        console.log("click_select_area_map >> " + province_name);
 
         document.querySelector('#span_text_show_area').innerHTML = province_name ;
 
