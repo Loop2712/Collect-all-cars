@@ -261,6 +261,7 @@ class Sos_help_centerController extends Controller
         }else{
              
             $data_sos = Sos_help_center::where('notify', 'LIKE', "%$sub_organization%")
+                ->select('created_at', 'lat' , 'lng')
                 ->orderBy('created_at' , 'DESC')
                 ->get();
 
