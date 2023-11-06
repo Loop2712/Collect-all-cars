@@ -3125,4 +3125,102 @@ class Sos_help_centerController extends Controller
         return "OK" ;
 
     }
+
+    function show_average_time($area){
+
+        $count_success = 0 ;
+        $all_time = [] ;
+
+        $data_sos = Sos_help_center::where('notify', 'LIKE', "%$area%")
+                ->orderBy('created_at' , 'DESC')
+                ->get();
+
+        foreach($data_sos as $sos){
+
+            if($sos->status == "เสร็จสิ้น"){
+
+                $count_success = $count_success + 1 ;
+
+                if($sos->form_yellow->time_create_sos){
+                    $zone1_time1 = $sos->form_yellow->time_create_sos  ;
+                }
+
+                if($sos->form_yellow->time_command){
+                    $zone1_time2 = $sos->form_yellow->time_command  ;
+                }
+                if($sos->form_yellow->time_go_to_help){
+                    $zone1_time2 = $sos->form_yellow->time_go_to_help  ;
+                }
+                if($sos->form_yellow->time_to_the_scene){
+                    $zone1_time2 = $sos->form_yellow->time_to_the_scene  ;
+                }
+                if($sos->form_yellow->time_leave_the_scene){
+                    $zone1_time2 = $sos->form_yellow->time_leave_the_scene  ;
+                }
+                if($sos->form_yellow->time_hospital){
+                    $zone1_time2 = $sos->form_yellow->time_hospital  ;
+                }
+
+                list($zone1_hours1, $zone1_minutes1, $zone1_seconds1) = explode(':', $zone1_time1);
+                list($zone1_hours2, $zone1_minutes2, $zone1_seconds2) = explode(':', $zone1_time2);
+
+
+                $zone1_totalSeconds1 = intval($zone1_hours1) * 3600 + intval($zone1_minutes1) * 60 + intval($zone1_seconds1);
+                $zone1_totalSeconds2 = intval($zone1_hours2) * 3600 + intval($zone1_minutes2) * 60 + intval($zone1_seconds2);
+
+                $zone1_TotalSeconds = $zone1_totalSeconds2 - $zone1_totalSeconds1;
+
+                $zone1_Time_min = floor($zone1_TotalSeconds / 60);
+                $zone1_Time_Seconds = $zone1_TotalSeconds - ($zone1_Time_min * 60);
+
+                $min_1_to_sec = $zone1_Time_min * 60 ;
+                $all_time[$count_success] = $min_1_to_sec + $zone1_Time_Seconds ;
+            } 
+
+
+        }
+
+        $sum_time_total_help = 0 ;
+
+        foreach($all_time as $element){
+            $sum_time_total_help += $element ;
+        }
+
+        if($count_success != 0){
+            $sum_time_total_help = $sum_time_total_help / $count_success ;
+        }else{
+            $sum_time_total_help = $sum_time_total_help / 1 ;
+        }
+
+        $hours_all_time = floor($sum_time_total_help / 3600);
+        $minutes_all_time = floor(($sum_time_total_help % 3600) / 60);
+        $seconds_all_time = floor($sum_time_total_help % 60);
+
+        $text_all_time = '';
+        if ($hours_all_time > 0) {
+          $text_all_time .= "{$hours_all_time} ชั่วโมง".($hours_all_time > 1 ? '' : '')." ";
+        }
+        $text_all_time .= "{$minutes_all_time} นาที".($minutes_all_time > 1 ? '' : '')." ";
+        $text_all_time .= "{$seconds_all_time} วินาที".($seconds_all_time > 1 ? '' : '');
+          
+        $show_min_average_per_case = $text_all_time;
+
+        // ตรวจสอบว่าเกิน 8 หรือ 12 หรือไม่
+
+        if($sum_time_total_help < 480){
+            $bg_average = "bg-gradient-Ohhappiness";
+        }else if($sum_time_total_help >= 480 && $sum_time_total_help < 720){
+            $bg_average = "bg-gradient-kyoto";
+        }else if($sum_time_total_help >= 720){
+            $bg_average = "bg-gradient-burning";
+        }
+
+        $data = [];
+        $data['show_min_average_per_case'] = $show_min_average_per_case ;
+        $data['count_success'] = $count_success ;
+        $data['bg_average'] = $bg_average ;
+
+        return $data ;
+
+    }
 }

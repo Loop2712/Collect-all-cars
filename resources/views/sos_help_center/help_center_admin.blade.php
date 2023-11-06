@@ -2205,9 +2205,39 @@
             show_location_A();
         }
 
-        fist_real_time_check_refuse_and_call();
-
     });
+
+    var show_min_average_per_case ;
+    var show_count_success_average ;
+    var show_div_card_average ;
+
+    function show_average_time(){
+
+        let area = "{{ Auth::user()->sub_organization }}" ;
+
+        fetch("{{ url('/') }}/api/sos_help_center/show_average_time/" + area)
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+                if(result){
+                    show_min_average_per_case = result['show_min_average_per_case'] ;
+                    show_count_success_average = result['count_success'] ;
+                    show_div_card_average = result['bg_average'] ;
+
+                    document.querySelector('#span_min_average_per_case').innerHTML = show_min_average_per_case ;
+                    document.querySelector('#span_count_success_average').innerHTML = show_count_success_average ;
+
+                    let div_card_average = document.querySelector('#div_card_average');
+                    // console.log(div_card_average.classList[3]);
+
+                    let drop_class_div_card_average = div_card_average.classList[3] ;
+
+                    document.querySelector('#div_card_average').classList.remove(drop_class_div_card_average);
+                    document.querySelector('#div_card_average').classList.add(show_div_card_average);
+                }
+        });
+    }
     
     const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
 
@@ -2230,6 +2260,7 @@
             });
         @endforeach
         
+        show_average_time();
         click_select_area_map("{{ Auth::user()->sub_organization }}");
 
         if ('{{ Auth::user()->organization }}' == 'สพฉ' && '{{ Auth::user()->sub_organization }}' != 'ศูนย์ใหญ่') {
@@ -2310,7 +2341,7 @@
 
     function click_select_area_map(province_name){
 
-        console.log("click_select_area_map >> " + province_name);
+        // console.log("click_select_area_map >> " + province_name);
 
         document.querySelector('#span_text_show_area').innerHTML = province_name ;
 
@@ -2326,8 +2357,8 @@
             document.querySelector('#data_help').classList.remove('d-none');
             document.querySelector('#span_count_data').innerHTML = "{{ count($data_sos) }}";
 
-            document.querySelector('#span_min_average_per_case').innerHTML = "{ $show_min_average_per_case }" ;
-            document.querySelector('#span_count_success_average').innerHTML = "{ $count_success }" ;
+            document.querySelector('#span_min_average_per_case').innerHTML = show_min_average_per_case ;
+            document.querySelector('#span_count_success_average').innerHTML = show_count_success_average ;
 
         }else{
 
@@ -2985,8 +3016,9 @@
         document.querySelector('#div_body_help').classList.add('d-none');
         document.querySelector('#data_help').classList.remove('d-none');
         document.querySelector('#span_count_data').innerHTML = "{{ count($data_sos) }}";
-        document.querySelector('#span_min_average_per_case').innerHTML = "{ $show_min_average_per_case }" ;
-        document.querySelector('#span_count_success_average').innerHTML = "{ $count_success }" ;
+
+        document.querySelector('#span_min_average_per_case').innerHTML = show_min_average_per_case ;
+        document.querySelector('#span_count_success_average').innerHTML = show_count_success_average ;
 
         if('{{ Auth::user()->organization }}' == 'สพฉ' && '{{ Auth::user()->sub_organization }}' == 'ศูนย์ใหญ่'){
             click_select_area_map('ทั้งหมด');
