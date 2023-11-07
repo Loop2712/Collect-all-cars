@@ -412,7 +412,7 @@ display:none;
 <input class="form-control d-none" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
 
 <input class="form-control d-none" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
-<input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
+<input class="form-control d-non" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
 <input class="form-control d-none" type="text" name="type_content" id="type_content" value="BC_by_car">
 <input class="form-control d-none" type="text" name="name_partner" id="name_partner" value="">
 <input class="form-control d-none" type="text" name="id_partner" id="id_partner" value="">
@@ -789,7 +789,7 @@ display:none;
                                 <div class="col-md-6">
                                     <!-- input_car_brand ==> gender_user -->
                                     <label for="gender_user" class="form-label">เพศ</label>
-                                    <select name="gender_user" class="notranslate form-control select-form" id="gender_user" onchange="">
+                                    <select name="gender_user" class="notranslate form-control select-form" id="gender_user" onchange="search_data();">
                                         <option class="translate" value="" selected> - เลือกเพศ - </option>
                                         <option class="translate" value="ผู้ชาย"> ชาย </option>
                                         <option class="translate" value="ผู้หญิง"> หญิง </option>
@@ -800,11 +800,11 @@ display:none;
                                     <label for="age_user" class="form-label">อายุ</label>
                                     <select name="age_user" class="notranslate form-control select-form" id="age_user" onchange="search_data();">
                                         <option class="translate" value="" selected> - เลือกช่วงอายุ - </option>
-                                        <option class="translate" value="" > - น้อยกว่า 12 ปี - </option>
-                                        <option class="translate" value="" > - 12 ถึง 25 ปี - </option>
-                                        <option class="translate" value="" > - 16 ถึง 41 ปี - </option>
-                                        <option class="translate" value="" > - 42 ถึง 59 ปี - </option>
-                                        <option class="translate" value="" > - 60 ปีขึ้นไป - </option>
+                                        <option value="<20" > น้อยกว่า 20 </option>
+                                        <option value="21-29" > 21 - 29 </option>
+                                        <option value="30-45" > 30 - 45 </option>
+                                        <option value="46-59" > 46 - 59 </option>
+                                        <option value="60+" > 60 ขึ้นไป </option>
                                     </select>
                                 </div>
                             </div>
@@ -873,14 +873,14 @@ display:none;
                         <!-- จังหวัดของผู้ใช้ -->
                         <div class="col-md-12">
                             <label for="province_user" class="form-label">จังหวัดของผู้ใช้</label>
-                            <select name="province_user" class="notranslate form-control select-form" id="province_user" onchange="show_location_A();">
+                            <select name="province_user" class="notranslate form-control select-form" id="province_user" onchange="show_location_A();search_data();">
                                 <option class="translate" value="" selected> - เลือกจังหวัด - </option>
                             </select>
                         </div>
                         <!-- อำเภอของผู้ใช้ -->
                         <div class="col-md-12">
                             <label for="district_user" class="form-label">อำเภอของผู้ใช้</label>
-                            <select name="district_user" class="notranslate form-control select-form" id="district_user" >
+                            <select name="district_user" class="notranslate form-control select-form" id="district_user" onchange="search_data();">
                                 <option class="translate" value="" selected> - เลือกอำเภอ - </option>
                             </select>
                         </div>
@@ -890,9 +890,10 @@ display:none;
                             <label for="radius_user" class="form-label">ภายในรัศมี .. กม.</label>
                             <select name="radius_user" class="notranslate form-control select-form" id="radius_user" onchange="search_data();">
                                 <option class="translate" value="" selected> - เลือก ภายในรัศมี .. กม. - </option>
-                                <option class="translate" value="">
-                                </option>
-
+                                <option class="translate" value="{{Auth::user()->lat}},{{Auth::user()->lng}},15">15 กิโลเมตร</option>
+                                <option class="translate" value="{{Auth::user()->lat}},{{Auth::user()->lng}},30">30 กิโลเมตร</option>
+                                <option class="translate" value="{{Auth::user()->lat}},{{Auth::user()->lng}},50">50 กิโลเมตร</option>
+                                <option class="translate" value="{{Auth::user()->lat}},{{Auth::user()->lng}},100">100 กิโลเมตร</option>
                             </select>
                         </div>
 
@@ -1027,9 +1028,7 @@ display:none;
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log(remain);
-        // document.querySelector('#btn_next_selected_car').disabled = false;
-        // document.querySelector('#btn_next_selected_car').click();
+        search_data();
     });
 
     // ตัวแปรที่ใช้ร่วมกันทั้งหมด ==========================================================================
@@ -1064,26 +1063,20 @@ display:none;
         document.querySelector('#user_type').value = type ;
         // document.querySelector('#div_btn_search').classList.remove('d-none');
 
-        // document.querySelector("#birth_month").value = "";
-        // let location_user = document.querySelector("#location_user").value = "";
-        // let province_registration = document.querySelector("#province_registration").value = "";
-        // let type_registration = document.querySelector("#type_registration").value = "";
+        let gender_user = document.querySelector("#gender_user").value = "";
+        let age_user = document.querySelector("#age_user").value = "";
+        let country_user = document.querySelector("#country_user").value = "";
+        let nationalitie_user = document.querySelector("#nationalitie_user").value = "";
+        let language_user = document.querySelector("#language_user").value = "";
+        let time_zone_user = document.querySelector("#time_zone_user").value = "";
+        let province_user = document.querySelector("#province_user").value = "";
+        let district_user = document.querySelector("#district_user").value = "";
+        let radius_user = document.querySelector("#radius_user").value = "";
 
         if (type === "organization") {
 
             // showCar_brand();
             show_location_P();
-            // let input_motor_brand = document.querySelector("#input_motor_brand").innerHTML = "";
-            // let input_motor_model = document.querySelector("#input_motor_model").innerHTML = "";
-            let gender_user = document.querySelector("#gender_user").innerHTML = "";
-            let age_user = document.querySelector("#age_user").innerHTML = "";
-            let country_user = document.querySelector("#country_user").innerHTML = "";
-            let nationalitie_user = document.querySelector("#nationalitie_user").innerHTML = "";
-            let language_user = document.querySelector("#language_user").innerHTML = "";
-            let time_zone_user = document.querySelector("#time_zone_user").innerHTML = "";
-            let province_user = document.querySelector("#province_user").innerHTML = "";
-            let district_user = document.querySelector("#district_user").innerHTML = "";
-            let radius_user = document.querySelector("#radius_user").innerHTML = "";
 
             document.querySelector('#div_filter').classList.remove('d-none');
             document.querySelector('#div_user_organzation').classList.remove('d-none');
@@ -1093,17 +1086,6 @@ display:none;
 
             // showMotor_brand();
             show_location_P();
-            // let input_gender = document.querySelector("#input_gender").innerHTML = "";
-            // let input_age = document.querySelector("#input_age").innerHTML = "";
-            let gender_user = document.querySelector("#gender_user").innerHTML = "";
-            let age_user = document.querySelector("#age_user").innerHTML = "";
-            let country_user = document.querySelector("#country_user").innerHTML = "";
-            let nationalitie_user = document.querySelector("#nationalitie_user").innerHTML = "";
-            let language_user = document.querySelector("#language_user").innerHTML = "";
-            let time_zone_user = document.querySelector("#time_zone_user").innerHTML = "";
-            let province_user = document.querySelector("#province_user").innerHTML = "";
-            let district_user = document.querySelector("#district_user").innerHTML = "";
-            let radius_user = document.querySelector("#radius_user").innerHTML = "";
 
             document.querySelector('#div_filter').classList.remove('d-none');
             document.querySelector('#div_user_from').classList.remove('d-none');
@@ -1118,18 +1100,16 @@ display:none;
     // ล้างการค้นหา
     function clear_search_input_data(){
 
-        let user_type = document.querySelector("#user_type").value;
-
-    let gender_user = document.querySelector("#gender_user").innerHTML = '';
-    let age_user = document.querySelector("#age_user").innerHTML = '';
-    let country_user = document.querySelector("#country_user").innerHTML = '';
-    let nationalitie_user = document.querySelector("#nationalitie_user").innerHTML = '';
-    let language_user = document.querySelector("#language_user").innerHTML = '';
-    let time_zone_user = document.querySelector("#time_zone_user").innerHTML = '';
-    let province_user = document.querySelector("#province_user").innerHTML = '';
-    let district_user = document.querySelector("#district_user").innerHTML = '';
-    let radius_user = document.querySelector("#radius_user").innerHTML = '';
-
+    let user_type = document.querySelector("#user_type").value;
+    let gender_user = document.querySelector("#gender_user").value = '';
+    let age_user = document.querySelector("#age_user").value = '';
+    let country_user = document.querySelector("#country_user").value = '';
+    let nationalitie_user = document.querySelector("#nationalitie_user").value = '';
+    let language_user = document.querySelector("#language_user").value = '';
+    let time_zone_user = document.querySelector("#time_zone_user").value = '';
+    let province_user = document.querySelector("#province_user").value = '';
+    let district_user = document.querySelector("#district_user").value = '';
+    let radius_user = document.querySelector("#radius_user").value = '';
 
     // if (user_type === "organization") {
     //     showCar_brand();
@@ -1143,7 +1123,7 @@ display:none;
     // ค้นหารถและโชว์ content
     function search_data(){
         let user_type = document.querySelector("#user_type").value;
-
+        let partner_name = '{{ $data_partner->name }}';
         let gender_user = document.querySelector("#gender_user").value;
         let age_user = document.querySelector("#age_user").value;
         let country_user = document.querySelector("#country_user").value;
@@ -1153,22 +1133,24 @@ display:none;
         let province_user = document.querySelector("#province_user").value;
         let district_user = document.querySelector("#district_user").value;
         let radius_user = document.querySelector("#radius_user").value;
+        // console.log("user_type :"+user_type);
+        // console.log("partner_name :"+partner_name);
+        // console.log("gender_user :"+gender_user);
+        // console.log("age_user :"+age_user);
+        // console.log("country_user :"+country_user);
+        // console.log("nationalitie_user :"+nationalitie_user);
+        // console.log("language_user :"+language_user);
+        // console.log("time_zone_user :"+time_zone_user);
+        // console.log("province_user :"+province_user);
+        // console.log("district_user :"+district_user);
+        // console.log("radius_user :"+radius_user);
 
-        let input_gender = document.querySelector("#input_gender").value;
-        let input_age = document.querySelector("#input_age").value;
-        let input_motor_brand = document.querySelector("#input_motor_brand").value;
-        let input_motor_model = document.querySelector("#input_motor_model").value;
-        let location_user = document.querySelector("#location_user").value;
-        let province_registration = document.querySelector("#province_registration").value;
-        let type_registration = document.querySelector("#type_registration").value;
-        let birth_month = document.querySelector("#birth_month").value;
-        let id_partner = document.querySelector("#id_partner");
 
         let data_search_data ;
 
         if (user_type == "organization") {
-
             data_search_data = {
+                'partner_name' : partner_name,
                 'user_type' : user_type,
                 'gender_user' : gender_user,
                 'age_user' : age_user,
@@ -1180,18 +1162,10 @@ display:none;
                 'district_user' : district_user,
                 'radius_user' : radius_user,
 
-                'brand' : input_gender,
-                'model' : input_age,
-                'location_user' : location_user,
-                'province_registration' : province_registration,
-                'type_registration' : type_registration,
-                'birth_month' : birth_month,
-                'id_partner' : id_partner.value,
             };
-
         }else{
-
             data_search_data = {
+                'partner_name' : partner_name,
                 'user_type' : user_type,
                 'gender_user' : gender_user,
                 'age_user' : age_user,
@@ -1203,18 +1177,10 @@ display:none;
                 'district_user' : district_user,
                 'radius_user' : radius_user,
 
-                'brand' : input_motor_brand,
-                'model' : input_motor_model,
-                'location_user' : location_user,
-                'province_registration' : province_registration,
-                'type_registration' : null,
-                'birth_month' : birth_month,
-                'id_partner' : id_partner.value,
             };
-
         }
 
-        fetch("{{ url('/') }}/api/search_data_broadcast_by_car",
+        fetch("{{ url('/') }}/api/search_data_broadcast_by_user",
         {
             method: 'post',
             body: JSON.stringify(data_search_data),
@@ -1225,132 +1191,72 @@ display:none;
         .then(response => response.json())
             .then(result => {
                 try {
-                    // console.log(result);
+                    console.log(result);
+
                     document.querySelector('#count_search_data').innerHTML = result['length'] ;
 
                     let content_search_data = document.querySelector('#content_search_data');
                         content_search_data.innerHTML = "" ;
 
-                    if (arr_car_id_selected.value) {
-                        arr_car_id = JSON.parse(arr_car_id_selected.value) ;
-                    }
-
                     let content_count = 1 ;
 
-                    for(let item of result){
-
-                        let div_data_car = document.createElement("div");
-                        let class_div_data_car = document.createAttribute("class");
-                            class_div_data_car.value = "col-12 col-md-3 col-lg-3 p-1";
-                            div_data_car.setAttributeNode(class_div_data_car);
-
-                        let div_result_content = document.createElement("div");
-                        let class_div_result_content = document.createAttribute("class");
-                            class_div_result_content.value = "result-content";
-                            div_result_content.setAttributeNode(class_div_result_content);
-                        div_data_car.appendChild(div_result_content);
+                    for (let i = 0; i < result.length; i++) {
 
 
-                        let div_result_car = document.createElement("div");
-                        let class_div_result_car = document.createAttribute("class");
-                            class_div_result_car.value = "result-car";
-                            div_result_car.setAttributeNode(class_div_result_car);
-                        div_result_content.appendChild(div_result_car);
+                        if (!result[i]['name']) {
+                            result[i]['name'] = "ไม่ได้ระบุ" ;
+                        }
 
-                        let div_result_img = document.createElement("div");
-                        let class_div_result_img = document.createAttribute("class");
-                            class_div_result_img.value = "result-car";
-                            div_result_img.setAttributeNode(class_div_result_img);
-                        div_result_car.appendChild(div_result_img);
+                        if (!result[i]['sex']) {
+                            result[i]['sex'] = "ไม่ได้ระบุ" ;
+                        }
 
-                        let result_img = document.createElement("img");
-                        let src_result_img = document.createAttribute("src");
-                            if (item.car_type == "car") {
-                            src_result_img.value = "{{ asset('/img/icon/car1.png') }}";
-                            }else{
-                            src_result_img.value = "{{ asset('/img/icon/car2.png') }}";
-                            }
-                            result_img.setAttributeNode(src_result_img);
-                        div_result_img.appendChild(result_img);
+                        let age_user = "" ;
+                        if (!result[i]['brith']) {
+                            age_user = "ไม่ได้ระบุ" ;
+                        }else{
+                            // สร้างวัตถุ Date สำหรับวันเกิด
+                            let birthday = new Date(result[i]['brith']);
 
-                        let div_result_header = document.createElement("div");
-                        let class_div_result_header = document.createAttribute("class");
-                            class_div_result_header.value = "result-header";
-                            div_result_header.setAttributeNode(class_div_result_header);
-                            div_result_car.appendChild(div_result_header);
+                            // สร้างวัตถุ Date สำหรับวันปัจจุบัน
+                            let today = new Date();
 
-                        let span_brand = document.createElement("span");
-                        let class_span_brand = document.createAttribute("class");
-                            class_span_brand.value = "name-brand";
-                            span_brand.setAttributeNode(class_span_brand);
-                            span_brand.innerHTML = item.brand;
-                            div_result_header.appendChild(span_brand);
+                            // คำนวณอายุโดยหาความแตกต่างในปี
+                            let ageInMilliseconds = today - birthday;
+                            let ageInYears = ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25); // 31,536,000,000 milliseconds per year
+                                age_user = ageInYears.toFixed(0); // ปัดเลขทศนิยมไปยังจำนวนเต็ม
+                            console.log(age_user);
 
-                        let span_generation = document.createElement("span");
-                            span_generation.innerHTML = item.generation;
-                            div_result_header.appendChild(span_generation);
+                            // แสดงผล
+                            // console.log("อายุของคุณคือ: " + age_user + " ปี");
+                        }
+                        console.log(result[i]['name']);console.log(result[i]['sex']);console.log(result[i]['brith']);
 
-                        let div_status = document.createElement("div");
-                        let class_div_status = document.createAttribute("class");
-                            class_div_status.value = "status";
-                            div_status.setAttributeNode(class_div_status);
-                        div_result_car.appendChild(div_status);
+                        let div_data_name = `<div class="col-12 col-md-3 col-lg-3 card main-shadow item-content  m-1" onclick="click_select(' `+result[i]['id']+` ')" id="div_result_content_count_`+content_count+`">
+                                <div class="content-header">
+                                    <i id="btn_select_user_id_`+result[i]['id']+`" name="i_btn_select_`+content_count+`" data="`+result[i]['id']+`" class="far fa-circle btn"></i>
+                                    <span class="name-user"><b class="h5">`+ result[i]['name'] +`</b></span>
+                                </div>
+                                <div class="content-age">
+                                    <span class='text-secondary' style='font-size: 14px;'><b>เพศ :</b> `+ result[i]['sex'] +` <b>อายุ :</b> `+ age_user +`</span>
+                                </div>
+                            </div>`
 
-                        let btn_select = document.createElement("i");
-                        let name_btn_select = document.createAttribute("name");
-                            name_btn_select.value = "i_btn_select_"  + content_count;
-                        btn_select.setAttributeNode(name_btn_select);
-                        let uid = document.createAttribute("data");
-                            uid.value = item.user_id ;
-                        btn_select.setAttributeNode(uid);
+                        if(document.querySelector('#btn_select_user_id_' + result[i]['id'])){
 
-                        let class_btn_select = document.createAttribute("class");
-
-                        let text_car_id = item.id.toString();
-
-                            if ( arr_car_id.includes(text_car_id) ) {
-                                // console.log("เลือกแล้ว");
-                                class_btn_select.value = "fas fa-check-circle btn text-success";
-                            }else{
-                                class_btn_select.value = "far fa-circle btn";
-                                // console.log("ยังไม่ได้เลือก");
+                            let btn_select = document.querySelector('#btn_select_user_id_' + result[i]['id']);
+                            if (arr_user_id.includes(text_user_id)) {
+                                btn_select.setAttribute('class', 'fas fa-solid fa-circle-check text-success icon-circle h6');
+                            } else {
+                                btn_select.setAttribute('class', 'far fa-regular fa-circle icon-circle-hover icon-circle');
                             }
 
-                        btn_select.setAttributeNode(class_btn_select);
+                        }
 
-                        let onclick_btn_select = document.createAttribute("onclick");
-                            onclick_btn_select.value = "click_select_car('" + item.user_id + "','" + item.id + "')";
-                            div_result_content.setAttributeNode(onclick_btn_select);
-                        let id_div_result_content = document.createAttribute("id");
-                            id_div_result_content.value = "div_result_content_count_" + content_count ;
-                            div_result_content.setAttributeNode(id_div_result_content);
-
-                        let id_btn_select = document.createAttribute("id");
-                            id_btn_select.value = "btn_select_car_id_" + item.id ;
-                            btn_select.setAttributeNode(id_btn_select);
-
-                        div_status.appendChild(btn_select);
-
-                        let div_license_plate = document.createElement("div");
-                        let class_div_license_plate = document.createAttribute("class");
-                            class_div_license_plate.value = "license-plate";
-                            div_license_plate.setAttributeNode(class_div_license_plate);
-                        div_result_content.appendChild(div_license_plate);
-
-
-                        let h5_license_plate = document.createElement("h5");
-                            h5_license_plate.innerHTML = item.registration_number;
-                            div_license_plate.appendChild(h5_license_plate);
-
-
-                        let span_province = document.createElement("span");
-                            span_province.innerHTML = item.province;
-                            div_license_plate.appendChild(span_province);
-
-                        content_search_data.appendChild(div_data_car);
-
+                        content_search_data.insertAdjacentHTML('afterbegin', div_data_name); // แทรกบนสุด
                         content_count = content_count + 1 ;
                     }
+
                 }
                 catch(err) {
                     // console.log(err);
@@ -1414,6 +1320,114 @@ display:none;
 
             // return location_A.value;
     }
+
+
+    // ตรวจสอบเกินจำนวนหรือไม่และเลือกหรือลบ
+    // function click_select(user_id){
+
+    //     document.querySelector('#user_unique').checked = false ;
+    //     document.querySelector('#arr_user_id_send_to_user').value = null ;
+
+    //     let btn_select_user_id = document.querySelector('#btn_select_user_id_' + user_id);
+    //     let class_btn_select_user_id = btn_select_user_id.classList[0] ;
+
+    //     if (remain <= 0) { // ไม่มีโควต้า
+    //         if (class_btn_select_user_id == "fas") {
+    //             document.querySelector('#warn_BC_by_check_in_max').classList.add('d-none');
+    //             drop_user(user_id);
+    //         }else{
+    //             // เกินจำนวนที่กำหนด
+    //             // console.log(remain + " <= 0");
+    //             document.querySelector('#warn_BC_by_check_in_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
+    //             document.querySelector('#warn_BC_by_check_in_max').classList.remove('d-none');
+
+    //             document.querySelector('#text_check_in_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
+    //             document.querySelector('#check_in_max').classList.add('up_down');
+
+    //             const animated = document.querySelector('.up_down');
+    //             animated.onanimationend = () => {
+    //                 document.querySelector('#check_in_max').classList.remove('up_down');
+    //             };
+    //         }
+    //     }else{ // มีโควต้า
+    //         if (class_btn_select_user_id == "far") {
+    //             document.querySelector('#warn_BC_by_check_in_max').classList.add('d-none');
+    //             select_user(user_id);
+    //         }else{
+    //             // เลือกแล้ว
+    //             drop_user(user_id);
+    //         }
+    //     }
+
+    // }
+
+    // function check_user_unique(){
+    //     let user_unique =  document.querySelector('#user_unique').checked ;
+    //         // console.log(user_unique);
+    //     let arr_selected = JSON.parse(arr_user_id_selected.value) ;
+    //     let text_arr_show_user = document.querySelector('#arr_show_user') ;
+    //     let arr_user_id_send_to_user = document.querySelector('#arr_user_id_send_to_user') ;
+    //         arr_user_id_send_to_user.value = arr_user_id_selected.value;
+
+    //     let arr_send_to_user = JSON.parse(arr_user_id_send_to_user.value) ;
+
+    //     if (user_unique) {
+    //         if (text_arr_show_user.value) {
+
+    //             let arr_show_user = JSON.parse(text_arr_show_user.value) ;
+    //                 // console.log(arr_show_user);
+    //                 // console.log(arr_selected);
+
+    //             // console.log(arr_send_to_user);
+    //             // console.log(">>>>>>-----------<<<<<<<");
+
+    //             let delete_at_index = 0 ;
+    //             for (let ii = 0; ii < arr_selected.length; ii++) {
+    //                 // console.log(">>>>>> รอบที่ " + ii + " <<<<<<<");
+
+    //                 if ( arr_show_user.includes(arr_selected[ii]) ) {
+    //                     // console.log(">> id ที่ ซ้ำ >> : " + arr_selected[ii]);
+
+    //                     // console.log(">> ก่อนลบ <<");
+    //                     // console.log(arr_send_to_user);
+
+    //                     // delete array
+    //                     arr_send_to_user.splice(delete_at_index, 1);
+
+    //                     remain = remain + 1 ;
+    //                     text_BC_remain = remain.toString();
+    //                     amount_remain.innerHTML = text_BC_remain ;
+    //                     amount_remain_all.innerHTML = text_BC_remain ;
+    //                     // console.log(">> ลบแล้ว <<");
+    //                     // console.log(arr_send_to_user);
+
+    //                 }else{
+    //                     delete_at_index = delete_at_index + 1 ;
+    //                     // console.log('ไม่ซ้ำ บวก delete_at_index + 1 = ' + delete_at_index);
+    //                 }
+    //             }
+
+    //             document.querySelector('#span_amount_send').innerHTML = arr_send_to_user.length ;
+    //             document.querySelector('#user_selected').innerHTML = arr_send_to_user.length ;
+    //             // ส่ง content เดิม แบบไม่ซ้ำ user เดิม
+    //             arr_user_id_send_to_user.value = JSON.stringify(arr_send_to_user) ;
+    //             arr_user_id_selected.value = JSON.stringify(arr_send_to_user) ;
+
+    //             remain_it_0(remain);
+    //             search_data();
+    //         }
+    //     }else{
+    //         arr_user_id_send_to_user.value = null ;
+    //         document.querySelector('#span_amount_send').innerHTML = arr_selected.length ;
+    //         document.querySelector('#user_selected').innerHTML = arr_selected.length ;
+
+    //         remain_it_0(remain);
+    //         search_data();
+
+    //     }
+
+    // }
+
 
 </script>
 

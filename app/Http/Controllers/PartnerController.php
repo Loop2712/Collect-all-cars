@@ -1337,11 +1337,11 @@ class PartnerController extends Controller
             ->where("name_area", null)
             ->first();
 
+        // ยังไม่ได้ใช้
         $data_users_organization = User::where("organization", $data_partner->name)->get();
-
         $data_user_from = User::where("user_from", 'LIKE' , "%$data_partner->organization%")->get();
 
-        return view('partner.broadcast.broadcast_by_user', compact('data_users_organization','data_user_from','country_all_of_user','time_zone_all_of_user','language_all_of_user','nationalitie_all_of_user'));
+        return view('partner.broadcast.broadcast_by_user', compact('data_partner','data_users_organization','data_user_from','country_all_of_user','time_zone_all_of_user','language_all_of_user','nationalitie_all_of_user'));
     }
 
     function broadcast_by_sos(Request $request){
