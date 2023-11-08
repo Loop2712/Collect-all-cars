@@ -595,37 +595,37 @@
 
                 <div class="gallery-item item">
                   <a href="{{ asset('/img/review/2.jpg') }}" class="galelry-lightbox">
-                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/2.jpg') }}" alt="" class="img-fluid">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/2.jpg') }}" alt="" class="img-cover">
                   </a>
                 </div>
 
                 <div class="gallery-item item">
                   <a href="{{ asset('/img/review/3.jpg') }}" class="galelry-lightbox">
-                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/3.jpg') }}" alt="" class="img-fluid">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/3.jpg') }}" alt="" class="img-cover">
                   </a>
                 </div>
 
                 <div class="gallery-item item">
                   <a href="{{ asset('/img/review/1.jpg') }}" class="galelry-lightbox">
-                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/1.jpg') }}" alt="" class="img-fluid">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/1.jpg') }}" alt="" class="img-cover">
                   </a>
                 </div>
 
                 <div class="gallery-item item">
                   <a href="{{ asset('/img/review/4.jpg') }}" class="galelry-lightbox">
-                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/4.jpg') }}" alt="" class="img-fluid">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/4.jpg') }}" alt="" class="img-cover">
                   </a>
                 </div>
 
                 <div class="gallery-item item">
                   <a href="{{ asset('/img/review/6.jpg') }}" class="galelry-lightbox">
-                    <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/6.jpg') }}" alt="" class="img-fluid">
+                    <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/6.jpg') }}" alt="" class="img-cover">
                   </a>
                 </div>
 
                 <div class="gallery-item item">
                   <a href="{{ asset('/img/review/7.jpg') }}" class="galelry-lightbox">
-                    <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/7.jpg') }}" alt="" class="img-fluid">
+                    <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/7.jpg') }}" alt="" class="img-cover">
                   </a>
                 </div>
 
@@ -1046,7 +1046,7 @@
   <section id="gallery" class="gallery">
       <div class="container">
         <div class="section-title">
-          <h4 style="font-family: 'Kanit', sans-serif;"> <b> ขอขอบคุณความไว้วางใจในการใช้ระบบ Mobile <span style="color: #EB2424;">ViiCHECK</span></b></h4>
+          <h4 style="font-family: 'Kanit', sans-serif;"> <b> ขอขอบคุณความไว้วางใจในการใช้ระบบ <span style="color: #EB2424;">ViiCHECK</span></b></h4>
         </div>
       </div>
 
@@ -1057,37 +1057,37 @@
 
                 <div class="gallery-item item">
                   <a href="{{ asset('/img/review/2.jpg') }}" class="galelry-lightbox">
-                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/2.jpg') }}" alt="" class="img-fluid">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/2.jpg') }}" alt="" class="img-fluid img-support-mobile">
                   </a>
                 </div>
 
                 <div class="gallery-item item">
                   <a href="{{ asset('/img/review/3.jpg') }}" class="galelry-lightbox">
-                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/3.jpg') }}" alt="" class="img-fluid">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/3.jpg') }}" alt="" class="img-fluid img-support-mobile">
                   </a>
                 </div>
 
                 <div class="gallery-item item">
                   <a href="{{ asset('/img/review/1.jpg') }}" class="galelry-lightbox">
-                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/1.jpg') }}" alt="" class="img-fluid">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/1.jpg') }}" alt="" class="img-fluid img-support-mobile">
                   </a>
                 </div>
 
                 <div class="gallery-item item">
                   <a href="{{ asset('/img/review/4.jpg') }}" class="galelry-lightbox">
-                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/4.jpg') }}" alt="" class="img-fluid">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/4.jpg') }}" alt="" class="img-fluid img-support-mobile">
                   </a>
                 </div>
 
                 <div class="gallery-item item">
                   <a href="{{ asset('/img/review/6.jpg') }}" class="galelry-lightbox">
-                    <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/6.jpg') }}" alt="" class="img-fluid">
+                    <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/6.jpg') }}" alt="" class="img-fluid img-support-mobile">
                   </a>
                 </div>
 
                 <div class="gallery-item item">
                     <a href="{{ asset('/img/review/7.jpg') }}" class="galelry-lightbox">
-                        <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/7.jpg') }}" alt="" class="img-fluid">
+                        <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/7.jpg') }}" alt="" class="img-fluid img-support-mobile">
                     </a>
                 </div>
 
