@@ -70,7 +70,7 @@
           <div class="col-sm-6 wow  fadeInLeft"> <img width="70%" src="{{ asset('Medilab/img/icon.png') }}" alt=""> </div>
           <div class="col-sm-6  wow  fadeInRight" style="margin-top:60px;">
             <h1 style="text-align: right;font-family: 'Kanit', sans-serif;">ยินดีต้อนรับสู่ ViiCHECK</h1>
-           
+
             <h2 class="wow  fadeInRight" style="text-align: right;font-family: 'Kanit', sans-serif;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ <br>แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
             <a style="font-size: 18px; float: right;font-family: 'Kanit', sans-serif;" href="https://line.me/R/ti/p/%40702ytkls" class=" fadeInRight btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
           </div>
@@ -134,7 +134,7 @@
         -webkit-transition: .4s ease-in-out;
         transition: .4s ease-in-out;
       }
-      
+
 
       .slogan-glasses {
         position: relative;
@@ -164,21 +164,21 @@
         transform: translateY(200%) translateX(25%);
         top:40%;
         color: #EB2424;
-                
+
       }
 
       </style>
 
     <section id="why-us" class="why-us" style="font-family: 'Kanit', sans-serif;">
       <div class="container">
-        
+
         <div class="row mb-3">
               <div class="col-3">
               <div class="slogan-card" style="animation-delay: 0.0s;">
                 <div class="slogan-heading">รวดเร็ว</div>
                 <img class="slogan-glasses"src="{{ asset('img/stickerline/PNG/34.2.png') }}" style="width: 48%;" alt="">
               </div>
-              
+
                 <!-- <div class="card-slogan card text-center  text-white " style="animation-delay: 0.0s;">
                   <div class="row">
                     <div class="col-5 pr-0">
@@ -400,7 +400,7 @@
         </div>
       </div>
     </section><!-- End Counts Section -->
-    
+
     <div class="containersystem">
       <div class="item mysystem col-2" style=" top: 5rem;">
         <ul class="nav flex-column">
@@ -445,7 +445,7 @@
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos2.png') }}" class="galelry-lightbox-1">
                     <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos_nt_1.png') }}" class="img-fluid">
                     <p class="text-timeline" style="top: 18%;left: 20%;width:35%;">กด SOS</p>
-                    
+
                   </a>
                 </div>
                 <div class="d-flex align-items-center">
@@ -469,7 +469,7 @@
             </div>
           </div>
           <br>
-          <hr style="border:#EB2424 0.1px solid"> 
+          <hr style="border:#EB2424 0.1px solid">
           <br><br>
           <span id="tab-2" style="position: absolute;margin-top:-130px"></span>
           <div style="margin-bottom: 25px;" >
@@ -489,7 +489,7 @@
                 <div class="timeline_content">
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos1.png') }}" class="galelry-lightbox-2">
                     <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos1.png') }}" class="img-fluid">
-                  </a>               
+                  </a>
                 </div>
                 <div class="d-flex align-items-center">
                   <i class="fa-solid fa-circle timeline_icon"></i>
@@ -500,7 +500,7 @@
                     <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove_nt_1.png') }}" class="img-fluid">
                     <p class="text-timeline" style="top: 19%;left: 25%;width:40%;">กดลงทะเบียน</p>
 
-                  </a>                
+                  </a>
                 </div>
 
                 <div class="d-flex align-items-center">
@@ -512,7 +512,7 @@
                     <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove_nt_2.png') }}" class="img-fluid">
                     <p class="text-timeline text-center" style="top: 19%;left: 40%;width:60%;text-align-last: center;">กรอกข้อมูลรถ</p>
 
-                  </a>               
+                  </a>
                 </div>
 
                 <div class="d-flex align-items-center">
@@ -522,7 +522,7 @@
                 <div class="timeline_content">
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove3.png') }}" class="galelry-lightbox-2">
                     <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove3.png') }}" class="img-fluid">
-                  </a>               
+                  </a>
                 </div>
                 <div class="timeline_content d-none">
                   <div class="col-lg-6 col-md-6  text-center">
@@ -571,6 +571,16 @@
     </div>
   <!-- End Services Section -->
 
+    <style>
+        .img-cover{
+            object-fit: cover;
+        }
+        .img-support-mobile{
+            width: 220px !important;
+            object-fit: cover;
+        }
+    </style>
+
     <section id="gallery" class="gallery">
       <div class="container">
         <div class="section-title">
@@ -617,6 +627,24 @@
                   <a href="{{ asset('/img/review/7.jpg') }}" class="galelry-lightbox">
                     <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/7.jpg') }}" alt="" class="img-fluid">
                   </a>
+                </div>
+
+                <div class="gallery-item item">
+                    <a href="{{ asset('/img/review/4.jpg') }}" class="galelry-lightbox">
+                        <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/8.jpg') }}" alt="" class="img-cover">
+                    </a>
+                </div>
+
+                <div class="gallery-item item">
+                    <a href="{{ asset('/img/review/6.jpg') }}" class="galelry-lightbox">
+                        <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/9.jpg') }}" alt="" class="img-cover">
+                    </a>
+                </div>
+
+                <div class="gallery-item item">
+                    <a href="{{ asset('/img/review/7.jpg') }}" class="galelry-lightbox">
+                        <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/10.jpg') }}" alt="" class="img-cover">
+                    </a>
                 </div>
 
               </div>
@@ -915,7 +943,7 @@
             </div>
           </div>
           <br>
-          <hr style="border:#EB2424 0.1px solid"> 
+          <hr style="border:#EB2424 0.1px solid">
           <br><br>
           <span id="tab-2" style="position: absolute;margin-top:-130px"></span>
           <div style="margin-bottom: 25px;">
@@ -935,7 +963,7 @@
                 <div class="timeline_content">
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos1.png') }}" class="galelry-lightbox-2">
                     <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viisos1.png') }}" class="img-fluid">
-                  </a>               
+                  </a>
                 </div>
                 <div class="d-flex align-items-center">
                   <i class="fa-solid fa-circle timeline_icon"></i>
@@ -945,7 +973,7 @@
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove1.png') }}" class="galelry-lightbox-2">
                     <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove_nt_1.png') }}" class="img-fluid">
                     <p class="text-timeline" style="top: 19%;left: 25%;width:40%;font-size: 3vw">กดลงทะเบียน</p>
-                  </a>                
+                  </a>
                 </div>
 
                 <div class="d-flex align-items-center">
@@ -956,7 +984,7 @@
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove2.png') }}" class="galelry-lightbox-2">
                     <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove_nt_2.png') }}" class="img-fluid">
                     <p class="text-timeline text-center" style="top: 19%;left: 40%;width:60%;text-align-last: center;font-size: 3vw">กรอกข้อมูลรถ</p>
-                  </a>               
+                  </a>
                 </div>
 
                 <div class="d-flex align-items-center">
@@ -966,7 +994,7 @@
                 <div class="timeline_content">
                   <a href="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove3.png') }}" class="galelry-lightbox-2">
                     <img style="border-radius: 20px;" src="{{ asset('/img/ขั้นตอนการลงทะเบียน/viimove3.png') }}" class="img-fluid">
-                  </a>               
+                  </a>
                 </div>
                 <div class="row d-none">
                   <div class="col-6  text-center">
@@ -1018,7 +1046,7 @@
   <section id="gallery" class="gallery">
       <div class="container">
         <div class="section-title">
-          <h4 style="font-family: 'Kanit', sans-serif;"> <b> ขอขอบคุณความไว้วางใจในการใช้ระบบ <span style="color: #EB2424;">ViiCHECK</span></b></h4>
+          <h4 style="font-family: 'Kanit', sans-serif;"> <b> ขอขอบคุณความไว้วางใจในการใช้ระบบ Mobile <span style="color: #EB2424;">ViiCHECK</span></b></h4>
         </div>
       </div>
 
@@ -1058,9 +1086,27 @@
                 </div>
 
                 <div class="gallery-item item">
-                  <a href="{{ asset('/img/review/7.jpg') }}" class="galelry-lightbox">
-                    <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/7.jpg') }}" alt="" class="img-fluid">
-                  </a>
+                    <a href="{{ asset('/img/review/7.jpg') }}" class="galelry-lightbox">
+                        <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/7.jpg') }}" alt="" class="img-fluid">
+                    </a>
+                </div>
+
+                <div class="gallery-item item">
+                    <a href="{{ asset('/img/review/4.jpg') }}" class="galelry-lightbox">
+                        <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/8.jpg') }}" alt="" class="img-fluid img-support-mobile">
+                    </a>
+                </div>
+
+                <div class="gallery-item item">
+                    <a href="{{ asset('/img/review/6.jpg') }}" class="galelry-lightbox">
+                        <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/9.jpg') }}" alt="" class="img-fluid img-support-mobile">
+                    </a>
+                </div>
+
+                <div class="gallery-item item">
+                    <a href="{{ asset('/img/review/7.jpg') }}" class="galelry-lightbox">
+                        <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/10.jpg') }}" alt="" class="img-fluid img-support-mobile">
+                    </a>
                 </div>
 
               </div>

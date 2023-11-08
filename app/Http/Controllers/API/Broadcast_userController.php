@@ -14,6 +14,7 @@ use App\Models\Ads_content;
 use App\Models\Partner_premium;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Http\Controllers\API\ImageController;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class Broadcast_userController extends Controller
 {
@@ -35,19 +36,8 @@ class Broadcast_userController extends Controller
         $district_user = $requestData['district_user'];
         $radius_user = $requestData['radius_user'];
         // หา ประเทศของคนใน องค์กร
-
-        $lat = '';
-        $lng = '';
-        $radius = '';
-
-        if (!empty($radius_user)) {
-            $radius_user_explode = explode(",",$radius_user);
-
-            $lat = $radius_user_explode[0];
-            $lng = $radius_user_explode[1];
-            $radius = $radius_user_explode[2];
-
-        }
+        $lat = $requestData['lat'];
+        $lng = $requestData['lng'];
 
 
         if ($age_user === '<20') {
@@ -101,9 +91,9 @@ class Broadcast_userController extends Controller
                         return $query->where('location_P', $province_user);
                     }
                 })
-                ->when($lat && $lng, function ($query) use ($lat, $lng, $radius) {
-                    return $query->selectRaw('(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat))) AS distance', [$lat, $lng, $lat, $lng])
-                        ->where('distance', '<=', $radius);
+                ->when($lat && $lng && $radius_user, function ($query) use ($lat, $lng, $radius_user) {
+                    return $query->where('(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat))) AS distance', [$lat, $lng, $lat, $lng])
+                        ->having('distance', '<=', $radius_user);
                 })
                 ->get();
             }else{
@@ -135,9 +125,9 @@ class Broadcast_userController extends Controller
                         return $query->where('location_P', $province_user);
                     }
                 })
-                ->when($lat && $lng, function ($query) use ($lat, $lng, $radius) {
-                    return $query->selectRaw('(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat))) AS distance', [$lat, $lng, $lat, $lng])
-                        ->where('distance', '<=', $radius);
+                ->when($lat && $lng && $radius_user, function ($query) use ($lat, $lng, $radius_user) {
+                    return $query->where('(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat))) AS distance', [$lat, $lng, $lat, $lng])
+                        ->having('distance', '<=', $radius_user);
                 })
                 ->get();
             }
@@ -169,9 +159,9 @@ class Broadcast_userController extends Controller
                     return $query->where('location_P', $province_user);
                 }
             })
-            ->when($lat && $lng, function ($query) use ($lat, $lng, $radius) {
-                return $query->selectRaw('(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat))) AS distance', [$lat, $lng, $lat, $lng])
-                    ->where('distance', '<=', $radius);
+            ->when($lat && $lng && $radius_user, function ($query) use ($lat, $lng, $radius_user) {
+                return $query->where('(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) - radians(?)) + sin(radians(?)) * sin(radians(lat))) AS distance', [$lat, $lng, $lat, $lng])
+                    ->having('distance', '<=', $radius_user);
             })
             ->where('organization',$partner_name)
             ->orWhere('user_from','LIKE',"%$partner_name%")

@@ -23,7 +23,7 @@
         else{
             $data = number_format( ( $data_find * 100 ) / $data_total, 2 ) ;
         }
-        
+
         return $data ;
     }
 @endphp
@@ -60,7 +60,7 @@
         $percent_female = percent( $count_female , $count_user );
         $percent_sex_not_specified = percent( $count_sex_not_specified , $count_user );
 
-        // อายุ 
+        // อายุ
         $year_now = date('Y');
         $birth = $item->birth ;
 
@@ -107,7 +107,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  
+
   /* A bit of padding around image */
   padding: 1em;
 
@@ -134,7 +134,7 @@
 .btn-peddyhub{
     background-color:#B8205B;
     color:white;
-    
+
 }
 .btn-peddyhub:hover {
     color:white;
@@ -366,18 +366,18 @@ display:none;
 .button-reset-img-icon {
 	font-size: 1em;
 	background: rgba(0, 0, 0, 0.08);
-} 
-  
-@media (min-width:1281px) {  
+}
+
+@media (min-width:1281px) {
         .owl-carousel{
             padding: 0px 100px;
-            
+
         }
         .owl-carousel .owl-nav{
             display: flex;
             justify-content: space-between;
             align-items: center;
-    
+
         }
         .owl-carousel .owl-nav .owl-prev{
             background-color: #000000;
@@ -390,13 +390,13 @@ display:none;
         border-radius: 50%;
         margin-right: -100px;
         margin-top: -25%;
-        
+
     }
     .content{
         padding: 0px 100px;
     }
   }
-  
+
   @media (min-width:200px) and (max-width:1200px){
     .owl-nav{
         display: none;
@@ -407,10 +407,10 @@ display:none;
     padding: 10px 10px;
     }
     .item-content h5{
-        white-space: nowrap; 
-        width: 100%; 
+        white-space: nowrap;
+        width: 100%;
         overflow: hidden;
-        text-overflow: ellipsis; 
+        text-overflow: ellipsis;
     }.img-content img{
         width: 100%;
         height: 100px;
@@ -426,7 +426,7 @@ display:none;
 </style>
  <!-- carousel -->
  <link href="{{ asset('carousel-12/css/owl.carousel.min.css') }}" rel="stylesheet">
- 
+
 <div id="check_in_max" class="div_alert d-none" role="alert">
     <span id="text_check_in_max">
         ขออภัย เกินจำนวนที่กำหนด
@@ -516,7 +516,7 @@ display:none;
                                             <div class="col-12 d-none" id="div_bc_text">
                                                 <textarea class="form-control" id="detail" name="detail" rows="4" placeholder="เพิ่มข้อความของคุณที่นี่" oninput="document.querySelector('#add_text_content').innerHTML = document.querySelector('#detail').value ;check_send_content();"></textarea>
                                             </div>
-                                            
+
                                         </div>
                                         <hr>
                                         <!-- ALL -->
@@ -586,7 +586,7 @@ display:none;
                                                             $count_user_click = '0' ;
                                                         }
                                                     @endphp
-                                                    
+
                                                     <div class=" item-content-send " >
                                                         <h5>{{ $ads->name_content }}</h5>
                                                         <div class="img-content">
@@ -595,7 +595,7 @@ display:none;
                                                         <div class="content-status">
                                                             <div class="col-6">
                                                                 <h6>
-                                                                    ส่ง {{ $ads->send_round }} ครั้ง                
+                                                                    ส่ง {{ $ads->send_round }} ครั้ง
                                                                 </h6>
                                                             </div >
                                                             <div class="col-6">
@@ -626,12 +626,12 @@ display:none;
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
 
 
                     <style>
-                        
+
                     </style>
                     <div class="col-12 col-md-3 col-lg-3">
                     <center>
@@ -650,7 +650,7 @@ display:none;
                                                 <div class="col p-0 phone-icon"><i class="fa-solid fa-battery-full"></i></div></div>
                                             </div>
                                         </div>
-                                    </div>  
+                                    </div>
                                 </div>
                                 <div class="phone-header">
                                     <div class="row">
@@ -676,7 +676,7 @@ display:none;
                                         <div class="col-12" >
                                             <div id="send-img">
                                                 <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="float: left;border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
-                                                    
+
                                                 <button id="img_exchange" type="button" class="button-reset-img" onclick="document.querySelector('#photo').click();">
                                                     <span class="button-reset-img-icon">
                                                         <i class="fa-solid fa-arrows-rotate"></i>
@@ -686,7 +686,7 @@ display:none;
                                                 <img src="" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img-content"  >
                                             </div>
                                         </div>
-                                        
+
                                         <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
                                     </div>
                                     <div id="div_add_img" class="col-12 remove-scrollbar" style="min-width: 100%;max-height: 250px;overflow:auto;cursor: grab;" onclick="document.querySelector('#photo').click();">
@@ -725,7 +725,7 @@ display:none;
                                         document.querySelector('.div_img').classList.toggle('no-richmenu');">เมนู▾</span>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </center>
                 </div>
@@ -747,8 +747,8 @@ display:none;
                                     <h5> <b>เลือกจำนวน </b> </h5>
                                     <span class="" id="tell_BC_by_check_in_max">
                                         (ไม่เกิน <span id="amount_remain">{{ $BC_by_check_in_max - $BC_by_check_in_sent }}</span>)
-                                    </span> 
-                                    
+                                    </span>
+
                                 </div>
                                 <div class="col-12 mt-2">
                                     <div class="row">
@@ -762,7 +762,7 @@ display:none;
                                         </button>
                                     </div>
                                     </div>
-                                    
+
                                 </div>
 
                                 <div class="col-12 mt-3">
@@ -870,7 +870,7 @@ display:none;
                                     </div>
                                 </div>
                                 <!-- วัน -->
-                              
+
                                 <!-- จำนวนการเข้าพื้นที่ -->
                                 <div class="sub-filter mt-2">
                                     <label for="check_click_amount_in_out" class="col-12 form-label" data-toggle="collapse" data-target="#collapse_amount_in_out" aria-expanded="true" aria-controls="collapse_amount_in_out">
@@ -962,7 +962,7 @@ display:none;
                                             <select style="margin-top:8px;" name="select_user_location" id="select_user_location" class="notranslate form-control" onchange="search_data();">
                                                 <option value="" selected> - ทั้งหมด - </option>
                                                 <!-- loop location -->
-                                                
+
                                             </select>
                                         </div>
                                     </div>
@@ -995,7 +995,7 @@ display:none;
                             <span>ทั้งหมด</span> <span id="count_search_data">0</span>&nbsp;<span>คน</span>
                         </span>
                     </h4>
-                </div>    
+                </div>
                 <div class="div-result" >
                     <div class="row ">
                     <div class="col-12">
@@ -1006,14 +1006,14 @@ display:none;
                     <div class="col-12">
                         <!-- content_search_data -->
                         <div class="row p-3" id="content_search_data">
-                            
+
                         </div>
                     </div>
-                
-                        
+
+
                     </div>
 
-                </div>        
+                </div>
             </div>
         <div>
         </div>
@@ -1139,13 +1139,13 @@ function search_data(){
                             id_div_result_content.value = "div_result_content_count_" + content_count ;
                             div_data_name.setAttributeNode(id_div_result_content);
 
-                    // div header 
+                    // div header
                     let div_header = document.createElement("div");
                         let class_div_header = document.createAttribute("class");
                             class_div_header.value = "content-header";
                             div_header.setAttributeNode(class_div_header);
                             div_data_name.appendChild(div_header);
-                    
+
                     // user name
                     let data_name_user = document.createElement("span");
                         let class_name_user = document.createAttribute("class");
@@ -1172,7 +1172,7 @@ function search_data(){
                         let text_user_id = result[i]['user_id'].toString();
                             if ( arr_user_id.includes(text_user_id) ) {
                                 // console.log("เลือกแล้ว");
-                                
+
                                 class_btn_select.value = "fas fa-solid fa-circle-check text-success icon-circle h6";
                             }else{
                                 class_btn_select.value = "far fa-regular fa-circle icon-circle-hover icon-circle";
@@ -1187,7 +1187,7 @@ function search_data(){
                             class_age_user.value = "content-age";
                             data_age_user.setAttributeNode(class_age_user);
                             div_data_name.appendChild(data_age_user);
-                    
+
 
                     let span_detail_user = document.createElement("span");
                     span_detail_user.innerHTML = "<span class='text-secondary ' style='font-size: 14px;'><b>เพศ :</b> " + result[i]['sex'] + " <b>อายุ :</b> " + age_user +"</span>";
@@ -1207,7 +1207,7 @@ function search_data(){
             catch(err) {
                 // console.log(err);
             }
-            
+
         });
 
     // ---------- แสดงการค้นหา -------------------------------
@@ -1263,7 +1263,7 @@ function click_select(user_id){
 
     document.querySelector('#user_unique').checked = false ;
     document.querySelector('#arr_user_id_send_to_user').value = null ;
-    
+
     let btn_select_user_id = document.querySelector('#btn_select_user_id_' + user_id);
     let class_btn_select_user_id = btn_select_user_id.classList[0] ;
 
@@ -1308,7 +1308,7 @@ function select_user(user_id){
         arr_user_id = JSON.parse(arr_user_id_selected.value) ;
 
         if ( arr_user_id.includes(user_id) ) {
-            // 
+            //
         }else{
             arr_user_id.push(user_id);
             arr_user_id_selected.value = JSON.stringify(arr_user_id) ;
@@ -1338,14 +1338,14 @@ function drop_user(user_id){
         btn_select_user_id.classList = "far fa-circle icon-circle-hover icon-circle" ;
     }
     catch{
-        // 
+        //
     }
 
     let arr_select_user_id = JSON.parse(arr_user_id_selected.value) ;
     // delete array by user_id
-    for( var ii = 0; ii < arr_select_user_id.length; ii++){ 
-        if ( arr_select_user_id[ii] === user_id) { 
-            arr_select_user_id.splice(ii, 1); 
+    for( var ii = 0; ii < arr_select_user_id.length; ii++){
+        if ( arr_select_user_id[ii] === user_id) {
+            arr_select_user_id.splice(ii, 1);
         }
     }
     arr_user_id_selected.value = JSON.stringify(arr_select_user_id) ;
@@ -1387,7 +1387,7 @@ function click_select_all(){
 // คลิกเลือกตามจำนวนที่เลือก
 async function select_content_from_amount(amount){
     // console.log("select_content_from_amount :: " + amount);
-    
+
     // เช็ค จำนวนที่เลือกเกินกำหนดหรือไม่
     if ( amount <= remain ) {
         document.querySelector('#warn_BC_by_check_in_max').classList.add('d-none');
@@ -1415,7 +1415,7 @@ async function select_content_from_amount(amount){
 
                 if ( arr_user_id.includes(uid_i_btn_select) ) {
                     // มี user id ใน arr_user_id แล้ว
-                    amount = parseInt(amount) + 1 ; 
+                    amount = parseInt(amount) + 1 ;
 
                 }else{
                     // ยังไม่มี user id ใน arr_user_id แล้ว
@@ -1451,7 +1451,7 @@ function remain_it_0(remain){
     document.querySelector("#select_amount").value = ""  ;
     document.querySelector("#span_select_from_amount").classList.add('d-none') ;
 
-    arr_user_id = arr_user_id_selected.value ; 
+    arr_user_id = arr_user_id_selected.value ;
 
     if (remain <= 0) {
         document.querySelector('#btn_amount_remain_all').disabled = true ;
@@ -1499,7 +1499,7 @@ function check_send_content(){
                 document.querySelector('#btn_send_content').disabled = true ;
             }
         }
-    
+
 }
 
 function reset_BC(){
@@ -1519,7 +1519,7 @@ function reset_BC(){
     // document.querySelector('#img-content').src = null ;
     document.querySelector('#photo').value = null ;
     document.querySelector('#img_add_img').src = "{{ asset('/img/more/add_img_2.png') }}" ;
-    
+
 }
 
 function select_content_again(ads_id){
@@ -1537,14 +1537,14 @@ function select_content_again(ads_id){
 
     @foreach($ads_contents as $ads)
         if ({{ $ads->id }} == ads_id) {
-            
+
             let text_show_user = '{{ $ads->show_user }}'.replaceAll('&quot;' , '"');
 
             document.querySelector('#arr_show_user').value = text_show_user;
             document.querySelector('#name_content').value = '{{ $ads->name_content }}';
             document.querySelector('#id_ads').value = '{{ $ads->id }}';
 
-            let link_url = '{{ $ads->link }}' ; 
+            let link_url = '{{ $ads->link }}' ;
                 link_url = link_url.split("/api");
             let new_link_url = link_url[0];
 
@@ -1554,7 +1554,7 @@ function select_content_again(ads_id){
 
             document.querySelector('#send-img').classList.remove('sand');
 
-            setTimeout(function(){ 
+            setTimeout(function(){
                 document.querySelector('#div_img').classList.remove('d-none');
                 document.querySelector('#div_add_img').classList.add('d-none');
 
@@ -1602,12 +1602,12 @@ function switch_type_content(type){
 function check_user_unique(){
     let user_unique =  document.querySelector('#user_unique').checked ;
         // console.log(user_unique);
-    let arr_selected = JSON.parse(arr_user_id_selected.value) ;      
+    let arr_selected = JSON.parse(arr_user_id_selected.value) ;
     let text_arr_show_user = document.querySelector('#arr_show_user') ;
     let arr_user_id_send_to_user = document.querySelector('#arr_user_id_send_to_user') ;
         arr_user_id_send_to_user.value = arr_user_id_selected.value;
 
-    let arr_send_to_user = JSON.parse(arr_user_id_send_to_user.value) ; 
+    let arr_send_to_user = JSON.parse(arr_user_id_send_to_user.value) ;
 
     if (user_unique) {
         if (text_arr_show_user.value) {
@@ -1630,7 +1630,7 @@ function check_user_unique(){
                     // console.log(arr_send_to_user);
 
                     // delete array
-                    arr_send_to_user.splice(delete_at_index, 1); 
+                    arr_send_to_user.splice(delete_at_index, 1);
 
                     remain = remain + 1 ;
                     text_BC_remain = remain.toString();
@@ -1640,7 +1640,7 @@ function check_user_unique(){
                     // console.log(arr_send_to_user);
 
                 }else{
-                    delete_at_index = delete_at_index + 1 ; 
+                    delete_at_index = delete_at_index + 1 ;
                     // console.log('ไม่ซ้ำ บวก delete_at_index + 1 = ' + delete_at_index);
                 }
             }
@@ -1650,7 +1650,7 @@ function check_user_unique(){
             // ส่ง content เดิม แบบไม่ซ้ำ user เดิม
             arr_user_id_send_to_user.value = JSON.stringify(arr_send_to_user) ;
             arr_user_id_selected.value = JSON.stringify(arr_send_to_user) ;
-            
+
             remain_it_0(remain);
             search_data();
         }
@@ -1663,7 +1663,7 @@ function check_user_unique(){
         search_data();
 
     }
-    
+
 }
 
 // ----------------------------- function in modal -----------------------------------
@@ -1707,10 +1707,10 @@ function check_click_checked($checked){
     var reader = new FileReader();
     reader.onload = function(){
 
-        
+
         document.querySelector('#send-img').classList.remove('sand');
 
-        setTimeout(function(){ 
+        setTimeout(function(){
             document.querySelector('#div_img').classList.remove('d-none');
             document.querySelector('#div_add_img').classList.add('d-none');
 
@@ -1718,14 +1718,15 @@ function check_click_checked($checked){
             var img_content = document.getElementById('img-content');
             img_content.src = reader.result;
         }, 100);
-        
 
-     
+
+
     };
     reader.readAsDataURL(event.target.files[0]);
 
   };
 </script>
+
 <script src="{{ asset('carousel-12/js/jquery-3.3.1.min.js') }}"></script>
   <script src="{{ asset('carousel-12/js/popper.min.js') }}"></script>
   <script src="{{ asset('carousel-12/js/bootstrap.min.js') }}"></script>

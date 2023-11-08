@@ -380,6 +380,11 @@ display:none;
   <!-- carousel -->
   <link href="{{ asset('carousel-12/css/owl.carousel.min.css') }}" rel="stylesheet">
 
+    <div id="user_max" class="div_alert d-none" role="alert">
+        <span id="text_user_max">
+            ขออภัย เกินจำนวนที่กำหนด
+        </span>
+    </div>
 
 <!-- MODAL LOADING -->
 <div class="modal fade" id="btn-loading" tabindex="-1" role="dialog" aria-labelledby="btn-loading" aria-hidden="true" data-backdrop="static" data-keyboard="true">
@@ -401,7 +406,7 @@ display:none;
 </div>
 </div>
 <div id="car_max" class=" div_alert" role="alert">
-        <span id="text_car_max">
+        <span id="text_user_max">
             ขออภัย เกินจำนวนที่กำหนด
         </span>
 </div>
@@ -411,7 +416,6 @@ display:none;
 
 <input class="form-control d-none" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
 
-<input class="form-control d-none" type="text" name="arr_car_id_selected" id="arr_car_id_selected" readonly>
 <input class="form-control d-non" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
 <input class="form-control d-none" type="text" name="type_content" id="type_content" value="BC_by_car">
 <input class="form-control d-none" type="text" name="name_partner" id="name_partner" value="">
@@ -440,7 +444,26 @@ display:none;
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12" style="font-family: 'Kanit', sans-serif;">
-                                    <h4 class="text-dark">สร้างเนื้อหาใหม่</h4>
+                                    <div class="row text-center">
+                                        <div class="col-6">
+                                            <h4 class="text-dark float-start">สร้างเนื้อหาใหม่</h4>
+                                        </div>
+                                        <div class="col-3">
+                                            <span id="btn_select_text_content" style="width:80%;" class="btn btn-outline-primary main-shadow main-radius" onclick="switch_type_content('text');">
+                                                ข้อความ
+                                            </span>
+                                        </div>
+                                        <div class="col-3">
+                                            <span id="btn_select_img_content" style="width:80%;" class="btn btn-primary main-shadow main-radius" onclick="switch_type_content('img');">
+                                                รูปภาพ
+                                            </span>
+                                        </div>
+                                        <div class="col-12 d-none">
+                                            <input class="d-none" type="text" name="type_content_bc" id="type_content_bc" value="img">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <!-- name content -->
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group {{ $errors->has('name_content') ? 'has-error' : ''}}">
@@ -449,13 +472,19 @@ display:none;
                                             </div>
                                             <br>
                                         </div>
-                                        <div class="col-6">
+                                        <!-- IMG -->
+                                        <div class="col-6" id="div_bc_img">
                                             <div class="form-group {{ $errors->has('link') ? 'has-error' : ''}}">
                                                 <label for="link" class="control-label">{{ 'ลิงก์' }}</label>
                                                 <input  style="border-radius: 10px;"class="form-control" name="link" type="text" id="link" value="" onchange="check_send_content();">
                                             </div>
                                             <br>
                                         </div>
+                                        <!-- TEXT -->
+                                        <div class="col-12 d-none" id="div_bc_text">
+                                            <textarea class="form-control" id="detail" name="detail" rows="4" placeholder="เพิ่มข้อความของคุณที่นี่" oninput="document.querySelector('#add_text_content').innerHTML = document.querySelector('#detail').value ;check_send_content();"></textarea>
+                                        </div>
+
                                         <div class="col-12 d-none">
                                             <div class="form-group {{ $errors->has('detail') ? 'has-error' : ''}}">
                                                 <label for="detail" class="control-label">{{ 'คำอธิบาย' }}</label>
@@ -520,43 +549,51 @@ display:none;
                                     <h4>เลือกเนื้อหา</h4>
                                     <br>
                                     <div class="owl-carousel owl-theme content">
-
-
-                                            <div class="item item-content " >
-                                                <h5>$ads->name_content</h5>
+                                        @foreach($ads_contents as $ads)
+                                            <div class="item item-content ">
+                                                <h5>{{$ads->name_content}}</h5>
                                                 <div class="img-content">
-                                                    <img src="" alt="">
+                                                    @if ($ads->photo)
+                                                        <img src="{{ url('storage')}}/{{ $ads->photo }}" alt="" style="width:100% ;">
+                                                    @else
+                                                        <img src="{{ asset("/img/stickerline/PNG/7.png") }}" alt="" style="width:100% ;">
+                                                    @endif
                                                 </div>
                                                 <div class="content-status">
                                                     <div class="col-6">
                                                         <h6>
-                                                            ส่ง -- ครั้ง
+                                                            ส่ง {{ $ads->send_round }} ครั้ง
                                                         </h6>
                                                     </div >
                                                     <div class="col-6">
                                                         <div class="row">
                                                             <div class="col-md-12 col-6 col-lg-6 p-0 ">
                                                                 <h6 style="float: right; padding-right:10px;">
-                                                                    <i class="fa-solid fa-user"></i>
+                                                                    <i class="fa-solid fa-user"></i> {{ $ads->count_show_user }}
                                                                 </h6>
                                                             </div>
                                                             <div class="col-md-12  col-6 col-lg-6 p-0" >
                                                                 <h6 style="float: right; padding-right:10px;">
-                                                                    <i class="fad fa-eye"></i>
+                                                                    <i class="fad fa-eye"></i> {{ $ads->count_user_click }}
                                                                 </h6>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <span style="float: right;width: 100%;margin-top:15px;margin-bottom:5px;" class="btn-select btn btn-success btn-sm main-shadow main-radius" onclick="select_content_again(' $ads->id ');">
+                                                <span style="float: right;width: 100%;margin-top:15px;margin-bottom:5px;" class="btn-select btn btn-success btn-sm main-shadow main-radius" onclick="select_content_again('{{ $ads->id }}');">
                                                     เลือก
                                                 </span>
                                             </div>
-
+                                        @endforeach
                                     </div>
                                     <!-- <div class="row text-center">
 
                                     </div> -->
+                                    <div class="col-12">
+                                        <p id="warn_BC_by_user_max" class=" text-danger mb-0" style="margin-top:15px;font-family: 'Kanit', sans-serif;">
+                                            <!-- ข้อความแจ้งเตือน -->
+                                        </p>
+                                    </div>
 
                                 </div>
                             <!-- ----------------phone----------------- -->
@@ -565,6 +602,7 @@ display:none;
                     </div>
 
                 </div>
+
                 <div class="col-12 col-md-3 col-lg-3">
                     <center>
                         <br class="mt-5 d-block d-md-none">
@@ -602,6 +640,50 @@ display:none;
                                         </div>
                                     </div>
                                 </div>
+                                <!-- IMG SHOW CONTENT ----------------------------------------------------------------- -->
+                                <div id="show_img_content"  class="phone-content" >
+                                    <div id="div_img" class="col-12 d-none remove-scrollbar div_img" style="min-width: 100%;max-height: 100%;overflow:auto;cursor: grab;">
+                                        <div class="col-12" >
+                                            <div id="send-img">
+                                                <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="float: left;border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
+
+                                                <button id="img_exchange" type="button" class="button-reset-img" onclick="document.querySelector('#photo').click();">
+                                                    <span class="button-reset-img-icon">
+                                                        <i class="fa-solid fa-arrows-rotate"></i>
+                                                    </span>
+                                                    <span class="button-reset-img-text">Reset</span>
+                                                </button>
+                                                <img src="" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img-content"  >
+                                            </div>
+                                        </div>
+
+                                        <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
+                                    </div>
+                                    <div id="div_add_img" class="col-12 remove-scrollbar" style="min-width: 100%;max-height: 250px;overflow:auto;cursor: grab;" onclick="document.querySelector('#photo').click();">
+                                        <div class="col-12" >
+                                            <div id="send-img">
+                                                <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="float: left;border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
+                                                <img src="{{ asset('/img/more/add_img_2.png') }}" alt="" width="100%" style="padding: 0px 5px;border-radius:10px" id="img_add_img"  >
+                                            </div>
+                                        </div>
+                                        <p class="m-0 text-right d-flex justify-content-end"style="padding-right:10px;font-size:10px">{{ date('H:i') }} น.</p>
+                                    </div>
+                                </div>
+                                <!-- END IMG SHOW CONTENT ----------------------------------------------------- -->
+
+                                <!-- TEXT SHOW CONTENT ----------------------------------------------------------------- -->
+                                <div id="show_text_content" class="phone-content d-none" >
+                                    <div class="col-12 remove-scrollbar" style="min-width: 100%;max-height: 250px;overflow:auto;cursor: grab;">
+                                        <div class="col-12">
+                                            <img src="{{ asset('/img/logo/VII-check-LOGO-W-v3.png') }}" style="float: left;border-radius: 50%; padding:10px 0px; border:#db2d2e 1px solid ; background-color:white;margin:5px" alt="" width="13%">
+                                            <p class="float-start" style="font-size:10px;margin-top: 7px;width: 75%;float:left;">
+                                                <span id="add_text_content" style="background-color: #66d470;" class="btn btn-sm">เพิ่มข้อความของคุณ</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- TEXT SHOW CONTENT --------------------------------------------------------- -->
+
                                 <div  class="phone-content" >
                                     <div id="div_img" class="col-12 d-none remove-scrollbar div_img" style="min-width: 100%;max-height: 100%;overflow:auto;cursor: grab;">
                                         <div class="col-12" >
@@ -669,9 +751,11 @@ display:none;
                                     <div class="col-12 mt-2">
                                         <div class="row">
                                             <div class="col-7">
-                                                <span id="tell_BC_by_user_max" class=""></span>
-                                                <input min="1" max="" style="width:100%;" placeholder="ไม่เกิน 0 คน"  class="form-control" type="number" name="select_amount" id="select_amount"
-                                                oninput="document.querySelector('#span_select_from_amount').innerHTML = '(' + document.querySelector('#select_amount').value + ')' ">
+                                                <span id="" class=""></span>
+                                                {{-- <input min="1" max="" style="width:100%;" placeholder="ไม่เกิน 0 คน"  class="form-control" type="number" name="select_amount" id="select_amount">
+
+                                                oninput="document.querySelector('#span_select_from_amount').innerHTML = '(' + document.querySelector('#select_amount').value + ')' "> --}}
+                                                <input min="0" max="{{ $BC_by_user_max - $BC_by_user_sent }}" style="width:100%;" placeholder="ไม่เกิน {{ $BC_by_user_max - $BC_by_user_sent }} คน" class="form-control" type="number" name="select_amount" id="select_amount" oninput="document.querySelector('#span_select_from_amount').innerHTML = '(' + document.querySelector('#select_amount').value + ')',document.querySelector('#span_select_from_amount').classList.remove('d-none');">
                                             </div>
                                             <div class="col-5">
                                                 <button id="btn_select_from_amount" style="width: 100%;" class="btn-select btn btn-primary btn-md" onclick="select_from_amount();">
@@ -681,12 +765,9 @@ display:none;
                                         </div>
                                     </div>
                                     <div class="col-12 mt-3">
-                                        <button id="btn_amount_remain_all" style="margin-top: 0px;width: 100%;" class="btn btn-md btn-info text-white btn-select" onclick="click_select_car_all();">
-                                            เลือกทั้งหมด&nbsp;(<span id="amount_remain_all"></span>)
+                                        <button id="btn_amount_remain_all" style="margin-top: 0px;width: 100%;" class="btn btn-md btn-info text-white btn-select" onclick="click_select_all();">
+                                            เลือกทั้งหมด&nbsp;(<span id="amount_remain_all">{{ $BC_by_user_max - $BC_by_user_sent }}</span>)
                                         </button>
-                                        <!-- <button id="btn_select_from_amount" style="margin-top: 10px;width: 100%;" class="btn btn-primary btn-sm" onclick="select_from_amount();">
-                                            เลือก<span id="span_select_from_amount"></span>
-                                        </button> -->
                                     </div>
                                 </div>
                             </div>
@@ -699,11 +780,14 @@ display:none;
                             <div class="col-12">
                                 <div class="row ">
                                     <div class="col-12 text-selected">
-                                        <h5>เลือกแล้ว</h5> &nbsp;<h5 id="car_selected">0</h5>&nbsp; <h5>/  คน</h5>
+                                        <h5>
+                                            เลือกแล้ว
+                                            <span id="user_selected">0</span> / {{ $BC_by_user_max - $BC_by_user_sent }} คน
+                                        </h5>
                                     </div>
                                     <div class="col-12">
                                         <center>
-                                            <button id="btn_next_selected_car" type="button" class="btn-select btn btn-md btn-success main-shadow main-radius" style="width:70%;" data-toggle="modal" data-target="#exampleModalCenter" disabled>
+                                            <button id="btn_next_selected_user" type="button" class="btn-select btn btn-md btn-success main-shadow main-radius" style="width:70%;" data-toggle="modal" data-target="#exampleModalCenter" disabled>
                                                 ต่อไป
                                             </button>
                                         </center>
@@ -711,6 +795,7 @@ display:none;
                                 </div>
                                 <br>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -890,10 +975,10 @@ display:none;
                             <label for="radius_user" class="form-label">ภายในรัศมี .. กม.</label>
                             <select name="radius_user" class="notranslate form-control select-form" id="radius_user" onchange="search_data();">
                                 <option class="translate" value="" selected> - เลือก ภายในรัศมี .. กม. - </option>
-                                <option class="translate" value="{{Auth::user()->lat}},{{Auth::user()->lng}},15">15 กิโลเมตร</option>
-                                <option class="translate" value="{{Auth::user()->lat}},{{Auth::user()->lng}},30">30 กิโลเมตร</option>
-                                <option class="translate" value="{{Auth::user()->lat}},{{Auth::user()->lng}},50">50 กิโลเมตร</option>
-                                <option class="translate" value="{{Auth::user()->lat}},{{Auth::user()->lng}},100">100 กิโลเมตร</option>
+                                <option class="translate" value="15">15 กิโลเมตร</option>
+                                <option class="translate" value="30">30 กิโลเมตร</option>
+                                <option class="translate" value="50">50 กิโลเมตร</option>
+                                <option class="translate" value="100">100 กิโลเมตร</option>
                             </select>
                         </div>
 
@@ -1032,33 +1117,29 @@ display:none;
     });
 
     // ตัวแปรที่ใช้ร่วมกันทั้งหมด ==========================================================================
-
-    var delayInMilliseconds = 1000; // Delay
-    var count_arr_car_id = 0 ;
+    var delayInMilliseconds = 1000;
+    var count_arr_user_id = 0 ;
     var text_BC_remain = "";
     var amount_remain = document.querySelector('#amount_remain') ;
     var amount_remain_all = document.querySelector('#amount_remain_all') ;
 
-    var arr_car_id = [] ; // array() car_id
-    var arr_car_id_selected = document.querySelector('#arr_car_id_selected'); // input array car_id
-
     var arr_user_id = [] ; // array() user_id
     var arr_user_id_selected = document.querySelector('#arr_user_id_selected'); // input array user_id
 
-    if (arr_car_id_selected.value) {
-        count_arr_car_id = JSON.parse(arr_car_id_selected.value).length ;
+    if (arr_user_id_selected.value) {
+        count_arr_user_id = JSON.parse(arr_user_id_selected.value).length ;
     }
 
-    // var remain =  $BC_by_car_max - $BC_by_car_sent  - count_arr_car_id ; // จำนวนคงเหลือ
-
+    // var remain =  $BC_by_car_max - $BC_by_car_sent  - count_arr_user_id ; // จำนวนคงเหลือ
+    var remain =  '{{$BC_by_user_max}}' - '{{$BC_by_user_sent}}'   - count_arr_user_id ; // จำนวนคงเหลือ
     //===============================================================================================
 
     // เลือกประเภทรถ
     function select_type_user(type){
-        // document.querySelector('#select_amount').value = "" ;
-        // document.querySelector('#span_select_from_amount').innerHTML = "" ;
-        // document.querySelector('#tell_BC_by_user_max').classList.remove('text-danger');
-        // document.querySelector('#warn_BC_by_car_max').classList.add('d-none');
+        document.querySelector('#select_amount').value = "" ;
+        document.querySelector('#span_select_from_amount').innerHTML = "" ;
+        document.querySelector('#tell_BC_by_user_max').classList.remove('text-danger');
+        document.querySelector('#warn_BC_by_user_max').classList.add('d-none');
 
         document.querySelector('#user_type').value = type ;
         // document.querySelector('#div_btn_search').classList.remove('d-none');
@@ -1133,6 +1214,8 @@ display:none;
         let province_user = document.querySelector("#province_user").value;
         let district_user = document.querySelector("#district_user").value;
         let radius_user = document.querySelector("#radius_user").value;
+        let lat = '{{ Auth::user()->lat }}';
+        let lng = '{{ Auth::user()->lng }}';
         // console.log("user_type :"+user_type);
         // console.log("partner_name :"+partner_name);
         // console.log("gender_user :"+gender_user);
@@ -1161,7 +1244,8 @@ display:none;
                 'province_user' : province_user,
                 'district_user' : district_user,
                 'radius_user' : radius_user,
-
+                'lat' : lat,
+                'lng' : lng,
             };
         }else{
             data_search_data = {
@@ -1176,7 +1260,8 @@ display:none;
                 'province_user' : province_user,
                 'district_user' : district_user,
                 'radius_user' : radius_user,
-
+                'lat' : lat,
+                'lng' : lng,
             };
         }
 
@@ -1191,7 +1276,7 @@ display:none;
         .then(response => response.json())
             .then(result => {
                 try {
-                    console.log(result);
+                    // console.log(result);
 
                     document.querySelector('#count_search_data').innerHTML = result['length'] ;
 
@@ -1232,7 +1317,7 @@ display:none;
                         }
                         console.log(result[i]['name']);console.log(result[i]['sex']);console.log(result[i]['brith']);
 
-                        let div_data_name = `<div class="col-12 col-md-3 col-lg-3 card main-shadow item-content  m-1" onclick="click_select(' `+result[i]['id']+` ')" id="div_result_content_count_`+content_count+`">
+                        let div_data_name = `<div class="col-12 col-md-3 col-lg-3 card main-shadow item-content  m-1" onclick="click_select('`+result[i]['id']+`')" id="div_result_content_count_`+content_count+`">
                                 <div class="content-header">
                                     <i id="btn_select_user_id_`+result[i]['id']+`" name="i_btn_select_`+content_count+`" data="`+result[i]['id']+`" class="far fa-circle btn"></i>
                                     <span class="name-user"><b class="h5">`+ result[i]['name'] +`</b></span>
@@ -1242,9 +1327,10 @@ display:none;
                                 </div>
                             </div>`
 
-                        if(document.querySelector('#btn_select_user_id_' + result[i]['id'])){
 
-                            let btn_select = document.querySelector('#btn_select_user_id_' + result[i]['id']);
+                        if(document.querySelector('#btn_select_user_id_'+result[i]['id'])){
+                            console.log("เข้านะ");
+                            let btn_select = document.querySelector('#btn_select_user_id_'+result[i]['id']);
                             if (arr_user_id.includes(text_user_id)) {
                                 btn_select.setAttribute('class', 'fas fa-solid fa-circle-check text-success icon-circle h6');
                             } else {
@@ -1323,110 +1409,412 @@ display:none;
 
 
     // ตรวจสอบเกินจำนวนหรือไม่และเลือกหรือลบ
-    // function click_select(user_id){
+    function click_select(user_id){
 
-    //     document.querySelector('#user_unique').checked = false ;
-    //     document.querySelector('#arr_user_id_send_to_user').value = null ;
+        document.querySelector('#user_unique').checked = false ;
+        document.querySelector('#arr_user_id_send_to_user').value = null ;
 
-    //     let btn_select_user_id = document.querySelector('#btn_select_user_id_' + user_id);
-    //     let class_btn_select_user_id = btn_select_user_id.classList[0] ;
+        let btn_select_user_id = document.querySelector('#btn_select_user_id_'+user_id);
+        let class_btn_select_user_id = btn_select_user_id.classList[0] ;
 
-    //     if (remain <= 0) { // ไม่มีโควต้า
-    //         if (class_btn_select_user_id == "fas") {
-    //             document.querySelector('#warn_BC_by_check_in_max').classList.add('d-none');
-    //             drop_user(user_id);
-    //         }else{
-    //             // เกินจำนวนที่กำหนด
-    //             // console.log(remain + " <= 0");
-    //             document.querySelector('#warn_BC_by_check_in_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
-    //             document.querySelector('#warn_BC_by_check_in_max').classList.remove('d-none');
+        if (remain <= 0) { // ไม่มีโควต้า
+            if (class_btn_select_user_id == "fas") {
+                document.querySelector('#warn_BC_by_user_max').classList.add('d-none');
+                drop_user(user_id);
+            }else{
+                // เกินจำนวนที่กำหนด
+                // console.log(remain + " <= 0");
+                document.querySelector('#warn_BC_by_user_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
+                document.querySelector('#warn_BC_by_user_max').classList.remove('d-none');
 
-    //             document.querySelector('#text_check_in_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
-    //             document.querySelector('#check_in_max').classList.add('up_down');
+                document.querySelector('#text_user_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
+                document.querySelector('#user_max').classList.add('up_down');
 
-    //             const animated = document.querySelector('.up_down');
-    //             animated.onanimationend = () => {
-    //                 document.querySelector('#check_in_max').classList.remove('up_down');
-    //             };
-    //         }
-    //     }else{ // มีโควต้า
-    //         if (class_btn_select_user_id == "far") {
-    //             document.querySelector('#warn_BC_by_check_in_max').classList.add('d-none');
-    //             select_user(user_id);
-    //         }else{
-    //             // เลือกแล้ว
-    //             drop_user(user_id);
-    //         }
-    //     }
+                const animated = document.querySelector('.up_down');
+                animated.onanimationend = () => {
+                    document.querySelector('#user_max').classList.remove('up_down');
+                };
+            }
+        }else{ // มีโควต้า
+            if (class_btn_select_user_id == "far") {
+                document.querySelector('#warn_BC_by_user_max').classList.add('d-none');
+                select_user(user_id);
+            }else{
+                // เลือกแล้ว
+                drop_user(user_id);
+            }
+        }
 
-    // }
+    }
 
-    // function check_user_unique(){
-    //     let user_unique =  document.querySelector('#user_unique').checked ;
-    //         // console.log(user_unique);
-    //     let arr_selected = JSON.parse(arr_user_id_selected.value) ;
-    //     let text_arr_show_user = document.querySelector('#arr_show_user') ;
-    //     let arr_user_id_send_to_user = document.querySelector('#arr_user_id_send_to_user') ;
-    //         arr_user_id_send_to_user.value = arr_user_id_selected.value;
+    // คลิกเลือก
+    function select_user(user_id){
+        // console.log("select_user");
 
-    //     let arr_send_to_user = JSON.parse(arr_user_id_send_to_user.value) ;
+        if (!arr_user_id_selected.value) {
+            arr_user_id = JSON.parse( '["'+user_id +'"]' );
+            arr_user_id_selected.value = JSON.stringify(arr_user_id) ;
+        }else{
+            arr_user_id = JSON.parse(arr_user_id_selected.value) ;
 
-    //     if (user_unique) {
-    //         if (text_arr_show_user.value) {
+            if ( arr_user_id.includes(user_id) ) {
+                //
+            }else{
+                arr_user_id.push(user_id);
+                arr_user_id_selected.value = JSON.stringify(arr_user_id) ;
+            }
+        }
 
-    //             let arr_show_user = JSON.parse(text_arr_show_user.value) ;
-    //                 // console.log(arr_show_user);
-    //                 // console.log(arr_selected);
+        // ยังไม่ได้เลือก
+        let btn_select_user_id = document.querySelector('#btn_select_user_id_'+user_id);
+            btn_select_user_id.classList = "fa-solid fa-circle-check text-success icon-circle h6" ;
 
-    //             // console.log(arr_send_to_user);
-    //             // console.log(">>>>>>-----------<<<<<<<");
+        document.querySelector('#user_selected').innerHTML = JSON.parse(arr_user_id_selected.value).length ;
 
-    //             let delete_at_index = 0 ;
-    //             for (let ii = 0; ii < arr_selected.length; ii++) {
-    //                 // console.log(">>>>>> รอบที่ " + ii + " <<<<<<<");
+        remain = remain - 1 ;
+        text_BC_remain = remain.toString();
+        amount_remain.innerHTML = text_BC_remain ;
+        amount_remain_all.innerHTML = text_BC_remain ;
 
-    //                 if ( arr_show_user.includes(arr_selected[ii]) ) {
-    //                     // console.log(">> id ที่ ซ้ำ >> : " + arr_selected[ii]);
+        remain_it_0(remain);
+    }
 
-    //                     // console.log(">> ก่อนลบ <<");
-    //                     // console.log(arr_send_to_user);
+    function drop_user(user_id){
+        // console.log("drop_user");
 
-    //                     // delete array
-    //                     arr_send_to_user.splice(delete_at_index, 1);
+        let btn_select_user_id = document.querySelector('#btn_select_user_id_'+user_id);
 
-    //                     remain = remain + 1 ;
-    //                     text_BC_remain = remain.toString();
-    //                     amount_remain.innerHTML = text_BC_remain ;
-    //                     amount_remain_all.innerHTML = text_BC_remain ;
-    //                     // console.log(">> ลบแล้ว <<");
-    //                     // console.log(arr_send_to_user);
+        try{
+            btn_select_user_id.classList = "far fa-circle icon-circle-hover icon-circle" ;
+        }
+        catch{
+            //
+        }
 
-    //                 }else{
-    //                     delete_at_index = delete_at_index + 1 ;
-    //                     // console.log('ไม่ซ้ำ บวก delete_at_index + 1 = ' + delete_at_index);
-    //                 }
-    //             }
+        let arr_select_user_id = JSON.parse(arr_user_id_selected.value) ;
+        // delete array by user_id
+        for( var ii = 0; ii < arr_select_user_id.length; ii++){
+            if ( arr_select_user_id[ii] === user_id) {
+                arr_select_user_id.splice(ii, 1);
+            }
+        }
+        arr_user_id_selected.value = JSON.stringify(arr_select_user_id) ;
+        document.querySelector('#user_selected').innerHTML = JSON.parse(arr_user_id_selected.value).length ;
 
-    //             document.querySelector('#span_amount_send').innerHTML = arr_send_to_user.length ;
-    //             document.querySelector('#user_selected').innerHTML = arr_send_to_user.length ;
-    //             // ส่ง content เดิม แบบไม่ซ้ำ user เดิม
-    //             arr_user_id_send_to_user.value = JSON.stringify(arr_send_to_user) ;
-    //             arr_user_id_selected.value = JSON.stringify(arr_send_to_user) ;
+        remain = remain + 1 ;
+        text_BC_remain = remain.toString();
+        amount_remain.innerHTML = text_BC_remain ;
+        amount_remain_all.innerHTML = text_BC_remain ;
 
-    //             remain_it_0(remain);
-    //             search_data();
-    //         }
-    //     }else{
-    //         arr_user_id_send_to_user.value = null ;
-    //         document.querySelector('#span_amount_send').innerHTML = arr_selected.length ;
-    //         document.querySelector('#user_selected').innerHTML = arr_selected.length ;
+        remain_it_0(remain);
+    }
 
-    //         remain_it_0(remain);
-    //         search_data();
+    // เช็คจำนวน = 0
+    function remain_it_0(remain){
+        document.querySelector("#select_amount").placeholder = "ไม่เกิน " + remain + " คน" ;
+        document.querySelector("#select_amount").max = remain  ;
+        document.querySelector("#select_amount").value = ""  ;
+        document.querySelector("#span_select_from_amount").classList.add('d-none') ;
 
-    //     }
+        arr_user_id = arr_user_id_selected.value ;
 
-    // }
+        if (remain <= 0) {
+            document.querySelector('#btn_amount_remain_all').disabled = true ;
+            document.querySelector('#btn_select_from_amount').disabled = true ;
+        }else{
+            document.querySelector('#btn_amount_remain_all').disabled = false ;
+            document.querySelector('#btn_select_from_amount').disabled = false ;
+        }
+
+        // เช็คเพื่อเปิด / ปิด ปุ่มต่อไป
+        let count_i = 0 ;
+        let arr_user_i = document.querySelector('#arr_user_id_selected'); // input array user_id
+        if (arr_user_i.value) {
+            count_i = JSON.parse(arr_user_i.value).length ;
+        }
+
+        if (count_i != 0) {
+            document.querySelector('#btn_next_selected_user').disabled = false ;
+            document.querySelector('#amount').value = count_i.toString(); // MODAL
+            document.querySelector('#span_amount_send').innerHTML = count_i.toString(); // MODAL
+        }else{
+            document.querySelector('#btn_next_selected_user').disabled = true ;
+        }
+    }
+
+    // เลือกจากจำนวน
+    function select_from_amount(){
+        // console.log("select_from_amount");
+
+        search_data();
+
+        // ส่งต่อฟังก์ชั่น
+        setTimeout(function() {
+            let select_amount = document.querySelector('#select_amount').value ;
+            select_content_from_amount(select_amount);
+        }, delayInMilliseconds);
+    }
+
+    // คลิกเลือกทั้งหมด
+    function click_select_all(){
+        // console.log("click_select_all");
+
+        search_data();
+
+        // ส่งต่อฟังก์ชั่น
+        setTimeout(function() {
+            select_content_from_amount(remain);
+        }, delayInMilliseconds);
+    }
+
+    // คลิกเลือกตามจำนวนที่เลือก
+    async function select_content_from_amount(amount){
+        // console.log("select_content_from_amount :: " + amount);
+
+        // เช็ค จำนวนที่เลือกเกินกำหนดหรือไม่
+        if ( amount <= remain ) {
+            document.querySelector('#warn_BC_by_user_max').classList.add('d-none');
+            document.querySelector('#tell_BC_by_user_max').classList.remove('text-danger');
+
+            // คลิกเลือกตามจำนวน
+            for (var i = 1; i <= amount; i++) {
+
+                let i_btn_select = document.getElementsByName('i_btn_select_' + i);
+                let class_i_btn_select = i_btn_select[0].classList[0] ;
+
+                let uid_i_btn_select = i_btn_select[0].getAttribute('data') ;
+                    // console.log(uid_i_btn_select);
+
+                if (!arr_user_id_selected.value) {
+                    // arr_user_id ว่าง
+                    if (class_i_btn_select == "far") {
+                        document.querySelector('#div_result_content_count_' + i).click();
+                    }else{
+                        amount = parseInt(amount) + 1 ;
+                    }
+                }else{
+                    // arr_user_id ไม่ว่าง
+                    arr_user_id = JSON.parse(arr_user_id_selected.value) ;
+
+                    if ( arr_user_id.includes(uid_i_btn_select) ) {
+                        // มี user id ใน arr_user_id แล้ว
+                        amount = parseInt(amount) + 1 ;
+
+                    }else{
+                        // ยังไม่มี user id ใน arr_user_id แล้ว
+                        if (class_i_btn_select == "far") {
+                            document.querySelector('#div_result_content_count_' + i).click();
+                        }else{
+                            amount = parseInt(amount) + 1 ;
+                        }
+                    }
+                }
+            }
+        }else{
+            document.querySelector('#warn_BC_by_user_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
+            document.querySelector('#warn_BC_by_user_max').classList.remove('d-none');
+            document.querySelector('#tell_BC_by_user_max').classList.add('text-danger');
+
+            document.querySelector('#text_user_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
+            document.querySelector('#user_max').classList.add('up_down');
+
+            const animated = document.querySelector('.up_down');
+            animated.onanimationend = () => {
+                document.querySelector('#user_max').classList.remove('up_down');
+            };
+        }
+
+    }
+
+    // ----------------------------- function in modal -----------------------------------
+
+    function check_send_content(){
+        let type_content_bc = document.querySelector('#type_content_bc') ;
+
+        let name_content = document.querySelector("#name_content").value;
+        let photo = document.querySelector("#photo").value;
+        let detail = document.querySelector("#detail").value;
+
+            if (type_content_bc.value === 'text') {
+                if (name_content && detail) {
+                    document.querySelector('#btn_send_content').disabled = false ;
+                }else{
+                    document.querySelector('#btn_send_content').disabled = true ;
+                }
+            }else{
+                if (name_content && photo) {
+                    document.querySelector('#btn_send_content').disabled = false ;
+                }else{
+                    document.querySelector('#btn_send_content').disabled = true ;
+                }
+            }
+
+    }
+
+    function reset_BC(){
+        document.querySelector('#arr_user_id_send_to_user').value = null ;
+        document.querySelector('#id_ads').value = null ;
+        document.querySelector('#div_user_unique').classList.add('d-none');
+        document.querySelector('#send_again').value = null ;
+        document.querySelector('#name_content').readOnly = false ;
+        document.querySelector('#name_content').value = null;
+        document.querySelector('#link').readOnly = false ;
+        document.querySelector('#link').value = null;
+        document.querySelector('#arr_show_user').value = null;
+        document.querySelector('#img_exchange').classList.remove('d-none') ;
+        document.querySelector('#send-img').classList.add('sand');
+        document.querySelector('#div_img').classList.add('d-none');
+        document.querySelector('#div_add_img').classList.remove('d-none');
+        // document.querySelector('#img-content').src = null ;
+        document.querySelector('#photo').value = null ;
+        document.querySelector('#img_add_img').src = "{{ asset('/img/more/add_img_2.png') }}" ;
+
+    }
+
+    function select_content_again(ads_id){
+
+        let arr_user_id_send_to_user = document.querySelector('#arr_user_id_send_to_user') ;
+            arr_user_id_send_to_user.value = arr_user_id_selected.value;
+
+        document.querySelector('#user_unique').checked = false ;
+        document.querySelector('#send_again').value = 'Yes' ;
+        document.querySelector('#div_user_unique').classList.remove('d-none');
+
+        document.querySelector('#name_content').readOnly = true ;
+        document.querySelector('#link').readOnly = true ;
+        document.querySelector('#img_exchange').classList.add('d-none') ;
+        document.querySelector('#photo').value = null ;
+
+        @foreach($ads_contents as $ads)
+            if ({{ $ads->id }} == ads_id) {
+
+                let text_show_user = '{{ $ads->show_user }}'.replaceAll('&quot;' , '"');
+
+                document.querySelector('#arr_show_user').value = text_show_user;
+                document.querySelector('#name_content').value = '{{ $ads->name_content }}';
+                document.querySelector('#id_ads').value = '{{ $ads->id }}';
+
+                let link_url = '{{ $ads->link }}' ;
+                    link_url = link_url.split("/api");
+                let new_link_url = link_url[0];
+                console.log(new_link_url);
+                document.querySelector('#link').value = new_link_url ;
+                document.querySelector('#detail').value = '{{ $ads->detail }}' ;
+                document.querySelector('#img-content').src = '{{ url("/storage") }}' + '/' + '{{ $ads->photo }}' ;
+
+                document.querySelector('#send-img').classList.remove('sand');
+
+                setTimeout(function(){
+                    document.querySelector('#div_img').classList.remove('d-none');
+                    document.querySelector('#div_add_img').classList.add('d-none');
+
+                    document.querySelector('#send-img').classList.add('sand');
+                }, 100);
+
+            }
+        @endforeach
+
+        document.querySelector('#btn_send_content').disabled = false ;
+    }
+
+    function check_user_unique(){
+        let user_unique =  document.querySelector('#user_unique').checked ;
+            // console.log(user_unique);
+        let arr_selected = JSON.parse(arr_user_id_selected.value) ;
+        let text_arr_show_user = document.querySelector('#arr_show_user') ;
+        let arr_user_id_send_to_user = document.querySelector('#arr_user_id_send_to_user') ;
+            arr_user_id_send_to_user.value = arr_user_id_selected.value;
+
+        let arr_send_to_user = JSON.parse(arr_user_id_send_to_user.value) ;
+
+        if (user_unique) {
+            if (text_arr_show_user.value) {
+
+                let arr_show_user = JSON.parse(text_arr_show_user.value) ;
+                    // console.log(arr_show_user);
+                    // console.log(arr_selected);
+
+                // console.log(arr_send_to_user);
+                // console.log(">>>>>>-----------<<<<<<<");
+
+                let delete_at_index = 0 ;
+                for (let ii = 0; ii < arr_selected.length; ii++) {
+                    // console.log(">>>>>> รอบที่ " + ii + " <<<<<<<");
+
+                    if ( arr_show_user.includes(arr_selected[ii]) ) {
+                        // console.log(">> id ที่ ซ้ำ >> : " + arr_selected[ii]);
+
+                        // console.log(">> ก่อนลบ <<");
+                        // console.log(arr_send_to_user);
+
+                        // delete array
+                        arr_send_to_user.splice(delete_at_index, 1);
+
+                        remain = remain + 1 ;
+                        text_BC_remain = remain.toString();
+                        amount_remain.innerHTML = text_BC_remain ;
+                        amount_remain_all.innerHTML = text_BC_remain ;
+                        // console.log(">> ลบแล้ว <<");
+                        // console.log(arr_send_to_user);
+
+                    }else{
+                        delete_at_index = delete_at_index + 1 ;
+                        // console.log('ไม่ซ้ำ บวก delete_at_index + 1 = ' + delete_at_index);
+                    }
+                }
+
+                document.querySelector('#span_amount_send').innerHTML = arr_send_to_user.length ;
+                document.querySelector('#user_selected').innerHTML = arr_send_to_user.length ;
+                // ส่ง content เดิม แบบไม่ซ้ำ user เดิม
+                arr_user_id_send_to_user.value = JSON.stringify(arr_send_to_user) ;
+                arr_user_id_selected.value = JSON.stringify(arr_send_to_user) ;
+
+                remain_it_0(remain);
+                search_data();
+            }
+        }else{
+            arr_user_id_send_to_user.value = null ;
+            document.querySelector('#span_amount_send').innerHTML = arr_selected.length ;
+            document.querySelector('#user_selected').innerHTML = arr_selected.length ;
+
+            remain_it_0(remain);
+            search_data();
+
+        }
+
+    }
+
+    function switch_type_content(type){
+
+        document.querySelector('#type_content_bc').value = type ;
+        if (type === 'text') {
+            // btn
+            document.querySelector('#btn_select_text_content').classList.add('btn-primary');
+            document.querySelector('#btn_select_text_content').classList.remove('btn-outline-primary');
+            document.querySelector('#btn_select_img_content').classList.remove('btn-primary');
+            document.querySelector('#btn_select_img_content').classList.add('btn-outline-primary');
+            // div
+            document.querySelector('#div_bc_text').classList.remove('d-none');
+            document.querySelector('#div_bc_img').classList.add('d-none');
+            // show line
+            document.querySelector('#show_img_content').classList.add('d-none');
+            document.querySelector('#show_text_content').classList.remove('d-none');
+        }else{
+            // btn
+            document.querySelector('#btn_select_text_content').classList.remove('btn-primary');
+            document.querySelector('#btn_select_text_content').classList.add('btn-outline-primary');
+            document.querySelector('#btn_select_img_content').classList.add('btn-primary');
+            document.querySelector('#btn_select_img_content').classList.remove('btn-outline-primary');
+            // div
+            document.querySelector('#div_bc_text').classList.add('d-none');
+            document.querySelector('#div_bc_img').classList.remove('d-none');
+            // show line
+            document.querySelector('#show_img_content').classList.remove('d-none');
+            document.querySelector('#show_text_content').classList.add('d-none');
+        }
+
+        check_send_content();
+    }
 
 
 </script>
@@ -1639,4 +2027,32 @@ display:none;
         }
     })
 </script> --}}
+
+<script src="{{ asset('carousel-12/js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/popper.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('carousel-12/js/main.js') }}"></script>
+  <script>
+    $('.owl-carousel').owlCarousel({
+    loop:false,
+    margin:10,
+    nav:true,
+    pading:10,
+    navText : ["<i style='background-color: #F8F8F8;border-radius:50px;padding:20px 25px' class='fa-solid fa-chevron-left'></i>",
+    "<i style='background-color: #F8F8F8;border-radius:50px;padding:20px 25px' class='fa fa-chevron-right'></i>"],
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+</script>
+
 @endsection

@@ -5,6 +5,7 @@ $(function () {
       margin:10,
       smartSpeed: 1000,
       autoplay: true,
+      autoWidth:true,
       responsiveClass:true,
       responsive:{
           0:{
@@ -62,7 +63,7 @@ $(function () {
       }
     });
   }
-  
+
   if ($('.owl-2').length > 0) {
     $('.owl-2').owlCarousel({
       center: false,
@@ -148,7 +149,7 @@ $(function () {
       }
     });
   }
-  
+
   if ($('.owl-5').length > 0) {
     $('.owl-5').owlCarousel({
       center: false,
@@ -187,6 +188,6 @@ $(function () {
       }
     });
   }
-  
+
 
 })
