@@ -1301,13 +1301,13 @@ class PartnerController extends Controller
 
         $data_auth_user = Auth::user();
 
+
         // หา ประเทศของคนใน องค์กร
-        $country_all_of_user = User::where('country','!=',null)
-            ->where('organization',$data_auth_user->organization)
+        $country_all_of_user = User::where('organization',$data_auth_user->organization)
             ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
+            ->where('country','!=',null)
             ->groupBy('country')
-            ->select('country')
-            ->get();
+            ->get('country');
 
         // หา nationalitie ของคนใน องค์กร
         $nationalitie_all_of_user = User::where('nationalitie','!=',null)
