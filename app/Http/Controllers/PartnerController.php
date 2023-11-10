@@ -1344,6 +1344,9 @@ class PartnerController extends Controller
         if(!empty($partner_premium)){
             // USER
             $BC_by_user_max = $partner_premium->BC_by_user_max ;
+            $name_partner = $partner_premium->name_partner ;
+            $partner_id = $partner_premium->id_partner ;
+
             if ($partner_premium->BC_by_user_max == null) {
                 $BC_by_user_sent = 0 ;
             }else{
@@ -1394,7 +1397,7 @@ class PartnerController extends Controller
             $data_users_organization = User::where("organization", $data_partner->name)->get();
             $data_user_from = User::where("user_from", 'LIKE' , "%$data_partner->name%")->get();
 
-            return view('partner.broadcast.broadcast_by_user', compact('ads_contents','data_partner','data_users_organization','data_user_from'
+            return view('partner.broadcast.broadcast_by_user', compact('partner_id','name_partner','ads_contents','data_partner','data_users_organization','data_user_from'
             ,'country_all_of_user','time_zone_all_of_user','language_all_of_user','nationalitie_all_of_user','BC_by_user_sent','BC_by_user_max'));
         }else{
             return redirect('404');
