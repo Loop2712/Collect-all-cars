@@ -428,7 +428,7 @@ display:none;
 
     <input class="form-control d-none" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
 
-    <input class="form-control d-non" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
+    <input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
     <input class="form-control d-none" type="text" name="type_content" id="type_content" value="BC_by_car">
     <input class="form-control d-none" type="text" name="name_partner" id="name_partner" value="">
     <input class="form-control d-none" type="text" name="id_partner" id="id_partner" value="">

@@ -99,6 +99,7 @@ Route::post('/search_data_broadcast_by_check_in','API\API_Broadcast@search_data_
 Route::post('/send_content_BC_by_check_in','API\API_Broadcast@send_content_BC_by_check_in');
 // user
 Route::post('/search_data_broadcast_by_user','API\Broadcast_userController@search_data_broadcast_by_user');
+Route::post('/send_content_BC_by_user','API\Broadcast_userController@send_content_BC_by_user');
 ///////////////////////////
 ////// END BROADCAST//////
 //////////////////////////
