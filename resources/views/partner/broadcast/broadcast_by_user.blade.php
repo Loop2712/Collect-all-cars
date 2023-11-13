@@ -889,9 +889,11 @@ display:none;
                                     <select name="country_user" class="notranslate form-control select-form" id="country_user" onchange="search_data();">
                                         <option class="translate" value="" selected> - เลือกประเทศ - </option>
                                         @foreach($country_all_of_user as $item)
-                                            <option class="translate" value="{{ $item->country }}">
-                                                {{ $item->country }}
-                                            </option>
+                                            @if (!empty($item->country))
+                                                <option class="translate" value="{{ $item->country }}">
+                                                    {{ $item->country }}
+                                                </option>
+                                            @endif
                                         @endforeach
 
                                     </select>
