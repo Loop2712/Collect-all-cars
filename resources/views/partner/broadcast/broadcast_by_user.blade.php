@@ -922,7 +922,7 @@ display:none;
                                     <select name="language_user" class="notranslate form-control select-form" id="language_user" onchange="search_data();">
                                         <option class="translate" value="" selected> - เลือกภาษาที่ใช้ - </option>
                                         @foreach($language_all_of_user as $item)
-                                            @if (!empty($item->time_zone))
+                                            @if (!empty($item->language))
                                                 <option class="translate" value="{{ $item->language }}">
                                                     {{ $item->language }}
                                                 </option>

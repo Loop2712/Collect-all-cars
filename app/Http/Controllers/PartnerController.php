@@ -1320,18 +1320,18 @@ class PartnerController extends Controller
 
         // หา language ของคนใน องค์กร
         $language_all_of_user = User::where('language','!=',null)
-            ->where('organization',$data_auth_user->organization)
-            ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
-            ->groupBy('language')
-            ->select('language')
-            ->get();
+        ->where('organization',$data_auth_user->organization)
+        ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
+        ->groupBy('language')
+        ->select('language')
+        ->get();
 
         // หา time_zone ของคนใน องค์กร
         $time_zone_all_of_user = User::where('time_zone','!=',null)
-            ->where('organization',$data_auth_user->organization)
-            ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
-            ->groupBy('time_zone')
-            ->select('time_zone')
+        ->where('organization',$data_auth_user->organization)
+        ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
+        ->groupBy('time_zone')
+        ->select('time_zone')
             ->get();
 
         $data_partner = Partner::where("name", $data_auth_user->organization)
