@@ -428,7 +428,7 @@ display:none;
 
     <input class="form-control d-none" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
 
-    <input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
+    <input class="form-control d-non" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
     <input class="form-control d-none" type="text" name="type_content" id="type_content" value="BC_by_car">
     <input class="form-control d-none" type="text" name="name_partner" id="name_partner" value="{{ $name_partner }}">
     <input class="form-control d-none" type="text" name="id_partner" id="id_partner" value="{{ $partner_id }}">
@@ -1321,19 +1321,17 @@ display:none;
                                 </div>
                             </div>`
 
+                        content_search_data.insertAdjacentHTML('beforeend', div_data_name); // แทรกบนสุด
 
-                        if(document.querySelector('#btn_select_user_id_'+result[i]['id'])){
-                            console.log("เข้านะ");
-                            let text_user_id = result[i]['id'].toString();
-                            let btn_select = document.querySelector('#btn_select_user_id_'+result[i]['id']);
-                            if (arr_user_id.includes(text_user_id)) {
-                                btn_select.setAttribute('class', 'fas fa-solid fa-circle-check text-success icon-circle h6');
-                            } else {
-                                btn_select.setAttribute('class', 'far fa-regular fa-circle icon-circle-hover icon-circle');
-                            }
+                        let text_user_id = result[i]['id'].toString();
+                        let btn_select = document.querySelector('#btn_select_user_id_'+result[i]['id']);
+
+                        if (arr_user_id.includes(text_user_id)) {
+                            btn_select.setAttribute('class', 'fas fa-solid fa-circle-check text-success icon-circle h6');
+                        } else {
+                            btn_select.setAttribute('class', 'far fa-regular fa-circle icon-circle-hover icon-circle');
                         }
 
-                        content_search_data.insertAdjacentHTML('beforeend', div_data_name); // แทรกบนสุด
                         content_count = content_count + 1 ;
                     }
 
@@ -1577,7 +1575,6 @@ display:none;
                 let class_i_btn_select = i_btn_select[0].classList[0] ;
 
                 let uid_i_btn_select = i_btn_select[0].getAttribute('data') ;
-                    // console.log(uid_i_btn_select);
 
                 if (!arr_user_id_selected.value) {
                     // arr_user_id ว่าง
