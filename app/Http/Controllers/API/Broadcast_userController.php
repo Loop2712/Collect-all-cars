@@ -42,9 +42,9 @@ class Broadcast_userController extends Controller
         $lat = $requestData['lat'];
         $lng = $requestData['lng'];
 
-        $lat = intval($lat);
-        $lng = intval($lng);
-        $radius_user_m = $radius_user * 1000;
+        $lat = floatval($lat);
+        $lng = floatval($lng);
+        // $radius_user_m = $radius_user * 1000;
 
         if ($age_user === '<20') {
             $startDate = now()->subYears(20);
@@ -98,8 +98,8 @@ class Broadcast_userController extends Controller
                         return $query->where('location_P', $province_user);
                     }
                 })
-                ->when($lat && $lng && $radius_user_m, function ($query) use ($lat, $lng, $radius_user_m) {
-                    return $query->whereRaw("ST_Distance(Point(lng, lat), Point(?, ?)) <= ?", [$lng, $lat, $radius_user_m]);
+                ->when($lat && $lng && $radius_user, function ($query) use ($lat, $lng, $radius_user) {
+                    return $query->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( lat ) )* cos( radians( lng ) - radians(?) ) + sin( radians(?) )* sin( radians( lat ) ) ) ) AS distance", [$lat, $lng, $lat])->having("distance", "<", $radius_user);
                 })
                 ->get();
             }else{
@@ -132,8 +132,8 @@ class Broadcast_userController extends Controller
                         return $query->where('location_P', $province_user);
                     }
                 })
-                ->when($lat && $lng && $radius_user_m, function ($query) use ($lat, $lng, $radius_user_m) {
-                    return $query->whereRaw("ST_Distance(Point(lng, lat), Point(?, ?)) <= ?", [$lng, $lat, $radius_user_m]);
+                ->when($lat && $lng && $radius_user, function ($query) use ($lat, $lng, $radius_user) {
+                    return $query->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( lat ) )* cos( radians( lng ) - radians(?) ) + sin( radians(?) )* sin( radians( lat ) ) ) ) AS distance", [$lat, $lng, $lat])->having("distance", "<", $radius_user);
                 })
                 ->get();
             }
@@ -169,16 +169,16 @@ class Broadcast_userController extends Controller
                     return $query->where('location_P', $province_user);
                 }
             })
-            ->when($lat && $lng && $radius_user_m, function ($query) use ($lat, $lng, $radius_user_m) {
-                return $query->whereRaw("ST_Distance(Point(lng, lat), Point(?, ?)) <= ?", [$lng, $lat, $radius_user_m]);
+            ->when($lat && $lng && $radius_user, function ($query) use ($lat, $lng, $radius_user) {
+                return $query->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( lat ) )* cos( radians( lng ) - radians(?) ) + sin( radians(?) )* sin( radians( lat ) ) ) ) AS distance", [$lat, $lng, $lat])->having("distance", "<", $radius_user);
             })
             ->get();
         }
 
-        // exit;
         return $data_search ;
 
     }
+
 
     // function haversineDistance($lat1, $lng1, $lat2, $lng2) {
     //     $earthRadius = 6371; // รัศมีของโลก (หน่วยกิโลเมตร)

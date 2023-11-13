@@ -212,7 +212,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
 }
 
 .remove-scrollbar::-webkit-scrollbar {
-display:none;
+    display:none;
 }
 
 .div_alert{
@@ -388,6 +388,62 @@ display:none;
         transform: scale(1.2);
         opacity: 1;
     }
+    #lat_lng_div {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        transform-origin: top;
+    }
+
+    /* =================ตัว loading animation==================== */
+    #lds-ring {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 1); /* ปรับสีพื้นหลังตามความต้องการ */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .lds-ring {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        margin: 8px;
+        border: 8px solid #2f0cf3;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: #1a6ce7 transparent transparent transparent;
+    }
+    .lds-ring div:nth-child(1) {
+        animation-delay: -0.45s;
+    }
+    .lds-ring div:nth-child(2) {
+        animation-delay: -0.3s;
+    }
+    .lds-ring div:nth-child(3) {
+        animation-delay: -0.15s;
+    }
+    @keyframes lds-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    /* ----------------- End ตัว loading animation ----------------- */
+
+
 </style>
   <!-- carousel -->
   <link href="{{ asset('carousel-12/css/owl.carousel.min.css') }}" rel="stylesheet">
@@ -428,7 +484,7 @@ display:none;
 
     <input class="form-control d-none" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
 
-    <input class="form-control d-non" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
+    <input class="form-control d-none" type="text" name="arr_user_id_selected" id="arr_user_id_selected" readonly>
     <input class="form-control d-none" type="text" name="type_content" id="type_content" value="BC_by_car">
     <input class="form-control d-none" type="text" name="name_partner" id="name_partner" value="{{ $name_partner }}">
     <input class="form-control d-none" type="text" name="id_partner" id="id_partner" value="{{ $partner_id }}">
@@ -818,40 +874,11 @@ display:none;
                         <hr>
                         <!-- ผู้ใช้ในองค์กร -->
                         <div class="col-12 d-none" id="div_user_organzation">
-                            {{-- <div class="row">
-                                <div class="col-md-6">
-                                    <!-- input_car_brand ==> input_gender -->
-                                    <label for="input_gender" class="form-label">เพศ</label>
-                                    <select name="input_gender" class="notranslate form-control select-form" id="input_gender" onchange="">
-                                        <option class="translate" value="ผู้ชาย"> ชาย </option>
-                                        <option class="translate" value="ผู้หญิง"> หญิง </option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <!-- input_car_model ==> input_age -->
-                                    <label for="input_age" class="form-label">อายุ</label>
-                                    <select name="input_age" class="notranslate form-control select-form" id="input_age" onchange="search_data();">
-                                        <option class="translate" value="" selected> - เลือกรุ่น - </option>
-                                    </select>
-                                </div>
-                            </div> --}}
+                            <!-- สำหรับใส่ข้อมูลที่ต่างกัน -->
                         </div>
                         <!-- ผู้ใช้จาก API -->
                         <div class="col-12  d-none" id="div_user_from">
-                            {{-- <div class="row">
-                                <div class="col-md-6">
-                                    <label for="input_motor_brand" class="form-label">ยี่ห้อรถ</label>
-                                    <select name="input_motor_brand" class="notranslate form-control select-form" id="input_motor_brand"  onchange="showMotor_model();search_data();">
-                                        <option class="translate" value="" selected> - เลือกยี่ห้อ - </option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="input_motor_model" class="form-label">รุ่นรถ</label>
-                                    <select name="input_motor_model" class="notranslate form-control select-form" id="input_motor_model" onchange="search_data();">
-                                        <option class="translate" value="" selected> - เลือกรุ่น - </option>
-                                    </select>
-                                </div>
-                            </div> --}}
+                            <!-- สำหรับใส่ข้อมูลที่ต่างกัน -->
                         </div>
 
                         <!-- เพศ && อายุ -->
@@ -968,7 +995,7 @@ display:none;
                         <!-- ภายในรัศมี(กม.)-->
                         <div class="col-md-12">
                             <label for="radius_user" class="form-label">ภายในรัศมี .. กม.</label>
-                            <select name="radius_user" class="notranslate form-control select-form" id="radius_user" onchange="search_data();">
+                            <select name="radius_user" class="notranslate form-control select-form" id="radius_user" onchange="find_lat_lng();show_fade_div();">
                                 <option class="translate" value="" selected> - เลือก ภายในรัศมี .. กม. - </option>
                                 <option class="translate" value="15">15 กิโลเมตร</option>
                                 <option class="translate" value="30">30 กิโลเมตร</option>
@@ -977,65 +1004,45 @@ display:none;
                             </select>
                         </div>
 
-
-                        <!-- // ============ D-NONE ============= //-->
-                        <div class="col-md-12 d-none">
-                            <label for="location_user" class="form-label">พื้นที่ผู้ลงทะเบียนรถ</label>
-                            <select name="location_user" class="notranslate form-control select-form" id="location_user" onchange="search_data();">
-                                <option class="translate" value="" selected> - เลือกพื้นที่ - </option>
-
-                                <option class="translate" value="">
-
-                                </option>
-
-                            </select>
-                        </div>
-                        <div class="col-md-12 d-none">
-                            <label for="province_registration" class="form-label">จังหวัดของทะเบียนรถ</label>
-                            <select name="province_registration" class="notranslate form-control select-form" id="province_registration" onchange="search_data();">
-                                <option class="translate" value="" selected> - เลือกพื้นที่ - </option>
-
-                                <option class="translate" value="">
-
-                                </option>
-
-                            </select>
-                        </div>
-                        <div id="type_car_registration d-none" class="col-12 d-none">
-                            <div class="form-group">
-                                <label for="type_registration" class="control-label">{{ 'ประเภท' }}</label>
-                                <select name="type_registration" class="notranslate form-control" id="type_registration" onchange="search_data();">
-                                    <option class="translate" value="" selected> - เลือกประเภท - </option>
-
-                                        <option class="translate" value="">
-
-                                        </option>
-
-                                </select>
+                        <!-- lat_user && lng_user-->
+                        <div id="lat_lng_div">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <label for="language_user" class="form-label">latitude</label>
+                                        <input class="form-control" placeholder="ใส่ค่า lat" type="text" name="lat_user" id="lat_user" value="">
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <label for="time_zone_user" class="form-label">longtitude</label>
+                                        <input class="form-control" placeholder="ใส่ค่า lng" type="text" name="lng_user" id="lng_user" value="">
+                                    </div>
+                                </div>
                             </div>
-                            <br>
-                        </div>
-                        <div class="col-12 d-none">
-                            <div class="form-group">
-                                <label for="birth_month" class="control-label">{{ 'เดือนเกิดเจ้าของรถ' }}</label>
-                                <select name="birth_month" class="notranslate form-control" id="birth_month" onchange="search_data();">
-                                    <option class="translate" value="" selected> - เลือกเดือนเกิด - </option>
-                                    <option class="translate" value="1"> มกราคม </option>
-                                    <option class="translate" value="2"> กุมภาพันธ์ </option>
-                                    <option class="translate" value="3"> มีนาคม </option>
-                                    <option class="translate" value="4"> เมษายน </option>
-                                    <option class="translate" value="5"> พฤษภาคม </option>
-                                    <option class="translate" value="6"> มิถุนายน </option>
-                                    <option class="translate" value="7"> กรกฎาคม </option>
-                                    <option class="translate" value="8"> สิงหาคม </option>
-                                    <option class="translate" value="9"> กันยายน </option>
-                                    <option class="translate" value="10"> ตุลาคม </option>
-                                    <option class="translate" value="11"> พฤศจิกายน </option>
-                                    <option class="translate" value="12"> ธันวาคม </option>
-                                </select>
+                            <div class="col-md-12 mt-2">
+
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-md-2 col-2 d-flex justify-content-center align-items-center">
+                                        <div id="lds-ring" class="lds-ring d-none"><div></div><div></div><div></div><div></div></div>
+                                    </div>
+                                    <div class="col-md-4 col-4">
+                                        <span class="btn btn-success d-block" onclick="search_data();">ยืนยัน</span>
+                                    </div>
+                                    <div class="col-md-2 col-2">
+                                        <span class="btn btn-primary" onclick="getLocation()">
+                                            <i class="fa-regular fa-location-dot"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-2 col-2">
+                                        <span class="btn btn-danger" onclick="clearLocation()">
+                                            <i class="fa-solid fa-trash-xmark"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                            <br>
                         </div>
+
+                        <hr class="mt-2">
+
                         <div class="col-12" id="div_btn_search">
                             <button type="submit" class="btn btn-secondary px-5" onclick="clear_search_input_data();">ล้างการค้นหา</button>
                         </div>
@@ -1105,7 +1112,30 @@ display:none;
 </div>
 
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&callback=initMap&v=weekly"
+        async >
+</script>
 
+<script>
+    function show_fade_div(){
+        let radius_user = document.querySelector("#radius_user").value;
+        let lat_lng_div = document.getElementById("lat_lng_div");
+
+        if (radius_user) {
+            lat_lng_div.style.display = "block";
+			setTimeout(() => {
+				lat_lng_div.style.opacity = "1";
+				lat_lng_div.style.maxHeight = "50%";
+			}, 10);
+        } else {
+            lat_lng_div.style.opacity = "0";
+			lat_lng_div.style.maxHeight = "0";
+			setTimeout(() => {
+				lat_lng_div.style.display = "none";
+			}, 500);
+        }
+    }
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         search_data();
@@ -1139,6 +1169,8 @@ display:none;
         document.querySelector('#user_type').value = type ;
         // document.querySelector('#div_btn_search').classList.remove('d-none');
 
+        let lat_user = document.querySelector("#lat_user").value = "";
+        let lng_user = document.querySelector("#lng_user").value = "";
         let gender_user = document.querySelector("#gender_user").value = "";
         let age_user = document.querySelector("#age_user").value = "";
         let country_user = document.querySelector("#country_user").value = "";
@@ -1157,7 +1189,9 @@ display:none;
             document.querySelector('#div_filter').classList.remove('d-none');
             document.querySelector('#div_user_organzation').classList.remove('d-none');
             document.querySelector('#div_user_from').classList.add('d-none');
-            // document.querySelector('#type_car_registration').classList.remove('d-none');
+
+            let lat_lng_div = document.querySelector("#lat_lng_div");
+            lat_lng_div.classList.add('d-none');
         }else{
 
             // showMotor_brand();
@@ -1166,15 +1200,17 @@ display:none;
             document.querySelector('#div_filter').classList.remove('d-none');
             document.querySelector('#div_user_from').classList.remove('d-none');
             document.querySelector('#div_user_organzation').classList.add('d-none');
-            // document.querySelector('#type_car_registration').classList.add('d-none');
 
-            document.querySelector('#type_registration').value = "";
+            let lat_lng_div = document.querySelector("#lat_lng_div");
+            lat_lng_div.classList.add('d-none');
         }
 
     }
 
     // ล้างการค้นหา
     function clear_search_input_data(){
+    let lat_lng_div = document.querySelector("#lat_lng_div");
+        lat_lng_div.classList.add('d-none');
 
     let user_type = document.querySelector("#user_type").value;
     let gender_user = document.querySelector("#gender_user").value = '';
@@ -1187,11 +1223,6 @@ display:none;
     let district_user = document.querySelector("#district_user").value = '';
     let radius_user = document.querySelector("#radius_user").value = '';
 
-    // if (user_type === "organization") {
-    //     showCar_brand();
-    // }else{
-    //     showMotor_brand();
-    // }
     search_data();
 
     }
@@ -1209,20 +1240,8 @@ display:none;
         let province_user = document.querySelector("#province_user").value;
         let district_user = document.querySelector("#district_user").value;
         let radius_user = document.querySelector("#radius_user").value;
-        let lat = '{{ Auth::user()->lat }}';
-        let lng = '{{ Auth::user()->lng }}';
-        // console.log("user_type :"+user_type);
-        // console.log("partner_name :"+partner_name);
-        // console.log("gender_user :"+gender_user);
-        // console.log("age_user :"+age_user);
-        // console.log("country_user :"+country_user);
-        // console.log("nationalitie_user :"+nationalitie_user);
-        // console.log("language_user :"+language_user);
-        // console.log("time_zone_user :"+time_zone_user);
-        // console.log("province_user :"+province_user);
-        // console.log("district_user :"+district_user);
-        // console.log("radius_user :"+radius_user);
-
+        let lat_user = document.querySelector("#lat_user").value;
+        let lng_user = document.querySelector("#lng_user").value;
 
         let data_search_data ;
 
@@ -1239,8 +1258,8 @@ display:none;
                 'province_user' : province_user,
                 'district_user' : district_user,
                 'radius_user' : radius_user,
-                'lat' : lat,
-                'lng' : lng,
+                'lat' : lat_user,
+                'lng' : lng_user,
             };
         }else{
             data_search_data = {
@@ -1255,8 +1274,8 @@ display:none;
                 'province_user' : province_user,
                 'district_user' : district_user,
                 'radius_user' : radius_user,
-                'lat' : lat,
-                'lng' : lng,
+                'lat' : lat_user,
+                'lng' : lng_user,
             };
         }
 
@@ -1281,7 +1300,8 @@ display:none;
                     let content_count = 1 ;
 
                     for (let i = 0; i < result.length; i++) {
-
+                        console.log(result[i].name);
+                        console.log(result[i].distance);
                         if (!result[i]['name']) {
                             result[i]['name'] = "ไม่ได้ระบุ" ;
                         }
@@ -1805,6 +1825,65 @@ display:none;
         }
 
         check_send_content();
+    }
+
+
+    function find_lat_lng(){
+        let lat_lng_div = document.querySelector('#lat_lng_div');
+            lat_lng_div.classList.remove('d-none');
+
+        let lat_input = document.querySelector('#lat_user').value;
+        let lng_input = document.querySelector('#lng_user').value;
+    }
+
+    function getLocation() {
+        let loadingAnimation = document.getElementById('lds-ring');
+            loadingAnimation.classList.remove('d-none');
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(set_now_location);
+
+
+        } else {
+
+
+            x.innerHTML = "Geolocation is not supported by this browser.";
+
+
+        }
+    }
+
+    function set_now_location(position)
+    {
+        let lat_text = document.querySelector("#lat_user");
+        let lng_text = document.querySelector("#lng_user");
+        // let latlng = document.querySelector("#latlng");
+
+        lat_text.value = position.coords.latitude ;
+        lng_text.value = position.coords.longitude ;
+        // latlng.value = position.coords.latitude+","+position.coords.longitude ;
+        let lat = parseFloat(lat_text.value) ;
+        let lng = parseFloat(lng_text.value) ;
+
+        // -----------------------------------------------------
+        let loadingAnimation = document.getElementById('lds-ring');
+            loadingAnimation.classList.add('d-none');
+
+        lat_text.value = lat;
+        lng_text.value  = lng;
+
+        lat_text.setAttribute("readonly", true);
+        lng_text.setAttribute("readonly", true);
+    }
+
+    function clearLocation() {
+        let lat_text = document.querySelector("#lat_user");
+        let lng_text = document.querySelector("#lng_user");
+        lat_text.value = "";
+        lng_text.value = "";
+
+        // Remove the readonly attribute
+        lat_text.removeAttribute("readonly");
+        lng_text.removeAttribute("readonly");
     }
 
 
