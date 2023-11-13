@@ -1306,6 +1306,7 @@ class PartnerController extends Controller
         $country_all_of_user = User::where('organization',$data_auth_user->organization)
             ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
             ->where('country','!=',null)
+            ->where('country','!=',"")
             ->groupBy('country')
             ->get('country');
 
