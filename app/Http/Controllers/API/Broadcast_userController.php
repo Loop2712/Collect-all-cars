@@ -37,6 +37,7 @@ class Broadcast_userController extends Controller
         $radius_user = $requestData['radius_user'];
 
 
+
         // หา ประเทศของคนใน องค์กร
         $lat = $requestData['lat'];
         $lng = $requestData['lng'];
@@ -68,9 +69,10 @@ class Broadcast_userController extends Controller
 
         if(!empty($user_type)){
             if($user_type == "organization"){
+                // echo "OK เข้า organization";
                 $data_search = User::where('type','line')
                 ->where('organization',$partner_name)
-                ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+                ->when($age_user, function ($query) use ($startDate, $endDate) {
                     return $query->whereBetween('brith', [$startDate, $endDate]);
                 })
                 ->when($gender_user, function ($query, $gender_user) {
@@ -101,9 +103,10 @@ class Broadcast_userController extends Controller
                 })
                 ->get();
             }else{
+                // echo "OK เข้า user_from";
                 $data_search = User::where('type','line')
                 ->where('user_from','LIKE',"%$partner_name%")
-                ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+                ->when($age_user, function ($query) use ($startDate, $endDate) {
                     return $query->whereBetween('brith', [$startDate, $endDate]);
                 })
                 ->when($gender_user, function ($query, $gender_user) {
@@ -135,10 +138,12 @@ class Broadcast_userController extends Controller
                 ->get();
             }
         }else{
+            // echo "OK เข้า else ";
+
             $data_search = User::where('type','line')
             ->where('organization',$partner_name)
             ->orWhere('user_from','LIKE',"%$partner_name%")
-            ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+            ->when($age_user, function ($query) use ($startDate, $endDate) {
                 return $query->whereBetween('brith', [$startDate, $endDate]);
             })
             ->when($gender_user, function ($query, $gender_user) {
@@ -170,6 +175,7 @@ class Broadcast_userController extends Controller
             ->get();
         }
 
+        // exit;
         return $data_search ;
 
     }
