@@ -174,19 +174,19 @@ class Broadcast_userController extends Controller
 
     }
 
-    function haversineDistance($lat1, $lng1, $lat2, $lng2) {
-        $earthRadius = 6371; // รัศมีของโลก (หน่วยกิโลเมตร)
+    // function haversineDistance($lat1, $lng1, $lat2, $lng2) {
+    //     $earthRadius = 6371; // รัศมีของโลก (หน่วยกิโลเมตร)
 
-        $dLat = deg2rad($lat2 - $lat1);
-        $dLng = deg2rad($lng2 - $lng1);
+    //     $dLat = deg2rad($lat2 - $lat1);
+    //     $dLng = deg2rad($lng2 - $lng1);
 
-        $a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($dLng / 2) * sin($dLng / 2);
-        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+    //     $a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($dLng / 2) * sin($dLng / 2);
+    //     $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
 
-        $distance = $earthRadius * $c; // ระยะห่างในหน่วยกิโลเมตร
+    //     $distance = $earthRadius * $c; // ระยะห่างในหน่วยกิโลเมตร
 
-        return $distance;
-    }
+    //     return $distance;
+    // }
 
 
     function send_content_BC_by_user(Request $request)

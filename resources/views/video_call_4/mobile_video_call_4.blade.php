@@ -1746,11 +1746,11 @@
         // local_join
         window.onload = function ()
         {
-            let people4 = 3;
-            if (people4 >= 4) {
-                alert("จำนวนผู้ใช้ในห้องสนทนาสูงสุดแล้ว");
-                window.history.back();
-            }
+            // let people4 = 3;
+            // if (people4 >= 4) {
+            //     alert("จำนวนผู้ใช้ในห้องสนทนาสูงสุดแล้ว");
+            //     window.history.back();
+            // }
             // Listen to the Join button click event.
             document.getElementById("join").onclick = async function (user_id)
             {
