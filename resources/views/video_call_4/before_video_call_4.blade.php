@@ -292,7 +292,7 @@
                         </div>
                         <h5 class="w-100">{{Auth::user()->name}} และอีก 2 คนในห้องสนทนา</h5>
                         @php
-                            $inRoomPeople = 4;
+                            $inRoomPeople = 0;
                         @endphp
                         @if ($inRoomPeople < 4)
                             <br>
