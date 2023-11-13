@@ -553,14 +553,6 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                                                 <textarea class="form-control" id="detail" name="detail" rows="4" placeholder="เพิ่มข้อความของคุณที่นี่" oninput="document.querySelector('#add_text_content').innerHTML = document.querySelector('#detail').value ;check_send_content();"></textarea>
                                             </div>
 
-                                            <div class="col-12 d-none">
-                                                <div class="form-group {{ $errors->has('detail') ? 'has-error' : ''}}">
-                                                    <label for="detail" class="control-label">{{ 'คำอธิบาย' }}</label>
-                                                    <!-- <span class="text-secondary">(ไม่แสดงต่อผู้ใช้)</span> -->
-                                                    <textarea class="form-control" name="detail" rows="4" type="text" id="detail" value="" onchange="check_send_content();"></textarea>
-                                                    <br>
-                                                </div>
-                                            </div>
                                             <div id="div_user_unique" class="col-12 d-none d-flex align-items-center">
                                                 <input class="" name="user_unique" type="checkbox" id="user_unique" value="" style="border-radius:50px;width:20px;height: 20px;cursor: pointer;" onclick="check_user_unique();">
                                                     &nbsp;<label for="user_unique" style="cursor: pointer;">ไม่ซ้ำกับผู้ใช้ที่เคยส่งแล้ว</label>

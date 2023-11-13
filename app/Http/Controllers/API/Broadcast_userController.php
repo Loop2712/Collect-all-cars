@@ -299,7 +299,6 @@ class Broadcast_userController extends Controller
             $img_content_h = $img_content->height();
         }
 
-
         // ส่ง content
         if (!empty($arr_user_id)) {
             for ($xi=0; $xi < count($arr_user_id); $xi++) {
