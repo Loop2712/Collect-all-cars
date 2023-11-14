@@ -1355,10 +1355,12 @@ switch ($sos_data->status) {
                         .then(result => {
                             // console.log("result");
                             // console.log(result);
-                            hexcolor = result.hexcolor;
-                            name_remote_user_unpublished = result.name_user;
-                            type_remote_user_unpublished = result.user_type;
-
+                            // hexcolor = result.hexcolor;
+                            hexcolor = "#2b2d26";
+                            // name_remote_user_unpublished = result.name_user;
+                            // type_remote_user_unpublished = result.user_type;
+                            name_remote_user_unpublished = "guest";
+                            type_remote_user_unpublished = "guest";
                             if(result.photo){
                                 profile_remote_user_unpublished = "{{ url('/storage') }}" + "/" + result.photo;
                             }else if(!result.photo && result.avatar){
@@ -1481,9 +1483,12 @@ switch ($sos_data->status) {
                                 .then(result => {
                                     // console.log("result");
                                     // console.log(result);
-                                    name_remote_user_joined = result.name_user;
-                                    type_remote_user_joined = result.user_type
-                                    hexcolor = result.hexcolor;
+                                    // name_remote_user_joined = result.name_user;
+                                    // type_remote_user_joined = result.user_type
+                                    // hexcolor = result.hexcolor;
+                                    hexcolor = "#2b2d26";
+                                    name_remote_user_unpublished = "guest";
+                                    type_remote_user_unpublished = "guest";
                                     if(result.photo){
                                         profile_remote_user_joined = "{{ url('/storage') }}" + "/" + result.photo;
                                     }else if(!result.photo && result.avatar){
