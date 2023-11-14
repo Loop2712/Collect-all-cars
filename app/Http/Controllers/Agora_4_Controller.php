@@ -444,8 +444,9 @@ class Agora_4_Controller extends Controller
         }
 
         $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , $type_text)->first();
-        // $agora_chat_people = 0;
-        if($agora_chat->member_in_room < 4 || $agora_chat->member_in_room == null)
+        $agora_chat_people = 0;
+        // if($agora_chat->member_in_room < 4 || $agora_chat->member_in_room == null)
+        if($agora_chat_people < 4)
         {
             $check_status = "ok";
         }else{
