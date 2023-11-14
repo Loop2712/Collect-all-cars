@@ -333,6 +333,7 @@ class Agora_4_Controller extends Controller
 
             // // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
             // $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+            $hexcolor = '#2b2d31';
         } else {
             $hexcolor = '#2b2d31';
         }
@@ -424,6 +425,7 @@ class Agora_4_Controller extends Controller
 
             // // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
             // $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+            $hexcolor = '#2b2d31';
         } else {
             $hexcolor = '#2b2d26';
         }

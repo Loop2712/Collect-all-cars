@@ -1255,9 +1255,13 @@ switch ($sos_data->status) {
                         console.log("result published");
                         console.log(result);
 
-                        bg_remote = result.hexcolor;
-                        name_remote = result.name_user;
-                        type_remote = result.user_type;
+                        // bg_remote = result.hexcolor;
+                        // name_remote = result.name_user;
+                        // type_remote = result.user_type;
+
+                        bg_remote = "#2b2d31";
+                        name_remote = "guest";
+                        type_remote = "guest";
 
                         console.log("โหลดข้อมูล RemoteUser สำเร็จ published");
 
