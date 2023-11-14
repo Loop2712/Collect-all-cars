@@ -320,19 +320,19 @@ class Agora_4_Controller extends Controller
 
 
         if (!empty($local_data->photo)) {
-            $text_path = url('storage') . '/' . $local_data->photo;
-            $img = Image::make( $text_path );
-            // get file path
-            $aaa = $img->basePath();
-            // โหลดข้อมูลขนาดของรูปภาพ
-            list($width, $height) = getimagesize($text_path);
+            // $text_path = url('storage') . '/' . $local_data->photo;
+            // $img = Image::make( $text_path );
+            // // get file path
+            // $aaa = $img->basePath();
+            // // โหลดข้อมูลขนาดของรูปภาพ
+            // list($width, $height) = getimagesize($text_path);
 
-            // หาจุดตรงกลาง
-            $centerX = $width / 2;
-            $centerY = $height / 2;
+            // // หาจุดตรงกลาง
+            // $centerX = $width / 2;
+            // $centerY = $height / 2;
 
-            // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
-            $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+            // // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
+            // $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
         } else {
             $hexcolor = '#2b2d31';
         }
@@ -411,19 +411,19 @@ class Agora_4_Controller extends Controller
         }
 
         if (!empty($remote_data->photo)) {
-            $text_path = url('storage') . '/' . $remote_data->photo;
-            $img = Image::make( $text_path );
-            // get file path
-            $aaa = $img->basePath();
-            // โหลดข้อมูลขนาดของรูปภาพ
-            list($width, $height) = getimagesize($text_path);
+            // $text_path = url('storage') . '/' . $remote_data->photo;
+            // $img = Image::make( $text_path );
+            // // get file path
+            // $aaa = $img->basePath();
+            // // โหลดข้อมูลขนาดของรูปภาพ
+            // list($width, $height) = getimagesize($text_path);
 
-            // หาจุดตรงกลาง
-            $centerX = $width / 2;
-            $centerY = $height / 2;
+            // // หาจุดตรงกลาง
+            // $centerX = $width / 2;
+            // $centerY = $height / 2;
 
-            // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
-            $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+            // // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
+            // $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
         } else {
             $hexcolor = '#2b2d26';
         }
