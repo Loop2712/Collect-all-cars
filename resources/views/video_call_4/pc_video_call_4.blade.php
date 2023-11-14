@@ -958,14 +958,14 @@ switch ($sos_data->status) {
     var sos_id = '{{ $sos_id }}';
     var type_video_call = '{{ $type }}';
 
-    var appId = '{{ env("AGORA_APP_ID_MITHCARE") }}';
-    var appCertificate = '{{ env("AGORA_APP_CERTIFICATE_MITHCARE") }}';
+    var appId = '{{ env("AGORA_APP_ID") }}';
+    var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
 
     if (appId.length === 0 || appCertificate.length === 0) {
         let loop7 = 7;
         for (let index = 0; index < loop7; index++) {
-            appId = '{{ env("AGORA_APP_ID_MITHCARE") }}';
-            appCertificate = '{{ env("AGORA_APP_CERTIFICATE_MITHCARE") }}';
+            appId = '{{ env("AGORA_APP_ID") }}';
+            appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
         }
     }
 

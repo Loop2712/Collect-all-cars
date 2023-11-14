@@ -205,8 +205,8 @@ class Agora_4_Controller extends Controller
             $appID = $request->appId;
             $appCertificate = $request->appCertificate;
         } else {
-            $appID = env('AGORA_APP_ID_MITHCARE');
-            $appCertificate = env('AGORA_APP_CERTIFICATE_MITHCARE');
+            $appID = env('AGORA_APP_ID');
+            $appCertificate = env('AGORA_APP_CERTIFICATE');
         }
 
         $data_user = User::where('id' ,$request->user_id)->first();
