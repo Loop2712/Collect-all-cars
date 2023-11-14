@@ -321,7 +321,7 @@ class Agora_4_Controller extends Controller
 
         if (!empty($local_data->photo)) {
             // $text_path = url('storage') . '/' . $local_data->photo;
-            $text_path = "https://www.viicheck.com/img/logo/logo-viicheck-outline.png";
+            $text_path = "https://www.viicheck.com/storage/".$local_data->photo;
             $img = Image::make( $text_path );
             // get file path
             $aaa = $img->basePath();
@@ -414,7 +414,7 @@ class Agora_4_Controller extends Controller
 
         if (!empty($remote_data->photo)) {
             // $text_path = url('storage') . '/' . $remote_data->photo;
-            $text_path = "https://www.viicheck.com/img/logo/logo-viicheck-outline.png";
+            $text_path = "https://www.viicheck.com/storage/".$remote_data->photo;
             $img = Image::make( $text_path );
             // get file path
             $aaa = $img->basePath();
