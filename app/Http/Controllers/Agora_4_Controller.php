@@ -320,7 +320,8 @@ class Agora_4_Controller extends Controller
 
 
         if (!empty($local_data->photo)) {
-            $text_path = url('storage') . '/' . $local_data->photo;
+            // $text_path = url('storage') . '/' . $local_data->photo;
+            $text_path = "https://www.viicheck.com/img/logo/logo-viicheck-outline.png";
             $img = Image::make( $text_path );
             // get file path
             $aaa = $img->basePath();
@@ -333,7 +334,7 @@ class Agora_4_Controller extends Controller
 
             // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
             $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
-            // $hexcolor = '#2b2d31';
+            $hexcolor = '#2b2d31';
         } else {
             $hexcolor = '#2b2d31';
         }
@@ -412,7 +413,8 @@ class Agora_4_Controller extends Controller
         }
 
         if (!empty($remote_data->photo)) {
-            $text_path = url('storage') . '/' . $remote_data->photo;
+            // $text_path = url('storage') . '/' . $remote_data->photo;
+            $text_path = "https://www.viicheck.com/img/logo/logo-viicheck-outline.png";
             $img = Image::make( $text_path );
             // get file path
             $aaa = $img->basePath();
