@@ -1256,12 +1256,12 @@ switch ($sos_data->status) {
                         console.log(result);
 
                         // bg_remote = result.hexcolor;
-                        // name_remote = result.name_user;
-                        // type_remote = result.user_type;
+                        name_remote = result.name_user;
+                        type_remote = result.user_type;
 
                         bg_remote = "#2b2d31";
-                        name_remote = "guest";
-                        type_remote = "guest";
+                        // name_remote = "guest";
+                        // type_remote = "guest";
 
                         console.log("โหลดข้อมูล RemoteUser สำเร็จ published");
 
@@ -1361,10 +1361,10 @@ switch ($sos_data->status) {
                             // console.log(result);
                             // hexcolor = result.hexcolor;
                             hexcolor = "#2b2d26";
-                            // name_remote_user_unpublished = result.name_user;
-                            // type_remote_user_unpublished = result.user_type;
-                            name_remote_user_unpublished = "guest";
-                            type_remote_user_unpublished = "guest";
+                            name_remote_user_unpublished = result.name_user;
+                            type_remote_user_unpublished = result.user_type;
+                            // name_remote_user_unpublished = "guest";
+                            // type_remote_user_unpublished = "guest";
                             if(result.photo){
                                 profile_remote_user_unpublished = "{{ url('/storage') }}" + "/" + result.photo;
                             }else if(!result.photo && result.avatar){
@@ -1487,12 +1487,12 @@ switch ($sos_data->status) {
                                 .then(result => {
                                     // console.log("result");
                                     // console.log(result);
-                                    // name_remote_user_joined = result.name_user;
-                                    // type_remote_user_joined = result.user_type
+                                    name_remote_user_joined = result.name_user;
+                                    type_remote_user_joined = result.user_type
                                     // hexcolor = result.hexcolor;
                                     hexcolor = "#2b2d26";
-                                    name_remote_user_unpublished = "guest";
-                                    type_remote_user_unpublished = "guest";
+                                    // name_remote_user_unpublished = "guest";
+                                    // type_remote_user_unpublished = "guest";
                                     if(result.photo){
                                         profile_remote_user_joined = "{{ url('/storage') }}" + "/" + result.photo;
                                     }else if(!result.photo && result.avatar){
