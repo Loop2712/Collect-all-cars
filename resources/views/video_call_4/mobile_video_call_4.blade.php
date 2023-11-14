@@ -1157,8 +1157,8 @@
             .then(response => response.json())
             .then(result => {
 
-                bg_local = result.hexcolor;
-
+                // bg_local = result.hexcolor;
+                bg_local = "#000000";
                 name_local = result.name_user;
                 type_local = result.user_type;
 
@@ -1415,7 +1415,8 @@
                         // console.log("result published ---");
                         // console.log(result);
 
-                        bg_remote = result.hexcolor;
+                        // bg_remote = result.hexcolor;
+                        bg_remote = "#000000";
                         name_remote = result.name_user;
                         type_remote = result.user_type;
 
@@ -1513,7 +1514,8 @@
                         .then(result => {
                             // console.log("result");
                             // console.log(result);
-                            hexcolor = result.hexcolor;
+                            // hexcolor = result.hexcolor;
+                            hexcolor = "#000000";
                             name_remote_user_unpublished = result.name_user;
                             type_remote_user_unpublished = result.user_type;
 
@@ -1641,7 +1643,8 @@
                                     // console.log(result);
                                     name_remote_user_joined = result.name_user;
                                     type_remote_user_joined = result.user_type
-                                    hexcolor = result.hexcolor;
+                                    // hexcolor = result.hexcolor;
+                                    hexcolor = "#000000";
                                     if(result.photo){
                                         profile_remote_user_joined = "{{ url('/storage') }}" + "/" + result.photo;
                                     }else if(!result.photo && result.avatar){
