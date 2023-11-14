@@ -1255,11 +1255,11 @@ switch ($sos_data->status) {
                         console.log("result published");
                         console.log(result);
 
-                        // bg_remote = result.hexcolor;
+                        bg_remote = result.hexcolor;
                         name_remote = result.name_user;
                         type_remote = result.user_type;
 
-                        bg_remote = "#2b2d31";
+                        // bg_remote = "#2b2d31";
                         // name_remote = "guest";
                         // type_remote = "guest";
 
@@ -1489,8 +1489,8 @@ switch ($sos_data->status) {
                                     // console.log(result);
                                     name_remote_user_joined = result.name_user;
                                     type_remote_user_joined = result.user_type
-                                    // hexcolor = result.hexcolor;
-                                    hexcolor = "#2b2d26";
+                                    hexcolor = result.hexcolor;
+                                    // hexcolor = "#2b2d26";
                                     // name_remote_user_unpublished = "guest";
                                     // type_remote_user_unpublished = "guest";
                                     if(result.photo){
