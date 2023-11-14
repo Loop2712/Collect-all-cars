@@ -1300,13 +1300,13 @@ switch ($sos_data->status) {
                 channelParameters.remoteAudioTrack = user.audioTrack;
                 channelParameters.remoteAudioTrack.play();
 
-                if(user.hasAudio == false){
-                    // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
-                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
-                }else{
-                    // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
-                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-solid fa-microphone"></i>';
-                }
+                // if(user.hasAudio == false){
+                //     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
+                //     document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
+                // }else{
+                //     // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
+                //     document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-solid fa-microphone"></i>';
+                // }
 
                 //ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
                 agoraEngine.on("volume-indicator", volumes => {
@@ -1370,13 +1370,13 @@ switch ($sos_data->status) {
                             create_dummy_videoTrack(user ,name_remote_user_unpublished ,type_remote_user_unpublished ,profile_remote_user_unpublished, hexcolor);
 
                             // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
-                            if(user.hasVideo == false){
-                                // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
-                                document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
-                            }else{
-                                // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
-                                document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-solid fa-video"></i>';
-                            }
+                            // if(user.hasVideo == false){
+                            //     // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
+                            //     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
+                            // }else{
+                            //     // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
+                            //     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-solid fa-video"></i>';
+                            // }
 
                             // if(user.hasAudio == false){
                             //     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
@@ -1421,15 +1421,15 @@ switch ($sos_data->status) {
                     })
                 }
 
-                if(user.hasAudio == false){
-                    console.log("if unpublished");
-                    // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
-                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
-                }else{
-                    console.log("else unpublished");
-                    // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
-                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-solid fa-microphone"></i>';
-                }
+                // if(user.hasAudio == false){
+                //     console.log("if unpublished");
+                //     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
+                //     document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
+                // }else{
+                //     console.log("else unpublished");
+                //     // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
+                //     document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-solid fa-microphone"></i>';
+                // }
 
             }
 
@@ -1501,10 +1501,10 @@ switch ($sos_data->status) {
                                     //เช็คว่าไมค์ของเขาเปิดหรือไม่
                                     if(dummy_remote['hasAudio'] == false){ //ถ้า remote คนนี้ ไม่ได้เปิดไมไว้ --> ไปสร้าง div_dummy
                                         // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
-                                        document.querySelector('#mic_remote_' + dummy_remote.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
+                                        // document.querySelector('#mic_remote_' + dummy_remote.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
                                     }else{
                                         // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
-                                        document.querySelector('#mic_remote_' + dummy_remote.uid).innerHTML = '<i class="fa-solid fa-microphone"></i>';
+                                        // document.querySelector('#mic_remote_' + dummy_remote.uid).innerHTML = '<i class="fa-solid fa-microphone"></i>';
 
                                         agoraEngine.on("volume-indicator", volumes => {
 
