@@ -3676,7 +3676,7 @@
 
                     // วันที่และเวลาที่กำหนด
                     // let targetDate = new Date(response['data']);
-                    let targetDate = new Date('2023-11-14T9:30:00');
+                    let targetDate = new Date('2023-11-14T09:30:00');
                     let targetTime = targetDate.getTime();
 
                     // คำนวณเวลาที่ผ่านไปในมิลลิวินาที
