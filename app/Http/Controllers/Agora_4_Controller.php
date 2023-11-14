@@ -359,7 +359,7 @@ class Agora_4_Controller extends Controller
         $data = [];
         $data['photo'] = $remote_data->photo;
         $data['avatar'] = $remote_data->avatar;
-        echo $remote_data->photo;
+
         if($type == 'sos_1669'){
             $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
             $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
@@ -415,6 +415,7 @@ class Agora_4_Controller extends Controller
         if (!empty($remote_data->photo)) {
             // $text_path = url('storage') . '/' . $remote_data->photo;
             $text_path = "https://www.viicheck.com/storage/".$remote_data->photo;
+            echo $text_path;
             $img = Image::make( $text_path );
             // get file path
             $aaa = $img->basePath();
