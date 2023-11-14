@@ -1272,13 +1272,13 @@ switch ($sos_data->status) {
                     console.log("โหลดข้อมูล RemoteUser ล้มเหลว published");
                 });
 
-                if(user.hasVideo == false){
-                    // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
-                    document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
-                }else{
-                    // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
-                    document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-solid fa-video"></i>';
-                }
+                // if(user.hasVideo == false){
+                //     // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
+                //     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
+                // }else{
+                //     // เปลี่ยน ไอคอนวิดีโอเป็น เปิด
+                //     document.querySelector('#camera_remote_' + user.uid).innerHTML = '<i class="fa-solid fa-video"></i>';
+                // }
 
                 // if(user.hasAudio == false){
                 //     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด

@@ -723,7 +723,7 @@
                     <i class="fa-duotone fa-camera-rotate" style="--fa-primary-color: #26076e; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>
                 </div>
 
-                <div class="btn btnSpecial btn_leave" id="addButton">
+                <div class="btn btnSpecial btn_leave d-none" id="addButton">
                     <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
                 </div>
                 {{-- <button class="btn btnSpecial " onclick="alertText()">
