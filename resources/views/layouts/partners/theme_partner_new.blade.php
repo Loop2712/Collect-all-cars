@@ -880,6 +880,9 @@
 									<li>
 										<a href="{{ url('/data_1669_operating_unit') }}"><i class="fa-solid fa-user-plus"></i> หน่วยปฏิบัติการ </a>
 									</li>
+                                    <li>
+                                        <a href="{{ url('/view_map_officer_area') }}" target="blank"><i class="fa-solid fa-map-location-dot"></i> แผนที่ </a>
+                                    </li>
 								</ul>
 							@else
                                 <ul class="d-none">

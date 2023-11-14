@@ -34,6 +34,7 @@ use App\Models\Data_1669_operating_officer;
 use App\Models\Data_1669_operating_unit;
 use App\Models\Sos_help_center;
 use App\Models\Province_th;
+use Auth;
 
 class PartnersController extends Controller
 {
@@ -1255,6 +1256,13 @@ class PartnersController extends Controller
 
         return view('view_map_officer_all', compact('data_officer_all','data_officer_ready','data_officer_helping','data_officer_Not_ready','arr_vehicle','orderedDistricts','data_officer_gotohelp','sos_success','data_area'));
 
+    }
+
+    function view_map_officer_area(){
+
+        $area = Auth::user()->sub_organization ;
+
+        return view('view_map_officer_area' , compact('area'));
     }
 
     function draw_select_area($select_area){
