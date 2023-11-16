@@ -989,10 +989,11 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                             <label for="radius_user" class="form-label">ภายในรัศมี .. กม.</label>
                             <select name="radius_user" class="notranslate form-control select-form" id="radius_user" onchange="find_lat_lng();show_fade_div();">
                                 <option class="translate" value="" selected> - เลือก ภายในรัศมี .. กม. - </option>
-                                <option class="translate" value="15">15 กิโลเมตร</option>
-                                <option class="translate" value="30">30 กิโลเมตร</option>
+                                <option class="translate" value="2">2 กิโลเมตร</option>
+                                <option class="translate" value="5">5 กิโลเมตร</option>
+                                <option class="translate" value="10">10 กิโลเมตร</option>
+                                <option class="translate" value="25">25 กิโลเมตร</option>
                                 <option class="translate" value="50">50 กิโลเมตร</option>
-                                <option class="translate" value="1000">1000 กิโลเมตร</option>
                             </select>
                         </div>
 

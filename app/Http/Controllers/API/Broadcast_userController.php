@@ -14,7 +14,7 @@ use App\Models\Ads_content;
 use App\Models\Partner_premium;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Http\Controllers\API\ImageController;
-
+use App\Models\Sos_map;
 
 class Broadcast_userController extends Controller
 {
@@ -24,6 +24,7 @@ class Broadcast_userController extends Controller
         // $data = json_decode($json, true);
 
         $requestData = $request->all();
+
         $partner_name = $requestData['partner_name'];
         $user_type = $requestData['user_type'];
         $gender_user = $requestData['gender_user'];
@@ -35,8 +36,6 @@ class Broadcast_userController extends Controller
         $province_user = $requestData['province_user'];
         $district_user = $requestData['district_user'];
         $radius_user = $requestData['radius_user'];
-
-
 
         // หา ประเทศของคนใน องค์กร
         $lat = $requestData['lat'];

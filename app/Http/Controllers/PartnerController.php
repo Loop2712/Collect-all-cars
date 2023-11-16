@@ -28,6 +28,7 @@ use App\Models\Time_zone;
 use App\Models\Check_in;
 use App\Models\Data_1669_officer_command;
 use App\Models\Disease;
+use App\Models\Sos_map_title;
 use Intervention\Image\ImageManagerStatic as Image;
 
 
@@ -1409,8 +1410,135 @@ class PartnerController extends Controller
     }
 
     function broadcast_by_sos(Request $request){
-        echo "broadcast_by_sos" ;
-        exit();
+
+        $data_auth_user = Auth::user();
+
+        // หา name_area ใน sos_maps
+        $name_area_sos = Sos_map::where('area',$data_auth_user->organization)
+            ->where('name_area','!=',null)
+            ->where('name_area','!=',"")
+            ->groupBy('name_area')
+            ->get('name_area');
+
+        // หา title ใน sos_map_title -------------------------------------------
+        $title_sos_arr = [];
+        $title_sos_1 = Sos_map_title::where('name_partner',$data_auth_user->organization)
+            ->where('status',"active")
+            ->get('title');
+
+            foreach ($title_sos_1 as $key1) {
+                $title_sos_arr[] = $key1->title;
+            }
+        // จบ title ใน sos_map_title --------------------------------------------
+
+        // หา ประเทศของคนใน องค์กร
+        $country_all_of_user = User::where('organization',$data_auth_user->organization)
+            ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
+            ->where('country','!=',null)
+            ->where('country','!=',"")
+            ->groupBy('country')
+            ->get('country');
+
+        // หา nationalitie ของคนใน องค์กร
+        $nationalitie_all_of_user = User::where('nationalitie','!=',null)
+            ->where('organization',$data_auth_user->organization)
+            ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
+            ->groupBy('nationalitie')
+            ->select('nationalitie')
+            ->get();
+
+        // หา language ของคนใน องค์กร
+        $language_all_of_user = User::where('language','!=',null)
+            ->where('organization',$data_auth_user->organization)
+            ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
+            ->groupBy('language')
+            ->select('language')
+            ->get();
+
+        // หา time_zone ของคนใน องค์กร
+        $time_zone_all_of_user = User::where('time_zone','!=',null)
+            ->where('organization',$data_auth_user->organization)
+            ->orWhere('user_from','LIKE',"%$data_auth_user->user_from%")
+            ->groupBy('time_zone')
+            ->select('time_zone')
+            ->get();
+
+        $data_partner = Partner::where("name", $data_auth_user->organization)
+            ->where("name_area", null)
+            ->first();
+
+        $partner_premium = Partner_premium::where("name_partner",$data_partner->name)->first();
+
+        $BC_by_user_max = $partner_premium->BC_by_user_max ;
+        if(!empty($partner_premium)){
+            // USER
+            $BC_by_user_max = $partner_premium->BC_by_user_max ;
+            $name_partner = $partner_premium->name_partner ;
+            $partner_id = $partner_premium->id_partner ;
+
+            if ($partner_premium->BC_by_user_max == null) {
+                $BC_by_user_sent = 0 ;
+            }else{
+                $BC_by_user_sent = $partner_premium->BC_by_user_sent ;
+            }
+
+            $ads_contents = Ads_content::where('name_partner' , $data_partner->name)->where('type_content' , 'BC_by_user')->get();
+
+            // broadcast ที่ส่งหาผู้ใช้แบบไม่ซ้ำ
+            for ($i=0; $i < count($ads_contents); $i++) {
+                if(!empty($ads_contents[$i]['show_user'])){
+                    $all_Explode = json_decode($ads_contents[$i]['show_user']);
+
+                    $counts = array_count_values($all_Explode); // นับโดยสนคนซ้ำ
+                    $all_counts = 0;
+                    foreach ($counts as $key) {
+                        $all_counts++;
+                    }
+
+                    $ads_contents[$i]['count_show_user'] = $all_counts; // ส่งหาผู้ใช้แบบไม่ซ้ำทั้งหมด
+                }else{
+                    $ads_contents[$i]['count_show_user'] = 0;
+                }
+            }
+
+            // broadcast ที่มีคนดู
+            for ($i=0; $i < count($ads_contents); $i++) {
+                if(!empty($ads_contents[$i]['user_click'])){
+                    $user_click_Explode = json_decode($ads_contents[$i]['user_click']);
+
+                    $counts_amount_user_click = count($user_click_Explode); // จำนวนคนคลิ๊ก โดยไม่สนคนซ้ำ
+
+                    $count_user_click = array_count_values($user_click_Explode); // จำนวนคนคลิ๊ก โดยสนคนซ้ำ
+                    $user_click = 0;
+                    foreach ($count_user_click as $key) {
+                        $user_click++;
+                    }
+
+                    $ads_contents[$i]['count_user_click'] = $user_click;  // จำนวนคนคลิ๊ก แบบไม่รวมคนซ้ำ
+                    $ads_contents[$i]['count_amount_user_click'] = $counts_amount_user_click; // จำนวนคนคลิ๊ก แบบรวมคนซ้ำ
+                }else{
+                    $ads_contents[$i]['count_user_click'] = 0;
+                    $ads_contents[$i]['count_amount_user_click'] = 0;
+                }
+            }
+
+            $data_sos = Sos_map::where('area' , $data_partner->name)->get();
+            $data_user_from_sos = [];
+
+            for ($a=0; $a < count($data_sos); $a++) {
+                $data_user_from_sos[] = User::where('id',$data_sos[$a]['user_id'])->first();
+            }
+
+            // ยังไม่ได้ใช้
+            $data_users_organization = User::where("organization", $data_partner->name)->get();
+            $data_user_from = User::where("user_from", 'LIKE' , "%$data_partner->name%")->get();
+
+            return view('partner.broadcast.broadcast_by_sos', compact('ads_contents','title_sos_arr','name_area_sos','data_user_from_sos','name_partner','partner_id','BC_by_user_max','BC_by_user_sent','country_all_of_user','time_zone_all_of_user','language_all_of_user','nationalitie_all_of_user'));
+        }else{
+            return redirect('404');
+
+        }
+
     }
 
     function broadcast_by_car(Request $request){

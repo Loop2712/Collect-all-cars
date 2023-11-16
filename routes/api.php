@@ -100,6 +100,9 @@ Route::post('/send_content_BC_by_check_in','API\API_Broadcast@send_content_BC_by
 // user
 Route::post('/search_data_broadcast_by_user','API\Broadcast_userController@search_data_broadcast_by_user');
 Route::post('/send_content_BC_by_user','API\Broadcast_userController@send_content_BC_by_user');
+//
+Route::post('/search_data_broadcast_by_sos','API\Broadcast_sosController@search_data_broadcast_by_sos');
+Route::post('/send_content_BC_by_sos','API\Broadcast_sosController@send_content_BC_by_sos');
 ///////////////////////////
 ////// END BROADCAST//////
 //////////////////////////
