@@ -880,9 +880,11 @@
 									<li>
 										<a href="{{ url('/data_1669_operating_unit') }}"><i class="fa-solid fa-user-plus"></i> หน่วยปฏิบัติการ </a>
 									</li>
+                                    @if(Auth::user()->id == "1" or Auth::user()->id == "4")
                                     <li>
                                         <a href="{{ url('/view_map_officer_area') }}" target="blank"><i class="fa-solid fa-map-location-dot"></i> แผนที่ </a>
                                     </li>
+                                    @endif
 								</ul>
 							@else
                                 <ul class="d-none">
