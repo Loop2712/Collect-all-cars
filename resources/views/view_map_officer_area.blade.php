@@ -521,7 +521,10 @@
     	let count_officer_Not_ready = 0 ;
 
     	@php
-    		$data_officer_all = App\Models\Data_1669_operating_officer::where('id' , "!=" , null)->get();
+    		$data_officer_all = Illuminate\Support\Facades\DB::table('data_1669_operating_officers')
+                ->join('data_1669_operating_units', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
+                ->where("data_1669_operating_units.area" , $area)
+                ->get();
     	@endphp
 
         @foreach($data_officer_all as $item)
