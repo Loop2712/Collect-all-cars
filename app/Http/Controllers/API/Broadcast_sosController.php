@@ -60,41 +60,16 @@ class Broadcast_sosController extends Controller
         }
 
 
-
-
         // $radius_user_m = $radius_user * 1000;
 
         if(!empty($user_type)){
             if($user_type == "sos"){
 
-                // หา ช่วงอายุ  --- กำหนดตัวแปร $current_time เป็นเวลาปัจจุบัน
-                $current_time = time();
-
-                if ($created_sos == 'day') {
-                    // หาก $created_sos เท่ากับ 'day' ให้กำหนดเวลาที่ต้องการค้นหา
-                    $target_time = strtotime('-1 day', $current_time);
-                } elseif ($created_sos == 'week') {
-                    // หาก $created_sos เท่ากับ 'week' ให้กำหนดเวลาที่ต้องการค้นหา
-                    $target_time = strtotime('-1 week', $current_time);
-                } elseif ($created_sos == '1month') {
-                    // หาก $created_sos เท่ากับ '1month' ให้กำหนดเวลาที่ต้องการค้นหา
-                    $target_time = strtotime('-1 month', $current_time);
-                } elseif ($created_sos == '3month') {
-                    // หาก $created_sos เท่ากับ '3month' ให้กำหนดเวลาที่ต้องการค้นหา
-                    $target_time = strtotime('-3 months', $current_time);
-                } elseif ($created_sos == '6month') {
-                    // หาก $created_sos เท่ากับ '6month' ให้กำหนดเวลาที่ต้องการค้นหา
-                    $target_time = strtotime('-6 months', $current_time);
-                } else {
-                    // กรณีที่ไม่ตรงกับเงื่อนไขใดเลย
-                    // ให้กำหนด $target_time เป็น 0 เพื่อดึงทั้งหมด
-                    $target_time = 0;
-                }
-
-                //=====================================================
+                //หา title ===============================================
 
                 if ($title_sos != "อื่นๆ") {
-                    $data_title_sos = Sos_map::where('area',$partner_name)->where('title_sos',$title_sos)->get('title_sos');
+                    $data_title_sos = Sos_map::where('area',$partner_name)->where('title_sos',$title_sos)->pluck('title_sos')->toArray();
+
                 }else{
                     $data_sos = Sos_map::where('area',$partner_name)->where('title_sos','!=',null);
 
@@ -103,17 +78,43 @@ class Broadcast_sosController extends Controller
 
                     }
                     // $data_sos->get();
-                    $data_title_sos = $data_sos->get('title_sos');
+                    $data_title_sos = $data_sos->pluck('title_sos')->toArray();
+
                 }
 
+                $data_title_sos_arr = [];
+
+                foreach ($data_title_sos as $item) {
+                    $data_title_sos_arr[] = $item;
+                }
+                //=====================================================
 
 
                 $data_sos = Sos_map::where('area',$partner_name)
                 ->when($type_sos, function ($query, $type_sos) {
                     return $query->where('tag_sos_or_repair', $type_sos);
                 })
-                ->when($created_sos, function ($query, $target_time) {
-                    return $query->where('created_at','>=', $target_time);
+                ->when($created_sos, function ($query, $created_sos) {
+                    $current_time = time();
+
+                    if ($created_sos == 'day') {
+                        $target_time = strtotime('-1 day', $current_time);
+                    } elseif ($created_sos == 'week') {
+                        $target_time = strtotime('-1 week', $current_time);
+                    } elseif ($created_sos == '1month') {
+                        $target_time = strtotime('-1 month', $current_time);
+                    } elseif ($created_sos == '3month') {
+                        $target_time = strtotime('-3 months', $current_time);
+                    } elseif ($created_sos == '6month') {
+                        $target_time = strtotime('-6 months', $current_time);
+                    } else {
+                        $target_time = 0;
+                    }
+
+                    $startDate = date('Y-m-d H:i:s', $target_time);
+                    $endDate = date('Y-m-d H:i:s', $current_time);
+
+                    return $query->whereBetween('created_at', [$startDate, $endDate]);
                 })
                 ->when($amount_sos, function ($query, $amount_sos) {  // หาจำนวนขอความช่วยเหลือ
                     // นับจำนวนข้อมูลที่ตรงกับ user_id
@@ -132,24 +133,20 @@ class Broadcast_sosController extends Controller
                     // ใช้ whereIn เพื่อให้ได้ข้อมูลที่มี user_id ตรงกับที่พบ
                     return $query->whereIn('user_id', $find_user_id_arr);
                 })
-                // ->when($title_sos, function ($query, $data_title_sos) {
-                //     $find_title_arr = [];
-
-                //     foreach ($data_title_sos as $key => $value) {
-                //         $find_title_arr[] = $value;
-                //     }
-                //     return $query->whereIn('title_sos', $find_title_arr);
-                // })
+                ->when($data_title_sos_arr, function ($query, $data_title_sos_arr) {
+                    return $query->whereIn('title_sos', $data_title_sos_arr);
+                })
                 ->when($name_area_sos, function ($query, $name_area_sos) {
                     return $query->where('name_area', $name_area_sos);
                 })
-
+                ->when($lat && $lng && $radius_sos, function ($query) use ($lat, $lng, $radius_sos) {
+                    return $query->selectRaw("*,( 3959 * acos( cos( radians(?) ) * cos( radians( lat ) )* cos( radians( lng ) - radians(?) ) + sin( radians(?) )* sin( radians( lat ) ) ) ) AS distance", [$lat, $lng, $lat])->having("distance", "<", $radius_sos);
+                })
+                ->groupBy('user_id')
                 ->get('user_id');
 
-                // $data_sos['find_user_id_arr'] = $find_user_id_arr;
-                $data_sos['data_title_sos'] = $data_title_sos;
-
                 $data_result = [];
+
 
                 foreach ($data_sos as $item) {
                     // เพิ่ม user_id จาก array หลัก
@@ -163,24 +160,6 @@ class Broadcast_sosController extends Controller
 
                         // เพิ่มผลลัพธ์ลงใน $data_result
                         $data_result[] = $data_search;
-                    }
-
-                    // เพิ่ม user_id จาก array data_title_sos (ถ้ามี)
-                    if (isset($item['data_title_sos']) && is_array($item['data_title_sos'])) {
-                        foreach ($item['data_title_sos'] as $sub_item) {
-                            // ตรวจสอบว่า 'user_id' มีอยู่หรือไม่
-                            if (isset($sub_item['user_id'])) {
-                                $sub_user_id_to_search = $sub_item['user_id'];
-
-                                // ทำการค้นหา user จากฐานข้อมูล
-                                $sub_data_search = User::where('type', 'line')
-                                    ->where('id', $sub_user_id_to_search)
-                                    ->first();
-
-                                // เพิ่มผลลัพธ์ลงใน $data_result
-                                $data_result[] = $sub_data_search;
-                            }
-                        }
                     }
 
                 }

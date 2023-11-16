@@ -387,6 +387,10 @@ animation: myAnim 1s ease 0s 1 normal forwards;
     .item-content:hover .icon-circle-hover{
         transform: scale(1.2);
         opacity: 1;
+    }.content-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
     #lat_lng_div {
         display: none;
@@ -1326,8 +1330,8 @@ animation: myAnim 1s ease 0s 1 normal forwards;
 
                         let div_data_name = `<div class="col-12 col-md-3 col-lg-3 card main-shadow item-content  m-1" onclick="click_select('`+result[i]['id']+`')" id="div_result_content_count_`+content_count+`">
                                 <div class="content-header">
-                                    <i id="btn_select_user_id_`+result[i]['id']+`" name="i_btn_select_`+content_count+`" data="`+result[i]['id']+`" class="far fa-circle btn"></i>
                                     <span class="name-user"><b class="h5">`+ result[i]['name'] +`</b></span>
+                                    <i id="btn_select_user_id_`+result[i]['id']+`" name="i_btn_select_`+content_count+`" data="`+result[i]['id']+`" class="far fa-circle btn"></i>
                                 </div>
                                 <div class="content-age">
                                     <span class='text-secondary' style='font-size: 14px;'><b>เพศ :</b> `+ result[i]['sex'] +` <b>อายุ :</b> `+ age_user +`</span>

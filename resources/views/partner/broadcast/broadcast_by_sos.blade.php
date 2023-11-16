@@ -387,6 +387,10 @@ animation: myAnim 1s ease 0s 1 normal forwards;
     .item-content:hover .icon-circle-hover{
         transform: scale(1.2);
         opacity: 1;
+    }.content-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
     #lat_lng_div {
         display: none;
@@ -914,7 +918,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                                     <option class="translate" value="" selected> - ทั้งหมด - </option>
                                     @foreach ($name_area_sos as $name_area)
                                         @if (!empty($name_area->name_area))
-                                            <option class="translate" value="">{{ $name_area->name_area }}</option>
+                                            <option class="translate" value="{{$name_area->name_area}}">{{$name_area->name_area}}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -975,7 +979,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                                             <span class="btn btn-success d-block" onclick="search_data();">ยืนยัน</span>
                                         </div>
                                         <div class="col-md-2 col-2">
-                                            <span class="btn btn-primary" onclick="getLocation()">
+                                            <span class="btn btn-primary" onclick="getLocation('sos')">
                                                 <i class="fa-regular fa-location-dot"></i>
                                             </span>
                                         </div>
@@ -1140,7 +1144,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                                             <span class="btn btn-success d-block" onclick="search_data();">ยืนยัน</span>
                                         </div>
                                         <div class="col-md-2 col-2">
-                                            <span class="btn btn-primary" onclick="getLocation()">
+                                            <span class="btn btn-primary" onclick="getLocation('user')">
                                                 <i class="fa-regular fa-location-dot"></i>
                                             </span>
                                         </div>
@@ -1388,13 +1392,13 @@ animation: myAnim 1s ease 0s 1 normal forwards;
         let lat_user = document.querySelector("#lat_user").value;
         let lng_user = document.querySelector("#lng_user").value;
 
-        let title_sos_arr = [];
+        let title_data_sos_arr = [];
             @foreach ($title_sos_arr as $title_sos)
                 @if (!empty($title_sos))
-                    title_sos_arr.push("{{$title_sos}}");
+                title_data_sos_arr.push("{{$title_sos}}");
                 @endif
             @endforeach
-            title_sos_arr.push("เหตุด่วนเหตุร้าย","อุบัติเหตุ","ไฟไหม้");
+            title_data_sos_arr.push("เหตุด่วนเหตุร้าย","อุบัติเหตุ","ไฟไหม้");
 
         let lat_sos = document.querySelector("#lat_sos").value;
         let lng_sos = document.querySelector("#lng_sos").value;
@@ -1411,7 +1415,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
             data_search_data = {
                 'partner_name' : partner_name,
                 'user_type' : user_type,
-                'title_sos_arr' : title_sos_arr,
+                'title_sos_arr' : title_data_sos_arr,
                 'name_area_sos' : name_area_sos,
                 'amount_sos' : amount_sos,
                 'type_sos' : type_sos,
@@ -1495,8 +1499,8 @@ animation: myAnim 1s ease 0s 1 normal forwards;
 
                         let div_data_name = `<div class="col-12 col-md-3 col-lg-3 card main-shadow item-content  m-1" onclick="click_select('`+result[i]['id']+`')" id="div_result_content_count_`+content_count+`">
                                 <div class="content-header">
-                                    <i id="btn_select_user_id_`+result[i]['id']+`" name="i_btn_select_`+content_count+`" data="`+result[i]['id']+`" class="far fa-circle btn"></i>
                                     <span class="name-user"><b class="h5">`+ result[i]['name'] +`</b></span>
+                                    <i id="btn_select_user_id_`+result[i]['id']+`" name="i_btn_select_`+content_count+`" data="`+result[i]['id']+`" class="far fa-circle btn float-right"></i>
                                 </div>
                                 <div class="content-age">
                                     <span class='text-secondary' style='font-size: 14px;'><b>เพศ :</b> `+ result[i]['sex'] +` <b>อายุ :</b> `+ age_user +`</span>
@@ -1998,48 +2002,81 @@ animation: myAnim 1s ease 0s 1 normal forwards;
         let lng_input = document.querySelector('#lng_user').value;
     }
 
-    function getLocation() {
+    function getLocation(type) {
         let loadingAnimation = document.getElementById('lds-ring');
             loadingAnimation.classList.remove('d-none');
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(set_now_location);
+            navigator.geolocation.getCurrentPosition(function(position) {
+            set_now_location(position, type);
+        });
         } else {
             x.innerHTML = "Geolocation is not supported by this browser.";
         }
     }
 
-    function set_now_location(position)
+    function set_now_location(position, type)
     {
         let lat_text = document.querySelector("#lat_user");
         let lng_text = document.querySelector("#lng_user");
-        // let latlng = document.querySelector("#latlng");
 
-        lat_text.value = position.coords.latitude ;
-        lng_text.value = position.coords.longitude ;
-        // latlng.value = position.coords.latitude+","+position.coords.longitude ;
-        let lat = parseFloat(lat_text.value) ;
-        let lng = parseFloat(lng_text.value) ;
+        let lat_text_sos = document.querySelector("#lat_sos");
+        let lng_text_sos = document.querySelector("#lng_sos");
+        if (type == "user") {
+            lat_text.value = position.coords.latitude ;
+            lng_text.value = position.coords.longitude ;
+            // latlng.value = position.coords.latitude+","+position.coords.longitude ;
+            let lat = parseFloat(lat_text.value) ;
+            let lng = parseFloat(lng_text.value) ;
 
-        // -----------------------------------------------------
-        let loadingAnimation = document.getElementById('lds-ring');
-            loadingAnimation.classList.add('d-none');
+            // -----------------------------------------------------
+            let loadingAnimation = document.getElementById('lds-ring');
+                loadingAnimation.classList.add('d-none');
 
-        lat_text.value = lat;
-        lng_text.value  = lng;
+            lat_text.value = lat;
+            lng_text.value  = lng;
 
-        lat_text.setAttribute("readonly", true);
-        lng_text.setAttribute("readonly", true);
+            lat_text.setAttribute("readonly", true);
+            lng_text.setAttribute("readonly", true);
+        } else {
+            lat_text_sos.value = position.coords.latitude ;
+            lng_text_sos.value = position.coords.longitude ;
+            // latlng.value = position.coords.latitude+","+position.coords.longitude ;
+            let lat = parseFloat(lat_text_sos.value) ;
+            let lng = parseFloat(lng_text_sos.value) ;
+
+            // -----------------------------------------------------
+            let loadingAnimation = document.getElementById('lds-ring');
+                loadingAnimation.classList.add('d-none');
+
+            lat_text_sos.value = lat;
+            lng_text_sos.value  = lng;
+
+            lat_text_sos.setAttribute("readonly", true);
+            lng_text_sos.setAttribute("readonly", true);
+        }
+
+
+
     }
 
     function clearLocation() {
+        // ล้าง user
         let lat_text = document.querySelector("#lat_user");
         let lng_text = document.querySelector("#lng_user");
         lat_text.value = "";
         lng_text.value = "";
-
         // Remove the readonly attribute
         lat_text.removeAttribute("readonly");
         lng_text.removeAttribute("readonly");
+
+        // ล้าง sos
+        let lat_text_sos = document.querySelector("#lat_sos");
+        let lng_text_sos = document.querySelector("#lng_sos");
+        lat_text_sos.value = "";
+        lng_text_sos.value = "";
+        // Remove the readonly attribute
+        lat_text_sos.removeAttribute("readonly");
+        lng_text_sos.removeAttribute("readonly");
     }
 
 </script>
