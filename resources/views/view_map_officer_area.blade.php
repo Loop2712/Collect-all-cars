@@ -678,57 +678,7 @@
     	let show_amount_sos_black = 0 ;
     	let show_amount_sos_general = 0 ;
 
-    	@foreach($sos_success as $item)
-
-    		switch("{{ $item->form_yellow->rc }}") {
-			  	case "แดง(วิกฤติ)":
-			    	icon_level = image_sos_red ;
-			    	show_amount_sos_red = show_amount_sos_red + 1 ;
-			    break;
-			  	case "เหลือง(เร่งด่วน)":
-			    	icon_level = image_sos_yellow ;
-			    	show_amount_sos_yellow = show_amount_sos_yellow + 1 ;
-			    break;
-			    case "เขียว(ไม่รุนแรง)":
-			    	icon_level = image_sos_green ;
-			    	show_amount_sos_green = show_amount_sos_green + 1 ;
-			    break;
-			    case "ขาว(ทั่วไป)":
-			    	icon_level = image_sos_white ;
-			    	show_amount_sos_white = show_amount_sos_white + 1 ;
-			    break;
-			    case "ดำ":
-			    	icon_level = image_sos_black ;
-			    	show_amount_sos_black = show_amount_sos_black + 1 ;
-			    break;
-			    default:
-			    	icon_level = image_sos_general ;
-			    	show_amount_sos_general = show_amount_sos_general + 1 ;
-			}
-
-			if(type == "{{ $item->form_yellow->rc }}" || type == 'all'){
-
-		        marker_sos = new google.maps.Marker({
-		            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
-		            map: map_show_data_officer_all,
-		            icon: icon_level,
-		        });
-		        markers.push(marker_sos);
-		    }
-		    else if(type == 'general'){
-
-		    	if(!"{{ $item->form_yellow->rc }}"){
-		    		marker_sos = new google.maps.Marker({
-			            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
-			            map: map_show_data_officer_all,
-			            icon: icon_level,
-			        });
-			        markers.push(marker_sos);
-		    	}
-
-		    }
-
-	    @endforeach
+    	
 
 	    let sum_sos = show_amount_sos_red + show_amount_sos_yellow + show_amount_sos_green + show_amount_sos_white + show_amount_sos_black + show_amount_sos_general ;
 
