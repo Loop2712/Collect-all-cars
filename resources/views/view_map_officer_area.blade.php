@@ -764,23 +764,9 @@
 
 		        let contentString = `
 
-			        <div id="content" style="width: 350px; height: auto;">
-				    	<div class="col row" id="bodyContent">
-				    		<div class="col-12">
-				    			<img src="{{ url('storage')}}/{{ $item->photo_user }}" class="rounded-circle" style="width:70px;height:70px;float:left;margin-right:10px;">
-					    		<h5><b>{{ $item->name_officer }}</b></h5>
-					    		<span style="font-size: 16px;">ออกเหตุแล้ว : `+count_go_to_help+`</span>
-				    		</div>
-				    		<div class="col-12">
-				    		<hr>
-				    			<p style="font-size: 18px;">
-				    				<b class="`+class_text_level+`">
-				    					{{ $item->level }}</b> | <b>{{ $item->vehicle_type }}
-				    				</b>
-				    				<br>
-					    			<span style="font-size: 15px;">{{ $item->name }}</span>
-				    			</p>
-				    		</div>
+			        <div id="content" style="width: auto; height: auto;">
+				    	<div id="bodyContent">
+				    		<img src="{{ url('storage')}}/{{ $item->photo_user }}" class="rounded-circle" style="width:45px;height:45px;float:left;margin-right:10px;">
 				    	</div>
 				    </div>
 
