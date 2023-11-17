@@ -348,7 +348,7 @@
 <div class="card_data" style="position:absolute;z-index: 99999;top: 5%;right: 1%;height: 5%!important;">
 	<div class="card-body text-center">
 		<div style="margin-top: -28px;">
-			ช่วยเหลือเสร็จสิ้น <b>{ count($sos_success) }</b> เคส (ทุกพื้นที่)
+			ช่วยเหลือเสร็จสิ้น <b id="count_sos_success"></b> เคส (ทุกพื้นที่)
 		</div>
 	</div>
 </div>
@@ -426,6 +426,23 @@
 
 	document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+    	// ------------ SEARCH DATA ------------ //
+        @php
+    		$sos_success = App\Models\Sos_help_center::where('status', 'เสร็จสิ้น')->get();
+
+    		$data_officer_all = Illuminate\Support\Facades\DB::table('data_1669_operating_officers')
+                ->join('data_1669_operating_units', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
+                ->leftJoin('users' , 'data_1669_operating_officers.user_id','=','users.id')
+                ->where("data_1669_operating_units.area" , $area)
+                ->select('data_1669_operating_officers.*' , 'data_1669_operating_units.*' ,'users.photo as photo_user')
+                ->get();
+    	@endphp
+
+    	// add data to html
+    	document.querySelector('#count_sos_success').innerHTML = "{{ count($sos_success) }}" ;
+
+    	// --------- END SEARCH DATA --------- //
+
         open_map_show_data_officer_all();
     });
 
@@ -433,6 +450,8 @@
     let marker ;
     let marker_sos ;
     let markers = [] ;
+    var bounds;
+    var polygon;
 
     let image_sos_general = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}";
     let image_sos_green = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}";
@@ -476,6 +495,33 @@
             zoom: m_numZoom,
         });
 
+        fetch("{{ url('/') }}/api/view_map_officer_all/" + "{{ $area }}" + "/draw_select_area")
+	        .then(response => response.json())
+	        .then(result => {
+	            // console.log(result);
+
+	            // สร้าง Polygon ใหม่
+	            polygon = new google.maps.Polygon({
+	                paths: JSON.parse(result['polygon']),
+	                strokeColor: "#008450",
+	                strokeOpacity: 0.8,
+	                strokeWeight: 1,
+	                fillColor: "#008450",
+	                fillOpacity: 0.25,
+	            });
+
+	            // กำหนด Polygon ใหม่ให้กับตัวแปร currentPolygon
+	            currentPolygon = polygon;
+
+	            // กำหนดให้ Polygon ใหม่แสดงบนแผนที่
+	            polygon.setMap(map_show_data_officer_all);
+
+	            // Fit map ให้เหมาะสมกับ Polygon ใหม่
+	            bounds = new google.maps.LatLngBounds();
+
+	            set_map_fit_polygon();
+	        });
+
         change_view_data_map("btn_view_officer");
 
     }
@@ -492,7 +538,8 @@
     	console.log('type_view >> ' + type_view);
 
     	if (type_view == "btn_view_officer") {
-    		btn_view_officer();
+    		// btn_view_officer();
+    		view_offiecr_select('status','all');
 
     		document.querySelector('#btn_view_officer').classList.remove('btn-outline-success');
     		document.querySelector('#btn_view_officer').classList.add('btn-success');
@@ -501,7 +548,7 @@
     		document.querySelector('#btn_view_sos').classList.add('btn-outline-danger');
 
     	}else if(type_view == "btn_view_sos"){
-    		// btn_view_sos('all');
+    		btn_view_sos('all');
 
     		document.querySelector('#btn_view_officer').classList.remove('btn-success');
     		document.querySelector('#btn_view_officer').classList.add('btn-outline-success');
@@ -512,115 +559,262 @@
 
     }
 
-    function btn_view_officer(){
-    	// console.log('btn_view_officer');
+    function btn_view_sos(type){
+    	// console.log('btn_view_sos');
+
+    	for (let i = 0; i < markers.length; i++) {
+	        markers[i].setMap(null);
+	    }
+	    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
 
     	let icon_level ;
+
+    	let show_amount_sos_red = 0 ;
+    	let show_amount_sos_yellow = 0 ;
+    	let show_amount_sos_green = 0 ;
+    	let show_amount_sos_white = 0 ;
+    	let show_amount_sos_black = 0 ;
+    	let show_amount_sos_general = 0 ;
+
+    	@foreach($sos_success as $item)
+
+    		switch("{{ $item->form_yellow->rc }}") {
+			  	case "แดง(วิกฤติ)":
+			    	icon_level = image_sos_red ;
+			    	show_amount_sos_red = show_amount_sos_red + 1 ;
+			    break;
+			  	case "เหลือง(เร่งด่วน)":
+			    	icon_level = image_sos_yellow ;
+			    	show_amount_sos_yellow = show_amount_sos_yellow + 1 ;
+			    break;
+			    case "เขียว(ไม่รุนแรง)":
+			    	icon_level = image_sos_green ;
+			    	show_amount_sos_green = show_amount_sos_green + 1 ;
+			    break;
+			    case "ขาว(ทั่วไป)":
+			    	icon_level = image_sos_white ;
+			    	show_amount_sos_white = show_amount_sos_white + 1 ;
+			    break;
+			    case "ดำ":
+			    	icon_level = image_sos_black ;
+			    	show_amount_sos_black = show_amount_sos_black + 1 ;
+			    break;
+			    default:
+			    	icon_level = image_sos_general ;
+			    	show_amount_sos_general = show_amount_sos_general + 1 ;
+			}
+
+			if(type == "{{ $item->form_yellow->rc }}" || type == 'all'){
+
+		        marker_sos = new google.maps.Marker({
+		            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+		            map: map_show_data_officer_all,
+		            icon: icon_level,
+		        });
+		        markers.push(marker_sos);
+		    }
+		    else if(type == 'general'){
+
+		    	if(!"{{ $item->form_yellow->rc }}"){
+		    		marker_sos = new google.maps.Marker({
+			            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+			            map: map_show_data_officer_all,
+			            icon: icon_level,
+			        });
+			        markers.push(marker_sos);
+		    	}
+
+		    }
+
+	    @endforeach
+
+	    let sum_sos = show_amount_sos_red + show_amount_sos_yellow + show_amount_sos_green + show_amount_sos_white + show_amount_sos_black + show_amount_sos_general ;
+
+    	document.querySelector('#show_amount_sos_all').innerHTML = sum_sos;
+    	document.querySelector('#show_amount_sos_red').innerHTML = show_amount_sos_red;
+    	document.querySelector('#show_amount_sos_yellow').innerHTML = show_amount_sos_yellow;
+    	document.querySelector('#show_amount_sos_green').innerHTML = show_amount_sos_green;
+    	document.querySelector('#show_amount_sos_white').innerHTML = show_amount_sos_white;
+    	document.querySelector('#show_amount_sos_black').innerHTML = show_amount_sos_black;
+    	document.querySelector('#show_amount_sos_general').innerHTML = show_amount_sos_general;
+
+    }
+
+    function view_offiecr_select(type , data){
+
+    	// console.log(type);
     	let count_officer_ready = 0 ;
     	let count_officer_helping = 0 ;
     	let count_officer_Not_ready = 0 ;
+    	
+    	for (let i = 0; i < markers.length; i++) {
+	        markers[i].setMap(null);
+	    }
+	    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
 
-    	@php
-    		$data_officer_all = Illuminate\Support\Facades\DB::table('data_1669_operating_officers')
-                ->join('data_1669_operating_units', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
-                ->where("data_1669_operating_units.area" , $area)
-                ->get();
-    	@endphp
+	    let icon_level ;
+	    let i_check = 0 ;
+
+	    let type_select = "";
+	    let class_text_level ;
 
         @foreach($data_officer_all as $item)
 
-        	if("{{ $item->status }}" === "Standby"){
-        		count_officer_ready = count_officer_ready + 1 ;
-        	}else if("{{ $item->status }}" === "Helping"){
-        		count_officer_helping = count_officer_helping + 1 ;
-        	}else{
-        		count_officer_Not_ready = count_officer_Not_ready + 1 ;
-        	}
+        	if(type == "status"){
+		    	type_select = "{{ $item->status }}" ;
+		    }
+		    else if(type == "vehicle_type"){
+		    	type_select = "{{ $item->vehicle_type }}" ;
+		    }
+		    else if(type == 'level'){
+		    	type_select = "{{ $item->level }}" ;
+		    }
 
-        	// FR
-        	if( "{{ $item->level }}" === "FR" ){
-        		switch("{{ $item->vehicle_type }}") {
-				  	case "รถ":
-				    	icon_level = img_green_car ;
-				    break;
-				  	case "อากาศยาน":
-				    	icon_level = img_green_aircraft ;
-				    break;
-				    case "เรือ ป.1":
-				    	icon_level = img_green_ship_1 ;
-				    break;
-				    case "เรือ ป.2":
-				    	icon_level = img_green_ship_2 ;
-				    break;
-				    case "เรือ ป.3":
-				    	icon_level = img_green_ship_3 ;
-				    break;
-				    case "เรือประเภทอื่นๆ":
-				    	icon_level = img_green_ship_other ;
-				    break;
-				}
-        	}
-        	// BLS && ILS 
-        	else if( "{{ $item->level }}" === "BLS" || "{{ $item->level }}" === "ILS"){
-        		switch("{{ $item->vehicle_type }}") {
-				  	case "รถ":
-				    	icon_level = img_yellow_car ;
-				    break;
-				  	case "อากาศยาน":
-				    	icon_level = img_yellow_aircraft ;
-				    break;
-				    case "เรือ ป.1":
-				    	icon_level = img_yellow_ship_1 ;
-				    break;
-				    case "เรือ ป.2":
-				    	icon_level = img_yellow_ship_2 ;
-				    break;
-				    case "เรือ ป.3":
-				    	icon_level = img_yellow_ship_3 ;
-				    break;
-				    case "เรือประเภทอื่นๆ":
-				    	icon_level = img_yellow_ship_other ;
-				    break;
-				}
-        	}
-        	// ALS
-        	else{
-        		switch("{{ $item->vehicle_type }}") {
-				  	case "รถ":
-				    	icon_level = img_red_car ;
-				    break;
-				  	case "อากาศยาน":
-				    	icon_level = img_red_aircraft ;
-				    break;
-				    case "เรือ ป.1":
-				    	icon_level = img_red_ship_1 ;
-				    break;
-				    case "เรือ ป.2":
-				    	icon_level = img_red_ship_2 ;
-				    break;
-				    case "เรือ ป.3":
-				    	icon_level = img_red_ship_3 ;
-				    break;
-				    case "เรือประเภทอื่นๆ":
-				    	icon_level = img_red_ship_other ;
-				    break;
-				}
-        	}
+        	// status = type_officer_status
+        	if(data === type_select || data === "all"){
 
-	        marker = new google.maps.Marker({
-	            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
-	            map: map_show_data_officer_all,
-	            icon: icon_level,
-	        });
-	        markers.push(marker);
-	    @endforeach
+        		i_check = i_check + 1 ;
 
-    	document.querySelector('#count_officer_all').innerHTML = "{{ count($data_officer_all) }}" ;
+	        	// FR
+	        	if( "{{ $item->level }}" === "FR" ){
+	        		switch("{{ $item->vehicle_type }}") {
+					  	case "รถ":
+					    	icon_level = img_green_car ;
+					    break;
+					  	case "อากาศยาน":
+					    	icon_level = img_green_aircraft ;
+					    break;
+					    case "เรือ ป.1":
+					    	icon_level = img_green_ship_1 ;
+					    break;
+					    case "เรือ ป.2":
+					    	icon_level = img_green_ship_2 ;
+					    break;
+					    case "เรือ ป.3":
+					    	icon_level = img_green_ship_3 ;
+					    break;
+					    case "เรือประเภทอื่นๆ":
+					    	icon_level = img_green_ship_other ;
+					    break;
+					}
+
+					class_text_level = "text-success";
+	        	}
+	        	// BLS && ILS 
+	        	else if( "{{ $item->level }}" === "BLS" || "{{ $item->level }}" === "ILS"){
+	        		switch("{{ $item->vehicle_type }}") {
+					  	case "รถ":
+					    	icon_level = img_yellow_car ;
+					    break;
+					  	case "อากาศยาน":
+					    	icon_level = img_yellow_aircraft ;
+					    break;
+					    case "เรือ ป.1":
+					    	icon_level = img_yellow_ship_1 ;
+					    break;
+					    case "เรือ ป.2":
+					    	icon_level = img_yellow_ship_2 ;
+					    break;
+					    case "เรือ ป.3":
+					    	icon_level = img_yellow_ship_3 ;
+					    break;
+					    case "เรือประเภทอื่นๆ":
+					    	icon_level = img_yellow_ship_other ;
+					    break;
+					}
+
+					class_text_level = "text-warning";
+	        	}
+	        	// ALS
+	        	else{
+	        		switch("{{ $item->vehicle_type }}") {
+					  	case "รถ":
+					    	icon_level = img_red_car ;
+					    break;
+					  	case "อากาศยาน":
+					    	icon_level = img_red_aircraft ;
+					    break;
+					    case "เรือ ป.1":
+					    	icon_level = img_red_ship_1 ;
+					    break;
+					    case "เรือ ป.2":
+					    	icon_level = img_red_ship_2 ;
+					    break;
+					    case "เรือ ป.3":
+					    	icon_level = img_red_ship_3 ;
+					    break;
+					    case "เรือประเภทอื่นๆ":
+					    	icon_level = img_red_ship_other ;
+					    break;
+					}
+
+					class_text_level = "text-danger";
+	        	}
+
+		        marker = new google.maps.Marker({
+		            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+		            map: map_show_data_officer_all,
+		            icon: icon_level,
+		        });
+		        markers.push(marker);
+
+		        let go_to_help = "{{ $item->go_to_help }}" ;
+		        let sp_go_to_help = go_to_help.split(go_to_help , ',');
+		        let count_go_to_help = sp_go_to_help.length;
+
+		        let contentString = `
+
+			        <div id="content" style="width: 350px; height: auto;">
+				    	<div class="col row" id="bodyContent">
+				    		<div class="col-12">
+				    			<img src="{{ url('storage')}}/{{ $item->photo_user }}" class="rounded-circle" style="width:70px;height:70px;float:left;margin-right:10px;">
+					    		<h5><b>{{ $item->name_officer }}</b></h5>
+					    		<span style="font-size: 16px;">ออกเหตุแล้ว : `+count_go_to_help+`</span>
+				    		</div>
+				    		<div class="col-12">
+				    		<hr>
+				    			<p style="font-size: 18px;">
+				    				<b class="`+class_text_level+`">
+				    					{{ $item->level }}</b> | <b>{{ $item->vehicle_type }}
+				    				</b>
+				    				<br>
+					    			<span style="font-size: 15px;">{{ $item->name }}</span>
+				    			</p>
+				    		</div>
+				    	</div>
+				    </div>
+
+			    `;
+		        
+				let infowindow = new google.maps.InfoWindow({
+				    content: contentString,
+				});
+
+			    infowindow.open({
+			      	anchor: marker,
+			      	map_show_data_officer_all,
+			    });
+			}
+		@endforeach
+
+		set_map_fit_polygon();
+
+		document.querySelector('#count_officer_all').innerHTML = "{{ count($data_officer_all) }}" ;
     	document.querySelector('#count_officer_ready').innerHTML = count_officer_ready ;
     	document.querySelector('#count_officer_helping').innerHTML = count_officer_helping ;
     	document.querySelector('#count_officer_Not_ready').innerHTML = count_officer_Not_ready ;
+		
+    }
 
 
+    function set_map_fit_polygon(){
+    	setTimeout(function() {
+			// Fit map ให้เหมาะสมกับ Polygon ใหม่
+	        polygon.getPath().forEach(function (point) {
+	            bounds.extend(point);
+	        });
+	        map_show_data_officer_all.fitBounds(bounds); 
+		}, 700);
     }
 
 
