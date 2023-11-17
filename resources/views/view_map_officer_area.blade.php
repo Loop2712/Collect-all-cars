@@ -428,7 +428,7 @@
         // console.log("START");
     	// ------------ SEARCH DATA ------------ //
         @php
-    		$count_sos_success = App\Models\Sos_help_center::where('status', 'เสร็จสิ้น')->select('id')->get();
+    		// $count_sos_success = App\Models\Sos_help_center::where('status', 'เสร็จสิ้น')->select('id')->get();
 
     		$data_officer_all = Illuminate\Support\Facades\DB::table('data_1669_operating_officers')
                 ->join('data_1669_operating_units', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
@@ -437,7 +437,7 @@
     	@endphp
 
     	// add data to html
-    	document.querySelector('#count_sos_success').innerHTML = "{{ count($count_sos_success) }}" ;
+    	// document.querySelector('#count_sos_success').innerHTML = "{{ count($count_sos_success) }}" ;
 
     	// --------- END SEARCH DATA --------- //
 
