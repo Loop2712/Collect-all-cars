@@ -1285,6 +1285,18 @@ class PartnersController extends Controller
         return $sos_success ;
     }
 
+    function get_data_officer_all($area){
+
+        $data_officer_all = DB::table('data_1669_operating_officers')
+            ->join('data_1669_operating_units', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
+            ->leftJoin('users' , 'data_1669_operating_officers.user_id','=','users.id')
+            ->where("data_1669_operating_units.area" , $area)
+            ->select('data_1669_operating_officers.*' , 'data_1669_operating_units.*' ,'users.photo as photo_user')
+            ->get();
+
+        return $data_officer_all ;
+    }
+
     function Manage_uploaded_photos(Request $request){
 
         $text_hello_world = "HELLO WORLD" ;

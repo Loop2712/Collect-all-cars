@@ -432,33 +432,35 @@
 <script>
 
 	document.addEventListener('DOMContentLoaded', (event) => {
-        // console.log("START");
+
     	// ------------ SEARCH DATA ------------ //
-        @php
-    		$data_officer_all = Illuminate\Support\Facades\DB::table('data_1669_operating_officers')
-                ->join('data_1669_operating_units', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
-                ->leftJoin('users' , 'data_1669_operating_officers.user_id','=','users.id')
-                ->where("data_1669_operating_units.area" , $area)
-                ->select('data_1669_operating_officers.*' , 'data_1669_operating_units.*' ,'users.photo as photo_user')
-                ->get();
+    	// data officer all
+    	fetch("{{ url('/') }}/api/get_data_officer_all/" + "{{ $area }}")
+	        .then(response => response.json())
+	        .then(result_data_officer_all => {
+	            // console.log(result_data_officer_all);
+	            data_officer_all = result_data_officer_all ;
 
+	            // สร้าง MAP
+        		open_map_show_data_officer_all();
 
-    	@endphp
+    		});
 
+	    // sos success all
     	fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
 	        .then(response => response.json())
-	        .then(result => {
-	            // console.log(result);
-	            sos_success_all = result ;
+	        .then(result_sos_success_all => {
+	            // console.log(result_sos_success_all);
+	            sos_success_all = result_sos_success_all ;
     			document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
 
     		});
     	// --------- END SEARCH DATA --------- //
-
-        open_map_show_data_officer_all();
+	    
     });
 
 	var sos_success_all ;
+	var data_officer_all ;
 
     let map_show_data_officer_all ;
     let marker ;
@@ -580,19 +582,19 @@
     	let count_officer_helping = 0 ;
     	let count_officer_Not_ready = 0 ;
 
-        @foreach($data_officer_all as $item)
+        for(let item of data_officer_all){
 
-        	if("{{ $item->status }}" === "Standby"){
+        	if(item.status === "Standby"){
         		count_officer_ready = count_officer_ready + 1 ;
-        	}else if("{{ $item->status }}" === "Helping"){
+        	}else if(item.status === "Helping"){
         		count_officer_helping = count_officer_helping + 1 ;
         	}else{
         		count_officer_Not_ready = count_officer_Not_ready + 1 ;
         	}
 
         	// FR
-        	if( "{{ $item->level }}" === "FR" ){
-        		switch("{{ $item->vehicle_type }}") {
+        	if( item.level === "FR" ){
+        		switch(item.vehicle_type) {
 				  	case "รถ":
 				    	icon_level = img_green_car ;
 				    break;
@@ -614,8 +616,8 @@
 				}
         	}
         	// BLS && ILS 
-        	else if( "{{ $item->level }}" === "BLS" || "{{ $item->level }}" === "ILS"){
-        		switch("{{ $item->vehicle_type }}") {
+        	else if( item.level === "BLS" || item.level === "ILS"){
+        		switch(item.vehicle_type) {
 				  	case "รถ":
 				    	icon_level = img_yellow_car ;
 				    break;
@@ -638,7 +640,7 @@
         	}
         	// ALS
         	else{
-        		switch("{{ $item->vehicle_type }}") {
+        		switch(item.vehicle_type) {
 				  	case "รถ":
 				    	icon_level = img_red_car ;
 				    break;
@@ -661,15 +663,15 @@
         	}
 
 	        marker = new google.maps.Marker({
-	            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+	            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
 	            map: map_show_data_officer_all,
 	            icon: icon_level,
 	        });
 	        markers.push(marker);
 
-	    @endforeach
+	    }
 
-    	document.querySelector('#count_officer_all').innerHTML = "{{ count($data_officer_all) }}" ;
+    	document.querySelector('#count_officer_all').innerHTML = data_officer_all.length ;
     	document.querySelector('#count_officer_ready').innerHTML = count_officer_ready ;
     	document.querySelector('#count_officer_helping').innerHTML = count_officer_helping ;
     	document.querySelector('#count_officer_Not_ready').innerHTML = count_officer_Not_ready ;
@@ -776,16 +778,16 @@
 
 	    let type_select = "";
 
-        @foreach($data_officer_all as $item)
+        for(let item of data_officer_all){
 
         	if(type == "status"){
-		    	type_select = "{{ $item->status }}" ;
+		    	type_select = item.status ;
 		    }
 		    else if(type == "vehicle_type"){
-		    	type_select = "{{ $item->vehicle_type }}" ;
+		    	type_select = item.vehicle_type ;
 		    }
 		    else if(type == 'level'){
-		    	type_select = "{{ $item->level }}" ;
+		    	type_select = item.level ;
 		    }
 
         	// status = type_officer_status
@@ -794,8 +796,8 @@
         		i_check = i_check + 1 ;
 
 	        	// FR
-	        	if( "{{ $item->level }}" === "FR" ){
-	        		switch("{{ $item->vehicle_type }}") {
+	        	if( item.level === "FR" ){
+	        		switch(item.vehicle_type) {
 					  	case "รถ":
 					    	icon_level = img_green_car ;
 					    break;
@@ -817,8 +819,8 @@
 					}
 	        	}
 	        	// BLS && ILS 
-	        	else if( "{{ $item->level }}" === "BLS" || "{{ $item->level }}" === "ILS"){
-	        		switch("{{ $item->vehicle_type }}") {
+	        	else if( item.level === "BLS" || item.level === "ILS"){
+	        		switch(item.vehicle_type) {
 					  	case "รถ":
 					    	icon_level = img_yellow_car ;
 					    break;
@@ -841,7 +843,7 @@
 	        	}
 	        	// ALS
 	        	else{
-	        		switch("{{ $item->vehicle_type }}") {
+	        		switch(item.vehicle_type) {
 					  	case "รถ":
 					    	icon_level = img_red_car ;
 					    break;
@@ -864,7 +866,7 @@
 	        	}
 
 		        marker = new google.maps.Marker({
-		            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+		            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
 		            map: map_show_data_officer_all,
 		            icon: icon_level,
 		        });
@@ -875,10 +877,10 @@
 				        <div id="content" style="width: auto; height: auto;">
 					    	<div id="bodyContent">
 					    		<center>
-					    		<img src="{{ url('storage')}}/{{ $item->photo_user }}" class="rounded-circle" style="width:45px;height:45px;">
+					    		<img src="{{ url('storage')}}/`+item.photo_user+`" class="rounded-circle" style="width:45px;height:45px;">
 					    		</center>
 					    		<br>
-					    		<h6 style="margin-top:10px;"><b>{{ $item->name_officer }}</b></h6>
+					    		<h6 style="margin-top:10px;"><b>`+item.name_officer+`</b></h6>
 					    	</div>
 					    </div>
 				    `;
@@ -894,7 +896,7 @@
 		        }
 
 			}
-		@endforeach
+		}
 
 		set_map_fit_polygon();
 		
