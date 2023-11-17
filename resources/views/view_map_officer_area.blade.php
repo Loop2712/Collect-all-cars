@@ -432,9 +432,7 @@
 
     		$data_officer_all = Illuminate\Support\Facades\DB::table('data_1669_operating_officers')
                 ->join('data_1669_operating_units', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
-                ->leftJoin('users' , 'data_1669_operating_officers.user_id','=','users.id')
                 ->where("data_1669_operating_units.area" , $area)
-                ->select('data_1669_operating_officers.*' , 'data_1669_operating_units.*' ,'users.photo as photo_user')
                 ->get();
     	@endphp
 
@@ -538,8 +536,7 @@
     	console.log('type_view >> ' + type_view);
 
     	if (type_view == "btn_view_officer") {
-    		// btn_view_officer();
-    		view_offiecr_select('status','all');
+    		btn_view_officer();
 
     		document.querySelector('#btn_view_officer').classList.remove('btn-outline-success');
     		document.querySelector('#btn_view_officer').classList.add('btn-success');
@@ -556,6 +553,109 @@
     		document.querySelector('#btn_view_sos').classList.remove('btn-outline-danger');
     		document.querySelector('#btn_view_sos').classList.add('btn-danger');
     	}
+
+    }
+
+    function btn_view_officer(){
+    	// console.log('btn_view_officer');
+
+    	let icon_level ;
+    	let count_officer_ready = 0 ;
+    	let count_officer_helping = 0 ;
+    	let count_officer_Not_ready = 0 ;
+
+        @foreach($data_officer_all as $item)
+
+        	if("{{ $item->status }}" === "Standby"){
+        		count_officer_ready = count_officer_ready + 1 ;
+        	}else if("{{ $item->status }}" === "Helping"){
+        		count_officer_helping = count_officer_helping + 1 ;
+        	}else{
+        		count_officer_Not_ready = count_officer_Not_ready + 1 ;
+        	}
+
+        	// FR
+        	if( "{{ $item->level }}" === "FR" ){
+        		switch("{{ $item->vehicle_type }}") {
+				  	case "รถ":
+				    	icon_level = img_green_car ;
+				    break;
+				  	case "อากาศยาน":
+				    	icon_level = img_green_aircraft ;
+				    break;
+				    case "เรือ ป.1":
+				    	icon_level = img_green_ship_1 ;
+				    break;
+				    case "เรือ ป.2":
+				    	icon_level = img_green_ship_2 ;
+				    break;
+				    case "เรือ ป.3":
+				    	icon_level = img_green_ship_3 ;
+				    break;
+				    case "เรือประเภทอื่นๆ":
+				    	icon_level = img_green_ship_other ;
+				    break;
+				}
+        	}
+        	// BLS && ILS 
+        	else if( "{{ $item->level }}" === "BLS" || "{{ $item->level }}" === "ILS"){
+        		switch("{{ $item->vehicle_type }}") {
+				  	case "รถ":
+				    	icon_level = img_yellow_car ;
+				    break;
+				  	case "อากาศยาน":
+				    	icon_level = img_yellow_aircraft ;
+				    break;
+				    case "เรือ ป.1":
+				    	icon_level = img_yellow_ship_1 ;
+				    break;
+				    case "เรือ ป.2":
+				    	icon_level = img_yellow_ship_2 ;
+				    break;
+				    case "เรือ ป.3":
+				    	icon_level = img_yellow_ship_3 ;
+				    break;
+				    case "เรือประเภทอื่นๆ":
+				    	icon_level = img_yellow_ship_other ;
+				    break;
+				}
+        	}
+        	// ALS
+        	else{
+        		switch("{{ $item->vehicle_type }}") {
+				  	case "รถ":
+				    	icon_level = img_red_car ;
+				    break;
+				  	case "อากาศยาน":
+				    	icon_level = img_red_aircraft ;
+				    break;
+				    case "เรือ ป.1":
+				    	icon_level = img_red_ship_1 ;
+				    break;
+				    case "เรือ ป.2":
+				    	icon_level = img_red_ship_2 ;
+				    break;
+				    case "เรือ ป.3":
+				    	icon_level = img_red_ship_3 ;
+				    break;
+				    case "เรือประเภทอื่นๆ":
+				    	icon_level = img_red_ship_other ;
+				    break;
+				}
+        	}
+
+	        marker = new google.maps.Marker({
+	            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+	            map: map_show_data_officer_all,
+	            icon: icon_level,
+	        });
+	        markers.push(marker);
+	    @endforeach
+
+    	document.querySelector('#count_officer_all').innerHTML = "{{ count($data_officer_all) }}" ;
+    	document.querySelector('#count_officer_ready').innerHTML = count_officer_ready ;
+    	document.querySelector('#count_officer_helping').innerHTML = count_officer_helping ;
+    	document.querySelector('#count_officer_Not_ready').innerHTML = count_officer_Not_ready ;
 
     }
 
@@ -643,9 +743,6 @@
     function view_offiecr_select(type , data){
 
     	// console.log(type);
-    	let count_officer_ready = 0 ;
-    	let count_officer_helping = 0 ;
-    	let count_officer_Not_ready = 0 ;
     	
     	for (let i = 0; i < markers.length; i++) {
 	        markers[i].setMap(null);
@@ -656,7 +753,6 @@
 	    let i_check = 0 ;
 
 	    let type_select = "";
-	    let class_text_level ;
 
         @foreach($data_officer_all as $item)
 
@@ -697,8 +793,6 @@
 					    	icon_level = img_green_ship_other ;
 					    break;
 					}
-
-					class_text_level = "text-success";
 	        	}
 	        	// BLS && ILS 
 	        	else if( "{{ $item->level }}" === "BLS" || "{{ $item->level }}" === "ILS"){
@@ -722,8 +816,6 @@
 					    	icon_level = img_yellow_ship_other ;
 					    break;
 					}
-
-					class_text_level = "text-warning";
 	        	}
 	        	// ALS
 	        	else{
@@ -747,8 +839,6 @@
 					    	icon_level = img_red_ship_other ;
 					    break;
 					}
-
-					class_text_level = "text-danger";
 	        	}
 
 		        marker = new google.maps.Marker({
@@ -758,37 +848,11 @@
 		        });
 		        markers.push(marker);
 
-		        let go_to_help = "{{ $item->go_to_help }}" ;
-		        let sp_go_to_help = go_to_help.split(go_to_help , ',');
-		        let count_go_to_help = sp_go_to_help.length;
-
-		        let contentString = `
-
-			        <div id="content" style="width: auto; height: auto;">
-				    	<div id="bodyContent">
-				    		<img src="{{ url('storage')}}/{{ $item->photo_user }}" class="rounded-circle" style="width:45px;height:45px;float:left;margin-right:10px;">
-				    	</div>
-				    </div>
-
-			    `;
 		        
-				let infowindow = new google.maps.InfoWindow({
-				    content: contentString,
-				});
-
-			    infowindow.open({
-			      	anchor: marker,
-			      	map_show_data_officer_all,
-			    });
 			}
 		@endforeach
 
 		set_map_fit_polygon();
-
-		document.querySelector('#count_officer_all').innerHTML = "{{ count($data_officer_all) }}" ;
-    	document.querySelector('#count_officer_ready').innerHTML = count_officer_ready ;
-    	document.querySelector('#count_officer_helping').innerHTML = count_officer_helping ;
-    	document.querySelector('#count_officer_Not_ready').innerHTML = count_officer_Not_ready ;
 		
     }
 
@@ -800,7 +864,7 @@
 	            bounds.extend(point);
 	        });
 	        map_show_data_officer_all.fitBounds(bounds); 
-		}, 700);
+		}, 500);
     }
 
 
