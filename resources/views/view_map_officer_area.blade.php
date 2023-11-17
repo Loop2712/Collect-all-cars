@@ -435,21 +435,26 @@
         // console.log("START");
     	// ------------ SEARCH DATA ------------ //
         @php
-    		// $count_sos_success = App\Models\Sos_help_center::where('status', 'เสร็จสิ้น')->select('id')->get();
-
     		$data_officer_all = Illuminate\Support\Facades\DB::table('data_1669_operating_officers')
                 ->join('data_1669_operating_units', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
                 ->where("data_1669_operating_units.area" , $area)
                 ->get();
     	@endphp
 
-    	// add data to html
-    	// document.querySelector('#count_sos_success').innerHTML = "" ;
+    	fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
+	        .then(response => response.json())
+	        .then(result => {
+	            // console.log(result);
+	            sos_success_all = result ;
+    			document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
 
+    		});
     	// --------- END SEARCH DATA --------- //
 
         open_map_show_data_officer_all();
     });
+
+	var sos_success_all ;
 
     let map_show_data_officer_all ;
     let marker ;
@@ -669,91 +674,84 @@
     function btn_view_sos(type){
     	// console.log('btn_view_sos');
 
-    	fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
-	        .then(response => response.json())
-	        .then(result => {
-	            // console.log(result);
+        for (let i = 0; i < markers.length; i++) {
+	        markers[i].setMap(null);
+	    }
+	    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
 
-	            for (let i = 0; i < markers.length; i++) {
-			        markers[i].setMap(null);
-			    }
-			    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
+    	let icon_level ;
 
-		    	let icon_level ;
+    	let show_amount_sos_red = 0 ;
+    	let show_amount_sos_yellow = 0 ;
+    	let show_amount_sos_green = 0 ;
+    	let show_amount_sos_white = 0 ;
+    	let show_amount_sos_black = 0 ;
+    	let show_amount_sos_general = 0 ;
 
-		    	let show_amount_sos_red = 0 ;
-		    	let show_amount_sos_yellow = 0 ;
-		    	let show_amount_sos_green = 0 ;
-		    	let show_amount_sos_white = 0 ;
-		    	let show_amount_sos_black = 0 ;
-		    	let show_amount_sos_general = 0 ;
+        for(let item of sos_success_all){
 
-	            for(let item of result){
+        	switch(item.rc) {
+			  	case "แดง(วิกฤติ)":
+			    	icon_level = image_sos_red ;
+			    	show_amount_sos_red = show_amount_sos_red + 1 ;
+			    break;
+			  	case "เหลือง(เร่งด่วน)":
+			    	icon_level = image_sos_yellow ;
+			    	show_amount_sos_yellow = show_amount_sos_yellow + 1 ;
+			    break;
+			    case "เขียว(ไม่รุนแรง)":
+			    	icon_level = image_sos_green ;
+			    	show_amount_sos_green = show_amount_sos_green + 1 ;
+			    break;
+			    case "ขาว(ทั่วไป)":
+			    	icon_level = image_sos_white ;
+			    	show_amount_sos_white = show_amount_sos_white + 1 ;
+			    break;
+			    case "ดำ":
+			    	icon_level = image_sos_black ;
+			    	show_amount_sos_black = show_amount_sos_black + 1 ;
+			    break;
+			    default:
+			    	icon_level = image_sos_general ;
+			    	show_amount_sos_general = show_amount_sos_general + 1 ;
+			}
 
-	            	switch(item.rc) {
-					  	case "แดง(วิกฤติ)":
-					    	icon_level = image_sos_red ;
-					    	show_amount_sos_red = show_amount_sos_red + 1 ;
-					    break;
-					  	case "เหลือง(เร่งด่วน)":
-					    	icon_level = image_sos_yellow ;
-					    	show_amount_sos_yellow = show_amount_sos_yellow + 1 ;
-					    break;
-					    case "เขียว(ไม่รุนแรง)":
-					    	icon_level = image_sos_green ;
-					    	show_amount_sos_green = show_amount_sos_green + 1 ;
-					    break;
-					    case "ขาว(ทั่วไป)":
-					    	icon_level = image_sos_white ;
-					    	show_amount_sos_white = show_amount_sos_white + 1 ;
-					    break;
-					    case "ดำ":
-					    	icon_level = image_sos_black ;
-					    	show_amount_sos_black = show_amount_sos_black + 1 ;
-					    break;
-					    default:
-					    	icon_level = image_sos_general ;
-					    	show_amount_sos_general = show_amount_sos_general + 1 ;
-					}
+			if(type == item.rc || type == 'all'){
 
-					if(type == item.rc || type == 'all'){
+		        marker_sos = new google.maps.Marker({
+		            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+		            map: map_show_data_officer_all,
+		            icon: icon_level,
+		        });
+		        markers.push(marker_sos);
+		    }
+		    else if(type == 'general'){
 
-				        marker_sos = new google.maps.Marker({
-				            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
-				            map: map_show_data_officer_all,
-				            icon: icon_level,
-				        });
-				        markers.push(marker_sos);
-				    }
-				    else if(type == 'general'){
+		    	if(!item.rc){
+		    		marker_sos = new google.maps.Marker({
+			            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+			            map: map_show_data_officer_all,
+			            icon: icon_level,
+			        });
+			        markers.push(marker_sos);
+		    	}
 
-				    	if(!item.rc){
-				    		marker_sos = new google.maps.Marker({
-					            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
-					            map: map_show_data_officer_all,
-					            icon: icon_level,
-					        });
-					        markers.push(marker_sos);
-				    	}
+		    }
 
-				    }
+        }
 
-	            }
+        let sum_sos = show_amount_sos_red + show_amount_sos_yellow + show_amount_sos_green + show_amount_sos_white + show_amount_sos_black + show_amount_sos_general ;
 
-	            let sum_sos = show_amount_sos_red + show_amount_sos_yellow + show_amount_sos_green + show_amount_sos_white + show_amount_sos_black + show_amount_sos_general ;
+    	document.querySelector('#show_amount_sos_all').innerHTML = sum_sos;
+    	document.querySelector('#show_amount_sos_red').innerHTML = show_amount_sos_red;
+    	document.querySelector('#show_amount_sos_yellow').innerHTML = show_amount_sos_yellow;
+    	document.querySelector('#show_amount_sos_green').innerHTML = show_amount_sos_green;
+    	document.querySelector('#show_amount_sos_white').innerHTML = show_amount_sos_white;
+    	document.querySelector('#show_amount_sos_black').innerHTML = show_amount_sos_black;
+    	document.querySelector('#show_amount_sos_general').innerHTML = show_amount_sos_general;
 
-		    	document.querySelector('#show_amount_sos_all').innerHTML = sum_sos;
-		    	document.querySelector('#show_amount_sos_red').innerHTML = show_amount_sos_red;
-		    	document.querySelector('#show_amount_sos_yellow').innerHTML = show_amount_sos_yellow;
-		    	document.querySelector('#show_amount_sos_green').innerHTML = show_amount_sos_green;
-		    	document.querySelector('#show_amount_sos_white').innerHTML = show_amount_sos_white;
-		    	document.querySelector('#show_amount_sos_black').innerHTML = show_amount_sos_black;
-		    	document.querySelector('#show_amount_sos_general').innerHTML = show_amount_sos_general;
-
-		    	document.querySelector('#div_sos_loading').classList.add('d-none');
-		    	document.querySelector('#div_sos_show_data').classList.remove('d-none');
-
-	        });
+    	document.querySelector('#div_sos_loading').classList.add('d-none');
+    	document.querySelector('#div_sos_show_data').classList.remove('d-none');
 
     }
 
