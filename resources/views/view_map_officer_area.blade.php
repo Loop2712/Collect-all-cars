@@ -437,7 +437,7 @@
     	@endphp
 
     	// add data to html
-    	// document.querySelector('#count_sos_success').innerHTML = "{{ count($count_sos_success) }}" ;
+    	// document.querySelector('#count_sos_success').innerHTML = "" ;
 
     	// --------- END SEARCH DATA --------- //
 
