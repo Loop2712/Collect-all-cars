@@ -1273,6 +1273,18 @@ class PartnersController extends Controller
 
     }
 
+    function get_sos_help_center_success($area){
+
+        $sos_success = DB::table('sos_1669_form_yellows')
+                ->join('sos_help_centers', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+                ->where('sos_help_centers.status', 'เสร็จสิ้น')
+                ->where("sos_help_centers.notify",'LIKE', "%$area%")
+                ->select('sos_help_centers.*' , 'sos_1669_form_yellows.rc as rc')
+                ->get();
+
+        return $sos_success ;
+    }
+
     function Manage_uploaded_photos(Request $request){
 
         $text_hello_world = "HELLO WORLD" ;

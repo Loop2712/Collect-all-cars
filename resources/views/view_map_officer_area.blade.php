@@ -270,76 +270,83 @@
 				<div>
 					<h4 class="card-title">ระดับเหตุการณ์</h4>
 				</div>
-				<p style="position:relative;padding-top: 10px;">
-					<img src="{{ url('/img/icon/operating_unit/sos.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">
-						ทั้งหมด : <b><span id="show_amount_sos_all"></span></b>
-						<span class="float-end btn" onclick="btn_view_sos('all');">
-							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+
+				<div id="div_sos_loading" class="">
+					Loading..
+				</div>
+				<div id="div_sos_show_data" class="d-none">
+					<p style="position:relative;padding-top: 10px;">
+						<img src="{{ url('/img/icon/operating_unit/sos.png') }}" width="35" style="position: absolute;top:0px;"> 
+						<span style="margin-left:50px;">
+							ทั้งหมด : <b><span id="show_amount_sos_all"></span></b>
+							<span class="float-end btn" onclick="btn_view_sos('all');">
+								<i class="fa-sharp fa-solid fa-eye text-info"></i>
+							</span>
 						</span>
-					</span>
-					<br>
-				</p>
-				<p style="position:relative;padding-top: 10px;">
-					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">
-						เขียว(ไม่รุนแรง) : <b><span id="show_amount_sos_green"></span></b>
-						<span class="float-end btn" onclick="btn_view_sos('เขียว(ไม่รุนแรง)');">
-							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+						<br>
+					</p>
+					<p style="position:relative;padding-top: 10px;">
+						<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}" width="35" style="position: absolute;top:0px;"> 
+						<span style="margin-left:50px;">
+							เขียว(ไม่รุนแรง) : <b><span id="show_amount_sos_green"></span></b>
+							<span class="float-end btn" onclick="btn_view_sos('เขียว(ไม่รุนแรง)');">
+								<i class="fa-sharp fa-solid fa-eye text-info"></i>
+							</span>
 						</span>
-					</span>
-					<br>
-				</p>
-				<p style="position:relative;padding-top: 10px;">
-					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">
-						เหลือง(เร่งด่วน) : <b><span id="show_amount_sos_yellow"></span></b>
-						<span class="float-end btn" onclick="btn_view_sos('เหลือง(เร่งด่วน)');">
-							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+						<br>
+					</p>
+					<p style="position:relative;padding-top: 10px;">
+						<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
+						<span style="margin-left:50px;">
+							เหลือง(เร่งด่วน) : <b><span id="show_amount_sos_yellow"></span></b>
+							<span class="float-end btn" onclick="btn_view_sos('เหลือง(เร่งด่วน)');">
+								<i class="fa-sharp fa-solid fa-eye text-info"></i>
+							</span>
 						</span>
-					</span>
-					<br>
-				</p>
-				<p style="position:relative;padding-top: 10px;">
-					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">
-						แดง(วิกฤติ) : <b><span id="show_amount_sos_red"></span></b>
-						<span class="float-end btn" onclick="btn_view_sos('แดง(วิกฤติ)');">
-							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+						<br>
+					</p>
+					<p style="position:relative;padding-top: 10px;">
+						<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}" width="35" style="position: absolute;top:0px;"> 
+						<span style="margin-left:50px;">
+							แดง(วิกฤติ) : <b><span id="show_amount_sos_red"></span></b>
+							<span class="float-end btn" onclick="btn_view_sos('แดง(วิกฤติ)');">
+								<i class="fa-sharp fa-solid fa-eye text-info"></i>
+							</span>
 						</span>
-					</span>
-					<br>
-				</p>
-				<p style="position:relative;padding-top: 10px;">
-					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/5.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">
-						ขาว(ทั่วไป) : <b><span id="show_amount_sos_white"></span></b>
-						<span class="float-end btn" onclick="btn_view_sos('ขาว(ทั่วไป)');">
-							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+						<br>
+					</p>
+					<p style="position:relative;padding-top: 10px;">
+						<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/5.png') }}" width="35" style="position: absolute;top:0px;"> 
+						<span style="margin-left:50px;">
+							ขาว(ทั่วไป) : <b><span id="show_amount_sos_white"></span></b>
+							<span class="float-end btn" onclick="btn_view_sos('ขาว(ทั่วไป)');">
+								<i class="fa-sharp fa-solid fa-eye text-info"></i>
+							</span>
 						</span>
-					</span>
-					<br>
-				</p>
-				<p style="position:relative;padding-top: 10px;">
-					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/6.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">
-						ดำ(รับบริการสาธารณสุขอื่น) : <b><span id="show_amount_sos_black"></span></b>
-						<span class="float-end btn" onclick="btn_view_sos('ดำ');">
-							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+						<br>
+					</p>
+					<p style="position:relative;padding-top: 10px;">
+						<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/6.png') }}" width="35" style="position: absolute;top:0px;"> 
+						<span style="margin-left:50px;">
+							ดำ(รับบริการสาธารณสุขอื่น) : <b><span id="show_amount_sos_black"></span></b>
+							<span class="float-end btn" onclick="btn_view_sos('ดำ');">
+								<i class="fa-sharp fa-solid fa-eye text-info"></i>
+							</span>
 						</span>
-					</span>
-					<br>
-				</p>
-				<p style="position:relative;padding-top: 10px;">
-					<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}" width="35" style="position: absolute;top:0px;"> 
-					<span style="margin-left:50px;">
-						ไม่มีการประเมิน : <b><span id="show_amount_sos_general"></span></b>
-						<span class="float-end btn" onclick="btn_view_sos('general');">
-							<i class="fa-sharp fa-solid fa-eye text-info"></i>
+						<br>
+					</p>
+					<p style="position:relative;padding-top: 10px;">
+						<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}" width="35" style="position: absolute;top:0px;"> 
+						<span style="margin-left:50px;">
+							ไม่มีการประเมิน : <b><span id="show_amount_sos_general"></span></b>
+							<span class="float-end btn" onclick="btn_view_sos('general');">
+								<i class="fa-sharp fa-solid fa-eye text-info"></i>
+							</span>
 						</span>
-					</span>
-					<br>
-				</p>
+						<br>
+					</p>
+				</div>
+
 			</div>
 		</div>
 	</div>
@@ -662,33 +669,91 @@
     function btn_view_sos(type){
     	// console.log('btn_view_sos');
 
-    	
+    	fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
+	        .then(response => response.json())
+	        .then(result => {
+	            // console.log(result);
 
-    	for (let i = 0; i < markers.length; i++) {
-	        markers[i].setMap(null);
-	    }
-	    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
+	            for (let i = 0; i < markers.length; i++) {
+			        markers[i].setMap(null);
+			    }
+			    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
 
-    	let icon_level ;
+		    	let icon_level ;
 
-    	let show_amount_sos_red = 0 ;
-    	let show_amount_sos_yellow = 0 ;
-    	let show_amount_sos_green = 0 ;
-    	let show_amount_sos_white = 0 ;
-    	let show_amount_sos_black = 0 ;
-    	let show_amount_sos_general = 0 ;
+		    	let show_amount_sos_red = 0 ;
+		    	let show_amount_sos_yellow = 0 ;
+		    	let show_amount_sos_green = 0 ;
+		    	let show_amount_sos_white = 0 ;
+		    	let show_amount_sos_black = 0 ;
+		    	let show_amount_sos_general = 0 ;
 
-    	
+	            for(let item of result){
 
-	    let sum_sos = show_amount_sos_red + show_amount_sos_yellow + show_amount_sos_green + show_amount_sos_white + show_amount_sos_black + show_amount_sos_general ;
+	            	switch(item.rc) {
+					  	case "แดง(วิกฤติ)":
+					    	icon_level = image_sos_red ;
+					    	show_amount_sos_red = show_amount_sos_red + 1 ;
+					    break;
+					  	case "เหลือง(เร่งด่วน)":
+					    	icon_level = image_sos_yellow ;
+					    	show_amount_sos_yellow = show_amount_sos_yellow + 1 ;
+					    break;
+					    case "เขียว(ไม่รุนแรง)":
+					    	icon_level = image_sos_green ;
+					    	show_amount_sos_green = show_amount_sos_green + 1 ;
+					    break;
+					    case "ขาว(ทั่วไป)":
+					    	icon_level = image_sos_white ;
+					    	show_amount_sos_white = show_amount_sos_white + 1 ;
+					    break;
+					    case "ดำ":
+					    	icon_level = image_sos_black ;
+					    	show_amount_sos_black = show_amount_sos_black + 1 ;
+					    break;
+					    default:
+					    	icon_level = image_sos_general ;
+					    	show_amount_sos_general = show_amount_sos_general + 1 ;
+					}
 
-    	document.querySelector('#show_amount_sos_all').innerHTML = sum_sos;
-    	document.querySelector('#show_amount_sos_red').innerHTML = show_amount_sos_red;
-    	document.querySelector('#show_amount_sos_yellow').innerHTML = show_amount_sos_yellow;
-    	document.querySelector('#show_amount_sos_green').innerHTML = show_amount_sos_green;
-    	document.querySelector('#show_amount_sos_white').innerHTML = show_amount_sos_white;
-    	document.querySelector('#show_amount_sos_black').innerHTML = show_amount_sos_black;
-    	document.querySelector('#show_amount_sos_general').innerHTML = show_amount_sos_general;
+					if(type == item.rc || type == 'all'){
+
+				        marker_sos = new google.maps.Marker({
+				            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+				            map: map_show_data_officer_all,
+				            icon: icon_level,
+				        });
+				        markers.push(marker_sos);
+				    }
+				    else if(type == 'general'){
+
+				    	if(!item.rc){
+				    		marker_sos = new google.maps.Marker({
+					            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+					            map: map_show_data_officer_all,
+					            icon: icon_level,
+					        });
+					        markers.push(marker_sos);
+				    	}
+
+				    }
+
+	            }
+
+	            let sum_sos = show_amount_sos_red + show_amount_sos_yellow + show_amount_sos_green + show_amount_sos_white + show_amount_sos_black + show_amount_sos_general ;
+
+		    	document.querySelector('#show_amount_sos_all').innerHTML = sum_sos;
+		    	document.querySelector('#show_amount_sos_red').innerHTML = show_amount_sos_red;
+		    	document.querySelector('#show_amount_sos_yellow').innerHTML = show_amount_sos_yellow;
+		    	document.querySelector('#show_amount_sos_green').innerHTML = show_amount_sos_green;
+		    	document.querySelector('#show_amount_sos_white').innerHTML = show_amount_sos_white;
+		    	document.querySelector('#show_amount_sos_black').innerHTML = show_amount_sos_black;
+		    	document.querySelector('#show_amount_sos_general').innerHTML = show_amount_sos_general;
+
+		    	document.querySelector('#div_sos_loading').classList.add('d-none');
+		    	document.querySelector('#div_sos_show_data').classList.remove('d-none');
+
+	        });
 
     }
 
