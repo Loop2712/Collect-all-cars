@@ -662,9 +662,7 @@
     function btn_view_sos(type){
     	// console.log('btn_view_sos');
 
-    	@php
-    		$sos_success = App\Models\Sos_help_center::where('status', 'เสร็จสิ้น')->get();
-    	@endphp
+    	
 
     	for (let i = 0; i < markers.length; i++) {
 	        markers[i].setMap(null);
