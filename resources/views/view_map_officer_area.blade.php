@@ -874,7 +874,11 @@
 		        	let contentString = `
 				        <div id="content" style="width: auto; height: auto;">
 					    	<div id="bodyContent">
-					    		<img src="{{ url('storage')}}/{{ $item->photo_user }}" class="rounded-circle" style="width:45px;height:45px;float:left;margin-right:10px;">
+					    		<center>
+					    		<img src="{{ url('storage')}}/{{ $item->photo_user }}" class="rounded-circle" style="width:45px;height:45px;">
+					    		</center>
+					    		<br>
+					    		<h6 style="margin-top:10px;"><b>{{ $item->name_officer }}</b></h6>
 					    	</div>
 					    </div>
 				    `;
