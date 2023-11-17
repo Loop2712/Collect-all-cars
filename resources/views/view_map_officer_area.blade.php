@@ -437,8 +437,12 @@
         @php
     		$data_officer_all = Illuminate\Support\Facades\DB::table('data_1669_operating_officers')
                 ->join('data_1669_operating_units', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
+                ->leftJoin('users' , 'data_1669_operating_officers.user_id','=','users.id')
                 ->where("data_1669_operating_units.area" , $area)
+                ->select('data_1669_operating_officers.*' , 'data_1669_operating_units.*' ,'users.photo as photo_user')
                 ->get();
+
+
     	@endphp
 
     	fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
@@ -662,6 +666,7 @@
 	            icon: icon_level,
 	        });
 	        markers.push(marker);
+
 	    @endforeach
 
     	document.querySelector('#count_officer_all').innerHTML = "{{ count($data_officer_all) }}" ;
@@ -687,6 +692,8 @@
     	let show_amount_sos_white = 0 ;
     	let show_amount_sos_black = 0 ;
     	let show_amount_sos_general = 0 ;
+
+    	console.log(sos_success_all);
 
         for(let item of sos_success_all){
 
@@ -719,7 +726,7 @@
 			if(type == item.rc || type == 'all'){
 
 		        marker_sos = new google.maps.Marker({
-		            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+		            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
 		            map: map_show_data_officer_all,
 		            icon: icon_level,
 		        });
@@ -729,7 +736,7 @@
 
 		    	if(!item.rc){
 		    		marker_sos = new google.maps.Marker({
-			            position: {lat: parseFloat({{ $item->lat }}) , lng: parseFloat({{ $item->lng }}) },
+			            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
 			            map: map_show_data_officer_all,
 			            icon: icon_level,
 			        });
@@ -863,7 +870,25 @@
 		        });
 		        markers.push(marker);
 
-		        
+		        if(data != "all"){
+		        	let contentString = `
+				        <div id="content" style="width: auto; height: auto;">
+					    	<div id="bodyContent">
+					    		<img src="{{ url('storage')}}/{{ $item->photo_user }}" class="rounded-circle" style="width:45px;height:45px;float:left;margin-right:10px;">
+					    	</div>
+					    </div>
+				    `;
+			        
+					let infowindow = new google.maps.InfoWindow({
+					    content: contentString,
+					});
+
+				    infowindow.open({
+				      	anchor: marker,
+				      	map_show_data_officer_all,
+				    });
+		        }
+
 			}
 		@endforeach
 
