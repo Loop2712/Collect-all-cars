@@ -348,7 +348,7 @@
 <div class="card_data" style="position:absolute;z-index: 99999;top: 5%;right: 1%;height: 5%!important;">
 	<div class="card-body text-center">
 		<div style="margin-top: -28px;">
-			ช่วยเหลือเสร็จสิ้น <b id="count_sos_success"></b> เคส (ทุกพื้นที่)
+			ช่วยเหลือเสร็จสิ้น <b id="count_sos_success"></b> เคส
 		</div>
 	</div>
 </div>
@@ -428,7 +428,7 @@
         // console.log("START");
     	// ------------ SEARCH DATA ------------ //
         @php
-    		$sos_success = App\Models\Sos_help_center::where('status', 'เสร็จสิ้น')->get();
+    		$count_sos_success = App\Models\Sos_help_center::where('status', 'เสร็จสิ้น')->select('id')->get();
 
     		$data_officer_all = Illuminate\Support\Facades\DB::table('data_1669_operating_officers')
                 ->join('data_1669_operating_units', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
@@ -437,7 +437,7 @@
     	@endphp
 
     	// add data to html
-    	document.querySelector('#count_sos_success').innerHTML = "{{ count($sos_success) }}" ;
+    	document.querySelector('#count_sos_success').innerHTML = "{{ count($count_sos_success) }}" ;
 
     	// --------- END SEARCH DATA --------- //
 
@@ -661,6 +661,10 @@
 
     function btn_view_sos(type){
     	// console.log('btn_view_sos');
+
+    	@php
+    		$sos_success = App\Models\Sos_help_center::where('status', 'เสร็จสิ้น')->get();
+    	@endphp
 
     	for (let i = 0; i < markers.length; i++) {
 	        markers[i].setMap(null);
