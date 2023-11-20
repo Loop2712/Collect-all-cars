@@ -223,6 +223,8 @@ Route::get('/show_logo_partner', 'API\PartnersController@show_logo_partner');
 Route::get('/view_map_officer_all/{select_area}/draw_select_area', 'API\PartnersController@draw_select_area');
 Route::get('/get_sos_help_center_success/{area}', 'API\PartnersController@get_sos_help_center_success');
 Route::get('/get_data_officer_all/{area}', 'API\PartnersController@get_data_officer_all');
+Route::get('/get_let_lng_district/{area}/{select_area_district}', 'API\LocationController@get_let_lng_district');
+
 
 
 // API TU

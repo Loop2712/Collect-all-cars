@@ -24,8 +24,17 @@
 </style>
 <!-- <link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet"> -->
 
-<div class="card_data" style="position:absolute;z-index: 99999;top: 10%;left: 1%;">
+<div class="card_data" style="position:absolute;z-index: 99999;top: 8%;left: 1%;">
 	<div class="card-body">
+		<div class="row">
+			<div id="" class="col-12">
+				<label for="select_area_district">เลือกอำเภอ</label>
+				<select name="select_area_district" id="select_area_district" class="form-control" onchange="open_map_district();">
+					<option class="notranslate" selected value="all">ทั้งหมด</option>
+                </select>
+			</div>
+		</div>
+		<hr>
 		<div class="btn-group" role="group" aria-label="Basic example" style="width:100%;">
 			<button id="btn_view_officer" type="button" class="btn btn-sm btn-success" 
 			onclick="change_view_data_map('btn_view_officer');document.querySelector('#a_li_1').click();">
@@ -442,7 +451,7 @@
 	            data_officer_all = result_data_officer_all ;
 
 	            // สร้าง MAP
-        		open_map_show_data_officer_all();
+        		open_map_show_data_officer_area();
 
     		});
 
@@ -455,6 +464,28 @@
     			document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
 
     		});
+
+    	// show_location_A district
+	    fetch("{{ url('/') }}/api/location/"+"{{ $area }}"+"/show_location_A")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                //UPDATE SELECT OPTION
+                let location_A = document.querySelector("#select_area_district");
+                    location_A.innerHTML = "";
+
+                let option_start_A = document.createElement("option");
+                    option_start_A.text = " - เลือกอำเภอ - ";
+                    option_start_A.value = "all";
+                    location_A.add(option_start_A);
+
+                for(let item of result){
+                    let option = document.createElement("option");
+                    option.text = item.amphoe;
+                    option.value = item.amphoe;
+                    location_A.add(option);
+                }
+            });
     	// --------- END SEARCH DATA --------- //
 	    
     });
@@ -462,7 +493,7 @@
 	var sos_success_all ;
 	var data_officer_all ;
 
-    let map_show_data_officer_all ;
+    let map_show_data_officer_area ;
     let marker ;
     let marker_sos ;
     let markers = [] ;
@@ -500,13 +531,13 @@
     let img_red_ship_3 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/23.png') }}";
     let img_red_ship_other = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/24.png') }}";
 
-	function open_map_show_data_officer_all() {
+	function open_map_show_data_officer_area() {
 
         let m_lat = parseFloat('12.870032');
         let m_lng = parseFloat('100.992541') + 1;
         let m_numZoom = parseFloat('6.5');
 
-        map_show_data_officer_all = new google.maps.Map(document.getElementById("map_show_officer_all"), {
+        map_show_data_officer_area = new google.maps.Map(document.getElementById("map_show_officer_all"), {
             center: {lat: m_lat, lng: m_lng },
             zoom: m_numZoom,
         });
@@ -523,14 +554,14 @@
 	                strokeOpacity: 0.8,
 	                strokeWeight: 1,
 	                fillColor: "#008450",
-	                fillOpacity: 0.25,
+	                fillOpacity: 0.1,
 	            });
 
 	            // กำหนด Polygon ใหม่ให้กับตัวแปร currentPolygon
 	            currentPolygon = polygon;
 
 	            // กำหนดให้ Polygon ใหม่แสดงบนแผนที่
-	            polygon.setMap(map_show_data_officer_all);
+	            polygon.setMap(map_show_data_officer_area);
 
 	            // Fit map ให้เหมาะสมกับ Polygon ใหม่
 	            bounds = new google.maps.LatLngBounds();
@@ -540,6 +571,35 @@
 
         change_view_data_map("btn_view_officer");
 
+    }
+
+    function open_map_district(){
+
+    	let select_area_district = document.querySelector('#select_area_district');
+    	console.log(select_area_district.value);
+    	if (select_area_district.value == 'all') {
+    		open_map_show_data_officer_area();
+    	}else{
+    		fetch("{{ url('/') }}/api/get_let_lng_district/" + "{{ $area }}" + "/" + select_area_district.value)
+	            .then(response => response.json())
+	            .then(result => {
+	                // console.log(result);
+
+	                let sum_lat = 0 ;
+	                let sum_lng = 0 ;
+
+	                for(let item of result){
+	                	sum_lat = sum_lat + parseFloat(item.lat) ;
+	                	sum_lng = sum_lng + parseFloat(item.lng) ;
+	                }
+
+	                sum_lat = sum_lat / result.length ;
+	                sum_lng = sum_lng / result.length ;
+
+	                map_show_data_officer_area.setZoom(12.5);
+	            	map_show_data_officer_area.setCenter({lat: sum_lat, lng: sum_lng });
+	            });
+    	}
     }
 
     function change_view_data_map(type_view){
@@ -664,7 +724,7 @@
 
 	        marker = new google.maps.Marker({
 	            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
-	            map: map_show_data_officer_all,
+	            map: map_show_data_officer_area,
 	            icon: icon_level,
 	        });
 	        markers.push(marker);
@@ -729,7 +789,7 @@
 
 		        marker_sos = new google.maps.Marker({
 		            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
-		            map: map_show_data_officer_all,
+		            map: map_show_data_officer_area,
 		            icon: icon_level,
 		        });
 		        markers.push(marker_sos);
@@ -739,7 +799,7 @@
 		    	if(!item.rc){
 		    		marker_sos = new google.maps.Marker({
 			            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
-			            map: map_show_data_officer_all,
+			            map: map_show_data_officer_area,
 			            icon: icon_level,
 			        });
 			        markers.push(marker_sos);
@@ -867,7 +927,7 @@
 
 		        marker = new google.maps.Marker({
 		            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
-		            map: map_show_data_officer_all,
+		            map: map_show_data_officer_area,
 		            icon: icon_level,
 		        });
 		        markers.push(marker);
@@ -891,7 +951,7 @@
 
 				    infowindow.open({
 				      	anchor: marker,
-				      	map_show_data_officer_all,
+				      	map_show_data_officer_area,
 				    });
 		        }
 
@@ -909,7 +969,7 @@
 	        polygon.getPath().forEach(function (point) {
 	            bounds.extend(point);
 	        });
-	        map_show_data_officer_all.fitBounds(bounds); 
+	        map_show_data_officer_area.fitBounds(bounds); 
 		}, 500);
     }
 

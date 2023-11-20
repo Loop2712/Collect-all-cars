@@ -68,6 +68,17 @@ class LocationController extends Controller
 
         return $location_T;
     }
+
+    public function get_let_lng_district($area , $district){
+
+        $data = DB::table('lat_longs')
+                ->where('changwat_th', 'LIKE' , "%$area%")
+                ->where('amphoe_th', 'LIKE' , "%$district%")
+                ->select('lat', 'lng')
+                ->get();
+
+        return $data;
+    }
     
 
     public function change_country($user_id)
