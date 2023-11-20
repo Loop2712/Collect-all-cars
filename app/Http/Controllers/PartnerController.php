@@ -1469,20 +1469,20 @@ class PartnerController extends Controller
 
         $partner_premium = Partner_premium::where("name_partner",$data_partner->name)->first();
 
-        $BC_by_user_max = $partner_premium->BC_by_user_max ;
+        $BC_by_sos_max = $partner_premium->BC_by_sos_max ;
         if(!empty($partner_premium)){
             // USER
-            $BC_by_user_max = $partner_premium->BC_by_user_max ;
+            $BC_by_sos_max = $partner_premium->BC_by_sos_max ;
             $name_partner = $partner_premium->name_partner ;
             $partner_id = $partner_premium->id_partner ;
 
-            if ($partner_premium->BC_by_user_max == null) {
-                $BC_by_user_sent = 0 ;
+            if ($partner_premium->BC_by_sos_max == null) {
+                $BC_by_sos_sent = 0 ;
             }else{
-                $BC_by_user_sent = $partner_premium->BC_by_user_sent ;
+                $BC_by_sos_sent = $partner_premium->BC_by_sos_sent ;
             }
 
-            $ads_contents = Ads_content::where('name_partner' , $data_partner->name)->where('type_content' , 'BC_by_user')->get();
+            $ads_contents = Ads_content::where('name_partner' , $data_partner->name)->where('type_content' , 'BC_by_sos')->get();
 
             // broadcast ที่ส่งหาผู้ใช้แบบไม่ซ้ำ
             for ($i=0; $i < count($ads_contents); $i++) {
@@ -1533,7 +1533,7 @@ class PartnerController extends Controller
             $data_users_organization = User::where("organization", $data_partner->name)->get();
             $data_user_from = User::where("user_from", 'LIKE' , "%$data_partner->name%")->get();
 
-            return view('partner.broadcast.broadcast_by_sos', compact('ads_contents','title_sos_arr','name_area_sos','data_user_from_sos','name_partner','partner_id','BC_by_user_max','BC_by_user_sent','country_all_of_user','time_zone_all_of_user','language_all_of_user','nationalitie_all_of_user'));
+            return view('partner.broadcast.broadcast_by_sos', compact('ads_contents','title_sos_arr','name_area_sos','data_user_from_sos','name_partner','partner_id','BC_by_sos_max','BC_by_sos_sent','country_all_of_user','time_zone_all_of_user','language_all_of_user','nationalitie_all_of_user'));
         }else{
             return redirect('404');
 

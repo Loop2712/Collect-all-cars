@@ -66,7 +66,7 @@ class Broadcast_sosController extends Controller
             if($user_type == "sos"){
 
                 //หา title ===============================================
-
+                $data_title_sos_arr = [];
                 if ($title_sos != "อื่นๆ") {
                     $data_title_sos = Sos_map::where('area',$partner_name)->where('title_sos',$title_sos)->pluck('title_sos')->toArray();
 
@@ -80,13 +80,13 @@ class Broadcast_sosController extends Controller
                     // $data_sos->get();
                     $data_title_sos = $data_sos->pluck('title_sos')->toArray();
 
+                    foreach ($data_title_sos as $item) {
+                        $data_title_sos_arr[] = $item;
+                    }
+
                 }
 
-                $data_title_sos_arr = [];
 
-                foreach ($data_title_sos as $item) {
-                    $data_title_sos_arr[] = $item;
-                }
                 //=====================================================
 
 
@@ -133,8 +133,12 @@ class Broadcast_sosController extends Controller
                     // ใช้ whereIn เพื่อให้ได้ข้อมูลที่มี user_id ตรงกับที่พบ
                     return $query->whereIn('user_id', $find_user_id_arr);
                 })
-                ->when($data_title_sos_arr, function ($query, $data_title_sos_arr) {
-                    return $query->whereIn('title_sos', $data_title_sos_arr);
+                ->when($title_sos, function ($query) use ($title_sos, $data_title_sos_arr) {
+                    if ($title_sos != "อื่นๆ") {
+                        return $query->where('title_sos', $title_sos);
+                    } else {
+                        return $query->whereIn('title_sos', $data_title_sos_arr);
+                    }
                 })
                 ->when($name_area_sos, function ($query, $name_area_sos) {
                     return $query->where('name_area', $name_area_sos);
@@ -146,7 +150,6 @@ class Broadcast_sosController extends Controller
                 ->get('user_id');
 
                 $data_result = [];
-
 
                 foreach ($data_sos as $item) {
                     // เพิ่ม user_id จาก array หลัก
@@ -189,9 +192,12 @@ class Broadcast_sosController extends Controller
                     $endDate = now();
                 }
 
-                // echo "OK เข้า user_from";
-                $data_search = User::where('type','line')
-                ->where('user_from','LIKE',"%$partner_name%")
+                //หา user_id จาก Sos_map
+                $data_sos = Sos_map::where('area',$partner_name)->pluck('user_id')->toArray();
+
+                //หา user จาก user_id ที่ได้จาก Sos_map พร้อมตัวกรองข้อมูล
+                $data_result = User::whereIn('id',$data_sos)
+                ->where('type','line')
                 ->when($age_user, function ($query) use ($startDate, $endDate) {
                     return $query->whereBetween('brith', [$startDate, $endDate]);
                 })
@@ -223,30 +229,14 @@ class Broadcast_sosController extends Controller
                 })
                 ->get();
 
-                return $data_search;
+                return $data_result;
             }
         }
 
 
     }
 
-
-    // function haversineDistance($lat1, $lng1, $lat2, $lng2) {
-    //     $earthRadius = 6371; // รัศมีของโลก (หน่วยกิโลเมตร)
-
-    //     $dLat = deg2rad($lat2 - $lat1);
-    //     $dLng = deg2rad($lng2 - $lng1);
-
-    //     $a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($dLng / 2) * sin($dLng / 2);
-    //     $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
-
-    //     $distance = $earthRadius * $c; // ระยะห่างในหน่วยกิโลเมตร
-
-    //     return $distance;
-    // }
-
-
-    function send_content_BC_by_user(Request $request)
+    function send_content_BC_by_sos(Request $request)
     {
         $requestData = $request->all();
 
@@ -258,15 +248,15 @@ class Broadcast_sosController extends Controller
 
             $requestData['photo'] = $data_Ads_content->photo ;
 
-            $BC_by_user_sent = $data_partner_premium->BC_by_user_sent ;
-            $sum_BC_by_user_sent = $BC_by_user_sent + $requestData['amount'] ;
+            $BC_by_sos_sent = $data_partner_premium->BC_by_sos_sent ;
+            $sum_BC_by_sos_sent = $BC_by_sos_sent + $requestData['amount'] ;
             $sum_send_round = $data_Ads_content->send_round + 1 ;
 
 
             DB::table('partner_premia')
                 ->where('id_partner', $requestData['id_partner'])
                 ->update([
-                    'BC_by_user_sent' => $sum_BC_by_user_sent ,
+                    'BC_by_sos_sent' => $sum_BC_by_sos_sent ,
             ]);
 
             DB::table('ads_contents')
@@ -299,14 +289,14 @@ class Broadcast_sosController extends Controller
 
             $data_partner_premium = Partner_premium::where('id_partner' , $requestData['id_partner'])->first();
 
-            $BC_by_user_sent = $data_partner_premium->BC_by_user_sent ;
-            $sum_BC_by_user_sent = $BC_by_user_sent + $requestData['amount'] ;
+            $BC_by_sos_sent = $data_partner_premium->BC_by_sos_sent ;
+            $sum_BC_by_sos_sent = $BC_by_sos_sent + $requestData['amount'] ;
             $sum_send_round = $data_Ads_content->send_round + 1 ;
 
             DB::table('partner_premia')
                 ->where('id_partner', $requestData['id_partner'])
                 ->update([
-                    'BC_by_user_sent' => $sum_BC_by_user_sent ,
+                    'BC_by_sos_sent' => $sum_BC_by_sos_sent ,
             ]);
 
             DB::table('ads_contents')

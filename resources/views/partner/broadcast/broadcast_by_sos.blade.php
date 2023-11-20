@@ -458,8 +458,8 @@ animation: myAnim 1s ease 0s 1 normal forwards;
   <!-- carousel -->
   <link href="{{ asset('carousel-12/css/owl.carousel.min.css') }}" rel="stylesheet">
 
-    <div id="user_max" class="div_alert d-none" role="alert">
-        <span id="text_user_max">
+    <div id="sos_max" class="div_alert d-none" role="alert">
+        <span id="text_sos_max">
             ขออภัย เกินจำนวนที่กำหนด
         </span>
     </div>
@@ -484,12 +484,12 @@ animation: myAnim 1s ease 0s 1 normal forwards;
 </div>
 </div>
 <div id="car_max" class=" div_alert" role="alert">
-        <span id="text_user_max">
+        <span id="text_sos_max">
             ขออภัย เกินจำนวนที่กำหนด
         </span>
 </div>
 
-<form method="POST" action="{{ url('/') }}/api/send_content_BC_by_user" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+<form method="POST" action="{{ url('/') }}/api/send_content_BC_by_sos" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
     {{ csrf_field() }}
 
     <input class="form-control d-none" type="text" name="arr_user_id_send_to_user" id="arr_user_id_send_to_user" readonly>
@@ -660,7 +660,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
 
                                         </div> -->
                                         <div class="col-12">
-                                            <p id="warn_BC_by_user_max" class=" text-danger mb-0" style="margin-top:15px;font-family: 'Kanit', sans-serif;">
+                                            <p id="warn_BC_by_sos_max" class=" text-danger mb-0" style="margin-top:15px;font-family: 'Kanit', sans-serif;">
                                                 <!-- ข้อความแจ้งเตือน -->
                                             </p>
                                         </div>
@@ -788,7 +788,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                                 <div class="row form-select-car" >
                                     <div class="col-12 text-center text-selected">
                                         <h5>เลือกจำนวน</h5>
-                                        <span id="tell_BC_by_user_max" class="d-none">
+                                        <span id="tell_BC_by_sos_max" class="d-none">
                                             (ไม่เกิน <span id="amount_remain"></span>)
                                         </span>
                                     </div>
@@ -799,7 +799,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                                                 {{-- <input min="1" max="" style="width:100%;" placeholder="ไม่เกิน 0 คน"  class="form-control" type="number" name="select_amount" id="select_amount">
 
                                                 oninput="document.querySelector('#span_select_from_amount').innerHTML = '(' + document.querySelector('#select_amount').value + ')' "> --}}
-                                                <input min="0" max="{{ $BC_by_user_max - $BC_by_user_sent }}" style="width:100%;" placeholder="ไม่เกิน {{ $BC_by_user_max - $BC_by_user_sent }} คน" class="form-control" type="number" name="select_amount" id="select_amount" oninput="document.querySelector('#span_select_from_amount').innerHTML = '(' + document.querySelector('#select_amount').value + ')',document.querySelector('#span_select_from_amount').classList.remove('d-none');">
+                                                <input min="0" max="{{ $BC_by_sos_max - $BC_by_sos_sent }}" style="width:100%;" placeholder="ไม่เกิน {{ $BC_by_sos_max - $BC_by_sos_sent }} คน" class="form-control" type="number" name="select_amount" id="select_amount" oninput="document.querySelector('#span_select_from_amount').innerHTML = '(' + document.querySelector('#select_amount').value + ')',document.querySelector('#span_select_from_amount').classList.remove('d-none');">
                                             </div>
                                             <div class="col-5">
                                                 <button id="btn_select_from_amount" style="width: 100%;" class="btn-select btn btn-primary btn-md" onclick="select_from_amount();">
@@ -810,7 +810,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                                     </div>
                                     <div class="col-12 mt-3">
                                         <button id="btn_amount_remain_all" style="margin-top: 0px;width: 100%;" class="btn btn-md btn-info text-white btn-select" onclick="click_select_all();">
-                                            เลือกทั้งหมด&nbsp;(<span id="amount_remain_all">{{ $BC_by_user_max - $BC_by_user_sent }}</span>)
+                                            เลือกทั้งหมด&nbsp;(<span id="amount_remain_all">{{ $BC_by_sos_max - $BC_by_sos_sent }}</span>)
                                         </button>
                                     </div>
                                 </div>
@@ -826,7 +826,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                                     <div class="col-12 text-selected">
                                         <h5>
                                             เลือกแล้ว
-                                            <span id="user_selected">0</span> / {{ $BC_by_user_max - $BC_by_user_sent }} คน
+                                            <span id="user_selected">0</span> / {{ $BC_by_sos_max - $BC_by_sos_sent }} คน
                                         </h5>
                                     </div>
                                     <div class="col-12">
@@ -1113,10 +1113,11 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                                 <label for="radius_user" class="form-label">ภายในรัศมี .. กม.</label>
                                 <select name="radius_user" class="notranslate form-control select-form" id="radius_user" onchange="find_lat_lng();show_fade_div('lat_lng_div');">
                                     <option class="translate" value="" selected> - เลือก ภายในรัศมี .. กม. - </option>
-                                    <option class="translate" value="15">15 กิโลเมตร</option>
-                                    <option class="translate" value="30">30 กิโลเมตร</option>
+                                    <option class="translate" value="2">2 กิโลเมตร</option>
+                                    <option class="translate" value="5">5 กิโลเมตร</option>
+                                    <option class="translate" value="10">10 กิโลเมตร</option>
+                                    <option class="translate" value="25">25 กิโลเมตร</option>
                                     <option class="translate" value="50">50 กิโลเมตร</option>
-                                    <option class="translate" value="1000">1000 กิโลเมตร</option>
                                 </select>
                             </div>
 
@@ -1138,7 +1139,7 @@ animation: myAnim 1s ease 0s 1 normal forwards;
 
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-md-2 col-2 d-flex justify-content-center align-items-center">
-                                            <div id="lds-ring" class="lds-ring d-none"><div></div><div></div><div></div><div></div></div>
+                                            <div id="lds-ring_user" class="lds-ring d-none"><div></div><div></div><div></div><div></div></div>
                                         </div>
                                         <div class="col-md-4 col-4">
                                             <span class="btn btn-success d-block" onclick="search_data();">ยืนยัน</span>
@@ -1293,15 +1294,15 @@ animation: myAnim 1s ease 0s 1 normal forwards;
     }
 
     // var remain =  $BC_by_car_max - $BC_by_car_sent  - count_arr_user_id ; // จำนวนคงเหลือ
-    var remain =  '{{$BC_by_user_max}}' - '{{$BC_by_user_sent}}'   - count_arr_user_id ; // จำนวนคงเหลือ
+    var remain =  '{{$BC_by_sos_max}}' - '{{$BC_by_sos_sent}}'   - count_arr_user_id ; // จำนวนคงเหลือ
     //===============================================================================================
 
     // เลือกประเภทรถ
     function select_type_user(type){
         document.querySelector('#select_amount').value = "" ;
         document.querySelector('#span_select_from_amount').innerHTML = "" ;
-        document.querySelector('#tell_BC_by_user_max').classList.remove('text-danger');
-        document.querySelector('#warn_BC_by_user_max').classList.add('d-none');
+        document.querySelector('#tell_BC_by_sos_max').classList.remove('text-danger');
+        document.querySelector('#warn_BC_by_sos_max').classList.add('d-none');
 
         document.querySelector('#user_type').value = type ;
         // document.querySelector('#div_btn_search').classList.remove('d-none');
@@ -1551,21 +1552,19 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                 }
 
             });
-
             // return location_P.value;
     }
 
     function show_location_A(){
         let location_P = document.querySelector("#province_user");
-        console.log("location_P.value");
-        console.log(location_P.value);
+
         fetch("{{ url('/') }}/api/location/"+location_P.value+"/show_location_A")
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
                 //UPDATE SELECT OPTION
                 let location_A = document.querySelector("#district_user");
-                    location_A.innerHTML = "";
+                location_A.innerHTML = "";
 
                 let option_start_A = document.createElement("option");
                     option_start_A.text = " - เลือกอำเภอ - ";
@@ -1578,6 +1577,8 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                     option.value = item.amphoe;
                     location_A.add(option);
                 }
+
+
             });
 
             // change_language_user();
@@ -1597,25 +1598,25 @@ animation: myAnim 1s ease 0s 1 normal forwards;
 
         if (remain <= 0) { // ไม่มีโควต้า
             if (class_btn_select_user_id == "fas") {
-                document.querySelector('#warn_BC_by_user_max').classList.add('d-none');
+                document.querySelector('#warn_BC_by_sos_max').classList.add('d-none');
                 drop_user(user_id);
             }else{
                 // เกินจำนวนที่กำหนด
                 // console.log(remain + " <= 0");
-                document.querySelector('#warn_BC_by_user_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
-                document.querySelector('#warn_BC_by_user_max').classList.remove('d-none');
+                document.querySelector('#warn_BC_by_sos_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
+                document.querySelector('#warn_BC_by_sos_max').classList.remove('d-none');
 
-                document.querySelector('#text_user_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
-                document.querySelector('#user_max').classList.add('up_down');
+                document.querySelector('#text_sos_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
+                document.querySelector('#sos_max').classList.add('up_down');
 
                 const animated = document.querySelector('.up_down');
                 animated.onanimationend = () => {
-                    document.querySelector('#user_max').classList.remove('up_down');
+                    document.querySelector('#sos_max').classList.remove('up_down');
                 };
             }
         }else{ // มีโควต้า
             if (class_btn_select_user_id == "far") {
-                document.querySelector('#warn_BC_by_user_max').classList.add('d-none');
+                document.querySelector('#warn_BC_by_sos_max').classList.add('d-none');
                 select_user(user_id);
             }else{
                 // เลือกแล้ว
@@ -1751,8 +1752,8 @@ animation: myAnim 1s ease 0s 1 normal forwards;
 
         // เช็ค จำนวนที่เลือกเกินกำหนดหรือไม่
         if ( amount <= remain ) {
-            document.querySelector('#warn_BC_by_user_max').classList.add('d-none');
-            document.querySelector('#tell_BC_by_user_max').classList.remove('text-danger');
+            document.querySelector('#warn_BC_by_sos_max').classList.add('d-none');
+            document.querySelector('#tell_BC_by_sos_max').classList.remove('text-danger');
 
             // คลิกเลือกตามจำนวน
             for (let i = 1; i <= amount; i++) {
@@ -1788,16 +1789,16 @@ animation: myAnim 1s ease 0s 1 normal forwards;
                 }
             }
         }else{
-            document.querySelector('#warn_BC_by_user_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
-            document.querySelector('#warn_BC_by_user_max').classList.remove('d-none');
-            document.querySelector('#tell_BC_by_user_max').classList.add('text-danger');
+            document.querySelector('#warn_BC_by_sos_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
+            document.querySelector('#warn_BC_by_sos_max').classList.remove('d-none');
+            document.querySelector('#tell_BC_by_sos_max').classList.add('text-danger');
 
-            document.querySelector('#text_user_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
-            document.querySelector('#user_max').classList.add('up_down');
+            document.querySelector('#text_sos_max').innerHTML = "ขออภัย เกินจำนวนที่กำหนด" ;
+            document.querySelector('#sos_max').classList.add('up_down');
 
             const animated = document.querySelector('.up_down');
             animated.onanimationend = () => {
-                document.querySelector('#user_max').classList.remove('up_down');
+                document.querySelector('#sos_max').classList.remove('up_down');
             };
         }
 
@@ -2003,8 +2004,14 @@ animation: myAnim 1s ease 0s 1 normal forwards;
     }
 
     function getLocation(type) {
-        let loadingAnimation = document.getElementById('lds-ring');
+        if (type == "user") {
+            let loadingAnimation_user = document.getElementById('lds-ring_user');
+            loadingAnimation_user.classList.remove('d-none');
+        } else {
+            let loadingAnimation = document.getElementById('lds-ring');
             loadingAnimation.classList.remove('d-none');
+        }
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
             set_now_location(position, type);
@@ -2029,8 +2036,8 @@ animation: myAnim 1s ease 0s 1 normal forwards;
             let lng = parseFloat(lng_text.value) ;
 
             // -----------------------------------------------------
-            let loadingAnimation = document.getElementById('lds-ring');
-                loadingAnimation.classList.add('d-none');
+            let loadingAnimation_user = document.getElementById('lds-ring_user');
+                loadingAnimation_user.classList.add('d-none');
 
             lat_text.value = lat;
             lng_text.value  = lng;
