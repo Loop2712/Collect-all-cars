@@ -947,6 +947,7 @@
 			        
 					let infowindow = new google.maps.InfoWindow({
 					    content: contentString,
+					    disableAutoPan: true // ปิดการเลื่อนของแผนที่เมื่อ Infowindow เปิด
 					});
 
 				    infowindow.open({
@@ -958,7 +959,11 @@
 			}
 		}
 
-		set_map_fit_polygon();
+		// set_map_fit_polygon();
+
+		// setTimeout(function() {
+		// 	open_map_district();
+		// }, 500);
 		
     }
 
