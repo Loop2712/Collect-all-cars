@@ -596,7 +596,7 @@
 	                sum_lat = sum_lat / result.length ;
 	                sum_lng = sum_lng / result.length ;
 
-	                map_show_data_officer_area.setZoom(12.5);
+	                map_show_data_officer_area.setZoom(12);
 	            	map_show_data_officer_area.setCenter({lat: sum_lat, lng: sum_lng });
 	            });
     	}
