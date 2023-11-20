@@ -9,7 +9,7 @@
     .card_data{
     	background-color: white;
     	width: auto;
-    	height: calc(85%);
+    	height: calc(90%);
     	padding: 20px;
     	border-radius: 15px;
     	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
@@ -21,17 +21,25 @@
 		height: calc(70%);
 	  	overflow: auto; /* เพิ่มการเลื่อนแนวตั้ง เมื่อเนื้อหาเกินขนาดของ flex container */
 	}
+
+	#div_data_left{
+		transition: left 1.5s; /* เพื่อให้การเคลื่อนที่มี animation */
+	}
+
+	#div_data_right{
+		transition: right 1.5s; /* เพื่อให้การเคลื่อนที่มี animation */
+	}
 </style>
 <!-- <link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet"> -->
 
-<div class="card_data" style="position:absolute;z-index: 99999;top: 8%;left: 1%;">
-	<div class="card card-body btn" style="position:absolute;z-index: 99999;top: 2%;left: 100%;">
-		<i class="fa-solid fa-chevrons-left"></i>
+<div id="div_data_left" class="card_data" style="position:absolute;z-index: 99999;top: 8%;left: 5px;">
+	<div id="btn_hide_or_show_Div_left" class="card card-body btn" style="position:absolute;z-index: 99999;top: 2%;left: 100%;" onclick="hide_or_show_Div('hide', 'left');">
+		<i id="icon_hide_or_show_Div_left" class="fa-solid fa-chevrons-left"></i>
 	</div>
 	<div id="show_btn_clear_infowindow" class="card card-body btn d-none" style="position:absolute;z-index: 99999;top: 10%;left: 100%;">
 		<i class="fa-sharp fa-solid fa-eye-slash fa-sm" onclick="clear_infowindow();"></i>
 	</div>
-	
+
 	<div class="card-body">
 		<div class="row">
 			<div class="col-12">
@@ -369,16 +377,13 @@
 
 </div>
 
-<div class="card_data" style="position:absolute;z-index: 99999;top: 5%;right: 1%;height: 5%!important;">
-	<div class="card-body text-center">
-		<div style="margin-top: -28px;">
-			ช่วยเหลือเสร็จสิ้น <b id="count_sos_success"></b> เคส
-		</div>
+<div id="div_data_right" class="card_data" style="position:absolute;z-index: 99999;top: 8%;right: 5px;">
+	<div id="btn_hide_or_show_Div_right" class="card card-body btn" style="position:absolute;z-index: 99999;top: 2%;right: 100%;" onclick="hide_or_show_Div('hide', 'right');">
+		<i id="icon_hide_or_show_Div_right" class="fa-solid fa-chevrons-right"></i>
 	</div>
-</div>
-
-<div class="card_data" style="position:absolute;z-index: 99999;top: 11%;right: 1%;">
 	<div class="card-body">
+		<h4>ช่วยเหลือเสร็จสิ้น <b id="count_sos_success"></b> เคส</h4>
+		<hr>
 		<div class="row">
 			<div id="div_show_select_level" class="col-12">
 				<label for="select_level">เลือกระดับ</label>
@@ -511,6 +516,9 @@
     var infowindow;
     var infowindow_arr = [];
 
+    // เช็คการขับแผนที่
+    var isPanning = false;
+
     let image_sos_general = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}";
     let image_sos_green = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}";
     let image_sos_yellow = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}";
@@ -542,6 +550,24 @@
     let img_red_ship_3 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/23.png') }}";
     let img_red_ship_other = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/24.png') }}";
 
+    // ตรวจสอบการขยับแผนที่
+    let check_dragstart_map ;
+    function func_check_dragstart_map() {
+		check_dragstart_map = setInterval(function() {
+			google.maps.event.addListenerOnce(map_show_data_officer_area, 'dragstart', function() {
+			   	isPanning = true;
+			   	Stop_check_dragstart_map();
+			   	hide_or_show_Div('hide' , 'left');
+			   	hide_or_show_Div('hide' , 'right');
+			});
+		}, 1000);
+	}
+
+	// หยุดการตรวจสอบการขยับแผนที่เมื่อมีการขยับ
+	function Stop_check_dragstart_map() {
+        clearInterval(check_dragstart_map);
+    }
+
 	function open_map_show_data_officer_area() {
 
         let m_lat = parseFloat('12.870032');
@@ -553,13 +579,7 @@
             zoom: m_numZoom,
         });
 
-        var isPanning = false;
-
-		google.maps.event.addListenerOnce(map_show_data_officer_area, 'dragstart', function() {
-		   	isPanning = true;
-		   	console.log(isPanning);
-		   	console.log('มีการขยับแผนที่');
-		});
+        func_check_dragstart_map();
 
         fetch("{{ url('/') }}/api/view_map_officer_all/" + "{{ $area }}" + "/draw_select_area")
 	        .then(response => response.json())
@@ -595,7 +615,7 @@
     function open_map_district(){
 
     	let select_area_district = document.querySelector('#select_area_district');
-    	console.log(select_area_district.value);
+    	// console.log(select_area_district.value);
     	if (select_area_district.value == 'all') {
     		open_map_show_data_officer_area();
     	}else{
@@ -623,14 +643,14 @@
 
     function change_view_data_map(type_view){
     	
-    	console.log('change_view_data_map');
+    	// console.log('change_view_data_map');
 
     	for (let i = 0; i < markers.length; i++) {
 	        markers[i].setMap(null);
 	    }
 	    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
 
-    	console.log('type_view >> ' + type_view);
+    	// console.log('type_view >> ' + type_view);
 
     	if (type_view == "btn_view_officer") {
     		btn_view_officer();
@@ -846,7 +866,7 @@
     	let show_amount_sos_black = 0 ;
     	let show_amount_sos_general = 0 ;
 
-    	console.log(sos_success_all);
+    	// console.log(sos_success_all);
 
         for(let item of sos_success_all){
 
@@ -1023,11 +1043,19 @@
 		        markers.push(marker);
 
 		        if(data != "all"){
+
+		        	let photo_user = '';
+		        	if(item.photo_user){
+		        		photo_user = "{{ url('storage')}}/" + item.photo_user ;
+		        	}else{
+		        		photo_user = "{{ url('/img/icon/rescue.png') }}";
+		        	}
+
 		        	let contentString = `
 				        <div id="content" style="width: auto; height: auto;">
 					    	<div id="bodyContent">
 					    		<center>
-					    		<img src="{{ url('storage')}}/`+item.photo_user+`" class="rounded-circle" style="width:45px;height:45px;">
+					    		<img src="`+photo_user+`" class="rounded-circle" style="width:45px;height:45px;">
 					    		</center>
 					    		<br>
 					    		<h6 style="margin-top:10px;"><b>`+item.name_officer+`</b></h6>
@@ -1085,8 +1113,46 @@
 		}, 500);
     }
 
+</script>
 
 
+<!-- ซ่อน div -->
+<script>
+	function hide_or_show_Div(type , left_or_right) {
+	    let divDataLeft = document.getElementById('div_data_left');
+	    let divDataRight = document.getElementById('div_data_right');
+
+	    let btn_left = document.querySelector('#btn_hide_or_show_Div_left');
+	    let icon_left = document.querySelector('#icon_hide_or_show_Div_left');
+
+	    let btn_right = document.querySelector('#btn_hide_or_show_Div_right');
+	    let icon_right = document.querySelector('#icon_hide_or_show_Div_right');
+
+	    if(left_or_right == "left"){
+	    	if(type == "show"){
+		    	btn_left.setAttribute('onclick' , "hide_or_show_Div('hide' , 'left');");
+		    	divDataLeft.style.left = '5px';
+		    	icon_left.setAttribute('class' , "fa-solid fa-chevrons-left");
+		    	func_check_dragstart_map();
+		    }else{
+		    	btn_left.setAttribute('onclick' , "hide_or_show_Div('show' , 'left');");
+		    	divDataLeft.style.left = '-350px';
+		    	icon_left.setAttribute('class' , "fa-solid fa-chevrons-right");
+		    }
+	    }else if(left_or_right == "right"){
+	    	if(type == "show"){
+		    	btn_right.setAttribute('onclick' , "hide_or_show_Div('hide' , 'right');");
+		    	divDataRight.style.right = '5px';
+		    	icon_right.setAttribute('class' , "fa-solid fa-chevrons-right");
+		    	func_check_dragstart_map();
+		    }else{
+		    	btn_right.setAttribute('onclick' , "hide_or_show_Div('show' , 'right');");
+		    	divDataRight.style.right = '-310px';
+		    	icon_right.setAttribute('class' , "fa-solid fa-chevrons-left");
+		    }
+	    }
+	    
+	}
 </script>
 
 @endsection('content')
