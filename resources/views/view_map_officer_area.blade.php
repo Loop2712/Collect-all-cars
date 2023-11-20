@@ -148,7 +148,7 @@
 							<img src="{{ url('/img/icon/all_vehicle.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">
 								
-								ทั้งหมด : <b>{ $sum_vehicle }</b>
+								ทั้งหมด : <b id="count_sum_vehicle"></b>
 								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','all');">
 									<i class="fa-sharp fa-solid fa-eye text-info"></i>
 								</span>
@@ -158,7 +158,7 @@
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/car_img.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">
-								รถยนต์ : <b>{ $arr_vehicle['vehicle_car'] }</b>
+								รถยนต์ : <b id="count_vehicle_car"></b>
 								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','รถ');">
 									<i class="fa-sharp fa-solid fa-eye text-info"></i>
 								</span>
@@ -168,7 +168,7 @@
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/helicopter.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">
-								อากาศยาน : <b>{ $arr_vehicle['vehicle_aircraft'] }</b>
+								อากาศยาน : <b id="count_vehicle_aircraft"></b>
 								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','อากาศยาน');">
 									<i class="fa-sharp fa-solid fa-eye text-info"></i>
 								</span>
@@ -178,7 +178,7 @@
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/ship1.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">
-								เรือ ป.1 : <b>{ $arr_vehicle['vehicle_boat_1'] }</b>
+								เรือ ป.1 : <b id="count_vehicle_boat_1"></b>
 								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.1');">
 									<i class="fa-sharp fa-solid fa-eye text-info"></i>
 								</span>
@@ -188,7 +188,7 @@
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/ship2.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">
-								เรือ ป.2 : <b>{ $arr_vehicle['vehicle_boat_2'] }</b>
+								เรือ ป.2 : <b id="count_vehicle_boat_2"></b>
 								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.2');">
 									<i class="fa-sharp fa-solid fa-eye text-info"></i>
 								</span>
@@ -198,7 +198,7 @@
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/ship3.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">
-								เรือ ป.3 : <b>{ $arr_vehicle['vehicle_boat_3'] }</b>
+								เรือ ป.3 : <b id="count_vehicle_boat_3"></b>
 								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.3');">
 									<i class="fa-sharp fa-solid fa-eye text-info"></i>
 								</span>
@@ -208,7 +208,7 @@
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/ship4.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">
-								เรือประเภทอื่นๆ : <b>{ $arr_vehicle['vehicle_boat_other'] }</b>
+								เรือประเภทอื่นๆ : <b id="count_vehicle_boat_other"></b>
 								<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือประเภทอื่นๆ');">
 									<i class="fa-sharp fa-solid fa-eye text-info"></i>
 								</span>
@@ -224,7 +224,7 @@
 							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">
 								
-								ทั้งหมด : <b>{ $sum_level }</b>
+								ทั้งหมด : <b id="count_sum_level"></b>
 								<span class="float-end btn" onclick="view_offiecr_select('level','all');">
 									<i class="fa-sharp fa-solid fa-eye text-info"></i>
 								</span>
@@ -234,7 +234,7 @@
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">
-								FR : <b>{ $arr_vehicle['vehicle_fr'] }</b>
+								FR : <b id="count_level_fr"></b>
 								<span class="float-end btn" onclick="view_offiecr_select('level','FR');">
 									<i class="fa-sharp fa-solid fa-eye text-info"></i>
 								</span>
@@ -244,7 +244,7 @@
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">
-								BLS : <b>{ $arr_vehicle['vehicle_bls'] }</b>
+								BLS : <b id="count_level_bls"></b>
 								<span class="float-end btn" onclick="view_offiecr_select('level','BLS');">
 									<i class="fa-sharp fa-solid fa-eye text-info"></i>
 								</span>
@@ -254,7 +254,7 @@
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">
-								ILS : <b>{ $arr_vehicle['vehicle_ils'] }</b>
+								ILS : <b id="count_level_ils"></b>
 								<span class="float-end btn" onclick="view_offiecr_select('level','ILS');">
 									<i class="fa-sharp fa-solid fa-eye text-info"></i>
 								</span>
@@ -264,7 +264,7 @@
 						<p style="position:relative;padding-top: 10px;">
 							<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}" width="35" style="position: absolute;top:0px;"> 
 							<span style="margin-left:50px;">
-								ALS : <b>{ $arr_vehicle['vehicle_als'] }</b>
+								ALS : <b id="count_level_als"></b>
 								<span class="float-end btn" onclick="view_offiecr_select('level','ALS');">
 									<i class="fa-sharp fa-solid fa-eye text-info"></i>
 								</span>
@@ -638,12 +638,28 @@
     	// console.log('btn_view_officer');
 
     	let icon_level ;
+
+    	// STATUS OFFICER
     	let count_officer_ready = 0 ;
     	let count_officer_helping = 0 ;
     	let count_officer_Not_ready = 0 ;
 
+    	let count_vehicle_car = 0 ;
+    	let count_vehicle_aircraft = 0 ;
+    	let count_vehicle_boat_1 = 0 ;
+    	let count_vehicle_boat_2 = 0 ;
+    	let count_vehicle_boat_3 = 0 ;
+    	let count_vehicle_boat_other = 0 ;
+
+    	// LEVEL
+    	let count_level_fr = 0 ;
+    	let count_level_bls = 0 ;
+    	let count_level_ils = 0 ;
+    	let count_level_als = 0 ;
+
         for(let item of data_officer_all){
 
+        	// STATUS OFFICER
         	if(item.status === "Standby"){
         		count_officer_ready = count_officer_ready + 1 ;
         	}else if(item.status === "Helping"){
@@ -651,6 +667,44 @@
         	}else{
         		count_officer_Not_ready = count_officer_Not_ready + 1 ;
         	}
+
+        	// VEHICLE
+        	switch(item.vehicle_type) {
+			  	case "รถ":
+			    	count_vehicle_car = count_vehicle_car + 1 ;
+			    break;
+			  	case "อากาศยาน":
+			    	count_vehicle_aircraft = count_vehicle_aircraft + 1 ;
+			    break;
+			    case "เรือ ป.1":
+			    	count_vehicle_boat_1 = count_vehicle_boat_1 + 1 ;
+			    break;
+			    case "เรือ ป.2":
+			    	count_vehicle_boat_2 = count_vehicle_boat_2 + 1 ;
+			    break;
+			    case "เรือ ป.3":
+			    	count_vehicle_boat_3 = count_vehicle_boat_3 + 1 ;
+			    break;
+			    case "เรือประเภทอื่นๆ":
+			    	count_vehicle_boat_other = count_vehicle_boat_other + 1 ;
+			    break;
+			}
+
+			// LEVEL
+        	switch(item.level) {
+			  	case "FR":
+			    	count_level_fr = count_level_fr + 1 ;
+			    break;
+			  	case "BLS":
+			    	count_level_bls = count_level_bls + 1 ;
+			    break;
+			    case "ILS":
+			    	count_level_ils = count_level_ils + 1 ;
+			    break;
+			    case "ALS":
+			    	count_level_als = count_level_als + 1 ;
+			    break;
+			}
 
         	// FR
         	if( item.level === "FR" ){
@@ -731,10 +785,28 @@
 
 	    }
 
+	    // STATUS OFFICER
     	document.querySelector('#count_officer_all').innerHTML = data_officer_all.length ;
     	document.querySelector('#count_officer_ready').innerHTML = count_officer_ready ;
     	document.querySelector('#count_officer_helping').innerHTML = count_officer_helping ;
     	document.querySelector('#count_officer_Not_ready').innerHTML = count_officer_Not_ready ;
+
+    	// VEHICLE
+    	document.querySelector('#count_sum_vehicle').innerHTML = data_officer_all.length ;
+    	document.querySelector('#count_vehicle_car').innerHTML = count_vehicle_car ;
+    	document.querySelector('#count_vehicle_aircraft').innerHTML = count_vehicle_aircraft ;
+    	document.querySelector('#count_vehicle_boat_1').innerHTML = count_vehicle_boat_1 ;
+    	document.querySelector('#count_vehicle_boat_2').innerHTML = count_vehicle_boat_2 ;
+    	document.querySelector('#count_vehicle_boat_3').innerHTML = count_vehicle_boat_3 ;
+    	document.querySelector('#count_vehicle_boat_other').innerHTML = count_vehicle_boat_other ;
+
+    	// LEVEL
+    	document.querySelector('#count_sum_level').innerHTML = data_officer_all.length ;
+    	document.querySelector('#count_level_fr').innerHTML = count_level_fr ;
+    	document.querySelector('#count_level_bls').innerHTML = count_level_bls ;
+    	document.querySelector('#count_level_ils').innerHTML = count_level_ils ;
+    	document.querySelector('#count_level_als').innerHTML = count_level_als ;
+
 
     }
 
