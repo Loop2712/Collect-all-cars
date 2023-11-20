@@ -313,7 +313,7 @@ class Broadcast_sosController extends Controller
 
         }
 
-        return redirect('/broadcast/broadcast_by_user')->with('flash_message', 'Partner updated!');
+        return redirect('/broadcast/broadcast_by_sos')->with('flash_message', 'Partner updated!');
 
     }
 
