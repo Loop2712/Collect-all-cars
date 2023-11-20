@@ -25,9 +25,16 @@
 <!-- <link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet"> -->
 
 <div class="card_data" style="position:absolute;z-index: 99999;top: 8%;left: 1%;">
+	<div class="card card-body btn" style="position:absolute;z-index: 99999;top: 2%;left: 100%;">
+		<i class="fa-solid fa-chevrons-left"></i>
+	</div>
+	<div id="show_btn_clear_infowindow" class="card card-body btn d-none" style="position:absolute;z-index: 99999;top: 10%;left: 100%;">
+		<i class="fa-sharp fa-solid fa-eye-slash fa-sm" onclick="clear_infowindow();"></i>
+	</div>
+	
 	<div class="card-body">
 		<div class="row">
-			<div id="" class="col-12">
+			<div class="col-12">
 				<label for="select_area_district">เลือกอำเภอ</label>
 				<select name="select_area_district" id="select_area_district" class="form-control" onchange="open_map_district();">
 					<option class="notranslate" selected value="all">ทั้งหมด</option>
@@ -64,7 +71,7 @@
 				</a>
 			</li>
 		</ul>
-		<div class="tab-content py-3">
+		<div class="tab-content py-3 flex-container">
 			<!-- ข้อมูลหน่วยปฏิบัติการ -->
 			<div class="tab-pane fade active show" id="primaryhome_title" role="tabpanel">
 				<ul class="nav nav-tabs nav-primary" role="tablist">
@@ -355,10 +362,11 @@
 						<br>
 					</p>
 				</div>
-
 			</div>
+
 		</div>
 	</div>
+
 </div>
 
 <div class="card_data" style="position:absolute;z-index: 99999;top: 5%;right: 1%;height: 5%!important;">
@@ -500,6 +508,9 @@
     var bounds;
     var polygon;
 
+    var infowindow;
+    var infowindow_arr = [];
+
     let image_sos_general = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}";
     let image_sos_green = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}";
     let image_sos_yellow = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}";
@@ -541,6 +552,14 @@
             center: {lat: m_lat, lng: m_lng },
             zoom: m_numZoom,
         });
+
+        var isPanning = false;
+
+		google.maps.event.addListenerOnce(map_show_data_officer_area, 'dragstart', function() {
+		   	isPanning = true;
+		   	console.log(isPanning);
+		   	console.log('มีการขยับแผนที่');
+		});
 
         fetch("{{ url('/') }}/api/view_map_officer_all/" + "{{ $area }}" + "/draw_select_area")
 	        .then(response => response.json())
@@ -897,7 +916,6 @@
     }
 
     function view_offiecr_select(type , data){
-
     	// console.log(type);
     	
     	for (let i = 0; i < markers.length; i++) {
@@ -1017,7 +1035,7 @@
 					    </div>
 				    `;
 			        
-					let infowindow = new google.maps.InfoWindow({
+					infowindow = new google.maps.InfoWindow({
 					    content: contentString,
 					    disableAutoPan: true // ปิดการเลื่อนของแผนที่เมื่อ Infowindow เปิด
 					});
@@ -1026,6 +1044,13 @@
 				      	anchor: marker,
 				      	map_show_data_officer_area,
 				    });
+
+		        	infowindow_arr.push(infowindow);
+
+		        	document.querySelector('#show_btn_clear_infowindow').classList.remove('d-none');
+
+		        }else{
+					document.querySelector('#show_btn_clear_infowindow').classList.add('d-none');
 		        }
 
 			}
@@ -1037,6 +1062,16 @@
 		// 	open_map_district();
 		// }, 500);
 		
+    }
+
+    function clear_infowindow(){
+    	
+    	for (let i = 0; i < infowindow_arr.length; i++) {
+	        infowindow_arr[i].close();
+	    }
+	    infowindow_arr = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
+
+		document.querySelector('#show_btn_clear_infowindow').classList.add('d-none');
     }
 
 
