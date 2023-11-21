@@ -478,14 +478,14 @@
                 ->get();
     	@endphp
 	    // sos success all
-    	fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
-	        .then(response => response.json())
-	        .then(result_sos_success_all => {
-	            // console.log(result_sos_success_all);
-	            sos_success_all = result_sos_success_all ;
-    			document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
+    	// fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
+	    //     .then(response => response.json())
+	    //     .then(result_sos_success_all => {
+	    //         // console.log(result_sos_success_all);
+	    //         sos_success_all = result_sos_success_all ;
+    	// 		document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
 
-    		});
+    	// 	});
 
     	// show_location_A district
 	    fetch("{{ url('/') }}/api/location/"+"{{ $area }}"+"/show_location_A")
