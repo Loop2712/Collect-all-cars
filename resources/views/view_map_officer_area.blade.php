@@ -465,9 +465,18 @@
 
 	            // สร้าง MAP
         		open_map_show_data_officer_area();
+        		loop_get_data_officer_all();
 
     		});
 
+    	@php
+    		$sos_success = Illuminate\Support\Facades\DB::table('sos_1669_form_yellows')
+                ->join('sos_help_centers', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+                ->where('sos_help_centers.status', 'เสร็จสิ้น')
+                ->where("sos_help_centers.notify",'LIKE', "%$area%")
+                ->select('sos_help_centers.*' , 'sos_1669_form_yellows.rc as rc')
+                ->get();
+    	@endphp
 	    // sos success all
     	fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
 	        .then(response => response.json())
@@ -515,6 +524,8 @@
 
     var infowindow;
     var infowindow_arr = [];
+
+    var active_infowindow = "No" ;
 
     // เช็คการขับแผนที่
     var isPanning = false;
@@ -573,6 +584,8 @@
         let m_lat = parseFloat('12.870032');
         let m_lng = parseFloat('100.992541') + 1;
         let m_numZoom = parseFloat('6.5');
+
+        active_infowindow = "No" ;
 
         map_show_data_officer_area = new google.maps.Map(document.getElementById("map_show_officer_all"), {
             center: {lat: m_lat, lng: m_lng },
@@ -852,10 +865,12 @@
     function btn_view_sos(type){
     	// console.log('btn_view_sos');
 
-        for (let i = 0; i < markers.length; i++) {
-	        markers[i].setMap(null);
-	    }
-	    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
+    	if(type != "loop_get_data"){
+	        for (let i = 0; i < markers.length; i++) {
+		        markers[i].setMap(null);
+		    }
+		    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
+		}
 
     	let icon_level ;
 
@@ -898,12 +913,14 @@
 
 			if(type == item.rc || type == 'all'){
 
-		        marker_sos = new google.maps.Marker({
-		            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
-		            map: map_show_data_officer_area,
-		            icon: icon_level,
-		        });
-		        markers.push(marker_sos);
+				if(type != "loop_get_data"){
+			        marker_sos = new google.maps.Marker({
+			            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
+			            map: map_show_data_officer_area,
+			            icon: icon_level,
+			        });
+			        markers.push(marker_sos);
+			    }
 		    }
 		    else if(type == 'general'){
 
@@ -935,9 +952,13 @@
 
     }
 
+    let check_data_view_infowindow ;
+    let check_type_view_infowindow ;
     function view_offiecr_select(type , data){
     	// console.log(type);
-    	
+    	check_data_view_infowindow = data ;
+    	check_type_view_infowindow = type ;
+
     	for (let i = 0; i < markers.length; i++) {
 	        markers[i].setMap(null);
 	    }
@@ -1074,10 +1095,12 @@
 				    });
 
 		        	infowindow_arr.push(infowindow);
-
+    
+    				active_infowindow = "Yes" ;
 		        	document.querySelector('#show_btn_clear_infowindow').classList.remove('d-none');
 
 		        }else{
+    				active_infowindow = "No" ;
 					document.querySelector('#show_btn_clear_infowindow').classList.add('d-none');
 		        }
 
@@ -1099,6 +1122,7 @@
 	    }
 	    infowindow_arr = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
 
+    	active_infowindow = "No" ;
 		document.querySelector('#show_btn_clear_infowindow').classList.add('d-none');
     }
 
@@ -1153,6 +1177,55 @@
 	    }
 	    
 	}
+</script>
+
+
+<!-- ****** LOOP GET DATA ****** -->
+<script>
+
+    let get_data_officer_all ;
+
+    function loop_get_data_officer_all() {
+		get_data_officer_all = setInterval(function() {
+			
+		// data officer all
+    	fetch("{{ url('/') }}/api/get_data_officer_all/" + "{{ $area }}")
+	        .then(response => response.json())
+	        .then(result_data_officer_all => {
+	            console.log('GET NEW DATA officer_all');
+	            // console.log(result_data_officer_all);
+	            for (let i = 0; i < markers.length; i++) {
+			        markers[i].setMap(null);
+			    }
+			    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
+
+	            data_officer_all = result_data_officer_all ;
+
+	            btn_view_officer();
+	            console.log(active_infowindow);
+	            if(active_infowindow == "Yes"){
+	            	view_offiecr_select(check_type_view_infowindow, check_data_view_infowindow)
+	            }
+    		});
+
+	    // sos success all
+    	fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
+	        .then(response => response.json())
+	        .then(result_sos_success_all => {
+	            console.log('GET NEW DATA sos_help_center');
+	            // console.log(result_sos_success_all);
+	            sos_success_all = result_sos_success_all ;
+    			document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
+    			btn_view_sos('loop_get_data');
+    		});
+
+		}, 60000);
+		// }, 5000);
+	}
+
+	function Stop_get_data_officer_all() {
+        clearInterval(get_data_officer_all);
+    }
 </script>
 
 @endsection('content')
