@@ -469,23 +469,15 @@
 
     		});
 
-    	@php
-    		$sos_success = Illuminate\Support\Facades\DB::table('sos_1669_form_yellows')
-                ->join('sos_help_centers', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
-                ->where('sos_help_centers.status', 'เสร็จสิ้น')
-                ->where("sos_help_centers.notify",'LIKE', "%$area%")
-                ->select('sos_help_centers.*' , 'sos_1669_form_yellows.rc as rc')
-                ->get();
-    	@endphp
 	    // sos success all
-    	// fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
-	    //     .then(response => response.json())
-	    //     .then(result_sos_success_all => {
-	    //         // console.log(result_sos_success_all);
-	    //         sos_success_all = result_sos_success_all ;
-    	// 		document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
+    	fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
+	        .then(response => response.json())
+	        .then(result_sos_success_all => {
+	            // console.log(result_sos_success_all);
+	            sos_success_all = result_sos_success_all ;
+    			document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
 
-    	// 	});
+    		});
 
     	// show_location_A district
 	    fetch("{{ url('/') }}/api/location/"+"{{ $area }}"+"/show_location_A")
