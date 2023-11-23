@@ -326,6 +326,7 @@ Route::get('/check_user_in_room_4', 'Agora_4_Controller@check_user_in_room_4');
 Route::get('/get_local_data_4', 'Agora_4_Controller@get_local_data_4');
 Route::get('/get_remote_data_4', 'Agora_4_Controller@get_remote_data_4');
 Route::get('/check_status_sos_video_call', 'Agora_4_Controller@check_status_sos_video_call');
+Route::get('/check_status_room', 'Agora_4_Controller@check_status_room');
 
 Route::get('/video_call', 'AgoraController@token');
 Route::get('/join_room', 'AgoraController@join_room');
