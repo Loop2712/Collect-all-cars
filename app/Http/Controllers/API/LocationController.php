@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\API\LineApiController;
 use App\Models\Sos_map;
+use App\Models\Polygon_amphoe_th;
 
 class LocationController extends Controller
 {
@@ -71,13 +72,21 @@ class LocationController extends Controller
 
     public function get_let_lng_district($area , $district){
 
-        $data = DB::table('lat_longs')
-                ->where('changwat_th', 'LIKE' , "%$area%")
-                ->where('amphoe_th', 'LIKE' , "%$district%")
-                ->select('lat', 'lng')
-                ->get();
+        $data = Polygon_amphoe_th::where('province_name', $area)
+                ->where('amphoe_name', $district)
+                ->first();
 
         return $data;
+    }
+
+    function get_polygon_all_amphoe(){
+
+        $data = DB::table('polygon_amphoe_ths')
+                ->select('polygon','amphoe_name')
+                ->get();
+
+        return $data ;
+
     }
     
 

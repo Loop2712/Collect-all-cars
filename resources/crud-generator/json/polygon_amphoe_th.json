@@ -1,0 +1,28 @@
+{
+    "fields": [
+        {
+            "name": "province_name",
+            "type": "string"
+        },
+        {
+            "name": "amphoe_name",
+            "type": "string"
+        },
+        {
+            "name": "amphoe_lat",
+            "type": "string"
+        },
+        {
+            "name": "amphoe_lon",
+            "type": "string"
+        },
+        {
+            "name": "amphoe_zoom",
+            "type": "string"
+        },
+        {
+            "name": "polygon",
+            "type": "string"
+        }
+    ]
+}

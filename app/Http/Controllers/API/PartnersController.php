@@ -1260,6 +1260,116 @@ class PartnersController extends Controller
 
     function view_map_officer_area(){
 
+        // $template_path = storage_path('../public/อำเภอ.json');
+        // $string_json = file_get_contents($template_path);
+
+        // $data = [ json_decode($string_json, true) ];
+
+        // // สร้าง array เพื่อเก็บค่า ADM1_TH ทั้งหมด
+        // $adm_categories = [];
+
+        // // วนลูปผ่าน features ทุกตัว
+        // foreach ($data[0]['features'] as $feature) {
+        //     // ดึงค่า ADM1_TH และ ADM2_TH จาก properties
+        //     $adm1_th = $feature['properties']['ADM1_TH'];
+        //     $adm2_th = $feature['properties']['ADM2_TH'];
+
+        //     $geometry = $feature['geometry']['coordinates'];
+        //     $geometry = json_encode($geometry);
+
+        //     $geometry = str_replace("[[[","{",$geometry);
+        //     $geometry = str_replace("]]]","}",$geometry);
+        //     $geometry = str_replace("[","{",$geometry);
+        //     $geometry = str_replace("]","}",$geometry);
+
+        //     $geometry = str_replace("},{","/",$geometry);
+        //     $geometry = str_replace("{","",$geometry);
+        //     $geometry = str_replace("}","",$geometry);
+
+        //     $geometry = explode("/",$geometry);
+
+        //     $arr_lat_lng = '';
+
+        //     for ($i=0; $i < count($geometry); $i++) { 
+        //         $geometry_ex_1 = explode(".",$geometry[$i]);
+        //         $geometry_ex_2 = explode(",",$geometry_ex_1[1]);
+
+        //         $text_lng_1 = '"lng":' . $geometry_ex_1[0];
+        //         $text_lng_2 = $geometry_ex_2[0];
+
+        //         $text_lat_1 = '"lat":' . $geometry_ex_2[1];
+        //         $text_lat_2 = $geometry_ex_1[2];
+
+        //         $arr_lat_lng = $arr_lat_lng . "{" . $text_lng_1 . "." . $text_lng_2 . "," . $text_lat_1 . "." . $text_lat_2 . "}," ;
+        //     }
+
+        //     $geometry = "[" . $arr_lat_lng . "]";
+        //     $geometry = str_replace(",]","]",$geometry);
+
+
+        //     // ตรวจสอบว่าค่า ADM1_TH นี้มี key ใน $adm_categories หรือยัง
+        //     if (!array_key_exists($adm1_th, $adm_categories)) {
+        //         // ถ้ายังไม่มี, ให้สร้าง key ใหม่และกำหนดให้เป็น array
+        //         $adm_categories[$adm1_th] = [];
+        //     }
+
+        //     // เพิ่มค่า ADM2_TH ลงใน array ของ key ที่เป็น ADM1_TH
+        //     // $adm_categories[$adm1_th][] = $adm2_th;
+        //     $adm_categories[$adm1_th][$adm2_th] = $geometry;
+            
+        // }
+
+        // foreach ($adm_categories as $province => $districts) {
+        //     ksort($adm_categories[$province]);
+        // }
+
+        // ksort($adm_categories);
+
+
+        // // $adm_categories ตอนนี้จะมีค่า ADM1_TH ทั้งหมด
+        // echo count($adm_categories);
+        // echo "<br>";
+        // // echo "<pre>";
+        // // print_r($adm_categories);
+        // // echo "<pre>";
+
+        // foreach ($adm_categories as $province => $districts) {
+        //     // echo $province; // ชื่อจังหวัด
+        //     // echo "<br>";
+
+        //     foreach ($districts as $district => $geometry) {
+        //         // echo $district; // ชื่อเขต/อำเภอ
+        //         // echo "<br>";
+
+        //         // ทำตามที่คุณต้องการกับ $geometry ที่นี่
+        //         // ยกตัวอย่างเช่น
+        //         // echo $geometry;
+        //         // echo "<br>";
+
+        //         $data_insert = [
+        //             'province_name' => $province,
+        //             'amphoe_name' => $district,
+        //             // 'amphoe_lat' => '',
+        //             // 'amphoe_lon' => '',
+        //             'amphoe_zoom' => '12',
+        //             'polygon' => $geometry,
+        //         ];
+
+        //         DB::table('polygon_amphoe_ths')->insert($data_insert);
+
+        //         echo "<br>";
+        //         echo "-----------------------------------------------------------";
+        //         echo "<br>";
+        //         echo "เพิ่ม " . $province ."/". $district . " เรียบร้อย" ;
+        //         echo "<br>";
+        //         echo "-----------------------------------------------------------";
+        //         echo "<br>";
+
+        //     }
+
+        // }
+        // exit();
+
         $area = Auth::user()->sub_organization ;
 
         return view('view_map_officer_area' , compact('area'));
