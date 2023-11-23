@@ -603,3 +603,4 @@ Route::get('/layout_video_call', function () {
 Route::get('/show_score_public', 'Vote_kan_scoresController@show_score_public');
 
 Route::resource('phone_niems', 'Phone_niemsController');
+Route::resource('polygon_amphoe_th', 'Polygon_amphoe_thController');
