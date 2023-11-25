@@ -645,7 +645,19 @@
 				// ผลลัพธ์จะเก็บอยู่ในตัวแปร data_arr
 				console.log(data_arr);
 
-				for (let key in data_arr) {
+				// แปลง object เป็น array ของคู่ key-value
+				let entries = Object.entries(data_arr);
+
+				// ใช้ Array.sort() เพื่อจัดเรียง array ตามค่า value (จำนวนที่นับ)
+				entries.sort((a, b) => b[1] - a[1]);
+
+				// สร้าง object ใหม่จาก array ที่เรียงแล้ว
+				let sortedData = Object.fromEntries(entries);
+
+				// แสดงผลลัพธ์
+				console.log(sortedData);
+
+				for (let key in sortedData) {
 				  	// console.log(`Key: ${key}, Value: ${data_arr[key]}`);
 
 				  	let html = `
