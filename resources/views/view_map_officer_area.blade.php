@@ -627,17 +627,19 @@
 				// วนลูปผ่านทุกรายการใน result_sos_success_all
 				for (let item of result_sos_success_all) {
 
-					let address = item.address.split("/");
-					    address = address[0] + "/" + address[1];
+					if(item.address){
+						let address = item.address.split("/");
+						    address = address[0] + "/" + address[1];
 
-				  	// ตรวจสอบว่า address มีอยู่ใน data_arr หรือไม่
-				  	if (data_arr[address]) {
-				    	// ถ้ามีให้เพิ่มค่าใน data_arr[item.address] ขึ้นอีก 1
-				    	data_arr[address]++;
-				  	} else {
-				    	// ถ้ายังไม่มีให้สร้าง key ใหม่ใน data_arr และกำหนดค่าเริ่มต้นเป็น 1
-				    	data_arr[address] = 1;
-				  	}
+					  	// ตรวจสอบว่า address มีอยู่ใน data_arr หรือไม่
+					  	if (data_arr[address]) {
+					    	// ถ้ามีให้เพิ่มค่าใน data_arr[item.address] ขึ้นอีก 1
+					    	data_arr[address]++;
+					  	} else {
+					    	// ถ้ายังไม่มีให้สร้าง key ใหม่ใน data_arr และกำหนดค่าเริ่มต้นเป็น 1
+					    	data_arr[address] = 1;
+					  	}
+					}
 				}
 
 				// ผลลัพธ์จะเก็บอยู่ในตัวแปร data_arr
