@@ -645,7 +645,7 @@
 				// ผลลัพธ์จะเก็บอยู่ในตัวแปร data_arr
 				console.log(data_arr);
 
-				let entries = Object.entries(data);
+				let entries = Object.entries(data_arr);
 
 				entries.sort((a, b) => b[1] - a[1]);
 
