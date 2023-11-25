@@ -42,7 +42,7 @@
     .flex-container {
 	  	display: flex;
 		/*height: 350px;*/
-		height: calc(70%);
+		height: calc(90%);
 	  	overflow: auto; /* เพิ่มการเลื่อนแนวตั้ง เมื่อเนื้อหาเกินขนาดของ flex container */
 	}
 
@@ -148,11 +148,11 @@
 		<div class="card-body">
 			<div class="btn-group" role="group" aria-label="Basic example" style="width:100%;">
 				<button id="btn_view_officer" type="button" class="btn btn-sm btn-success" 
-				onclick="change_view_data_map('btn_view_officer');document.querySelector('#a_li_1').click();">
+				onclick="change_view_data_map('btn_view_officer');document.querySelector('#a_li_1').click();main_check_view_officer();">
 					หน่วยปฏิบัติการแพทย์ฉุกเฉิน
 				</button>
 				<button id="btn_view_sos" type="button" class="btn btn-sm btn-outline-danger" 
-				onclick="change_view_data_map('btn_view_sos');document.querySelector('#a_li_2').click();show_data_area();">
+				onclick="change_view_data_map('btn_view_sos');document.querySelector('#a_li_2').click();click_menu_div_right('area');">
 					&nbsp;&nbsp;&nbsp;จุดเกิดเหตุ&nbsp;&nbsp;&nbsp;
 				</button>
 			</div>
@@ -229,7 +229,7 @@
 								<img src="{{ url('/img/icon/checked.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									พร้อมช่วยเหลือ : <b id="count_officer_ready"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('status','Standby');show_data_name_officer();">
+									<span class="float-end btn" onclick="view_offiecr_select('status','Standby');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -239,7 +239,7 @@
 								<img src="{{ url('/img/icon/help.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									กำลังช่วยเหลือ : <b id="count_officer_helping"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('status','Helping');show_data_name_officer();">
+									<span class="float-end btn" onclick="view_offiecr_select('status','Helping');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -270,7 +270,7 @@
 								<img src="{{ url('/img/icon/car_img.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									รถยนต์ : <b id="count_vehicle_car"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','รถ');show_data_name_officer();">
+									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','รถ');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -280,7 +280,7 @@
 								<img src="{{ url('/img/icon/helicopter.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									อากาศยาน : <b id="count_vehicle_aircraft"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','อากาศยาน');show_data_name_officer();">
+									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','อากาศยาน');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -290,7 +290,7 @@
 								<img src="{{ url('/img/icon/ship1.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									เรือ ป.1 : <b id="count_vehicle_boat_1"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.1');show_data_name_officer();">
+									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.1');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -300,7 +300,7 @@
 								<img src="{{ url('/img/icon/ship2.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									เรือ ป.2 : <b id="count_vehicle_boat_2"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.2');show_data_name_officer();">
+									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.2');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -310,7 +310,7 @@
 								<img src="{{ url('/img/icon/ship3.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									เรือ ป.3 : <b id="count_vehicle_boat_3"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.3');show_data_name_officer();">
+									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.3');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -320,7 +320,7 @@
 								<img src="{{ url('/img/icon/ship4.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									เรือประเภทอื่นๆ : <b id="count_vehicle_boat_other"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือประเภทอื่นๆ');show_data_name_officer();">
+									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือประเภทอื่นๆ');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -346,7 +346,7 @@
 								<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									FR : <b id="count_level_fr"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('level','FR');show_data_name_officer();">
+									<span class="float-end btn" onclick="view_offiecr_select('level','FR');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -356,7 +356,7 @@
 								<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									BLS : <b id="count_level_bls"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('level','BLS');show_data_name_officer();">
+									<span class="float-end btn" onclick="view_offiecr_select('level','BLS');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -366,7 +366,7 @@
 								<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									ILS : <b id="count_level_ils"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('level','ILS');show_data_name_officer();">
+									<span class="float-end btn" onclick="view_offiecr_select('level','ILS');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -376,7 +376,7 @@
 								<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									ALS : <b id="count_level_als"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('level','ALS');show_data_name_officer();">
+									<span class="float-end btn" onclick="view_offiecr_select('level','ALS');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -480,14 +480,14 @@
 			<i id="icon_lock_or_unlock_Div_right" class="fa-solid fa-lock-keyhole-open"></i>
 		</div>
 
-		<div id="btn_view_div_data_area" class="card card_btn_div card-body btn" style="right: 100%;top: 18%;" onclick="click_menu_div_right('area');">
-			<i id="icon_view_div_data_area" class="fa-solid fa-map-location-dot text-success"></i>
+		<div id="btn_view_div_data_gotohelp" class="d-none card card_btn_div card-body btn" style="right: 100%;top: 18%;" onclick="click_menu_div_right('gotohelp');">
+			<i id="icon_view_div_data_gotohelp" class="fa-sharp fa-regular fa-truck-medical text-success"></i>
 		</div>
-		<div id="btn_view_div_data_gotohelp" class="card card_btn_div card-body btn" style="right: 100%;top: 25%;" onclick="click_menu_div_right('gotohelp');">
-			<i id="icon_view_div_data_gotohelp" class="fa-sharp fa-regular fa-truck-medical text-secondary"></i>
-		</div>
-		<div id="btn_view_div_data_officer" class="card card_btn_div card-body btn" style="right: 100%;top: 32%;" onclick="click_menu_div_right('officer');">
+		<div id="btn_view_div_data_officer" class="d-none card card_btn_div card-body btn" style="right: 100%;top: 25%;" onclick="click_menu_div_right('officer');">
 			<i id="icon_view_div_data_officer" class="fa-solid fa-user-police text-secondary"></i>
+		</div>
+		<div id="btn_view_div_data_area" class="d-none card card_btn_div card-body btn" style="right: 100%;top: 32%;" onclick="click_menu_div_right('area');">
+			<i id="icon_view_div_data_area" class="fa-solid fa-map-location-dot text-secondary"></i>
 		</div>
 
 		<div class="card-body">
@@ -496,7 +496,7 @@
 
 			<ul class="nav nav-tabs nav-primary mt-3 d-none" role="tablist">
 				<li class="nav-item" role="presentation_2">
-					<a id="menu_div_right_area" class="nav-link active" data-bs-toggle="tab" href="#primaryhome_2" role="tab" aria-selected="false">
+					<a id="menu_div_right_area" class="nav-link" data-bs-toggle="tab" href="#primaryhome_2" role="tab" aria-selected="false">
 						<div class="d-flex align-items-center">
 							<div class="tab-icon">
 								<i class="fa-solid fa-map-location-dot font-18 me-1"></i>
@@ -506,7 +506,7 @@
 					</a>
 				</li>
 				<li class="nav-item" role="presentation_2">
-					<a id="menu_div_right_gotohelp" class="nav-link" data-bs-toggle="tab" href="#primaryprofile_2" role="tab" aria-selected="true">
+					<a id="menu_div_right_gotohelp" class="nav-link active" data-bs-toggle="tab" href="#primaryprofile_2" role="tab" aria-selected="true">
 						<div class="d-flex align-items-center">
 							<div class="tab-icon">
 								<i class="fa-solid fa-arrow-down-9-1 font-18 me-1"></i>
@@ -527,13 +527,13 @@
 				</li>
 			</ul>
 			<div class="tab-content py-3 mt-3 flex-container">
-				<div class="tab-pane fade active show" id="primaryhome_2" role="tabpanel" style="width: 100%;">
+				<div class="tab-pane fade" id="primaryhome_2" role="tabpanel" style="width: 100%;">
 					<div class="mb-4">
 						<h4 class="card-title">พื้นที่การขอความช่วยเหลือ</h4>
 					</div>
-					
+					<div id="content_all_sos"></div>
 				</div>
-				<div class="tab-pane fade" id="primaryprofile_2" role="tabpanel" style="width: 100%;">
+				<div class="tab-pane fade active show" id="primaryprofile_2" role="tabpanel" style="width: 100%;">
 					<span class="float-end text-dark mb-1" style="font-size: 16px;margin-top: 6px;">
 						ออกปฏิบัติการรวม <b id="show_amount_by_area"></b> เคส
 					</span>
@@ -553,7 +553,12 @@
 				<div class="tab-pane fade" id="primaryprofile_3" role="tabpanel" style="width: 100%;">
 					<div class="mb-4">
 						<h4 class="card-title">เจ้าหน้าที่ในแผนที่</h4>
+						<ul class="ul_you_are_watching">
+						  	<li id="watching_officer_type">ss</li>
+						  	<li id="watching_officer_data">sss</li>
+						</ul>
 					</div>
+					<hr>
 					<div id="content_data_name_officer"></div>
 				</div>
 			</div>
@@ -609,9 +614,53 @@
     	fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
 	        .then(response => response.json())
 	        .then(result_sos_success_all => {
-	            // console.log(result_sos_success_all);
+	            console.log(result_sos_success_all);
 	            sos_success_all = result_sos_success_all ;
     			document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
+
+    			let content_all_sos = document.querySelector('#content_all_sos');
+    				content_all_sos.innerHTML = '' ;
+
+    			// สร้างตัวแปร object เพื่อเก็บค่าที่นับ
+				let data_arr = {};
+
+				// วนลูปผ่านทุกรายการใน result_sos_success_all
+				for (let item of result_sos_success_all) {
+
+					let address = item.address.split("/");
+					    address = address[0] + "/" + address[1];
+
+				  	// ตรวจสอบว่า address มีอยู่ใน data_arr หรือไม่
+				  	if (data_arr[address]) {
+				    	// ถ้ามีให้เพิ่มค่าใน data_arr[item.address] ขึ้นอีก 1
+				    	data_arr[address]++;
+				  	} else {
+				    	// ถ้ายังไม่มีให้สร้าง key ใหม่ใน data_arr และกำหนดค่าเริ่มต้นเป็น 1
+				    	data_arr[address] = 1;
+				  	}
+				}
+
+				// ผลลัพธ์จะเก็บอยู่ในตัวแปร data_arr
+				console.log(data_arr);
+
+				for (let key in data_arr) {
+				  	// console.log(`Key: ${key}, Value: ${data_arr[key]}`);
+
+				  	let html = `
+						<div class="mt-2 show_count_area" area="${key}">
+							<span>${key}</span>
+							<span class="float-end">
+								<b>${data_arr[key]}</b>
+							</span>
+							<br>
+						</div>
+					`;
+
+					content_all_sos.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+				}
+
+
+				
 
     		});
 
@@ -639,6 +688,14 @@
     	// --------- END SEARCH DATA --------- //
 	    
     });
+
+    // -- เช็คว่าปัจจุบัน USER ต้องการดูอะไรอยู่ -- //
+    var check_view_officer_or_sos = 'officer' ;
+    var check_view_area_all_or_district = "all" ;
+    var check_view_officer_type = 'status' ;
+    var check_view_officer_data = 'all' ;
+    var check_view_type_sos = 'all' ;
+    // -- จบเช็คว่าปัจจุบัน USER ต้องการดูอะไรอยู่ -- //
 
 	var sos_success_all ;
 	var data_officer_all ;
@@ -715,6 +772,7 @@
         let m_numZoom = parseFloat('6.5');
 
         active_infowindow = "No" ;
+        check_view_area_all_or_district = 'all' ;
 
         map_show_data_officer_area = new google.maps.Map(document.getElementById("map_show_officer_all"), {
             center: {lat: m_lat, lng: m_lng },
@@ -763,8 +821,11 @@
     	let select_area_district = document.querySelector('#select_area_district');
     	// console.log(select_area_district.value);
     	if (select_area_district.value == 'all') {
+    		check_view_area_all_or_district = "all"
     		open_map_show_data_officer_area();
     	}else{
+
+    		check_view_area_all_or_district = "district";
 
     		fetch("{{ url('/') }}/api/get_let_lng_district/" + "{{ $area }}" + "/" + select_area_district.value)
 	            .then(response => response.json())
@@ -797,14 +858,14 @@
 
 	            });
 
-	        view_offiecr_select(check_type_view_infowindow , check_data_view_infowindow);
+	        view_offiecr_select(check_view_officer_type , check_view_officer_data);
 	        show_data_name_officer();
     	}
     }
 
     function change_view_data_map(type_view){
     	
-    	// console.log('change_view_data_map');
+    	console.log('change_view_data_map');
 
     	for (let i = 0; i < markers.length; i++) {
 	        markers[i].setMap(null);
@@ -814,8 +875,11 @@
     	// console.log('type_view >> ' + type_view);
 
     	if (type_view == "btn_view_officer") {
+
+    		check_view_officer_or_sos = 'officer';
+
     		setTimeout(function() {
-    			btn_view_officer();
+    			btn_view_officer_all();
     		}, 500);
 
     		document.querySelector('#btn_view_officer').classList.remove('btn-outline-success');
@@ -825,6 +889,9 @@
     		document.querySelector('#btn_view_sos').classList.add('btn-outline-danger');
 
     	}else if(type_view == "btn_view_sos"){
+
+    		check_view_officer_or_sos = 'sos' ;
+
     		btn_view_sos('all');
 
     		document.querySelector('#btn_view_officer').classList.remove('btn-success');
@@ -836,7 +903,7 @@
 
     }
 
-    function btn_view_officer(){
+    function btn_view_officer_all(){
     	// console.log('btn_view_officer');
     	let content_data_name_officer = document.querySelector('#content_data_name_officer');
 			content_data_name_officer.innerHTML = '';
@@ -980,12 +1047,45 @@
 				}
         	}
 
-			marker = new google.maps.Marker({
-	            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
-	            map: map_show_data_officer_area,
-	            icon: icon_level,
-	        });
-	        markers.push(marker);
+
+        	if(check_view_officer_type == "status"){
+
+        		if(check_view_officer_data == 'all' || check_view_officer_data == item.status){
+        			marker = new google.maps.Marker({
+			            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
+			            map: map_show_data_officer_area,
+			            icon: icon_level,
+			        });
+			        markers.push(marker);
+        		}
+
+        	}
+
+        	if(check_view_officer_type == "vehicle_type"){
+
+        		if(check_view_officer_data == 'all' || check_view_officer_data == item.vehicle_type){
+        			marker = new google.maps.Marker({
+			            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
+			            map: map_show_data_officer_area,
+			            icon: icon_level,
+			        });
+			        markers.push(marker);
+        		}
+
+        	}
+
+        	if(check_view_officer_type == "level"){
+
+        		if(check_view_officer_data == 'all' || check_view_officer_data == item.level){
+        			marker = new google.maps.Marker({
+			            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
+			            map: map_show_data_officer_area,
+			            icon: icon_level,
+			        });
+			        markers.push(marker);
+        		}
+
+        	}
 
 	    }
 
@@ -1011,18 +1111,24 @@
     	document.querySelector('#count_level_ils').innerHTML = count_level_ils ;
     	document.querySelector('#count_level_als').innerHTML = count_level_als ;
 
+    	// เลือกการแสดงเจ้าหน้าที่ด้านขวา
+    	if(check_view_officer_data == 'all'){
+    		show_data_gotohelp();
+    	}else{
+    		show_data_name_officer();
+    	}
 
     }
 
     function btn_view_sos(type){
     	// console.log('btn_view_sos');
 
-    	if(type != "loop_get_data"){
-	        for (let i = 0; i < markers.length; i++) {
-		        markers[i].setMap(null);
-		    }
-		    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
-		}
+    	check_view_type_sos = type ;
+
+        for (let i = 0; i < markers.length; i++) {
+	        markers[i].setMap(null);
+	    }
+	    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
 
     	let icon_level ;
 
@@ -1065,14 +1171,13 @@
 
 			if(type == item.rc || type == 'all'){
 
-				if(type != "loop_get_data"){
-			        marker_sos = new google.maps.Marker({
-			            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
-			            map: map_show_data_officer_area,
-			            icon: icon_level,
-			        });
-			        markers.push(marker_sos);
-			    }
+		        marker_sos = new google.maps.Marker({
+		            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
+		            map: map_show_data_officer_area,
+		            icon: icon_level,
+		        });
+		        markers.push(marker_sos);
+
 		    }
 		    else if(type == 'general'){
 
@@ -1102,17 +1207,27 @@
     	document.querySelector('#div_sos_loading').classList.add('d-none');
     	document.querySelector('#div_sos_show_data').classList.remove('d-none');
 
+    	show_data_area();
+
     }
 
-    let check_type_view_infowindow = 'status' ;
-    let check_data_view_infowindow = 'all' ;
     function view_offiecr_select(type , data){
 
     	setTimeout(function() {
 	    		
 	    	// console.log(type);
-	    	check_type_view_infowindow = type ;
-	    	check_data_view_infowindow = data ;
+	    	check_view_officer_type = type ;
+	    	check_view_officer_data = data ;
+
+	    	// แสดงผลต่อผู้ใช้ว่ากำลังดูอะไรอยู่
+    		show_to_user_watching();
+
+	    	// เลือกการแสดงเจ้าหน้าที่ด้านขวา
+	    	if(check_view_officer_data == 'all' && check_view_area_all_or_district == 'all'){
+	    		show_data_gotohelp();
+	    	}else{
+	    		show_data_name_officer();
+	    	}
 
 	    	for (let i = 0; i < markers.length; i++) {
 		        markers[i].setMap(null);
@@ -1217,9 +1332,11 @@
 						}
 		        	}
 
+		        	// เช็คหมุดอยู่ใน polygon ของอำเภอ
 		        	let check_in_polygon = check_area(item.lat , item.lng , current_polygon);
 
-			    	if(select_area_district.value == 'all' || check_in_polygon == "Yes"){
+			    	if( (check_view_officer_data == "all" && check_view_area_all_or_district == 'all') || check_in_polygon == "Yes"){
+
 				        marker = new google.maps.Marker({
 				            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
 				            map: map_show_data_officer_area,
@@ -1227,59 +1344,33 @@
 				        });
 				        markers.push(marker);
 
-				        if(data != "all"){
+			        	let photo_user = '';
+			        	if(item.photo_user){
+			        		photo_user = "{{ url('storage')}}/" + item.photo_user ;
+			        	}else{
+			        		photo_user = "{{ url('/img/icon/rescue.png') }}";
+			        	}
 
-				        	let photo_user = '';
-				        	if(item.photo_user){
-				        		photo_user = "{{ url('storage')}}/" + item.photo_user ;
-				        	}else{
-				        		photo_user = "{{ url('/img/icon/rescue.png') }}";
-				        	}
+			        	let contentString = `
+					        <div id="content" style="width: auto; height: auto;">
+						    	<div id="bodyContent">
+						    		<center>
+						    		<img src="`+photo_user+`" class="rounded-circle" style="width:45px;height:45px;">
+						    		</center>
+						    		<br>
+						    		<h6 style="margin-top:10px;"><b>`+item.name_officer+`</b></h6>
+						    	</div>
+						    </div>
+						    <hr>
+					    `;
 
-				        	let contentString = `
-						        <div id="content" style="width: auto; height: auto;">
-							    	<div id="bodyContent">
-							    		<center>
-							    		<img src="`+photo_user+`" class="rounded-circle" style="width:45px;height:45px;">
-							    		</center>
-							    		<br>
-							    		<h6 style="margin-top:10px;"><b>`+item.name_officer+`</b></h6>
-							    	</div>
-							    </div>
-							    <hr>
-						    `;
-
-        					content_data_name_officer.insertAdjacentHTML('beforeend', contentString); // แทรกล่างสุด
-						    
-							infowindow = new google.maps.InfoWindow({
-							    content: contentString,
-							    disableAutoPan: true // ปิดการเลื่อนของแผนที่เมื่อ Infowindow เปิด
-							});
-
-						    // infowindow.open({
-						    //   	anchor: marker,
-						    //   	map_show_data_officer_area,
-						    // });
-
-				        	infowindow_arr.push(infowindow);
-		    
-		    				active_infowindow = "Yes" ;
-				        	document.querySelector('#show_btn_clear_infowindow').classList.remove('d-none');
-
-				        }else{
-		    				active_infowindow = "No" ;
-							document.querySelector('#show_btn_clear_infowindow').classList.add('d-none');
-				        }
+    					content_data_name_officer.insertAdjacentHTML('beforeend', contentString); // แทรกล่างสุด
+				        
 				    }
 
 				}
 			}
 
-			// set_map_fit_polygon();
-
-			// setTimeout(function() {
-			// 	open_map_district();
-			// }, 500);
 		}, 500);
     }
 
@@ -1294,6 +1385,12 @@
 			document.querySelector('#icon_view_div_data_area').click();
 		}
     }
+
+    function show_data_gotohelp(){
+		if(active_menu_div_right != 'gotohelp'){
+			document.querySelector('#icon_view_div_data_gotohelp').click();
+		}
+	}
 
     function clear_infowindow(){
     	
@@ -1317,12 +1414,24 @@
 		}, 500);
     }
 
-</script>
+    // แสดงผลต่อผู้ใช้ว่ากำลังดูอะไรอยู่
+    function show_to_user_watching(){
 
+    	let officer_type ;
 
-<!-- ซ่อน div -->
-<script>
+    	if(check_view_officer_type == 'status'){
+    		officer_type = "สถานะของหน่วยฯ" ;
+    	}else if(check_view_officer_type == 'vehicle_type'){
+    		officer_type = "ประเภทยานพาหนะ" ;
+    	}else if(check_view_officer_type == 'level'){
+    		officer_type = "ระดับปฏิบัติการ" ;
+    	}
 
+		document.querySelector('#watching_officer_type').innerHTML = officer_type;
+    	document.querySelector('#watching_officer_data').innerHTML = check_view_officer_data;
+    }
+
+	// ซ่อน div
 	let status_show_div_left = "show" ;
 	let status_show_div_right = "show" ;
 
@@ -1485,22 +1594,42 @@
 		}
 
 	}
-</script>
+
+	// เช็คการแสดงผลข้อมูลฝั่ง OFFICER
+	function main_check_view_officer(){
+    	console.log("check_view_area_all_or_district >> " + check_view_area_all_or_district) ;
+    	console.log("check_view_officer_type >> " + check_view_officer_type) ;
+    	console.log("check_view_officer_data >> " + check_view_officer_data) ;
+
+    	// เลือกอำเภอหรือพิ้นที่ทั้งหมด
+    	if(check_view_area_all_or_district == 'district'){
+    		open_map_district();
+    	}else{
+    		open_map_show_data_officer_area();
+    	}
+
+	}
 
 
-<!-- ****** LOOP GET DATA ****** -->
-<script>
-
+	// <!-- ****** LOOP GET DATA ****** -->
     let get_data_officer_all ;
 
     function loop_get_data_officer_all() {
+
 		get_data_officer_all = setInterval(function() {
+
+		console.log("check_view_officer_or_sos >> " + check_view_officer_or_sos) ;
+    	console.log("check_view_area_all_or_district >> " + check_view_area_all_or_district) ;
+    	console.log("check_view_officer_type >> " + check_view_officer_type) ;
+    	console.log("check_view_officer_data >> " + check_view_officer_data) ;
+    	console.log("check_view_type_sos >> " + check_view_type_sos) ;
 			
 		// data officer all
     	fetch("{{ url('/') }}/api/get_data_officer_all/" + "{{ $area }}")
 	        .then(response => response.json())
 	        .then(result_data_officer_all => {
-	            console.log('GET NEW DATA officer_all');
+	            console.log('GET NEW DATA');
+	            console.log('--------------');
 	            // console.log(result_data_officer_all);
 	            for (let i = 0; i < markers.length; i++) {
 			        markers[i].setMap(null);
@@ -1509,37 +1638,41 @@
 
 	            data_officer_all = result_data_officer_all ;
 
-	            setTimeout(function() {
-	    			btn_view_officer();
-	    		}, 500);
-	            // console.log(active_infowindow);
-	            if(active_infowindow == "Yes"){
-	            	view_offiecr_select(check_type_view_infowindow, check_data_view_infowindow)
+	            if(check_view_officer_or_sos == 'officer'){
+	            	setTimeout(function() {
+		            	view_offiecr_select(check_view_officer_type, check_view_officer_data);
+		    		}, 500);
 	            }
+
     		});
 
 	    // sos success all
     	fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
 	        .then(response => response.json())
 	        .then(result_sos_success_all => {
-	            console.log('GET NEW DATA sos_help_center');
+	            // console.log('GET NEW DATA sos_help_center');
 	            // console.log(result_sos_success_all);
 	            sos_success_all = result_sos_success_all ;
     			document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
-    			btn_view_sos('loop_get_data');
+
+    			setTimeout(function() {
+	            	if(check_view_officer_or_sos == 'sos'){
+	    				btn_view_sos(check_view_type_sos);
+	    			}
+	    		}, 500);
+    			
+
     		});
 
-		}, 60000);
-		// }, 5000);
+		// }, 60000);
+		}, 10000);
 	}
 
 	function Stop_get_data_officer_all() {
         clearInterval(get_data_officer_all);
     }
-</script>
 
-<!-- CHECK POSITION IN POLYGON -->
-<script>
+	// <!-- CHECK POSITION IN POLYGON -->
 	function check_area(lat , lng , polygon) {
 
         let arr_lat_lng = JSON.parse(polygon);
@@ -1587,10 +1720,8 @@
         return inside;
 
     };
-</script>
 
-<!-- SHOW ALL AMPHOE -->
-<script>
+	// <!-- SHOW ALL AMPHOE -->
 	function show_all_amphoe(){
     	fetch("{{ url('/') }}/api/get_polygon_all_amphoe")
 	        .then(response => response.json())
