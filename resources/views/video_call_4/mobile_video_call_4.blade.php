@@ -1907,6 +1907,7 @@
                         })
                         .catch(error => {
                             console.log("บันทึกข้อมูล join_and_update ล้มเหลว :" + error);
+                            window.location.reload(); // รีเฟรชหน้าเว็บ
                         });
                     }
                     join_and_update();
@@ -2046,7 +2047,7 @@
                 });
 
                 function goBack(){
-                    // window.history.back();
+                    window.history.back();
                 }
                 goBack();
             }

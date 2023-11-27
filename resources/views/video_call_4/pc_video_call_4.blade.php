@@ -1767,7 +1767,7 @@ switch ($sos_data->status) {
                         })
                         .catch(error => {
                             console.log("บันทึกข้อมูล join_and_update ล้มเหลว :" + error);
-                            // window.location.reload(); // รีเฟรชหน้าเว็บ
+                            window.location.reload(); // รีเฟรชหน้าเว็บ
                         });
                     }
                     join_and_update();
@@ -1909,7 +1909,7 @@ switch ($sos_data->status) {
                 // }
 
                 function goBack(){
-                    // window.history.back();
+                    window.history.back();
                 }
                 goBack();
             }
@@ -3047,7 +3047,7 @@ switch ($sos_data->status) {
                 let minsec = minutes + '.' + seconds;
                 let showTimeCountVideo;
                 // แสดงผลลัพธ์
-                let max_minute_time = 1;
+                let max_minute_time = 5;
                 let remain_time = max_minute_time - 1;
                 let time_warning = "";
                 if (max_minute_time > 1) {
