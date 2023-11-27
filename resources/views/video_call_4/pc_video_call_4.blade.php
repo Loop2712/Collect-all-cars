@@ -1767,7 +1767,7 @@ switch ($sos_data->status) {
                         })
                         .catch(error => {
                             console.log("บันทึกข้อมูล join_and_update ล้มเหลว :" + error);
-                            window.location.reload(); // รีเฟรชหน้าเว็บ
+                            // window.location.reload(); // รีเฟรชหน้าเว็บ
                         });
                     }
                     join_and_update();
