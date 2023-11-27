@@ -614,7 +614,7 @@
     	fetch("{{ url('/') }}/api/get_sos_help_center_success/" + "{{ $area }}")
 	        .then(response => response.json())
 	        .then(result_sos_success_all => {
-	            console.log(result_sos_success_all);
+	            // console.log(result_sos_success_all);
 	            sos_success_all = result_sos_success_all ;
     			document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
 
@@ -642,16 +642,20 @@
 					}
 				}
 
-				// ผลลัพธ์จะเก็บอยู่ในตัวแปร data_arr
-				console.log(data_arr);
+				// แปลง object ให้กลายเป็น array ของ objects
+				let dataArray = Object.entries(data_arr);
 
-				let entries = Object.entries(data_arr);
+				// เรียงลำดับ array ตามค่ามากที่สุดไปน้อยลง
+				dataArray.sort((a, b) => b[1] - a[1]);
 
-				entries.sort((a, b) => b[1] - a[1]);
+				let sortedData = [];
 
-				let sortedData = Object.fromEntries(entries);
+				// แสดงผลลัพธ์ที่เรียงลำดับ
+				for (let entry of dataArray) {
+				  	// console.log(entry[0] + ": " + entry[1]);
+				  	sortedData[entry[0]] = entry[1];
+				}
 
-				console.log(sortedData);
 
 				for (let key in sortedData) {
 				  	// console.log(`Key: ${key}, Value: ${data_arr[key]}`);
@@ -668,9 +672,6 @@
 
 					content_all_sos.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 				}
-
-
-				
 
     		});
 
@@ -1664,6 +1665,61 @@
 	            // console.log(result_sos_success_all);
 	            sos_success_all = result_sos_success_all ;
     			document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
+
+    			let content_all_sos = document.querySelector('#content_all_sos');
+    				content_all_sos.innerHTML = '' ;
+
+    			// สร้างตัวแปร object เพื่อเก็บค่าที่นับ
+				let data_arr = {};
+
+				// วนลูปผ่านทุกรายการใน result_sos_success_all
+				for (let item of result_sos_success_all) {
+
+					if(item.address){
+						let address = item.address.split("/");
+						    address = address[0] + "/" + address[1];
+
+					  	// ตรวจสอบว่า address มีอยู่ใน data_arr หรือไม่
+					  	if (data_arr[address]) {
+					    	// ถ้ามีให้เพิ่มค่าใน data_arr[item.address] ขึ้นอีก 1
+					    	data_arr[address]++;
+					  	} else {
+					    	// ถ้ายังไม่มีให้สร้าง key ใหม่ใน data_arr และกำหนดค่าเริ่มต้นเป็น 1
+					    	data_arr[address] = 1;
+					  	}
+					}
+				}
+
+				// แปลง object ให้กลายเป็น array ของ objects
+				let dataArray = Object.entries(data_arr);
+
+				// เรียงลำดับ array ตามค่ามากที่สุดไปน้อยลง
+				dataArray.sort((a, b) => b[1] - a[1]);
+
+				let sortedData = [];
+
+				// แสดงผลลัพธ์ที่เรียงลำดับ
+				for (let entry of dataArray) {
+				  	// console.log(entry[0] + ": " + entry[1]);
+				  	sortedData[entry[0]] = entry[1];
+				}
+
+
+				for (let key in sortedData) {
+				  	// console.log(`Key: ${key}, Value: ${data_arr[key]}`);
+
+				  	let html = `
+						<div class="mt-2 show_count_area" area="${key}">
+							<span>${key}</span>
+							<span class="float-end">
+								<b>${data_arr[key]}</b>
+							</span>
+							<br>
+						</div>
+					`;
+
+					content_all_sos.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+				}
 
     			setTimeout(function() {
 	            	if(check_view_officer_or_sos == 'sos'){
