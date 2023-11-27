@@ -17,6 +17,9 @@
 
     @media screen and (min-width: 1024px) /* โหมดคอมพิวเตอร์ */
     {
+        .text_for_device{
+            font-size: 1em;
+        }
         .toggleCameraButton{
             border-radius: 50%;
             width: 60px !important;
@@ -46,6 +49,7 @@
             border-radius: 50%;
             overflow: hidden;
             width: 50px; /* ลดขนาดลง 1 เท่า */
+            height: 50px;
         }
 
         .avatar:not(:first-child) {
@@ -55,13 +59,17 @@
         }
 
         .avatar img {
-            width: 100%;
-            display: block;
+            width: 100%; /* ขนาดเต็มของพื้นที่ */
+            height: 100%;
+            object-fit: cover; /* แสดงภาพโดยคงสัดส่วนและไม่ตัดขอบ */
         }
     }
 
     @media screen and (max-width: 1024px) /* โหมดมือถือ */
     {
+        .text_for_device{
+            font-size: 2em;
+        }
         .toggleCameraButton{
             border-radius: 50%;
             width: 120px !important;
@@ -91,6 +99,7 @@
             border-radius: 50%; /* ให้ครึ่งขนาดของ width */
             overflow: hidden;
             width: 75px; /* กำหนด width เป็น 75px */
+            height: 75px; /* กำหนด width เป็น 75px */
         }
 
         .avatar:not(:first-child) {
@@ -101,8 +110,9 @@
 
 
         .avatar img {
-            width: 100%;
-            display: block;
+            width: 100%; /* ขนาดเต็มของพื้นที่ */
+            height: 100%;
+            object-fit: cover; /* แสดงภาพโดยคงสัดส่วนและไม่ตัดขอบ */
         }
 
     }
@@ -279,8 +289,8 @@
                 <div id="before_join_message" class="text-center w-100">
                     @if ($type_device == "pc_video_call")
                         <h4 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h4>
-                        <div class="avatars">
-                            <span class="avatar">
+                        <div id="avatars" class="avatars">
+                            {{-- <span class="avatar">
                                 <img src="https://picsum.photos/70">
                             </span>
                             <span class="avatar">
@@ -288,9 +298,11 @@
                             </span>
                             <span class="avatar">
                                 <img src="https://picsum.photos/90">
-                            </span>
+                            </span> --}}
                         </div>
-                        <h5 class="w-100">{{Auth::user()->name}} และอีก 2 คนในห้องสนทนา</h5>
+                        <div id="text_user_in_room" class="mt-2">
+                            <!-- สำหรับใส่ text ที่บอกคนในห้อง-->
+                        </div>
                         @php
                             $inRoomPeople = 0;
                         @endphp
@@ -309,8 +321,8 @@
                         @endif
                     @else
                         <h1 class="w-100 font-weight-bold">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h1>
-                        <div class="avatars">
-                            <span class="avatar">
+                        <div id="avatars" class="avatars">
+                            {{-- <span class="avatar">
                                 <img src="https://picsum.photos/70">
                             </span>
                             <span class="avatar">
@@ -318,9 +330,11 @@
                             </span>
                             <span class="avatar">
                                 <img src="https://picsum.photos/90">
-                            </span>
+                            </span> --}}
                         </div>
-                        <h2 class="w-100">{{Auth::user()->name}} และอีก 2 คนในห้องสนทนา</h2>
+                        <div id="text_user_in_room" class="mt-2">
+                            <!-- สำหรับใส่ text ที่บอกคนในห้อง-->
+                        </div>
                         @php
                             $inRoomPeople = 0;
                         @endphp
@@ -936,24 +950,122 @@
     }
 
     function Check_video_call_room(){
+
         fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_id=" + sos_id + "&type=" + type_sos)
-        .then(response => response.text())
+        .then(response => response.json())
         .then(result => {
-            if(result === "ok"){
+            if(result['status'] === "ok"){
+                // console.log("user_in_room");
+                // console.log(result);
+
                 document.querySelector('#btnJoinRoom').classList.remove('d-none');
                 document.querySelector('#full_room').classList.add('d-none');
+
+                if (result['data'] != "ไม่มีข้อมูล") {
+                    let avatar_div = document.querySelector('#avatars');
+                    avatar_div.innerHTML = '';
+                    result['data'].forEach(element => {
+                        let profile_user;
+                        if (element.photo) {
+                            profile_user = "{{ url('/storage') }}" + "/" + element.photo;
+                        } else if (!element.photo && element.avatar) {
+                            profile_user = element.avatar;
+                        } else {
+                            profile_user = "https://www.viicheck.com/Medilab/img/icon.png";
+                        }
+
+                        let html = `<span class="avatar">
+                                        <img src="` + profile_user + `">
+                                    </span>`;
+
+                        avatar_div.insertAdjacentHTML('beforeend', html);
+                    });
+
+                    let html_2;
+                    if (result['data'].length > 1) {
+                        html_2 = `<h6 class="w-100 text_for_device">${result['data'][0].name} และอีก ${result['data'].length - 1} คนในห้องสนทนา</h6>`;
+                    } else if (result['data'].length === 1) {
+                        html_2 = `<h6 class="w-100 text_for_device">${result['data'][0].name} อยู่ในห้องสนทนา</h6>`;
+                    } else {
+                        // Handle the case where there are no users
+                        html_2 = `<h6 class="w-100 text_for_device">ไม่มีคนอยู่ในห้องสนทนา</h6>`;
+                    }
+
+                    let text_user_in_room = document.querySelector('#text_user_in_room');
+                    text_user_in_room.innerHTML = '';
+                    // Handle the case where there are no users
+                    text_user_in_room.insertAdjacentHTML('beforeend', html_2);
+
+                }else{
+                    let avatar_div = document.querySelector('#avatars');
+                    avatar_div.innerHTML = '';
+
+                    let text_user_in_room = document.querySelector('#text_user_in_room');
+                    text_user_in_room.innerHTML = '';
+                    // Handle the case where there are no users
+                    let html_2 = `<h6 class="w-100 text_for_device">ไม่มีคนอยู่ในห้องสนทนา</h6>`;
+                    text_user_in_room.insertAdjacentHTML('beforeend', html_2);
+                }
+
 
                 // if (!document.querySelector('#btnJoinRoom')) {
                 //     document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
 
                 // }
-
                 // if (document.querySelector('#full_room')) {
                 //     document.querySelector('#full_room').remove();
                 // }
             }else{
                 document.querySelector('#btnJoinRoom').classList.add('d-none');
                 document.querySelector('#full_room').classList.remove('d-none');
+
+                if (result['data'] != "ไม่มีข้อมูล") {
+                    let avatar_div = document.querySelector('#avatars');
+                    avatar_div.innerHTML = '';
+                    result['data'].forEach(element => {
+                        let profile_user;
+                        if (element.photo) {
+                            profile_user = "{{ url('/storage') }}" + "/" + element.photo;
+                        } else if (!element.photo && element.avatar) {
+                            profile_user = element.avatar;
+                        } else {
+                            profile_user = "https://www.viicheck.com/Medilab/img/icon.png";
+                        }
+
+                        let html = `<span class="avatar">
+                                        <img src="` + profile_user + `">
+                                    </span>`;
+
+                        avatar_div.insertAdjacentHTML('beforeend', html);
+                    });
+
+                    let html_2;
+                    if (result['data'].length > 1) {
+                        html_2 = `<span class="w-100 text_for_device">${result['data'][0].name} และอีก ${result['data'].length - 1} คนในห้องสนทนา</span>`;
+                    } else if (result['data'].length === 1) {
+                        html_2 = `<span class="w-100 text_for_device">${result['data'][0].name} อยู่ในห้องสนทนา</span>`;
+                    } else {
+                        // Handle the case where there are no users
+                        html_2 = `<span class="w-100 text_for_device">ไม่มีคนอยู่ในห้องสนทนา</span>`;
+                    }
+
+                    let text_user_in_room = document.querySelector('#text_user_in_room');
+                    text_user_in_room.innerHTML = '';
+                    // Handle the case where there are no users
+                    text_user_in_room.insertAdjacentHTML('beforeend', html_2);
+
+                }else{
+                    let avatar_div = document.querySelector('#avatars');
+                    avatar_div.innerHTML = '';
+
+                    let text_user_in_room = document.querySelector('#text_user_in_room');
+                    text_user_in_room.innerHTML = '';
+                    // Handle the case where there are no users
+                    let html_2 = `<span class="w-100 text_for_device">ไม่มีคนอยู่ในห้องสนทนา</span>`;
+                    text_user_in_room.insertAdjacentHTML('beforeend', html_2);
+                }
+
+
                 // if (document.querySelector('#btnJoinRoom')) {
                 //     document.querySelector('#btnJoinRoom').remove();
                 // }

@@ -247,8 +247,63 @@
 		overflow: auto;
 		transition: opacity 0.5s, max-height 0.5s;
 	}
+
+    .div_alert {
+        position: fixed;
+        top: -10%; /* แก้เป็น 75% เพื่อให้เลื่อนลงมาที่ top 75% */
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-family: 'Kanit', sans-serif;
+        z-index: 9999;
+    }
+
+    .div_alert span {
+        background-color: #D64646;
+        border-radius: 10px;
+        color: white;
+        padding: 15px;
+        font-family: 'Kanit', sans-serif;
+        z-index: 9999;
+    }
+
+    .up_down {
+        animation: up-down 1s cubic-bezier(0.5, 0, 0.75, 0) 1s 2 alternate-reverse both;
+    }
+
+    @keyframes up-down {
+        0% {
+            opacity: 1;
+            transform: translateY(20vh);
+        }
+
+        100% {
+            opacity: 0;
+            transform: translateY(0);
+        }
+    }
+
 </style>
 <button id="addButton" style="position: absolute;top:10%;right: 0;">เพิ่ม div</button>
+<button onclick="alert_deng()" style="position: absolute;top:20%;right: 0;">alert</button>
+<div id="car_max" class=" div_alert" role="alert">
+    <span id="text_car_max" style="font-size: 35px;">
+        ขออภัย เกินจำนวนที่กำหนด
+    </span>
+</div>
+
+<script>
+    function alert_deng(){
+        console.log("alert");
+        document.querySelector('#car_max').classList.add('up_down');
+
+        const animated = document.querySelector('.up_down');
+        animated.onanimationend = () => {
+            document.querySelector('#car_max').classList.remove('up_down');
+        };
+    }
+</script>
+
 <div class="row full-height">
 	<div class="Scenary"></div>
 	<div class="col-12" style="height: calc(100% - 90%);">
@@ -499,6 +554,9 @@
 
 	// เพิ่ม event listener บนปุ่ม "เพิ่ม div"
 	document.getElementById("addButton").addEventListener("click", createAndAttachCustomDiv);
+
+    // เพิ่ม event listener บนปุ่ม "เพิ่ม div"
+	function alert()
 
 	// เพิ่ม event listener บน .user-video-call-bar สำหรับสลับ div
 	document.querySelector(".user-video-call-bar").addEventListener("click", function(e) {
