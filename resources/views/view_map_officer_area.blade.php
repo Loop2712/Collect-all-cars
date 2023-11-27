@@ -142,7 +142,7 @@
 			<i id="icon_lock_or_unlock_Div_left" class="fa-solid fa-lock-keyhole-open"></i>
 		</div>
 		<div id="show_btn_clear_infowindow" class="card card_btn_div card-body btn d-none" style="left: 100%;top: 16%;">
-			<i class="fa-sharp fa-solid fa-eye-slash" onclick="clear_infowindow();"></i>
+			<i class="fa-sharp fa-solid fa-eye-slash" onclick="clear_infowindow(null);"></i>
 		</div>
 
 		<div class="card-body">
@@ -530,7 +530,12 @@
 				<div class="tab-pane fade" id="primaryhome_2" role="tabpanel" style="width: 100%;">
 					<div class="mb-4">
 						<h4 class="card-title">พื้นที่การขอความช่วยเหลือ</h4>
+						<ul class="ul_you_are_watching">
+						  	<li id="watching_sos_type"></li>
+						  	<li id="watching_sos_data"></li>
+						</ul>
 					</div>
+					<hr>
 					<div id="content_all_sos"></div>
 				</div>
 				<div class="tab-pane fade active show" id="primaryprofile_2" role="tabpanel" style="width: 100%;">
@@ -548,14 +553,15 @@
 					<div class="mb-4">
 						<h4 class="card-title">เจ้าหน้าที่ทั้งหมด</h4>
 					</div>
+					<div id="content_data_name_officer_all"></div>
 					
 				</div>
 				<div class="tab-pane fade" id="primaryprofile_3" role="tabpanel" style="width: 100%;">
 					<div class="mb-4">
 						<h4 class="card-title">เจ้าหน้าที่ในแผนที่</h4>
 						<ul class="ul_you_are_watching">
-						  	<li id="watching_officer_type">ss</li>
-						  	<li id="watching_officer_data">sss</li>
+						  	<li id="watching_officer_type"></li>
+						  	<li id="watching_officer_data"></li>
 						</ul>
 					</div>
 					<hr>
@@ -579,15 +585,6 @@
 	</div>
 
 </div>
-
-<script>
-	
-	function mouseover_carousel_officer(data){
-		console.log(data);
-	}
-
-</script>
-
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th" ></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -659,9 +656,10 @@
 
 				for (let key in sortedData) {
 				  	// console.log(`Key: ${key}, Value: ${data_arr[key]}`);
+				  	let amphoe_name = key.split('/')[1];
 
 				  	let html = `
-						<div class="mt-2 show_count_area" area="${key}">
+						<div class="mt-2 show_count_area" data="show_count_area" area="${amphoe_name}">
 							<span>${key}</span>
 							<span class="float-end">
 								<b>${data_arr[key]}</b>
@@ -719,9 +717,8 @@
     var polygon;
     var current_polygon ;
 
-    var infowindow;
-    var infowindow_arr = [];
-
+    var infowindows = [];
+    var infowindow ;
     var active_infowindow = "No" ;
 
     // เช็คการขับแผนที่
@@ -823,7 +820,16 @@
 	            set_map_fit_polygon();
 	        });
 
-        change_view_data_map("btn_view_officer");
+	    setTimeout(function() {
+		    // ตรวจสอบว่ากำลังดู OFFICER หรือ SOS
+	    	if(check_view_officer_or_sos == 'sos'){
+	    		// console.log('กำลังดู SOS');
+	    		btn_view_sos(check_view_type_sos);
+			}else if(check_view_officer_or_sos == 'officer'){
+	    		// console.log('กำลังดู OFFICER');
+				change_view_data_map("btn_view_officer");
+	    	}
+	    }, 500);
 
     }
 
@@ -833,7 +839,9 @@
     	// console.log(select_area_district.value);
     	if (select_area_district.value == 'all') {
     		check_view_area_all_or_district = "all"
+
     		open_map_show_data_officer_area();
+
     	}else{
 
     		check_view_area_all_or_district = "district";
@@ -869,8 +877,18 @@
 
 	            });
 
-	        view_offiecr_select(check_view_officer_type , check_view_officer_data);
-	        show_data_name_officer();
+			setTimeout(function() {
+		        // ตรวจสอบว่ากำลังดู OFFICER หรือ SOS
+		    	if(check_view_officer_or_sos == 'sos'){
+		    		console.log('กำลังดู SOS');
+		    		btn_view_sos(check_view_type_sos);
+				}else if(check_view_officer_or_sos == 'officer'){
+		    		console.log('กำลังดู OFFICER');
+	    			view_offiecr_select(check_view_officer_type , check_view_officer_data);
+		        	show_data_name_officer();
+		    	}
+	    	}, 500);
+	        
     	}
     }
 
@@ -919,7 +937,12 @@
     	let content_data_name_officer = document.querySelector('#content_data_name_officer');
 			content_data_name_officer.innerHTML = '';
 
+		let content_data_name_officer_all = document.querySelector('#content_data_name_officer_all');
+			content_data_name_officer_all.innerHTML = '';
+
     	let icon_level ;
+
+    	infowindows = [] ;
 
     	// STATUS OFFICER
     	let count_officer_ready = 0 ;
@@ -938,6 +961,8 @@
     	let count_level_bls = 0 ;
     	let count_level_ils = 0 ;
     	let count_level_als = 0 ;
+
+    	console.log(data_officer_all);
 
         for(let item of data_officer_all){
 
@@ -1058,6 +1083,16 @@
 				}
         	}
 
+        	infowindow = new google.maps.InfoWindow();
+
+        	let photo_user = '';
+        	if(item.photo_user){
+        		photo_user = "{{ url('storage')}}/" + item.photo_user ;
+        	}else{
+        		photo_user = "{{ url('/img/icon/rescue.png') }}";
+        	}
+
+        	let focus_markerIndex ;
 
         	if(check_view_officer_type == "status"){
 
@@ -1068,6 +1103,29 @@
 			            icon: icon_level,
 			        });
 			        markers.push(marker);
+			        infowindows.push(infowindow);
+
+			        focus_markerIndex = markers.length - 1 ;
+
+			        // เพิ่ม Event Listener สำหรับคลิก Marker
+				    marker.addListener('click', function(markerIndex) {
+				        return function() {
+				            // console.log(item.user_id);
+
+				            focus_officer_div_right(focus_markerIndex);
+
+					        let contentString = create_content_infowindow(photo_user , item.name_officer , focus_markerIndex);
+
+				            // เซ็ตข้อมูลใน InfoWindow
+				            infowindows[markerIndex].setContent(contentString);
+
+				            // แสดง InfoWindow ที่ตำแหน่งของ Marker
+				            infowindows[markerIndex].open(map_show_data_officer_area, markers[markerIndex]);
+
+				            show_infowindow();
+				        };
+				    }(markers.length - 1));
+
         		}
 
         	}
@@ -1081,6 +1139,28 @@
 			            icon: icon_level,
 			        });
 			        markers.push(marker);
+			        infowindows.push(infowindow);
+
+			        focus_markerIndex = markers.length - 1 ;
+
+			        // เพิ่ม Event Listener สำหรับคลิก Marker
+				    marker.addListener('click', function(markerIndex) {
+				        return function() {
+				            // console.log(item.user_id);
+
+				            focus_officer_div_right(focus_markerIndex);
+
+					        let contentString = create_content_infowindow(photo_user , item.name_officer , focus_markerIndex);
+
+				            // เซ็ตข้อมูลใน InfoWindow
+				            infowindows[markerIndex].setContent(contentString);
+
+				            // แสดง InfoWindow ที่ตำแหน่งของ Marker
+				            infowindows[markerIndex].open(map_show_data_officer_area, markers[markerIndex]);
+
+				            show_infowindow();
+				        };
+				    }(markers.length - 1));
         		}
 
         	}
@@ -1094,9 +1174,40 @@
 			            icon: icon_level,
 			        });
 			        markers.push(marker);
+			        infowindows.push(infowindow);
+
+			        focus_markerIndex = markers.length - 1 ;
+
+			        // เพิ่ม Event Listener สำหรับคลิก Marker
+				    marker.addListener('click', function(markerIndex) {
+				        return function() {
+				            // console.log(item.user_id);
+
+				            focus_officer_div_right(focus_markerIndex);
+
+					        let contentString = create_content_infowindow(photo_user , item.name_officer , focus_markerIndex);
+
+				            // เซ็ตข้อมูลใน InfoWindow
+				            infowindows[markerIndex].setContent(contentString);
+
+				            // แสดง InfoWindow ที่ตำแหน่งของ Marker
+				            infowindows[markerIndex].open(map_show_data_officer_area, markers[markerIndex]);
+
+				            show_infowindow();
+				        };
+				    }(markers.length - 1));
         		}
 
         	}
+
+        	let level  = item.level ;
+		    let vehicle  = item.vehicle_type ;
+		    let unit  = item.name ;
+		    let count_case = item.go_to_help ;
+
+        	// --------- สร้างเนื้อหาใส่ใน DIV ด้านขวา ----------
+        	let html_div_right = create_content_div_right(photo_user , item.name_officer , focus_markerIndex , level , vehicle , unit , count_case);
+			content_data_name_officer_all.insertAdjacentHTML('beforeend', html_div_right); // แทรกล่างสุด
 
 	    }
 
@@ -1131,100 +1242,11 @@
 
     }
 
-    function btn_view_sos(type){
-    	// console.log('btn_view_sos');
-
-    	check_view_type_sos = type ;
-
-        for (let i = 0; i < markers.length; i++) {
-	        markers[i].setMap(null);
-	    }
-	    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
-
-    	let icon_level ;
-
-    	let show_amount_sos_red = 0 ;
-    	let show_amount_sos_yellow = 0 ;
-    	let show_amount_sos_green = 0 ;
-    	let show_amount_sos_white = 0 ;
-    	let show_amount_sos_black = 0 ;
-    	let show_amount_sos_general = 0 ;
-
-    	// console.log(sos_success_all);
-
-        for(let item of sos_success_all){
-
-        	switch(item.rc) {
-			  	case "แดง(วิกฤติ)":
-			    	icon_level = image_sos_red ;
-			    	show_amount_sos_red = show_amount_sos_red + 1 ;
-			    break;
-			  	case "เหลือง(เร่งด่วน)":
-			    	icon_level = image_sos_yellow ;
-			    	show_amount_sos_yellow = show_amount_sos_yellow + 1 ;
-			    break;
-			    case "เขียว(ไม่รุนแรง)":
-			    	icon_level = image_sos_green ;
-			    	show_amount_sos_green = show_amount_sos_green + 1 ;
-			    break;
-			    case "ขาว(ทั่วไป)":
-			    	icon_level = image_sos_white ;
-			    	show_amount_sos_white = show_amount_sos_white + 1 ;
-			    break;
-			    case "ดำ":
-			    	icon_level = image_sos_black ;
-			    	show_amount_sos_black = show_amount_sos_black + 1 ;
-			    break;
-			    default:
-			    	icon_level = image_sos_general ;
-			    	show_amount_sos_general = show_amount_sos_general + 1 ;
-			}
-
-			if(type == item.rc || type == 'all'){
-
-		        marker_sos = new google.maps.Marker({
-		            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
-		            map: map_show_data_officer_area,
-		            icon: icon_level,
-		        });
-		        markers.push(marker_sos);
-
-		    }
-		    else if(type == 'general'){
-
-		    	if(!item.rc){
-		    		marker_sos = new google.maps.Marker({
-			            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
-			            map: map_show_data_officer_area,
-			            icon: icon_level,
-			        });
-			        markers.push(marker_sos);
-		    	}
-
-		    }
-
-        }
-
-        let sum_sos = show_amount_sos_red + show_amount_sos_yellow + show_amount_sos_green + show_amount_sos_white + show_amount_sos_black + show_amount_sos_general ;
-
-    	document.querySelector('#show_amount_sos_all').innerHTML = sum_sos;
-    	document.querySelector('#show_amount_sos_red').innerHTML = show_amount_sos_red;
-    	document.querySelector('#show_amount_sos_yellow').innerHTML = show_amount_sos_yellow;
-    	document.querySelector('#show_amount_sos_green').innerHTML = show_amount_sos_green;
-    	document.querySelector('#show_amount_sos_white').innerHTML = show_amount_sos_white;
-    	document.querySelector('#show_amount_sos_black').innerHTML = show_amount_sos_black;
-    	document.querySelector('#show_amount_sos_general').innerHTML = show_amount_sos_general;
-
-    	document.querySelector('#div_sos_loading').classList.add('d-none');
-    	document.querySelector('#div_sos_show_data').classList.remove('d-none');
-
-    	show_data_area();
-
-    }
-
     function view_offiecr_select(type , data){
 
     	setTimeout(function() {
+
+    		infowindows = [] ;
 	    		
 	    	// console.log(type);
 	    	check_view_officer_type = type ;
@@ -1348,12 +1370,7 @@
 
 			    	if( (check_view_officer_data == "all" && check_view_area_all_or_district == 'all') || check_in_polygon == "Yes"){
 
-				        marker = new google.maps.Marker({
-				            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
-				            map: map_show_data_officer_area,
-				            icon: icon_level,
-				        });
-				        markers.push(marker);
+			    		infowindow = new google.maps.InfoWindow();
 
 			        	let photo_user = '';
 			        	if(item.photo_user){
@@ -1362,20 +1379,43 @@
 			        		photo_user = "{{ url('/img/icon/rescue.png') }}";
 			        	}
 
-			        	let contentString = `
-					        <div id="content" style="width: auto; height: auto;">
-						    	<div id="bodyContent">
-						    		<center>
-						    		<img src="`+photo_user+`" class="rounded-circle" style="width:45px;height:45px;">
-						    		</center>
-						    		<br>
-						    		<h6 style="margin-top:10px;"><b>`+item.name_officer+`</b></h6>
-						    	</div>
-						    </div>
-						    <hr>
-					    `;
+				        marker = new google.maps.Marker({
+				            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
+				            map: map_show_data_officer_area,
+				            icon: icon_level,
+				        });
+				        markers.push(marker);
+				        infowindows.push(infowindow);
 
-    					content_data_name_officer.insertAdjacentHTML('beforeend', contentString); // แทรกล่างสุด
+				        let focus_markerIndex = markers.length - 1 ;
+
+				        // เพิ่ม Event Listener สำหรับคลิก Marker
+					    marker.addListener('click', function(markerIndex) {
+					        return function() {
+					            // console.log(item.user_id);
+
+					            focus_officer_div_right(focus_markerIndex);
+
+					            let contentString = create_content_infowindow(photo_user , item.name_officer , focus_markerIndex);
+
+					            // เซ็ตข้อมูลใน InfoWindow
+					            infowindows[markerIndex].setContent(contentString);
+
+					            // แสดง InfoWindow ที่ตำแหน่งของ Marker
+					            infowindows[markerIndex].open(map_show_data_officer_area, markers[markerIndex]);
+
+					            show_infowindow();
+					        };
+					    }(markers.length - 1));
+
+					    let level  = item.level ;
+					    let vehicle  = item.vehicle_type ;
+					    let unit  = item.name ;
+					    let count_case = item.go_to_help ;
+
+			        	// --------- สร้างเนื้อหาใส่ใน DIV ด้านขวา ----------
+			        	let html_div_right = create_content_div_right(photo_user , item.name_officer , focus_markerIndex , level , vehicle , unit , count_case);
+    					content_data_name_officer.insertAdjacentHTML('beforeend', html_div_right); // แทรกล่างสุด
 				        
 				    }
 
@@ -1383,6 +1423,151 @@
 			}
 
 		}, 500);
+    }
+
+    function btn_view_sos(type){
+    	// console.log('btn_view_sos');
+
+    	check_view_type_sos = type ;
+
+        for (let i = 0; i < markers.length; i++) {
+	        markers[i].setMap(null);
+	    }
+	    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
+
+    	let icon_level ;
+
+    	let show_amount_sos_red = 0 ;
+    	let show_amount_sos_yellow = 0 ;
+    	let show_amount_sos_green = 0 ;
+    	let show_amount_sos_white = 0 ;
+    	let show_amount_sos_black = 0 ;
+    	let show_amount_sos_general = 0 ;
+
+    	// console.log(sos_success_all);
+
+    	let arr_address_in_polygon = [] ;
+
+        for(let item of sos_success_all){
+
+        	switch(item.rc) {
+			  	case "แดง(วิกฤติ)":
+			    	icon_level = image_sos_red ;
+			    	show_amount_sos_red = show_amount_sos_red + 1 ;
+			    break;
+			  	case "เหลือง(เร่งด่วน)":
+			    	icon_level = image_sos_yellow ;
+			    	show_amount_sos_yellow = show_amount_sos_yellow + 1 ;
+			    break;
+			    case "เขียว(ไม่รุนแรง)":
+			    	icon_level = image_sos_green ;
+			    	show_amount_sos_green = show_amount_sos_green + 1 ;
+			    break;
+			    case "ขาว(ทั่วไป)":
+			    	icon_level = image_sos_white ;
+			    	show_amount_sos_white = show_amount_sos_white + 1 ;
+			    break;
+			    case "ดำ":
+			    	icon_level = image_sos_black ;
+			    	show_amount_sos_black = show_amount_sos_black + 1 ;
+			    break;
+			    default:
+			    	icon_level = image_sos_general ;
+			    	show_amount_sos_general = show_amount_sos_general + 1 ;
+			}
+
+			// เช็คหมุดอยู่ใน polygon ของอำเภอ
+        	let check_in_polygon = check_area(item.lat , item.lng , current_polygon);
+
+			if(type == item.rc || type == 'all'){
+
+				if( check_view_area_all_or_district == 'all' || check_in_polygon == "Yes"){
+					// console.log(item.address.split('/')[1]);
+					let area_a = item.address.split('/')[1] ;
+					let check_arr_address = arr_address_in_polygon.includes(area_a);
+					if(!check_arr_address){
+						arr_address_in_polygon.push(area_a);
+					}
+					
+			        marker_sos = new google.maps.Marker({
+			            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
+			            map: map_show_data_officer_area,
+			            icon: icon_level,
+			        });
+			        markers.push(marker_sos);
+			    }
+
+		    }
+		    else if(type == 'general'){
+
+		    	if(!item.rc){
+		    		if( check_view_area_all_or_district == 'all' || check_in_polygon == "Yes"){
+		    			// console.log(item.address.split('/')[1]);
+						let area_a = item.address.split('/')[1] ;
+						let check_arr_address = arr_address_in_polygon.includes(area_a);
+						if(!check_arr_address){
+							arr_address_in_polygon.push(area_a);
+						}
+
+			    		marker_sos = new google.maps.Marker({
+				            position: {lat: parseFloat(item.lat) , lng: parseFloat(item.lng) },
+				            map: map_show_data_officer_area,
+				            icon: icon_level,
+				        });
+				        markers.push(marker_sos);
+				    }
+		    	}
+
+		    }
+
+        }
+
+        // เพิ่ม d-none ในรายชื่ออำเภอ
+        let show_count_area = document.querySelectorAll('[data="show_count_area"]');
+			show_count_area.forEach(item => {
+			    item.classList.add('d-none');
+			})
+
+		// remove d-none ในรายชื่ออำเภอที่ปักหมุด
+		for (let ia = 0; ia < arr_address_in_polygon.length; ia++) {
+			document.querySelector('[area="'+arr_address_in_polygon[ia]+'"]').classList.remove('d-none');
+		}
+
+        let sum_sos = show_amount_sos_red + show_amount_sos_yellow + show_amount_sos_green + show_amount_sos_white + show_amount_sos_black + show_amount_sos_general ;
+
+    	document.querySelector('#show_amount_sos_all').innerHTML = sum_sos;
+    	document.querySelector('#show_amount_sos_red').innerHTML = show_amount_sos_red;
+    	document.querySelector('#show_amount_sos_yellow').innerHTML = show_amount_sos_yellow;
+    	document.querySelector('#show_amount_sos_green').innerHTML = show_amount_sos_green;
+    	document.querySelector('#show_amount_sos_white').innerHTML = show_amount_sos_white;
+    	document.querySelector('#show_amount_sos_black').innerHTML = show_amount_sos_black;
+    	document.querySelector('#show_amount_sos_general').innerHTML = show_amount_sos_general;
+
+    	document.querySelector('#div_sos_loading').classList.add('d-none');
+    	document.querySelector('#div_sos_show_data').classList.remove('d-none');
+
+    	let select_area_district = document.querySelector('#select_area_district');
+    	let text_watching_sos_type ;
+
+    	if(check_view_type_sos == 'all'){
+    		text_watching_sos_type = 'ทั้งหมด' ;
+    	}else if(check_view_type_sos == 'general'){
+    		text_watching_sos_type = 'ไม่มีการประเมิน' ;
+    	}else{
+    		text_watching_sos_type = check_view_type_sos ;
+    	}
+
+    	if(select_area_district.value != 'all'){
+    		document.querySelector('#watching_sos_type').innerHTML = 'ระดับ : ' + text_watching_sos_type;
+    		document.querySelector('#watching_sos_data').innerHTML = select_area_district.value;
+    	}else{
+    		document.querySelector('#watching_sos_type').innerHTML = 'ระดับ : ' + text_watching_sos_type;
+    		document.querySelector('#watching_sos_data').innerHTML = 'ทุกพื้นที่';
+    	}
+    	
+
+    	show_data_area();
+
     }
 
     function show_data_name_officer(){
@@ -1402,18 +1587,6 @@
 			document.querySelector('#icon_view_div_data_gotohelp').click();
 		}
 	}
-
-    function clear_infowindow(){
-    	
-    	for (let i = 0; i < infowindow_arr.length; i++) {
-	        infowindow_arr[i].close();
-	    }
-	    infowindow_arr = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
-
-    	active_infowindow = "No" ;
-		document.querySelector('#show_btn_clear_infowindow').classList.add('d-none');
-    }
-
 
     function set_map_fit_polygon(){
     	setTimeout(function() {
@@ -1438,8 +1611,20 @@
     		officer_type = "ระดับปฏิบัติการ" ;
     	}
 
+    	let text_watching_officer_type ;
+
+    	if(check_view_officer_data == 'all'){
+    		text_watching_officer_type = 'ทั้งหมด' ;
+    	}else if(check_view_officer_data == 'Standby'){
+    		text_watching_officer_type = 'พร้อมช่วยเหลือ' ;
+    	}else if(check_view_officer_data == 'Helping'){
+    		text_watching_officer_type = 'กำลังช่วยเหลือ' ;
+    	}else{
+    		text_watching_officer_type = check_view_officer_data ;
+    	}
+
 		document.querySelector('#watching_officer_type').innerHTML = officer_type;
-    	document.querySelector('#watching_officer_data').innerHTML = check_view_officer_data;
+    	document.querySelector('#watching_officer_data').innerHTML = text_watching_officer_type;
     }
 
 	// ซ่อน div
@@ -1621,6 +1806,120 @@
 
 	}
 
+	// สร้างเนื้อหา infowindow ของเจ้าหน้าที่
+	function create_content_infowindow(photo_user , name_officer , focus_markerIndex){
+		let contentString = `
+	        <div id="infowindow_user_id_`+focus_markerIndex+`" style="width: auto; height: auto;">
+		    	<div>
+		    		<center>
+		    		<img src="`+photo_user+`" class="rounded-circle" style="width:45px;height:45px;">
+		    		</center>
+		    		<br>
+		    		<h6 style="margin-top:10px;"><b>`+name_officer+`</b></h6>
+		    	</div>
+		    </div>
+	    `;
+
+	    return contentString ;
+	}
+
+	// สร้างเนื้อหา officer ใส่ใน DIV ด้านขวา
+	function create_content_div_right(photo_user , name_officer , focus_markerIndex , level , vehicle , unit , count_case){
+
+		let class_level ;
+
+		if(level == "FR"){
+			class_level = "text-success";
+		}else if(level == "ALS"){
+			class_level = "text-danger";
+		}else{
+			class_level = "text-warning";
+		}
+
+		if(!count_case){
+			count_case = 0 ;
+		}
+
+		let html_div_right = `
+	        <div id="div_right_`+focus_markerIndex+`" level="`+level+`" style="width: auto; height: auto;" onmouseover="focus_infowindow_officer('`+photo_user+`' , '`+name_officer+`' , `+focus_markerIndex+`);">
+			    <div class="row">
+			        <div class="col-2">
+			            <img src="`+photo_user+`" class="rounded-circle" style="width:45px;height:45px; margin: 0 auto; text-align: center">
+			        </div>
+			        <div class="col-10">
+			            <h6 style="margin-top:10px;"><b>`+name_officer+`</b></h6>
+			        </div>
+			        <div class="col-12 mt-2">
+			        	<span class="float-start">
+			        		ระดับ : <b class="`+class_level+`">`+level+`</b> | <b>`+vehicle+`</b>
+			        	</span>
+			        </div>
+			        <div class="col-12 mt-1">
+			        	<span class="float-start">
+			        		ปฏิบัติการ : <b>`+count_case+`</b> เคส
+			        	</span>
+			        </div>
+			        <div class="col-12 mt-1">
+			        	<span class="float-start">
+			        		หน่วย : `+unit+`
+			        	</span>
+			        </div>
+			    </div>
+			    <hr>
+			</div>
+	    `;
+
+	    return html_div_right ;
+	}
+
+	// focus DIV ด้านขวาตามที่มีการกดหมุดในแมพ
+	function focus_officer_div_right(focus_markerIndex){
+		console.log("focus div_right >> " + focus_markerIndex);
+
+	}
+
+	// focus DIV ด้านขวาตามที่มีการกดหมุดในแมพ
+	function focus_infowindow_officer(photo_user , name_officer , focus_markerIndex){
+
+		console.log("focus infowindow >> " + focus_markerIndex);
+		clear_infowindow(focus_markerIndex);
+
+		let contentString = create_content_infowindow(photo_user , name_officer , focus_markerIndex);
+
+		// เซ็ตข้อมูลใน InfoWindow
+		infowindows[focus_markerIndex].setContent(contentString);
+
+		infowindows[focus_markerIndex].open(map_show_data_officer_area, markers[focus_markerIndex]);
+
+		show_infowindow();
+	}
+
+	function clear_infowindow(focus_markerIndex){
+    	
+    	for (let i = 0; i < infowindows.length; i++) {
+    		if(infowindows[i] != infowindows[focus_markerIndex]){
+	        	infowindows[i].close();
+    		}
+	    }
+	    // infowindows = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
+
+    	active_infowindow = "No" ;
+		document.querySelector('#show_btn_clear_infowindow').classList.add('d-none');
+    }
+
+    function show_infowindow(){
+    	active_infowindow = "Yes" ;
+		document.querySelector('#show_btn_clear_infowindow').classList.remove('d-none');
+    }
+
+    // เลือกระดับ DIV ด้านขวา
+    function func_select_area_and_level(){
+
+    	let select_level = document.querySelector('#select_level').value;
+    	console.log(select_level);
+
+    }
+
 
 	// <!-- ****** LOOP GET DATA ****** -->
     let get_data_officer_all ;
@@ -1707,9 +2006,10 @@
 
 				for (let key in sortedData) {
 				  	// console.log(`Key: ${key}, Value: ${data_arr[key]}`);
+					let amphoe_name = key.split('/')[1];
 
 				  	let html = `
-						<div class="mt-2 show_count_area" area="${key}">
+						<div class="mt-2 show_count_area d-none" data="show_count_area" area="${amphoe_name}">
 							<span>${key}</span>
 							<span class="float-end">
 								<b>${data_arr[key]}</b>
@@ -1730,8 +2030,8 @@
 
     		});
 
-		// }, 60000);
-		}, 10000);
+		}, 60000);
+		// }, 10000);
 	}
 
 	function Stop_get_data_officer_all() {
