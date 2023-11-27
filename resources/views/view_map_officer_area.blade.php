@@ -1483,10 +1483,12 @@
 
 				if( check_view_area_all_or_district == 'all' || check_in_polygon == "Yes"){
 					// console.log(item.address.split('/')[1]);
-					let area_a = item.address.split('/')[1] ;
-					let check_arr_address = arr_address_in_polygon.includes(area_a);
-					if(!check_arr_address){
-						arr_address_in_polygon.push(area_a);
+					if (item.address) {
+						let area_a = item.address.split('/')[1] ;
+						let check_arr_address = arr_address_in_polygon.includes(area_a);
+						if(!check_arr_address){
+							arr_address_in_polygon.push(area_a);
+						}
 					}
 					
 			        marker_sos = new google.maps.Marker({
@@ -1503,10 +1505,12 @@
 		    	if(!item.rc){
 		    		if( check_view_area_all_or_district == 'all' || check_in_polygon == "Yes"){
 		    			// console.log(item.address.split('/')[1]);
-						let area_a = item.address.split('/')[1] ;
-						let check_arr_address = arr_address_in_polygon.includes(area_a);
-						if(!check_arr_address){
-							arr_address_in_polygon.push(area_a);
+						if (item.address) {
+							let area_a = item.address.split('/')[1] ;
+							let check_arr_address = arr_address_in_polygon.includes(area_a);
+							if(!check_arr_address){
+								arr_address_in_polygon.push(area_a);
+							}
 						}
 
 			    		marker_sos = new google.maps.Marker({
