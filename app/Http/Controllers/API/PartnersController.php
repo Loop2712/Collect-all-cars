@@ -1402,6 +1402,7 @@ class PartnersController extends Controller
             ->leftJoin('users' , 'data_1669_operating_officers.user_id','=','users.id')
             ->where("data_1669_operating_units.area" , $area)
             ->select('data_1669_operating_officers.*' , 'data_1669_operating_units.*' ,'users.photo as photo_user')
+            ->orderBy('go_to_help' , 'desc')
             ->get();
 
         return $data_officer_all ;

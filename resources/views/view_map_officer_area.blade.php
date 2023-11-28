@@ -388,7 +388,10 @@
 				<!-- ข้อมูลจุดเกิดเหตุ -->
 				<div class="tab-pane fade" id="primaryprofile_title" role="tabpanel">
 					<div>
-						<h4 class="card-title">ระดับเหตุการณ์</h4>
+						<h4 class="card-title">
+							ระดับเหตุการณ์
+							<span class="text-secondary" style="font-size: 15px;">(รวมทุกพื้นที่)</span>
+						</h4>
 					</div>
 
 					<div id="div_sos_loading" class="">
@@ -533,6 +536,7 @@
 						<ul class="ul_you_are_watching">
 						  	<li id="watching_sos_type"></li>
 						  	<li id="watching_sos_data"></li>
+						  	<li id="watching_sos_count"></li>
 						</ul>
 					</div>
 					<hr>
@@ -614,63 +618,6 @@
 	            // console.log(result_sos_success_all);
 	            sos_success_all = result_sos_success_all ;
     			document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
-
-    			let content_all_sos = document.querySelector('#content_all_sos');
-    				content_all_sos.innerHTML = '' ;
-
-    			// สร้างตัวแปร object เพื่อเก็บค่าที่นับ
-				let data_arr = {};
-
-				// วนลูปผ่านทุกรายการใน result_sos_success_all
-				for (let item of result_sos_success_all) {
-
-					if(item.address){
-						let address = item.address.split("/");
-						    address = address[0] + "/" + address[1];
-
-					  	// ตรวจสอบว่า address มีอยู่ใน data_arr หรือไม่
-					  	if (data_arr[address]) {
-					    	// ถ้ามีให้เพิ่มค่าใน data_arr[item.address] ขึ้นอีก 1
-					    	data_arr[address]++;
-					  	} else {
-					    	// ถ้ายังไม่มีให้สร้าง key ใหม่ใน data_arr และกำหนดค่าเริ่มต้นเป็น 1
-					    	data_arr[address] = 1;
-					  	}
-					}
-				}
-
-				// แปลง object ให้กลายเป็น array ของ objects
-				let dataArray = Object.entries(data_arr);
-
-				// เรียงลำดับ array ตามค่ามากที่สุดไปน้อยลง
-				dataArray.sort((a, b) => b[1] - a[1]);
-
-				let sortedData = [];
-
-				// แสดงผลลัพธ์ที่เรียงลำดับ
-				for (let entry of dataArray) {
-				  	// console.log(entry[0] + ": " + entry[1]);
-				  	sortedData[entry[0]] = entry[1];
-				}
-
-
-				for (let key in sortedData) {
-				  	// console.log(`Key: ${key}, Value: ${data_arr[key]}`);
-				  	let amphoe_name = key.split('/')[1];
-
-				  	let html = `
-						<div class="mt-2 show_count_area" data="show_count_area" area="${amphoe_name}">
-							<span>${key}</span>
-							<span class="float-end">
-								<b>${data_arr[key]}</b>
-							</span>
-							<br>
-						</div>
-					`;
-
-					content_all_sos.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
-				}
-
     		});
 
     	// show_location_A district
@@ -942,6 +889,8 @@
 
     	let icon_level ;
 
+    	let sum_go_to_help = 0 ;
+
     	infowindows = [] ;
 
     	// STATUS OFFICER
@@ -962,7 +911,8 @@
     	let count_level_ils = 0 ;
     	let count_level_als = 0 ;
 
-    	console.log(data_officer_all);
+    	// console.log(data_officer_all);
+
 
         for(let item of data_officer_all){
 
@@ -1205,11 +1155,19 @@
 		    let unit  = item.name ;
 		    let count_case = item.go_to_help ;
 
+		    if(item.go_to_help){
+		    	sum_go_to_help = sum_go_to_help + item.go_to_help
+		    }
+
         	// --------- สร้างเนื้อหาใส่ใน DIV ด้านขวา ----------
         	let html_div_right = create_content_div_right(photo_user , item.name_officer , focus_markerIndex , level , vehicle , unit , count_case);
 			content_data_name_officer_all.insertAdjacentHTML('beforeend', html_div_right); // แทรกล่างสุด
 
 	    }
+
+	    // COUNT ALL CASE
+	    document.querySelector('#show_amount_by_area').innerHTML = sum_go_to_help ;
+
 
 	    // STATUS OFFICER
     	document.querySelector('#count_officer_all').innerHTML = data_officer_all.length ;
@@ -1447,6 +1405,10 @@
     	// console.log(sos_success_all);
 
     	let arr_address_in_polygon = [] ;
+    	let count_marker_in_polygon = 0 ;
+
+    	let content_all_sos = document.querySelector('#content_all_sos');
+    		content_all_sos.innerHTML = '' ;
 
         for(let item of sos_success_all){
 
@@ -1486,8 +1448,10 @@
 					if (item.address) {
 						let area_a = item.address.split('/')[1] ;
 						let check_arr_address = arr_address_in_polygon.includes(area_a);
-						if(!check_arr_address){
-							arr_address_in_polygon.push(area_a);
+						if(!arr_address_in_polygon[area_a]){
+							arr_address_in_polygon[area_a] = 1;
+						}else{
+							arr_address_in_polygon[area_a] = arr_address_in_polygon[area_a] + 1;
 						}
 					}
 					
@@ -1497,6 +1461,8 @@
 			            icon: icon_level,
 			        });
 			        markers.push(marker_sos);
+
+			        count_marker_in_polygon = count_marker_in_polygon + 1 ;
 			    }
 
 		    }
@@ -1508,8 +1474,10 @@
 						if (item.address) {
 							let area_a = item.address.split('/')[1] ;
 							let check_arr_address = arr_address_in_polygon.includes(area_a);
-							if(!check_arr_address){
-								arr_address_in_polygon.push(area_a);
+							if(!arr_address_in_polygon[area_a]){
+								arr_address_in_polygon[area_a] = 1;
+							}else{
+								arr_address_in_polygon[area_a] = arr_address_in_polygon[area_a] + 1;
 							}
 						}
 
@@ -1519,6 +1487,8 @@
 				            icon: icon_level,
 				        });
 				        markers.push(marker_sos);
+
+				        count_marker_in_polygon = count_marker_in_polygon + 1 ;
 				    }
 		    	}
 
@@ -1526,15 +1496,36 @@
 
         }
 
-        // เพิ่ม d-none ในรายชื่ออำเภอ
-        let show_count_area = document.querySelectorAll('[data="show_count_area"]');
-			show_count_area.forEach(item => {
-			    item.classList.add('d-none');
-			})
+		// console.log(arr_address_in_polygon);
 
-		// remove d-none ในรายชื่ออำเภอที่ปักหมุด
-		for (let ia = 0; ia < arr_address_in_polygon.length; ia++) {
-			document.querySelector('[area="'+arr_address_in_polygon[ia]+'"]').classList.remove('d-none');
+		// แปลง object ให้กลายเป็น array ของ objects
+		let data_arr = Object.entries(arr_address_in_polygon);
+
+		// เรียงลำดับ array ตามค่ามากที่สุดไปน้อยลง
+		data_arr.sort((a, b) => b[1] - a[1]);
+
+		let sortedData = [];
+
+		// แสดงผลลัพธ์ที่เรียงลำดับ
+		for (let entry of data_arr) {
+		  	// console.log(entry[0] + ": " + entry[1]);
+		  	sortedData[entry[0]] = entry[1];
+		}
+
+		for (let key in sortedData) {
+		  	// console.log(`Key: ${key}, Value: ${sortedData[key]}`);
+
+		  	let html = `
+				<div class="mt-2 show_count_area" data="show_count_area" area="${key}">
+					<span>${key}</span>
+					<span class="float-end">
+						<b>${sortedData[key]}</b>
+					</span>
+					<br>
+				</div>
+			`;
+
+			content_all_sos.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 		}
 
         let sum_sos = show_amount_sos_red + show_amount_sos_yellow + show_amount_sos_green + show_amount_sos_white + show_amount_sos_black + show_amount_sos_general ;
@@ -1564,9 +1555,11 @@
     	if(select_area_district.value != 'all'){
     		document.querySelector('#watching_sos_type').innerHTML = 'ระดับ : ' + text_watching_sos_type;
     		document.querySelector('#watching_sos_data').innerHTML = select_area_district.value;
+    		document.querySelector('#watching_sos_count').innerHTML = 'รวม ' + count_marker_in_polygon + ' เคส';
     	}else{
     		document.querySelector('#watching_sos_type').innerHTML = 'ระดับ : ' + text_watching_sos_type;
     		document.querySelector('#watching_sos_data').innerHTML = 'ทุกพื้นที่';
+    		document.querySelector('#watching_sos_count').innerHTML = 'รวม ' + count_marker_in_polygon + ' เคส';
     	}
     	
 
@@ -1845,7 +1838,7 @@
 		}
 
 		let html_div_right = `
-	        <div id="div_right_`+focus_markerIndex+`" level="`+level+`" style="width: auto; height: auto;" onmouseover="focus_infowindow_officer('`+photo_user+`' , '`+name_officer+`' , `+focus_markerIndex+`);">
+	        <div show_name="div_show_name_officer" class="" id="div_right_`+focus_markerIndex+`" level="`+level+`" style="width: auto; height: auto;" onmouseover="focus_infowindow_officer('`+photo_user+`' , '`+name_officer+`' , `+focus_markerIndex+`);">
 			    <div class="row">
 			        <div class="col-2">
 			            <img src="`+photo_user+`" class="rounded-circle" style="width:45px;height:45px; margin: 0 auto; text-align: center">
@@ -1880,12 +1873,19 @@
 	function focus_officer_div_right(focus_markerIndex){
 		console.log("focus div_right >> " + focus_markerIndex);
 
+		let div_fosuc = document.querySelector('#div_right_' + focus_markerIndex);
+
+		document.querySelector('#div_right_' + focus_markerIndex).remove();
+
+		console.log(div_fosuc);
+
 	}
 
 	// focus DIV ด้านขวาตามที่มีการกดหมุดในแมพ
 	function focus_infowindow_officer(photo_user , name_officer , focus_markerIndex){
 
-		console.log("focus infowindow >> " + focus_markerIndex);
+		// console.log("focus infowindow >> " + focus_markerIndex);
+
 		clear_infowindow(focus_markerIndex);
 
 		let contentString = create_content_infowindow(photo_user , name_officer , focus_markerIndex);
@@ -1920,7 +1920,29 @@
     function func_select_area_and_level(){
 
     	let select_level = document.querySelector('#select_level').value;
-    	console.log(select_level);
+    	// console.log(select_level);
+
+    	let div_show_name_officer = document.querySelectorAll('div[show_name="div_show_name_officer"]');
+			
+			div_show_name_officer.forEach(div_item => {
+
+				if(select_level == 'all'){
+
+					div_item.classList.remove('d-none');
+
+				}else{
+
+					let check_level = div_item.getAttribute('level');
+				    // console.log(check_level);
+				    if(check_level != select_level){
+				    	div_item.classList.add('d-none');
+				    }else{
+				    	div_item.classList.remove('d-none');
+				    }
+
+				}
+
+			})
 
     }
 
@@ -1968,62 +1990,6 @@
 	            // console.log(result_sos_success_all);
 	            sos_success_all = result_sos_success_all ;
     			document.querySelector('#count_sos_success').innerHTML = sos_success_all.length ;
-
-    			let content_all_sos = document.querySelector('#content_all_sos');
-    				content_all_sos.innerHTML = '' ;
-
-    			// สร้างตัวแปร object เพื่อเก็บค่าที่นับ
-				let data_arr = {};
-
-				// วนลูปผ่านทุกรายการใน result_sos_success_all
-				for (let item of result_sos_success_all) {
-
-					if(item.address){
-						let address = item.address.split("/");
-						    address = address[0] + "/" + address[1];
-
-					  	// ตรวจสอบว่า address มีอยู่ใน data_arr หรือไม่
-					  	if (data_arr[address]) {
-					    	// ถ้ามีให้เพิ่มค่าใน data_arr[item.address] ขึ้นอีก 1
-					    	data_arr[address]++;
-					  	} else {
-					    	// ถ้ายังไม่มีให้สร้าง key ใหม่ใน data_arr และกำหนดค่าเริ่มต้นเป็น 1
-					    	data_arr[address] = 1;
-					  	}
-					}
-				}
-
-				// แปลง object ให้กลายเป็น array ของ objects
-				let dataArray = Object.entries(data_arr);
-
-				// เรียงลำดับ array ตามค่ามากที่สุดไปน้อยลง
-				dataArray.sort((a, b) => b[1] - a[1]);
-
-				let sortedData = [];
-
-				// แสดงผลลัพธ์ที่เรียงลำดับ
-				for (let entry of dataArray) {
-				  	// console.log(entry[0] + ": " + entry[1]);
-				  	sortedData[entry[0]] = entry[1];
-				}
-
-
-				for (let key in sortedData) {
-				  	// console.log(`Key: ${key}, Value: ${data_arr[key]}`);
-					let amphoe_name = key.split('/')[1];
-
-				  	let html = `
-						<div class="mt-2 show_count_area d-none" data="show_count_area" area="${amphoe_name}">
-							<span>${key}</span>
-							<span class="float-end">
-								<b>${data_arr[key]}</b>
-							</span>
-							<br>
-						</div>
-					`;
-
-					content_all_sos.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
-				}
 
     			setTimeout(function() {
 	            	if(check_view_officer_or_sos == 'sos'){
