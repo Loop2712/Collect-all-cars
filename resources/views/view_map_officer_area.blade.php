@@ -213,13 +213,16 @@
 					<div class="tab-content py-3 mt-3">
 						<div class="tab-pane fade active show" id="primaryhome" role="tabpanel">
 							<div class="mb-4">
-								<h4 class="card-title">หน่วยปฏิบัติการแพทย์ฉุกเฉิน</h4>
+								<h4 class="card-title">
+									หน่วยปฏิบัติการแพทย์ฉุกเฉิน
+									<span class="text-secondary" style="font-size: 15px;">(รวมทุกพื้นที่)</span>
+								</h4>
 							</div>
 							<p style="position:relative;padding-top: 10px;">
 								<img src="{{ url('/img/icon/all-agree.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									ทั้งหมด : <b id="count_officer_all"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('status','all');">
+									<span class="float-end btn" onclick="view_officer_select('status','all');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -229,7 +232,7 @@
 								<img src="{{ url('/img/icon/checked.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									พร้อมช่วยเหลือ : <b id="count_officer_ready"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('status','Standby');">
+									<span class="float-end btn" onclick="view_officer_select('status','Standby');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -239,7 +242,7 @@
 								<img src="{{ url('/img/icon/help.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									กำลังช่วยเหลือ : <b id="count_officer_helping"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('status','Helping');">
+									<span class="float-end btn" onclick="view_officer_select('status','Helping');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -253,14 +256,17 @@
 						</div>
 						<div class="tab-pane fade" id="primaryprofile" role="tabpanel">
 							<div class="mb-4">
-								<h4 class="card-title">ประเภทยานพาหนะ</h4>
+								<h4 class="card-title">
+									ประเภทยานพาหนะ
+									<span class="text-secondary" style="font-size: 15px;">(รวมทุกพื้นที่)</span>
+								</h4>
 							</div>
 							<p style="position:relative;padding-top: 10px;">
 								<img src="{{ url('/img/icon/all_vehicle.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									
 									ทั้งหมด : <b id="count_sum_vehicle"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','all');">
+									<span class="float-end btn" onclick="view_officer_select('vehicle_type','all');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -270,7 +276,7 @@
 								<img src="{{ url('/img/icon/car_img.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									รถยนต์ : <b id="count_vehicle_car"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','รถ');">
+									<span class="float-end btn" onclick="view_officer_select('vehicle_type','รถ');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -280,7 +286,7 @@
 								<img src="{{ url('/img/icon/helicopter.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									อากาศยาน : <b id="count_vehicle_aircraft"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','อากาศยาน');">
+									<span class="float-end btn" onclick="view_officer_select('vehicle_type','อากาศยาน');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -290,7 +296,7 @@
 								<img src="{{ url('/img/icon/ship1.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									เรือ ป.1 : <b id="count_vehicle_boat_1"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.1');">
+									<span class="float-end btn" onclick="view_officer_select('vehicle_type','เรือ ป.1');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -300,7 +306,7 @@
 								<img src="{{ url('/img/icon/ship2.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									เรือ ป.2 : <b id="count_vehicle_boat_2"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.2');">
+									<span class="float-end btn" onclick="view_officer_select('vehicle_type','เรือ ป.2');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -310,7 +316,7 @@
 								<img src="{{ url('/img/icon/ship3.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									เรือ ป.3 : <b id="count_vehicle_boat_3"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือ ป.3');">
+									<span class="float-end btn" onclick="view_officer_select('vehicle_type','เรือ ป.3');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -320,7 +326,7 @@
 								<img src="{{ url('/img/icon/ship4.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									เรือประเภทอื่นๆ : <b id="count_vehicle_boat_other"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('vehicle_type','เรือประเภทอื่นๆ');">
+									<span class="float-end btn" onclick="view_officer_select('vehicle_type','เรือประเภทอื่นๆ');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -329,14 +335,17 @@
 						</div>
 						<div class="tab-pane fade" id="primarycontact" role="tabpanel">
 							<div class="mb-4">
-								<h4 class="card-title">ระดับปฏิบัติการ</h4>
+								<h4 class="card-title">
+									ระดับปฏิบัติการ
+									<span class="text-secondary" style="font-size: 15px;">(รวมทุกพื้นที่)</span>
+								</h4>
 							</div>
 							<p style="position:relative;padding-top: 10px;">
 								<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/1.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									
 									ทั้งหมด : <b id="count_sum_level"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('level','all');">
+									<span class="float-end btn" onclick="view_officer_select('level','all');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -346,7 +355,7 @@
 								<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/2.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									FR : <b id="count_level_fr"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('level','FR');">
+									<span class="float-end btn" onclick="view_officer_select('level','FR');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -356,7 +365,7 @@
 								<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									BLS : <b id="count_level_bls"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('level','BLS');">
+									<span class="float-end btn" onclick="view_officer_select('level','BLS');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -366,7 +375,7 @@
 								<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/3.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									ILS : <b id="count_level_ils"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('level','ILS');">
+									<span class="float-end btn" onclick="view_officer_select('level','ILS');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -376,7 +385,7 @@
 								<img src="{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/4.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									ALS : <b id="count_level_als"></b>
-									<span class="float-end btn" onclick="view_offiecr_select('level','ALS');">
+									<span class="float-end btn" onclick="view_officer_select('level','ALS');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -542,7 +551,7 @@
 					<hr>
 					<div id="content_all_sos"></div>
 				</div>
-				<div class="tab-pane fade active show" id="primaryprofile_2" role="tabpanel" style="width: 100%;">
+				<div class="tab-pane fade active show" id="primaryprofile_2" role="tabpanel" style="width: 95%;">
 					<span class="float-end text-dark mb-1" style="font-size: 16px;margin-top: 6px;">
 						ออกปฏิบัติการรวม <b id="show_amount_by_area"></b> เคส
 					</span>
@@ -566,6 +575,7 @@
 						<ul class="ul_you_are_watching">
 						  	<li id="watching_officer_type"></li>
 						  	<li id="watching_officer_data"></li>
+						  	<li id="watching_officer_count"></li>
 						</ul>
 					</div>
 					<hr>
@@ -831,7 +841,7 @@
 		    		btn_view_sos(check_view_type_sos);
 				}else if(check_view_officer_or_sos == 'officer'){
 		    		console.log('กำลังดู OFFICER');
-	    			view_offiecr_select(check_view_officer_type , check_view_officer_data);
+	    			view_officer_select(check_view_officer_type , check_view_officer_data);
 		        	show_data_name_officer();
 		    	}
 	    	}, 500);
@@ -1062,7 +1072,7 @@
 				        return function() {
 				            // console.log(item.user_id);
 
-				            focus_officer_div_right(focus_markerIndex);
+				            focus_officer_div_right(focus_markerIndex , 'officer_all');
 
 					        let contentString = create_content_infowindow(photo_user , item.name_officer , focus_markerIndex);
 
@@ -1098,7 +1108,7 @@
 				        return function() {
 				            // console.log(item.user_id);
 
-				            focus_officer_div_right(focus_markerIndex);
+				            focus_officer_div_right(focus_markerIndex , 'officer_all');
 
 					        let contentString = create_content_infowindow(photo_user , item.name_officer , focus_markerIndex);
 
@@ -1133,7 +1143,7 @@
 				        return function() {
 				            // console.log(item.user_id);
 
-				            focus_officer_div_right(focus_markerIndex);
+				            focus_officer_div_right(focus_markerIndex , 'officer_all');
 
 					        let contentString = create_content_infowindow(photo_user , item.name_officer , focus_markerIndex);
 
@@ -1160,7 +1170,7 @@
 		    }
 
         	// --------- สร้างเนื้อหาใส่ใน DIV ด้านขวา ----------
-        	let html_div_right = create_content_div_right(photo_user , item.name_officer , focus_markerIndex , level , vehicle , unit , count_case);
+        	let html_div_right = create_content_div_right(photo_user , item.name_officer , focus_markerIndex , level , vehicle , unit , count_case , 'officer_all');
 			content_data_name_officer_all.insertAdjacentHTML('beforeend', html_div_right); // แทรกล่างสุด
 
 	    }
@@ -1200,18 +1210,19 @@
 
     }
 
-    function view_offiecr_select(type , data){
+    var watching_officer_count ;
+
+    function view_officer_select(type , data){
 
     	setTimeout(function() {
 
+			clear_infowindow(null);
     		infowindows = [] ;
+    		watching_officer_count = 0 ;
 	    		
 	    	// console.log(type);
 	    	check_view_officer_type = type ;
 	    	check_view_officer_data = data ;
-
-	    	// แสดงผลต่อผู้ใช้ว่ากำลังดูอะไรอยู่
-    		show_to_user_watching();
 
 	    	// เลือกการแสดงเจ้าหน้าที่ด้านขวา
 	    	if(check_view_officer_data == 'all' && check_view_area_all_or_district == 'all'){
@@ -1345,6 +1356,7 @@
 				        markers.push(marker);
 				        infowindows.push(infowindow);
 
+				        watching_officer_count = watching_officer_count  + 1 ;
 				        let focus_markerIndex = markers.length - 1 ;
 
 				        // เพิ่ม Event Listener สำหรับคลิก Marker
@@ -1352,7 +1364,12 @@
 					        return function() {
 					            // console.log(item.user_id);
 
-					            focus_officer_div_right(focus_markerIndex);
+					        	if(check_view_officer_data == 'all'){
+					            	focus_officer_div_right(focus_markerIndex , 'officer_all');
+					        	}else{
+					            	focus_officer_div_right(focus_markerIndex , 'officer_select');
+					        	}
+
 
 					            let contentString = create_content_infowindow(photo_user , item.name_officer , focus_markerIndex);
 
@@ -1372,7 +1389,7 @@
 					    let count_case = item.go_to_help ;
 
 			        	// --------- สร้างเนื้อหาใส่ใน DIV ด้านขวา ----------
-			        	let html_div_right = create_content_div_right(photo_user , item.name_officer , focus_markerIndex , level , vehicle , unit , count_case);
+			        	let html_div_right = create_content_div_right(photo_user , item.name_officer , focus_markerIndex , level , vehicle , unit , count_case , 'officer_select');
     					content_data_name_officer.insertAdjacentHTML('beforeend', html_div_right); // แทรกล่างสุด
 				        
 				    }
@@ -1380,7 +1397,10 @@
 				}
 			}
 
-		}, 500);
+			// แสดงผลต่อผู้ใช้ว่ากำลังดูอะไรอยู่
+    		show_to_user_watching();
+
+		}, 200);
     }
 
     function btn_view_sos(type){
@@ -1622,6 +1642,7 @@
 
 		document.querySelector('#watching_officer_type').innerHTML = officer_type;
     	document.querySelector('#watching_officer_data').innerHTML = text_watching_officer_type;
+    	document.querySelector('#watching_officer_count').innerHTML = watching_officer_count;
     }
 
 	// ซ่อน div
@@ -1821,7 +1842,7 @@
 	}
 
 	// สร้างเนื้อหา officer ใส่ใน DIV ด้านขวา
-	function create_content_div_right(photo_user , name_officer , focus_markerIndex , level , vehicle , unit , count_case){
+	function create_content_div_right(photo_user , name_officer , focus_markerIndex , level , vehicle , unit , count_case , type_div){
 
 		let class_level ;
 
@@ -1838,7 +1859,7 @@
 		}
 
 		let html_div_right = `
-	        <div show_name="div_show_name_officer" class="" id="div_right_`+focus_markerIndex+`" level="`+level+`" style="width: auto; height: auto;" onmouseover="focus_infowindow_officer('`+photo_user+`' , '`+name_officer+`' , `+focus_markerIndex+`);">
+	        <div show_name="div_show_name_officer" class="" id="div_right_`+type_div+`_`+focus_markerIndex+`" level="`+level+`" style="width: auto; height: auto;" onmouseover="focus_infowindow_officer('`+photo_user+`' , '`+name_officer+`' , `+focus_markerIndex+`);">
 			    <div class="row">
 			        <div class="col-2">
 			            <img src="`+photo_user+`" class="rounded-circle" style="width:45px;height:45px; margin: 0 auto; text-align: center">
@@ -1870,32 +1891,51 @@
 	}
 
 	// focus DIV ด้านขวาตามที่มีการกดหมุดในแมพ
-	function focus_officer_div_right(focus_markerIndex){
+	function focus_officer_div_right(focus_markerIndex , type_div){
+
 		console.log("focus div_right >> " + focus_markerIndex);
 
-		let div_fosuc = document.querySelector('#div_right_' + focus_markerIndex);
+		let div_fosuc = document.querySelector('#div_right_' + type_div + "_" + focus_markerIndex);
 
-		document.querySelector('#div_right_' + focus_markerIndex).remove();
+	    // ถ้าหากมี div ที่ตรงกับ id ที่กรอก
+	    if (div_fosuc) {
+	      // ทำการเลื่อนไปยังตำแหน่งของ div นั้นๆ
+	      div_fosuc.scrollIntoView({ behavior: 'smooth' });
+
+	    } else {
+	      // หากไม่พบ div ที่ตรงกับ id ที่กรอก
+	      alert('ไม่พบ ข้อมูลที่ค้นหา');
+	    }
 
 		console.log(div_fosuc);
 
 	}
+
+	let delayTimer;
 
 	// focus DIV ด้านขวาตามที่มีการกดหมุดในแมพ
 	function focus_infowindow_officer(photo_user , name_officer , focus_markerIndex){
 
 		// console.log("focus infowindow >> " + focus_markerIndex);
 
-		clear_infowindow(focus_markerIndex);
+		clearTimeout(delayTimer);
 
-		let contentString = create_content_infowindow(photo_user , name_officer , focus_markerIndex);
+		delayTimer = setTimeout(function() {
+		    		
+			clear_infowindow(focus_markerIndex);
 
-		// เซ็ตข้อมูลใน InfoWindow
-		infowindows[focus_markerIndex].setContent(contentString);
+	    	let contentString = create_content_infowindow(photo_user , name_officer , focus_markerIndex);
 
-		infowindows[focus_markerIndex].open(map_show_data_officer_area, markers[focus_markerIndex]);
+			// เซ็ตข้อมูลใน InfoWindow
+			infowindows[focus_markerIndex].setContent(contentString);
 
-		show_infowindow();
+			infowindows[focus_markerIndex].open(map_show_data_officer_area, markers[focus_markerIndex]);
+
+			show_infowindow();
+
+		}, 200);
+
+
 	}
 
 	function clear_infowindow(focus_markerIndex){
@@ -1967,16 +2007,18 @@
 	            console.log('GET NEW DATA');
 	            console.log('--------------');
 	            // console.log(result_data_officer_all);
+
 	            for (let i = 0; i < markers.length; i++) {
 			        markers[i].setMap(null);
 			    }
 			    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
 
+
 	            data_officer_all = result_data_officer_all ;
 
 	            if(check_view_officer_or_sos == 'officer'){
 	            	setTimeout(function() {
-		            	view_offiecr_select(check_view_officer_type, check_view_officer_data);
+		            	view_officer_select(check_view_officer_type, check_view_officer_data);
 		    		}, 500);
 	            }
 
@@ -2000,8 +2042,8 @@
 
     		});
 
-		}, 60000);
-		// }, 10000);
+		// }, 60000);
+		}, 10000);
 	}
 
 	function Stop_get_data_officer_all() {
