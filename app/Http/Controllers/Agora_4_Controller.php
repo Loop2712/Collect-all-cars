@@ -264,7 +264,12 @@ class Agora_4_Controller extends Controller
 
             //ถ้าผู้ใช้มากกว่าหรือเท่ากับ 2
             if(count($data_array) >= 2){
-                $update_than_2_time_start = date("Y-m-d H:i:s");
+                if(empty($agora_chat->than_2_people_time_start)){
+
+                    $update_than_2_time_start = date("Y-m-d H:i:s");
+                }else{
+                    $update_than_2_time_start = $agora_chat->than_2_people_time_start;
+                }
             }else{
                 $update_than_2_time_start = null;
             }

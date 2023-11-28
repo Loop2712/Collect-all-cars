@@ -955,9 +955,9 @@ switch ($sos_data->status) {
 
     // เกี่ยวกับเวลาในห้อง
     var check_start_timer_video_call = false;
-    var hours = 0;
-    var minutes = 0;
-    var seconds = 0;
+    // var hours = 0;
+    // var minutes = 0;
+    // var seconds = 0;
     var meet_2_people = 'No' ;
 
     // เรียกสองอันเพราะไม่อยากไปยุ่งกับโค้ดเก่า
@@ -1539,7 +1539,9 @@ switch ($sos_data->status) {
                 .then(response => response.json())
                 .then(result => {
 
-                if(result['member_in_room'].length >= 2){
+                let member_in_room = JSON.parse(result['member_in_room']);
+
+                if(member_in_room.length >= 2){
                     if(check_start_timer_video_call == false){
                         start_timer_video_call();
                     }
@@ -1595,7 +1597,7 @@ switch ($sos_data->status) {
                         }
                     }
                     // ถ้าผู้ใช้ เหลือ 0 คน ให้ทำลายห้องทิ้ง
-                    if(result['member_in_room'].length < 1){
+                    if(member_in_room.length < 1){
                         setTimeout(() => {
                             agoraEngine.destroy();
                         }, 7000);
@@ -1751,12 +1753,14 @@ switch ($sos_data->status) {
                         fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id)
                             .then(response => response.json())
                             .then(result => {
-                                // console.log("result join_room_4");
-                                // console.log(result);
+                                console.log("result join_room_4");
+                                console.log(result);
+                                console.log(result.length);
+                                // let member_in_room = JSON.parse(result);
 
                                 if(result.length >= 2){
                                     if(check_start_timer_video_call == false){
-                                        start_timer_video_call(result['time_start']);
+                                        start_timer_video_call();
                                     }
                                 }else{
                                     if(check_start_timer_video_call == true){
@@ -1889,7 +1893,7 @@ switch ($sos_data->status) {
 
                     if (leaveChannel == "false") {
                         // leaveChannel();
-                        fetch("{{ url('/') }}/api/left_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id +"&meet_2_people="+meet_2_people+"&hours="+hours+"&minutes="+minutes+"&seconds="+seconds + "&leave=" + "click")
+                        fetch("{{ url('/') }}/api/left_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id +"&meet_2_people="+meet_2_people + "&leave=" + "click")
                             .then(response => response.text())
                             .then(result => {
                                 // console.log(result);
@@ -3012,92 +3016,94 @@ switch ($sos_data->status) {
 
         check_start_timer_video_call = true ;
 
-        let time_of_room = document.getElementById("time_of_room");
-            time_of_room.classList.remove('d-none');
+        setTimeout(() => {
 
-        fetch("{{ url('/') }}/api/check_status_room" + "?sos_id="+ sos_id + "&type=" + type_video_call)
-            .then(response => response.json())
-            .then(result => {
+            let time_of_room = document.getElementById("time_of_room");
+                time_of_room.classList.remove('d-none');
 
-            // วันที่และเวลาที่กำหนด
-            let targetDate = '';
-            if (result['than_2_people_time_start']) {
-                targetDate = new Date(result['than_2_people_time_start']);
-            } else {
-                targetDate = new Date();
-            }
+            fetch("{{ url('/') }}/api/check_status_room" + "?sos_id="+ sos_id + "&type=" + type_video_call)
+                .then(response => response.json())
+                .then(result => {
 
-            let targetTime = targetDate.getTime();
-
-            loop_timer_video_call = setInterval(function() {
-
-                // วันที่และเวลาปัจจุบัน
-                let currentDate = new Date();
-                let currentTime = currentDate.getTime();
-
-                // คำนวณเวลาที่ผ่านไปในมิลลิวินาที
-                let elapsedTime = currentTime - targetTime;
-                let elapsedMinutes = Math.floor(elapsedTime / (1000 * 60));
-
-                // แปลงเวลาที่ผ่านไปให้เป็นรูปแบบชั่วโมง:นาที:วินาที
-                hours = Math.floor(elapsedMinutes / 60);
-                minutes = elapsedMinutes % 60;
-                seconds = Math.floor((elapsedTime / 1000) % 60);
-
-                let minsec = minutes + '.' + seconds;
-                let showTimeCountVideo;
-                // แสดงผลลัพธ์
-                let max_minute_time = 5;
-                let remain_time = max_minute_time - 1;
-                let time_warning = "";
-                if (max_minute_time > 1) {
-                    time_warning = (max_minute_time - remain_time);
-                }else{
-                    time_warning = "น้อยกว่า 1";
-                }
-
-
-                if (hours > 0) {
-                    if (minutes < 10) {  // ใส่ 0 ข้างหน้า นาที กรณีเลขยังไม่ถึง 10
-                        showTimeCountVideo = hours + ':' + '0' + minutes + ':' + seconds + `&nbsp;/ `+max_minute_time+` นาที`;
-                    }else{
-                        showTimeCountVideo = hours + ':' + minutes + ':' + seconds + `&nbsp;/ `+max_minute_time+` นาที`;
+                    // วันที่และเวลาที่กำหนด
+                    let targetDate = '';
+                    if (result['than_2_people_time_start']) {
+                        targetDate = new Date(result['than_2_people_time_start']);
+                    } else {
+                        // targetDate = new Date(result['than_2_people_time_start']);
+                        targetDate = new Date();
                     }
-                } else {
-                    if(seconds < 10){  // ใส่ 0 ข้างหน้า วินาที กรณีเลขยังไม่ถึง 10
-                        showTimeCountVideo =  minutes + ':' + '0' + seconds + `&nbsp;/ `+max_minute_time+` นาที`;
-                    }else{
-                        showTimeCountVideo = minutes + ':' + seconds + `&nbsp;/ `+max_minute_time+` นาที`;
-                    }
-                }
 
-                // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
-                time_of_room.innerHTML = '<i class="fa-regular fa-clock fa-fade" style="color: #11b06b; font-size: 16px;"></i>&nbsp;' + ": " + showTimeCountVideo;
+                    let targetTime = targetDate.getTime();
 
-                if (minsec == "4.00") {
-                    let alert_warning = document.querySelector('#alert_warning')
-                    alert_warning.style.display = 'block'; // แสดง .div_alert
+                    loop_timer_video_call = setInterval(function() {
 
-                    document.querySelector('#alert_text').innerHTML = `เหลือเวลา `+ time_warning +` นาที`;
-                    alert_warning.classList.add('up_down');
+                        // วันที่และเวลาปัจจุบัน
+                        let currentDate = new Date();
+                        let currentTime = currentDate.getTime();
 
-                    const animated = document.querySelector('.up_down');
-                    animated.onanimationend = () => {
-                        document.querySelector('#alert_warning').classList.remove('up_down');
-                        let alert_warning = document.querySelector('#alert_warning')
-                        alert_warning.style.display = 'none'; // แสดง .div_alert
-                    };
-                }
+                        // คำนวณเวลาที่ผ่านไปในมิลลิวินาที
+                        let elapsedTime = currentTime - targetTime;
+                        let elapsedMinutes = Math.floor(elapsedTime / (1000 * 60));
 
-                if (elapsedMinutes == max_minute_time) {
-                    document.querySelector('#leave').click();
-                }
+                        // แปลงเวลาที่ผ่านไปให้เป็นรูปแบบชั่วโมง:นาที:วินาที
+                        let hours = Math.floor(elapsedMinutes / 60);
+                        let minutes = elapsedMinutes % 60;
+                        let seconds = Math.floor((elapsedTime / 1000) % 60);
 
-            }, 1000);
+                        let minsec = minutes + '.' + seconds;
+                        let showTimeCountVideo;
+                        // แสดงผลลัพธ์
+                        let max_minute_time = 5;
+                        let remain_time = max_minute_time - 1;
+                        let time_warning = "";
+                        if (max_minute_time > 1) {
+                            time_warning = (max_minute_time - remain_time);
+                        }else{
+                            time_warning = "น้อยกว่า 1";
+                        }
+
+                        if (hours > 0) {
+                            if (minutes < 10) {  // ใส่ 0 ข้างหน้า นาที กรณีเลขยังไม่ถึง 10
+                                showTimeCountVideo = hours + ':' + '0' + minutes + ':' + seconds + `&nbsp;/ `+max_minute_time+` นาที`;
+                            }else{
+                                showTimeCountVideo = hours + ':' + minutes + ':' + seconds + `&nbsp;/ `+max_minute_time+` นาที`;
+                            }
+                        } else {
+                            if(seconds < 10){  // ใส่ 0 ข้างหน้า วินาที กรณีเลขยังไม่ถึง 10
+                                showTimeCountVideo =  minutes + ':' + '0' + seconds + `&nbsp;/ `+max_minute_time+` นาที`;
+                            }else{
+                                showTimeCountVideo = minutes + ':' + seconds + `&nbsp;/ `+max_minute_time+` นาที`;
+                            }
+                        }
+
+                        // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
+                        time_of_room.innerHTML = '<i class="fa-regular fa-clock fa-fade" style="color: #11b06b; font-size: 16px;"></i>&nbsp;' + ": " + showTimeCountVideo;
+
+                        if (minsec == "4.00") {
+                            let alert_warning = document.querySelector('#alert_warning')
+                            alert_warning.style.display = 'block'; // แสดง .div_alert
+
+                            document.querySelector('#alert_text').innerHTML = `เหลือเวลา `+ time_warning +` นาที`;
+                            alert_warning.classList.add('up_down');
+
+                            const animated = document.querySelector('.up_down');
+                            animated.onanimationend = () => {
+                                document.querySelector('#alert_warning').classList.remove('up_down');
+                                let alert_warning = document.querySelector('#alert_warning')
+                                alert_warning.style.display = 'none'; // แสดง .div_alert
+                            };
+                        }
+
+                        if (elapsedMinutes == max_minute_time) {
+                            document.querySelector('#leave').click();
+                        }
+
+                    }, 1000);
 
 
-        });
-
+                });
+        }, 2000);
 
     }
 
