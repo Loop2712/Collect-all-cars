@@ -3815,7 +3815,7 @@
                         // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
                         time_of_room.innerHTML = '<i class="fa-regular fa-clock fa-fade" style="color: #11b06b; font-size: 35px;"></i>&nbsp;' + ": " + showTimeCountVideo;
 
-                        if (minsec == "4.00") {
+                        if (minsec == "0.15") {
                             let alert_warning = document.querySelector('#alert_warning')
                             alert_warning.style.display = 'block'; // แสดง .div_alert
 

@@ -504,7 +504,7 @@
         /* ----------------- ตัว Popup แจ้งเตือน----------------- */
         .div_alert {
             position: fixed;
-            bottom: 10px;
+            top: 35px;
             right: 10px;
             width: 300px;
             height: 50px;
@@ -532,7 +532,7 @@
 
         @keyframes slideUpAndDown {
             0% {
-                transform: translateY(180px);
+                transform: translateY(-180px);
             }
             10% {
                 transform: translateY(0);
@@ -541,7 +541,7 @@
                 transform: translateY(0);
             }
             100% {
-                transform: translateY(180px);
+                transform: translateY(-180px);
             }
         }
         /* ----------------- End ตัว Popup แจ้งเตือน----------------- */
@@ -3080,7 +3080,7 @@ switch ($sos_data->status) {
                         // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
                         time_of_room.innerHTML = '<i class="fa-regular fa-clock fa-fade" style="color: #11b06b; font-size: 16px;"></i>&nbsp;' + ": " + showTimeCountVideo;
 
-                        if (minsec == "4.00") {
+                        if (minsec == "0.15") {
                             let alert_warning = document.querySelector('#alert_warning')
                             alert_warning.style.display = 'block'; // แสดง .div_alert
 

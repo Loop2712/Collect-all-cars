@@ -312,7 +312,8 @@ class Agora_4_Controller extends Controller
             $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , $type)->first();
             $check_time_Start = $agora_chat->time_start;
             $check_time_Start_2_people = $agora_chat->than_2_people_time_start;
-            // เวลาของการสนทนาตั้งแต่ 2 คนขึ้นไป
+
+            // เวลาของการสนทนาตั้งแต่ 2 คนขึ้นไป --> รอถาม senior
             if( !empty($agora_chat->than_2_people_timemeet) ){
                 $update_than_2_people_timemeet = $agora_chat->than_2_people_timemeet ;
             }else{
@@ -324,22 +325,15 @@ class Agora_4_Controller extends Controller
                 $meet_2_people = $request->meet_2_people;
 
                 if($meet_2_people == 'Yes'){
-                    // $update_than_2_people_timemeet =  (int)($hours / 3600) + (int)($minutes / 60) + $seconds ;
+
                     $date_now_2 = date("Y-m-d H:i:s");
 
-                    // ดักจับเวลา $agora_chat->time_start เป็นค่า null
-                    // if(!empty($agora_chat->than_2_people_time_start)){
-                    //     $than_2_people_time_start = $agora_chat->than_2_people_time_start ;
-                    // }else{
-                    //     $than_2_people_time_start = date("Y-m-d H:i:s");
-                    // }
                     $than_2_people_time_start = $agora_chat->than_2_people_time_start ;
 
                     $than_2_time_start_seconds = strtotime($than_2_people_time_start);
                     $date_now_seconds_2 = strtotime($date_now_2);
                     $seconds_passed_2 =  (int)$date_now_seconds_2 - (int)$than_2_time_start_seconds ;
 
-                    // $update_than_2_people_timemeet = (int)$agora_chat->than_2_people_timemeet + (int)$seconds_passed_2;
                     $current_than_2_people_timemeet = (int)$seconds_passed_2;
                 }else{
                     $current_than_2_people_timemeet = null;
@@ -384,12 +378,6 @@ class Agora_4_Controller extends Controller
 
                 $date_now = date("Y-m-d H:i:s");
 
-                // ดักจับเวลา $agora_chat->time_start เป็นค่า null
-                // if(!empty($agora_chat->time_start)){
-                //     $time_start = $agora_chat->time_start;
-                // }else{
-                //     $time_start = date("Y-m-d H:i:s");
-                // }
                 $time_start = $agora_chat->time_start;
 
                 $time_start_seconds = strtotime($time_start);
@@ -437,8 +425,6 @@ class Agora_4_Controller extends Controller
                         'than_2_people_time_start' => $update_than_2_people_time_start,
                     ]);
             }
-
-
 
             return "OK" ;
 
@@ -526,14 +512,13 @@ class Agora_4_Controller extends Controller
                 $update_time_start = $agora_chat->time_start ;
                 $update_total_timemeet = $agora_chat->total_timemeet ;
 
-                // if($number_of_data < 2){
-                //     //ลบ ข้อมูล than_2_people_time_start
-                //     $update_than_2_people_time_start = null;
-                // }else{
-                //     $update_than_2_people_time_start = $agora_chat->than_2_people_time_start;
-                // }
+                if($number_of_data < 2){
+                    //ลบ ข้อมูล than_2_people_time_start
+                    $update_than_2_people_time_start = null;
+                }else{
+                    $update_than_2_people_time_start = $agora_chat->than_2_people_time_start;
+                }
             }
-
 
             if (!empty($check_time_Start)) {
                 DB::table('agora_chats')
