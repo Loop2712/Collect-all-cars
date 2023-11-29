@@ -168,8 +168,8 @@
 		<div id="btn_lock_div_left" class="card card_btn_div card-body btn" style="left: 100%;top: 9%;" onclick="lock_or_unlock('lock' , 'left');">
 			<i id="icon_lock_or_unlock_Div_left" class="fa-solid fa-lock-keyhole-open"></i>
 		</div>
-		<div id="show_btn_clear_infowindow" class="card card_btn_div card-body btn d-none" style="left: 100%;top: 16%;">
-			<i class="fa-sharp fa-solid fa-eye-slash" onclick="clear_infowindow('close');"></i>
+		<div id="show_btn_clear_infowindow" class="card card_btn_div card-body btn d-none" onclick="clear_infowindow('close');" style="left: 100%;top: 16%;">
+			<i class="fa-sharp fa-solid fa-eye-slash"></i>
 		</div>
 
 		<div class="card-body">
@@ -518,8 +518,8 @@
 		<div id="btn_lock_div_right" class="card card_btn_div card-body btn" style="right: 100%;top: 9%;" onclick="lock_or_unlock('lock' , 'right');">
 			<i id="icon_lock_or_unlock_Div_right" class="fa-solid fa-lock-keyhole-open"></i>
 		</div>
-		<div class="card card_btn_div card-body btn" style="right: 100%;top: 16%;">
-			<i id="icon_change_check_view_focus_infowindow" class="fa-sharp fa-solid fa-eye" onclick="change_check_view_focus_infowindow();"></i>
+		<div class="card card_btn_div card-body btn" style="right: 100%;top: 16%;" onclick="change_check_view_focus_infowindow();">
+			<i id="icon_change_check_view_focus_infowindow" class="fa-sharp fa-solid fa-eye"></i>
 		</div>
 
 		<div id="btn_view_div_data_gotohelp" class="d-none card card_btn_div card-body btn" style="right: 100%;top: 25%;" onclick="click_menu_div_right('gotohelp');">
