@@ -126,6 +126,33 @@
 		z-index: 99999;
 	}
 
+	.card_focus {
+	  	animation: backgroundBlink ;
+	  	animation-duration: 2s;
+	  	background-color: #A4EEF3;
+	  	border-radius: 5%;
+	}
+
+	@keyframes backgroundBlink {
+
+	  	0% {
+            background-color: #A4EEF3;
+        }
+        25% {
+            background-color: transparent;
+        }
+        50% {
+            background-color: #A4EEF3;
+        }
+        75% {
+            background-color: transparent;
+        }
+        100% {
+            background-color: #A4EEF3;
+        }
+	}
+
+
 </style>
 <!-- <link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet"> -->
 
@@ -142,7 +169,7 @@
 			<i id="icon_lock_or_unlock_Div_left" class="fa-solid fa-lock-keyhole-open"></i>
 		</div>
 		<div id="show_btn_clear_infowindow" class="card card_btn_div card-body btn d-none" style="left: 100%;top: 16%;">
-			<i class="fa-sharp fa-solid fa-eye-slash" onclick="clear_infowindow(null);"></i>
+			<i class="fa-sharp fa-solid fa-eye-slash" onclick="clear_infowindow('close');"></i>
 		</div>
 
 		<div class="card-body">
@@ -491,14 +518,17 @@
 		<div id="btn_lock_div_right" class="card card_btn_div card-body btn" style="right: 100%;top: 9%;" onclick="lock_or_unlock('lock' , 'right');">
 			<i id="icon_lock_or_unlock_Div_right" class="fa-solid fa-lock-keyhole-open"></i>
 		</div>
+		<div class="card card_btn_div card-body btn" style="right: 100%;top: 16%;">
+			<i id="icon_change_check_view_focus_infowindow" class="fa-sharp fa-solid fa-eye" onclick="change_check_view_focus_infowindow();"></i>
+		</div>
 
-		<div id="btn_view_div_data_gotohelp" class="d-none card card_btn_div card-body btn" style="right: 100%;top: 18%;" onclick="click_menu_div_right('gotohelp');">
+		<div id="btn_view_div_data_gotohelp" class="d-none card card_btn_div card-body btn" style="right: 100%;top: 25%;" onclick="click_menu_div_right('gotohelp');">
 			<i id="icon_view_div_data_gotohelp" class="fa-sharp fa-regular fa-truck-medical text-success"></i>
 		</div>
-		<div id="btn_view_div_data_officer" class="d-none card card_btn_div card-body btn" style="right: 100%;top: 25%;" onclick="click_menu_div_right('officer');">
+		<div id="btn_view_div_data_officer" class="d-none card card_btn_div card-body btn" style="right: 100%;top: 32%;" onclick="click_menu_div_right('officer');">
 			<i id="icon_view_div_data_officer" class="fa-solid fa-user-police text-secondary"></i>
 		</div>
-		<div id="btn_view_div_data_area" class="d-none card card_btn_div card-body btn" style="right: 100%;top: 32%;" onclick="click_menu_div_right('area');">
+		<div id="btn_view_div_data_area" class="d-none card card_btn_div card-body btn" style="right: 100%;top: 39%;" onclick="click_menu_div_right('area');">
 			<i id="icon_view_div_data_area" class="fa-solid fa-map-location-dot text-secondary"></i>
 		</div>
 
@@ -543,7 +573,7 @@
 					<div class="mb-4">
 						<h4 class="card-title">พื้นที่การขอความช่วยเหลือ</h4>
 						<ul class="ul_you_are_watching">
-						  	<li id="watching_sos_type"></li>
+						  	<li><b id="watching_sos_type"></b></li>
 						  	<li id="watching_sos_data"></li>
 						  	<li id="watching_sos_count"></li>
 						</ul>
@@ -574,7 +604,7 @@
 						<h4 class="card-title">เจ้าหน้าที่ในแผนที่</h4>
 						<ul class="ul_you_are_watching">
 						  	<li id="watching_officer_type"></li>
-						  	<li id="watching_officer_data"></li>
+						  	<li><b id="watching_officer_data"></b></li>
 						  	<li id="watching_officer_count"></li>
 						</ul>
 					</div>
@@ -677,6 +707,7 @@
     var infowindows = [];
     var infowindow ;
     var active_infowindow = "No" ;
+    var arr_infowindow_officer = [] ;
 
     // เช็คการขับแผนที่
     var isPanning = false;
@@ -837,10 +868,10 @@
 			setTimeout(function() {
 		        // ตรวจสอบว่ากำลังดู OFFICER หรือ SOS
 		    	if(check_view_officer_or_sos == 'sos'){
-		    		console.log('กำลังดู SOS');
+		    		// console.log('กำลังดู SOS');
 		    		btn_view_sos(check_view_type_sos);
 				}else if(check_view_officer_or_sos == 'officer'){
-		    		console.log('กำลังดู OFFICER');
+		    		// console.log('กำลังดู OFFICER');
 	    			view_officer_select(check_view_officer_type , check_view_officer_data);
 		        	show_data_name_officer();
 		    	}
@@ -851,7 +882,7 @@
 
     function change_view_data_map(type_view){
     	
-    	console.log('change_view_data_map');
+    	// console.log('change_view_data_map');
 
     	for (let i = 0; i < markers.length; i++) {
 	        markers[i].setMap(null);
@@ -1063,6 +1094,8 @@
 			            icon: icon_level,
 			        });
 			        markers.push(marker);
+
+			        infowindow['user_id'] = item.user_id ;
 			        infowindows.push(infowindow);
 
 			        focus_markerIndex = markers.length - 1 ;
@@ -1071,6 +1104,8 @@
 				    marker.addListener('click', function(markerIndex) {
 				        return function() {
 				            // console.log(item.user_id);
+
+				            arr_infowindow_officer.push(item.user_id);
 
 				            focus_officer_div_right(focus_markerIndex , 'officer_all');
 
@@ -1085,6 +1120,33 @@
 				            show_infowindow();
 				        };
 				    }(markers.length - 1));
+
+				    // เพิ่มเหตุการณ์ closeclick infowindow
+					infowindows[focus_markerIndex].addListener('closeclick', function() {
+					  	// console.log('Infowindow >> ' + item.user_id + ' << ถูกปิดแล้ว');
+
+					  	let indexToRemove = arr_infowindow_officer.indexOf(item.user_id);
+
+						if (indexToRemove !== -1) {
+						  arr_infowindow_officer.splice(indexToRemove, 1);
+						}
+
+					});
+
+				    // ------------ ตรวจว่าเดิม มีการเปิด infowindow นี้อยู่หรือไม่ ------------ //
+				    if(arr_infowindow_officer.includes(item.user_id)){
+
+				    	let contentString = create_content_infowindow(photo_user , item.name_officer , focus_markerIndex);
+
+			            // เซ็ตข้อมูลใน InfoWindow
+			            infowindows[focus_markerIndex].setContent(contentString);
+
+			            // แสดง InfoWindow ที่ตำแหน่งของ Marker
+			            infowindows[focus_markerIndex].open(map_show_data_officer_area, markers[focus_markerIndex]);
+
+			            show_infowindow();
+				    }
+				    // ------------ จบการตรวจว่าเดิม มีการเปิด infowindow นี้อยู่หรือไม่ ------------ //
 
         		}
 
@@ -1099,6 +1161,8 @@
 			            icon: icon_level,
 			        });
 			        markers.push(marker);
+
+			        infowindow['user_id'] = item.user_id ;
 			        infowindows.push(infowindow);
 
 			        focus_markerIndex = markers.length - 1 ;
@@ -1107,6 +1171,8 @@
 				    marker.addListener('click', function(markerIndex) {
 				        return function() {
 				            // console.log(item.user_id);
+
+				            arr_infowindow_officer.push(item.user_id);
 
 				            focus_officer_div_right(focus_markerIndex , 'officer_all');
 
@@ -1121,6 +1187,32 @@
 				            show_infowindow();
 				        };
 				    }(markers.length - 1));
+
+				    // เพิ่มเหตุการณ์ closeclick infowindow
+					infowindows[focus_markerIndex].addListener('closeclick', function() {
+
+					  	let indexToRemove = arr_infowindow_officer.indexOf(item.user_id);
+
+						if (indexToRemove !== -1) {
+						  arr_infowindow_officer.splice(indexToRemove, 1);
+						}
+
+					});
+
+				    // ------------ ตรวจว่าเดิม มีการเปิด infowindow นี้อยู่หรือไม่ ------------ //
+				    if(arr_infowindow_officer.includes(item.user_id)){
+
+				    	let contentString = create_content_infowindow(photo_user , item.name_officer , focus_markerIndex);
+
+			            // เซ็ตข้อมูลใน InfoWindow
+			            infowindows[focus_markerIndex].setContent(contentString);
+
+			            // แสดง InfoWindow ที่ตำแหน่งของ Marker
+			            infowindows[focus_markerIndex].open(map_show_data_officer_area, markers[focus_markerIndex]);
+
+			            show_infowindow();
+				    }
+				    // ------------ จบการตรวจว่าเดิม มีการเปิด infowindow นี้อยู่หรือไม่ ------------ //
         		}
 
         	}
@@ -1134,6 +1226,8 @@
 			            icon: icon_level,
 			        });
 			        markers.push(marker);
+
+			        infowindow['user_id'] = item.user_id ;
 			        infowindows.push(infowindow);
 
 			        focus_markerIndex = markers.length - 1 ;
@@ -1142,6 +1236,8 @@
 				    marker.addListener('click', function(markerIndex) {
 				        return function() {
 				            // console.log(item.user_id);
+
+				            arr_infowindow_officer.push(item.user_id);
 
 				            focus_officer_div_right(focus_markerIndex , 'officer_all');
 
@@ -1156,10 +1252,36 @@
 				            show_infowindow();
 				        };
 				    }(markers.length - 1));
+
+				    // เพิ่มเหตุการณ์ closeclick infowindow
+					infowindows[focus_markerIndex].addListener('closeclick', function() {
+					  	let indexToRemove = arr_infowindow_officer.indexOf(item.user_id);
+
+						if (indexToRemove !== -1) {
+						  arr_infowindow_officer.splice(indexToRemove, 1);
+						}
+
+					});
+
+				    // ------------ ตรวจว่าเดิม มีการเปิด infowindow นี้อยู่หรือไม่ ------------ //
+				    if(arr_infowindow_officer.includes(item.user_id)){
+
+				    	let contentString = create_content_infowindow(photo_user , item.name_officer , focus_markerIndex);
+
+			            // เซ็ตข้อมูลใน InfoWindow
+			            infowindows[focus_markerIndex].setContent(contentString);
+
+			            // แสดง InfoWindow ที่ตำแหน่งของ Marker
+			            infowindows[focus_markerIndex].open(map_show_data_officer_area, markers[focus_markerIndex]);
+
+			            show_infowindow();
+				    }
+				    // ------------ จบการตรวจว่าเดิม มีการเปิด infowindow นี้อยู่หรือไม่ ------------ //
         		}
 
         	}
 
+        	// --------- สร้างเนื้อหาใส่ใน DIV ด้านขวา ----------
         	let level  = item.level ;
 		    let vehicle  = item.vehicle_type ;
 		    let unit  = item.name ;
@@ -1169,7 +1291,6 @@
 		    	sum_go_to_help = sum_go_to_help + item.go_to_help
 		    }
 
-        	// --------- สร้างเนื้อหาใส่ใน DIV ด้านขวา ----------
         	let html_div_right = create_content_div_right(photo_user , item.name_officer , focus_markerIndex , level , vehicle , unit , count_case , 'officer_all');
 			content_data_name_officer_all.insertAdjacentHTML('beforeend', html_div_right); // แทรกล่างสุด
 
@@ -1216,7 +1337,7 @@
 
     	setTimeout(function() {
 
-			clear_infowindow(null);
+			clear_infowindow('re_marker');
     		infowindows = [] ;
     		watching_officer_count = 0 ;
 	    		
@@ -1354,6 +1475,8 @@
 				            icon: icon_level,
 				        });
 				        markers.push(marker);
+
+				        infowindow['user_id'] = item.user_id ;
 				        infowindows.push(infowindow);
 
 				        watching_officer_count = watching_officer_count  + 1 ;
@@ -1362,14 +1485,15 @@
 				        // เพิ่ม Event Listener สำหรับคลิก Marker
 					    marker.addListener('click', function(markerIndex) {
 					        return function() {
-					            // console.log(item.user_id);
+					            // console.log("click >> " + item.user_id);
+
+					            arr_infowindow_officer.push(item.user_id);
 
 					        	if(check_view_officer_data == 'all'){
 					            	focus_officer_div_right(focus_markerIndex , 'officer_all');
 					        	}else{
 					            	focus_officer_div_right(focus_markerIndex , 'officer_select');
 					        	}
-
 
 					            let contentString = create_content_infowindow(photo_user , item.name_officer , focus_markerIndex);
 
@@ -1383,12 +1507,39 @@
 					        };
 					    }(markers.length - 1));
 
+					    // เพิ่มเหตุการณ์ closeclick infowindow
+						infowindows[focus_markerIndex].addListener('closeclick', function() {
+
+						  	let indexToRemove = arr_infowindow_officer.indexOf(item.user_id);
+
+							if (indexToRemove !== -1) {
+							  arr_infowindow_officer.splice(indexToRemove, 1);
+							}
+
+						});
+
+					    // ------------ ตรวจว่าเดิม มีการเปิด infowindow นี้อยู่หรือไม่ ------------ //
+					    if(arr_infowindow_officer.includes(item.user_id)){
+
+					    	let contentString = create_content_infowindow(photo_user , item.name_officer , focus_markerIndex);
+
+				            // เซ็ตข้อมูลใน InfoWindow
+				            infowindows[focus_markerIndex].setContent(contentString);
+
+				            // แสดง InfoWindow ที่ตำแหน่งของ Marker
+				            infowindows[focus_markerIndex].open(map_show_data_officer_area, markers[focus_markerIndex]);
+
+				            show_infowindow();
+					    }
+					    // ------------ จบการตรวจว่าเดิม มีการเปิด infowindow นี้อยู่หรือไม่ ------------ //
+
+
+			        	// --------- สร้างเนื้อหาใส่ใน DIV ด้านขวา ----------
 					    let level  = item.level ;
 					    let vehicle  = item.vehicle_type ;
 					    let unit  = item.name ;
 					    let count_case = item.go_to_help ;
 
-			        	// --------- สร้างเนื้อหาใส่ใน DIV ด้านขวา ----------
 			        	let html_div_right = create_content_div_right(photo_user , item.name_officer , focus_markerIndex , level , vehicle , unit , count_case , 'officer_select');
     					content_data_name_officer.insertAdjacentHTML('beforeend', html_div_right); // แทรกล่างสุด
 				        
@@ -1563,14 +1714,33 @@
 
     	let select_area_district = document.querySelector('#select_area_district');
     	let text_watching_sos_type ;
+    	let class_level ;
 
     	if(check_view_type_sos == 'all'){
     		text_watching_sos_type = 'ทั้งหมด' ;
+    		class_level = 'text-dark' ;
     	}else if(check_view_type_sos == 'general'){
     		text_watching_sos_type = 'ไม่มีการประเมิน' ;
+    		class_level = 'text-info' ;
     	}else{
     		text_watching_sos_type = check_view_type_sos ;
+
+    		if(text_watching_sos_type == "เขียว(ไม่รุนแรง)"){
+				class_level = "text-success";
+			}else if(text_watching_sos_type == "เหลือง(เร่งด่วน)"){
+				class_level = "text-warning";
+			}else if(text_watching_sos_type == "แดง(วิกฤติ)" ){
+				class_level = "text-danger";
+			}else if(text_watching_sos_type == "ดำ" ){
+				class_level = "text-dark";
+			}else{
+				class_level = 'text-info';
+			}
     	}
+
+    	if(class_level){
+			document.querySelector('#watching_sos_type').setAttribute('class' , class_level);
+		}
 
     	if(select_area_district.value != 'all'){
     		document.querySelector('#watching_sos_type').innerHTML = 'ระดับ : ' + text_watching_sos_type;
@@ -1629,16 +1799,33 @@
     	}
 
     	let text_watching_officer_type ;
+    	let class_level ;
 
     	if(check_view_officer_data == 'all'){
     		text_watching_officer_type = 'ทั้งหมด' ;
+    		class_level = "text-dark";
     	}else if(check_view_officer_data == 'Standby'){
     		text_watching_officer_type = 'พร้อมช่วยเหลือ' ;
+    		class_level = "text-success";
     	}else if(check_view_officer_data == 'Helping'){
     		text_watching_officer_type = 'กำลังช่วยเหลือ' ;
+    		class_level = "text-warning";
     	}else{
     		text_watching_officer_type = check_view_officer_data ;
+    		class_level = "text-info";
     	}
+
+    	if(text_watching_officer_type == "FR"){
+			class_level = "text-success";
+		}else if(text_watching_officer_type == "ALS"){
+			class_level = "text-danger";
+		}else if(text_watching_officer_type == "ILS" || text_watching_officer_type == "BLS"){
+			class_level = "text-warning";
+		}
+
+		if(class_level){
+			document.querySelector('#watching_officer_data').setAttribute('class' , class_level);
+		}
 
 		document.querySelector('#watching_officer_type').innerHTML = officer_type;
     	document.querySelector('#watching_officer_data').innerHTML = text_watching_officer_type;
@@ -1811,9 +1998,9 @@
 
 	// เช็คการแสดงผลข้อมูลฝั่ง OFFICER
 	function main_check_view_officer(){
-    	console.log("check_view_area_all_or_district >> " + check_view_area_all_or_district) ;
-    	console.log("check_view_officer_type >> " + check_view_officer_type) ;
-    	console.log("check_view_officer_data >> " + check_view_officer_data) ;
+    	// console.log("check_view_area_all_or_district >> " + check_view_area_all_or_district) ;
+    	// console.log("check_view_officer_type >> " + check_view_officer_type) ;
+    	// console.log("check_view_officer_data >> " + check_view_officer_data) ;
 
     	// เลือกอำเภอหรือพิ้นที่ทั้งหมด
     	if(check_view_area_all_or_district == 'district'){
@@ -1883,7 +2070,7 @@
 			        	</span>
 			        </div>
 			    </div>
-			    <hr>
+				<hr>
 			</div>
 	    `;
 
@@ -1893,59 +2080,119 @@
 	// focus DIV ด้านขวาตามที่มีการกดหมุดในแมพ
 	function focus_officer_div_right(focus_markerIndex , type_div){
 
-		console.log("focus div_right >> " + focus_markerIndex);
+		// console.log("focus div_right >> " + focus_markerIndex);
 
 		let div_fosuc = document.querySelector('#div_right_' + type_div + "_" + focus_markerIndex);
 
 	    // ถ้าหากมี div ที่ตรงกับ id ที่กรอก
 	    if (div_fosuc) {
-	      // ทำการเลื่อนไปยังตำแหน่งของ div นั้นๆ
-	      div_fosuc.scrollIntoView({ behavior: 'smooth' });
+	      	// ทำการเลื่อนไปยังตำแหน่งของ div นั้นๆ
+	      	div_fosuc.scrollIntoView({ behavior: 'smooth' });
+
+	      	div_fosuc.classList.add('card_focus');
+
+            const animated = document.querySelector('.card_focus');
+            animated.onanimationend = () => {
+                div_fosuc.classList.remove('card_focus');
+            };
 
 	    } else {
-	      // หากไม่พบ div ที่ตรงกับ id ที่กรอก
-	      alert('ไม่พบ ข้อมูลที่ค้นหา');
+	      	// หากไม่พบ div ที่ตรงกับ id ที่กรอก
+	      	alert('ไม่พบ ข้อมูลที่ค้นหา');
 	    }
-
-		console.log(div_fosuc);
 
 	}
 
+    let check_view_focus_infowindow = 'Yes' ;
+
+    function change_check_view_focus_infowindow(){
+
+    	let icon = document.querySelector('#icon_change_check_view_focus_infowindow'); 
+
+    	if(check_view_focus_infowindow == 'Yes'){
+    		// เดิม "เปิด" อยู่
+    		check_view_focus_infowindow = 'No';
+    		icon.setAttribute('class' , 'fa-sharp fa-solid fa-eye-slash');
+    		focus_infowindows.close();
+
+    	}else{
+    		// เดิม "ปิด" อยู่
+    		check_view_focus_infowindow = 'Yes';
+    		icon.setAttribute('class' , 'fa-sharp fa-solid fa-eye');
+
+    	}
+    }
+
 	let delayTimer;
+    let focus_infowindows = new google.maps.InfoWindow();
 
 	// focus DIV ด้านขวาตามที่มีการกดหมุดในแมพ
 	function focus_infowindow_officer(photo_user , name_officer , focus_markerIndex){
 
 		// console.log("focus infowindow >> " + focus_markerIndex);
 
-		clearTimeout(delayTimer);
+		if(check_view_focus_infowindow == "Yes"){
+			clearTimeout(delayTimer);
 
-		delayTimer = setTimeout(function() {
-		    		
-			clear_infowindow(focus_markerIndex);
 
-	    	let contentString = create_content_infowindow(photo_user , name_officer , focus_markerIndex);
+			delayTimer = setTimeout(function() {
+			    		
+				focus_infowindows.close();
 
-			// เซ็ตข้อมูลใน InfoWindow
-			infowindows[focus_markerIndex].setContent(contentString);
+		    	let contentString = `
+			        <div id="infowindow_user_id_`+focus_markerIndex+`" style="width: auto; height: auto;border: solid red 1px;border-radius: 10px;padding: 10px;">
+				    	<div>
+				    		<center>
+				    		<img src="`+photo_user+`" class="rounded-circle" style="width:45px;height:45px;">
+				    		</center>
+				    		<br>
+				    		<h6 style="margin-top:10px;"><b>`+name_officer+`</b></h6>
+				    	</div>
+				    </div>
+			    `;
 
-			infowindows[focus_markerIndex].open(map_show_data_officer_area, markers[focus_markerIndex]);
+				// เซ็ตข้อมูลใน InfoWindow
+				focus_infowindows.setContent(contentString);
 
-			show_infowindow();
+				focus_infowindows.open(map_show_data_officer_area, markers[focus_markerIndex]);
 
-		}, 200);
+				show_infowindow();
 
+			}, 200);
+		}
 
 	}
 
-	function clear_infowindow(focus_markerIndex){
+	function clear_infowindow(type){
     	
-    	for (let i = 0; i < infowindows.length; i++) {
-    		if(infowindows[i] != infowindows[focus_markerIndex]){
-	        	infowindows[i].close();
-    		}
-	    }
-	    // infowindows = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
+    	if(type == 'close'){
+
+    		// ต้องการปิด infowindow 
+    		for (let i = 0; i < infowindows.length; i++) {
+		        // ปิด infowindow
+		        infowindows[i].close();
+		    }
+
+		    // เคลียข้อมูลที่เก็บว่าอันไหนเปิดอยู่
+		    arr_infowindow_officer = [] ;
+
+    	}else if(type == 're_marker'){
+
+			// เลือกเจ้าหน้าที่ใหม่ หรือ รีข้อมูล
+    		for (let i = 0; i < infowindows.length; i++) {
+    		
+	    		// เช็คอันไหนเปิดอยู่
+	    		if (infowindows[i].getMap()) {
+		            // console.log('Infowindow ' + i + ' ถูกเปิด');
+	    			arr_infowindow_officer.push(infowindows[i]['user_id']);
+		        }
+
+		        // ปิด infowindow
+		        infowindows[i].close();
+
+		    }
+
+    	}
 
     	active_infowindow = "No" ;
 		document.querySelector('#show_btn_clear_infowindow').classList.add('d-none');
@@ -1994,18 +2241,18 @@
 
 		get_data_officer_all = setInterval(function() {
 
-		console.log("check_view_officer_or_sos >> " + check_view_officer_or_sos) ;
-    	console.log("check_view_area_all_or_district >> " + check_view_area_all_or_district) ;
-    	console.log("check_view_officer_type >> " + check_view_officer_type) ;
-    	console.log("check_view_officer_data >> " + check_view_officer_data) ;
-    	console.log("check_view_type_sos >> " + check_view_type_sos) ;
+		// console.log("check_view_officer_or_sos >> " + check_view_officer_or_sos) ;
+    	// console.log("check_view_area_all_or_district >> " + check_view_area_all_or_district) ;
+    	// console.log("check_view_officer_type >> " + check_view_officer_type) ;
+    	// console.log("check_view_officer_data >> " + check_view_officer_data) ;
+    	// console.log("check_view_type_sos >> " + check_view_type_sos) ;
 			
 		// data officer all
     	fetch("{{ url('/') }}/api/get_data_officer_all/" + "{{ $area }}")
 	        .then(response => response.json())
 	        .then(result_data_officer_all => {
-	            console.log('GET NEW DATA');
-	            console.log('--------------');
+	            // console.log('GET NEW DATA');
+	            // console.log('--------------');
 	            // console.log(result_data_officer_all);
 
 	            for (let i = 0; i < markers.length; i++) {
@@ -2039,7 +2286,6 @@
 	    			}
 	    		}, 500);
     			
-
     		});
 
 		}, 60000);
@@ -2104,13 +2350,14 @@
     	fetch("{{ url('/') }}/api/get_polygon_all_amphoe")
 	        .then(response => response.json())
 	        .then(result => {
-	            console.log(result);
+	            // console.log(result);
 
 	            let polygon_all_amphoe = [] ;
 	            let iiii = 0 ;
 	            for(let item of result){
 
-	            	let randomColor = getRandomHexColor();
+	            	// let randomColor = getRandomHexColor();
+	            	let randomColor = '#008450';
 
 		            // สร้าง Polygon ใหม่
 		            polygon_all_amphoe[iiii] = new google.maps.Polygon({
@@ -2128,7 +2375,7 @@
 		            // mouseover on polygon
                     google.maps.event.addListener(polygon_all_amphoe[iiii], 'click', function (event) {
                         
-                        console.log(item.amphoe_name);
+                        // console.log(item.amphoe_name);
 
                     });
 
