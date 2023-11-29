@@ -245,7 +245,13 @@ class Agora_4_Controller extends Controller
         $user_id = $request->user_id;
         $type = $request->type;
 
-        $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , $type)->first();
+        if($type == 'sos_1669'){
+            $type_text = "meet_operating_1669";
+        }else{
+            $type_text = "sos_map";
+        }
+
+        $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , $type_text)->first();
 
         if (!empty($agora_chat->member_in_room) ){
             // มีข้อมูล ใน member_in_room
@@ -286,7 +292,7 @@ class Agora_4_Controller extends Controller
         DB::table('agora_chats')
             ->where([
                     ['sos_id', $sos_id],
-                    ['room_for', $type],
+                    ['room_for', $type_text],
                 ])
             ->update([
                     'member_in_room' => $data_update,
@@ -307,9 +313,15 @@ class Agora_4_Controller extends Controller
         $type = $request->type;
         $leave = $request->leave;
 
+        if($type == 'sos_1669'){
+            $type_text = "meet_operating_1669";
+        }else{
+            $type_text = "sos_map";
+        }
+
         if($leave == "click"){
 
-            $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , $type)->first();
+            $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , $type_text)->first();
             $check_time_Start = $agora_chat->time_start;
             $check_time_Start_2_people = $agora_chat->than_2_people_time_start;
 
@@ -404,7 +416,7 @@ class Agora_4_Controller extends Controller
                 DB::table('agora_chats')
                 ->where([
                         ['sos_id', $sos_id],
-                        ['room_for', $type],
+                        ['room_for', $type_text],
                     ])
                 ->update([
                         'member_in_room' => $data_update,
@@ -417,7 +429,7 @@ class Agora_4_Controller extends Controller
                 DB::table('agora_chats')
                 ->where([
                         ['sos_id', $sos_id],
-                        ['room_for', $type],
+                        ['room_for', $type_text],
                     ])
                 ->update([
                         'member_in_room' => $data_update,
@@ -429,7 +441,7 @@ class Agora_4_Controller extends Controller
             return "OK" ;
 
         }else{
-            $agora_chat_old = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , $type)->first();
+            $agora_chat_old = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , $type_text)->first();
             $data_old = $agora_chat_old->member_in_room;
 
             $data_array = json_decode($data_old, true);
@@ -458,13 +470,13 @@ class Agora_4_Controller extends Controller
             DB::table('agora_chats')
             ->where([
                     ['sos_id', $sos_id],
-                    ['room_for', $type],
+                    ['room_for', $type_text],
                 ])
             ->update([
                     'member_in_room' => $data_update,
             ]);
 
-            $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , $type)->first();
+            $agora_chat = Agora_chat::where('sos_id' , $sos_id)->where('room_for' , $type_text)->first();
             $data_new = $agora_chat->member_in_room;
 
             $check_time_Start = $agora_chat->time_start;
@@ -524,7 +536,7 @@ class Agora_4_Controller extends Controller
                 DB::table('agora_chats')
                 ->where([
                         ['sos_id', $sos_id],
-                        ['room_for', $type],
+                        ['room_for', $type_text],
                     ])
                 ->update([
                         'time_start' => $update_time_start,
@@ -536,7 +548,7 @@ class Agora_4_Controller extends Controller
                 DB::table('agora_chats')
                 ->where([
                         ['sos_id', $sos_id],
-                        ['room_for', $type],
+                        ['room_for', $type_text],
                     ])
                 ->update([
                         'than_2_people_timemeet' => $update_than_2_people_timemeet,
@@ -856,6 +868,54 @@ class Agora_4_Controller extends Controller
         $sos_data = Agora_chat::where('sos_id',$sos_id)->where('room_for',$type_text)->first();
 
         return $sos_data;
+    }
+
+    function check_user_for_operation_meet(Request $request){
+
+        $sos_id = $request->sos_id;
+        $type_sos = "meet_operating_1669";
+
+        $sos_data = Agora_chat::where('sos_id',$sos_id)->where('room_for',$type_sos)->first();
+
+        $status_member = [];
+
+        if (!empty($sos_data->member_in_room)) {
+            $member_array = json_decode($sos_data->member_in_room, true);
+
+            foreach ($member_array as $user_id) {
+                $data_command = Data_1669_officer_command::where('user_id', $user_id)->first();
+                $data_officer = Data_1669_operating_officer::where('user_id', $user_id)->first();
+
+                if(!empty($data_command)){
+                    $status_member[] = "เจ้าหน้าที่";
+                }else if(!empty($data_officer)){
+                    $status_member[] = "เจ้าหน้าที่";
+                }else{
+                    $status_member[] = "ผู้ขอความช่วยเหลือ";
+                }
+            }
+        } else {
+            $status_member = null;
+        }
+
+        if (!empty($status_member)) {
+            $has_officer = in_array("เจ้าหน้าที่", $status_member);
+            $has_requester = in_array("ผู้ขอความช่วยเหลือ", $status_member);
+
+            if ($has_officer && $has_requester) {
+                $result = "dont เจ้าหน้าที่อยู่กับผู้ขอความช่วยเหลือ";
+            } elseif ($has_officer) {
+                $result = "dont มี เจ้าหน้าที่";
+            } elseif ($has_requester) {
+                $result = "do";
+            } else {
+                $result = "else";
+            }
+        }else{
+            $result = "dont ไม่มีใคร";
+        }
+
+        return $result;
     }
 
     function after_video_call(){

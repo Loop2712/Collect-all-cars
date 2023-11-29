@@ -191,7 +191,7 @@
       transform: scale(0);
     }
   }
-  
+
 .containerAlert {
   transform: scale(0);
   position: absolute;
@@ -221,6 +221,46 @@
 /* *{
     outline: #000 1px solid;
 } */
+
+    .shadow_btn_call {
+        position: relative;
+        overflow: hidden;
+        background-color: rgba(255, 0, 0, 1) !important;
+        color:#fff !important;
+    }
+
+    .shadow_btn_call:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(0);
+        transform-origin: center;
+        transition: transform 0.5s ease;
+        z-index: -1;
+    }
+
+    .shadow_btn_call:before {
+        transform: scale(1);
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .shadow_btn_call {
+        animation: pulse 1s infinite;
+    }
     </style>
 
     @php
@@ -253,13 +293,13 @@
           </div>
         </div>
       </div>
-        
+
         <div class="video-head">
 
           <span id="span_timer_video_call" class="d-none">
               <span id="icon_timer_video_call" class="">
-                <i class="fa-duotone fa-record-vinyl fa-beat-fade" style="--fa-secondary-color: #6e89b4;"></i> 
-                &nbsp;&nbsp;เวลาสนทนา : 
+                <i class="fa-duotone fa-record-vinyl fa-beat-fade" style="--fa-secondary-color: #6e89b4;"></i>
+                &nbsp;&nbsp;เวลาสนทนา :
               </span>
               <span id="timer_video_call">เริ่มนับเมื่อมีผู้ใช้ 2 คน</span>
           </span>
@@ -416,7 +456,7 @@ function runLoop_check_appId() {
               document.querySelector('#btnVideoCall').disabled = false;
 
               if(user_in_room){
-                document.querySelector('#command_join').innerHTML = 
+                document.querySelector('#command_join').innerHTML =
                 `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
                 document.querySelector('#command_join').classList.add('video-call-in-room');
                 document.querySelector('#command_join').classList.remove('btn-success');
@@ -454,7 +494,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       document.querySelector('#btnVideoCall').disabled = false;
 
       if(user_in_room){
-        document.querySelector('#command_join').innerHTML = 
+        document.querySelector('#command_join').innerHTML =
         `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
         document.querySelector('#command_join').classList.add('video-call-in-room');
         document.querySelector('#command_join').classList.remove('btn-success');
@@ -472,7 +512,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     }, 1000);
   }
-  
+
+    setTimeout(() => {
+        loop_check_user_operation_meet();
+    }, 1000);
+
+
 });
 
 // ตัวแปรสำหรับกำหนดการเล่นเสียง ringtone
@@ -499,7 +544,7 @@ function loop_check_user_in_room() {
             // console.log('-------------------------------------');
 
             if(result['data'] != 'ไม่มีข้อมูล'){
-              document.querySelector('#command_join').innerHTML = 
+              document.querySelector('#command_join').innerHTML =
               `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
               document.querySelector('#command_join').classList.add('video-call-in-room');
               document.querySelector('#command_join').classList.remove('btn-success');
@@ -520,7 +565,7 @@ function loop_check_user_in_room() {
               // if(!check_start_timer_video_call){
               //   start_timer_video_call(result['data_agora']['time_start']);
               // }
-      
+
               if( check_command_in_room ){
 
                 if(userJoinRoom == true){
@@ -579,7 +624,7 @@ function loop_check_user_in_room() {
               stop_ringtone();
               document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
 
-              document.querySelector('#command_join').innerHTML = 
+              document.querySelector('#command_join').innerHTML =
               `<i class="fa-solid fa-phone-volume"></i> เริ่มต้นการสนทนา`;
               document.querySelector('#command_join').classList.remove('video-call-in-room');
               document.querySelector('#command_join').classList.add('btn-success');
@@ -591,9 +636,99 @@ function loop_check_user_in_room() {
             }
 
         });
-      
+
     }, 4000);
 }
+
+//=================================================== เช็ค Operation Meet =======================================================================
+var ringtone_operation = new Audio("{{ asset('sound/ringtone-126505.mp3') }}");
+var status_playing_ringtone = false;
+var ringtone_first_play_check = 0;
+
+function play_ringtone_operation() {
+  if (!status_playing_ringtone) {
+    ringtone_operation.loop = true;
+    ringtone_operation.play();
+    status_playing_ringtone = true;
+
+    ringtone_first_play_check = 1 ;
+  }
+}
+
+function stop_ringtone_operation() {
+  ringtone_operation.pause();
+  ringtone_operation.currentTime = 0;
+  status_playing_ringtone = false;
+
+  ringtone_first_play_check = 0 ;
+}
+
+function mute_ringtone_operation(){
+  ringtone_operation.pause();
+  ringtone_operation.currentTime = 0;
+}
+
+function loop_check_user_operation_meet(){
+
+    console.log("เช็คผู้ใช้ใน operation meet");
+
+    check_user_in_operation_meet = setInterval(function() {
+        fetch("{{ url('/') }}/api/check_user_for_operation_meet" + "?sos_id=" + sos_1669_id)
+        .then(response => response.text())
+        .then(result => {
+            // console.log("result check_user_for_operation_meet");
+            // console.log(result);
+
+            if (result == "do") {
+                // เลือกอิลิเมนต์ <li> ด้วย ID ของมัน
+                let liElement = document.getElementById('btn_open_meet');
+                    liElement.innerHTML = "";
+
+                    let tag_href = "{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}";
+
+                    tag_a = `<a class="nav-link btn-outline-danger btn shadow_btn_call" href="`+tag_href+`" target="_blank">
+                            <div class="d-flex align-items-center">
+                                <div class="tab-icon">
+                                    <i class="fa-regular fa-phone"></i>
+                                </div>
+                                <div class="tab-title">Meet (soon)</div>
+                            </div>
+                        </a>`;
+
+                liElement.insertAdjacentHTML('beforeend', tag_a); // แทรกบนสุด
+
+                if(check_first_play_ringtone == 0){
+                    play_ringtone_operation();
+                    check_first_play_ringtone = 1 ;
+                }
+            }else{
+
+                let liElement = document.getElementById('btn_open_meet');
+                    liElement.innerHTML = "";
+
+                    let tag_href = "{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}";
+
+                    tag_a = `<a class="nav-link btn-outline-danger btn" href="`+tag_href+`" target="_blank">
+                            <div class="d-flex align-items-center">
+                                <div class="tab-icon">
+                                    <i class="fa-solid fa-hospital-user"></i>
+                                </div>
+                                <div class="tab-title">Meet (soon)</div>
+                            </div>
+                        </a>`;
+
+                liElement.insertAdjacentHTML('beforeend', tag_a); // แทรกบนสุด
+
+                stop_ringtone_operation();
+            }
+
+        });
+
+    }, 5000);
+}
+
+
+//================================================== จบ เช็ค Operation Meet =====================================================================
 
 function myStop_check_user_in_room() {
     clearInterval(check_user_in_room);
@@ -650,7 +785,7 @@ function create_html_user_in_room(data , type){
           <h5 class="mt-3 `+class_show_status+`">`+html_show_status+`</h5>
       </div>
     `;
-  
+
   document.querySelector('#show_whene_video_no_active').innerHTML = '' ;
   document.querySelector('#show_whene_video_no_active').insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
 
@@ -784,7 +919,7 @@ async function startBasicCall() {
       // remotePlayerContainer.textContent = "Remote user " + user.uid.toString();
       // Append the remote container to the page body.
       // document.body.append(remotePlayerContainer);
-      
+
       // Play the remote video track.
       channelParameters.remoteVideoTrack.play(localPlayerContainer);
 
@@ -969,7 +1104,7 @@ async function startBasicCall() {
     // Publish the local audio and video tracks in the channel.
     await agoraEngine.publish([channelParameters.localAudioTrack, channelParameters.localVideoTrack]);
     // Play the local video track.
-    
+
     document.querySelector('.video-menu').classList.remove('d-none');
     document.querySelector('#span_timer_video_call').classList.remove('d-none');
 
@@ -1078,7 +1213,7 @@ async function startBasicCall() {
       .then(response => response.json())
       .then(result => {
           // console.log(result);
-          
+
           video_success = 'OK' ;
 
           if(result['data']['user']){

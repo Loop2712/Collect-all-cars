@@ -967,17 +967,15 @@ switch ($sos_data->status) {
     var sos_id = '{{ $sos_id }}';
     var type_video_call = '{{ $type }}';
 
-    var appId = '{{ env("AGORA_APP_ID") }}';
-    var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+    // var appId = '{{ env("AGORA_APP_ID") }}';
+    // var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
 
-    if (appId.length === 0 || appCertificate.length === 0) {
-        setTimeout(() => {
-            let loop7 = 7;
-            for (let index = 0; index < loop7; index++) {
-                appId = '{{ env("AGORA_APP_ID") }}';
-                appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
-            }
-        }, 1000);
+    var appId = sessionStorage.getItem('a');
+    var appCertificate = sessionStorage.getItem('b');
+
+    if (!appId || !appCertificate.length) {
+        appId = '{{ env("AGORA_APP_ID") }}';
+        appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
     }
 
     options =
@@ -994,30 +992,8 @@ switch ($sos_data->status) {
         role: '',
     };
 
+
     document.addEventListener('DOMContentLoaded', (event) => {
-
-        if(user_data.photo){
-            profile_local = "{{ url('/storage') }}" + "/" + user_data.photo;
-        }else if(!user_data.photo && user_data.avatar){
-            profile_local = user_data.avatar;
-        }else{
-            profile_local = "https://www.viicheck.com/Medilab/img/icon.png";
-        }
-        //===== สุ่มสีพื้นหลังของ localPlayerContainer=====
-        fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + options.uid + "&type=" + type_video_call + "&sos_id=" + sos_id)
-            .then(response => response.json())
-            .then(result => {
-                bg_local = result.hexcolor;
-
-                name_local = result.name_user;
-                type_local = result.user_type;
-
-                changeBgColor(bg_local);
-        })
-        .catch(error => {
-            console.log("โหลดข้อมูล LocalUser ล้มเหลว ใน get_local_data_4");
-        });
-        //===== จบส่วน สุ่มสีพื้นหลังของ localPlayerContainer =====
 
         function LoadingVideoCall() {
             const loadingAnime = document.getElementById('lds-ring');
@@ -1051,9 +1027,6 @@ switch ($sos_data->status) {
                             checkAndNotifyExpiration(expirationTimestamp);
                         }, 1000);
 
-                        // setTimeout(() => {
-                        //     document.getElementById("join").click();
-                        // }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
                 })
                 .catch(error => {
 
@@ -1063,14 +1036,17 @@ switch ($sos_data->status) {
 
                     // เรียกใช้งานฟังก์ชัน retryFunction() อีกครั้งหลังจากเวลาหน่วงให้ผ่านไป
                     setTimeout(() => {
-                        appId = '{{ env("AGORA_APP_ID") }}';
-                        appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
                         LoadingVideoCall();
                     }, 2000);
                 });
 
             }, 1000);
+
         }
+
+        console.log("appId && appCertificate");
+        console.log(appId);
+        console.log(appCertificate);
 
         //แสดง animation โหลด
         LoadingVideoCall();
@@ -1128,7 +1104,7 @@ switch ($sos_data->status) {
         localPlayerContainer.style.top = "0";
         localPlayerContainer.classList.add('agora_create_local');
 
-        //======== ทุก 20 วิ ให้เช็คว่า div .custom-div ที่มี id ของคนที่ไม่ได้อยู่ในห้องนี้แล้ว --> ถ้าเจอให้ลบ div ทิ้ง =========
+        //======== ทุก 10 วิ ให้เช็คว่า div .custom-div ที่มี id ของคนที่ไม่ได้อยู่ในห้องนี้แล้ว --> ถ้าเจอให้ลบ div ทิ้ง =========
         setInterval(() => {
             let customDivAll = document.querySelectorAll(".custom-div");
             let remoteUsers = agoraEngine['remoteUsers'];
@@ -1150,8 +1126,32 @@ switch ($sos_data->status) {
                     }
                 }
             });
-        }, 20000);
+        }, 10000);
         //=====================================================================================================
+
+        if(user_data.photo){
+            profile_local = "{{ url('/storage') }}" + "/" + user_data.photo;
+        }else if(!user_data.photo && user_data.avatar){
+            profile_local = user_data.avatar;
+        }else{
+            profile_local = "https://www.viicheck.com/Medilab/img/icon.png";
+        }
+        //===== สุ่มสีพื้นหลังของ localPlayerContainer=====
+        fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + options.uid + "&type=" + type_video_call + "&sos_id=" + sos_id)
+            .then(response => response.json())
+            .then(result => {
+                bg_local = result.hexcolor;
+
+                name_local = result.name_user;
+                type_local = result.user_type;
+
+                changeBgColor(bg_local);
+        })
+        .catch(error => {
+            console.log("โหลดข้อมูล LocalUser ล้มเหลว ใน get_local_data_4");
+        });
+        //===== จบส่วน สุ่มสีพื้นหลังของ localPlayerContainer =====
+
 
 
         // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
@@ -1879,57 +1879,14 @@ switch ($sos_data->status) {
                             // console.log(result);
                             console.log("left_and_update สำเร็จ");
                             leaveChannel = "true";
+
+                            window.history.back();
                     })
                     .catch(error => {
                         console.log("บันทึกข้อมูล left_and_update ล้มเหลว :" + error);
                     });
                 }
 
-                // fetch("{{ url('/') }}/api/check_status_room" + "?sos_id="+ sos_id + "&type=" + type_video_call)
-                //     .then(response => response.json())
-                //     .then(result => {
-
-                //     // หาความยาวของอ็อบเจ็กต์แล้วลบ 1
-                //     let member_in_room = JSON.parse(result['member_in_room']);
-                //     let objectLength = Object.keys(member_in_room).length - 1;
-
-                //     console.log("objectLength :" + objectLength);
-
-                //     // ถ้าความยาวน้อยกว่า 2 ให้หยุดนับเวลา
-                //     if (objectLength < 2) {
-                //         if(check_start_timer_video_call == true){
-                //             myStop_timer_video_call();
-                //             meet_2_people = 'Yes';
-                //         }
-                //     }
-                //     console.log("meet_2_people");
-                //     console.log(meet_2_people);
-
-                //     if (leaveChannel == "false") {
-                //         // leaveChannel();
-                //         fetch("{{ url('/') }}/api/left_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id +"&meet_2_people="+meet_2_people + "&leave=" + "click")
-                //             .then(response => response.text())
-                //             .then(result => {
-                //                 // console.log(result);
-                //                 console.log("left_and_update สำเร็จ");
-                //                 leaveChannel = "true";
-                //         })
-                //         .catch(error => {
-                //             console.log("บันทึกข้อมูล left_and_update ล้มเหลว :" + error);
-                //         });
-                //     }
-
-                // });
-
-                // function goBack() {
-                //     window.location.href = '{{ url('/video_call_4/before_video_call_4' . '/' . $sos_id , ['refresh' => true]) }}';
-                //     // location.reload();
-                // }
-
-                function goBack(){
-                    // window.history.back();
-                }
-                goBack();
             }
         }
 

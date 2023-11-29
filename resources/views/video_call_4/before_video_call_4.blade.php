@@ -379,6 +379,9 @@
     // var appId = localStorage.getItem('appId');
     // var appCertificate = localStorage.getItem('appCertificate');
 
+    var appId = '{{ env("AGORA_APP_ID") }}';
+    var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+
     var sos_id = '{{ $sos_id }}'
     var type_sos = '{{ $type }}'
     var consult_doctor_id = '{{ $consult_doctor_id }}'
@@ -395,10 +398,33 @@
 
     document.addEventListener("DOMContentLoaded", async () => {
         // เรียกใช้ฟังก์ชันเมื่อหน้าเว็บโหลด
+        function retrieveAgoraKeys() {
+            let agoraAppId = appId;
+            let agoraAppCertificate = appCertificate;
+            // ตรวจสอบว่าคีย์และรหัสลับมีค่าความยาวมากกว่า 0 หรือไม่
+            if (!agoraAppId || !agoraAppCertificate) {
+                setTimeout(() => {
+                    let loop7 = 7;
+                    for (let index = 0; index < loop7; index++) {
+                        agoraAppId = '{{ env("AGORA_APP_ID") }}';
+                        agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+                    }
+                }, 500);
+            }
+            return { agoraAppId, agoraAppCertificate };
+        }
+        // สร้างฟังก์ชันสำหรับบันทึกคีย์และรหัสลับลงใน sessionStorage
+        function saveAgoraKeys() {
+            const keys = retrieveAgoraKeys();
+            sessionStorage.setItem('a', keys.agoraAppId);
+            sessionStorage.setItem('b', keys.agoraAppCertificate);
+        }
+        saveAgoraKeys();
 
         // ============   เช็คคนในห้องสนทนาก่อนเข้าร่วม   ================
         Check_video_call_room();
         // ============  จบส่วน เช็คคนในห้องสนทนาก่อนเข้าร่วม   ================
+
 
         const microphoneList = document.getElementById("microphoneList");
         const cameraList = document.getElementById("cameraList");
