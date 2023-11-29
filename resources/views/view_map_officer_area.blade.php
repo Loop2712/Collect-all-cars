@@ -1489,7 +1489,7 @@
 
 					            arr_infowindow_officer.push(item.user_id);
 
-					        	if(check_view_officer_data == 'all'){
+					        	if(check_view_area_all_or_district == 'all'){
 					            	focus_officer_div_right(focus_markerIndex , 'officer_all');
 					        	}else{
 					            	focus_officer_div_right(focus_markerIndex , 'officer_select');
@@ -2080,7 +2080,7 @@
 	// focus DIV ด้านขวาตามที่มีการกดหมุดในแมพ
 	function focus_officer_div_right(focus_markerIndex , type_div){
 
-		// console.log("focus div_right >> " + focus_markerIndex);
+		console.log("type_div >> " + type_div);
 
 		let div_fosuc = document.querySelector('#div_right_' + type_div + "_" + focus_markerIndex);
 
