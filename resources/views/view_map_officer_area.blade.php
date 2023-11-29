@@ -1380,10 +1380,6 @@
 			    	type_select = item.level ;
 			    }
 
-			    if(item.status == "Helping"){
-			    	console.log(item.name_officer);
-			    }
-
 	        	// status = type_officer_status
 	        	if(data === type_select || data === "all"){
 
@@ -1480,13 +1476,18 @@
 				        });
 				        markers.push(marker);
 
+				       
+
 				        infowindow['user_id'] = item.user_id ;
 				        infowindows.push(infowindow);
 
-				        if(item.lat){
-				        	watching_officer_count = watching_officer_count  + 1 ;
-				        }
+				        watching_officer_count = watching_officer_count  + 1 ;
+				        
 				        let focus_markerIndex = markers.length - 1 ;
+
+				        if(infowindows.includes(infowindow[focus_markerIndex])){
+				         	console.log(item.name_officer); 
+				        }
 
 				        // เพิ่ม Event Listener สำหรับคลิก Marker
 					    marker.addListener('click', function(markerIndex) {
