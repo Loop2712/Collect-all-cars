@@ -1927,7 +1927,7 @@ switch ($sos_data->status) {
                 // }
 
                 function goBack(){
-                    window.history.back();
+                    // window.history.back();
                 }
                 goBack();
             }
