@@ -1368,8 +1368,6 @@
 			let content_data_name_officer = document.querySelector('#content_data_name_officer');
 				content_data_name_officer.innerHTML = '';
 
-			console.log(data_officer_all);
-
 	        for(let item of data_officer_all){
 
 	        	if(type == "status"){
@@ -1380,6 +1378,10 @@
 			    }
 			    else if(type == 'level'){
 			    	type_select = item.level ;
+			    }
+
+			    if(data_officer_all.status == "Helping"){
+			    	console.log(data_officer_all.name_officer);
 			    }
 
 	        	// status = type_officer_status
