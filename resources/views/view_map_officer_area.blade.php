@@ -952,7 +952,7 @@
     	let count_level_ils = 0 ;
     	let count_level_als = 0 ;
 
-    	// console.log(data_officer_all);
+    	console.log(data_officer_all);
 
 
         for(let item of data_officer_all){
@@ -1367,6 +1367,8 @@
 
 			let content_data_name_officer = document.querySelector('#content_data_name_officer');
 				content_data_name_officer.innerHTML = '';
+
+			console.log(data_officer_all);
 
 	        for(let item of data_officer_all){
 
