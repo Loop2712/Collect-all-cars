@@ -1486,12 +1486,12 @@
 				        let focus_markerIndex = markers.length - 1 ;
 
 
-				        arr_name_officer.push(item.name_officer) ;
-
 				        if(arr_name_officer.includes(item.name_officer)){
 				         	console.log('คนซ้ำ'); 
 				         	console.log(item.name_officer); 
 				        }
+				        arr_name_officer.push(item.name_officer) ;
+
 
 				        // เพิ่ม Event Listener สำหรับคลิก Marker
 					    marker.addListener('click', function(markerIndex) {
