@@ -1380,8 +1380,8 @@
 			    	type_select = item.level ;
 			    }
 
-			    if(data_officer_all.status == "Helping"){
-			    	console.log(data_officer_all.name_officer);
+			    if(item.status == "Helping"){
+			    	console.log(item.name_officer);
 			    }
 
 	        	// status = type_officer_status
