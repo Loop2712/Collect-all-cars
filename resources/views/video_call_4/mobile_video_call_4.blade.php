@@ -2019,38 +2019,52 @@
                 // Refresh the page for reuse
                 // window.location.reload();
 
-                fetch("{{ url('/') }}/api/check_status_room" + "?sos_id="+ sos_id + "&type=" + type_video_call)
-                    .then(response => response.json())
-                    .then(result => {
-                    // หาความยาวของอ็อบเจ็กต์แล้วลบ 1
-                    let member_in_room = JSON.parse(result['member_in_room']);
-                    let objectLength = Object.keys(member_in_room).length - 1;
-                    // ถ้าความยาวน้อยกว่า 2 ให้หยุดนับเวลา
-                    if (objectLength < 2) {
-                        if(check_start_timer_video_call == true){
-                            myStop_timer_video_call();
-                            meet_2_people = 'Yes';
-                        }
-                    }
-                    console.log("meet_2_people");
-                    console.log(meet_2_people);
-                    if (leaveChannel == "false") {
-                        // leaveChannel();
-                        fetch("{{ url('/') }}/api/left_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id +"&meet_2_people="+ meet_2_people + "&leave=" + "click")
-                            .then(response => response.text())
-                            .then(result => {
-                                // console.log(result);
-                                console.log("left_and_update สำเร็จ");
-                                leaveChannel = "true";
-                        })
-                        .catch(error => {
-                            console.log("บันทึกข้อมูล left_and_update ล้มเหลว :" + error);
-                        });
-                    }
-                });
+                if (leaveChannel == "false") {
+                    // leaveChannel();
+                    fetch("{{ url('/') }}/api/left_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id +"&meet_2_people="+ "beforeunload" + "&leave=" + "beforeunload")
+                        .then(response => response.text())
+                        .then(result => {
+                            // console.log(result);
+                            console.log("left_and_update สำเร็จ");
+                            leaveChannel = "true";
+                    })
+                    .catch(error => {
+                        console.log("บันทึกข้อมูล left_and_update ล้มเหลว :" + error);
+                    });
+                }
+
+                // fetch("{{ url('/') }}/api/check_status_room" + "?sos_id="+ sos_id + "&type=" + type_video_call)
+                //     .then(response => response.json())
+                //     .then(result => {
+                //     // หาความยาวของอ็อบเจ็กต์แล้วลบ 1
+                //     let member_in_room = JSON.parse(result['member_in_room']);
+                //     let objectLength = Object.keys(member_in_room).length - 1;
+                //     // ถ้าความยาวน้อยกว่า 2 ให้หยุดนับเวลา
+                //     if (objectLength < 2) {
+                //         if(check_start_timer_video_call == true){
+                //             myStop_timer_video_call();
+                //             meet_2_people = 'Yes';
+                //         }
+                //     }
+                //     console.log("meet_2_people");
+                //     console.log(meet_2_people);
+                //     if (leaveChannel == "false") {
+                //         // leaveChannel();
+                //         fetch("{{ url('/') }}/api/left_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id +"&meet_2_people="+ meet_2_people + "&leave=" + "click")
+                //             .then(response => response.text())
+                //             .then(result => {
+                //                 // console.log(result);
+                //                 console.log("left_and_update สำเร็จ");
+                //                 leaveChannel = "true";
+                //         })
+                //         .catch(error => {
+                //             console.log("บันทึกข้อมูล left_and_update ล้มเหลว :" + error);
+                //         });
+                //     }
+                // });
 
                 function goBack(){
-                    // window.history.back();
+                    window.history.back();
                 }
                 goBack();
             }
@@ -3815,7 +3829,7 @@
                         // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
                         time_of_room.innerHTML = '<i class="fa-regular fa-clock fa-fade" style="color: #11b06b; font-size: 35px;"></i>&nbsp;' + ": " + showTimeCountVideo;
 
-                        if (minsec == "0.15") {
+                        if (minsec == "4.00") {
                             let alert_warning = document.querySelector('#alert_warning')
                             alert_warning.style.display = 'block'; // แสดง .div_alert
 
