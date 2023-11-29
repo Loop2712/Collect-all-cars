@@ -1577,7 +1577,9 @@
     	// console.log(sos_success_all);
 
     	let arr_address_in_polygon = [] ;
+    		arr_address_in_polygon['ไม่ทราบ'] = 0 ;
     	let count_marker_in_polygon = 0 ;
+
 
     	let content_all_sos = document.querySelector('#content_all_sos');
     		content_all_sos.innerHTML = '' ;
@@ -1625,6 +1627,8 @@
 						}else{
 							arr_address_in_polygon[area_a] = arr_address_in_polygon[area_a] + 1;
 						}
+					}else{
+						arr_address_in_polygon['ไม่ทราบ'] = arr_address_in_polygon['ไม่ทราบ'] + 1 ;
 					}
 					
 			        marker_sos = new google.maps.Marker({
@@ -1651,6 +1655,8 @@
 							}else{
 								arr_address_in_polygon[area_a] = arr_address_in_polygon[area_a] + 1;
 							}
+						}else{
+							arr_address_in_polygon['ไม่ทราบ'] = arr_address_in_polygon['ไม่ทราบ'] + 1 ;
 						}
 
 			    		marker_sos = new google.maps.Marker({
