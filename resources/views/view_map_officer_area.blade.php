@@ -1483,7 +1483,9 @@
 				        infowindow['user_id'] = item.user_id ;
 				        infowindows.push(infowindow);
 
-				        watching_officer_count = watching_officer_count  + 1 ;
+				        if(item.lat){
+				        	watching_officer_count = watching_officer_count  + 1 ;
+				        }
 				        let focus_markerIndex = markers.length - 1 ;
 
 				        // เพิ่ม Event Listener สำหรับคลิก Marker
