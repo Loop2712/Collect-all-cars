@@ -1357,8 +1357,6 @@
 		    }
 		    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
 
-		    let arr_name_officer = [];
-
 		    let icon_level ;
 		    let i_check = 0 ;
 
@@ -1485,14 +1483,6 @@
 				        
 				        let focus_markerIndex = markers.length - 1 ;
 
-
-				        if(arr_name_officer.includes(item.name_officer)){
-				         	console.log('คนซ้ำ'); 
-				         	console.log(item.name_officer); 
-				        }
-				        arr_name_officer.push(item.name_officer) ;
-
-
 				        // เพิ่ม Event Listener สำหรับคลิก Marker
 					    marker.addListener('click', function(markerIndex) {
 					        return function() {
@@ -1554,8 +1544,6 @@
 			        	let html_div_right = create_content_div_right(photo_user , item.name_officer , focus_markerIndex , level , vehicle , unit , count_case , 'officer_select');
     					content_data_name_officer.insertAdjacentHTML('beforeend', html_div_right); // แทรกล่างสุด
 				        
-				    }else{
-				    	console.log(item.name_officer);
 				    }
 
 				}
@@ -2308,8 +2296,7 @@
     			
     		});
 
-		// }, 60000);
-		}, 600000000);
+		}, 60000);
 		// }, 10000);
 	}
 
