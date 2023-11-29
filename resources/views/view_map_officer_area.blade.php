@@ -1357,6 +1357,8 @@
 		    }
 		    markers = []; // เคลียร์อาร์เรย์เพื่อลบอ้างอิงทั้งหมด
 
+		    let arr_name_officer = [];
+
 		    let icon_level ;
 		    let i_check = 0 ;
 
@@ -1476,8 +1478,6 @@
 				        });
 				        markers.push(marker);
 
-				       
-
 				        infowindow['user_id'] = item.user_id ;
 				        infowindows.push(infowindow);
 
@@ -1485,7 +1485,11 @@
 				        
 				        let focus_markerIndex = markers.length - 1 ;
 
-				        if(infowindows.includes(infowindow[focus_markerIndex])){
+
+				        arr_name_officer.push(item.name_officer) ;
+
+				        if(arr_name_officer.includes(item.name_officer)){
+				         	console.log('คนซ้ำ'); 
 				         	console.log(item.name_officer); 
 				        }
 
@@ -1550,6 +1554,9 @@
 			        	let html_div_right = create_content_div_right(photo_user , item.name_officer , focus_markerIndex , level , vehicle , unit , count_case , 'officer_select');
     					content_data_name_officer.insertAdjacentHTML('beforeend', html_div_right); // แทรกล่างสุด
 				        
+				    }else{
+				    	console.log('พวกนอกคอก');
+				    	console.log(item.name_officer);
 				    }
 
 				}
