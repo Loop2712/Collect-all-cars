@@ -1555,7 +1555,6 @@
     					content_data_name_officer.insertAdjacentHTML('beforeend', html_div_right); // แทรกล่างสุด
 				        
 				    }else{
-				    	console.log('พวกนอกคอก');
 				    	console.log(item.name_officer);
 				    }
 
@@ -2309,7 +2308,8 @@
     			
     		});
 
-		}, 60000);
+		// }, 60000);
+		}, 600000000);
 		// }, 10000);
 	}
 
