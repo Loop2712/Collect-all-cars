@@ -957,8 +957,85 @@
                     }
                 </script>
                 <div class="text-center">
+                    <label class="col-12 mt-2 mb-2" style="width: 90%;">
+                        ผู้แจ้งเหตุ
+                    </label>
+
                     <center>
-                    <span class="mail-shadow btn btn-md btn-block" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;width: 90%;" onclick="send_ask_for_help_1669();">
+
+                    <button id="btn_type_user_sos_me" type="button" class="btn btn-primary" onclick="show_input_type_user_sos('me');">
+                        ตัวฉัน
+                    </button>
+                    <button id="btn_type_user_sos_relative" type="button" class="btn btn-outline-primary" onclick="show_input_type_user_sos('relative');">
+                        ญาติ
+                    </button>
+                    <button id="btn_type_user_sos_good_citizen" type="button" class="btn btn-outline-primary" onclick="show_input_type_user_sos('good_citizen');">
+                        พลเมืองดี
+                    </button>
+                    <button id="btn_type_user_sos_other" type="button" class="btn btn-outline-secondary" onclick="show_input_type_user_sos('other');">
+                        อื่นๆ
+                    </button>
+
+                    <input type="text" name="type_reporter" id="type_reporter" class="form-control d-none" value="ผู้ขอความช่วยเหลือ">
+
+                    <input type="text" name="type_reporter_other" id="type_reporter_other" class="form-control mt-3 mb-3 d-none" name="" placeholder="ประเภทผู้แจ้งเหตุ" style="width: 90%;" onchange="change_type_reporter_other();">
+
+                    <script>
+
+                        function change_type_reporter_other(){
+
+                            let type_reporter_other = document.querySelector('#type_reporter_other');
+
+                            document.querySelector('#type_reporter').value = type_reporter_other.value ;
+                        }
+                        
+                        function show_input_type_user_sos(type){
+
+                            let type_reporter_other = document.querySelector('#type_reporter_other');
+
+                            document.querySelector('#btn_type_user_sos_me').classList.remove('btn-primary');
+                            document.querySelector('#btn_type_user_sos_relative').classList.remove('btn-primary');
+                            document.querySelector('#btn_type_user_sos_good_citizen').classList.remove('btn-primary');
+                            document.querySelector('#btn_type_user_sos_other').classList.remove('btn-secondary');
+
+                            document.querySelector('#btn_type_user_sos_me').classList.add('btn-outline-primary');
+                            document.querySelector('#btn_type_user_sos_relative').classList.add('btn-outline-primary');
+                            document.querySelector('#btn_type_user_sos_good_citizen').classList.add('btn-outline-primary');
+                            document.querySelector('#btn_type_user_sos_other').classList.add('btn-outline-secondary');
+                            
+
+                            if(type == 'other'){
+
+                                document.querySelector('#type_reporter').value = 'อื่นๆ' ;
+
+                                type_reporter_other.classList.remove('d-none');
+
+                                document.querySelector('#btn_type_user_sos_other').classList.add('btn-secondary');
+                                document.querySelector('#btn_type_user_sos_other').classList.remove('btn-outline-secondary');
+                            }else{
+
+                                if(type == "me"){
+                                    document.querySelector('#type_reporter').value = 'ผู้ขอความช่วยเหลือ' ;
+                                }else if(type == "relative"){
+                                    document.querySelector('#type_reporter').value = 'ญาติ' ;
+                                }
+                                else if(type == "good_citizen"){
+                                    document.querySelector('#type_reporter').value = 'พลเมืองดี' ;
+                                }
+
+                                type_reporter_other.value = '' ;
+
+                                type_reporter_other.classList.add('d-none');
+
+                                document.querySelector('#btn_type_user_sos_' + type).classList.add('btn-primary');
+                                document.querySelector('#btn_type_user_sos_' + type).classList.remove('btn-outline-primary');
+                            }
+
+                        }
+
+                    </script>
+
+                    <span class="mail-shadow btn btn-md btn-block mt-2" style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;width: 90%;" onclick="send_ask_for_help_1669();">
                         <div class="d-flex">
                             <div class="col-3 p-0 d-flex align-items-center">
                                 <div class="justify-content-center col-12 p-0">
@@ -1632,6 +1709,7 @@
             let user_id = document.querySelector("#user_id");
             let lat = document.querySelector("#lat");
             let lng = document.querySelector("#lng");
+            let type_reporter = document.querySelector("#type_reporter");
             // let photo_sos_1669 = document.querySelector("#photo_sos_1669");
 
             // --------------- get district ---------------------- //
@@ -1711,6 +1789,7 @@
                         "name_user" : name.value,
                         "phone_user" : phone.value,
                         "user_id" : user_id.value,
+                        "type_reporter" : type_reporter.value,
                         "lat" : lat.value,
                         "lng" : lng.value,
                         "changwat" : district_P,
@@ -1723,6 +1802,7 @@
                     formData.append('name_user', data_sos_1669.name_user);
                     formData.append('phone_user', data_sos_1669.phone_user);
                     formData.append('user_id', data_sos_1669.user_id);
+                    formData.append('type_reporter', data_sos_1669.type_reporter);
                     formData.append('lat', data_sos_1669.lat);
                     formData.append('lng', data_sos_1669.lng);
                     formData.append('changwat', data_sos_1669.changwat);
