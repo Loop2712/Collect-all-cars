@@ -897,20 +897,20 @@ class Agora_4_Controller extends Controller
         }
 
         if (!empty($status_member)) {
-            $has_officer = in_array("status_member", $status_member);
+            $has_officer = in_array("command", $status_member);
             $has_not_officer = in_array("not_command", $status_member);
 
             if ($has_officer && $has_not_officer) {
                 $result = "เจ้าหน้าที่ศูนย์สั่งการอยู่กับหน่วยอื่น";
             } elseif ($has_officer) {
-                $result = "dont มี เจ้าหน้าที่";
+                $result = "มีเจ้าหน้าที่ศูนย์สั่งการอยู่อย่างเดียว";
             } elseif ($has_not_officer) {
                 $result = "do";
             } else {
                 $result = "else";
             }
         }else{
-            $result = "dont ไม่มีใคร";
+            $result = "ไม่มีใครอยู่ในห้องสนทนา";
         }
 
         return $result;

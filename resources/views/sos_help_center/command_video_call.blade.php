@@ -649,6 +649,8 @@ var ringtone_operation = new Audio("{{ asset('sound/ringtone-126505.mp3') }}");
 var status_playing_ringtone = false;
 var ringtone_first_play_check = 0;
 
+var first_operation_meeting = false; // false = ยังไม่ได้คุย
+
 function play_ringtone_operation() {
   if (!status_playing_ringtone) {
     ringtone_operation.loop = true;
@@ -668,13 +670,10 @@ function stop_ringtone_operation() {
 }
 var status_pause_ringtone = false;
 function mute_ringtone_operation(){
-    ringtone_operation.pause();
-    ringtone_operation.currentTime = 0;
-
-    if (!status_pause_ringtone) {
-        status_pause_ringtone = true;
+    if (status_pause_ringtone == true) {
+        ringtone_operation.pause();
+        ringtone_operation.currentTime = 0;
     }
-
 }
 
 function loop_check_user_operation_meet(){
@@ -685,42 +684,97 @@ function loop_check_user_operation_meet(){
         fetch("{{ url('/') }}/api/check_user_for_operation_meet" + "?sos_id=" + sos_1669_id)
         .then(response => response.text())
         .then(result => {
-            // console.log("result check_user_for_operation_meet");
-            // console.log(result);
+            console.log("result check_user_for_operation_meet");
+            console.log(result);
+            console.log("first_operation_meeting :" + first_operation_meeting);
 
-            if (result == "do") {
-                // เลือกอิลิเมนต์ <li> ด้วย ID ของมัน
-                let liElement = document.getElementById('btn_open_meet');
-                    liElement.innerHTML = "";
+            if(result == "เจ้าหน้าที่ศูนย์สั่งการอยู่กับหน่วยอื่น"){
+                first_operation_meeting = true;
+            }
 
-                    let tag_href = "{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}";
+            if(result == "ไม่มีใครอยู่ในห้องสนทนา"){
+                first_operation_meeting  = false;
+            }
 
-                    let class_btn = "";
-                    if(status_pause_ringtone == true){
-                        class_btn = "btn-danger";
-                    }else{
-                        class_btn = "btn-secondary";
+            if (result == "do") {  // มี not_command อยู่ในห้องสนทนา
+
+                if(first_operation_meeting == false){ // ยังไม่ได้คุย --> อนุญาต ให้แจ้งเตือน
+                    console.log("เล่น เสียงแจ้งเตือน");
+                    status_pause_ringtone = true; // true = กดปุ่มปิดเสียงได้
+
+                    // เลือกอิลิเมนต์ <li> ด้วย ID ของมัน
+                    let liElement = document.getElementById('btn_open_meet');
+                        liElement.innerHTML = "";
+
+                        let tag_href = "{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}";
+
+                        let class_btn = "";
+                        if(status_pause_ringtone == true){
+                            class_btn = "btn-danger";
+                        }else{
+                            class_btn = "btn-secondary";
+                        }
+
+                        tag_b = `<div class="btnGroupOperating">
+                                    <div class="btn-group btnGroupOperating">
+                                        <button type="button" class="btn btn-outline-danger">
+                                            <i class="fa-solid fa-hospital-user"></i> Meet
+                                        </button>
+                                        <a id="" type="button" class="btn btn-success shadow_btn_call" href="`+tag_href+`">
+                                            <i class="fa-regular fa-phone"></i>
+                                        </a>
+                                        <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+`" onclick="mute_ringtone_operation();">
+                                            <i class="fa-solid fa-volume-slash"></i>
+                                        </a>
+                                    </div>
+                                </div>`;
+
+                    liElement.insertAdjacentHTML('beforeend', tag_b); // แทรกบนสุด
+
+                    if(check_first_play_ringtone == 0){
+                        play_ringtone_operation();
+                        check_first_play_ringtone = 1 ;
                     }
 
-                    tag_b = `<div class="btnGroupOperating">
-                                <div class="btn-group btnGroupOperating">
-                                    <button type="button" class="btn btn-white btnOperating">Meet</button>
-                                    <a id="" type="button" class="btn btn-success shadow_btn_call" href="`+tag_href+`">
-                                        <i class="fa-regular fa-phone"></i>
-                                    </a>
-                                    <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+`" onclick="mute_ringtone_operation();">
-                                        <i class="fa-solid fa-volume-slash"></i>
-                                    </a>
-                                </div>
-                            </div>`;
+                }else{ // คุยกันไปแล้ว --> ไม่อนุญาต ให้แจ้งเตือน
+                    console.log("ไม่เล่น เสียงแจ้งเตือน else ใน");
+                    status_pause_ringtone = false; // false = กดปุ่มปิดเสียงไม่ได้
 
-                liElement.insertAdjacentHTML('beforeend', tag_b); // แทรกบนสุด
+                    let liElement = document.getElementById('btn_open_meet');
+                        liElement.innerHTML = "";
 
-                if(check_first_play_ringtone == 0){
-                    play_ringtone_operation();
-                    check_first_play_ringtone = 1 ;
+                        let tag_href = "{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}";
+
+                        let class_btn = "";
+                        if(status_pause_ringtone == true){
+                            class_btn = "btn-secondary";
+                        }else{
+                            class_btn = "btn-secondary";
+                        }
+
+                        tag_b = `<div class="btnGroupOperating">
+                                    <div class="btn-group btnGroupOperating">
+                                        <button type="button" class="btn btn-outline-danger">
+                                            <i class="fa-solid fa-hospital-user"></i> Meet
+                                        </button>
+                                        <a type="button" class="btn btn-success" href="`+tag_href+`">
+                                            <i class="fa-regular fa-phone"></i>
+                                        </a>
+                                        <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+`" onclick="mute_ringtone_operation();">
+                                            <i class="fa-solid fa-volume-slash"></i>
+                                        </a>
+                                    </div>
+                                </div>`;
+
+
+
+                    liElement.insertAdjacentHTML('beforeend', tag_b); // แทรกบนสุด
+
+                    stop_ringtone_operation();
                 }
             }else{
+                console.log("ไม่เล่น เสียงแจ้งเตือน else นอก");
+                status_pause_ringtone = false; // false = กดปุ่มปิดเสียงไม่ได้
 
                 let liElement = document.getElementById('btn_open_meet');
                     liElement.innerHTML = "";
@@ -729,14 +783,16 @@ function loop_check_user_operation_meet(){
 
                     let class_btn = "";
                     if(status_pause_ringtone == true){
-                        class_btn = "btn-danger";
+                        class_btn = "btn-secondary";
                     }else{
                         class_btn = "btn-secondary";
                     }
 
                     tag_b = `<div class="btnGroupOperating">
                                 <div class="btn-group btnGroupOperating">
-                                    <button type="button" class="btn btn-white btnOperating">Meet</button>
+                                    <button type="button" class="btn btn-outline-danger">
+                                        <i class="fa-solid fa-hospital-user"></i> Meet
+                                    </button>
                                     <a type="button" class="btn btn-success" href="`+tag_href+`">
                                         <i class="fa-regular fa-phone"></i>
                                     </a>
@@ -752,6 +808,7 @@ function loop_check_user_operation_meet(){
 
                 stop_ringtone_operation();
             }
+
 
         });
 

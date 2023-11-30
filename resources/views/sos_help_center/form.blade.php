@@ -1600,7 +1600,9 @@ color: #ff9317;
                                 <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 " role="presentation">
                                     <div class="btnGroupOperating">
                                         <div class="btn-group btnGroupOperating">
-                                            <button type="button" class="btn btn-white btnOperating">Meet</button>
+                                            <button type="button" class="btn btn-outline-danger">
+                                                <i class="fa-solid fa-hospital-user"></i> Meet
+                                            </button>
                                             <a id="" type="button" class="btn btn-success" href="{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}">
                                                 <i class="fa-regular fa-phone"></i>
                                             </a>
