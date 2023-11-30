@@ -2096,24 +2096,35 @@
 
 		let div_fosuc = document.querySelector('#div_right_' + type_div + "_" + focus_markerIndex);
 
-		setTimeout(function() {
-		    // ถ้าหากมี div ที่ตรงกับ id ที่กรอก
-		    if (div_fosuc) {
-		      	// ทำการเลื่อนไปยังตำแหน่งของ div นั้นๆ
-		      	div_fosuc.scrollIntoView({ behavior: 'smooth' });
+		let delay_time = 500 ;
 
-		      	div_fosuc.classList.add('card_focus');
+		// ไม่ได้ล็อค DIV ขวา
+		if(lock_div_right == 'No' || status_show_div_right == "show"){
 
-	            const animated = document.querySelector('.card_focus');
-	            animated.onanimationend = () => {
-	                div_fosuc.classList.remove('card_focus');
-	            };
+			if(status_show_div_right != "show"){
+				document.querySelector('#btn_hide_or_show_Div_right').click();
+				delay_time = 1200 ;
+			}
 
-		    } else {
-		      	// หากไม่พบ div ที่ตรงกับ id ที่กรอก
-		      	alert('ไม่พบ ข้อมูลที่ค้นหา');
-		    }
-		}, 500);
+			setTimeout(function() {
+			    // ถ้าหากมี div ที่ตรงกับ id ที่กรอก
+			    if (div_fosuc) {
+			      	// ทำการเลื่อนไปยังตำแหน่งของ div นั้นๆ
+			      	div_fosuc.scrollIntoView({ behavior: 'smooth' });
+
+			      	div_fosuc.classList.add('card_focus');
+
+		            const animated = document.querySelector('.card_focus');
+		            animated.onanimationend = () => {
+		                div_fosuc.classList.remove('card_focus');
+		            };
+
+			    } else {
+			      	// หากไม่พบ div ที่ตรงกับ id ที่กรอก
+			      	alert('ไม่พบ ข้อมูลที่ค้นหา');
+			    }
+			}, delay_time);
+		}
 
 	}
 
