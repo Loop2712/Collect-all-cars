@@ -505,6 +505,86 @@
                                 {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
                             </div>
 
+                            <div class="text-center">
+                                <label class="col-12 mt-2 mb-2" style="width: 90%;">
+                                    ผู้แจ้งเหตุ
+                                </label>
+
+                                <center>
+
+                                <button id="private_type_user_sos_me" type="button" class="btn btn-primary" onclick="private_show_input_type_user_sos('me');">
+                                    ตัวฉัน
+                                </button>
+                                <button id="private_type_user_sos_relative" type="button" class="btn btn-outline-primary" onclick="private_show_input_type_user_sos('relative');">
+                                    ญาติ
+                                </button>
+                                <button id="private_type_user_sos_good_citizen" type="button" class="btn btn-outline-primary" onclick="private_show_input_type_user_sos('good_citizen');">
+                                    พลเมืองดี
+                                </button>
+                                <button id="private_type_user_sos_other" type="button" class="btn btn-outline-secondary" onclick="private_show_input_type_user_sos('other');">
+                                    อื่นๆ
+                                </button>
+
+                                <input type="text" name="private_type_reporter" id="private_type_reporter" class="form-control d-none" value="ผู้ขอความช่วยเหลือ">
+
+                                <input type="text" name="private_type_reporter_other" id="private_type_reporter_other" class="form-control mt-3 mb-3 d-none" name="" placeholder="ประเภทผู้แจ้งเหตุ" style="width: 90%;" onchange="private_change_type_reporter_other();">
+
+                                <script>
+
+                                    function private_change_type_reporter_other(){
+
+                                        let private_type_reporter_other = document.querySelector('#private_type_reporter_other');
+
+                                        document.querySelector('#private_type_reporter').value = private_type_reporter_other.value ;
+                                    }
+                                    
+                                    function private_show_input_type_user_sos(type){
+
+                                        let private_type_reporter_other = document.querySelector('#private_type_reporter_other');
+
+                                        document.querySelector('#private_type_user_sos_me').classList.remove('btn-primary');
+                                        document.querySelector('#private_type_user_sos_relative').classList.remove('btn-primary');
+                                        document.querySelector('#private_type_user_sos_good_citizen').classList.remove('btn-primary');
+                                        document.querySelector('#private_type_user_sos_other').classList.remove('btn-secondary');
+
+                                        document.querySelector('#private_type_user_sos_me').classList.add('btn-outline-primary');
+                                        document.querySelector('#private_type_user_sos_relative').classList.add('btn-outline-primary');
+                                        document.querySelector('#private_type_user_sos_good_citizen').classList.add('btn-outline-primary');
+                                        document.querySelector('#private_type_user_sos_other').classList.add('btn-outline-secondary');
+                                        
+
+                                        if(type == 'other'){
+
+                                            document.querySelector('#private_type_reporter').value = 'อื่นๆ' ;
+
+                                            private_type_reporter_other.classList.remove('d-none');
+
+                                            document.querySelector('#private_type_user_sos_other').classList.add('btn-secondary');
+                                            document.querySelector('#private_type_user_sos_other').classList.remove('btn-outline-secondary');
+                                        }else{
+
+                                            if(type == "me"){
+                                                document.querySelector('#private_type_reporter').value = 'ผู้ขอความช่วยเหลือ' ;
+                                            }else if(type == "relative"){
+                                                document.querySelector('#private_type_reporter').value = 'ญาติ' ;
+                                            }
+                                            else if(type == "good_citizen"){
+                                                document.querySelector('#private_type_reporter').value = 'พลเมืองดี' ;
+                                            }
+
+                                            private_type_reporter_other.value = '' ;
+
+                                            private_type_reporter_other.classList.add('d-none');
+
+                                            document.querySelector('#private_type_user_sos_' + type).classList.add('btn-primary');
+                                            document.querySelector('#private_type_user_sos_' + type).classList.remove('btn-outline-primary');
+                                        }
+
+                                    }
+
+                                </script>
+                            </div>
+
                             <div class="px-2">
                                 <button id="btn_help_area" type="button" style="border-radius: 1rem; padding:.7rem; margin-top: .8rem;" class="btn btn-primary btn-block" onclick="confirm_phone();">
                                     ยืนยัน

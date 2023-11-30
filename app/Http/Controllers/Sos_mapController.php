@@ -94,7 +94,12 @@ class Sos_mapController extends Controller
         
         $requestData = $request->all();
 
-        // dd($requestData);
+        $requestData['type_reporter'] = $requestData['private_type_reporter'] ;
+        
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
 
         if (!empty($requestData['title_sos'])){
             $requestData['title_sos'] = $requestData['title_sos'] ;
