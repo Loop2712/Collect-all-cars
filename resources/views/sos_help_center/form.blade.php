@@ -1149,6 +1149,11 @@ color: #ff9317;
                 <h4>
                     <u id="u_name_user">{{ isset($sos_help_center->name_user) ? $sos_help_center->name_user : ''}}</u>
                 </h4>
+                <span style="font-size: 16px;">
+                    <b>
+                      ประเภทผู้แจ้งเหตุ <u>{{ isset($sos_help_center->type_reporter) ? $sos_help_center->type_reporter : ''}}</u>
+                    </b>
+                </span>
                 <hr>
                 <span class="mt-2">
                     โทรศัพท์ผู้แจ้ง
@@ -1592,16 +1597,20 @@ color: #ff9317;
                                         </span>
                                     </a>
                                 </li>
-                                <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 d-" role="presentation" onclick="document.querySelector('#btn_save').click();">
-                                    <a class="nav-link btn-outline-danger btn" href="{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}" target="_blank">
-                                        <div class="d-flex align-items-center">
-                                            <div class="tab-icon">
-                                                <i class="fa-solid fa-hospital-user"></i>
-                                            </div>
-                                            <div class="tab-title">Meet (soon)</div>
+                                <li id="btn_open_meet" class="nav-item nav-pills nav-pills-danger m-2 " role="presentation">
+                                    <div class="btnGroupOperating">
+                                        <div class="btn-group btnGroupOperating">
+                                            <button type="button" class="btn btn-white btnOperating">Meet</button>
+                                            <a id="" type="button" class="btn btn-success" href="{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}">
+                                                <i class="fa-regular fa-phone"></i>
+                                            </a>
+                                            <a id="tag_a_mute_ringtone_meet" type="button" class="btn btn-secondary" onclick="mute_ringtone_operation();">
+                                                <i class="fa-solid fa-volume-slash"></i>
+                                            </a>
                                         </div>
-                                    </a>
+                                    </div>
                                 </li>
+
                             </ul>
                         </div>
                     </div>

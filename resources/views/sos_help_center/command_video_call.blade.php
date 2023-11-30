@@ -225,8 +225,10 @@
     .shadow_btn_call {
         position: relative;
         overflow: hidden;
-        background-color: rgba(255, 0, 0, 1) !important;
+        background-color: #29cc39 !important;
         color:#fff !important;
+        box-shadow: 0 0 20px rgba(0, 255, 60, 0.5);
+        z-index: 1;
     }
 
     .shadow_btn_call:before {
@@ -261,7 +263,9 @@
     .shadow_btn_call {
         animation: pulse 1s infinite;
     }
-    </style>
+
+
+</style>
 
     @php
       $user_in_room = '';
@@ -662,10 +666,15 @@ function stop_ringtone_operation() {
 
   ringtone_first_play_check = 0 ;
 }
-
+var status_pause_ringtone = false;
 function mute_ringtone_operation(){
-  ringtone_operation.pause();
-  ringtone_operation.currentTime = 0;
+    ringtone_operation.pause();
+    ringtone_operation.currentTime = 0;
+
+    if (!status_pause_ringtone) {
+        status_pause_ringtone = true;
+    }
+
 }
 
 function loop_check_user_operation_meet(){
@@ -686,16 +695,26 @@ function loop_check_user_operation_meet(){
 
                     let tag_href = "{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}";
 
-                    tag_a = `<a class="nav-link btn-outline-danger btn shadow_btn_call" href="`+tag_href+`" target="_blank">
-                            <div class="d-flex align-items-center">
-                                <div class="tab-icon">
-                                    <i class="fa-regular fa-phone"></i>
-                                </div>
-                                <div class="tab-title">Meet (soon)</div>
-                            </div>
-                        </a>`;
+                    let class_btn = "";
+                    if(status_pause_ringtone == true){
+                        class_btn = "btn-danger";
+                    }else{
+                        class_btn = "btn-secondary";
+                    }
 
-                liElement.insertAdjacentHTML('beforeend', tag_a); // แทรกบนสุด
+                    tag_b = `<div class="btnGroupOperating">
+                                <div class="btn-group btnGroupOperating">
+                                    <button type="button" class="btn btn-white btnOperating">Meet</button>
+                                    <a id="" type="button" class="btn btn-success shadow_btn_call" href="`+tag_href+`">
+                                        <i class="fa-regular fa-phone"></i>
+                                    </a>
+                                    <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+`" onclick="mute_ringtone_operation();">
+                                        <i class="fa-solid fa-volume-slash"></i>
+                                    </a>
+                                </div>
+                            </div>`;
+
+                liElement.insertAdjacentHTML('beforeend', tag_b); // แทรกบนสุด
 
                 if(check_first_play_ringtone == 0){
                     play_ringtone_operation();
@@ -708,16 +727,28 @@ function loop_check_user_operation_meet(){
 
                     let tag_href = "{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}";
 
-                    tag_a = `<a class="nav-link btn-outline-danger btn" href="`+tag_href+`" target="_blank">
-                            <div class="d-flex align-items-center">
-                                <div class="tab-icon">
-                                    <i class="fa-solid fa-hospital-user"></i>
-                                </div>
-                                <div class="tab-title">Meet (soon)</div>
-                            </div>
-                        </a>`;
+                    let class_btn = "";
+                    if(status_pause_ringtone == true){
+                        class_btn = "btn-danger";
+                    }else{
+                        class_btn = "btn-secondary";
+                    }
 
-                liElement.insertAdjacentHTML('beforeend', tag_a); // แทรกบนสุด
+                    tag_b = `<div class="btnGroupOperating">
+                                <div class="btn-group btnGroupOperating">
+                                    <button type="button" class="btn btn-white btnOperating">Meet</button>
+                                    <a type="button" class="btn btn-success" href="`+tag_href+`">
+                                        <i class="fa-regular fa-phone"></i>
+                                    </a>
+                                    <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+`" onclick="mute_ringtone_operation();">
+                                        <i class="fa-solid fa-volume-slash"></i>
+                                    </a>
+                                </div>
+                            </div>`;
+
+
+
+                liElement.insertAdjacentHTML('beforeend', tag_b); // แทรกบนสุด
 
                 stop_ringtone_operation();
             }

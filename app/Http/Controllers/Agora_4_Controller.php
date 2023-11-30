@@ -884,14 +884,12 @@ class Agora_4_Controller extends Controller
 
             foreach ($member_array as $user_id) {
                 $data_command = Data_1669_officer_command::where('user_id', $user_id)->first();
-                $data_officer = Data_1669_operating_officer::where('user_id', $user_id)->first();
+                // $data_officer = Data_1669_operating_officer::where('user_id', $user_id)->first();
 
                 if(!empty($data_command)){
-                    $status_member[] = "เจ้าหน้าที่";
-                }else if(!empty($data_officer)){
-                    $status_member[] = "เจ้าหน้าที่";
+                    $status_member[] = "command";
                 }else{
-                    $status_member[] = "ผู้ขอความช่วยเหลือ";
+                    $status_member[] = "not_command";
                 }
             }
         } else {
@@ -899,14 +897,14 @@ class Agora_4_Controller extends Controller
         }
 
         if (!empty($status_member)) {
-            $has_officer = in_array("เจ้าหน้าที่", $status_member);
-            $has_requester = in_array("ผู้ขอความช่วยเหลือ", $status_member);
+            $has_officer = in_array("status_member", $status_member);
+            $has_not_officer = in_array("not_command", $status_member);
 
-            if ($has_officer && $has_requester) {
-                $result = "dont เจ้าหน้าที่อยู่กับผู้ขอความช่วยเหลือ";
+            if ($has_officer && $has_not_officer) {
+                $result = "เจ้าหน้าที่ศูนย์สั่งการอยู่กับหน่วยอื่น";
             } elseif ($has_officer) {
                 $result = "dont มี เจ้าหน้าที่";
-            } elseif ($has_requester) {
+            } elseif ($has_not_officer) {
                 $result = "do";
             } else {
                 $result = "else";
