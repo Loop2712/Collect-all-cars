@@ -720,7 +720,7 @@ function loop_check_user_operation_meet(){
                                         <button type="button" class="btn btn-outline-danger d-none">
                                             <i class="fa-solid fa-hospital-user"></i> Meet
                                         </button>
-                                        <a id="" type="button" class="btn btn-success shadow_btn_call" href="`+tag_href+`">
+                                        <a id="" type="button" class="btn btn-success shadow_btn_call" href="`+tag_href+`" target="_blank">
                                             <i class="fa-regular fa-phone"></i> เข้าร่วมการสนทนา
                                         </a>
                                         <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+`" onclick="mute_ringtone_operation();">
@@ -757,7 +757,7 @@ function loop_check_user_operation_meet(){
                                         <button type="button" class="btn btn-outline-danger d-none">
                                             <i class="fa-solid fa-hospital-user"></i> Meet
                                         </button>
-                                        <a type="button" class="btn btn-success" href="`+tag_href+`">
+                                        <a type="button" class="btn btn-success" href="`+tag_href+`" target="_blank">
                                             <i class="fa-regular fa-phone"></i> เข้าร่วมการสนทนา
                                         </a>
                                         <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+` d-none" onclick="mute_ringtone_operation();">
@@ -792,7 +792,7 @@ function loop_check_user_operation_meet(){
                                     <button type="button" class="btn btn-outline-danger d-none">
                                         <i class="fa-solid fa-hospital-user"></i> Meet
                                     </button>
-                                    <a type="button" class="btn btn-success" href="`+tag_href+`">
+                                    <a type="button" class="btn btn-success" href="`+tag_href+`" target="_blank">
                                         <i class="fa-regular fa-phone"></i> เข้าร่วมการสนทนา
                                     </a>
                                     <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+` d-none" onclick="mute_ringtone_operation();">

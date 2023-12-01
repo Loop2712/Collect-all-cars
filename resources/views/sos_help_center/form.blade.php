@@ -1603,7 +1603,7 @@ color: #ff9317;
                                             <button type="button" class="btn btn-outline-danger d-none">
                                                 <i class="fa-solid fa-hospital-user"></i> Meet
                                             </button>
-                                            <a id="" type="button" class="btn btn-success" href="{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}">
+                                            <a id="" type="button" class="btn btn-success" href="{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}" target="_blank">
                                                 <i class="fa-regular fa-phone"></i> เข้าร่วมการสนทนา
                                             </a>
                                             <a id="tag_a_mute_ringtone_meet" type="button" class="btn btn-secondary d-none" onclick="mute_ringtone_operation();">
