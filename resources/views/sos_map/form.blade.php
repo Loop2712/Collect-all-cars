@@ -1,6 +1,6 @@
 
-@if(Auth::user()->id == '1' || Auth::user()->id == '4')
-<div style="display:none;">
+@if(Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '11003429')
+<div style="display:block;">
 @else
 <div style="display:none;">
 @endif
