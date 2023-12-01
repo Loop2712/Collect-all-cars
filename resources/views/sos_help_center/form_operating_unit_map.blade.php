@@ -1406,6 +1406,7 @@
                         document.querySelector('#btn_close_modal_cf_select').click();
                         // คลิก tag a หรือ เปลี่ยนการแสดงผลข้อมูลเจ้าหน้าที่
                         document.querySelector('#btn_operation').classList.remove('d-none');
+                        document.querySelector('#btn_open_meet').classList.remove('d-none');
                         document.querySelector('#btn_select_operating_unit').classList.add('d-none');
 
                         fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id)

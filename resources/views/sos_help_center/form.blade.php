@@ -3237,10 +3237,14 @@ color: #ff9317;
             document.querySelector('#btn_operation').classList.add('d-none');
             document.querySelector('#btn_select_operating_unit').classList.remove('d-none');
             // document.querySelector('#btn_open_meet').classList.add('d-none');
+
+            document.querySelector('#btn_open_meet').classList.add('d-none');
         }else{
             document.querySelector('#btn_operation').classList.remove('d-none');
             document.querySelector('#btn_select_operating_unit').classList.add('d-none');
             // document.querySelector('#btn_open_meet').classList.remove('d-none');
+            
+            document.querySelector('#btn_open_meet').classList.remove('d-none');
         }
 
     }
