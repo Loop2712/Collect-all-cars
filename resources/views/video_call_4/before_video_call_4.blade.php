@@ -292,9 +292,9 @@
                             @php
                                 $data_sos_1669 = App\Models\Sos_help_center::where('id' , $sos_id)->first();
                             @endphp
-                            <h4 class="w-100">ห้องสนทนาของเคส : {{ $data_sos_1669->operating_code }}</h4>
+                            <h4 class="w-100">ห้องสนทนา : {{ $data_sos_1669->operating_code }}</h4>
                         @else
-                            <h4 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h4>
+                            <h4 class="w-100">ห้องสนทนา : {{$sos_id ? $sos_id : "--"}}</h4>
                         @endif
                         <div id="avatars" class="avatars">
                             {{-- <span class="avatar">
@@ -331,11 +331,11 @@
                             @php
                                 $data_sos_1669 = App\Models\Sos_help_center::where('id' , $sos_id)->first();
                             @endphp
-                            <h1 class="w-100 font-weight-bold">ห้องสนทนาของเคส : {{ $data_sos_1669->operating_code }}</h1>
+                            <h1 class="w-100 font-weight-bold">ห้องสนทนา : {{ $data_sos_1669->operating_code }}</h1>
                         @else
-                            <h1 class="w-100 font-weight-bold">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h1>
+                            <h1 class="w-100 font-weight-bold">ห้องสนทนา : {{$sos_id ? $sos_id : "--"}}</h1>
                         @endif
-                        <h1 class="w-100 font-weight-bold">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h1>
+                        <h1 class="w-100 font-weight-bold">ห้องสนทนา : {{$sos_id ? $sos_id : "--"}}</h1>
                         <div id="avatars" class="avatars">
                             {{-- <span class="avatar">
                                 <img src="https://picsum.photos/70">
