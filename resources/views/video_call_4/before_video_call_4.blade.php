@@ -288,7 +288,14 @@
             <div class="col-12 col-sm-12 col-lg-4  d-flex justify-content-center p-3 align-items-center">
                 <div id="before_join_message" class="text-center w-100">
                     @if ($type_device == "pc_video_call")
-                        <h4 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h4>
+                        @if($type == "sos_1669")
+                            @php
+                                $data_sos_1669 = App\Models\Sos_help_center::where('id' , $sos_id)->first();
+                            @endphp
+                            <h4 class="w-100">ห้องสนทนาของเคส : {{ $data_sos_1669->operating_code }}</h4>
+                        @else
+                            <h4 class="w-100">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h4>
+                        @endif
                         <div id="avatars" class="avatars">
                             {{-- <span class="avatar">
                                 <img src="https://picsum.photos/70">
@@ -320,6 +327,14 @@
                             <a id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องนี้ถึงจำนวนผู้ใช้สูงสุดแล้ว</a>
                         @endif
                     @else
+                        @if($type == "sos_1669")
+                            @php
+                                $data_sos_1669 = App\Models\Sos_help_center::where('id' , $sos_id)->first();
+                            @endphp
+                            <h1 class="w-100 font-weight-bold">ห้องสนทนาของเคส : {{ $data_sos_1669->operating_code }}</h1>
+                        @else
+                            <h1 class="w-100 font-weight-bold">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h1>
+                        @endif
                         <h1 class="w-100 font-weight-bold">ห้องสนทนาของเคส : {{$sos_id ? $sos_id : "--"}}</h1>
                         <div id="avatars" class="avatars">
                             {{-- <span class="avatar">
