@@ -335,7 +335,6 @@
                         @else
                             <h1 class="w-100 font-weight-bold">ห้องสนทนา : {{$sos_id ? $sos_id : "--"}}</h1>
                         @endif
-                        <h1 class="w-100 font-weight-bold">ห้องสนทนา : {{$sos_id ? $sos_id : "--"}}</h1>
                         <div id="avatars" class="avatars">
                             {{-- <span class="avatar">
                                 <img src="https://picsum.photos/70">
