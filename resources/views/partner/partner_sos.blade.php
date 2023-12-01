@@ -295,6 +295,11 @@
                             <div class="col-7">
                                 <!-- ข้อมูลผู้ขอความช่วยเหลือ -->
                                 <h4>{{ $item->name }}</h4>
+                                <p style="font-size: 16px;">
+                                    <b>
+                                        ประเภทผู้แจ้งเหตุ <u>{{ isset($item->type_reporter) ? $item->type_reporter : '..'}}</u>
+                                    </b>
+                                </p>
                                 <span style="font-size:18px;">
                                     <i class="fa-solid fa-circle-phone text-success"></i> {{ $item->phone }}
                                 </span>

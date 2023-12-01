@@ -420,16 +420,15 @@
 
                             <label class="col-12 mt-3" style="padding:0px;" for="photo_sos_area" >
                                 <div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
-                                    <div class="form-group p-3"id="add_select_img_area">
+                                    <div class="form-group my-2"id="add_select_img_area">
                                         <input class="form-control d-none" name="photo_area" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_area" value="" accept="image/*" onchange="document.getElementById('show_photo_sos_area').src = window.URL.createObjectURL(this.files[0]);check_add_img_area();document.querySelector('#btn_help_area').disabled = false;">
                                         <div  class="text-center">
                                             <center>
-                                                <img id="img_sos_area" style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
+                                                <img id="img_sos_area" style=" object-fit: cover; border-radius:15px;width: 100px;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
                                             </center>
-                                            <br>
-                                            <h3 class="text-center m-0">
+                                            <h5 class="text-center  mt-2 mb-0">
                                                 <b>เพิ่มภาพถ่าย "คลิก"</b> 
-                                            </h3>
+                                            </h5>
                                         </div>
                                         
                                     </div>
@@ -503,6 +502,86 @@
                             <div class="d-none form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
                                 <input class="form-control" name="photo" type="text" id="photo" value="{{ isset($sos_map->photo) ? $sos_map->photo : '' }}" >
                                 {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
+                            </div>
+
+                            <div class="text-center">
+                                <label class="col-12 mt-2 mb-2" style="width: 90%;">
+                                    <b>ผู้แจ้งเหตุ</b>
+                                </label>
+
+                                <center>
+
+                                <button id="private_type_user_sos_me" type="button" class="btn btn-primary" onclick="private_show_input_type_user_sos('me');">
+                                    ตัวฉัน
+                                </button>
+                                <button id="private_type_user_sos_relative" type="button" class="btn btn-outline-primary" onclick="private_show_input_type_user_sos('relative');">
+                                    ญาติ
+                                </button>
+                                <button id="private_type_user_sos_good_citizen" type="button" class="btn btn-outline-primary" onclick="private_show_input_type_user_sos('good_citizen');">
+                                    พลเมืองดี
+                                </button>
+                                <button id="private_type_user_sos_other" type="button" class="btn btn-outline-secondary" onclick="private_show_input_type_user_sos('other');">
+                                    อื่นๆ
+                                </button>
+
+                                <input type="text" name="private_type_reporter" id="private_type_reporter" class="form-control d-none" value="ผู้ขอความช่วยเหลือ">
+
+                                <input type="text" name="private_type_reporter_other" id="private_type_reporter_other" class="form-control mt-3 mb-3 d-none" name="" placeholder="ประเภทผู้แจ้งเหตุ" style="width: 90%;" onchange="private_change_type_reporter_other();">
+
+                                <script>
+
+                                    function private_change_type_reporter_other(){
+
+                                        let private_type_reporter_other = document.querySelector('#private_type_reporter_other');
+
+                                        document.querySelector('#private_type_reporter').value = private_type_reporter_other.value ;
+                                    }
+                                    
+                                    function private_show_input_type_user_sos(type){
+
+                                        let private_type_reporter_other = document.querySelector('#private_type_reporter_other');
+
+                                        document.querySelector('#private_type_user_sos_me').classList.remove('btn-primary');
+                                        document.querySelector('#private_type_user_sos_relative').classList.remove('btn-primary');
+                                        document.querySelector('#private_type_user_sos_good_citizen').classList.remove('btn-primary');
+                                        document.querySelector('#private_type_user_sos_other').classList.remove('btn-secondary');
+
+                                        document.querySelector('#private_type_user_sos_me').classList.add('btn-outline-primary');
+                                        document.querySelector('#private_type_user_sos_relative').classList.add('btn-outline-primary');
+                                        document.querySelector('#private_type_user_sos_good_citizen').classList.add('btn-outline-primary');
+                                        document.querySelector('#private_type_user_sos_other').classList.add('btn-outline-secondary');
+                                        
+
+                                        if(type == 'other'){
+
+                                            document.querySelector('#private_type_reporter').value = 'อื่นๆ' ;
+
+                                            private_type_reporter_other.classList.remove('d-none');
+
+                                            document.querySelector('#private_type_user_sos_other').classList.add('btn-secondary');
+                                            document.querySelector('#private_type_user_sos_other').classList.remove('btn-outline-secondary');
+                                        }else{
+
+                                            if(type == "me"){
+                                                document.querySelector('#private_type_reporter').value = 'ผู้ขอความช่วยเหลือ' ;
+                                            }else if(type == "relative"){
+                                                document.querySelector('#private_type_reporter').value = 'ญาติ' ;
+                                            }
+                                            else if(type == "good_citizen"){
+                                                document.querySelector('#private_type_reporter').value = 'พลเมืองดี' ;
+                                            }
+
+                                            private_type_reporter_other.value = '' ;
+
+                                            private_type_reporter_other.classList.add('d-none');
+
+                                            document.querySelector('#private_type_user_sos_' + type).classList.add('btn-primary');
+                                            document.querySelector('#private_type_user_sos_' + type).classList.remove('btn-outline-primary');
+                                        }
+
+                                    }
+
+                                </script>
                             </div>
 
                             <div class="px-2">
@@ -928,16 +1007,15 @@
                         </div>
                         <label class="col-12 mt-3" style="padding:0px;" for="photo_sos_1669" >
                             <div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
-                                <div class="form-group p-3"id="add_select_img">
+                                <div class="form-group my-2"id="add_select_img">
                                     <input class="form-control d-none" name="photo_sos_1669" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_1669" value="" accept="image/*" onchange="document.getElementById('show_photo_sos_1669').src = window.URL.createObjectURL(this.files[0]);check_add_img_1669();">
                                     <div  class="text-center">
                                         <center>
-                                            <img id="img_sos_1669" style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
+                                            <img id="img_sos_1669" style=" object-fit: cover; border-radius:15px;width: 100px;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
                                         </center>
-                                        <br>
-                                        <h3 class="text-center m-0">
+                                        <h5 class="text-center mt-2 mb-0">
                                             <b>เพิ่มภาพถ่าย "คลิก"</b> 
-                                        </h3>
+                                        </h5>
                                     </div>
                                     
                                 </div>
@@ -958,7 +1036,7 @@
                 </script>
                 <div class="text-center">
                     <label class="col-12 mt-2 mb-2" style="width: 90%;">
-                        ผู้แจ้งเหตุ
+                        <b>ผู้แจ้งเหตุ</b>
                     </label>
 
                     <center>
