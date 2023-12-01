@@ -710,18 +710,18 @@ function loop_check_user_operation_meet(){
 
                         let class_btn = "";
                         if(status_pause_ringtone == true){
-                            class_btn = "btn-danger";
+                            class_btn = "btn-secondary";
                         }else{
                             class_btn = "btn-secondary";
                         }
 
                         tag_b = `<div class="btnGroupOperating">
                                     <div class="btn-group btnGroupOperating">
-                                        <button type="button" class="btn btn-outline-danger">
+                                        <button type="button" class="btn btn-outline-danger d-none">
                                             <i class="fa-solid fa-hospital-user"></i> Meet
                                         </button>
                                         <a id="" type="button" class="btn btn-success shadow_btn_call" href="`+tag_href+`">
-                                            <i class="fa-regular fa-phone"></i>
+                                            <i class="fa-regular fa-phone"></i> เข้าร่วมการสนทนา
                                         </a>
                                         <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+`" onclick="mute_ringtone_operation();">
                                             <i class="fa-solid fa-volume-slash"></i>
@@ -754,18 +754,17 @@ function loop_check_user_operation_meet(){
 
                         tag_b = `<div class="btnGroupOperating">
                                     <div class="btn-group btnGroupOperating">
-                                        <button type="button" class="btn btn-outline-danger">
+                                        <button type="button" class="btn btn-outline-danger d-none">
                                             <i class="fa-solid fa-hospital-user"></i> Meet
                                         </button>
                                         <a type="button" class="btn btn-success" href="`+tag_href+`">
-                                            <i class="fa-regular fa-phone"></i>
+                                            <i class="fa-regular fa-phone"></i> เข้าร่วมการสนทนา
                                         </a>
-                                        <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+`" onclick="mute_ringtone_operation();">
+                                        <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+` d-none" onclick="mute_ringtone_operation();">
                                             <i class="fa-solid fa-volume-slash"></i>
                                         </a>
                                     </div>
                                 </div>`;
-
 
 
                     liElement.insertAdjacentHTML('beforeend', tag_b); // แทรกบนสุด
@@ -790,13 +789,13 @@ function loop_check_user_operation_meet(){
 
                     tag_b = `<div class="btnGroupOperating">
                                 <div class="btn-group btnGroupOperating">
-                                    <button type="button" class="btn btn-outline-danger">
+                                    <button type="button" class="btn btn-outline-danger d-none">
                                         <i class="fa-solid fa-hospital-user"></i> Meet
                                     </button>
                                     <a type="button" class="btn btn-success" href="`+tag_href+`">
-                                        <i class="fa-regular fa-phone"></i>
+                                        <i class="fa-regular fa-phone"></i> เข้าร่วมการสนทนา
                                     </a>
-                                    <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+`" onclick="mute_ringtone_operation();">
+                                    <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+` d-none" onclick="mute_ringtone_operation();">
                                         <i class="fa-solid fa-volume-slash"></i>
                                     </a>
                                 </div>
