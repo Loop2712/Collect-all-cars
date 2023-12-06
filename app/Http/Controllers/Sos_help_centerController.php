@@ -2864,6 +2864,7 @@ class Sos_help_centerController extends Controller
         $data = [];
         $data['refuse'] = '' ;
         $data['call'] = '' ;
+        $data['meet'] = '' ;
 
         $requestData = $request->all();
 
@@ -2888,16 +2889,19 @@ class Sos_help_centerController extends Controller
             $data['refuse'] = 'ไม่มีข้อมูล';
         }
 
-        $data_agora_chat = Agora_chat::where('member_in_room' , '!=', null)->get();
+        $data_agora_chat = DB::table('sos_help_centers')
+            ->join('agora_chats', 'sos_help_centers.id', '=', 'agora_chats.sos_id')
+            ->select('sos_help_centers.*' , 'agora_chats.*')
+            ->where("agora_chats.member_in_room" , '!=', null)
+            ->where("sos_help_centers.notify" , 'LIKE', "%$area%")
+            ->get();
 
         if( !empty($data_agora_chat) ){
 
             foreach ($data_agora_chat as $item_agora){
 
-                // ตรวจสอบว่า sos id นี้เป็นของพื้นที่ $data_user คนนี้หรือเปล่า
-                $data_for_loop = Sos_help_center::where('id' , $item_agora->sos_id)->first();
-                
-                if (str_contains($data_for_loop->notify, $area)) { 
+                if($item_agora->room_for == "user_sos_1669"){ // 1 ต่อ 1
+
                     $data_member_in_room = $item_agora->member_in_room;
 
                     $data_array = json_decode($data_member_in_room, true);
@@ -2910,15 +2914,95 @@ class Sos_help_centerController extends Controller
                             $data['call'] = $data['call'] . ',' . (string)$item_agora->sos_id ;
                         }
                     }
+
+                }else if($item_agora->room_for == "meet_operating_1669"){ // meet 4 คน
+
+                    $status_member = [];
+
+                    if (!empty($item_agora->member_in_room)) {
+                        
+                        $member_array = json_decode($item_agora->member_in_room, true);
+
+                        foreach ($member_array as $user_id) {
+                            $data_command = Data_1669_officer_command::where('user_id', $user_id)->first();
+
+                            if(!empty($data_command)){
+                                $status_member[] = "command";
+                            }else{
+                                $status_member[] = "not_command";
+                            }
+                        }
+
+                    }else {
+                        $status_member = null;
+                    }
+
+                    if (!empty($status_member)) {
+                        $has_officer = in_array("command", $status_member);
+                        $has_not_officer = in_array("not_command", $status_member);
+
+                        if ($has_officer && $has_not_officer) {
+                            $result = "เจ้าหน้าที่ศูนย์สั่งการอยู่กับหน่วยอื่น";
+                        } elseif ($has_officer) {
+                            $result = "มีเจ้าหน้าที่ศูนย์สั่งการอยู่อย่างเดียว";
+                        } elseif ($has_not_officer) {
+                            $result = "do";
+                            if ( empty($data['meet']) ){
+                            $data['meet'] = (string)$item_agora->sos_id ;
+                                }else{
+                                    $data['meet'] = $data['meet'] . ',' . (string)$item_agora->sos_id ;
+                                }
+                        } else {
+                            $result = "else";
+                        }
+                    }else{
+                        $result = "ไม่มีใครอยู่ในห้องสนทนา";
+                    }
+
                 }
+
             }
 
         }else{
             $data['call'] = 'ไม่มีข้อมูล';
+            $data['meet'] = 'ไม่มีข้อมูล';
         }
+
+        // $data_agora_chat = Agora_chat::where('member_in_room' , '!=', null)->get();
+
+        // if( !empty($data_agora_chat) ){
+
+        //     foreach ($data_agora_chat as $item_agora){
+
+        //         // ตรวจสอบว่า sos id นี้เป็นของพื้นที่ $data_user คนนี้หรือเปล่า
+        //         $data_for_loop = Sos_help_center::where('id' , $item_agora->sos_id)->first();
+
+        //         if (str_contains($data_for_loop->notify, $area)) { 
+        //             $data_member_in_room = $item_agora->member_in_room;
+
+        //             $data_array = json_decode($data_member_in_room, true);
+        //             $check_user = $data_array['user'];
+
+        //             if( !empty($check_user) ){
+        //                 if ( empty($data['call']) ){
+        //                     $data['call'] = (string)$item_agora->sos_id ;
+        //                 }else{
+        //                     $data['call'] = $data['call'] . ',' . (string)$item_agora->sos_id ;
+        //                 }
+        //             }
+        //         }
+        //     }
+
+        // }else{
+        //     $data['call'] = 'ไม่มีข้อมูล';
+        // }
 
         if ( empty($data['call']) ){
             $data['call'] = 'ไม่มีข้อมูล';
+        }
+
+        if ( empty($data['meet']) ){
+            $data['meet'] = 'ไม่มีข้อมูล';
         }
 
         return $data ;

@@ -1195,7 +1195,7 @@
   <!-- ======= Footer WEB ======= -->
   <footer class="text-center text-white mt-3" style="background-color: #F1F7FD;padding-top:10px;">
     <!-- Grid container -->
-    <div class="container p-1">
+    <div class="container p-1 mb-3">
       <!-- Section: Images -->
       <div class="row">
         <div class="col-lg-1 col-md-1 col-2" style="padding-right:0px;">

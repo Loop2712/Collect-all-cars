@@ -1009,11 +1009,25 @@
                                 border-radius: 50%;
                                 z-index: 9999;
                             }
+
                             .notification-call {
                                 position: absolute;
                                 top: -15px;
                                 right: 85% !important;
                                 background-color: green; 
+                                color: #fff;
+                                width: 30px;
+                                height: 30px;
+                                font-size: 18px;
+                                border-radius: 50%;
+                                z-index: 9999;
+                            }
+
+                            .notification-meet {
+                                position: absolute;
+                                top: -15px;
+                                right: 80% !important;
+                                background-color: orange; 
                                 color: #fff;
                                 width: 30px;
                                 height: 30px;
@@ -1040,6 +1054,12 @@
                                 <span id="notification_call_sos_id_{{ $item->id }}" class="notification-call d-none">
                                     <center>
                                         <i class="fa-solid fa-phone-volume fa-shake"></i>
+                                    </center>
+                                </span>
+
+                                <span id="notification_meet_sos_id_{{ $item->id }}" class="notification-meet d-none">
+                                    <center>
+                                        <i class="fa-duotone fa-user-police-tie fa-shake"></i>
                                     </center>
                                 </span>
 
@@ -2955,10 +2975,11 @@
 
     function fist_real_time_check_refuse_and_call(){
         
-        console.log('real_time_check_refuse_and_call');
+        // console.log('real_time_check_refuse_and_call');
 
         let all_notification_refuse = document.querySelectorAll('.notification-refuse');
         let all_notification_call = document.querySelectorAll('.notification-call');
+        let all_notification_meet = document.querySelectorAll('.notification-meet');
         let card_data_sos = document.querySelectorAll('.card-data-sos');
 
         all_notification_refuse.forEach(Item_1 => {
@@ -2969,8 +2990,12 @@
            Item_2.classList.add('d-none');
         })
 
-        card_data_sos.forEach(Item_3 => {
-           Item_3.classList.remove('border-color-change-color');
+        all_notification_meet.forEach(Item_3 => {
+           Item_3.classList.add('d-none');
+        })
+
+        card_data_sos.forEach(Item_4 => {
+           Item_4.classList.remove('border-color-change-color');
         })
 
         fetch("{{ url('/') }}/api/real_time_check_refuse_and_call?user_id="+'{{ Auth::user()->id }}')
@@ -2982,6 +3007,7 @@
 
                 let result_refuse = result['refuse'].split(",");
                 let result_call = result['call'].split(",");
+                let result_meet = result['meet'].split(",");
                     // console.log('result_refuse >> ' + result_refuse);
                     // console.log('result_call >> ' + result_call);
                     // console.log('result_refuse[0] >> ' + result_refuse[0]);
@@ -3004,6 +3030,14 @@
                     }
                 }
 
+                if(result_meet[0] && result_meet[0] != 'ไม่มีข้อมูล'){
+                    for(let xx = 0; xx < result_meet.length; xx++){
+                        document.querySelector('#notification_meet_sos_id_'+result_meet[xx]).classList.remove('d-none');
+                        let div_card_meet = document.querySelector('.card_sos_id_'+result_meet[xx]);
+                            div_card_meet.classList.add('border-color-change-color');
+                    }
+                }
+
             });
 
         real_time_check_refuse_and_call();
@@ -3017,6 +3051,7 @@
 
             let all_notification_refuse = document.querySelectorAll('.notification-refuse');
             let all_notification_call = document.querySelectorAll('.notification-call');
+            let all_notification_meet = document.querySelectorAll('.notification-meet');
             let card_data_sos = document.querySelectorAll('.card-data-sos');
 
             all_notification_refuse.forEach(Item_1 => {
@@ -3027,8 +3062,12 @@
                Item_2.classList.add('d-none');
             })
 
-            card_data_sos.forEach(Item_3 => {
-               Item_3.classList.remove('border-color-change-color');
+            all_notification_meet.forEach(Item_3 => {
+               Item_3.classList.add('d-none');
+            })
+
+            card_data_sos.forEach(Item_4 => {
+               Item_4.classList.remove('border-color-change-color');
             })
 
             fetch("{{ url('/') }}/api/real_time_check_refuse_and_call?user_id="+'{{ Auth::user()->id }}')
@@ -3040,6 +3079,7 @@
 
                     let result_refuse = result['refuse'].split(",");
                     let result_call = result['call'].split(",");
+                    let result_meet = result['meet'].split(",");
                         // console.log('result_refuse >> ' + result_refuse);
                         // console.log('result_call >> ' + result_call);
                         // console.log('result_refuse[0] >> ' + result_refuse[0]);
@@ -3059,6 +3099,14 @@
                             document.querySelector('#notification_call_sos_id_'+result_call[xx]).classList.remove('d-none');
                             let div_card_call = document.querySelector('.card_sos_id_'+result_call[xx]);
                                 div_card_call.classList.add('border-color-change-color');
+                        }
+                    }
+
+                    if(result_meet[0] && result_meet[0] != 'ไม่มีข้อมูล'){
+                        for(let xx = 0; xx < result_meet.length; xx++){
+                            document.querySelector('#notification_meet_sos_id_'+result_meet[xx]).classList.remove('d-none');
+                            let div_card_meet = document.querySelector('.card_sos_id_'+result_meet[xx]);
+                                div_card_meet.classList.add('border-color-change-color');
                         }
                     }
 

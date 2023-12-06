@@ -2703,7 +2703,7 @@
 		console.log('Theme_check_refuse_and_call');
 
 		let i_noti_refuse = document.querySelector('#i_noti_refuse');
-		let i_noti_call = document.querySelector('#i_noti_call');
+        let i_noti_call = document.querySelector('#i_noti_call');
 		let i_noti_menu = document.querySelector('#i_noti_menu');
 
 	    setInterval(function() {
@@ -2716,6 +2716,7 @@
 
                     let result_refuse = result['refuse'].split(",");
                     let result_call = result['call'].split(",");
+                    let result_meet = result['meet'].split(",");
                         // console.log('result_refuse >> ');
                         // console.log(result_refuse);
                         // console.log('result_call >> ');
@@ -2736,13 +2737,21 @@
                     	i_noti_menu.classList.remove('d-none');
                     	i_noti_call.classList.remove('d-none');
                     }else{
-                    	i_noti_call.classList.add('d-none');
+                        
+                        if(result_meet[0] && result_meet[0] != 'ไม่มีข้อมูล'){
+                            i_noti_menu.classList.remove('d-none');
+                            i_noti_call.classList.remove('d-none');
+                        }else{
+                            i_noti_call.classList.add('d-none');
+                        }
+
                     }
 
-                    if (!result_refuse[0] && result_call[0] == 'ไม่มีข้อมูล'){
+
+                    if (!result_refuse[0] && result_call[0] == 'ไม่มีข้อมูล' && result_meet[0] == 'ไม่มีข้อมูล'){
                     	i_noti_menu.classList.add('d-none');
                     	i_noti_refuse.classList.add('d-none');
-                    	i_noti_call.classList.add('d-none');
+                        i_noti_call.classList.add('d-none');
                     }
 
                     // ตรวจสอบถ้าอยู่ในหน้า EDIT ของเคสนั้นๆ แล้วไม่มีการโทรหรือปฏิเสธจากเคสอื่นให้ซ่อน icon แจ้งเตือน
