@@ -874,46 +874,89 @@ class Agora_4_Controller extends Controller
 
         $sos_id = $request->sos_id;
         $type_sos = "meet_operating_1669";
+        $type_check = $request->type_check;
 
         $sos_data = Agora_chat::where('sos_id',$sos_id)->where('room_for',$type_sos)->first();
 
         $status_member = [];
 
-        if (!empty($sos_data->member_in_room)) {
-            $member_array = json_decode($sos_data->member_in_room, true);
+        if($type_check == "from_yellow"){//จากหน้า from_yellow
+            if (!empty($sos_data->member_in_room)) {
+                $member_array = json_decode($sos_data->member_in_room, true);
 
-            foreach ($member_array as $user_id) {
-                $data_command = Data_1669_officer_command::where('user_id', $user_id)->first();
-                // $data_officer = Data_1669_operating_officer::where('user_id', $user_id)->first();
+                foreach ($member_array as $user_id) {
+                    $data_command = Data_1669_officer_command::where('user_id', $user_id)->first();
+                    // $data_officer = Data_1669_operating_officer::where('user_id', $user_id)->first();
 
-                if(!empty($data_command)){
-                    $status_member[] = "command";
-                }else{
-                    $status_member[] = "not_command";
+                    if(!empty($data_command)){
+                        $status_member[] = "command";
+                    }else{
+                        $status_member[] = "not_command";
+                    }
                 }
-            }
-        } else {
-            $status_member = null;
-        }
-
-        if (!empty($status_member)) {
-            $has_officer = in_array("command", $status_member);
-            $has_not_officer = in_array("not_command", $status_member);
-
-            if ($has_officer && $has_not_officer) {
-                $result = "เจ้าหน้าที่ศูนย์สั่งการอยู่กับหน่วยอื่น";
-            } elseif ($has_officer) {
-                $result = "มีเจ้าหน้าที่ศูนย์สั่งการอยู่อย่างเดียว";
-            } elseif ($has_not_officer) {
-                $result = "do";
             } else {
-                $result = "else";
+                $status_member = null;
             }
-        }else{
-            $result = "ไม่มีใครอยู่ในห้องสนทนา";
+
+            if (!empty($status_member)) {
+                $has_officer = in_array("command", $status_member);
+                $has_not_officer = in_array("not_command", $status_member);
+
+                if ($has_officer && $has_not_officer) {
+                    $result = "เจ้าหน้าที่ศูนย์สั่งการอยู่กับหน่วยอื่น";
+                } elseif ($has_officer) {
+                    $result = "มีเจ้าหน้าที่ศูนย์สั่งการอยู่อย่างเดียว";
+                } elseif ($has_not_officer) {
+                    $result = "do";
+                } else {
+                    $result = "else";
+                }
+            }else{
+                $result = "ไม่มีใครอยู่ในห้องสนทนา";
+            }
+
+            return $result;
+
+        }else if($type_check == "show_case"){ //จากหน้า show_case
+
+            if (!empty($sos_data->member_in_room)) {
+                $member_array = json_decode($sos_data->member_in_room, true);
+
+                foreach ($member_array as $user_id) {
+                    // $data_command = Data_1669_officer_command::where('user_id', $user_id)->first();
+                    $data_officer = Data_1669_operating_officer::where('user_id', $user_id)->first();
+
+                    if(!empty($data_officer)){
+                        $status_member[] = "operating";
+                    }else{
+                        $status_member[] = "not_operating";
+                    }
+                }
+
+            } else {
+                $status_member = null;
+            }
+
+            if (!empty($status_member)) {
+                $has_operating = in_array("operating", $status_member);
+                $has_not_operating = in_array("not_operating", $status_member);
+
+                if ($has_operating && $has_not_operating) {
+                    $result = "เจ้าหน้าที่ปฎิบัติการอยู่กับหน่วยอื่น";
+                } elseif ($has_operating) {
+                    $result = "มีเจ้าหน้าที่ปฎิบัติการอยู่อย่างเดียว";
+                } elseif ($has_not_operating) {
+                    $result = "do";
+                } else {
+                    $result = "else";
+                }
+            }else{
+                $result = "ไม่มีใครอยู่ในห้องสนทนา";
+            }
+
+            return $result;
         }
 
-        return $result;
     }
 
     function after_video_call(){

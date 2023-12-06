@@ -685,9 +685,9 @@ function loop_check_user_operation_meet(){
       fetch("{{ url('/') }}/api/check_user_for_operation_meet" + "?sos_id=" + sos_1669_id + "&type_check=" + "from_yellow")
         .then(response => response.text())
         .then(result => {
-          // console.log("result check_user_for_operation_meet");
-          // console.log(result);
-          // console.log("first_operation_meeting :" + first_operation_meeting);
+          console.log("result check_user_for_operation_meet");
+          console.log(result);
+        //   console.log("first_operation_meeting :" + first_operation_meeting);
 
             if(result == "เจ้าหน้าที่ศูนย์สั่งการอยู่กับหน่วยอื่น"){
                 first_operation_meeting = true;

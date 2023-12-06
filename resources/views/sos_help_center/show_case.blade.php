@@ -271,7 +271,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	justify-content: center;
 }.text-of-status{
 	font-size: clamp(17px, 5vw, 20px) !important;
-	
+
 }.div-text-status{
 	width: 100% !important;
 	white-space: nowrap !important;
@@ -282,7 +282,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 .sry-open-location img{
 	margin-top: 30%;
 	width: 100%;
-  object-fit: cover; 
+  object-fit: cover;
   height: 100%;
 }.sry-open-location p{
 	font-size: clamp(12px, 5vw, 20px) !important;
@@ -303,7 +303,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		display: none;
 	}
 	#map_show_case {
-		width: 100%!important; 
+		width: 100%!important;
 		height: 100% !important;
 	}
 	.gmnoprint{
@@ -401,9 +401,9 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		justify-content: space-between;
 		align-items: center;
 		padding: 8px;
-		left: 2%;	
-		
-	}	
+		left: 2%;
+
+	}
 
 	.test{
 		top:50% !important;
@@ -426,7 +426,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   .data-menu.show-data-menu menu:nth-of-type(4){ animation-delay: 0.3s; }
   .data-menu.show-data-menu menu:nth-of-type(5){ animation-delay: 0.4s; }
 
-	
+
 	@keyframes show-data-menu {
 		0% {
 			transform: translateY(50px);
@@ -537,7 +537,7 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     width: 100px;
     max-width: 70px;
     height: 60px;
-   
+
     font-size: 1.5rem;
     margin-left: 1rem;
 
@@ -616,835 +616,984 @@ input:focus {
   transform: scale(1);
 }
 
+/*==========   for call div   =============== */
+
+.card_data{
+    background-color: white;
+    max-width: 40%;
+    width: auto;
+    min-width: 20%;
+    padding: 10px ;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+.btn_call {
+    border-radius: 50%;
+    width: 42px;
+    height: 42px; /* เพิ่ม height เพื่อให้มีรูปร่างเป็นวงกลม */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #29cc39;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+.btn_mute {
+    border-radius: 50%;
+    width: 42px;
+    height: 42px; /* เพิ่ม height เพื่อให้มีรูปร่างเป็นวงกลม */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6c757d;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+.btn_call i {
+    margin: 0;
+    color: #fff;
+}
+
+.btn_mute i {
+    margin: 0;
+    color: #fff;
+}
+
+.btn_call_pulse {
+    border-radius: 50%;
+    width: 42px;
+    height: 42px; /* เพิ่ม height เพื่อให้มีรูปร่างเป็นวงกลม */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #29cc39;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+    animation: pulse 1.5s infinite; /* เพิ่ม animation property */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1); /* ขนาดปกติ */
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        transform: scale(1.1); /* ขยาย */
+        box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.3), 0 8px 20px 0 rgba(0, 0, 0, 0.3);
+    }
+    100% {
+        transform: scale(1); /* ขนาดปกติ */
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+    }
+}
+
+.btn_call_pulse i {
+    margin: 0;
+    color: #fff;
+}
+
+
+.card_btn_div{
+    height: 15%;
+    position:absolute;
+    z-index: 8000;
+}
+
+#div_data_right{
+    position: absolute;
+    z-index: 99999;
+    bottom: 40%;
+    right: 0.1%;
+    width: auto;
+
+}
+
+
+.body_hidden{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+}
+
+.active_div_data_right{
+    animation: show_div_data_right 1s ease 0s 1 normal forwards;
+}
+
+.Inactive_div_data_right{
+    animation: hide_div_data_right 1s ease 0s 1 normal forwards;
+}
+
+@keyframes show_div_data_right {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes hide_div_data_right {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/*==========  end for call div   ============ */
+
 </style>
 
 
-
-
-
-<div id="alert_send_update" class=" div_alert " role="alert">
-    <div class="alert-child">
-        <div >
-            <h4 class="d-block  text-alert">Send update location officer</h4>
-        </div>
-        <i class="fa-solid fa-xmark"></i>
-    </div>
-   
-</div>
-<div id="alert_phone" class=" div_alert " role="alert">
-    <div class="alert-child">
-        <div >
-            <p class="d-block  text-alert">กรุณากรอกข้อมูล </p> 
-			<span class="d-block  text-alert">
-				<span>
-					เลข กม.รถ
-				</span>
-				<span id="text-alert"></span>
-			</span>
-			
-        </div>
-        <div class="alert-icon">
+<div class="body_hidden">
+    <div id="alert_send_update" class=" div_alert " role="alert">
+        <div class="alert-child">
+            <div >
+                <h4 class="d-block  text-alert">Send update location officer</h4>
+            </div>
             <i class="fa-solid fa-xmark"></i>
         </div>
-        
+
+    </div>
+    <div id="alert_phone" class=" div_alert " role="alert">
+        <div class="alert-child">
+            <div >
+                <p class="d-block  text-alert">กรุณากรอกข้อมูล </p>
+                <span class="d-block  text-alert">
+                    <span>
+                        เลข กม.รถ
+                    </span>
+                    <span id="text-alert"></span>
+                </span>
+
+            </div>
+            <div class="alert-icon">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+
+        </div>
+    </div>
+
+        <div id="map_show_case" >
+            <div class="sry-open-location">
+                <img src="{{ asset('/img/more/sorry-no-text.png') }}" />
+                <center>
+                    <p class="sry-open-location-text h4" style="top: 35%;">ขออภัยค่ะ</p>
+                    <p class="sry-open-location-text h5" style="top: 45%;">ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ</p>
+                    <span style="top: 60%;" class="sry-open-location-text btn btn-md btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
+                        <i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
+                    </span>
+                </center>
+            </div>
+        </div>
+        <div class="status-bar">
+            <div class="show-status" id="situation_of_status">
+                <div class="ml-3" >
+                    <i class="fa-solid fa-truck-medical"></i>
+                    &nbsp;
+                    <small class="h6 text-bold p-0 m-0" id="show_status"></small>
+                    <small class="p-0 m-0" id="show_remark_status"></small>
+                </div>
+                <div class="ml-3 d-none">
+                    <p class="mt-2">
+                        LAT : <span id="text_show_lat"></span>
+                        <br>
+                        LONG : <span id="text_show_lng"></span>
+                    </p>
+                </div>
+                <button class="btn btn-danger" style="padding: 12px;" onclick="document.querySelector('#btn_modal_add_photo_sos').click();"> <i class="fa-duotone fa-camera-retro" ></i></button>
+            </div>
+            <div class="btn p-0 m-0">
+                @if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
+                    <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ Auth::user()->avatar }}">
+                @endif
+                @if(!empty(Auth::user()->photo))
+                    <img class="img-profile" width="45" src="{{ url('storage')}}/{{ Auth::user()->photo }}">
+                @endif
+            </div>
+        </div>
+
+        <div class="menubar show-menubar">
+            <button class="btn w-25 btn_menu" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-file-pen"></i></button>
+            <button class="btn w-25 btn_menu" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-solid fa-messages-question"></i></button>
+            <button class="btn w-25 btn_menu btn-danger" id="btn_menu_3" onclick="show_data_menu(3);"><i class="fa-regular fa-truck-medical"></i></button>
+            <button class="btn w-25 btn_menu" id="btn_menu_4" onclick="show_data_menu(4);"><i class="fa-duotone fa-map"></i></button>
+        </div>
+
+
+        <!-- ////////////////////////////////////////// MENU 1 EDIT FORM ////////////////////////////////////////// -->
+        <div class="row data-menu show-data-menu d-none" id="menu_1" style="bottom: -1rem">
+            <menu class="col-12 " >
+                <button  class="btn btn-update-status btn-primary main-shadow main-radius" style="width:100%;" data-toggle="modal" data-target="#modalDataDetailFormYellow" onclick="check_data_form_yellow_show_case('detail')">
+                    รายละเอียดเคส
+                </button>
+            </menu>
+
+            <menu class="col-12 " >
+                <button  class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" data-toggle="modal" data-target="#modalOfficerFormYellow" onclick="check_data_form_yellow_show_case('edit')">
+                    แก้ไขข้อมูลเคส
+                </button>
+            </menu>
+
+            <menu class="col-12 " >
+                <button class="btn btn-secondary main-shadow main-radius btn-update-status" style="width:100%;" data-toggle="modal" data-target="#modalAskMore">
+                    ปฎิบัติการร่วม / หมู่
+                </button>
+            </menu>
+        </div>
+        <!-- ////////////////////////////////////////// END MENU 1 EDIT FORM ////////////////////////////////////////// -->
+
+
+
+        <!-- ////////////////////////////////////////// MENU 2 SHOW LEVEL EVENT ////////////////////////////////////////// -->
+        <div class="row data-menu show-data-menu d-none" id="menu_2" style="bottom: -2rem">
+            <menu class="col-12 "  >
+                <div id="show_level_by_control_center" class="card-body p-3 main-shadow" style="border-radius: 15px; ">
+                    <div class="d-flex align-items-center div-text-status">
+                        <div  class="">
+                            <p class="mb-0">ศูนย์สั่งการ</p>
+                            <h5 class="mb-0 font-weight-bold text-of-status" id="text_level_by_control_center">ไม่ได้ระบุ</h5>
+                        </div>
+                    </div>
+                </div>
+            </menu>
+            <menu class="col-12">
+                <div>
+                    <span style="position: absolute;top: 5%;right: 5%;" onclick="click_edit_level_officer();">
+                        <i id="tag_i_edit_level_officer" class="fa-solid fa-pen-to-square btn text-warning"></i>
+                    </span>
+                </div>
+                <div id="show_level_by_officers" class="card-body p-3 main-shadow" style="border-radius: 15px;">
+                    <div class="d-flex align-items-center div-text-status">
+                        <div>
+                            <p class="mb-0">เจ้าหน้าที่</p>
+                            <h5 class="mb-0 font-weight-bold text-of-status" id="text_level_by_officers">ไม่ได้ระบุ</h5>
+                        </div>
+                    </div>
+                </div>
+            </menu>
+        </div>
+        <!-- ////////////////////////////////////////// END MENU 2 SHOW LEVEL EVENT ////////////////////////////////////////// -->
+
+
+
+        <!-- ////////////////////////////////////////// MENU 3 OFFICER ACTION ////////////////////////////////////////// -->
+        <div class="row data-menu show-data-menu p-0" id="menu_3" style="top:calc(100% - 140px);">
+
+            <!-- ----------------------------------------- ช่องกรอกเลข กม. ทั้งหมด ------------------------------------------- -->
+            <div id="div_mileage" class=d-none  >
+                <menu class="col-12 " >
+                    <div class="card card-car-mileage">
+                        <div class="h5 text-white font-weight-bold">
+                            <i class="fa-duotone fa-tire"></i> เลข กม. รถ : <u><span id="title_div_mileage"></span></u>
+                        </div>
+
+                        <div class="form-car-mileage pr-1 d-none" id="div_km_create_sos_to_go_to_help">
+                            <input class="input-car-mileage" placeholder="เลข กม. รถ ออกจากฐาน" id="km_create_sos_to_go_to_help" name="km_create_sos_to_go_to_help" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_create_sos_to_go_to_help ) ? $data_sos->form_yellow->km_create_sos_to_go_to_help : ''}}">
+                            <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_create_sos_to_go_to_help' ,'ออกจากฐาน')"><i class="fa-solid fa-paper-plane-top"></i></a>
+                        </div>
+
+                        <div class="form-car-mileage pr-1 d-none" id="div_km_to_the_scene_to_leave_the_scene">
+                            <input class="input-car-mileage  bg-transparent" placeholder="เลข กม. รถ ถึงที่เกิดเหตุ" id="km_to_the_scene_to_leave_the_scene" name="km_to_the_scene_to_leave_the_scene" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_to_the_scene_to_leave_the_scene ) ? $data_sos->form_yellow->km_to_the_scene_to_leave_the_scene : ''}}">
+                            <!-- <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button">
+                                <i class="fa-solid fa-paper-plane-top"></i>
+                            </a> -->
+                        </div>
+
+                        <div class="form-car-mileage pr-1 d-none" id="div_km_hospital">
+                            <input class="input-car-mileage  bg-transparent" placeholder="เลข กม. รถ ถึงโรงพยาบาล" id="km_hospital" name="km_hospital" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_hospital ) ? $data_sos->form_yellow->km_hospital : ''}}">
+                            <!-- <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button">
+                                <i class="fa-solid fa-paper-plane-top"></i>
+                            </a> -->
+                        </div>
+
+                        <div class="form-car-mileage pr-1 d-none" id="div_km_operating_base">
+                            <input class="input-car-mileage  bg-transparent" placeholder="เลข กม. รถ ถึงฐาน" id="km_operating_base" name="km_operating_base" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_operating_base ) ? $data_sos->form_yellow->km_operating_base : ''}}">
+                            <!-- <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" >
+                                <i class="fa-solid fa-paper-plane-top"></i>
+                            </a> -->
+                        </div>
+
+                    </div>
+                </menu>
+            </div>
+            <!-- ----------------------------------------- จบ ช่องกรอกเลข กม. ทั้งหมด ------------------------------------------- -->
+
+
+            <!-- -------------------------------------------  เลือกสถานะการณ์  ---------------------------------------------------- -->
+            <div id="div_event_level" class="d-none row data-menu show-data-menu" style="top:calc(100% - 70px) !important;">
+                <menu class="col-6">
+                    <button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-black" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
+                            ดำ
+                    </button>
+                </menu>
+                <menu class="col-6">
+                    <button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-normal" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ขาว(ทั่วไป)','{{ $data_sos->id }}');">
+                            ขาว(ทั่วไป)
+                    </button>
+                </menu>
+                <menu class="col-6 mt-3">
+                    <button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-green" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('เขียว(ไม่รุนแรง)','{{ $data_sos->id }}');">
+                            เขียว(ไม่รุนแรง)
+                    </button>
+                </menu>
+                <menu class="col-6 mt-3">
+                    <button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('เหลือง(เร่งด่วน)','{{ $data_sos->id }}');">
+                            เหลือง(เร่งด่วน)
+                    </button>
+                </menu>
+                <menu class="col-12 mt-3">
+                    <button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-red" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('แดง(วิกฤติ)','{{ $data_sos->id }}');">
+                            แดง(วิกฤติ)
+                    </button>
+                </menu>
+            </div>
+            <!-- -------------------------------------------  จบ เลือกสถานะการณ์  ---------------------------------------------------- -->
+
+            <!-- -------------------------------------------  เพิ่มเติมสถานะการสีดำ  ---------------------------------------------------- -->
+            <label for="rc_black_text" id="div_add_rc_black_text" class="d-none row  data-menu show-data-menu"  style="top:calc(100% - -20px)">
+                <div class="card-body p-3 main-shadow" style="border-radius: 15px;">
+                    <div class="d-flex align-items-center div-text-status" >
+                        <p class="mb-0">สถานะการณ์ : ดำ</p>
+                        <input class="input-car-mileage" style="border-radius: 5px; border:#000 1px solid; padding: 10px;margin: 0 10px;" placeholder="โปรดระบุรหัส" id="rc_black_text"  name="rc_black_text" required="" type="text" value="{{ isset( $data_sos->form_yellow->rc_black_text ) ? $data_sos->form_yellow->rc_black_text : ''}}">
+                        <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_event_level_rc('rc_black_text','{{ $data_sos->id }}');">
+                            <i class="fa-solid fa-paper-plane-top"></i>
+                        </a>
+                    </div>
+                </div>
+            </label>
+            <!-- ------------------------------------------- จบ เพิ่มเติมสถานะการสีดำ  ---------------------------------------------------- -->
+
+
+            <!-- --------------------------------------- เลือกการปฏิบัติการ -------------------------------------------------- -->
+            <div class="d-none row data-menu show-data-menu" id="div_select_treatment" style="margin: 0 auto;">
+                <div class="row w-100 d-flex justify-content-center"style="margin-bottom:-75px;">
+                    <!-- ---  เลือก รักษา / ไม่รักษา  --- -->
+                    <menu class="col-6  p-0 m-0" >
+                        <label >
+                            <input type="radio"name="treatment" value="มีการรักษา"  class="card-input-red card-input-element d-none"  onchange="check_btn_select_treatment();">
+                            <div class="card card-body d-flex flex-row justify-content-between align-items-center text-danger border-danger w-100" style="border-radius: 10px 0 0 10px;">
+                                <b>
+                                    มีการรักษา
+                                </b>
+                            </div>
+                        </label>
+
+                    </menu>
+
+                    <menu class="col-6 p-0 m-0" >
+                        <label >
+                            <input type="radio" name="treatment" value="ไม่มีการรักษา"  class="card-input-element d-none"  onchange="check_btn_select_treatment();">
+                            <div class="card card-body d-flex flex-row-reverse  justify-content-between align-items-center border-primary"style="border-radius: 0 10px 10px 0;">
+                                <b>
+                                    ไม่มีการรักษา
+                                </b>
+                            </div>
+                        </label>
+                    </menu>
+
+                    <div class="col-12" >
+
+                        <!-- ---  เคสมีการรักษา  --- -->
+                        <div class="row d-none mt-3" id="treatment_yes">
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+                                    onclick="update_status('ออกจากที่เกิดเหตุ' , '{{ $data_sos->id }}' , null);">
+                                        นำส่ง
+                                </span>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-4 mt-3">
+                                <span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+                                onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า');">
+                                    ส่งต่อชุดปฏิบัติการ
+                                </span>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-4 mt-3">
+                                <span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+                                    onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่นำส่ง');">
+                                        ไม่นำส่ง
+                                </span>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-4 mt-3">
+                                <span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+                                    onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิตระหว่างนำส่ง');">
+                                        เสียชีวิตระหว่างนำส่ง
+                                </span>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-4 mt-3">
+                                <span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+                                    onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ณ_จุดเกิดเหตุ');">
+                                    เสียชีวิต ณ จุดเกิดเหตุ
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- ---   เคส ไม่มี การรักษา  --- -->
+                        <div class="row d-none mt-3" id="treatment_no">
+                            <div class="col-6  col-md-4 col-lg-4">
+                                <span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+                                    onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ผู้ป่วยปฎิเสธการรักษา');">
+                                    ผู้ป่วยปฎิเสธการรักษา
+                                </span>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-4">
+                                <span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+                                    onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ก่อนชุดปฏิบัติการไปถึง');">
+                                    เสียชีวิต ก่อนชุดปฏิบัติการไปถึง
+                                </span>
+                            </div>
+                            <div class="col-6 mt-3 col-md-4 col-lg-4">
+                                <span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+                                    onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ยกเลิก');" >
+                                    ยกเลิก
+                                </span>
+                            </div>
+                            <div class="col-6 mt-3 col-md-4 col-lg-4">
+                                <span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
+                                    onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่พบเหตุ');" >
+                                        ไม่พบเหตุ
+                                </span>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- --------------------------------------- จบ เลือกการปฏิบัติการ -------------------------------------------------- -->
+
+            <!-- ----------------------------------------- ปุ่ม ถึงที่เกิดเหตุ ------------------------------------------- -->
+            <div id="div_btn_to_the_scene" class="d-none" style="margin-bottom:1%">
+                <menu class="col-12 " >
+                    <button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%"
+                        onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_to_the_scene_to_leave_the_scene' ,'ถึงที่เกิดเหตุ')">
+                            <i class="fa-sharp fa-solid fa-location-crosshairs"></i> ถึงที่เกิดเหตุ
+                    </button>
+                </menu>
+            </div>
+
+            <!-- --------------------------------------- ปุ่ม ถึงโรงพยาบาล -------------------------------------------------- -->
+            <div id="div_to_hospital" class="d-none"  style="margin-bottom:2%">
+                <menu class="col-12 " >
+                    <button class="btn btn-primary main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
+                    onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_hospital' ,'ถึงโรงพยาบาล')">
+                        ถึงโรงพยาบาล
+                    </button>
+                </menu>
+            </div>
+
+            <!-- --------------------------------------- ปุ่ม กลับถึงฐาน -------------------------------------------------- -->
+            <div id="div_operating_base" class="d-none"  style="margin-bottom: 2%">
+                <menu class="col-12 " >
+                    <button id="btn_operating_base" class="btn btn-success main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
+                    onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_operating_base' ,'กลับถึงฐาน'); ">
+                        กลับถึงฐาน
+                    </button>
+                </menu>
+            </div>
+
+
+        </div>
+        <!-- ////////////////////////////////////////// END MENU 3 OFFICER ACTION ////////////////////////////////////////// -->
+
+        <!-- DIV ขวา -->
+        <div id="div_data_right" class="card_data Inactive_div_data_right">
+            <div id="btn_hide_or_show_Div_right" class="card card_btn_div card-body btn " style="right: 100%;top: 2%; border-radius: 15px 0px 0px 15px ;" onclick="hide_or_show_Div('show');">
+                <i id="icon_hide_or_show_Div_right" style="margin-top: -7px;" class="fa-solid fa-phone"></i>
+            </div>
+
+            <div class="d-flex justify-content-around">
+
+                    <a id="btn_call" class="btn_call mx-2">
+                        <i class="fa-regular fa-phone m-0"></i>
+                    </a>
+                    <a id="btn_mute" class="btn_mute mx-2 d-none" onclick="mute_ringtone_operation();">
+                        <i class="fa-solid fa-volume-slash"></i>
+                    </a>
+
+
+            </div>
+
+        </div>
+
+        <!-- ////////////////////////////////////////// MENU 4 MAP ////////////////////////////////////////// -->
+        <div id="menu_4" class="row data-menu show-data-menu d-none " style="bottom: -0rem">
+            @php
+                $gg_lat_mail = '@' . $data_sos->lat ;
+                $gg_lat = $data_sos->lat ;
+                $lng = $data_sos->lng ;
+            @endphp
+
+            <menu class="col-12 d-none" id="show_travel_guide">
+                <span id="btn_open_or_close_viicheck_speak" class="float-right btn"
+                onclick="check_click_btn_open_or_close_viicheck_speak();"
+                style="position: absolute;top: -60%;right: 5%;border-radius: 25px 25px 25px 25px;background-color: white;">
+                    <i class="fa-solid fa-volume-high"></i>
+                </span>
+
+                <button id="reset-button">reset-button</button>
+                <span id="set_heading"></span>
+
+                <button class="btn_route_guide card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
+                    <img id="img_maneuver" class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
+                    <span id="text_instructions" class="text-center"></span>
+                    <span id="text_distance_step" class="float-right"></span>
+                    <span class="d-none" id="speak_to_user"></span>
+                </button>
+            </menu>
+            <menu class="col-12">
+                <button class="card-body p-3 main-shadow btn btn-sm text-start font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 20px 20px 20px 20px;background-color: white;font-size: 15px;">
+                    <div class="row">
+                        <div class="col-4">
+                            ระยะทาง <br>
+                            <span id="text_distance"></span>
+                        </div>
+                        <div class="col-5">
+                            ถึงเวลาประมาณ <br>
+                            <span id="text_duration"></span>
+                        </div>
+                        <div class="col-3 notranslate text-center" > <!-- onclick="watchPosition_officer();" -->
+                            <i class="fa-solid fa-location-dot-slash"></i><br>
+                            <span id="span_show_text_get_dir">soon</span>
+                            <!-- <a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" target="bank">
+                                <img src="{{ asset('/img/icon/icon-google-map.png') }}" width="20" alt=""><br>MAP
+                            </a> -->
+                        </div>
+                    </div>
+                </button>
+            </menu>
+            <!-- GOOGLE MAP LINK -->
+            <menu class="col-4 pl-0 d-none">
+                <a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 notranslate" style="width:100%;border-radius: 25px 25px 25px 25px;font-size: 15px;"  target="bank">
+                    <img src="{{ asset('/img/icon/icon-google-map.png') }}" width="20" alt=""><br>Google
+                </a>
+            </menu>
+
+        </div>
+        <!-- ////////////////////////////////////////// END MENU 4 MAP ////////////////////////////////////////// -->
+
+
+        <script>
+            function show_data_menu(id){
+                var element = document.getElementById('btn_menu_'+id);
+                var test = element.classList.contains('btn-danger');
+
+                if(id == 1 && text_level_for_rc_vehicle){
+                    document.querySelector('#text_h5_show_level_rc').innerHTML = text_level_for_rc_vehicle ;
+                    let rcColor ;
+                    switch(text_level_for_rc_vehicle) {
+                          case "แดง(วิกฤติ)":
+                            rcColor =  "text-danger";
+                        break;
+                        case "เขียว(ไม่รุนแรง)":
+                            rcColor =  "text-success";
+                        break;
+                        case "ดำ(รับบริการสาธารณสุขอื่น)":
+                            rcColor =  "text-dark";
+                        break;
+                        case "เหลือง(เร่งด่วน)":
+                            rcColor =  "text-warning";
+                        break;
+                        case "ขาว(ทั่วไป)":
+                            rcColor =  "text-primary";
+                        break;
+                        default:
+                            rcColor =  "";
+                    }
+                    document.querySelector('#text_h5_show_level_rc').classList.add(rcColor);
+                }
+
+                for (let i = 1; i <= 4; i++) {
+                    document.querySelector('#menu_'+ [i]).classList.add('d-none');
+                    document.querySelector('#btn_menu_'+ [i]).classList.remove('btn-danger');
+                }
+
+                if (test === true) {
+                    document.querySelector('#menu_'+ id).classList.add('d-none');
+                } else {
+                    document.querySelector('#btn_menu_'+ id).classList.toggle('btn-danger');
+                    document.querySelector('#menu_'+ id).classList.toggle('d-none');
+
+                }
+
+                start_page();
+            }
+        </script>
+
+
+    <a id="tag_a_switch_standby" href="{{ url('/officers/switch_standby') }}" class="d-none"></a>
+
+    <style>
+        .active-li1 {
+          background-color: red !important;
+          color: white !important;
+          outline: solid 2px red;
+          border-radius: 5px;
+        }
+
+        .active-li2 {
+          background-color: green !important;
+          color: white !important;
+          outline: solid 2px green;
+          border-radius: 5px;
+        }
+
+        .inactive-li1 {
+          background-color: white !important;
+          color: red !important;
+          outline: solid 2px red;
+          border-radius: 5px;
+        }
+
+        .inactive-li2 {
+          background-color: white !important;
+          color: green !important;
+          outline: solid 2px green;
+          border-radius: 5px;
+        }
+    </style>
+
+    <!-- Button trigger modal -->
+    <button id="btn_modal_add_photo_sos" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_add_photo_sos">
+      Launch static backdrop modal
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="modal_add_photo_sos" style="z-index: 99999 !important;" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+          <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+                  <div class="modal-header d-flex align-items-center">
+                    <h3 class="m-0"> <b>เพิ่มภาพถ่าย</b> </h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true"><i class="fa-solid fa-xmark-large"></i></span>
+                    </button>
+                  </div>
+
+                  <form method="POST" action="{{ url('/sos_help_center/' . $data_sos->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                       {{ method_field('PATCH') }}
+                    {{ csrf_field() }}
+                      <div class="modal-body text-center">
+                        <div class="col-12">
+
+                            <div class="row text-center">
+                                <ul class="nav mb-3" role="tablist">
+                                      <li class="nav-item col-6" role="presentation" >
+                                        <a class="nav-link active" id="li1" data-bs-toggle="pill" href="#danger-pills-photo_sos" role="tab" aria-selected="true">
+                                              <div class="">
+                                                <div class="tab-icon d-block"><i class="fa-solid fa-car-burst font-18 me-1"></i></div>
+                                                <div class="tab-title d-block">สถานที่เกิดเหตุ</div>
+                                              </div>
+                                        </a>
+                                      </li>
+                                      <li class="nav-item col-6" role="presentation" >
+                                        <a class="nav-link" id="li2" data-bs-toggle="pill" href="#danger-pills-success" role="tab" aria-selected="false">
+                                              <div class="">
+                                                <div class="tab-icon d-block"><i class="fa-regular fa-house-medical-circle-check font-18 me-1"></i></div>
+                                                <div class="tab-title d-block">เสร็จสิ้น</div>
+                                              </div>
+                                        </a>
+                                      </li>
+                                </ul>
+                            </div>
+
+                            <div class="tab-content" id="danger-pills-tabContent" style="border-color: red;">
+                                <!-- สถานที่เกิดเหตุ -->
+                                <div class="tab-pane fade active show" id="danger-pills-photo_sos" role="tabpanel" style="border:solid #db2d2e ;border-radius:25px;padding: 15px;">
+                                    <label class="col-12" style="padding:0px;" for="photo_sos_by_officers" >
+                                        <div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
+                                            @if(empty($data_sos->photo_sos_by_officers))
+                                                <div class="form-group p-3"id="add_select_img">
+                                                    <input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
+                                                    <div  class="text-center">
+                                                        <center>
+                                                            <img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
+                                                        </center>
+                                                        <br>
+                                                        <h4 class="text-center m-0">
+                                                            <b>เลือก<u>รูปสถานที่เกิดเหตุ</u> "คลิก"</b>
+                                                        </h4>
+                                                    </div>
+
+                                                </div>
+                                                <img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_sos_by_officers" />
+                                            @else
+                                                <div class="form-group p-3 d-none" id="add_select_img">
+                                                    <input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
+                                                    <div  class="text-center">
+                                                        <center>
+                                                            <img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
+                                                        </center>
+                                                        <br>
+                                                        <h3 class="text-center m-0">
+                                                            <b>กรุณาเลือกรูป "คลิก"</b>
+                                                        </h3>
+                                                    </div>
+
+                                                </div>
+                                                <img class="full_img" style="padding:0px ;" width="100%" alt="your image" src="{{ url('storage')}}/{{ $data_sos->photo_sos_by_officers }}" id="show_photo_sos_by_officers" />
+
+                                            @endif
+                                            <div class="child">
+                                                <span>เลือกรูป</span>
+                                            </div>
+                                        </div>
+                                        <textarea class="form-control mt-3" id="remark_photo_sos" name="remark_photo_sos" rows="3" placeholder="หมายเหตุ">{{ isset( $data_sos->remark_photo_sos ) ? $data_sos->remark_photo_sos : ''}}</textarea>
+                                    </label>
+                                </div>
+                                <!-- ภาพถ่ายเสร็จสิ้น -->
+                                <div class="tab-pane fade" id="danger-pills-success" role="tabpanel" style="border:solid green ;border-radius:25px;padding: 15px;">
+                                    <label class="col-12" style="padding:0px;" for="photo_succeed" >
+                                        <div class="fill parent" style="border:dotted green ;border-radius:25px;padding:0px;object-fit: cover;">
+                                            @if(empty($data_sos->photo_succeed))
+                                                <div class="form-group p-3"id="add_select_img_photo_succeed">
+                                                    <input class="form-control d-none" name="photo_succeed" style="margin:20px 0px 10px 0px;" type="file" id="photo_succeed" value="{{ isset($data_sos->photo_succeed) ? $data_sos->photo_succeed : ''}}" accept="image/*" onchange="document.getElementById('show_photo_succeed').src = window.URL.createObjectURL(this.files[0]);check_add_img_succeed();">
+                                                    <div  class="text-center">
+                                                        <center>
+                                                            <img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/20.png') }}" class="card-img-top center" style="padding: 10px;">
+                                                        </center>
+                                                        <br>
+                                                        <h4 class="text-center m-0">
+                                                            <b>เลือก<u>รูปภาพเสร็จสิ้น</u> "คลิก"</b>
+                                                        </h4>
+                                                    </div>
+
+                                                </div>
+                                                <img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_succeed" />
+                                            @else
+                                                <div class="form-group p-3 d-none" id="add_select_img_photo_succeed">
+                                                    <input class="form-control d-none" name="photo_succeed" style="margin:20px 0px 10px 0px;" type="file" id="photo_succeed" value="{{ isset($data_sos->photo_succeed) ? $data_sos->photo_succeed : ''}}" accept="image/*" onchange="document.getElementById('show_photo_succeed').src = window.URL.createObjectURL(this.files[0]);check_add_img_succeed();">
+                                                    <div  class="text-center">
+                                                        <center>
+                                                            <img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/20.png') }}" class="card-img-top center" style="padding: 10px;">
+                                                        </center>
+                                                        <br>
+                                                        <h3 class="text-center m-0">
+                                                            <b>กรุณาเลือกรูป "คลิก"</b>
+                                                        </h3>
+                                                    </div>
+
+                                                </div>
+                                                <img class="full_img" style="padding:0px ;" width="100%" alt="your image" src="{{ url('storage')}}/{{ $data_sos->photo_succeed }}" id="show_photo_succeed" />
+
+                                            @endif
+                                            <div class="child">
+                                                <span>เลือกรูป</span>
+                                            </div>
+                                        </div>
+                                        <textarea class="form-control mt-3" id="remark_helper" name="remark_helper" rows="3" placeholder="หมายเหตุ">{{ isset( $data_sos->remark_helper ) ? $data_sos->remark_helper : ''}}</textarea>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <input name="form_blade" class="d-none" value="form_modal_photo_sos">
+                        <div class="form-group d-none">
+                            <input id="btn_submit_form_photo" class="btn btn-primary" type="submit">
+                        </div>
+                      </div>
+                  </form>
+                  <div class="modal-footer">
+                    <button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_submit_form_photo').click();">
+                           ยืนยัน
+                    </button>
+                  </div>
+            </div>
+          </div>
+    </div>
+
+    @include ('layouts.modal_loading')
+
+    <script>
+        const li1 = document.getElementById("li1");
+        const li2 = document.getElementById("li2");
+
+        // Set initial active state
+        li1.classList.add("active-li1");
+        li2.classList.add("inactive-li2");
+
+        // Add click listeners to LI elements
+        li1.addEventListener("click", () => {
+          li1.classList.add("active-li1");
+          li1.classList.add("text-white");
+          li1.classList.remove("inactive-li1");
+          li2.classList.add("inactive-li2");
+          li2.classList.remove("active-li2");
+          li2.classList.remove("text-white");
+        });
+
+        li2.addEventListener("click", () => {
+          li2.classList.add("text-white");
+          li2.classList.add("active-li2");
+          li2.classList.remove("inactive-li2");
+          li1.classList.add("inactive-li1");
+          li1.classList.remove("active-li1");
+          li1.classList.remove("text-white");
+        });
+
+    </script>
+
+    <style>
+        .menu-profile-header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+        .data-menu-profile{
+            width: 100% !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            display: flex;
+            justify-content: baseline;
+        }
+    </style>
+    @php
+        $greetings = "";
+
+        $time = date("H");
+        $timezone = date("e");
+
+        if ($time < "12") {
+            $greetings = "สวัสดีตอนเช้า";
+        } else
+
+        if ($time >= "12" && $time < "17") {
+            $greetings = "สวัสดีตอนบ่าย";
+        } else
+
+        if ($time >= "17" && $time < "19") {
+            $greetings = "สวัสดีตอนเย็น";
+        } else
+
+        if ($time >= "19") {
+            $greetings = "ราตรีสวัสดิ์";
+        }
+    @endphp
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog " role="document">
+        <div class="modal-content w-100" style="border-radius: 25px; margin-top: -7%;">
+            <div class="modal-body w-100 mt-1">
+                <div class="text-center col-12 mt-2 mb-2">
+                    <img width="80" src="{{ url('/img/logo/VII-check-LOGO-W-v3.png') }}">
+                </div>
+
+                <div class="menu-profile-header">
+                    <div class="data-menu-profile" >
+                        @if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
+                            <img class="mobile-nav-toggle main-shadow" style="margin-right: 15px;border-radius: 25px;" width="35" src="{{ Auth::user()->avatar }}">
+                        @endif
+                        @if(!empty(Auth::user()->photo))
+                            <img style="border-radius: 10px !important;" width="45" src="{{ url('storage')}}/{{ Auth::user()->photo }}">
+                        @endif
+
+                        <div class="ml-3">
+                            <small>{{$greetings}}</small><br>
+                            <h4 class="m-0 p-0 notranslate">{{Auth::user()->name}}</h4>
+                        </div>
+
+                    </div>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+                    </button> -->
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 mb-2">
+                        <h6 class="m-0 p-0" style="color: darkgray;">
+                            ข้อมูล
+                        </h6>
+                    </div>
+                    <a class="col-12 ml-3" href="{{ url('/profile') }}">
+                        <div class="row">
+                            <div class="col-2 pr-0">
+                                <img width="30" src="{{ url('/img/stickerline/PNG/12.png') }}">
+                            </div>
+                            <div class="col-10 pl-0 d-flex align-items-center">
+                                <h6 class="m-0">
+                                โปรไฟล์
+                                </h6>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="col-12 mb-2 mt-3">
+                        <h6 class="m-0 p-0" style="color: darkgray;">
+                            ระบบ
+                        </h6>
+                    </div>
+                    <a class="col-12 ml-3" href="{{ url('/register_car/create') }}">
+                        <div class="row">
+                            <div class="col-2 pr-0">
+                                <img width="30" src="{{ url('/img/stickerline/PNG/44.png') }}">
+                            </div>
+                            <div class="col-10 pl-0 d-flex align-items-center">
+                                <h6 class="m-0">
+                                ลงทะเบียนรถ
+                                </h6>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="col-12 ml-3 mt-1" href="{{ url('/guest/create') }}">
+                        <div class="row">
+                            <div class="col-2 pr-0">
+                                <img width="30" src="{{ url('/img/stickerline/PNG/24.png') }}">
+                            </div>
+                            <div class="col-10 pl-0 d-flex align-items-center">
+                                <h6 class="m-0">
+                                แจ้งเลื่อนรถ
+                                </h6>
+                            </div>
+                        </div>
+                    </a>
+
+
+
+                    <div class="col-12 mb-2 mt-3">
+                        <h6 class="m-0 p-0" style="color: darkgray;">
+                            บัญชี
+                        </h6>
+                    </div>
+                    <a class="col-12 ml-3 mt-1" href="{{ route('password.request') }}">
+                        <div class="row">
+                            <div class="col-2 pr-0">
+                                <img width="30" src="{{ url('/img/stickerline/PNG/20.png') }}">
+                            </div>
+                            <div class="col-10 pl-0 d-flex align-items-center">
+                                <h6 class="m-0">
+                                เปลี่ยนรหัสผ่าน
+                                </h6>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="col-12 ml-3 mt-2" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <div class="row">
+                            <div class="col-2 pr-0">
+                                <img width="30" src="{{ url('/img/stickerline/PNG/5.png') }}">
+                            </div>
+                            <div class="col-10 pl-0 d-flex align-items-center">
+                                <h6 class="m-0">
+                                    {{ __('Logout') }}
+                                </h6>
+                            </div>
+                        </div>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+      </div>
     </div>
 </div>
 
-	<div id="map_show_case" >
-		<div class="sry-open-location">
-			<img src="{{ asset('/img/more/sorry-no-text.png') }}" />
-			<center>
-				<p class="sry-open-location-text h4" style="top: 35%;">ขออภัยค่ะ</p>	
-				<p class="sry-open-location-text h5" style="top: 45%;">ดำเนินการไม่สำเร็จ กรุณาเปิดตำแหน่งที่ตั้ง และลองใหม่อีกครั้งค่ะ</p>
-				<span style="top: 60%;" class="sry-open-location-text btn btn-md btn-warning main-shadow main-radius" onclick="window.location.reload(true);">
-					<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
-				</span>
-			</center>
-		</div>	
-	</div>
-	<div class="status-bar">
-		<div class="show-status" id="situation_of_status">
-			<div class="ml-3" >
-				<i class="fa-solid fa-truck-medical"></i>
-				&nbsp;
-				<small class="h6 text-bold p-0 m-0" id="show_status"></small> 
-				<small class="p-0 m-0" id="show_remark_status"></small>
-			</div>
-			<div class="ml-3 d-none">
-				<p class="mt-2">
-					LAT : <span id="text_show_lat"></span> 
-					<br>
-					LONG : <span id="text_show_lng"></span>
-				</p>
-			</div>
-			<button class="btn btn-danger" style="padding: 12px;"> <i class="fa-duotone fa-camera-retro" onclick="document.querySelector('#btn_modal_add_photo_sos').click();"></i></button>
-		</div>
-		<div class="btn p-0 m-0" data-toggle="modal" data-target="#exampleModalCenter">
-			@if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
-				<img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ Auth::user()->avatar }}">
-			@endif
-			@if(!empty(Auth::user()->photo))
-				<img class="img-profile" width="45" src="{{ url('storage')}}/{{ Auth::user()->photo }}">
-			@endif
-		</div>
-	</div>
-	
-	<div class="menubar show-menubar">
-		<button class="btn w-25 btn_menu" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-file-pen"></i></button>
-		<button class="btn w-25 btn_menu" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-solid fa-messages-question"></i></button>
-		<button class="btn w-25 btn_menu btn-danger" id="btn_menu_3" onclick="show_data_menu(3);"><i class="fa-regular fa-truck-medical"></i></button>
-		<button class="btn w-25 btn_menu" id="btn_menu_4" onclick="show_data_menu(4);"><i class="fa-duotone fa-map"></i></button>
-	</div>
 
-
-	<!-- ////////////////////////////////////////// MENU 1 EDIT FORM ////////////////////////////////////////// -->
-	<div class="row data-menu show-data-menu d-none" id="menu_1" style="bottom: -1rem">
-		<menu class="col-12 " >
-			<button  class="btn btn-update-status btn-primary main-shadow main-radius" style="width:100%;" data-toggle="modal" data-target="#modalDataDetailFormYellow" onclick="check_data_form_yellow_show_case('detail')">
-				รายละเอียดเคส
-			</button>
-		</menu>
-
-		<menu class="col-12 " >
-			<button  class="btn btn-update-status btn-warning main-shadow main-radius" style="width:100%;" data-toggle="modal" data-target="#modalOfficerFormYellow" onclick="check_data_form_yellow_show_case('edit')">
-				แก้ไขข้อมูลเคส
-			</button>
-		</menu>
-		
-		<menu class="col-12 " >
-			<button class="btn btn-secondary main-shadow main-radius btn-update-status" style="width:100%;" data-toggle="modal" data-target="#modalAskMore">
-				ปฎิบัติการร่วม / หมู่
-			</button>
-		</menu>
-	</div>
-	<!-- ////////////////////////////////////////// END MENU 1 EDIT FORM ////////////////////////////////////////// -->
-
-
-
-	<!-- ////////////////////////////////////////// MENU 2 SHOW LEVEL EVENT ////////////////////////////////////////// -->
-	<div class="row data-menu show-data-menu d-none" id="menu_2" style="bottom: -2rem">
-		<menu class="col-12 "  >
-			<div id="show_level_by_control_center" class="card-body p-3 main-shadow" style="border-radius: 15px; ">
-				<div class="d-flex align-items-center div-text-status">
-					<div  class="">
-						<p class="mb-0">ศูนย์สั่งการ</p>
-						<h5 class="mb-0 font-weight-bold text-of-status" id="text_level_by_control_center">ไม่ได้ระบุ</h5>
-					</div>
-				</div>
-			</div>
-		</menu>
-		<menu class="col-12">
-			<div>
-				<span style="position: absolute;top: 5%;right: 5%;" onclick="click_edit_level_officer();">
-					<i id="tag_i_edit_level_officer" class="fa-solid fa-pen-to-square btn text-warning"></i>
-				</span>
-			</div>
-			<div id="show_level_by_officers" class="card-body p-3 main-shadow" style="border-radius: 15px;">
-				<div class="d-flex align-items-center div-text-status">
-					<div>
-						<p class="mb-0">เจ้าหน้าที่</p>
-						<h5 class="mb-0 font-weight-bold text-of-status" id="text_level_by_officers">ไม่ได้ระบุ</h5>
-					</div>
-				</div>
-			</div>
-		</menu>
-	</div>
-	<!-- ////////////////////////////////////////// END MENU 2 SHOW LEVEL EVENT ////////////////////////////////////////// -->
-
-
-
-	<!-- ////////////////////////////////////////// MENU 3 OFFICER ACTION ////////////////////////////////////////// -->
-	<div class="row data-menu show-data-menu p-0" id="menu_3" style="top:calc(100% - 140px);">
-
-		<!-- ----------------------------------------- ช่องกรอกเลข กม. ทั้งหมด ------------------------------------------- -->
-		<div id="div_mileage" class=d-none  >
-			<menu class="col-12 " >
-				<div class="card card-car-mileage">
-					<div class="h5 text-white font-weight-bold">
-						<i class="fa-duotone fa-tire"></i> เลข กม. รถ : <u><span id="title_div_mileage"></span></u>
-					</div>
-
-					<div class="form-car-mileage pr-1 d-none" id="div_km_create_sos_to_go_to_help">
-						<input class="input-car-mileage" placeholder="เลข กม. รถ ออกจากฐาน" id="km_create_sos_to_go_to_help" name="km_create_sos_to_go_to_help" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_create_sos_to_go_to_help ) ? $data_sos->form_yellow->km_create_sos_to_go_to_help : ''}}">
-						<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_create_sos_to_go_to_help' ,'ออกจากฐาน')"><i class="fa-solid fa-paper-plane-top"></i></a>
-					</div>
-
-					<div class="form-car-mileage pr-1 d-none" id="div_km_to_the_scene_to_leave_the_scene">
-						<input class="input-car-mileage  bg-transparent" placeholder="เลข กม. รถ ถึงที่เกิดเหตุ" id="km_to_the_scene_to_leave_the_scene" name="km_to_the_scene_to_leave_the_scene" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_to_the_scene_to_leave_the_scene ) ? $data_sos->form_yellow->km_to_the_scene_to_leave_the_scene : ''}}">
-						<!-- <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button">
-							<i class="fa-solid fa-paper-plane-top"></i>
-						</a> -->
-					</div>
-
-					<div class="form-car-mileage pr-1 d-none" id="div_km_hospital">
-						<input class="input-car-mileage  bg-transparent" placeholder="เลข กม. รถ ถึงโรงพยาบาล" id="km_hospital" name="km_hospital" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_hospital ) ? $data_sos->form_yellow->km_hospital : ''}}">
-						<!-- <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button">
-							<i class="fa-solid fa-paper-plane-top"></i>
-						</a> -->
-					</div>
-
-					<div class="form-car-mileage pr-1 d-none" id="div_km_operating_base">
-						<input class="input-car-mileage  bg-transparent" placeholder="เลข กม. รถ ถึงฐาน" id="km_operating_base" name="km_operating_base" required="" type="text" value="{{ isset( $data_sos->form_yellow->km_operating_base ) ? $data_sos->form_yellow->km_operating_base : ''}}">
-						<!-- <a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" >
-							<i class="fa-solid fa-paper-plane-top"></i>
-						</a> -->
-					</div>
-
-				</div>
-			</menu>
-		</div>
-		<!-- ----------------------------------------- จบ ช่องกรอกเลข กม. ทั้งหมด ------------------------------------------- -->
-
-		
-		<!-- -------------------------------------------  เลือกสถานะการณ์  ---------------------------------------------------- -->
-		<div id="div_event_level" class="d-none row data-menu show-data-menu" style="top:calc(100% - 70px) !important;">
-			<menu class="col-6">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-black" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
-						ดำ
-				</button>
-			</menu>
-			<menu class="col-6">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-normal" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ขาว(ทั่วไป)','{{ $data_sos->id }}');">
-						ขาว(ทั่วไป)
-				</button>
-			</menu>
-			<menu class="col-6 mt-3">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-green" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('เขียว(ไม่รุนแรง)','{{ $data_sos->id }}');">
-						เขียว(ไม่รุนแรง)
-				</button>
-			</menu>
-			<menu class="col-6 mt-3">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('เหลือง(เร่งด่วน)','{{ $data_sos->id }}');">
-						เหลือง(เร่งด่วน)
-				</button>
-			</menu>
-			<menu class="col-12 mt-3">
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-red" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('แดง(วิกฤติ)','{{ $data_sos->id }}');">
-						แดง(วิกฤติ)
-				</button>
-			</menu>
-		</div>
-		<!-- -------------------------------------------  จบ เลือกสถานะการณ์  ---------------------------------------------------- -->
-
-		<!-- -------------------------------------------  เพิ่มเติมสถานะการสีดำ  ---------------------------------------------------- -->
-		<label for="rc_black_text" id="div_add_rc_black_text" class="d-none row  data-menu show-data-menu"  style="top:calc(100% - -20px)">
-			<div class="card-body p-3 main-shadow" style="border-radius: 15px;">
-				<div class="d-flex align-items-center div-text-status" >
-					<p class="mb-0">สถานะการณ์ : ดำ</p>
-					<input class="input-car-mileage" style="border-radius: 5px; border:#000 1px solid; padding: 10px;margin: 0 10px;" placeholder="โปรดระบุรหัส" id="rc_black_text"  name="rc_black_text" required="" type="text" value="{{ isset( $data_sos->form_yellow->rc_black_text ) ? $data_sos->form_yellow->rc_black_text : ''}}">
-					<a class="btn btn-primary btn-sm btn-car-mileage" href="#" role="button" onclick="update_event_level_rc('rc_black_text','{{ $data_sos->id }}');">
-						<i class="fa-solid fa-paper-plane-top"></i>
-					</a>
-				</div>
-			</div>
-		</label>
-		<!-- ------------------------------------------- จบ เพิ่มเติมสถานะการสีดำ  ---------------------------------------------------- -->
-
-
-		<!-- --------------------------------------- เลือกการปฏิบัติการ -------------------------------------------------- -->
-		<div class="d-none row data-menu show-data-menu" id="div_select_treatment" style="margin: 0 auto;">
-			<div class="row w-100 d-flex justify-content-center"style="margin-bottom:-75px;">
-				<!-- ---  เลือก รักษา / ไม่รักษา  --- -->
-				<menu class="col-6  p-0 m-0" >
-					<label >
-						<input type="radio"name="treatment" value="มีการรักษา"  class="card-input-red card-input-element d-none"  onchange="check_btn_select_treatment();">
-						<div class="card card-body d-flex flex-row justify-content-between align-items-center text-danger border-danger w-100" style="border-radius: 10px 0 0 10px;">
-							<b>
-								มีการรักษา
-							</b>
-						</div>
-					</label>
-
-				</menu>
-
-				<menu class="col-6 p-0 m-0" >
-					<label >
-						<input type="radio" name="treatment" value="ไม่มีการรักษา"  class="card-input-element d-none"  onchange="check_btn_select_treatment();">
-						<div class="card card-body d-flex flex-row-reverse  justify-content-between align-items-center border-primary"style="border-radius: 0 10px 10px 0;">
-							<b>
-								ไม่มีการรักษา
-							</b>
-						</div>
-					</label>
-				</menu>
-				
-				<div class="col-12" >
-
-					<!-- ---  เคสมีการรักษา  --- -->
-					<div class="row d-none mt-3" id="treatment_yes">
-						<div class="col-12 col-md-4 col-lg-4">
-							<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
-								onclick="update_status('ออกจากที่เกิดเหตุ' , '{{ $data_sos->id }}' , null);">
-									นำส่ง
-							</span>
-						</div>
-						<div class="col-6 col-md-4 col-lg-4 mt-3">
-							<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status" 
-							onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า');">
-								ส่งต่อชุดปฏิบัติการ
-							</span>
-						</div>
-						<div class="col-6 col-md-4 col-lg-4 mt-3">
-							<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่นำส่ง');">
-									ไม่นำส่ง
-							</span>
-						</div>
-						<div class="col-6 col-md-4 col-lg-4 mt-3">
-							<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิตระหว่างนำส่ง');">
-									เสียชีวิตระหว่างนำส่ง
-							</span>
-						</div>
-						<div class="col-6 col-md-4 col-lg-4 mt-3">
-							<span class="btn btn-danger w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ณ_จุดเกิดเหตุ');">
-								เสียชีวิต ณ จุดเกิดเหตุ
-							</span>
-						</div>
-					</div>
-
-					<!-- ---   เคส ไม่มี การรักษา  --- -->
-					<div class="row d-none mt-3" id="treatment_no">
-						<div class="col-6  col-md-4 col-lg-4">
-							<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ผู้ป่วยปฎิเสธการรักษา');">
-								ผู้ป่วยปฎิเสธการรักษา
-							</span>
-						</div>
-						<div class="col-6 col-md-4 col-lg-4">
-							<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'เสียชีวิต_ก่อนชุดปฏิบัติการไปถึง');">
-								เสียชีวิต ก่อนชุดปฏิบัติการไปถึง
-							</span>
-						</div>
-						<div class="col-6 mt-3 col-md-4 col-lg-4">
-							<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ยกเลิก');" >
-								ยกเลิก
-							</span>
-						</div>
-						<div class="col-6 mt-3 col-md-4 col-lg-4">
-							<span class="btn btn-primary w-100 h-100  py-3 main-shadow main-radius font-weight-bold btn-update-status"
-								onclick="update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ไม่พบเหตุ');" >
-									ไม่พบเหตุ
-							</span>
-						</div>
-					
-						
-					</div>
-				</div>
-			</div>
-			
-			
-		</div>
-		<!-- --------------------------------------- จบ เลือกการปฏิบัติการ -------------------------------------------------- -->
-
-		<!-- ----------------------------------------- ปุ่ม ถึงที่เกิดเหตุ ------------------------------------------- -->
-		<div id="div_btn_to_the_scene" class="d-none" style="margin-bottom:1%">
-			<menu class="col-12 " >
-				<button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%" 
-					onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_to_the_scene_to_leave_the_scene' ,'ถึงที่เกิดเหตุ')">
-						<i class="fa-sharp fa-solid fa-location-crosshairs"></i> ถึงที่เกิดเหตุ 
-				</button>
-			</menu>
-		</div>
-
-		<!-- --------------------------------------- ปุ่ม ถึงโรงพยาบาล -------------------------------------------------- -->
-		<div id="div_to_hospital" class="d-none"  style="margin-bottom:2%">
-			<menu class="col-12 " >
-				<button class="btn btn-primary main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
-				onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_hospital' ,'ถึงโรงพยาบาล')">
-					ถึงโรงพยาบาล
-				</button>
-			</menu>
-		</div>
-
-		<!-- --------------------------------------- ปุ่ม กลับถึงฐาน -------------------------------------------------- -->
-		<div id="div_operating_base" class="d-none"  style="margin-bottom: 2%">
-			<menu class="col-12 " >
-				<button id="btn_operating_base" class="btn btn-success main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;" 
-				onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_operating_base' ,'กลับถึงฐาน'); ">
-					กลับถึงฐาน
-				</button>
-			</menu>
-		</div>
-
-
-	</div>
-	<!-- ////////////////////////////////////////// END MENU 3 OFFICER ACTION ////////////////////////////////////////// -->
-
-
-
-	<!-- ////////////////////////////////////////// MENU 4 MAP ////////////////////////////////////////// -->
-	<div id="menu_4" class="row data-menu show-data-menu d-none " style="bottom: -0rem">
-		@php
-			$gg_lat_mail = '@' . $data_sos->lat ;
-			$gg_lat = $data_sos->lat ;
-			$lng = $data_sos->lng ;
-		@endphp
-
-		<menu class="col-12 d-none" id="show_travel_guide">
-			<span id="btn_open_or_close_viicheck_speak" class="float-right btn" 
-			onclick="check_click_btn_open_or_close_viicheck_speak();" 
-			style="position: absolute;top: -60%;right: 5%;border-radius: 25px 25px 25px 25px;background-color: white;">
-				<i class="fa-solid fa-volume-high"></i>
-			</span>
-
-			<button id="reset-button">reset-button</button>
-			<span id="set_heading"></span>
-
-    		<button class="btn_route_guide card-body p-3 main-shadow btn btn-sm text-center font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 25px 25px 25px 25px;background-color: white;">
-				<img id="img_maneuver" class="float-left" src="{{ asset('/img/traffic sign/34.png') }}" width="40" alt="">
-				<span id="text_instructions" class="text-center"></span>
-				<span id="text_distance_step" class="float-right"></span>
-				<span class="d-none" id="speak_to_user"></span>
-			</button>
-		</menu>
-		<menu class="col-12">
-			<button class="card-body p-3 main-shadow btn btn-sm text-start font-weight-bold mb-0 h5 btn-light" style="width:100%;border-radius: 20px 20px 20px 20px;background-color: white;font-size: 15px;">
-				<div class="row">
-					<div class="col-4">
-						ระยะทาง <br>
-						<span id="text_distance"></span>
-					</div>
-					<div class="col-5">
-						ถึงเวลาประมาณ <br>
-						<span id="text_duration"></span>
-					</div>
-					<div class="col-3 notranslate text-center" > <!-- onclick="watchPosition_officer();" -->
-						<i class="fa-solid fa-location-dot-slash"></i><br>
-						<span id="span_show_text_get_dir">soon</span>
-						<!-- <a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" target="bank">
-							<img src="{{ asset('/img/icon/icon-google-map.png') }}" width="20" alt=""><br>MAP
-						</a> -->
-					</div>
-				</div>
-			</button>
-		</menu>
-		<!-- GOOGLE MAP LINK -->
-		<menu class="col-4 pl-0 d-none">
-			<a href="https://www.google.co.th/maps/dir//{{$gg_lat}},{{$lng}}/{{$gg_lat_mail}},{{$lng}},16z" class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 notranslate" style="width:100%;border-radius: 25px 25px 25px 25px;font-size: 15px;"  target="bank">
-				<img src="{{ asset('/img/icon/icon-google-map.png') }}" width="20" alt=""><br>Google 
-			</a>
-		</menu>
-	
-	</div>
-	<!-- ////////////////////////////////////////// END MENU 4 MAP ////////////////////////////////////////// -->
-
-
-	<script>
-		function show_data_menu(id){
-			var element = document.getElementById('btn_menu_'+id);
-			var test = element.classList.contains('btn-danger');
-
-			if(id == 1 && text_level_for_rc_vehicle){
-				document.querySelector('#text_h5_show_level_rc').innerHTML = text_level_for_rc_vehicle ;
-				let rcColor ;
-				switch(text_level_for_rc_vehicle) {
-				  	case "แดง(วิกฤติ)":
-                        rcColor =  "text-danger";
-                    break;
-                    case "เขียว(ไม่รุนแรง)":
-                        rcColor =  "text-success";
-                    break;
-                    case "ดำ(รับบริการสาธารณสุขอื่น)":
-                        rcColor =  "text-dark";
-                    break;
-                    case "เหลือง(เร่งด่วน)":
-                        rcColor =  "text-warning";
-                    break;
-                    case "ขาว(ทั่วไป)":
-                        rcColor =  "text-primary";
-                    break;
-                    default:
-                        rcColor =  "";
-				}
-				document.querySelector('#text_h5_show_level_rc').classList.add(rcColor);
-			}
-			
-			for (let i = 1; i <= 4; i++) {
-				document.querySelector('#menu_'+ [i]).classList.add('d-none');
-				document.querySelector('#btn_menu_'+ [i]).classList.remove('btn-danger');
-			}
-
-			if (test === true) {
-				document.querySelector('#menu_'+ id).classList.add('d-none');
-			} else {
-				document.querySelector('#btn_menu_'+ id).classList.toggle('btn-danger');
-				document.querySelector('#menu_'+ id).classList.toggle('d-none');
-				
-			}
-
-			start_page();
-		}
-	</script>
-
-
-<a id="tag_a_switch_standby" href="{{ url('/officers/switch_standby') }}" class="d-none"></a>
-
-<style>
-	.active-li1 {
-	  background-color: red !important;
-	  color: white !important;
-	  outline: solid 2px red;
-	  border-radius: 5px;
-	}
-
-	.active-li2 {
-	  background-color: green !important;
-	  color: white !important;
-	  outline: solid 2px green;
-	  border-radius: 5px;
-	}
-
-	.inactive-li1 {
-	  background-color: white !important;
-	  color: red !important;
-	  outline: solid 2px red;
-	  border-radius: 5px;
-	}
-
-	.inactive-li2 {
-	  background-color: white !important;
-	  color: green !important;
-	  outline: solid 2px green;
-	  border-radius: 5px;
-	}
-</style>
-
-<!-- Button trigger modal -->
-<button id="btn_modal_add_photo_sos" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#modal_add_photo_sos">
-  Launch static backdrop modal
-</button>
-<!-- Modal -->
-<div class="modal fade" id="modal_add_photo_sos" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
-  	<div class="modal-dialog modal-dialog-centered ">
-    	<div class="modal-content">
-      		<div class="modal-header d-flex align-items-center">
-				<h3 class="m-0"> <b>เพิ่มภาพถ่าย</b> </h3>
-        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          			<span aria-hidden="true"><i class="fa-solid fa-xmark-large"></i></span>
-        		</button>
-      		</div>
-
-      		<form method="POST" action="{{ url('/sos_help_center/' . $data_sos->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-           		{{ method_field('PATCH') }}
-        		{{ csrf_field() }}
-      			<div class="modal-body text-center">
-					<div class="col-12">
-						
-						<div class="row text-center">
-							<ul class="nav mb-3" role="tablist">
-							  	<li class="nav-item col-6" role="presentation" >
-							    	<a class="nav-link active" id="li1" data-bs-toggle="pill" href="#danger-pills-photo_sos" role="tab" aria-selected="true">
-							      		<div class="">
-							        		<div class="tab-icon d-block"><i class="fa-solid fa-car-burst font-18 me-1"></i></div>
-							        		<div class="tab-title d-block">สถานที่เกิดเหตุ</div>
-							      		</div>
-							    	</a>
-							  	</li>
-							  	<li class="nav-item col-6" role="presentation" >
-							    	<a class="nav-link" id="li2" data-bs-toggle="pill" href="#danger-pills-success" role="tab" aria-selected="false">
-								      	<div class="">
-									        <div class="tab-icon d-block"><i class="fa-regular fa-house-medical-circle-check font-18 me-1"></i></div>
-									        <div class="tab-title d-block">เสร็จสิ้น</div>
-								      	</div>
-							    	</a>
-							  	</li>
-							</ul>
-						</div>
-
-						<div class="tab-content" id="danger-pills-tabContent" style="border-color: red;">
-							<!-- สถานที่เกิดเหตุ -->
-							<div class="tab-pane fade active show" id="danger-pills-photo_sos" role="tabpanel" style="border:solid #db2d2e ;border-radius:25px;padding: 15px;">
-								<label class="col-12" style="padding:0px;" for="photo_sos_by_officers" >
-									<div class="fill parent" style="border:dotted #db2d2e;border-radius:25px;padding:0px;object-fit: cover;">
-										@if(empty($data_sos->photo_sos_by_officers))
-											<div class="form-group p-3"id="add_select_img">
-												<input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
-												<div  class="text-center">
-													<center>
-														<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
-													</center>
-													<br>
-													<h4 class="text-center m-0">
-														<b>เลือก<u>รูปสถานที่เกิดเหตุ</u> "คลิก"</b> 
-													</h4>
-												</div>
-												
-											</div>
-											<img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_sos_by_officers" />
-										@else
-											<div class="form-group p-3 d-none" id="add_select_img">
-												<input class="form-control d-none" name="photo_sos_by_officers" style="margin:20px 0px 10px 0px;" type="file" id="photo_sos_by_officers" value="{{ isset($data_sos->photo_sos_by_officers) ? $data_sos->photo_sos_by_officers : ''}}" accept="image/*" onchange="document.getElementById('show_photo_sos_by_officers').src = window.URL.createObjectURL(this.files[0]);check_add_img() ">
-												<div  class="text-center">
-													<center>
-														<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/37.2.png') }}" class="card-img-top center" style="padding: 10px;">
-													</center>
-													<br>
-													<h3 class="text-center m-0">
-														<b>กรุณาเลือกรูป "คลิก"</b> 
-													</h3>
-												</div>
-												
-											</div>
-											<img class="full_img" style="padding:0px ;" width="100%" alt="your image" src="{{ url('storage')}}/{{ $data_sos->photo_sos_by_officers }}" id="show_photo_sos_by_officers" />
-											
-										@endif
-										<div class="child">
-											<span>เลือกรูป</span>
-										</div>
-									</div>
-									<textarea class="form-control mt-3" id="remark_photo_sos" name="remark_photo_sos" rows="3" placeholder="หมายเหตุ">{{ isset( $data_sos->remark_photo_sos ) ? $data_sos->remark_photo_sos : ''}}</textarea>
-								</label>
-							</div>
-							<!-- ภาพถ่ายเสร็จสิ้น -->
-							<div class="tab-pane fade" id="danger-pills-success" role="tabpanel" style="border:solid green ;border-radius:25px;padding: 15px;">
-								<label class="col-12" style="padding:0px;" for="photo_succeed" >
-									<div class="fill parent" style="border:dotted green ;border-radius:25px;padding:0px;object-fit: cover;">
-										@if(empty($data_sos->photo_succeed))
-											<div class="form-group p-3"id="add_select_img_photo_suceed">
-												<input class="form-control d-none" name="photo_succeed" style="margin:20px 0px 10px 0px;" type="file" id="photo_succeed" value="{{ isset($data_sos->photo_succeed) ? $data_sos->photo_succeed : ''}}" accept="image/*" onchange="document.getElementById('show_photo_succeed').src = window.URL.createObjectURL(this.files[0]);check_add_img_succeed();">
-												<div  class="text-center">
-													<center>
-														<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/20.png') }}" class="card-img-top center" style="padding: 10px;">
-													</center>
-													<br>
-													<h4 class="text-center m-0">
-														<b>เลือก<u>รูปภาพเสร็จสิ้น</u> "คลิก"</b> 
-													</h4>
-												</div>
-												
-											</div>
-											<img class="full_img d-none" style="padding:0px ;" width="100%" alt="your image" id="show_photo_succeed" />
-										@else
-											<div class="form-group p-3 d-none" id="add_select_img_photo_succeed">
-												<input class="form-control d-none" name="photo_succeed" style="margin:20px 0px 10px 0px;" type="file" id="photo_succeed" value="{{ isset($data_sos->photo_succeed) ? $data_sos->photo_succeed : ''}}" accept="image/*" onchange="document.getElementById('show_photo_succeed').src = window.URL.createObjectURL(this.files[0]);check_add_img_succeed();">
-												<div  class="text-center">
-													<center>
-														<img style=" object-fit: cover; border-radius:15px;max-width: 50%;" src="{{ asset('/img/stickerline/PNG/20.png') }}" class="card-img-top center" style="padding: 10px;">
-													</center>
-													<br>
-													<h3 class="text-center m-0">
-														<b>กรุณาเลือกรูป "คลิก"</b> 
-													</h3>
-												</div>
-												
-											</div>
-											<img class="full_img" style="padding:0px ;" width="100%" alt="your image" src="{{ url('storage')}}/{{ $data_sos->photo_succeed }}" id="show_photo_succeed" />
-											
-										@endif
-										<div class="child">
-											<span>เลือกรูป</span>
-										</div>
-									</div>
-									<textarea class="form-control mt-3" id="remark_helper" name="remark_helper" rows="3" placeholder="หมายเหตุ">{{ isset( $data_sos->remark_helper ) ? $data_sos->remark_helper : ''}}</textarea>
-								</label>
-							</div>
-						</div>
-					</div>
-					<input name="form_blade" class="d-none" value="form_modal_photo_sos">
-	            	<div class="form-group d-none">
-				        <input id="btn_submit_form_photo" class="btn btn-primary" type="submit">
-				    </div>
-      			</div>
-      		</form>
-	      	<div class="modal-footer">
-	        	<button id="btn_help_area" style="width:40%;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" onclick="document.querySelector('#btn_submit_form_photo').click();">
-	           		ยืนยัน
-	        	</button>
-	      	</div>
-    	</div>
-  	</div>
-</div>
-
-@include ('layouts.modal_loading')
-
-<script>
-	const li1 = document.getElementById("li1");
-	const li2 = document.getElementById("li2");
-
-	// Set initial active state
-	li1.classList.add("active-li1");
-	li2.classList.add("inactive-li2");
-
-	// Add click listeners to LI elements
-	li1.addEventListener("click", () => {
-	  li1.classList.add("active-li1");
-	  li1.classList.add("text-white");
-	  li1.classList.remove("inactive-li1");
-	  li2.classList.add("inactive-li2");
-	  li2.classList.remove("active-li2");
-	  li2.classList.remove("text-white");
-	});
-
-	li2.addEventListener("click", () => {
-	  li2.classList.add("text-white");
-	  li2.classList.add("active-li2");
-	  li2.classList.remove("inactive-li2");
-	  li1.classList.add("inactive-li1");
-	  li1.classList.remove("active-li1");
-	  li1.classList.remove("text-white");
-	});
-
-</script>
-
-<style>
-	.menu-profile-header{
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		
-	}
-	.data-menu-profile{
-		width: 100% !important;
-		white-space: nowrap !important;
-		overflow: hidden !important;
-		text-overflow: ellipsis !important;
-		display: flex;
-		justify-content: baseline;
-	}
-</style>
-@php
-	$greetings = "";
-
-    $time = date("H");
-    $timezone = date("e");
-
-    if ($time < "12") {
-        $greetings = "สวัสดีตอนเช้า";
-    } else
-
-    if ($time >= "12" && $time < "17") {
-        $greetings = "สวัสดีตอนบ่าย";
-    } else
-
-    if ($time >= "17" && $time < "19") {
-        $greetings = "สวัสดีตอนเย็น";
-    } else
-
-    if ($time >= "19") {
-        $greetings = "ราตรีสวัสดิ์";
-    }
-@endphp
-
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog " role="document">
-    <div class="modal-content w-100" style="border-radius: 25px; margin-top: -7%;">
-		<div class="modal-body w-100 mt-1">
-			<div class="text-center col-12 mt-2 mb-2">
-				<img width="80" src="{{ url('/img/logo/VII-check-LOGO-W-v3.png') }}">
-			</div>
-			
-			<div class="menu-profile-header">
-				<div class="data-menu-profile" >
-					@if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
-						<img class="mobile-nav-toggle main-shadow" style="margin-right: 15px;border-radius: 25px;" width="35" src="{{ Auth::user()->avatar }}">
-					@endif
-					@if(!empty(Auth::user()->photo))
-						<img style="border-radius: 10px !important;" width="45" src="{{ url('storage')}}/{{ Auth::user()->photo }}">
-					@endif
-
-					<div class="ml-3">
-						<small>{{$greetings}}</small><br>
-						<h4 class="m-0 p-0 notranslate">{{Auth::user()->name}}</h4>
-					</div>
-					
-				</div>
-				<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
-				</button> -->
-			</div>
-			<div class="row mt-3">
-				<div class="col-12 mb-2">
-					<h6 class="m-0 p-0" style="color: darkgray;">
-						ข้อมูล
-					</h6>
-				</div>
-				<a class="col-12 ml-3" href="{{ url('/profile') }}">
-					<div class="row">
-						<div class="col-2 pr-0">
-							<img width="30" src="{{ url('/img/stickerline/PNG/12.png') }}">
-						</div>
-						<div class="col-10 pl-0 d-flex align-items-center">
-							<h6 class="m-0">
-							โปรไฟล์
-							</h6>
-						</div>
-					</div>
-				</a>
-
-				<div class="col-12 mb-2 mt-3">
-					<h6 class="m-0 p-0" style="color: darkgray;">
-						ระบบ
-					</h6>
-				</div>
-				<a class="col-12 ml-3" href="{{ url('/register_car/create') }}">
-					<div class="row">
-						<div class="col-2 pr-0">
-							<img width="30" src="{{ url('/img/stickerline/PNG/44.png') }}">
-						</div>
-						<div class="col-10 pl-0 d-flex align-items-center">
-							<h6 class="m-0">
-							ลงทะเบียนรถ
-							</h6>
-						</div>
-					</div>
-				</a>
-				<a class="col-12 ml-3 mt-1" href="{{ url('/guest/create') }}">
-					<div class="row">
-						<div class="col-2 pr-0">
-							<img width="30" src="{{ url('/img/stickerline/PNG/24.png') }}">
-						</div>
-						<div class="col-10 pl-0 d-flex align-items-center">
-							<h6 class="m-0">
-							แจ้งเลื่อนรถ
-							</h6>
-						</div>
-					</div>
-				</a>
-
-
-
-				<div class="col-12 mb-2 mt-3">
-					<h6 class="m-0 p-0" style="color: darkgray;">
-						บัญชี
-					</h6>
-				</div>
-				<a class="col-12 ml-3 mt-1" href="{{ route('password.request') }}">
-					<div class="row">
-						<div class="col-2 pr-0">
-							<img width="30" src="{{ url('/img/stickerline/PNG/20.png') }}">
-						</div>
-						<div class="col-10 pl-0 d-flex align-items-center">
-							<h6 class="m-0">
-							เปลี่ยนรหัสผ่าน
-							</h6>
-						</div>
-					</div>
-				</a>
-				<a class="col-12 ml-3 mt-2" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-					<div class="row">
-						<div class="col-2 pr-0">
-							<img width="30" src="{{ url('/img/stickerline/PNG/5.png') }}">
-						</div>
-						<div class="col-10 pl-0 d-flex align-items-center">
-							<h6 class="m-0">
-								{{ __('Logout') }}
-							</h6>
-						</div>
-					</div>
-					<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-						@csrf
-					</form>
-				</a>
-
-			</div>
-		</div>
-    </div>
-  </div>
-</div>
 <!-- VIICHECK ใช้จริงใช้อันนี้ -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus&language=th"></script>
 <script>
@@ -1467,8 +1616,8 @@ input:focus {
 	var seconds_speak ;
 	var message_speech ;
 
-	var element_text_instructions ; 
-	var textContent_text_instructions ; 
+	var element_text_instructions ;
+	var textContent_text_instructions ;
 
     var sos_lo_lat = "{{ $data_sos->lat }}" ;
     var sos_lo_lng = "{{ $data_sos->lng }}" ;
@@ -1490,7 +1639,11 @@ input:focus {
         }else{
         	open_map_status_success();
         }
-        
+
+        setTimeout(() => {
+            loop_check_user_operation_meet();
+        }, 1000);
+
     });
 
 	function getLocation() {
@@ -1506,14 +1659,14 @@ input:focus {
 
     	start_officer_lat = position.coords.latitude ;
 		start_officer_lng = position.coords.longitude ;
-    	
+
         let m_numZoom = parseFloat('15');
 
         map_show_case = new google.maps.Map(document.getElementById("map_show_case"), {
             center: {lat: parseFloat(sos_lo_lat), lng: parseFloat(sos_lo_lng) },
         });
 
-        // หมุดที่เกิดเหตุ 
+        // หมุดที่เกิดเหตุ
         if (sos_marker) {
             sos_marker.setMap(null);
         }
@@ -1640,7 +1793,7 @@ input:focus {
                 // element_text_instructions = document.querySelector('#text_instructions');
 				// textContent_text_instructions = element_text_instructions.textContent.trim();
 
-				
+
 
 				// setTimeout(function() {
 				// 	message_speech = "อีก " + distance_step + " " + textContent_text_instructions ;
@@ -1659,7 +1812,7 @@ input:focus {
 	    });
 
 	}
-	
+
     function timer_check_send_update_officer(){
     	// Start the timer
         	startTime_wait_officer = Date.now();
@@ -1675,7 +1828,7 @@ input:focus {
 	            	check_send_update_location_officer = "send_update_location_officer" ;
 
 	            	restart_timer_check_send_update_officer();
-	            	
+
 	            }
 
 	            // Update the timer element
@@ -1740,7 +1893,7 @@ input:focus {
 			        if (check_get_dir == "Yes") {
 			        	distance_check(latitude,longitude);
 			        }
-					  	
+
 			    },
 			    function(error) {
 			      // console.log(`Error: ${error.message}`);
@@ -1757,7 +1910,7 @@ input:focus {
 
 		document.querySelector('#text_show_lat').innerHTML = lat_officer ;
 		document.querySelector('#text_show_lng').innerHTML = lng_officer ;
-		
+
 
         fetch("{{ url('/') }}/api/update_location_officer" + "/" + '{{ $data_sos->id }}' + "/" + lat_officer + "/" + lng_officer)
             .then(response => response.json())
@@ -1800,7 +1953,7 @@ input:focus {
 	  	const distance = getDistanceFromLatLonInKm(
 	    	currentLatitude, currentLongitude, stepLatitude, stepLongitude
 	  	);
-	  	
+
 	  	document.querySelector('#text_distance_step').innerHTML = distance.toFixed(2) ;
 
 	  	// runLoop(distance);
@@ -1888,11 +2041,11 @@ input:focus {
 	  	const earthRadius = 6371; // Radius of the earth in km
 	  	const dLat = deg2rad(lat2-lat1);
 	  	const dLon = deg2rad(lon2-lon1);
-	  	const a = 
+	  	const a =
 	    	Math.sin(dLat/2) * Math.sin(dLat/2) +
-	    	Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+	    	Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
 	    	Math.sin(dLon/2) * Math.sin(dLon/2);
-	  	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	  	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 	  	const distance = earthRadius * c; // Distance in km
 
 	  	return distance;
@@ -1929,7 +2082,7 @@ input:focus {
     function start_page(){
 
     	// console.log(status_sos);
-    	
+
     	document.querySelector('#show_status').innerHTML = status_sos ;
 
 		if (show_remark_status_sos) {
@@ -1945,11 +2098,11 @@ input:focus {
 				if (!km_go_to_help) {
 					document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
 					document.querySelector('#title_div_mileage').innerHTML = 'ออกจากฐาน' ; // หัวข้อเลข กม. รถ
-					document.querySelector('#div_km_create_sos_to_go_to_help').classList.remove('d-none') ; // input เลข 
+					document.querySelector('#div_km_create_sos_to_go_to_help').classList.remove('d-none') ; // input เลข
 				}else{
 					document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
 					document.querySelector('#title_div_mileage').innerHTML = 'ถึงที่เกิดเหตุ' ; // หัวข้อเลข กม. รถ
-					document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.remove('d-none') ; // input เลข 
+					document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.remove('d-none') ; // input เลข
 
 					document.querySelector('#div_btn_to_the_scene').classList.remove('d-none');
 					document.querySelector('#menu_3').style = "bottom: -4.5rem" ;
@@ -1963,13 +2116,13 @@ input:focus {
 
 			break;
 			case 'ถึงที่เกิดเหตุ':
-				
+
 				document.querySelector('#situation_of_status').classList.add('situation-yellow');
 
 				if (!km_to_the_scene) {
 					document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
 					document.querySelector('#title_div_mileage').innerHTML = 'ถึงที่เกิดเหตุ' ; // หัวข้อเลข กม. รถ
-					document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.remove('d-none') ; // input เลข 
+					document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.remove('d-none') ; // input เลข
 				}else{
 
 					document.querySelector('#div_mileage').classList.add('d-none');
@@ -1981,7 +2134,7 @@ input:focus {
 						document.querySelector('#div_event_level').classList.add('d-none');
 
 						if (event_level_by_officers === "ดำ" && !event_level_rc_black_text) {
-							
+
 							document.querySelector('#div_add_rc_black_text').classList.remove('d-none');
 							document.querySelector('#div_select_treatment').classList.add('d-none');
 						}else{
@@ -2041,14 +2194,14 @@ input:focus {
 				document.querySelector('#situation_of_status').classList.add('situation-green');
 
 				if (!km_operating_base || !time_to_the_operating_base) {
-					
+
 	          		document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
 					document.querySelector('#title_div_mileage').innerHTML = 'ถึงฐาน' ; // หัวข้อเลข กม. รถ
 					document.querySelector('#div_km_operating_base').classList.remove('d-none') ; // input เลข ถึงที่เกิดเหตุ
 
 					document.querySelector('#div_operating_base').classList.remove('d-none');
 					document.querySelector('#menu_3').style = "bottom: -4.5rem" ;
-					
+
 				}else{
 					document.querySelector('#div_operating_base').classList.add('d-none');
 					document.querySelector('#div_mileage').classList.add('d-none');
@@ -2114,7 +2267,7 @@ input:focus {
 				break;
 			}
 			document.querySelector('#show_level_by_officers').classList.add(class_color_officers) ;
-			
+
 			if (event_level_by_officers != "ดำ") {
 	    		document.querySelector('#text_level_by_officers').innerHTML = event_level_by_officers ;
 			}else{
@@ -2128,7 +2281,7 @@ input:focus {
 	}
 
 	// ------------------------------------------------------------------------------------------
-	    
+
 	function update_status(status , sos_id , reason){
 
         status_sos = status ;
@@ -2146,7 +2299,7 @@ input:focus {
                 }else if(status_sos === "เสร็จสิ้น"){
 
                 	document.querySelector('#situation_of_status').classList.add('situation-green');
-                	
+
                 	if (reason != 'null') {
                 		reason = reason.replaceAll("_" , " ");
 			    		document.querySelector('#show_remark_status').innerHTML = '(' + reason +')';
@@ -2157,7 +2310,7 @@ input:focus {
 
 					document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
 					document.querySelector('#title_div_mileage').innerHTML = 'ถึงฐาน' ; // หัวข้อเลข กม. รถ
-					document.querySelector('#div_km_operating_base').classList.remove('d-none') ; // input เลข 
+					document.querySelector('#div_km_operating_base').classList.remove('d-none') ; // input เลข
 
                 	document.querySelector('#div_operating_base').classList.remove('d-none');
 					document.querySelector('#menu_3').style = "bottom: -4.5rem" ;
@@ -2188,7 +2341,7 @@ input:focus {
 
 					document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
 					document.querySelector('#title_div_mileage').innerHTML = 'ถึงโรงพยาบาล' ; // หัวข้อเลข กม. รถ
-					document.querySelector('#div_km_hospital').classList.remove('d-none') ; // input เลข 
+					document.querySelector('#div_km_hospital').classList.remove('d-none') ; // input เลข
 
 					document.querySelector('#menu_3').style = "bottom: -4.5rem" ;
                 	document.querySelector('#div_to_hospital').classList.remove('d-none');
@@ -2277,7 +2430,7 @@ input:focus {
             .then(response => response.text())
             .then(result => {
                 // console.log(result);
-                
+
 
         });
 
@@ -2315,7 +2468,7 @@ input:focus {
 					document.querySelector('#treatment_no').classList.add('show-data');
 				}
 				break;
-			} 
+			}
 		}
 	}
 
@@ -2326,17 +2479,17 @@ input:focus {
 		switch(mileage_location){
 			case 'km_create_sos_to_go_to_help':
 				mileage = document.getElementById("km_create_sos_to_go_to_help").value;
-				div_id_next = "div_btn_to_the_scene" ; 
+				div_id_next = "div_btn_to_the_scene" ;
 				km_go_to_help = mileage ;
 			break;
 			case 'km_to_the_scene_to_leave_the_scene':
 				mileage = document.getElementById("km_to_the_scene_to_leave_the_scene").value;
-				div_id_next = "div_event_level" ; 
+				div_id_next = "div_event_level" ;
 				km_to_the_scene = mileage ;
 			break;
 			case 'km_hospital':
 				mileage = document.getElementById("km_hospital").value;
-				div_id_next = "div_operating_base" ; 
+				div_id_next = "div_operating_base" ;
 				km_hospital = mileage ;
 			break;
 			case 'km_operating_base':
@@ -2370,19 +2523,19 @@ input:focus {
 
 			switch(mileage_location){
 				case 'km_create_sos_to_go_to_help':
-					document.querySelector('#div_km_create_sos_to_go_to_help').classList.add('d-none') ; 
+					document.querySelector('#div_km_create_sos_to_go_to_help').classList.add('d-none') ;
 					document.querySelector('#' + div_id_next).classList.remove('d-none');
 
 					// เปิดปุ่มถัดไป
 					document.querySelector('#div_mileage').classList.remove('d-none'); // div เลข กม.
 					document.querySelector('#title_div_mileage').innerHTML = 'ถึงที่เกิดเหตุ' ; // หัวข้อเลข กม. รถ
-					document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.remove('d-none') ; // input เลข 
+					document.querySelector('#div_km_to_the_scene_to_leave_the_scene').classList.remove('d-none') ; // input เลข
 
 					document.querySelector('#menu_3').style = "bottom: -4.5rem" ;
 				break;
 				case 'km_to_the_scene_to_leave_the_scene':
 					update_status('ถึงที่เกิดเหตุ' , '{{ $data_sos->id }}' , 'null');
-					
+
 					setTimeout(function() {
 			        	// เปิดปุ่มถัดไป
 						document.querySelector('#div_mileage').classList.add('d-none');
@@ -2390,7 +2543,7 @@ input:focus {
 
 						document.querySelector('#menu_3').style = "bottom: 7.5rem" ;
 			        }, 1000);
-					
+
 				break;
 				case 'km_hospital':
 					update_status('เสร็จสิ้น' , '{{ $data_sos->id }}' , 'ถึงโรงพยาบาล');
@@ -2402,7 +2555,7 @@ input:focus {
 
 						document.querySelector('#div_km_hospital').classList.add('d-none');
 			        }, 1000);
-					
+
 				break;
 				case 'km_operating_base':
 					// เปิดปุ่มถัดไป
@@ -2444,7 +2597,7 @@ input:focus {
             zoom: m_numZoom,
         });
 
-        // หมุดที่เกิดเหตุ 
+        // หมุดที่เกิดเหตุ
         if (sos_marker) {
             sos_marker.setMap(null);
         }
@@ -2475,7 +2628,7 @@ input:focus {
 
 <!-- เสียงพูด -->
 <script>
-	
+
 	function viicheck_speech(message_speech){
 
 		// console.log("viicheck_speech >> " + message_speech)
@@ -2527,6 +2680,193 @@ input:focus {
 
 	  // console.log('open_viicheck_speak >> ' + open_viicheck_speak );
 	}
+
+    //================ for call div ===================
+    var status_show_div_right = "hide";
+    var user_click_div = "no";
+    var check_status_room = "no";
+
+    function hide_or_show_Div(type) {
+
+	    let divDataRight = document.getElementById('div_data_right');
+
+	    let btn_right = document.querySelector('#btn_hide_or_show_Div_right');
+	    let icon_right = document.querySelector('#icon_hide_or_show_Div_right');
+
+	    status_show_div_right = type ;
+
+        if(check_status_room == "no"){
+            if(type == "show"){
+                btn_right.setAttribute('onclick' , "hide_or_show_Div('hide');");
+                // divDataRight.style.right = '5px';
+                divDataRight.classList.add('active_div_data_right');
+                divDataRight.classList.remove('Inactive_div_data_right');
+                icon_right.setAttribute('class' , "fa-solid fa-chevrons-right");
+            }else{
+                btn_right.setAttribute('onclick' , "hide_or_show_Div('show');");
+                // divDataRight.style.right = '-310px';
+                divDataRight.classList.remove('active_div_data_right');
+                divDataRight.classList.add('Inactive_div_data_right');
+                icon_right.setAttribute('class' , "fa-solid fa-phone");
+            }
+        }else{
+            if(type == "show"){
+                btn_right.setAttribute('onclick' , "hide_or_show_Div('hide');");
+                // divDataRight.style.right = '5px';
+                divDataRight.classList.add('active_div_data_right');
+                divDataRight.classList.remove('Inactive_div_data_right');
+                icon_right.setAttribute('class' , "fa-solid fa-chevrons-right");
+            }else{
+                btn_right.setAttribute('onclick' , "hide_or_show_Div('show');");
+                // divDataRight.style.right = '-310px';
+                divDataRight.classList.remove('active_div_data_right');
+                divDataRight.classList.add('Inactive_div_data_right');
+                icon_right.setAttribute('class' , "fa-solid fa-phone fa-shake text-success");
+            }
+        }
+
+	}
+
+    //=================================================== เช็ค Operation Meet =======================================================================
+    var ringtone_operation = new Audio("{{ asset('sound/ringtone-126505.mp3') }}");
+    var status_playing_ringtone = false;
+    var check_first_play_ringtone = 0 ;
+    var ringtone_first_play_check = 0;
+
+    var first_operation_meeting = false; // false = ยังไม่ได้คุย
+
+    function play_ringtone_operation() {
+    if (!status_playing_ringtone) {
+        ringtone_operation.loop = true;
+        ringtone_operation.play();
+        status_playing_ringtone = true;
+
+        ringtone_first_play_check = 1 ;
+    }
+    }
+
+    function stop_ringtone_operation() {
+    ringtone_operation.pause();
+    ringtone_operation.currentTime = 0;
+    status_playing_ringtone = false;
+
+    ringtone_first_play_check = 0 ;
+    }
+    var status_pause_ringtone = false;
+    function mute_ringtone_operation(){
+        if (status_pause_ringtone == true) {
+            ringtone_operation.pause();
+            ringtone_operation.currentTime = 0;
+        }
+    }
+
+    function loop_check_user_operation_meet(){
+        let sos_id = '{{ $data_sos->id }}' ;
+
+        // console.log("เช็คผู้ใช้ใน operation meet");
+
+        check_user_in_operation_meet = setInterval(function() {
+            fetch("{{ url('/') }}/api/check_user_for_operation_meet" + "?sos_id=" + sos_id + "&type_check=" + "show_case")
+            .then(response => response.text())
+            .then(result => {
+                // console.log("result check_user_for_operation_meet");
+                // console.log(result);
+                // console.log("first_operation_meeting :" + first_operation_meeting);
+
+                if(result == "เจ้าหน้าที่ปฎิบัติการอยู่กับหน่วยอื่น"){
+                    first_operation_meeting = true;
+                }
+
+                if(result == "ไม่มีใครอยู่ในห้องสนทนา"){
+                    first_operation_meeting  = false;
+                }
+
+                if (result == "do") {  // มี not_command อยู่ในห้องสนทนา
+                    if (first_operation_meeting == false) {
+                        // console.log("เล่น เสียงแจ้งเตือน");
+                        check_status_room = "yes";
+                        status_pause_ringtone = true; // true = กดปุ่มปิดเสียงได้
+
+                        let btn_hide_or_show = document.getElementById('btn_hide_or_show_Div_right');
+                        let btn_mute = document.querySelector('#btn_mute');
+                        let icon_right = document.querySelector('#icon_hide_or_show_Div_right');
+
+                        let btn_call = document.querySelector('#btn_call');
+                            btn_call.setAttribute('class','btn_call_pulse');
+
+                        if(status_show_div_right == "show"){
+
+                            icon_right.setAttribute('class','fa-solid fa-chevrons-right');
+
+                            btn_mute.classList.remove('d-none');
+                        }else{
+                            if(user_click_div == "no"){ // ถ้าผู้ใช้ยังไม่เคยกดซ่อนแท็บ ให้ เด้งแท็บโทรออกมา
+                                // console.log("user_click_div no");
+                                btn_hide_or_show.click();
+
+                                btn_mute.classList.remove('d-none');
+
+                                user_click_div = "yes";
+                            }else{
+                                // console.log("user_click_div yes");
+                                icon_right.setAttribute('class','fa-solid fa-phone fa-shake text-success');
+
+                                btn_mute.classList.remove('d-none');
+                            }
+                        }
+
+                        if(check_first_play_ringtone == 0){
+                            play_ringtone_operation();
+                            check_first_play_ringtone = 1 ;
+                        }
+                    } else {
+                        check_status_room = "no";
+                        let btn_hide_or_show = document.getElementById('btn_hide_or_show_Div_right');
+                        let btn_mute = document.querySelector('#btn_mute');
+                        let icon_right = document.querySelector('#icon_hide_or_show_Div_right');
+
+                        let btn_call = document.querySelector('#btn_call');
+                            btn_call.setAttribute('class','btn_call');
+
+                        if(status_show_div_right == "show"){
+                            icon_right.setAttribute('class','fa-solid fa-chevrons-right');
+                            btn_mute.classList.add('d-none'); //ซ่อนปุ่ม mute เสียง
+                        }else{
+                            icon_right.setAttribute('class','fa-solid fa-phone');
+                            btn_mute.classList.add('d-none');//ซ่อนปุ่ม mute เสียง
+                        }
+                    }
+
+                }else{
+                    check_status_room = "no";
+                    let btn_hide_or_show = document.getElementById('btn_hide_or_show_Div_right');
+                    let btn_mute = document.querySelector('#btn_mute');
+                    let icon_right = document.querySelector('#icon_hide_or_show_Div_right');
+
+                    let btn_call = document.querySelector('#btn_call');
+                        btn_call.setAttribute('class','btn_call');
+
+                    if(status_show_div_right == "show"){
+                        icon_right.setAttribute('class','fa-solid fa-chevrons-right');
+                        btn_mute.classList.add('d-none'); //ซ่อนปุ่ม mute เสียง
+                    }else{
+                        icon_right.setAttribute('class','fa-solid fa-phone');
+                        btn_mute.classList.add('d-none');//ซ่อนปุ่ม mute เสียง
+                    }
+
+                    stop_ringtone_operation();
+                }
+
+            });
+
+        }, 5000);
+    }
+
+
+
+
+
+    //=============== end for call div ===================
 
 </script>
 <!-- จบ เสียงพูด -->
