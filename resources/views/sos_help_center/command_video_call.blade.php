@@ -517,9 +517,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }, 1000);
   }
 
-    setTimeout(() => {
-        loop_check_user_operation_meet();
-    }, 1000);
+  // setTimeout(() => {
+  //     loop_check_user_operation_meet();
+  // }, 1000);
 
 
 });
@@ -678,15 +678,16 @@ function mute_ringtone_operation(){
 
 function loop_check_user_operation_meet(){
 
-    console.log("เช็คผู้ใช้ใน operation meet");
+  // console.log("เช็คผู้ใช้ใน operation meet");
 
     check_user_in_operation_meet = setInterval(function() {
-        fetch("{{ url('/') }}/api/check_user_for_operation_meet" + "?sos_id=" + sos_1669_id)
+        // fetch("{{ url('/') }}/api/check_user_for_operation_meet" + "?sos_id=" + sos_1669_id)
+      fetch("{{ url('/') }}/api/check_user_for_operation_meet" + "?sos_id=" + sos_1669_id + "&type_check=" + "from_yellow")
         .then(response => response.text())
         .then(result => {
-            console.log("result check_user_for_operation_meet");
-            console.log(result);
-            console.log("first_operation_meeting :" + first_operation_meeting);
+          // console.log("result check_user_for_operation_meet");
+          // console.log(result);
+          // console.log("first_operation_meeting :" + first_operation_meeting);
 
             if(result == "เจ้าหน้าที่ศูนย์สั่งการอยู่กับหน่วยอื่น"){
                 first_operation_meeting = true;
@@ -699,7 +700,7 @@ function loop_check_user_operation_meet(){
             if (result == "do") {  // มี not_command อยู่ในห้องสนทนา
 
                 if(first_operation_meeting == false){ // ยังไม่ได้คุย --> อนุญาต ให้แจ้งเตือน
-                    console.log("เล่น เสียงแจ้งเตือน");
+                  // console.log("เล่น เสียงแจ้งเตือน");
                     status_pause_ringtone = true; // true = กดปุ่มปิดเสียงได้
 
                     // เลือกอิลิเมนต์ <li> ด้วย ID ของมัน
@@ -737,7 +738,7 @@ function loop_check_user_operation_meet(){
                     }
 
                 }else{ // คุยกันไปแล้ว --> ไม่อนุญาต ให้แจ้งเตือน
-                    console.log("ไม่เล่น เสียงแจ้งเตือน else ใน");
+                  // console.log("ไม่เล่น เสียงแจ้งเตือน else ใน");
                     status_pause_ringtone = false; // false = กดปุ่มปิดเสียงไม่ได้
 
                     let liElement = document.getElementById('btn_open_meet');
@@ -772,7 +773,7 @@ function loop_check_user_operation_meet(){
                     stop_ringtone_operation();
                 }
             }else{
-                console.log("ไม่เล่น เสียงแจ้งเตือน else นอก");
+              // console.log("ไม่เล่น เสียงแจ้งเตือน else นอก");
                 status_pause_ringtone = false; // false = กดปุ่มปิดเสียงไม่ได้
 
                 let liElement = document.getElementById('btn_open_meet');
@@ -947,16 +948,16 @@ async function startBasicCall() {
   agoraEngine.on("user-published", async (user, mediaType) => {
     // Subscribe to the remote user when the SDK triggers the "user-published" event.
     await agoraEngine.subscribe(user, mediaType);
-    console.log("+++++++++++===========+++++++++++");
-    console.log("+++++++++++===========+++++++++++");
-    console.log("+++++++++++===========+++++++++++");
-    console.log(user.uid);
-    console.log("subscribe success");
-    console.log("+++++++++++===========+++++++++++");
-    console.log("+++++++++++===========+++++++++++");
-    console.log("+++++++++++===========+++++++++++");
-    console.log(user);
-    console.log(mediaType);
+  // console.log("+++++++++++===========+++++++++++");
+  // console.log("+++++++++++===========+++++++++++");
+  // console.log("+++++++++++===========+++++++++++");
+  // console.log(user.uid);
+  // console.log("subscribe success");
+  // console.log("+++++++++++===========+++++++++++");
+  // console.log("+++++++++++===========+++++++++++");
+  // console.log("+++++++++++===========+++++++++++");
+  // console.log(user);
+  // console.log(mediaType);
 
     remotePlayerContainer.classList.remove('d-none');
     btnVideoRemote.classList.remove('d-none');
@@ -1172,9 +1173,9 @@ async function startBasicCall() {
         await agoraEngine.join(option.appId, option.channel, option.token, option.uid);
     }catch{
 
-      console.log('========================================');
-      console.log('>>>>>> เชื่อมต่อล้มเหลว กำลังเชื่อต่อใหม่ <<<<<<');
-      console.log('========================================');
+    // console.log('========================================');
+    // console.log('>>>>>> เชื่อมต่อล้มเหลว กำลังเชื่อต่อใหม่ <<<<<<');
+    // console.log('========================================');
 
       setTimeout(function() {
         document.querySelector('#command_join').click();
@@ -1201,7 +1202,7 @@ async function startBasicCall() {
     fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_join')
       .then(response => response.json())
       .then(result => {
-          console.log(result);
+        // console.log(result);
 
           if(result['data']['user']){
             create_html_user_in_room(result['data_user'] , 'in_room');
@@ -1258,9 +1259,9 @@ async function startBasicCall() {
     }
 
     if(meet_2_people == 'Yes'){
-      console.log('hours >> ' + hours);
-      console.log('minutes >> ' + minutes);
-      console.log('seconds >> ' + seconds);
+    // console.log('hours >> ' + hours);
+    // console.log('minutes >> ' + minutes);
+    // console.log('seconds >> ' + seconds);
     }
 
     // Destroy the local audio and video tracks.
@@ -1353,8 +1354,8 @@ var seconds = 0;
 
 function start_timer_video_call(time_start){
 
-  console.log('start_timer_video_call');
-  console.log(time_start);
+// console.log('start_timer_video_call');
+// console.log(time_start);
 
   document.querySelector('#icon_timer_video_call').classList.remove('d-none');
 
@@ -1398,10 +1399,10 @@ function start_timer_video_call(time_start){
     }
 
     let check_time = minutes + '.' + seconds ;
-        console.log(check_time);
+      // console.log(check_time);
 
     if(check_time == '1.0'){
-        console.log('เหลือเวลาอีก '+check_time+' นาที');
+      // console.log('เหลือเวลาอีก '+check_time+' นาที');
         // alertNoti('<i class="fa-solid fa-video-slash"></i>', 'กล้องปิดอยู่');
     }
 
@@ -1451,7 +1452,7 @@ function alertNoti(Icon, Detail) {
 
 // // Remove the video stream from the container.
 // function removeVideoDiv(elementId) {
-//   console.log("Removing " + elementId + "Div");
+// // console.log("Removing " + elementId + "Div");
 //   let Div = document.getElementById(elementId);
 //   if (Div) {
 //     Div.remove();

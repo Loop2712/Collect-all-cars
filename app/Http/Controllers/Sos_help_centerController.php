@@ -2896,7 +2896,7 @@ class Sos_help_centerController extends Controller
 
                 // ตรวจสอบว่า sos id นี้เป็นของพื้นที่ $data_user คนนี้หรือเปล่า
                 $data_for_loop = Sos_help_center::where('id' , $item_agora->sos_id)->first();
-
+                
                 if (str_contains($data_for_loop->notify, $area)) { 
                     $data_member_in_room = $item_agora->member_in_room;
 

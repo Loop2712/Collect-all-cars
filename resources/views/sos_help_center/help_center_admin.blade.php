@@ -2129,6 +2129,8 @@
             show_location_A();
         }
 
+        fist_real_time_check_refuse_and_call();
+
     });
 
     var show_min_average_per_case ;
@@ -2185,7 +2187,7 @@
         @endforeach
         
         show_average_time();
-        click_select_area_map("{{ Auth::user()->sub_organization }}");
+        // click_select_area_map("{{ Auth::user()->sub_organization }}");
 
         if ('{{ Auth::user()->organization }}' == 'สพฉ' && '{{ Auth::user()->sub_organization }}' != 'ศูนย์ใหญ่') {
             draw_area_help_center('{{ Auth::user()->sub_organization }}') ;
@@ -2539,11 +2541,13 @@
         const distanceFromTop = window.pageYOffset || document.documentElement.scrollTop;
             // console.log(distanceFromTop);
         
-        // If the distance from the top is greater than 0, hide the menu
-        if (distanceFromTop >= 270) {
-            menu_card.classList.add('mt-0') ;
-        } else {
-            menu_card.classList.remove('mt-0'); 
+        if (menu) {
+            // If the distance from the top is greater than 0, hide the menu
+            if (distanceFromTop >= 270) {
+                menu.classList.add('mt-0') ;
+            } else {
+                menu.classList.remove('mt-0'); 
+            }
         }
     });
 
@@ -2951,7 +2955,7 @@
 
     function fist_real_time_check_refuse_and_call(){
         
-        // console.log('real_time_check_refuse_and_call');
+        console.log('real_time_check_refuse_and_call');
 
         let all_notification_refuse = document.querySelectorAll('.notification-refuse');
         let all_notification_call = document.querySelectorAll('.notification-call');

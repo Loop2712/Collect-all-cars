@@ -3245,6 +3245,8 @@ color: #ff9317;
             // document.querySelector('#btn_open_meet').classList.remove('d-none');
             
             document.querySelector('#btn_open_meet').classList.remove('d-none');
+            // ตรวจสอบว่ามีคนอยู๋ใน วิดีโอคอลหรือไม่
+            loop_check_user_operation_meet();
         }
 
     }

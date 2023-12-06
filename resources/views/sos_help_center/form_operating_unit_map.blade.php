@@ -1409,6 +1409,9 @@
                         document.querySelector('#btn_open_meet').classList.remove('d-none');
                         document.querySelector('#btn_select_operating_unit').classList.add('d-none');
 
+                        // ตรวจสอบว่ามีคนอยู๋ใน วิดีโอคอลหรือไม่
+                        loop_check_user_operation_meet();
+
                         fetch("{{ url('/') }}/api/get_current_officer_location" + "/" + sos_id)
                             .then(response => response.json())
                             .then(result_2 => {

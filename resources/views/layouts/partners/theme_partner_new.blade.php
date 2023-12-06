@@ -2700,7 +2700,7 @@
 
     function Theme_check_refuse_and_call(text_url_all) {
 
-		// console.log('Theme_check_refuse_and_call');
+		console.log('Theme_check_refuse_and_call');
 
 		let i_noti_refuse = document.querySelector('#i_noti_refuse');
 		let i_noti_call = document.querySelector('#i_noti_call');
