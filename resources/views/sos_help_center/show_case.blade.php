@@ -457,6 +457,12 @@ animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 </style>
 
 <style>
+    .song_rem{
+        bottom: -12rem;
+    }
+</style>
+
+<style>
   .div_alert{
   position: fixed;
   /* position: absolute; */
@@ -702,7 +708,7 @@ input:focus {
 #div_data_right{
     position: absolute;
     z-index: 99999;
-    bottom: 40%;
+    bottom: 50%;
     right: 0.1%;
     width: auto;
 
@@ -925,7 +931,7 @@ input:focus {
 
 
             <!-- -------------------------------------------  เลือกสถานะการณ์  ---------------------------------------------------- -->
-            <div id="div_event_level" class="d-none row data-menu show-data-menu" style="top:calc(100% - 70px) !important;">
+            <div id="div_event_level" class="d-none row data-menu show-data-menu" style="top:calc(100% - 240px) !important;">
                 <menu class="col-6">
                     <button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-black" style="border-radius: 15px;width:100%" onclick="update_event_level_rc('ดำ','{{ $data_sos->id }}');">
                             ดำ
@@ -970,8 +976,8 @@ input:focus {
 
 
             <!-- --------------------------------------- เลือกการปฏิบัติการ -------------------------------------------------- -->
-            <div class="d-none row data-menu show-data-menu" id="div_select_treatment" style="margin: 0 auto;">
-                <div class="row w-100 d-flex justify-content-center"style="margin-bottom:-75px;">
+            <div class="d-none row data-menu show-data-menu" id="div_select_treatment" style="top:calc(100% - 70px); margin: auto;">
+                <div class="row w-100 d-flex justify-content-center">
                     <!-- ---  เลือก รักษา / ไม่รักษา  --- -->
                     <menu class="col-6  p-0 m-0" >
                         <label >
@@ -1110,7 +1116,7 @@ input:focus {
 
             <div class="d-flex justify-content-around">
 
-                    <a id="btn_call" class="btn_call mx-2">
+                    <a id="btn_call" class="btn_call mx-2" href="{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $data_sos->id }}" target="_blank">
                         <i class="fa-regular fa-phone m-0"></i>
                     </a>
                     <a id="btn_mute" class="btn_mute mx-2 d-none" onclick="mute_ringtone_operation();">
@@ -2129,9 +2135,10 @@ input:focus {
 
 					if (!event_level_by_officers) {
 						document.querySelector('#div_event_level').classList.remove('d-none');
+                        document.querySelector('#div_event_level').setAttribute('style','top:calc(100% - 70px) !important;');
 					}else{
-
 						document.querySelector('#div_event_level').classList.add('d-none');
+                        document.querySelector('#div_event_level').setAttribute('style','top:calc(100% - 70px) !important;');
 
 						if (event_level_by_officers === "ดำ" && !event_level_rc_black_text) {
 
@@ -2156,10 +2163,12 @@ input:focus {
 									document.querySelector('#treatment_no').classList.add('d-none');
 									document.querySelector('#treatment_yes').classList.remove('d-none');
 									document.querySelector('#treatment_yes').classList.add('show-data');
+                                    document.querySelector('#div_select_treatment').setAttribute('style','top:calc(100% - 120px); margin: auto;');
 								}else{
 									document.querySelector('#treatment_yes').classList.add('d-none');
 									document.querySelector('#treatment_no').classList.remove('d-none');
 									document.querySelector('#treatment_no').classList.add('show-data');
+                                    document.querySelector('#div_select_treatment').setAttribute('style','top:calc(100% - 70px); margin: auto;');
 								}
 
 							}
@@ -2411,6 +2420,7 @@ input:focus {
                 }else{
                 	document.querySelector('#div_event_level').classList.add('d-none');
                 	document.querySelector('#div_select_treatment').classList.remove('d-none');
+                    document.querySelector('#div_select_treatment').setAttribute('style','top:calc(100% - 70px); margin: auto;');
                 	document.querySelector('#div_add_rc_black_text').classList.add('d-none');
         			start_page();
                 }
@@ -2461,11 +2471,13 @@ input:focus {
 					document.querySelector('#treatment_no').classList.add('d-none');
 					document.querySelector('#treatment_yes').classList.remove('d-none');
 					document.querySelector('#treatment_yes').classList.add('show-data');
+                    document.querySelector('#div_select_treatment').setAttribute('style','top:calc(100% - 120px); margin: auto;');
 				}else{
 					update_data_form_yellows('treatment','ไม่มีการรักษา');
 					document.querySelector('#treatment_yes').classList.add('d-none');
 					document.querySelector('#treatment_no').classList.remove('d-none');
 					document.querySelector('#treatment_no').classList.add('show-data');
+                    document.querySelector('#div_select_treatment').setAttribute('style','top:calc(100% - 70px); margin: auto;');
 				}
 				break;
 			}
@@ -2571,7 +2583,7 @@ input:focus {
 	function click_edit_level_officer(){
 
 		show_data_menu(3);
-		document.querySelector('#menu_3').style = "bottom: -2rem" ;
+		// document.querySelector('#menu_3').style = "bottom: -2rem" ;
 
 		document.querySelector('#div_mileage').classList.add('d-none');
 		document.querySelector('#div_add_rc_black_text').classList.add('d-none');
@@ -2580,7 +2592,9 @@ input:focus {
 		document.querySelector('#div_to_hospital').classList.add('d-none');
 		document.querySelector('#div_operating_base').classList.add('d-none');
 
+        // document.querySelector('#div_event_level').classList.add('song_rem');
 		document.querySelector('#div_event_level').classList.remove('d-none');
+        document.querySelector('#div_event_level').setAttribute('style','top:calc(100% - 70px) !important;');
 
 	}
 
