@@ -3769,7 +3769,7 @@
                         let minsec = minutes + '.' + seconds;
                         let showTimeCountVideo;
                         // แสดงผลลัพธ์
-                        let max_minute_time = 5;
+                        let max_minute_time = 8;
                         let remain_time = max_minute_time - 1;
                         let time_warning = "";
                         if (max_minute_time > 1) {
