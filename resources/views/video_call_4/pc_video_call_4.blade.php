@@ -970,30 +970,29 @@ switch ($sos_data->status) {
     // var appId = '{{ env("AGORA_APP_ID") }}';
     // var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
 
-    var appId = sessionStorage.getItem('a');
-    var appCertificate = sessionStorage.getItem('b');
-
-    if (!appId || !appCertificate.length) {
-        appId = '{{ env("AGORA_APP_ID") }}';
-        appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
-    }
-
-    options =
-    {
-        // Pass your App ID here.
-        appId: appId,
-        // Set the channel name.
-        channel: type_video_call+sos_id,
-        // Pass your temp token here.
-        token: '',
-        // Set the user ID.
-        uid: user_id,
-
-        role: '',
-    };
-
-
     document.addEventListener('DOMContentLoaded', (event) => {
+
+        var appId = sessionStorage.getItem('a');
+        var appCertificate = sessionStorage.getItem('b');
+
+        if (!appId || !appCertificate.length) {
+            appId = '{{ env("AGORA_APP_ID") }}';
+            appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+        }
+
+        options =
+        {
+            // Pass your App ID here.
+            appId: appId,
+            // Set the channel name.
+            channel: type_video_call+sos_id,
+            // Pass your temp token here.
+            token: '',
+            // Set the user ID.
+            uid: user_id,
+
+            role: '',
+        };
 
         function LoadingVideoCall() {
             const loadingAnime = document.getElementById('lds-ring');

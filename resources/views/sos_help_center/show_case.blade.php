@@ -2744,29 +2744,30 @@ input:focus {
     //=================================================== เช็ค Operation Meet =======================================================================
     var ringtone_operation = new Audio("{{ asset('sound/ringtone-126505.mp3') }}");
     var status_playing_ringtone = false;
-    var check_first_play_ringtone = 0 ;
     var ringtone_first_play_check = 0;
 
     var first_operation_meeting = false; // false = ยังไม่ได้คุย
 
     function play_ringtone_operation() {
-    if (!status_playing_ringtone) {
-        ringtone_operation.loop = true;
-        ringtone_operation.play();
-        status_playing_ringtone = true;
+        if (!status_playing_ringtone) {
+            ringtone_operation.loop = true;
+            ringtone_operation.play();
+            status_playing_ringtone = true;
 
-        ringtone_first_play_check = 1 ;
-    }
+            ringtone_first_play_check = 1 ;
+        }
     }
 
     function stop_ringtone_operation() {
-    ringtone_operation.pause();
-    ringtone_operation.currentTime = 0;
-    status_playing_ringtone = false;
+        ringtone_operation.pause();
+        ringtone_operation.currentTime = 0;
+        status_playing_ringtone = false;
 
-    ringtone_first_play_check = 0 ;
+        ringtone_first_play_check = 0 ;
     }
+
     var status_pause_ringtone = false;
+
     function mute_ringtone_operation(){
         if (status_pause_ringtone == true) {
             ringtone_operation.pause();
@@ -2776,11 +2777,11 @@ input:focus {
 
     function loop_check_user_operation_meet(){
         let sos_id = '{{ $data_sos->id }}' ;
-
+        let user_id = '{{Auth::user()->id}}';
         // console.log("เช็คผู้ใช้ใน operation meet");
 
         check_user_in_operation_meet = setInterval(function() {
-            fetch("{{ url('/') }}/api/check_user_for_operation_meet" + "?sos_id=" + sos_id + "&type_check=" + "show_case")
+            fetch("{{ url('/') }}/api/check_user_for_operation_meet" + "?sos_id=" + sos_id + "&type_check=" + "show_case" + "&user_id=" + user_id)
             .then(response => response.text())
             .then(result => {
                 // console.log("result check_user_for_operation_meet");
@@ -2797,7 +2798,7 @@ input:focus {
 
                 if (result == "do") {  // มี not_command อยู่ในห้องสนทนา
                     if (first_operation_meeting == false) {
-                        // console.log("เล่น เสียงแจ้งเตือน");
+                        // console.log("เล่น เสียงแจ้งเตือน result == do --> if");
                         check_status_room = "yes";
                         status_pause_ringtone = true; // true = กดปุ่มปิดเสียงได้
 
@@ -2829,11 +2830,11 @@ input:focus {
                             }
                         }
 
-                        if(check_first_play_ringtone == 0){
+                        if(ringtone_first_play_check == 0){
                             play_ringtone_operation();
-                            check_first_play_ringtone = 1 ;
                         }
                     } else {
+                        // console.log("เล่น เสียงแจ้งเตือน result == do --> else");
                         check_status_room = "no";
                         let btn_hide_or_show = document.getElementById('btn_hide_or_show_Div_right');
                         let btn_mute = document.querySelector('#btn_mute');
@@ -2849,9 +2850,12 @@ input:focus {
                             icon_right.setAttribute('class','fa-solid fa-phone');
                             btn_mute.classList.add('d-none');//ซ่อนปุ่ม mute เสียง
                         }
+
+                        stop_ringtone_operation();
                     }
 
                 }else{
+                    // console.log("เล่น เสียงแจ้งเตือน result != do ");
                     check_status_room = "no";
                     let btn_hide_or_show = document.getElementById('btn_hide_or_show_Div_right');
                     let btn_mute = document.querySelector('#btn_mute');

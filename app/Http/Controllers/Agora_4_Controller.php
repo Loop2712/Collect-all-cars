@@ -919,14 +919,16 @@ class Agora_4_Controller extends Controller
 
         }else if($type_check == "show_case"){ //จากหน้า show_case
 
+            $user_id = $request->user_id;
+
             if (!empty($sos_data->member_in_room)) {
                 $member_array = json_decode($sos_data->member_in_room, true);
 
-                foreach ($member_array as $user_id) {
+                foreach ($member_array as $member) {
                     // $data_command = Data_1669_officer_command::where('user_id', $user_id)->first();
-                    $data_officer = Data_1669_operating_officer::where('user_id', $user_id)->first();
+                    // $data_officer = Data_1669_operating_officer::where('user_id', $member)->first();
 
-                    if(!empty($data_officer)){
+                    if($member == $user_id){
                         $status_member[] = "operating";
                     }else{
                         $status_member[] = "not_operating";

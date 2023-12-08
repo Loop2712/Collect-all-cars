@@ -685,8 +685,8 @@ function loop_check_user_operation_meet(){
       fetch("{{ url('/') }}/api/check_user_for_operation_meet" + "?sos_id=" + sos_1669_id + "&type_check=" + "from_yellow")
         .then(response => response.text())
         .then(result => {
-          console.log("result check_user_for_operation_meet");
-          console.log(result);
+        //   console.log("result check_user_for_operation_meet");
+        //   console.log(result);
         //   console.log("first_operation_meeting :" + first_operation_meeting);
 
             if(result == "เจ้าหน้าที่ศูนย์สั่งการอยู่กับหน่วยอื่น"){
@@ -721,7 +721,7 @@ function loop_check_user_operation_meet(){
                                         <button type="button" class="btn btn-outline-danger d-none">
                                             <i class="fa-solid fa-hospital-user"></i> Meet
                                         </button>
-                                        <a id="" type="button" class="btn btn-success shadow_btn_call" href="`+tag_href+`" target="_blank">
+                                        <a id="" type="button" class="btn btn-success shadow_btn_call" href="`+tag_href+`" target=" ">
                                             <i class="fa-regular fa-phone"></i> เข้าร่วมการสนทนา
                                         </a>
                                         <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+`" onclick="mute_ringtone_operation();">
@@ -732,9 +732,8 @@ function loop_check_user_operation_meet(){
 
                     liElement.insertAdjacentHTML('beforeend', tag_b); // แทรกบนสุด
 
-                    if(check_first_play_ringtone == 0){
+                    if(ringtone_first_play_check == 0){
                         play_ringtone_operation();
-                        check_first_play_ringtone = 1 ;
                     }
 
                 }else{ // คุยกันไปแล้ว --> ไม่อนุญาต ให้แจ้งเตือน
