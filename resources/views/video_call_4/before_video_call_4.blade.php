@@ -417,16 +417,19 @@
             let agoraAppCertificate = appCertificate;
             // ตรวจสอบว่าคีย์และรหัสลับมีค่าความยาวมากกว่า 0 หรือไม่
             if (!agoraAppId || !agoraAppCertificate) {
-                setTimeout(() => {
-                    let loop7 = 7;
-                    for (let index = 0; index < loop7; index++) {
-                        agoraAppId = '{{ env("AGORA_APP_ID") }}';
-                        agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
-                    }
-                }, 500);
+                agoraAppId = '{{ env("AGORA_APP_ID") }}';
+                agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+                // ตรวจสอบอีกครั้งหลังจากกำหนดค่าจาก environment variables
+                if (!agoraAppId || !agoraAppCertificate) {
+                    alert("โหลดข้อมูล video_call ล้มเหลว กำลังรีเฟรชหน้าจอ");
+                    // Reload the page
+                    window.location.reload();
+                }
             }
+
             return { agoraAppId, agoraAppCertificate };
         }
+
         // สร้างฟังก์ชันสำหรับบันทึกคีย์และรหัสลับลงใน sessionStorage
         function saveAgoraKeys() {
             const keys = retrieveAgoraKeys();

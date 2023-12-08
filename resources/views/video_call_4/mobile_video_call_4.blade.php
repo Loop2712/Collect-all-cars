@@ -1266,11 +1266,11 @@
     {
         // Create an instance of the Agora Engine
         const agoraEngine = AgoraRTC.createClient({ mode: "rtc", codec: "vp9" });
-        console.log("agoraEngine");
-        console.log(agoraEngine);
+        // console.log("agoraEngine");
+        // console.log(agoraEngine);
         let rtcStats = agoraEngine.getRTCStats();
-        console.log("rtcStats");
-        console.log(rtcStats);
+        // console.log("rtcStats");
+        // console.log(rtcStats);
 
         /////////////////////// ปุ่มสลับ กล้อง /////////////////////
         const btn_switchCamera = document.querySelector('#btn_switchCamera');
@@ -1296,7 +1296,7 @@
         setInterval(() => {
             let customDivAll = document.querySelectorAll(".custom-div");
             let remoteUsers = agoraEngine['remoteUsers'];
-            console.log('remoteUsers :' + remoteUsers);
+            // console.log('remoteUsers :' + remoteUsers);
             customDivAll.forEach(element => {
                 let id = element.id;
 
@@ -1884,9 +1884,20 @@
                     await agoraEngine.publish([channelParameters.localVideoTrack]);
                     // StatsVideoUpdate();
 
-                    //=================     สำหรับ Senior Benze  =========================
-                    function join_and_update(){
-                        console.log("join_and_update");
+                } catch (error) {
+                    // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
+                    console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
+                    alert('ไม่สามารถโหลดข้อมูลกล้องได้ รีเฟรชหน้าเว็บไซต์');
+
+                    setTimeout(() => {
+                        window.location.reload(); // รีเฟรชหน้าเว็บ
+                    }, 2000);
+
+                }
+
+                //=================     สำหรับ Senior Benze  =========================
+                function join_and_update(){
+                    console.log("join_and_update");
                         fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id)
                             .then(response => response.json())
                             .then(result => {
@@ -1909,20 +1920,9 @@
                             console.log("บันทึกข้อมูล join_and_update ล้มเหลว :" + error);
                             window.location.reload(); // รีเฟรชหน้าเว็บ
                         });
-                    }
-                    join_and_update();
-                    //=================    จบ สำหรับ Senior Benze  =========================
-
-                } catch (error) {
-                    // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
-                    console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
-                    alert('ไม่สามารถโหลดข้อมูลกล้องได้ รีเฟรชหน้าเว็บไซต์');
-
-                    setTimeout(() => {
-                        window.location.reload(); // รีเฟรชหน้าเว็บ
-                    }, 2000);
-
                 }
+                join_and_update();
+                //=================    จบ สำหรับ Senior Benze  =========================
 
                 //===== จบส่วน สุ่มสีพื้นหลังของ localPlayerContainer =====
                 if(name_local && type_local){
