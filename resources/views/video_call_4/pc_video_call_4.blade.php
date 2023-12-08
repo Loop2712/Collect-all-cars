@@ -1735,6 +1735,44 @@ switch ($sos_data->status) {
                     // Publish the local audio and video tracks in the channel.
                     await agoraEngine.publish([channelParameters.localVideoTrack]);
 
+                    // สร้าง span สำหรับใส่เวลาห้อง
+                    let time_of_room_span = '<span id="time_of_room" class="time_of_room d-none" style="font-size: 1em;">--</span>';
+                        document.querySelector('#video_call_sidebar').insertAdjacentHTML('beforeend', time_of_room_span);
+                        // ฟังก์ชัน สำหรับสร้างเวลาห้อง
+                        // setTimeout(() => {
+                        //     StatsVideoUpdate();
+                        // }, 2500);
+
+                    //=================     สำหรับ Senior Benze  =========================
+                    function join_and_update(){
+                        console.log("join_and_update");
+                        fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id)
+                            .then(response => response.json())
+                            .then(result => {
+                                console.log("result join_room_4");
+                                console.log(result);
+                                console.log(result.length);
+                                // let member_in_room = JSON.parse(result);
+
+                                if(result.length >= 2){
+                                    if(check_start_timer_video_call == false){
+                                        start_timer_video_call();
+                                    }
+                                }else{
+                                    if(check_start_timer_video_call == true){
+                                        console.log("member_in_room น้อยกว่า 2 --> join_and_update");
+                                        myStop_timer_video_call();
+                                    }
+                                }
+                        })
+                        .catch(error => {
+                            console.log("บันทึกข้อมูล join_and_update ล้มเหลว :" + error);
+                            window.location.reload(); // รีเฟรชหน้าเว็บ
+                        });
+                    }
+                join_and_update();
+                //=================    จบ สำหรับ Senior Benze  =========================
+
                 } catch (error) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
@@ -1746,43 +1784,6 @@ switch ($sos_data->status) {
 
                 }
 
-                // สร้าง span สำหรับใส่เวลาห้อง
-                let time_of_room_span = '<span id="time_of_room" class="time_of_room d-none" style="font-size: 1em;">--</span>';
-                    document.querySelector('#video_call_sidebar').insertAdjacentHTML('beforeend', time_of_room_span);
-                    // ฟังก์ชัน สำหรับสร้างเวลาห้อง
-                    // setTimeout(() => {
-                    //     StatsVideoUpdate();
-                    // }, 2500);
-
-                //=================     สำหรับ Senior Benze  =========================
-                function join_and_update(){
-                    console.log("join_and_update");
-                    fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id)
-                        .then(response => response.json())
-                        .then(result => {
-                            console.log("result join_room_4");
-                            console.log(result);
-                            console.log(result.length);
-                            // let member_in_room = JSON.parse(result);
-
-                            if(result.length >= 2){
-                                if(check_start_timer_video_call == false){
-                                    start_timer_video_call();
-                                }
-                            }else{
-                                if(check_start_timer_video_call == true){
-                                    console.log("member_in_room น้อยกว่า 2 --> join_and_update");
-                                    myStop_timer_video_call();
-                                }
-                            }
-                    })
-                    .catch(error => {
-                        console.log("บันทึกข้อมูล join_and_update ล้มเหลว :" + error);
-                        window.location.reload(); // รีเฟรชหน้าเว็บ
-                    });
-                }
-                join_and_update();
-                //=================    จบ สำหรับ Senior Benze  =========================
 
                 // console.log("create_element_localvideo_call When Joined");
                 // console.log(name_local);
