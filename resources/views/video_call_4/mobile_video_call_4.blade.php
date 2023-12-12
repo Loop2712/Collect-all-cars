@@ -1121,6 +1121,8 @@
     // var seconds = 0;
     var meet_2_people = 'No' ;
 
+    var appId = sessionStorage.getItem('a');
+    var appCertificate = sessionStorage.getItem('b');
 
     //สำหรับกำหนด text advice
     var type_advice = "inc";
@@ -1131,11 +1133,22 @@
     var sos_id = '{{ $sos_id }}';
     var type_video_call = '{{ $type }}';
 
-
     document.addEventListener('DOMContentLoaded', (event) => {
 
-        var appId = sessionStorage.getItem('a');
-        var appCertificate = sessionStorage.getItem('b');
+        // สลับตำแหน่ง appId และ appCertificate
+        function swapValues(value1, value2) {
+            return {
+                agoraAppId: value1.split('').reverse().join(''),
+                agoraAppCertificate: value2.split('').reverse().join('')
+            };
+        }
+
+        // สลับตำแหน่ง appId และ appCertificate
+        const swappedValues = swapValues(appId, appCertificate);
+
+        // กำหนดค่าที่ถูกสลับกลับไปที่ตัวแปรเดิม
+        appId = swappedValues.agoraAppId;
+        appCertificate = swappedValues.agoraAppCertificate;
 
         if (!appId || !appCertificate.length) {
             appId = '{{ env("AGORA_APP_ID") }}';

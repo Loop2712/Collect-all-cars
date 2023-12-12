@@ -430,12 +430,24 @@
             return { agoraAppId, agoraAppCertificate };
         }
 
+        // สลับตำแหน่ง agoraAppId และ agoraAppCertificate
+        function swapValues(keys) {
+            const { agoraAppId, agoraAppCertificate } = keys;
+            return {
+                agoraAppId: agoraAppId.split('').reverse().join(''),
+                agoraAppCertificate: agoraAppCertificate.split('').reverse().join('')
+            };
+        }
+
         // สร้างฟังก์ชันสำหรับบันทึกคีย์และรหัสลับลงใน sessionStorage
         function saveAgoraKeys() {
             const keys = retrieveAgoraKeys();
-            sessionStorage.setItem('a', keys.agoraAppId);
-            sessionStorage.setItem('b', keys.agoraAppCertificate);
+            // สลับตำแหน่ง agoraAppId และ agoraAppCertificate
+            const swappedKeys = swapValues(keys);
+            sessionStorage.setItem('a', swappedKeys.agoraAppId);
+            sessionStorage.setItem('b', swappedKeys.agoraAppCertificate);
         }
+
         saveAgoraKeys();
 
         // ============   เช็คคนในห้องสนทนาก่อนเข้าร่วม   ================

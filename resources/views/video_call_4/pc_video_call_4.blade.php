@@ -960,6 +960,9 @@ switch ($sos_data->status) {
     // var seconds = 0;
     var meet_2_people = 'No' ;
 
+    var appId = sessionStorage.getItem('a');
+    var appCertificate = sessionStorage.getItem('b');
+
     // เรียกสองอันเพราะไม่อยากไปยุ่งกับโค้ดเก่า
     var user_id = '{{ Auth::user()->id }}';
     var user_data = @json(Auth::user());
@@ -971,9 +974,20 @@ switch ($sos_data->status) {
     // var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
 
     document.addEventListener('DOMContentLoaded', (event) => {
+        // สลับตำแหน่ง appId และ appCertificate
+        function swapValues(value1, value2) {
+            return {
+                agoraAppId: value1.split('').reverse().join(''),
+                agoraAppCertificate: value2.split('').reverse().join('')
+            };
+        }
 
-        var appId = sessionStorage.getItem('a');
-        var appCertificate = sessionStorage.getItem('b');
+        // สลับตำแหน่ง appId และ appCertificate
+        const swappedValues = swapValues(appId, appCertificate);
+
+        // กำหนดค่าที่ถูกสลับกลับไปที่ตัวแปรเดิม
+        appId = swappedValues.agoraAppId;
+        appCertificate = swappedValues.agoraAppCertificate;
 
         if (!appId || !appCertificate.length) {
             appId = '{{ env("AGORA_APP_ID") }}';
@@ -2490,11 +2504,11 @@ switch ($sos_data->status) {
         if (videoCallBar.classList.contains('d-none')) {
             videoCallBar.classList.remove('d-none');
             document.getElementById("icon_show_hide").style.transform = "rotate(0deg)";
-            // document.querySelector('#text_show_hide').innerHTML = '👇 ซ่อน';
+            document.querySelector('#text_show_hide').innerHTML = 'ซ่อน';
         } else {
             videoCallBar.classList.add('d-none');
             document.getElementById("icon_show_hide").style.transform = "rotate(180deg)";
-            // document.querySelector('#text_show_hide').innerHTML = '👆 แสดง';
+            document.querySelector('#text_show_hide').innerHTML = 'แสดง';
         }
     }
 
