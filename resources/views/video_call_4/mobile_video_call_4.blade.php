@@ -1121,9 +1121,6 @@
     // var seconds = 0;
     var meet_2_people = 'No' ;
 
-    var appId = sessionStorage.getItem('a');
-    var appCertificate = sessionStorage.getItem('b');
-
     //สำหรับกำหนด text advice
     var type_advice = "inc";
     // เรียกสองอันเพราะไม่อยากไปยุ่งกับโค้ดเก่า
@@ -1134,6 +1131,9 @@
     var type_video_call = '{{ $type }}';
 
     document.addEventListener('DOMContentLoaded', (event) => {
+
+        var appId = sessionStorage.getItem('a');
+        var appCertificate = sessionStorage.getItem('b');
 
         // สลับตำแหน่ง appId และ appCertificate
         function swapValues(value1, value2) {

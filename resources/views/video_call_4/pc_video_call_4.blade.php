@@ -960,8 +960,7 @@ switch ($sos_data->status) {
     // var seconds = 0;
     var meet_2_people = 'No' ;
 
-    var appId = sessionStorage.getItem('a');
-    var appCertificate = sessionStorage.getItem('b');
+
 
     // เรียกสองอันเพราะไม่อยากไปยุ่งกับโค้ดเก่า
     var user_id = '{{ Auth::user()->id }}';
@@ -974,6 +973,10 @@ switch ($sos_data->status) {
     // var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
 
     document.addEventListener('DOMContentLoaded', (event) => {
+
+        var appId = sessionStorage.getItem('a');
+        var appCertificate = sessionStorage.getItem('b');
+
         // สลับตำแหน่ง appId และ appCertificate
         function swapValues(value1, value2) {
             return {

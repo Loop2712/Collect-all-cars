@@ -629,23 +629,24 @@ class Agora_4_Controller extends Controller
             }
         }
 
-
         if (!empty($local_data->photo)) {
             // $text_path = url('storage') . '/' . $local_data->photo;
+            $text_path = storage_path('app/public/' . $local_data->photo);
             // $text_path = "https://www.viicheck.com/img/logo/logo-viicheck-outline.png";
-            // $img = Image::make( $text_path );
-            // // get file path
-            // $aaa = $img->basePath();
-            // // โหลดข้อมูลขนาดของรูปภาพ
-            // list($width, $height) = getimagesize($text_path);
+            $img = Image::make($text_path);
 
-            // // หาจุดตรงกลาง
-            // $centerX = $width / 2;
-            // $centerY = $height / 2;
+            // ต่อไปคุณสามารถทำตามโค้ดต่อไปเช่นเดียวกัน
+            // โหลดข้อมูลขนาดของรูปภาพ
+            $imageData = file_get_contents($text_path);
+            list($width, $height) = getimagesizefromstring($imageData);
 
-            // // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
-            // $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
-            $hexcolor = '#2b2d31';
+            // หาจุดตรงกลาง
+            $centerX = $width / 2;
+            $centerY = $height / 2;
+
+            // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
+            $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+            // $hexcolor = '#2b2d31';
         } else {
             $hexcolor = '#2b2d31';
         }
@@ -724,21 +725,20 @@ class Agora_4_Controller extends Controller
         }
 
         if (!empty($remote_data->photo)) {
-            // $text_path = url('storage') . '/' . $remote_data->photo;
-            // $text_path = "https://www.viicheck.com/img/logo/logo-viicheck-outline.png";
-            // $img = Image::make( $text_path );
-            // // get file path
-            // $aaa = $img->basePath();
-            // // โหลดข้อมูลขนาดของรูปภาพ
-            // list($width, $height) = getimagesize($text_path);
+            $text_path = storage_path('app/public/' . $remote_data->photo);
+            $img = Image::make($text_path);
 
-            // // หาจุดตรงกลาง
-            // $centerX = $width / 2;
-            // $centerY = $height / 2;
+            // โหลดข้อมูลขนาดของรูปภาพ
+            $imageData = file_get_contents($text_path);
+            list($width, $height) = getimagesizefromstring($imageData);
+            // หาจุดตรงกลาง
+            $centerX = $width / 2;
+            $centerY = $height / 2;
 
-            // // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
-            // $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
-            $hexcolor = '#2b2d31';
+            // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
+            $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+
+            // $hexcolor = '#2b2d31';
         } else {
             $hexcolor = '#2b2d26';
         }
