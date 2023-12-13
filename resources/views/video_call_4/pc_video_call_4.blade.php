@@ -1888,7 +1888,7 @@ switch ($sos_data->status) {
 
                 if (leaveChannel == "false") {
                     // leaveChannel();
-                    fetch("{{ url('/') }}/api/left_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id +"&meet_2_people="+ "beforeunload" + "&leave=" + "beforeunload")
+                    fetch("{{ url('/') }}/api/left_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id +"&meet_2_people=beforeunload"+"&leave=beforeunload")
                         .then(response => response.text())
                         .then(result => {
                             // console.log(result);
@@ -3097,10 +3097,10 @@ switch ($sos_data->status) {
 </script>
 
 <script>
-     window.addEventListener('beforeunload', function(event) {
+    window.addEventListener('beforeunload', function(event) {
         if (leaveChannel == "false") {
             // leaveChannel();
-            fetch("{{ url('/') }}/api/left_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id +"&meet_2_people="+ "beforeunload" + "&leave=" + "beforeunload")
+            fetch("{{ url('/') }}/api/left_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id +"&meet_2_people=beforeunload"+"&leave=beforeunload")
                 .then(response => response.text())
                 .then(result => {
                     // console.log(result);
