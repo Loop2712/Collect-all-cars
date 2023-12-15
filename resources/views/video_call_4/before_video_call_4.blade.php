@@ -239,7 +239,7 @@
             <div class="col-12 col-sm-12 col-lg-8 p-2">
                 @if ($type_device == "pc_video_call")
                     <div class="div-video">
-                        <video id="videoDiv" style="background-color: #000000;" class="video_preview" autoplay></video>
+                        <video id="videoDiv" style="background-color: #000000;" class="video_preview" autoplay playsinline></video>
                         <div id="soundTest" class="soundTest">
                             <div class="soundMeter"></div>
                         </div>
@@ -250,7 +250,7 @@
                     </div>
                 @else
                     <div class="div-video m-5">
-                        <video id="videoDiv" style="background-color: #000000;" class="video_preview" autoplay></video>
+                        <video id="videoDiv" style="background-color: #000000;" class="video_preview" autoplay playsinline></video>
                         <div id="soundTest" class="soundTest">
                             <div class="soundMeter"></div>
                         </div>

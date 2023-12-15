@@ -1304,31 +1304,37 @@
         localPlayerContainer.style.position = "absolute";
         localPlayerContainer.style.left = "0";
         localPlayerContainer.style.top = "0";
+        localPlayerContainer.style.transform = "scaleX(-1)";
         localPlayerContainer.classList.add('agora_create_local');
 
         //======== ทุก 10 วิ ให้เช็คว่า div .custom-div ที่มี id ของคนที่ไม่ได้อยู่ในห้องนี้แล้ว --> ถ้าเจอให้ลบ div ทิ้ง =========
-        setInterval(() => {
-            let customDivAll = document.querySelectorAll(".custom-div");
-            let remoteUsers = agoraEngine['remoteUsers'];
-            // console.log('remoteUsers :' + remoteUsers);
-            customDivAll.forEach(element => {
-                let id = element.id;
+        function check_delele_leaved() {
+            setInterval(() => {
 
-                // ตรวจสอบว่า id ของ element เริ่มต้นด้วย "videoDiv"
-                if (id.startsWith("videoDiv")) {
-                    // แยก UID จาก id โดยตัด "videoDiv" ออก
-                    let uid = id.replace("videoDiv", "");
+                let customDivAll = document.querySelectorAll(".custom-div");
+                let remoteUsers = agoraEngine['remoteUsers'];
+                console.log("เช็ค div ที่ไม่อยู่ในห้อง");
+                customDivAll.forEach(element => {
+                    let id = element.id;
 
-                    // ตรวจสอบว่า UID นี้อยู่ใน remoteUsers หรือไม่
-                    if (!remoteUsers[uid]) {
-                        if(!localPlayerContainer.id){
-                            // ถ้าไม่มีให้ลบ element ออก
-                            element.remove();
+                    // ตรวจสอบว่า id ของ element เริ่มต้นด้วย "videoDiv"
+                    if (id.startsWith("videoDiv")) {
+                        // แยก UID จาก id โดยตัด "videoDiv" ออก
+                        let uid = id.replace("videoDiv", "");
+
+                        // ตรวจสอบว่า UID นี้อยู่ใน remoteUsers หรือไม่
+                        if (!remoteUsers[uid]) {
+                            if(!localPlayerContainer.id){
+                                // ถ้าไม่มีให้ลบ element ออก
+                                element.remove();
+                                console.log("ลบ Div คนที่ไม่อยู่ในห้องแล้ว");
+                            }
                         }
                     }
-                }
-            });
-        }, 10000);
+                });
+            }, 10000);
+        }
+        check_delele_leaved();
         //=====================================================================================================
 
 
@@ -1474,10 +1480,22 @@
 
                 if(user.hasAudio == false){
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
-                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
+                    if (document.querySelector('#mic_remote_' + user.uid)) {
+                        document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
+                    }else{
+                        console.log("========================= ");
+                        console.log("ไมค์ตาย");
+                        console.log("=========================");
+                    }
                 }else{
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
-                    document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-solid fa-microphone"></i>';
+                    if (document.querySelector('#mic_remote_' + user.uid)) {
+                        document.querySelector('#mic_remote_' + user.uid).innerHTML = '<i class="fa-solid fa-microphone"></i>';
+                    }else{
+                        console.log("========================= ");
+                        console.log("ไมค์ตาย");
+                        console.log("=========================");
+                    }
                 }
 
                 //ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
@@ -1918,17 +1936,19 @@
                                 console.log("result join_room_4");
                                 console.log(result);
                                 // let member_in_room = JSON.parse(result);
+                                setTimeout(() => {
+                                    if(result.length >= 2){
+                                        if(check_start_timer_video_call == false){
+                                            start_timer_video_call();
+                                        }
+                                    }else{
+                                        if(check_start_timer_video_call == true){
+                                            console.log("member_in_room น้อยกว่า 2 --> join_and_update");
+                                            myStop_timer_video_call();
+                                        }
+                                    }
+                                }, 800);
 
-                                if(result.length >= 2){
-                                    if(check_start_timer_video_call == false){
-                                        start_timer_video_call();
-                                    }
-                                }else{
-                                    if(check_start_timer_video_call == true){
-                                        console.log("member_in_room น้อยกว่า 2 --> join_and_update");
-                                        myStop_timer_video_call();
-                                    }
-                                }
                         })
                         .catch(error => {
                             console.log("บันทึกข้อมูล join_and_update ล้มเหลว :" + error);
