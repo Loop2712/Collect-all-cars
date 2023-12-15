@@ -1127,6 +1127,7 @@
     var user_id = '{{ Auth::user()->id }}';
     var user_data = @json(Auth::user());
 
+    var agora_id = '{{ $data_agora->id}}';
     var sos_id = '{{ $sos_id }}';
     var type_video_call = '{{ $type }}';
 
@@ -1150,7 +1151,7 @@
         appId = swappedValues.agoraAppId;
         appCertificate = swappedValues.agoraAppCertificate;
 
-        if (!appId || !appCertificate.length) {
+        if (!appId || !appCertificate) {
             appId = '{{ env("AGORA_APP_ID") }}';
             appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
         }
@@ -2061,10 +2062,20 @@
                 const devices = await navigator.mediaDevices.enumerateDevices();
 
                 // เรียกดูอุปกรณ์ที่ใช้อยู่
+                // const stream = await navigator.mediaDevices.getUserMedia({
+                //     audio: true,
+                //     video: true
+                // });
+
                 const stream = await navigator.mediaDevices.getUserMedia({
                     audio: true,
-                    video: true
+                    video: {
+                        facingMode: 'user', // หรือ 'environment' หากต้องการใช้กล้องหลัง
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    }
                 });
+
 
                 if(useMicrophone){
                     activeAudioDeviceId = useMicrophone;
@@ -2345,9 +2356,18 @@
             let devices = await navigator.mediaDevices.enumerateDevices();
 
             // เรียกดูอุปกรณ์ที่ใช้อยู่
+            // let stream = await navigator.mediaDevices.getUserMedia({
+            //     audio: true,
+            //     video: true
+            // });
+
             let stream = await navigator.mediaDevices.getUserMedia({
                 audio: true,
-                video: true
+                video: {
+                    width: { ideal: 720 },
+                    height: { ideal: 1280 },
+                    // ตั้งค่าอื่นๆตามความจำเป็น
+                }
             });
 
             // แยกอุปกรณ์ตามประเภท

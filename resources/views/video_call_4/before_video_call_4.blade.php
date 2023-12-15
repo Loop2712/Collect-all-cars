@@ -396,9 +396,9 @@
     var appId = '{{ env("AGORA_APP_ID") }}';
     var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
 
-    var sos_id = '{{ $sos_id }}'
-    var type_sos = '{{ $type }}'
-    var consult_doctor_id = '{{ $consult_doctor_id }}'
+    var sos_id = '{{ $sos_id }}';
+    var type_sos = '{{ $type }}';
+    var consult_doctor_id = '{{ $consult_doctor_id }}';
 
     var selectedMicrophone = null;
     var selectedCamera = null;
@@ -670,7 +670,19 @@
                 // let constraints = { video: { facingMode: 'user' } }; // เพิ่มออปชัน facingMode เพื่อเลือกกล้องหน้า
                 // let constraints = { video: { facingMode: 'environment' } }; // เพิ่มออปชัน facingMode เพื่อเลือกกล้องหน้า
                 let selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
-                let constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+                // let constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
+
+                let width = 1280; // ตั้งค่าความกว้างของวิดีโอ
+                let height = 720; // ตั้งค่าความสูงของวิดีโอ
+                let constraints = {
+                    video: {
+                        deviceId: { exact: selectedDeviceId },
+                        width: { ideal: width },
+                        height: { ideal: height },
+                        facingMode: 'user' // เลือกกล้องหน้า
+                    }
+                };
+
                 navigator.mediaDevices.getUserMedia(constraints)
                 .then(function(videoStream) {
                     // ได้รับสตรีมวิดีโอสำเร็จ
