@@ -966,6 +966,7 @@ switch ($sos_data->status) {
     var user_id = '{{ Auth::user()->id }}';
     var user_data = @json(Auth::user());
 
+    var agora_id = '{{ $data_agora->id}}';
     var sos_id = '{{ $sos_id }}';
     var type_video_call = '{{ $type }}';
 
@@ -992,7 +993,7 @@ switch ($sos_data->status) {
         appId = swappedValues.agoraAppId;
         appCertificate = swappedValues.agoraAppCertificate;
 
-        if (!appId || !appCertificate.length) {
+        if (!appId || !appCertificate) {
             appId = '{{ env("AGORA_APP_ID") }}';
             appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
         }
@@ -1590,6 +1591,16 @@ switch ($sos_data->status) {
                 audio_ringtone_left.currentTime = 0; // เริ่มเสียงใหม่เมื่อต้องการเล่นอีกครั้ง
             }, 1000);
 
+            //=======================  Check Delete Member =========================
+
+            fetch("{{ url('/') }}/api/left_room_4" + "?user_id=" + evt.uid + "&type=" + type_video_call + "&sos_id=" + sos_id +"&meet_2_people=beforeunload"+"&leave=beforeunload")
+                .then(response => response.text())
+                .then(result => {
+                    console.log("result left_room_4 :" + result);
+                    // OK
+            });
+
+            //=======================  Check Member And Stop Count Time =========================
             setTimeout(() => {
                 fetch("{{ url('/') }}/api/check_status_room" + "?sos_id="+ sos_id + "&type=" + type_video_call)
                     .then(response => response.json())
@@ -3112,5 +3123,26 @@ switch ($sos_data->status) {
             });
         }
     });
+
+    // window.addEventListener('beforeunload', function(event) {
+    //     if (leaveChannel == "false") {
+    //         const data = {
+    //             user_id: '{{ Auth::user()->id }}',
+    //             type: type_video_call,
+    //             sos_id: sos_id,
+    //         };
+
+    //         const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+    //         console.log("Data to be sent:", data);
+    //         navigator.sendBeacon("{{ url('/') }}/api/check_delete_member", blob);
+    //         .then(response => {
+    //             console.log("Response from server:", response);
+    //         })
+    //         .catch(error => {
+    //             console.error("Error sending data:", error);
+    //         });
+    //     }
+    // });
+
 </script>
 

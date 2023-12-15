@@ -581,6 +581,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 	// SOS 1669 //
 	Route::get('user_video_call/sos_help_center', 'AgoraController@index'); // index
+    Route::get('user_video_call/sos_help_center_2', 'AgoraController@index_2'); // index
 	Route::post('/agora/call-user', 'AgoraController@callUser'); // ไม่ทราบ
 	// END SOS 1669 //
 

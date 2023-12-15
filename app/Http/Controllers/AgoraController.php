@@ -44,7 +44,7 @@ class AgoraController extends Controller
         $data_officer_command = Data_1669_officer_command::where('id',$data_sos->command_by)->first();
 
         return view('sos_help_center/user_video_call', compact('sos_id','user','data_sos','data_officer_command','appID','appCertificate'));
-        
+
     }
 
     public function token(Request $request)
@@ -172,17 +172,17 @@ class AgoraController extends Controller
             $data_update = [];
             if($type == 'command_join'){
                 $data_update['command'] = $user_id ;
-                $data_update['user'] = '' ; 
+                $data_update['user'] = '' ;
             }else{
                 $data_update['user'] = $user_id ;
-                $data_update['command'] = '' ; 
+                $data_update['command'] = '' ;
             }
 
             $update_time_start = date("Y-m-d H:i:s");
         }
 
         DB::table('agora_chats')
-            ->where([ 
+            ->where([
                     ['sos_id', $sos_id],
                     ['room_for', 'user_sos_1669'],
                 ])
@@ -265,7 +265,7 @@ class AgoraController extends Controller
             }else{
                 $data_update = null;
             }
-            
+
         }else{
             $data_old = $agora_chat->member_in_room;
 
@@ -278,7 +278,7 @@ class AgoraController extends Controller
             }else{
                 $data_update = null;
             }
-            
+
         }
 
         if($data_update == null){
@@ -298,7 +298,7 @@ class AgoraController extends Controller
         }
 
         DB::table('agora_chats')
-            ->where([ 
+            ->where([
                     ['sos_id', $sos_id],
                     ['room_for', 'user_sos_1669'],
                 ])
@@ -377,10 +377,25 @@ class AgoraController extends Controller
         $data_sos = Sos_map::where('id', $sos_id)->first();
 
         return view('sos_map/agora_chat/video_call', compact('sos_id','user','data_sos'));
-        
+
     }
 
     // // // // // -------------------- // // // // //
     // // // // // END SOS 1669 COMPANY // // // // //
     // // // // // -------------------- // // // // //
+
+    // Video Call 2 people
+    public function index_2(Request $request){
+
+        $sos_id = $request->sos_id;
+        $user = Auth::user();
+
+        $appID = env('AGORA_APP_ID');
+        $appCertificate = env('AGORA_APP_CERTIFICATE');
+
+        $data_sos = Sos_help_center::where('sos_help_centers.id', $sos_id)->first();
+        $data_officer_command = Data_1669_officer_command::where('id',$data_sos->command_by)->first();
+
+        return view('sos_help_center/user_video_call_2', compact('sos_id','user','data_sos','data_officer_command','appID','appCertificate'));
+    }
 }

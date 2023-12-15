@@ -169,7 +169,7 @@
 		width: 100%;
 	}
 
-	
+
 
 	.centered {
 		width: 70px !important;
@@ -407,7 +407,7 @@
 	}
 
 	/* .owl-nav {
-		
+
 
 	} */
 
@@ -473,7 +473,7 @@
 				<div class="flex-grow-1 ms-3 box-organization_helper">
 					<p class="font-weight-bold mb-0 notranslate">{{ $data_sos->name_helper }}</p>
 					<p class="font-weight-bold mb-0 notranslate text-organization">{{ $data_sos->organization_helper }}</p>
-					
+
 				</div>
 			</div>
 		</div>
@@ -639,7 +639,7 @@
 
 
 
-<!-- 
+<!--
 
 <style>
 	#map_show_user {
@@ -648,7 +648,7 @@
       	border-radius: 20px;
       	border: 1px solid red;
       	width: 90%;
-      	margin-top:25px; 
+      	margin-top:25px;
       	margin-bottom:10px;
     }
 
@@ -754,7 +754,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
                             	<i class="fa-solid fa-arrows-rotate"></i> โหลดใหม่
                             </span>
                     	</center>
-                        
+
                     </div>
                 </div>
             </div>
@@ -837,8 +837,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 					background-color: #ffffff;
 					padding: 10px;
 				}
-			</style> 
-			
+			</style>
+
 			<div class="bg-success p-3">
 
 				<div class="box-alert-officer-arrive">
@@ -851,7 +851,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 					</div>
 					<a class="btn btn-sm btn-success main-shadow main-radius">asd</a>
 				</div>
-				
+
 			</div>
         </div>
     </div>
@@ -891,7 +891,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 					if (!loop_officer_id) {
 						loop_officer_id = data_sos.id; // เก็บค่า officer_lat จากข้อมูลคนแรก
 					}
-					
+
 					if (!officer_lng) {
 						officer_lng = data_sos.lngOfficer; // เก็บค่า officer_lat จากข้อมูลคนแรก
 					}if (!officer_lat) {
@@ -910,7 +910,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 												<span class="d-block">
 													<span class="distanceOfficer" id="text_distance_` + data_sos.id + `"></span>
 													<span class="distanceKmOfficer" id="text_distance_km_` + data_sos.id + `"></span>
-													<a href="{{ url('/') }}/user_video_call/sos_help_center?sos_id={{ $data_sos->id }}" class="distanceKmOfficer float-end btn btn-info" style="color:#ffffff;margin-top:25px;">
+													<a href="{{ url('/') }}/video_call_4/before_video_call_4?sos_id={{ $data_sos->id }}&type=user_sos_1669" class="distanceKmOfficer float-end btn btn-info" style="color:#ffffff;margin-top:25px;">
 														<i class="fa-solid fa-video"></i>
 													</a>
 												</span>
@@ -957,7 +957,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 						initMap(currentData.id);
 					});
 				});
-				
+
 
 				initMap(officer_id);//เปิดด้วย
 
@@ -987,7 +987,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	var time_to_the_scene;
 
 	function initMap(officer_id) {
-		
+
 		document.querySelector("#divDataOfficer").classList.remove('d-none');
 		document.querySelector(".open-location-pls").classList.add('d-none');
 
@@ -998,7 +998,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 			},
 			zoom: 15
 		});
-		
+
 
 		if (officer_marker) {
 			officer_marker.setMap(null);
@@ -1029,7 +1029,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 		if (officer_id) {
 			get_Directions_API(officer_marker, sos_marker ,officer_id);
 		} else {
-			document.querySelector('.carousalOfficerSOS').innerHTML = 
+			document.querySelector('.carousalOfficerSOS').innerHTML =
 				`<div class="item"></div>
 					<div class="container bg-white officer-arrive w-100" style="bottom: -4.5%;">
 						<div class="w-100 text-center">
@@ -1044,7 +1044,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 						</div>
 					</div>
 				</div>`;
-				
+
 				loop_check_status_officer();
 		}
 	}
@@ -1102,40 +1102,40 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 			if (status === 'OK') {
 				directionsDisplay.setDirections(response);
 				// console.log(response);
-				
-				
+
+
 				// ระยะทาง
 				let text_distance = response.routes[0].legs[0].distance.text;
 				// console.log(text_distance);
 				let text_distance_sp = text_distance.split(' ');
-				
+
 				document.querySelector("#text_distance_" + officer_id).innerHTML = text_distance_sp[0];
 
 				document.querySelector("#text_distance_km_" + officer_id).innerHTML = text_distance_sp[1];
 
-				
+
 				// เวลา
 				let text_duration = response.routes[0].legs[0].duration.text;
 				// console.log(text_duration);
-				
+
 				document.querySelector("#text_duration_" + officer_id).innerHTML = text_duration;
 
 				let text_arrivalTime = func_arrivalTime(response.routes[0].legs[0].duration.value);
 				document.querySelector("#time_duration_" + officer_id).innerHTML = "ถึงเวลา " + text_arrivalTime;
-				
+
 				loop_check_location_officer();
 
 				// document.querySelector('#div_distance_and_duration').classList.remove('d-none');
 			} else {
 				console.log('Directions request failed due to ' + status);
-				
+
 			}
 		});
 
 	}
 
 	function loop_check_location_officer() {
-		
+
 		loop_check_officer = setInterval(function() {
 			// console.log(loop_officer_id);
 			// console.log('loop_check_location_officer');
@@ -1148,7 +1148,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 	}
 
 	function check_location_officer(officer_id) {
-		
+
 		fetch("{{ url('/') }}/api/check_location_officer" + "/" + officer_id)
 			.then(response => response.json())
 			.then(result => {
@@ -1170,7 +1170,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 				} else {
 					Stop_loop_check_officer();
 					// document.querySelector('#btn_modal_officer_to_the_scene').click();
-					document.querySelector('.box-data-helper-'+officer_id).innerHTML = 
+					document.querySelector('.box-data-helper-'+officer_id).innerHTML =
 					`<div class="container bg-white officer-arrive w-100" style="bottom: -4.5%;">
 						<div class="w-100 text-center">
 							<img src="{{ asset('/img/stickerline/PNG/34.png') }}" style="object-fit: contain;" width="80" height="80" alt="">
