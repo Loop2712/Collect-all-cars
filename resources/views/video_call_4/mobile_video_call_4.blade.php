@@ -1358,10 +1358,6 @@
                     let localAudioTrackCheck = channelParameters.localAudioTrack;
 
                     if (localPlayerContainer.id == volume.uid && volume.level >= 50) {
-                        //ถ้า localAudioTrackCheck เป็นค่าเก่า ให้แทนที่ด้วยค่าใหม่
-                        // if (localAudioTrackCheck !== channelParameters.localAudioTrack) {
-                        //     localAudioTrackCheck = channelParameters.localAudioTrack;
-                        // }
                         //แสดงชื่ออุปกรณ์ที่ใช้และระดับเสียง
                         if (localAudioTrackCheck) {
                             if (localAudioTrackCheck['enabled'] === true) {
@@ -1373,15 +1369,10 @@
                         }
 
                         // แสดงปุ่มเสียงพูด"
-                        if (document.querySelector('#statusMicrophoneOutput_local')) {
-                            document.querySelector('#statusMicrophoneOutput_local').classList.remove('d-none');
-                        }
+
+                        document.querySelector('#statusMicrophoneOutput_local').classList.remove('d-none');
 
                     } else {
-                        //ถ้า localAudioTrackCheck เป็นค่าเก่า ให้แทนที่ด้วยค่าใหม่
-                        if (localAudioTrackCheck !== channelParameters.localAudioTrack) {
-                            localAudioTrackCheck = channelParameters.localAudioTrack;
-                        }
                         //แสดงชื่ออุปกรณ์ที่ใช้และระดับเสียง
                         if (localAudioTrackCheck) {
                             if (localAudioTrackCheck['enabled'] === true) {
@@ -1393,9 +1384,9 @@
                         }
 
                         // ซ่อนปุ่มเสียงพูด"
-                        if (!document.querySelector('#statusMicrophoneOutput_local')) {
-                            document.querySelector('#statusMicrophoneOutput_local').classList.add('d-none');
-                        }
+
+                        document.querySelector('#statusMicrophoneOutput_local').classList.add('d-none');
+
                     }
                 });
             })
