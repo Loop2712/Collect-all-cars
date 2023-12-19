@@ -710,8 +710,8 @@ class Agora_4_Controller extends Controller
             $imageData_local = file_get_contents($text_path_local);
             list($width, $height) = getimagesizefromstring($imageData_local);
             // หาจุดตรงกลาง
-            $centerX = $width / 2;
-            $centerY = $height / 2;
+            $centerX = round($width / 2);
+            $centerY = round($height / 2);
 
             // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
             $hexcolor = $img_local->pickColor($centerX, $centerY, 'hex');
@@ -820,8 +820,8 @@ class Agora_4_Controller extends Controller
             $imageData_remote = file_get_contents($text_path_remote);
             list($width, $height) = getimagesizefromstring($imageData_remote);
             // หาจุดตรงกลาง
-            $centerX = $width / 2;
-            $centerY = $height / 2;
+            $centerX = round($width / 2);
+            $centerY = round($height / 2);
 
             // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
             $hexcolor = $img_remote->pickColor($centerX, $centerY, 'hex');
