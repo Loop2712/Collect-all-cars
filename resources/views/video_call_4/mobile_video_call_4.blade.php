@@ -1523,7 +1523,7 @@
                         } else if (channelParameters.remoteUid == volume.uid && volume.level < 50) {
                             console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
                              // เลือก element ที่มี ID "statusMicrophoneOutput_remote_"
-                            if (!document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid)) {
+                            if (document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid)) {
                                 document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid).classList.add('d-none');
                             }
                         }
@@ -1615,7 +1615,7 @@
                             } else if (user['uid'] == volume.uid && volume.level < 50) {
                                 console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-                                if (!document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString())) {
+                                if (document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString())) {
                                     document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.add('d-none');
                                 }
 
@@ -1712,7 +1712,7 @@
                                                 } else if (dummy_remote['uid'] == volume.uid && volume.level < 50) {
                                                     console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-                                                    if (!document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid)) {
+                                                    if (document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid)) {
                                                         document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.add('d-none');
                                                     }
 
