@@ -237,7 +237,7 @@
     <div class="main-content-video-call">
         <div class="row">
             <div class="col-12 col-sm-12 col-lg-8 p-2">
-                @if ($type_device == "pc_video_call")
+                @if ($type_brand == "pc")
                     <div class="div-video">
                         <video id="videoDiv" style="background-color: #000000;" class="video_preview" autoplay playsinline></video>
                         <div id="soundTest" class="soundTest">
@@ -263,7 +263,7 @@
 
 
                 <div class=" d-nne">
-                    @if ($type_device == "pc_video_call")
+                    @if ($type_brand == "pc")
                         <div class="selectDivice mt-2 p-2 row">
                             <select id="microphoneList"></select>
                             <select id="cameraList"></select>
@@ -287,7 +287,7 @@
             </div>
             <div class="col-12 col-sm-12 col-lg-4  d-flex justify-content-center p-3 align-items-center">
                 <div id="before_join_message" class="text-center w-100">
-                    @if ($type_device == "pc_video_call")
+                    @if ($type_brand == "pc")
                         @if($type == "sos_1669")
                             @php
                                 $data_sos_1669 = App\Models\Sos_help_center::where('id' , $sos_id)->first();
@@ -310,22 +310,11 @@
                         <div id="text_user_in_room" class="mt-2">
                             <!-- สำหรับใส่ text ที่บอกคนในห้อง-->
                         </div>
-                        @php
-                            $inRoomPeople = 0;
-                        @endphp
-                        @if ($inRoomPeople < 4)
-                            <br>
-                            <a id="btnJoinRoom" class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
-                                เข้าร่วมห้องสนทนา
-                            </a>
-                            <a id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องนี้ถึงจำนวนผู้ใช้สูงสุดแล้ว</a>
-                        @else
-                            <br>
-                            <a id="btnJoinRoom" class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
-                                เข้าร่วมห้องสนทนา
-                            </a>
-                            <a id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องนี้ถึงจำนวนผู้ใช้สูงสุดแล้ว</a>
-                        @endif
+
+                        <a id="btnJoinRoom" class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
+                            เข้าร่วมห้องสนทนา
+                        </a>
+                        <a id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องนี้ถึงจำนวนผู้ใช้สูงสุดแล้ว</a>
                     @else
                         @if($type == "sos_1669")
                             @php
@@ -349,24 +338,13 @@
                         <div id="text_user_in_room" class="mt-2">
                             <!-- สำหรับใส่ text ที่บอกคนในห้อง-->
                         </div>
-                        @php
-                            $inRoomPeople = 0;
-                        @endphp
-                        @if ($inRoomPeople < 4)
-                            <br>
-                            <a style="font-size: 40px; border-radius: 10px;" id="btnJoinRoom" class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
-                                เข้าร่วมห้องสนทนา
-                            </a>
-                            <a style="font-size: 40px; border-radius: 10px;" id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องนี้ถึงจำนวนผู้ใช้สูงสุดแล้ว</a>
-                        @else
-                            <br>
-                            <a id="btnJoinRoom"  class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
-                                เข้าร่วมห้องสนทนา
-                            </a>
-                            <a style="font-size: 40px; border-radius: 10px;" id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องนี้ถึงจำนวนผู้ใช้สูงสุดแล้ว</a>
-                        @endif
-                    @endif
 
+                        <a style="font-size: 40px; border-radius: 10px;" id="btnJoinRoom" class="btn btn-success d-none" href="{{ url('/'. $type_device .'/'. $type . '/' . $sos_id ) }}?videoTrack=open&audioTrack=open&appId={{$appId}}&appCertificate={{$appCertificate}}&consult_doctor_id={{$consult_doctor_id}}&useMicrophone=&useCamera=&useSpeaker=">
+                            เข้าร่วมห้องสนทนา
+                        </a>
+                        <a style="font-size: 40px; border-radius: 10px;" id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องนี้ถึงจำนวนผู้ใช้สูงสุดแล้ว</a>
+
+                    @endif
 
                 </div>
             </div>
@@ -1074,14 +1052,6 @@
                     text_user_in_room.insertAdjacentHTML('beforeend', html_2);
                 }
 
-
-                // if (!document.querySelector('#btnJoinRoom')) {
-                //     document.querySelector('#btnJoinRoom').setAttribute('href',"{{ url('/'. $type_device .'/'. $type . '/' . $sos_id  ) }}?videoTrack="+statusCamera+"&audioTrack="+statusMicrophone+"&consult_doctor_id="+consult_doctor_id+"&useMicrophone="+useMicrophone+"&useSpeaker="+useSpeaker+"&useCamera="+useCamera);
-
-                // }
-                // if (document.querySelector('#full_room')) {
-                //     document.querySelector('#full_room').remove();
-                // }
             }else{
                 document.querySelector('#btnJoinRoom').classList.add('d-none');
                 document.querySelector('#full_room').classList.remove('d-none');

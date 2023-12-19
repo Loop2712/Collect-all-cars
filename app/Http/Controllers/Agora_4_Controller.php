@@ -56,15 +56,18 @@ class Agora_4_Controller extends Controller
         // ตรวจสอบชนิดของอุปกรณ์
         if (preg_match('/android/i', $userAgent)) {
             $type_device = "mobile_video_call";
+            $type_brand = "android";
         }
         else if (preg_match('/iPad|iPhone|iPod/', $userAgent) && !strpos($userAgent, 'MSStream')) {
             $type_device = "mobile_video_call";
+            $type_brand = "ios";
         }
         else{
             $type_device = "pc_video_call";
+            $type_brand = "pc";
         }
 
-        return view('video_call_4/before_video_call_4', compact('user','appId','appCertificate','sos_id','consult_doctor_id','type','type_device'));
+        return view('video_call_4/before_video_call_4', compact('user','appId','appCertificate','sos_id','consult_doctor_id','type','type_device','type_brand'));
 
     }
 
