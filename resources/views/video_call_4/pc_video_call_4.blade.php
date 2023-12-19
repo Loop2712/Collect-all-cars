@@ -1199,9 +1199,9 @@ switch ($sos_data->status) {
                         }
 
                         // แสดงปุ่มเสียงพูด"
-                        if (document.querySelector('#statusMicrophoneOutput_local')) {
-                            document.querySelector('#statusMicrophoneOutput_local').classList.remove('d-none');
-                        }
+
+                        document.querySelector('#statusMicrophoneOutput_local').classList.remove('d-none');
+
 
                     } else {
                         //ถ้า localAudioTrackCheck เป็นค่าเก่า ให้แทนที่ด้วยค่าใหม่
@@ -1219,9 +1219,9 @@ switch ($sos_data->status) {
                         }
 
                         // ซ่อนปุ่มเสียงพูด"
-                        if (!document.querySelector('#statusMicrophoneOutput_local')) {
-                            document.querySelector('#statusMicrophoneOutput_local').classList.add('d-none');
-                        }
+
+                        document.querySelector('#statusMicrophoneOutput_local').classList.add('d-none');
+
                     }
                 });
             })
@@ -1348,16 +1348,16 @@ switch ($sos_data->status) {
                             console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
                             // console.log("Remote พูดแล้ว");
 
-                            if (document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid)) {
-                                document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid).classList.remove('d-none');
-                            }
+
+                            document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid).classList.remove('d-none');
+
 
                         } else if (channelParameters.remoteUid == volume.uid && volume.level < 50) {
                             console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
                              // เลือก element ที่มี ID "statusMicrophoneOutput_remote_"
-                            if (!document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid)) {
-                                document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid).classList.add('d-none');
-                            }
+
+                            document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid).classList.add('d-none');
+
                         }
                     });
                 })
@@ -1440,15 +1440,13 @@ switch ($sos_data->status) {
                             if (user['uid'] == volume.uid && volume.level > 50) {
                                 console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-                                if (document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString())) {
-                                    document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.remove('d-none');
-                                }
+                                document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.remove('d-none');
+
                             } else if (user['uid'] == volume.uid && volume.level < 50) {
                                 console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-                                if (!document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString())) {
-                                    document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.add('d-none');
-                                }
+                                document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.add('d-none');
+
 
                             }
                         });
@@ -1539,15 +1537,12 @@ switch ($sos_data->status) {
                                                 if (dummy_remote['uid'] == volume.uid && volume.level > 50) {
                                                     console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-                                                    if (document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid)) {
-                                                        document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.remove('d-none');
-                                                    }
+                                                    document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.remove('d-none');
+
                                                 } else if (dummy_remote['uid'] == volume.uid && volume.level < 50) {
                                                     console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-                                                    if (!document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid)) {
-                                                        document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.add('d-none');
-                                                    }
+                                                    document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.add('d-none');
 
                                                 }
                                             });
