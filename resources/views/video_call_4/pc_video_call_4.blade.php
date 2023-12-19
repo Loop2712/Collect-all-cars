@@ -1159,7 +1159,6 @@ switch ($sos_data->status) {
             .then(response => response.json())
             .then(result => {
                 bg_local = result.hexcolor;
-
                 name_local = result.name_user;
                 type_local = result.user_type;
 
@@ -1388,8 +1387,8 @@ switch ($sos_data->status) {
                         .then(result => {
                             // console.log("result");
                             // console.log(result);
-                            // hexcolor = result.hexcolor;
-                            hexcolor = "#2b2d26";
+                            hexcolor = result.hexcolor;
+                            // hexcolor = "#2b2d26";
                             name_remote_user_unpublished = result.name_user;
                             type_remote_user_unpublished = result.user_type;
                             // name_remote_user_unpublished = "guest";
