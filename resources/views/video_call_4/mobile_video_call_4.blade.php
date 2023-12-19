@@ -1352,6 +1352,7 @@
         agoraEngine.enableAudioVolumeIndicator();
 
         function SoundTest() {
+            let isIconVisible = false;
             agoraEngine.on("volume-indicator", volumes => {
                 volumes.forEach((volume) => {
                     // console.log("in to SoundCheck Local");
@@ -1369,8 +1370,10 @@
                         }
 
                         // แสดงปุ่มเสียงพูด"
-
-                        document.querySelector('#statusMicrophoneOutput_local').classList.remove('d-none');
+                        if (!isIconVisible) {
+                            document.querySelector('#statusMicrophoneOutput_local').classList.remove('d-none');
+                            isIconVisible = true;
+                        }
 
                     } else {
                         //แสดงชื่ออุปกรณ์ที่ใช้และระดับเสียง
@@ -1384,8 +1387,10 @@
                         }
 
                         // ซ่อนปุ่มเสียงพูด"
-
-                        document.querySelector('#statusMicrophoneOutput_local').classList.add('d-none');
+                        if (isIconVisible) {
+                            document.querySelector('#statusMicrophoneOutput_local').classList.add('d-none');
+                            isIconVisible = false;
+                        }
 
                     }
                 });
