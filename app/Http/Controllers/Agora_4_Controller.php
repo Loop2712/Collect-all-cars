@@ -687,13 +687,13 @@ class Agora_4_Controller extends Controller
 
         if (!empty($local_data->photo)) {
             // $text_path = url('storage') . '/' . $local_data->photo;
-            $text_path = storage_path('app/public/' . $local_data->photo);
-            $img = Image::make($text_path);
+            $text_path_local = storage_path('app/public/' . $local_data->photo);
+            $img = Image::make($text_path_local);
 
             // ต่อไปคุณสามารถทำตามโค้ดต่อไปเช่นเดียวกัน
             // โหลดข้อมูลขนาดของรูปภาพ
-            $imageData = file_get_contents($text_path);
-            list($width, $height) = getimagesizefromstring($imageData);
+            $imageData_local = file_get_contents($text_path_local);
+            list($width, $height) = getimagesizefromstring($imageData_local);
 
             // หาจุดตรงกลาง
             $centerX = $width / 2;
@@ -785,18 +785,18 @@ class Agora_4_Controller extends Controller
         }
 
         if (!empty($remote_data->photo)) {
-            $text_path = storage_path('app/public/' . $remote_data->photo);
-            $img = Image::make($text_path);
+            $text_path_remote = storage_path('app/public/' . $remote_data->photo);
+            $img_remote = Image::make($text_path_remote);
 
             // โหลดข้อมูลขนาดของรูปภาพ
-            $imageData = file_get_contents($text_path);
-            list($width, $height) = getimagesizefromstring($imageData);
+            $imageData_remote = file_get_contents($text_path_remote);
+            list($width, $height) = getimagesizefromstring($imageData_remote);
             // หาจุดตรงกลาง
             $centerX = $width / 2;
             $centerY = $height / 2;
 
             // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
-            $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
+            $hexcolor = $img_remote->pickColor($centerX, $centerY, 'hex');
 
             // $hexcolor = '#2b2d31';
         } else {
