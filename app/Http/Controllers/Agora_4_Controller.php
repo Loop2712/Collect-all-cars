@@ -235,8 +235,22 @@ class Agora_4_Controller extends Controller
         $appID = env('AGORA_APP_ID');
         $appCertificate = env('AGORA_APP_CERTIFICATE');
 
+        //ตรวจอุปกรณ์
+        $userAgent = $_SERVER['HTTP_USER_AGENT'];
 
-        return view('video_call_4/mobile_video_call_4' , compact('data_agora','user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data','role_permission','groupId'));
+        // ตรวจสอบชนิดของอุปกรณ์
+        if (preg_match('/android/i', $userAgent)) {
+            $type_brand = "android";
+        }
+        else if (preg_match('/iPad|iPhone|iPod/', $userAgent) && !strpos($userAgent, 'MSStream')) {
+            $type_brand = "ios";
+        }
+        else{
+            $type_brand = "pc";
+        }
+
+
+        return view('video_call_4/mobile_video_call_4' , compact('data_agora','user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data','role_permission','groupId','type_brand'));
     }
 
     public function token(Request $request)

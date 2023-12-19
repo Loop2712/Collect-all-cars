@@ -665,12 +665,22 @@
     <div class="col-12" style="height: calc(100% - 90%);">
         <div class="status-case-bar d-flex justify-content-center align-items-center">
             <p class="font-30 row text-center">
-                @if (!empty($sos_data->status))
-                    <span class="m-2" id="status_of_Room">สถานะ : <b class="{{$color_text_status}}">{{ $sos_data->status }}</b></span>
+                @if ($type_brand == "android")
+                    @if (!empty($sos_data->status))
+                        <span class="m-2" id="status_of_Room">สถานะ : <b class="{{$color_text_status}}">{{ $sos_data->status }}</b></span>
+                    @else
+                        <span class="m-2" id="status_of_Room">สถานะ : <b class="text-dark">--</b></span>
+                    @endif
+                    <span id="time_of_room" class="m-2"></span>
                 @else
-                    <span class="m-2" id="status_of_Room">สถานะ : <b class="text-dark">--</b></span>
+                    @if (!empty($sos_data->status))
+                        <span class="m-0" id="status_of_Room">สถานะ : <b class="{{$color_text_status}}">{{ $sos_data->status }}</b></span>
+                    @else
+                        <span class="m-0" id="status_of_Room">สถานะ : <b class="text-dark">--</b></span>
+                    @endif
+                    <span id="time_of_room" class="m-0"></span>
                 @endif
-                <span id="time_of_room" class="m-2"></span>
+
             </p>
 
             @if ($role_permission !== 'help_seeker')
@@ -3845,6 +3855,7 @@
                                 showTimeCountVideo = minutes + ':' + seconds + `&nbsp;/ `+max_minute_time+` นาที`;
                             }
                         }
+
                         // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
                         time_of_room.innerHTML = '<i class="fa-regular fa-clock fa-fade" style="color: #11b06b; font-size: 35px;"></i>&nbsp;' + ": " + showTimeCountVideo;
 
