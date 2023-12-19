@@ -703,22 +703,21 @@ class Agora_4_Controller extends Controller
         }
 
         if (!empty($local_data->photo)) {
-            // $text_path = url('storage') . '/' . $local_data->photo;
-            // $text_path_local = storage_path('app/public/' . $local_data->photo);
-            // $img = Image::make($text_path_local);
+            $text_path_local = storage_path('app/public/' . $local_data->photo);
+            $img_local = Image::make($text_path_local);
 
-            // // ต่อไปคุณสามารถทำตามโค้ดต่อไปเช่นเดียวกัน
-            // // โหลดข้อมูลขนาดของรูปภาพ
-            // $imageData_local = file_get_contents($text_path_local);
-            // list($width, $height) = getimagesizefromstring($imageData_local);
+            // ต่อไปคุณสามารถทำตามโค้ดต่อไปเช่นเดียวกัน
+            // โหลดข้อมูลขนาดของรูปภาพ
+            $imageData_local = file_get_contents($text_path_local);
+            list($width, $height) = getimagesizefromstring($imageData_local);
 
-            // // หาจุดตรงกลาง
-            // $centerX = $width / 2;
-            // $centerY = $height / 2;
+            // หาจุดตรงกลาง
+            $centerX = $width / 2;
+            $centerY = $height / 2;
 
-            // // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
-            // $hexcolor = $img->pickColor($centerX, $centerY, 'hex');
-            $hexcolor = '#2b2d31';
+            // ตรวจสอบสีที่จุดกึ่งกลางรูปถาพ
+            $hexcolor = $img_local->pickColor($centerX, $centerY, 'hex');
+            // $hexcolor = '#2b2d31';
         } else {
             $hexcolor = '#2b2d31';
         }
