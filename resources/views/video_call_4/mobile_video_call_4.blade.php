@@ -1441,8 +1441,8 @@
                 fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + user.uid + "&type=" + type_video_call + "&sos_id=" + sos_id)
                     .then(response => response.json())
                     .then(result => {
-                        // console.log("result published ---");
-                        // console.log(result);
+                        console.log("result published ---");
+                        console.log(result);
 
                         bg_remote = result.hexcolor;
                         // bg_remote = "#F0D2CC";
@@ -1550,11 +1550,12 @@
                     let type_remote_user_unpublished;
                     let profile_remote_user_unpublished;
                     let hexcolor;
+
                     fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + user.uid + "&type=" + type_video_call + "&sos_id=" + sos_id)
                         .then(response => response.json())
                         .then(result => {
-                            // console.log("result");
-                            // console.log(result);
+                            console.log("result_get_remote_data_4");
+                            console.log(result);
 
                             // hexcolor = "#F0D2CC";
                             hexcolor = result.hexcolor;
@@ -1670,8 +1671,8 @@
                             fetch("{{ url('/') }}/api/get_remote_data_4" + "?user_id=" + dummy_remote.uid + "&type=" + type_video_call + "&sos_id=" + sos_id)
                                 .then(response => response.json())
                                 .then(result => {
-                                    // console.log("result");
-                                    // console.log(result);
+                                    console.log("result_get_remote_data_4_user_join");
+                                    console.log(result);
                                     name_remote_user_joined = result.name_user;
                                     type_remote_user_joined = result.user_type
                                     hexcolor = result.hexcolor;
