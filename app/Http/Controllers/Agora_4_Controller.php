@@ -734,7 +734,7 @@ class Agora_4_Controller extends Controller
 
         if($type == 'sos_1669'){
             $data_sos = Sos_help_center::where('id',$sos_id)->first();
-        }else if($type == 'userf_sos_1669'){
+        }else if($type == 'user_sos_1669'){
             $data_sos = Sos_help_center::where('id',$sos_id)->first();
         }else{
             $data_sos = Sos_map::where('id',$sos_id)->first();
@@ -763,7 +763,21 @@ class Agora_4_Controller extends Controller
                 $data['name_user'] = $remote_data->name;
             }
         }else if($type == 'sos_1669'){
+            $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
+            $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
 
+            if(!empty($data_command->name_officer_command)){
+                $data['user_type'] = "ศูนย์อำนวยการ";
+                $data['name_user'] = $data_command->name_officer_command;
+                // $data['unit'] = '';
+            }elseif(!empty($data_officer->name_officer)){
+                $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
+                $data['name_user'] = $data_officer->name_officer;
+                // $data['unit'] = $data_officer->operating_unit->name;
+            }else{
+                $data['user_type'] = "ผู้ขอความช่วยเหลือ";
+                $data['name_user'] = $remote_data->name;
+            }
         }
         else{
             $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
