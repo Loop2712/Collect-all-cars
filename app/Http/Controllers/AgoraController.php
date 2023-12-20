@@ -217,6 +217,8 @@ class AgoraController extends Controller
         return $check_data_array ;
     }
 
+
+
     function left_room(Request $request)
     {
         $sos_id = $request->sos_1669_id;

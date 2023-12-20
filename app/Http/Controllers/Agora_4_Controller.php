@@ -316,6 +316,21 @@ class Agora_4_Controller extends Controller
 
             $data_array = json_decode($data_update, true);
 
+            //=============== อัพเดตใหม่ ใช้สำหรับ 1ต่อ1 ของ เจ้าหน้าที่ หน้า from_yellow =================
+
+            foreach ($data_array as $member) {
+                $data_command = Data_1669_officer_command::where('user_id', $user_id)->first();
+                // $data_officer = Data_1669_operating_officer::where('user_id', $member)->first();
+
+                if(!empty($data_command->name_officer_command)){
+                    $data_array['command'] = $user_id;
+                }else{
+                    $data_array['user'] = $user_id;
+                }
+            }
+
+            //====================================================================================
+
             // ป้องกัน array มีค่าซ้ำกัน
             if (!in_array($user_id, $data_array)) {
                 $data_array[] = $user_id;
@@ -358,7 +373,6 @@ class Agora_4_Controller extends Controller
                 ]);
 
         return $data_update ;
-
 
     }
 

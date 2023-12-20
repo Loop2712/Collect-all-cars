@@ -1201,7 +1201,8 @@ async function startBasicCall() {
     fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_join')
       .then(response => response.json())
       .then(result => {
-        // console.log(result);
+        console.log("result_join_room");
+        console.log(result);
 
           if(result['data']['user']){
             create_html_user_in_room(result['data_user'] , 'in_room');
