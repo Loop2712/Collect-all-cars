@@ -141,9 +141,9 @@
         justify-content: center;
         align-items: center;
     }.video_preview{
-        min-height: 20vh;
-        height: 100%;
-        max-height: 40vh;
+        /* min-height: 20vh; */
+        height: 40vh;
+        /* max-height: 40vh; */
         width: 100%;
         object-fit: cover;
         border-radius: 15px;
