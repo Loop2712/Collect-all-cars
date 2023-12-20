@@ -288,7 +288,7 @@
             <div class="col-12 col-sm-12 col-lg-4  d-flex justify-content-center p-3 align-items-center">
                 <div id="before_join_message" class="text-center w-100">
                     @if ($type_brand == "pc")
-                        @if($type == "sos_1669")
+                        @if($type == "sos_1669" || $type == "user_sos_1669")
                             @php
                                 $data_sos_1669 = App\Models\Sos_help_center::where('id' , $sos_id)->first();
                             @endphp
@@ -316,7 +316,7 @@
                         </a>
                         <a id="full_room" class="btn btn-secondary d-none" onclick="AlertPeopleInRoom()">ห้องนี้ถึงจำนวนผู้ใช้สูงสุดแล้ว</a>
                     @else
-                        @if($type == "sos_1669")
+                        @if($type == "sos_1669" || $type == "user_sos_1669")
                             @php
                                 $data_sos_1669 = App\Models\Sos_help_center::where('id' , $sos_id)->first();
                             @endphp
