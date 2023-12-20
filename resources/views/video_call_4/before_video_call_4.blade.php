@@ -648,18 +648,7 @@
                 // let constraints = { video: { facingMode: 'user' } }; // เพิ่มออปชัน facingMode เพื่อเลือกกล้องหน้า
                 // let constraints = { video: { facingMode: 'environment' } }; // เพิ่มออปชัน facingMode เพื่อเลือกกล้องหน้า
                 let selectedDeviceId = cameraList.value; // รับค่า ID ของอุปกรณ์ที่เลือกใน dropdown
-                // let constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
-
-                let width = 1280; // ตั้งค่าความกว้างของวิดีโอ
-                let height = 720; // ตั้งค่าความสูงของวิดีโอ
-                let constraints = {
-                    video: {
-                        deviceId: { exact: selectedDeviceId },
-                        width: { ideal: width },
-                        height: { ideal: height },
-                        facingMode: 'user' // เลือกกล้องหน้า
-                    }
-                };
+                let constraints = { video: { deviceId: selectedDeviceId } }; // เลือกอุปกรณ์ที่ถูกเลือก
 
                 navigator.mediaDevices.getUserMedia(constraints)
                 .then(function(videoStream) {

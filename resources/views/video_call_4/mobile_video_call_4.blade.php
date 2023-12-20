@@ -1121,6 +1121,9 @@
     var type_local;
     var profile_local;
 
+    // ใช้สำหรับ เช็ค icon
+    var isRemoteIconSound = false;
+
     // ใช้สำหรับ เช็คไม่ให้ฟังก์ชันออกห้องทำงานซ้ำ
     var leaveChannel = "false";
     // เกี่ยวกับเวลาในห้อง
@@ -1348,10 +1351,10 @@
         //=====================================================================================================
 
 
-        // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
-        agoraEngine.enableAudioVolumeIndicator();
-
         function SoundTest() {
+            // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
+            agoraEngine.enableAudioVolumeIndicator();
+
             let isIconVisible = false;
             agoraEngine.on("volume-indicator", volumes => {
                 volumes.forEach((volume) => {
@@ -1475,7 +1478,7 @@
                 // channelParameters.remoteVideoTrack.play(remotePlayerContainer);
 
                 // Set a stream fallback option to automatically switch remote video quality when network conditions degrade.
-                agoraEngine.setStreamFallbackOption(channelParameters.remoteUid, 1);
+                // agoraEngine.setStreamFallbackOption(channelParameters.remoteUid, 1);
 
             }
 
@@ -1511,14 +1514,18 @@
                         if (channelParameters.remoteUid == volume.uid && volume.level >= 50) {
                             console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
                             // console.log("Remote พูดแล้ว");
-
-                            document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid).classList.remove('d-none');
+                            if (!isRemoteIconSound) {
+                                document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid).classList.remove('d-none');
+                                isRemoteIconSound = true;
+                            }
 
                         } else if (channelParameters.remoteUid == volume.uid && volume.level < 50) {
                             console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
                             // เลือก element ที่มี ID "statusMicrophoneOutput_remote_"
-
-                            document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid).classList.add('d-none');
+                            if (isRemoteIconSound) {
+                                document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid).classList.add('d-none');
+                                isRemoteIconSound = false;
+                            }
                         }
                     });
                 })
@@ -1602,14 +1609,18 @@
                             if (user['uid'] == volume.uid && volume.level > 50) {
                                 console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-
-                                document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.remove('d-none');
+                                if (!isRemoteIconSound) {
+                                    document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.remove('d-none');
+                                    isRemoteIconSound = true;
+                                }
 
                             } else if (user['uid'] == volume.uid && volume.level < 50) {
                                 console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-
-                                document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.add('d-none');
+                                if (isRemoteIconSound) {
+                                    document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.add('d-none');
+                                    isRemoteIconSound = false;
+                                }
 
 
                             }
@@ -1699,15 +1710,18 @@
                                                 if (dummy_remote['uid'] == volume.uid && volume.level > 50) {
                                                     console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-
-                                                    document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.remove('d-none');
+                                                    if (!isRemoteIconSound) {
+                                                        document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.remove('d-none');
+                                                        isRemoteIconSound = true;
+                                                    }
 
                                                 } else if (dummy_remote['uid'] == volume.uid && volume.level < 50) {
                                                     console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-
-                                                    document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.add('d-none');
-
+                                                    if (isRemoteIconSound) {
+                                                        document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.add('d-none');
+                                                        isRemoteIconSound = false;
+                                                    }
 
                                                 }
                                             });
