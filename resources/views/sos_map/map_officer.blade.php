@@ -604,7 +604,7 @@
 		// ทำรอบแรกก่อนเข้า LOOP
 		if(check_status != "เสร็จสิ้น"){
 				
-			console.log(check_status);
+			// console.log(check_status);
 
         	if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(update_location_officer);
@@ -621,7 +621,7 @@
 
 			if(check_status != "เสร็จสิ้น"){
 				
-				console.log(check_status);
+				// console.log(check_status);
 
 	        	if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(update_location_officer);
@@ -644,13 +644,13 @@
 
 	function update_location_officer(position){
 
-		// console.log("update_location_officer");
+		console.log("update_location_officer");
 
 		let officer_lat = position.coords.latitude;
 		let officer_lng = position.coords.longitude;
 
-		// console.log("officer_lat >> " + officer_lat);
-		// console.log("officer_lng >> " + officer_lng);
+		console.log("officer_lat >> " + officer_lat);
+		console.log("officer_lng >> " + officer_lng);
 
         let data_arr = [] ;
 
@@ -670,7 +670,7 @@
         }).then(function (response){
             return response.json();
         }).then(function(data){
-            // console.log(data);
+            console.log(data);
 
             if(data){
             	if(data['remark_command']){
