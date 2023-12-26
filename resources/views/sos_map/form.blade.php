@@ -1,59 +1,4 @@
-
-@if(Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '11003429')
-<div style="display:block;">
-@else
-<div style="display:none;">
-@endif
-    <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
-        <label for="content" class="control-label">{{ 'Content' }}</label>
-        <input class="form-control" name="content" type="text" id="content" value="{{ isset($sos_map->content) ? $sos_map->content : ''}}" >
-        {!! $errors->first('content', '<p class="help-block">:message</p>') !!}
-    </div>
-    <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-        <label for="name" class="control-label">{{ 'Name' }}</label>
-        <input class="form-control" name="name" type="text" id="name" value="{{ isset($sos_map->name) ? $sos_map->name : Auth::user()->name}}" >
-        {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
-    </div>
-    <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
-        <label for="phone" class="control-label">{{ 'Phone' }}</label>
-        <input class="form-control" name="phone" type="text" id="phone" value="{{ isset($sos_map->phone) ? $sos_map->phone : Auth::user()->phone}}" >
-        {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
-    </div>
-    <div class="form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
-        <label for="lat" class="control-label">{{ 'Lat' }}</label>
-        <input class="form-control" name="lat" type="text" id="lat" value="{{ isset($sos_map->lat) ? $sos_map->lat : ''}}" >
-        {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
-    </div>
-    <div class="form-group {{ $errors->has('lng') ? 'has-error' : ''}}">
-        <label for="lng" class="control-label">{{ 'Lng' }}</label>
-        <input class="form-control" name="lng" type="text" id="lng" value="{{ isset($sos_map->lng) ? $sos_map->lng : ''}}" >
-        {!! $errors->first('lng', '<p class="help-block">:message</p>') !!}
-    </div>
-    <div class="form-group {{ $errors->has('area') ? 'has-error' : ''}}">
-        <label for="area" class="control-label">{{ 'Area' }}</label>
-        <input class="form-control" name="area" type="text" id="area" value="{{ isset($sos_map->area) ? $sos_map->area : ''}}" >
-        {!! $errors->first('area', '<p class="help-block">:message</p>') !!}
-    </div>
-    <div class="form-group {{ $errors->has('name_area') ? 'has-error' : ''}}">
-        <label for="name_area" class="control-label">{{ 'Area' }}</label>
-        <input class="form-control" name="name_area" type="text" id="name_area" value="{{ isset($sos_map->name_area) ? $sos_map->name_area : ''}}" >
-        {!! $errors->first('name_area', '<p class="help-block">:message</p>') !!}
-    </div>
-    <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
-        <label for="user_id" class="control-label">{{ 'User Id' }}</label>
-        <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($sos_map->user_id) ? $sos_map->user_id : Auth::user()->id}}" >
-        {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
-    </div>
-
-    <input type="text" id="condo_id" name="condo_id" value="{{ $condo_id }}">
-
-    <div class="form-group"> 
-        <input class="btn btn-primary" id="btn_submit" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
-    </div>
-</div>
-
-<input class="d-none" type="text" id="latlng" name="latlng" readonly> 
-
+ 
 <div class="container d-block d-lg-none"> <!-- d-block d-md-none -->
         <div class="row">
             <center>
@@ -1254,6 +1199,60 @@
 </div> -->
 
 
+@if(Auth::user()->id == '1' || Auth::user()->id == '64' || Auth::user()->id == '11003429')
+<div style="display:block;">
+@else
+<div style="display:none;">
+@endif
+    <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
+        <label for="content" class="control-label">{{ 'Content' }}</label>
+        <input class="form-control" name="content" type="text" id="content" value="{{ isset($sos_map->content) ? $sos_map->content : ''}}" >
+        {!! $errors->first('content', '<p class="help-block">:message</p>') !!}
+    </div>
+    <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+        <label for="name" class="control-label">{{ 'Name' }}</label>
+        <input class="form-control" name="name" type="text" id="name" value="{{ isset($sos_map->name) ? $sos_map->name : Auth::user()->name}}" >
+        {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
+    </div>
+    <div class="form-group {{ $errors->has('phone') ? 'has-error' : ''}}">
+        <label for="phone" class="control-label">{{ 'Phone' }}</label>
+        <input class="form-control" name="phone" type="text" id="phone" value="{{ isset($sos_map->phone) ? $sos_map->phone : Auth::user()->phone}}" >
+        {!! $errors->first('phone', '<p class="help-block">:message</p>') !!}
+    </div>
+    <div class="form-group {{ $errors->has('lat') ? 'has-error' : ''}}">
+        <label for="lat" class="control-label">{{ 'Lat' }}</label>
+        <input class="form-control" name="lat" type="text" id="lat" value="{{ isset($sos_map->lat) ? $sos_map->lat : ''}}" >
+        {!! $errors->first('lat', '<p class="help-block">:message</p>') !!}
+    </div>
+    <div class="form-group {{ $errors->has('lng') ? 'has-error' : ''}}">
+        <label for="lng" class="control-label">{{ 'Lng' }}</label>
+        <input class="form-control" name="lng" type="text" id="lng" value="{{ isset($sos_map->lng) ? $sos_map->lng : ''}}" >
+        {!! $errors->first('lng', '<p class="help-block">:message</p>') !!}
+    </div>
+    <div class="form-group {{ $errors->has('area') ? 'has-error' : ''}}">
+        <label for="area" class="control-label">{{ 'Area' }}</label>
+        <input class="form-control" name="area" type="text" id="area" value="{{ isset($sos_map->area) ? $sos_map->area : ''}}" >
+        {!! $errors->first('area', '<p class="help-block">:message</p>') !!}
+    </div>
+    <div class="form-group {{ $errors->has('name_area') ? 'has-error' : ''}}">
+        <label for="name_area" class="control-label">{{ 'Area' }}</label>
+        <input class="form-control" name="name_area" type="text" id="name_area" value="{{ isset($sos_map->name_area) ? $sos_map->name_area : ''}}" >
+        {!! $errors->first('name_area', '<p class="help-block">:message</p>') !!}
+    </div>
+    <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
+        <label for="user_id" class="control-label">{{ 'User Id' }}</label>
+        <input class="form-control" name="user_id" type="number" id="user_id" value="{{ isset($sos_map->user_id) ? $sos_map->user_id : Auth::user()->id}}" >
+        {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+    </div>
+
+    <input type="text" id="condo_id" name="condo_id" value="{{ $condo_id }}">
+
+    <div class="form-group"> 
+        <input class="btn btn-primary" id="btn_submit" data-toggle="modal" data-target="#btn-loading" data-dismiss="modal" aria-label="Close" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+    </div>
+</div>
+
+<input class="d-none" type="text" id="latlng" name="latlng" readonly>
 
 <br><br>
 
