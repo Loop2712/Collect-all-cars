@@ -616,7 +616,7 @@
 				Stop_reface_loop_check_marker();
 			}
 
-        }, 15000);
+        }, 5000);
 
 
 	}
