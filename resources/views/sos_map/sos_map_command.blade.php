@@ -567,6 +567,58 @@
 
 	function onload_check_status_sos_map() {
 
+		// ทำรอบแรกก่อนเข้า LOOP
+		fetch("{{ url('/') }}/api/sos_map/loop_check_status_sos_map" + "/" + "{{ $data_sos_map->id }}")
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+
+            	if(result['status'] != check_status){
+	            	// แจ้งเตือนเปลี่ยนสถานะ
+	            	Status_change_notification(result['status']);
+	            	check_status = result['status'];
+	            }
+
+                if(check_status != "เสร็จสิ้น"){
+
+                	if(check_status == "กำลังไปช่วยเหลือ"){
+						// หมุดเจ้าหน้าที่
+						if (officer_marker) {
+							officer_marker.setMap(null);
+						}
+						officer_marker = new google.maps.Marker({
+							position: {
+								lat: parseFloat(officer_lat),
+								lng: parseFloat(officer_lng)
+							},
+							map: map_command,
+							icon: image_operating_unit_general,
+						});
+
+                		get_location_user_and_officer();
+
+					}else{
+						reset_map();
+					}
+
+                }else if(check_status == "เสร็จสิ้น"){
+
+					let html_show_status = `
+			    		<button type="button" class="btn btn-success text-white py-2 px-5 float-end">
+							<i class="fa-solid fa-shield-check mr-1"></i>เสร็จสิ้น
+						</button>
+			    	`;
+			    	document.querySelector('#div_show_status').innerHTML = html_show_status ;
+
+                	reset_map();
+
+			    	// help_complete()
+                	Stop_onload_check_status_sos_map();
+                }
+        });
+        // จบ ทำรอบแรกก่อนเข้า LOOP
+
+        // LOOP
         onload_check_status_sos_map = setInterval(function() {
 
             // console.log('loop_status_sos');
