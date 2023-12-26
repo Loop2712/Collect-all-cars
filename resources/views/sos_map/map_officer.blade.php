@@ -605,7 +605,7 @@
 
 			if(check_status != "เสร็จสิ้น"){
 				
-				// console.log(check_status);
+				console.log(check_status);
 
 	        	if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(update_location_officer);
@@ -616,7 +616,7 @@
 				Stop_reface_loop_check_marker();
 			}
 
-        }, 5000);
+        }, 15000);
 
 
 	}
