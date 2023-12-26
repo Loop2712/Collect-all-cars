@@ -621,7 +621,7 @@
         // LOOP
         onload_check_status_sos_map = setInterval(function() {
 
-            console.log('loop_status_sos');
+            // console.log('loop_status_sos');
 
             fetch("{{ url('/') }}/api/sos_map/loop_check_status_sos_map" + "/" + "{{ $data_sos_map->id }}")
                 .then(response => response.json())

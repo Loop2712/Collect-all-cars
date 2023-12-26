@@ -601,6 +601,22 @@
 
 	function loop_check_marker(){
 
+		// ทำรอบแรกก่อนเข้า LOOP
+		if(check_status != "เสร็จสิ้น"){
+				
+			console.log(check_status);
+
+        	if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(update_location_officer);
+			} else {
+				// x.innerHTML = "Geolocation is not supported by this browser.";
+			}
+		}else{
+			Stop_reface_loop_check_marker();
+		}
+		// จบ ทำรอบแรกก่อนเข้า LOOP
+
+		// LOOP
 		reface_loop_check_marker = setInterval(function() {
 
 			if(check_status != "เสร็จสิ้น"){
