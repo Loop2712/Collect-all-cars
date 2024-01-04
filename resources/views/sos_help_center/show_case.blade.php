@@ -1075,7 +1075,7 @@ input:focus {
             <!-- --------------------------------------- จบ เลือกการปฏิบัติการ -------------------------------------------------- -->
 
             <!-- ----------------------------------------- ปุ่ม ถึงที่เกิดเหตุ ------------------------------------------- -->
-            <div id="div_btn_to_the_scene" class="d-none" style="margin-bottom:1%">
+            <div id="div_btn_to_the_scene" class="d-none" div_name="btn_update_status" style="margin-bottom:1%">
                 <menu class="col-12 " >
                     <button class="card-body p-3 main-shadow btn text-center font-weight-bold mb-0 h5 situation-yellow" style="border-radius: 15px;width:100%"
                         onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_to_the_scene_to_leave_the_scene' ,'ถึงที่เกิดเหตุ')">
@@ -1085,7 +1085,7 @@ input:focus {
             </div>
 
             <!-- --------------------------------------- ปุ่ม ถึงโรงพยาบาล -------------------------------------------------- -->
-            <div id="div_to_hospital" class="d-none"  style="margin-bottom:2%">
+            <div id="div_to_hospital" class="d-none" div_name="btn_update_status"  style="margin-bottom:2%">
                 <menu class="col-12 " >
                     <button class="btn btn-primary main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
                     onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_hospital' ,'ถึงโรงพยาบาล')">
@@ -1095,7 +1095,7 @@ input:focus {
             </div>
 
             <!-- --------------------------------------- ปุ่ม กลับถึงฐาน -------------------------------------------------- -->
-            <div id="div_operating_base" class="d-none"  style="margin-bottom: 2%">
+            <div id="div_operating_base" class="d-none" div_name="btn_update_status"  style="margin-bottom: 2%">
                 <menu class="col-12 " >
                     <button id="btn_operating_base" class="btn btn-success main-shadow main-radius w-100 h-100  py-3 font-weight-bold btn-update-status" style="width:95%;"
                     onclick="update_mileage_officer('{{ $data_sos->id }}' , 'km_operating_base' ,'กลับถึงฐาน'); ">
@@ -2304,6 +2304,7 @@ input:focus {
 
                 	document.querySelector('#div_btn_to_the_scene').classList.add('d-none');
                 	document.querySelector('#div_km_create_sos_to_go_to_help').classList.add('d-none');
+                	document.querySelector('#div_event_level').setAttribute('style','top:calc(100% - 70px) !important;');
 
                 }else if(status_sos === "เสร็จสิ้น"){
 
@@ -2585,6 +2586,25 @@ input:focus {
 		show_data_menu(3);
 		// document.querySelector('#menu_3').style = "bottom: -2rem" ;
 
+		let btn_update_status = document.querySelectorAll('div[div_name="btn_update_status"]');
+		let check_btn_update_status = "No" ;
+			btn_update_status.forEach(btn_update_status => {
+			    // console.log(btn_update_status.classList);
+			    if(!btn_update_status.classList[0]){
+			    	check_btn_update_status = 'Yes';
+			    }else{
+			    	check_btn_update_status = check_btn_update_status ;
+			    }
+			}) 
+
+		// console.log(check_btn_update_status);
+
+		if(check_btn_update_status == 'Yes'){
+        	document.querySelector('#div_event_level').setAttribute('style','top:calc(100% - 270px) !important;');
+		}else{
+        	document.querySelector('#div_event_level').setAttribute('style','top:calc(100% - 70px) !important;');
+		}
+
 		document.querySelector('#div_mileage').classList.add('d-none');
 		document.querySelector('#div_add_rc_black_text').classList.add('d-none');
 		document.querySelector('#div_select_treatment').classList.add('d-none');
@@ -2592,9 +2612,10 @@ input:focus {
 		document.querySelector('#div_to_hospital').classList.add('d-none');
 		document.querySelector('#div_operating_base').classList.add('d-none');
 
-        // document.querySelector('#div_event_level').classList.add('song_rem');
-		document.querySelector('#div_event_level').classList.remove('d-none');
-        document.querySelector('#div_event_level').setAttribute('style','top:calc(100% - 70px) !important;');
+		setTimeout(() => {
+			// document.querySelector('#div_event_level').classList.add('song_rem');
+			document.querySelector('#div_event_level').classList.remove('d-none');
+		}, 200);
 
 	}
 
