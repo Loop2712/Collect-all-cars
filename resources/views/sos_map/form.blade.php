@@ -878,10 +878,6 @@
             <a class="close btn-close-modal-sos-1669"  type="button"  data-dismiss="modal" aria-label="Close">
                 <i class="fa-solid fa-xmark"></i>
             </a>
-            
-            <a id="go_to_show_user" class="d-none" href="">
-                Go To SHOW USER
-            </a>
 
             <div id="div_wait_unit" class="d-none">
                 <div class="modal-body">
@@ -902,6 +898,11 @@
                     <h5 id="text_h5_wait_unit" class="text-center mt-">
                         โปรดรอสักครู่...
                     </h5>
+                    <center>
+                        <a id="go_to_show_user" class="btn btn-primary mt-2" href="">
+                            ไปยังหน้ารอเจ้าหน้าที่
+                        </a>
+                    </center>
                 </div>
             </div>
 
@@ -1896,6 +1897,8 @@
                         // console.log(data);
                         document.querySelector('#div_data_ask_for_help').classList.add('d-none');
                         document.querySelector('#div_wait_unit').classList.remove('d-none');
+
+                        document.querySelector('#go_to_show_user').setAttribute('href','{{ url("/") }}/sos_help_center/'+data+'/show_user');
 
                         check_unit_cf_sos(data);
 
