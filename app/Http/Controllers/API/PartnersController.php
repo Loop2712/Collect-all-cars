@@ -47,6 +47,10 @@ class PartnersController extends Controller
         return $data_time_zone;
     }
 
+    function video_how_to_use(){
+        return view('how_to_use.video_how_to_use');
+    }
+
     public function check_data_partner($user_organization)
     {
         $data_partners = Partner::where("name", $user_organization)

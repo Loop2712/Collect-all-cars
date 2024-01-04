@@ -182,6 +182,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 
 	Route::get('/view_map_officer_all', 'API\PartnersController@view_map_officer_all');
 	Route::get('/view_map_officer_area', 'API\PartnersController@view_map_officer_area');
+	Route::get('/video_how_to_use', 'API\PartnersController@video_how_to_use');
 
 	Route::resource('ads_content', 'Ads_contentController')->except(['show','edit','index']);
 	// Route::get('/partner_theme', 'PartnerController@partner_theme');
@@ -291,7 +292,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 // -------- SOS HELP CENTER NO LOGIN ---------
 Route::get('sos_help_center/reply_select/{sos_id}', 'Sos_help_centerController@reply_select');
 Route::get('officers/switch_standby_login', 'Sos_help_centerController@switch_standby_login');
-Route::get('officers/switch_standby', 'Sos_help_centerController@switch_standby');
+// Route::get('officers/switch_standby', 'Sos_help_centerController@switch_standby');
 Route::get('add_new_officers/{operating_unit_id}', 'Sos_help_centerController@add_new_officers');
 Route::get('register_new_officer', 'Sos_help_centerController@register_new_officer');
 
@@ -344,6 +345,7 @@ Route::middleware(['auth'])->group(function () {
 
 	// SOS 1669
 	Route::get('sos_help_center/{sos_id}/show_user', 'Sos_help_centerController@show_user_sos');
+	Route::get('officers/switch_standby', 'Sos_help_centerController@switch_standby');
 
 	// sos nationalitie
 	Route::get('nationalitie_sos/login_register_officer/{group_line_id}', 'Nationalitie_officersController@login_register_officer');

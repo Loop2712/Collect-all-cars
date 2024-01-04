@@ -1343,11 +1343,27 @@
 						<div class="menu-title">อื่นๆ</div>
 					</a>
 					<ul>
-						<li> <a href="{{ url('/how_to_use') }}"><i class='fad fa-book'></i> วิธีใช้งาน</a>
+						<li>
+                            <a href="{{ url('/how_to_use') }}">
+                                <i class='fad fa-book'></i> วิธีใช้งาน
+                            </a>
 						</li>
-						<li> <a href="{{ url('/partner_media?menu=all') }}"><i class="fas fa-photo-video"></i> สื่อประชาสัมพันธ์</a>
+                        @if(Auth::user()->id == "1" or Auth::user()->id == "64" or Auth::user()->id == "2" or Auth::user()->organization == 'สพฉ')
+                        <li>
+                            <a href="{{ url('/video_how_to_use') }}">
+                                <i class="fa-solid fa-clapperboard-play"></i> วิดีโอสอนการใช้งาน
+                            </a>
+                        </li>
+                        @endif
+						<li>
+                            <a href="{{ url('/partner_media?menu=all') }}">
+                                <i class="fas fa-photo-video"></i> สื่อประชาสัมพันธ์
+                            </a>
 						</li>
-						<li> <a href="{{ url('/problem_report') }}"><i class="fa-solid fa-message-exclamation"></i> แจ้งปัญหาการใช้งาน</a>
+						<li>
+                            <a href="{{ url('/problem_report') }}">
+                                <i class="fa-solid fa-message-exclamation"></i> แจ้งปัญหาการใช้งาน
+                            </a>
 						</li>
 					</ul>
 				</li>
