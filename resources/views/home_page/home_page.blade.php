@@ -167,6 +167,14 @@
 
       }
 
+      .img-cover{
+          object-fit: cover;
+        }.img-support-mobile{
+          width: 220px !important;
+          object-fit: cover;
+
+        }
+
       </style>
 
     <section id="why-us" class="why-us" style="font-family: 'Kanit', sans-serif;">
@@ -628,31 +636,81 @@
                     <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/7.jpg') }}" alt="" class="img-cover">
                   </a>
                 </div>
-
                 <div class="gallery-item item">
-                    <a href="{{ asset('/img/review/4.jpg') }}" class="galelry-lightbox">
-                        <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/8.jpg') }}" alt="" class="img-cover">
-                    </a>
+                  <a href="{{ asset('/img/review/4.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/review/8.jpg') }}" alt="" class="img-cover">
+                  </a>
                 </div>
 
                 <div class="gallery-item item">
-                    <a href="{{ asset('/img/review/6.jpg') }}" class="galelry-lightbox">
-                        <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/9.jpg') }}" alt="" class="img-cover">
-                    </a>
+                  <a href="{{ asset('/img/review/9.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/9.jpg') }}" alt="" class="img-cover">
+                  </a>
                 </div>
 
                 <div class="gallery-item item">
-                    <a href="{{ asset('/img/review/7.jpg') }}" class="galelry-lightbox">
-                        <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/10.jpg') }}" alt="" class="img-cover">
-                    </a>
+                  <a href="{{ asset('/img/review/10.jpg') }}" class="galelry-lightbox">
+                    <img style="object-fit: cover;height: 290px;" src="{{ asset('/img/review/10.jpg') }}" alt="" class="img-cover">
+                  </a>
                 </div>
-
               </div>
             </div>
         </div>
       </div>
+
     </section>
 <br><br>
+<section id="about" class="light-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="section-title">
+          <h2>รางวัล</h2>
+          <p>
+            <h3 class="text-success">ได้รางวัลที่ 1 ในการแข่งขัน</h3>
+            <strong>“การวิจัยและนวัตกรรมการแพทย์ฉุกเฉิน” National EMS Forum 2023 : Research and Innovation on Emergency Medicine</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- about module -->
+      <div class=" owl-1-style">
+          <div class="owl-carousel owl-1 ">
+
+            <div class="gallery-item item">
+              <a href="{{ asset('/img/more/award-1.jpg') }}" class="galelry-lightbox">
+                <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/more/award-1.jpg') }}" alt="" class="img-cover">
+              </a>
+            </div>
+
+            <div class="gallery-item item">
+              <a href="{{ asset('/img/more/award-2.jpg') }}" class="galelry-lightbox">
+                <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/more/award-2.jpg') }}" alt="" class="img-cover">
+              </a>
+            </div>
+
+            <div class="gallery-item item">
+              <a href="{{ asset('/img/more/award-3.jpg') }}" class="galelry-lightbox">
+                <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/more/award-3.jpg') }}" alt="" class="img-cover">
+              </a>
+            </div>
+            <div class="gallery-item item">
+              <a href="{{ asset('/img/more/award-4.jpg') }}" class="galelry-lightbox">
+                <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/more/award-4.jpg') }}" alt="" class="img-cover">
+              </a>
+            </div>
+            <div class="gallery-item item">
+              <a href="{{ asset('/img/more/award-5.jpg') }}" class="galelry-lightbox">
+                <img style="object-fit: contain;max-height: 290px;" src="{{ asset('/img/more/award-5.jpg') }}" alt="" class="img-cover">
+              </a>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</section>
 <!-- thx_partner -->
 @include('home_page/thx_partner')
   <!-- section บริการ peddyhub -->
