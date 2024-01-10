@@ -629,7 +629,7 @@
         .notification_group{
 			position: fixed;
 			bottom: 20px;
-  			right: 60px;
+  			left: 60px;
 			float: right;
 			z-index: 99999;
 
