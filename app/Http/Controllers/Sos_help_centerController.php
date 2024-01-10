@@ -459,6 +459,8 @@ class Sos_help_centerController extends Controller
 
         if(!empty($data_officer_command)){
             $requestData['notify'] = $data_officer_command->id .' - '.$province_name;
+        }else{
+            $requestData['notify'] = '0 - '.$province_name;
         }
         
         $requestData['create_by'] = "user - " . $requestData['user_id'];
