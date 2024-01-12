@@ -15,6 +15,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 	<!--favicon-->
 	<link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
 	<!--plugins-->
@@ -2753,7 +2754,7 @@
                     	i_noti_menu.classList.remove('d-none');
                     	i_noti_call.classList.remove('d-none');
                     }else{
-                        
+
                         if(result_meet[0] && result_meet[0] != 'ไม่มีข้อมูล'){
                             i_noti_menu.classList.remove('d-none');
                             i_noti_call.classList.remove('d-none');

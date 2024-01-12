@@ -270,6 +270,7 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	Route::get('case_officer', 'Sos_help_centerController@case_officer');
 	Route::get('officer_edit_form/{sos_id}', 'Sos_help_centerController@officer_edit_form');
 
+    Route::post('command_video_call', 'Agora_4_Controller@refresh_form');
 
 	// ------- CONDO -------
 	Route::resource('parcel', 'ParcelController');
@@ -582,10 +583,12 @@ Route::group(['middleware' => ['auth']], function () {
 	// END Video_call_4 //
 
 	// SOS 1669 //
-	Route::get('user_video_call/sos_help_center', 'AgoraController@index'); // index
+    Route::get('user_video_call/sos_help_center', 'AgoraController@index'); // index
     Route::get('user_video_call/sos_help_center_2', 'AgoraController@index_2'); // index
-	Route::post('/agora/call-user', 'AgoraController@callUser'); // ไม่ทราบ
-	// END SOS 1669 //
+    Route::post('/agora/call-user', 'AgoraController@callUser'); // ไม่ทราบ
+
+    Route::get('/command_video_test', 'Agora_4_Controller@command_video_call');
+    // END SOS 1669 //
 
 	// SOS COMPANY //
     Route::get('video_call/sos_map', 'AgoraController@index_sos_map');
