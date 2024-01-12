@@ -1979,7 +1979,7 @@
 
                     let btn_html_video_call = `
                         <br>
-                        <a id="btn_join_video_call" href="{{ url('/') }}/user_video_call/sos_help_center?sos_id=`+result['id']+`" class="btn btn-info main-radius main-shadow mt-3">
+                        <a id="btn_join_video_call" href="{{ url('/') }}/video_call_4/before_video_call_4?sos_id=`+result['id']+`&type=user_sos_1669" class="btn btn-info main-radius main-shadow mt-3">
                             Video Call
                         </a>
                     `;

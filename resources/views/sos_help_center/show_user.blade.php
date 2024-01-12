@@ -1040,7 +1040,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 							</h5>
 							<h5 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กำลังค้นหาหน่วยปฏิบัติการที่ใกล้คุณ</h5>
 							<h6 class="mb-0 mt-2 notranslate mt-1" style="color: #808080;">กรุณารอสักครู่..</h6>
-							<a href="{{ url('/') }}/user_video_call/sos_help_center?sos_id={{ $data_sos->id }}" class="btn-outline-primary btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">ติดต่อเจ้าหน้าที่</a>
+							<a href="{{ url('/') }}/video_call_4/before_video_call_4?sos_id={{ $data_sos->id }}&type=user_sos_1669"class="btn-outline-primary btn btn-block w-100 p-2 mt-3" style="border-radius: 10px;">ติดต่อเจ้าหน้าที่</a>
 						</div>
 					</div>
 				</div>`;
