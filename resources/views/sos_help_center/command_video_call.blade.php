@@ -540,12 +540,13 @@ function loop_check_user_in_room() {
       // console.log('loop_check_user_in_room');
       // console.log("แจ้งเตือนคนเข้าห้อง >> " + check_command_in_room);
 
-      fetch("{{ url('/') }}/api/check_user_in_room" + "?sos_1669_id=" + sos_1669_id)
+    //  fetch("{{ url('/') }}/api/check_user_in_room" + "?sos_1669_id=" + sos_1669_id)
+    fetch("{{ url('/') }}/api/check_user_in_room_2" + "?sos_id=" + sos_1669_id + "&type=user_sos_1669")
         .then(response => response.json())
         .then(result => {
-            // console.log('check_user_in_room');
-            // console.log(result);
-            // console.log('-------------------------------------');
+            console.log('check_user_in_room');
+            console.log(result);
+            console.log('-------------------------------------');
 
             if(result['data'] != 'ไม่มีข้อมูล'){
               document.querySelector('#command_join').innerHTML =
@@ -1198,7 +1199,8 @@ async function startBasicCall() {
     // update status command => "Helping"
     document.querySelector('#officerHelping').click();
 
-    fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type=command_join')
+    // fetch("{{ url('/') }}/api/join_room" + "?sos_1669_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}' + '&type_join=command_join')
+    fetch("{{ url('/') }}/api/join_room_4" + "?sos_id=" + sos_1669_id + "&user_id=" + '{{ Auth::user()->id }}'+ '&type=user_sos_1669' + '&type_join=command_join')
       .then(response => response.json())
       .then(result => {
         console.log("result_join_room");
@@ -1290,7 +1292,6 @@ async function startBasicCall() {
     document.querySelector('#span_timer_video_call').classList.add('d-none');
     document.querySelector('#icon_timer_video_call').classList.remove('d-none');
     document.querySelector('#timer_video_call').innerHTML = 'เริ่มนับเมื่อมีผู้ใช้ 2 คน';
-
 
 
     // update status command => "Standby"
@@ -1627,27 +1628,27 @@ function alertNoti(Icon, Detail) {
     </script>
 
     <script>
-    let btnVideoCall = document.getElementById('btnVideoCall');
-    let divSosMap = document.getElementById('div_detail_sos');
-    let divVideoCall = document.getElementById('divVideoCall');
+        let btnVideoCall = document.getElementById('btnVideoCall');
+        let divSosMap = document.getElementById('div_detail_sos');
+        let divVideoCall = document.getElementById('divVideoCall');
 
-    btnVideoCall.addEventListener('click', function() {
-    if (divSosMap.style.display === 'none') {
-        divSosMap.classList.remove('fade-out');
-        divSosMap.classList.add('fade-in');
-        divSosMap.style.display = 'block';
+        btnVideoCall.addEventListener('click', function() {
+        if (divSosMap.style.display === 'none') {
+            divSosMap.classList.remove('fade-out');
+            divSosMap.classList.add('fade-in');
+            divSosMap.style.display = 'block';
 
-        divVideoCall.classList.remove('fade-in');
-        divVideoCall.classList.add('fade-out');
-        divVideoCall.style.display = 'none';
-    } else {
-        divSosMap.classList.remove('fade-in');
-        divSosMap.classList.add('fade-out');
-        divSosMap.style.display = 'none';
+            divVideoCall.classList.remove('fade-in');
+            divVideoCall.classList.add('fade-out');
+            divVideoCall.style.display = 'none';
+        } else {
+            divSosMap.classList.remove('fade-in');
+            divSosMap.classList.add('fade-out');
+            divSosMap.style.display = 'none';
 
-        divVideoCall.classList.remove('fade-out');
-        divVideoCall.classList.add('fade-in');
-        divVideoCall.style.display = 'block';
-    }
-    });
-</script>
+            divVideoCall.classList.remove('fade-out');
+            divVideoCall.classList.add('fade-in');
+            divVideoCall.style.display = 'block';
+        }
+        });
+    </script>

@@ -1,9 +1,9 @@
 <link rel="shortcut icon" href="{{ asset('/img/logo/logo_x-icon.png') }}" type="image/x-icon" />
-<link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet">
+{{-- <link href="{{ asset('partner_new/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
 <link href="https://kit-pro.fontawesome.com/releases/v6.4.2/css/pro.min.css" rel="stylesheet">
 
 <style>
-	html,
+	/* html,
 	body,
 	.full-height,
 	.page-content,
@@ -12,10 +12,9 @@
 		min-height: calc(100%) !important;
         max-height: calc(100%) !important;
         padding-bottom: 0;
-		/* padding-top: 0; */
-		/* margin-top: 0; */
+
 		margin-bottom: 0;
-	}
+	} */
 
 	.data-sos {
 		outline: 1px solid #000;
@@ -88,6 +87,7 @@
 
 	.video-call {
 		/* outline: #000 1px solid; */
+
 		margin: 0;
 		background-color: #2b2d31;
         outline: black;
@@ -110,10 +110,11 @@
 		width: 100%;
 		height: 100%;
 		overflow: auto;
-		padding: 1px 3rem;
-		display: flex;
+
+		/* padding: 1px 3rem; */
+		/* display: flex;
 		flex-wrap: wrap;
-		justify-content: center;
+		justify-content: center; */
 	}
 
 	#container_user_video_call .custom-div {
@@ -122,13 +123,27 @@
 		outline: #000 1px solid;
 		border-radius: 5px;
 		position: relative;
-		margin: 1rem;
+		/* margin: 1rem; */
 	}
 
-	#container_user_video_call .custom-div:only-child {
-		flex: 0 0 calc(100% - 40px);
-		aspect-ratio: 3/4;
-	}
+	#container_user_video_call .custom-div:first-child {
+        /* ครอบคลุมทั้งหน้าจอ */
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+    }
+
+    #container_user_video_call .custom-div:nth-child(2) {
+        /* ตั้งอยู่ที่มุมบนซ้ายและมีขนาดเล็กลง */
+        position: absolute;
+        width: 30%; /* หรือขนาดที่คุณต้องการ */
+        height: 30%; /* หรือขนาดที่คุณต้องการ */
+        top: 1%;
+        left: 1%;
+        z-index: 5;
+    }
+
 
     .head_sidebar_div {
         background-color: rgb(255, 255, 255);
@@ -156,6 +171,10 @@
         margin-left: 2px; /* เพิ่มระยะห่างจากขอบซ้าย 2px */
         border-top: rgb(0, 99, 247) 5px solid;
     }
+
+    /* .agora_create_local div {
+        border-radius: 5px;
+    } */
 
 	/* #container_user_video_call .custom-div:not(:only-child) {
 		flex: 0 0 calc(100% - 40px);
@@ -189,8 +208,8 @@
 	} */
 	.custom-div .status-input-output {
 		position: absolute;
-		top: 0;
-		right: 0;
+		top: 0.2rem;
+		right: 0.5rem;
 		display: flex;
 	}
 
@@ -202,6 +221,7 @@
     }
 
 	.custom-div .infomation-user {
+        display: none;
 		position: absolute;
 		bottom: 0;
 		right: 0;
@@ -234,8 +254,18 @@
 		padding: .5rem 1rem .5rem;
 		border-radius: 10px;
 		color: #fff;
-        font-size: 50px !important;
+        font-size: 20px !important;
 	}
+
+    /* ปรับขนาดเมื่ออยู่ใน .custom-div:nth-child(2) */
+    .custom-div:nth-child(2) .status-input-output .mic,
+    .custom-div:nth-child(2) .status-input-output .camera,
+    .custom-div:nth-child(2) .status-sound-output .sound{
+        font-size: 1em !important; /* หรือ % ของขนาดปกติ */
+        padding: .3em .6em .3em !important; /* หรือ % ของขนาดปกติ */
+        margin: 3px !important; /* หรือ % ของขนาดปกติ */
+    }
+
 
 	.user-video-call-bar .custom-div .infomation-user {
 		transform: scale(0.8);
@@ -268,16 +298,24 @@
 	}
 
     .user-video-call-bar div div .profile_image{ /* ของ bar ล่าง  */
-        width: 50px;
-        height: 50px;
+        width: 10px;
+        height: 10px;
         border-radius: 50%; /* คงรูปร่างวงกลม */
         object-fit: cover;
         pointer-events: none;
     }
 
     #container_user_video_call div div .profile_image{ /* ของ container ใหญ่ */
-        width: 150px;
-        height: 150px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%; /* คงรูปร่างวงกลม */
+        object-fit: cover;
+        pointer-events: none;
+    }
+
+    #container_user_video_call .custom-div:nth-child(2) div .profile_image{ /* ของ container ใหญ่ */
+        width: 40px !important;
+        height: 40px !important;
         border-radius: 50%; /* คงรูปร่างวงกลม */
         object-fit: cover;
         pointer-events: none;
@@ -397,8 +435,8 @@
     .btnSpecial {
         border: none;
         border-radius: 50%;
-        width: 150px;
-        height: 150px;
+        width: 60px;
+        height: 60px;
         cursor: pointer;
         display: flex;
         justify-content: center;
@@ -435,7 +473,8 @@
 
     .btnSpecial i{
         color: #ffffff;
-        font-size: 2.5rem;
+        font-size: 1rem;
+        margin: 0;
         transition: transform 0.3s ease; /* เพิ่มการเปลี่ยนแปลงอย่างนุ่มนวล */
     }
 
@@ -443,8 +482,8 @@
         background-color: #3f3e3e; /* เปลี่ยนสีพื้นหลังตามที่คุณต้องการ */
         border: none;
         border-radius: 50%;
-        width: 60px; /* ปรับขนาดตามที่คุณต้องการ */
-        height: 60px; /* ปรับขนาดตามที่คุณต้องการ */
+        width: 30px; /* ปรับขนาดตามที่คุณต้องการ */
+        height: 30px; /* ปรับขนาดตามที่คุณต้องการ */
         position: absolute;
         bottom: 20;
         right: 20;
@@ -462,7 +501,7 @@
 
     .smallCircle i{
         color: #ffffff;
-        font-size: 1em;
+        font-size: 0.7em;
     }
 
     .fa-arrow-up {
@@ -476,13 +515,13 @@
         margin: 0;
         position: absolute;
         bottom: 10%; /* ตำแหน่ง list ขึ้นด้านบนของปุ่ม */
-        left: 10;
+        /* left: 10%; */
         /* right: 0;
         top: 0; */
         background-color: #3f3e3e;
         border-radius: 5px;
         z-index: 9999; /* เพื่อให้แสดงอยู่ข้างบนของปุ่ม */
-        min-width: 50%; /* กำหนดความกว้างขั้นต่ำ */
+        min-width: 100%; /* กำหนดความกว้างขั้นต่ำ */
 
     }
 
@@ -496,7 +535,7 @@
         display: flex;
         justify-content: space-between; /* จัดตัว radio2 ไปทางขวา */
         align-items: center; /* จัดให้เนื้อหาแนวตั้งกลาง */
-        font-size: 2em;
+        font-size: 0.7em;
     }
 
     .top-0 {
@@ -526,17 +565,17 @@
     /* -------------------------- จบ ฟังก์ชัน เปลี่ยนไมค์และกล้อง -------------------------------------*/
 
     /* =================ตัว loading animation==================== */
-    #lds-ring {
+    /* #lds-ring {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(255, 255, 255, 1); /* ปรับสีพื้นหลังตามความต้องการ */
+        background-color: rgba(255, 255, 255, 1);
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 9999; /* ให้มีค่า z-index สูงกว่าทุกอย่างบนหน้าเว็บ */
+        z-index: 9999;
     }
 
     .lds-ring {
@@ -573,7 +612,7 @@
         100% {
             transform: rotate(360deg);
         }
-    }
+    } */
     /* ----------------- End ตัว loading animation ----------------- */
 
     /* ----------------- ตัว Popup แจ้งเตือน----------------- */
@@ -592,7 +631,7 @@
 	}
 
 	.div_alert span {
-	    background-color: #2DD284;
+	    background-color: #009e6b;
 	    border-radius: 10px;
 	    color: white;
 	    padding: 30px;
@@ -632,454 +671,143 @@
         padding: 1rem;
     }
 
-</style>
-<!-- ใช้ในการเปลี่ยนสีสถานะ ของหน้านี้ -->
-@php
-    switch ($sos_data->status) {
-        case 'เสร็จสิ้น':
-            $color_text_status = "text-success";
-            break;
-        case 'รับแจ้งเหตุ':
-            $color_text_status = "text-danger";
-            break;
-        default:
-            $color_text_status = "text-warning";
-            break;
+    .video-body {
+        position: relative;
+        width: calc(100%);
     }
-@endphp
 
-<div id="alert_warning" class="div_alert" role="alert">
-    <span id="alert_text">
-        <!-- ใช้ javascript กำหนด innerHTML-->
-    </span>
-</div>
+    .video-body-local {
+        position: relative;
+        width: calc(100%);
+    }
 
-<button id="join" class="btn btn-success d-none" >เข้าร่วม</button>
+    .video-call-in-room{
+        background-color: #ffffff;
+        color: green;
+        animation: border-flash-danger 1.5s infinite;
+    }
 
-<div class="row full-height">
+</style>
 
-    <div class="d-flex justify-content-center align-items-center">
-        <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
-    </div>
+    @php
+        $user_in_room = '';
 
-    <div class="col-12" style="height: calc(100% - 90%);">
-        <div class="status-case-bar d-flex justify-content-center align-items-center">
-            <p class="font-30 row text-center">
-                @if ($type_brand == "android")
-                    @if (!empty($sos_data->status))
-                        <span class="m-2" id="status_of_Room">สถานะ : <b class="{{$color_text_status}}">{{ $sos_data->status }}</b></span>
-                    @else
-                        <span class="m-2" id="status_of_Room">สถานะ : <b class="text-dark">--</b></span>
-                    @endif
-                    <span id="time_of_room" class="m-2"></span>
-                @else
-                    @if (!empty($sos_data->status))
-                        <span class="m-0" id="status_of_Room">สถานะ : <b class="{{$color_text_status}}">{{ $sos_data->status }}</b></span>
-                    @else
-                        <span class="m-0" id="status_of_Room">สถานะ : <b class="text-dark">--</b></span>
-                    @endif
-                    <span id="time_of_room" class="m-0"></span>
-                @endif
+        if(!empty($agora_chat->member_in_room)){
 
-            </p>
+            $data_member_in_room = $agora_chat->member_in_room;
 
-            @if ($role_permission !== 'help_seeker')
-                <button class="btn btn-success" id="fadeButton"><i class="fa-solid fa-file-invoice" style="font-size: 45px;"></i></button>
-            @endif
+            $data_array = json_decode($data_member_in_room, true);
+            $check_user = $data_array;
+
+            if( !empty($check_user) ){
+                $user_in_room = App\User::where('id' , $check_user)->first();
+            }
+
+        }
+    @endphp
+
+    <div id="divVideoCall" class="video-body fade-slide overflow-hidden" style="display: none; margin-bottom: 120px;">
+
+        <div id="alert_warning" class="div_alert" role="alert">
+            <span id="alert_text">
+                <!-- ใช้ javascript กำหนด innerHTML-->
+            </span>
         </div>
-    </div>
-    <div class="col-12" style="height: calc(100% - 30%); border: 0;">
-        <div class="d-flex h-100 row">
-            <div style="position: relative;"  class="video-call">
-                <div class=" d-flex align-item-center justify-content-center h-100 row">
-                    <div class="d-flex align-self-center justify-content-center mb-3">
-                        <div class="row mb-4" id="container_user_video_call">
-                        </div>
-                    </div>
-                </div>
-                <div id="adive_text_video_call" class="advice_text d-block text-center">
-                    <!-- ใส่ ข้อความที่มาจาก javascript -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 pt-3" style="height: calc(100% - 89%); background-color: #2b2d31; border: 0;">
-        <div class="w-100 user-video-call-contrainer d-none " >
-            <div class="d-flex justify-content-center align-self-end d-non user-video-call-bar mb-2" >
-            </div>
-        </div>
-    </div>
-    <div class="col-12" style="height: calc(100% - 91%); background-color: #ffffff; ">
-        <div class="btn-video-call-container mt-2">
-            <div class="row d-flex justify-content-center" >
 
-                <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
-                <div id="div_for_AudioButton" class="btn btnSpecial">
-                    @if (Auth::user()->id == 1 || Auth::user()->id == 2 || Auth::user()->id == 64 || Auth::user()->id == 11003429)
-                        {{-- <i id="icon_muteAudio" class="fa-solid fa-microphone-stand"></i> --}}
-                            <button class="smallCircle" id="btn_switchMicrophone">
-                        <i class="fa-sharp fa-solid fa-angle-up"></i>
-                    </button>
-                    @endif
 
-                </div>
+        <div class="row ">
 
-                <!-- เปลี่ยนกล้อง ให้กดได้แค่ในคอม -->
-                <div id="div_for_VideoButton" class="btn btnSpecial">
-                    {{-- <i id="icon_muteVideo" class="fa-solid fa-camera-rotate"></i> --}}
-                </div>
-
-                <div class="btn btnSpecial btnSpecial_switch" id="btn_switchCamera">
-                    <i class="fa-duotone fa-camera-rotate" style="--fa-primary-color: #26076e; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>
-                </div>
-
-                <div class="btn btnSpecial btn_leave d-none" id="addButton">
-                    <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-                </div>
-                {{-- <button class="btn btnSpecial " onclick="alertText()">
-                    <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+            <div class="col-12 " style="height: calc(100% - 90%);">
+                <button id="command_join" class="btn btn-success d-non" style="width:100%">
+                    <i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; เริ่มต้นการสนทนา
                 </button>
-                <script>
-                    function alertText(){
-                        document.querySelector('#alert_copy').classList.add('up_down');
-
-                        const animated = document.querySelector('.up_down');
-                        animated.onanimationend = () => {
-                            document.querySelector('#alert_copy').classList.remove('up_down');
-                        };
-                    }
-                </script> --}}
-
-
-
-                <div class="btn btnSpecial btn_leave" id="leave">
-                    <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-    <div class="dropcontent">
-        <ul id="audio-device-list" class="ui-list">
-            <!-- Created list-audio from Javascript Here -->
-        </ul>
-    </div>
-    <div class="dropcontent2">
-        <ul id="video-device-list" class="ui-list">
-            <!-- Created list-video from Javascript Here -->
-        </ul>
-    </div>
-
-    @if ($type === 'sos_1669')
-        <div class="fadeDiv" id="dataDiv" style="display: none; z-index: 5000;">
-            <div class="card m-4 text-dark">
-                <div class="head_sidebar_div p-4 text-center">
-                    <p style="font-size: 45px;" class="h1 text-dark font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
-                    <p style="font-size: 45px;" class="h1 text-dark ">สถานะ:
-                        <a style="font-size: 45px;" class="{{$color_text_status}} font-weight-bold">{{$sos_data->status ? $sos_data->status : "--"}}</a>
-                    </p>
-
-                    {{-- <p class="text-muted font-size-md">การช่วยเหลือผ่านไปแล้ว</p>
-                    <h3 class="text-danger">25 นาที</h3> --}}
-                    @php
-                        if( !empty($sos_data->created_sos)){
-                            $currentdate = date('H:i:s'); // เวลาปัจจุบันในรูปแบบ "H:i:s"
-                            $sos_data_time_command = strtotime($sos_data->created_sos); // แปลง $sos_data->time_create_sos เป็น timestamp
-                            $sos_data_timeDifference = abs( $sos_data_time_command - strtotime($currentdate) );
-
-                            if ($sos_data_timeDifference >= 86400) { // ถ้าเกิน 1 วัน (86400 วินาที)
-                                $sos_data_days = floor($sos_data_timeDifference / 86400);
-                                $sos_data_hours = floor(($sos_data_timeDifference % 86400) / 3600);
-
-                                $sos_data_time_unit = $sos_data_days . ' วัน ' . $sos_data_hours . ' ชั่วโมง ';
-
-                            }elseif ($sos_data_timeDifference >= 3600) {
-                                $sos_data_hours = floor($sos_data_timeDifference / 3600);
-                                $sos_data_remainingMinutes = floor(($sos_data_timeDifference % 3600) / 60);
-                                $sos_data_remainingSeconds = $sos_data_timeDifference % 60;
-
-                                $sos_data_time_unit = $sos_data_hours . ' ชั่วโมง ' . $sos_data_remainingMinutes . ' นาที ' . $sos_data_remainingSeconds . ' วินาที';
-                            } elseif ($sos_data_timeDifference >= 60) {
-                                $sos_data_minutes = floor($sos_data_timeDifference / 60);
-                                $sos_data_seconds = $sos_data_timeDifference % 60;
-
-                                $sos_data_time_unit = $sos_data_minutes . ' นาที ' . $sos_data_seconds . ' วินาที';
-                            } else {
-                                $sos_data_time_unit = $sos_data_timeDifference . ' วินาที';
-                            }
-                        }else{
-                            $sos_data_time_unit  = "--";
-                        }
-                    @endphp
-
-                    <p style="font-size: 35px;" class="h2 text-secondary mt-2">การช่วยเหลือผ่านไปแล้ว</p>
-
-                    @if (!empty($sos_data_time_unit))
-                        <p style="font-size: 45px;" class="h1 text-dark font-weight-bold">{{$sos_data_time_unit}}</p>
-                    @else
-                        <p style="font-size: 45px;" class="h1 text-dark font-weight-bold"> -- </p>
-                    @endif
-                </div>
             </div>
 
-            {{-- <div class="card m-4">
-                <div class="neck_sidebar_div p-4 text-center">
-                    <p class="h1 mb-1 font-weight-bold text-center">ผู้ขอความช่วยเหลือ</p>
-                    <p class="h2 text-dark">{{$sos_data->name_user ? $sos_data->name_user : "--"}}</p>
-                    <p class="h2 text-dark">{{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
-                </div>
-            </div> --}}
-
-            <div class="card m-4">
-                <div class="neck_sidebar_div p-4 text-center">
-                    <p style="font-size: 45px;" class=" mb-1 font-weight-bold text-center">ผู้ขอความช่วยเหลือ</p>
-                    <p style="font-size: 45px;" class="font-weight-bold text-dark">{{$sos_data->name_user ? $sos_data->name_user : "--"}}  {{$sos_data->phone_user ? $sos_data->phone_user : "--"}}</p>
-                </div>
-            </div>
-
-            <div class="card m-4">
-                <div class="body_sidebar_div p-4 text-center text-dark">
-                    <div class="row mb-3">
-                        @php
-                            switch ($sos_data->idc) {
-                                case 'แดง(วิกฤติ)':
-                                    $bg_idc = "#db2d2e";
-                                    $text_idc = "แดง";
-                                    break;
-                                case 'เหลือง(เร่งด่วน)':
-                                    $bg_idc = "#ffc30e";
-                                    $text_idc = "เหลือง";
-                                    break;
-                                case 'เขียว(ไม่รุนแรง)':
-                                    $bg_idc = "#29cc39";
-                                    $text_idc = "เขียว";
-                                    break;
-                                case 'ขาว(ทั่วไป)':
-                                    $bg_idc = "#0d6efd";
-                                    $text_idc = "ขาว";
-                                    break;
-                                case 'ดำ(รับบริการสาธารณสุขอื่น)':
-                                    $bg_idc = "#000000";
-                                    $text_idc = "ดำ";
-                                    break;
-                                default:
-                                    $bg_idc = "#000000";
-                                    $text_idc = "--";
-                                    break;
-                            }
-
-
-                            switch ($sos_data->rc) {
-                                case 'แดง(วิกฤติ)':
-                                    $bg_rc = "#db2d2e";
-                                    $text_rc = "แดง";
-                                    break;
-                                case 'เหลือง(เร่งด่วน)':
-                                    $bg_rc = "#ffc30e";
-                                    $text_rc = "เหลือง";
-                                    break;
-                                case 'เขียว(ไม่รุนแรง)':
-                                    $bg_rc = "#29cc39";
-                                    $text_rc = "เขียว";
-                                    break;
-                                case 'ขาว(ทั่วไป)':
-                                    $bg_rc = "#0d6efd";
-                                    $text_rc = "ขาว";
-                                    break;
-                                case 'ดำ(รับบริการสาธารณสุขอื่น)':
-                                    $bg_rc = "#000000";
-                                    $text_rc = "ดำ";
-                                    break;
-                                default:
-                                    $bg_rc = "#000000";
-                                    $text_rc = "--";
-                                    break;
-                            }
-                        @endphp
-                        <div class="col ">
-                            <div style="background-color: {{$bg_idc}}; border-radius: 15px;" class="p-2 text-center">
-                                <h1 class="text-white font-weight-bold">IDC : {{$text_idc ? $text_idc : "--"}}</h1>
+            <div class="col-12" style="height: 24rem; border: 0; width: 98%; margin-top: 1.5rem;">
+                <div class="d-flex h-100 row m-1">
+                    <div style="position: relative;"  class="video-call">
+                        <div class=" d-flex align-item-center justify-content-center h-100 row">
+                            <div class="d-flex align-self-center justify-content-center p-0 m-0">
+                                <div class="row mb-4" id="container_user_video_call">
+                                </div>
                             </div>
                         </div>
-                        <div class="col ">
-                            <div style="background-color: {{$bg_rc}}; border-radius: 15px;" class="p-2 text-center">
-                                <h1 class="text-white font-weight-bold">RC : {{$text_rc ? $text_rc : "--"}}</h1>
-                            </div>
+                        <div id="adive_text_video_call" class="advice_text d-block text-center">
+                            <!-- ใส่ ข้อความที่มาจาก javascript -->
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-12 pt-3 d-none delna" style="height: calc(100% - 89%); background-color: #0bb34b; border: 0;">
+                <div class="w-100 user-video-call-contrainer d-none " >
+                    <div class="d-flex justify-content-center align-self-end d-non user-video-call-bar mb-2" >
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" style="height: 75px; background-color: #ffffff; ">
+                <div class="btn-video-call-container mt-2 d-none">
+                    <div class="d-flex justify-content-center" >
 
-                    {{-- <div class="mb-5">
-                        <p class="h1 d-flex align-items-center mb-2 font-weight-bold">รายละเอียดสถานที่</p>
-                        <p class="h2 text-muted font-size-xl">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</p>
-                    </div>
-                    <div class="mb-5">
-                        <p class="h1 d-flex align-items-center mb-2 font-weight-bold">อาการ</p>
-                        <p class="h2 text-muted font-size-xl">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</p>
-                    </div>
-                    <div class="mb-5">
-                        <p class="h1 d-flex align-items-center mb-2 font-weight-bold">รายละเอียดอาการ</p>
-                        <p class="h2 text-muted font-size-xl">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</p>
-                    </div> --}}
+                        <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
+                        <div id="div_for_AudioButton" class="btn btnSpecial">
+                            {{-- <i id="icon_muteAudio" class="fa-solid fa-microphone-stand"></i> --}}
+                            <button class="smallCircle" id="btn_switchMicrophone">
+                                <i class="fa-sharp fa-solid fa-angle-up"></i>
+                            </button>
+                        </div>
 
-                    <div class="mb-5">
-                        <p style="font-size: 40px;" class="d-flex align-items-center mb-2 font-weight-bold">รายละเอียดสถานที่</p>
-                        <p style="font-size: 40px;" class=" ">{{$sos_data->location_sos ? $sos_data->location_sos : "--"}}</p>
-                    </div>
-                    <div class="mb-5">
-                        <p style="font-size: 40px;" class="d-flex align-items-center mb-2 font-weight-bold">อาการ</p>
-                        <p style="font-size: 40px;" class=" ">{{$sos_data->symptom ? $sos_data->symptom : "--"}}</p>
-                    </div>
-                    <div class="mb-5">
-                        <p style="font-size: 40px;" class="d-flex align-items-center mb-2 font-weight-bold">รายละเอียดอาการ</p>
-                        <p style="font-size: 40px;" class=" ">{{$sos_data->symptom_other ? $sos_data->symptom_other : "--"}}</p>
+                        <!-- เปลี่ยนกล้อง ให้กดได้แค่ในคอม -->
+                        <div id="div_for_VideoButton" class="btn btnSpecial " >
+                            {{-- <i id="icon_muteVideo" class="fa-solid fa-camera-rotate"></i> --}}
+                            <button class="smallCircle" id="btn_switchCamera">
+                                <i class="fa-sharp fa-solid fa-angle-up"></i>
+                            </button>
+                        </div>
+
+                        {{-- @if (Auth::user()->id == 1 || Auth::user()->id == 2 || Auth::user()->id == 64 || Auth::user()->id == 11003429)
+                            <div class="btn btnSpecial btnSpecial_switch d-none" id="btn_switchCamera">
+                                <i class="fa-duotone fa-camera-rotate" style="--fa-primary-color: #26076e; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>
+                            </div>
+                        @endif --}}
+
+                        <div class="btn btnSpecial btn_leave d-non" id="addButton">
+                            <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+                        </div>
+                        {{-- <button class="btn btnSpecial " onclick="alertText()">
+                            <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+                        </button>
+                        <script>
+                            function alertText(){
+                                document.querySelector('#alert_copy').classList.add('up_down');
+
+                                const animated = document.querySelector('.up_down');
+                                animated.onanimationend = () => {
+                                    document.querySelector('#alert_copy').classList.remove('up_down');
+                                };
+                            }
+                        </script> --}}
+
+                        <div class="btn btnSpecial btn_leave" id="leave" onclick="leave_refresh();">
+                            <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-    @endif
 
-    @if ($type === 'sos_map')
-        <div class="fadeDiv" id="dataDiv" style="display: none; z-index: 5000;">
-            <div class="card m-4">
-                <div class="card-body p-3">
-                    <div class="card m-4">
-                        <div class="head_sidebar_div p-4 ">
-                            <div class="text-center">
-                                <h4 style="font-size:45px;" class="mb-0 text-info font-weight-bold">
-                                    <i style="font-size: 45px;" class="fa-solid fa-user-injured me-1 text-info"></i>ผู้ขอความช่วยเหลือ
-                                </h4>
-                            </div>
-                            <p style="font-size: 45px;" class="text-dark d-flex justify-content-center align-items-center font-weight-bold">{{$sos_data->name ? $sos_data->name : "--"}} | {{$sos_data->phone ? $sos_data->phone : "--"}}</p>
-                        </div>
-                    </div>
-
-                    <!-- หัวข้อการขอความช่วยเหลือ -->
-                    <div class="card m-4">
-                        <div class="neck_sidebar_div p-4 ">
-                            <div class="text-center">
-                                <div>
-                                    <h4 style="font-size:45px;" class="mb-0 text-danger font-weight-bold">
-                                        <i style="font-size: 45px;" class="fa-solid fa-subtitles me-1 text-danger"></i>ข้อมูล
-                                    </h4>
-                                </div>
-                            </div>
-                            <div style="font-size:35px; " class="text-dark">
-                                <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
-                                    @if ($sos_data->title_sos)
-                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">หัวข้อ : {{$sos_data->title_sos ? $sos_data->title_sos : "--"}}</p>
-                                    @else
-                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">หัวข้อ : -- </p>
-                                    @endif
-                                </div>
-                                <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
-                                    @if ($sos_data->title_sos_other)
-                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">รายละเอียด : {{$sos_data->title_sos_other ? $sos_data->title_sos_other : "--"}} </p>
-                                    @else
-                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">รายละเอียด : -- </p>
-                                    @endif
-                                </div>
-                                <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
-                                    @if ($sos_data->status)
-                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">สถานะ : {{$sos_data->status ? $sos_data->status : "--"}}</p>
-                                    @else
-                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">สถานะ : -- </p>
-                                    @endif
-                                </div>
-                                <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
-                                    @if ($sos_data->lat)
-                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">Lat : {{$sos_data->lat ? $sos_data->lat : "--"}}</p>
-                                    @else
-                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">Lat : -- </p>
-                                    @endif
-                                </div>
-                                <div style="overflow: hidden; word-wrap: break-word;" class="d-flex align-items-center">
-                                    @if ($sos_data->lng)
-                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">Long : {{$sos_data->lng ? $sos_data->lng : "--"}}</p>
-                                    @else
-                                        <p style="font-size: 40px; white-space: pre-line;" class=" mb-2 font-weight-bold">Long : -- </p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr>
-                    <center>
-                        <div class="accordion" id="accordion_Forward_sos" >
-                            <div class="accordion-item">
-                                <p class="h2 accordion-header" id="headingOne" >
-                                      <button type="button" class="btn btn-info p-2 mt-2" style="width:90%; font-size: 45px;" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <i  class="fa-sharp fa-solid fa-share mr-1"></i>เลือกการส่งต่อ
-                                    </button>
-                                </p>
-                                <div id="collapseOne" class="accordion-collapse collapse mt-2" aria-labelledby="headingOne" data-bs-parent="#accordion_Forward_sos">
-                                    <div class="accordion-body">
-
-                                        <span id="btn_ask_1669" class="main-shadow btn btn-md btn-block d-none"  style="font-family: 'Kanit', sans-serif;border-radius:10px;color:white;background-color:#780908;" data-toggle="modal" data-target="#modal_sos_1669">
-                                            <div class="d-flex">
-                                                <div class="col-3 p-0 d-flex align-items-center">
-                                                    <div class="justify-content-center col-12 p-2">
-                                                        <img src="{{ asset('/img/logo-partner/niemslogo.png') }}" width="70%" style="border:white solid 3px;border-radius:50%">
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-center col-9 text-center">
-                                                    <div id="content_1669" class="justify-content-center col-12">
-                                                        @if(empty($sos_data->sos_1669_id))
-                                                        <b>
-                                                            <span class="d-block" style="color: #ffffff; font-size: 40px;">แพทย์ฉุกเฉิน (1669)</span>
-                                                            <span id="name_1669_area" class="d-block" style="color: #ffffff; font-size: 35px;"></span>
-                                                        </b>
-                                                        @else
-                                                        <b>
-                                                            <span class="d-block" style="color: #ffffff; font-size: 40px;">ส่งต่อ 1669 แล้ว</span>
-                                                        </b>
-                                                        @endif
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </span>
-
-                                        <hr>
-                                        <label class="h1 font-weight-bold">หมายเลขโทรศัพท์ <br>ศูนย์รับแจ้งเหตุและสั่งการจังหวัดต่างๆ</label>
-                                        <div id="content_phone_niems" class="mt-2"></div>
-
-                                        <div class="d-none">
-                                            <input type="text" name="name" id="name" value="{{ $sos_data->name }}">
-                                            <input type="text" name="phone" id="phone" value="{{ $sos_data->phone }}">
-                                            <input type="text" name="user_id" id="user_id" value="{{ $sos_data->user_id }}">
-                                            <input type="text" name="lat" id="lat" value="{{ $sos_data->lat }}">
-                                            <input type="text" name="lng" id="lng" value="{{ $sos_data->lng }}">
-                                            <input type="text" name="photo_sos_1669" id="photo_sos_1669" value="{{ $sos_data->photo }}">
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </center>
-                </div>
-            </div>
-
-            @if(!empty($sos_data->helper_id))
-            <!-- ข้อมูลเจ้าหน้าที่ -->
-            <div class="card m-4">
-                <div class="body_sidebar_div p-4 text-center">
-                    <div class="text-center">
-                        <h4 style="font-size:45px;" class="mb-0 text-success font-weight-bold">
-                            <i class="fa-solid fa-user me-1 text-success"></i>ข้อมูลเจ้าหน้าที่
-                        </h4>
-                    </div>
-                    <p style="font-size: 45px;" class="font-weight-bold text-dark">{{$sos_data->user_helper->name ? $sos_data->user_helper->name : "--"}} | {{$sos_data->user_helper->phone ? $sos_data->user_helper->phone : "--"}}</p>
-                </div>
-            </div>
-
-            @endif
+        <div class="dropcontent">
+            <ul id="audio-device-list" class="ui-list">
+                <!-- Created list-audio from Javascript Here -->
+            </ul>
         </div>
-    @endif
+        <div class="dropcontent2">
+            <ul id="video-device-list" class="ui-list">
+                <!-- Created list-video from Javascript Here -->
+            </ul>
+        </div>
 
+    </div>
 
 
 {{-- <script src="{{ asset('partner_new/js/bootstrap.bundle.min.js') }}"></script>
@@ -1140,34 +868,145 @@
     var user_id = '{{ Auth::user()->id }}';
     var user_data = @json(Auth::user());
 
-    var agora_id = '{{ $data_agora->id}}';
     var sos_id = '{{ $sos_id }}';
     var type_video_call = '{{ $type }}';
 
+    var appId = '{{ env("AGORA_APP_ID") }}';
+    var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+
+    var activeVideoDeviceId = "";
+    var activeAudioDeviceId = "";
+
     document.addEventListener('DOMContentLoaded', (event) => {
+        start_page();
 
-        var appId = sessionStorage.getItem('a');
-        var appCertificate = sessionStorage.getItem('b');
+    });
 
-        // สลับตำแหน่ง appId และ appCertificate
-        function swapValues(value1, value2) {
-            return {
-                agoraAppId: value1.split('').reverse().join(''),
-                agoraAppCertificate: value2.split('').reverse().join('')
-            };
+    function start_page(){
+        console.log("start_page");
+
+        // เรียกใช้ฟังก์ชันและจัดการกับผลลัพธ์
+        getFirstCameraAndMic().then(({ cameraDeviceId, micDeviceId }) => {
+            if (cameraDeviceId && micDeviceId) {
+                activeVideoDeviceId = cameraDeviceId;
+                activeAudioDeviceId = micDeviceId;
+
+                console.log(`Camera Device ID: ${cameraDeviceId}`);
+                console.log(`Microphone Device ID: ${micDeviceId}`);
+            } else {
+                console.log('Camera or microphone not found');
+
+                setTimeout(() => {
+                    console.log('find devices again');
+                    getFirstCameraAndMic();
+                }, 1000);
+            }
+        });
+
+        let user_in_room = '{{ $user_in_room }}';
+
+        if(!appId || !appCertificate){
+            runLoop_check_appId();
+        }else{
+            // console.log('มี ข้อมูลตั้งแต่แรก');
+            // console.log(appId);
+            // console.log(appCertificate);
+
+            setTimeout(() => {
+                document.querySelector('#btnVideoCall').disabled = false;
+
+                if(user_in_room){
+                    document.querySelector('#command_join').innerHTML =
+                    `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
+                    document.querySelector('#command_join').classList.add('video-call-in-room');
+                    document.querySelector('#command_join').classList.remove('btn-success');
+                    document.querySelector('#command_join').setAttribute('style' , 'width: 60%;');
+                    document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+
+                    document.querySelector('#btnVideoCall').click();
+
+                    play_ringtone();
+                    // loop_check_user_in_room();
+
+                }else{
+                    // loop_check_user_in_room();
+                }
+
+            }, 1000);
         }
+    }
 
-        // สลับตำแหน่ง appId และ appCertificate
-        const swappedValues = swapValues(appId, appCertificate);
+    function runLoop_check_appId() {
 
-        // กำหนดค่าที่ถูกสลับกลับไปที่ตัวแปรเดิม
-        appId = swappedValues.agoraAppId;
-        appCertificate = swappedValues.agoraAppCertificate;
+    let user_in_room = '{{ $user_in_room }}';
 
-        if (!appId || !appCertificate) {
-            appId = '{{ env("AGORA_APP_ID") }}';
-            appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
-        }
+        setTimeout(() => {
+            fetch("{{ url('/') }}/api/get_appId")
+                .then(response => response.json())
+                .then(result => {
+                    // console.log(result);
+                    appId = result['appId'];
+                    appCertificate = result['appCertificate'];
+
+                    // console.log('ไม่มี ข้อมูลตั้งแต่แรก');
+                    // console.log(appId);
+                    // console.log(appCertificate);
+
+                    if (!appId && !appCertificate) {
+                        runLoop_check_appId();
+                    }else{
+                        setTimeout(() => {
+                            document.querySelector('#btnVideoCall').disabled = false;
+
+                            if(user_in_room){
+                                document.querySelector('#command_join').innerHTML =
+                                `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
+                                document.querySelector('#command_join').classList.add('video-call-in-room');
+                                document.querySelector('#command_join').classList.remove('btn-success');
+                                document.querySelector('#command_join').setAttribute('style' , 'width: 60%;');
+                                document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+
+                                document.querySelector('#btnVideoCall').click();
+
+                                // play_ringtone();
+                                // loop_check_user_in_room();
+
+                            }else{
+                            // loop_check_user_in_room();
+                            }
+
+                        }, 1000);
+                    }
+            });
+
+        }, 1000);
+    }
+
+    function start_video_call_command(){
+
+        console.log(appId);console.log(appCertificate);
+        // var appId = sessionStorage.getItem('a');
+        // var appCertificate = sessionStorage.getItem('b');
+
+        // // สลับตำแหน่ง appId และ appCertificate
+        // function swapValues(value1, value2) {
+        //     return {
+        //         agoraAppId: value1.split('').reverse().join(''),
+        //         agoraAppCertificate: value2.split('').reverse().join('')
+        //     };
+        // }
+
+        // // สลับตำแหน่ง appId และ appCertificate
+        // const swappedValues = swapValues(appId, appCertificate);
+
+        // // กำหนดค่าที่ถูกสลับกลับไปที่ตัวแปรเดิม
+        // appId = swappedValues.agoraAppId;
+        // appCertificate = swappedValues.agoraAppCertificate;
+
+        // if (!appId || !appCertificate) {
+        //     appId = '{{ env("AGORA_APP_ID") }}';
+        //     appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+        // }
 
         options =
         {
@@ -1191,7 +1030,7 @@
             profile_local = "https://www.viicheck.com/Medilab/img/icon.png";
         }
         //===== สุ่มสีพื้นหลังของ localPlayerContainer=====
-        fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + options.uid + "&type=" + type_video_call + "&sos_id=" + sos_id)
+        fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + user_id + "&type=" + type_video_call + "&sos_id=" + sos_id)
             .then(response => response.json())
             .then(result => {
 
@@ -1200,7 +1039,7 @@
                 name_local = result.name_user;
                 type_local = result.user_type;
 
-                changeBgColor(bg_local);
+                // changeBgColor(bg_local);
 
         })
         .catch(error => {
@@ -1208,13 +1047,13 @@
         });
 
         function LoadingVideoCall() {
-            const loadingAnime = document.getElementById('lds-ring');
+            // const loadingAnime = document.getElementById('lds-ring');
 
             setTimeout(() => {
                 //หลังจากสร้าง localPlayerContainer เสร็จให้เอา animation loading ออก
-                if(loadingAnime){
-                    loadingAnime.classList.remove('d-none');
-                }
+                // if(loadingAnime){
+                //     loadingAnime.classList.remove('d-none');
+                // }
                 fetch("{{ url('/') }}/api/video_call_4" + "?user_id=" + user_id + '&appCertificate=' + appCertificate  + '&appId=' + appId + '&type=' + type_video_call + '&sos_id=' + sos_id)
                     .then(response => response.json())
                     .then(result => {
@@ -1235,7 +1074,8 @@
 
                             if (currentTimestamp >= expirationTimestamp) {
                                 // เวลาหมดแล้ว ให้แสดงข้อความแจ้งเตือนหรือทำการแจ้งเตือนผ่านทาง UI ตามที่คุณต้องการ
-                                document.getElementById('leave').click();
+                                document.querySelector('#leave').click();
+                                return;
                             }
                         }
 
@@ -1244,14 +1084,14 @@
                         }, 1000);
 
                         setTimeout(() => {
-                            document.getElementById("join").click();
+                            // document.getElementById("command_join").click();
                         }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
                 })
                 .catch(error => {
 
-                    if(loadingAnime){
-                        loadingAnime.classList.remove('d-none');
-                    }
+                    // if(loadingAnime){
+                    //     loadingAnime.classList.remove('d-none');
+                    // }
 
                     // เรียกใช้งานฟังก์ชัน retryFunction() อีกครั้งหลังจากเวลาหน่วงให้ผ่านไป
                     setTimeout(() => {
@@ -1268,12 +1108,7 @@
         LoadingVideoCall();
         //เริ่มทำการสร้าง channel Video_call
         startBasicCall();
-        //หาตำแหน่งของผู้ใช้ --> แสดงข้อมูล sos_map ตามจังหวัด
-        if(type_video_call === "sos_map"){
-            find_location();
-        }
-
-    });
+    }
 
     let channelParameters =
     {
@@ -1293,11 +1128,7 @@
     {
         // Create an instance of the Agora Engine
         const agoraEngine = AgoraRTC.createClient({ mode: "rtc", codec: "vp9" });
-        // console.log("agoraEngine");
-        // console.log(agoraEngine);
         let rtcStats = agoraEngine.getRTCStats();
-        // console.log("rtcStats");
-        // console.log(rtcStats);
 
         /////////////////////// ปุ่มสลับ กล้อง /////////////////////
         const btn_switchCamera = document.querySelector('#btn_switchCamera');
@@ -1326,7 +1157,7 @@
 
                 let customDivAll = document.querySelectorAll(".custom-div");
                 let remoteUsers = agoraEngine['remoteUsers'];
-                console.log("เช็ค div ที่ไม่อยู่ในห้อง");
+                // console.log("เช็ค div ที่ไม่อยู่ในห้อง");
                 customDivAll.forEach(element => {
                     let id = element.id;
 
@@ -1767,7 +1598,7 @@
             let customDivs = container.querySelectorAll(".custom-div");
             //ถ้าไม่มีให้ ย้าย div ใน bar ข้างล่าง ขึ้นมาทั้งหมด
             if (customDivs.length == 0) {
-                moveAllDivsToContainer();
+                // moveAllDivsToContainer();
             }
 
             // เสียงแจ้งเตือน เวลาคนเข้า
@@ -1808,26 +1639,28 @@
         });
 
         // local_join
-        window.onload = function ()
+
+        // window.onload = function ()
+        function afterJoin()
         {
-            fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_id=" + sos_id + "&type=" + type_video_call)
-                .then(response => response.json())
-                .then(result => {
+            // fetch("{{ url('/') }}/api/check_user_in_room_2" + "?sos_id=" + sos_id + "&type=" + type_video_call)
+            //     .then(response => response.json())
+            //     .then(result => {
 
-                    if (result['status'] == "ok") {
-                        setTimeout(() => {
-                            document.getElementById("join").click();
-                        }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
-                    }else{
-                        alert("จำนวนผู้ใช้ในห้องสนทนาสูงสุดแล้ว");
-                        window.history.back();
-                    }
-                }).catch(error => {
-                    console.log("โหลดหน้าล้มเหลว :" + error);
-                    window.location.reload(); // รีเฟรชหน้าเว็บ
-                });
+            //         if (result['status'] == "ok") {
+            //             setTimeout(() => {
+            //                 document.getElementById("command_join").click();
+            //             }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
+            //         }else{
+            //             alert("จำนวนผู้ใช้ในห้องสนทนาสูงสุดแล้ว");
+            //             // window.history.back();
+            //         }
+            //     }).catch(error => {
+            //         console.log("โหลดหน้าล้มเหลว :" + error);
+            //         // window.location.reload(); // รีเฟรชหน้าเว็บ
+            //     });
 
-            document.getElementById("join").onclick = async function (user_id)
+            document.getElementById("command_join").onclick = async function (user_id)
             {
                 // Enable dual-stream mode.
                 // agoraEngine.enableDualStream();
@@ -1935,6 +1768,7 @@
                     // Publish the local audio and video tracks in the channel.
                     await agoraEngine.publish([channelParameters.localVideoTrack]);
                     // StatsVideoUpdate();
+                    document.querySelector(".btn-video-call-container").classList.remove("d-none");
 
                 } catch (error) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
@@ -1942,12 +1776,13 @@
                     alert('ไม่สามารถโหลดข้อมูลกล้องได้ รีเฟรชหน้าเว็บไซต์');
 
                     setTimeout(() => {
-                        window.location.reload(); // รีเฟรชหน้าเว็บ
+                        // window.location.reload(); // รีเฟรชหน้าเว็บ
+                        afterJoin();
                     }, 2000);
 
+                    return; // หยุดการทำงานของฟังก์ชันนี้ทันที
                 }
 
-                //=================     สำหรับ Senior Benze  =========================
                 function join_and_update(){
                     console.log("join_and_update");
                         fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id)
@@ -1976,7 +1811,6 @@
                         });
                 }
                 join_and_update();
-                //=================    จบ สำหรับ Senior Benze  =========================
 
                 //===== จบส่วน สุ่มสีพื้นหลังของ localPlayerContainer =====
                 if(name_local && type_local){
@@ -1994,18 +1828,18 @@
                 channelParameters.localVideoTrack.play(localPlayerContainer);
 
                 // เอาหน้าโหลดออก
-                document.querySelector('#lds-ring').remove();
+                // document.querySelector('#lds-ring').remove();
 
                 //======= สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน ==========//
                 btn_toggle_mic_camera(videoTrack,audioTrack,bg_local);
 
                 //ถ้ากดปุ่ม muteVideo แล้วกล้องอยู่ในสถานะปิด ให้เปลี่ยนสี bg ของ local
-                document.querySelector('#muteVideo').addEventListener("click", function(e) {
-                    if (isVideo == false) {
-                        console.log(bg_local);
-                        changeBgColor(bg_local);
-                    }
-                });
+                // document.querySelector('#muteVideo').addEventListener("click", function(e) {
+                //     if (isVideo == false) {
+                //         console.log(bg_local);
+                //         changeBgColor(bg_local);
+                //     }
+                // });
 
                 //ถ้ากดปุ่ม muteVideo แล้วกล้องอยู่ในสถานะปิด ให้เปลี่ยนสี bg ของ local
                 document.querySelector('#muteAudio').addEventListener("click", function(e) {
@@ -2067,6 +1901,7 @@
                 // Leave the channel
                 await agoraEngine.leave();
                 console.log("You left the channel");
+
                 // Refresh the page for reuse
                 // window.location.reload();
 
@@ -2086,60 +1921,91 @@
                     });
                 }
 
+                setTimeout(() => {
+                    switch_div_data();
+                    document.querySelector(".btn-video-call-container").classList.add("d-none");
+
+                    if (document.querySelector('#videoDiv_'+'{{ Auth::user()->id }}')) {
+                        document.querySelector('#videoDiv_'+'{{ Auth::user()->id }}').remove();
+                    }
+
+                    // if (document.querySelector('#div_for_VideoButton')) {
+                    //     document.querySelector('#div_for_VideoButton').remove();
+                    // }
+
+                    // if (document.querySelector('#div_for_AudioButton')) {
+                    //     document.querySelector('#div_for_AudioButton').remove();
+                    // }
+
+                    // if (document.querySelector('#leave')) {
+                    //     document.querySelector('#leave').remove();
+                    // }
+
+                }, 1000);
+
             }
         }
-
+        setTimeout(() => {
+            afterJoin();
+        }, 2000);
         //=============================================================================//
         //                               สลับอุปกรณ์                                     //
         //=============================================================================//
 
-        var activeVideoDeviceId;
-        var activeAudioDeviceId;
+        // var activeVideoDeviceId;
+        // var activeAudioDeviceId;
         // var activeAudioOutputDeviceId
-        window.addEventListener('DOMContentLoaded', async () => {
-            try {
-                // เรียกดูอุปกรณ์ทั้งหมด
-                const devices = await navigator.mediaDevices.enumerateDevices();
 
-                // เรียกดูอุปกรณ์ที่ใช้อยู่
-                // const stream = await navigator.mediaDevices.getUserMedia({
-                //     audio: true,
-                //     video: true
-                // });
+        // window.addEventListener('DOMContentLoaded', async () => {
+        //     try {
 
-                const stream = await navigator.mediaDevices.getUserMedia({
-                    audio: true,
-                    video: {
-                        facingMode: 'user', // หรือ 'environment' หากต้องการใช้กล้องหลัง
-                        width: { ideal: 1280 },
-                        height: { ideal: 720 }
-                    }
-                });
+        //         // เรียกดูอุปกรณ์ทั้งหมด
+        //         let devices = await navigator.mediaDevices.enumerateDevices();
 
+        //         // เรียกดูอุปกรณ์ที่ใช้อยู่
+        //         let stream = await navigator.mediaDevices.getUserMedia({
+        //             audio: true,
+        //             video: true
+        //         });
 
-                if(useMicrophone){
-                    activeAudioDeviceId = useMicrophone;
-                }else{
-                    activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
-                }
+        //         // const stream = await navigator.mediaDevices.getUserMedia({
+        //         //     audio: true,
+        //         //     video: {
+        //         //         facingMode: 'user', // หรือ 'environment' หากต้องการใช้กล้องหลัง
+        //         //         width: { ideal: 1280 },
+        //         //         height: { ideal: 720 }
+        //         //     }
+        //         // });
+        //         activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
+        //         activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
 
-                if(useCamera){
-                    activeVideoDeviceId = useCamera;
-                }else{
-                    activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
-                }
+        //         // if(useMicrophone){
+        //         //     activeAudioDeviceId = useMicrophone;
+        //         //     console.log("เข้า if useMicrophone");
+        //         // }else{
+        //         //     activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
+        //         //     console.log("เข้า else useMicrophone");
+        //         // }
 
-                // if(useSpeaker){
-                //     activeAudioOutputDeviceId = useSpeaker;
-                // }else{
-                //     activeAudioOutputDeviceId = devices.find(device => device.kind === 'audiooutput' && device.deviceId === 'default').deviceId;
-                // }
+        //         // if(useCamera){
+        //         //     activeVideoDeviceId = useCamera;
+        //         //     console.log("เข้า if useCamera");
+        //         // }else{
+        //         //     activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
+        //         //     console.log("เข้า else useCamera");
+        //         // }
 
-            } catch (error) {
-                console.error('เกิดข้อผิดพลาดในการเรียกดูอุปกรณ์:', error);
-            }
+        //         // if(useSpeaker){
+        //         //     activeAudioOutputDeviceId = useSpeaker;
+        //         // }else{
+        //         //     activeAudioOutputDeviceId = devices.find(device => device.kind === 'audiooutput' && device.deviceId === 'default').deviceId;
+        //         // }
 
-        });
+        //     } catch (error) {
+        //         console.error('เกิดข้อผิดพลาดในการเรียกดูอุปกรณ์:', error);
+        //     }
+
+        // });
         // ไมโครโฟน -- Microphone
         var old_activeAudioDeviceId ;
 
@@ -2383,8 +2249,6 @@
 
         btn_switchCamera.onclick = async function()
         {
-            console.log('btn_switchCamera');
-
             console.log('activeVideoDeviceId');
             console.log(activeVideoDeviceId);
 
@@ -2396,19 +2260,19 @@
             let devices = await navigator.mediaDevices.enumerateDevices();
 
             // เรียกดูอุปกรณ์ที่ใช้อยู่
-            // let stream = await navigator.mediaDevices.getUserMedia({
-            //     audio: true,
-            //     video: true
-            // });
-
             let stream = await navigator.mediaDevices.getUserMedia({
                 audio: true,
-                video: {
-                    width: { ideal: 720 },
-                    height: { ideal: 1280 },
-                    // ตั้งค่าอื่นๆตามความจำเป็น
-                }
+                video: true
             });
+
+            // let stream = await navigator.mediaDevices.getUserMedia({
+            //     audio: true,
+            //     video: {
+            //         width: { ideal: 720 },
+            //         height: { ideal: 1280 },
+            //         // ตั้งค่าอื่นๆตามความจำเป็น
+            //     }
+            // });
 
             // แยกอุปกรณ์ตามประเภท
             let videoDevices = devices.filter(device => device.kind === 'videoinput');
@@ -2482,12 +2346,12 @@
                 }
             }
 
-            if (isVideo == false) {
-                setTimeout(() => {
-                    console.log("bg_local ddddddddddddddddddddddd");
-                    changeBgColor(bg_local);
-                }, 50);
-            }
+            // if (isVideo == false) {
+            //     setTimeout(() => {
+            //         console.log("bg_local ddddddddddddddddddddddd");
+            //         changeBgColor(bg_local);
+            //     }, 50);
+            // }
         }
 
         btn_switchMicrophone.onclick = async function()
@@ -2627,6 +2491,28 @@
             });
         });
 
+        // เปิด-ปิด list ของกล้อง
+        $(document).ready(function() {
+            $("#btn_switchCamera").click(function(event) {
+                event.stopPropagation(); // หยุดการกระจายเหตุการณ์คลิกไปยัง document
+
+                var targetId = $(this).attr("id"); // รับ id ของปุ่มที่ถูกคลิก
+
+                if(document.querySelector('.open_dropcontent')){
+                    $(".dropcontent").removeClass("open_dropcontent");
+                }
+
+                $(".dropcontent2").toggleClass("open_dropcontent2");
+
+                // เพิ่มเหตุการณ์คลิกที่ document เพื่อปิด .dropcontent2 ถ้าคลิกที่นอกเหตุการณ์
+                $(document).click(function(event) {
+                    if (!$(event.target).closest(".dropcontent2").length) {
+                        $(".dropcontent2").removeClass("open_dropcontent2");
+                    }
+                });
+            });
+        });
+
         // ตรวจสอบอุปกรณ์ที่ใช้งาน
         function checkDeviceType() {
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -2652,24 +2538,10 @@
 </script>
 
 <script>
-	const fadeButton = document.getElementById("fadeButton");
+
 	const dataDiv = document.getElementById("dataDiv");
 
-	fadeButton.addEventListener("click", () => {
-		if (dataDiv.style.display === "none") {
-			dataDiv.style.display = "block";
-			setTimeout(() => {
-				dataDiv.style.opacity = "1";
-				dataDiv.style.maxHeight = "50%";
-			}, 10);
-		} else {
-			dataDiv.style.opacity = "0";
-			dataDiv.style.maxHeight = "0";
-			setTimeout(() => {
-				dataDiv.style.display = "none";
-			}, 500);
-		}
-	});
+
 	// ฟังก์ชันสุ่มสี
 	function getRandomColor() {
 		let letters = "0123456789ABCDEF";
@@ -2728,23 +2600,27 @@
 		// เพิ่ม event listener สำหรับการคลิก
 		newDiv.addEventListener("click", function() {
 			handleClick(newDiv);
+            // swapDivsInContainer(newDiv);
+			// moveAllDivsToContainer(newDiv);
+
 		});
 
-		let userVideoCallBar = document.querySelector(".user-video-call-bar");
-		let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+		// let userVideoCallBar = document.querySelector(".user-video-call-bar");
+		// let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
 
-		if (customDivsInUserVideoCallBar.length > 0) {
-			userVideoCallBar.appendChild(newDiv);
+		// if (customDivsInUserVideoCallBar.length > 0) {
+		// 	userVideoCallBar.appendChild(newDiv);
 
-            let infomationUser = newDiv.querySelector(".infomation-user");
-                    if (infomationUser) {
-                        // เพิ่มคลาส "d-none" เข้าไปใน div ที่ไม่ใช่ clickedDiv
-                        infomationUser.classList.add("d-none");
-                    }
-		} else {
-			document.getElementById("container_user_video_call").appendChild(newDiv);
-		}
+        //     let infomationUser = newDiv.querySelector(".infomation-user");
+        //             if (infomationUser) {
+        //                 // เพิ่มคลาส "d-none" เข้าไปใน div ที่ไม่ใช่ clickedDiv
+        //                 infomationUser.classList.add("d-none");
+        //             }
+		// } else {
+		// 	document.getElementById("container_user_video_call").appendChild(newDiv);
+		// }
 
+        document.getElementById("container_user_video_call").appendChild(newDiv);
 		checkchild();
 	}
 
@@ -2787,32 +2663,41 @@
             }
             // document.querySelector(".btn-video-call-container").classList.add("d-none");
 
-            type_advice = "dec";
-            showTextAdvice(type_advice);
-            console.log(type_advice);
-        }else{
-            type_advice = "inc";
-            showTextAdvice(type_advice);
-            console.log(type_advice);
+
         }
 	}
 
 	// สลับ div ระหว่าง .user-video-call-bar และ #container_user_video_call
-	// function swapDivsInContainerAndUserVideoCallBar(clickedDiv) {
-	// 	let container = document.getElementById("container_user_video_call");
-	// 	let customDivsInContainer = container.querySelectorAll(".custom-div");
-	// 	let userVideoCallBar = document.querySelector(".user-video-call-bar");
-	// 	let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+    function swapDivsInContainer(clickedDiv) {
+        const container = document.querySelector("#container_user_video_call");
 
-	// 	if (customDivsInContainer.length > 0 && customDivsInUserVideoCallBar.length > 0) {
-	// 		let firstDivInContainer = customDivsInContainer[0];
+        const divs = Array.from(container.children);
 
-	// 		container.appendChild(clickedDiv);
-	// 		userVideoCallBar.appendChild(firstDivInContainer);
-	// 	}
+        if (divs.length < 2) {
+            console.error("Not enough divs to swap");
+            return;
+        }
 
+        const firstDiv = divs[0];
+        const clickedDivIndex = divs.indexOf(clickedDiv);
 
-	// }
+        if (clickedDivIndex === 1) {
+            // สลับตำแหน่งของ div ที่ถูกคลิกกับ div แรก
+            container.insertBefore(clickedDiv, firstDiv);
+        } else if (clickedDivIndex === 0 && divs.length > 1) {
+            // สลับตำแหน่งของ div แรกกับ div ที่สอง
+            container.insertBefore(divs[1], firstDiv.nextSibling);
+        }
+
+    }
+
+    // // เพิ่ม event listener บน .container_user_video_call สำหรับสลับ div
+    // document.querySelector(".container_user_video_call").addEventListener("click", function(e) {
+    //     if (e.target.classList.contains("custom-div")) {
+    //         swapDivsInContainer(e.target);
+    //     }
+    // });
+
 
 	// ย้ายทุก div ใน .user-video-call-bar ไปยัง #container_user_video_call
 	function moveAllDivsToContainer() {
@@ -2834,43 +2719,20 @@
 
 		document.querySelector(".btn-video-call-container").classList.remove("d-none");
 
-        type_advice = "inc";
-        showTextAdvice(type_advice);
-        console.log(type_advice);
-
         checkchild();
 	}
-    let text_advice;
 
-    function showTextAdvice(type) {
-
-        let div_advice =  document.querySelector('#adive_text_video_call');
-		let container = document.getElementById("container_user_video_call");
-		let customDivs = container.querySelectorAll(".custom-div");
-		let userVideoCallBar = document.querySelector(".user-video-call-bar");
-        let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
-
-        div_advice.innerHTML = '';
-
-        // จะเปลี่ยนไปเช็คจากจำนวนคน หลังจากทำหลังบ้านเสร็จ
-        if(type == "inc"){
-                div_advice.innerHTML = '<p style="font-size: 36px;" class="font-14 text-danger">กดที่จอวิดีโอเพื่อขยาย*</p>';
-		} else {
-                div_advice.innerHTML = '<p style="font-size: 36px;" class="font-14 text-danger">กดที่จอวิดีโอเพื่อกลับขนาดปกติ*</p>';
-		}
-	}
-
-    showTextAdvice(type_advice);
 
 	function handleClick(clickedDiv) {
 		let userVideoCallBar = document.querySelector(".user-video-call-bar");
 		let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
 
-		if (customDivsInUserVideoCallBar.length > 0) {
-			moveAllDivsToContainer();
-		} else {
-			moveDivsToUserVideoCallBar(clickedDiv);
-		}
+        swapDivsInContainer(clickedDiv);
+		// if (customDivsInUserVideoCallBar.length > 0) {
+		// 	moveAllDivsToContainer();
+		// } else {
+		// 	moveDivsToUserVideoCallBar(clickedDiv);
+		// }
 	}
 
 
@@ -2903,7 +2765,7 @@
         var t = document.createTextNode(""); // Create an empty text node
 
         if (childCount === 2) {
-            t.textContent = "#container_user_video_call .custom-div:not(:only-child) {flex: 0 0 calc(100% - 40px);aspect-ratio: 16/9;}";
+            t.textContent = "#container_user_video_call .custom-div:first-child {position: absolute; width: 100%; height: 100%;} #container_user_video_call .custom-div:nth-child(2) {position: absolute; width: 30%; height: 30%; top: 0; left: 0;}";
         } else if (childCount === 3) {
             t.textContent = "#container_user_video_call .custom-div:not(:only-child) {flex: 0 0 calc(100% - 40px);aspect-ratio: 16/9;} #container_user_video_call .custom-div:not(:only-child):first-child {flex: 0 0 calc(50% - 40px);aspect-ratio: 3/4;} #container_user_video_call .custom-div:not(:only-child):nth-child(2) {flex: 0 0 calc(50% - 40px);aspect-ratio: 3/4;}";
         } else if (childCount === 4) {
@@ -2926,21 +2788,21 @@
         }
     };
 
-    function changeBgColor(bg_local){
-        // เซ็ท bg-local เป็นสีที่ดูด
-        console.log("ทำงาน "+bg_local)
+    // function changeBgColor(bg_local){
+    //     // เซ็ท bg-local เป็นสีที่ดูด
+    //     console.log("ทำงาน "+bg_local)
 
-        let agoraCreateLocalDiv = document.querySelector("#videoDiv_"+user_id);
+    //     let agoraCreateLocalDiv = document.querySelector("#videoDiv_"+user_id);
 
-        let divsInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelector(".agora_create_local");
-            let sub_div = divsInsideAgoraCreateLocal.querySelector("div");
-                sub_div.style.backgroundColor = bg_local;
+    //     let divsInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelector(".agora_create_local");
+    //         let sub_div = divsInsideAgoraCreateLocal.querySelector("div");
+    //             sub_div.style.backgroundColor = bg_local;
 
-            if(isVideo == false){
-                let video_tag = divsInsideAgoraCreateLocal.querySelector("video");
-                    video_tag.remove();
-            }
-    }
+    //         if(isVideo == false){
+    //             let video_tag = divsInsideAgoraCreateLocal.querySelector("video");
+    //                 video_tag.remove();
+    //         }
+    // }
 </script>
 
 
@@ -3011,7 +2873,7 @@
                 // แสดงโปรไฟล์ ตอนปิดกล้อง
                 document.querySelector('.profile-input-output').classList.remove('d-none');
 
-                changeBgColor(bg_local);
+                // changeBgColor(bg_local);
 
                 isVideo = false;
 
@@ -3150,22 +3012,23 @@
 
             divVideo.addEventListener("click", function() {
                 handleClick(divVideo);
+                // swapDivsInContainer(divVideo);
             });
 
             transparentDiv.addEventListener("click", function() {
                 let id_agora_create = localPlayerContainer.id;
-                console.log(id_agora_create);
                 let clickvideoDiv = document.querySelector('#videoDiv_'+id_agora_create);
                 clickvideoDiv.click();
 
-                let userVideoCallBar = document.querySelector(".user-video-call-bar");
-                let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+                swapDivsInContainer(clickedDiv);
 
-                if (customDivsInUserVideoCallBar.length > 0) {
-                    moveAllDivsToContainer();
-                } else {
-                    moveDivsToUserVideoCallBar(clickvideoDiv);
-                }
+                // let userVideoCallBar = document.querySelector(".user-video-call-bar");
+                // let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+                // if (customDivsInUserVideoCallBar.length > 0) {
+                //     moveAllDivsToContainer();
+                // } else {
+                //     moveDivsToUserVideoCallBar(clickvideoDiv);
+                // }
             });
 
             checkchild();
@@ -3293,14 +3156,16 @@
                 let clickvideoDiv = document.querySelector('#videoDiv_'+id_agora_create);
                 clickvideoDiv.click();
 
-                let userVideoCallBar = document.querySelector(".user-video-call-bar");
-                let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+                swapDivsInContainer(clickedDiv);
 
-                if (customDivsInUserVideoCallBar.length > 0) {
-                    moveAllDivsToContainer();
-                } else {
-                    moveDivsToUserVideoCallBar(clickvideoDiv);
-                }
+                // let userVideoCallBar = document.querySelector(".user-video-call-bar");
+                // let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+                // if (customDivsInUserVideoCallBar.length > 0) {
+                //     moveAllDivsToContainer();
+                // } else {
+                //     moveDivsToUserVideoCallBar(clickvideoDiv);
+                // }
             });
 
             checkchild();
@@ -3457,14 +3322,16 @@
                 let clickvideoDiv = document.querySelector('#videoDiv_'+id_agora_create);
                 clickvideoDiv.click();
 
-                let userVideoCallBar = document.querySelector(".user-video-call-bar");
-                let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+                swapDivsInContainer(clickedDiv);
 
-                if (customDivsInUserVideoCallBar.length > 0) {
-                    moveAllDivsToContainer();
-                } else {
-                    moveDivsToUserVideoCallBar(clickvideoDiv);
-                }
+                // let userVideoCallBar = document.querySelector(".user-video-call-bar");
+                // let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+                // if (customDivsInUserVideoCallBar.length > 0) {
+                //     moveAllDivsToContainer();
+                // } else {
+                //     moveDivsToUserVideoCallBar(clickvideoDiv);
+                // }
             });
 
             checkchild();
@@ -3489,310 +3356,6 @@
 		// onload_check_status_sos_map();
 
 	}
-
-    var all_address ;
-    var check_status_done = 'yes'; // ไว้เช็คว่าทำตัวอัพเดตสถานะไปหรือยัง
-    if ('{{$sos_data->status}}' === "เสร็จสิ้น") {
-        check_status_done = 'yes';
-    } else {
-        check_status_done = 'no';
-    }
-
-	function geocodeLatLng(geocoder, map, infowindow) {
-		// console.log("geocodeLatLng");
-        const input = "{{ $sos_data->lat }}"+","+"{{ $sos_data->lng }}";
-        const latlngStr = input.split(",", 2);
-        const latlng = {
-            lat: parseFloat(latlngStr[0]),
-            lng: parseFloat(latlngStr[1]),
-        };
-        geocoder
-            .geocode({ location: latlng })
-            .then((response) => {
-                if (response.results[0]) {
-
-                	all_address = response.results[0].formatted_address ;
-
-	                // console.log(response.results[0]);
-
-                    // เข้าถึงชื่อจังหวัดจากผลลัพธ์
-	                const addressComponents = response.results[0].address_components;
-
-	                let cityName = ""; // ชื่อจังหวัด
-	                let districtName = ""; // ชื่ออำเภอ (เขต)
-	                let subdistrictName = ""; // ชื่อตำบล (แขวง)
-
-	                for (const component of addressComponents) {
-	                    for (const type of component.types) {
-	                        if (type === "locality" || type === "administrative_area_level_1") {
-	                            cityName = component.long_name;
-	                        }
-	                        if (type === "administrative_area_level_2") {
-	                            districtName = component.long_name;
-	                        }
-	                        if (type === "administrative_area_level_3" || type === "locality") {
-	                            subdistrictName = component.long_name;
-	                        }
-	                    }
-	                }
-
-	                if (cityName) {
-	                    cityName = cityName.replaceAll("จังหวัด","");
-	                	cityName = cityName.replaceAll("จ.","");
-	                	cityName = cityName.replaceAll(" ","");
-	                    // console.log("ชื่อจังหวัด: " + cityName);
-	                }
-	                if (districtName) {
-	                    districtName = districtName.replaceAll("อำเภอ","");
-	                	districtName = districtName.replaceAll("อ.","");
-	                	districtName = districtName.replaceAll(" ","");
-	                    // console.log("ชื่ออำเภอ (เขต): " + districtName);
-	                }
-	                if (subdistrictName) {
-	                    subdistrictName = subdistrictName.replaceAll("ตำบล","");
-	                	subdistrictName = subdistrictName.replaceAll("ต.","");
-	                	subdistrictName = subdistrictName.replaceAll(" ","");
-	                    // console.log("ชื่อตำบล (แขวง): " + subdistrictName);
-	                }
-
-	                if (cityName) {
-	                	search_phone_niems(cityName ,districtName ,subdistrictName);
-	                } else {
-	                    // console.log("ไม่พบชื่อจังหวัด");
-	                }
-
-                } else {
-                    // window.alert("No results found");
-                }
-            })
-            .catch((e) => window.alert("Geocoder failed due to: " + e));
-    }
-
-    function search_phone_niems(cityName ,districtName ,subdistrictName){
-
-        fetch("{{ url('/') }}/api/sos_map/search_phone_niems/"+cityName)
-            .then(response => response.json())
-            .then(result => {
-                console.log("result phoneniems");
-                console.log(result);
-
-
-                    if(result['1669'] != "no"){
-                        @if(empty($sos_data->sos_1669_id))
-                            document.querySelector('#name_1669_area').innerHTML = result['1669'] ;
-                            document.querySelector('#btn_ask_1669').setAttribute('onclick' ,
-                            "ask_to_1669('"+cityName+"','"+districtName+"','"+subdistrictName+"')");
-                        @endif
-
-                        document.querySelector('#btn_ask_1669').classList.remove('d-none');
-                    }
-
-                if(result['phone_niems'] != "no"){
-                    let html_main ;
-                    let html_sub ;
-                    let content_phone_niems = document.querySelector('#content_phone_niems');
-
-                    for (let i = 0; i < result['phone_niems'].length; i++) {
-
-                        let phone_sp = result['phone_niems'][i]['phone'].split(",");
-
-                        // console.log(phone_sp);
-
-                        let sum_html = '' ;
-
-                        for (let x = 0; x < phone_sp.length; x++) {
-                            html_sub = `
-                                <span class="btn btn-outline-primary mt-1 font-weight-bold" style="width:80%; font-size: 40px;">
-                                    `+phone_sp[x]+`
-                                </span>
-                                <br>
-                            `;
-                            sum_html = sum_html + html_sub ;
-                        }
-
-                        html = `
-                            <p class="font-weight-bold text-dark" style="font-size: 40px;">จ.`+result['phone_niems'][i]['province']+`</p>
-                            `+sum_html+`
-                            <hr>
-                        `;
-
-                        content_phone_niems.insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
-
-                    }
-                }
-        });
-    }
-
-    function ask_to_1669(cityName ,districtName ,subdistrictName){
-
-        // console.log("ask_to_1669 >> " + cityName);
-
-        let name = '{{ $sos_data->name }}';
-        let phone = '{{ $sos_data->phone }}';
-        let user_id = '{{ $sos_data->user_id }}';
-        let lat = '{{ $sos_data->lat }}';
-        let lng = '{{ $sos_data->lng }}';
-        // let photo_sos_1669 = document.querySelector("#photo_sos_1669");
-        let district_P = cityName;
-        let district_A = districtName;
-        let district_T = subdistrictName;
-
-        // API UPLOAD IMG //
-        let formData = new FormData();
-        let imageFile = document.getElementById('photo_sos_1669').value;
-            formData.append('photo_sos', imageFile);
-
-        let data_sos_1669 = {
-            "name_user" : name.value,
-            "phone_user" : phone.value,
-            "user_id" : user_id.value,
-            "lat" : lat.value,
-            "lng" : lng.value,
-            "changwat" : district_P,
-            "amphoe" : district_A,
-            "tambon" : district_T,
-            "all_address" : all_address,
-        }
-        // console.log(data_sos_1669);
-
-        formData.append('name_user', data_sos_1669.name_user);
-        formData.append('phone_user', data_sos_1669.phone_user);
-        formData.append('user_id', data_sos_1669.user_id);
-        formData.append('lat', data_sos_1669.lat);
-        formData.append('lng', data_sos_1669.lng);
-        formData.append('changwat', data_sos_1669.changwat);
-        formData.append('amphoe', data_sos_1669.amphoe);
-        formData.append('tambon', data_sos_1669.tambon);
-        formData.append('all_address', data_sos_1669.all_address);
-        formData.append('sos_map_id', "{{ $sos_data->id }}");
-
-        fetch("{{ url('/') }}/api/create_new_sos_by_user", {
-            method: 'POST',
-            body: formData
-        }).then(function (response){
-            return response.text();
-        }).then(function(data){
-            // console.log(data);
-            let name_admin = "{{ Auth::user()->name }}" ;
-
-            if(data){
-                fetch("{{ url('/') }}/api/sos_map/update_sos_1669_id/"+data+"/"+"{{ $sos_data->id }}" +"/"+ district_P +"/"+ name_admin)
-                    .then(response => response.text())
-                    .then(result => {
-                        console.log(result);
-                        if(result == "ok"){
-                            let html = `
-                                <b>
-                                    <span class="d-block" style="color: #ffffff; font-size: 40px;">ส่งต่อ 1669 แล้ว</span>
-                                </b>
-                            `;
-                            document.querySelector('#content_1669').innerHTML = html ;
-                            document.querySelector('#btn_ask_1669').setAttribute('onclick' ,"");
-
-                            help_complete();
-
-                            document.querySelector('#status_of_Room').innerHTML = 'สถานะ : <b class="text-success">เสร็จสิ้น</b>';
-                            document.querySelector('#alert_text').innerHTML = "ส่งต่อ 1669 เรียบร้อยแล้ว";
-                            document.querySelector('#alert_copy').classList.add('up_down');
-
-                            const animated = document.querySelector('.up_down');
-                            animated.onanimationend = () => {
-                                document.querySelector('#alert_copy').classList.remove('up_down');
-                            };
-
-                            check_status_done = 'yes';
-                        }
-                });
-            }
-
-        }).catch(function(error){
-            // console.error(error);
-        });
-
-    }
-
-    function help_complete(){
-
-        let data_arr = [] ;
-
-        let officer_id ;
-
-        @if(!empty($sos_data->helper_id))
-            officer_id = "{{ $sos_data->helper_id }}" ;
-        @else
-            fetch("{{ url('/') }}/api/sos_map/update_helper_id" + "/" + "{{ Auth::user()->id }}" + "/" + "{{ $sos_data->id }}")
-                .then(response => response.text())
-                .then(result => {
-                    // console.log(result);
-                    officer_id = result ;
-                });
-        @endif
-
-        setTimeout(function() {
-
-            data_arr = {
-                "sos_map_id" : "{{ $sos_data->id }}",
-                "officer_id" : officer_id,
-                "groupId" : "{{ $groupId }}",
-                "command_id" : "{{ Auth::user()->id }}",
-            };
-
-            fetch("{{ url('/') }}/api/sos_map/help_complete", {
-                method: 'post',
-                body: JSON.stringify(data_arr),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-                }).then(function (response){
-                    return response.text();
-                }).then(function(data){
-                    // console.log(data);
-                }).catch(function(error){
-                // console.error(error);
-            });
-
-        }, 1500);
-
-    }
-
-    function check_status_sos(){
-        fetch("{{ url('/') }}/api/check_status_sos_video_call" + "?sos_id="+'{{ $sos_data->id }}')
-            .then(response => response.text())
-            .then(result => {
-                // console.log(result);
-                if(result === "yes"){
-                    let html = `
-                            <b>
-                                <span class="d-block" style="color: #ffffff; font-size: 40px;">ส่งต่อ 1669 แล้ว</span>
-                            </b>
-                        `;
-                        document.querySelector('#content_1669').innerHTML = html ;
-                        document.querySelector('#btn_ask_1669').setAttribute('onclick' ,"");
-
-                        document.querySelector('#status_of_Room').innerHTML = 'สถานะ : <b class="text-success">เสร็จสิ้น</b>';
-                        document.querySelector('#alert_text').innerHTML = "ส่งต่อ 1669 เรียบร้อยแล้ว";
-                        document.querySelector('#alert_copy').classList.add('up_down');
-
-                        const animated = document.querySelector('.up_down');
-                        animated.onanimationend = () => {
-                            document.querySelector('#alert_copy').classList.remove('up_down');
-                        };
-
-                    check_status_done = 'yes';
-                }
-            });
-    }
-
-    if(type_video_call == "sos_map"){
-        window.addEventListener('load', () => {
-            // เรียกฟังก์ชัน check_status_sos() ทุก 10 วินาที
-            setInterval(() => {
-                if (check_status_done === 'no') {
-                    check_status_sos();
-                }
-            }, 10000);
-        });
-    }
 
     function myStop_timer_video_call() {
         console.log("เข้ามาหยุด myStop_timer_video_call");
@@ -3886,6 +3449,7 @@
 
                         if (elapsedMinutes == max_minute_time) {
                             document.querySelector('#leave').click();
+                            return;
                         }
                     }, 1000);
                 });
@@ -3893,56 +3457,60 @@
 
     }
 
-    // function StatsVideoUpdate(){
-    //     // fetch("{{ url('/') }}/api/check_status_sos_video_call" + "?sos_id="+'{{ $sos_data->id }}')
-    //     //     .then(response => response.text())
-    //     //     .then(result => {
-    //             setInterval(() => {
-    //                 let time_of_room = document.getElementById("time_of_room");
-    //                 // วันที่และเวลาปัจจุบัน
-    //                 let currentDate = new Date();
-    //                 let currentTime = currentDate.getTime();
+    async function getFirstCameraAndMic() {
+        try {
+            // เรียกดูอุปกรณ์ทั้งหมด
+            let devices = await navigator.mediaDevices.enumerateDevices();
 
-    //                 // วันที่และเวลาที่กำหนด
-    //                 // let targetDate = new Date(response['data']);
-    //                 let targetDate = new Date('2023-11-14T09:30:00');
-    //                 let targetTime = targetDate.getTime();
+            let cameraDeviceId, micDeviceId;
 
-    //                 // คำนวณเวลาที่ผ่านไปในมิลลิวินาที
-    //                 let elapsedTime = currentTime - targetTime;
-    //                 let elapsedMinutes = Math.floor(elapsedTime / (1000 * 60));
+            // ค้นหากล้องตัวแรก
+            const cameraDevice = devices.find(device => device.kind === 'videoinput');
+            if (cameraDevice) {
+                cameraDeviceId = cameraDevice.deviceId;
+            }
 
-    //                 // แปลงเวลาที่ผ่านไปให้เป็นรูปแบบชั่วโมง:นาที:วินาที
-    //                 let hours = Math.floor(elapsedMinutes / 60);
-    //                 let minutes = elapsedMinutes % 60;
-    //                 let seconds = Math.floor((elapsedTime / 1000) % 60);
-    //                 let minsec = minutes + '.' + seconds;
+            // ค้นหาไมโครโฟนตัวแรก
+            const micDevice = devices.find(device => device.kind === 'audioinput');
+            if (micDevice) {
+                micDeviceId = micDevice.deviceId;
+            }
 
-    //                 // console.log(minsec);
-    //                 // console.log(typeof(minsec));
+            return { cameraDeviceId, micDeviceId };
+        } catch (error) {
+            console.error('Error in getting camera and microphone:', error);
+            return {};
+        }
+    }
 
-    //                 let showTimeCountVideo;
+</script>
 
-    //                 // แสดงผลลัพธ์
-    //                 if (hours > 0) {
-    //                     if (minutes < 10) {  // ใส่ 0 ข้างหน้า นาที กรณีเลขยังไม่ถึง 10
-    //                         showTimeCountVideo = hours + ':' + '0' + minutes + ':' + seconds + "&nbsp;/ 10 นาที";
-    //                     }else{
-    //                         showTimeCountVideo = hours + ':' + minutes + ':' + seconds + "&nbsp;/ 10 นาที";
-    //                     }
-    //                 } else {
-    //                     if(seconds < 10){  // ใส่ 0 ข้างหน้า วินาที กรณีเลขยังไม่ถึง 10
-    //                         showTimeCountVideo =  minutes + ':' + '0' + seconds + "&nbsp;/ 10 นาที";
-    //                     }else{
-    //                         showTimeCountVideo = minutes + ':' + seconds + "&nbsp;/ 10 นาที";
-    //                     }
-    //                 }
+<script>
+    function switch_div_data(){
 
-    //                 // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
-    //                 time_of_room.innerHTML = '<i class="fa-regular fa-clock fa-fade" style="color: #11b06b; font-size: 30px;"></i>&nbsp;' + ": " + showTimeCountVideo;
-    //             }, 1000);
-    //         // });
-    // }
+        let btnVideoCall = document.getElementById('btnVideoCall');
+        let divSosMap = document.getElementById('div_detail_sos');
+        let divVideoCall = document.getElementById('divVideoCall');
+
+        if (divSosMap.style.display === 'none') {
+            divSosMap.classList.remove('fade-out');
+            divSosMap.classList.add('fade-in');
+            divSosMap.style.display = 'block';
+
+            divVideoCall.classList.remove('fade-in');
+            divVideoCall.classList.add('fade-out');
+            divVideoCall.style.display = 'none';
+        } else {
+            divSosMap.classList.remove('fade-in');
+            divSosMap.classList.add('fade-out');
+            divSosMap.style.display = 'none';
+
+            divVideoCall.classList.remove('fade-out');
+            divVideoCall.classList.add('fade-in');
+            divVideoCall.style.display = 'block';
+        }
+    }
+
 </script>
 
 <script>
@@ -3962,6 +3530,7 @@
        }
    });
 </script>
+
 
 
 

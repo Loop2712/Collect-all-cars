@@ -339,6 +339,8 @@ Route::get('/check_command_in_room', 'AgoraController@check_command_in_room');
 Route::get('/get_data_command_adn_user', 'AgoraController@get_data_command_adn_user');
 Route::get('/get_appId', 'AgoraController@get_appId');
 
+Route::get('/check_user_in_room_2', 'Agora_4_Controller@check_user_in_room_2');
+
 
 //========================//
 //     DashBoard

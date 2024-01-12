@@ -1162,6 +1162,45 @@ color: #ff9317;
                     <u id="u_phone_user">{{ isset($sos_help_center->phone_user) ? $sos_help_center->phone_user : ''}}</u>
                 </h4>
                 <hr>
+
+                @php
+                    $timeString = $sos_help_center->time_create_sos;
+
+                    // สร้าง DateTime object จากเวลาที่กำหนด
+                    $specifiedTime = new DateTime($timeString);
+
+                    // สร้าง DateTime object สำหรับเวลาปัจจุบัน
+                    $currentTime = new DateTime();
+
+                    // คำนวณความแตกต่าง
+                    $interval = $specifiedTime->diff($currentTime);
+
+                    // แปลงความแตกต่างเป็นนาที
+                    $minutesDiff = ($interval->days * 24 * 60) + ($interval->h * 60) + $interval->i;
+                @endphp
+
+                <h3><b>เวลาการช่วยเหลือ</b></h3>
+                @if( $sos_help_center->status != "เสร็จสิ้น" )
+                    <h4 id="h4_minutesDiff_sos">
+                        @if($minutesDiff < 4)
+                            <span class="text-success">
+                            <i class="fa-solid fa-timer"></i> ผ่านมาแล้ว {{ $minutesDiff }} นาที
+                            </span>
+                        @elseif($minutesDiff >= 4 && $minutesDiff < 8)
+                            <span style="color:#FF6000;">
+                            <i class="fa-solid fa-triangle-exclamation fa-beat"></i> ผ่านมาแล้ว {{ $minutesDiff }} นาที
+                            </span>
+                        @elseif($minutesDiff >= 8)
+                            <span class="text-danger">
+                            <i class="fa-solid fa-triangle-exclamation fa-shake"></i> ผ่านมาแล้ว {{ $minutesDiff }} นาที
+                            </span>
+                        @endif
+                    </h4>
+                @else
+                    <h4 class="text-success">การช่วยเหลือเสร็จสิ้นแล้ว</h4>
+                @endif
+                <hr>
+
                 <style>
                     .btnVideoCall{
                         background-color: #1e3f57;
@@ -1209,7 +1248,7 @@ color: #ff9317;
                     }
                 </style>
 
-                <button id="btnVideoCall" class="btn btnVideoCall" data-animation-class="fa-bounce" onclick="start_video_call_command();" disabled>
+                <button id="btnVideoCall" class="btn btnVideoCall" data-animation-class="fa-bounce" onclick="switch_div_data();start_video_call_command(); " disabled>
                     <i id="iconVideoCall" class="fa-duotone fa-video-plus"> </i> Video Call
                 </button>
             </div>
@@ -1234,14 +1273,71 @@ color: #ff9317;
             </div>
 
             <!-- VIDEO CALL -->
-            @include('sos_help_center.command_video_call',
-              [
-              'sos_id' => $sos_1669_id ,
-              'app_id' => $appID ,
-              'appCertificate' => $appCertificate,
-              'agora_chat' => $agora_chat
-              ]
-            )
+            {{-- @include('sos_help_center.command_video_call',
+                [
+                'sos_id' => $sos_1669_id ,
+                'app_id' => $appID ,
+                'appCertificate' => $appCertificate,
+                'agora_chat' => $agora_chat
+                ]
+            ) --}}
+            <div id="commandVideoCall2Container">
+                @include('sos_help_center.command_video_call_2',
+                    [
+                        'sos_id' => $sos_1669_id ,
+                        // 'app_id' => $appID ,
+                        // 'appCertificate' => $appCertificate,
+                        'app_id' => '03039c40792e46bdbe46c16b1a338303',
+                        'appCertificate' => 'cf9986c91db74f16879deead4a34dd03',
+                        'agora_chat' => $agora_chat,
+                        'type' => 'user_sos_1669',
+                        'videoTrack' => 'close',
+                        'audioTrack' => 'close',
+                        'useCamera' => '',
+                        'useMicrophone' => '',
+                        'useSpeaker' => '',
+                    ]
+                )
+            </div>
+
+            <script>
+                function leave_refresh(){
+                    fetch("{{ url('/') }}/command_video_call", {
+                        method: 'POST', // หรือ 'GET' ตามความต้องการ
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // CSRF token สำหรับ Laravel
+                        },
+                        body: JSON.stringify({
+                            sos_id: '{{ $sos_1669_id }}',
+                            app_id: '03039c40792e46bdbe46c16b1a338303',
+                            appCertificate: 'cf9986c91db74f16879deead4a34dd03',
+                            agora_chat: '{{ $agora_chat }}',
+                            type: 'user_sos_1669',
+                            videoTrack: 'close',
+                            audioTrack: 'close',
+                            useCamera: '',
+                            useMicrophone: '',
+                            useSpeaker: ''
+                        })
+                    })
+                    .then(response => response.text())
+                    .then(html => {
+                        console.log("html ==========================================");
+                        console.log(html);
+                        document.getElementById('commandVideoCall2Container').innerHTML = html;
+                        document.querySelector('#btnVideoCall').disabled = true;
+                        setTimeout(() => {
+                            start_page();
+                        }, 1000);
+                    })
+                    .catch(error => console.error('Error:', error));
+                }
+                // document.getElementById('leave').addEventListener('click', function() {
+
+                // });
+            </script>
+
             <!-- END VIDEO CALL -->
 
             <div class="card radius-10 p-3 d-none" id="div_data_operating">
@@ -2516,13 +2612,23 @@ color: #ff9317;
 
 <script>
 
+
     document.addEventListener('DOMContentLoaded', (event) => {
+        //=================================================================
+        //===================== Save Key Agora ============================
+        //=================================================================
+
+
+        //=================================================================
+
+
         // console.log("START");
         initMap();
         check_show_btn_form_color(null);
         check_show_btn_select_unit();
         // click_select_btn('operating_unit');
         check_sos_joint_case();
+        timer_minutesDiff_sos();
 
         setTimeout(function() {
             document.querySelector('#form_data_1').click();
@@ -3243,7 +3349,7 @@ color: #ff9317;
             document.querySelector('#btn_operation').classList.remove('d-none');
             document.querySelector('#btn_select_operating_unit').classList.add('d-none');
             // document.querySelector('#btn_open_meet').classList.remove('d-none');
-            
+
             document.querySelector('#btn_open_meet').classList.remove('d-none');
             // ตรวจสอบว่ามีคนอยู๋ใน วิดีโอคอลหรือไม่
             loop_check_user_operation_meet();
@@ -3379,7 +3485,7 @@ color: #ff9317;
 
       places.forEach((place) => {
         if (!place.geometry || !place.geometry.location) {
-          console.log("Returned place contains no geometry");
+        //   console.log("Returned place contains no geometry");
           return;
         }
 
@@ -3937,6 +4043,88 @@ color: #ff9317;
         return text_key ;
     }
 
+
+    function myStop_timer_minutesDiff() {
+        clearInterval(timer_minutesDiff);
+        // console.log("STOP LOOP");
+    }
+
+    let timer_minutesDiff;
+
+    function timer_minutesDiff_sos(){
+
+    //   console.log(">>> timer_minutesDiff_sos <<<");
+
+      timer_minutesDiff = setInterval(function () {
+
+        let timeString = "{{ $sos_help_center->time_create_sos }}"; // ตัวอย่างของเวลาที่กำหนด
+
+        // สร้าง Date object จากเวลาที่กำหนด
+        let specifiedTime = new Date(timeString);
+
+        // สร้าง Date object สำหรับเวลาปัจจุบัน
+        let currentTime = new Date();
+
+        // คำนวณความแตกต่าง
+        let interval = currentTime - specifiedTime;
+
+        // แปลงความแตกต่างเป็นนาที
+        let minutesDiff = Math.floor(interval / 60000);
+
+        // แสดงผล
+        // console.log("ระยะห่างเป็นนาที: " + minutesDiff);
+
+        let text_html = '' ;
+
+        if(minutesDiff < 4){
+          text_html = `
+              <span class="text-success">
+                  <i class="fa-solid fa-timer"></i> ผ่านมาแล้ว `+minutesDiff+` นาที
+                </span>
+              `;
+        }else if(minutesDiff >= 4 && minutesDiff < 8){
+          text_html = `
+              <span style="color:#FF6000;">
+                <i class="fa-solid fa-triangle-exclamation fa-beat"></i> ผ่านมาแล้ว `+minutesDiff+` นาที
+              </span>
+              `;
+        }else if(minutesDiff >= 8){
+          text_html = `
+              <span class="text-danger">
+                <i class="fa-solid fa-triangle-exclamation fa-shake"></i> ผ่านมาแล้ว `+minutesDiff+` นาที
+              </span>
+              `;
+        }
+
+        document.querySelector('#h4_minutesDiff_sos').innerHTML = text_html;
+
+      }, 60000);
+    }
+
+
+    function get_device_id(){
+        try {
+
+            // เรียกดูอุปกรณ์ทั้งหมด
+            let devices = await navigator.mediaDevices.enumerateDevices();
+
+            // เรียกดูอุปกรณ์ที่ใช้อยู่
+            let stream = await navigator.mediaDevices.getUserMedia({
+                audio: true,
+                video: true
+            });
+
+            activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
+            activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
+
+        } catch (error) {
+            console.error('เกิดข้อผิดพลาดในการเรียกดูอุปกรณ์:', error);
+        }
+    }
+
 </script>
+
+
 <!-- END alet_new_data -->
+
 

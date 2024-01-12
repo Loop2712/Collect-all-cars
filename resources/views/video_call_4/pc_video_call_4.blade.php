@@ -1950,8 +1950,8 @@ switch ($sos_data->status) {
         //                               สลับอุปกรณ์                                     //
         //=============================================================================//
 
-        var activeVideoDeviceId
-        var activeAudioDeviceId
+        var activeVideoDeviceId;
+        var activeAudioDeviceId;
         // var activeAudioOutputDeviceId
         window.addEventListener('DOMContentLoaded', async () => {
             try {

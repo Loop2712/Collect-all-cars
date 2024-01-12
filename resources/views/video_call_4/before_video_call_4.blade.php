@@ -141,9 +141,9 @@
         justify-content: center;
         align-items: center;
     }.video_preview{
-        /* min-height: 20vh; */
+        min-height: 20vh;
         height: 40vh;
-        /* max-height: 40vh; */
+        max-height: 40vh;
         width: 100%;
         object-fit: cover;
         border-radius: 15px;
@@ -741,29 +741,6 @@
 
             document.querySelector('#toggleCameraButton').classList.add('active');
             document.querySelector('#toggleCameraButton').innerHTML = '<i class="fa-regular fa-camera-slash"></i>'
-
-            // navigator.mediaDevices.getUserMedia(constraints)
-            // .then(function(videoStream) {
-
-            //     // ปิดกล้อง
-            //     let videoElement = document.getElementById('videoDiv');
-            //     let stramViddeo = videoElement.srcObject;
-
-            //     // let videoTracks = stramVideo.getVideoTracks();
-            //     //     videoTracks.forEach((track) => {
-            //     //         track.stop();
-            //     //     });
-
-            //     // ตัดการทำงานกล้องออกจากองค์ประกอบวิดีโอ
-            //     // videoElement.srcObject = null;
-
-            //     let videoTracks = stramViddeo.getVideoTracks();
-            //     videoTracks[0].stop();
-
-            //     document.querySelector('#toggleCameraButton').classList.add('active');
-            //     document.querySelector('#toggleCameraButton').innerHTML = '<i class="fa-regular fa-camera-slash"></i>'
-            //     // console.log('ปิดกล้อง');
-            // })
 
         }else{
             statusCamera = "open"; // เซ็ต statusCamera เป็น open
