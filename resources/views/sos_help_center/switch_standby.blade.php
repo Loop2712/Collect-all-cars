@@ -345,7 +345,15 @@ input:checked + .slider:before {
 					<p class="mb-0 ">
 						<span class="badge badge-pill bg-light-danger pl-0" id="text_show_standby"></span>
 					</p>
-					<p class="font-weight-bold mb-0 text-officer notranslate" id="p_name_officer">{{ $data_standby->name_officer }}</p>
+					@if($data_standby->name_officer)
+						<p class="font-weight-bold mb-0 text-officer notranslate" id="p_name_officer">
+							{{ $data_standby->name_officer }}
+						</p>
+					@else
+						<p class="font-weight-bold mb-0 text-officer notranslate" id="p_name_officer">
+							-
+						</p>
+					@endif
 					<!-- <p class="text-secondary mb-0">online</p> -->
 					
 				</div>
