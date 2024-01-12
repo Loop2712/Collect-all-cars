@@ -2067,7 +2067,7 @@
                         document.querySelector('#text_h5_wait_unit').innerHTML = "เจ้าหน้าที่ : "+name_officer_command;
                         let btn_html_video_call = `
                             <br>
-                            <a id="btn_join_video_call" href="{{ url('/') }}/user_video_call/sos_help_center?sos_id=`+sos_id+`" class="btn btn-info main-radius main-shadow mt-3">
+                            <a id="btn_join_video_call" href="{{ url('/') }}/video_call_4/before_video_call_4?sos_id=`+sos_id+`&type=user_sos_1669" class="btn btn-info main-radius main-shadow mt-3">
                                 Video Call
                             </a>
                         `;
