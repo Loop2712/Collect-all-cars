@@ -2627,12 +2627,13 @@ color: #ff9317;
         check_show_btn_form_color(null);
         check_show_btn_select_unit();
         // click_select_btn('operating_unit');
-        check_sos_joint_case();
-        timer_minutesDiff_sos();
-
         setTimeout(function() {
             document.querySelector('#form_data_1').click();
         }, 1000);
+        
+        check_sos_joint_case();
+        timer_minutesDiff_sos();
+
 
     });
 
