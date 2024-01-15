@@ -896,8 +896,8 @@
 
                         <!-- ///////////////////////////////// MOCK UP ////////////////////////////// -->
                         <div class="div_card_mook_up col-12 d-none">
-                            <a mock_up_mark="link_data_sos" class="a_data_user data-show">
                                 <div class="card card-data-sos card-sos shadow">
+                                    <a mock_up_mark="link_data_sos" class="a_data_user data-show">
                                     <div class="card-header-sos">
                                         <span><b mock_up_mark="operating_code"> 123456789</b></span>
                                         <span class="mx-3">
@@ -956,13 +956,14 @@
                                             </center> 
                                         </div>
                                     </div>
+                                    </a>
                                     <div class="rate-time">
                                         <div mock_up_mark="grade">
                                             <!-- grade -->
                                         </div>
                                         <div mock_up_mark="date_time">วันที่ &nbsp;&nbsp;เวลา</div>
                                     </div>
-                                </a>
+                                
                                 <div class="forward_operation forward_operation_to d-none">
 
                                     <!-- เคสนี้ส่งต่อ "ไปที่" ใด -->
@@ -1062,9 +1063,8 @@
                                         <i class="fa-duotone fa-user-police-tie fa-shake"></i>
                                     </center>
                                 </span>
-
-                                <a id="card_data_sos_id_{{ $item->id }}" class="a_data_user data-show" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}">
-                                    <div class="card card-data-sos card-sos shadow card_sos_id_{{ $item->id }}">
+                                
+                                <div class="card card-data-sos card-sos shadow card_sos_id_{{ $item->id }}">
                                         <div class="card-header-sos">
 
                                             <span><b> {{$item->operating_code}}</b></span>
@@ -1154,141 +1154,142 @@
                                             </span>
                                            
                                         </div>
-                                        
-                                        <div class="card-main-sos">
-                                            <div class="card-user-sos">
-                                                @if ($img_user)
-                                                    @if ($img_user->photo)
-                                                    <img  src="{{ url('storage')}}/{{ $img_user->photo }}" alt="">
+                                        <a id="card_data_sos_id_{{ $item->id }}" class="a_data_user data-show" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}">
+                                            <div class="card-main-sos">
+                                                <div class="card-user-sos">
+                                                    @if ($img_user)
+                                                        @if ($img_user->photo)
+                                                        <img  src="{{ url('storage')}}/{{ $img_user->photo }}" alt="">
+                                                        @else
+                                                        <img  src="{{ url('/img/stickerline/PNG/37.2.png') }}" alt="">
+                                                        @endif
                                                     @else
-                                                    <img  src="{{ url('/img/stickerline/PNG/37.2.png') }}" alt="">
+                                                        <img  src="{{ url('/img/stickerline/PNG/37.2.png') }}" alt="">
                                                     @endif
-                                                @else
-                                                    <img  src="{{ url('/img/stickerline/PNG/37.2.png') }}" alt="">
-                                                @endif
-                                                <div class="data-user-sos">
-                                                    <h6 class=" p-0 m-0 color-dark data-overflow">
-                                                        <b>
-                                                            @if(!empty($item->name_user))
-                                                                {{ $item->name_user }}
+                                                    <div class="data-user-sos">
+                                                        <h6 class=" p-0 m-0 color-dark data-overflow">
+                                                            <b>
+                                                                @if(!empty($item->name_user))
+                                                                    {{ $item->name_user }}
+                                                                @else
+                                                                    ไม่ทราบชื่อ
+                                                                @endif
+                                                            </b>
+                                                        </h6>
+
+                                                        <p class="mt-1 p-0 m-0 color-dark data-overflow">
+                                                            @if(!empty($item->address))
+                                                                @php
+                                                                    $address_ex = explode("/",$item->address);
+                                                                @endphp
+                                                                <span>
+                                                                    {{ $address_ex[0] }}
+                                                                    {{ $address_ex[1] }} {{ $address_ex[2] }}
+                                                                </span>
                                                             @else
-                                                                ไม่ทราบชื่อ
+                                                                <span>ไม่มีข้อมูลที่อยู่</span>
                                                             @endif
-                                                        </b>
-                                                    </h6>
+                                                        </p>
 
-                                                    <p class="mt-1 p-0 m-0 color-dark data-overflow">
-                                                        @if(!empty($item->address))
-                                                            @php
-                                                                $address_ex = explode("/",$item->address);
-                                                            @endphp
-                                                            <span>
-                                                                {{ $address_ex[0] }}
-                                                                {{ $address_ex[1] }} {{ $address_ex[2] }}
-                                                            </span>
-                                                        @else
-                                                            <span>ไม่มีข้อมูลที่อยู่</span>
-                                                        @endif
-                                                    </p>
+                                                        <p class="mt-1 p-0 m-0 color-dark data-overflow">
+                                                            @if(!empty($item->phone_user))
+                                                                {{ $item->phone_user }}
+                                                            @else
+                                                                ไม่ได้ระบุเบอร์
+                                                            @endif
+                                                        </p>
 
-                                                    <p class="mt-1 p-0 m-0 color-dark data-overflow">
-                                                        @if(!empty($item->phone_user))
-                                                            {{ $item->phone_user }}
-                                                        @else
-                                                            ไม่ได้ระบุเบอร์
-                                                        @endif
-                                                    </p>
-
+                                                    
+                                                        <p class="mt-1 p-0 m-0 color-dark data-overflow">
+                                                            @if(!empty($item->name_helper))
+                                                                ช่วยเหลือโดย {{ $item->name_helper }}
+                                                            @else
+                                                                ช่วยเหลือโดย ไม่ทราบชื่อ
+                                                            @endif
+                                                            ●
+                                                            @if(!empty($item->organization_helper))
+                                                                 {{ $item->organization_helper }}
+                                                            @else
+                                                                ไม่ทราบหน่วยงาน
+                                                            @endif
+                                                        </p>
+                                                    </div>
+                                                </div>
                                                 
-                                                    <p class="mt-1 p-0 m-0 color-dark data-overflow">
-                                                        @if(!empty($item->name_helper))
-                                                            ช่วยเหลือโดย {{ $item->name_helper }}
+                                                <div class="idc-rc-sos">
+                                                    <center>
+                                                        <!-- IDC -->
+                                                        @if(!empty($item->form_yellow->idc))
+                                                            @switch($item->form_yellow->idc)
+                                                                @case('แดง(วิกฤติ)')
+                                                                    <button class="btn-status-crisis btn-status px-3">
+                                                                        <b>IDC<br>(วิกฤติ)</b>
+                                                                    </button>
+                                                                @break
+                                                                @case('ขาว(ทั่วไป)')
+                                                                    <button class="btn-status-normal btn-status px-3">
+                                                                        <b>IDC<br>(ทั่วไป)</b>
+                                                                    </button>
+                                                                @break
+                                                                @case('เหลือง(เร่งด่วน)')
+                                                                    <button class="btn-status-hurry btn-status px-3">
+                                                                        <b>IDC<br>(เร่งด่วน)</b>
+                                                                    </button>
+                                                                @break
+                                                                @case('ดำ(รับบริการสาธารณสุขอื่น)')
+                                                                    <button class="btn-status-other btn-status px-3">
+                                                                        <b>IDC<br>(รับบริการอื่นๆ)</b>
+                                                                    </button>
+                                                                @break
+                                                                @case('เขียว(ไม่รุนแรง)')
+                                                                    <button class="btn-status-weak btn-status px-3">
+                                                                        <b>IDC<br>(ไม่รุนแรง)</b>
+                                                                    </button>
+                                                                @break
+                                                            @endswitch
                                                         @else
-                                                            ช่วยเหลือโดย ไม่ทราบชื่อ
+                                                            <button class="btn-status-normal btn-status px-3">
+                                                                <b>IDC<br>(ไม่ได้ระบุ)</b>
+                                                            </button>
                                                         @endif
-                                                        ●
-                                                        @if(!empty($item->organization_helper))
-                                                             {{ $item->organization_helper }}
+                                                        <!-- RC -->
+                                                        @if(!empty($item->form_yellow->rc))
+                                                            @switch($item->form_yellow->rc)
+                                                                @case('แดง(วิกฤติ)')
+                                                                    <button class="btn-status-crisis btn-status px-3 mt-1 ">
+                                                                        <b>RC<br>(วิกฤติ)</b>
+                                                                    </button>
+                                                                @break
+                                                                @case('ขาว(ทั่วไป)')
+                                                                    <button class="btn-status-normal btn-status px-3 mt-1 ">
+                                                                        <b>RC<br>(ทั่วไป)</b>
+                                                                    </button>
+                                                                @break
+                                                                @case('เหลือง(เร่งด่วน)')
+                                                                    <button class="btn-status-hurry btn-status px-3 mt-1 ">
+                                                                        <b>RC<br>(เร่งด่วน)</b>
+                                                                    </button>
+                                                                @break
+                                                                @case('ดำ')
+                                                                    <button class="btn-status-other btn-status px-3 mt-1 ">
+                                                                        <b>RC<br>({{ $item->form_yellow->rc_black_text }})</b>
+                                                                    </button>
+                                                                @break
+                                                                @case('เขียว(ไม่รุนแรง)')
+                                                                    <button class="btn-status-weak btn-status px-3 mt-1 ">
+                                                                        <b>RC<br>(ไม่รุนแรง)</b>
+                                                                    </button>
+                                                                @break
+                                                            @endswitch
                                                         @else
-                                                            ไม่ทราบหน่วยงาน
+                                                            <button class="btn-status-normal btn-status px-3 mt-1 ">
+                                                                <b>RC<br>(ไม่ได้ระบุ)</b>
+                                                            </button>
                                                         @endif
-                                                    </p>
+                                                    </center> 
                                                 </div>
                                             </div>
-                                            
-                                            <div class="idc-rc-sos">
-                                                <center>
-                                                    <!-- IDC -->
-                                                    @if(!empty($item->form_yellow->idc))
-                                                        @switch($item->form_yellow->idc)
-                                                            @case('แดง(วิกฤติ)')
-                                                                <button class="btn-status-crisis btn-status px-3">
-                                                                    <b>IDC<br>(วิกฤติ)</b>
-                                                                </button>
-                                                            @break
-                                                            @case('ขาว(ทั่วไป)')
-                                                                <button class="btn-status-normal btn-status px-3">
-                                                                    <b>IDC<br>(ทั่วไป)</b>
-                                                                </button>
-                                                            @break
-                                                            @case('เหลือง(เร่งด่วน)')
-                                                                <button class="btn-status-hurry btn-status px-3">
-                                                                    <b>IDC<br>(เร่งด่วน)</b>
-                                                                </button>
-                                                            @break
-                                                            @case('ดำ(รับบริการสาธารณสุขอื่น)')
-                                                                <button class="btn-status-other btn-status px-3">
-                                                                    <b>IDC<br>(รับบริการอื่นๆ)</b>
-                                                                </button>
-                                                            @break
-                                                            @case('เขียว(ไม่รุนแรง)')
-                                                                <button class="btn-status-weak btn-status px-3">
-                                                                    <b>IDC<br>(ไม่รุนแรง)</b>
-                                                                </button>
-                                                            @break
-                                                        @endswitch
-                                                    @else
-                                                        <button class="btn-status-normal btn-status px-3">
-                                                            <b>IDC<br>(ไม่ได้ระบุ)</b>
-                                                        </button>
-                                                    @endif
-                                                    <!-- RC -->
-                                                    @if(!empty($item->form_yellow->rc))
-                                                        @switch($item->form_yellow->rc)
-                                                            @case('แดง(วิกฤติ)')
-                                                                <button class="btn-status-crisis btn-status px-3 mt-1 ">
-                                                                    <b>RC<br>(วิกฤติ)</b>
-                                                                </button>
-                                                            @break
-                                                            @case('ขาว(ทั่วไป)')
-                                                                <button class="btn-status-normal btn-status px-3 mt-1 ">
-                                                                    <b>RC<br>(ทั่วไป)</b>
-                                                                </button>
-                                                            @break
-                                                            @case('เหลือง(เร่งด่วน)')
-                                                                <button class="btn-status-hurry btn-status px-3 mt-1 ">
-                                                                    <b>RC<br>(เร่งด่วน)</b>
-                                                                </button>
-                                                            @break
-                                                            @case('ดำ')
-                                                                <button class="btn-status-other btn-status px-3 mt-1 ">
-                                                                    <b>RC<br>({{ $item->form_yellow->rc_black_text }})</b>
-                                                                </button>
-                                                            @break
-                                                            @case('เขียว(ไม่รุนแรง)')
-                                                                <button class="btn-status-weak btn-status px-3 mt-1 ">
-                                                                    <b>RC<br>(ไม่รุนแรง)</b>
-                                                                </button>
-                                                            @break
-                                                        @endswitch
-                                                    @else
-                                                        <button class="btn-status-normal btn-status px-3 mt-1 ">
-                                                            <b>RC<br>(ไม่ได้ระบุ)</b>
-                                                        </button>
-                                                    @endif
-                                                </center> 
-                                            </div>
-                                        </div>
+                                        </a>
                                         <div class="rate-time">
                                             <div>
                                                 @php
@@ -1421,7 +1422,7 @@
                                                 </script>
                                             </div>
                                         </div>
-                                    </a>
+                                    
                                         
                                         @if(!empty($item->forward_operation_to) || $item->forward_operation_from)
                                             <div class="forward_operation">
@@ -1454,7 +1455,7 @@
                                             </div>
                                         @endif
                                     </div>
-                            </div>
+                                </div>
 
 
 
