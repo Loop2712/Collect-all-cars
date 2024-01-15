@@ -87,9 +87,9 @@
 
 	.video-call {
 		/* outline: #000 1px solid; */
-
+        border-radius: 5px;
 		margin: 0;
-		background-color: #2b2d31;
+		background-color: #898f9b;
         outline: black;
 	}
 
@@ -410,14 +410,18 @@
     }
 
     .btnSpecial_mute{
-        background-color: #f15a5a ; /* Discord's color */
+        background-color: #ff0000 ; /* Discord's color */
     }
     .btnSpecial_mute:hover{
         background-color: #fa3838 !important; /* Discord's color */
     }
 
     .btnSpecial_unmute{
-        background-color: #3f3e3e ; /* Discord's color */
+        background-color: rgb(31, 193, 27) ; /* Discord's color */
+    }
+
+    .btnSpecial_unmute:hover{
+        background-color: #28ee49 !important; /* Discord's color */
     }
 
     .btnSpecial_switch{
@@ -445,7 +449,7 @@
         margin: 5px;
         top: 0; /* ตำแหน่ง list ขึ้นด้านบนของปุ่ม */
         left: 0;
-        border:#fff 1px solid;
+        border:#000000 1px solid;
     }
 
     .audio_button{
@@ -454,7 +458,7 @@
         border-radius: 50%;
         width: 100%;
         height: 100%;
-        border:#fff 1px;
+        border:#000000 1px;
     }
 
     .video_button{
@@ -463,7 +467,7 @@
         border-radius: 50%;
         width: 100%;
         height: 100%;
-        border:#fff 1px;
+        border:#000000 1px;
     }
 
     .btnSpecial:hover {
@@ -485,9 +489,9 @@
         width: 30px; /* ปรับขนาดตามที่คุณต้องการ */
         height: 30px; /* ปรับขนาดตามที่คุณต้องการ */
         position: absolute;
-        bottom: 20;
-        right: 20;
-        transform: translate(50%, 50%);
+        /* bottom: 20;
+        right: 20; */
+        transform: translate(70%, 60%);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -687,6 +691,20 @@
         animation: border-flash-danger 1.5s infinite;
     }
 
+    .span_timer_video_call{
+        font-size: 1rem !important;
+        background-color: rgb(206, 206, 206) !important;
+        padding: 10px !important;
+        border-radius: 5px !important;
+    }
+
+    .div_button_video_call{
+        height: 80px;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+    }
+
 </style>
 
     @php
@@ -716,17 +734,52 @@
 
 
         <div class="row ">
-
             <div class="col-12 " style="height: calc(100% - 90%);">
-                <button id="command_join" class="btn btn-success d-non" style="width:100%">
-                    <i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; เริ่มต้นการสนทนา
-                </button>
+                <div class="row d-flex justify-content-center">
+                    <button id="command_join" class="btn btn-success d-non" style="width:85%">
+                        <i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; เริ่มต้นการสนทนา
+                    </button>
+
+                    <span id="span_timer_video_call" class="d-none span_timer_video_call" style="width:85%">
+                        <span id="icon_timer_video_call" class="">
+                            <i class="fa-duotone fa-record-vinyl fa-beat-fade" style="--fa-secondary-color: #6e89b4;"></i>
+                            &nbsp;&nbsp;เวลาสนทนา :
+                        </span>
+                        <span id="time_of_room">เริ่มนับเมื่อมีผู้ใช้ 2 คน</span>
+                    </span>
+                </div>
             </div>
 
-            <div class="col-12" style="height: 24rem; border: 0; width: 98%; margin-top: 1.5rem;">
+            <div class="col-12" style="height: 24rem; border: 0; width: 98%; margin: 1.5rem 0.2rem 0.2rem 0.2rem;">
                 <div class="d-flex h-100 row m-1">
-                    <div style="position: relative;"  class="video-call">
-                        <div class=" d-flex align-item-center justify-content-center h-100 row">
+                    <div style="position: relative;" class="video-call">
+
+                        <div id="show_when_video_no_active" style="position:absolute;top:50%;left: 50%;transform: translate(-50%, -50%);width:100%;display:flex;justify-content:center;">
+
+                            @if( empty($user_in_room) )
+                            <!-- ไม่มีผู้ใช้อยู่ในการสนทนา -->
+                            <div class="text-center">
+                                <img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 12rem!important;">
+                                <br><br>
+                                <h5>ไม่มีผู้ใช้อยู่ในการสนทนา</h5>
+                            </div>
+                            @else
+                            <!-- ผู้ใช้ กำลังรอ -->
+                            <div class="text-center">
+                                @if(!empty($user_in_room->photo))
+                                  <img src="{{ url('storage')}}/{{ $user_in_room->photo }}" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
+                                @else
+                                  <img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">
+                                @endif
+                                <br><br>
+                                <h5>คุณ : {{ $user_in_room->name }}</h5>
+                                <h5 class="mt-3 text-danger">ผู้ใช้ กำลังรอ..</h5>
+                            </div>
+                            @endif
+
+                        </div>
+
+                        <div style="object-fit: cover;" class="h-100 row">
                             <div class="d-flex align-self-center justify-content-center p-0 m-0">
                                 <div class="row mb-4" id="container_user_video_call">
                                 </div>
@@ -744,7 +797,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12" style="height: 75px; background-color: #ffffff; ">
+            <div class="col-12 div_button_video_call">
                 <div class="btn-video-call-container mt-2 d-none">
                     <div class="d-flex justify-content-center" >
 
@@ -877,9 +930,9 @@
     var activeVideoDeviceId = "";
     var activeAudioDeviceId = "";
 
+
     document.addEventListener('DOMContentLoaded', (event) => {
         start_page();
-
     });
 
     function start_page(){
@@ -891,8 +944,8 @@
                 activeVideoDeviceId = cameraDeviceId;
                 activeAudioDeviceId = micDeviceId;
 
-                console.log(`Camera Device ID: ${cameraDeviceId}`);
-                console.log(`Microphone Device ID: ${micDeviceId}`);
+                // console.log(`Camera Device ID: ${cameraDeviceId}`);
+                // console.log(`Microphone Device ID: ${micDeviceId}`);
             } else {
                 console.log('Camera or microphone not found');
 
@@ -921,15 +974,15 @@
                     document.querySelector('#command_join').classList.add('video-call-in-room');
                     document.querySelector('#command_join').classList.remove('btn-success');
                     document.querySelector('#command_join').setAttribute('style' , 'width: 60%;');
-                    document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+                    // document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
 
-                    document.querySelector('#btnVideoCall').click();
+                    // document.querySelector('#btnVideoCall').click();
 
-                    play_ringtone();
-                    // loop_check_user_in_room();
+                    // play_ringtone();
+                    loop_check_user_in_room();
 
                 }else{
-                    // loop_check_user_in_room();
+                    loop_check_user_in_room();
                 }
 
             }, 1000);
@@ -938,7 +991,7 @@
 
     function runLoop_check_appId() {
 
-    let user_in_room = '{{ $user_in_room }}';
+        let user_in_room = '{{ $user_in_room }}';
 
         setTimeout(() => {
             fetch("{{ url('/') }}/api/get_appId")
@@ -963,16 +1016,16 @@
                                 `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
                                 document.querySelector('#command_join').classList.add('video-call-in-room');
                                 document.querySelector('#command_join').classList.remove('btn-success');
-                                document.querySelector('#command_join').setAttribute('style' , 'width: 60%;');
-                                document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+                                document.querySelector('#command_join').setAttribute('style' , 'width: 85%;');
+                                // document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
 
                                 document.querySelector('#btnVideoCall').click();
 
                                 // play_ringtone();
-                                // loop_check_user_in_room();
+                                loop_check_user_in_room();
 
                             }else{
-                            // loop_check_user_in_room();
+                                loop_check_user_in_room();
                             }
 
                         }, 1000);
@@ -981,6 +1034,9 @@
 
         }, 1000);
     }
+
+
+//=================================================================================================
 
     function start_video_call_command(){
 
@@ -1770,6 +1826,12 @@
                     // StatsVideoUpdate();
                     document.querySelector(".btn-video-call-container").classList.remove("d-none");
 
+                    document.querySelector('#span_timer_video_call').classList.remove('d-none');
+
+                    // document.querySelector('#command_join').classList.add('btn-success');
+                    document.querySelector('#command_join').classList.add('d-none');
+                    // document.querySelector('#command_join').classList.remove('video-call-in-room');
+
                 } catch (error) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
@@ -1929,6 +1991,8 @@
                         document.querySelector('#videoDiv_'+'{{ Auth::user()->id }}').remove();
                     }
 
+                    document.querySelector('#span_timer_video_call').classList.add('d-none');
+                    document.querySelector('#command_join').classList.remove('d-none');
                     // if (document.querySelector('#div_for_VideoButton')) {
                     //     document.querySelector('#div_for_VideoButton').remove();
                     // }
@@ -2832,7 +2896,7 @@
         muteButton.onclick = async function() {
             if (isAudio == true) {
                 // Update the button text.
-                document.getElementById(`muteAudio`).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #f00505; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
+                document.getElementById(`muteAudio`).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #3f3e3e; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
                 document.getElementById('div_for_AudioButton').classList.remove('btnSpecial_unmute');
                 document.getElementById('div_for_AudioButton').classList.add('btnSpecial_mute');
                 // Mute the local video.
@@ -2861,7 +2925,7 @@
         muteVideoButton.onclick = async function() {
             if (isVideo == true) {
                 // Update the button text.
-                document.getElementById(`muteVideo`).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
+                document.getElementById(`muteVideo`).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #3f3e3e; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
                 document.getElementById('div_for_VideoButton').classList.remove('btnSpecial_unmute');
                 document.getElementById('div_for_VideoButton').classList.add('btnSpecial_mute');
                 // Mute the local video.
@@ -3362,7 +3426,7 @@
         setTimeout(() => {
             clearInterval(loop_timer_video_call);
             check_start_timer_video_call = false;
-            document.getElementById("time_of_room").classList.add('d-none');
+            document.querySelector('#time_of_room').innerHTML = 'เริ่มนับเมื่อมีผู้ใช้ 2 คน';
         }, 3000);
     }
 
@@ -3374,7 +3438,7 @@
         setTimeout(() => {
 
             let time_of_room = document.getElementById("time_of_room");
-                time_of_room.classList.remove('d-none');
+                // time_of_room.classList.remove('d-none');
 
             fetch("{{ url('/') }}/api/check_status_room" + "?sos_id="+ sos_id + "&type=" + type_video_call)
                 .then(response => response.json())
@@ -3430,7 +3494,7 @@
                         }
 
                         // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
-                        time_of_room.innerHTML = '<i class="fa-regular fa-clock fa-fade" style="color: #11b06b; font-size: 35px;"></i>&nbsp;' + ": " + showTimeCountVideo;
+                        time_of_room.innerHTML = showTimeCountVideo;
 
                         if (minsec == "7.00") {
                             let alert_warning = document.querySelector('#alert_warning')
@@ -3529,6 +3593,328 @@
            });
        }
    });
+</script>
+
+
+<script>
+    // ตัวแปรสำหรับกำหนดการเล่นเสียง ringtone
+    var check_first_play_ringtone = 0 ;
+    var check_first_play_audio_in_room = 0 ;
+
+    // ตัวแปรสำหรับกำหนดการแสดงผลวิดีโอ เริ่มแรกเป็นจอใหญ่เสมอ
+    var command_screen_current = 1 ;
+    var status_click_switch = false;
+    function loop_check_user_in_room() {
+        console.log(status_click_switch);
+        check_user_in_room = setInterval(function() {
+
+        // console.log('loop_check_user_in_room');
+        // console.log("แจ้งเตือนคนเข้าห้อง >> " + check_command_in_room);
+
+        //  fetch("{{ url('/') }}/api/check_user_in_room" + "?sos_1669_id=" + sos_1669_id)
+            fetch("{{ url('/') }}/api/check_user_in_room_2" + "?sos_id=" + sos_id + "&type=user_sos_1669")
+                .then(response => response.json())
+                .then(result => {
+                    console.log('check_user_in_room');
+                    console.log(result);
+                    console.log(result['status']);
+                    console.log('-------------------------------------');
+
+                    if (result['status'] == "2_people") {
+                        first_meet_success = true;
+                    }
+
+                    if(result['status'] != 'ว่าง'){
+
+                        if (first_meet_success == false) {
+
+                                document.querySelector('#command_join').innerHTML =
+                                `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
+                                document.querySelector('#command_join').classList.add('video-call-in-room');
+                                document.querySelector('#command_join').classList.remove('btn-success');
+                                document.querySelector('#command_join').setAttribute('style' , 'width: 85%;');
+
+                                let btnVideoCall_sty = document.querySelector('#divVideoCall').getAttribute('style');
+                                    // console.log(btnVideoCall_sty);
+
+                                if(btnVideoCall_sty == "display: none;" && status_click_switch == false){
+                                    document.querySelector('#btnVideoCall').click();
+                                    status_click_switch == true;
+                                }
+
+                                // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
+                                create_html_user_in_room(result['data'] , 'wait');
+
+                                if( check_first_play_audio_in_room == 0 ){
+                                    // audio_in_room.play();
+                                    check_first_play_audio_in_room = 1 ;
+                                }
+
+                        }else{
+                            // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
+                            create_html_user_in_room(result['data'] , 'end but in_room');
+
+                            // stop_ringtone();
+                            // document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
+
+                        }
+
+
+                    // myStop_check_user_in_room();
+                    }else{
+                        status_click_switch = false;
+                        // กำหนดจอของเจ้าหน้าที่ให้แสดงที่จอ ใหญ่
+                        // command_screen_current = 1 ;
+
+                        // stop_ringtone();
+                        // document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
+
+                        document.querySelector('#command_join').innerHTML =
+                        `<i class="fa-solid fa-phone-volume"></i> เริ่มต้นการสนทนา`;
+                        document.querySelector('#command_join').classList.remove('video-call-in-room');
+                        document.querySelector('#command_join').classList.add('btn-success');
+                        document.querySelector('#command_join').setAttribute('style' , 'width: 85%;');
+
+                        // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
+                        create_html_user_in_room(result['data'] , 'out');
+
+                    }
+
+            });
+
+        }, 4000);
+    }
+
+//=================================================== เช็ค Operation Meet =======================================================================
+var ringtone_operation = new Audio("{{ asset('sound/ringtone-126505.mp3') }}");
+var status_playing_ringtone = false;
+var ringtone_first_play_check = 0;
+
+var first_operation_meeting = false; // false = ยังไม่ได้คุย
+
+function play_ringtone_operation() {
+  if (!status_playing_ringtone) {
+    ringtone_operation.loop = true;
+    ringtone_operation.play();
+    status_playing_ringtone = true;
+
+    ringtone_first_play_check = 1 ;
+  }
+}
+
+function stop_ringtone_operation() {
+  ringtone_operation.pause();
+  ringtone_operation.currentTime = 0;
+  status_playing_ringtone = false;
+
+  ringtone_first_play_check = 0 ;
+}
+var status_pause_ringtone = false;
+function mute_ringtone_operation(){
+    if (status_pause_ringtone == true) {
+        ringtone_operation.pause();
+        ringtone_operation.currentTime = 0;
+    }
+}
+
+function loop_check_user_operation_meet(){
+
+  // console.log("เช็คผู้ใช้ใน operation meet");
+
+    check_user_in_operation_meet = setInterval(function() {
+        // fetch("{{ url('/') }}/api/check_user_for_operation_meet" + "?sos_id=" + sos_1669_id)
+      fetch("{{ url('/') }}/api/check_user_for_operation_meet" + "?sos_id=" + sos_id + "&type_check=" + "from_yellow")
+        .then(response => response.text())
+        .then(result => {
+        //   console.log("result check_user_for_operation_meet");
+        //   console.log(result);
+        //   console.log("first_operation_meeting :" + first_operation_meeting);
+
+            if(result == "เจ้าหน้าที่ศูนย์สั่งการอยู่กับหน่วยอื่น"){
+                first_operation_meeting = true;
+            }
+
+            if(result == "ไม่มีใครอยู่ในห้องสนทนา"){
+                first_operation_meeting  = false;
+            }
+
+            if (result == "do") {  // มี not_command อยู่ในห้องสนทนา
+
+                if(first_operation_meeting == false){ // ยังไม่ได้คุย --> อนุญาต ให้แจ้งเตือน
+                  // console.log("เล่น เสียงแจ้งเตือน");
+                    status_pause_ringtone = true; // true = กดปุ่มปิดเสียงได้
+
+                    // เลือกอิลิเมนต์ <li> ด้วย ID ของมัน
+                    let liElement = document.getElementById('btn_open_meet');
+                        liElement.innerHTML = "";
+
+                        let tag_href = "{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}";
+
+                        let class_btn = "";
+                        if(status_pause_ringtone == true){
+                            class_btn = "btn-secondary";
+                        }else{
+                            class_btn = "btn-secondary";
+                        }
+
+                        tag_b = `<div class="btnGroupOperating">
+                                    <div class="btn-group btnGroupOperating">
+                                        <button type="button" class="btn btn-outline-danger d-none">
+                                            <i class="fa-solid fa-hospital-user"></i> Meet
+                                        </button>
+                                        <a id="" type="button" class="btn btn-success shadow_btn_call" href="`+tag_href+`" target=" ">
+                                            <i class="fa-regular fa-phone"></i> เข้าร่วมการสนทนา
+                                        </a>
+                                        <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+`" onclick="mute_ringtone_operation();">
+                                            <i class="fa-solid fa-volume-slash"></i>
+                                        </a>
+                                    </div>
+                                </div>`;
+
+                    liElement.insertAdjacentHTML('beforeend', tag_b); // แทรกบนสุด
+
+                    if(ringtone_first_play_check == 0){
+                        play_ringtone_operation();
+                    }
+
+                }else{ // คุยกันไปแล้ว --> ไม่อนุญาต ให้แจ้งเตือน
+                  // console.log("ไม่เล่น เสียงแจ้งเตือน else ใน");
+                    status_pause_ringtone = false; // false = กดปุ่มปิดเสียงไม่ได้
+
+                    let liElement = document.getElementById('btn_open_meet');
+                        liElement.innerHTML = "";
+
+                        let tag_href = "{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}";
+
+                        let class_btn = "";
+                        if(status_pause_ringtone == true){
+                            class_btn = "btn-secondary";
+                        }else{
+                            class_btn = "btn-secondary";
+                        }
+
+                        tag_b = `<div class="btnGroupOperating">
+                                    <div class="btn-group btnGroupOperating">
+                                        <button type="button" class="btn btn-outline-danger d-none">
+                                            <i class="fa-solid fa-hospital-user"></i> Meet
+                                        </button>
+                                        <a type="button" class="btn btn-success" href="`+tag_href+`" target="_blank">
+                                            <i class="fa-regular fa-phone"></i> เข้าร่วมการสนทนา
+                                        </a>
+                                        <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+` d-none" onclick="mute_ringtone_operation();">
+                                            <i class="fa-solid fa-volume-slash"></i>
+                                        </a>
+                                    </div>
+                                </div>`;
+
+
+                    liElement.insertAdjacentHTML('beforeend', tag_b); // แทรกบนสุด
+
+                    stop_ringtone_operation();
+                }
+            }else{
+              // console.log("ไม่เล่น เสียงแจ้งเตือน else นอก");
+                status_pause_ringtone = false; // false = กดปุ่มปิดเสียงไม่ได้
+
+                let liElement = document.getElementById('btn_open_meet');
+                    liElement.innerHTML = "";
+
+                    let tag_href = "{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $sos_help_center->id }}";
+
+                    let class_btn = "";
+                    if(status_pause_ringtone == true){
+                        class_btn = "btn-secondary";
+                    }else{
+                        class_btn = "btn-secondary";
+                    }
+
+                    tag_b = `<div class="btnGroupOperating">
+                                <div class="btn-group btnGroupOperating">
+                                    <button type="button" class="btn btn-outline-danger d-none">
+                                        <i class="fa-solid fa-hospital-user"></i> Meet
+                                    </button>
+                                    <a type="button" class="btn btn-success" href="`+tag_href+`" target="_blank">
+                                        <i class="fa-regular fa-phone"></i> เข้าร่วมการสนทนา
+                                    </a>
+                                    <a id="tag_a_mute_ringtone_meet" type="button" class="btn `+class_btn+` d-none" onclick="mute_ringtone_operation();">
+                                        <i class="fa-solid fa-volume-slash"></i>
+                                    </a>
+                                </div>
+                            </div>`;
+
+
+
+                liElement.insertAdjacentHTML('beforeend', tag_b); // แทรกบนสุด
+
+                stop_ringtone_operation();
+            }
+
+
+        });
+
+    }, 5000);
+}
+
+
+//================================================== จบ เช็ค Operation Meet =====================================================================
+
+    function create_html_user_in_room(data , type){
+
+        // console.log('create_html_user_in_room');
+        // console.log(data);
+        // console.log('type >> ' + type);
+
+        document.querySelector('#show_when_video_no_active').innerHTML = '';
+
+        let html_img ;
+        if (data['photo']){
+            html_img = `<img src="{{ url('storage')}}/`+data['photo']+`" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">`;
+        }else{
+            html_img = `<img src="{{ url('/img/stickerline/flex/12.png') }}" style="width: 10rem!important;height: 10rem!important;border-radius: 50%;object-fit: cover;background-color: #ffffff;border: solid 1px #000;" class="main-shadow main-radius">`;
+        }
+
+        let html_show_status ;
+        let class_h5 ;
+        if (type == 'wait'){
+
+            class_h5 = '' ;
+            class_show_status = 'text-danger' ;
+            html_show_status = 'ผู้ใช้ กำลังรอ..' ;
+
+        }else if(type == 'in_room'){
+
+            class_h5 = '' ;
+            class_show_status = '' ;
+            html_show_status = 'ผู้ใช้ ปิดกล้อง' ;
+
+        }else if(type == 'out'){
+
+        class_h5 = 'd-none' ;
+        class_show_status = '' ;
+        html_show_status = 'ไม่มีผู้ใช้อยู่ในการสนทนา' ;
+        html_img = `<img src="{{ url('/img/stickerline/PNG/7.png') }}" style="width: 12rem!important;">`;
+
+        }else if(type == 'end but in_room'){
+
+        class_show_status = '' ;
+        class_h5 = '' ;
+        html_show_status = 'ผู้ใช้ อยู่ในสาย..' ;
+
+        }
+
+        let html = `
+            <div class="text-center">
+                `+html_img+`
+                <br><br>
+                <h5 class="`+class_h5+`">คุณ : `+data['name']+`</h5>
+                <h5 class="mt-3 `+class_show_status+`">`+html_show_status+`</h5>
+            </div>
+        `;
+
+        document.querySelector('#show_when_video_no_active').innerHTML = '' ;
+        document.querySelector('#show_when_video_no_active').insertAdjacentHTML('beforeend', html); // แทรกล่างสุด
+
+    }
 </script>
 
 

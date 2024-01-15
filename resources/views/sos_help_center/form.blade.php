@@ -1301,6 +1301,8 @@ color: #ff9317;
             </div>
 
             <script>
+                var first_meet_success = false ; // ใช้เช็คว่าคุยกับเจ้าหน้าที่ไปหรือยัง --> function อยู่หน้า command_video_call_2.blade
+
                 function leave_refresh(){
                     fetch("{{ url('/') }}/command_video_call", {
                         method: 'POST', // หรือ 'GET' ตามความต้องการ
@@ -2630,7 +2632,7 @@ color: #ff9317;
         setTimeout(function() {
             document.querySelector('#form_data_1').click();
         }, 1000);
-        
+
         check_sos_joint_case();
         timer_minutesDiff_sos();
 
@@ -4102,26 +4104,6 @@ color: #ff9317;
       }, 60000);
     }
 
-
-    function get_device_id(){
-        try {
-
-            // เรียกดูอุปกรณ์ทั้งหมด
-            let devices = await navigator.mediaDevices.enumerateDevices();
-
-            // เรียกดูอุปกรณ์ที่ใช้อยู่
-            let stream = await navigator.mediaDevices.getUserMedia({
-                audio: true,
-                video: true
-            });
-
-            activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
-            activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
-
-        } catch (error) {
-            console.error('เกิดข้อผิดพลาดในการเรียกดูอุปกรณ์:', error);
-        }
-    }
 
 </script>
 

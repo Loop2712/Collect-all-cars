@@ -1184,15 +1184,24 @@ class Agora_4_Controller extends Controller
 
         $user_in_room['data_agora'] = $agora_chat;
 
-        if ($user_in_room['data'] != "ไม่มีข้อมูล") {
-            if(empty($user_in_room['data']) || count($user_in_room['data']) < 2)
-            {
-                $user_in_room['status'] = "ok";
-            }else{
-                $user_in_room['status'] = "no";
+        if( !empty($agora_chat->member_in_room) ){
+            $data_member_in_room = $agora_chat->member_in_room;
+
+            $data_array = json_decode($data_member_in_room, true);
+            $check_user = $data_array;
+
+            if( !empty($check_user) ){
+                $user_in_room['data'] = User::where('id' , $check_user)->first();
             }
-        } else {
-            $user_in_room['status'] = "ok";
+
+            if(count($check_user) == 1)
+            {
+                $user_in_room['status'] = "1_people";
+            }else{
+                $user_in_room['status'] = "2_people";
+            }
+        }else {
+            $user_in_room['status'] = "ว่าง";
         }
 
         return $user_in_room;

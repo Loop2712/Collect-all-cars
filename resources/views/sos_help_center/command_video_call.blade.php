@@ -299,7 +299,6 @@
       </div>
 
         <div class="video-head">
-
           <span id="span_timer_video_call" class="d-none">
               <span id="icon_timer_video_call" class="">
                 <i class="fa-duotone fa-record-vinyl fa-beat-fade" style="--fa-secondary-color: #6e89b4;"></i>
