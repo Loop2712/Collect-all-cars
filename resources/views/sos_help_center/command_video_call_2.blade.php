@@ -973,7 +973,7 @@
                     `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
                     document.querySelector('#command_join').classList.add('video-call-in-room');
                     document.querySelector('#command_join').classList.remove('btn-success');
-                    document.querySelector('#command_join').setAttribute('style' , 'width: 60%;');
+                    document.querySelector('#command_join').setAttribute('style' , 'width: 85%;');
                     // document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
 
                     // document.querySelector('#btnVideoCall').click();
@@ -1019,7 +1019,7 @@
                                 document.querySelector('#command_join').setAttribute('style' , 'width: 85%;');
                                 // document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
 
-                                document.querySelector('#btnVideoCall').click();
+                                // document.querySelector('#btnVideoCall').click();
 
                                 // play_ringtone();
                                 loop_check_user_in_room();
