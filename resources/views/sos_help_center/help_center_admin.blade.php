@@ -2411,6 +2411,8 @@
                             data_html['address'] = result[xxi]['address'] ;
                             data_html['organization_helper'] = result[xxi]['organization_helper'] ;
                             data_html['name_helper'] = result[xxi]['name_helper'] ;
+                            
+                            data_html['command_by'] = result[xxi]['command_by'] ;
 
                             data_html['be_notified'] = result[xxi]['be_notified'] ;
                             data_html['idc'] = result[xxi]['idc'] ;
@@ -2725,6 +2727,8 @@
                             data_html['address'] = result[xxi]['address'] ;
                             data_html['organization_helper'] = result[xxi]['organization_helper'] ;
                             data_html['name_helper'] = result[xxi]['name_helper'] ;
+
+                            data_html['command_by'] = result[xxi]['command_by'] ;
 
                             data_html['be_notified'] = result[xxi]['be_notified'] ;
                             data_html['idc'] = result[xxi]['idc'] ;
