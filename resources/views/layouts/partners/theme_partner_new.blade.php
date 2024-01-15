@@ -2707,7 +2707,7 @@
 			    	// หน้าไหนเมนูบาร์ไม่กางออกส่งไปคลิกได้ที่นี่เลย
 			    	open_menu_bar(text_url_all);
 			    	// เช็ควิดีโอคอลและการปฏิเสธ
-			    	Theme_check_refuse_and_call(text_url_all);
+			    	// Theme_check_refuse_and_call(text_url_all);
 			    }
 
 			@endif
@@ -5031,12 +5031,29 @@
 		new_div_data_sos.querySelector('[mock_up_mark="date_time"]').innerHTML = date_created + '  ' + 'เวลา ' + time_created;
 
         let html_btn_command ;
+
+        if(result['command_by']){
+
             html_btn_command = `
                 <br>
+                <span class="btn btn-danger main-shadow main-radius float-end mt-3" onclick="delete_case('`+result['id']+`');">
+                    <i class="fa-solid fa-delete-right"></i> ลบเคสนี้
+                </span>
+            `;
+
+        }else{
+
+            html_btn_command = `
+                <br>
+                <span class="btn btn-danger main-shadow main-radius float-end mt-3" onclick="delete_case('`+result['id']+`');">
+                    <i class="fa-solid fa-delete-right"></i> ลบเคสนี้
+                </span>
                 <span class="btn btn-success main-shadow main-radius float-end mt-3 mx-2" onclick="sos_1669_command_by('{{ Auth::user()->id }}' , '`+result['id']+`');">
                     <i class="fa-solid fa-location-arrow fa-beat"></i> สั่งการ
                 </span>
             `;
+            
+        }
 
         new_div_data_sos.querySelector('[mock_up_mark="date_time"]').insertAdjacentHTML('beforeend', html_btn_command);
 
