@@ -2706,7 +2706,7 @@
 			    	// หน้าไหนเมนูบาร์ไม่กางออกส่งไปคลิกได้ที่นี่เลย
 			    	open_menu_bar(text_url_all);
 			    	// เช็ควิดีโอคอลและการปฏิเสธ
-			    	Theme_check_refuse_and_call(text_url_all);
+			    	// Theme_check_refuse_and_call(text_url_all);
 			    }
 
 			@endif
