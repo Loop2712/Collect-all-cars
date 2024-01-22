@@ -24,6 +24,31 @@ $(function () {
     });
   }
 
+  if ($('.owl-reward-m').length > 0) {
+    $('.owl-reward-m').owlCarousel({
+      loop:true,
+      margin:10,
+      smartSpeed: 1000,
+      autoplay: true,
+      autoWidth:false,
+      responsiveClass:true,
+      responsive:{
+          0:{
+              items:1,
+              nav:true
+          },
+          600:{
+              item1:1,
+              nav:false
+          },
+          1000:{
+              items:1,
+              nav:true
+          }
+      }
+    });
+  }
+
 
   if ($('.owl-3').length > 0) {
     $('.owl-3').owlCarousel({
