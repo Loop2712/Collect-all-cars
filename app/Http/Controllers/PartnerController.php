@@ -640,10 +640,18 @@ class PartnerController extends Controller
         $count_data = count($view_maps_all);
         ////////
 
+        // $view_maps = DB::table('sos_maps')
+        //     ->where('area','LIKE', "%$search_area%")
+        //     ->where('name_area','LIKE', "%$name_area%")
+        //     ->latest()->paginate($perPage);
+
         $view_maps = DB::table('sos_maps')
-            ->where('area','LIKE', "%$search_area%")
-            ->where('name_area','LIKE', "%$name_area%")
-            ->latest()->paginate($perPage);
+            ->where('area', 'LIKE', "%$search_area%")
+            ->where('name_area', 'LIKE', "%$name_area%")
+            ->latest()
+            ->take(10) // เลือกเพียง 10 รายการ
+            ->get();
+
 
         $select_name_areas = DB::table('sos_maps')
             ->where('area','LIKE', "%$search_area%")
