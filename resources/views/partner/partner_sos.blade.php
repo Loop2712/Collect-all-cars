@@ -148,8 +148,13 @@
                 </div>
             </div>
 
-            <div class="col-12 mb-2">
+            <div class="col-6 mb-2">
                 <b class="text-danger">แสดงผล 10 เคสล่าสุด</b>
+            </div>
+            <div class="col-6 mb-2">
+                <a href="{{ url('/dashboard_viisos') }}" class="btn btn-sm btn-info float-end">
+                    ดูเคสทั้งหมด
+                </a>
             </div>
 
             @foreach($view_maps as $item)
