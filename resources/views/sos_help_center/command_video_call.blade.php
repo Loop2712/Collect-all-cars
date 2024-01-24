@@ -1233,7 +1233,6 @@ async function startBasicCall() {
     document.querySelector('#command_join').classList.add('btn-success');
     document.querySelector('#command_join').classList.add('d-none');
     document.querySelector('#command_join').classList.remove('video-call-in-room');
-    document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
     document.querySelector('#btnMic').classList.remove('d-none');
     document.querySelector('#btnVideo').classList.remove('d-none');
     document.querySelector('#leave').classList.remove('d-none');

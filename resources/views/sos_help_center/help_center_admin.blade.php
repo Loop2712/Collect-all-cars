@@ -47,7 +47,7 @@
         border-radius:5px;
         cursor: context-menu;
     }
-    
+
     .sos-username{
         padding: 0 15px 16px 15px;
         display: inline;
@@ -56,7 +56,7 @@
         font-size: 25px;
     }.sos-helper{
         padding: 0 15px 0px 15px;
-        
+
     }
     .helper-border{
         border-right: 1px solid darkgray;
@@ -83,7 +83,7 @@
         color: none;
         border: none;
         background-color: white;
-    } 
+    }
     .data-show{
         animation: data-open 1s ease 0s 1 normal forwards;
     }
@@ -274,7 +274,7 @@
         -o-transition: border .3s;
         transition: border .3s;
     }
-        
+
     .card-input-success:checked+.card {
         border: 2px solid #29cc39 !important;
         background-color: #29cc39 !important;
@@ -325,8 +325,8 @@
     }
     .card-search{
         padding: 0rem 1rem;
-        
-        
+
+
         overflow-x: hidden; /* Hide horizontal scrollbar */
         overflow-y: scroll;
         height: 80vh;
@@ -377,7 +377,7 @@
         .idc-screch .radio input:checked + .name{
             font-weight: 600;
             padding:  .5rem 1rem;
-        } 
+        }
 
         .idc-screch .radio .redio-success:hover {
             background-color: #3ac47d;
@@ -453,12 +453,12 @@
             display: -ms-box;
             display: box;
         }
-        @media (min-width:1281px) {  
+        @media (min-width:1281px) {
                 .owl-carousel .owl-nav{
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-            
+
                 }
                 .owl-carousel .owl-nav .owl-prev{
                     background-color: #000000;
@@ -471,7 +471,7 @@
                     border-radius: 50%;
                     margin-right: -10px;
                     margin-top: -3.3rem;
-                    
+
             }
         }
         .close{
@@ -487,7 +487,7 @@
                 opacity: 0;
                 transform: translateX(-100px);
             }
-            
+
         }
         .open{
             animation: open 1s ease 0s 1 normal forwards;
@@ -551,7 +551,7 @@
                         <h5>ทั่วไป</h5>
                         <div class="row">
                             <div class="col-12">
-                                <input type="text" id="id" name="id" value="" class="form-control" placeholder="รหัสเคส" oninput="search_data_help();"> 
+                                <input type="text" id="id" name="id" value="" class="form-control" placeholder="รหัสเคส" oninput="search_data_help();">
                             </div>
                             <div class="col-6 mt-3">
                                 <select class="form-control" id="search_be_notified" name="search_be_notified" oninput="search_data_help();">
@@ -590,7 +590,7 @@
 
                         <h5 class="mt-4">ข้อมูลผู้ขอความช่วยเหลือ</h5>
                         <div class="row">
-                            <div class="col-12">                                   
+                            <div class="col-12">
                                  <input type="text" id="name" name="name" value="" class="form-control" placeholder="ชื่อผู้ขอความช่วยเหลือ" oninput="search_data_help();">
                                 </div>
                             <div class="col-12 mt-3">
@@ -601,7 +601,7 @@
 
                         <h5 class="mt-4">ข้อมูลองค์กร</h5>
                         <div class="row">
-                            <div class="col-12">                                   
+                            <div class="col-12">
                                 <input type="text" id="organization" name="organization" value="" class="form-control" placeholder="หน่วยงาน" oninput="search_data_help();">
                             </div>
                             <div class="col-12 mt-3">
@@ -741,9 +741,9 @@
 
                             </div>
                         </div>
-                        
+
                         <button type="button" class="w-100 btn btn-primary btn-md btn-block d-block" onclick="clear_search_data_help();">ล้างการค้นหา</button>
-                        
+
                     </div>
                 </div>
             </div>
@@ -754,7 +754,7 @@
                             <button class="btn btn-new-help" onclick="create_new_sos_help_center();">
                                 การช่วยเหลือใหม่
                             </button>
-                        </div>  
+                        </div>
                         <div>
                             <div class="input-group input-group-md">
                                 <input type="text" class="form-control border-end-0" id="search" name="search" placeholder="ค้นหา รหัสเคส" oninput="search_data_help();">
@@ -813,14 +813,14 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col">
                         <div id="div_card_average" class="card radius-10 overflow-hidden bg-gradient-kyoto">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
                                         <p class="mb-0 text-white">เวลาโดยเฉลี่ย (เสร็จสิ้น)</p>
-                                        <h5 class="mb-0 text-white"> 
+                                        <h5 class="mb-0 text-white">
                                             <b><span id="span_min_average_per_case">กำลังโหลดข้อมูล
                                             ..</span></b> / เคส (<span id="span_count_success_average">..</span>)
                                         </h5>
@@ -842,13 +842,13 @@
                 .card-data-sos{
                     padding: 1rem;
                     display: flex !important;
-                    
+
                 }.card-header-sos{
                     display: inline;
                 }.card-header-sos span{
                     font-size: 1.2rem;
                 }
-                
+
                 .card-main-sos{
                     display: flex !important;
                     margin-top: .8rem;
@@ -914,11 +914,11 @@
                                             </button> -->
                                         </span>
                                     </div>
-                                        
+
                                     <div class="card-main-sos">
                                         <div class="card-user-sos">
                                             <img mock_up_mark="photo_user" src="{{ url('/img/stickerline/PNG/37.2.png') }}" alt="">
-                                            
+
                                             <div class="data-user-sos">
                                                 <h6 class=" p-0 m-0 color-dark data-overflow">
                                                     <b mock_up_mark="name_user">
@@ -934,7 +934,7 @@
                                                     0812345678
                                                 </p>
 
-                                            
+
                                                 <p class="mt-1 p-0 m-0 color-dark data-overflow" mock_up_mark="helper">
                                                     ช่วยเหลือโดย Thanakron
                                                     ●
@@ -942,7 +942,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="idc-rc-sos">
                                             <center>
                                                 <!-- IDC -->
@@ -953,7 +953,7 @@
                                                 <button class=" btn-status px-3 mt-1 " mock_up_mark="btn_RC">
                                                     <b>RC<br><span mock_up_mark="text_RC">(ไม่รุนแรง)</span></b>
                                                 </button>
-                                            </center> 
+                                            </center>
                                         </div>
                                     </div>
                                     </a>
@@ -963,13 +963,13 @@
                                         </div>
                                         <div mock_up_mark="date_time">วันที่ &nbsp;&nbsp;เวลา</div>
                                     </div>
-                                
+
                                 <div class="forward_operation forward_operation_to d-none">
 
                                     <!-- เคสนี้ส่งต่อ "ไปที่" ใด -->
-                                    <div class="text-end mx-3"> 
+                                    <div class="text-end mx-3">
                                         เคสถูกส่งต่อไปที่ <b mock_up_mark="forward_operation_to_code"></b> <br>
-                                        สถานะของเคสที่ส่งต่อ <b mock_up_mark="forward_operation_to_status"></b> 
+                                        สถานะของเคสที่ส่งต่อ <b mock_up_mark="forward_operation_to_status"></b>
                                     </div>
                                     <div>
                                         <a mock_up_mark="forward_operation_to_link" class="icon-forward-operation" href="#">
@@ -981,9 +981,9 @@
                                 <div class="forward_operation forward_operation_from d-none">
 
                                     <!-- เคสนี้ส่งต่อ "มาจาก" ที่ใด -->
-                                    <div class="text-end mx-3"> 
+                                    <div class="text-end mx-3">
                                         เคสถูกส่งต่อมาจาก <b mock_up_mark="forward_operation_from_code"></b> <br>
-                                        โดย <b mock_up_mark="forward_operation_from_name_helper"></b> 
+                                        โดย <b mock_up_mark="forward_operation_from_name_helper"></b>
                                     </div>
                                     <div>
                                         <a mock_up_mark="forward_operation_from_link" class="icon-forward-operation" href="#">
@@ -1002,7 +1002,7 @@
                                 position: absolute;
                                 top: -15px;
                                 right: 90% !important;
-                                background-color: red; 
+                                background-color: red;
                                 color: #fff;
                                 width: 30px;
                                 height: 30px;
@@ -1015,7 +1015,7 @@
                                 position: absolute;
                                 top: -15px;
                                 right: 85% !important;
-                                background-color: green; 
+                                background-color: green;
                                 color: #fff;
                                 width: 30px;
                                 height: 30px;
@@ -1028,7 +1028,7 @@
                                 position: absolute;
                                 top: -15px;
                                 right: 80% !important;
-                                background-color: orange; 
+                                background-color: orange;
                                 color: #fff;
                                 width: 30px;
                                 height: 30px;
@@ -1037,8 +1037,8 @@
                                 z-index: 9999;
                             }
                         </style>
-                        
-                        <div class="pagination-wrapper mb-3"> 
+
+                        <div class="pagination-wrapper mb-3">
                             <!-- $show_data_sos->appends(['search' => Request::get('search')])->render()  -->
                             <b class="text-danger">แสดงผล 10 เคสล่าสุด (เคสอื่นๆ สามารถค้นหาได้ที่ด้านบนขวา)</b>
                         </div>
@@ -1063,7 +1063,7 @@
                                         <i class="fa-duotone fa-user-police-tie fa-shake"></i>
                                     </center>
                                 </span>
-                                
+
                                 <div class="card card-data-sos card-sos shadow card_sos_id_{{ $item->id }}">
                                         <div class="card-header-sos">
 
@@ -1152,7 +1152,7 @@
                                                 </button>
                                                 @endif
                                             </span>
-                                           
+
                                         </div>
                                         <a id="card_data_sos_id_{{ $item->id }}" class="a_data_user data-show" href="{{ url('/sos_help_center/' . $item->id . '/edit') }}">
                                             <div class="card-main-sos">
@@ -1199,7 +1199,7 @@
                                                             @endif
                                                         </p>
 
-                                                    
+
                                                         <p class="mt-1 p-0 m-0 color-dark data-overflow">
                                                             @if(!empty($item->name_helper))
                                                                 ช่วยเหลือโดย {{ $item->name_helper }}
@@ -1215,7 +1215,7 @@
                                                         </p>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="idc-rc-sos">
                                                     <center>
                                                         <!-- IDC -->
@@ -1286,7 +1286,7 @@
                                                                 <b>RC<br>(ไม่ได้ระบุ)</b>
                                                             </button>
                                                         @endif
-                                                    </center> 
+                                                    </center>
                                                 </div>
                                             </div>
                                         </a>
@@ -1331,8 +1331,8 @@
 
                                                         $min_1_to_sec = $zone1_Time_min * 60 ;
                                                         $total_time = $total_time + $min_1_to_sec + $zone1_Time_Seconds ;
-                                                        
-                                                    }   
+
+                                                    }
 
 
                                                     $hours_all_time = floor($total_time / 3600);
@@ -1345,7 +1345,7 @@
                                                     }
                                                     $text_total_time .= "{$minutes_all_time} นาที".($minutes_all_time > 1 ? '' : '')." ";
                                                     $text_total_time .= "{$seconds_all_time} วินาที".($seconds_all_time > 1 ? '' : '');
-                                                        
+
                                                     $show_min_case = $text_total_time;
 
                                                     // ตรวจสอบว่าเกิน 8 หรือ 12 หรือไม่
@@ -1357,7 +1357,7 @@
                                                     }else if($total_time >= 720){
                                                         $bg_show_min_case = "text-danger";
                                                     }
-                                                    
+
 
                                                 @endphp
                                                 @if($item->status == "เสร็จสิ้น")
@@ -1365,10 +1365,10 @@
                                                     ใช้เวลารวม : <span class="{{ $bg_show_min_case }}">{{ $show_min_case }}</span>
 
                                                     @php
-                                                        $grade = $item->score_total; 
+                                                        $grade = $item->score_total;
                                                         $rounded_grade = ceil($grade);
                                                     @endphp
-                                                    
+
                                                     @if(!empty($item->score_total))
                                                         @for ($i = 1; $i <= 5; $i++)
                                                             @if ($i <= $rounded_grade)
@@ -1378,7 +1378,7 @@
                                                                     @if ($grade - $i + 1 >= 0.75)
                                                                         <i class="fa-solid fa-star text-warning"></i>
                                                                     @elseif ($grade - $i + 1 >= 0.25)
-                                                                        <i class="fa-solid fa-star-half-stroke text-warning"></i> 
+                                                                        <i class="fa-solid fa-star-half-stroke text-warning"></i>
                                                                     @else
                                                                         <i class="fa-regular fa-star text-warning"></i>
                                                                     @endif
@@ -1422,34 +1422,34 @@
                                                 </script>
                                             </div>
                                         </div>
-                                    
-                                        
+
+
                                         @if(!empty($item->forward_operation_to) || $item->forward_operation_from)
                                             <div class="forward_operation">
                                                 <!-- เคสนี้ส่งต่อ "ไปที่" ใด -->
                                                 @if(!empty($item->forward_operation_to))
-                                                    <div class="text-end mx-3"> 
+                                                    <div class="text-end mx-3">
                                                             เคสถูกส่งต่อไปที่ <b>{{ $item->forwardOperation_to->operating_code }}</b>  <br>
-                                                            สถานะของเคสที่ส่งต่อ <b>{{ $item->forwardOperation_to->status }}</b> 
+                                                            สถานะของเคสที่ส่งต่อ <b>{{ $item->forwardOperation_to->status }}</b>
                                                         </div>
                                                         <div>
                                                             <a class="icon-forward-operation" href="#" onclick="event.preventDefault(); window.open('{{ url('/sos_help_center/' . $item->forward_operation_to . '/edit') }}', '_blank', 'width=1600,height=1200'); ">
                                                                 <i id="icon_forward_operation_{{$item->id}}" class=" fa-regular fa-chevrons-right" data-animation-class="fa-beat"></i>
                                                             </a>
-                                                            
+
                                                     </div>
                                                 @endif
                                                 <!-- เคสนี้ส่งต่อ "มาจาก" ที่ใด -->
                                                 @if(!empty($item->forward_operation_from))
-                                                    <div class="text-end mx-3"> 
+                                                    <div class="text-end mx-3">
                                                         เคสถูกส่งต่อมาจาก <b>{{ $item->forwardOperation_from->operating_code }}</b>  <br>
-                                                        โดย <b>{{ $item->forwardOperation_from->name_helper }}</b> 
+                                                        โดย <b>{{ $item->forwardOperation_from->name_helper }}</b>
                                                     </div>
                                                     <div>
                                                         <a class="icon-forward-operation" href="#" onclick="event.preventDefault(); window.open('{{ url('/sos_help_center/' . $item->forward_operation_from . '/edit') }}', '_blank', 'width=1600,height=1200'); ">
                                                             <i id="icon_forward_operation_{{$item->id}}" class=" fa-regular fa-chevrons-right" data-animation-class="fa-beat"></i>
                                                         </a>
-                                                        
+
                                                     </div>
                                                 @endif
                                             </div>
@@ -1538,8 +1538,8 @@
 
                                                             $min_1_to_sec = $zone1_Time_min * 60 ;
                                                             $total_time = $total_time + $min_1_to_sec + $zone1_Time_Seconds ;
-                                                            
-                                                        }   
+
+                                                        }
 
                                                         $hours_all_time = floor($total_time / 3600);
                                                         $minutes_all_time = floor(($total_time % 3600) / 60);
@@ -1551,7 +1551,7 @@
                                                         }
                                                         $text_total_time .= "{$minutes_all_time} นาที".($minutes_all_time > 1 ? '' : '')." ";
                                                         $text_total_time .= "{$seconds_all_time} วินาที".($seconds_all_time > 1 ? '' : '');
-                                                          
+
                                                         $show_min_case = $text_total_time;
 
                                                         // ตรวจสอบว่าเกิน 8 หรือ 12 หรือไม่
@@ -1563,7 +1563,7 @@
                                                         }else if($total_time >= 720){
                                                             $bg_show_min_case = "text-danger";
                                                         }
-                                                        
+
 
                                                     @endphp
                                                     @if($item->status == "เสร็จสิ้น")
@@ -1574,7 +1574,7 @@
                                             <div>
                                                 <span class="float-end h6">
                                                     @php
-                                                        $grade = $item->score_total; 
+                                                        $grade = $item->score_total;
                                                         $rounded_grade = ceil($grade);
                                                     @endphp
 
@@ -1587,7 +1587,7 @@
                                                                     @if ($grade - $i + 1 >= 0.5)
                                                                         <i class="fa-solid fa-star text-warning"></i>
                                                                     @else
-                                                                        <i class="fa-solid fa-star-half-stroke text-warning"></i> 
+                                                                        <i class="fa-solid fa-star-half-stroke text-warning"></i>
                                                                     @endif
                                                                 @endif
                                                             @else
@@ -1647,8 +1647,8 @@
                                                     @endif
                                                 </p>
                                             </div>
-                                        </div> 
-                                        
+                                        </div>
+
                                         <hr style="margin-top: -5px;">
 
                                         <div class="sos-username">
@@ -1886,7 +1886,7 @@
                         @endforeach
 
                     </div>
-                       
+
                     <style>
                         .btn-request{
                             color: white;
@@ -2076,7 +2076,7 @@
 
                 <div class="card-body">
                     @foreach($data_sos as $item)
-                        <div class="row text-center"> 
+                        <div class="row text-center">
                             <div class="col-3">
                                 {{ $item->name_user }}
                             </div>
@@ -2114,7 +2114,7 @@
     #map {
       height: calc(80vh);
     }
-    
+
 </style>
 <script>
    $(function() {
@@ -2130,20 +2130,23 @@
     responsive:{
     0:{
      items:1,
-     autoWidth:false 
+     autoWidth:false
     },
     768:{
      items:3
     }
-   } 
+   }
   });
 });
 
 </script>
 <script>
+    var appId = '{{ env("AGORA_APP_ID") }}';
+    var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
 
     document.addEventListener('DOMContentLoaded', (event) => {
         // console.log("START");
+        saveAgoraKeys();
         initMap();
 
         if('{{ Auth::user()->organization }}' == 'สพฉ' && '{{ Auth::user()->sub_organization }}' != 'ศูนย์ใหญ่'){
@@ -2185,7 +2188,7 @@
                 }
         });
     }
-    
+
     const image_sos = "{{ url('/img/icon/operating_unit/sos.png') }}";
 
     function initMap() {
@@ -2206,7 +2209,7 @@
                 icon: image_sos,
             });
         @endforeach
-        
+
         show_average_time();
         // click_select_area_map("{{ Auth::user()->sub_organization }}");
 
@@ -2412,7 +2415,7 @@
                             data_html['address'] = result[xxi]['address'] ;
                             data_html['organization_helper'] = result[xxi]['organization_helper'] ;
                             data_html['name_helper'] = result[xxi]['name_helper'] ;
-                            
+
                             data_html['command_by'] = result[xxi]['command_by'] ;
 
                             data_html['be_notified'] = result[xxi]['be_notified'] ;
@@ -2548,7 +2551,7 @@
             });
 
         }
-        
+
     }
 
 </script>
@@ -2563,13 +2566,13 @@
         // Calculate the distance from the top of the page
         const distanceFromTop = window.pageYOffset || document.documentElement.scrollTop;
             // console.log(distanceFromTop);
-        
+
         if (menu) {
             // If the distance from the top is greater than 0, hide the menu
             if (distanceFromTop >= 270) {
                 menu.classList.add('mt-0') ;
             } else {
-                menu.classList.remove('mt-0'); 
+                menu.classList.remove('mt-0');
             }
         }
     });
@@ -2582,7 +2585,7 @@
     function search_data_help(){
         // Clear any pending delay timer
         clearTimeout(delayTimer);
-        
+
         // Start a new delay timer of 2 seconds before executing data_help_center()
         delayTimer = setTimeout(delay_2_seconds, 1000);
     }
@@ -2628,7 +2631,7 @@
                     data_search_rc = rc.value;
                 }
             })
-            
+
         // -------------------------------------------------------------
 
         if(data_rangeOne_officer_rating != 0 || data_rangeTwo_officer_rating != 5){
@@ -2681,7 +2684,7 @@
 
         }else{
             // console.log("else");
-            data_help_center(data_arr); 
+            data_help_center(data_arr);
         }
     }
 
@@ -2906,9 +2909,9 @@
                     }
                     // ---------------------- END TIME ALL ---------------------- //
 
-                }   
+                }
 
-                
+
 
             })
 
@@ -2979,7 +2982,7 @@
     }
 
     function fist_real_time_check_refuse_and_call(){
-        
+
         // console.log('real_time_check_refuse_and_call');
 
         let all_notification_refuse = document.querySelectorAll('.notification-refuse');
@@ -3050,7 +3053,7 @@
     }
 
     function real_time_check_refuse_and_call(){
-        
+
         setInterval(function() {
             // console.log('real_time_check_refuse_and_call');
 
@@ -3235,18 +3238,53 @@
         let div_map = document.getElementById('div_map');
         let div_search = document.getElementById('div_search');
 
-        div_map.classList.toggle("open"); 
+        div_map.classList.toggle("open");
         div_map.classList.toggle("close");
 
-        div_search.classList.toggle("open"); 
+        div_search.classList.toggle("open");
         div_search.classList.toggle("close");
 
         setTimeout(() => {
                 document.querySelector('#div_map').classList.toggle('d-none');
         document.querySelector('#div_search').classList.toggle('d-none');
         }, 1000);
-        
+
     }
-    
+
 </script>
+
+<script>
+    // เรียกใช้ฟังก์ชันเมื่อหน้าเว็บโหลด
+    function retrieveAgoraKeys() {
+        let agoraAppId = appId;
+        let agoraAppCertificate = appCertificate;
+        // ตรวจสอบว่าคีย์และรหัสลับมีค่าความยาวมากกว่า 0 หรือไม่
+        if (!agoraAppId || !agoraAppCertificate) {
+            agoraAppId = '{{ env("AGORA_APP_ID") }}';
+            agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+            // ตรวจสอบอีกครั้งหลังจากกำหนดค่าจาก environment variables
+        }
+
+        return { agoraAppId, agoraAppCertificate };
+    }
+
+    // สลับตำแหน่ง agoraAppId และ agoraAppCertificate
+    function swapValues(keys) {
+        const { agoraAppId, agoraAppCertificate } = keys;
+        return {
+            agoraAppId: agoraAppId.split('').reverse().join(''),
+            agoraAppCertificate: agoraAppCertificate.split('').reverse().join('')
+        };
+    }
+
+    // สร้างฟังก์ชันสำหรับบันทึกคีย์และรหัสลับลงใน sessionStorage
+    function saveAgoraKeys() {
+        const keys = retrieveAgoraKeys();
+        // สลับตำแหน่ง agoraAppId และ agoraAppCertificate
+        const swappedKeys = swapValues(keys);
+        sessionStorage.setItem('a', swappedKeys.agoraAppId);
+        sessionStorage.setItem('b', swappedKeys.agoraAppCertificate);
+    }
+</script>
+
 @endsection

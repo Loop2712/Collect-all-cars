@@ -621,10 +621,10 @@
 
     /* ----------------- ตัว Popup แจ้งเตือน----------------- */
     .div_alert {
-	    position: fixed;
+	    position: absolute;
 	    top: -70px;
 	    bottom: 0;
-	    left: 0;
+	    left: 10px;
 	    width: 100%;
 	    height: 100px;
 	    text-align: center;
@@ -641,7 +641,7 @@
 	    padding: 30px;
 	    font-family: 'Kanit', sans-serif;
 	    z-index: 9999;
-	    font-size: 3em;
+	    font-size: 0.8em;
 	}
 
     .up_down {
@@ -663,7 +663,51 @@
             transform: translateY(0);
         }
     }
-     /* ----------------- End ตัว Popup แจ้งเตือน----------------- */
+
+    /* ----------------- End ตัว Popup แจ้งเตือน----------------- */
+
+    .shadow_btn_call {
+        position: relative;
+        overflow: hidden;
+        background-color: #29cc39 !important;
+        color:#fff !important;
+        box-shadow: 0 0 20px rgba(0, 255, 60, 0.5);
+        z-index: 1;
+    }
+
+    .shadow_btn_call:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(0);
+        transform-origin: center;
+        transition: transform 0.5s ease;
+        z-index: -1;
+    }
+
+    .shadow_btn_call:before {
+        transform: scale(1);
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .shadow_btn_call {
+        animation: pulse 1s infinite;
+    }
+
     .advice_text{
         background-color: rgba(99, 90, 90, 0);
         color: #ffffff;
@@ -692,10 +736,15 @@
     }
 
     .span_timer_video_call{
+        position: relative;
         font-size: 1rem !important;
         background-color: rgb(206, 206, 206) !important;
-        padding: 10px !important;
         border-radius: 5px !important;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+        margin-bottom: 0; /* หรือใช้ padding-bottom: 0; */
     }
 
     .div_button_video_call{
@@ -703,6 +752,23 @@
         background-color: #ffffff;
         display: flex;
         justify-content: center;
+    }
+
+    #power_bar {
+        margin-top: 5px;
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: calc(100%); /* ให้ความกว้างเต็ม viewport width - 85% */
+        height: 5px;
+        background-color: #fd1e1e;
+        border-radius: 2px;
+    }
+
+    #progress_indicator {
+        height: 100%;
+        width: 0;
+        background-color: #6e89b4;
     }
 
 </style>
@@ -726,26 +792,29 @@
 
     <div id="divVideoCall" class="video-body fade-slide overflow-hidden" style="display: none; margin-bottom: 120px;">
 
-        <div id="alert_warning" class="div_alert" role="alert">
-            <span id="alert_text">
-                <!-- ใช้ javascript กำหนด innerHTML-->
-            </span>
-        </div>
-
 
         <div class="row ">
             <div class="col-12 " style="height: calc(100% - 90%);">
-                <div class="row d-flex justify-content-center">
-                    <button id="command_join" class="btn btn-success d-non" style="width:85%">
-                        <i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; เริ่มต้นการสนทนา
-                    </button>
+                <div class="row d-flex justify-content-center ">
+                    <div class="row d-flex justify-content-around align-items-center mx-auto pt-1" >
+                        <button id="command_join" class="btn btn-success d-non" style="width:75%;">
+                            <i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; เริ่มต้นการสนทนา
+                        </button>
+
+                        <button id="btn_close_audio_ringtone" class="btn btn-secondary d-none" style="width:15%" onclick="mute_ringtone();">
+                            <i class="fa-solid fa-volume-slash"></i>
+                        </button>
+                    </div>
 
                     <span id="span_timer_video_call" class="d-none span_timer_video_call" style="width:85%">
-                        <span id="icon_timer_video_call" class="">
+                        <span id="icon_timer_video_call" class="py-2">
                             <i class="fa-duotone fa-record-vinyl fa-beat-fade" style="--fa-secondary-color: #6e89b4;"></i>
-                            &nbsp;&nbsp;เวลาสนทนา :
+                            &nbsp;&nbsp;เวลาสนทนา : <span id="time_of_room" >เริ่มนับเมื่อมีผู้ใช้ 2 คน</span>
                         </span>
-                        <span id="time_of_room">เริ่มนับเมื่อมีผู้ใช้ 2 คน</span>
+
+                        <div id="power_bar" class="progress-bar progress-bar-striped progress-bar-animated bg-danger d-none">
+                            <div id="progress_indicator"></div>
+                        </div> <!-- เพิ่ม div สำหรับ progress bar -->
                     </span>
                 </div>
             </div>
@@ -790,6 +859,13 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="alert_warning" class="div_alert" role="alert">
+                    <span id="alert_text">
+                        <!-- ใช้ javascript กำหนด innerHTML-->
+                    </span>
+                </div>
+
             </div>
             <div class="col-12 pt-3 d-none delna" style="height: calc(100% - 89%); background-color: #0bb34b; border: 0;">
                 <div class="w-100 user-video-call-contrainer d-none " >
@@ -840,7 +916,7 @@
                             }
                         </script> --}}
 
-                        <div class="btn btnSpecial btn_leave" id="leave" onclick="leave_refresh();">
+                        <div class="btn btnSpecial btn_leave" id="leave">
                             <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>
                         </div>
 
@@ -906,10 +982,11 @@
     var isRemoteIconSound = false;
 
     // ใช้สำหรับ เช็คไม่ให้ฟังก์ชันออกห้องทำงานซ้ำ
-    var leaveChannel = "false";
+    var leaveChannel;
+    var name_dev;
     // เกี่ยวกับเวลาในห้อง
     var people_in_room = 0;
-    var check_start_timer_video_call = false;
+    var check_start_timer_video_call;
     // var hours = 0;
     // var minutes = 0;
     // var seconds = 0;
@@ -930,8 +1007,8 @@
     var activeVideoDeviceId = "";
     var activeAudioDeviceId = "";
 
-
     document.addEventListener('DOMContentLoaded', (event) => {
+
         start_page();
     });
 
@@ -973,8 +1050,8 @@
                     `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
                     document.querySelector('#command_join').classList.add('video-call-in-room');
                     document.querySelector('#command_join').classList.remove('btn-success');
-                    document.querySelector('#command_join').setAttribute('style' , 'width: 85%;');
-                    // document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+                    document.querySelector('#command_join').setAttribute('style' , 'width: 75%;');
+                    document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
 
                     // document.querySelector('#btnVideoCall').click();
 
@@ -987,6 +1064,35 @@
 
             }, 1000);
         }
+    }
+
+    var audio_in_room = new Audio("{{ asset('sound/แจ้งเตือนก่อนหมดเวลาวิดีโอคอล.mp3') }}");
+    var audio_ringtone = new Audio("{{ asset('sound/ringtone-126505.mp3') }}");
+    var isPlaying_ringtone = false;
+
+    function play_ringtone() {
+        if (!isPlaying_ringtone) {
+            audio_ringtone.loop = true;
+            audio_ringtone.play();
+            isPlaying_ringtone = true;
+
+            check_first_play_ringtone = 1 ;
+
+        }
+    }
+
+    function stop_ringtone() {
+        audio_ringtone.pause();
+        audio_ringtone.currentTime = 0;
+        isPlaying_ringtone = false;
+
+        // อาจจะกระทบกับส่วนอื่น เช็คดีๆนะครับ
+        check_first_play_ringtone = 0 ;
+    }
+
+    function mute_ringtone(){
+        audio_ringtone.pause();
+        audio_ringtone.currentTime = 0;
     }
 
     function runLoop_check_appId() {
@@ -1016,8 +1122,8 @@
                                 `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
                                 document.querySelector('#command_join').classList.add('video-call-in-room');
                                 document.querySelector('#command_join').classList.remove('btn-success');
-                                document.querySelector('#command_join').setAttribute('style' , 'width: 85%;');
-                                // document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
+                                document.querySelector('#command_join').setAttribute('style' , 'width: 75%;');
+                                document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
 
                                 // document.querySelector('#btnVideoCall').click();
 
@@ -1130,12 +1236,12 @@
 
                             if (currentTimestamp >= expirationTimestamp) {
                                 // เวลาหมดแล้ว ให้แสดงข้อความแจ้งเตือนหรือทำการแจ้งเตือนผ่านทาง UI ตามที่คุณต้องการ
+                                clearInterval(check_token_expire);
                                 document.querySelector('#leave').click();
-                                return;
                             }
                         }
 
-                        setInterval(() => {
+                        let check_token_expire = setInterval(() => {
                             checkAndNotifyExpiration(expirationTimestamp);
                         }, 1000);
 
@@ -1825,12 +1931,15 @@
                     await agoraEngine.publish([channelParameters.localVideoTrack]);
                     // StatsVideoUpdate();
                     document.querySelector(".btn-video-call-container").classList.remove("d-none");
-
+                    document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
                     document.querySelector('#span_timer_video_call').classList.remove('d-none');
-
+                    leaveChannel = "false";
+                    check_start_timer_video_call = false;
                     // document.querySelector('#command_join').classList.add('btn-success');
                     document.querySelector('#command_join').classList.add('d-none');
                     // document.querySelector('#command_join').classList.remove('video-call-in-room');
+
+                    stop_ringtone();
 
                 } catch (error) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
@@ -1839,7 +1948,8 @@
 
                     setTimeout(() => {
                         // window.location.reload(); // รีเฟรชหน้าเว็บ
-                        afterJoin();
+                        // afterJoin();
+                        leave_refresh();
                     }, 2000);
 
                     return; // หยุดการทำงานของฟังก์ชันนี้ทันที
@@ -1963,7 +2073,7 @@
                 // Leave the channel
                 await agoraEngine.leave();
                 console.log("You left the channel");
-
+                console.log("leaveChannel : "+ leaveChannel);
                 // Refresh the page for reuse
                 // window.location.reload();
 
@@ -1976,36 +2086,46 @@
                             console.log("left_and_update สำเร็จ");
                             leaveChannel = "true";
 
-                            window.history.back();
+
+                            if (result == "OK") {
+                                switch_div_data();
+                                document.querySelector(".btn-video-call-container").classList.add("d-none");
+                                document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
+
+                                if (document.querySelector('[div_video="remote"]')) {
+                                    document.querySelector('[div_video="remote"]').remove();
+                                }
+
+                                if (document.querySelector('#videoDiv_'+'{{ Auth::user()->id }}')) {
+                                    document.querySelector('#videoDiv_'+'{{ Auth::user()->id }}').remove();
+                                }
+
+                                document.querySelector('#span_timer_video_call').classList.add('d-none');
+                                document.querySelector('#command_join').classList.remove('d-none');
+                                // if (document.querySelector('#div_for_VideoButton')) {
+                                //     document.querySelector('#div_for_VideoButton').remove();
+                                // }
+
+                                // if (document.querySelector('#div_for_AudioButton')) {
+                                //     document.querySelector('#div_for_AudioButton').remove();
+                                // }
+
+                                // if (document.querySelector('#leave')) {
+                                //     document.querySelector('#leave').remove();
+                                // }
+
+                                setTimeout(() => {
+                                    leave_refresh();
+                                }, 1000);
+                            }
+                            // window.history.back();
                     })
                     .catch(error => {
                         console.log("บันทึกข้อมูล left_and_update ล้มเหลว :" + error);
                     });
                 }
 
-                setTimeout(() => {
-                    switch_div_data();
-                    document.querySelector(".btn-video-call-container").classList.add("d-none");
 
-                    if (document.querySelector('#videoDiv_'+'{{ Auth::user()->id }}')) {
-                        document.querySelector('#videoDiv_'+'{{ Auth::user()->id }}').remove();
-                    }
-
-                    document.querySelector('#span_timer_video_call').classList.add('d-none');
-                    document.querySelector('#command_join').classList.remove('d-none');
-                    // if (document.querySelector('#div_for_VideoButton')) {
-                    //     document.querySelector('#div_for_VideoButton').remove();
-                    // }
-
-                    // if (document.querySelector('#div_for_AudioButton')) {
-                    //     document.querySelector('#div_for_AudioButton').remove();
-                    // }
-
-                    // if (document.querySelector('#leave')) {
-                    //     document.querySelector('#leave').remove();
-                    // }
-
-                }, 1000);
 
             }
         }
@@ -2625,6 +2745,7 @@
 	function createAndAttachCustomDiv() {
 		let randomColor = getRandomColor();
 		let newDiv = document.createElement("div");
+        newDiv.setAttribute('div_video','remote');
 		newDiv.className = "custom-div";
 		newDiv.style.backgroundColor = randomColor;
 
@@ -3112,6 +3233,7 @@
             divVideo_New.setAttribute('id','videoDiv_' + containerId);
             divVideo_New.setAttribute('class','custom-div');
             divVideo_New.setAttribute('style', 'background-color:' + bg_remote);
+            divVideo_New.setAttribute('div_video','remote');
 
             //======= สร้างปุ่มสถานะ && รูปโปรไฟล์ ==========
 
@@ -3247,7 +3369,7 @@
             divVideo_New.setAttribute('id','videoDiv_' + user.uid.toString());
             divVideo_New.setAttribute('class','custom-div');
             divVideo_New.setAttribute('style','background-color:'+bg_remote);
-
+            divVideo_New.setAttribute('div_video','remote');
             //======= สร้างปุ่มสถานะ และรูปโปรไฟล์ ==========
 
             // สร้างแท็ก <img> สำหรับรูปโปรไฟล์
@@ -3427,7 +3549,7 @@
             clearInterval(loop_timer_video_call);
             check_start_timer_video_call = false;
             document.querySelector('#time_of_room').innerHTML = 'เริ่มนับเมื่อมีผู้ใช้ 2 คน';
-        }, 3000);
+        }, 1000);
     }
 
     function start_timer_video_call(){
@@ -3454,7 +3576,7 @@
 
                     let targetTime = targetDate.getTime();
 
-                    loop_timer_video_call = setInterval(function() {
+                    let loop_timer_video_call = setInterval(function() {
                         // วันที่และเวลาปัจจุบัน
                         let currentDate = new Date();
                         let currentTime = currentDate.getTime();
@@ -3496,30 +3618,65 @@
                         // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
                         time_of_room.innerHTML = showTimeCountVideo;
 
-                        if (minsec == "7.00") {
-                            let alert_warning = document.querySelector('#alert_warning')
-                            alert_warning.style.display = 'block'; // แสดง .div_alert
+                        if (minsec == "0.12") {
+                            audio_in_room.play();
+                            time_of_room.setAttribute('class','text-danger');
 
-                            document.querySelector('#alert_text').innerHTML = `เหลือเวลา `+ time_warning +` นาที`;
-                            alert_warning.classList.add('up_down');
+                            updateProgressBar(180000); // ตัวอย่างเวลา 60 วินาที (60000 มิลลิวินาที)
 
-                            const animated = document.querySelector('.up_down');
-                            animated.onanimationend = () => {
-                                document.querySelector('#alert_warning').classList.remove('up_down');
-                                let alert_warning = document.querySelector('#alert_warning')
-                                alert_warning.style.display = 'none'; // แสดง .div_alert
-                            };
+                            // let alert_warning = document.querySelector('#alert_warning')
+                            // alert_warning.style.display = 'block'; // แสดง .div_alert
+
+                            // document.querySelector('#alert_text').innerHTML = `เหลือเวลา `+ time_warning +` นาที`;
+                            // alert_warning.classList.add('up_down');
+
+                            // const animated = document.querySelector('.up_down');
+                            // animated.onanimationend = () => {
+                            //     document.querySelector('#alert_warning').classList.remove('up_down');
+                            //     let alert_warning = document.querySelector('#alert_warning')
+                            //     alert_warning.style.display = 'none'; // แสดง .div_alert
+                            // };
+
                         }
 
                         if (elapsedMinutes == max_minute_time) {
+                            clearInterval(loop_timer_video_call);
                             document.querySelector('#leave').click();
-                            return;
                         }
+
                     }, 1000);
                 });
-        }, 2000);
+        }, 1000);
 
     }
+
+    // เพิ่มฟังก์ชันที่คำนวณเวลาและอัพเดท progress bar
+    function updateProgressBar(duration) {
+
+        const progressBar = document.getElementById('power_bar');
+            progressBar.classList.remove('d-none');
+
+        let timeLeft = duration;
+        let interval = duration / 100; // แบ่งเวลาออกเป็นส่วนๆ
+
+        let width = 100;
+
+        let timer = setInterval(function () {
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+            }
+
+            width -= 100 / duration * interval;
+
+            progressBar.style.width = width + '%';
+
+            timeLeft -= interval;
+        }, interval);
+    }
+
+
+
+
 
     async function getFirstCameraAndMic() {
         try {
@@ -3579,7 +3736,7 @@
 
 <script>
     window.addEventListener('beforeunload', function(event) {
-       if (leaveChannel == "false") {
+        if (leaveChannel == "false") {
            // leaveChannel();
            fetch("{{ url('/') }}/api/left_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id +"&meet_2_people=beforeunload"+"&leave=beforeunload")
                .then(response => response.text())
@@ -3591,7 +3748,7 @@
            .catch(error => {
                console.log("บันทึกข้อมูล left_and_update ล้มเหลว :" + error);
            });
-       }
+        }
    });
 </script>
 
@@ -3605,7 +3762,7 @@
     var command_screen_current = 1 ;
     var status_click_switch = false;
     function loop_check_user_in_room() {
-        console.log(status_click_switch);
+
         check_user_in_room = setInterval(function() {
 
         // console.log('loop_check_user_in_room');
@@ -3624,20 +3781,26 @@
                         first_meet_success = true;
                     }
 
+                    if(result['status'] == 'ว่าง'){
+                        first_meet_success = false;
+                        check_first_play_audio_in_room = 0;
+                    }
+
                     if(result['status'] != 'ว่าง'){
 
-                        if (first_meet_success == false) {
+                        if (first_meet_success == false && result['role_check'] == "ไม่พบศูนย์สั่งการ") {
 
                                 document.querySelector('#command_join').innerHTML =
                                 `<i class="fa-solid fa-phone-volume fa-beat"></i> &nbsp;&nbsp; สนทนา`;
                                 document.querySelector('#command_join').classList.add('video-call-in-room');
                                 document.querySelector('#command_join').classList.remove('btn-success');
-                                document.querySelector('#command_join').setAttribute('style' , 'width: 85%;');
+                                document.querySelector('#command_join').setAttribute('style' , 'width: 75%;');
 
-                                let btnVideoCall_sty = document.querySelector('#divVideoCall').getAttribute('style');
+                                // let btnVideoCall_sty = document.querySelector('#divVideoCall').getAttribute('style');
+                                let btnVideoCall_dnone = document.querySelector('#divVideoCall');
                                     // console.log(btnVideoCall_sty);
-
-                                if(btnVideoCall_sty == "display: none;" && status_click_switch == false){
+                                console.log("status_click_switch :"+ status_click_switch);
+                                if(!btnVideoCall_dnone && status_click_switch == false){
                                     document.querySelector('#btnVideoCall').click();
                                     status_click_switch == true;
                                 }
@@ -3647,15 +3810,17 @@
 
                                 if( check_first_play_audio_in_room == 0 ){
                                     // audio_in_room.play();
+                                    play_ringtone();
                                     check_first_play_audio_in_room = 1 ;
+                                    document.querySelector('#btn_close_audio_ringtone').classList.remove('d-none');
                                 }
 
                         }else{
                             // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
                             create_html_user_in_room(result['data'] , 'end but in_room');
 
-                            // stop_ringtone();
-                            // document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
+                            stop_ringtone();
+                            document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
 
                         }
 
@@ -3666,14 +3831,14 @@
                         // กำหนดจอของเจ้าหน้าที่ให้แสดงที่จอ ใหญ่
                         // command_screen_current = 1 ;
 
-                        // stop_ringtone();
-                        // document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
+                        stop_ringtone();
+                        document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
 
                         document.querySelector('#command_join').innerHTML =
                         `<i class="fa-solid fa-phone-volume"></i> เริ่มต้นการสนทนา`;
                         document.querySelector('#command_join').classList.remove('video-call-in-room');
                         document.querySelector('#command_join').classList.add('btn-success');
-                        document.querySelector('#command_join').setAttribute('style' , 'width: 85%;');
+                        document.querySelector('#command_join').setAttribute('style' , 'width: 75%;');
 
                         // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
                         create_html_user_in_room(result['data'] , 'out');
@@ -3916,6 +4081,8 @@ function loop_check_user_operation_meet(){
 
     }
 </script>
+
+
 
 
 

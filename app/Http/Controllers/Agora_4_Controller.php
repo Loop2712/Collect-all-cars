@@ -1189,6 +1189,13 @@ class Agora_4_Controller extends Controller
 
             $data_array = json_decode($data_member_in_room, true);
             $check_user = $data_array;
+            $data_command = Data_1669_officer_command::where('user_id',$check_user)->first();
+
+            if( !empty($data_command) ){
+                $user_in_room['role_check'] = "ตรวจพบศูนย์สั่งการ";
+            }else{
+                $user_in_room['role_check'] = "ไม่พบศูนย์สั่งการ";
+            }
 
             if( !empty($check_user) ){
                 $user_in_room['data'] = User::where('id' , $check_user)->first();
@@ -1508,7 +1515,6 @@ class Agora_4_Controller extends Controller
     {
         // รับข้อมูลจาก request
         $data = $request->all();
-
         $sos_id = $data['sos_id'];
         $app_id = $data['app_id'];
         $appCertificate = $data['appCertificate'];
@@ -1520,6 +1526,7 @@ class Agora_4_Controller extends Controller
         $useMicrophone = $data['useMicrophone'];
         $useSpeaker = $data['useSpeaker'];
 
+        $sos_help_center = Sos_help_center::where('id',$sos_id)->first();
         // สมมติว่าคุณมี logic ที่ต้องการทำก่อนที่จะ return view
         return view('sos_help_center.command_video_call_2',
             compact(
@@ -1533,6 +1540,7 @@ class Agora_4_Controller extends Controller
                 'useCamera',
                 'useMicrophone',
                 'useSpeaker',
+                'sos_help_center',
         ));
     }
 

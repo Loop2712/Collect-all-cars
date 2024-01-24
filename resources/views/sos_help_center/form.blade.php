@@ -1285,10 +1285,8 @@ color: #ff9317;
                 @include('sos_help_center.command_video_call_2',
                     [
                         'sos_id' => $sos_1669_id ,
-                        // 'app_id' => $appID ,
-                        // 'appCertificate' => $appCertificate,
-                        'app_id' => '03039c40792e46bdbe46c16b1a338303',
-                        'appCertificate' => 'cf9986c91db74f16879deead4a34dd03',
+                        'app_id' => $appID ,
+                        'appCertificate' => $appCertificate,
                         'agora_chat' => $agora_chat,
                         'type' => 'user_sos_1669',
                         'videoTrack' => 'close',
@@ -1312,8 +1310,8 @@ color: #ff9317;
                         },
                         body: JSON.stringify({
                             sos_id: '{{ $sos_1669_id }}',
-                            app_id: '03039c40792e46bdbe46c16b1a338303',
-                            appCertificate: 'cf9986c91db74f16879deead4a34dd03',
+                            app_id: appId,
+                            appCertificate: appCertificate,
                             agora_chat: '{{ $agora_chat }}',
                             type: 'user_sos_1669',
                             videoTrack: 'close',
@@ -1325,8 +1323,8 @@ color: #ff9317;
                     })
                     .then(response => response.text())
                     .then(html => {
-                        console.log("html ==========================================");
-                        console.log(html);
+                        // console.log("html ==========================================");
+                        // console.log(html);
                         document.getElementById('commandVideoCall2Container').innerHTML = html;
                         document.querySelector('#btnVideoCall').disabled = true;
                         setTimeout(() => {
@@ -2617,9 +2615,30 @@ color: #ff9317;
 
     document.addEventListener('DOMContentLoaded', (event) => {
         //=================================================================
-        //===================== Save Key Agora ============================
+        //===================== Get Key Agora ============================
         //=================================================================
+        var appId = sessionStorage.getItem('a');
+        var appCertificate = sessionStorage.getItem('b');
 
+        // สลับตำแหน่ง appId และ appCertificate
+        function swapValues(value1, value2) {
+            return {
+                agoraAppId: value1.split('').reverse().join(''),
+                agoraAppCertificate: value2.split('').reverse().join('')
+            };
+        }
+
+        // สลับตำแหน่ง appId และ appCertificate
+        const swappedValues = swapValues(appId, appCertificate);
+
+        // กำหนดค่าที่ถูกสลับกลับไปที่ตัวแปรเดิม
+        appId = swappedValues.agoraAppId;
+        appCertificate = swappedValues.agoraAppCertificate;
+
+        if (!appId || !appCertificate) {
+            appId = '{{ env("AGORA_APP_ID") }}';
+            appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+        }
 
         //=================================================================
 
