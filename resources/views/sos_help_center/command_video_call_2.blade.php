@@ -1241,7 +1241,7 @@
                             }
                         }
 
-                        let check_token_expire = setInterval(() => {
+                        check_token_expire = setInterval(() => {
                             checkAndNotifyExpiration(expirationTimestamp);
                         }, 1000);
 
@@ -1785,6 +1785,7 @@
                     // ถ้าผู้ใช้ เหลือ น้อยกว่า 2 คน ให้หยุดนับเวลา
                     if(member_in_room.length < 2){
                         console.log("member_in_room น้อยกว่า 2 --> user-left");
+                        console.log(check_start_timer_video_call);
                         if(check_start_timer_video_call == true){
                             myStop_timer_video_call();
                         }
@@ -3549,6 +3550,11 @@
             clearInterval(loop_timer_video_call);
             check_start_timer_video_call = false;
             document.querySelector('#time_of_room').innerHTML = 'เริ่มนับเมื่อมีผู้ใช้ 2 คน';
+            document.querySelector('#time_of_room').classList.remove('text-danger');
+
+            document.querySelector('#power_bar').classList.add('d-none');
+            clearInterval(timer_progess);
+
         }, 1000);
     }
 
@@ -3576,7 +3582,7 @@
 
                     let targetTime = targetDate.getTime();
 
-                    let loop_timer_video_call = setInterval(function() {
+                    loop_timer_video_call = setInterval(function() {
                         // วันที่และเวลาปัจจุบัน
                         let currentDate = new Date();
                         let currentTime = currentDate.getTime();
@@ -3653,17 +3659,18 @@
     // เพิ่มฟังก์ชันที่คำนวณเวลาและอัพเดท progress bar
     function updateProgressBar(duration) {
 
-        const progressBar = document.getElementById('power_bar');
-            progressBar.classList.remove('d-none');
+        let progressBar = document.querySelector('#power_bar');
 
         let timeLeft = duration;
         let interval = duration / 100; // แบ่งเวลาออกเป็นส่วนๆ
 
         let width = 100;
 
-        let timer = setInterval(function () {
+        timer_progess = setInterval(function () {
+            progressBar.classList.remove('d-none');
+
             if (timeLeft <= 0) {
-                clearInterval(timer);
+                clearInterval(timer_progess);
             }
 
             width -= 100 / duration * interval;
