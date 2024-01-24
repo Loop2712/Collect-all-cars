@@ -790,7 +790,7 @@
         }
     @endphp
 
-    <div id="divVideoCall" class="video-body fade-slide overflow-hidden" style="display: none; margin-bottom: 120px;">
+    <div id="divVideoCall" class="video-body fade-slide overflow-hidden" style="display: none;">
 
 
         <div class="row ">
@@ -3803,13 +3803,14 @@
                                 document.querySelector('#command_join').classList.remove('btn-success');
                                 document.querySelector('#command_join').setAttribute('style' , 'width: 75%;');
 
-                                // let btnVideoCall_sty = document.querySelector('#divVideoCall').getAttribute('style');
-                                let btnVideoCall_dnone = document.querySelector('#divVideoCall');
+                                let btnVideoCall_sty = document.querySelector('#divVideoCall').getAttribute('style');
+
+                                // let btnVideoCall_dnone = document.querySelector('#divVideoCall');
                                     // console.log(btnVideoCall_sty);
                                 console.log("status_click_switch :"+ status_click_switch);
-                                if(!btnVideoCall_dnone && status_click_switch == false){
+                                if(btnVideoCall_sty == "display: none;" && status_click_switch == false){
                                     document.querySelector('#btnVideoCall').click();
-                                    status_click_switch == true;
+                                    status_click_switch = true;
                                 }
 
                                 // ส่งไปสร้าง html แสดงชื่อของผู้ใช้
