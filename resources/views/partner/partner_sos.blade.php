@@ -148,6 +148,15 @@
                 </div>
             </div>
 
+            <div class="col-6 mb-2">
+                <b class="text-danger">แสดงผล 10 เคสล่าสุด</b>
+            </div>
+            <div class="col-6 mb-2">
+                <a href="{{ url('/dashboard_viisos') }}" class="btn btn-sm btn-info float-end">
+                    ดูเคสทั้งหมด
+                </a>
+            </div>
+
             @foreach($view_maps as $item)
             <!-- เนื้อหา -->
             @php
@@ -604,7 +613,6 @@
                         </center>   
                     </div>  
                 @endforeach
-                <div class="pagination-wrapper"> {!! $view_maps->appends(['search' => Request::get('search')])->render() !!} </div>
         </div>
     </div>
 </div>
