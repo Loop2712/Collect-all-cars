@@ -17,36 +17,8 @@ class Hospital_officeController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
 
-        if (!empty($keyword)) {
-            $hospital_office = Hospital_office::where('code_9_digit', 'LIKE', "%$keyword%")
-                ->orWhere('code_5_digit', 'LIKE', "%$keyword%")
-                ->orWhere('code_11_digit', 'LIKE', "%$keyword%")
-                ->orWhere('organization_type', 'LIKE', "%$keyword%")
-                ->orWhere('health_type', 'LIKE', "%$keyword%")
-                ->orWhere('affiliation', 'LIKE', "%$keyword%")
-                ->orWhere('department', 'LIKE', "%$keyword%")
-                ->orWhere('actual_bed', 'LIKE', "%$keyword%")
-                ->orWhere('usage_status', 'LIKE', "%$keyword%")
-                ->orWhere('service_area', 'LIKE', "%$keyword%")
-                ->orWhere('address', 'LIKE', "%$keyword%")
-                ->orWhere('province', 'LIKE', "%$keyword%")
-                ->orWhere('district', 'LIKE', "%$keyword%")
-                ->orWhere('sub_district', 'LIKE', "%$keyword%")
-                ->orWhere('village', 'LIKE', "%$keyword%")
-                ->orWhere('zip_code', 'LIKE', "%$keyword%")
-                ->orWhere('server', 'LIKE', "%$keyword%")
-                ->orWhere('founding_date', 'LIKE', "%$keyword%")
-                ->orWhere('closing_date', 'LIKE', "%$keyword%")
-                ->orWhere('latest_update', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $hospital_office = Hospital_office::latest()->paginate($perPage);
-        }
-
-        return view('hospital_office.index', compact('hospital_office'));
+        return view('hospital_office.index');
     }
 
     /**

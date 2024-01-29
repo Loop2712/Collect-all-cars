@@ -165,35 +165,6 @@
                         </div>
                     </div>
 
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th><th>Code 9 Digit</th><th>Code 5 Digit</th><th>Code 11 Digit</th><th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($hospital_office as $item)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->code_9_digit }}</td><td>{{ $item->code_5_digit }}</td><td>{{ $item->code_11_digit }}</td>
-                                    <td>
-                                        <a href="{{ url('/hospital_office/' . $item->id) }}" title="View Hospital_office"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                        <a href="{{ url('/hospital_office/' . $item->id . '/edit') }}" title="Edit Hospital_office"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-
-                                        <form method="POST" action="{{ url('/hospital_office' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Hospital_office" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        <div class="pagination-wrapper"> {!! $hospital_office->appends(['search' => Request::get('search')])->render() !!} </div>
-                    </div>
-
                 </div>
             </div>
         </div>
