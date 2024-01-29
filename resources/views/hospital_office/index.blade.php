@@ -224,7 +224,7 @@
                 let jsonData = XLSX.utils.sheet_to_json(sheet);
 
                 // ตรวจสอบข้อมูลในคอนโซล
-                console.log(jsonData);
+                // console.log(jsonData);
 
                 fetch("{{ url('/') }}/api/create_hospital_office/excel", {
                     method: 'post',
