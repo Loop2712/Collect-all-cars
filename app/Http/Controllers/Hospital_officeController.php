@@ -120,13 +120,15 @@ class Hospital_officeController extends Controller
                 $data_arr[$key] = $value;
             }
 
-            $check_old_data = Hospital_office::where('code_9_digit',$data_arr['code_9_digit'])->first();
+            // $check_old_data = Hospital_office::where('code_9_digit',$data_arr['code_9_digit'])->first();
 
-            if( !empty($check_old_data->id) ){
-                // 
-            }else{
-                Hospital_office::create($data_arr);
-            }
+            // if( !empty($check_old_data->id) ){
+            //     // 
+            // }else{
+            //     // 
+            // }
+
+            Hospital_office::create($data_arr);
         }
 
         return "success" ;
