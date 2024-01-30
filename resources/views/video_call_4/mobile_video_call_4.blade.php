@@ -1971,33 +1971,12 @@
 
                 } catch (error) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
-                   // ดึงรายการกล้องทั้งหมด
-                   const cameraDevices = await navigator.mediaDevices.enumerateDevices();
-                        // เลือกกล้องที่ active (เช็ค kind เป็น 'videoinput')
-                        const activeCameras = cameraDevices.filter(device => device.kind === 'videoinput' && device.deviceId !== 'default');
+                    console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
+                    alert('ไม่สามารถโหลดข้อมูลกล้องได้ รีเฟรชหน้าเว็บไซต์');
 
-                        if (activeCameras.length > 0) {
-                            // เลือกกล้องล่าสุดที่ active
-                            const selectedCamera = activeCameras[activeCameras.length - 1].deviceId;
-
-                            // ใช้กล้องที่ถูกเลือก
-                            channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
-                                {
-                                    cameraId: selectedCamera,
-                                    optimizationMode: "detail",
-                                    encoderConfig:
-                                    {
-                                        width: 640,
-                                        height: { ideal: 480, min: 400, max: 500 },
-                                        frameRate: 15,
-                                        bitrateMin: 600, bitrateMax: 1000,
-                                    },
-                                }
-                            );
-                        } else {
-                            // ไม่พบกล้องที่ active
-                            console.error("ไม่พบกล้องที่ active");
-                        }
+                    setTimeout(() => {
+                        window.location.reload(); // รีเฟรชหน้าเว็บ
+                    }, 2000);
 
                 }
 
