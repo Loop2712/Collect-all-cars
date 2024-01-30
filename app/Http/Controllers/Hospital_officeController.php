@@ -7,6 +7,7 @@ use App\Http\Requests;
 
 use App\Models\Hospital_office;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class Hospital_officeController extends Controller
 {
@@ -17,6 +18,35 @@ class Hospital_officeController extends Controller
      */
     public function index(Request $request)
     {
+        // $data = Hospital_office::where('province',"กาญจนบุรี")->get();
+        $data = Hospital_office::where('province', 'กาญจนบุรี')->take(10)->get();
+
+        foreach ($data as $item) {
+            echo "<br>";
+            echo $item->name;
+
+            $apiKey = 'AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus';
+            $placeName = $item->name;
+
+            $response = Http::get('https://maps.googleapis.com/maps/api/place/findplacefromtext/json', [
+                'key' => $apiKey,
+                'input' => $placeName,
+                'inputtype' => 'textquery',
+                'fields' => 'formatted_address,name,rating,opening_hours,pgeometry', // adjust fields according to your needs
+            ]);;
+
+            $places = $response->json();
+
+            echo "<pre>";
+            print_r($places);
+            echo "<pre>";
+
+            echo "=========================";
+
+        }
+
+        exit();
+
 
         return view('hospital_office.index');
     }
