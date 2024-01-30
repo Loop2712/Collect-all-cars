@@ -25,7 +25,7 @@ class Hospital_officeController extends Controller
             echo "<br>";
             echo $item->name;
 
-            $apiKey = 'AIzaSyAHrdKXlaset7m3Na7pMCEj8efChb6qJio';
+            $apiKey = 'AIzaSyBgrxXDgk1tgXngalZF3eWtcTWI-LPdeus';
             $placeName = $item->name;
 
             $response = Http::get('https://maps.googleapis.com/maps/api/place/findplacefromtext/json', [
