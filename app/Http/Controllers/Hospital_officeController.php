@@ -24,72 +24,72 @@ class Hospital_officeController extends Controller
 
         $currentDomain = $request->getHost();
 
-        foreach ($data as $item) {
+        // foreach ($data as $item) {
 
-            $data_arr = [];
-            // echo "<br>";
-            // echo $item->name;
+        //     $data_arr = [];
+        //     // echo "<br>";
+        //     // echo $item->name;
 
-            $apiKey = 'AIzaSyAh-Wi8bR767E3wkYTs2W9xnnXAU7NAQIo';
-            $placeName = $item->name;
+        //     $apiKey = 'AIzaSyAh-Wi8bR767E3wkYTs2W9xnnXAU7NAQIo';
+        //     $placeName = $item->name;
 
-            $response = Http::get('https://maps.googleapis.com/maps/api/place/findplacefromtext/json', [
-                'key' => $apiKey,
-                'input' => $placeName,
-                'inputtype' => 'textquery',
-                'fields' => 'formatted_address,name,rating,opening_hours,geometry', 
-                'locationbias' => 'point:latitude,longitude', // เปลี่ยน latitude และ longitude ตามที่คุณต้องการ
-            ]);
-
-
-            $places = $response->json();
-
-            $data_arr = [];
-
-            // ตรวจสอบว่ามีข้อมูล candidates อยู่ใน response หรือไม่
-            if (isset($places['candidates']) && is_array($places['candidates']) && count($places['candidates']) > 0) {
-                foreach ($places['candidates'] as $candidate) {
-                    $formatted_address = $candidate['formatted_address'];
-                    $location = $candidate['geometry']['location'];
-                    $lat = $location['lat'];
-                    $lng = $location['lng'];
-
-                    // เพิ่มข้อมูลลงใน $data_arr
-                    $data_arr[] = [
-                        'formatted_address' => $formatted_address,
-                        'lat' => $lat,
-                        'lng' => $lng
-                    ];
-                }
-            }
+        //     $response = Http::get('https://maps.googleapis.com/maps/api/place/findplacefromtext/json', [
+        //         'key' => $apiKey,
+        //         'input' => $placeName,
+        //         'inputtype' => 'textquery',
+        //         'fields' => 'formatted_address,name,rating,opening_hours,geometry', 
+        //         'locationbias' => 'point:latitude,longitude', // เปลี่ยน latitude และ longitude ตามที่คุณต้องการ
+        //     ]);
 
 
+        //     $places = $response->json();
 
-            if( !empty($data_arr[0]['formatted_address']) ){
+        //     $data_arr = [];
 
-                echo $placeName;
-                echo "<br>";
+        //     // ตรวจสอบว่ามีข้อมูล candidates อยู่ใน response หรือไม่
+        //     if (isset($places['candidates']) && is_array($places['candidates']) && count($places['candidates']) > 0) {
+        //         foreach ($places['candidates'] as $candidate) {
+        //             $formatted_address = $candidate['formatted_address'];
+        //             $location = $candidate['geometry']['location'];
+        //             $lat = $location['lat'];
+        //             $lng = $location['lng'];
 
-                DB::table('hospital_offices')
-                    ->where([ 
-                            ['name', $placeName],
-                        ])
-                    ->update([
-                            'address' => $data_arr[0]['formatted_address'],
-                            'lat' => $data_arr[0]['lat'],
-                            'lng' => $data_arr[0]['lng'],
-                        ]);      
+        //             // เพิ่มข้อมูลลงใน $data_arr
+        //             $data_arr[] = [
+        //                 'formatted_address' => $formatted_address,
+        //                 'lat' => $lat,
+        //                 'lng' => $lng
+        //             ];
+        //         }
+        //     }
 
-            }
 
-            // echo "<pre>";
-            // print_r($data_arr);
-            // echo "<pre>";
 
-            echo "=========================";
-            echo "<br>";
+        //     if( !empty($data_arr[0]['formatted_address']) ){
 
-        }
+        //         echo $placeName;
+        //         echo "<br>";
+
+        //         DB::table('hospital_offices')
+        //             ->where([ 
+        //                     ['name', $placeName],
+        //                 ])
+        //             ->update([
+        //                     'address' => $data_arr[0]['formatted_address'],
+        //                     'lat' => $data_arr[0]['lat'],
+        //                     'lng' => $data_arr[0]['lng'],
+        //                 ]);      
+
+        //     }
+
+        //     // echo "<pre>";
+        //     // print_r($data_arr);
+        //     // echo "<pre>";
+
+        //     echo "=========================";
+        //     echo "<br>";
+
+        // }
 
         exit();
 
