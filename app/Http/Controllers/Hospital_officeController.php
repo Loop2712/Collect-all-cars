@@ -21,6 +21,10 @@ class Hospital_officeController extends Controller
         // $data = Hospital_office::where('province',"กาญจนบุรี")->get();
         $data = Hospital_office::where('province', 'กาญจนบุรี')->take(10)->get();
 
+        $currentDomain = $request->getHost();
+
+        echo "Domain : " . $currentDomain;
+
         foreach ($data as $item) {
             echo "<br>";
             echo $item->name;
@@ -32,7 +36,7 @@ class Hospital_officeController extends Controller
                 'key' => $apiKey,
                 'input' => $placeName,
                 'inputtype' => 'textquery',
-                'fields' => 'formatted_address,name,rating,opening_hours,pgeometry', // adjust fields according to your needs
+                'fields' => 'formatted_address,name,rating,opening_hours,pgeometry', 
             ]);;
 
             $places = $response->json();
