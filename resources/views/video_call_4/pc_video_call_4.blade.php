@@ -1828,17 +1828,33 @@ switch ($sos_data->status) {
                             window.location.reload(); // รีเฟรชหน้าเว็บ
                         });
                     }
-                join_and_update();
-                //=================    จบ สำหรับ Senior Benze  =========================
+                    join_and_update();
+                    //=================    จบ สำหรับ Senior Benze  =========================
 
                 } catch (error) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
-                    alert('ไม่สามารถโหลดข้อมูลกล้องได้ รีเฟรชหน้าเว็บไซต์');
+                    // ใช้ navigator.mediaDevices.getDisplayMedia เพื่อดึง MediaStream จากการแสดงหน้าจอ
+                    const screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+                    const screenTrack = screenStream.getVideoTracks()[0];
+                    // สร้าง custom video track จาก screenTrack
+                    channelParameters.localVideoTrack = await AgoraRTC.createCustomVideoTrack({
+                        mediaStreamTrack: screenTrack,
+                        optimizationMode: 'detail',
+                        encoderConfig: {
+                            width: 640,
+                            // Specify a value range and an ideal value
+                            height: { ideal: 480, min: 400, max: 500 },
+                            frameRate: 15,
+                            bitrateMin: 600, bitrateMax: 1000,
+                        },
+                    });
 
-                    setTimeout(() => {
-                        window.location.reload(); // รีเฟรชหน้าเว็บ
-                    }, 2000);
+                    // alert('ไม่สามารถโหลดข้อมูลกล้องได้ รีเฟรชหน้าเว็บไซต์');
+
+                    // setTimeout(() => {
+                    //     window.location.reload(); // รีเฟรชหน้าเว็บ
+                    // }, 2000);
 
                 }
 

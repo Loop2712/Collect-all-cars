@@ -172,9 +172,9 @@
         border-top: rgb(0, 99, 247) 5px solid;
     }
 
-    /* .agora_create_local div {
+    .agora_create_local div {
         border-radius: 5px;
-    } */
+    }
 
 	/* #container_user_video_call .custom-div:not(:only-child) {
 		flex: 0 0 calc(100% - 40px);
@@ -1146,30 +1146,6 @@
 
     function start_video_call_command(){
 
-        console.log(appId);console.log(appCertificate);
-        // var appId = sessionStorage.getItem('a');
-        // var appCertificate = sessionStorage.getItem('b');
-
-        // // สลับตำแหน่ง appId และ appCertificate
-        // function swapValues(value1, value2) {
-        //     return {
-        //         agoraAppId: value1.split('').reverse().join(''),
-        //         agoraAppCertificate: value2.split('').reverse().join('')
-        //     };
-        // }
-
-        // // สลับตำแหน่ง appId และ appCertificate
-        // const swappedValues = swapValues(appId, appCertificate);
-
-        // // กำหนดค่าที่ถูกสลับกลับไปที่ตัวแปรเดิม
-        // appId = swappedValues.agoraAppId;
-        // appCertificate = swappedValues.agoraAppCertificate;
-
-        // if (!appId || !appCertificate) {
-        //     appId = '{{ env("AGORA_APP_ID") }}';
-        //     appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
-        // }
-
         options =
         {
             // Pass your App ID here.
@@ -1183,30 +1159,6 @@
 
             role: '',
         };
-
-        if(user_data.photo){
-            profile_local = "{{ url('/storage') }}" + "/" + user_data.photo;
-        }else if(!user_data.photo && user_data.avatar){
-            profile_local = user_data.avatar;
-        }else{
-            profile_local = "https://www.viicheck.com/Medilab/img/icon.png";
-        }
-        //===== สุ่มสีพื้นหลังของ localPlayerContainer=====
-        fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + user_id + "&type=" + type_video_call + "&sos_id=" + sos_id)
-            .then(response => response.json())
-            .then(result => {
-
-                bg_local = result.hexcolor;
-                // bg_local = "#F0D2CC";
-                name_local = result.name_user;
-                type_local = result.user_type;
-
-                // changeBgColor(bg_local);
-
-        })
-        .catch(error => {
-            console.log("โหลดข้อมูล LocalUser ล้มเหลว ใน get_local_data_4");
-        });
 
         function LoadingVideoCall() {
             // const loadingAnime = document.getElementById('lds-ring');
@@ -1311,6 +1263,7 @@
         localPlayerContainer.style.left = "0";
         localPlayerContainer.style.top = "0";
         localPlayerContainer.style.transform = "scaleX(-1)";
+        localPlayerContainer.style.borderRadius = "5px";
         localPlayerContainer.classList.add('agora_create_local');
 
         //======== ทุก 10 วิ ให้เช็คว่า div .custom-div ที่มี id ของคนที่ไม่ได้อยู่ในห้องนี้แล้ว --> ถ้าเจอให้ลบ div ทิ้ง =========
@@ -1806,256 +1759,290 @@
         // window.onload = function ()
         function afterJoin()
         {
-            // fetch("{{ url('/') }}/api/check_user_in_room_2" + "?sos_id=" + sos_id + "&type=" + type_video_call)
-            //     .then(response => response.json())
-            //     .then(result => {
-
-            //         if (result['status'] == "ok") {
-            //             setTimeout(() => {
-            //                 document.getElementById("command_join").click();
-            //             }, 1000); // รอเวลา 1 วินาทีก่อนเรียกใช้งาน
-            //         }else{
-            //             alert("จำนวนผู้ใช้ในห้องสนทนาสูงสุดแล้ว");
-            //             // window.history.back();
-            //         }
-            //     }).catch(error => {
-            //         console.log("โหลดหน้าล้มเหลว :" + error);
-            //         // window.location.reload(); // รีเฟรชหน้าเว็บ
-            //     });
-
             document.getElementById("command_join").onclick = async function (user_id)
             {
-                // Enable dual-stream mode.
-                // agoraEngine.enableDualStream();
 
-                // Join a channel.
-                await agoraEngine.join(options.appId, options.channel, options.token, options.uid);
-                // Create a local audio track from the audio sampled by a microphone.
-
-                // ปิดกล้องเดิม (หากมีการสร้างไว้ก่อนหน้านี้)
-                if (channelParameters.localVideoTrack) {
-                    channelParameters.localVideoTrack.close();
-                    channelParameters.localVideoTrack = null;
-                }
-
-                // ปิดไมโครโฟนเดิม (หากมีการสร้างไว้ก่อนหน้านี้)
-                if (channelParameters.localAudioTrack) {
-                    channelParameters.localAudioTrack.close();
-                    channelParameters.localAudioTrack = null;
-                }
-
-                //หาไมโครโฟน
                 try {
-                    if(useMicrophone){
-                        channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
-                            {
-                                encoderConfig: "high_quality_stereo",
-                                microphoneId: useMicrophone
-                            }
-                        );
+                    let response = await fetch("{{ url('/') }}/api/check_user_in_room_2" + "?sos_id=" + sos_id + "&type=user_sos_1669");
+                    let result = await response.json();
+
+                    if (result['status'] == "2_people") {
+                        alert("จำนวนผู้ใช้ในห้องสนทนาสูงสุดแล้ว");
                     }else{
-                        channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
-                            {
-                                encoderConfig: "high_quality_stereo",
-                            }
-                        );
-                    }
+                        // Enable dual-stream mode.
+                        // agoraEngine.enableDualStream();
 
-                    // Publish the local audio tracks in the channel.
-                    await agoraEngine.publish([channelParameters.localAudioTrack]);
+                        // Join a channel.
+                        await agoraEngine.join(options.appId, options.channel, options.token, options.uid);
+                        // Create a local audio track from the audio sampled by a microphone.
 
-                    console.log('หาไมโครโฟน สำเร็จ');
-                } catch (error) {
-                    // ในกรณีที่เกิดข้อผิดพลาดในการสร้างไมโครโฟน
-                    console.error('ไม่สามารถสร้างไมโครโฟนหรือไม่พบไมโครโฟน', error);
-
-                    try { // เข้าใหม่ในสถานะปิดไมโครโฟนแทน
-                        if(useMicrophone){
-                            channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
-                                {
-                                    encoderConfig: "high_quality_stereo",
-                                    microphoneId: useMicrophone
-                                }
-                            );
-                        }else{
-                            channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
-                                {
-                                    encoderConfig: "high_quality_stereo",
-                                }
-                            );
+                        // ปิดกล้องเดิม (หากมีการสร้างไว้ก่อนหน้านี้)
+                        if (channelParameters.localVideoTrack) {
+                            channelParameters.localVideoTrack.close();
+                            channelParameters.localVideoTrack = null;
                         }
-                        // ปิดไมโครโฟนใหม่ทันที
-                        await channelParameters.localAudioTrack.setEnabled(false);
-                        //เปลี่ยนสถานะไมโครโฟน เป็น false
-                        isAudio = false;
-                        await agoraEngine.publish([channelParameters.localAudioTrack]);
-                    } catch (newError) {
-                        console.error('ไม่สามารถสร้างไมโครโฟนใหม่หรือปิดไมโครโฟนใหม่', newError);
-                        // ทำการปิดแบบถาวรหรือจัดการข้อผิดพลาดอื่นๆ ตามที่คุณต้องการ
-                    }
-                }
 
-                // หากล้อง
-                try {
-                    if(useCamera){
-                        channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
-                            {
-                                cameraId: useCamera,
-                                optimizationMode: "detail",
-                                encoderConfig:
-                                {
+                        // ปิดไมโครโฟนเดิม (หากมีการสร้างไว้ก่อนหน้านี้)
+                        if (channelParameters.localAudioTrack) {
+                            channelParameters.localAudioTrack.close();
+                            channelParameters.localAudioTrack = null;
+                        }
+
+                        //หาไมโครโฟน
+                        try {
+                            if(useMicrophone){
+                                channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                                    {
+                                        encoderConfig: "high_quality_stereo",
+                                        microphoneId: useMicrophone
+                                    }
+                                );
+                            }else{
+                                channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                                    {
+                                        encoderConfig: "high_quality_stereo",
+                                    }
+                                );
+                            }
+
+                            // Publish the local audio tracks in the channel.
+                            await agoraEngine.publish([channelParameters.localAudioTrack]);
+
+                            console.log('หาไมโครโฟน สำเร็จ');
+                        } catch (error) {
+                            // ในกรณีที่เกิดข้อผิดพลาดในการสร้างไมโครโฟน
+                            console.error('ไม่สามารถสร้างไมโครโฟนหรือไม่พบไมโครโฟน', error);
+
+                            try { // เข้าใหม่ในสถานะปิดไมโครโฟนแทน
+                                if(useMicrophone){
+                                    channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                                        {
+                                            encoderConfig: "high_quality_stereo",
+                                            microphoneId: useMicrophone
+                                        }
+                                    );
+                                }else{
+                                    channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                                        {
+                                            encoderConfig: "high_quality_stereo",
+                                        }
+                                    );
+                                }
+                                // ปิดไมโครโฟนใหม่ทันที
+                                await channelParameters.localAudioTrack.setEnabled(false);
+                                //เปลี่ยนสถานะไมโครโฟน เป็น false
+                                isAudio = false;
+                                await agoraEngine.publish([channelParameters.localAudioTrack]);
+                            } catch (newError) {
+                                console.error('ไม่สามารถสร้างไมโครโฟนใหม่หรือปิดไมโครโฟนใหม่', newError);
+                                // ทำการปิดแบบถาวรหรือจัดการข้อผิดพลาดอื่นๆ ตามที่คุณต้องการ
+                            }
+                        }
+
+                        // หากล้อง
+                        try {
+                            if(useCamera){
+                                channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
+                                    {
+                                        cameraId: useCamera,
+                                        optimizationMode: "detail",
+                                        encoderConfig:
+                                        {
+                                            width: 640,
+                                            // Specify a value range and an ideal value
+                                            height: { ideal: 480, min: 400, max: 500 },
+                                            frameRate: 15,
+                                            bitrateMin: 600, bitrateMax: 1000,
+                                        },
+                                    }
+                                );
+                            }else{
+                                channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
+                                    {
+                                        optimizationMode: "detail",
+                                        encoderConfig:
+                                        {
+                                            width: 640,
+                                            // Specify a value range and an ideal value
+                                            height: { ideal: 480, min: 400, max: 500 },
+                                            frameRate: 15,
+                                            bitrateMin: 600, bitrateMax: 1000,
+                                        },
+                                    }
+                                );
+                            }
+
+                            // Publish the local audio and video tracks in the channel.
+                            await agoraEngine.publish([channelParameters.localVideoTrack]);
+                            // StatsVideoUpdate();
+                            document.querySelector(".btn-video-call-container").classList.remove("d-none");
+                            document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
+                            document.querySelector('#span_timer_video_call').classList.remove('d-none');
+                            leaveChannel = "false";
+                            check_start_timer_video_call = false;
+                            // document.querySelector('#command_join').classList.add('btn-success');
+                            document.querySelector('#command_join').classList.add('d-none');
+                            // document.querySelector('#command_join').classList.remove('video-call-in-room');
+
+                            stop_ringtone();
+
+                        } catch (error) {
+                            // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
+                            console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
+                             // ใช้ navigator.mediaDevices.getDisplayMedia เพื่อดึง MediaStream จากการแสดงหน้าจอ
+                            const screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+                            const screenTrack = screenStream.getVideoTracks()[0];
+                            // สร้าง custom video track จาก screenTrack
+                            channelParameters.localVideoTrack = await AgoraRTC.createCustomVideoTrack({
+                                mediaStreamTrack: screenTrack,
+                                optimizationMode: 'detail',
+                                encoderConfig: {
                                     width: 640,
                                     // Specify a value range and an ideal value
                                     height: { ideal: 480, min: 400, max: 500 },
                                     frameRate: 15,
                                     bitrateMin: 600, bitrateMax: 1000,
                                 },
-                            }
-                        );
-                    }else{
-                        channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
-                            {
-                                optimizationMode: "detail",
-                                encoderConfig:
-                                {
-                                    width: 640,
-                                    // Specify a value range and an ideal value
-                                    height: { ideal: 480, min: 400, max: 500 },
-                                    frameRate: 15,
-                                    bitrateMin: 600, bitrateMax: 1000,
-                                },
-                            }
-                        );
-                    }
+                            });
+                            await agoraEngine.publish([channelParameters.localVideoTrack]);
+                            // setTimeout(() => {
+                            //     // window.location.reload(); // รีเฟรชหน้าเว็บ
+                            //     // afterJoin();
+                            //     leave_refresh();
+                            // }, 2000);
 
-                    // Publish the local audio and video tracks in the channel.
-                    await agoraEngine.publish([channelParameters.localVideoTrack]);
-                    // StatsVideoUpdate();
-                    document.querySelector(".btn-video-call-container").classList.remove("d-none");
-                    document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
-                    document.querySelector('#span_timer_video_call').classList.remove('d-none');
-                    leaveChannel = "false";
-                    check_start_timer_video_call = false;
-                    // document.querySelector('#command_join').classList.add('btn-success');
-                    document.querySelector('#command_join').classList.add('d-none');
-                    // document.querySelector('#command_join').classList.remove('video-call-in-room');
+                            return; // หยุดการทำงานของฟังก์ชันนี้ทันที
+                        }
 
-                    stop_ringtone();
+                        function join_and_update(){
+                            console.log("join_and_update");
+                                fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id)
+                                    .then(response => response.json())
+                                    .then(result => {
+                                        console.log("result join_room_4");
+                                        console.log(result);
+                                        // let member_in_room = JSON.parse(result);
+                                        setTimeout(() => {
+                                            if(result.length >= 2){
+                                                if(check_start_timer_video_call == false){
+                                                    start_timer_video_call();
+                                                }
+                                            }else{
+                                                if(check_start_timer_video_call == true){
+                                                    console.log("member_in_room น้อยกว่า 2 --> join_and_update");
+                                                    myStop_timer_video_call();
+                                                }
+                                            }
+                                        }, 800);
 
-                } catch (error) {
-                    // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
-                    console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
-                    alert('ไม่สามารถโหลดข้อมูลกล้องได้ รีเฟรชหน้าเว็บไซต์');
+                                })
+                                .catch(error => {
+                                    console.log("บันทึกข้อมูล join_and_update ล้มเหลว :" + error);
+                                    // window.location.reload(); // รีเฟรชหน้าเว็บ
+                                });
+                        }
+                        join_and_update();
 
-                    setTimeout(() => {
-                        // window.location.reload(); // รีเฟรชหน้าเว็บ
-                        // afterJoin();
-                        leave_refresh();
-                    }, 2000);
-
-                    return; // หยุดการทำงานของฟังก์ชันนี้ทันที
-                }
-
-                function join_and_update(){
-                    console.log("join_and_update");
-                        fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id)
+                        if(user_data.photo){
+                            profile_local = "{{ url('/storage') }}" + "/" + user_data.photo;
+                        }else if(!user_data.photo && user_data.avatar){
+                            profile_local = user_data.avatar;
+                        }else{
+                            profile_local = "https://www.viicheck.com/Medilab/img/icon.png";
+                        }
+                        //===== สุ่มสีพื้นหลังของ localPlayerContainer=====
+                        fetch("{{ url('/') }}/api/get_local_data_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id)
                             .then(response => response.json())
                             .then(result => {
-                                console.log("result join_room_4");
-                                console.log(result);
-                                // let member_in_room = JSON.parse(result);
-                                setTimeout(() => {
-                                    if(result.length >= 2){
-                                        if(check_start_timer_video_call == false){
-                                            start_timer_video_call();
-                                        }
-                                    }else{
-                                        if(check_start_timer_video_call == true){
-                                            console.log("member_in_room น้อยกว่า 2 --> join_and_update");
-                                            myStop_timer_video_call();
-                                        }
-                                    }
-                                }, 800);
+                                bg_local = result.hexcolor;
+                                // bg_local = "#F0D2CC";
+                                name_local = result.name_user;
+                                type_local = result.user_type;
+
+                                changeBgColor(bg_local);
 
                         })
                         .catch(error => {
-                            console.log("บันทึกข้อมูล join_and_update ล้มเหลว :" + error);
-                            // window.location.reload(); // รีเฟรชหน้าเว็บ
+                            console.log("โหลดข้อมูล LocalUser ล้มเหลว ใน get_local_data_4");
+                            // console.log(error);
                         });
-                }
-                join_and_update();
 
-                //===== จบส่วน สุ่มสีพื้นหลังของ localPlayerContainer =====
-                if(name_local && type_local){
-                    name_local = name_local;
-                    type_local = type_local;
-                }else{
-                    name_local = "--";
-                    type_local = "--";
-                }
-                //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
+                        //===== จบส่วน สุ่มสีพื้นหลังของ localPlayerContainer =====
+                        if(name_local && type_local){
+                            name_local = name_local;
+                            type_local = type_local;
+                        }else{
+                            name_local = "--";
+                            type_local = "--";
+                        }
+                        //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
 
-                create_element_localvideo_call(localPlayerContainer,name_local,type_local,profile_local,bg_local);
+                        create_element_localvideo_call(localPlayerContainer,name_local,type_local,profile_local,bg_local);
 
-                // Play the local video track.
-                channelParameters.localVideoTrack.play(localPlayerContainer);
+                        // Play the local video track.
+                        channelParameters.localVideoTrack.play(localPlayerContainer);
 
-                // เอาหน้าโหลดออก
-                // document.querySelector('#lds-ring').remove();
+                        // เอาหน้าโหลดออก
+                        // document.querySelector('#lds-ring').remove();
 
-                //======= สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน ==========//
-                btn_toggle_mic_camera(videoTrack,audioTrack,bg_local);
+                        //======= สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน ==========//
+                        btn_toggle_mic_camera(videoTrack,audioTrack,bg_local);
 
-                //ถ้ากดปุ่ม muteVideo แล้วกล้องอยู่ในสถานะปิด ให้เปลี่ยนสี bg ของ local
-                // document.querySelector('#muteVideo').addEventListener("click", function(e) {
-                //     if (isVideo == false) {
-                //         console.log(bg_local);
-                //         changeBgColor(bg_local);
-                //     }
-                // });
+                        //ถ้ากดปุ่ม muteVideo แล้วกล้องอยู่ในสถานะปิด ให้เปลี่ยนสี bg ของ local
+                        document.querySelector('#muteVideo').addEventListener("click", function(e) {
+                            if (isVideo == false) {
+                                // console.log(bg_local);
+                                changeBgColor(bg_local);
+                            }
+                        });
 
-                //ถ้ากดปุ่ม muteVideo แล้วกล้องอยู่ในสถานะปิด ให้เปลี่ยนสี bg ของ local
-                document.querySelector('#muteAudio').addEventListener("click", function(e) {
-                    if (isAudio == true) {
-                        SoundTest();
+                        //ถ้ากดปุ่ม muteVideo แล้วกล้องอยู่ในสถานะปิด ให้เปลี่ยนสี bg ของ local
+                        document.querySelector('#muteAudio').addEventListener("click", function(e) {
+                            if (isAudio == true) {
+                                SoundTest();
+                            }
+                        });
+
+                        if(isAudio == true){
+                            agoraEngine.publish([channelParameters.localAudioTrack]);
+                        }
+
+                        try { // เช็คสถานะจากห้องทางเข้า แล้วเลือกกดเปิด-ปิด ตามสถานะ
+                            if(videoTrack == "open"){
+                                // เข้าห้องด้วย->สถานะเปิดกล้อง
+                                isVideo = false;
+                                document.querySelector('#muteVideo').click();
+                                console.log("Click open video ===================");
+                            }else{
+                                // เข้าห้องด้วย->สถานะปิดกล้อง
+                                isVideo = true;
+                                document.querySelector('#muteVideo').click();
+                                console.log("Click close video ===================");
+                            }
+
+                            if(audioTrack == "open"){
+                                // เข้าห้องด้วย->สถานะเปิดไมค์
+                                isAudio = false;
+                                document.querySelector('#muteAudio').click();
+                                console.log("Click open audio ===================");
+                            }else{
+                                // เข้าห้องด้วย->สถานะปิดไมค์
+                                isAudio = true;
+                                document.querySelector('#muteAudio').click();
+                                console.log("Click close audio ===================");
+                            }
+                        }
+                        catch (error) {
+                            console.log('ส่งตัวแปร videoTrack audioTrack ไม่สำเร็จ');
+                        }
+
+                        // console.log('AudioTrack:');
+                        // console.log(channelParameters.localAudioTrack);
                     }
-                });
-
-                if(isAudio == true){
-                    agoraEngine.publish([channelParameters.localAudioTrack]);
+                } catch (error) {
+                    console.log("โหลดหน้าล้มเหลว :" + error);
                 }
 
-                try { // เช็คสถานะจากห้องทางเข้า แล้วเลือกกดเปิด-ปิด ตามสถานะ
-                    if(videoTrack == "open"){
-                        // เข้าห้องด้วย->สถานะเปิดกล้อง
-                        isVideo = false;
-                        document.querySelector('#muteVideo').click();
-                        console.log("Click open video ===================");
-                    }else{
-                        // เข้าห้องด้วย->สถานะปิดกล้อง
-                        isVideo = true;
-                        document.querySelector('#muteVideo').click();
-                        console.log("Click close video ===================");
-                    }
-
-                    if(audioTrack == "open"){
-                        // เข้าห้องด้วย->สถานะเปิดไมค์
-                        isAudio = false;
-                        document.querySelector('#muteAudio').click();
-                        console.log("Click open audio ===================");
-                    }else{
-                        // เข้าห้องด้วย->สถานะปิดไมค์
-                        isAudio = true;
-                        document.querySelector('#muteAudio').click();
-                        console.log("Click close audio ===================");
-                    }
-                }
-                catch (error) {
-                    console.log('ส่งตัวแปร videoTrack audioTrack ไม่สำเร็จ');
-                }
-
-                // console.log('AudioTrack:');
-                // console.log(channelParameters.localAudioTrack);
             }
             // Listen to the Leave button click event.
             document.getElementById('leave').onclick = async function ()
@@ -2132,7 +2119,7 @@
         }
         setTimeout(() => {
             afterJoin();
-        }, 2000);
+        }, 1000);
         //=============================================================================//
         //                               สลับอุปกรณ์                                     //
         //=============================================================================//
@@ -2531,12 +2518,12 @@
                 }
             }
 
-            // if (isVideo == false) {
-            //     setTimeout(() => {
-            //         console.log("bg_local ddddddddddddddddddddddd");
-            //         changeBgColor(bg_local);
-            //     }, 50);
-            // }
+            if (isVideo == false) {
+                setTimeout(() => {
+                    // console.log("bg_local ddddddddddddddddddddddd");
+                    changeBgColor(bg_local);
+                }, 50);
+            }
         }
 
         btn_switchMicrophone.onclick = async function()
@@ -2952,6 +2939,12 @@
 
         if (childCount === 2) {
             t.textContent = "#container_user_video_call .custom-div:first-child {position: absolute; width: 100%; height: 100%;} #container_user_video_call .custom-div:nth-child(2) {position: absolute; width: 30%; height: 30%; top: 0; left: 0;}";
+
+            let remoteDiv = container.querySelector('.custom-div[div_video="remote"]');
+            if (remoteDiv) {
+                container.insertBefore(remoteDiv, container.firstChild); // Move remoteDiv to the beginning
+            }
+
         } else if (childCount === 3) {
             t.textContent = "#container_user_video_call .custom-div:not(:only-child) {flex: 0 0 calc(100% - 40px);aspect-ratio: 16/9;} #container_user_video_call .custom-div:not(:only-child):first-child {flex: 0 0 calc(50% - 40px);aspect-ratio: 3/4;} #container_user_video_call .custom-div:not(:only-child):nth-child(2) {flex: 0 0 calc(50% - 40px);aspect-ratio: 3/4;}";
         } else if (childCount === 4) {
@@ -2974,21 +2967,21 @@
         }
     };
 
-    // function changeBgColor(bg_local){
-    //     // เซ็ท bg-local เป็นสีที่ดูด
-    //     console.log("ทำงาน "+bg_local)
+    function changeBgColor(bg_local){
+        // เซ็ท bg-local เป็นสีที่ดูด
+        console.log("ทำงาน "+bg_local)
 
-    //     let agoraCreateLocalDiv = document.querySelector("#videoDiv_"+user_id);
+        let agoraCreateLocalDiv = document.querySelector("#videoDiv_"+user_id);
 
-    //     let divsInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelector(".agora_create_local");
-    //         let sub_div = divsInsideAgoraCreateLocal.querySelector("div");
-    //             sub_div.style.backgroundColor = bg_local;
+        let divsInsideAgoraCreateLocal = agoraCreateLocalDiv.querySelector(".agora_create_local");
+            let sub_div = divsInsideAgoraCreateLocal.querySelector("div");
+                sub_div.style.backgroundColor = bg_local;
 
-    //         if(isVideo == false){
-    //             let video_tag = divsInsideAgoraCreateLocal.querySelector("video");
-    //                 video_tag.remove();
-    //         }
-    // }
+            if(isVideo == false){
+                let video_tag = divsInsideAgoraCreateLocal.querySelector("video");
+                    video_tag.remove();
+            }
+    }
 </script>
 
 
@@ -3059,7 +3052,7 @@
                 // แสดงโปรไฟล์ ตอนปิดกล้อง
                 document.querySelector('.profile-input-output').classList.remove('d-none');
 
-                // changeBgColor(bg_local);
+                changeBgColor(bg_local);
 
                 isVideo = false;
 
@@ -3191,6 +3184,7 @@
 
             // เพิ่ม div หลักลงใน div รวม
             divVideo.append(localPlayerContainer);
+
 
 
             let container_user_video_call = document.querySelector("#container_user_video_call");
