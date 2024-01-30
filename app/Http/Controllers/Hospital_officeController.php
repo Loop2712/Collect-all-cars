@@ -20,7 +20,7 @@ class Hospital_officeController extends Controller
     public function index(Request $request)
     {
         // $data = Hospital_office::where('province',"กาญจนบุรี")->get();
-        $data = Hospital_office::where('province', 'กาญจนบุรี')->where('lat' , '=' , NULL)->take(20)->get();
+        $data = Hospital_office::where('province', 'น่าน')->where('lat' , '=' , NULL)->take(40)->get();
 
         $currentDomain = $request->getHost();
 
@@ -69,7 +69,7 @@ class Hospital_officeController extends Controller
 
                 echo $placeName;
                 echo "<br>";
-                
+
                 DB::table('hospital_offices')
                     ->where([ 
                             ['name', $placeName],
