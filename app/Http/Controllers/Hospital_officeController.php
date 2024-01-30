@@ -30,7 +30,7 @@ class Hospital_officeController extends Controller
         //     // echo "<br>";
         //     // echo $item->name;
 
-        //     $apiKey = 'AIzaSyAh-Wi8bR767E3wkYTs2W9xnnXAU7NAQIo';
+        //     $apiKey = '';
         //     $placeName = $item->name;
 
         //     $response = Http::get('https://maps.googleapis.com/maps/api/place/findplacefromtext/json', [
