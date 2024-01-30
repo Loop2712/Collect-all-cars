@@ -20,7 +20,7 @@ class Hospital_officeController extends Controller
     public function index(Request $request)
     {
         // $data = Hospital_office::where('province',"กาญจนบุรี")->get();
-        $data = Hospital_office::where('province', 'กาญจนบุรี')->where('lat' , '=' , NULL)->take(5)->get();
+        $data = Hospital_office::where('province', 'กาญจนบุรี')->where('lat' , '=' , NULL)->take(20)->get();
 
         $currentDomain = $request->getHost();
 
@@ -64,8 +64,8 @@ class Hospital_officeController extends Controller
             }
 
 
-            echo $placeName;
-            echo "<br>";
+            // echo $placeName;
+            // echo "<br>";
 
             if( !empty($data_arr[0]['formatted_address']) ){
 
@@ -78,17 +78,19 @@ class Hospital_officeController extends Controller
                             'lat' => $data_arr[0]['lat'],
                             'lng' => $data_arr[0]['lng'],
                         ]);      
-                              
+
             }
 
             // echo "<pre>";
             // print_r($data_arr);
             // echo "<pre>";
 
-            echo "=========================";
-            echo "<br>";
+            // echo "=========================";
+            // echo "<br>";
 
         }
+
+        echo "<SUCCESS>";
 
         exit();
 
