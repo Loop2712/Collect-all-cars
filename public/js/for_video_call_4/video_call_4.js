@@ -63,7 +63,7 @@ function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหร�
             document.getElementById(`camera_local`).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
 
             // แสดงโปรไฟล์ ตอนปิดกล้อง
-            document.querySelector('.profile-input-output').classList.remove('d-none');
+            document.querySelector('.profile-input-output-local').classList.remove('d-none');
 
             changeBgColor(bg_local);
 
@@ -83,7 +83,7 @@ function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหร�
             document.getElementById(`camera_local`).innerHTML = '<i class="fa-solid fa-video"></i>';
 
             // ซ่อนโปรไฟล์ ตอนเปิดกล้อง
-            document.querySelector('.profile-input-output').classList.add('d-none');
+            document.querySelector('.profile-input-output-local').classList.add('d-none');
 
             isVideo = true;
 
@@ -115,7 +115,7 @@ function create_element_localvideo_call(localPlayerContainer ,name_local ,type_l
 
         // สร้างแท็ก <img> สำหรับรูปโปรไฟล์
         let ProfileInputOutputDiv = document.createElement("div");
-            ProfileInputOutputDiv.className = "profile-input-output";
+            ProfileInputOutputDiv.className = "profile-input-output-local";
             ProfileInputOutputDiv.setAttribute('style','z-index: 1; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);');
 
         let profileImage = document.createElement('img');

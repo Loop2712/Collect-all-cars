@@ -1004,8 +1004,8 @@
     var appId = '{{ env("AGORA_APP_ID") }}';
     var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
 
-    // var activeVideoDeviceId = "";
-    // var activeAudioDeviceId = "";
+    var activeVideoDeviceId = "";
+    var activeAudioDeviceId = "";
 
     document.addEventListener('DOMContentLoaded', (event) => {
 
@@ -1016,20 +1016,20 @@
         console.log("start_page");
 
         // เรียกใช้ฟังก์ชันและจัดการกับผลลัพธ์
-        // getFirstCameraAndMic().then(({ cameraDeviceId, micDeviceId }) => {
-        //     if (cameraDeviceId && micDeviceId) {
-        //         activeVideoDeviceId = cameraDeviceId;
-        //         activeAudioDeviceId = micDeviceId;
+        getFirstCameraAndMic().then(({ cameraDeviceId, micDeviceId }) => {
+            if (cameraDeviceId && micDeviceId) {
+                activeVideoDeviceId = cameraDeviceId;
+                activeAudioDeviceId = micDeviceId;
 
-        //     } else {
-        //         console.log('Camera or microphone not found');
+            } else {
+                console.log('Camera or microphone not found');
 
-        //         setTimeout(() => {
-        //             console.log('find devices again');
-        //             getFirstCameraAndMic();
-        //         }, 1000);
-        //     }
-        // });
+                setTimeout(() => {
+                    console.log('find devices again');
+                    getFirstCameraAndMic();
+                }, 1000);
+            }
+        });
 
         let user_in_room = '{{ $user_in_room }}';
 
@@ -2172,60 +2172,60 @@
         //                               สลับอุปกรณ์                                     //
         //=============================================================================//
 
-        var activeVideoDeviceId;
-        var activeAudioDeviceId;
-        var activeAudioOutputDeviceId
+        // var activeVideoDeviceId;
+        // var activeAudioDeviceId;
+        // var activeAudioOutputDeviceId
 
-        window.addEventListener('DOMContentLoaded', async () => {
-            try {
+        // window.addEventListener('DOMContentLoaded', async () => {
+        //     try {
 
-                // เรียกดูอุปกรณ์ทั้งหมด
-                let devices = await navigator.mediaDevices.enumerateDevices();
+        //         // เรียกดูอุปกรณ์ทั้งหมด
+        //         let devices = await navigator.mediaDevices.enumerateDevices();
 
-                // เรียกดูอุปกรณ์ที่ใช้อยู่
-                let stream = await navigator.mediaDevices.getUserMedia({
-                    audio: true,
-                    video: true
-                });
+        //         // เรียกดูอุปกรณ์ที่ใช้อยู่
+        //         let stream = await navigator.mediaDevices.getUserMedia({
+        //             audio: true,
+        //             video: true
+        //         });
 
-                // const stream = await navigator.mediaDevices.getUserMedia({
-                //     audio: true,
-                //     video: {
-                //         facingMode: 'user', // หรือ 'environment' หากต้องการใช้กล้องหลัง
-                //         width: { ideal: 1280 },
-                //         height: { ideal: 720 }
-                //     }
-                // });
-                activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
-                activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
+        //         // const stream = await navigator.mediaDevices.getUserMedia({
+        //         //     audio: true,
+        //         //     video: {
+        //         //         facingMode: 'user', // หรือ 'environment' หากต้องการใช้กล้องหลัง
+        //         //         width: { ideal: 1280 },
+        //         //         height: { ideal: 720 }
+        //         //     }
+        //         // });
+        //         activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
+        //         activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
 
-                // if(useMicrophone){
-                //     activeAudioDeviceId = useMicrophone;
-                //     console.log("เข้า if useMicrophone");
-                // }else{
-                //     activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
-                //     console.log("เข้า else useMicrophone");
-                // }
+        //         // if(useMicrophone){
+        //         //     activeAudioDeviceId = useMicrophone;
+        //         //     console.log("เข้า if useMicrophone");
+        //         // }else{
+        //         //     activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
+        //         //     console.log("เข้า else useMicrophone");
+        //         // }
 
-                // if(useCamera){
-                //     activeVideoDeviceId = useCamera;
-                //     console.log("เข้า if useCamera");
-                // }else{
-                //     activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
-                //     console.log("เข้า else useCamera");
-                // }
+        //         // if(useCamera){
+        //         //     activeVideoDeviceId = useCamera;
+        //         //     console.log("เข้า if useCamera");
+        //         // }else{
+        //         //     activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
+        //         //     console.log("เข้า else useCamera");
+        //         // }
 
-                // if(useSpeaker){
-                //     activeAudioOutputDeviceId = useSpeaker;
-                // }else{
-                //     activeAudioOutputDeviceId = devices.find(device => device.kind === 'audiooutput' && device.deviceId === 'default').deviceId;
-                // }
+        //         // if(useSpeaker){
+        //         //     activeAudioOutputDeviceId = useSpeaker;
+        //         // }else{
+        //         //     activeAudioOutputDeviceId = devices.find(device => device.kind === 'audiooutput' && device.deviceId === 'default').deviceId;
+        //         // }
 
-            } catch (error) {
-                console.error('เกิดข้อผิดพลาดในการเรียกดูอุปกรณ์:', error);
-            }
+        //     } catch (error) {
+        //         console.error('เกิดข้อผิดพลาดในการเรียกดูอุปกรณ์:', error);
+        //     }
 
-        });
+        // });
         // ไมโครโฟน -- Microphone
         var old_activeAudioDeviceId ;
 
@@ -3098,7 +3098,7 @@
                 document.getElementById(`camera_local`).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
 
                 // แสดงโปรไฟล์ ตอนปิดกล้อง
-                document.querySelector('.profile-input-output').classList.remove('d-none');
+                document.querySelector('.profile-input-output-local').classList.remove('d-none');
 
                 changeBgColor(bg_local);
 
@@ -3118,7 +3118,7 @@
                 document.getElementById(`camera_local`).innerHTML = '<i class="fa-solid fa-video"></i>';
 
                 // ซ่อนโปรไฟล์ ตอนเปิดกล้อง
-                document.querySelector('.profile-input-output').classList.add('d-none');
+                document.querySelector('.profile-input-output-local').classList.add('d-none');
 
                 isVideo = true;
 
@@ -3151,7 +3151,7 @@
 
             // สร้างแท็ก <img> สำหรับรูปโปรไฟล์
             let ProfileInputOutputDiv = document.createElement("div");
-                ProfileInputOutputDiv.className = "profile-input-output";
+                ProfileInputOutputDiv.className = "profile-input-output-local";
                 ProfileInputOutputDiv.setAttribute('style','z-index: 1; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);');
 
             let profileImage = document.createElement('img');
