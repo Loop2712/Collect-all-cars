@@ -1858,11 +1858,26 @@
                             }
                         );
                     }else{
-                        channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
-                            {
-                                encoderConfig: "high_quality_stereo",
-                            }
-                        );
+                        // ดึงรายการไมโครโฟนทั้งหมด
+                        let microphoneDevices = await navigator.mediaDevices.enumerateDevices();
+                            // เลือกไมโครโฟนที่ active (เช็ค kind เป็น 'audioinput')
+                        let activeMicrophones = microphoneDevices.filter(device => device.kind === 'audioinput' && device.deviceId !== 'default');
+
+                        if (activeMicrophones.length > 0) {
+                            // เลือกไมโครโฟนแรกที่ active
+                            let selectedMicrophone = activeMicrophones[0].deviceId;
+                            // ใช้ไมโครโฟนที่ถูกเลือก
+                            channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                                {
+                                    encoderConfig: "high_quality_stereo",
+                                    microphoneId: selectedMicrophone
+                                }
+                            );
+                        } else {
+                            // ไม่พบไมโครโฟนที่ active
+                            console.error("ไม่พบไมโครโฟนที่ active");
+                            return;
+                        }
                     }
 
                     // Publish the local audio tracks in the channel.
@@ -1882,11 +1897,26 @@
                                 }
                             );
                         }else{
-                            channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
-                                {
-                                    encoderConfig: "high_quality_stereo",
-                                }
-                            );
+                            // ดึงรายการไมโครโฟนทั้งหมด
+                            let microphoneDevices = await navigator.mediaDevices.enumerateDevices();
+                                // เลือกไมโครโฟนที่ active (เช็ค kind เป็น 'audioinput')
+                            let activeMicrophones = microphoneDevices.filter(device => device.kind === 'audioinput' && device.deviceId !== 'default');
+
+                            if (activeMicrophones.length > 0) {
+                                // เลือกไมโครโฟนแรกที่ active
+                                let selectedMicrophone = activeMicrophones[0].deviceId;
+                                // ใช้ไมโครโฟนที่ถูกเลือก
+                                channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                                    {
+                                        encoderConfig: "high_quality_stereo",
+                                        microphoneId: selectedMicrophone
+                                    }
+                                );
+                            } else {
+                                // ไม่พบไมโครโฟนที่ active
+                                console.error("ไม่พบไมโครโฟนที่ active");
+                                return;
+                            }
                         }
                         // ปิดไมโครโฟนใหม่ทันที
                         await channelParameters.localAudioTrack.setEnabled(false);
@@ -1902,6 +1932,7 @@
                 // หากล้อง
                 try {
                     if(useCamera){
+                        console.log("if หากล้อง");
                         channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
                             {
                                 cameraId: useCamera,
@@ -1917,19 +1948,35 @@
                             }
                         );
                     }else{
-                        channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
-                            {
-                                optimizationMode: "detail",
-                                encoderConfig:
+                        console.log("else หากล้อง");
+
+                        // ดึงรายการกล้องทั้งหมด
+                        const cameraDevices = await navigator.mediaDevices.enumerateDevices();
+                        // เลือกกล้องที่ active (เช็ค kind เป็น 'videoinput')
+                        const activeCameras = cameraDevices.filter(device => device.kind === 'videoinput' && device.deviceId !== 'default');
+
+                        if (activeCameras.length > 0) {
+                            // เลือกกล้องล่าสุดที่ active
+                            const selectedCamera = activeCameras[activeCameras.length - 1].deviceId;
+
+                            // ใช้กล้องที่ถูกเลือก
+                            channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
                                 {
-                                    width: 640,
-                                    // Specify a value range and an ideal value
-                                    height: { ideal: 480, min: 400, max: 500 },
-                                    frameRate: 15,
-                                    bitrateMin: 600, bitrateMax: 1000,
-                                },
-                            }
-                        );
+                                    cameraId: selectedCamera,
+                                    optimizationMode: "detail",
+                                    encoderConfig:
+                                    {
+                                        width: 640,
+                                        height: { ideal: 480, min: 400, max: 500 },
+                                        frameRate: 15,
+                                        bitrateMin: 600, bitrateMax: 1000,
+                                    },
+                                }
+                            );
+                        } else {
+                            // ไม่พบกล้องที่ active
+                            console.error("ไม่พบกล้องที่ active");
+                        }
                     }
 
                     // Publish the local audio and video tracks in the channel.

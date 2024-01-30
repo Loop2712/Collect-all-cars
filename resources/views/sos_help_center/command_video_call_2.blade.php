@@ -1021,8 +1021,43 @@
                 activeVideoDeviceId = cameraDeviceId;
                 activeAudioDeviceId = micDeviceId;
 
-                // console.log(`Camera Device ID: ${cameraDeviceId}`);
-                // console.log(`Microphone Device ID: ${micDeviceId}`);
+                // try {
+                //     // เรียกดูอุปกรณ์ทั้งหมด
+                //     let devices = await navigator.mediaDevices.enumerateDevices();
+                //     // เรียกดูอุปกรณ์ที่ใช้อยู่
+                //     let stream = await navigator.mediaDevices.getUserMedia({
+                //         audio: true,
+                //         video: true
+                //     });
+
+                //     activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
+                //     activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
+
+                //     // if(useMicrophone){
+                //     //     activeAudioDeviceId = useMicrophone;
+                //     //     console.log("เข้า if useMicrophone");
+                //     // }else{
+                //     //     activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
+                //     //     console.log("เข้า else useMicrophone");
+                //     // }
+
+                //     // if(useCamera){
+                //     //     activeVideoDeviceId = useCamera;
+                //     //     console.log("เข้า if useCamera");
+                //     // }else{
+                //     //     activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
+                //     //     console.log("เข้า else useCamera");
+                //     // }
+
+                //     // if(useSpeaker){
+                //     //     activeAudioOutputDeviceId = useSpeaker;
+                //     // }else{
+                //     //     activeAudioOutputDeviceId = devices.find(device => device.kind === 'audiooutput' && device.deviceId === 'default').deviceId;
+                //     // }
+
+                // } catch (error) {
+                //     console.error('เกิดข้อผิดพลาดในการเรียกดูอุปกรณ์:', error);
+                // }
             } else {
                 console.log('Camera or microphone not found');
 
@@ -1319,10 +1354,10 @@
                         }
 
                         // แสดงปุ่มเสียงพูด"
-                        if (!isIconVisible) {
-                            document.querySelector('#statusMicrophoneOutput_local').classList.remove('d-none');
-                            isIconVisible = true;
-                        }
+                        // if (!isIconVisible) {
+                        //     document.querySelector('#statusMicrophoneOutput_local').classList.remove('d-none');
+                        //     isIconVisible = true;
+                        // }
 
                     } else {
                         //แสดงชื่ออุปกรณ์ที่ใช้และระดับเสียง
@@ -1336,10 +1371,10 @@
                         }
 
                         // ซ่อนปุ่มเสียงพูด"
-                        if (isIconVisible) {
-                            document.querySelector('#statusMicrophoneOutput_local').classList.add('d-none');
-                            isIconVisible = false;
-                        }
+                        // if (isIconVisible) {
+                        //     document.querySelector('#statusMicrophoneOutput_local').classList.add('d-none');
+                        //     isIconVisible = false;
+                        // }
 
                     }
                 });
@@ -1460,18 +1495,18 @@
                         if (channelParameters.remoteUid == volume.uid && volume.level >= 50) {
                             console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
                             // console.log("Remote พูดแล้ว");
-                            if (!isRemoteIconSound) {
-                                document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid).classList.remove('d-none');
-                                isRemoteIconSound = true;
-                            }
+                            // if (!isRemoteIconSound) {
+                            //     document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid).classList.remove('d-none');
+                            //     isRemoteIconSound = true;
+                            // }
 
                         } else if (channelParameters.remoteUid == volume.uid && volume.level < 50) {
                             console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
                             // เลือก element ที่มี ID "statusMicrophoneOutput_remote_"
-                            if (isRemoteIconSound) {
-                                document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid).classList.add('d-none');
-                                isRemoteIconSound = false;
-                            }
+                            // if (isRemoteIconSound) {
+                            //     document.querySelector('#statusMicrophoneOutput_remote_'+ channelParameters.remoteUid).classList.add('d-none');
+                            //     isRemoteIconSound = false;
+                            // }
                         }
                     });
                 })
@@ -1555,18 +1590,18 @@
                             if (user['uid'] == volume.uid && volume.level > 50) {
                                 console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-                                if (!isRemoteIconSound) {
-                                    document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.remove('d-none');
-                                    isRemoteIconSound = true;
-                                }
+                                // if (!isRemoteIconSound) {
+                                //     document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.remove('d-none');
+                                //     isRemoteIconSound = true;
+                                // }
 
                             } else if (user['uid'] == volume.uid && volume.level < 50) {
                                 console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-                                if (isRemoteIconSound) {
-                                    document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.add('d-none');
-                                    isRemoteIconSound = false;
-                                }
+                                // if (isRemoteIconSound) {
+                                //     document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.add('d-none');
+                                //     isRemoteIconSound = false;
+                                // }
 
 
                             }
@@ -1656,18 +1691,18 @@
                                                 if (dummy_remote['uid'] == volume.uid && volume.level > 50) {
                                                     console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-                                                    if (!isRemoteIconSound) {
-                                                        document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.remove('d-none');
-                                                        isRemoteIconSound = true;
-                                                    }
+                                                    // if (!isRemoteIconSound) {
+                                                    //     document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.remove('d-none');
+                                                    //     isRemoteIconSound = true;
+                                                    // }
 
                                                 } else if (dummy_remote['uid'] == volume.uid && volume.level < 50) {
                                                     console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
-                                                    if (isRemoteIconSound) {
-                                                        document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.add('d-none');
-                                                        isRemoteIconSound = false;
-                                                    }
+                                                    // if (isRemoteIconSound) {
+                                                    //     document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.add('d-none');
+                                                    //     isRemoteIconSound = false;
+                                                    // }
 
                                                 }
                                             });
@@ -1791,6 +1826,7 @@
                         //หาไมโครโฟน
                         try {
                             if(useMicrophone){
+                                console.log("if หาไมโครโฟน");
                                 channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                     {
                                         encoderConfig: "high_quality_stereo",
@@ -1798,11 +1834,28 @@
                                     }
                                 );
                             }else{
-                                channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
-                                    {
-                                        encoderConfig: "high_quality_stereo",
-                                    }
-                                );
+                                console.log("else หาไมโครโฟน");
+
+                                // ดึงรายการไมโครโฟนทั้งหมด
+                                let microphoneDevices = await navigator.mediaDevices.enumerateDevices();
+                                // เลือกไมโครโฟนที่ active (เช็ค kind เป็น 'audioinput')
+                                let activeMicrophones = microphoneDevices.filter(device => device.kind === 'audioinput' && device.deviceId !== 'default');
+
+                                if (activeMicrophones.length > 0) {
+                                    // เลือกไมโครโฟนแรกที่ active
+                                    let selectedMicrophone = activeMicrophones[0].deviceId;
+                                    // ใช้ไมโครโฟนที่ถูกเลือก
+                                    channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                                        {
+                                            encoderConfig: "high_quality_stereo",
+                                            microphoneId: selectedMicrophone
+                                        }
+                                    );
+                                } else {
+                                    // ไม่พบไมโครโฟนที่ active
+                                    console.error("ไม่พบไมโครโฟนที่ active");
+                                    return;
+                                }
                             }
 
                             // Publish the local audio tracks in the channel.
@@ -1822,11 +1875,26 @@
                                         }
                                     );
                                 }else{
-                                    channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
-                                        {
-                                            encoderConfig: "high_quality_stereo",
-                                        }
-                                    );
+                                    // ดึงรายการไมโครโฟนทั้งหมด
+                                    let microphoneDevices = await navigator.mediaDevices.enumerateDevices();
+                                    // เลือกไมโครโฟนที่ active (เช็ค kind เป็น 'audioinput')
+                                    let activeMicrophones = microphoneDevices.filter(device => device.kind === 'audioinput' && device.deviceId !== 'default');
+
+                                    if (activeMicrophones.length > 0) {
+                                        // เลือกไมโครโฟนแรกที่ active
+                                        let selectedMicrophone = activeMicrophones[0].deviceId;
+                                        // ใช้ไมโครโฟนที่ถูกเลือก
+                                        channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
+                                            {
+                                                encoderConfig: "high_quality_stereo",
+                                                microphoneId: selectedMicrophone
+                                            }
+                                        );
+                                    } else {
+                                        // ไม่พบไมโครโฟนที่ active
+                                        console.error("ไม่พบไมโครโฟนที่ active");
+                                        return;
+                                    }
                                 }
                                 // ปิดไมโครโฟนใหม่ทันที
                                 await channelParameters.localAudioTrack.setEnabled(false);
@@ -1842,6 +1910,7 @@
                         // หากล้อง
                         try {
                             if(useCamera){
+                                console.log("if หากล้อง");
                                 channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
                                     {
                                         cameraId: useCamera,
@@ -1857,19 +1926,35 @@
                                     }
                                 );
                             }else{
-                                channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
-                                    {
-                                        optimizationMode: "detail",
-                                        encoderConfig:
+                                console.log("else หากล้อง");
+
+                                // ดึงรายการกล้องทั้งหมด
+                                const cameraDevices = await navigator.mediaDevices.enumerateDevices();
+                                // เลือกกล้องที่ active (เช็ค kind เป็น 'videoinput')
+                                const activeCameras = cameraDevices.filter(device => device.kind === 'videoinput' && device.deviceId !== 'default');
+
+                                if (activeCameras.length > 0) {
+                                    // เลือกกล้องล่าสุดที่ active
+                                    const selectedCamera = activeCameras[activeCameras.length - 1].deviceId;
+
+                                    // ใช้กล้องที่ถูกเลือก
+                                    channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
                                         {
-                                            width: 640,
-                                            // Specify a value range and an ideal value
-                                            height: { ideal: 480, min: 400, max: 500 },
-                                            frameRate: 15,
-                                            bitrateMin: 600, bitrateMax: 1000,
-                                        },
-                                    }
-                                );
+                                            cameraId: selectedCamera,
+                                            optimizationMode: "detail",
+                                            encoderConfig:
+                                            {
+                                                width: 640,
+                                                height: { ideal: 480, min: 400, max: 500 },
+                                                frameRate: 15,
+                                                bitrateMin: 600, bitrateMax: 1000,
+                                            },
+                                        }
+                                    );
+                                } else {
+                                    // ไม่พบกล้องที่ active
+                                    console.error("ไม่พบกล้องที่ active");
+                                }
                             }
 
                             // Publish the local audio and video tracks in the channel.
