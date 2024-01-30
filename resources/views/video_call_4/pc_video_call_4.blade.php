@@ -1805,33 +1805,19 @@ switch ($sos_data->status) {
                     }else{
                         console.log("else หากล้อง");
 
-                        // ดึงรายการกล้องทั้งหมด
-                        const cameraDevices = await navigator.mediaDevices.enumerateDevices();
-                        // เลือกกล้องที่ active (เช็ค kind เป็น 'videoinput')
-                        const activeCameras = cameraDevices.filter(device => device.kind === 'videoinput' && device.deviceId !== 'default');
-
-                        if (activeCameras.length > 0) {
-                            // เลือกกล้องล่าสุดที่ active
-                            const selectedCamera = activeCameras[activeCameras.length - 1].deviceId;
-
-                            // ใช้กล้องที่ถูกเลือก
-                            channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
+                        channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
+                            {
+                                optimizationMode: "detail",
+                                encoderConfig:
                                 {
-                                    cameraId: selectedCamera,
-                                    optimizationMode: "detail",
-                                    encoderConfig:
-                                    {
-                                        width: 640,
-                                        height: { ideal: 480, min: 400, max: 500 },
-                                        frameRate: 15,
-                                        bitrateMin: 600, bitrateMax: 1000,
-                                    },
-                                }
-                            );
-                        } else {
-                            // ไม่พบกล้องที่ active
-                            console.error("ไม่พบกล้องที่ active");
-                        }
+                                    width: 640,
+                                    // Specify a value range and an ideal value
+                                    height: { ideal: 480, min: 400, max: 500 },
+                                    frameRate: 15,
+                                    bitrateMin: 600, bitrateMax: 1000,
+                                },
+                            }
+                        );
                     }
 
                     // Publish the local audio and video tracks in the channel.
