@@ -1867,8 +1867,9 @@ switch ($sos_data->status) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
                     // ใช้ navigator.mediaDevices.getDisplayMedia เพื่อดึง MediaStream จากการแสดงหน้าจอ
-                    const screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
-                    const screenTrack = screenStream.getVideoTracks()[0];
+                    // const screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+                    let screenStream = await navigator.mediaDevices.getDisplayMedia({ video: { facingMode: "environment" } });
+                    let screenTrack = screenStream.getVideoTracks()[0];
                     // สร้าง custom video track จาก screenTrack
                     channelParameters.localVideoTrack = await AgoraRTC.createCustomVideoTrack({
                         mediaStreamTrack: screenTrack,

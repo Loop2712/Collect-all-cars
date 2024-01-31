@@ -998,6 +998,8 @@
     var user_id = '{{ Auth::user()->id }}';
     var user_data = @json(Auth::user());
 
+    var command_screen_current;  //ใช้สำหรับกดหนดจอ command ถ้าจอใหญ่=1 จอเล็ก=2
+
     var sos_id = '{{ $sos_id }}';
     var type_video_call = '{{ $type }}';
 
@@ -1702,6 +1704,8 @@
 
             console.log("ไอดี : " + evt.uid + " ออกจากห้อง");
 
+            command_screen_current = 1; //ถ้าอีกคนออกจากห้องสนทนา ปรับ command ไปเป็นจอใหญ่(divแรก)
+
             if(document.getElementById('videoDiv_' + evt.uid)) {
                 document.getElementById('videoDiv_' + evt.uid).remove();
             }
@@ -1769,6 +1773,12 @@
                     }else{
                         // Enable dual-stream mode.
                         // agoraEngine.enableDualStream();
+
+                        if (result['status'] == "1_people") {
+                            command_screen_current = 2;
+                        } else {
+                            command_screen_current = 1;
+                        }
 
                         // Join a channel.
                         await agoraEngine.join(options.appId, options.channel, options.token, options.uid);
@@ -2905,9 +2915,11 @@
         if (clickedDivIndex === 1) {
             // สลับตำแหน่งของ div ที่ถูกคลิกกับ div แรก
             container.insertBefore(clickedDiv, firstDiv);
+            command_screen_current = 1;
         } else if (clickedDivIndex === 0 && divs.length > 1) {
             // สลับตำแหน่งของ div แรกกับ div ที่สอง
             container.insertBefore(divs[1], firstDiv.nextSibling);
+            command_screen_current = 2;
         }
 
     }
@@ -2989,7 +3001,8 @@
             t.textContent = "#container_user_video_call .custom-div:first-child {position: absolute; width: 100%; height: 100%;} #container_user_video_call .custom-div:nth-child(2) {position: absolute; width: 30%; height: 30%; top: 0; left: 0;}";
 
             let remoteDiv = container.querySelector('.custom-div[div_video="remote"]');
-            if (remoteDiv) {
+            if (remoteDiv && command_screen_current == 1) {
+                command_screen_current = 2;
                 container.insertBefore(remoteDiv, container.firstChild); // Move remoteDiv to the beginning
             }
 
@@ -3808,7 +3821,6 @@
     var check_first_play_audio_in_room = 0 ;
 
     // ตัวแปรสำหรับกำหนดการแสดงผลวิดีโอ เริ่มแรกเป็นจอใหญ่เสมอ
-    var command_screen_current = 1 ;
     var status_click_switch = false;
     function loop_check_user_in_room() {
 
@@ -3879,7 +3891,7 @@
                     }else{
                         status_click_switch = false;
                         // กำหนดจอของเจ้าหน้าที่ให้แสดงที่จอ ใหญ่
-                        // command_screen_current = 1 ;
+                        command_screen_current = 1 ;
 
                         stop_ringtone();
                         document.querySelector('#btn_close_audio_ringtone').classList.add('d-none');
