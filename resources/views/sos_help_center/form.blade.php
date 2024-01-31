@@ -1782,7 +1782,13 @@ color: #ff9317;
                             <span class="btn btn-sm btn-danger"  style="position: absolute;top: 0.5rem;left: 13rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#see_img_sos">
                                 <i class="fa-duotone fa-images"></i>รูปภาพ
                             </span>
+                            <span class="btn btn-sm btn-success"  style="position: absolute;top: 4rem;left: 1.3rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" style="font-size:15px;width: 100%;" >
+                                <i class="fa-solid fa-hospital"></i>ค้นหาโรงพยาบาล
+                            </span>
+                            @include ('sos_help_center.modal_hospital_offices')
+
                             <div id="map_go_to_help"></div>
+
                         </div>
                     </div>
                 </div>
