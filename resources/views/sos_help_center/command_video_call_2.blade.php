@@ -1774,11 +1774,7 @@
                         // Enable dual-stream mode.
                         // agoraEngine.enableDualStream();
 
-                        if (result['status'] == "1_people") {
-                            command_screen_current = 2;
-                        } else {
-                            command_screen_current = 1;
-                        }
+                        command_screen_current = 1;
 
                         // Join a channel.
                         await agoraEngine.join(options.appId, options.channel, options.token, options.uid);
@@ -2911,7 +2907,7 @@
 
         const firstDiv = divs[0];
         const clickedDivIndex = divs.indexOf(clickedDiv);
-
+        console.log("swapDivsInContainer :"+command_screen_current);
         if (clickedDivIndex === 1) {
             // สลับตำแหน่งของ div ที่ถูกคลิกกับ div แรก
             container.insertBefore(clickedDiv, firstDiv);
@@ -2999,7 +2995,7 @@
 
         if (childCount === 2) {
             t.textContent = "#container_user_video_call .custom-div:first-child {position: absolute; width: 100%; height: 100%;} #container_user_video_call .custom-div:nth-child(2) {position: absolute; width: 30%; height: 30%; top: 0; left: 0;}";
-
+            console.log("checkchild :"+command_screen_current);
             let remoteDiv = container.querySelector('.custom-div[div_video="remote"]');
             if (remoteDiv && command_screen_current == 1) {
                 command_screen_current = 2;
