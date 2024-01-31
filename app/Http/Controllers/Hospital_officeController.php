@@ -210,4 +210,12 @@ class Hospital_officeController extends Controller
         return "success" ;
 
     }
+
+    function get_hospital_offices($province){
+
+        $data = Hospital_office::where('province', $province)->where('lat' , '!=' , NULL)->get();
+
+        return $data ;
+
+    }
 }

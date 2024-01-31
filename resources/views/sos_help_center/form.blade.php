@@ -1782,10 +1782,15 @@ color: #ff9317;
                             <span class="btn btn-sm btn-danger"  style="position: absolute;top: 0.5rem;left: 13rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#see_img_sos">
                                 <i class="fa-duotone fa-images"></i>รูปภาพ
                             </span>
-                            <span class="btn btn-sm btn-success"  style="position: absolute;top: 4rem;left: 1.3rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" style="font-size:15px;width: 100%;" >
+
+                            @if(Auth::user()->id == "1" or Auth::user()->id == "4" or Auth::user()->id == "64")
+
+                            <span class="btn btn-sm btn-success"  style="position: absolute;top: 4rem;left: 1.3rem;z-index: 2;height: 2.8rem;display: flex; align-items: center;" style="font-size:15px;width: 100%;" data-toggle="modal" data-target="#show_hospital" onclick="open_map_show_hospital();">
                                 <i class="fa-solid fa-hospital"></i>ค้นหาโรงพยาบาล
                             </span>
                             @include ('sos_help_center.modal_hospital_offices')
+
+                            @endif
 
                             <div id="map_go_to_help"></div>
 
