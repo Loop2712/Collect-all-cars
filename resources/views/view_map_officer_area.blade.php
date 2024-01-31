@@ -720,34 +720,20 @@
     let image_sos_black = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/6.png') }}";
 
     // FR
-    // let img_green_car = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/7.png') }}";
-    // let img_green_aircraft = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/8.png') }}";
-    // let img_green_ship_1 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/9.png') }}";
-    // let img_green_ship_2 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/10.png') }}";
-    // let img_green_ship_3 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/11.png') }}";
-    // let img_green_ship_other = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/12.png') }}";
-
-    let img_green_car = "{{ url('/img/icon/operating_unit/หมุดโรงพยาบาล/โรงพยาบาลเอกชน.png') }}";
-    let img_green_aircraft = "{{ url('/img/icon/operating_unit/หมุดโรงพยาบาล/โรงพยาบาลทั่วไป.png') }}";
-    let img_green_ship_1 = "{{ url('/img/icon/operating_unit/หมุดโรงพยาบาล/โรงพยาบาลชุมชน.png') }}";
-    let img_green_ship_2 = "{{ url('/img/icon/operating_unit/หมุดโรงพยาบาล/คลินิกเอกชน.png') }}";
-    let img_green_ship_3 = "{{ url('/img/icon/operating_unit/หมุดโรงพยาบาล/ศูนย์บริการสาธารณสุข.png') }}";
-    let img_green_ship_other = "{{ url('/img/icon/operating_unit/หมุดโรงพยาบาล/ศูนย์บริการสาธารณสุข อปท.png') }}";
+    let img_green_car = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/7.png') }}";
+    let img_green_aircraft = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/8.png') }}";
+    let img_green_ship_1 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/9.png') }}";
+    let img_green_ship_2 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/10.png') }}";
+    let img_green_ship_3 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/11.png') }}";
+    let img_green_ship_other = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/12.png') }}";
 
     // BLS / ILS
-    // let img_yellow_car = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/13.png') }}";
-    // let img_yellow_aircraft = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/14.png') }}";
-    // let img_yellow_ship_1 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/15.png') }}";
-    // let img_yellow_ship_2 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/16.png') }}";
-    // let img_yellow_ship_3 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/17.png') }}";
-    // let img_yellow_ship_other = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/18.png') }}";
-
-    let img_yellow_car = "{{ url('/img/icon/operating_unit/หมุดโรงพยาบาล/ศูนย์สุขภาพชุมชน ของ รพ.  เมือง (ศสม.).png') }}";
-    let img_yellow_aircraft = "{{ url('/img/icon/operating_unit/หมุดโรงพยาบาล/สำนักงานสาธารณสุขจังหวัด.png') }}";
-    let img_yellow_ship_1 = "{{ url('/img/icon/operating_unit/หมุดโรงพยาบาล/สำนักงานสาธารณสุขอำเภอ.png') }}";
-    let img_yellow_ship_2 = "{{ url('/img/icon/operating_unit/หมุดโรงพยาบาล/โรงพยาบาลเอกชน.png') }}";
-    let img_yellow_ship_3 = "{{ url('/img/icon/operating_unit/หมุดโรงพยาบาล/โรงพยาบาลทั่วไป.png') }}";
-    let img_yellow_ship_other = "{{ url('/img/icon/operating_unit/หมุดโรงพยาบาล/โรงพยาบาลชุมชน.png') }}";
+    let img_yellow_car = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/13.png') }}";
+    let img_yellow_aircraft = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/14.png') }}";
+    let img_yellow_ship_1 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/15.png') }}";
+    let img_yellow_ship_2 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/16.png') }}";
+    let img_yellow_ship_3 = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/17.png') }}";
+    let img_yellow_ship_other = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/18.png') }}";
 
     // ALS
     let img_red_car = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/19.png') }}";
