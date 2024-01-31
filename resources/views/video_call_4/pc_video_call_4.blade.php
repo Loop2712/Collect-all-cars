@@ -1709,7 +1709,7 @@ switch ($sos_data->status) {
                     if(useMicrophone){
                         channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                             {
-                                encoderConfig: "high_quality_stereo",
+
                                 microphoneId: useMicrophone
                             }
                         );
@@ -1725,7 +1725,7 @@ switch ($sos_data->status) {
                             // ใช้ไมโครโฟนที่ถูกเลือก
                             channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                 {
-                                    encoderConfig: "high_quality_stereo",
+
                                     microphoneId: selectedMicrophone
                                 }
                             );
@@ -1748,7 +1748,7 @@ switch ($sos_data->status) {
                         if(useMicrophone){
                             channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                 {
-                                    encoderConfig: "high_quality_stereo",
+
                                     microphoneId: useMicrophone
                                 }
                             );
@@ -1764,7 +1764,7 @@ switch ($sos_data->status) {
                                 // ใช้ไมโครโฟนที่ถูกเลือก
                                 channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                     {
-                                        encoderConfig: "high_quality_stereo",
+
                                         microphoneId: selectedMicrophone
                                     }
                                 );
@@ -2054,7 +2054,7 @@ switch ($sos_data->status) {
 
             // สร้าง local audio track ใหม่โดยใช้อุปกรณ์ที่คุณต้องการ
             AgoraRTC.createMicrophoneAudioTrack({
-                encoderConfig: "high_quality_stereo",
+
                 microphoneId: selectedAudioDeviceId
             })
             .then(newAudioTrack => {

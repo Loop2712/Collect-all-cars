@@ -3732,10 +3732,6 @@
         }, interval);
     }
 
-
-
-
-
     async function getFirstCameraAndMic() {
         try {
             // เรียกดูอุปกรณ์ทั้งหมด

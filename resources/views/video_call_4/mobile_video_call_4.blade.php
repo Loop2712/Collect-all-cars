@@ -1853,7 +1853,7 @@
                     if(useMicrophone){
                         channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                             {
-                                encoderConfig: "high_quality_stereo",
+
                                 microphoneId: useMicrophone
                             }
                         );
@@ -1869,7 +1869,7 @@
                             // ใช้ไมโครโฟนที่ถูกเลือก
                             channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                 {
-                                    encoderConfig: "high_quality_stereo",
+
                                     microphoneId: selectedMicrophone
                                 }
                             );
@@ -1892,7 +1892,7 @@
                         if(useMicrophone){
                             channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                 {
-                                    encoderConfig: "high_quality_stereo",
+
                                     microphoneId: useMicrophone
                                 }
                             );
@@ -1908,7 +1908,7 @@
                                 // ใช้ไมโครโฟนที่ถูกเลือก
                                 channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                     {
-                                        encoderConfig: "high_quality_stereo",
+
                                         microphoneId: selectedMicrophone
                                     }
                                 );
@@ -1971,7 +1971,6 @@
 
                 } catch (error) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
-                    console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
 
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
                     // ใช้ navigator.mediaDevices.getDisplayMedia เพื่อดึง MediaStream จากการแสดงหน้าจอ
@@ -2210,7 +2209,7 @@
 
             // สร้าง local audio track ใหม่โดยใช้อุปกรณ์ที่คุณต้องการ
             AgoraRTC.createMicrophoneAudioTrack({
-                encoderConfig: "high_quality_stereo",
+
                 microphoneId: selectedAudioDeviceId
             })
             .then(newAudioTrack => {
