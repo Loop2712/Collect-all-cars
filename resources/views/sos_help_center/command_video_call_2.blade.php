@@ -1897,48 +1897,48 @@
                             }else{
                                 console.log("else หากล้อง");
 
-                                // ดึงรายการกล้องทั้งหมด
-                                // const cameraDevices = await navigator.mediaDevices.enumerateDevices();
-                                // // เลือกกล้องที่ active (เช็ค kind เป็น 'videoinput')
-                                // const activeCameras = cameraDevices.filter(device => device.kind === 'videoinput' && device.deviceId !== 'default');
+                                ดึงรายการกล้องทั้งหมด
+                                const cameraDevices = await navigator.mediaDevices.enumerateDevices();
+                                // เลือกกล้องที่ active (เช็ค kind เป็น 'videoinput')
+                                const activeCameras = cameraDevices.filter(device => device.kind === 'videoinput' && device.deviceId !== 'default');
 
-                                // if (activeCameras.length > 0) {
-                                //     // เลือกกล้องล่าสุดที่ active
-                                //     const selectedCamera = activeCameras[activeCameras.length - 1].deviceId;
+                                if (activeCameras.length > 0) {
+                                    // เลือกกล้องล่าสุดที่ active
+                                    const selectedCamera = activeCameras[activeCameras.length - 1].deviceId;
 
-                                //     // ใช้กล้องที่ถูกเลือก
-                                //     channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
-                                //         {
-                                //             cameraId: selectedCamera,
-                                //             optimizationMode: "detail",
-                                //             encoderConfig:
-                                //             {
-                                //                 width: 640,
-                                //                 height: { ideal: 480, min: 400, max: 500 },
-                                //                 frameRate: 15,
-                                //                 bitrateMin: 600, bitrateMax: 1000,
-                                //             },
-                                //         }
-                                //     );
-                                // } else {
-                                //     // ไม่พบกล้องที่ active
-                                //     console.error("ไม่พบกล้องที่ active");
-                                // }
-
-                                console.log("else หากล้อง");
-                                channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
-                                    {
-                                        optimizationMode: "detail",
-                                        encoderConfig:
+                                    // ใช้กล้องที่ถูกเลือก
+                                    channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
                                         {
-                                            width: 640,
-                                            // Specify a value range and an ideal value
-                                            height: { ideal: 480, min: 400, max: 500 },
-                                            frameRate: 15,
-                                            bitrateMin: 600, bitrateMax: 1000,
-                                        },
-                                    }
-                                );
+                                            cameraId: selectedCamera,
+                                            optimizationMode: "detail",
+                                            encoderConfig:
+                                            {
+                                                width: 640,
+                                                height: { ideal: 480, min: 400, max: 500 },
+                                                frameRate: 15,
+                                                bitrateMin: 600, bitrateMax: 1000,
+                                            },
+                                        }
+                                    );
+                                } else {
+                                    // ไม่พบกล้องที่ active
+                                    console.error("ไม่พบกล้องที่ active");
+                                }
+
+                                // console.log("else หากล้อง");
+                                // channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
+                                //     {
+                                //         optimizationMode: "detail",
+                                //         encoderConfig:
+                                //         {
+                                //             width: 640,
+                                //             // Specify a value range and an ideal value
+                                //             height: { ideal: 480, min: 400, max: 500 },
+                                //             frameRate: 15,
+                                //             bitrateMin: 600, bitrateMax: 1000,
+                                //         },
+                                //     }
+                                // );
 
                             }
 
@@ -1960,21 +1960,21 @@
                             // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
                             console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
                              // ใช้ navigator.mediaDevices.getDisplayMedia เพื่อดึง MediaStream จากการแสดงหน้าจอ
-                            const screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
-                            const screenTrack = screenStream.getVideoTracks()[0];
-                            // สร้าง custom video track จาก screenTrack
-                            channelParameters.localVideoTrack = await AgoraRTC.createCustomVideoTrack({
-                                mediaStreamTrack: screenTrack,
-                                optimizationMode: 'detail',
-                                encoderConfig: {
-                                    width: 640,
-                                    // Specify a value range and an ideal value
-                                    height: { ideal: 480, min: 400, max: 500 },
-                                    frameRate: 15,
-                                    bitrateMin: 600, bitrateMax: 1000,
-                                },
-                            });
-                            await agoraEngine.publish([channelParameters.localVideoTrack]);
+                            // const screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+                            // const screenTrack = screenStream.getVideoTracks()[0];
+                            // // สร้าง custom video track จาก screenTrack
+                            // channelParameters.localVideoTrack = await AgoraRTC.createCustomVideoTrack({
+                            //     mediaStreamTrack: screenTrack,
+                            //     optimizationMode: 'detail',
+                            //     encoderConfig: {
+                            //         width: 640,
+                            //         // Specify a value range and an ideal value
+                            //         height: { ideal: 480, min: 400, max: 500 },
+                            //         frameRate: 15,
+                            //         bitrateMin: 600, bitrateMax: 1000,
+                            //     },
+                            // });
+                            // await agoraEngine.publish([channelParameters.localVideoTrack]);
                             // setTimeout(() => {
                             //     // window.location.reload(); // รีเฟรชหน้าเว็บ
                             //     // afterJoin();
