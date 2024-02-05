@@ -1248,7 +1248,7 @@ color: #ff9317;
                     }
                 </style>
 
-                <button id="btnVideoCall" class="btn btnVideoCall" data-animation-class="fa-bounce" onclick="start_video_call_command(); " disabled>
+                <button id="btnVideoCall" class="btn btnVideoCall" data-animation-class="fa-bounce" onclick="switch_div_data();start_video_call_command(); " disabled>
                     <i id="iconVideoCall" class="fa-duotone fa-video-plus"> </i> Video Call
                 </button>
             </div>
@@ -1273,15 +1273,15 @@ color: #ff9317;
             </div>
 
             <!-- VIDEO CALL -->
-            @include('sos_help_center.command_video_call',
+            {{-- @include('sos_help_center.command_video_call',
                 [
                 'sos_id' => $sos_1669_id ,
                 'app_id' => $appID ,
                 'appCertificate' => $appCertificate,
                 'agora_chat' => $agora_chat
                 ]
-            )
-            {{-- <div id="commandVideoCall2Container">
+            ) --}}
+            <div id="commandVideoCall2Container">
                 @include('sos_help_center.command_video_call_2',
                     [
                         'sos_id' => $sos_1669_id ,
@@ -1296,7 +1296,7 @@ color: #ff9317;
                         'useSpeaker' => '',
                     ]
                 )
-            </div> --}}
+            </div>
 
             <script>
                 var first_meet_success = false ; // ใช้เช็คว่าคุยกับเจ้าหน้าที่ไปหรือยัง --> function อยู่หน้า command_video_call_2.blade

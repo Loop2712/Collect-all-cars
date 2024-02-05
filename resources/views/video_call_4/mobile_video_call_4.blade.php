@@ -1951,7 +1951,7 @@
                                     // Specify a value range and an ideal value
                                     height: { ideal: 480, min: 400, max: 500 },
                                     frameRate: 15,
-                                    bitrateMin: 600, bitrateMax: 1000,
+                                    bitrateMin: 500, bitrateMax: 1000,
                                 },
                             }
                         );
@@ -1967,7 +1967,7 @@
                                     // Specify a value range and an ideal value
                                     height: { ideal: 480, min: 400, max: 500 },
                                     frameRate: 15,
-                                    bitrateMin: 600, bitrateMax: 1000,
+                                    bitrateMin: 500, bitrateMax: 1000,
                                 },
                             }
                         );
@@ -1994,7 +1994,7 @@
                             // Specify a value range and an ideal value
                             height: { ideal: 480, min: 400, max: 500 },
                             frameRate: 15,
-                            bitrateMin: 600, bitrateMax: 1000,
+                            bitrateMin: 500, bitrateMax: 1000,
                         },
                     });
 
@@ -2073,9 +2073,9 @@
                     }
                 });
 
-                if(isAudio == true){
-                    agoraEngine.publish([channelParameters.localAudioTrack]);
-                }
+                // if(isAudio == true){
+                //     agoraEngine.publish([channelParameters.localAudioTrack]);
+                // }
 
                 try { // เช็คสถานะจากห้องทางเข้า แล้วเลือกกดเปิด-ปิด ตามสถานะ
                     if(videoTrack == "open"){

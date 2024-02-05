@@ -1806,7 +1806,7 @@ switch ($sos_data->status) {
                                     // Specify a value range and an ideal value
                                     height: { ideal: 480, min: 400, max: 500 },
                                     frameRate: 15,
-                                    bitrateMin: 600, bitrateMax: 1000,
+                                    bitrateMin: 500, bitrateMax: 1000,
                                 },
                             }
                         );
@@ -1822,7 +1822,7 @@ switch ($sos_data->status) {
                                     // Specify a value range and an ideal value
                                     height: { ideal: 480, min: 400, max: 500 },
                                     frameRate: 15,
-                                    bitrateMin: 600, bitrateMax: 1000,
+                                    bitrateMin: 500, bitrateMax: 1000,
                                 },
                             }
                         );
@@ -1888,7 +1888,7 @@ switch ($sos_data->status) {
                             // Specify a value range and an ideal value
                             height: { ideal: 480, min: 400, max: 500 },
                             frameRate: 15,
-                            bitrateMin: 600, bitrateMax: 1000,
+                            bitrateMin: 500, bitrateMax: 1000,
                         },
                     });
 
