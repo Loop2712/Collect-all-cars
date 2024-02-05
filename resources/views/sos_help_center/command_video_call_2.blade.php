@@ -1773,7 +1773,8 @@
                     }else{
                         // Enable dual-stream mode.
                         // agoraEngine.enableDualStream();
-
+                        console.log("channelParameters");
+                        console.log(channelParameters);
                         command_screen_current = 1;
 
                         // Join a channel.
@@ -1798,6 +1799,7 @@
                                 console.log("if หาไมโครโฟน");
                                 channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                     {
+                                        AEC: true, ANS: true,
                                         encoderConfig: "high_quality_stereo",
                                         microphoneId: useMicrophone
                                     }
@@ -1816,6 +1818,7 @@
                                     // ใช้ไมโครโฟนที่ถูกเลือก
                                     channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                         {
+                                            AEC: true, ANS: true,
                                             encoderConfig: "high_quality_stereo",
                                             microphoneId: selectedMicrophone
                                         }
@@ -1839,6 +1842,7 @@
                                 if(useMicrophone){
                                     channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                         {
+                                            AEC: true, ANS: true,
                                             encoderConfig: "high_quality_stereo",
                                             microphoneId: useMicrophone
                                         }
@@ -1855,6 +1859,7 @@
                                         // ใช้ไมโครโฟนที่ถูกเลือก
                                         channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                             {
+                                                AEC: true, ANS: true,
                                                 encoderConfig: "high_quality_stereo",
                                                 microphoneId: selectedMicrophone
                                             }
@@ -1983,6 +1988,10 @@
 
                             return; // หยุดการทำงานของฟังก์ชันนี้ทันที
                         }
+                        setTimeout(() => {
+                            console.log("channelParameters_after");
+                            console.log(channelParameters);
+                        }, 3333);
 
                         function join_and_update(){
                             console.log("join_and_update");
@@ -2266,6 +2275,7 @@
 
             // สร้าง local audio track ใหม่โดยใช้อุปกรณ์ที่คุณต้องการ
             AgoraRTC.createMicrophoneAudioTrack({
+                AEC: true, ANS: true,
                 encoderConfig: "high_quality_stereo",
                 microphoneId: selectedAudioDeviceId
             })
