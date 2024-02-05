@@ -2,14 +2,14 @@
 <style>
   
   #map_show_hospital {
-      height: calc(80vh);
+      height: calc(86vh);
     }
 
 </style>
 
 <!-- Modal -->
 <div class="modal fade" id="show_hospital" tabindex="-1" aria-labelledby="show_hospitalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
+  <div class="modal-dialog modal-dialog-centered modal-fullscreen p-5">
     <div class="modal-content">
       <div class="modal-body">
           <div id="map_show_hospital"></div>
