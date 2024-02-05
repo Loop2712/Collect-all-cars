@@ -1897,7 +1897,7 @@
                             }else{
                                 console.log("else หากล้อง");
 
-                                ดึงรายการกล้องทั้งหมด
+                                // ดึงรายการกล้องทั้งหมด
                                 const cameraDevices = await navigator.mediaDevices.enumerateDevices();
                                 // เลือกกล้องที่ active (เช็ค kind เป็น 'videoinput')
                                 const activeCameras = cameraDevices.filter(device => device.kind === 'videoinput' && device.deviceId !== 'default');
