@@ -1853,11 +1853,9 @@
                     if(useMicrophone){
                         channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                             {
-                                audioProcessing: {
-                                    echoCancellation: true,  // เปิดใช้งาน AEC
-                                    noiseSuppression: true    // เปิดใช้งาน ANS
-                                },
-                                encoderConfig: "high_quality_stereo",
+                                AEC: true,
+                                ANS: true,
+                                encoderConfig: "speech_standard",
                                 microphoneId: useMicrophone
                             }
                         );
@@ -1873,11 +1871,9 @@
                             // ใช้ไมโครโฟนที่ถูกเลือก
                             channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                 {
-                                    audioProcessing: {
-                                        echoCancellation: true,  // เปิดใช้งาน AEC
-                                        noiseSuppression: true    // เปิดใช้งาน ANS
-                                    },
-                                    encoderConfig: "high_quality_stereo",
+                                    AEC: true,
+                                    ANS: true,
+                                    encoderConfig: "speech_standard",
                                     microphoneId: selectedMicrophone
                                 }
                             );
@@ -1900,11 +1896,9 @@
                         if(useMicrophone){
                             channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                 {
-                                    audioProcessing: {
-                                        echoCancellation: true,  // เปิดใช้งาน AEC
-                                        noiseSuppression: true    // เปิดใช้งาน ANS
-                                    },
-                                    encoderConfig: "high_quality_stereo",
+                                    AEC: true,
+                                    ANS: true,
+                                    encoderConfig: "speech_standard",
                                     microphoneId: useMicrophone
                                 }
                             );
@@ -1920,11 +1914,9 @@
                                 // ใช้ไมโครโฟนที่ถูกเลือก
                                 channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                     {
-                                        audioProcessing: {
-                                            echoCancellation: true,  // เปิดใช้งาน AEC
-                                            noiseSuppression: true    // เปิดใช้งาน ANS
-                                        },
-                                        encoderConfig: "high_quality_stereo",
+                                        AEC: true,
+                                        ANS: true,
+                                        encoderConfig: "speech_standard",
                                         microphoneId: selectedMicrophone
                                     }
                                 );
@@ -2225,11 +2217,9 @@
 
             // สร้าง local audio track ใหม่โดยใช้อุปกรณ์ที่คุณต้องการ
             AgoraRTC.createMicrophoneAudioTrack({
-                audioProcessing: {
-                    echoCancellation: true,  // เปิดใช้งาน AEC
-                    noiseSuppression: true    // เปิดใช้งาน ANS
-                },
-                encoderConfig: "high_quality_stereo",
+                AEC: true,
+                ANS: true,
+                encoderConfig: "speech_standard",
                 microphoneId: selectedAudioDeviceId
             })
             .then(newAudioTrack => {

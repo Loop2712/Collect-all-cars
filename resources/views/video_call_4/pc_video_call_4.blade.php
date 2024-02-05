@@ -1710,10 +1710,8 @@ switch ($sos_data->status) {
                         channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                             {
                                 encoderConfig: "high_quality_stereo",
-                                audioProcessing: {
-                                    echoCancellation: true,  // เปิดใช้งาน AEC
-                                    noiseSuppression: true    // เปิดใช้งาน ANS
-                                },
+                                AEC: true,
+                                ANS: true,
                                 microphoneId: useMicrophone
                             }
                         );
@@ -1730,10 +1728,8 @@ switch ($sos_data->status) {
                             channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                 {
                                     encoderConfig: "high_quality_stereo",
-                                    audioProcessing: {
-                                        echoCancellation: true,  // เปิดใช้งาน AEC
-                                        noiseSuppression: true    // เปิดใช้งาน ANS
-                                    },
+                                    AEC: true,
+                                    ANS: true,
                                     microphoneId: selectedMicrophone
                                 }
                             );
@@ -1757,10 +1753,8 @@ switch ($sos_data->status) {
                             channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                 {
                                     encoderConfig: "high_quality_stereo",
-                                    audioProcessing: {
-                                        echoCancellation: true,  // เปิดใช้งาน AEC
-                                        noiseSuppression: true    // เปิดใช้งาน ANS
-                                    },
+                                    AEC: true,
+                                    ANS: true,
                                     microphoneId: useMicrophone
                                 }
                             );
@@ -1777,10 +1771,8 @@ switch ($sos_data->status) {
                                 channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                     {
                                         encoderConfig: "high_quality_stereo",
-                                        audioProcessing: {
-                                            echoCancellation: true,  // เปิดใช้งาน AEC
-                                            noiseSuppression: true    // เปิดใช้งาน ANS
-                                        },
+                                        AEC: true,
+                                        ANS: true,
                                         microphoneId: selectedMicrophone
                                     }
                                 );
@@ -1839,6 +1831,7 @@ switch ($sos_data->status) {
                     // Publish the local audio and video tracks in the channel.
                     await agoraEngine.publish([channelParameters.localVideoTrack]);
 
+
                     // สร้าง span สำหรับใส่เวลาห้อง
                     let time_of_room_span = '<span id="time_of_room" class="time_of_room d-none" style="font-size: 1em;">--</span>';
                         document.querySelector('#video_call_sidebar').insertAdjacentHTML('beforeend', time_of_room_span);
@@ -1883,8 +1876,8 @@ switch ($sos_data->status) {
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
                     // ใช้ navigator.mediaDevices.getDisplayMedia เพื่อดึง MediaStream จากการแสดงหน้าจอ
-                    // const screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
-                    let screenStream = await navigator.mediaDevices.getDisplayMedia({ video: { facingMode: "environment" } });
+                    let screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+                    // let screenStream = await navigator.mediaDevices.getDisplayMedia({ video: { facingMode: "environment" } });
                     let screenTrack = screenStream.getVideoTracks()[0];
                     // สร้าง custom video track จาก screenTrack
                     channelParameters.localVideoTrack = await AgoraRTC.createCustomVideoTrack({
@@ -2071,10 +2064,8 @@ switch ($sos_data->status) {
             // สร้าง local audio track ใหม่โดยใช้อุปกรณ์ที่คุณต้องการ
             AgoraRTC.createMicrophoneAudioTrack({
                 encoderConfig: "high_quality_stereo",
-                audioProcessing: {
-                    echoCancellation: true,  // เปิดใช้งาน AEC
-                    noiseSuppression: true    // เปิดใช้งาน ANS
-                },
+                AEC: true,
+                ANS: true,
                 microphoneId: selectedAudioDeviceId
             })
             .then(newAudioTrack => {
