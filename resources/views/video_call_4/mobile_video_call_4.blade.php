@@ -1423,7 +1423,8 @@
             remotePlayerContainer[user.uid].style.top = "0";
 
             // ตรวจสอบว่า user.uid เป็นไอดีของ remote user ที่คุณเลือก
-            if (mediaType == "video" && user.videoTrack)
+            // if (mediaType == "video" && user.videoTrack)
+            if (mediaType == "video")
             {
                 channelParameters.remoteVideoTrack = user.videoTrack;
                 channelParameters.remoteAudioTrack = user.audioTrack;
@@ -2354,43 +2355,46 @@
                 // console.log(localPlayerContainer);
 
                 // // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
-                channelParameters.localVideoTrack.setEnabled(false);
+                // channelParameters.localVideoTrack.setEnabled(false);
 
                 agoraEngine.unpublish([channelParameters.localVideoTrack]);
-                // console.log('------------unpublish localVideoTrack ------------');
 
                 // ปิดการเล่นภาพวิดีโอกล้องเดิม
                 channelParameters.localVideoTrack.stop();
                 channelParameters.localVideoTrack.close();
-                // console.log('------------stop localVideoTrack ------------');
-                // console.log('------------close localVideoTrack ------------');
+
                 // เปลี่ยน local video track เป็นอุปกรณ์ใหม่
                 channelParameters.localVideoTrack = newVideoTrack;
-                // console.log('------------ channelParameters.localVideoTrack = newVideoTrack ------------');
-                // console.log(channelParameters.localVideoTrack);
 
-                channelParameters.localVideoTrack.play(localPlayerContainer);
 
                 if (isVideo == true) {
-
+                    // console.log("เข้าpublishในonchange_if");
                     // เริ่มส่งภาพจากอุปกรณ์ใหม่
                     channelParameters.localVideoTrack.setEnabled(true);
-                    // แสดงภาพวิดีโอใน <div>
 
                     channelParameters.localVideoTrack.play(localPlayerContainer);
-                    channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+                    // channelParameters.remoteVideoTrack.play(remotePlayerContainer);
 
-                    // ส่ง local video track ใหม่ไปยังผู้ใช้คนที่สอง
                     agoraEngine.publish([channelParameters.localVideoTrack]);
-                    // alert('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
+
                     // console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
                 }
                 else {
+                    // console.log("เข้าpublishในonchange_else");
                     // alert('ปิด');
                     channelParameters.localVideoTrack.setEnabled(false);
+
+                    channelParameters.localVideoTrack.play(localPlayerContainer);
+
+                    agoraEngine.publish([channelParameters.localVideoTrack]);
                 }
 
-
+                if (isVideo == false) {
+                    setTimeout(() => {
+                        console.log("bg_local onChange");
+                        changeBgColor(bg_local);
+                    }, 50);
+                }
 
             })
             .catch(error => {
@@ -2523,9 +2527,8 @@
                 count_i = count_i + 1 ;
             });
 
-            // ---------------------------
-
-            if (deviceType !== 'PC'){
+            if(deviceType !== 'PC') {
+                console.log("switch_mobile");
                 let check_videoDevices = document.getElementsByName('video-device');
 
                 if (now_Mobile_Devices == 1){
@@ -2543,12 +2546,14 @@
                 }
             }
 
-            if (isVideo == false) {
-                setTimeout(() => {
-                    console.log("bg_local ddddddddddddddddddddddd");
-                    changeBgColor(bg_local);
-                }, 50);
-            }
+            // ---------------------------
+
+            // if (isVideo == false) {
+            //     setTimeout(() => {
+            //         console.log("bg_local ddddddddddddddddddddddd");
+            //         changeBgColor(bg_local);
+            //     }, 50);
+            // }
         }
 
         btn_switchMicrophone.onclick = async function()
@@ -3376,7 +3381,7 @@
 
             // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
             let divVideo_New = document.createElement('div');
-            divVideo_New.setAttribute('id','videoDiv_' + user.uid.toString());
+            divVideo_New.setAttribute('id','videoDiv_' + user.uid);
             divVideo_New.setAttribute('class','custom-div');
             divVideo_New.setAttribute('style','background-color:'+bg_remote);
 
@@ -3397,12 +3402,12 @@
 
             // เพิ่มแท็ก แสดงเสียงไมค์เวลาพูด
             let statusMicrophoneOutput = document.createElement("div");
-                statusMicrophoneOutput.id = "statusMicrophoneOutput_remote_" + user.uid.toString();
+                statusMicrophoneOutput.id = "statusMicrophoneOutput_remote_" + user.uid;
                 statusMicrophoneOutput.className = "status-sound-output d-none";
                 statusMicrophoneOutput.setAttribute('style','z-index: 1;');
 
             let soundDiv = document.createElement("div");
-                soundDiv.id = "sound_remote_" + user.uid.toString();
+                soundDiv.id = "sound_remote_" + user.uid;
                 soundDiv.className = "sound";
                 soundDiv.innerHTML = '<i class="fa-sharp fa-solid fa-volume fa-beat-fade" style="color: #ffffff;"></i>';
 
@@ -3414,7 +3419,7 @@
                 statusInputOutputDiv.setAttribute('style','z-index: 1;');
 
             let micDiv = document.createElement("div");
-                micDiv.id = "mic_remote_"+ user.uid.toString();
+                micDiv.id = "mic_remote_"+ user.uid;
                 micDiv.className = "mic";
                 if(user.hasAudio == false){
                     micDiv.innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #f00505; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
@@ -3423,7 +3428,7 @@
                 }
 
             let cameraDiv = document.createElement("div");
-                cameraDiv.id = "camera_remote_"+ user.uid.toString();
+                cameraDiv.id = "camera_remote_"+ user.uid;
                 cameraDiv.className = "camera";
                 if(user.hasVideo == false){
                     cameraDiv.innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
@@ -3467,21 +3472,21 @@
             //======= จบการ สร้างปุ่มสถานะ ==========
 
             // ถ้ามี dummy_trackRemoteDiv_ อยู่แล้ว ลบอันเก่าก่อน
-            if(document.getElementById('dummy_trackRemoteDiv_' + user.uid.toString())) {
-                document.getElementById('dummy_trackRemoteDiv_' + user.uid.toString()).remove();
+            if(document.getElementById('dummy_trackRemoteDiv_' + user.uid)) {
+                document.getElementById('dummy_trackRemoteDiv_' + user.uid).remove();
             }
 
             //เพิ่มแท็กวิดีโอที่มีพื้นหลังแค่สีดำ
-            // const remote_video_call = document.getElementById(user.uid.toString());
+            // const remote_video_call = document.getElementById(user.uid);
             closeVideoHTML  =
-                            ' <div id="dummy_trackRemoteDiv_'+ user.uid.toString() +'" style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: '+bg_remote+';">' +
+                            ' <div id="dummy_trackRemoteDiv_'+ user.uid +'" style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: '+bg_remote+';">' +
                                 '<video class="agora_video_player" playsinline="" muted="" style="width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; object-fit: cover;"></video>' +
                             '</div>' ;
 
             divVideo_New.insertAdjacentHTML('beforeend',closeVideoHTML); // แทรกล่างสุด
 
             // หา div เดิมที่ต้องการแทนที่
-            let oldDiv = document.getElementById("videoDiv_"+ user.uid.toString());
+            let oldDiv = document.getElementById("videoDiv_"+ user.uid);
 
             let userVideoCallBar = document.querySelector(".user-video-call-bar");
             let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
@@ -3513,7 +3518,7 @@
 
             transparentDiv.addEventListener("click", function() {
 
-                let id_agora_create = user.uid.toString();
+                let id_agora_create = user.uid;
                 console.log(id_agora_create);
                 let clickvideoDiv = document.querySelector('#videoDiv_'+id_agora_create);
                 clickvideoDiv.click();

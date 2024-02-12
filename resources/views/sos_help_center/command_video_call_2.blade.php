@@ -1019,10 +1019,15 @@
 
         // เรียกใช้ฟังก์ชันและจัดการกับผลลัพธ์
         getFirstCameraAndMic().then(({ cameraDeviceId, micDeviceId }) => {
+            console.log("getFirstCameraAndMic1");
             if (cameraDeviceId && micDeviceId) {
                 activeVideoDeviceId = cameraDeviceId;
                 activeAudioDeviceId = micDeviceId;
 
+                useCamera = cameraDeviceId;
+                useMicrophone = micDeviceId;
+                console.log("useCamera :"+useCamera);
+                console.log("useMicrophone :"+useMicrophone);
             } else {
                 console.log('Camera or microphone not found');
 
@@ -1267,33 +1272,33 @@
         localPlayerContainer.classList.add('agora_create_local');
 
         //======== ทุก 10 วิ ให้เช็คว่า div .custom-div ที่มี id ของคนที่ไม่ได้อยู่ในห้องนี้แล้ว --> ถ้าเจอให้ลบ div ทิ้ง =========
-        function check_delele_leaved() {
-            setInterval(() => {
+        // function check_delele_leaved() {
+        //     setInterval(() => {
 
-                let customDivAll = document.querySelectorAll(".custom-div");
-                let remoteUsers = agoraEngine['remoteUsers'];
-                // console.log("เช็ค div ที่ไม่อยู่ในห้อง");
-                customDivAll.forEach(element => {
-                    let id = element.id;
+        //         let customDivAll = document.querySelectorAll(".custom-div");
+        //         let remoteUsers = agoraEngine['remoteUsers'];
+        //         // console.log("เช็ค div ที่ไม่อยู่ในห้อง");
+        //         customDivAll.forEach(element => {
+        //             let id = element.id;
 
-                    // ตรวจสอบว่า id ของ element เริ่มต้นด้วย "videoDiv"
-                    if (id.startsWith("videoDiv")) {
-                        // แยก UID จาก id โดยตัด "videoDiv" ออก
-                        let uid = id.replace("videoDiv", "");
+        //             // ตรวจสอบว่า id ของ element เริ่มต้นด้วย "videoDiv"
+        //             if (id.startsWith("videoDiv")) {
+        //                 // แยก UID จาก id โดยตัด "videoDiv" ออก
+        //                 let uid = id.replace("videoDiv", "");
 
-                        // ตรวจสอบว่า UID นี้อยู่ใน remoteUsers หรือไม่
-                        if (!remoteUsers[uid]) {
-                            if(!localPlayerContainer.id){
-                                // ถ้าไม่มีให้ลบ element ออก
-                                element.remove();
-                                console.log("ลบ Div คนที่ไม่อยู่ในห้องแล้ว");
-                            }
-                        }
-                    }
-                });
-            }, 10000);
-        }
-        check_delele_leaved();
+        //                 // ตรวจสอบว่า UID นี้อยู่ใน remoteUsers หรือไม่
+        //                 if (!remoteUsers[uid]) {
+        //                     if(!localPlayerContainer.id){
+        //                         // ถ้าไม่มีให้ลบ element ออก
+        //                         element.remove();
+        //                         console.log("ลบ Div คนที่ไม่อยู่ในห้องแล้ว");
+        //                     }
+        //                 }
+        //             }
+        //         });
+        //     }, 10000);
+        // }
+        // check_delele_leaved();
         //=====================================================================================================
 
 
@@ -1355,10 +1360,6 @@
             // console.log("user");
             // console.log(user);
 
-            // setTimeout(() => {
-            //     StatsVideoUpdate();
-            // }, 2500);
-
             // Set the remote video container size.
             remotePlayerContainer[user.uid] = document.createElement("div");
             remotePlayerContainer[user.uid].style.backgroundColor = "black";
@@ -1369,8 +1370,11 @@
             remotePlayerContainer[user.uid].style.top = "0";
 
             // ตรวจสอบว่า user.uid เป็นไอดีของ remote user ที่คุณเลือก
-            if (mediaType == "video" && user.videoTrack)
+            if (mediaType == "video")
             {
+                const remotetrack = remotePlayerContainer[user.uid];
+                remotetrack.innerHTML = ''; // เคลียร์คอนเทนเนอร์เดิม (ถ้ามี)
+
                 channelParameters.remoteVideoTrack = user.videoTrack;
                 channelParameters.remoteAudioTrack = user.audioTrack;
 
@@ -1491,6 +1495,9 @@
 
                     console.log("สร้าง Div_Dummy ของ" + user.uid);
                     console.log(user);
+
+                    channelParameters.remoteVideoTrack.stop(); //lastest
+                    channelParameters.remoteVideoTrack.close();//lastest
 
                     let name_remote_user_unpublished;
                     let type_remote_user_unpublished;
@@ -2072,7 +2079,7 @@
                     }
                 } catch (error) {
                     console.log("โหลดหน้าล้มเหลว :" + error);
-                    alert("ไม่สามารถเข้าร่วมได้");
+                    alert("ไม่สามารถเข้าร่วมได้ ");
                 }
 
             }
@@ -2172,14 +2179,6 @@
         //             video: true
         //         });
 
-        //         // const stream = await navigator.mediaDevices.getUserMedia({
-        //         //     audio: true,
-        //         //     video: {
-        //         //         facingMode: 'user', // หรือ 'environment' หากต้องการใช้กล้องหลัง
-        //         //         width: { ideal: 1280 },
-        //         //         height: { ideal: 720 }
-        //         //     }
-        //         // });
         //         activeAudioDeviceId = stream.getAudioTracks()[0].getSettings().deviceId;
         //         activeVideoDeviceId = stream.getVideoTracks()[0].getSettings().deviceId;
 
@@ -2364,43 +2363,47 @@
                 // console.log(localPlayerContainer);
 
                 // // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
-                channelParameters.localVideoTrack.setEnabled(false);
 
+                // channelParameters.localVideoTrack.setEnabled(false);
                 agoraEngine.unpublish([channelParameters.localVideoTrack]);
+
                 // console.log('------------unpublish localVideoTrack ------------');
 
                 // ปิดการเล่นภาพวิดีโอกล้องเดิม
                 channelParameters.localVideoTrack.stop();
                 channelParameters.localVideoTrack.close();
-                // console.log('------------stop localVideoTrack ------------');
-                // console.log('------------close localVideoTrack ------------');
+
                 // เปลี่ยน local video track เป็นอุปกรณ์ใหม่
                 channelParameters.localVideoTrack = newVideoTrack;
-                // console.log('------------ channelParameters.localVideoTrack = newVideoTrack ------------');
-                // console.log(channelParameters.localVideoTrack);
 
-                channelParameters.localVideoTrack.play(localPlayerContainer);
+                // channelParameters.localVideoTrack.play(localPlayerContainer);
 
                 if (isVideo == true) {
 
                     // เริ่มส่งภาพจากอุปกรณ์ใหม่
                     channelParameters.localVideoTrack.setEnabled(true);
                     // แสดงภาพวิดีโอใน <div>
-
                     channelParameters.localVideoTrack.play(localPlayerContainer);
-                    channelParameters.remoteVideoTrack.play(remotePlayerContainer);
+                    // channelParameters.remoteVideoTrack.play(remotePlayerContainer);
 
-                    // ส่ง local video track ใหม่ไปยังผู้ใช้คนที่สอง
                     agoraEngine.publish([channelParameters.localVideoTrack]);
-                    // alert('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
-                    // console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
+
                 }
                 else {
                     // alert('ปิด');
                     channelParameters.localVideoTrack.setEnabled(false);
+
+                    channelParameters.localVideoTrack.play(localPlayerContainer);
+
+                    agoraEngine.publish([channelParameters.localVideoTrack]);
                 }
 
-
+                if (isVideo == false) {
+                    setTimeout(() => {
+                        console.log("bg_local onChange");
+                        changeBgColor(bg_local);
+                    }, 50);
+                }
 
             })
             .catch(error => {
@@ -2582,7 +2585,7 @@
             // แยกอุปกรณ์ตามประเภท --> ไมโครโฟน
             let audioDevices = devices.filter(device => device.kind === 'audioinput');
             // แยกอุปกรณ์ตามประเภท --> ลำโพง
-            let audioOutputDevices = devices.filter(device => device.kind === 'audiooutput');
+            // let audioOutputDevices = devices.filter(device => device.kind === 'audiooutput');
 
             console.log('------- audioDevices -------');
             console.log(audioDevices);
@@ -3226,7 +3229,6 @@
             divVideo.append(localPlayerContainer);
 
 
-
             let container_user_video_call = document.querySelector("#container_user_video_call");
             container_user_video_call.append(divVideo);
 
@@ -3518,6 +3520,7 @@
             if (oldDiv) {
                 // ใช้ parentNode.replaceChild() เพื่อแทนที่ div เดิมด้วย div ใหม่
                 oldDiv.parentNode.replaceChild(divVideo_New, oldDiv);
+                // container_user_video_call.append(divVideo_New);
             } else {
                 if (customDivsInUserVideoCallBar.length > 0) {
                     userVideoCallBar.append(divVideo_New);
@@ -3716,13 +3719,13 @@
     }
 
     async function getFirstCameraAndMic() {
+
         try {
             // เรียกดูอุปกรณ์ทั้งหมด
             let devices = await navigator.mediaDevices.enumerateDevices();
 
             let cameraDeviceId, micDeviceId;
 
-            // ค้นหากล้องตัวแรก
             const cameraDevice = devices.find(device => device.kind === 'videoinput');
             if (cameraDevice) {
                 cameraDeviceId = cameraDevice.deviceId;

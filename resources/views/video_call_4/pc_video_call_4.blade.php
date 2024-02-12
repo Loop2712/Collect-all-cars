@@ -1253,7 +1253,8 @@ switch ($sos_data->status) {
             remotePlayerContainer[user.uid].style.top = "0";
 
             // ตรวจสอบว่า user.uid เป็นไอดีของ remote user ที่คุณเลือก
-            if (mediaType == "video" && user.videoTrack)
+            // if (mediaType == "video" && user.videoTrack)
+            if (mediaType == "video")
             {
                 channelParameters.remoteVideoTrack = user.videoTrack;
                 channelParameters.remoteAudioTrack = user.audioTrack;
@@ -2208,7 +2209,7 @@ switch ($sos_data->status) {
                 // console.log(localPlayerContainer);
 
                 // // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
-                channelParameters.localVideoTrack.setEnabled(false);
+                // channelParameters.localVideoTrack.setEnabled(false);
 
                 agoraEngine.unpublish([channelParameters.localVideoTrack]);
                 // console.log('------------unpublish localVideoTrack ------------');
@@ -2216,37 +2217,30 @@ switch ($sos_data->status) {
                 // ปิดการเล่นภาพวิดีโอกล้องเดิม
                 channelParameters.localVideoTrack.stop();
                 channelParameters.localVideoTrack.close();
-                // console.log('------------stop localVideoTrack ------------');
-                // console.log('------------close localVideoTrack ------------');
+
                 // เปลี่ยน local video track เป็นอุปกรณ์ใหม่
                 channelParameters.localVideoTrack = newVideoTrack;
-                // console.log('------------ channelParameters.localVideoTrack = newVideoTrack ------------');
-                // console.log(channelParameters.localVideoTrack);
-
-                channelParameters.localVideoTrack.play(localPlayerContainer);
 
                 if (isVideo == true) {
-
                     // เริ่มส่งภาพจากอุปกรณ์ใหม่
                     channelParameters.localVideoTrack.setEnabled(true);
                     // แสดงภาพวิดีโอใน <div>
-
                     channelParameters.localVideoTrack.play(localPlayerContainer);
-                    channelParameters.remoteVideoTrack.play(remotePlayerContainer);
-
-                    // ส่ง local video track ใหม่ไปยังผู้ใช้คนที่สอง
+                    // channelParameters.remoteVideoTrack.play(remotePlayerContainer);
                     agoraEngine.publish([channelParameters.localVideoTrack]);
-                    // alert('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
                     // console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
                 }
                 else {
                     // alert('ปิด');
                     channelParameters.localVideoTrack.setEnabled(false);
+
+                    channelParameters.localVideoTrack.play(localPlayerContainer);
+                    agoraEngine.publish([channelParameters.localVideoTrack]);
                 }
 
                 if (isVideo == false) {
                     setTimeout(() => {
-                        console.log("bg_local ddddddddddddddddddddddd");
+                        console.log("bg_local onChange");
                         changeBgColor(bg_local);
                     }, 50);
                 }
