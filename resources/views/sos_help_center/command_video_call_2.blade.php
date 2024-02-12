@@ -1806,7 +1806,7 @@
                                 console.log("if หาไมโครโฟน");
                                 channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                     {
-                                        encoderConfig: "high_quality_stereo",
+                                        // encoderConfig: "high_quality_stereo",
                                         microphoneId: useMicrophone
                                     }
                                 );
@@ -1824,7 +1824,7 @@
                                     // ใช้ไมโครโฟนที่ถูกเลือก
                                     channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                         {
-                                            encoderConfig: "high_quality_stereo",
+                                            // encoderConfig: "high_quality_stereo",
                                             microphoneId: selectedMicrophone
                                         }
                                     );
@@ -1841,41 +1841,34 @@
                             console.error('ไม่สามารถสร้างไมโครโฟนหรือไม่พบไมโครโฟน', error);
 
                             try { // เข้าใหม่ในสถานะปิดไมโครโฟนแทน
-                                if(useMicrophone){
+                                // ดึงรายการไมโครโฟนทั้งหมด
+                                let microphoneDevices = await navigator.mediaDevices.enumerateDevices();
+                                // เลือกไมโครโฟนที่ active (เช็ค kind เป็น 'audioinput')
+                                let activeMicrophones = microphoneDevices.filter(device => device.kind === 'audioinput' && device.deviceId !== 'default');
+
+                                if (activeMicrophones.length > 0) {
+                                    // เลือกไมโครโฟนแรกที่ active
+                                    let selectedMicrophone = activeMicrophones[0].deviceId;
+                                    // ใช้ไมโครโฟนที่ถูกเลือก
                                     channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                         {
-                                            encoderConfig: "high_quality_stereo",
-                                            microphoneId: useMicrophone
+                                            // encoderConfig: "high_quality_stereo",
+                                            microphoneId: selectedMicrophone
                                         }
                                     );
-                                }else{
-                                    // ดึงรายการไมโครโฟนทั้งหมด
-                                    let microphoneDevices = await navigator.mediaDevices.enumerateDevices();
-                                    // เลือกไมโครโฟนที่ active (เช็ค kind เป็น 'audioinput')
-                                    let activeMicrophones = microphoneDevices.filter(device => device.kind === 'audioinput' && device.deviceId !== 'default');
-
-                                    if (activeMicrophones.length > 0) {
-                                        // เลือกไมโครโฟนแรกที่ active
-                                        let selectedMicrophone = activeMicrophones[0].deviceId;
-                                        // ใช้ไมโครโฟนที่ถูกเลือก
-                                        channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
-                                            {
-                                                encoderConfig: "high_quality_stereo",
-                                                microphoneId: selectedMicrophone
-                                            }
-                                        );
-                                    } else {
-                                        // ไม่พบไมโครโฟนที่ active
-                                        console.error("ไม่พบไมโครโฟนที่ active");
-                                        return;
-                                    }
+                                } else {
+                                    // ไม่พบไมโครโฟนที่ active
+                                    alert("ไมโครโฟน ไม่พร้อมใช้งาน try");
+                                    console.error("ไม่พบไมโครโฟนที่ active");
                                 }
-                                // ปิดไมโครโฟนใหม่ทันที
-                                await channelParameters.localAudioTrack.setEnabled(false);
-                                //เปลี่ยนสถานะไมโครโฟน เป็น false
-                                isAudio = false;
+
+                                // // ปิดไมโครโฟนใหม่ทันที
+                                // await channelParameters.localAudioTrack.setEnabled(false);
+                                // //เปลี่ยนสถานะไมโครโฟน เป็น false
+                                // isAudio = false;
 
                             } catch (newError) {
+                                alert("ไมโครโฟน ไม่พร้อมใช้งาน catch");
                                 console.error('ไม่สามารถสร้างไมโครโฟนใหม่หรือปิดไมโครโฟนใหม่', newError);
                                 // ทำการปิดแบบถาวรหรือจัดการข้อผิดพลาดอื่นๆ ตามที่คุณต้องการ
                             }
@@ -1888,15 +1881,15 @@
                                 channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
                                     {
                                         cameraId: useCamera,
-                                        optimizationMode: "detail",
-                                        encoderConfig:
-                                        {
-                                            width: 640,
-                                            // Specify a value range and an ideal value
-                                            height: { ideal: 480, min: 400, max: 500 },
-                                            frameRate: 15,
-                                            bitrateMin: 500, bitrateMax: 1000,
-                                        },
+                                        // optimizationMode: "detail",
+                                        // encoderConfig:
+                                        // {
+                                        //     width: 640,
+                                        //     // Specify a value range and an ideal value
+                                        //     height: { ideal: 480, min: 400, max: 500 },
+                                        //     frameRate: 15,
+                                        //     bitrateMin: 500, bitrateMax: 1000,
+                                        // },
                                     }
                                 );
                             }else{
@@ -1915,14 +1908,14 @@
                                     channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
                                         {
                                             cameraId: selectedCamera,
-                                            optimizationMode: "detail",
-                                            encoderConfig:
-                                            {
-                                                width: 640,
-                                                height: { ideal: 480, min: 400, max: 500 },
-                                                frameRate: 15,
-                                                bitrateMin: 500, bitrateMax: 1000,
-                                            },
+                                            // optimizationMode: "detail",
+                                            // encoderConfig:
+                                            // {
+                                            //     width: 640,
+                                            //     height: { ideal: 480, min: 400, max: 500 },
+                                            //     frameRate: 15,
+                                            //     bitrateMin: 500, bitrateMax: 1000,
+                                            // },
                                         }
                                     );
                                 } else {
@@ -2385,7 +2378,6 @@
                     // แสดงภาพวิดีโอใน <div>
                     channelParameters.localVideoTrack.play(localPlayerContainer);
                     // channelParameters.remoteVideoTrack.play(remotePlayerContainer);
-
                     agoraEngine.publish([channelParameters.localVideoTrack]);
 
                 }
@@ -2454,36 +2446,29 @@
         }
 
         var now_Mobile_Devices = 1;
-
+        var cachedVideoDevices = null; // สร้างตัวแปร global เพื่อเก็บข้อมูล camera
         btn_switchCamera.onclick = async function()
         {
-            console.log('activeVideoDeviceId');
-            console.log(activeVideoDeviceId);
 
             // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
             let deviceType = checkDeviceType();
             console.log("Device Type:", deviceType);
 
-            // เรียกดูอุปกรณ์ทั้งหมด
-            let devices = await navigator.mediaDevices.enumerateDevices();
+            // ถ้ายังไม่มีข้อมูลอุปกรณ์ที่เก็บไว้
+            if (!cachedVideoDevices) {
+                // เรียกดูอุปกรณ์ทั้งหมด
+                let getDevices = await navigator.mediaDevices.enumerateDevices();
 
-            // เรียกดูอุปกรณ์ที่ใช้อยู่
-            let stream = await navigator.mediaDevices.getUserMedia({
-                audio: true,
-                video: true
-            });
+                // แยกอุปกรณ์ตามประเภท
+                let getVideoDevices = getDevices.filter(device => device.kind === 'videoinput');
 
-            // let stream = await navigator.mediaDevices.getUserMedia({
-            //     audio: true,
-            //     video: {
-            //         width: { ideal: 720 },
-            //         height: { ideal: 1280 },
-            //         // ตั้งค่าอื่นๆตามความจำเป็น
-            //     }
-            // });
+                // กำหนดค่าให้กับตัวแปร global เพื่อเก็บไว้
+                cachedVideoDevices = getVideoDevices;
+            }
 
-            // แยกอุปกรณ์ตามประเภท
-            let videoDevices = devices.filter(device => device.kind === 'videoinput');
+            let videoDevices = cachedVideoDevices; // สามารถใช้ cachedVideoDevices ได้ทุกครั้งที่ต้องการ
+
+            // let videoDevices = devices.filter(device => device.kind === 'videoinput');
 
             console.log('------- videoDevices -------');
             console.log(videoDevices);
@@ -2554,36 +2539,29 @@
                 }
             }
 
-            if (isVideo == false) {
-                setTimeout(() => {
-                    // console.log("bg_local ddddddddddddddddddddddd");
-                    changeBgColor(bg_local);
-                }, 50);
-            }
         }
+        var cachedAudioDevices = null; // สร้างตัวแปร global เพื่อเก็บข้อมูล microphone
 
         btn_switchMicrophone.onclick = async function()
         {
-            console.log('btn_switchMicrophone');
-
-            console.log('activeAudioDeviceId');
-            console.log(activeAudioDeviceId);
 
             // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
             let deviceType = checkDeviceType();
             console.log("Device Type:", deviceType);
 
-            // เรียกดูอุปกรณ์ทั้งหมด
-            let devices = await navigator.mediaDevices.enumerateDevices();
+            // ถ้ายังไม่มีข้อมูลอุปกรณ์ที่เก็บไว้
+            if (!cachedAudioDevices) {
+                // เรียกดูอุปกรณ์ทั้งหมด
+                let getDevices = await navigator.mediaDevices.enumerateDevices();
+                // แยกอุปกรณ์ตามประเภท
+                let getAudioDevices = getDevices.filter(device => device.kind === 'audioinput');
 
-            // เรียกดูอุปกรณ์ที่ใช้อยู่
-            let stream = await navigator.mediaDevices.getUserMedia({
-                audio: true,
-                video: true
-            });
+                // กำหนดค่าให้กับตัวแปร global เพื่อเก็บไว้
+                cachedAudioDevices = getAudioDevices;
+            }
 
-            // แยกอุปกรณ์ตามประเภท --> ไมโครโฟน
-            let audioDevices = devices.filter(device => device.kind === 'audioinput');
+            let audioDevices = cachedAudioDevices; // สามารถใช้ cachedAudioDevices ได้ทุกครั้งที่ต้องการ
+
             // แยกอุปกรณ์ตามประเภท --> ลำโพง
             // let audioOutputDevices = devices.filter(device => device.kind === 'audiooutput');
 

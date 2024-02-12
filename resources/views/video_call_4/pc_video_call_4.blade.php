@@ -2301,29 +2301,31 @@ switch ($sos_data->status) {
         }
 
         var now_Mobile_Devices = 1;
+        var cachedVideoDevices = null; // สร้างตัวแปร global เพื่อเก็บข้อมูล camera
 
         btn_switchCamera.onclick = async function()
         {
-            console.log('btn_switchCamera');
-
-            console.log('activeVideoDeviceId');
-            console.log(activeVideoDeviceId);
+            // console.log('btn_switchCamera');
+            // console.log('activeVideoDeviceId');
+            // console.log(activeVideoDeviceId);
 
             // เรียกใช้ฟังก์ชันและแสดงผลลัพธ์
             let deviceType = checkDeviceType();
-            console.log("Device Type:", deviceType);
+            // console.log("Device Type:", deviceType);
 
-            // เรียกดูอุปกรณ์ทั้งหมด
-            let devices = await navigator.mediaDevices.enumerateDevices();
+           // ถ้ายังไม่มีข้อมูลอุปกรณ์ที่เก็บไว้
+            if (!cachedVideoDevices) {
+                // เรียกดูอุปกรณ์ทั้งหมด
+                let getDevices = await navigator.mediaDevices.enumerateDevices();
 
-            // เรียกดูอุปกรณ์ที่ใช้อยู่
-            let stream = await navigator.mediaDevices.getUserMedia({
-                audio: true,
-                video: true
-            });
+                // แยกอุปกรณ์ตามประเภท
+                let getVideoDevices = getDevices.filter(device => device.kind === 'videoinput');
 
-            // แยกอุปกรณ์ตามประเภท
-            let videoDevices = devices.filter(device => device.kind === 'videoinput');
+                // กำหนดค่าให้กับตัวแปร global เพื่อเก็บไว้
+                cachedVideoDevices = getVideoDevices;
+            }
+
+            let videoDevices = cachedVideoDevices; // สามารถใช้ cachedVideoDevices ได้ทุกครั้งที่ต้องการ
 
             console.log('------- videoDevices -------');
             console.log(videoDevices);
@@ -2394,6 +2396,7 @@ switch ($sos_data->status) {
 
         }
 
+        var cachedAudioDevices = null; // สร้างตัวแปร global เพื่อเก็บข้อมูล microphone
         btn_switchMicrophone.onclick = async function()
         {
             console.log('btn_switchMicrophone');
@@ -2405,19 +2408,20 @@ switch ($sos_data->status) {
             let deviceType = checkDeviceType();
             console.log("Device Type:", deviceType);
 
-            // เรียกดูอุปกรณ์ทั้งหมด
-            let devices = await navigator.mediaDevices.enumerateDevices();
+            // ถ้ายังไม่มีข้อมูลอุปกรณ์ที่เก็บไว้
+            if (!cachedAudioDevices) {
+                // เรียกดูอุปกรณ์ทั้งหมด
+                let getDevices = await navigator.mediaDevices.enumerateDevices();
+                // แยกอุปกรณ์ตามประเภท
+                let getAudioDevices = getDevices.filter(device => device.kind === 'audioinput');
 
-            // เรียกดูอุปกรณ์ที่ใช้อยู่
-            let stream = await navigator.mediaDevices.getUserMedia({
-                audio: true,
-                video: true
-            });
+                // กำหนดค่าให้กับตัวแปร global เพื่อเก็บไว้
+                cachedAudioDevices = getAudioDevices;
+            }
 
-            // แยกอุปกรณ์ตามประเภท --> ไมโครโฟน
-            let audioDevices = devices.filter(device => device.kind === 'audioinput');
+            let audioDevices = cachedAudioDevices; // สามารถใช้ cachedAudioDevices ได้ทุกครั้งที่ต้องการ
             // แยกอุปกรณ์ตามประเภท --> ลำโพง
-            let audioOutputDevices = devices.filter(device => device.kind === 'audiooutput');
+            // let audioOutputDevices = devices.filter(device => device.kind === 'audiooutput');
 
             console.log('------- audioDevices -------');
             console.log(audioDevices);

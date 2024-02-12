@@ -432,7 +432,6 @@
         Check_video_call_room();
         // ============  จบส่วน เช็คคนในห้องสนทนาก่อนเข้าร่วม   ================
 
-
         const microphoneList = document.getElementById("microphoneList");
         const cameraList = document.getElementById("cameraList");
 
