@@ -42,7 +42,6 @@ function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหร�
             document.getElementById('div_for_AudioButton').classList.remove('btnSpecial_mute');
             // Unmute the local video.
             channelParameters.localAudioTrack.setEnabled(true);
-            channelParameters.localAudioTrack.play();
             // เปลี่ยน icon microphone ให้เป็นเปิด ใน divVideo_
             document.getElementById(`mic_local`).innerHTML = '<i class="fa-solid fa-microphone"></i>';
 

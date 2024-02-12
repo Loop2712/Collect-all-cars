@@ -2217,9 +2217,7 @@
 
             // สร้าง local audio track ใหม่โดยใช้อุปกรณ์ที่คุณต้องการ
             AgoraRTC.createMicrophoneAudioTrack({
-                AEC: true,
-                ANS: true,
-                encoderConfig: "speech_standard",
+                // encoderConfig: "speech_standard",
                 microphoneId: selectedAudioDeviceId
             })
             .then(newAudioTrack => {
@@ -2247,18 +2245,18 @@
                     agoraEngine.publish([channelParameters.localAudioTrack]);
 
                     // isAudio = true;
-                    console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
-                    console.log('เข้า if => isAudio == true');
-                    console.log(channelParameters.localAudioTrack);
+                    // console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
+                    // console.log('เข้า if => isAudio == true');
+                    // console.log(channelParameters.localAudioTrack);
                 }
                 else {
                     channelParameters.localAudioTrack.setEnabled(false);
                     // channelParameters.localAudioTrack.play();
                     // isAudio = false;
 
-                    console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
-                    console.log('เข้า else => isAudio == false');
-                    console.log(channelParameters.localAudioTrack);
+                    // console.log('เปลี่ยนอุปกรณ์เสียงสำเร็จ');
+                    // console.log('เข้า else => isAudio == false');
+                    // console.log(channelParameters.localAudioTrack);
                 }
 
             })
@@ -3046,7 +3044,7 @@
                 document.getElementById('div_for_AudioButton').classList.remove('btnSpecial_mute');
                 // Unmute the local video.
                 channelParameters.localAudioTrack.setEnabled(true);
-                channelParameters.localAudioTrack.play();
+
                 // เปลี่ยน icon microphone ให้เป็นเปิด ใน divVideo_
                 document.getElementById(`mic_local`).innerHTML = '<i class="fa-solid fa-microphone"></i>';
 
