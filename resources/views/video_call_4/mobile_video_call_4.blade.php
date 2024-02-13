@@ -1982,17 +1982,15 @@
 
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
 
-                    try {
-                        setTimeout(() => {
-                            channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
-                                {
-                                    cameraId: selectedCamera,
-                                }
-                            );
-                        }, 3333);
-                    } catch (error) {
-                        console.log("ไม่สามารถสร้างกล้องหรือไม่พบกล้อง catch ใน catch");
-                    }
+
+                    setTimeout(() => {
+                        channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
+                            {
+                                cameraId: selectedCamera,
+                            }
+                        );
+                    }, 3333);
+
 
                     // channelParameters.localVideoTrack = await AgoraRTC.createCustomVideoTrack({
                     //     // mediaStreamTrack: screenTrack,
