@@ -2012,6 +2012,7 @@
                     //     window.location.reload(); // รีเฟรชหน้าเว็บ
                     // }, 2000);
 
+                    await agoraEngine.publish([channelParameters.localVideoTrack]);
                 }
 
                 //=================     สำหรับ Senior Benze  =========================
