@@ -1981,16 +1981,15 @@
                     // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
 
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
-
-
                     setTimeout(() => {
                         channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
                             {
                                 cameraId: selectedCamera,
                             }
                         );
-                    }, 3333);
 
+                        await agoraEngine.publish([channelParameters.localVideoTrack]);
+                    }, 3333);
 
                     // channelParameters.localVideoTrack = await AgoraRTC.createCustomVideoTrack({
                     //     // mediaStreamTrack: screenTrack,
@@ -2012,7 +2011,7 @@
 
                     // channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack({});
 
-                    await agoraEngine.publish([channelParameters.localVideoTrack]);
+
                 }
 
                 //=================     สำหรับ Senior Benze  =========================
