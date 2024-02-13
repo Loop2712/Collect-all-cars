@@ -2717,21 +2717,24 @@
 	const fadeButton = document.getElementById("fadeButton");
 	const dataDiv = document.getElementById("dataDiv");
 
-	fadeButton.addEventListener("click", () => {
-		if (dataDiv.style.display === "none") {
-			dataDiv.style.display = "block";
-			setTimeout(() => {
-				dataDiv.style.opacity = "1";
-				dataDiv.style.maxHeight = "50%";
-			}, 10);
-		} else {
-			dataDiv.style.opacity = "0";
-			dataDiv.style.maxHeight = "0";
-			setTimeout(() => {
-				dataDiv.style.display = "none";
-			}, 500);
-		}
-	});
+    @if ($role_permission !== 'help_seeker')
+        fadeButton.addEventListener("click", () => {
+            if (dataDiv.style.display === "none") {
+                dataDiv.style.display = "block";
+                setTimeout(() => {
+                    dataDiv.style.opacity = "1";
+                    dataDiv.style.maxHeight = "50%";
+                }, 10);
+            } else {
+                dataDiv.style.opacity = "0";
+                dataDiv.style.maxHeight = "0";
+                setTimeout(() => {
+                    dataDiv.style.display = "none";
+                }, 500);
+            }
+        });
+    @endif
+
 	// ฟังก์ชันสุ่มสี
 	function getRandomColor() {
 		let letters = "0123456789ABCDEF";
