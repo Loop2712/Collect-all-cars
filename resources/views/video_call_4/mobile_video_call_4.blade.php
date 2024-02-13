@@ -1373,10 +1373,10 @@
                         }
 
                         // แสดงปุ่มเสียงพูด"
-                        if (!isIconVisible) {
-                            document.querySelector('#statusMicrophoneOutput_local').classList.remove('d-none');
-                            isIconVisible = true;
-                        }
+                        // if (!isIconVisible) {
+                        //     document.querySelector('#statusMicrophoneOutput_local').classList.remove('d-none');
+                        //     isIconVisible = true;
+                        // }
 
                     } else {
                         //แสดงชื่ออุปกรณ์ที่ใช้และระดับเสียง
@@ -1390,10 +1390,10 @@
                         }
 
                         // ซ่อนปุ่มเสียงพูด"
-                        if (isIconVisible) {
-                            document.querySelector('#statusMicrophoneOutput_local').classList.add('d-none');
-                            isIconVisible = false;
-                        }
+                        // if (isIconVisible) {
+                        //     document.querySelector('#statusMicrophoneOutput_local').classList.add('d-none');
+                        //     isIconVisible = false;
+                        // }
 
                     }
                 });
@@ -2012,11 +2012,7 @@
                     //     window.location.reload(); // รีเฟรชหน้าเว็บ
                     // }, 2000);
 
-                    channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
-                        {
-                            cameraId: selectedCamera,
-                        }
-                    );
+                    channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack({});
 
                     await agoraEngine.publish([channelParameters.localVideoTrack]);
                 }
