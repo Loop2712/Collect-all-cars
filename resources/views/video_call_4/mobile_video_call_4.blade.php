@@ -1982,15 +1982,17 @@
 
                     console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
 
-                    // const screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
-                    // let screenStream = await navigator.mediaDevices.getDisplayMedia({ video: { facingMode: "environment" } });
-                    // let screenTrack = screenStream.getVideoTracks()[0];
-
-                    channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
-                        {
-
-                        }
-                    );
+                    try {
+                        setTimeout(() => {
+                            channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
+                                {
+                                    cameraId: selectedCamera,
+                                }
+                            );
+                        }, 3333);
+                    } catch (error) {
+                        console.log("ไม่สามารถสร้างกล้องหรือไม่พบกล้อง catch ใน catch");
+                    }
 
                     // channelParameters.localVideoTrack = await AgoraRTC.createCustomVideoTrack({
                     //     // mediaStreamTrack: screenTrack,
