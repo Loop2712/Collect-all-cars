@@ -1,13 +1,15 @@
-@extends('layouts.partners.theme_hospital')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            @include('admin.sidebar')
+
+            <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Create New Hospital_office</div>
+                    <div class="card-header">Create New Data_1669_officer_hospital</div>
                     <div class="card-body">
-                        <a href="{{ url('/hospital_office') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/data_1669_officer_hospital') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -19,10 +21,10 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/hospital_office') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/data_1669_officer_hospital') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            @include ('hospital_office.form', ['formMode' => 'create'])
+                            @include ('data_1669_officer_hospital.form', ['formMode' => 'create'])
 
                         </form>
 

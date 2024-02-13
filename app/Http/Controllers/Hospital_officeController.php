@@ -9,6 +9,10 @@ use App\Models\Hospital_office;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Auth;
+use Illuminate\Support\Facades\Hash;
+use App\User;
+use App\Models\Data_1669_officer_hospital;
 
 class Hospital_officeController extends Controller
 {
@@ -91,10 +95,19 @@ class Hospital_officeController extends Controller
 
         // }
 
-        exit();
+        // exit();
 
 
         return view('hospital_office.index', compact('data') );
+    }
+
+    public function hospital_offices_index()
+    {
+        $data_user = Auth::user();
+
+        $data_hospital = Data_1669_officer_hospital::where('user_id', $data_user->id)->first();
+
+        return view('hospital_office.hospital_offices_index', compact('data_hospital'));
     }
 
     /**
@@ -216,6 +229,81 @@ class Hospital_officeController extends Controller
         $data = Hospital_office::where('province', $province)->where('lat' , '!=' , NULL)->get();
 
         return $data ;
+
+    }
+
+    function view_hospital_offices(){
+
+        return view('hospital_office.view_hospital_offices');
+
+    }
+
+    function get_data_hospital($province){
+
+        $data = Hospital_office::where('province', $province)->get();
+
+        return $data ;
+
+    }
+
+    function open_active_hospital($id){
+
+        $data = Hospital_office::where('id', $id)->first();
+
+        return view('hospital_office.open_active_hospital', compact('data'));
+    }
+
+    function create_account_hospital($area , $id , $creator){
+
+        $data_hospital = Hospital_office::where('id', $id)->first();
+
+        $user = new User();
+        $user->name = $data_hospital->name;
+        $user->email = "กรุณาเพิ่มอีเมล";
+        $user->provider_id = uniqid('สพฉ-', true);
+        $user->username = $data_hospital->code_5_digit;
+        $user->password = Hash::make($data_hospital->code_5_digit);
+        $user->status = "active";
+        $user->role = "admin-partner";
+        $user->organization = "สพฉ";
+        $user->country = "TH";
+        $user->language = "th";
+        $user->time_zone = "Asia/Bangkok";
+        $user->creator = $creator;
+        $user->sub_organization = "โรงพยาบาล";
+
+        $user->save();
+
+        $last_user = User::where('username' , $data_hospital->code_5_digit)->first();
+
+        $officer_hospital = new Data_1669_officer_hospital();
+        $officer_hospital->name_officer_hospital = $data_hospital->name;
+        $officer_hospital->user_id = $last_user->id;
+        $officer_hospital->hospital_offices_id = $data_hospital->id;
+        $officer_hospital->area = $area;
+        $officer_hospital->creator = $creator;
+
+        $officer_hospital->save();
+
+        DB::table('hospital_offices')
+            ->where([ 
+                    ['id', $id],
+                ])
+            ->update([
+                    'active' => "Yes",
+                ]);
+
+        return $user ;
+
+    }
+
+    function edit_my_hospital(){
+
+        $data_user = Auth::user();
+        $data_hospital = Data_1669_officer_hospital::where('user_id', $data_user->id)->first();
+        $hospital_offices = Hospital_office::where('id', $data_hospital->hospital_offices_id)->first();
+
+        return view('hospital_office.edit_my_hospital', compact('hospital_offices')); 
 
     }
 }

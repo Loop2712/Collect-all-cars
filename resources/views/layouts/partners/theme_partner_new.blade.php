@@ -884,6 +884,9 @@
                                     <li>
                                         <a href="{{ url('/view_map_officer_area') }}" target="blank"><i class="fa-solid fa-map-location-dot"></i> แผนที่ </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ url('/view_hospital_offices') }}" target="blank"><i class="fa-solid fa-hospital"></i> โรงพยาบาล </a>
+                                    </li>
 								</ul>
 							@else
                                 <ul class="d-none">

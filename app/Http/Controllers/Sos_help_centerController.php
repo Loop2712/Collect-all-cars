@@ -3181,6 +3181,30 @@ class Sos_help_centerController extends Controller
         $requestData = $request->all();
         $sos_id = $requestData['sos_id'];
 
+        $data_sos_help_center = Sos_help_center::where('forward_operation_from' , $sos_id)->get();
+
+        foreach ($data_sos_help_center as $item) {
+            DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $item->id],
+                ])
+            ->update([
+                    'forward_operation_from' => null,
+                ]);
+        }
+
+        $data_sos_help_center = Sos_help_center::where('forward_operation_to' , $sos_id)->get();
+
+        foreach ($data_sos_help_center as $item) {
+            DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $item->id],
+                ])
+            ->update([
+                    'forward_operation_to' => null,
+                ]);
+        }
+
         sos_help_center::where('id' , $sos_id)->delete();
         Sos_1669_form_yellow::where('sos_help_center_id' , $sos_id)->delete();
 

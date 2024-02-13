@@ -434,7 +434,12 @@
                     </a>
                   @break
                   @case("admin-partner")
+
+                    @if(Auth::user()->sub_organization == "โรงพยาบาล")
+                    <a href="{{ url('/hospital_offices_index') }}">
+                    @else
                     <a href="{{ url('/partner_index') }}">
+                    @endif
                       <li class="notranslate">
                         <img width="25" style="margin-left: -5px;" src="{{ url('/img/stickerline/PNG/1.png') }}">&nbsp;
                         admin-partner

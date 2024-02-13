@@ -25,7 +25,7 @@ class Hospital_office extends Model
      *
      * @var array
      */
-    protected $fillable = ['code_9_digit', 'code_5_digit', 'code_11_digit','name', 'organization_type', 'health_type', 'affiliation', 'department', 'actual_bed', 'usage_status', 'service_area', 'address', 'province', 'district', 'sub_district', 'village', 'zip_code', 'server', 'founding_date', 'closing_date', 'latest_update','lat','lng'];
+    protected $fillable = ['code_9_digit', 'code_5_digit', 'code_11_digit','name', 'organization_type', 'health_type', 'affiliation', 'department', 'actual_bed', 'usage_status', 'service_area', 'address', 'province', 'district', 'sub_district', 'village', 'zip_code', 'server', 'founding_date', 'closing_date', 'latest_update','lat','lng','active'];
 
     
 }

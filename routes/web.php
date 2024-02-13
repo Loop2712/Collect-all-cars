@@ -211,6 +211,11 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	// -- SOS MAP repair --
 	Route::get('sos_map/report_repair/{id_sos_map}', 'Sos_mapController@report_repair');
 
+	// hospital_offices
+	Route::get('hospital_offices_index', 'Hospital_officeController@hospital_offices_index');
+	Route::get('view_hospital_offices', 'Hospital_officeController@view_hospital_offices');
+	Route::get('open_active_hospital/{id}', 'Hospital_officeController@open_active_hospital');
+	Route::get('edit_my_hospital', 'Hospital_officeController@edit_my_hospital');
 
 	// BROADCAST
 	Route::get('/broadcast/dashboard', 'PartnerController@dashboard_broadcast');
@@ -612,3 +617,4 @@ Route::resource('phone_niems', 'Phone_niemsController');
 Route::resource('polygon_amphoe_th', 'Polygon_amphoe_thController');
 
 Route::resource('hospital_office', 'Hospital_officeController');
+Route::resource('data_1669_officer_hospital', 'Data_1669_officer_hospitalController');

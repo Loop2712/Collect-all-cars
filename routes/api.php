@@ -373,3 +373,5 @@ Route::post('/update_data_report_repair', 'Sos_mapController@update_data_report_
 // hospital_offices
 Route::post('/create_hospital_office/excel', 'Hospital_officeController@create_hospital_office');
 Route::get('/get_hospital_offices/{province}', 'Hospital_officeController@get_hospital_offices');
+Route::get('/get_data_hospital/{province}', 'Hospital_officeController@get_data_hospital');
+Route::get('/create_account_hospital/{area}/{id}/{creator}', 'Hospital_officeController@create_account_hospital');

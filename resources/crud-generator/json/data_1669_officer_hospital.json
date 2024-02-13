@@ -1,0 +1,28 @@
+{
+    "fields": [
+        {
+            "name": "name_officer_hospital",
+            "type": "string"
+        },
+        {
+            "name": "user_id",
+            "type": "string"
+        },
+        {
+            "name": "hospital_offices_id",
+            "type": "string"
+        },
+        {
+            "name": "area",
+            "type": "string"
+        },
+        {
+            "name": "creator",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        }
+    ]
+}
