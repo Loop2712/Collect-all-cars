@@ -1986,17 +1986,23 @@
                     // let screenStream = await navigator.mediaDevices.getDisplayMedia({ video: { facingMode: "environment" } });
                     // let screenTrack = screenStream.getVideoTracks()[0];
 
-                    channelParameters.localVideoTrack = await AgoraRTC.createCustomVideoTrack({
-                        // mediaStreamTrack: screenTrack,
-                        // optimizationMode: 'detail',
-                        // encoderConfig: {
-                        //     width: 640,
-                        //     // Specify a value range and an ideal value
-                        //     height: { ideal: 480, min: 400, max: 500 },
-                        //     frameRate: 15,
-                        //     bitrateMin: 500, bitrateMax: 1000,
-                        // },
-                    });
+                    channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
+                        {
+
+                        }
+                    );
+
+                    // channelParameters.localVideoTrack = await AgoraRTC.createCustomVideoTrack({
+                    //     // mediaStreamTrack: screenTrack,
+                    //     // optimizationMode: 'detail',
+                    //     // encoderConfig: {
+                    //     //     width: 640,
+                    //     //     // Specify a value range and an ideal value
+                    //     //     height: { ideal: 480, min: 400, max: 500 },
+                    //     //     frameRate: 15,
+                    //     //     bitrateMin: 500, bitrateMax: 1000,
+                    //     // },
+                    // });
 
                     alert('ไม่สามารถโหลดข้อมูลกล้องได้ catch');
 
@@ -2370,7 +2376,6 @@
                     channelParameters.localVideoTrack.setEnabled(true);
 
                     channelParameters.localVideoTrack.play(localPlayerContainer);
-                    // channelParameters.remoteVideoTrack.play(remotePlayerContainer);
 
                     agoraEngine.publish([channelParameters.localVideoTrack]);
 
