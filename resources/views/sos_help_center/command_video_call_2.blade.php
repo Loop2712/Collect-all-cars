@@ -1928,7 +1928,13 @@
                         } catch (error) {
                             // ในกรณีที่เกิดข้อผิดพลาดในการสร้างกล้อง
                             console.error('ไม่สามารถสร้างกล้องหรือไม่พบกล้อง', error);
-                            alert("กรุณารีเฟรชหน้าจอเพื่อลองเข้าใหม่");
+                            // alert("กรุณารีเฟรชหน้าจอเพื่อลองเข้าใหม่");
+
+                            channelParameters.localVideoTrack = await AgoraRTC.createCameraVideoTrack(
+                                {
+
+                                }
+                            );
 
                         }
 
