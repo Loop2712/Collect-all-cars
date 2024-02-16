@@ -12,7 +12,7 @@
                     <div class="col-12 col-md-6">
                         <label  class="control-label"><b>{{ 'Profile picture' }}</b></label>
                         <div class="form-group {{ $errors->has('photo') ? 'has-error' : ''}}">
-                            <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($data->photo) ? $data->photo : ''}}" accept="image/*" multiple="multiple" onchange="document.querySelector('#img_profile_old').classList.add('d-none');">
+                            <input class="form-control" name="photo" type="file" id="photo" value="{{ isset($data->photo) ? $data->photo : ''}}" accept="image/*" capture="environment" multiple="multiple" onchange="document.querySelector('#img_profile_old').classList.add('d-none');">
                                 {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
                         </div>
                         <br>
