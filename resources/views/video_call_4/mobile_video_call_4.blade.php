@@ -1432,8 +1432,8 @@
                 console.log("============== channelParameters.remoteVideoTrack ใน published  ==================");
                 console.log(channelParameters.remoteVideoTrack);
 
-                channelParameters.remoteUid = user.uid.toString();
-                remotePlayerContainer[user.uid].id = user.uid.toString();
+                channelParameters.remoteUid = user.uid;
+                remotePlayerContainer[user.uid].id = user.uid;
 
                 //======= สำหรับสร้าง div ที่ใส่ video tag พร้อม id_tag สำหรับลบแท็ก ========//
                 let name_remote;
@@ -1611,7 +1611,7 @@
                                 console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
                                 if (!isRemoteIconSound) {
-                                    document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.remove('d-none');
+                                    document.querySelector('#statusMicrophoneOutput_remote_'+user.uid).classList.remove('d-none');
                                     isRemoteIconSound = true;
                                 }
 
@@ -1619,7 +1619,7 @@
                                 console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
 
                                 if (isRemoteIconSound) {
-                                    document.querySelector('#statusMicrophoneOutput_remote_'+user.uid.toString()).classList.add('d-none');
+                                    document.querySelector('#statusMicrophoneOutput_remote_'+user.uid).classList.add('d-none');
                                     isRemoteIconSound = false;
                                 }
 
@@ -2596,7 +2596,6 @@
                 if (deviceType == 'PC'){
                     radio2.checked = device.deviceId === activeAudioDeviceId;
                 }
-
 
                 let label = document.createElement('li');
                     label.classList.add('ui-list-item');

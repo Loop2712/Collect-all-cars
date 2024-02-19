@@ -923,6 +923,15 @@
                     </div>
                 </div>
             </div>
+            {{-- <div class="col-12 div_button_video_call">
+                <div class="d-flex justify-content-center">
+
+                    <div class="btn btnSpecial btn_leave d-non" id="btn_changeVolume">
+                        <i class="fa-solid fa-volume" style="color: #ffffff;"></i>
+                    </div>
+
+                </div>
+            </div> --}}
         </div>
 
         <div class="dropcontent">
@@ -1009,8 +1018,8 @@
     var activeVideoDeviceId = "";
     var activeAudioDeviceId = "";
 
-    document.addEventListener('DOMContentLoaded', (event) => {
 
+    document.addEventListener('DOMContentLoaded', (event) => {
         start_page();
     });
 
@@ -1378,6 +1387,14 @@
                 channelParameters.remoteVideoTrack = user.videoTrack;
                 channelParameters.remoteAudioTrack = user.audioTrack;
 
+                // set ระดับเสียงของ remote // ทำตอนมี remote อยู่ใน video call เท่านั้น
+                let remoteVolumeFromStorage = localStorage.getItem('remote_rangeValue');
+                if (remoteVolumeFromStorage !== null) {
+                    // ตั้งค่าเสียง remote audio
+                    console.log("Volume of remote audio at start :" + remoteVolumeFromStorage);
+                    channelParameters.remoteAudioTrack.setVolume(parseInt(remoteVolumeFromStorage));
+                }
+
                 console.log("============== channelParameters.remoteVideoTrack ใน published  ==================");
                 console.log(channelParameters.remoteVideoTrack);
 
@@ -1436,6 +1453,14 @@
             {
                 channelParameters.remoteAudioTrack = user.audioTrack;
                 channelParameters.remoteAudioTrack.play();
+
+                // set ระดับเสียงของ remote // ทำตอนมี remote อยู่ใน video call เท่านั้น
+                let remoteVolumeFromStorage = localStorage.getItem('remote_rangeValue');
+                if (remoteVolumeFromStorage !== null) {
+                    // ตั้งค่าเสียง remote audio
+                    console.log("Volume of remote audio at start :" + remoteVolumeFromStorage);
+                    channelParameters.remoteAudioTrack.setVolume(parseInt(remoteVolumeFromStorage));
+                }
 
                 if(user.hasAudio == false){
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
@@ -1499,6 +1524,14 @@
                     channelParameters.remoteVideoTrack.stop(); //lastest
                     channelParameters.remoteVideoTrack.close();//lastest
 
+                    // set ระดับเสียงของ remote // ทำตอนมี remote อยู่ใน video call เท่านั้น
+                    let remoteVolumeFromStorage = localStorage.getItem('remote_rangeValue');
+                    if (remoteVolumeFromStorage !== null) {
+                        // ตั้งค่าเสียง remote audio
+                        console.log("Volume of remote audio at start :" + remoteVolumeFromStorage);
+                        channelParameters.remoteAudioTrack.setVolume(parseInt(remoteVolumeFromStorage));
+                    }
+
                     let name_remote_user_unpublished;
                     let type_remote_user_unpublished;
                     let profile_remote_user_unpublished;
@@ -1554,6 +1587,14 @@
                 // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
                 console.log('unpublished AudioTrack:');
                 // console.log(channelParameters.localAudioTrack);
+
+                // set ระดับเสียงของ remote // ทำตอนมี remote อยู่ใน video call เท่านั้น
+                let remoteVolumeFromStorage = localStorage.getItem('remote_rangeValue');
+                if (remoteVolumeFromStorage !== null) {
+                    // ตั้งค่าเสียง remote audio
+                    console.log("Volume of remote audio at start :" + remoteVolumeFromStorage);
+                    channelParameters.remoteAudioTrack.setVolume(parseInt(remoteVolumeFromStorage));
+                }
 
                 // ถ้าไมค์ทำงานใน unpublished จะพบเมื่อผู้ใช้เข้ามาครั้งแรกแล้ว ปิดกล้อง แต่ เปิดไมค์
                 if(user.hasAudio == true){
@@ -2073,8 +2114,6 @@
                             console.log('ส่งตัวแปร videoTrack audioTrack ไม่สำเร็จ');
                         }
 
-                        // console.log('AudioTrack:');
-                        // console.log(channelParameters.localAudioTrack);
                     }
                 } catch (error) {
                     console.log("โหลดหน้าล้มเหลว :" + error);
@@ -2246,6 +2285,16 @@
                 channelParameters.localAudioTrack = newAudioTrack;
 
                 channelParameters.localAudioTrack.play();
+
+                let localVolumeFromStorage = localStorage.getItem('local_rangeValue');
+                // ตั้งค่าเสียงในตอนที่เริ่มต้น
+                if (localVolumeFromStorage !== null) {
+                    // ตั้งค่าเสียง local audio
+                    console.log("Volume of local audio at onChange :" + localVolumeFromStorage);
+                    channelParameters.localAudioTrack.setVolume(parseInt(localVolumeFromStorage));
+                }else{
+                    channelParameters.localAudioTrack.setVolume(parseInt(100));
+                }
 
                 if(isAudio == true){
                     // เริ่มส่งเสียงจากอุปกรณ์ใหม่
@@ -2583,7 +2632,77 @@
                 deviceText.classList.add('text-center','p-1','text-white');
                 deviceText.appendChild(document.createTextNode("อุปกรณ์รับข้อมูล"));
 
-                audioDeviceList.appendChild(deviceText);
+            //============================================ ส่วนของ การปรับระดับเสียง(optional)=====================================================================================
+
+            let localsavedValue = localStorage.getItem('local_rangeValue') ?? 100;
+            let remotesavedValue = localStorage.getItem('remote_rangeValue') ?? 100;
+
+            let localVolume = localsavedValue;
+            let remoteVolume = remotesavedValue;
+
+            let localAudioVolumeLabel = `<label class="ui-list-item d-block" for="localAudioVolume" >
+                                            <li class="text-center p-1 text-white d-block" style="font-size: 1.4em;">เสียงที่อีกฝ่ายได้ยิน</li>
+                                            <input type="range" id="localAudioVolume" min="0" max="1000" value="`+localVolume+`" class="w-100">
+                                        </label>`
+
+            audioDeviceList.insertAdjacentHTML('afterbegin', localAudioVolumeLabel); // แทรกบนสุด
+
+            let remoteAudioVolumeLabel = `<label class="ui-list-item d-block" for="remoteAudioVolume" >
+                                            <li class="text-center p-1 text-white d-block" style="font-size: 1.4em;">เสียงที่เราได้ยิน</li>
+                                            <input type="range" id="remoteAudioVolume" min="0" max="1000" value="`+remoteVolume+`" class="w-100">
+                                        </label>`
+
+            audioDeviceList.insertAdjacentHTML('afterbegin', remoteAudioVolumeLabel); // แทรกบนสุด
+
+            // เข้าถึงตัวปรับ input =============== localVolume ==========================
+            let local_rangeInput = document.getElementById('localAudioVolume');
+            local_rangeInput.addEventListener('input', function() {
+            // บันทึกค่าลงใน localStorage เมื่อมีการเปลี่ยนแปลง
+                localStorage.setItem('local_rangeValue', local_rangeInput.value);
+                localVolume = local_rangeInput.value; // เปลี่ยนค่าระดับเสียงของทางเราให้เท่ากับตัวปรับ
+            });
+
+            // เข้าถึงตัวปรับ input =============== remoteVolume ==========================
+            let remote_rangeInput = document.getElementById('remoteAudioVolume');
+            remote_rangeInput.addEventListener('input', function() {
+            // บันทึกค่าลงใน remoteStorage เมื่อมีการเปลี่ยนแปลง
+                localStorage.setItem('remote_rangeValue', remote_rangeInput.value);
+                remoteVolume = remote_rangeInput.value; // เปลี่ยนค่าระดับเสียงของทางฝั่งตรงข้ามให้เท่ากับตัวปรับ
+            });
+
+            let localVolumeFromStorage = localStorage.getItem('local_rangeValue');
+            // let remoteVolumeFromStorage = localStorage.getItem('remote_rangeValue');
+
+            // ตั้งค่าเสียงในตอนที่เริ่มต้น
+            if (localVolumeFromStorage !== null) {
+                // ตั้งค่าเสียง local audio
+                console.log("Volume of local audio at start :" + localVolumeFromStorage);
+                channelParameters.localAudioTrack.setVolume(parseInt(localVolumeFromStorage));
+            }else{
+                channelParameters.localAudioTrack.setVolume(parseInt(100));
+            }
+
+            // เพิ่ม event listener สำหรับ local audio volume slider
+            document.getElementById("localAudioVolume").addEventListener("change", function (evt) {
+                console.log("Volume of local audio :" + evt.target.value);
+                // Set the local audio volume.
+                channelParameters.localAudioTrack.setVolume(parseInt(evt.target.value));
+                // บันทึกค่าลงใน localStorage เพื่อให้ค่าเสียงเป็นค่าเริ่มต้นต่อครั้งถัดไป
+            });
+
+            // เพิ่ม event listener สำหรับ remote audio volume slider
+            document.getElementById("remoteAudioVolume").addEventListener("change", function (evt) {
+                // Set the remote audio volume.
+                if (channelParameters.remoteAudioTrack) {
+                    channelParameters.remoteAudioTrack.setVolume(parseInt(evt.target.value));
+                    console.log("Volume Remote Success:" + evt.target.value);
+                }
+                // บันทึกค่าลงใน localStorage เพื่อให้ค่าเสียงเป็นค่าเริ่มต้นต่อครั้งถัดไป
+            });
+
+            //=================================================================================================================================
+
+            audioDeviceList.appendChild(deviceText);
             // let audiooutputDeviceList = document.getElementById('audio-device-output-list');
             //     audiooutputDeviceList.innerHTML = '';
 
@@ -2661,6 +2780,8 @@
 
         }
 
+        //=======================================================================
+
         // เปิด-ปิด list ของไมค์
         $(document).ready(function() {
             $("#btn_switchMicrophone").click(function(event) {
@@ -2724,6 +2845,57 @@
         //=============================================================================//
         //                              จบ -- สลับอุปกรณ์                                //
         //=============================================================================//
+
+        //   เพิ่ม-ลด เสียง    //
+        // btn_changeVolume.onclick = async function()
+        // {
+        //     // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
+        //     let volumeDeviceList = document.getElementById('volume-device-list');
+        //         volumeDeviceList.innerHTML = '';
+        //     let deviceText = document.createElement('li');
+        //         deviceText.classList.add('text-center','p-1','text-white');
+        //         deviceText.appendChild(document.createTextNode("ระดับเสียง"));
+
+        //         volumeDeviceList.appendChild(deviceText);
+
+        //     let count_i = 1 ;
+
+        //     // Create label element for Local Audio Volume.
+        //     let localAudioVolumeLabel = document.createElement("label");
+        //         localAudioVolumeLabel.setAttribute("class","ui-list-item");
+        //         localAudioVolumeLabel.setAttribute("for", "localAudioVolume");
+
+        //     // Create input element for Local Audio Volume Slider.
+        //     let localAudioVolumeSlider = document.createElement("input");
+        //         localAudioVolumeSlider.setAttribute("type", "range");
+        //         localAudioVolumeSlider.setAttribute("id", "localAudioVolume");
+        //         localAudioVolumeSlider.setAttribute("min", "0");
+        //         localAudioVolumeSlider.setAttribute("max", "100");
+        //         localAudioVolumeSlider.setAttribute("value", "50");
+
+        //     // Append label and slider to the document body or any other desired container.
+        //     localAudioVolumeLabel.appendChild(localAudioVolumeSlider);
+        //     volumeDeviceList.appendChild(localAudioVolumeLabel);
+
+        //     // Create label element for Remote Audio Volume.
+        //     let remoteAudioVolumeLabel = document.createElement("label");
+        //         remoteAudioVolumeLabel.setAttribute("class","ui-list-item");
+        //         remoteAudioVolumeLabel.setAttribute("for", "remoteAudioVolume");
+
+        //     // Create input element for Remote Audio Volume Slider.
+        //     let remoteAudioVolumeSlider = document.createElement("input");
+        //         remoteAudioVolumeSlider.setAttribute("type", "range");
+        //         remoteAudioVolumeSlider.setAttribute("id", "remoteAudioVolume");
+        //         remoteAudioVolumeSlider.setAttribute("min", "0");
+        //         remoteAudioVolumeSlider.setAttribute("max", "100");
+        //         remoteAudioVolumeSlider.setAttribute("value", "50");
+
+        //     // Append label and slider to the document body or any other desired container.
+        //     remoteAudioVolumeLabel.appendChild(remoteAudioVolumeSlider);
+        //     volumeDeviceList.appendChild(remoteAudioVolumeLabel);
+
+        // }
+
 
     }
 
