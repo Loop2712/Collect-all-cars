@@ -2348,7 +2348,7 @@
                 // console.log(localPlayerContainer);
 
                 // // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
-                // channelParameters.localVideoTrack.setEnabled(false);
+                channelParameters.localVideoTrack.setEnabled(false);
 
                 agoraEngine.unpublish([channelParameters.localVideoTrack]);
 
