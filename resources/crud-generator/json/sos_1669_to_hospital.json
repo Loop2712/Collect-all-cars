@@ -1,0 +1,32 @@
+{
+    "fields": [
+        {
+            "name": "area",
+            "type": "string"
+        },
+        {
+            "name": "officer_hospital_id",
+            "type": "string"
+        },
+        {
+            "name": "command_id",
+            "type": "string"
+        },
+        {
+            "name": "sos_help_center_id",
+            "type": "string"
+        },
+        {
+            "name": "form_yellow_id",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        }
+        {
+            "name": "hospital_office_id",
+            "type": "string"
+        }
+    ]
+}

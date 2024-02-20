@@ -13,6 +13,9 @@ use Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Models\Data_1669_officer_hospital;
+use App\Models\Sos_1669_to_hospital;
+use App\Models\Sos_help_center;
+use App\Models\Sos_1669_form_yellow;
 
 class Hospital_officeController extends Controller
 {
@@ -226,7 +229,7 @@ class Hospital_officeController extends Controller
 
     function get_hospital_offices($province){
 
-        $data = Hospital_office::where('province', $province)->where('lat' , '!=' , NULL)->get();
+        $data = Hospital_office::where('province', $province)->where('active' , 'Yes')->where('lat' , '!=' , NULL)->get();
 
         return $data ;
 
@@ -295,6 +298,37 @@ class Hospital_officeController extends Controller
 
         return $user ;
 
+    }
+
+    function create_1669_to_hospitals($hospital_id , $sos_1669_id , $command_id){
+
+        $data_user = Auth::user();
+        $data_hospital = Hospital_office::where('id', $hospital_id)->first();
+        $officer_hospitals = Data_1669_officer_hospital::where('hospital_offices_id', $hospital_id)->first();
+        $form_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $sos_1669_id)->first();
+
+        $data = [];
+        $data['area'] = $data_hospital->province;
+        $data['officer_hospital_id'] = $officer_hospitals->id;
+        $data['command_id'] = $command_id;
+        $data['sos_help_center_id'] = $sos_1669_id;
+        $data['form_yellow_id'] = $form_yellow->id;
+        $data['status'] = "รอดำเนินการ";
+        $data['hospital_office_id'] = $hospital_id;
+
+        Sos_1669_to_hospital::create($data);
+
+        $last_data = Sos_1669_to_hospital::latest()->first();
+
+        DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $sos_1669_id],
+                ])
+            ->update([
+                    'hospital_office_id' => $last_data->hospital_office_id,
+                ]);
+
+        return "success" ;
     }
 
     function edit_my_hospital(){

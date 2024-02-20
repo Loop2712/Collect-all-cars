@@ -292,6 +292,11 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
 	// sos map wait delete
 	Route::resource('sos_map_wait_delete', 'Sos_map_wait_deleteController');
 
+	// Hospital_office
+	Route::resource('hospital_office', 'Hospital_officeController');
+	Route::resource('data_1669_officer_hospital', 'Data_1669_officer_hospitalController');
+	Route::resource('sos_1669_to_hospital', 'Sos_1669_to_hospitalController');
+
 });
 // end admin-partner
 
@@ -615,6 +620,3 @@ Route::get('/show_score_public', 'Vote_kan_scoresController@show_score_public');
 
 Route::resource('phone_niems', 'Phone_niemsController');
 Route::resource('polygon_amphoe_th', 'Polygon_amphoe_thController');
-
-Route::resource('hospital_office', 'Hospital_officeController');
-Route::resource('data_1669_officer_hospital', 'Data_1669_officer_hospitalController');

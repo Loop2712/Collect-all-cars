@@ -375,3 +375,4 @@ Route::post('/create_hospital_office/excel', 'Hospital_officeController@create_h
 Route::get('/get_hospital_offices/{province}', 'Hospital_officeController@get_hospital_offices');
 Route::get('/get_data_hospital/{province}', 'Hospital_officeController@get_data_hospital');
 Route::get('/create_account_hospital/{area}/{id}/{creator}', 'Hospital_officeController@create_account_hospital');
+Route::get('/create_1669_to_hospitals/{hospital_id}/{sos_1669_id}/{command_id}', 'Hospital_officeController@create_1669_to_hospitals');
