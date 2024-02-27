@@ -228,7 +228,10 @@ Route::middleware(['auth', 'role:admin-partner,partner,admin-condo'])->group(fun
     Route::get('/dashboard_index', 'Partner_DashboardController@dashboard_index');
     Route::get('/dashboard_user_index', 'Partner_DashboardController@dashboard_user_index');
 
-    Route::get('/dashboard_viisos', 'Partner_DashboardController@dashboard_viisos');
+	Route::get('/dashboard_viisos', function () {
+		return view('dashboard/dashboard_viisos/viisos_show/all_sos_show');
+	});
+    // Route::get('/dashboard_viisos', 'Partner_DashboardController@dashboard_viisos');
     Route::get('/dashboard_viisos_3_topic', 'Partner_DashboardController@viisos_3_topic');
 
     Route::get('/dashboard_viimove_register_car', 'Partner_DashboardController@viimove_register_car');
@@ -368,7 +371,9 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('vote_kan_admin/show_score', 'Vote_kan_scoresController@show_score');
 	Route::resource('vote_kan_data_stations', 'Vote_kan_data_stationsController');
 	Route::get('vote_kan_stations_not_registered', 'Vote_kan_data_stationsController@not_registered'); // index
-
+	Route::get('edit_and_summit_form_sos', 'Sos_help_centerController@edit_and_summit_form_sos');
+	Route::get('check_withdraw_form_sos', 'Sos_help_centerController@check_withdraw_form_sos');
+	Route::get('check_form_sos_pdf/{sos_id}', 'Sos_help_centerController@check_form_sos_pdf');
 
 });
 

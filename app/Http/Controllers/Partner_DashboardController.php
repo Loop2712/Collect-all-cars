@@ -972,13 +972,17 @@ class Partner_DashboardController extends Controller
     //========================================== dashboard_viisos show ================================================
 
     function dashboard_viisos(Request $request){
-        $user_login = Auth::user();
+        // $user_login = Auth::user();
+        $user_login = $request->get('user_organization');
+
+        // dd($user_login);
         // นับ sos ทั้งหมด
-        $data_sos = Sos_map::where('area',$user_login->organization)
+        $data_sos = Sos_map::where('area',$user_login)
         ->where('content','help_area')
         ->get();
+        // ddd($data_sos);
+        return response()->json($data_sos);
 
-        return view('dashboard.dashboard_viisos.viisos_show.all_sos_show', compact('data_sos') );
     }
 
     function viisos_3_topic(Request $request){

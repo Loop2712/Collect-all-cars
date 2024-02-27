@@ -10,49 +10,7 @@
 
                 <div class="table-responsive mt-4 mb-4">
                     <table class="table align-middle mb-0">
-                        <tbody class="fz_body font-weight-bold">
-                            @foreach ($notify_data as $notify_data)
-
-                                @php
-                                    $color_benotified;
-                                    switch ($notify_data->be_notified) {
-                                        case 'แพลตฟอร์มวีเช็ค':
-                                            $color_benotified = "#dc3545";
-                                            break;
-                                        case 'โทรศัพท์หมายเลข ๑๖๖๙':
-                                            $color_benotified = "#0d6efd";
-                                            break;
-                                        case 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)':
-                                            $color_benotified = "#198754";
-                                            break;
-                                        case 'โทรศัพท์หมายเลขอื่นๆ':
-                                            $color_benotified = "#0dcaf0";
-                                            break;
-                                        case 'วิทยุสื่อสาร':
-                                            $color_benotified = "#ffc107";
-                                            break;
-                                        case 'วิธีอื่นๆ':
-                                            $color_benotified = "#f48024";
-                                            break;
-                                        case 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า':
-                                            $color_benotified = "#f9a3a4";
-                                            break;
-                                        default:
-                                            $color_benotified = "#212529";
-                                            break;
-                                    }
-                                @endphp
-                                <tr>
-                                    <td class="px-0">
-                                        <div class="d-flex align-items-center">
-                                            <div><i class='bx bxs-checkbox me-2 font-24' style="color:{{$color_benotified}};"></i>
-                                            </div>
-                                            <div>{{$notify_data->be_notified}}</div>
-                                        </div>
-                                    </td>
-                                    <td>{{$notify_data->count_be_notified}} ครั้ง</td>
-                                </tr>
-                            @endforeach
+                        <tbody id="tbody_notify" class="fz_body font-weight-bold">
                         </tbody>
                     </table>
                 </div>
@@ -68,17 +26,12 @@
                 <div class="col-md-4 border-end">
                     <div class="card-body">
                         <h5 class="card-title font-weight-bold ">การขอความช่วยเหลือในจังหวัด</h5>
-                        <h2 class="mt-4 mb-1 font-weight-bold">{{$mostCommonDistrict}} <span class="text-danger">{{$countMostCommonDistrict}}</span>  ครั้ง </h2>
-                        <p class="mb-0 text-secondary">{{$mostCommonDistrict}} เป็นอำเภอที่ขอความช่วยเหลือมากที่สุด</p>
+                        <h2 class="mt-4 mb-1 font-weight-bold" ><span id="name_sos_district"></span> <span class="text-danger" id="count_sos_district"></span>  ครั้ง </h2>
+                        <p class="mb-0 text-secondary" id="title_sos_district"></p>
                     </div>
 
-                    <ul class="list-group mt-4 list-group-flush list-group-sos-province">
-                        @foreach($orderedDistricts as $district => $count)
-                        <li class="font-18 list-group-item d-flex align-items-center">
-                            <span>{{$district}}</span>
-                            <strong class="ms-auto">{{$count}}</strong>
-                        </li>
-                        @endforeach
+                    <ul class="list-group mt-4 list-group-flush list-group-sos-province" id="ul_sos_districts">
+                        
                     </ul>
                 </div>
                 <div class="col-md-8">
@@ -183,7 +136,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center mb-3">
                     <div class="col-10">
-                        <h5 class="mb-0 font-weight-bold">หัวข้อการขอความช่วยเหลือมากที่สุด {{ count($arr_most_symptom_data_limit_5) }} อันดับ</h5>
+                        <h5 class="mb-0 font-weight-bold">หัวข้อการขอความช่วยเหลือมากที่สุด <span id="count_most_symptom"></span> อันดับ</h5>
                     </div>
                     <!-- <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -375,14 +328,21 @@
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         initMap();
+        getdata_notify();
+        districts_sos();
+        most_symptom_data();
+        form_yellows_idc();
+        form_yellows_rc();
+        treatment_have_cure();
+        treatment_no_have_cure();
     });
 </script>
 <!-- MAP พื้นที่การขอความช่วยเหลือในจังหวัด -->
 <script>
     function initMap() {
 
-        var map_sos_organization;
-        var marker_sos_organization;
+        let map_sos_organization;
+        let marker_sos_organization;
 
         let user_login_organization = '{{Auth::user()->sub_organization}}';
 
@@ -428,79 +388,146 @@
                     let image_sos_white = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/5.png') }}";
                     let image_sos_black = "{{ url('/img/icon/operating_unit/หมุดหน่วยปฏิบัติการ/6.png') }}";
 
+                    
+                    result.forEach(item => {
+                        let latNumber = parseFloat(item.lat);
+                        let lngNumber = parseFloat(item.lng);
 
-                    @foreach($sos_map_data as $sos_map_data)
-                        @if(!empty($sos_map_data->lat))
+                        switch(item.rc) {
+                            case "แดง(วิกฤติ)":
+                                image_marker_sos = image_sos_red ;
+                            break;
+                            case "เหลือง(เร่งด่วน)":
+                                image_marker_sos = image_sos_yellow ;
+                            break;
+                            case "เขียว(ไม่รุนแรง)":
+                                image_marker_sos = image_sos_green ;
+                            break;
+                            case "ขาว(ทั่วไป)":
+                                image_marker_sos = image_sos_white ;
+                            break;
+                            case "ดำ":
+                                image_marker_sos = image_sos_black ;
+                            break;
+                            default:
+                                image_marker_sos = image_sos_general ;
+                        }
 
-                            switch("{{ $sos_map_data->form_yellow->rc }}") {
-                                case "แดง(วิกฤติ)":
-                                    image_marker_sos = image_sos_red ;
-                                break;
-                                case "เหลือง(เร่งด่วน)":
-                                    image_marker_sos = image_sos_yellow ;
-                                break;
-                                case "เขียว(ไม่รุนแรง)":
-                                    image_marker_sos = image_sos_green ;
-                                break;
-                                case "ขาว(ทั่วไป)":
-                                    image_marker_sos = image_sos_white ;
-                                break;
-                                case "ดำ":
-                                    image_marker_sos = image_sos_black ;
-                                break;
-                                default:
-                                    image_marker_sos = image_sos_general ;
-                            }
+                        marker_sos_organization = new google.maps.Marker({
+                            position: { lat: latNumber , lng:lngNumber },
+                            map: map_sos_organization,
+                            icon: image_marker_sos,
+                            zIndex:5,
+                        });
 
-                            marker_sos_organization = new google.maps.Marker({
-                                position: { lat: {{ $sos_map_data->lat }} , lng: {{ $sos_map_data->lng }}  },
-                                map: map_sos_organization,
-                                icon: image_marker_sos,
-                                zIndex:5,
-                            });
-                        @endif
-                    @endforeach
+                    })
+
 
         });
 
 
+    }
+
+    function getdata_notify() {
+        fetch("{{ url('/') }}/api/API_dashboard_data_notify?user_id=" + user_id)
+        .then(response => response.json())
+        .then(result => {
+            // console.log(result);    
+            let tbody_notify = document.getElementById('tbody_notify');
+            tbody_notify.innerHTML = "";
+
+            result.forEach(item => {
+                    switch (item.be_notified) {
+                        case 'แพลตฟอร์มวีเช็ค':
+                            color_benotified = "#dc3545";
+                            break;
+                        case 'โทรศัพท์หมายเลข ๑๖๖๙':
+                            color_benotified = "#0d6efd";
+                            break;
+                        case 'โทรศัพท์หมายเลข ๑๖๖๙ (second call)':
+                            color_benotified = "#198754";
+                            break;
+                        case 'โทรศัพท์หมายเลขอื่นๆ':
+                            color_benotified = "#0dcaf0";
+                            break;
+                        case 'วิทยุสื่อสาร':
+                            color_benotified = "#ffc107";
+                            break;
+                        case 'วิธีอื่นๆ':
+                            color_benotified = "#f48024";
+                            break;
+                        case 'ส่งต่อชุดปฏิบัติการระดับสูงกว่า':
+                            color_benotified = "#f9a3a4";
+                            break;
+                        default:
+                            color_benotified = "#212529";
+                            break;
+                    }
+                                
+                data_table = `
+                    <tr>
+                        <td class="px-0">
+                            <div class="d-flex align-items-center">
+                                <div><i class='bx bxs-checkbox me-2 font-24' style="color:${color_benotified};"></i>
+                                </div>
+                                <div>${item.be_notified}</div>
+                            </div>
+                        </td>
+                        <td>${item.count_be_notified} ครั้ง</td>
+                    </tr>
+                `;
+
+                tbody_notify.insertAdjacentHTML('afterbegin', data_table); // แทรกบนสุด
+            })
+
+        })
+    }
+
+
+    function districts_sos() {
+        fetch("{{ url('/') }}/api/API_dashboard_districts_sos?user_id=" + user_id)
+        .then(response => response.json())
+        .then(result => {
+            // console.log(result);
+            let ul_sos_districts = document.getElementById('ul_sos_districts');
+                ul_sos_districts.innerHTML = "";
+            let i = 0;
+            result.forEach(item => {
+                // console.log(i)
+                if(i == 0){
+                    document.getElementById('count_sos_district').innerHTML = item.count_address;
+                    document.getElementById('name_sos_district').innerHTML = item.address;
+                    document.getElementById('title_sos_district').innerHTML = item.address +' เป็นอำเภอที่ขอความช่วยเหลือมากที่สุด';
+                }else{
+                    
+                    data_table = `
+                        <li class="font-18 list-group-item d-flex align-items-center">
+                            <span>${item.address}</span>
+                            <strong class="ms-auto">${item.count_address}</strong>
+                        </li>
+                    `;
+                    ul_sos_districts.insertAdjacentHTML('beforeend', data_table); // แทรกบนสุด
+                }
+                i++
+            })
+        })
     }
 </script>
 
 
 <!-- Column CHART หัวข้อการขอความช่วยเหลือมากที่สุด -->
 <script>
+function most_symptom_data() {
 
-    let symptom_count_arr = [];
-    let symptom_categories_arr = [];
+    fetch("{{ url('/') }}/api/API_dashboard_most_symptom_data?user_id=" + user_id)
+    .then(response => response.json())
+    .then(result => {
+        // console.log(result)
+        document.getElementById('count_most_symptom').innerHTML = result.length;
 
-    // ฟังก์ชันสุ่มสี HEX
-    function randomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-
-        return color;
-    }
-
-    @foreach ($arr_most_symptom_data_limit_5 as $key_symptom => $value_symptom)
-        // echo $key_symptom . ": " . $value_symptom . "<br>";
-        // นับจำนวน หัวข้อ
-        symptom_count_arr.push(Number('{{ $value_symptom }}'));
-
-        // นับประเภท หัวข้อ
-        symptom_categories_arr.push('{{ $key_symptom }}');
-    @endforeach
-
-    // เก็บสีที่สุ่ม ไว้ใน array โดยอิงจาก array ประเภทหัวข้อ
-    const symptom_colors = symptom_categories_arr.map(() => randomColor());
-
-    var options = {
+        let options = {
             series: [{
-                data: symptom_count_arr
+                data: result.map(item => item.count)
             }],
             chart: {
             type: 'bar',
@@ -517,7 +544,7 @@
                 },
             }
         },
-        colors: symptom_colors,
+        colors: result.map(() => randomColor()),
         dataLabels: {
             enabled: true,
             textAnchor: 'start',
@@ -538,7 +565,7 @@
             colors: ['#fff']
         },
         xaxis: {
-            categories: symptom_categories_arr,
+            categories: result.map(item => item.symptom),
         },
         yaxis: {
             labels: {
@@ -564,205 +591,11 @@
         }
     };
 
-    var chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows"), options);
-    chart.render();
-
-</script>
-
-<!-- Bar CHART ระดับสถานการณ์ประเมินโดย ศูนย์สั่งการ -->
-<script>
-    let idc_count_arr = [];
-    let idc_categories_arr = [];
-    let idc_color_arr = [];
-    @foreach ($idc_data as $item)
-        // นับจำนวน หัวข้อ
-        idc_count_arr.push(Number('{{ $item->count_idc }}'));
-
-        switch ('{{ $item->idc }}') {
-            case 'แดง(วิกฤติ)':
-                idc_color_arr.push("#dc3545");
-                idc_categories_arr.push('วิกฤติ');
-                break;
-            case 'เหลือง(เร่งด่วน)':
-                idc_color_arr.push("#ffc107");
-                idc_categories_arr.push('เร่งด่วน');
-                break;
-            case 'เขียว(ไม่รุนแรง)':
-                idc_color_arr.push("#28a745");
-                idc_categories_arr.push('ไม่รุนแรง');
-                break;
-            case 'ขาว(ทั่วไป)':
-                idc_color_arr.push("#cbd3da");
-                idc_categories_arr.push('ทั่วไป');
-                break;
-            case 'ดำ(รับบริการสาธารณสุขอื่น)':
-                idc_color_arr.push("#121416");
-                idc_categories_arr.push('อื่นๆ');
-                break;
-            default:
-                idc_color_arr.push("#121416");
-                idc_categories_arr.push('ไม่พบข้อมูล');
-                break;
-        }
-
-    @endforeach
-
-    var options = {
-        series: [{
-            data: idc_count_arr
-        }],
-        chart: {
-            height: 350,
-            type: 'bar',
-            events: {
-                click: function(chart, w, e) {
-                //   console.log(chart, w, e)
-                }
-            }
-        },
-        colors: idc_color_arr,
-        plotOptions: {
-        bar: {
-            columnWidth: '45%',
-            distributed: true,
-        }
-        },
-        dataLabels: {
-            enabled: true,
-            style: {
-                fontSize: '18px',
-                fontWeight: 'bold',
-            }
-        },
-        legend: {
-            show: false
-        },
-        xaxis: {
-            categories: idc_categories_arr,
-            labels: {
-                style: {
-                    colors: '#000000',
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                }
-            }
-        },
-        yaxis: {
-            labels: {
-                style: {
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                }
-            }
-        }
-    };
-
-        var chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows_idc"), options);
+        let chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows"), options);
         chart.render();
 
-</script>
-
-<!-- Bar CHART ระดับสถานการณ์ประเมินโดย หน่วยปฏิบัติการ -->
-<script>
-
-    let rc_count_arr = [];
-    let rc_categories_arr = [];
-    let rc_color_arr = [];
-    @foreach ($rc_data as $item)
-        // นับจำนวน หัวข้อ
-        rc_count_arr.push(Number('{{ $item->count_rc }}'));
-
-        switch ('{{ $item->rc }}') {
-            case 'แดง(วิกฤติ)':
-                rc_color_arr.push("#dc3545");
-                rc_categories_arr.push('วิกฤติ');
-                break;
-            case 'เหลือง(เร่งด่วน)':
-                rc_color_arr.push("#ffc107");
-                rc_categories_arr.push('เร่งด่วน');
-                break;
-            case 'เขียว(ไม่รุนแรง)':
-                rc_color_arr.push("#28a745");
-                rc_categories_arr.push('ไม่รุนแรง');
-                break;
-            case 'ขาว(ทั่วไป)':
-                rc_color_arr.push("#cbd3da");
-                rc_categories_arr.push('ทั่วไป');
-                break;
-            case 'ดำ':
-                rc_color_arr.push("#121416");
-                rc_categories_arr.push('อื่นๆ');
-                break;
-            default:
-                rc_color_arr.push("#121416");
-                rc_categories_arr.push('ไม่พบข้อมูล');
-                break;
-        }
-
-    @endforeach
-
-    var options = {
-        series: [{
-            data: rc_count_arr
-        }],
-        chart: {
-            height: 350,
-            type: 'bar',
-            events: {
-                click: function(chart, w, e) {
-                //   console.log(chart, w, e)
-                }
-            }
-        },
-        colors: rc_color_arr,
-        plotOptions: {
-        bar: {
-            columnWidth: '45%',
-            distributed: true,
-        }
-        },
-        dataLabels: {
-            enabled: true,
-            style: {
-                fontSize: '18px',
-                fontWeight: 'bold',
-            }
-        },
-        legend: {
-            show: false
-        },
-        xaxis: {
-            categories: rc_categories_arr,
-            labels: {
-                style: {
-                    colors: '#000000',
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                }
-            }
-        },
-        yaxis: {
-            labels: {
-                style: {
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                }
-            }
-        }
-    };
-
-        var chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows_rc"), options);
-        chart.render();
-
-</script>
-
-
-<!-- Column CHART การปฏิบัติการ CURE -->
-<script>
-
-    let have_cure_count_arr = [];
-    let have_cure_categories_arr = [];
-
+        })
+    }
     // ฟังก์ชันสุ่มสี HEX
     function randomColor() {
         const letters = '0123456789ABCDEF';
@@ -775,20 +608,155 @@
         return color;
     }
 
-    @foreach ($treatment_have_cure_data as $item)
-        // นับจำนวน หัวข้อ
-        have_cure_count_arr.push(Number('{{ $item->count_sub_treatment }}'));
+    
+</script>
 
-        // นับประเภท หัวข้อ
-        have_cure_categories_arr.push('{{ $item->sub_treatment }}');
-    @endforeach
+<!-- Bar CHART ระดับสถานการณ์ประเมินโดย ศูนย์สั่งการ -->
+<script>
 
-    // เก็บสีที่สุ่ม ไว้ใน array โดยอิงจาก array ประเภทหัวข้อ
-    const have_cure_color_arr = have_cure_categories_arr.map(() => randomColor());
+function form_yellows_idc() {
 
-    var options = {
+    fetch("{{ url('/') }}/api/API_dashboard_form_yellows_idc?user_id=" + user_id)
+    .then(response => response.json())
+    .then(result => {
+        // console.log(result)
+        let options = {
         series: [{
-            data: have_cure_count_arr,
+            data: result.map(item => item.count_idc),
+        }],
+        chart: {
+            height: 350,
+            type: 'bar',
+            events: {
+                click: function(chart, w, e) {
+                //   console.log(chart, w, e)
+                }
+            }
+        },
+        colors: result.map(item => item.color),
+        plotOptions: {
+        bar: {
+            columnWidth: '45%',
+            distributed: true,
+        }
+        },
+        dataLabels: {
+            enabled: true,
+            style: {
+                fontSize: '18px',
+                fontWeight: 'bold',
+            }
+        },
+        legend: {
+            show: false
+        },
+        xaxis: {
+            categories: result.map(item => item.idc),
+            labels: {
+                style: {
+                    colors: '#000000',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                }
+            }
+        },
+        yaxis: {
+            labels: {
+                style: {
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                }
+            }
+        }
+    };
+
+        let chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows_idc"), options);
+        chart.render();
+    })
+}
+ 
+
+    
+
+</script>
+
+<!-- Bar CHART ระดับสถานการณ์ประเมินโดย หน่วยปฏิบัติการ -->
+<script>
+function form_yellows_rc() {
+    fetch("{{ url('/') }}/api/API_dashboard_form_yellows_rc?user_id=" + user_id)
+    .then(response => response.json())
+    .then(result => {
+        // console.log(result)
+        let options = {
+        series: [{
+            data: result.map(item => item.count_rc),
+        }],
+        chart: {
+            height: 350,
+            type: 'bar',
+            events: {
+                click: function(chart, w, e) {
+                //   console.log(chart, w, e)
+                }
+            }
+        },
+        colors: result.map(item => item.color),
+        plotOptions: {
+        bar: {
+            columnWidth: '45%',
+            distributed: true,
+        }
+        },
+        dataLabels: {
+            enabled: true,
+            style: {
+                fontSize: '18px',
+                fontWeight: 'bold',
+            }
+        },
+        legend: {
+            show: false
+        },
+        xaxis: {
+            categories: result.map(item => item.rc),
+            labels: {
+                style: {
+                    colors: '#000000',
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                }
+            }
+        },
+        yaxis: {
+            labels: {
+                style: {
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                }
+            }
+        }
+    };
+
+        let chart = new ApexCharts(document.querySelector("#sos_1669_form_yellows_rc"), options);
+        chart.render();
+    })
+}
+ 
+    
+
+</script>
+
+
+<!-- Column CHART การปฏิบัติการ CURE -->
+<script>
+    function treatment_have_cure() {
+        fetch("{{ url('/') }}/api/API_dashboard_treatment_have_cure?user_id=" + user_id)
+        .then(response => response.json())
+        .then(result => {
+            // console.log(result)
+            let options = {
+        series: [{
+            data: result.map(item => item.count_sub_treatment),
         }],
             chart: {
             type: 'bar',
@@ -805,7 +773,7 @@
             },
             }
         },
-        colors: have_cure_color_arr,
+        colors: result.map(() => randomColor()),
         dataLabels: {
             enabled: true,
             textAnchor: 'start',
@@ -826,7 +794,7 @@
             colors: ['#fff']
         },
         xaxis: {
-            categories: have_cure_categories_arr,
+            categories: result.map(item => item.sub_treatment),
         },
         yaxis: {
             labels: {
@@ -852,109 +820,90 @@
         }
     };
 
-       var chart = new ApexCharts(document.querySelector("#operation_cure"), options);
+       let chart = new ApexCharts(document.querySelector("#operation_cure"), options);
        chart.render();
+        })
+    }
 
 </script>
 
 <!-- Column CHART การปฏิบัติการ NO CURE -->
 <script>
-    let have_no_cure_count_arr = [];
-    let have_no_cure_categories_arr = [];
 
-    // ฟังก์ชันสุ่มสี HEX
-    function randomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-
-        return color;
-    }
-
-    @foreach ($treatment_have_no_cure_data as $item)
-        // นับจำนวน หัวข้อ
-        have_no_cure_count_arr.push(Number('{{ $item->count_sub_treatment }}'));
-
-        // นับประเภท หัวข้อ
-        have_no_cure_categories_arr.push('{{ $item->sub_treatment }}');
-    @endforeach
-
-    // เก็บสีที่สุ่ม ไว้ใน array โดยอิงจาก array ประเภทหัวข้อ
-    const have_no_cure_color_arr = have_no_cure_categories_arr.map(() => randomColor());
-
-    var options = {
-            series: [{
-            data: have_no_cure_count_arr,
-        }],
-            chart: {
-            type: 'bar',
-            height: 380,
-            width: '100%'
-        },
-        plotOptions: {
-            bar: {
-            barHeight: '100%',
-            distributed: true,
-            horizontal: true,
-            dataLabels: {
-                position: 'bottom'
-            },
-            }
-        },
-        colors: have_no_cure_color_arr,
-        dataLabels: {
-            enabled: true,
-            textAnchor: 'start',
-            style: {
-            fontSize: '16px',
-            colors: ['#000']
-            },
-            formatter: function (val, opt) {
-            return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
-            },
-            offsetX: 0,
-            dropShadow: {
-            enabled: true
-            }
-        },
-        stroke: {
-            width: 1,
-            colors: ['#fff']
-        },
-        xaxis: {
-            categories: have_no_cure_categories_arr,
-
-        },
-        yaxis: {
-            labels: {
-            show: false
-            }
-        },
-        legend: {
-            fontSize: '16px',
-            fontWeight: 'bold',
-        },
-        tooltip: {
-            theme: 'dark',
-            x: {
-            show: false
-            },
-            y: {
-            title: {
-                formatter: function () {
-                return ''
+function treatment_no_have_cure() {
+        fetch("{{ url('/') }}/api/API_dashboard_treatment_no_have_cure?user_id=" + user_id)
+        .then(response => response.json())
+        .then(result => {
+            // console.log(result)
+            let options = {
+                series: [{
+                    data: result.map(item => item.count_sub_treatment),
+                }],
+                    chart: {
+                    type: 'bar',
+                    height: 380,
+                    width: '100%'
+                },
+                plotOptions: {
+                    bar: {
+                    barHeight: '100%',
+                    distributed: true,
+                    horizontal: true,
+                    dataLabels: {
+                        position: 'bottom'
+                    },
+                    }
+                },
+                colors: result.map(() => randomColor()),
+                dataLabels: {
+                    enabled: true,
+                    textAnchor: 'start',
+                    style: {
+                        fontSize: '16px',
+                        colors: ['#000']
+                    },
+                    formatter: function (val, opt) {
+                        return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+                    },
+                    offsetX: 0,
+                    dropShadow: {
+                    enabled: true
+                    }
+                },
+                stroke: {
+                    width: 1,
+                    colors: ['#fff']
+                },
+                xaxis: {
+                    categories: result.map(item => item.sub_treatment),
+                },
+                yaxis: {
+                    labels: {
+                    show: false
+                    }
+                },
+                legend: {
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                },
+                tooltip: {
+                    theme: 'dark',
+                    x: {
+                    show: false
+                    },
+                    y: {
+                    title: {
+                        formatter: function () {
+                        return ''
+                        }
+                    }
+                    }
                 }
-            }
-            }
-        }
-    };
-
-       var chart = new ApexCharts(document.querySelector("#operation_no_cure"), options);
-       chart.render();
-
+            };   
+            let chart = new ApexCharts(document.querySelector("#operation_no_cure"), options);
+        chart.render();
+        })
+    }
 </script>
 
 

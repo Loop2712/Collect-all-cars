@@ -21,7 +21,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="col-10">
-                        <h5 class="mb-0 font-weight-bold">คะแนนเฉลี่ยของหน่วย {{count($avg_score_unit_data)}} อันดับ</h5>
+                        <h5 class="mb-0 font-weight-bold">คะแนนเฉลี่ยของหน่วย <span id="avg_score_unit_data"></span> อันดับ</h5>
                     </div>
                     <!-- ตัวอย่างปุ่มสลับ -->
                     <div class="dropdown ms-auto">
@@ -46,20 +46,7 @@
                             </tr>
                         </thead>
                         <tbody id="top5_score_unit_tbody" class="fz_body">
-                            @foreach ($avg_score_unit_data as $top5_score_unit)
-                                <tr role="row" class="odd">
-                                    <td>
-                                        <div class="d-flex align-items-center p-2">
-                                            <div>{{$top5_score_unit->operating_unit->name ? $top5_score_unit->operating_unit->name : "--"}}</div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="ms-auto mb-0 ">
-                                            <i class="bx bxs-star text-warning mr-1"></i>{{$top5_score_unit->avg_score_total}}
-                                        </p>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        
                         </tbody>
                     </table>
                 </div>
@@ -101,65 +88,7 @@
             </div>
 
             <div id="all_vehicel_div" class="mb-3 p-3">
-                @foreach ($vehicle_arr as $vehicle_arr)
-                    @php
-                        $color_benotified;
-                        switch ( $vehicle_arr['vehicle_type'] ) {
-                            case 'รถ':
-                                $color_benotified = "#dc3545";
-                                $vehicle_icon = 'car_img.png';
-                                break;
-                            case 'อากาศยาน':
-                                $color_benotified = "#0d6efd";
-                                $vehicle_icon = 'helicopter.png';
-
-                                break;
-                            case 'เรือ ป.1':
-                                $color_benotified = "#198754";
-                                $vehicle_icon = 'ship1.png';
-
-                                break;
-                            case 'เรือ ป.2':
-                                $color_benotified = "#0dcaf0";
-                                $vehicle_icon = 'ship2.png';
-
-                                break;
-                            case 'เรือ ป.3':
-                                $color_benotified = "#ffc107";
-                                $vehicle_icon = 'ship3.png';
-
-                                break;
-                            case 'เรือประเภทอื่นๆ':
-                                $color_benotified = "#f48024";
-                                $vehicle_icon = 'ship4.png';
-
-                                break;
-                            default:
-                                $color_benotified = "#212529";
-                                $vehicle_icon = 'warning.png';
-
-                                break;
-                        }
-
-                        // % ของผู้ใช้เดือนนี้
-                        $percent_vehicle_arr = ($vehicle_arr['count_vehicle_type'] / $count_vehicle_all) * 100;
-                        $percent_vehicle_arr = number_format($percent_vehicle_arr,0);
-
-                    @endphp
-
-                    <div class="row mb-4">
-                        <div class="col-2 mt-2 text-center">
-                            <img src="{{ asset("/img/icon/$vehicle_icon") }}" width="35">
-                        </div>
-                        <div class="col-9">
-                            <p class="mb-2" style="font-weight: bold; font-size: 16px">{{ $vehicle_arr['vehicle_type'] }}<strong class="float-end">{{ $vehicle_arr['count_vehicle_type'] }}</strong></p>
-                            <div class="progress radius-10" style="height:6px;">
-                                <div class="progress-bar bg-gradient-moonlit" role="progressbar" style="width: {{$percent_vehicle_arr}}%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                @endforeach
+                
             </div>
             <canvas id="canvas" style="display: none;"></canvas>
         </div>
@@ -176,7 +105,7 @@
             <div class="p-3">
                 <div class="d-flex align-items-center">
                     <div class="col-10">
-                        <h5 class="font-weight-bold mb-0" >คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด {{count($avg_score_by_case)}} อันดับ</h5>
+                        <h5 class="font-weight-bold mb-0" >คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่ทั้งหมด <span id="avg_score_by_case"></span> อันดับ</h5>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret"
@@ -204,33 +133,7 @@
                             </tr>
                         </thead>
                         <tbody id="avg_score_by_case_tbody">
-                            @foreach ($avg_score_by_case as $avg_score_by_case)
-                                <tr>
-                                    <td>
-                                        @php
-                                            $data_user_avg_score_by_case = App\User::where('id',$avg_score_by_case->helper_id)->first();
-                                        @endphp
-                                        <div class="d-flex align-items-center">
-                                            <div class="recent-product-img">
-                                                @if(!empty($data_user_avg_score_by_case->photo))
-                                                    <img src="{{ url('storage') }}/{{ $data_user_avg_score_by_case->photo }}" width="35" height="35" class="rounded-circle" alt="">
-                                                @endif
-                                                @if(empty($data_user_avg_score_by_case->photo) && !empty($data_user_avg_score_by_case->avatar))
-                                                    <img src="{{ $data_user_avg_score_by_case->avatar }}" width="35" height="35" class="rounded-circle" alt="">
-                                                @endif
-                                                @if(empty($data_user_avg_score_by_case->avatar) && empty($data_user_avg_score_by_case->photo))
-                                                    <img src="{{ asset('/Medilab/img/icon.png') }}" width="35" height="35" class="rounded-circle" alt="">
-                                                @endif
-                                            </div>
-                                            <div class="ms-2">
-                                                <span class="mt-2 font-14">{{$avg_score_by_case->operating_officer->name_officer}}</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>{{$avg_score_by_case->operating_unit->name}}</td>
-                                    <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> {{$avg_score_by_case->avg_score_by_case}}</p></td>
-                                </tr>
-                            @endforeach
+                      
                         </tbody>
                     </table>
                 </div>
@@ -270,28 +173,8 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($operating_unit_data as $operating_unit_data)
-                                <tr>
-                                    @php
-                                        $count_amount_operator = App\Models\Data_1669_operating_officer::where('operating_unit_id',$operating_unit_data->operating_unit_id)->count();
-                                    @endphp
-                                    <td>{{$operating_unit_data->op_name}}</td>
-                                    <td>{{$count_amount_operator}}</td>
-                                    <td>{{$operating_unit_data->count_operating}}</td>
-                                    @if (!empty($operating_unit_data->created_at))
-                                        <td> {{ \Carbon\Carbon::parse($operating_unit_data->op_lastest)->locale('th')->diffForHumans() }}</td>
-                                    @else
-                                        <td> -- </td>
-                                    @endif
-                                    <td><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i>{{$operating_unit_data->avg_score_by_unit}}</p></td>
-                                    <td >
-                                        <a href="{{ url('/data_1669_operating_unit'). '/' . $operating_unit_data->operating_unit_id }}">
-                                            <img width="25px" src="{{ asset('/img/icon/eye.png') }}">
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        <tbody id="operating_unit_data_tbody">
+                            
                         </tbody>
                     </table>
                 </div>
@@ -302,8 +185,8 @@
 </div>
 
 <!-- apexcharts -->
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@3.27.0/dist/apexcharts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.27.0/dist/apexcharts.min.js.map"></script>
 <!-- ติดตั้ง html2canvas ผ่าน CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.js"></script>
@@ -311,7 +194,279 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
 
 
+<script>
+    var user_id = '{{Auth::user()->id}}';
 
+    document.addEventListener('DOMContentLoaded', (event) => {
+        getdata_Unit_info();
+        getdata_avg_score_by_case();
+        getData_operating_unit();
+        getData_level_operating();
+        getData_vehicle_operating();
+    })
+
+    // คะแนนเฉลี่ยของหน่วย
+    function getdata_Unit_info() {
+        let top5_score_unit_tbody = document.querySelector('#top5_score_unit_tbody');
+        let avg_score_unit_data = 0;
+        top5_score_unit_tbody.innerHTML = "";
+        
+        fetch("{{ url('/') }}/api/API_dashboard_operating_officer?user_id=" + user_id)
+        .then(response => response.json())
+        .then(result => {
+            // console.log(result);
+            
+            for (let Unit_i = 0; Unit_i < result.length && Unit_i < 5; Unit_i++) {
+                // console.log(result[Unit_i].operating_unit_id);
+                data_unit_info = `
+                        <tr>
+                            <td>${result[Unit_i].name_data_1669_operating_units}</td>
+                            <td>
+                                <p class="ms-auto mb-0 ">
+                                        <i class="bx bxs-star text-warning mr-1"></i> ${result[Unit_i].avg_score_total}
+                                </p>
+                            </td>
+                        </tr>`;
+                top5_score_unit_tbody.insertAdjacentHTML('beforeend', data_unit_info); // แทรกบนสุด
+                avg_score_unit_data += 1;
+            }
+
+            document.querySelector('#avg_score_unit_data').innerHTML = avg_score_unit_data;
+        })
+    }
+
+    // คะแนนเฉลี่ยต่อเคสเจ้าหน้าที่
+    function getdata_avg_score_by_case() {
+        let avg_score_by_case_tbody = document.querySelector('#avg_score_by_case_tbody');
+        let avg_score_by_case = 0;
+        avg_score_by_case_tbody.innerHTML = "";
+
+        fetch("{{ url('/') }}/api/API_dashboard_avg_score_by_case?user_id=" + user_id)
+        .then(response => response.json())
+        .then(result => {
+            // console.log(result);
+
+            document.querySelector('#avg_score_by_case').innerHTML = result.length;
+
+            let tbody = document.getElementById('avg_score_by_case_tbody');
+
+            const table = document.getElementById('avg_score_by_case_table').getElementsByTagName('tbody')[0];
+                // ล้างข้อมูลในตาราง
+                table.innerHTML = '';
+
+                let data_table;
+                // สร้างแถวและเพิ่มข้อมูลในตาราง
+                result.forEach(avg_score_by_case => {
+
+                    let htmlProfile = '';
+                    if(avg_score_by_case.photo){
+                        htmlProfile = `<img src="{{ url('storage') }}/`+avg_score_by_case.photo +`" width="35" height="35" class="rounded-circle" alt="">`;
+                    }
+                    else if(!avg_score_by_case.photo && avg_score_by_case.avatar){
+                        htmlProfile = `<img src="`+avg_score_by_case.avatar +`" width="35" height="35" class="rounded-circle" alt="">`;
+                    }
+                    else if(!avg_score_by_case.photo && !avg_score_by_case.avatar){
+                        htmlProfile = `<img src="https://www.viicheck.com/Medilab/img/icon.png" width="35" height="35" class="rounded-circle" alt="">`;
+                    }
+
+                    data_table = `
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="recent-product-img">`+ htmlProfile +`</div>
+                                    <div class="ms-2">
+                                        <h6 class="mt-2 font-14">`+ avg_score_by_case.name_officer +`</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>`+ avg_score_by_case.name_unit +`</td>
+                            <td ><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i> ${avg_score_by_case.avg_score_by_case ? avg_score_by_case.avg_score_by_case : '--'}</p></td>
+                        </tr>
+                    `;
+
+                    tbody.insertAdjacentHTML('afterbegin', data_table); // แทรกบนสุด
+                })
+        })
+    }
+    // รายชื่อหน่วยปฏิบัติการ
+    function getData_operating_unit() {
+        let operating_unit_data_tbody = document.querySelector('#operating_unit_data_tbody');
+        operating_unit_data_tbody.innerHTML = "";
+
+        fetch("{{ url('/') }}/api/API_dashboard_operating_unit?user_id=" + user_id)
+        .then(response => response.json())
+        .then(result => {
+            // console.log(result);
+            
+            for (let i = 0; i < result.length && i < 5; i++) {
+                // console.log(result[i].id);
+
+                 //เป็นสมาชิกมาแล้ว
+                 if (result[i].created_at) {
+                    dateCreatedAt = moment(result[i].created_at);
+                    dateMember = dateCreatedAt.locale("th").fromNow();
+                } else {
+                    dateMember = "---";
+                }
+
+                data_operating_unit = `
+                        <tr>
+                            <td>${result[i].op_name}</td>
+                            <td>${result[i].count_amount_operator}</td>
+                            <td>${result[i].count_operating}</td>
+                            <td>${dateMember}</td>
+                            <td><p class="ms-auto mb-0"><i class="bx bxs-star text-warning mr-1"></i>${result[i].avg_score_by_unit}</p>
+                            </td>
+                             <td >
+                                <a href="{{ url('/data_1669_operating_unit/${result[i].operating_unit_id}')}}">
+                                    <img width="25px" src="{{ asset('/img/icon/eye.png') }}">
+                                </a>
+                            </td>
+                        </tr>`;
+
+                        
+                operating_unit_data_tbody.insertAdjacentHTML('beforeend', data_operating_unit); // แทรกบนสุด
+            }
+
+        })
+    }
+
+    // จำนวนยานพาหนะทั้งหมด
+    function getData_vehicle_operating() {
+        fetch("{{ url('/') }}/api/API_dashboard_vehicle_operating?user_id=" + user_id)
+        .then(response => response.json())
+        .then(result => {
+            // console.log(result);
+            let all_vehicel_div = document.querySelector('#all_vehicel_div');
+            let color_benotified;
+            let vehicle_icon;
+            all_vehicel_div.innerHTML = "";
+
+            result.forEach(element => {
+                    switch ( element.vehicle_type ) {
+                        case 'รถ':
+                            color_benotified = "#dc3545";
+                            vehicle_icon = 'car_img.png';
+                            break;
+                        case 'อากาศยาน':
+                            color_benotified = "#0d6efd";
+                            vehicle_icon = 'helicopter.png';
+
+                            break;
+                        case 'เรือ ป.1':
+                            color_benotified = "#198754";
+                            vehicle_icon = 'ship1.png';
+
+                            break;
+                        case 'เรือ ป.2':
+                            color_benotified = "#0dcaf0";
+                            vehicle_icon = 'ship2.png';
+
+                            break;
+                        case 'เรือ ป.3':
+                            color_benotified = "#ffc107";
+                            vehicle_icon = 'ship3.png';
+
+                            break;
+                        case 'เรือประเภทอื่นๆ':
+                            color_benotified = "#f48024";
+                            vehicle_icon = 'ship4.png';
+
+                            break;
+                        default:
+                            color_benotified = "#212529";
+                            vehicle_icon = 'warning.png';
+
+                            break;
+                    }
+
+                    let percentVehicleArr = (element.count_vehicle_type / element.total_count) * 100;
+                        percentVehicleArr = Number(percentVehicleArr.toFixed(0));
+
+
+                data_vehicle_operating = `
+                    <div class="row mb-4">
+                        <div class="col-2 mt-2 text-center">
+                            <img src="{{ asset("/img/icon/")}}/${vehicle_icon} " width="35">
+                        </div>
+                        <div class="col-9">
+                            <p class="mb-2" style="font-weight: bold; font-size: 16px">${element.vehicle_type}<strong class="float-end">${element.count_vehicle_type}</strong></p>
+                            <div class="progress radius-10" style="height:6px;">
+                                <div class="progress-bar bg-gradient-moonlit" role="progressbar" style="width:${percentVehicleArr}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            
+                all_vehicel_div.insertAdjacentHTML('beforeend', data_vehicle_operating); // แทรกบนสุด
+            });
+        })
+    }
+    // ระดับหน่วยปฏิบัติการทั้งหมด
+    function getData_level_operating() {
+        
+        fetch("{{ url('/') }}/api/API_dashboard_level_operating?user_id=" + user_id)
+        .then(response => response.json())
+        .then(result => {
+            // console.log(result);
+
+            let options_level_operating = {
+                series: [{
+                    data: result.map(item => item.count_level),
+                }],
+                chart: {
+                    height: 350,
+                    type: 'bar',
+                    events: {
+                        click: function(chart, w, e) {
+                        //   console.log(chart, w, e)
+                        }
+                    }
+                },
+                colors: result.map(item => item.color),
+                plotOptions: {
+                bar: {
+                    columnWidth: '45%',
+                    distributed: true,
+                }
+                },
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        fontSize: '18px',
+                        fontWeight: 'bold',
+
+                    },
+                },
+                legend: {
+                    show: false
+                },
+                xaxis: {
+                    categories: result.map(item => item.level),
+                        labels: {
+                            style: {
+                            colors: result.map(item => item.color),
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                            }
+                        }
+                    },
+                yaxis: {
+                    labels: {
+                        style: {
+                            fontSize: '16px',
+                            fontWeight: 'bold'
+                        }
+                    }
+                }
+            };
+
+                let chart = new ApexCharts(document.querySelector("#chartlevel_op"), options_level_operating);
+                chart.render();
+        })  
+
+    }
+</script>
 <script>
     // document.document.querySelector('.top5_score_unit_toggleDataBtn').addEventListener('click', () => {
     function top5_score_unit_toggleDataBtn(filter_data) {
@@ -369,7 +524,7 @@
         fetch("{{ url('/') }}/api/avg_score_by_case" + '/' + filter_data + '/' + user_login)
             .then(response => response.json()) // แปลงข้อมูลเป็น JSON
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 // หาตารางที่มี id เท่ากับ 'top5_score_unit_table'
                 const table = document.getElementById('avg_score_by_case_table').getElementsByTagName('tbody')[0];
                 // ล้างข้อมูลในตาราง
@@ -415,92 +570,6 @@
     };
 </script>
 
-<script>
-    let lv_op_count_arr = [];
-    let lv_op_categories_arr = [];
-    let lv_op_color_arr = [];
-
-    @foreach ($level_op_arr as $item)
-        // นับจำนวน หัวข้อ
-        lv_op_count_arr.push(Number('{{ $item['count_level_op'] }}'));
-
-        // นับประเภท หัวข้อ
-        lv_op_categories_arr.push('{{ $item['level'] }}');
-
-        switch ('{{ $item['level'] }}') {
-            case 'ALS':
-                lv_op_color_arr.push("#dc3545");
-                break;
-            case 'ILS':
-                lv_op_color_arr.push("#f48024");
-                break;
-            case 'BLS':
-                lv_op_color_arr.push("#ffc107");
-                break;
-            case 'FR':
-                lv_op_color_arr.push("#28a745");
-                break;
-            default:
-                lv_op_color_arr.push("#121416");
-                break;
-        }
-
-    @endforeach
-
-    var options = {
-        series: [{
-            data: lv_op_count_arr
-        }],
-        chart: {
-            height: 350,
-            type: 'bar',
-            events: {
-                click: function(chart, w, e) {
-                //   console.log(chart, w, e)
-                }
-            }
-        },
-        colors: lv_op_color_arr,
-        plotOptions: {
-        bar: {
-            columnWidth: '45%',
-            distributed: true,
-        }
-        },
-        dataLabels: {
-            enabled: true,
-            style: {
-                fontSize: '18px',
-                fontWeight: 'bold',
-
-            },
-        },
-        legend: {
-            show: false
-        },
-        xaxis: {
-            categories: lv_op_categories_arr,
-                labels: {
-                    style: {
-                    colors: lv_op_color_arr,
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                    }
-                }
-            },
-        yaxis: {
-            labels: {
-                style: {
-                    fontSize: '16px',
-                    fontWeight: 'bold'
-                }
-            }
-        }
-    };
-
-        var chart = new ApexCharts(document.querySelector("#chartlevel_op"), options);
-        chart.render();
-</script>
 
 <script src="https://unpkg.com/modern-screenshot"></script>
     <script>

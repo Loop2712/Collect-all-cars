@@ -360,6 +360,36 @@ Route::get('/top5_score_unit/{filter_data}/{user_login}', 'Dashboard_1669_Contro
 Route::get('/avg_score_by_case/{filter_data}/{user_login}', 'Dashboard_1669_Controller@avg_score_by_case');
 Route::get('/filter_data_command_unit', 'Dashboard_1669_Controller@filter_data_command_unit');
 Route::get('/get_location_ask_more_operating_unit/', 'Sos_help_centerController@get_location_ask_more_operating_unit');
+Route::post('/mutiple_delete_unit', 'Data_1669_operating_unitController@mutiple_delete_unit');
+Route::post('/multiple_delete_officer', 'Data_1669_operating_unitController@multiple_delete_officer');
+Route::post('check_percentage_sos', 'Sos_help_centerController@check_percentage_sos');
+Route::post('verified_status_form', 'Sos_help_centerController@verified_status_form');
+Route::post('create_and_delete_data_patient', 'Sos_help_centerController@create_and_delete_data_patient');
+Route::get('get_data_sos_success', 'Sos_help_centerController@get_data_sos_success');
+Route::get('getDataFormColor', 'Sos_help_centerController@getDataFormColor');
+Route::get('/dashboard_viisos', 'Partner_DashboardController@dashboard_viisos');
+Route::get('/API_dashboard_index_1669', 'Dashboard_1669_Controller@API_dashboard_index_1669');
+Route::get('/API_dashboard_operating_officer', 'Dashboard_1669_Controller@API_dashboard_operating_officer');
+Route::get('/API_dashboard_avg_score_by_case', 'Dashboard_1669_Controller@API_dashboard_avg_score_by_case');
+Route::get('/API_dashboard_operating_unit', 'Dashboard_1669_Controller@API_dashboard_operating_unit');
+Route::get('/API_dashboard_level_operating', 'Dashboard_1669_Controller@API_dashboard_level_operating');
+Route::get('/API_dashboard_vehicle_operating', 'Dashboard_1669_Controller@API_dashboard_vehicle_operating');
+Route::get('/API_dashboard_count_data_sos', 'Dashboard_1669_Controller@API_dashboard_count_data_sos');
+Route::get('/API_dashboard_data_ask_to_help', 'Dashboard_1669_Controller@API_dashboard_data_ask_to_help');
+Route::get('/API_dashboard_data_sos_fastest', 'Dashboard_1669_Controller@API_dashboard_data_sos_fastest');
+Route::get('/API_dashboard_data_sos_slowest', 'Dashboard_1669_Controller@API_dashboard_data_sos_slowest');
+Route::get('/API_dashboard_count_treatment', 'Dashboard_1669_Controller@API_dashboard_count_treatment');
+Route::get('/API_dashboard_count_area_sos', 'Dashboard_1669_Controller@API_dashboard_count_area_sos');
+Route::get('/API_dashboard_sos_score_best_5', 'Dashboard_1669_Controller@API_dashboard_sos_score_best_5');
+Route::get('/API_dashboard_sos_score_worst_5', 'Dashboard_1669_Controller@API_dashboard_sos_score_worst_5');
+Route::get('/API_dashboard_data_notify', 'Dashboard_1669_Controller@API_dashboard_data_notify');
+Route::get('/API_dashboard_districts_sos', 'Dashboard_1669_Controller@API_dashboard_districts_sos');
+Route::get('/API_dashboard_most_symptom_data', 'Dashboard_1669_Controller@API_dashboard_most_symptom_data');
+Route::get('/API_dashboard_form_yellows_idc', 'Dashboard_1669_Controller@API_dashboard_form_yellows_idc');
+Route::get('/API_dashboard_form_yellows_rc', 'Dashboard_1669_Controller@API_dashboard_form_yellows_rc');
+Route::get('/API_dashboard_treatment_have_cure', 'Dashboard_1669_Controller@API_dashboard_treatment_have_cure');
+Route::get('/API_dashboard_treatment_no_have_cure', 'Dashboard_1669_Controller@API_dashboard_treatment_no_have_cure');
+
 
 // VOTE KAN
 Route::get('/get_location_kan/{amphoe}/show_area','Vote_kan_data_stationsController@show_area');
@@ -376,3 +406,7 @@ Route::get('/get_hospital_offices/{province}', 'Hospital_officeController@get_ho
 Route::get('/get_data_hospital/{province}', 'Hospital_officeController@get_data_hospital');
 Route::get('/create_account_hospital/{area}/{id}/{creator}', 'Hospital_officeController@create_account_hospital');
 Route::get('/create_1669_to_hospitals/{hospital_id}/{sos_1669_id}/{command_id}', 'Hospital_officeController@create_1669_to_hospitals');
+
+
+
+

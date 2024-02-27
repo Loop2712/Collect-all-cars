@@ -1,79 +1,6 @@
 
 <!--========================= เลือกพื้นที่ - ข้อมูลการช่วยเหลือ && คะแนนผู้ใช้เหลือ  =============================-->
 <div class="row">
-    <!-- <div class="col-12 col-xl-4 col-xxl-4 d-flex">
-        <div class="card radius-10 w-100 overflow-hidden">
-            <div class="card-header">
-                <div class="d-flex align-items-center">
-                    <div class="col-12">
-                        <h5 class="mb-0 font-weight-bold">ข้อมูลการช่วยเหลือ</h5>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="p-3 mb-3">
-                <div class="card mt-3 radius-10 border shadow-none">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <h5 class="mb-0 text-secondary">จำนวนขอความช่วยเหลือ </h5>
-                                <h4 class="mb-0 font-weight-bold">{{ $count_sos_all_data }}</h4>
-                            </div>
-                            <div class="widgets-icons bg-light-primary text-primary ms-auto">
-                                <img width="40" src="{{ asset('/img/icon/sos.png') }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card radius-10 border shadow-none">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-
-                                <h5 class="mb-0 text-secondary">ระยะเวลาช่วยเหลือเฉลี่ย</h5>
-                                <h4 class="mb-0 font-weight-bold"></h4>
-                            </div>
-                            <div class="widgets-icons bg-light-danger text-danger ms-auto">
-                                <img width="40" src="{{ asset('/img/icon/hourglass.png') }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card radius-10 border shadow-none">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <h5 class="mb-0 text-secondary">ช่วงเวลาขอความช่วยเหลือสูงสุด</h5>
-                                <h4 id="" class="mb-0 font-weight-bold"> -->
-                                    <!-- นำค่ามากจาก javascript-->
-                                <!-- </h4>
-                            </div>
-                            <div class="widgets-icons bg-light-success text-success ms-auto">
-                                <img width="40" src="{{ asset('/img/icon/fast-time.png') }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card radius-10 border shadow-none">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <h5 class="mb-0 text-secondary">ช่วงเวลาขอความช่วยเหลือต่ำสุด</h5>
-                                <h4 id="" class="mb-0 font-weight-bold"> -->
-                                    <!-- นำค่ามากจาก javascript-->
-                                <!-- </h4>
-                            </div>
-                            <div class="widgets-icons bg-light-info text-info ms-auto">
-                                <img width="40" src="{{ asset('/img/icon/slow.png') }}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div class="card radius-10 overflow-hidden col-12 col-xl-4 col-xxl-4 d-flex">
         <div class="card-body mb-0">
             <div class="d-flex align-items-center">
@@ -205,7 +132,7 @@
             <div class="p-3">
                 <div class="d-flex align-items-center">
                     <div class="col-10">
-                        <h5 class="font-weight-bold mb-0 ">ข้อมูลการขอความช่วยเหลือ {{count($all_data_sos)}} ลำดับล่าสุด </h5>
+                        <h5 class="font-weight-bold mb-0 ">ข้อมูลการขอควาsมช่วยเหลือ {{count($all_data_sos)}} ลำดับล่าสุด </h5>
                     </div>
                     <div class="dropdown ms-auto">
                         <div class="cursor-pointer text-dark font-24 dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown"><i class="bx bx-dots-horizontal-rounded"></i>
@@ -781,6 +708,8 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
+        districts_sos();
+
         initMap();
         let maxTimeCount = 0;
         let minTimeCount = 0;

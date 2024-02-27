@@ -1218,7 +1218,7 @@
                 <div class="owl-carousel owl-5 ">
                   <!-- <span id="foot_logo_partner"></span> -->
                   @php
-                  $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get()
+                  $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get();
                   @endphp
                   @foreach($partner as $item)
                   <div class="text-center item">

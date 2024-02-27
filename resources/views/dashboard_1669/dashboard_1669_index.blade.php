@@ -91,6 +91,49 @@
                 })
             }, 500);
         }
+
+        // document.addEventListener('DOMContentLoaded', (event) => {
+        //     getdata_Index();
+        // })
+
+
+        // function getdata_Index(params) {
+        //     let user_id = '{{Auth::user()->id}}';
+        //     fetch("{{ url('/') }}/api/API_dashboard_index_1669?page=index&user_id=" + user_id)
+        //     .then(response => response.json())
+        //     .then(result => {
+
+        //         // console.log('asd');
+        //         let officerStandby = result.filter(officer => officer.status === "Standby").length;
+        //         let officerHelping = result.filter(officer => officer.status === "Helping").length;
+        //         let officerOffline = result.filter(officer => officer.status === "").length;
+
+        //         document.querySelector('')
+        //         console.log(officerStandby);
+        //         console.log(officerHelping);
+        //         console.log(officerOffline);
+
+                
+        //         // console.log(result);
+        //         // result.forEach(officer => {
+        //         //     console.log(officer.status);
+
+                    
+        //         // });
+
+        //         if (result.status === 'online') {
+        //         // ดำเนินการเพิ่ม innerHTML ตามที่คุณต้องการ
+        //             const count = data.count; // สมมติว่ามี property ชื่อ count
+        //             console.log(count)
+        //             document.getElementById('yourElementId').innerHTML = count;
+        //         } else if (result.status){
+        //             console.error('Server status is not online');
+        //         }
+               
+        // });
+        // }
+
+      
     </script>
 
 @endsection
