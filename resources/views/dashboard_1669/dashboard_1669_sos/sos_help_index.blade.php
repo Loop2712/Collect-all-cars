@@ -340,8 +340,11 @@
 
             result.forEach(item => {
                 
-                sum_time(item.time_sos_success , item.time_command)
-
+                if (item.time_sos_success && item.time_command) {
+                    sum_time(item.time_sos_success , item.time_command)
+                }else{
+                    sTimeUnit = '--';
+                }
             
                 data_table = `
                     <tr>

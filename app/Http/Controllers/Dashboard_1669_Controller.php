@@ -225,8 +225,6 @@ class Dashboard_1669_Controller extends Controller
             ->orderBy('sos_help_centers.created_at','DESC')
             ->get();
             
-            
-            
         return response()->json($all_data_sos);
     }
     // เวลาในการช่วยเหลือ ไว ที่สุด 5 อันดับ
