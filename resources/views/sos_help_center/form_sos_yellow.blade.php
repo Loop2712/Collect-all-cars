@@ -2521,9 +2521,9 @@
     function check_start_data_form_yellow(){
 
 		// console.log('----------------------------');
-		console.log("**------------------------------------------**");
-		console.log("**--------- Check data form yellow ---------**");
-		console.log("**------------------------------------------**");
+		// console.log("**------------------------------------------**");
+		// console.log("**--------- Check data form yellow ---------**");
+		// console.log("**------------------------------------------**");
 		// console.log("ตอนนี้อยู่ที่หน้า >> " + form_yellow_current_topic);
 		// console.log("กำลังจะอัพเดทหน้าอื่นๆ และแจ้งเตือนหน้า "+ form_yellow_current_topic + " ถ้าข้อมูลมีการเปลี่ยนแปลง");
 		// console.log('----------------------------');
@@ -3260,7 +3260,7 @@
             	Stop_reface_check_form_yellow();
             	create_modal_alet_data_change(data);
             }else{
-    			console.log("บันทึกข้อมูลเรียบร้อย");
+    			// console.log("บันทึกข้อมูลเรียบร้อย");
             }
         }).catch(function(error){
             // console.error(error);
