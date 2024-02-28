@@ -162,9 +162,6 @@ class Dashboard_1669_Controller extends Controller
         });
         
         return response()->json($data_vehicle_operating);
-    
-
-        return response()->json($data_vehicle_operating);
     }
     function API_dashboard_level_operating(Request $request)
     {
@@ -304,10 +301,10 @@ class Dashboard_1669_Controller extends Controller
         ->groupBy('address')
         ->select('address', DB::raw('COUNT(sos_help_centers.address) as count_address'))
         ->orderBy('count_address','DESC')
-        ->limit(5)
         ->get();
-        $result = [];
 
+
+        $result = [];
         foreach ($sos_area_top5 as $item) {
             // ใช้ explode เพื่อแยกข้อมูลที่อยู่ออกเป็นส่วนๆ
             $addressParts = explode('/', $item->address);
@@ -321,6 +318,15 @@ class Dashboard_1669_Controller extends Controller
                 'count_address' => $item->count_address,
             ];
         }
+        // ทำการ groupBy ตาม amphur หลังจาก explode
+        $result = collect($result)->groupBy('address')->map(function ($group) {
+            return [
+                'address' => $group->first()['address'],
+                'count_address' => $group->sum('count_address'),
+            ];
+        })->values()->toArray();
+
+        $result = collect($result)->sortByDesc('count_address')->values()->take(5)->all();
 
         return response()->json($result);
     }
@@ -377,7 +383,6 @@ class Dashboard_1669_Controller extends Controller
         ->where('sos_help_centers.notify', 'LIKE', "%$user_login->sub_organization%")
         ->groupBy('sos_help_centers.address')
         ->select('sos_help_centers.address', DB::raw('COUNT(sos_help_centers.address) as count_address'))
-        ->orderBy('count_address' ,'DESC')
         ->get('sos_help_centers.address');
     
         foreach ($amphoe_sos as $item) {
@@ -393,6 +398,15 @@ class Dashboard_1669_Controller extends Controller
                 'count_address' => $item->count_address,
             ];
         }
+        // ทำการ groupBy ตาม amphur หลังจาก explode
+        $result = collect($result)->groupBy('address')->map(function ($group) {
+            return [
+                'address' => $group->first()['address'],
+                'count_address' => $group->sum('count_address'),
+            ];
+        })->values()->toArray();
+        
+        $result = collect($result)->sortByDesc('count_address')->values()->all();
 
         return response()->json($result);
     }
