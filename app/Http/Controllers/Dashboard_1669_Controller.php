@@ -222,7 +222,7 @@ class Dashboard_1669_Controller extends Controller
             ->leftjoin('data_1669_operating_units', 'sos_help_centers.operating_unit_id', '=', 'data_1669_operating_units.id')
             ->select('sos_help_centers.time_sos_success','sos_help_centers.time_command','sos_help_centers.status','sos_help_centers.operating_code','sos_help_centers.name_user', 'data_1669_officer_commands.name_officer_command' ,'data_1669_operating_officers.name_officer','data_1669_operating_units.name as operating_unit_name')
             ->limit(10)
-            ->orderBy('sos_help_centers.id','asc')
+            ->orderBy('sos_help_centers.id','DESC')
             ->get();
             
             

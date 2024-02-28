@@ -356,7 +356,7 @@
                     </tr>
                 `;
 
-                tbody_case_sos.insertAdjacentHTML('afterbegin', data_table); // แทรกบนสุด
+                tbody_case_sos.insertAdjacentHTML('beforeend', data_table); // แทรกบนสุด
             })
 
         })
