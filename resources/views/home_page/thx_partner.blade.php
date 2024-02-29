@@ -7,7 +7,7 @@
       <div class="owl-carousel owl-2">
 
         @foreach($data_partner_show as $item_show)
-          @if($item->name == "Ocean Life")
+          @if($item_show->name == "Ocean Life")
             <div class="media-29101 text-center">
               <center>
                 <a href="https://www.ocean.co.th/services/digital-healthcare/ocean-life-saver" target="bank">
