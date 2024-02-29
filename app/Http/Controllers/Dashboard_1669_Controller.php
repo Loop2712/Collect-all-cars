@@ -367,7 +367,7 @@ class Dashboard_1669_Controller extends Controller
         ->where('sos_1669_form_yellows.be_notified', '!=', null)
         ->select('sos_1669_form_yellows.be_notified', DB::raw('COUNT(sos_1669_form_yellows.be_notified) as count_be_notified'))
         ->groupBy('sos_1669_form_yellows.be_notified')
-        ->orderBy('count_be_notified','DESC')
+        ->orderBy('count_be_notified','ASC')
         ->get();
  
          return response()->json($notify_data);
