@@ -20,6 +20,7 @@ use App\Models\Data_1669_operating_officer;
 use App\Models\Data_1669_operating_unit;
 use App\Models\Sos_help_center;
 use App\Models\Sos_1669_form_yellow;
+use Google\Service\AnalyticsData\OrderBy;
 
 class Dashboard_1669_Controller extends Controller
 {
@@ -39,6 +40,7 @@ class Dashboard_1669_Controller extends Controller
         ->leftjoin('users as user_data', 'data_1669_officer_commands.user_id', '=', 'user_data.id')
         ->leftjoin('users as creator_data', 'data_1669_officer_commands.creator', '=', 'creator_data.id')
         ->select('data_1669_officer_commands.*', 'user_data.name as user_name' ,'user_data.sex as user_gender' ,'user_data.avatar as user_avatar' ,'user_data.photo as user_photo' ,'creator_data.name as name_creator')
+        ->orderBy('data_1669_officer_commands.created_at', 'asc')
         ->get();
 
         return response()->json($data_status_officer);
