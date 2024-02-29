@@ -1221,9 +1221,17 @@
                   $partner = \App\Models\Partner::where(['show_homepage' => 'show'])->get();
                   @endphp
                   @foreach($partner as $item)
-                  <div class="text-center item">
-                    <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ url('storage/'.$item->logo )}}">
-                  </div>
+                    @if($item->name = "Ocean Life")
+                      <div class="text-center item">
+                        <a href=" https://www.ocean.co.th/services/digital-healthcare/ocean-life-saver">
+                          <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ url('storage/'.$item->logo )}}">
+                        </a>
+                      </div>
+                    @else
+                      <div class="text-center item">
+                        <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ url('storage/'.$item->logo )}}">
+                      </div>
+                    @endif
                   @endforeach
                 </div>
               </div>
