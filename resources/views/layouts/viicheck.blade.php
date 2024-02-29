@@ -1223,7 +1223,7 @@
                   @foreach($partner as $item)
                     @if($item->name = "Ocean Life")
                       <div class="text-center item">
-                        <a href=" https://www.ocean.co.th/services/digital-healthcare/ocean-life-saver">
+                        <a href="https://www.ocean.co.th/services/digital-healthcare/ocean-life-saver">
                           <img class="p-md-3 p-lg-3" style="width: 100%;object-fit: contain;" src="{{ url('storage/'.$item->logo )}}">
                         </a>
                       </div>
