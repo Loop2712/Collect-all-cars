@@ -477,7 +477,7 @@
                     </tr>
                 `;
 
-                tbody_notify.insertAdjacentHTML('afterbegin', data_table); // แทรกบนสุด
+                tbody_notify.insertAdjacentHTML('beforeend', data_table); // แทรกบนสุด
             })
 
         })
