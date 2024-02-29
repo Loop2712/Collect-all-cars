@@ -7,12 +7,23 @@
       <div class="owl-carousel owl-2">
 
         @foreach($data_partner_show as $item_show)
-          <div class="media-29101 text-center">
-            <center>
-              <img style="width: 50%;height: 120px;object-fit: contain;padding: 10px;" src="{{ url('storage')}}/{{ $item_show->logo }}">
-              <h5 class="text-danger thx_partner">{{ $item_show->full_name }}</h5>
-            </center>
-          </div>
+          @if($item->name == "Ocean Life")
+            <div class="media-29101 text-center">
+              <center>
+                <a href="https://www.ocean.co.th/services/digital-healthcare/ocean-life-saver" target="bank">
+                  <img style="width: 50%;height: 120px;object-fit: contain;padding: 10px;" src="{{ url('storage')}}/{{ $item_show->logo }}">
+                  <h5 class="text-danger thx_partner">{{ $item_show->full_name }}</h5>
+                </a>
+              </center>
+            </div>
+          @else
+            <div class="media-29101 text-center">
+              <center>
+                <img style="width: 50%;height: 120px;object-fit: contain;padding: 10px;" src="{{ url('storage')}}/{{ $item_show->logo }}">
+                <h5 class="text-danger thx_partner">{{ $item_show->full_name }}</h5>
+              </center>
+            </div>
+          @endif
         @endforeach
 
         <!-- <div class="media-29101 text-center">
