@@ -1,0 +1,24 @@
+{
+    "fields": [
+        {
+            "name": "name_partner",
+            "type": "string"
+        },
+        {
+            "name": "partner_id",
+            "type": "integer"
+        },
+        {
+            "name": "name_sub_organization",
+            "type": "string"
+        },
+        {
+            "name": "phone",
+            "type": "string"
+        },
+        {
+            "name": "group_line_id",
+            "type": "integer"
+        }
+    ]
+}
