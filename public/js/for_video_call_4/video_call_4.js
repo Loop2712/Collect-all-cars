@@ -143,7 +143,7 @@ function create_element_localvideo_call(localPlayerContainer ,name_local ,type_l
 
         let statusInputOutputDiv = document.createElement("div");
             statusInputOutputDiv.className = "status-input-output";
-            statusInputOutputDiv.setAttribute('style','z-index: 1;');
+            // statusInputOutputDiv.setAttribute('style','z-index: 4;','pointer-events: none;');
 
         let micDiv = document.createElement("div");
             micDiv.id = "mic_local";
@@ -200,11 +200,13 @@ function create_element_localvideo_call(localPlayerContainer ,name_local ,type_l
         container_user_video_call.append(divVideo);
 
         divVideo.addEventListener("click", function() {
+            console.log("divVideo");
             handleClick(divVideo);
         });
 
         transparentDiv.addEventListener("click", function() {
             let id_agora_create = localPlayerContainer.id;
+            console.log("transparentDiv Clicked!! Unpublished");
             console.log(id_agora_create);
             let clickvideoDiv = document.querySelector('#videoDiv_'+id_agora_create);
             clickvideoDiv.click();
@@ -253,7 +255,7 @@ function create_element_remotevideo_call(remotePlayerContainer, name_remote , ty
         // เพิ่มแท็ก ไมค์และกล้อง
         let statusInputOutputDiv = document.createElement("div");
             statusInputOutputDiv.className = "status-input-output";
-            statusInputOutputDiv.setAttribute('style','z-index: 1;');
+            // statusInputOutputDiv.setAttribute('style','z-index: 4;','pointer-events: none;');
 
         let micDiv = document.createElement("div");
             micDiv.id = "mic_remote_"+containerId;
@@ -272,8 +274,15 @@ function create_element_remotevideo_call(remotePlayerContainer, name_remote , ty
             }else{
                 cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
             }
+
+        // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
+        // let settingDiv = document.createElement("label");
+        //     settingDiv.className = "settings dropdown_volume_label";
+        //     settingDiv.innerHTML = createHtmlInputbar(containerId);
+
         statusInputOutputDiv.appendChild(micDiv);
         statusInputOutputDiv.appendChild(cameraDiv);
+        // statusInputOutputDiv.appendChild(settingDiv);
 
         // เพิ่มแท็ก ชื่อและสถานะ
         let infomationUserDiv = document.createElement("div");
@@ -344,6 +353,7 @@ function create_element_remotevideo_call(remotePlayerContainer, name_remote , ty
                 moveDivsToUserVideoCallBar(clickvideoDiv);
             }
         });
+
     }else{
         console.log("================ สร้าง divVideo_New remote ไม่สำเร็จ =================");
     }
@@ -352,6 +362,8 @@ function create_element_remotevideo_call(remotePlayerContainer, name_remote , ty
 // สำหรับ Div Dummy ต่างๆของ Remote ตอน unpublished
 function create_dummy_videoTrack(user,name_remote,type_remote,profile_remote,bg_remote){
     if(user.uid){
+
+        array_remoteVolumeAudio[user.uid] = array_remoteVolumeAudio[user.uid] ?? 100;
 
         // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
         let divVideo_New = document.createElement('div');
@@ -390,7 +402,7 @@ function create_dummy_videoTrack(user,name_remote,type_remote,profile_remote,bg_
         // เพิ่มแท็ก ไมค์และกล้อง
         let statusInputOutputDiv = document.createElement("div");
             statusInputOutputDiv.className = "status-input-output";
-            statusInputOutputDiv.setAttribute('style','z-index: 1;');
+            // statusInputOutputDiv.setAttribute('style','z-index: 4;','pointer-events: none;');
 
         let micDiv = document.createElement("div");
             micDiv.id = "mic_remote_"+ user.uid.toString();
@@ -410,8 +422,14 @@ function create_dummy_videoTrack(user,name_remote,type_remote,profile_remote,bg_
                 cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
             }
 
+        // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
+        // let settingDiv = document.createElement("label");
+        // settingDiv.className = "settings dropdown_volume_label";
+        // settingDiv.innerHTML = createHtmlInputbar(user.uid);
+
         statusInputOutputDiv.appendChild(micDiv);
         statusInputOutputDiv.appendChild(cameraDiv);
+        // statusInputOutputDiv.appendChild(settingDiv);
 
         // เพิ่มแท็ก ชื่อและสถานะ
         let infomationUserDiv = document.createElement("div");
@@ -480,12 +498,14 @@ function create_dummy_videoTrack(user,name_remote,type_remote,profile_remote,bg_
         }
 
         divVideo_New.addEventListener("click", function() {
+            console.log("divVideo_New");
             handleClick(divVideo_New);
         });
 
         transparentDiv.addEventListener("click", function() {
 
             let id_agora_create = user.uid.toString();
+            console.log("transparentDiv Clicked!!");
             console.log(id_agora_create);
             let clickvideoDiv = document.querySelector('#videoDiv_'+id_agora_create);
             clickvideoDiv.click();
@@ -498,6 +518,8 @@ function create_dummy_videoTrack(user,name_remote,type_remote,profile_remote,bg_
             } else {
                 moveDivsToUserVideoCallBar(clickvideoDiv);
             }
+
+
         });
 
     }else{
@@ -505,6 +527,116 @@ function create_dummy_videoTrack(user,name_remote,type_remote,profile_remote,bg_
     }
 
 }
+
+// function createHtmlInputbar(user_id){
+//     let html = `
+//         <i class="fa-solid fa-ellipsis"></i>
+//         <input type="checkbox" class="dd-input" id="test">
+//         <ul class="dd-menu">
+//             <li>
+//                 <p class="mb-0" style="cursor: default; color: #000000; font-size: 14px !important;">ระดับเสียง</p>
+//                 <input style="z-index: 4;" type="range" id="remoteAudioVolume_`+user_id+`" min="0" max="1000" value="100" class="w-100" onChange="onChangeVolumeRemote(`+user_id+`);">
+//             </li>
+//         </ul>
+//     `;
+//     return html;
+// }
+
+function create_profile_in_sidebar_local_only(user_data , name , type , profile_pic){
+    let sidebar_profile =
+        `
+        <div class="col-12 row">
+            <div class="col-2 my-auto">
+                <img src="`+profile_pic+`" alt="Profile Picture" class="profile-picture">
+            </div>
+            <div class="col-8 my-auto">
+                <div class="profile-info">
+                    <p>(Me) `+name+`</p>
+                </div>
+            </div>
+            <div class="col-2 my-auto">
+
+            </div>
+        </div>
+
+        `;
+
+        // <label class="dropdown_volume_label">
+        //     <i class="fa-solid fa-volume-high" style="display: inline-block; z-index: 6;" onclick="closeCheckboxAllexceptThis(`+user_data.uid+`)"></i>
+        //     <input type="checkbox" class="dd-input" id="checkbox_`+user_data.uid+`">
+        //     <ul class="dd-menu">
+        //         <li>
+        //             <p class="mb-0" style="cursor: default; color: #000000; font-size: 14px !important;">ระดับเสียง</p>
+        //             <input style="z-index: 4;" type="range" id="localAudioVolume" min="0" max="1000" value="100" class="w-100" onChange="onChangeVolumeRemote(100);">
+        //         </li>
+        //     </ul>
+        // </label>
+
+    return sidebar_profile;
+}
+
+function create_profile_in_sidebar(user_data , name , type , profile_pic, volume_in_remoteArray){
+    var inputValue_remote = volume_in_remoteArray ?? 100; // เอาข้อมูล volume ที่เคยปรับไว้มาใช้เป็นค่า value ถ้าไม่มี ให้ใช้ค่า default = 100
+    let sidebar_profile =
+        `
+        <div class="col-12 row">
+            <div class="col-2 my-auto">
+                <img src="`+profile_pic+`" alt="Profile Picture" class="profile-picture">
+            </div>
+            <div class="col-8 my-auto">
+                <div class="profile-info">
+                    <p>`+name+`</p>
+                </div>
+            </div>
+            <div class="col-2 my-auto">
+                <label class="dropdown_volume_label">
+                    <i class="fa-solid fa-volume-high" style="display: inline-block; z-index: 6;" onclick="closeCheckboxAllexceptThis(`+user_data.uid+`)"></i>
+                    <input type="checkbox" class="dd-input" id="checkbox_`+user_data.uid+`">
+                    <ul class="dd-menu">
+                        <li>
+                            <p class="mb-0" style="cursor: default; color: #000000; font-size: 14px !important;">ระดับเสียง</p>
+                            <input style="z-index: 4;" type="range" id="remoteAudioVolume_`+user_data.uid+`" min="0" max="1000" value="`+inputValue_remote+`" class="w-100" onChange="onChangeVolumeRemote(`+user_data.uid+`);">
+                        </li>
+                    </ul>
+                </label>
+            </div>
+        </div>
+
+        `;
+    return sidebar_profile;
+}
+
+function closeCheckboxAllexceptThis(user_id){
+    // console.log("closeCheckboxAllexceptThis");
+    let mainCheckbox = document.getElementById("checkbox_" + user_id);
+    let allCheckboxes = document.querySelectorAll('.dd-input');
+    // วนลูปทุก checkbox เพื่อตั้งค่าให้เป็น false
+    allCheckboxes.forEach(function(checkbox) {
+        if (checkbox !== mainCheckbox) {
+            checkbox.checked = false;
+        }
+    });
+}
+
+function closeCheckboxAll(){
+    // console.log("closeCheckboxAll");
+    let allCheckboxes = document.querySelectorAll('.dd-input');
+    // วนลูปทุก checkbox เพื่อตั้งค่าให้เป็น false
+    allCheckboxes.forEach(function(checkbox) {
+        checkbox.checked = false;
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1293,8 +1293,8 @@
     {
         // Create an instance of the Agora Engine
         const agoraEngine = AgoraRTC.createClient({ mode: "rtc", codec: "vp9" });
-        // console.log("agoraEngine");
-        // console.log(agoraEngine);
+        console.log("agoraEngine");
+        console.log(agoraEngine);
         let rtcStats = agoraEngine.getRTCStats();
         // console.log("rtcStats");
         // console.log(rtcStats);

@@ -28,16 +28,16 @@
             /* margin-top: 0; */
             margin-bottom: 0;
             max-width: 100%;
+            position: relative;
         }
 
         .data-sos {
             /* border-radius: 5px; */
-            height: calc(88.8vh);
+            height: calc(99vh);
             max-height: 100% !important;
             background-color: #2b2d31;
             color: #fff !important;
             overflow: auto;
-
         }
         .data-sos *{
             color: #fff;
@@ -205,7 +205,7 @@
         }
 
         #container_user_video_call .custom-div {
-            aspect-ratio: 16/9;
+            aspect-ratio: 16/8.5;
             width: 100%;
             outline: #000 1px solid;
             border-radius: 5px;
@@ -227,6 +227,7 @@
             height: 100%;
             z-index: 3;
             background: rgba(255, 255, 255, 0);
+            /* pointer-events: none; */
         }
 
         .custom-div .status-sound-output{
@@ -241,6 +242,7 @@
             top: 0;
             right: 0;
             display: flex;
+            z-index: 4;
         }
 
         .custom-div .infomation-user{
@@ -272,6 +274,15 @@
             color: #ffffff;
         }
 
+        .status-input-output .settings{
+            margin: 5px;
+            background-color: rgba(132, 136, 140 , 0.8);
+            padding: .5rem 1rem;
+            border-radius: 10px;
+            color: #ffffff;
+            z-index: 4;
+        }
+
         .user-video-call-bar .custom-div {
             border-radius: 10px;
         }
@@ -295,6 +306,7 @@
             margin: 0;
             top: -3px;
             right: -10px;
+            z-index: 4;
         }
 
         .video-call-contrainer {
@@ -457,7 +469,8 @@
             margin: 0;
             position: absolute;
             bottom: 100; /* ตำแหน่ง list ขึ้นด้านบนของปุ่ม */
-            left: 10;
+            left: 61%; /* ให้อยู่กึ่งกลางด้านซ้าย */
+            transform: translateX(-49%); /* ให้ย้ายกลับไปที่ตำแหน่งที่ถูกต้อง */
             background-color: #3f3e3e;
             border-radius: 5px;
             z-index: 1000; /* เพื่อให้แสดงอยู่ข้างบนของปุ่ม */
@@ -546,6 +559,205 @@
         }
         /* ----------------- End ตัว Popup แจ้งเตือน----------------- */
 
+        /* css ของ dropdown remote volume */
+        .dropdown_volume {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        .dropdown_volume:hover {
+            color: #222222
+        }
+
+        /* Dropdown */
+
+        .dropdown_volume_label {
+            display: inline-block;
+            position: relative;
+        }
+
+        .dd-button {
+            display: inline-block;
+            border: 1px solid gray;
+            border-radius: 4px;
+            /* padding: 10px 30px 10px 20px; */
+            background-color: #ffffff;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .dd-button:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid black;
+        }
+
+        .dd-button:hover {
+            background-color: #eeeeee;
+        }
+
+
+        .dd-input {
+            display: none;
+        }
+
+        .dd-menu {
+            position: absolute;
+            top: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 0;
+            margin: 2px 0 0 0;
+            box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
+            background-color: #ffffff;
+            list-style-type: none;
+            width: 150px;
+            right: 0;
+            z-index: 5;
+        }
+
+        .dd-input + .dd-menu {
+            display: none;
+        }
+
+        .dd-input:checked + .dd-menu {
+            display: block;
+        }
+
+        .dd-menu li {
+            position: relative;
+            padding: 10px 20px;
+            cursor: default;
+            white-space: nowrap;
+        }
+
+        .dd-menu li:hover {
+            background-color: hsl(0, 0%, 96%);
+        }
+
+        .dd-menu li a {
+            display: block;
+            margin: -10px -20px;
+            padding: 10px 20px;
+        }
+
+        .dd-menu li.divider{
+            padding: 0;
+            border-bottom: 1px solid #cccccc;
+        }
+
+        .bottom_bar_video_call{
+            position: absolute;
+            bottom: 5px;
+            background-color: #2b2d31;
+            height: calc(100% - 93%);
+            width: 100%;
+            /* margin-left:2%; */
+            border-radius: 5px;
+        }
+
+        /* ============== Div data Right ================*/
+
+        .card_data{
+            background-color: white;
+            max-width: 35%;
+            width: 25%;
+            height: calc(90%);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15), 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        #div_data_right{
+            position:absolute;
+            z-index: 5;
+            top: 1%;
+            right: -1%;
+        }
+
+        .active_div_data_right{
+            animation: show_div_data_right 0.5s ease 0s 1 normal forwards;
+        }
+
+
+        .Inactive_div_data_right{
+            animation: hide_div_data_right 0.5s ease 0s 1 normal forwards;
+        }
+
+        @keyframes hide_div_data_right {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes show_div_data_right {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        .profile-picture {
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 5px;
+            top: 0; /* ตำแหน่ง list ขึ้นด้านบนของปุ่ม */
+            left: 0;
+            border:#fff 1px solid;
+        }
+
+        .profile-info {
+            /* width: 40%; */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-info p {
+            margin: 0;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .button-container {
+            width: 35%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* End Div data Right */
+
     /* } */
 </style>
 <!-- ใช้ในการเปลี่ยนสีสถานะ ของหน้านี้ -->
@@ -573,11 +785,11 @@ switch ($sos_data->status) {
 <div class="d-flex justify-content-center align-items-center">
     <div id="lds-ring" class="lds-ring"><div></div><div></div><div></div><div></div></div>
 </div>
-<div class="row full-height">
+<div class="row full-height" style="position: relative;overflow: hidden;width: 100%;">
     <!-- สำหรับ loading ก่อนเข้า videocall -> จะลบออกหลังจากโหลดเสร็จ -->
 
 	{{-- <div class="Scenary"></div> --}}
-	<div class="col-12 col-lg-2" style="background-color: #2b2d31;">
+	<div class="col-12 col-md-2" style="background-color: #2b2d31;">
         <button id="join" class="btn btn-success d-none" >เข้าร่วม</button>
         <button id="addButton" class="d-none" style="position: absolute;top:10%;right: 0;">เพิ่ม div</button>
 		<div class="data-sos text-center p-3 d-flex  row">
@@ -832,42 +1044,7 @@ switch ($sos_data->status) {
         <div class="d-flex overflow_auto_video_call row py-3" style="background-color: #2b2d31;">
 				<div id="video_call_sidebar" class="align-self-end w-100">
 
-                    <div class="row d-flex justify-content-center">
-                        <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
-                        <div id="div_for_AudioButton" class="btn btnSpecial " >
-                            {{-- <i id="icon_muteAudio" class="fa-solid fa-microphone-stand"></i> --}}
-                            <button class="smallCircle" id="btn_switchMicrophone">
-                                <i class="fa-sharp fa-solid fa-angle-up"></i>
-                            </button>
-                        </div>
 
-                        <!-- เปลี่ยนกล้อง ให้กดได้แค่ในคอม -->
-                        <div id="div_for_VideoButton" class="btn btnSpecial " >
-                            {{-- <i id="icon_muteVideo" class="fa-solid fa-camera-rotate"></i> --}}
-                            <button class="smallCircle" id="btn_switchCamera">
-                                <i class="fa-sharp fa-solid fa-angle-up"></i>
-                            </button>
-                        </div>
-
-                        <div class="btn btnSpecial btn_leave" id="leave">
-                            <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>
-                        </div>
-
-                        {{-- <button class="btn btnSpecial " onclick="alertText()">
-                            <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-                        </button>
-                        <script>
-                            function alertText(){
-                                document.querySelector('#alert_copy').classList.add('up_down');
-
-                                const animated = document.querySelector('.up_down');
-                                animated.onanimationend = () => {
-                                    document.querySelector('#alert_copy').classList.remove('up_down');
-                                };
-                            }
-                        </script> --}}
-
-                    </div>
 
                     <div class="dropcontent">
                         <ul id="audio-device-list" class="ui-list">
@@ -884,15 +1061,16 @@ switch ($sos_data->status) {
 			</div>
 	</div>
 
-	<div class="col-12 col-lg-10 full-height d-flex row">
-		<div class="video-call">
-			<div class=" d-flex align-item-center justify-content-center h-100 row">
+	<div class="col-12 col-md-10 full-height d-flex">
+		<div class="video-call row w-100">
+            <div class="col-12 my-auto">
 
-				<div class="d-flex align-self-center">
-					<div class="row" id="container_user_video_call">
+                <div class="d-flex align-self-center">
+                    <div class="row" id="container_user_video_call">
                         <!--  วิดีโอคอล tag ถูกสร้างในนี้-->
-					</div>
-				</div>
+                    </div>
+                </div>
+
 
 				<!-- <div class="bg-success test col">user4</div> -->
 				<div class="w-100 user-video-call-contrainer d-none">
@@ -906,7 +1084,112 @@ switch ($sos_data->status) {
 
 					{{-- <button class="btn-show-hide-user-video-call btn" style="z-index: 2" onclick="document.querySelector('.user-video-call-bar').classList.toggle('d-none');">ซ่อน</button> --}}
 				</div>
-			</div>
+
+                <!-- DIV ขวา -->
+                <div id="div_data_right" class="card_data Inactive_div_data_right">
+
+                    <div class="card-body">
+                        <h4>ผู้เข้าร่วมประชุม</h4>
+                        <hr>
+
+                        <div id="users_in_sidebar">
+
+                        </div>
+
+                        {{-- <div class="tab-content py-3 mt-3 flex-container">
+                            <div class="tab-pane fade" id="primaryhome_2" role="tabpanel" style="width: 100%;">
+                                <div class="mb-4">
+                                    <h4 class="card-title">พื้นที่การขอความช่วยเหลือ</h4>
+                                    <ul class="ul_you_are_watching">
+                                        <li><b id="watching_sos_type"></b></li>
+                                        <li id="watching_sos_data"></li>
+                                        <li id="watching_sos_count"></li>
+                                    </ul>
+                                </div>
+                                <hr>
+                                <div id="content_all_sos"></div>
+                            </div>
+                            <div class="tab-pane fade active show" id="primaryprofile_2" role="tabpanel" style="width: 95%;">
+                                <span class="float-end text-dark mb-1" style="font-size: 16px;margin-top: 6px;">
+                                    ออกปฏิบัติการรวม <b id="show_amount_by_area"></b> เคส
+                                </span>
+                                <select name="select_level" id="select_level" class="form-control mb-4" onchange="func_select_area_and_level();">
+                                    <option class="notranslate" selected value="all">เลือกระดับ</option>
+                                    <option class="notranslate text-success" value="FR">FR</option>
+                                    <option class="notranslate text-warning" value="BLS">BLS</option>
+                                    <option class="notranslate text-warning" value="ILS">ILS</option>
+                                    <option class="notranslate text-danger" value="ALS">ALS</option>
+                                </select>
+                                <hr>
+                                <div class="mb-4">
+                                    <h4 class="card-title">เจ้าหน้าที่ทั้งหมด</h4>
+                                </div>
+                                <div id="content_data_name_officer_all"></div>
+
+                            </div>
+                            <div class="tab-pane fade" id="primaryprofile_3" role="tabpanel" style="width: 100%;">
+                                <div class="mb-4">
+                                    <h4 class="card-title">เจ้าหน้าที่ในแผนที่</h4>
+                                    <ul class="ul_you_are_watching">
+                                        <li id="watching_officer_type"></li>
+                                        <li><b id="watching_officer_data"></b></li>
+                                        <li id="watching_officer_count"></li>
+                                    </ul>
+                                </div>
+                                <hr>
+                                <div id="content_data_name_officer"></div>
+                            </div>
+                        </div> --}}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-12 " style="position: relative;">
+                    <div class="d-flex justify-content-between align-items-center bg-dark p-1 w-100" style="border-radius:5px; position: absolute; bottom:5px;">
+                        <div class="p-1" style="color: #ffffff;" id="time_of_room"></div>
+                        <div class="d-flex justify-content-center">
+                            <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
+                            <div id="div_for_AudioButton" class="btn btnSpecial " >
+                                {{-- <i id="icon_muteAudio" class="fa-solid fa-microphone-stand"></i> --}}
+                                <button class="smallCircle" id="btn_switchMicrophone">
+                                    <i class="fa-sharp fa-solid fa-angle-up"></i>
+                                </button>
+                            </div>
+
+                            <!-- เปลี่ยนกล้อง ให้กดได้แค่ในคอม -->
+                            <div id="div_for_VideoButton" class="btn btnSpecial " >
+                                {{-- <i id="icon_muteVideo" class="fa-solid fa-camera-rotate"></i> --}}
+                                <button class="smallCircle" id="btn_switchCamera">
+                                    <i class="fa-sharp fa-solid fa-angle-up"></i>
+                                </button>
+                            </div>
+
+                            <div class="btn btnSpecial btn_leave" id="leave">
+                                <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>
+                            </div>
+
+                            {{-- <button class="btn btnSpecial " onclick="alertText()">
+                                <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+                            </button>
+                            <script>
+                                function alertText(){
+                                    document.querySelector('#alert_copy').classList.add('up_down');
+
+                                    const animated = document.querySelector('.up_down');
+                                    animated.onanimationend = () => {
+                                        document.querySelector('#alert_copy').classList.remove('up_down');
+                                    };
+                                }
+                            </script> --}}
+                        </div>
+                        <div class="p-1">
+                            <i id="user_right_data" class="fa-regular fa-users" style="color: #ffffff; font-size: 30px;" onclick="hide_or_show_Div('show', 'right');"></i>
+                        </div>
+                    </div>
+
+            </div>
+
 		</div>
 	</div>
 
@@ -963,8 +1246,6 @@ switch ($sos_data->status) {
     // var seconds = 0;
     var meet_2_people = 'No' ;
 
-
-
     // เรียกสองอันเพราะไม่อยากไปยุ่งกับโค้ดเก่า
     var user_id = '{{ Auth::user()->id }}';
     var user_data = @json(Auth::user());
@@ -975,6 +1256,13 @@ switch ($sos_data->status) {
 
     // var appId = '{{ env("AGORA_APP_ID") }}';
     // var appCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
+
+    var remoteVolume = localStorage.getItem('remote_rangeValue') ?? 100; // ค่าสำหรับเลือกระดับเสียงที่ได้ยินจากทุกคน
+    var array_remoteVolumeAudio = [];
+
+    var agoraEngine;
+
+    var checkHtml = false; // ใช้เช็คเงื่อนไขตัวปรับเสียงของ remote
 
     document.addEventListener('DOMContentLoaded', (event) => {
 
@@ -1097,9 +1385,9 @@ switch ($sos_data->status) {
     {
         // Create an instance of the Agora Engine
 
-        const agoraEngine = AgoraRTC.createClient({ mode: "rtc", codec: "vp9" });
-        // console.log("agoraEngine");
-        // console.log(agoraEngine);
+        agoraEngine = AgoraRTC.createClient({ mode: "rtc", codec: "vp9" });
+        console.log("agoraEngine");
+        console.log(agoraEngine);
         let rtcStats = agoraEngine.getRTCStats();
         // console.log("rtcStats");
         // console.log(rtcStats);
@@ -1328,6 +1616,8 @@ switch ($sos_data->status) {
                 channelParameters.remoteAudioTrack = user.audioTrack;
                 channelParameters.remoteAudioTrack.play();
 
+                channelParameters.remoteAudioTrack.setVolume(parseInt(array_remoteVolumeAudio[user.uid]));
+
                 if(user.hasAudio == false){
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
                     if (document.querySelector('#mic_remote_' + user.uid)) {
@@ -1536,6 +1826,26 @@ switch ($sos_data->status) {
                                     create_dummy_videoTrack(dummy_remote ,name_remote_user_joined ,type_remote_user_joined ,profile_remote_user_joined ,hexcolor);
                                     console.log("Dummy Created !!!");
 
+                                    // สร้าง โปรไฟล์ใน sidebar =========== อยู่จนกว่าจะออกจากห้อง ======================
+
+                                    let create_profile_remote = document.createElement("div");
+                                        create_profile_remote.id = "profile_"+dummy_remote.uid;
+                                        create_profile_remote.classList.add('row');
+
+                                    let html_profile_user = create_profile_in_sidebar(dummy_remote ,name_remote_user_joined ,type_remote_user_joined ,profile_remote_user_joined,array_remoteVolumeAudio[dummy_remote.uid]);
+
+                                    create_profile_remote.innerHTML = html_profile_user;
+
+                                    // ตรวจสอบว่าเจอ div เดิมหรือไม่
+                                    let oldDiv = document.getElementById("profile_"+ dummy_remote.uid);
+                                    if (oldDiv) {
+                                        // ใช้ parentNode.replaceChild() เพื่อแทนที่ div เดิมด้วย div ใหม่
+                                        oldDiv.parentNode.replaceChild(create_profile_remote, oldDiv);
+                                    } else {
+                                        document.querySelector('#users_in_sidebar').appendChild(create_profile_remote);
+                                    }
+
+                                    // จบส่วน สร้าง โปรไฟล์ใน sidebar ===============================================
 
                                     // เปลี่ยน ไอคอนวิดีโอเป็น ปิด
                                     document.querySelector('#camera_remote_' + dummy_remote.uid).innerHTML = '<i class="fa-duotone fa-video-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
@@ -1584,6 +1894,8 @@ switch ($sos_data->status) {
             fetch("{{ url('/') }}/api/check_status_room" + "?sos_id="+ sos_id + "&type=" + type_video_call)
                 .then(response => response.json())
                 .then(result => {
+                // console.log("check_status_room user_join");
+                // console.log(result);
 
                 let member_in_room = JSON.parse(result['member_in_room']);
 
@@ -1602,8 +1914,14 @@ switch ($sos_data->status) {
 
             console.log("ไอดี : " + evt.uid + " ออกจากห้อง");
 
+            // ลบ videoDiv_ ที่อยู่ใน ห้องสนทนาออก
             if(document.getElementById('videoDiv_' + evt.uid)) {
                 document.getElementById('videoDiv_' + evt.uid).remove();
+            }
+
+            // ลบ โปรไฟล์ที่อยู่ใน sidebar เมื่อ ออก
+            if(document.getElementById('profile_' + evt.uid)) {
+                document.getElementById('profile_' + evt.uid).remove();
             }
 
             // เช็คว่ามี div .custom-div อยู่ใน div container_user_video_call
@@ -1846,6 +2164,36 @@ switch ($sos_data->status) {
 
                         await agoraEngine.publish([channelParameters.localVideoTrack ,channelParameters.localAudioTrack]);
 
+                        //=================     สำหรับ Senior Benze  =========================
+                        function join_and_update(){
+                            console.log("join_and_update");
+                                fetch("{{ url('/') }}/api/join_room_4" + "?user_id=" + '{{ Auth::user()->id }}' + "&type=" + type_video_call + "&sos_id=" + sos_id)
+                                    .then(response => response.json())
+                                    .then(result => {
+                                        console.log("result join_room_4");
+                                        console.log(result);
+                                        // let member_in_room = JSON.parse(result);
+                                        setTimeout(() => {
+                                            if(result.length >= 2){
+                                                if(check_start_timer_video_call == false){
+                                                    start_timer_video_call();
+                                                }
+                                            }else{
+                                                if(check_start_timer_video_call == true){
+                                                    console.log("member_in_room น้อยกว่า 2 --> join_and_update");
+                                                    myStop_timer_video_call();
+                                                }
+                                            }
+                                        }, 800);
+
+                                })
+                                .catch(error => {
+                                    console.log("บันทึกข้อมูล join_and_update ล้มเหลว :" + error);
+                                    // window.location.reload(); // รีเฟรชหน้าเว็บ
+                                });
+                        }
+                        join_and_update();
+                        //=================    จบ สำหรับ Senior Benze  =========================
 
                         // console.log("create_element_localvideo_call When Joined");
                         // console.log(name_local);
@@ -1860,6 +2208,27 @@ switch ($sos_data->status) {
 
                         //======= สำหรับ สร้างปุ่มที่ใช้ เปิด-ปิด กล้องและไมโครโฟน ==========//
                         btn_toggle_mic_camera(videoTrack,audioTrack,bg_local);
+
+                        // สร้าง โปรไฟล์ใน sidebar =========== อยู่จนกว่าจะออกจากห้อง ======================
+
+                        let create_profile_local = document.createElement("div");
+                            create_profile_local.id = "profile_"+localPlayerContainer.id;
+                            create_profile_local.classList.add('row');
+
+                        let html_profile_user = create_profile_in_sidebar_local_only(localPlayerContainer ,name_local ,type_local ,profile_local);
+
+                        create_profile_local.innerHTML = html_profile_user;
+
+                        // ตรวจสอบว่าเจอ div เดิมหรือไม่
+                        let oldDiv = document.getElementById("profile_"+ localPlayerContainer.id);
+                        if (oldDiv) {
+                            // ใช้ parentNode.replaceChild() เพื่อแทนที่ div เดิมด้วย div ใหม่
+                            oldDiv.parentNode.replaceChild(create_profile_local, oldDiv);
+                        } else {
+                            document.querySelector('#users_in_sidebar').appendChild(create_profile_local);
+                        }
+
+                        // จบส่วน สร้าง โปรไฟล์ใน sidebar ===============================================
 
                         //ถ้ากดปุ่ม muteVideo แล้วกล้องอยู่ในสถานะปิด ให้เปลี่ยนสี bg ของ local
                         document.querySelector('#muteVideo').addEventListener("click", function(e) {
@@ -2391,7 +2760,76 @@ switch ($sos_data->status) {
                 deviceText.classList.add('text-center','p-1','text-white');
                 deviceText.appendChild(document.createTextNode("อุปกรณ์รับข้อมูล"));
 
-                audioDeviceList.appendChild(deviceText);
+            //============================================ ส่วนของ การปรับระดับเสียง(optional)=====================================================================================
+
+            let localVolume = localStorage.getItem('local_sos_1669_rangeValue') ?? 100;
+
+            let localAudioVolumeLabel = `<label class="ui-list-item d-block" for="localAudioVolume" >
+                                            <li class="text-center p-1 text-white d-block" style="font-size: 1.4em;">ระดับเสียงไมค์(ตัวเอง)</li>
+                                            <input type="range" id="localAudioVolume" min="0" max="1000" value="`+localVolume+`" class="w-100">
+                                        </label>`
+
+            audioDeviceList.insertAdjacentHTML('afterbegin', localAudioVolumeLabel); // แทรกบนสุด
+
+            let remoteAudioVolumeLabel = `<label class="ui-list-item d-none" for="remoteAudioVolume" >
+                                            <li class="text-center p-1 text-white d-block" style="font-size: 1.4em;">เสียงที่เราได้ยิน</li>
+                                            <input type="range" id="remoteAudioVolume" min="0" max="1000" value="`+remoteVolume+`" class="w-100">
+                                        </label>`
+
+            audioDeviceList.insertAdjacentHTML('afterbegin', remoteAudioVolumeLabel); // แทรกบนสุด
+
+            // เข้าถึงตัวปรับ input =============== localVolume ==========================
+            let local_rangeInput = document.getElementById('localAudioVolume');
+            local_rangeInput.addEventListener('input', function() {
+            // บันทึกค่าลงใน localStorage เมื่อมีการเปลี่ยนแปลง
+                localStorage.setItem('local_sos_1669_rangeValue', local_rangeInput.value);
+                localVolume = local_rangeInput.value; // เปลี่ยนค่าระดับเสียงของทางเราให้เท่ากับตัวปรับ
+            });
+
+            // เข้าถึงตัวปรับ input =============== remoteVolume ==========================
+            let remote_rangeInput = document.getElementById('remoteAudioVolume');
+            remote_rangeInput.addEventListener('input', function() {
+            // บันทึกค่าลงใน remoteStorage เมื่อมีการเปลี่ยนแปลง
+                localStorage.setItem('remote_rangeValue', remote_rangeInput.value);
+                remoteVolume = remote_rangeInput.value; // เปลี่ยนค่าระดับเสียงของทางฝั่งตรงข้ามให้เท่ากับตัวปรับ
+            });
+
+            let localVolumeFromStorage = localStorage.getItem('local_sos_1669_rangeValue');
+            // let remoteVolumeFromStorage = localStorage.getItem('remote_rangeValue');
+
+            // ตั้งค่าเสียงในตอนที่เริ่มต้น
+            if (localVolumeFromStorage !== null) {
+                // ตั้งค่าเสียง local audio
+                console.log("Volume of local audio at start :" + localVolumeFromStorage);
+                channelParameters.localAudioTrack.setVolume(parseInt(localVolumeFromStorage));
+            }else{
+                channelParameters.localAudioTrack.setVolume(parseInt(100));
+            }
+
+            // เพิ่ม event listener สำหรับ local audio volume slider
+            document.getElementById("localAudioVolume").addEventListener("change", function (evt) {
+                console.log("Volume of local audio :" + evt.target.value);
+                // Set the local audio volume.
+                channelParameters.localAudioTrack.setVolume(parseInt(evt.target.value));
+                // บันทึกค่าลงใน localStorage เพื่อให้ค่าเสียงเป็นค่าเริ่มต้นต่อครั้งถัดไป
+            });
+
+            // let remoteAudioTracksArray = [];
+
+            // document.getElementById("remoteAudioVolume").addEventListener("change", function (evt) {
+            //     // Set the remote audio volume.
+            //     // ในตัวอย่างนี้, เราให้ remoteAudioTracksArray เป็น array ที่เก็บ remoteAudioTrack ของทุกคน
+            //     remoteAudioTracksArray.forEach(remoteAudioTrack => {
+            //         remoteAudioTrack.setVolume(parseInt(evt.target.value));
+            //         console.log("Volume of remote audio for All User");
+            //     });
+
+            //     // บันทึกค่าลงใน localStorage เพื่อให้ค่าเสียงเป็นค่าเริ่มต้นต่อครั้งถัดไป
+            // });
+
+            //=================================================================================================================================
+
+            audioDeviceList.appendChild(deviceText);
             // let audiooutputDeviceList = document.getElementById('audio-device-output-list');
             //     audiooutputDeviceList.innerHTML = '';
 
@@ -2489,6 +2927,32 @@ switch ($sos_data->status) {
         //                              จบ -- สลับอุปกรณ์                                //
         //=============================================================================//
 
+
+
+    }
+
+    function onChangeVolumeRemote(div_id){
+        checkHtml = true;
+        let slider = document.querySelector("#remoteAudioVolume_"+div_id).value;
+        // console.log(agoraEngine['remoteUsers'][0]['audioTrack']);
+        // console.log("Volume of remote audio : "+ div_id +" = " + slider);
+
+        array_remoteVolumeAudio[div_id] = slider;
+        // console.log("agoraEngine");
+        // console.log(agoraEngine);
+
+        let length_remote = agoraEngine['remoteUsers']['length'];
+
+        for (let index = 0; index < length_remote; index++) {
+            let uid_remote = agoraEngine['remoteUsers'][index]['uid'];
+            // console.log("uid : "+uid_remote);
+
+            if (div_id == uid_remote && agoraEngine['remoteUsers'][index]['audioTrack']) {
+                // console.log("ไอดีตรงกัน");
+                agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(slider));
+            }
+        }
+
     }
 
     //============ โยกย้าย Div   =================//
@@ -2503,6 +2967,7 @@ switch ($sos_data->status) {
         let container = document.getElementById("container_user_video_call");
         let customDivs = container.querySelectorAll(".custom-div");
         let userVideoCallBar = document.querySelector(".user-video-call-bar");
+
         if(customDivs.length > 1){
             document.querySelector(".user-video-call-contrainer").classList.remove("d-none");
 
@@ -2535,16 +3000,21 @@ switch ($sos_data->status) {
 
     }
 
-    // จัดเรียกใช้งานเมื่อคลิกที่ div
     function handleClick(clickedDiv) {
         let userVideoCallBar = document.querySelector(".user-video-call-bar");
         let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+        console.log("handleClick OG : "+ checkHtml);
 
-        if (customDivsInUserVideoCallBar.length > 0) {
-            moveAllDivsToContainer();
-        } else {
-            moveDivsToUserVideoCallBar(clickedDiv);
+        if (checkHtml == false) {
+            if (customDivsInUserVideoCallBar.length > 0) {
+                moveAllDivsToContainer();
+            } else {
+                moveDivsToUserVideoCallBar(clickedDiv);
+            }
+        }else{
+            checkHtml = false;
         }
+
     }
 
     // เพิ่ม event listener บน .user-video-call-bar สำหรับสลับ div
@@ -2678,18 +3148,6 @@ switch ($sos_data->status) {
 		statusInputOutputDiv.appendChild(cameraDiv);
 
 		let infomationUserDiv = document.createElement("div");
-		// infomationUserDiv.className = "infomation-user";
-
-		// let nameUserVideoCallDiv = document.createElement("div");
-		// nameUserVideoCallDiv.className = "name-user-video-call";
-		// nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>lucky</b></h5>';
-
-		// let roleUserVideoCallDiv = document.createElement("div");
-		// roleUserVideoCallDiv.className = "role-user-video-call";
-		// roleUserVideoCallDiv.innerHTML = '<small class="d-block">ศูนย์สั่งการ</small>';
-
-		// infomationUserDiv.appendChild(nameUserVideoCallDiv);
-		// infomationUserDiv.appendChild(roleUserVideoCallDiv);
 
 		// เพิ่ม div ด้านในลงใน div หลัก
 		newDiv.appendChild(statusInputOutputDiv);
@@ -3148,6 +3606,48 @@ switch ($sos_data->status) {
         }, 2000);
 
     }
+
+</script>
+
+<script>
+    let status_show_div_right = "show" ;
+
+    function hide_or_show_Div(type , left_or_right) {
+	    // let divDataLeft = document.getElementById('div_data_left');
+	    let divDataRight = document.getElementById('div_data_right');
+
+	    // let btn_left = document.querySelector('#btn_hide_or_show_Div_left');
+	    // let icon_left = document.querySelector('#icon_hide_or_show_Div_left');
+
+	    // let btn_right = document.querySelector('#btn_hide_or_show_Div_right');
+	    // let icon_right = document.querySelector('#icon_hide_or_show_Div_right');
+
+        let user_right_data = document.querySelector('#user_right_data');
+
+	    if(left_or_right == "right"){
+
+	    	status_show_div_right = type ;
+
+	    	if(type == "show"){
+                user_right_data.setAttribute('style','color: #1a6ce7; font-size: 30px')
+		    	user_right_data.setAttribute('onclick' , "hide_or_show_Div('hide' , 'right');");
+		    	// divDataRight.style.right = '5px';
+		    	divDataRight.classList.add('active_div_data_right');
+		    	divDataRight.classList.remove('Inactive_div_data_right');
+
+		    	// func_check_dragstart_map();
+		    }else{
+                user_right_data.setAttribute('style','color: #ffffff; font-size: 30px')
+		    	user_right_data.setAttribute('onclick' , "hide_or_show_Div('show' , 'right');");
+		    	// divDataRight.style.right = '-310px';
+		    	divDataRight.classList.remove('active_div_data_right');
+		    	divDataRight.classList.add('Inactive_div_data_right');
+
+                closeCheckboxAll(); // ปิดตัวปรับเสียงใน sidebar ทั้งหทด
+		    }
+	    }
+
+	}
 
 </script>
 

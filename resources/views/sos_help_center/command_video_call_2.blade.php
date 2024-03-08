@@ -248,7 +248,8 @@
 
 	.status-input-output .mic,
 	.status-input-output .camera,
-    .status-sound-output .sound {
+    .status-sound-output .sound
+    {
 		margin: 5px;
 		background-color: rgb(0, 0, 0, 0.4);
 		padding: .5rem 1rem .5rem;
@@ -257,10 +258,27 @@
         font-size: 20px !important;
 	}
 
+    .status-input-output .settings{
+        margin: 5px;
+		background-color: rgb(0, 0, 0, 0.4);
+		padding: .5rem 1rem .5rem;
+		border-radius: 10px;
+		color: #ffffff;
+        font-size: 20px !important;
+    }
+
     /* ปรับขนาดเมื่ออยู่ใน .custom-div:nth-child(2) */
     .custom-div:nth-child(2) .status-input-output .mic,
     .custom-div:nth-child(2) .status-input-output .camera,
-    .custom-div:nth-child(2) .status-sound-output .sound{
+    .custom-div:nth-child(2) .status-sound-output .sound
+    {
+        font-size: 1em !important; /* หรือ % ของขนาดปกติ */
+        padding: .3em .6em .3em !important; /* หรือ % ของขนาดปกติ */
+        margin: 3px !important; /* หรือ % ของขนาดปกติ */
+    }
+
+    .custom-div:nth-child(2) .status-input-output .settings{
+        display: none;
         font-size: 1em !important; /* หรือ % ของขนาดปกติ */
         padding: .3em .6em .3em !important; /* หรือ % ของขนาดปกติ */
         margin: 3px !important; /* หรือ % ของขนาดปกติ */
@@ -351,6 +369,7 @@
 	}
 
     .transparent-div {
+        display: none;
         position: absolute;
         width: 100%;
         height: 100%;
@@ -408,6 +427,7 @@
     .open_dropcontent2 {
         visibility: visible;
     }
+
 
     .btnSpecial_mute{
         background-color: #ff0000 ; /* Discord's color */
@@ -771,6 +791,99 @@
         background-color: #6e89b4;
     }
 
+    /*======================== */
+
+    .dropdown_volume {
+        text-decoration: none;
+        color: #000000;
+    }
+
+    .dropdown_volume:hover {
+        color: #222222
+    }
+
+    /* Dropdown */
+
+    .dropdown_volume_label {
+        display: inline-block;
+        position: relative;
+    }
+
+    .dd-button {
+        display: inline-block;
+        border: 1px solid gray;
+        border-radius: 4px;
+        /* padding: 10px 30px 10px 20px; */
+        background-color: #ffffff;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    .dd-button:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid black;
+    }
+
+    .dd-button:hover {
+    background-color: #eeeeee;
+    }
+
+
+    .dd-input {
+    display: none;
+    }
+
+    .dd-menu {
+        position: absolute;
+        top: 100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 0;
+        margin: 2px 0 0 0;
+        box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
+        background-color: #ffffff;
+        list-style-type: none;
+        width: 150px;
+        right: 0;
+    }
+
+    .dd-input + .dd-menu {
+        display: none;
+    }
+
+    .dd-input:checked + .dd-menu {
+        display: block;
+    }
+
+    .dd-menu li {
+        padding: 10px 20px;
+        cursor: default;
+        white-space: nowrap;
+    }
+
+    .dd-menu li:hover {
+        background-color: hsl(0, 0%, 96%);
+    }
+
+    .dd-menu li a {
+        display: block;
+        margin: -10px -20px;
+        padding: 10px 20px;
+    }
+
+    .dd-menu li.divider{
+        padding: 0;
+        border-bottom: 1px solid #cccccc;
+    }
+
 </style>
 
     @php
@@ -791,7 +904,6 @@
     @endphp
 
     <div id="divVideoCall" class="video-body fade-slide overflow-hidden" style="display: none;">
-
 
         <div class="row ">
             <div class="col-12 " style="height: calc(100% - 90%);">
@@ -1018,7 +1130,11 @@
     var activeVideoDeviceId = "";
     var activeAudioDeviceId = "";
 
+    var remoteVolume = localStorage.getItem('remote_rangeValue') ?? 100; // ค่าสำหรับเลือกระดับเสียงที่ได้ยินจากทุกคน
 
+    var array_remoteVolumeAudio = [];
+
+    var agoraEngine;
     document.addEventListener('DOMContentLoaded', (event) => {
         start_page();
     });
@@ -1255,7 +1371,9 @@
     async function startBasicCall()
     {
         // Create an instance of the Agora Engine
-        const agoraEngine = AgoraRTC.createClient({ mode: "rtc", codec: "vp9" });
+        agoraEngine = AgoraRTC.createClient({ mode: "rtc", codec: "vp9" });
+        console.log("agoraEngine");
+        console.log(agoraEngine);
         let rtcStats = agoraEngine.getRTCStats();
 
         /////////////////////// ปุ่มสลับ กล้อง /////////////////////
@@ -1311,6 +1429,8 @@
         //=====================================================================================================
 
 
+
+
         function SoundTest() {
             // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
             agoraEngine.enableAudioVolumeIndicator();
@@ -1361,13 +1481,14 @@
         }
         SoundTest();
 
+
         // Listen for the "user-published" event to retrieve a AgoraRTCRemoteUser object.
         agoraEngine.on("user-published", async (user, mediaType) =>
         {
             await agoraEngine.subscribe(user, mediaType);
             console.log("subscribe success");
-            // console.log("user");
-            // console.log(user);
+            console.log("user subscribe");
+            console.log(user);
 
             // Set the remote video container size.
             remotePlayerContainer[user.uid] = document.createElement("div");
@@ -1378,6 +1499,7 @@
             remotePlayerContainer[user.uid].style.left = "0";
             remotePlayerContainer[user.uid].style.top = "0";
 
+
             // ตรวจสอบว่า user.uid เป็นไอดีของ remote user ที่คุณเลือก
             if (mediaType == "video")
             {
@@ -1387,13 +1509,18 @@
                 channelParameters.remoteVideoTrack = user.videoTrack;
                 channelParameters.remoteAudioTrack = user.audioTrack;
 
-                // set ระดับเสียงของ remote // ทำตอนมี remote อยู่ใน video call เท่านั้น
-                let remoteVolumeFromStorage = localStorage.getItem('remote_rangeValue');
-                if (remoteVolumeFromStorage !== null) {
-                    // ตั้งค่าเสียง remote audio
-                    console.log("Volume of remote audio at start :" + remoteVolumeFromStorage);
-                    channelParameters.remoteAudioTrack.setVolume(parseInt(remoteVolumeFromStorage));
-                }
+                // let remoteAudioTracksArray = [];
+                // // set ระดับเสียงของ remote // ทำตอนมี remote อยู่ใน video call เท่านั้น
+                // let remoteVolumeFromStorage = localStorage.getItem('remote_rangeValue');
+                // if (remoteVolumeFromStorage !== null) {
+                //     // ตั้งค่าเสียง remote audio
+                //     remoteAudioTracksArray.forEach(remoteAudioTrack => {
+                //         if (user.uid) {
+                //             remoteAudioTrack.setVolume(parseInt(array_remoteVolumeAudio[user.uid]));
+                //         }
+                //         console.log("Volume of remote audio for user " + remoteAudioTrack.getUserId() + ": " + evt.target.value);
+                //     });
+                // }
 
                 console.log("============== channelParameters.remoteVideoTrack ใน published  ==================");
                 console.log(channelParameters.remoteVideoTrack);
@@ -1454,13 +1581,20 @@
                 channelParameters.remoteAudioTrack = user.audioTrack;
                 channelParameters.remoteAudioTrack.play();
 
-                // set ระดับเสียงของ remote // ทำตอนมี remote อยู่ใน video call เท่านั้น
-                let remoteVolumeFromStorage = localStorage.getItem('remote_rangeValue');
-                if (remoteVolumeFromStorage !== null) {
-                    // ตั้งค่าเสียง remote audio
-                    console.log("Volume of remote audio at start :" + remoteVolumeFromStorage);
-                    channelParameters.remoteAudioTrack.setVolume(parseInt(remoteVolumeFromStorage));
-                }
+                // ลดเสียงทุกคน
+
+                // let remoteAudioTracksArray = [];
+                // // set ระดับเสียงของ remote // ทำตอนมี remote อยู่ใน video call เท่านั้น
+                // let remoteVolumeFromStorage = localStorage.getItem('remote_rangeValue');
+                // if (remoteVolumeFromStorage !== null) {
+                //     // ตั้งค่าเสียง remote audio
+                //     remoteAudioTracksArray.forEach(remoteAudioTrack => {
+                //         remoteAudioTrack.setVolume(parseInt(evt.target.value));
+                //         console.log("Volume of remote audio for user " + remoteAudioTrack.getUserId() + ": " + evt.target.value);
+                //     });
+                // }
+
+                channelParameters.remoteAudioTrack.setVolume(parseInt(array_remoteVolumeAudio[user.uid]));
 
                 if(user.hasAudio == false){
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
@@ -1514,6 +1648,9 @@
             console.log("เข้าสู่ user-unpublished");
             console.log("agoraEngine");
             console.log(agoraEngine);
+            console.log("user");
+            console.log(user);
+
 
             if(mediaType == "video"){
                 if (user.hasVideo == false) {
@@ -1523,14 +1660,6 @@
 
                     channelParameters.remoteVideoTrack.stop(); //lastest
                     channelParameters.remoteVideoTrack.close();//lastest
-
-                    // set ระดับเสียงของ remote // ทำตอนมี remote อยู่ใน video call เท่านั้น
-                    let remoteVolumeFromStorage = localStorage.getItem('remote_rangeValue');
-                    if (remoteVolumeFromStorage !== null) {
-                        // ตั้งค่าเสียง remote audio
-                        console.log("Volume of remote audio at start :" + remoteVolumeFromStorage);
-                        channelParameters.remoteAudioTrack.setVolume(parseInt(remoteVolumeFromStorage));
-                    }
 
                     let name_remote_user_unpublished;
                     let type_remote_user_unpublished;
@@ -1588,14 +1717,6 @@
                 console.log('unpublished AudioTrack:');
                 // console.log(channelParameters.localAudioTrack);
 
-                // set ระดับเสียงของ remote // ทำตอนมี remote อยู่ใน video call เท่านั้น
-                let remoteVolumeFromStorage = localStorage.getItem('remote_rangeValue');
-                if (remoteVolumeFromStorage !== null) {
-                    // ตั้งค่าเสียง remote audio
-                    console.log("Volume of remote audio at start :" + remoteVolumeFromStorage);
-                    channelParameters.remoteAudioTrack.setVolume(parseInt(remoteVolumeFromStorage));
-                }
-
                 // ถ้าไมค์ทำงานใน unpublished จะพบเมื่อผู้ใช้เข้ามาครั้งแรกแล้ว ปิดกล้อง แต่ เปิดไมค์
                 if(user.hasAudio == true){
                     agoraEngine.on("volume-indicator", volumes => {
@@ -1643,6 +1764,8 @@
 
             console.log("agoraEngine มีคนเข้าห้องมา");
             console.log(agoraEngine);
+            console.log("evt");
+            console.log(evt);
 
             // เสียงแจ้งเตือน เวลาคนเข้า
             let audio_ringtone_join = new Audio("{{ asset('sound/join_room_1.mp3') }}");
@@ -2195,6 +2318,8 @@
             }
         }
         setTimeout(() => {
+            console.log("afterJoin();");
+
             afterJoin();
         }, 1000);
         //=============================================================================//
@@ -2634,11 +2759,8 @@
 
             //============================================ ส่วนของ การปรับระดับเสียง(optional)=====================================================================================
 
-            let localsavedValue = localStorage.getItem('local_rangeValue') ?? 100;
-            let remotesavedValue = localStorage.getItem('remote_rangeValue') ?? 100;
+            let localVolume = localStorage.getItem('local_rangeValue') ?? 100;
 
-            let localVolume = localsavedValue;
-            let remoteVolume = remotesavedValue;
 
             let localAudioVolumeLabel = `<label class="ui-list-item d-block" for="localAudioVolume" >
                                             <li class="text-center p-1 text-white d-block" style="font-size: 1.4em;">เสียงที่อีกฝ่ายได้ยิน</li>
@@ -2647,7 +2769,7 @@
 
             audioDeviceList.insertAdjacentHTML('afterbegin', localAudioVolumeLabel); // แทรกบนสุด
 
-            let remoteAudioVolumeLabel = `<label class="ui-list-item d-block" for="remoteAudioVolume" >
+            let remoteAudioVolumeLabel = `<label class="ui-list-item d-none" for="remoteAudioVolume" >
                                             <li class="text-center p-1 text-white d-block" style="font-size: 1.4em;">เสียงที่เราได้ยิน</li>
                                             <input type="range" id="remoteAudioVolume" min="0" max="1000" value="`+remoteVolume+`" class="w-100">
                                         </label>`
@@ -2690,15 +2812,18 @@
                 // บันทึกค่าลงใน localStorage เพื่อให้ค่าเสียงเป็นค่าเริ่มต้นต่อครั้งถัดไป
             });
 
-            // เพิ่ม event listener สำหรับ remote audio volume slider
-            document.getElementById("remoteAudioVolume").addEventListener("change", function (evt) {
-                // Set the remote audio volume.
-                if (channelParameters.remoteAudioTrack) {
-                    channelParameters.remoteAudioTrack.setVolume(parseInt(evt.target.value));
-                    console.log("Volume Remote Success:" + evt.target.value);
-                }
-                // บันทึกค่าลงใน localStorage เพื่อให้ค่าเสียงเป็นค่าเริ่มต้นต่อครั้งถัดไป
-            });
+            // let remoteAudioTracksArray = [];
+
+            // document.getElementById("remoteAudioVolume").addEventListener("change", function (evt) {
+            //     // Set the remote audio volume.
+            //     // ในตัวอย่างนี้, เราให้ remoteAudioTracksArray เป็น array ที่เก็บ remoteAudioTrack ของทุกคน
+            //     remoteAudioTracksArray.forEach(remoteAudioTrack => {
+            //         remoteAudioTrack.setVolume(parseInt(evt.target.value));
+            //         console.log("Volume of remote audio for All User");
+            //     });
+
+            //     // บันทึกค่าลงใน localStorage เพื่อให้ค่าเสียงเป็นค่าเริ่มต้นต่อครั้งถัดไป
+            // });
 
             //=================================================================================================================================
 
@@ -2826,6 +2951,19 @@
             });
         });
 
+        $(document).ready(function() {
+            $("#btn_switchCamera").click(function(event) {
+                event.stopPropagation(); // หยุดการกระจายเหตุการณ์คลิกไปยัง document
+
+                var targetId = $(this).attr("id"); // รับ id ของปุ่มที่ถูกคลิก
+
+                if(document.querySelector('.open_dropcontent')){
+                    $(".dropcontent").removeClass("open_dropcontent");
+                }
+
+            });
+        });
+
         // ตรวจสอบอุปกรณ์ที่ใช้งาน
         function checkDeviceType() {
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -2845,56 +2983,6 @@
         //=============================================================================//
         //                              จบ -- สลับอุปกรณ์                                //
         //=============================================================================//
-
-        //   เพิ่ม-ลด เสียง    //
-        // btn_changeVolume.onclick = async function()
-        // {
-        //     // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
-        //     let volumeDeviceList = document.getElementById('volume-device-list');
-        //         volumeDeviceList.innerHTML = '';
-        //     let deviceText = document.createElement('li');
-        //         deviceText.classList.add('text-center','p-1','text-white');
-        //         deviceText.appendChild(document.createTextNode("ระดับเสียง"));
-
-        //         volumeDeviceList.appendChild(deviceText);
-
-        //     let count_i = 1 ;
-
-        //     // Create label element for Local Audio Volume.
-        //     let localAudioVolumeLabel = document.createElement("label");
-        //         localAudioVolumeLabel.setAttribute("class","ui-list-item");
-        //         localAudioVolumeLabel.setAttribute("for", "localAudioVolume");
-
-        //     // Create input element for Local Audio Volume Slider.
-        //     let localAudioVolumeSlider = document.createElement("input");
-        //         localAudioVolumeSlider.setAttribute("type", "range");
-        //         localAudioVolumeSlider.setAttribute("id", "localAudioVolume");
-        //         localAudioVolumeSlider.setAttribute("min", "0");
-        //         localAudioVolumeSlider.setAttribute("max", "100");
-        //         localAudioVolumeSlider.setAttribute("value", "50");
-
-        //     // Append label and slider to the document body or any other desired container.
-        //     localAudioVolumeLabel.appendChild(localAudioVolumeSlider);
-        //     volumeDeviceList.appendChild(localAudioVolumeLabel);
-
-        //     // Create label element for Remote Audio Volume.
-        //     let remoteAudioVolumeLabel = document.createElement("label");
-        //         remoteAudioVolumeLabel.setAttribute("class","ui-list-item");
-        //         remoteAudioVolumeLabel.setAttribute("for", "remoteAudioVolume");
-
-        //     // Create input element for Remote Audio Volume Slider.
-        //     let remoteAudioVolumeSlider = document.createElement("input");
-        //         remoteAudioVolumeSlider.setAttribute("type", "range");
-        //         remoteAudioVolumeSlider.setAttribute("id", "remoteAudioVolume");
-        //         remoteAudioVolumeSlider.setAttribute("min", "0");
-        //         remoteAudioVolumeSlider.setAttribute("max", "100");
-        //         remoteAudioVolumeSlider.setAttribute("value", "50");
-
-        //     // Append label and slider to the document body or any other desired container.
-        //     remoteAudioVolumeLabel.appendChild(remoteAudioVolumeSlider);
-        //     volumeDeviceList.appendChild(remoteAudioVolumeLabel);
-
-        // }
 
 
     }
@@ -2923,6 +3011,7 @@
 
 
 	function createAndAttachCustomDiv() {
+        let div_id = "xyz";
 		let randomColor = getRandomColor();
 		let newDiv = document.createElement("div");
         newDiv.setAttribute('div_video','remote');
@@ -2941,8 +3030,28 @@
 		cameraDiv.className = "camera";
 		cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
 
-		statusInputOutputDiv.appendChild(micDiv);
-		statusInputOutputDiv.appendChild(cameraDiv);
+        let settingDiv = document.createElement("label");
+            settingDiv.className = "settings dropdown_volume_label";
+            // settingDiv.innerHTML = '<i class="fa-solid fa-ellipsis"></i>';
+            settingDiv.innerHTML = `
+
+                                    <i class="fa-solid fa-ellipsis"></i>
+
+                                    <input type="checkbox" class="dd-input" id="test">
+
+                                    <ul class="dd-menu">
+                                        <li>
+                                            <p class="mb-0" style="cursor: default; color: #000000; font-size: 14px !important;">ระดับเสียง</p>
+                                            <input type="range" id="remoteAudioVolume_`+div_id+`" min="0" max="1000" value="100" class="w-100" onChange="onChangeVolumeRemote(`+div_id+`);">
+                                        </li>
+                                    </ul>
+                                   `;
+
+
+        statusInputOutputDiv.appendChild(micDiv);
+        statusInputOutputDiv.appendChild(cameraDiv);
+        statusInputOutputDiv.appendChild(settingDiv);
+
 
 		let infomationUserDiv = document.createElement("div");
 		infomationUserDiv.className = "infomation-user";
@@ -2987,7 +3096,31 @@
 
         document.getElementById("container_user_video_call").appendChild(newDiv);
 		checkchild();
+
+        //===================================    ========================================
+        let userId = "xyz";
+        // ดึงข้อมูลผู้ใช้จาก userId หรือจากข้อมูลที่คุณเก็บไว้
+
+        // ตรวจสอบว่ามี Audiotrack ของผู้ใช้หรือไม่
+        if (userId) {
+            // ดึง Audiotrack ของผู้ใช้จาก agoraEngine
+            // let userAudioTrack = agoraEngine.remoteAudioTracks.find(track => track.uid === userId);
+
+            // ตรวจสอบว่า Audiotrack พร้อมใช้งานหรือไม่
+            if (userId) {
+                // เพิ่ม event listener เพื่อตรวจจับการเปลี่ยนแปลงของระดับเสียง remote audio
+                document.getElementById("remoteAudioVolume_"+userId).addEventListener("change", function (evt) {
+
+                    // ตั้งค่าระดับเสียง remote audio
+                    // userAudioTrack.setVolume(parseInt(evt.target.value));
+                    console.log("Volume Div Dummy: " + evt.target.value);
+                });
+            }
+        }
+        //=============================================================================
 	}
+
+
 
 
 	// ย้าย div ไปยัง .user-video-call-bar หากไม่อยู่ในนั้นและสลับ div
@@ -3465,8 +3598,26 @@
                 }else{
                     cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
                 }
+
+
+            // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
+            let settingDiv = document.createElement("label");
+                settingDiv.className = "settings dropdown_volume_label";
+                // settingDiv.innerHTML = '<i class="fa-solid fa-ellipsis"></i>';
+                settingDiv.innerHTML = `
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                        <input type="checkbox" class="dd-input" id="test">
+                                        <ul class="dd-menu">
+                                            <li>
+                                                <p class="mb-0" style="cursor: default; color: #000000; font-size: 14px !important;">ระดับเสียง</p>
+                                                <input type="range" id="remoteAudioVolume_`+containerId+`" min="0" max="1000" value="100" class="w-100" onChange="onChangeVolumeRemote(`+containerId+`);">
+                                            </li>
+                                        </ul>
+                                    `;
+
             statusInputOutputDiv.appendChild(micDiv);
             statusInputOutputDiv.appendChild(cameraDiv);
+            statusInputOutputDiv.appendChild(settingDiv);
 
             // เพิ่มแท็ก ชื่อและสถานะ
             let infomationUserDiv = document.createElement("div");
@@ -3557,6 +3708,7 @@
     function create_dummy_videoTrack(user,name_remote,type_remote,profile_remote,bg_remote){
         if(user.uid){
 
+            array_remoteVolumeAudio[user.uid] = 100;
             // ใส่เนื้อหาใน divVideo ที่ถูกใช้โดยผู้ใช้
             let divVideo_New = document.createElement('div');
             divVideo_New.setAttribute('id','videoDiv_' + user.uid.toString());
@@ -3614,8 +3766,24 @@
                     cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
                 }
 
+            // สร้างรายการอุปกรณ์ส่งข้อมูลและเพิ่มลงในรายการ
+            let settingDiv = document.createElement("label");
+                settingDiv.className = "settings dropdown_volume_label";
+                // settingDiv.innerHTML = '<i class="fa-solid fa-ellipsis"></i>';
+                settingDiv.innerHTML = `
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                        <input type="checkbox" class="dd-input" id="test">
+                                        <ul class="dd-menu">
+                                            <li>
+                                                <p class="mb-0" style="cursor: default; color: #000000; font-size: 14px !important;">ระดับเสียง</p>
+                                                <input type="range" id="remoteAudioVolume_`+user.uid+`" min="0" max="1000" value="100" class="w-100" onChange="onChangeVolumeRemote(`+user.uid+`);">
+                                            </li>
+                                        </ul>
+                                    `;
+
             statusInputOutputDiv.appendChild(micDiv);
             statusInputOutputDiv.appendChild(cameraDiv);
+            statusInputOutputDiv.appendChild(settingDiv);
 
             // เพิ่มแท็ก ชื่อและสถานะ
             let infomationUserDiv = document.createElement("div");
@@ -3718,6 +3886,30 @@
         }else{
             console.log("------------------------------------------------------  หา user ไม่เจอ เลยขึ้น undifined ใน create_videoTrack()");
         }
+    }
+
+    function onChangeVolumeRemote(div_id){
+
+        let slider = document.querySelector("#remoteAudioVolume_"+div_id).value;
+        // console.log(agoraEngine['remoteUsers'][0]['audioTrack']);
+        // console.log("Volume of remote audio : "+ div_id +" = " + slider);
+
+        array_remoteVolumeAudio[div_id] = slider;
+        // console.log("agoraEngine");
+        // console.log(agoraEngine);
+
+        let length_remote = agoraEngine['remoteUsers']['length'];
+
+        for (let index = 0; index < length_remote; index++) {
+            let uid_remote = agoraEngine['remoteUsers'][index]['uid'];
+            // console.log("uid : "+uid_remote);
+
+            if (div_id == uid_remote && agoraEngine['remoteUsers'][index]['audioTrack']) {
+                // console.log("ไอดีตรงกัน");
+                agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(slider));
+            }
+        }
+
     }
 
 </script>
