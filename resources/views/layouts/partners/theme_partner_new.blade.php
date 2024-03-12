@@ -2161,7 +2161,9 @@
                                 <img src="{{ asset('/partner/images/user/avatar-1.jpg') }}" style="width:60px;" class="img-radius" alt="User-Profile-Image">
                             @endif
 							<div class="user-info ps-3">
-								<p class="user-name mb-0">{{ Auth::user()->name }}</p>
+								<p class="user-name mb-0" style="max-width:200px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                                    {{ Auth::user()->name }}
+                                </p>
 								<p class="designattion mb-0">
 									@switch(Auth::user()->role)
                                         @case('partner')

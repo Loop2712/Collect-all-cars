@@ -295,7 +295,7 @@
 
       let m_lat = parseFloat(sos_lat.value);
       let m_lng = parseFloat(sos_lng.value);
-      let m_numZoom = parseFloat('17');
+      let m_numZoom = parseFloat('14');
 
       map_show_hospital = new google.maps.Map(document.getElementById("map_show_hospital"), {
           center: {lat: m_lat, lng: parseFloat(m_lng + 0.002) },

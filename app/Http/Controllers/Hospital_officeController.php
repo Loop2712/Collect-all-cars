@@ -180,11 +180,17 @@ class Hospital_officeController extends Controller
     {
         
         $requestData = $request->all();
+
+        // echo "<pre>";
+        // print_r($requestData);
+        // echo "<pre>";
+        // exit();
         
         $hospital_office = Hospital_office::findOrFail($id);
         $hospital_office->update($requestData);
 
-        return redirect('hospital_office')->with('flash_message', 'Hospital_office updated!');
+        // return redirect('hospital_office')->with('flash_message', 'Hospital_office updated!');
+        return redirect('/edit_my_hospital');
     }
 
     /**

@@ -851,7 +851,7 @@
 		<div id="switcher-wrapper_menu" class="sidebar-wrapper menu-background" data-simplebar="true">
 			<div id="header-wrapper_menu" class="sidebar-header menu-background">
                     <div>
-                        <a href="{{ url('/partner_index') }}" >
+                        <a href="{{ url('/hospital_offices_index') }}" >
                             <h4 id="h4_name_partner" class="logo-text" style="font-family: 'Baloo Bhaijaan 2', cursive;
                             font-family: 'Prompt', sans-serif;"></h4>
                         </a>
@@ -1167,7 +1167,7 @@
 					</style>
 
 					<div class="containerStatusofficer ms-auto">
-						<div class="tabsStatusOfficer">
+						<div class="tabsStatusOfficer d-none">
 							<!-- ปุ่ม modal -->
 							<input type="radio" id="officerHelping" name="tabsStatusOfficer"  onclick="click_switch_officer_1669();">
 							<label class="tabOfficer radio-1" for="officerHelping">
@@ -1356,7 +1356,9 @@
                                 <img src="{{ asset('/partner/images/user/avatar-1.jpg') }}" style="width:60px;" class="img-radius" alt="User-Profile-Image">
                             @endif
 							<div class="user-info ps-3">
-								<p class="user-name mb-0">{{ Auth::user()->name }}</p>
+								<p class="user-name mb-0" style="max-width:200px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                                    {{ Auth::user()->name }}
+                                </p>
 								<p class="designattion mb-0">
 									@switch(Auth::user()->role)
                                         @case('partner')
@@ -1404,7 +1406,7 @@
 	</div>
 	<!--end wrapper-->
 	<!--start switcher-->
-	<div class="switcher-wrapper">
+	<div class="switcher-wrapper d-none">
 		@if(Auth::check())
             @if(Auth::user()->role == "admin-partner" or Auth::user()->role == "admin-condo")
 				<div id="div_switcher" class="switcher-btn" onclick="change_color();" style="">
@@ -1854,9 +1856,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 <script>
-	new PerfectScrollbar('.dashboard-top-countries');
+	// new PerfectScrollbar('.dashboard-top-countries');
 </script>
-<script src="{{ asset('partner_new/js/index.js') }}"></script>
+<!-- <script src="{{ asset('partner_new/js/index.js') }}"></script> -->
 <!--app JS-->
 <script src="{{ asset('partner_new/js/app.js') }}"></script>
 <!-- dataTables -->
@@ -1902,11 +1904,23 @@
                     }
                 }, delayInMilliseconds);
 
-                if (result[0]['name'] === "สพฉ"){
-                    document.querySelector('#h4_name_partner').innerHTML = "ศูนย์สั่งการ";
-                }else{
-                    document.querySelector('#h4_name_partner').innerHTML = result[0]['name'];
+                if("{{ Auth::user()->sub_organization }}" == "โรงพยาบาล"){
+                    @php
+                        $user_hospital_id = Auth::user()->id ;
+                        $data_officer_hospitals = App\Models\Data_1669_officer_hospital::where('user_id' , $user_hospital_id)->first();
+                    @endphp
+
+                    document.querySelector('#h4_name_partner').innerHTML = "โรงพยาบาล";
+                    user_sub_organization = "{{ $data_officer_hospitals->area }}";
                 }
+                else{
+                    if (result[0]['name'] === "สพฉ"){
+                        document.querySelector('#h4_name_partner').innerHTML = "ศูนย์สั่งการ";
+                    }else{
+                        document.querySelector('#h4_name_partner').innerHTML = result[0]['name'];
+                    }
+                }
+
 
                 document.querySelector('#color_of_partner').value = result[0]['name'];
                 document.querySelector('#check_name_partner').value = result[0]['name'];
