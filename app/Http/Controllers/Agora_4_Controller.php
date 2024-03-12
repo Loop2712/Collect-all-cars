@@ -110,6 +110,21 @@ class Agora_4_Controller extends Controller
             }
 
             $data_agora = Agora_chat::where('sos_id',$sos_id)->where('room_for','user_sos_1669')->first();
+        }elseif ($type == 'sos_personal_assistant') {
+            $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+                ->where('sos_help_centers.id',$sos_id)
+                ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
+                ->first();
+
+            $groupId = '';
+
+            if($user->id == $sos_data->user_id){
+                $role_permission = 'help_seeker';
+            }else{
+                $role_permission = 'helper';
+            }
+
+            $data_agora = Agora_chat::where('sos_id',$sos_id)->where('room_for','sos_personal_assistant')->first();
         }else{
             $sos_data = Sos_map::where('id' , $sos_id)->first();
 
@@ -253,110 +268,110 @@ class Agora_4_Controller extends Controller
         return view('video_call_4/mobile_video_call_4' , compact('data_agora','user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data','role_permission','groupId','type_brand'));
     }
 
-    public function command_video_call(Request $request)
-    {
-        $user = Auth::user();
+    // public function command_video_call(Request $request)
+    // {
+    //     $user = Auth::user();
 
-        $requestData = $request->all();
+    //     $requestData = $request->all();
 
-        $type = $requestData['type'];
-        $sos_id = $requestData['sos_id'];
-        $useMicrophone = '';
-        $useCamera = '';
-        $useSpeaker = '';
-        // $appId = $requestData['appId'];
-        // $appCertificate =  $requestData['appCertificate'];
-        if($type == 'sos_1669'){
-            $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
-            ->where('sos_help_centers.id',$sos_id)
-            ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
-            ->first();
+    //     $type = $requestData['type'];
+    //     $sos_id = $requestData['sos_id'];
+    //     $useMicrophone = '';
+    //     $useCamera = '';
+    //     $useSpeaker = '';
+    //     // $appId = $requestData['appId'];
+    //     // $appCertificate =  $requestData['appCertificate'];
+    //     if($type == 'sos_1669'){
+    //         $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+    //         ->where('sos_help_centers.id',$sos_id)
+    //         ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
+    //         ->first();
 
-            $groupId = '';
+    //         $groupId = '';
 
-            if($user->id == $sos_data->user_id){
-                $role_permission = 'help_seeker';
-            }else{
-                $role_permission = 'helper';
-            }
+    //         if($user->id == $sos_data->user_id){
+    //             $role_permission = 'help_seeker';
+    //         }else{
+    //             $role_permission = 'helper';
+    //         }
 
-            $data_agora = Agora_chat::where('sos_id',$sos_id)->where('room_for','meet_operating_1669')->first();
-        }elseif ($type == 'user_sos_1669') {
-            $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
-                ->where('sos_help_centers.id',$sos_id)
-                ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
-                ->first();
+    //         $data_agora = Agora_chat::where('sos_id',$sos_id)->where('room_for','meet_operating_1669')->first();
+    //     }elseif ($type == 'user_sos_1669') {
+    //         $sos_data  = Sos_help_center::join('sos_1669_form_yellows', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+    //             ->where('sos_help_centers.id',$sos_id)
+    //             ->select('sos_help_centers.*','sos_1669_form_yellows.*','sos_help_centers.time_create_sos as created_sos')
+    //             ->first();
 
-            $groupId = '';
+    //         $groupId = '';
 
-            if($user->id == $sos_data->user_id){
-                $role_permission = 'help_seeker';
-            }else{
-                $role_permission = 'helper';
-            }
+    //         if($user->id == $sos_data->user_id){
+    //             $role_permission = 'help_seeker';
+    //         }else{
+    //             $role_permission = 'helper';
+    //         }
 
-            $data_agora = Agora_chat::where('sos_id',$sos_id)->where('room_for','user_sos_1669')->first();
-        }
-        else{
-            $sos_data = Sos_map::where('id' , $sos_id)->first();
+    //         $data_agora = Agora_chat::where('sos_id',$sos_id)->where('room_for','user_sos_1669')->first();
+    //     }
+    //     else{
+    //         $sos_data = Sos_map::where('id' , $sos_id)->first();
 
-            $data_partner = Partner::where('name' , $sos_data->area)
-            ->where('name_area' , $sos_data->name_area)
-            ->first();
+    //         $data_partner = Partner::where('name' , $sos_data->area)
+    //         ->where('name_area' , $sos_data->name_area)
+    //         ->first();
 
-            $data_groupline = Group_line::where('id' , $data_partner->group_line_id)->first();
-            $groupId = $data_groupline->groupId ;
+    //         $data_groupline = Group_line::where('id' , $data_partner->group_line_id)->first();
+    //         $groupId = $data_groupline->groupId ;
 
-            if($user->id == $sos_data->user_id){
-                $role_permission = 'help_seeker';
-            }else{
-                $role_permission = 'helper';
-            }
+    //         if($user->id == $sos_data->user_id){
+    //             $role_permission = 'help_seeker';
+    //         }else{
+    //             $role_permission = 'helper';
+    //         }
 
-            $data_agora = Agora_chat::where('sos_id',$sos_id)->where('room_for','sos_map')->first();
-        }
+    //         $data_agora = Agora_chat::where('sos_id',$sos_id)->where('room_for','sos_map')->first();
+    //     }
 
-        if (!empty($useSpeaker)) {
-            $useSpeaker = $requestData['useSpeaker'];
-        } else {
-            $useSpeaker = '';
-        }
-        if (!empty($useMicrophone)) {
-            $useMicrophone = $requestData['useMicrophone'];
-        } else {
-            $useMicrophone = '';
-        }
-        if (!empty($useCamera)) {
-            $useCamera = $requestData['useCamera'];
-        } else {
-            $useCamera = '';
-        }
+    //     if (!empty($useSpeaker)) {
+    //         $useSpeaker = $requestData['useSpeaker'];
+    //     } else {
+    //         $useSpeaker = '';
+    //     }
+    //     if (!empty($useMicrophone)) {
+    //         $useMicrophone = $requestData['useMicrophone'];
+    //     } else {
+    //         $useMicrophone = '';
+    //     }
+    //     if (!empty($useCamera)) {
+    //         $useCamera = $requestData['useCamera'];
+    //     } else {
+    //         $useCamera = '';
+    //     }
 
-        // $videoTrack = $requestData['videoTrack'];
-        // $audioTrack = $requestData['audioTrack'];
-        $videoTrack = "close";
-        $audioTrack = "close";
+    //     // $videoTrack = $requestData['videoTrack'];
+    //     // $audioTrack = $requestData['audioTrack'];
+    //     $videoTrack = "close";
+    //     $audioTrack = "close";
 
-        $appID = env('AGORA_APP_ID');
-        $appCertificate = env('AGORA_APP_CERTIFICATE');
+    //     $appID = env('AGORA_APP_ID');
+    //     $appCertificate = env('AGORA_APP_CERTIFICATE');
 
-        //ตรวจอุปกรณ์
-        $userAgent = $_SERVER['HTTP_USER_AGENT'];
+    //     //ตรวจอุปกรณ์
+    //     $userAgent = $_SERVER['HTTP_USER_AGENT'];
 
-        // ตรวจสอบชนิดของอุปกรณ์
-        if (preg_match('/android/i', $userAgent)) {
-            $type_brand = "android";
-        }
-        else if (preg_match('/iPad|iPhone|iPod/', $userAgent) && !strpos($userAgent, 'MSStream')) {
-            $type_brand = "ios";
-        }
-        else{
-            $type_brand = "pc";
-        }
+    //     // ตรวจสอบชนิดของอุปกรณ์
+    //     if (preg_match('/android/i', $userAgent)) {
+    //         $type_brand = "android";
+    //     }
+    //     else if (preg_match('/iPad|iPhone|iPod/', $userAgent) && !strpos($userAgent, 'MSStream')) {
+    //         $type_brand = "ios";
+    //     }
+    //     else{
+    //         $type_brand = "pc";
+    //     }
 
 
-        return view('sos_help_center/command_video_call_2' , compact('data_agora','user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data','role_permission','groupId','type_brand'));
-    }
+    //     return view('sos_help_center/command_video_call_2' , compact('data_agora','user','appID','appCertificate','videoTrack','audioTrack','sos_id','useSpeaker','useMicrophone','useCamera','type','sos_data','role_permission','groupId','type_brand'));
+    // }
 
     public function token(Request $request)
     {
@@ -410,6 +425,8 @@ class Agora_4_Controller extends Controller
             $type_text = "meet_operating_1669";
         }else if($type == 'user_sos_1669'){
             $type_text = "user_sos_1669";
+        }else if($type == 'sos_personal_assistant'){
+            $type_text = "sos_personal_assistant";
         }else{
             $type_text = "sos_map";
         }
@@ -624,6 +641,8 @@ class Agora_4_Controller extends Controller
             $type_text = "meet_operating_1669";
         }else if($type == 'user_sos_1669'){
             $type_text = "user_sos_1669";
+        }else if($type == 'sos_personal_assistant'){
+            $type_text = "sos_personal_assistant";
         }else{
             $type_text = "sos_map";
         }
@@ -874,6 +893,9 @@ class Agora_4_Controller extends Controller
             $data_sos = Sos_help_center::where('id',$sos_id)->first();
         }else if($type == 'user_sos_1669'){
             $data_sos = Sos_help_center::where('id',$sos_id)->first();
+        }else if($type == 'sos_personal_assistant'){
+            // รอเปลี่ยนไปใช่ pa
+            $data_sos = Sos_help_center::where('id',$sos_id)->first();
         }else{
             $data_sos = Sos_map::where('id',$sos_id)->first();
         }
@@ -983,6 +1005,9 @@ class Agora_4_Controller extends Controller
             $data_sos = Sos_help_center::where('id',$sos_id)->first();
         }else if($type == 'user_sos_1669'){
             $data_sos = Sos_help_center::where('id',$sos_id)->first();
+        }else if($type == 'sos_personal_assistant'){
+            // รอเปลี่ยนไปใช่ pa
+            $data_sos = Sos_help_center::where('id',$sos_id)->first();
         }else{
             $data_sos = Sos_map::where('id',$sos_id)->first();
         }
@@ -1009,21 +1034,21 @@ class Agora_4_Controller extends Controller
                 $data['user_type'] = "--";
                 $data['name_user'] = $remote_data->name;
             }
-        }else if($type == 'sos_1669'){
+        }else if($type == 'sos_personal_assistant'){
             $data_command = Data_1669_officer_command::where('user_id',$user_id)->first();
             $data_officer = Data_1669_operating_officer::where('user_id',$user_id)->first();
 
             if(!empty($data_command->name_officer_command)){
-                $data['user_type'] = "ศูนย์อำนวยการ";
-                $data['name_user'] = $data_command->name_officer_command;
+                $data['user_type'] = "ทดสอบ";
+                $data['name_user'] = "ทดสอบ";
                 // $data['unit'] = '';
             }elseif(!empty($data_officer->name_officer)){
-                $data['user_type'] = "หน่วยแพทย์ฉุกเฉิน";
-                $data['name_user'] = $data_officer->name_officer;
+                $data['user_type'] = "ทดสอบ";
+                $data['name_user'] = "ทดสอบ";
                 // $data['unit'] = $data_officer->operating_unit->name;
             }else{
-                $data['user_type'] = "ผู้ขอความช่วยเหลือ";
-                $data['name_user'] = $remote_data->name;
+                $data['user_type'] = "ทดสอบ";
+                $data['name_user'] = "ทดสอบ";
             }
         }
         else{
@@ -1097,6 +1122,8 @@ class Agora_4_Controller extends Controller
             $type_text = "meet_operating_1669";
         }else if($type_sos == 'user_sos_1669'){
             $type_text = "user_sos_1669";
+        }else if($type_sos == 'sos_personal_assistant'){
+            $type_text = "sos_personal_assistant";
         }else{
             $type_text = "sos_map";
         }
@@ -1167,6 +1194,8 @@ class Agora_4_Controller extends Controller
             $type_text = "meet_operating_1669";
         }else if($type_sos == 'user_sos_1669'){
             $type_text = "user_sos_1669";
+        }else if($type_sos == 'sos_personal_assistant'){
+            $type_text = "sos_personal_assistant";
         }else{
             $type_text = "sos_map";
         }
@@ -1261,6 +1290,8 @@ class Agora_4_Controller extends Controller
             $type_text = "meet_operating_1669";
         }else if($type_sos == 'user_sos_1669'){
             $type_text = "user_sos_1669";
+        }else if($type_sos == 'sos_personal_assistant'){
+            $type_text = "sos_personal_assistant";
         }else{
             $type_text = "sos_map";
         }
@@ -1382,6 +1413,8 @@ class Agora_4_Controller extends Controller
             $type_text = "meet_operating_1669";
         }else if($type == 'user_sos_1669'){
             $type_text = "user_sos_1669";
+        }else if($type == 'sos_personal_assistant'){
+            $type_text = "sos_personal_assistant";
         } else {
             $type_text = "sos_map";
         }

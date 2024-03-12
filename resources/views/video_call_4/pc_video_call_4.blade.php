@@ -68,6 +68,10 @@
             border-radius: 25px;
         }
 
+        #sos_assistant_map{
+            height: 200px;
+        }
+
 
         .head_sidebar_div {
             background-color: rgb(255, 255, 255);
@@ -482,7 +486,7 @@
             color: #ffffff; /* สีข้อความ */
             padding-left: 15px;
             padding-right: 15px;
-            padding-top: 5px;
+            /* padding-top: 5px; */
             padding-bottom: 5px;
             border-radius: 5px;
             display: flex;
@@ -517,8 +521,8 @@
         /* ----------------- ตัว Popup แจ้งเตือน----------------- */
         .div_alert {
             position: fixed;
-            top: 35px;
-            right: 10px;
+            left: 14%;
+            bottom: 9%;
             width: 300px;
             height: 50px;
             text-align: center;
@@ -529,7 +533,7 @@
         }
 
         .div_alert span {
-            background-color: #2DD284;
+            background-color: #e64237;
             border-radius: 10px;
             color: white;
             padding: 20px;
@@ -538,8 +542,8 @@
             font-size: 1em;
         }
 
-        .up_down {
-            animation-name: slideUpAndDown; /* Updated animation name */
+        /* .up_down {
+            animation-name: slideUpAndDown;
             animation-duration: 10s;
         }
 
@@ -556,7 +560,29 @@
             100% {
                 transform: translateY(-180px);
             }
+        } */
+
+        .up_down {
+            animation-name: fadeInOut;
+            animation-duration: 10s;
         }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+
         /* ----------------- End ตัว Popup แจ้งเตือน----------------- */
 
         /* css ของ dropdown remote volume */
@@ -574,6 +600,7 @@
         .dropdown_volume_label {
             display: inline-block;
             position: relative;
+            cursor: pointer;
         }
 
         .dd-button {
@@ -762,17 +789,20 @@
 </style>
 <!-- ใช้ในการเปลี่ยนสีสถานะ ของหน้านี้ -->
 @php
-switch ($sos_data->status) {
-    case 'เสร็จสิ้น':
-        $color_text_status = "text-success";
-        break;
-    case 'รับแจ้งเหตุ':
-        $color_text_status = "text-danger";
-        break;
-    default:
-        $color_text_status = "text-warning";
-        break;
-}
+    if(!empty($sos_data)){
+        switch ($sos_data->status) {
+            case 'เสร็จสิ้น':
+                $color_text_status = "text-success";
+                break;
+            case 'รับแจ้งเหตุ':
+                $color_text_status = "text-danger";
+                break;
+            default:
+                $color_text_status = "text-warning";
+                break;
+        }
+    }
+
 @endphp
 
 <div id="alert_warning" class="div_alert" role="alert">
@@ -1038,13 +1068,41 @@ switch ($sos_data->status) {
                     @endif
 
                 </div>
+
+            @elseif ($type == "sos_personal_assistant")
+                <div class="" >
+
+                    <div class="head_sidebar_div text-center mb-2">
+                        <div id="sos_assistant_map"></div>
+                    </div>
+
+                    <!-- รายละเอียดสถานที่ -->
+                    <div class="neck_sidebar_div text-center mb-2">
+                        <h5 class="mb-0 text-info font-weight-bold">
+                            <i class="fa-solid fa-user-injured me-1 text-info"></i>รายละเอียดสถานที่
+                        </h5>
+                        <p class="text-dark d-flex justify-content-center align-items-center font-weight-bold"> ------------------------------------------------------- </p>
+                    </div>
+
+                    <!-- อาการ -->
+                    <div class="body_sidebar_div text-center mb-2">
+                        <h5  class="mb-0 text-success font-weight-bold">
+                            <i class="fa-solid fa-user me-1 text-success"></i>อาการ
+                        </h5>
+                        <p  class="font-weight-bold text-dark">-------------------------------------------------------</p>
+                    </div>
+
+                    <!-- รูปภาพ -->
+                    <div class="body_sidebar_div text-center">
+                        <img src="https://picsum.photos/70" height="200px">
+                    </div>
+
+                </div>
             @endif
 		</div>
 
         <div class="d-flex overflow_auto_video_call row py-3" style="background-color: #2b2d31;">
 				<div id="video_call_sidebar" class="align-self-end w-100">
-
-
 
                     <div class="dropcontent">
                         <ul id="audio-device-list" class="ui-list">
@@ -1096,50 +1154,6 @@ switch ($sos_data->status) {
 
                         </div>
 
-                        {{-- <div class="tab-content py-3 mt-3 flex-container">
-                            <div class="tab-pane fade" id="primaryhome_2" role="tabpanel" style="width: 100%;">
-                                <div class="mb-4">
-                                    <h4 class="card-title">พื้นที่การขอความช่วยเหลือ</h4>
-                                    <ul class="ul_you_are_watching">
-                                        <li><b id="watching_sos_type"></b></li>
-                                        <li id="watching_sos_data"></li>
-                                        <li id="watching_sos_count"></li>
-                                    </ul>
-                                </div>
-                                <hr>
-                                <div id="content_all_sos"></div>
-                            </div>
-                            <div class="tab-pane fade active show" id="primaryprofile_2" role="tabpanel" style="width: 95%;">
-                                <span class="float-end text-dark mb-1" style="font-size: 16px;margin-top: 6px;">
-                                    ออกปฏิบัติการรวม <b id="show_amount_by_area"></b> เคส
-                                </span>
-                                <select name="select_level" id="select_level" class="form-control mb-4" onchange="func_select_area_and_level();">
-                                    <option class="notranslate" selected value="all">เลือกระดับ</option>
-                                    <option class="notranslate text-success" value="FR">FR</option>
-                                    <option class="notranslate text-warning" value="BLS">BLS</option>
-                                    <option class="notranslate text-warning" value="ILS">ILS</option>
-                                    <option class="notranslate text-danger" value="ALS">ALS</option>
-                                </select>
-                                <hr>
-                                <div class="mb-4">
-                                    <h4 class="card-title">เจ้าหน้าที่ทั้งหมด</h4>
-                                </div>
-                                <div id="content_data_name_officer_all"></div>
-
-                            </div>
-                            <div class="tab-pane fade" id="primaryprofile_3" role="tabpanel" style="width: 100%;">
-                                <div class="mb-4">
-                                    <h4 class="card-title">เจ้าหน้าที่ในแผนที่</h4>
-                                    <ul class="ul_you_are_watching">
-                                        <li id="watching_officer_type"></li>
-                                        <li><b id="watching_officer_data"></b></li>
-                                        <li id="watching_officer_count"></li>
-                                    </ul>
-                                </div>
-                                <hr>
-                                <div id="content_data_name_officer"></div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
 
@@ -1147,7 +1161,7 @@ switch ($sos_data->status) {
 
             <div class="col-12 " style="position: relative;">
                     <div class="d-flex justify-content-between align-items-center bg-dark p-1 w-100" style="border-radius:5px; position: absolute; bottom:5px;">
-                        <div class="p-1" style="color: #ffffff;" id="time_of_room"></div>
+                        <div class="p-1 " style="color: #ffffff;" id="time_of_room"></div>
                         <div class="d-flex justify-content-center">
                             <!-- เปลี่ยนไมค์ ให้กดได้แค่ในคอม -->
                             <div id="div_for_AudioButton" class="btn btnSpecial " >
@@ -1265,6 +1279,10 @@ switch ($sos_data->status) {
     var checkHtml = false; // ใช้เช็คเงื่อนไขตัวปรับเสียงของ remote
 
     document.addEventListener('DOMContentLoaded', (event) => {
+
+        if (type_video_call == "sos_personal_assistant") {
+            initMap();
+        }
 
         var appId = sessionStorage.getItem('a');
         var appCertificate = sessionStorage.getItem('b');
@@ -2765,14 +2783,14 @@ switch ($sos_data->status) {
             let localVolume = localStorage.getItem('local_sos_1669_rangeValue') ?? 100;
 
             let localAudioVolumeLabel = `<label class="ui-list-item d-block" for="localAudioVolume" >
-                                            <li class="text-center p-1 text-white d-block" style="font-size: 1.4em;">ระดับเสียงไมค์(ตัวเอง)</li>
+                                            <li class="text-center p-1 text-white d-block" style="font-size: 1.1em;">ระดับเสียงไมค์(ตัวเอง)</li>
                                             <input type="range" id="localAudioVolume" min="0" max="1000" value="`+localVolume+`" class="w-100">
                                         </label>`
 
             audioDeviceList.insertAdjacentHTML('afterbegin', localAudioVolumeLabel); // แทรกบนสุด
 
             let remoteAudioVolumeLabel = `<label class="ui-list-item d-none" for="remoteAudioVolume" >
-                                            <li class="text-center p-1 text-white d-block" style="font-size: 1.4em;">เสียงที่เราได้ยิน</li>
+                                            <li class="text-center p-1 text-white d-block" style="font-size: 1.1em;">เสียงที่เราได้ยิน</li>
                                             <input type="range" id="remoteAudioVolume" min="0" max="1000" value="`+remoteVolume+`" class="w-100">
                                         </label>`
 
@@ -2940,6 +2958,15 @@ switch ($sos_data->status) {
         array_remoteVolumeAudio[div_id] = slider;
         // console.log("agoraEngine");
         // console.log(agoraEngine);
+
+        if (slider == 0) {
+            document.querySelector("#icon_volume_ind_sidebar_"+div_id).innerHTML = `<i id="icon_volume_ind_sidebar_`+div_id+`"
+            class="fa-duotone fa-volume-slash" style="--fa-primary-color: #d91212; --fa-secondary-color: #525f7f;
+            --fa-secondary-opacity: 1; display: inline-block; z-index: 6;" onclick="closeCheckboxAllexceptThis(`+div_id+`)"></i>`;
+
+        } else {
+            document.querySelector("#icon_volume_ind_sidebar_"+div_id).innerHTML = `<i id="icon_volume_ind_sidebar_`+div_id+`" class="fa-solid fa-volume-high" style="display: inline-block; z-index: 6;" onclick="closeCheckboxAllexceptThis(`+div_id+`)"></i>`;
+        }
 
         let length_remote = agoraEngine['remoteUsers']['length'];
 
@@ -3503,10 +3530,12 @@ switch ($sos_data->status) {
             clearInterval(loop_timer_video_call);
             check_start_timer_video_call = false;
 
-            document.getElementById("time_of_room").classList.add('d-none');
+            document.getElementById("time_of_room").innerHTML = "";
+            // document.getElementById("time_of_room").classList.add('d-none');
         }, 3000);
 
     }
+    var audio_in_room = new Audio("{{ asset('sound/แจ้งเตือนก่อนหมดเวลาวิดีโอคอล.mp3') }}");
 
     function start_timer_video_call(){
 
@@ -3517,8 +3546,8 @@ switch ($sos_data->status) {
 
         setTimeout(() => {
 
-            let time_of_room = document.getElementById("time_of_room");
-                time_of_room.classList.remove('d-none');
+            // let time_of_room = document.getElementById("time_of_room");
+            //     time_of_room.classList.remove('d-none');
 
             fetch("{{ url('/') }}/api/check_status_room" + "?sos_id="+ sos_id + "&type=" + type_video_call)
                 .then(response => response.json())
@@ -3555,13 +3584,13 @@ switch ($sos_data->status) {
                         // แสดงผลลัพธ์
                         let max_minute_time = 8;
 
-                        let remain_time = max_minute_time - 1;
-                        let time_warning = "";
-                        if (max_minute_time > 1) {
-                            time_warning = (max_minute_time - remain_time);
-                        }else{
-                            time_warning = "น้อยกว่า 1";
-                        }
+                        // let remain_time = max_minute_time - 1;
+                        // let time_warning = "";
+                        // if (max_minute_time > 1) {
+                        //     time_warning = (max_minute_time - remain_time);
+                        // }else{
+                        //     time_warning = "น้อยกว่า 1";
+                        // }
 
                         if (hours > 0) {
                             if (minutes < 10) {  // ใส่ 0 ข้างหน้า นาที กรณีเลขยังไม่ถึง 10
@@ -3580,11 +3609,30 @@ switch ($sos_data->status) {
                         // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
                         time_of_room.innerHTML = '<i class="fa-regular fa-clock fa-fade" style="color: #11b06b; font-size: 16px;"></i>&nbsp;' + ": " + showTimeCountVideo;
 
-                        if (minsec == "7.00") {
+                        if (minsec == "5.00") {
+                            audio_in_room.play();
                             let alert_warning = document.querySelector('#alert_warning')
                             alert_warning.style.display = 'block'; // แสดง .div_alert
 
-                            document.querySelector('#alert_text').innerHTML = `เหลือเวลา `+ time_warning +` นาที`;
+                            // document.querySelector('#alert_text').innerHTML = `เหลือเวลา `+ time_warning +` นาที`;
+                            document.querySelector('#alert_text').innerHTML = `เหลือเวลา 3 นาที`;
+                            alert_warning.classList.add('up_down');
+
+                            const animated = document.querySelector('.up_down');
+                            animated.onanimationend = () => {
+                                document.querySelector('#alert_warning').classList.remove('up_down');
+                                let alert_warning = document.querySelector('#alert_warning')
+                                alert_warning.style.display = 'none'; // แสดง .div_alert
+                            };
+                        }
+
+                        if (minsec == "7.00") {
+                            audio_in_room.play();
+                            let alert_warning = document.querySelector('#alert_warning')
+                            alert_warning.style.display = 'block'; // แสดง .div_alert
+
+                            // document.querySelector('#alert_text').innerHTML = `เหลือเวลา `+ time_warning +` นาที`;
+                            document.querySelector('#alert_text').innerHTML = `เหลือเวลา 1 นาที`;
                             alert_warning.classList.add('up_down');
 
                             const animated = document.querySelector('.up_down');
@@ -3649,6 +3697,32 @@ switch ($sos_data->status) {
 
 	}
 
+</script>
+
+<!-- MAP พื้นที่การขอความช่วยเหลือในจังหวัด -->
+<script>
+    function initMap() {
+        let map_sos_organization;
+        let lat = Number("{{ $sos_data->lat }}");;
+        let lng = Number("{{ $sos_data->lng }}");;
+
+        let marker;
+        map_sos_organization = new google.maps.Map(document.getElementById("sos_assistant_map"), {
+            zoom: 14,
+            center: {lat:lat, lng:lng },
+        });
+
+        let image = "https://www.viicheck.com/img/icon/flag_2.png";
+        @if(!empty($sos_data->lat))
+            marker = new google.maps.Marker({
+                position: {lat: lat , lng: lng },
+                map: map_sos_organization,
+                icon: image,
+                zIndex:5,
+            });
+        @endif
+
+    }
 </script>
 
 <script>

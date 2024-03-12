@@ -590,7 +590,9 @@ function create_profile_in_sidebar(user_data , name , type , profile_pic, volume
             </div>
             <div class="col-2 my-auto">
                 <label class="dropdown_volume_label">
-                    <i class="fa-solid fa-volume-high" style="display: inline-block; z-index: 6;" onclick="closeCheckboxAllexceptThis(`+user_data.uid+`)"></i>
+                    <div id="icon_volume_ind_sidebar_`+user_data.uid+`">
+                        <i class="fa-solid fa-volume-high" style="display: inline-block; z-index: 6;" onclick="closeCheckboxAllexceptThis(`+user_data.uid+`)"></i>
+                    </div>
                     <input type="checkbox" class="dd-input" id="checkbox_`+user_data.uid+`">
                     <ul class="dd-menu">
                         <li>
