@@ -409,5 +409,6 @@ Route::get('/create_1669_to_hospitals/{hospital_id}/{sos_1669_id}/{command_id}',
 Route::get('/start_get_data_sos_hospital/{user_id}', 'Sos_1669_to_hospitalController@start_get_data_sos_hospital');
 
 
+Route::get('/get_data_btn_organizations', 'Sos_mapController@get_data_btn_organizations');
 
 
