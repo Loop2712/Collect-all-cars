@@ -821,7 +821,7 @@
 	{{-- <div class="Scenary"></div> --}}
 	<div class="col-12 col-md-2" style="background-color: #2b2d31;">
         <button id="join" class="btn btn-success d-none" >เข้าร่วม</button>
-        <button id="addButton" class="d-none" style="position: absolute;top:10%;right: 0;">เพิ่ม div</button>
+
 		<div class="data-sos text-center p-3 d-flex  row">
             @if ($type == "sos_1669")
                 <div class="" >
@@ -1177,6 +1177,10 @@
                                 <button class="smallCircle" id="btn_switchCamera">
                                     <i class="fa-sharp fa-solid fa-angle-up"></i>
                                 </button>
+                            </div>
+
+                            <div class="btn btnSpecial btn_leave d-no" id="addButton">
+                                <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
                             </div>
 
                             <div class="btn btnSpecial btn_leave" id="leave">
@@ -1656,6 +1660,9 @@
                     }
                 }
 
+                let type_of_microphone = "open";
+                waitForElement_in_sidebar(type_of_microphone,user.uid); // รอจนกว่าจะมี icon ของไอดีนี้ใน sidebar และ เปลี่ยนไอคอน
+
                 //ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
                 agoraEngine.on("volume-indicator", volumes => {
                     volumes.forEach((volume, index) => {
@@ -1752,6 +1759,9 @@
                 // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
                 console.log('unpublished AudioTrack:');
                 console.log(channelParameters.localAudioTrack);
+
+                let type_of_microphone = "close";
+                waitForElement_in_sidebar(type_of_microphone,user.uid); // รอจนกว่าจะมี icon ของไอดีนี้ใน sidebar และ เปลี่ยนไอคอน
 
                 // ถ้าไมค์ทำงานใน unpublished จะพบเมื่อผู้ใช้เข้ามาครั้งแรกแล้ว ปิดกล้อง แต่ เปิดไมค์
                 if(user.hasAudio == true){
@@ -1852,6 +1862,7 @@
 
                                     let html_profile_user = create_profile_in_sidebar(dummy_remote ,name_remote_user_joined ,type_remote_user_joined ,profile_remote_user_joined,array_remoteVolumeAudio[dummy_remote.uid]);
 
+
                                     create_profile_remote.innerHTML = html_profile_user;
 
                                     // ตรวจสอบว่าเจอ div เดิมหรือไม่
@@ -1898,6 +1909,15 @@
                                             });
                                         })
                                     }
+
+                                    let type_of_microphone;
+                                    if (dummy_remote['hasAudio'] == false) {
+                                        type_of_microphone = "close";
+                                    } else {
+                                        type_of_microphone = "open";
+                                    }
+                                    waitForElement_in_sidebar(type_of_microphone,dummy_remote.uid); // รอจนกว่าจะมี icon ของไอดีนี้ใน sidebar
+
                             })
                             .catch(error => {
                                 console.log("โหลด เมื่อมีคนเข้าห้อง ล้มเหลว");
@@ -2956,16 +2976,13 @@
         // console.log("Volume of remote audio : "+ div_id +" = " + slider);
 
         array_remoteVolumeAudio[div_id] = slider;
-        // console.log("agoraEngine");
+        // console.log("agoraEngine onChangeVolumeRemote");
         // console.log(agoraEngine);
 
-        if (slider == 0) {
-            document.querySelector("#icon_volume_ind_sidebar_"+div_id).innerHTML = `<i id="icon_volume_ind_sidebar_`+div_id+`"
-            class="fa-duotone fa-volume-slash" style="--fa-primary-color: #d91212; --fa-secondary-color: #525f7f;
-            --fa-secondary-opacity: 1; display: inline-block; z-index: 6;" onclick="closeCheckboxAllexceptThis(`+div_id+`)"></i>`;
+        let id_in_agoraEngine = agoraEngine['remoteUsers'][div_id];
 
-        } else {
-            document.querySelector("#icon_volume_ind_sidebar_"+div_id).innerHTML = `<i id="icon_volume_ind_sidebar_`+div_id+`" class="fa-solid fa-volume-high" style="display: inline-block; z-index: 6;" onclick="closeCheckboxAllexceptThis(`+div_id+`)"></i>`;
+        if (!id_in_agoraEngine) {
+            console.log("ไม่พบ id_in_agoraEngine ใน onChangeVolumeRemote");
         }
 
         let length_remote = agoraEngine['remoteUsers']['length'];
@@ -2978,6 +2995,20 @@
                 // console.log("ไอดีตรงกัน");
                 agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(slider));
             }
+
+            // เช็ค ค่าตัวปรับเสียงก่อนเปลี่ยน icon ใน sidebar
+            if (slider == 0) {
+                document.querySelector("#icon_mic_remote_in_sidebar_"+div_id).innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-microphone-slash"
+                style="--fa-primary-color: #1319b9; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6;"></i>`;
+            } else {
+                if (!agoraEngine['remoteUsers'][index]['audioTrack']) {
+                    document.querySelector("#icon_mic_remote_in_sidebar_"+div_id).innerHTML = `<i class="fa-duotone fa-microphone-slash"
+                    style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6;"></i>`;
+                } else {
+                    document.querySelector("#icon_mic_remote_in_sidebar_"+div_id).innerHTML = `<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6;"></i>`;
+                }
+            }
+
         }
 
     }
@@ -3060,10 +3091,16 @@
             videoCallBar.classList.remove('d-none');
             document.getElementById("icon_show_hide").style.transform = "rotate(0deg)";
             document.querySelector('#text_show_hide').innerHTML = 'ซ่อน';
+
+            document.querySelector("#container_user_video_call").removeAttribute('style');
         } else {
             videoCallBar.classList.add('d-none');
             document.getElementById("icon_show_hide").style.transform = "rotate(180deg)";
             document.querySelector('#text_show_hide').innerHTML = 'แสดง';
+
+            // ใช้ค่า padding เริ่มต้นที่บันทึกไว้
+            document.querySelector("#container_user_video_call").setAttribute('style','padding: 0;');
+
         }
     }
 

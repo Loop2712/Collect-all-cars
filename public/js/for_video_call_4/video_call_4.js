@@ -33,6 +33,9 @@ function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหร�
             // เปลี่ยน icon microphone ให้เป็นปิด ใน divVideo_
             document.getElementById(`mic_local`).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #f00505; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
 
+            // เปลี่ยน icon microphone ให้เป็น ปิด ใน sidebar ด้านขวา
+            document.getElementById(`icon_microphone_in_sidebar`).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6;"></i>';
+
             isAudio = false;
 
         } else {
@@ -42,8 +45,12 @@ function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหร�
             document.getElementById('div_for_AudioButton').classList.remove('btnSpecial_mute');
             // Unmute the local video.
             channelParameters.localAudioTrack.setEnabled(true);
+
             // เปลี่ยน icon microphone ให้เป็นเปิด ใน divVideo_
             document.getElementById(`mic_local`).innerHTML = '<i class="fa-solid fa-microphone"></i>';
+
+            // เปลี่ยน icon microphone ให้เป็น เปิด ใน sidebar ด้านขวา
+            document.getElementById(`icon_microphone_in_sidebar`).innerHTML = '<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6;"></i>';
 
             isAudio = true;
         }
@@ -549,13 +556,15 @@ function create_profile_in_sidebar_local_only(user_data , name , type , profile_
             <div class="col-2 my-auto">
                 <img src="`+profile_pic+`" alt="Profile Picture" class="profile-picture">
             </div>
-            <div class="col-8 my-auto">
+            <div class="col-7 my-auto">
                 <div class="profile-info">
                     <p>(Me) `+name+`</p>
                 </div>
             </div>
-            <div class="col-2 my-auto">
-
+            <div class="col-3 my-auto ">
+                <div id="icon_microphone_in_sidebar">
+                    <i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6;"></i>
+                </div>
             </div>
         </div>
 
@@ -583,29 +592,50 @@ function create_profile_in_sidebar(user_data , name , type , profile_pic, volume
             <div class="col-2 my-auto">
                 <img src="`+profile_pic+`" alt="Profile Picture" class="profile-picture">
             </div>
-            <div class="col-8 my-auto">
+            <div class="col-7 my-auto">
                 <div class="profile-info">
                     <p>`+name+`</p>
                 </div>
             </div>
-            <div class="col-2 my-auto">
-                <label class="dropdown_volume_label">
-                    <div id="icon_volume_ind_sidebar_`+user_data.uid+`">
-                        <i class="fa-solid fa-volume-high" style="display: inline-block; z-index: 6;" onclick="closeCheckboxAllexceptThis(`+user_data.uid+`)"></i>
-                    </div>
-                    <input type="checkbox" class="dd-input" id="checkbox_`+user_data.uid+`">
-                    <ul class="dd-menu">
-                        <li>
-                            <p class="mb-0" style="cursor: default; color: #000000; font-size: 14px !important;">ระดับเสียง</p>
-                            <input style="z-index: 4;" type="range" id="remoteAudioVolume_`+user_data.uid+`" min="0" max="1000" value="`+inputValue_remote+`" class="w-100" onChange="onChangeVolumeRemote(`+user_data.uid+`);">
-                        </li>
-                    </ul>
-                </label>
+            <div class="col-3 my-auto row">
+
+                <div class="col-6" id="icon_mic_remote_in_sidebar_`+user_data.uid+`">
+                    <i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6;" ></i>
+                </div>
+                <div class="col-6">
+                    <label class="dropdown_volume_label">
+                        <div id="icon_volume_in_sidebar_`+user_data.uid+`">
+                            <i class="fa-solid fa-ellipsis" style="display: inline-block; z-index: 6;" onclick="closeCheckboxAllexceptThis(`+user_data.uid+`)"></i>
+                        </div>
+                        <input type="checkbox" class="dd-input" id="checkbox_`+user_data.uid+`">
+                        <ul class="dd-menu">
+                            <li>
+                                <p class="mb-0" style="cursor: default; color: #000000; font-size: 14px !important;">ระดับเสียง</p>
+                                <input style="z-index: 4;" type="range" id="remoteAudioVolume_`+user_data.uid+`" min="0" max="1000" value="`+inputValue_remote+`" class="w-100" onChange="onChangeVolumeRemote(`+user_data.uid+`);">
+                            </li>
+                        </ul>
+                    </label>
+                </div>
+
             </div>
         </div>
 
         `;
     return sidebar_profile;
+}
+
+function switch_icon_mic_remote_in_sidebar(type , user_id){
+    let value_slider = document.querySelector('#remoteAudioVolume_'+user_id).value;
+    if (value_slider == 0) { // ถ้า value ตัวปรับเสียง ของ remote คนนี้ เป็น 0
+        document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #1319b9; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6;"></i>`;
+    } else {
+        if (type == "open") {
+            document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6;" ></i>`;
+        } else {
+            document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6;"></i>`;
+        }
+    }
+
 }
 
 function closeCheckboxAllexceptThis(user_id){
@@ -627,6 +657,15 @@ function closeCheckboxAll(){
     allCheckboxes.forEach(function(checkbox) {
         checkbox.checked = false;
     });
+}
+
+async function waitForElement_in_sidebar(type , user_id) {
+    while (!document.getElementById('icon_mic_remote_in_sidebar_'+user_id)) {
+        // รอให้ <div id="icon_mic_remote_in_sidebar"> ถูกสร้างขึ้น
+        await new Promise(resolve => setTimeout(resolve, 100)); // รออีก 100 milliseconds ก่อนที่จะตรวจสอบอีกครั้ง
+    }
+
+    switch_icon_mic_remote_in_sidebar(type , user_id);
 }
 
 
