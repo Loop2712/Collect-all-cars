@@ -341,6 +341,54 @@
         border-radius: 5px;
 	}
 
+    .settingDiv {
+		position: fixed;
+		bottom: 11%;
+		right: 9%;
+		height: 20%;
+        width: 50%;
+		background-color: #3f3e3e;
+        color: #ffffff;
+		opacity: 0;
+		/* text-align: center; */
+		overflow: auto;
+		transition: opacity 0.2s, max-height 0.5s;
+        border-radius: 5px;
+        overflow-y: auto; /* เพื่อให้มีการเลื่อนลงไปดูได้ */
+	}
+
+    .card-settings {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 15px;
+        /* align-items: center; */
+    }
+
+    .card-settings div {
+        flex-basis: calc(33.33% - 8px); /* ให้มีความกว้างเท่ากัน แบ่ง 3 ส่วนและลบระยะห่าง */
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        margin: 6px 4px;
+    }
+
+    .inMenuDiv {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 50%;
+        max-width: 100%;
+		/* background-color: #f0f0f0; */
+		opacity: 0;
+		transition: opacity 0.5s, max-height 0.5s;
+        background-color: #3f3e3e;
+        border-radius: 5px;
+        overflow-y: auto; /* เพื่อให้มีการเลื่อนลงไปดูได้ */
+	}
+
     .font-weight-bold{
         font-weight: bold !important;
     }
@@ -384,6 +432,22 @@
 
     .btnSpecial_switch{
         background-color: #3f3e3e ; /* Discord's color */
+    }
+
+    .btnSpecial_settings{
+        background-color: #3f3e3e ; /* Discord's color */
+    }
+
+    .btnSpecial_settings:hover{
+        background-color: #616060 ; /* Discord's color */
+    }
+
+    .btnSpecial_menu{
+        background-color: rgba(82, 82, 82, 0.1) ; /* Discord's color */
+    }
+
+    .btnSpecial_menu:hover{
+        background-color: #616060 ; /* Discord's color */
     }
 
     .btn_leave{
@@ -632,6 +696,100 @@
         padding: 1rem;
     }
 
+    .profile-picture {
+        border: none;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin: 5px;
+        top: 0; /* ตำแหน่ง list ขึ้นด้านบนของปุ่ม */
+        left: 0;
+        border:#fff 1px solid;
+    }
+
+    .profile-info {
+        /* width: 40%; */
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+
+    .profile-info p {
+        margin: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    /*============ ตัวปรับเสียง สำหรับมือถือ ============== */
+
+    .wrapper_range_volume {
+        background-color: #05051a;
+        position: relative;
+        width: 100%;
+        height: 3rem;
+        border-radius: 10px;
+
+    }
+
+    .wrapper_range_volume::before{
+        content: "-";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        color: #fff;
+    }
+
+    .wrapper_range_volume::after {
+        content: "+";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        color: #fff;
+    }
+
+    .wrapper_range_volume::before {
+        left: 1rem;
+    }
+
+    .wrapper_range_volume::after {
+        right: 1rem;
+    }
+
+    .wrapper_range_volume input[type="range"] {
+        -webkit-appearance: none;
+        background-color: rgba(255, 255, 255, .2);
+        position: relative;
+        width: 100%;
+        height: 3.5rem;
+        border-radius: 1rem;
+        overflow: hidden;
+        cursor: row-resize;
+
+        &[step]{
+            background-color: transparent;
+            background-image: repeating-linear-gradient(to right, rgba(255, 255, 255, .2), rgba(255, 255, 255, .2) calc(12.5% - 1px), #05051a 12.5%);
+        }
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 0;
+            box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
+        }
+
+        &::-moz-range-thumb {
+            border: none;
+            width: 0;
+            box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
+        }
+    }
+
 </style>
 <!-- ใช้ในการเปลี่ยนสีสถานะ ของหน้านี้ -->
 @php
@@ -736,20 +894,10 @@
                 <div class="btn btnSpecial btn_leave d-none" id="addButton">
                     <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
                 </div>
-                {{-- <button class="btn btnSpecial " onclick="alertText()">
-                    <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+
+                <button id="settingBtn" class="btn btnSpecial btnSpecial_settings" >
+                    <i class="fa-solid fa-ellipsis-vertical" style="color: #ffffff;"></i>
                 </button>
-                <script>
-                    function alertText(){
-                        document.querySelector('#alert_copy').classList.add('up_down');
-
-                        const animated = document.querySelector('.up_down');
-                        animated.onanimationend = () => {
-                            document.querySelector('#alert_copy').classList.remove('up_down');
-                        };
-                    }
-                </script> --}}
-
 
 
                 <div class="btn btnSpecial btn_leave" id="leave">
@@ -760,6 +908,56 @@
         </div>
     </div>
 </div>
+
+    <div class="settingDiv" id="settingDiv" style="display: none; z-index: 5000;">
+        <div class="col-12 col-12 d-flex justify-content-center mt-2 ">
+            <span class="h1 font-weight-bold text-white">ตั้งค่า</span>
+        </div>
+        <div class="card-settings">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="btn btnSpecial_menu row p-1" onclick="menu_setting_toggle('menu_sound')">
+                    <i class="fa-sharp fa-solid fa-microphone-lines" style="color: #ffffff; font-size:50px; border-radius:50%; width: 100px;"></i>
+                    <span class="h3 font-weight-bold text-white">เสียง</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="btn btnSpecial_menu row p-1 disabled" onclick="menu_setting_toggle('menu_chat')" >
+                    <i class="fa-solid fa-messages" style="color: #ffffff; font-size:50px; border-radius:50%; width: 100px;"></i>
+                    <span class="h3 font-weight-bold text-white">แชทสนทนา</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="inMenuDiv" id="inMenuDiv" style="display: none; z-index: 5000;" data-backdrop="static" data-keyboard="false" tabindex="-1" >
+        <div class="col-12 d-flex justify-content-end mt-2">
+               <i class="fa-solid fa-circle-xmark m-2" style="font-size: 60px" onclick="close_menu()"></i>
+        </div>
+
+        <div class="col-12 col-12 d-flex justify-content-center mt-2 ">
+            <span id="title_menu_in_setting" class="h1 font-weight-bold text-white"></span>
+        </div>
+
+        <div id="detail_menu_in_setting" class="card m-4"></div>
+    </div>
+
+    <!-- Modal -->
+    {{-- <div class="inMenuDiv hide" id="inMenuDiv" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="title_menu_in_setting"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="detail_menu_in_setting" class="card m-4">
+
+                </div>
+            </div>
+        </div>
+    </div> --}}
 
     <div class="dropcontent">
         <ul id="audio-device-list" class="ui-list">
@@ -1144,6 +1342,14 @@
     var sos_id = '{{ $sos_id }}';
     var type_video_call = '{{ $type }}';
 
+    var array_remoteVolumeAudio = [];
+
+    var agoraEngine;
+
+    var type_of_microphone_remote_icon_in_setting; //ใช้สำหรับ เปลี่ยน icon microphone ของ remote ใน setting
+
+    var type_user_sos;
+
     document.addEventListener('DOMContentLoaded', (event) => {
 
         var appId = sessionStorage.getItem('a');
@@ -1199,6 +1405,8 @@
                 // bg_local = "#F0D2CC";
                 name_local = result.name_user;
                 type_local = result.user_type;
+
+                type_user_sos = type_local; //เก็บ ประเภทผู้ใช้ไว้ใน array
 
                 changeBgColor(bg_local);
 
@@ -1292,9 +1500,9 @@
     async function startBasicCall()
     {
         // Create an instance of the Agora Engine
-        const agoraEngine = AgoraRTC.createClient({ mode: "rtc", codec: "vp9" });
-        console.log("agoraEngine");
-        console.log(agoraEngine);
+        agoraEngine = AgoraRTC.createClient({ mode: "rtc", codec: "vp9" });
+            console.log("agoraEngine");
+            console.log(agoraEngine);
         let rtcStats = agoraEngine.getRTCStats();
         // console.log("rtcStats");
         // console.log(rtcStats);
@@ -1449,6 +1657,7 @@
                         name_remote = result.name_user;
                         type_remote = result.user_type;
 
+
                         // สำหรับ สร้าง divVideo ตอนผู้ใช้เปิดกล้อง
                         create_element_remotevideo_call(remotePlayerContainer[user.uid], name_remote, type_remote , bg_remote ,user);
 
@@ -1488,6 +1697,18 @@
                 channelParameters.remoteAudioTrack = user.audioTrack;
                 channelParameters.remoteAudioTrack.play();
 
+                channelParameters.remoteAudioTrack.setVolume(parseInt(array_remoteVolumeAudio[user.uid]));
+
+                let localVolumeFromStorage = localStorage.getItem('local_sos_1669_rangeValue') ?? 100;
+                // ตั้งค่าเสียงในตอนที่เริ่มต้น
+                if (localVolumeFromStorage !== null) {
+                    // ตั้งค่าเสียง local audio
+                    console.log("Volume of local audio at start :" + localVolumeFromStorage);
+                    channelParameters.localAudioTrack.setVolume(parseInt(localVolumeFromStorage));
+                }else{
+                    channelParameters.localAudioTrack.setVolume(parseInt(100));
+                }
+
                 if(user.hasAudio == false){
                     // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
                     if (document.querySelector('#mic_remote_' + user.uid)) {
@@ -1507,6 +1728,8 @@
                         console.log("=========================");
                     }
                 }
+
+                type_of_microphone_remote_icon_in_setting = "open"; //เปลี่ยนให้ icon ไมค์ เป็น เปิด เพื่อใช้เปลี่ยนไอคอนใน setting menu
 
                 //ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
                 agoraEngine.on("volume-indicator", volumes => {
@@ -1563,6 +1786,8 @@
                             name_remote_user_unpublished = result.name_user;
                             type_remote_user_unpublished = result.user_type;
 
+
+
                             if(result.photo){
                                 profile_remote_user_unpublished = "{{ url('/storage') }}" + "/" + result.photo;
                             }else if(!result.photo && result.avatar){
@@ -1602,6 +1827,8 @@
                 // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
                 console.log('unpublished AudioTrack:');
                 // console.log(channelParameters.localAudioTrack);
+
+                type_of_microphone_remote_icon_in_setting = "close"; //เปลี่ยนให้ icon ไมค์ เป็น ปิด เพื่อใช้เปลี่ยนไอคอนใน setting menu
 
                 // ถ้าไมค์ทำงานใน unpublished จะพบเมื่อผู้ใช้เข้ามาครั้งแรกแล้ว ปิดกล้อง แต่ เปิดไมค์
                 if(user.hasAudio == true){
@@ -1668,6 +1895,8 @@
                         const dummy_remote = agoraEngine['remoteUsers'][c_uid];
                         console.log(dummy_remote);
 
+
+
                         if(dummy_remote['hasVideo'] == false){ //ถ้า remote คนนี้ ไม่ได้เปิดกล้องไว้ --> ไปสร้าง div_dummy
                             let name_remote_user_joined;
                             let type_remote_user_joined;
@@ -1682,6 +1911,7 @@
                                     type_remote_user_joined = result.user_type
                                     hexcolor = result.hexcolor;
                                     // hexcolor = "#F0D2CC";
+
 
                                     if(result.photo){
                                         profile_remote_user_joined = "{{ url('/storage') }}" + "/" + result.photo;
@@ -1728,6 +1958,14 @@
                                             });
                                         })
                                     }
+
+
+                                    if (dummy_remote['hasAudio'] == false) {
+                                        type_of_microphone_remote_icon_in_setting = "close"; //เปลี่ยนให้ icon ไมค์ เป็น ปิด เพื่อใช้เปลี่ยนไอคอนใน setting menu
+                                    } else {
+                                        type_of_microphone_remote_icon_in_setting = "open"; //เปลี่ยนให้ icon ไมค์ เป็น เปิด เพื่อใช้เปลี่ยนไอคอนใน setting menu
+                                    }
+
                             })
                             .catch(error => {
                                 console.log("โหลด เมื่อมีคนเข้าห้อง ล้มเหลว");
@@ -1761,6 +1999,11 @@
 
             if(document.getElementById('videoDiv_' + evt.uid)) {
                 document.getElementById('videoDiv_' + evt.uid).remove();
+            }
+
+            // ลบ โปรไฟล์ที่อยู่ใน sidebar เมื่อ ออก
+            if(document.getElementById('profile_' + evt.uid)) {
+                document.getElementById('profile_' + evt.uid).remove();
             }
 
             // เช็คว่ามี div .custom-div อยู่ใน div container_user_video_call
@@ -2135,6 +2378,52 @@
                             leaveChannel = "true";
 
                             window.history.back();
+
+                            // switch (type_video_call) {
+                            //     case 'sos_1669':
+                            //             // "ศูนย์อำนวยการ" , "หน่วยแพทย์ฉุกเฉิน" , "--"
+                            //             if (type_user_sos == "ศูนย์อำนวยการ") {
+                            //                 window.history.back();
+                            //             } else if(type_user_sos == "หน่วยแพทย์ฉุกเฉิน"){
+                            //                 window.location.href = "{{ url('/sos_help_center/' . $sos_id . '/show_case') }}";
+                            //             }else{
+                            //                 window.history.back();
+                            //             }
+                            //         break;
+
+                            //     case 'user_sos_1669':
+                            //             // "ศูนย์อำนวยการ" , "ผู้ขอความช่วยเหลือ" , "--"
+                            //             if (type_user_sos == "ศูนย์อำนวยการ") {
+                            //                 window.history.back();
+                            //             } else if(type_user_sos == "ผู้ขอความช่วยเหลือ"){
+                            //                 window.location.href = "{{ url('/sos_help_center/' . $sos_id . '/show_user') }}";
+                            //             }else{
+                            //                 window.history.back();
+                            //             }
+                            //         break;
+
+                            //     case 'sos_map':
+                            //             // "ศูนย์ควบคุม" , "เจ้าหน้าที่" , "ผู้ขอความช่วยเหลือ"
+                            //             if (type_user_sos == "ศูนย์ควบคุม") {
+                            //                 window.history.back();
+                            //             }else if (type_user_sos == "เจ้าหน้าที่"){
+                            //                 window.history.back();
+                            //             } else if(type_user_sos == "ผู้ขอความช่วยเหลือ"){
+                            //                 window.location.href = "{{ url('/sos_help_center/' . $sos_id . '/show_user') }}";
+                            //             }else{
+                            //                 window.history.back();
+                            //             }
+                            //         break;
+
+                            //     case 'sos_personal_assistant':
+                            //             window.history.back();
+                            //         break;
+
+                            //     default:
+                            //         window.history.back();
+                            //         break;
+                            // }
+
                     })
                     .catch(error => {
                         console.log("บันทึกข้อมูล left_and_update ล้มเหลว :" + error);
@@ -2697,13 +2986,15 @@
         //                              จบ -- สลับอุปกรณ์                                //
         //=============================================================================//
 
+
+
     }
 
 </script>
 
 <script>
-	const fadeButton = document.getElementById("fadeButton");
-	const dataDiv = document.getElementById("dataDiv");
+	let fadeButton = document.getElementById("fadeButton");
+	let dataDiv = document.getElementById("dataDiv");
 
     @if ($role_permission !== 'help_seeker')
         fadeButton.addEventListener("click", () => {
@@ -2722,6 +3013,294 @@
             }
         });
     @endif
+
+    let settingButton = document.getElementById("settingBtn");
+    let settingDiv = document.getElementById("settingDiv");
+    // เปิด modal setting
+    settingButton.addEventListener("click", () => {
+        if (settingDiv.style.display === "none") {
+            settingDiv.style.display = "block";
+            setTimeout(() => {
+                settingDiv.style.opacity = "1";
+                settingDiv.style.maxHeight = "25%";
+            }, 10);
+        } else {
+            settingDiv.style.opacity = "0";
+            settingDiv.style.maxHeight = "0";
+            setTimeout(() => {
+                settingDiv.style.display = "none";
+            }, 500);
+        }
+    });
+
+    function menu_setting_toggle(title_menu) {
+        let title_html;
+        switch (title_menu) {
+            case "menu_sound":
+                title_html = "ตั้งค่าเสียง";
+                break;
+            case "menu_chat":
+                title_html = "แชทสนทนา";
+                break;
+            default:
+                title_html = "อื่นๆ";
+                break;
+        }
+        let inMenuDiv = document.getElementById("inMenuDiv");
+        let settingDiv = document.getElementById("settingDiv");
+            settingDiv.style.display = "none";
+
+            // เปิด modal setting
+        if (inMenuDiv.style.display === "none") {
+            inMenuDiv.style.display = "block";
+            setTimeout(() => {
+                inMenuDiv.style.opacity = "1";
+                inMenuDiv.style.maxHeight = "50%";
+
+                document.querySelector('#title_menu_in_setting').innerHTML = title_html;
+
+                createDetailsInMenu(title_menu);
+            }, 10);
+        } else {
+            inMenuDiv.style.opacity = "0";
+            inMenuDiv.style.maxHeight = "0";
+            setTimeout(() => {
+                inMenuDiv.style.display = "none";
+
+                document.querySelector('#title_menu_in_setting').innerHTML = "";
+            }, 500);
+        }
+
+    }
+
+    // function menu_setting_toggle(title_menu) {
+
+    //     $('#inMenuDiv').modal('show');
+
+    //     document.querySelector('#title_menu_in_setting').innerHTML = "";
+    //     document.querySelector('#detail_menu_in_setting').innerHTML = "";
+
+    //     let title_html;
+    //     switch (title_menu) {
+    //         case "menu_sound":
+    //             title_html = "ตั้งค่าเสียง";
+    //             break;
+    //         case "menu_chat":
+    //             title_html = "แชทสนทนา";
+    //             break;
+    //         default:
+    //             title_html = "อื่นๆ";
+    //             break;
+    //     }
+    //     let inMenuDiv = document.getElementById("inMenuDiv");
+
+    //     //ปิด div เมนู ก่อนหน้า
+    //     let settingDiv = document.getElementById("settingDiv");
+    //         settingDiv.style.display = "none";
+
+    //         // เปิด modal setting
+    //     document.querySelector('#title_menu_in_setting').innerHTML = title_html;
+    //     createDetailsInMenu(title_menu);
+
+    // }
+
+    function close_menu(){
+        inMenuDiv.style.opacity = "0";
+        inMenuDiv.style.maxHeight = "0";
+        setTimeout(() => {
+            inMenuDiv.style.display = "none";
+            document.querySelector('#title_menu_in_setting').innerHTML = "";
+        }, 500);
+    }
+
+    async function createDetailsInMenu(title_menu){
+        try {
+            let response = await fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_id=" + sos_id + "&type=" + type_video_call);
+            let result = await response.json();
+
+            console.log("result createDetailsInMenu");
+            console.log(result);
+
+            let parentDiv = document.querySelector('#detail_menu_in_setting');
+            switch (title_menu) {
+                case "menu_sound":
+                    let user_data = result['data'];
+
+                    user_data.forEach(element => {
+
+                        let inputValue_remote = array_remoteVolumeAudio[element.id] ?? 100; // เอาข้อมูล volume ที่เคยปรับไว้มาใช้เป็นค่า value ถ้าไม่มี ให้ใช้ค่า default = 100
+
+                        let create_profile_remote = document.createElement("div");
+                            create_profile_remote.id = "profile_"+element.id;
+                            create_profile_remote.classList.add('row');
+
+                        //รูปโปรไฟล์
+                        if(element.photo){
+                            profile_user = "{{ url('/storage') }}" + "/" + element.photo;
+                        }else if(!element.photo && element.avatar){
+                            profile_user = element.avatar;
+                        }else{
+                            profile_user = "https://www.viicheck.com/Medilab/img/icon.png";
+                        }
+
+
+                        let me_id = '{{ Auth::user()->id }}';
+                        let name_profile;  //ตรวจสอบว่าเป็นตัวเอง ? ชื่อฟ้า : ชื่อดำ
+                        let icon_microphone_in_sb;
+
+                        let type_input;
+                        let localVolume;
+
+                        if (element.id == me_id) {
+                            name_profile = `<span class="h3 font-weight-bold text-info mx-auto">`+element.name+`</span>`;
+
+                            localVolume = localStorage.getItem('local_sos_1669_rangeValue') ?? 100;
+
+                            type_input = `<input style="z-index: 4;" type="range" id="localAudioVolume"
+                                            min="0" max="1000" value="`+localVolume+`" class="w-100" >`;
+                            icon_microphone_in_sb = `icon_mic_local_in_sidebar`;
+                        } else {
+                            name_profile = `<span class="h3 font-weight-bold mx-auto">`+element.name+`</span>`;
+                            type_input = `<input style="z-index: 4;" type="range" id="remoteAudioVolume_`+element.id+`"
+                                            min="0" max="1000" value="`+inputValue_remote+`" class="w-100" onChange="onChangeVolumeRemote(`+element.id+`);">`;
+                            icon_microphone_in_sb = `icon_mic_remote_in_sidebar_`+element.id+``;
+                        }
+
+                        let detailHTML =`
+                            <div class="col-12 row">
+                                <div class="col-3">
+                                    <img src="`+profile_user+`" alt="Profile Picture" class="profile-picture mx-auto">
+                                    <div class="profile-info">
+                                        `+name_profile+`
+                                    </div>
+                                </div>
+                                <div class="col-9 my-auto row">
+
+                                    <div class="col-3 d-flex justify-content-center align-items-center" id="`+icon_microphone_in_sb+`">
+                                        <i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6; font-size: 44px;" ></i>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="wrapper_range_volume">
+                                            `+type_input+`
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            `;
+
+                            create_profile_remote.innerHTML = detailHTML;
+
+                            // ตรวจสอบว่าเจอ div เดิมหรือไม่
+                            let oldDiv = document.getElementById("profile_"+ element.id);
+                            if (oldDiv) {
+                                // ใช้ parentNode.replaceChild() เพื่อแทนที่ div เดิมด้วย div ใหม่
+                                oldDiv.parentNode.replaceChild(create_profile_remote, oldDiv);
+                            } else {
+                                if (element.id == me_id) {
+                                    parentDiv.insertBefore(create_profile_remote, parentDiv.firstChild);
+                                } else {
+                                    parentDiv.appendChild(create_profile_remote);
+                                }
+                            }
+
+                            waitForElement_in_sidebar(type_of_microphone_remote_icon_in_setting , element.id);
+
+                            if (element.id == me_id) {
+
+                                // เข้าถึงตัวปรับ input =============== localVolume ==========================
+                                let local_rangeInput = document.getElementById('localAudioVolume');
+                                    local_rangeInput.addEventListener('input', function() {
+                                // บันทึกค่าลงใน localStorage เมื่อมีการเปลี่ยนแปลง
+                                    localStorage.setItem('local_sos_1669_rangeValue', local_rangeInput.value);
+                                    localVolume = local_rangeInput.value; // เปลี่ยนค่าระดับเสียงของทางเราให้เท่ากับตัวปรับ
+                                });
+
+                                // เช็ค ค่าตัวปรับเสียงก่อนเปลี่ยน icon ใน sidebar
+                                if (local_rangeInput == 0) {
+                                    document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-microphone-slash"
+                                    style="--fa-primary-color: #1319b9; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;"></i>`;
+                                } else {
+                                    if (!agoraEngine['localTracks'][1]['enabled']) {
+                                        document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i class="fa-duotone fa-microphone-slash"
+                                        style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;"></i>`;
+                                    } else {
+                                        document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6; font-size: 44px;"></i>`;
+                                    }
+                                }
+
+                                // เพิ่ม event listener สำหรับ local audio volume slider
+                                document.getElementById("localAudioVolume").addEventListener("change", function (evt) {
+                                    // เช็ค ค่าตัวปรับเสียงก่อนเปลี่ยน icon ใน sidebar
+                                    if (evt.target.value == 0) {
+                                        document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-microphone-slash"
+                                        style="--fa-primary-color: #1319b9; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;"></i>`;
+                                    } else {
+                                        if (!agoraEngine['localTracks'][1]['enabled']) {
+                                            document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i class="fa-duotone fa-microphone-slash"
+                                            style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;"></i>`;
+                                        } else {
+                                            document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6; font-size: 44px;"></i>`;
+                                        }
+                                    }
+
+                                    // Set the local audio volume.
+                                    channelParameters.localAudioTrack.setVolume(parseInt(evt.target.value));
+                                    // บันทึกค่าลงใน localStorage เพื่อให้ค่าเสียงเป็นค่าเริ่มต้นต่อครั้งถัดไป
+                                });
+
+                            }
+
+
+                        });
+                    break;
+
+                default:
+                    break;
+            }
+        } catch (error) {
+            console.log("โหลดหน้าล้มเหลว :" + error);
+        }
+    }
+
+    function onChangeVolumeRemote(div_id){
+        checkHtml = true;
+        let slider = document.querySelector("#remoteAudioVolume_"+div_id).value;
+        // console.log(agoraEngine['remoteUsers'][0]['audioTrack']);
+        // console.log("Volume of remote audio : "+ div_id +" = " + slider);
+
+        array_remoteVolumeAudio[div_id] = slider;
+        // console.log("agoraEngine onChangeVolumeRemote");
+        // console.log(agoraEngine);
+
+        let length_remote = agoraEngine['remoteUsers']['length'];
+
+        for (let index = 0; index < length_remote; index++) {
+            let uid_remote = agoraEngine['remoteUsers'][index]['uid'];
+            // console.log("uid : "+uid_remote);
+
+            if (div_id == uid_remote && agoraEngine['remoteUsers'][index]['audioTrack']) {
+                // console.log("ไอดีตรงกัน");
+                agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(slider));
+            }
+
+            // เช็ค ค่าตัวปรับเสียงก่อนเปลี่ยน icon ใน sidebar
+            if (slider == 0) {
+                document.querySelector("#icon_mic_remote_in_sidebar_"+div_id).innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-microphone-slash"
+                style="--fa-primary-color: #1319b9; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;"></i>`;
+            } else {
+                if (!agoraEngine['remoteUsers'][index]['audioTrack']) {
+                    document.querySelector("#icon_mic_remote_in_sidebar_"+div_id).innerHTML = `<i class="fa-duotone fa-microphone-slash"
+                    style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;"></i>`;
+                } else {
+                    document.querySelector("#icon_mic_remote_in_sidebar_"+div_id).innerHTML = `<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6; font-size: 44px;"></i>`;
+                }
+            }
+
+        }
+
+    }
+
 
 	// ฟังก์ชันสุ่มสี
 	function getRandomColor() {
@@ -3946,56 +4525,28 @@
 
     }
 
-    // function StatsVideoUpdate(){
-    //     // fetch("{{ url('/') }}/api/check_status_sos_video_call" + "?sos_id="+'{{ $sos_data->id }}')
-    //     //     .then(response => response.text())
-    //     //     .then(result => {
-    //             setInterval(() => {
-    //                 let time_of_room = document.getElementById("time_of_room");
-    //                 // วันที่และเวลาปัจจุบัน
-    //                 let currentDate = new Date();
-    //                 let currentTime = currentDate.getTime();
+    async function waitForElement_in_sidebar(type , user_id) {
+        while (!document.getElementById('icon_mic_remote_in_sidebar_'+user_id)) {
+            // รอให้ <div id="icon_mic_remote_in_sidebar"> ถูกสร้างขึ้น
+            await new Promise(resolve => setTimeout(resolve, 100)); // รออีก 100 milliseconds ก่อนที่จะตรวจสอบอีกครั้ง
+        }
 
-    //                 // วันที่และเวลาที่กำหนด
-    //                 // let targetDate = new Date(response['data']);
-    //                 let targetDate = new Date('2023-11-14T09:30:00');
-    //                 let targetTime = targetDate.getTime();
+        switch_icon_mic_remote_in_sidebar(type , user_id);
+    }
 
-    //                 // คำนวณเวลาที่ผ่านไปในมิลลิวินาที
-    //                 let elapsedTime = currentTime - targetTime;
-    //                 let elapsedMinutes = Math.floor(elapsedTime / (1000 * 60));
+    function switch_icon_mic_remote_in_sidebar(type , user_id){
+        let value_slider = document.querySelector('#remoteAudioVolume_'+user_id).value;
+        if (value_slider == 0) { // ถ้า value ตัวปรับเสียง ของ remote คนนี้ เป็น 0
+            document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #1319b9; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;"></i>`;
+        } else {
+            if (type == "open") {
+                document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6; font-size: 44px;" ></i>`;
+            } else {
+                document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;"></i>`;
+            }
+        }
 
-    //                 // แปลงเวลาที่ผ่านไปให้เป็นรูปแบบชั่วโมง:นาที:วินาที
-    //                 let hours = Math.floor(elapsedMinutes / 60);
-    //                 let minutes = elapsedMinutes % 60;
-    //                 let seconds = Math.floor((elapsedTime / 1000) % 60);
-    //                 let minsec = minutes + '.' + seconds;
-
-    //                 // console.log(minsec);
-    //                 // console.log(typeof(minsec));
-
-    //                 let showTimeCountVideo;
-
-    //                 // แสดงผลลัพธ์
-    //                 if (hours > 0) {
-    //                     if (minutes < 10) {  // ใส่ 0 ข้างหน้า นาที กรณีเลขยังไม่ถึง 10
-    //                         showTimeCountVideo = hours + ':' + '0' + minutes + ':' + seconds + "&nbsp;/ 10 นาที";
-    //                     }else{
-    //                         showTimeCountVideo = hours + ':' + minutes + ':' + seconds + "&nbsp;/ 10 นาที";
-    //                     }
-    //                 } else {
-    //                     if(seconds < 10){  // ใส่ 0 ข้างหน้า วินาที กรณีเลขยังไม่ถึง 10
-    //                         showTimeCountVideo =  minutes + ':' + '0' + seconds + "&nbsp;/ 10 นาที";
-    //                     }else{
-    //                         showTimeCountVideo = minutes + ':' + seconds + "&nbsp;/ 10 นาที";
-    //                     }
-    //                 }
-
-    //                 // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
-    //                 time_of_room.innerHTML = '<i class="fa-regular fa-clock fa-fade" style="color: #11b06b; font-size: 30px;"></i>&nbsp;' + ": " + showTimeCountVideo;
-    //             }, 1000);
-    //         // });
-    // }
+    }
 </script>
 
 <script>

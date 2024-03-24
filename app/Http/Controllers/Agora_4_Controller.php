@@ -935,7 +935,7 @@ class Agora_4_Controller extends Controller
                 $data['name_user'] = $data_officer->name_officer;
                 // $data['unit'] = $data_officer->operating_unit->name;
             }else{
-                $data['user_type'] = "--";
+                $data['user_type'] = "ผู้ขอความช่วยเหลือ";
                 $data['name_user'] = $local_data->name;
             }
         }else{

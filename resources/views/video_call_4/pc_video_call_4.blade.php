@@ -1282,6 +1282,8 @@
 
     var checkHtml = false; // ใช้เช็คเงื่อนไขตัวปรับเสียงของ remote
 
+    var type_user_sos;
+
     document.addEventListener('DOMContentLoaded', (event) => {
 
         if (type_video_call == "sos_personal_assistant") {
@@ -1478,6 +1480,8 @@
                 bg_local = result.hexcolor;
                 name_local = result.name_user;
                 type_local = result.user_type;
+
+                type_user_sos = type_local; //เก็บ ประเภทผู้ใช้ไว้ใน array
 
                 changeBgColor(bg_local);
         })
@@ -2359,6 +2363,51 @@
                             leaveChannel = "true";
 
                             window.history.back();
+
+                            // switch (type_video_call) {
+                            //     case 'sos_1669':
+                            //             // "ศูนย์อำนวยการ" , "หน่วยแพทย์ฉุกเฉิน" , "--"
+                            //             if (type_user_sos == "ศูนย์อำนวยการ") {
+                            //                 window.history.back();
+                            //             } else if(type_user_sos == "หน่วยแพทย์ฉุกเฉิน"){
+                            //                 window.location.href = "{{ url('/sos_help_center/' . $sos_id . '/show_case') }}";
+                            //             }else{
+                            //                 window.history.back();
+                            //             }
+                            //         break;
+
+                            //     case 'user_sos_1669':
+                            //             // "ศูนย์อำนวยการ" , "ผู้ขอความช่วยเหลือ" , "--"
+                            //             if (type_user_sos == "ศูนย์อำนวยการ") {
+                            //                 window.history.back();
+                            //             } else if(type_user_sos == "ผู้ขอความช่วยเหลือ"){
+                            //                 window.location.href = "{{ url('/sos_help_center/' . $sos_id . '/show_user') }}";
+                            //             }else{
+                            //                 window.history.back();
+                            //             }
+                            //         break;
+
+                            //     case 'sos_map':
+                            //             // "ศูนย์ควบคุม" , "เจ้าหน้าที่" , "ผู้ขอความช่วยเหลือ"
+                            //             if (type_user_sos == "ศูนย์ควบคุม") {
+                            //                 window.history.back();
+                            //             }else if (type_user_sos == "เจ้าหน้าที่"){
+                            //                 window.history.back();
+                            //             } else if(type_user_sos == "ผู้ขอความช่วยเหลือ"){
+                            //                 window.location.href = "{{ url('/sos_help_center/' . $sos_id . '/show_user') }}";
+                            //             }else{
+                            //                 window.history.back();
+                            //             }
+                            //         break;
+
+                            //     case 'sos_personal_assistant':
+                            //             window.history.back();
+                            //         break;
+
+                            //     default:
+                            //         window.history.back();
+                            //         break;
+                            // }
                     })
                     .catch(error => {
                         console.log("บันทึกข้อมูล left_and_update ล้มเหลว :" + error);
