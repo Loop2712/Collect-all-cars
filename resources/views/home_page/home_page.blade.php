@@ -819,7 +819,7 @@
       <div class="container wow  fadeInLeft">
         <h1 style="font-family: 'Kanit', sans-serif;">ยินดีต้อนรับสู่ ViiCHECK</h1>
         <h2 style="font-family: 'Kanit', sans-serif;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
-        <a style="font-size: 18px ;font-family: 'Kanit', sans-serif;" href="{{ url('/register_car/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
+        <a style="font-size: 18px ;font-family: 'Kanit', sans-serif;" href="{{ url('/sos_map/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
       </div>
 
     </section>
