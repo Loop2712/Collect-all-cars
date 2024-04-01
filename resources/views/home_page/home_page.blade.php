@@ -267,27 +267,8 @@
                       <br>
                       <p style="text-align: left; text-indent:1.5em;">เมื่อเกิดเหตุฉุกเฉินไม่ต้องกังวลใจ
                         แค่เพียงคุณกดปุ่ม <b class="text-dark">"SOS"</b> เพียงเท่านี้จะมีเบอร์ที่จำเป็นแสดงขึ้นมา ไม่ว่าจะเป็น
-                        <b class="text-dark">จส.100 ไฟไหม้รถ เหตุด่วนเหตุร้าย</b>
+                        <b class="text-dark">ไฟไหม้รถ เหตุด่วนเหตุร้าย</b>
                         หรือแม้กระทั่ง <b class="text-dark">ตำรวจท่องเที่ยว</b>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="icon-box d-flex wow  fadeInDown" style="padding: 10px 33px 10px 33px; margin: 10px;">
-                  <div class="row">
-                    <div class="col-4 ">
-                      <i style="margin: 12px;" class="fas fa-id-card-alt"></i>
-                      <h4 style="font-family: 'Kanit', sans-serif;">ติดต่อเจ้าของรถ</h4>
-                    </div>
-                    <div class="col-8">
-                      <br>
-                      <p style="text-align: left; text-indent:1.5em;">
-                        เมื่อการ<b class="text-dark">จอดซ้อนคัน</b>ทำให้คุณเป็นกังวล
-                        คุณเพียงแค่ลงทะเบียนกับ ViiCHECK
-                        แล้วนำสติ๊กเกอร์ไปติดที่ของรถ
-                        เพียงเท่านี้คุณก็สามารถเดินเที่ยวได้อย่างสบายใจ
                       </p>
                     </div>
                   </div>
@@ -298,17 +279,33 @@
                     <div class="col-4 d-flex align-items-center">
                       <div class="row">
                         <div class="col-12">
-                          <i style="margin: 12px;" class="fas fa-virus"></i>
+                        <i style="margin: 12px;" class="fa-duotone fa-truck-medical"></i>
+
                         </div>
                         <div class="col-12">
-                          <h4 class="text-center" style="font-family: 'Kanit', sans-serif;">แจ้งเตือนโรคติดต่อ</h4>
+                          <h4 class="text-center" style="font-family: 'Kanit', sans-serif;">แพทย์ฉุกเฉิน</h4>
                         </div>
                       </div>
                     </div>
                     <div class="col-8">
                       <br>
                       <p style="text-align: left; text-indent:1.5em;">
-                        หายห่วงเรื่องการเข้าสถานที่ต่างๆด้วยระบบจะ <b class="text-dark">แจ้งเตือนทันทีเมื่อมีกลุ่มเสี่ยง</b>
+                        เมื่อเกิดเหตุ <b class="text-dark">เจ็บป่วย งูกัด เจ้บหน้าอก ถูกทำร้าย ตกเลือด แขนขาอ่อนแรง พูดไม่ชัด </b>ไม่ว่าจะเกิดกับคุณหรือคนรอบตัว
+                    </div>
+                  </div>
+                </div>
+
+                <div class="icon-box d-flex wow  fadeInDown" style="padding: 10px 33px 10px 33px; margin: 10px;">
+                  <div class="row">
+                    <div class="col-4 ">
+                      <i style="margin: 12px;" class="fas fa-id-card-alt"></i>
+                      <h4 style="font-family: 'Kanit', sans-serif;">ติดต่อเจ้าของรถ</h4>
+                    </div>
+                    <div class="col-8">
+                      <br>
+                      <p style="text-align: left; text-indent:1.5em;">
+                      เมื่อการ<b class="text-dark">จอดซ้อนคัน</b>ทำให้คุณเป็นกังวล คุณเพียงแค่ลงทะเบียนกับ ViiCHECK แล้วนำสติ๊กเกอร์ไปติดที่ของรถ เพียงเท่านี้คุณก็สามารถเดินเที่ยวหรือ<b class="text-dark">ทำธุระได้อย่างสบายใจ</b>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -334,11 +331,11 @@
                     <div class="row">
                       <div class="col-12 ">
                         <i style="margin: 12px;" class="fas fa-bullhorn"></i>
-                        <h4 style="font-family: 'Kanit', sans-serif;">โปรโมชั่นยานพาหนะ</h4>
+                        <h4 style="font-family: 'Kanit', sans-serif;">กิจกรรมและโปรโมชั่น</h4>
                       </div>
                       <div class="col-12 text-center" style="padding: 0px;">
                         <p style=" text-indent:1.5em;">
-                          <b class="text-dark">โปรโมชั่นมากมาย</b>ที่รอเสนอให้คุณใช้บริการรีบเลยก่อนหมดเวลา !
+                          รับข้อมูล<b class="text-dark">กิจกรรม</b>และ<b class="text-dark">โปรโมชั่นสุดพิเศษ</b>ที่รอห้คุณใช้บริการ รีบเลยก่อนหมดเวลา !
                         </p>
                       </div>
                     </div>
@@ -819,7 +816,7 @@
       <div class="container wow  fadeInLeft">
         <h1 style="font-family: 'Kanit', sans-serif;">ยินดีต้อนรับสู่ ViiCHECK</h1>
         <h2 style="font-family: 'Kanit', sans-serif;">ร่วมกันสร้างสังคมแห่งการช่วยเหลือ แบ่งปันความสุขและมิตรภาพที่ดีกับ "วีเช็ค"</h2>
-        <a style="font-size: 18px ;font-family: 'Kanit', sans-serif;" href="{{ url('/sos_map/create') }}" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
+        <a style="font-size: 18px ;font-family: 'Kanit', sans-serif;" href="https://line.me/R/ti/p/%40702ytkls" class="btn-get-started scrollto">เริ่มกันเลย &nbsp;<i class="far fa-smile-wink"></i></a>
       </div>
 
     </section>
@@ -846,11 +843,28 @@
                       <i class="fas fa-car-crash"></i>
                       <br>
                       <h4 style="margin:-10px 0px 15px 0px">เหตุฉุกเฉิน</h4>
-                      <p>เมื่อเกิดเหตุฉุกเฉินไม่ต้องกังวลใจ</p>
+                      <!-- <p>เมื่อเกิดเหตุฉุกเฉินไม่ต้องกังวลใจ</p>
                       <p>แค่เพียงกดปุ่ม <b class="text-dark">"SOS"</b> จะมีเบอร์</p>
                       <p>ที่จำเป็นแสดงขึ้นมา ไม่ว่าจะเป็น</p>
                       <p><b class="text-dark">จส.100 เหตุด่วนเหตุร้าย ไฟไหม้รถ</b></p>
+                      <p>หรือแม้กระทั่ง <b class="text-dark">ตำรวจท่องเที่ยว</b></p> -->
+
+                      <p>เมื่อเกิดเหตุฉุกเฉินไม่ต้องกังวลใจ</p>
+                      <p>แค่เพียงคุณกดปุ่ม <b class="text-dark">"SOS"</b></p>
+                      <p>เพียงเท่านี้จะมีเบอร์ที่จำเป็นแสดงขึ้นมา</p>
+                      <p><b class="text-dark">ไฟไหม้รถ เหตุด่วนเหตุร้าย</b> </p>
                       <p>หรือแม้กระทั่ง <b class="text-dark">ตำรวจท่องเที่ยว</b></p>
+                    </div>
+                  </div>
+                  <div class="col-xl-4 d-flex align-items-stretch wow  fadeInDown">
+                    <div class="icon-box mt-4 mt-xl-0">
+                      <i class="fa-duotone fa-truck-medical"></i>
+                      <br>
+                      <h4 style="margin:-10px 0px 15px 0px;font-family: 'Kanit', sans-serif;">แพทย์ฉุกเฉิน</h4>
+                      <p>เมื่อเกิดเหตุ <b class="text-dark">เจ็บป่วย งูกัด </b></p>
+                      <p><b class="text-dark">เจ้บหน้าอก ถูกทำร้าย ตกเลือด</b> </p>
+                      <p><b class="text-dark">แขนขาอ่อนแรง พูดไม่ชัด </b></p>
+                      <p>ไม่ว่าจะเกิดกับคุณหรือคนรอบตัว</p>
                     </div>
                   </div>
                   <div class="col-xl-4 d-flex align-items-stretch wow  fadeInDown">
@@ -858,23 +872,10 @@
                       <i class="fas fa-id-card-alt"></i>
                       <br>
                       <h4 style="margin:-10px 0px 15px 0px;font-family: 'Kanit', sans-serif;">ติดต่อเจ้าของรถ</h4>
-                      <!-- <p>เมื่อการ<b class="text-dark">จอดซ้อนคัน</b>ทำให้คุณไม่สบายใจ</p>
-                    <p>เพียงแค่ลงทะเบียนกับเราแล้วนำ</p>
-                    <p>สติ๊กเกอร์ไปติดที่ของรถเพียงเท่านี้</p>
-                    <p>คุณก็สามารถเดินเที่ยวได้อย่างสบายใจ</p> -->
-
                       <p>เมื่อการ<b class="text-dark">จอดซ้อนคัน</b>คันทำให้คุณเป็นกังวล </p>
                       <p>คุณเพียงแค่ลงทะเบียนกับ <b class="text-dark">ViiCHECK</b></p>
                       <p>แล้วนำสติ๊กเกอร์ไปติดที่ของรถ </p>
-                      <p>เพียงเท่านี้คุณก็สามารถเดินเที่ยวได้อย่างสบายใจ</p>
-                    </div>
-                  </div>
-                  <div class="col-xl-4 d-flex align-items-stretch wow  fadeInDown">
-                    <div class="icon-box mt-4 mt-xl-0">
-                      <i class="fas fa-virus"></i>
-                      <h4 style="margin:-10px 0px 15px 0px;font-family: 'Kanit', sans-serif;">แจ้งเตือนโรคติดต่อ</h4>
-                      <p>หายห่วงเรื่องการเข้าสถานที่ต่างๆ </p>
-                      <p>ด้วยระบบจะ <b class="text-dark">แจ้งเตือนทันทีเมื่อมีกลุ่มเสี่ยง</b> </p>
+                      <p>เพียงเท่านี้คุณก็สามารถเดินเที่ยวหรือทำธุระได้อย่างสบายใจ</p>
                     </div>
                   </div>
                   <div class="col-xl-4 d-flex align-items-stretch wow  fadeInDown">
@@ -889,7 +890,8 @@
                     <div class="icon-box mt-4 mt-xl-0">
                       <i class="fas fa-bullhorn"></i>
                       <h4 style="margin:-10px 0px 15px 0px;font-family: 'Kanit', sans-serif;">โปรโมชั่นยานพาหนะ</h4>
-                      <p> <b class="text-dark">โปรโมชั่นมากมาย</b>ที่รอเสนอให้คุณใช้บริการ </p>
+                      <p> รับข้อมูล<b class="text-dark">กิจกรรมและโปรโมชั่นสุดพิเศษ</b> </p>
+                      <p>ที่รอห้คุณใช้บริการ</p>
                       <p>รีบเลยก่อนหมดเวลา !</p>
                     </div>
                   </div>
