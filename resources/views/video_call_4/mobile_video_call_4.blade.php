@@ -2547,7 +2547,7 @@
         var old_activeVideoDeviceId ;
 
         function onChangeVideoDevice() {
-            alert("onChangeVideoDevice");
+            // alert("onChangeVideoDevice");
             old_activeVideoDeviceId = activeVideoDeviceId ;
 
             const selectedVideoDeviceId = getCurrentVideoDeviceId();
