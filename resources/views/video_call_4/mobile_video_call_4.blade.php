@@ -2614,29 +2614,6 @@
                 // alertNoti('<i class="fa-solid fa-triangle-exclamation fa-shake"></i>', 'ไม่สามารถเปลี่ยนกล้องได้');
                 console.log('ไม่สามารถเปลี่ยนกล้องได้');
 
-                agoraEngine.publish([channelParameters.localVideoTrack ]);
-                channelParameters.localVideoTrack.play(localPlayerContainer);
-                if (isVideo == true) {
-                    console.log("เข้าpublishในonchange_if");
-                    // เริ่มส่งภาพจากอุปกรณ์ใหม่
-                    channelParameters.localVideoTrack.setEnabled(true);
-
-                    // channelParameters.localVideoTrack.play(localPlayerContainer);
-
-                    // agoraEngine.publish([channelParameters.localVideoTrack]);
-
-                    // console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
-                }
-                else {
-                    console.log("เข้าpublishในonchange_else");
-                    // alert('ปิด');
-                    channelParameters.localVideoTrack.setEnabled(false);
-
-                    // channelParameters.localVideoTrack.play(localPlayerContainer);
-
-                    // agoraEngine.publish([channelParameters.localVideoTrack]);
-                }
-
                 activeVideoDeviceId = old_activeVideoDeviceId ;
 
                 // setTimeout(function() {
