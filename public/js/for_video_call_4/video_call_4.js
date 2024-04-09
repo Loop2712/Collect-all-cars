@@ -53,6 +53,8 @@ function btn_toggle_mic_camera(videoTrack,audioTrack,bg_local){ // สำหร�
             document.getElementById(`icon_microphone_in_sidebar`).innerHTML = '<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6;"></i>';
 
             isAudio = true;
+
+            SoundTest(); //เช็คไมค์
         }
     }
 
@@ -586,6 +588,13 @@ function create_profile_in_sidebar_local_only(user_data , name , type , profile_
 
 function create_profile_in_sidebar(user_data , name , type , profile_pic, volume_in_remoteArray){
     var inputValue_remote = volume_in_remoteArray ?? 100; // เอาข้อมูล volume ที่เคยปรับไว้มาใช้เป็นค่า value ถ้าไม่มี ให้ใช้ค่า default = 100
+    let type_mode;
+    if (inputValue_remote == 0) {
+        type_mode = "mute";
+    } else {
+        type_mode = "unmute";
+    }
+
     let sidebar_profile =
         `
         <div class="col-12 row">
@@ -600,7 +609,7 @@ function create_profile_in_sidebar(user_data , name , type , profile_pic, volume
             <div class="col-3 my-auto row">
 
                 <div class="col-6" id="icon_mic_remote_in_sidebar_`+user_data.uid+`">
-                    <i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6;" ></i>
+                    <i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6;" onclick="instant_switch_icon('remote', ${user_data.uid}, '${type_mode}')"></i>
                 </div>
                 <div class="col-6">
                     <label class="dropdown_volume_label">
@@ -611,7 +620,7 @@ function create_profile_in_sidebar(user_data , name , type , profile_pic, volume
                         <ul class="dd-menu">
                             <li>
                                 <p class="mb-0" style="cursor: default; color: #000000; font-size: 14px !important;">ระดับเสียง</p>
-                                <input style="z-index: 4;" type="range" id="remoteAudioVolume_`+user_data.uid+`" min="0" max="1000" value="`+inputValue_remote+`" class="w-100" onChange="onChangeVolumeRemote(`+user_data.uid+`);">
+                                <input style="z-index: 4;" type="range" id="remoteAudioVolume_`+user_data.uid+`" min="0" max="1000" value="`+inputValue_remote+`" class="w-100" onChange="onChangeVolumeRemote(`+user_data.uid+`, `+inputValue_remote+`);">
                             </li>
                         </ul>
                     </label>
@@ -626,16 +635,94 @@ function create_profile_in_sidebar(user_data , name , type , profile_pic, volume
 
 function switch_icon_mic_remote_in_sidebar(type , user_id){
     let value_slider = document.querySelector('#remoteAudioVolume_'+user_id).value;
-    if (value_slider == 0) { // ถ้า value ตัวปรับเสียง ของ remote คนนี้ เป็น 0
-        document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #1319b9; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6;"></i>`;
+
+    check_and_switch_icon_remote(user_id , type , value_slider )
+
+}
+
+function check_and_switch_icon_remote(user_id , type , value ){
+    let type_user = "remote";
+    let type_mode;
+    if (value == 0) { // ถ้า value ตัวปรับเสียง ของ remote คนนี้ เป็น 0
+        type_mode = "mute";
+
+        document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-volume-xmark"
+        style="--fa-primary-color: #000000; --fa-secondary-color: #ff0000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6;"
+        onclick="instant_switch_icon('remote', ${user_id}, '${type_mode}')"></i>`;
+
     } else {
+        type_mode = "unmute";
+
         if (type == "open") {
-            document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6;" ></i>`;
+            document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6;" onclick="instant_switch_icon('remote', ${user_id}, '${type_mode}')"></i>`;
         } else {
-            document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6;"></i>`;
+            document.querySelector('#icon_mic_remote_in_sidebar_'+user_id).innerHTML = `<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6;" onclick="instant_switch_icon('remote', ${user_id}, '${type_mode}')"></i>`;
         }
     }
+}
 
+function instant_switch_icon(type_user , user_id , type_mode ){
+    if (type_user == "local") {
+
+        if (type_mode == "unmute") {
+
+            document.querySelector('#localAudioVolume').value = 0;
+            type_mode = "mute";
+
+            let value_slider = document.querySelector('#localAudioVolume').value;
+
+            if (!agoraEngine['localTracks'][1]['enabled']) {
+                localStorage.setItem('local_sos_1669_rangeValue', value_slider);
+            }else{
+                channelParameters.localAudioTrack.setVolume(parseInt(value_slider));
+            }
+
+            document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-volume-xmark"
+            style="--fa-primary-color: #000000; --fa-secondary-color: #ff0000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i>`;
+
+        } else {
+            document.querySelector('#localAudioVolume').value = 100;
+            type_mode = "unmute";
+
+            let value_slider = document.querySelector('#localAudioVolume').value;
+
+            if (!agoraEngine['localTracks'][1]['enabled']) {
+
+                localStorage.setItem('local_sos_1669_rangeValue', value_slider);
+
+                document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i class="fa-duotone fa-microphone-slash"
+                style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i>`;
+            } else {
+
+                channelParameters.localAudioTrack.setVolume(parseInt(value_slider));
+
+                document.querySelector("#icon_mic_local_in_sidebar").innerHTML = `<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6; font-size: 44px;" onclick="instant_switch_icon('local', ${user_id}, '${type_mode}')"></i>`;
+            }
+        }
+
+    } else {
+
+        if (type_mode == "unmute") {
+            console.log("instant_switch_icon remote if");
+            console.log(user_id);
+
+            document.querySelector('#remoteAudioVolume_'+user_id).value = 0;
+            type_mode = "mute";
+
+            let value_slider = document.querySelector('#remoteAudioVolume_'+user_id).value;
+
+            onChangeVolumeRemote(user_id , value_slider);
+        } else {
+            console.log("instant_switch_icon remote else");
+            console.log(user_id);
+            document.querySelector('#remoteAudioVolume_'+user_id).value = 100;
+            type_mode = "unmute";
+
+            let value_slider = document.querySelector('#remoteAudioVolume_'+user_id).value;
+
+            onChangeVolumeRemote(user_id , value_slider);
+        }
+    }
 }
 
 function closeCheckboxAllexceptThis(user_id){
