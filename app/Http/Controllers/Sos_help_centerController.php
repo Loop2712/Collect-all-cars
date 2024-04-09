@@ -3340,4 +3340,17 @@ class Sos_help_centerController extends Controller
 
         return $data ;
     }
+
+    function update_code_for_officer($id , $input_code){
+
+        DB::table('sos_help_centers')
+            ->where([ 
+                    ['id', $id],
+                ])
+            ->update([
+                    'code_for_officer' => $input_code,
+                ]);
+
+        return 'success' ;
+    }
 }

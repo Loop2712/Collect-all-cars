@@ -242,6 +242,7 @@ Route::get('/register_api', 'Auth\LoginController@register_api');
 
 // SOS HELP CENTER
 Route::get('/data_help_center/','Sos_help_centerController@search_data_help_center');
+Route::get('/update_code_for_officer/{id}/{input_code}','Sos_help_centerController@update_code_for_officer');
 Route::get('/create_new_sos_help_center/{user_id}', 'Sos_help_centerController@create_new_sos_help_center');
 Route::post('/create_new_sos_by_user', 'Sos_help_centerController@create_new_sos_by_user');
 Route::post('/send_save_data/form_yellow', 'Sos_help_centerController@save_form_yellow');

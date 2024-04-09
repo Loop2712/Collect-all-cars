@@ -1804,6 +1804,66 @@ color: #ff9317;
             <div class="tab-pane fade show active" id="form_yellow" role="tabpanel">
                 <div class="card radius-10 p-3 yellow-form">
                     <div class="row">
+                        <div class="col-5">
+                            <div class="box-status">
+                                <span class="m-0">เลขปฏิบัติการ (สำหรับหน่วยแพทย์ฉุกเฉิน)</span>
+                                <h5 class="m-0 h5">
+                                    <div class="input-group" style="margin-top: 3px;">
+                                        <input type="text" class="form-control" name="operating_code_for_officer" id="operating_code_for_officer" value="{{ isset($sos_help_center->code_for_officer) ? $sos_help_center->code_for_officer : ''}}" oninput="input_code_for_officer();">
+                                        <span class="input-group-text" id="btn_cf_code_for_officer" onclick="cf_code_for_officer();">
+                                          <div id="i_text_save_success" class="d-none">
+                                              <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                                  <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                                                  <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                                              </svg>
+                                          </div>
+                                          <div id="i_text_cf" class="">
+                                            <i class="fa-solid fa-check"></i> &nbsp;&nbsp;ยืนยัน
+                                          </div>
+                                        </span>
+                                    </div>
+                                </h5>
+                            </div>
+                        </div>
+
+                        <script>
+                          function input_code_for_officer(){
+
+                            let old_code_for_officer = "{{ $sos_help_center->code_for_officer }}"
+                            let input_code = document.querySelector('#operating_code_for_officer');
+                            let btn = document.querySelector('#btn_cf_code_for_officer');
+
+                            if(input_code.value && input_code.value != old_code_for_officer){
+                              btn.classList.add('btn-info');
+                            }
+                            else{
+                              btn.classList.remove('btn-info');
+                            }
+                          }
+
+                          function cf_code_for_officer(){
+                            let input_code = document.querySelector('#operating_code_for_officer');
+                            console.log(input_code.value);
+
+                            fetch("{{ url('/') }}/api/update_code_for_officer" + "/" + "{{ $sos_help_center->id }}" + "/" + input_code.value)
+                              .then(response => response.text())
+                              .then(result => {
+                                  // console.log(result);
+                                  if(result == "success"){
+                                    document.querySelector('#i_text_cf').classList.add('d-none');
+                                    document.querySelector('#i_text_save_success').classList.remove('d-none');
+
+                                    setTimeout(function() {
+                                        document.querySelector('#i_text_cf').classList.remove('d-none');
+                                        document.querySelector('#i_text_save_success').classList.add('d-none');
+                                        let btn = document.querySelector('#btn_cf_code_for_officer');
+                                            btn.classList.remove('btn-info');
+                                    }, 1500);
+                                  }
+                              });
+                          }
+                        </script>
+
                         <div class="col-4">
                             <div class="box-status">
                                 @php
@@ -1811,18 +1871,8 @@ color: #ff9317;
                                     $result = $date->format('d / m / Y');
                                 @endphp
                                 <span class="m-0">วันที่ </span>
-                                <h5 class="m-0 h5">
-                                    <b> {{ $result }}</b>
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="box-status">
-                                <span class="m-0">เลขที่ปฏิบัติการ(ON)</span>
-                                <h5 class="m-0 h5">
-                                    <b id="text_in_formyellow_operating_code">
-                                        {{ $sos_help_center->operating_code }}
-                                    </b>
+                                <h5 class="m-0 mb-3 h5">
+                                    <b style="position: relative;top: 10px;"> {{ $result }}</b>
                                 </h5>
                             </div>
                         </div>
@@ -3239,7 +3289,7 @@ color: #ff9317;
                     }).then(function(data){
                         // console.log(data);
                         document.querySelector('#text_u_operating_code').innerHTML = data ;
-                        document.querySelector('#text_in_formyellow_operating_code').innerHTML = data ;
+                        // document.querySelector('#text_in_formyellow_operating_code').innerHTML = data ;
                     }).catch(function(error){
                         // console.error(error);
                     });
