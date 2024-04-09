@@ -2615,6 +2615,12 @@
                 // alertNoti('<i class="fa-solid fa-triangle-exclamation fa-shake"></i>', 'ไม่สามารถเปลี่ยนกล้องได้');
                 console.log('ไม่สามารถเปลี่ยนกล้องได้');
 
+                if (now_Mobile_Devices == 1){
+                    now_Mobile_Devices = 2 ;
+                }else{
+                    now_Mobile_Devices = 1 ;
+                }
+
                 activeVideoDeviceId = old_activeVideoDeviceId ;
 
                 setTimeout(function() {
