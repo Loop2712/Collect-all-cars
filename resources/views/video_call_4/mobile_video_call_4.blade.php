@@ -2555,32 +2555,28 @@
 
             activeVideoDeviceId = selectedVideoDeviceId ;
 
+            // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
+            channelParameters.localVideoTrack.setEnabled(false);
+
+            agoraEngine.unpublish([channelParameters.localVideoTrack]);
+
+            // ปิดการเล่นภาพวิดีโอกล้องเดิม
+            channelParameters.localVideoTrack.stop();
+            channelParameters.localVideoTrack.close();
+
             // สร้าง local video track ใหม่โดยใช้กล้องที่คุณต้องการ
-            channelParameters.localVideoTrack = AgoraRTC.createCameraVideoTrack(
-                {
-                    cameraId: selectedVideoDeviceId,
-                    // optimizationMode: "detail",
-                    // encoderConfig:
-                    // {
-                    //     width: 640,
-                    //     // Specify a value range and an ideal value
-                    //     height: { ideal: 480, min: 400, max: 500 },
-                    //     frameRate: 15,
-                    //     bitrateMin: 500, bitrateMax: 1000,
-                    // },
-                }
-
-                 // // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
-                channelParameters.localVideoTrack.setEnabled(false);
-
-                agoraEngine.unpublish([channelParameters.localVideoTrack]);
-
-                // ปิดการเล่นภาพวิดีโอกล้องเดิม
-                channelParameters.localVideoTrack.stop();
-                channelParameters.localVideoTrack.close();
+            AgoraRTC.createCameraVideoTrack({ cameraId: selectedVideoDeviceId })
+            .then(newVideoTrack => {
 
                 // เปลี่ยน local video track เป็นอุปกรณ์ใหม่
                 channelParameters.localVideoTrack = newVideoTrack;
+
+                console.log('------------ newVideoTrack ------------');
+                console.log(newVideoTrack);
+                console.log('------------ channelParameters.localVideoTrack ------------');
+                console.log(channelParameters.localVideoTrack);
+                // console.log('------------ localPlayerContainer ------------');
+                // console.log(localPlayerContainer);
 
                 agoraEngine.publish([channelParameters.localVideoTrack ]);
                 channelParameters.localVideoTrack.play(localPlayerContainer);
@@ -2605,99 +2601,50 @@
                     // agoraEngine.publish([channelParameters.localVideoTrack]);
                 }
 
-            );
+                if (isVideo == false) {
+                    setTimeout(() => {
+                        console.log("bg_local onChange");
+                        changeBgColor(bg_local);
+                    }, 50);
+                }
 
+            })
+            .catch(error => {
+                // alert('ไม่สามารถเปลี่ยนกล้องได้');
+                // alertNoti('<i class="fa-solid fa-triangle-exclamation fa-shake"></i>', 'ไม่สามารถเปลี่ยนกล้องได้');
+                console.log('ไม่สามารถเปลี่ยนกล้องได้');
 
+                agoraEngine.publish([channelParameters.localVideoTrack ]);
+                channelParameters.localVideoTrack.play(localPlayerContainer);
+                if (isVideo == true) {
+                    console.log("เข้าpublishในonchange_if");
+                    // เริ่มส่งภาพจากอุปกรณ์ใหม่
+                    channelParameters.localVideoTrack.setEnabled(true);
 
-            // AgoraRTC.createCameraVideoTrack({ cameraId: selectedVideoDeviceId })
-            // .then(newVideoTrack => {
+                    // channelParameters.localVideoTrack.play(localPlayerContainer);
 
-            //     console.log('------------ newVideoTrack ------------');
-            //     console.log(newVideoTrack);
-            //     console.log('------------ channelParameters.localVideoTrack ------------');
-            //     console.log(channelParameters.localVideoTrack);
-            //     // console.log('------------ localPlayerContainer ------------');
-            //     // console.log(localPlayerContainer);
+                    // agoraEngine.publish([channelParameters.localVideoTrack]);
 
-            //     // // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
-            //     channelParameters.localVideoTrack.setEnabled(false);
+                    // console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
+                }
+                else {
+                    console.log("เข้าpublishในonchange_else");
+                    // alert('ปิด');
+                    channelParameters.localVideoTrack.setEnabled(false);
 
-            //     agoraEngine.unpublish([channelParameters.localVideoTrack]);
+                    // channelParameters.localVideoTrack.play(localPlayerContainer);
 
-            //     // ปิดการเล่นภาพวิดีโอกล้องเดิม
-            //     channelParameters.localVideoTrack.stop();
-            //     channelParameters.localVideoTrack.close();
+                    // agoraEngine.publish([channelParameters.localVideoTrack]);
+                }
 
-            //     // เปลี่ยน local video track เป็นอุปกรณ์ใหม่
-            //     channelParameters.localVideoTrack = newVideoTrack;
+                activeVideoDeviceId = old_activeVideoDeviceId ;
 
-            //     agoraEngine.publish([channelParameters.localVideoTrack ]);
-            //     channelParameters.localVideoTrack.play(localPlayerContainer);
-            //     if (isVideo == true) {
-            //         console.log("เข้าpublishในonchange_if");
-            //         // เริ่มส่งภาพจากอุปกรณ์ใหม่
-            //         channelParameters.localVideoTrack.setEnabled(true);
+                // setTimeout(function() {
+                //     document.querySelector('#btn_switchCamera').click();
+                // }, 2000);
 
-            //         // channelParameters.localVideoTrack.play(localPlayerContainer);
-
-            //         // agoraEngine.publish([channelParameters.localVideoTrack]);
-
-            //         // console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
-            //     }
-            //     else {
-            //         console.log("เข้าpublishในonchange_else");
-            //         // alert('ปิด');
-            //         channelParameters.localVideoTrack.setEnabled(false);
-
-            //         // channelParameters.localVideoTrack.play(localPlayerContainer);
-
-            //         // agoraEngine.publish([channelParameters.localVideoTrack]);
-            //     }
-
-            //     if (isVideo == false) {
-            //         setTimeout(() => {
-            //             console.log("bg_local onChange");
-            //             changeBgColor(bg_local);
-            //         }, 50);
-            //     }
-
-            // })
-            // .catch(error => {
-            //     // alert('ไม่สามารถเปลี่ยนกล้องได้');
-            //     // alertNoti('<i class="fa-solid fa-triangle-exclamation fa-shake"></i>', 'ไม่สามารถเปลี่ยนกล้องได้');
-            //     console.log('ไม่สามารถเปลี่ยนกล้องได้');
-
-            //     agoraEngine.publish([channelParameters.localVideoTrack ]);
-            //     channelParameters.localVideoTrack.play(localPlayerContainer);
-            //     if (isVideo == true) {
-            //         console.log("เข้าpublishในonchange_if");
-            //         // เริ่มส่งภาพจากอุปกรณ์ใหม่
-            //         channelParameters.localVideoTrack.setEnabled(true);
-
-            //         // channelParameters.localVideoTrack.play(localPlayerContainer);
-
-            //         // agoraEngine.publish([channelParameters.localVideoTrack]);
-
-            //         // console.log('เปลี่ยนอุปกรณ์กล้องสำเร็จ');
-            //     }
-            //     else {
-            //         console.log("เข้าpublishในonchange_else");
-            //         // alert('ปิด');
-            //         channelParameters.localVideoTrack.setEnabled(false);
-
-            //         // channelParameters.localVideoTrack.play(localPlayerContainer);
-
-            //         // agoraEngine.publish([channelParameters.localVideoTrack]);
-            //     }
-
-            //     activeVideoDeviceId = old_activeVideoDeviceId ;
-
-            //     // setTimeout(function() {
-            //     //     document.querySelector('#btn_switchCamera').click();
-            //     // }, 2000);
-
-            //     console.error('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
-            // });
+                console.error('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
+            });
 
 
 
