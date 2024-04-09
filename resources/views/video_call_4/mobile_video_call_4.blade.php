@@ -2617,9 +2617,9 @@
 
                 activeVideoDeviceId = old_activeVideoDeviceId ;
 
-                // setTimeout(function() {
-                //     document.querySelector('#btn_switchCamera').click();
-                // }, 2000);
+                setTimeout(function() {
+                    document.querySelector('#btn_switchCamera').click();
+                }, 2000);
 
                 console.error('เกิดข้อผิดพลาดในการสร้าง local video track:', error);
             });
