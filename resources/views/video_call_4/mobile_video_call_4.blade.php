@@ -2547,7 +2547,7 @@
         var old_activeVideoDeviceId ;
 
         function onChangeVideoDevice() {
-
+            alert("onChangeVideoDevice");
             old_activeVideoDeviceId = activeVideoDeviceId ;
 
             const selectedVideoDeviceId = getCurrentVideoDeviceId();
@@ -2733,7 +2733,8 @@
             if(deviceType !== 'PC') {
                 console.log("switch_mobile");
                 let check_videoDevices = document.getElementsByName('video-device');
-
+                console.log("check_videoDevices");
+                console.log(check_videoDevices);
                 if (now_Mobile_Devices == 1){
                     // console.log("now_Mobile_Devices == 1 // ให้คลิก ");
                     // console.log(check_videoDevices[1].id);
