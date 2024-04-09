@@ -2555,15 +2555,6 @@
 
             activeVideoDeviceId = selectedVideoDeviceId ;
 
-            // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
-            channelParameters.localVideoTrack.setEnabled(false);
-
-            agoraEngine.unpublish([channelParameters.localVideoTrack]);
-
-            // ปิดการเล่นภาพวิดีโอกล้องเดิม
-            channelParameters.localVideoTrack.stop();
-            channelParameters.localVideoTrack.close();
-
             // สร้าง local video track ใหม่โดยใช้กล้องที่คุณต้องการ
             AgoraRTC.createCameraVideoTrack({ cameraId: selectedVideoDeviceId })
             .then(newVideoTrack => {
@@ -2577,6 +2568,14 @@
                 console.log(channelParameters.localVideoTrack);
                 // console.log('------------ localPlayerContainer ------------');
                 // console.log(localPlayerContainer);
+                    // หยุดการส่งภาพจากอุปกรณ์ปัจจุบัน
+                channelParameters.localVideoTrack.setEnabled(false);
+
+                agoraEngine.unpublish([channelParameters.localVideoTrack]);
+
+                // ปิดการเล่นภาพวิดีโอกล้องเดิม
+                channelParameters.localVideoTrack.stop();
+                channelParameters.localVideoTrack.close();
 
                 agoraEngine.publish([channelParameters.localVideoTrack ]);
                 // channelParameters.localVideoTrack.play(localPlayerContainer);
