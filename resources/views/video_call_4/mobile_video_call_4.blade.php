@@ -2579,13 +2579,14 @@
                 // console.log(localPlayerContainer);
 
                 agoraEngine.publish([channelParameters.localVideoTrack ]);
-                channelParameters.localVideoTrack.play(localPlayerContainer);
+                // channelParameters.localVideoTrack.play(localPlayerContainer);
+
                 if (isVideo == true) {
                     console.log("เข้าpublishในonchange_if");
                     // เริ่มส่งภาพจากอุปกรณ์ใหม่
                     channelParameters.localVideoTrack.setEnabled(true);
 
-                    // channelParameters.localVideoTrack.play(localPlayerContainer);
+                    channelParameters.localVideoTrack.play(localPlayerContainer);
 
                     // agoraEngine.publish([channelParameters.localVideoTrack]);
 
@@ -2596,7 +2597,7 @@
                     // alert('ปิด');
                     channelParameters.localVideoTrack.setEnabled(false);
 
-                    // channelParameters.localVideoTrack.play(localPlayerContainer);
+                    channelParameters.localVideoTrack.play(localPlayerContainer);
 
                     // agoraEngine.publish([channelParameters.localVideoTrack]);
                 }
