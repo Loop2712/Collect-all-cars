@@ -1483,7 +1483,7 @@
 
     });
 
-    let channelParameters =
+    var channelParameters =
     {
         // A variable to hold a local audio track.
         localAudioTrack: null,
@@ -2579,7 +2579,7 @@
                 // เปลี่ยน local video track เป็นอุปกรณ์ใหม่
                 channelParameters.localVideoTrack = newVideoTrack;
 
-                agoraEngine.publish([channelParameters.localVideoTrack]);
+                agoraEngine.publish([channelParameters.localVideoTrack , channelParameters.localAudioTrack]);
                 channelParameters.localVideoTrack.play(localPlayerContainer);
                 if (isVideo == true) {
                     // console.log("เข้าpublishในonchange_if");
