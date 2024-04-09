@@ -1322,7 +1322,6 @@ class Sos_help_centerController extends Controller
         $latitude = (float)$m_lat ;
         $longitude = (float)$m_lng;
 
-
         if ($forward_level != "null"){
 
             $data_locations = DB::table('data_1669_operating_units')
@@ -3332,5 +3331,13 @@ class Sos_help_centerController extends Controller
 
         return $data ;
 
+    }
+
+    function get_unit_offiecr($sub_organization){
+        $data = DB::table('data_1669_operating_units')
+            ->where('area' , $sub_organization)
+            ->get();
+
+        return $data ;
     }
 }
