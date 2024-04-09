@@ -2579,7 +2579,7 @@
                 channelParameters.localVideoTrack = newVideoTrack;
 
                 agoraEngine.publish([channelParameters.localVideoTrack ]);
-                // channelParameters.localVideoTrack.play(localPlayerContainer);
+                channelParameters.localVideoTrack.play(localPlayerContainer);
                 // if (isVideo == true) {
                 //     // console.log("เข้าpublishในonchange_if");
                 //     // เริ่มส่งภาพจากอุปกรณ์ใหม่
