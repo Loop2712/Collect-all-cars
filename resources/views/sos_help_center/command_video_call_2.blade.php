@@ -3899,13 +3899,13 @@
                         // แสดงผลลัพธ์
                         let max_minute_time = 8;
 
-                        let remain_time = max_minute_time - 1;
-                        let time_warning = "";
-                        if (max_minute_time > 1) {
-                            time_warning = (max_minute_time - remain_time);
-                        }else{
-                            time_warning = "น้อยกว่า 1";
-                        }
+                        // let remain_time = max_minute_time - 1;
+                        // let time_warning = "";
+                        // if (max_minute_time > 1) {
+                        //     time_warning = (max_minute_time - remain_time);
+                        // }else{
+                        //     time_warning = "น้อยกว่า 1";
+                        // }
 
                         if (hours > 0) {
                             if (minutes < 10) {  // ใส่ 0 ข้างหน้า นาที กรณีเลขยังไม่ถึง 10
@@ -3924,7 +3924,7 @@
                         // // อัปเดตข้อความใน div ที่มี id เป็น timeCountVideo
                         time_of_room.innerHTML = showTimeCountVideo;
 
-                        if (minsec == "5.00") {
+                        if (minsec == 5.00) {
                             audio_in_room.play();
                             time_of_room.setAttribute('class','text-danger');
 
