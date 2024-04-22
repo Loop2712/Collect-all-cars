@@ -620,7 +620,7 @@ function create_profile_in_sidebar(user_data , name , type , profile_pic, volume
                         <ul class="dd-menu">
                             <li>
                                 <p class="mb-0" style="cursor: default; color: #000000; font-size: 14px !important;">ระดับเสียง</p>
-                                <input style="z-index: 4;" type="range" id="remoteAudioVolume_`+user_data.uid+`" min="0" max="1000" value="`+inputValue_remote+`" class="w-100" onChange="onChangeVolumeRemote(`+user_data.uid+`, `+inputValue_remote+`);">
+                                <input style="z-index: 4;" type="range" id="remoteAudioVolume_`+user_data.uid+`" min="0" max="1000" value="`+inputValue_remote+`" class="w-100" onChange="onChangeVolumeRemote(`+user_data.uid+`, 'handle');">
                             </li>
                         </ul>
                     </label>

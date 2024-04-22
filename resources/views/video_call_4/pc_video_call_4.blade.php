@@ -826,7 +826,16 @@
             @if ($type == "sos_1669")
                 <div class="" >
                     <div class="head_sidebar_div text-center mb-2">
-                        <p class="h4 text-dark mt-3 font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
+                        @if (Auth::user()->role == "partner")
+                            @if (!empty($sos_data->code_for_officer))
+                                <p class="h4 text-dark mt-3 font-weight-bold">{{$sos_data->code_for_officer ? $sos_data->code_for_officer : "--"}}</p>
+                            @else
+                                <p class="h4 text-dark mt-3 font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
+                            @endif
+                        @else
+                            <p class="h4 text-dark mt-3 font-weight-bold">{{$sos_data->operating_code ? $sos_data->operating_code : "--"}}</p>
+                        @endif
+
                         <p class="h5 text-dark ">สถานะ:
                             <a class="{{$color_text_status}} font-weight-bold">{{$sos_data->status ? $sos_data->status : "--"}}</a>
                         </p>
@@ -1179,9 +1188,9 @@
                                 </button>
                             </div>
 
-                            <div class="btn btnSpecial btn_leave d-no" id="addButton">
+                            {{-- <div class="btn btnSpecial btn_leave d-no" id="addButton">
                                 <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-                            </div>
+                            </div> --}}
 
                             <div class="btn btnSpecial btn_leave" id="leave">
                                 <i class="fa-solid fa-phone-xmark" style="color: #ffffff;"></i>
@@ -1259,6 +1268,7 @@
 
     // เกี่ยวกับเวลาในห้อง
     var check_start_timer_video_call = false;
+    var check_user_in_video_call = false;
     // var hours = 0;
     // var minutes = 0;
     // var seconds = 0;
@@ -1870,6 +1880,10 @@
                     if(check_start_timer_video_call == false){
                         start_timer_video_call();
                     }
+
+                    if (check_user_in_video_call == false) {
+                        start_user_in_video_call(); // ทำฟังก์ชันเช็คคนที่ออกจากห้องไปแล้ว
+                    }
                 }
             });
 
@@ -1935,6 +1949,10 @@
                         console.log("member_in_room น้อยกว่า 2 --> user-left");
                         if(check_start_timer_video_call == true){
                             myStop_timer_video_call();
+                        }
+
+                        if (check_user_in_video_call == true) {
+                            Stop_check_user_in_video_call();
                         }
                     }
                     // ถ้าผู้ใช้ เหลือ 0 คน ให้ทำลายห้องทิ้ง
@@ -2145,15 +2163,23 @@
                                                 if(check_start_timer_video_call == false){
                                                     start_timer_video_call();
                                                 }
+
+                                                if (check_user_in_video_call == false) {
+                                                    start_user_in_video_call(); // ทำฟังก์ชันเช็คคนที่ออกจากห้องไปแล้ว
+                                                }
+
                                             }else{
                                                 if(check_start_timer_video_call == true){
                                                     console.log("member_in_room น้อยกว่า 2 --> join_and_update");
                                                     myStop_timer_video_call();
                                                 }
+
+                                                if (check_user_in_video_call == true) {
+                                                    Stop_check_user_in_video_call(); // หยุดทำฟังก์ชันเช็คคนที่ออกจากห้องไปแล้ว
+                                                }
                                             }
                                         }, 800);
 
-                                        // check_user_in_video_call(); // ทำฟังก์ชันเช็คคนที่ออกจากห้องไปแล้ว
 
                                 })
                                 .catch(error => {
@@ -2963,11 +2989,15 @@
 
     function onChangeVolumeRemote(div_id , slider){
         checkHtml = true; // ป้องกันการคลิ๊ก div video โดยยังไม่ได้ทำฟังก์ชันนี้
-        // let slider = document.querySelector("#remoteAudioVolume_"+div_id).value;
-        // console.log(agoraEngine['remoteUsers'][0]['audioTrack']);
-        // console.log("Volume of remote audio : "+ div_id +" = " + slider);
 
-        array_remoteVolumeAudio[div_id] = slider;
+        let value_slider;
+        if (slider == "handle") {
+            value_slider = document.querySelector("#remoteAudioVolume_"+div_id).value;
+        } else {
+            value_slider = slider;
+        }
+
+        array_remoteVolumeAudio[div_id] = value_slider;
         // console.log("agoraEngine onChangeVolumeRemote");
         // console.log(agoraEngine);
 
@@ -2985,32 +3015,16 @@
 
             if (div_id == uid_remote && agoraEngine['remoteUsers'][index]['audioTrack']) {
                 // console.log("ไอดีตรงกัน");
-                agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(slider));
+                agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(value_slider));
             }
-
-            // เช็ค ค่าตัวปรับเสียงก่อนเปลี่ยน icon ใน sidebar
-            // if (slider == 0) {
-            //     document.querySelector('#icon_mic_remote_in_sidebar_'+div_id).innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-volume-xmark"
-            //     style="--fa-primary-color: #000000; --fa-secondary-color: #ff0000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6; "></i>`;
-
-            //     // document.querySelector("#icon_mic_remote_in_sidebar_"+div_id).innerHTML = `<i title="คุณปิดไมโครโฟนผู้ใช้ท่านนี้ไว้" class="fa-duotone fa-microphone-slash"
-            //     // style="--fa-primary-color: #1319b9; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6;"></i>`;
-            // } else {
-            //     if (!agoraEngine['remoteUsers'][index]['audioTrack']) {
-            //         document.querySelector("#icon_mic_remote_in_sidebar_"+div_id).innerHTML = `<i class="fa-duotone fa-microphone-slash"
-            //         style="--fa-primary-color: #e60000; --fa-secondary-color: #000000; --fa-secondary-opacity: 1; display: inline-block; z-index: 6;"></i>`;
-            //     } else {
-            //         document.querySelector("#icon_mic_remote_in_sidebar_"+div_id).innerHTML = `<i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6;"></i>`;
-            //     }
-            // }
 
             //เช็คว่าสถานะ remote เปิดหรือปิดไมค์ แล้วส่งไปยังฟังก์ชันเปลี่ยน ไอคอนตามสถานะ
             if (!agoraEngine['remoteUsers'][index]['audioTrack']) {
                 let type = "close";
-                check_and_switch_icon_remote(div_id,type,slider);
+                check_and_switch_icon_remote(div_id,type,value_slider);
             } else {
                 let type = "open";
-                check_and_switch_icon_remote(div_id,type,slider);
+                check_and_switch_icon_remote(div_id,type,value_slider);
             }
 
         }
@@ -3747,49 +3761,87 @@
         })
     }
 
-    // async function check_user_in_video_call(){
+    function Stop_check_user_in_video_call() {
+        console.log("เข้ามาหยุด Stop_check_user_in_video_call");
+        clearInterval(loop_check_div_user);
+        check_user_in_video_call = false;
+    }
 
-    //     try {
-    //         let response = await fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_id=" + sos_id + "&type=" + type_video_call);
-    //         let result = await response.json();
+    function start_user_in_video_call(){
+        console.log("start_user_in_video_call");
+        check_user_in_video_call = true;
 
-    //         console.log("check_user_in_video_call : ");
-    //         console.log(result);
+        loop_check_div_user = setInterval(() => {
 
-    //         result['data'].forEach(data_user => {
-    //             console.log("data_user");
-    //             console.log(data_user);
-    //             if (data_user.id !== '{{ Auth::user()->id }}') {
+            fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_id=" + sos_id + "&type=" + type_video_call)
+            .then(response => response.json())
+            .then(result => {
+                let customDivAll = document.querySelectorAll(".custom-div");
 
-    //                 let customDivAll = document.querySelectorAll(".custom-div");
-    //                 let status_delete = "delete";
+                let status_delete = "delete";
 
-    //                 customDivAll.forEach(element => {
-    //                     // let id = element.id;
+                customDivAll.forEach(element => {
 
-    //                     if (element.id == data_user.id ) {
-    //                         status_delete = "not_delete";
-    //                     }
+                    let id = element.id;
+                    let status_delete = "delete";
 
-    //                 });
+                    if (id.startsWith("videoDiv_")) {
+                        // แยก UID จาก id โดยตัด "videoDiv_" ออก
+                        let uid = id.replace("videoDiv_", "");
 
-    //                 if (status_delete == "delete") {
-    //                     document.querySelector('#videoDiv_' + data_user.id).remove();
-    //                     console.log("ลบ div ที่ไม่อยู่ในห้อง");
-    //                 }
-    //             }
+                        // result['data'].forEach(data_user => {
+                        //     // ตรวจสอบว่า UID นี้อยู่ใน remoteUsers หรือไม่
+                        //     if (uid == data_user.id.toString()) {
+                        //         // ถ้าไม่มีให้ลบ element ออก
+                        //         if (uid !== '{{ Auth::user()->id }}') {
+                        //             // element.remove();
+                        //             status_delete = "not_delete";
+                        //         }
 
-    //         });
+                        //     }
+                        // });
+
+                        const promises = result['data'].map(data_user => {
+                            return new Promise((resolve, reject) => {
+                                // ตรวจสอบว่า UID นี้อยู่ใน remoteUsers หรือไม่
+                                if (uid == data_user.id.toString()) {
+                                    // ถ้าไม่มีให้ลบ element ออก
+                                    status_delete = "not_delete";
+                                }
+                                // เมื่อเสร็จสิ้นให้เรียก resolve
+                                resolve();
+                            });
+                        });
+
+                        Promise.all(promises)
+                            .then(() => {
+                                if (status_delete == "delete") {
+                                    element.remove();
+                                }
+                            })
+                            .catch(error => {
+                                // จัดการกับข้อผิดพลาด (ถ้ามี)
+                                console.error("catch error in promise :"+error);
+                            });
+
+                    }
+                    else{
+                        element.remove();
+                    }
 
 
 
-    //     } catch (error) {
-    //         console.log("check_user_in_video_call error : "+error);
-    //     } finally {
-    //         setTimeout(check_user_in_video_call, 15000);
-    //     }
+                });
 
-    // }
+            })
+            .catch(error => {
+                check_user_in_video_call = false;
+                console.log("check_user_in_video_call error : "+error);
+            });
+
+        }, 15000);
+
+    }
 
 </script>
 

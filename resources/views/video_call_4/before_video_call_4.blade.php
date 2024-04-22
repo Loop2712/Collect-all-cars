@@ -292,7 +292,16 @@
                             @php
                                 $data_sos_1669 = App\Models\Sos_help_center::where('id' , $sos_id)->first();
                             @endphp
-                            <h4 class="w-100">ห้องสนทนา : {{ $data_sos_1669->operating_code }}</h4>
+
+                            @if ($user->role == "partner")
+                                @if (!empty($data_sos_1669->code_for_officer))
+                                    <h4 class="w-100">ห้องสนทนา : {{ $data_sos_1669->code_for_officer }}</h4>
+                                @else
+                                    <h4 class="w-100">ห้องสนทนา : {{ $data_sos_1669->operating_code }}</h4>
+                                @endif
+                            @else
+                                <h4 class="w-100">ห้องสนทนา : {{ $data_sos_1669->operating_code }}</h4>
+                            @endif
                         @else
                             <h4 class="w-100">ห้องสนทนา : {{$sos_id ? $sos_id : "--"}}</h4>
                         @endif
@@ -320,7 +329,16 @@
                             @php
                                 $data_sos_1669 = App\Models\Sos_help_center::where('id' , $sos_id)->first();
                             @endphp
-                            <h1 class="w-100 font-weight-bold">ห้องสนทนา : {{ $data_sos_1669->operating_code }}</h1>
+
+                            @if ($user->role == "partner")
+                                @if (!empty($data_sos_1669->code_for_officer))
+                                    <h1 class="w-100 font-weight-bold">ห้องสนทนา : {{ $data_sos_1669->code_for_officer }}</h1>
+                                @else
+                                    <h1 class="w-100 font-weight-bold">ห้องสนทนา : {{ $data_sos_1669->operating_code }}</h1>
+                                @endif
+                            @else
+                                <h1 class="w-100 font-weight-bold">ห้องสนทนา : {{ $data_sos_1669->operating_code }}</h1>
+                            @endif
                         @else
                             <h1 class="w-100 font-weight-bold">ห้องสนทนา : {{$sos_id ? $sos_id : "--"}}</h1>
                         @endif
