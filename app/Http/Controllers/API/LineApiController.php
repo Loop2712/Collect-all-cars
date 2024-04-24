@@ -237,8 +237,9 @@ class LineApiController extends Controller
                     $line->replyToUser(null, $event, "niems");
                     break;
                 case "ข่าวสาร" :  
-                    $line->replyToUser(null, $event, "vnews");
                     $this->Loading_Animation($event);
+                    sleep(2);
+                    $line->replyToUser(null, $event, "vnews");
                     break;
                 // case "vmarket" :  
                 //     $line->replyToUser(null, $event, "vmarket");
