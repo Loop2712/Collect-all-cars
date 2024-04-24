@@ -1996,7 +1996,15 @@ class LineApiController extends Controller
                 $date_ex = explode(" ",$data_sos->created_at);
                 $time_ex = explode(":",$date_ex[1]);
 
-                $string_json = str_replace("ID_SOS_HELP_CENTER",$data_sos->operating_code,$string_json);
+                $show_code_officer = '';
+                if( !empty($data_sos->code_for_officer) ){
+                    $show_code_officer = $data_sos->code_for_officer;
+                }
+                else{
+                    $show_code_officer = $data_sos->operating_code;
+                }
+
+                $string_json = str_replace("ID_SOS_HELP_CENTER",$show_code_officer,$string_json);
                 $string_json = str_replace("DATE_SOS_HELP_CENTER",$date_ex[0],$string_json);
                 $string_json = str_replace("TIME_SOS_HELP_CENTER",$time_ex[0].":".$time_ex[1],$string_json);
 
