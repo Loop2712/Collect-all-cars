@@ -63,24 +63,25 @@ class LineApiController extends Controller
 
     function Loading_Animation($event){
 
-        $body = [
-            "data" => $event['source']['userId'],
-        ];
+        $headers = array(
+            "Content-Type: application/json",
+            "Authorization: Bearer " . env('CHANNEL_ACCESS_TOKEN')
+        );
 
-        $opts = [
-            'http' =>[
-                'method'  => 'POST',
-                'header'  => "Content-Type: application/json \r\n".
-                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
-                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
-                //'timeout' => 60
-            ]
-        ];
-                            
-        $context  = stream_context_create($opts);
-        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        // กำหนด URL และข้อมูลสำหรับการเรียกใช้งาน
         $url = "https://api.line.me/v2/bot/chat/loading/start";
-        $result = file_get_contents($url, false, $context);
+        $data = array("chatId" => $event['source']['userId']);
+
+        // สร้างคำขอ HTTP POST
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // ส่งคำขอและรับผลลัพธ์
+        $response = curl_exec($ch);
+        curl_close($ch);
 
     }
 
@@ -238,7 +239,7 @@ class LineApiController extends Controller
                     break;
                 case "ข่าวสาร" :  
                     $this->Loading_Animation($event);
-                    sleep(2);
+                    sleep(1);
                     $line->replyToUser(null, $event, "vnews");
                     break;
                 // case "vmarket" :  
