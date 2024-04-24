@@ -37,6 +37,8 @@ class LineApiController extends Controller
 
         switch($event["type"]){
             case "message" : 
+                $this->Loading_Animation($event);
+                sleep(1);
                 $this->messageHandler($event);
                 break;
             case "postback" : 
@@ -238,8 +240,6 @@ class LineApiController extends Controller
                     $line->replyToUser(null, $event, "niems");
                     break;
                 case "ข่าวสาร" :  
-                    $this->Loading_Animation($event);
-                    sleep(1);
                     $line->replyToUser(null, $event, "vnews");
                     break;
                 // case "vmarket" :  
