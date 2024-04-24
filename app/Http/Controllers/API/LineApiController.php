@@ -38,10 +38,10 @@ class LineApiController extends Controller
         switch($event["type"]){
             case "message" : 
                 $this->Loading_Animation($event);
-                sleep(1);
                 $this->messageHandler($event);
                 break;
             case "postback" : 
+                $this->Loading_Animation($event);
                 $this->postbackHandler($event);
                 break;
             case "join" :
