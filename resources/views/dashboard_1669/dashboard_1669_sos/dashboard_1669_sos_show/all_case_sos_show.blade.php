@@ -148,12 +148,14 @@
                                     {{ $item_sos->name_user }}
                                 @else
                                     @php
-                                        // $create_by_ex = explode( 'admin - ', $item_sos->create_by );
-
                                         $command_create = App\Models\Data_1669_officer_command::where('id',$item_sos->command_by)->first();
                                     @endphp
 
-                                    {{ $command_create->name_officer_command ? $command_create->name_officer_command :"--" }} (เจ้าหน้าที่)
+                                    @if(!empty($command_create->name_officer_command))
+                                        {{ $command_create->name_officer_command}} (เจ้าหน้าที่)
+                                    @else   
+                                        --
+                                    @endif
                                 @endif
                             </td>
                             <td>{{ $item_sos->phone_user ? $item_sos->phone_user : "--" }}</td>
