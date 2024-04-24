@@ -149,11 +149,11 @@
                                 @else
                                     @php
                                         // $create_by_ex = explode( 'admin - ', $item_sos->create_by );
+
                                         $command_create = App\Models\Data_1669_officer_command::where('id',$item_sos->command_by)->first();
-                                        $name_command_create = $command_create->name_officer_command ;
                                     @endphp
 
-                                    {{ $name_command_create }} (เจ้าหน้าที่)
+                                    {{ $command_create->name_officer_command ? $command_create->name_officer_command :"--" }} (เจ้าหน้าที่)
                                 @endif
                             </td>
                             <td>{{ $item_sos->phone_user ? $item_sos->phone_user : "--" }}</td>
