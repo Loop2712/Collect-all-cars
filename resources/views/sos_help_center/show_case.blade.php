@@ -74,18 +74,7 @@
 		color: #fff;
 		border-radius: 25px;
 	}
-	.status-bar{
-		position: absolute;
-		top: 5%;
-		/* opacity: 0.5; */
-		border-radius: 25px;
-		width: 95%;
-		transform: translate(2.5%, -50%);
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 8px;
-	}
+	
 	.img-profile{
 		border-radius: 50%;
 		width: 46px;
@@ -803,33 +792,48 @@ input:focus {
                 </center>
             </div>
         </div>
+        <style>
+            .status-bar{
+                position: absolute;
+                top: 5%;
+                /* opacity: 0.5; */
+                border-radius: 25px;
+                width: 95%;
+                transform: translate(2.5%, -50%);
+                padding: 8px;
+            }
+        </style>
         <div class="status-bar">
-            <div class="show-status" id="situation_of_status">
-                <div class="ml-3" >
-                    <i class="fa-solid fa-truck-medical"></i>
-                    &nbsp;
-                    <small class="h6 text-bold p-0 m-0" id="show_status"></small>
-                    <small class="p-0 m-0" id="show_remark_status"></small>
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="show-status" id="situation_of_status">
+                    <div class="ml-3" >
+                        <i class="fa-solid fa-truck-medical"></i>
+                        &nbsp;
+                        <small class="h6 text-bold p-0 m-0" id="show_status"></small>
+                        <small class="p-0 m-0" id="show_remark_status"></small>
+                        <div class="w-100 d-block">เลขปฎิบัติการ : <span id="operating_code">{{$data_sos->code_for_officer ? $data_sos->code_for_officer : $data_sos->operating_code}}</span></div>
+                    </div>
+                    <div class="ml-3 d-none">
+                        <p class="mt-2">
+                            LAT : <span id="text_show_lat"></span>
+                            <br>
+                            LONG : <span id="text_show_lng"></span>
+                        </p>
+                    </div>
+                    <button class="btn btn-danger" style="padding: 12px;" onclick="document.querySelector('#btn_modal_add_photo_sos').click();"> <i class="fa-duotone fa-camera-retro" ></i></button>
                 </div>
-                <div class="ml-3 d-none">
-                    <p class="mt-2">
-                        LAT : <span id="text_show_lat"></span>
-                        <br>
-                        LONG : <span id="text_show_lng"></span>
-                    </p>
+                <div class="btn p-0 m-0">
+                    @if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
+                        <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ Auth::user()->avatar }}">
+                    @endif
+                    @if(!empty(Auth::user()->photo))
+                        <img class="img-profile" width="45" src="{{ url('storage')}}/{{ Auth::user()->photo }}">
+                    @endif
                 </div>
-                <button class="btn btn-danger" style="padding: 12px;" onclick="document.querySelector('#btn_modal_add_photo_sos').click();"> <i class="fa-duotone fa-camera-retro" ></i></button>
             </div>
-            <div class="btn p-0 m-0">
-                @if(!empty(Auth::user()->avatar) and empty(Auth::user()->photo))
-                    <img class="mobile-nav-toggle main-shadow main-radius" style="margin-right: 15px;" width="35" src="{{ Auth::user()->avatar }}">
-                @endif
-                @if(!empty(Auth::user()->photo))
-                    <img class="img-profile" width="45" src="{{ url('storage')}}/{{ Auth::user()->photo }}">
-                @endif
-            </div>
+           
         </div>
-
+        
         <div class="menubar show-menubar">
             <button class="btn w-25 btn_menu" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-file-pen"></i></button>
             <button class="btn w-25 btn_menu" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-solid fa-messages-question"></i></button>
@@ -2305,7 +2309,7 @@ input:focus {
 		fetch("{{ url('/') }}/api/update_status_officer" + "/" + status + "/" + sos_id + "/" + reason)
             .then(response => response.text())
             .then(result => {
-                // console.log(result);
+                console.log(result);
 
                 if (status_sos === "ถึงที่เกิดเหตุ") {
 
