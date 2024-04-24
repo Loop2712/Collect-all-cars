@@ -61,6 +61,29 @@ class LineApiController extends Controller
         }
 	}
 
+    function Loading_Animation($event){
+
+        $body = [
+            "data" => $event['source']['userId'],
+        ];
+
+        $opts = [
+            'http' =>[
+                'method'  => 'POST',
+                'header'  => "Content-Type: application/json \r\n".
+                            'Authorization: Bearer '.env('CHANNEL_ACCESS_TOKEN'),
+                'content' => json_encode($body, JSON_UNESCAPED_UNICODE),
+                //'timeout' => 60
+            ]
+        ];
+                            
+        $context  = stream_context_create($opts);
+        //https://api-data.line.me/v2/bot/message/11914912908139/content
+        $url = "https://api.line.me/v2/bot/chat/loading/start";
+        $result = file_get_contents($url, false, $context);
+
+    }
+
 	public function messageHandler($event)
     {
         if ($event["source"]["type"] == "user") {
@@ -215,6 +238,7 @@ class LineApiController extends Controller
                     break;
                 case "ข่าวสาร" :  
                     $line->replyToUser(null, $event, "vnews");
+                    $this->Loading_Animation($event);
                     break;
                 // case "vmarket" :  
                 //     $line->replyToUser(null, $event, "vmarket");
