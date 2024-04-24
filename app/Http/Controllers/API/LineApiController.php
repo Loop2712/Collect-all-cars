@@ -248,7 +248,6 @@ class LineApiController extends Controller
                 //     $line->replyToUser(null, $event, "vmarket");
                 //     break;
                 case "รถของฉัน" :  
-                    sleep(2);
                     $line->replyToUser(null, $event, "myvehicle");
                     break;
                 case "ข้อมูลของคุณ" :  
