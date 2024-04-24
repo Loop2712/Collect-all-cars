@@ -3015,7 +3015,12 @@ class Sos_help_centerController extends Controller
 
         $sos_id = $requestData['sos_id'];
 
-        $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $sos_id)->first();
+        // $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $sos_id)->first();
+
+        $data_form_yellow = Sos_1669_form_yellow::where('sos_help_center_id', $sos_id)
+            ->join('sos_help_centers', 'sos_help_centers.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+            ->select('sos_1669_form_yellows.*' ,'sos_help_centers.code_for_officer' ,'sos_help_centers.operating_code')
+            ->first();
 
         return $data_form_yellow;
     }
