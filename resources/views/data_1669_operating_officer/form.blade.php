@@ -43,6 +43,7 @@
     <label for="vehicle_type" class="control-label">{{ 'ยานพาหนะ' }}</label>
     <select name="vehicle_type"  class="form-control" >
         <option value="" selected > - กรุณาเลือกยานพาหนะ - </option>   
+        <option value="หน่วยเคลื่อนที่เร็ว">หน่วยเคลื่อนที่เร็ว</option>      
         <option value="รถ">รถ</option>        
         <option value="อากาศยาน">อากาศยาน</option>   
         <option value="เรือ ป.1">เรือ ป.1</option>     

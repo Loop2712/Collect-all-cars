@@ -288,12 +288,24 @@
 									<span class="text-secondary" style="font-size: 15px;">(รวมทุกพื้นที่)</span>
 								</h4>
 							</div>
+							
 							<p style="position:relative;padding-top: 10px;">
 								<img src="{{ url('/img/icon/all_vehicle.png') }}" width="35" style="position: absolute;top:0px;"> 
 								<span style="margin-left:50px;">
 									
 									ทั้งหมด : <b id="count_sum_vehicle"></b>
 									<span class="float-end btn" onclick="view_officer_select('vehicle_type','all');">
+										<i class="fa-sharp fa-solid fa-eye text-info"></i>
+									</span>
+								</span>
+								<br>
+							</p>
+							<p style="position:relative;padding-top: 10px;">
+								<img src="{{ url('/img/icon/motorbike.png') }}" width="35" style="position: absolute;top:0px;"> 
+								<span style="margin-left:50px;">
+									
+								หน่วยเคลื่อนที่เร็ว : <b id="count_vehicle_motorcycle"></b>
+									<span class="float-end btn" onclick="view_officer_select('vehicle_type','หน่วยเคลื่อนที่เร็ว');">
 										<i class="fa-sharp fa-solid fa-eye text-info"></i>
 									</span>
 								</span>
@@ -940,6 +952,7 @@
     	let count_officer_Not_ready = 0 ;
 
     	let count_vehicle_car = 0 ;
+    	let count_vehicle_motorcycle = 0 ;
     	let count_vehicle_aircraft = 0 ;
     	let count_vehicle_boat_1 = 0 ;
     	let count_vehicle_boat_2 = 0 ;
@@ -968,6 +981,9 @@
 
         	// VEHICLE
         	switch(item.vehicle_type) {
+				case "หน่วยเคลื่อนที่เร็ว":
+			    	count_vehicle_motorcycle = count_vehicle_motorcycle + 1 ;
+			    break;
 			  	case "รถ":
 			    	count_vehicle_car = count_vehicle_car + 1 ;
 			    break;
@@ -1309,6 +1325,7 @@
     	// VEHICLE
     	document.querySelector('#count_sum_vehicle').innerHTML = data_officer_all.length ;
     	document.querySelector('#count_vehicle_car').innerHTML = count_vehicle_car ;
+    	document.querySelector('#count_vehicle_motorcycle').innerHTML = count_vehicle_motorcycle ;
     	document.querySelector('#count_vehicle_aircraft').innerHTML = count_vehicle_aircraft ;
     	document.querySelector('#count_vehicle_boat_1').innerHTML = count_vehicle_boat_1 ;
     	document.querySelector('#count_vehicle_boat_2').innerHTML = count_vehicle_boat_2 ;
@@ -1341,7 +1358,7 @@
     		infowindows = [] ;
     		watching_officer_count = 0 ;
 	    		
-	    	// console.log(type);
+	    	console.log(type);
 	    	check_view_officer_type = type ;
 	    	check_view_officer_data = data ;
 
@@ -1388,6 +1405,7 @@
 		        	// FR
 		        	if( item.level === "FR" ){
 		        		switch(item.vehicle_type) {
+							
 						  	case "รถ":
 						    	icon_level = img_green_car ;
 						    break;
@@ -1411,6 +1429,7 @@
 		        	// BLS && ILS 
 		        	else if( item.level === "BLS" || item.level === "ILS"){
 		        		switch(item.vehicle_type) {
+							
 						  	case "รถ":
 						    	icon_level = img_yellow_car ;
 						    break;
@@ -1434,6 +1453,7 @@
 		        	// ALS
 		        	else{
 		        		switch(item.vehicle_type) {
+							
 						  	case "รถ":
 						    	icon_level = img_red_car ;
 						    break;

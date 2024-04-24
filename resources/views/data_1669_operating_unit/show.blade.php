@@ -1,7 +1,12 @@
 @extends('layouts.partners.theme_partner_new')
 
 @section('content')
-
+<style>
+    .container-name-officer{
+        overflow: auto;
+        max-height: 220px;
+    }
+</style>
 <!-- เปลี่ยนชื่อเจ้าหน้าที่ -->
 <!-- Modal -->
 <div class="modal fade" id="Change_name_officer" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Label_Change_name_officer" aria-hidden="true">
@@ -137,13 +142,21 @@
     </div>
 
     <div class="card-body">
-
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
+                            <div style="position: absolute; top: 15px;">
+                                <button class="btn btn-primary btn-sm  mb-0 ms-2" onclick="selectAllCheckboxes()">
+                                    เลือกทั้งหมด
+                                </button>
+                                <button class="btn btn-danger d-none btn-sm mb-0 ms-2" id="btn_multi_delete" onclick="cofirmMultiDelete()">
+                                    ลบ ที่เลือก (<span id="count_delete"></span>)
+                                </button>
+                            </div>
                             <table id="example2555" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>ชื่อเจ้าหน้าที่</th>
                                         <th>พื้นที่ที่พร้อมช่วยเหลือ</th>
                                         <th>ระดับ</th>
@@ -151,11 +164,16 @@
                                         <th>สถานะ</th>
                                         <th>ไปช่วยเหลือแล้ว(ครั้ง)</th>
                                         <th>ปฏิเสธการช่วยเหลือ(ครั้ง)</th>
+                                        <th>action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($data_officer as $item)
-                                        <tr role="row" class="odd">
+                                        <tr role="row" class="odd" data-id="tr_operating_officer_id_{{$item->id}}">
+                                            <td>
+                                                  <input name_operating_officer="{{ $item->name_officer }}" type="checkbox" name="check_delete" class="ms-2" id="{{$item->id}}" onclick="multi_delete(this)">
+
+                                            </td>
                                             <td class="sorting_1" id="td_{{ $item->id }}">
                                                 <i class="fa-duotone fa-pen-to-square text-warning btn mr-1" data-toggle="modal" data-target="#Change_name_officer" onclick="show_modal_Change_name_officer('{{ $item->name_officer }}' , '{{ $item->id }}');"></i>
                                                 {{ $item->name_officer }}
@@ -219,6 +237,8 @@
                                                         $class_vehicle_type = "fa-duotone fa-ship" ;
                                                     }else if ( $item->vehicle_type == 'เรือประเภทอื่นๆ' ){
                                                         $class_vehicle_type = "fa-duotone fa-ship" ;
+                                                    }else if ( $item->vehicle_type == 'หน่วยเคลื่อนที่เร็ว' ){
+                                                        $class_vehicle_type = "fa-solid fa-motorcycle" ;
                                                     }
                                                 @endphp
                                                 <center>
@@ -272,6 +292,19 @@
                                                 @endphp
 
                                                 {{ $count_refuse }}
+                                            </td>
+                                            <td>
+                                                <form id="form_delete_operating_unit_{{$item->id}}" method="POST" action="{{ url('/data_1669_operating_unit' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <div class="btn btn-danger p-0">
+                                                        <div class="d-flex">
+                                                            <a  class="btn text-white btn-sm ps-0" id="{{$item->id}}" title="Delete Deliver" onclick="delete_operating_unit(this)"><i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                                Delete
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -430,99 +463,269 @@
     }
 </script>
 
- <script>
-        function gen_qr_code_add_officer(){
+<script>
 
-            document.querySelector('#btn_modal_confirm_create').click();
+    function gen_qr_code_add_officer(){
 
-            let url = "" ;
+        document.querySelector('#btn_modal_confirm_create').click();
 
-            url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/add_new_officers" + "/" + "{{ $data_1669_operating_unit->id }}" + "&chs=500x500&choe=UTF-8" ;
-            // console.log(url);
+        let url = "" ;
 
-            let data = {
-                'url' : url,
-                'name_unit' : "{{ $data_1669_operating_unit->name }}",
-            };
+        url = "https://chart.googleapis.com/chart?cht=qr&chl=https://www.viicheck.com/add_new_officers" + "/" + "{{ $data_1669_operating_unit->id }}" + "&chs=500x500&choe=UTF-8" ;
+        // console.log(url);
 
-            fetch("{{ url('/') }}/api/save_qr_code_add_officer", {
-                method: 'post',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
+        let data = {
+            'url' : url,
+            'name_unit' : "{{ $data_1669_operating_unit->name }}",
+        };
+
+        fetch("{{ url('/') }}/api/save_qr_code_add_officer", {
+            method: 'post',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (response){
+            return response.text();
+        }).then(function(text){
+            // console.log(text);
+            let url_img = "{{ url('storage') }}/" + text;
+            // console.log(url_img);
+
+            document.querySelector('#img_qr_code').setAttribute('src' , url_img);
+            document.querySelector('#img_qr_code_downloada').setAttribute('href' , url_img);
+
+            document.querySelector('#content_qr_code').classList.remove('d-none');
+            document.querySelector('#content_load').classList.add('d-none');
+
+        }).catch(function(error){
+            // console.error(error);
+        });
+
+        
+
+
+    }
+
+    function CopyToClipboard(containerid) {
+        if (document.selection) {
+        var range = document.body.createTextRange();
+        range.moveToElementText(document.getElementById(containerid));
+        range.select().createTextRange();
+        document.execCommand("copy");
+        } else if (window.getSelection) {
+        var range = document.createRange();
+        range.selectNode(document.getElementById(containerid));
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        alert("คัดลอก ข้อความแล้ว");
+        // window.location.replace("{{url('/view_new_user')}}");
+        }
+    }
+
+</script>
+
+<script>
+    function show_modal_Change_name_officer(name_officer , id_officer){
+        
+        document.querySelector('#new_name_officer').value = '' ;
+        document.querySelector('#btn_cf_Change_name_officer').setAttribute('onclick','CF_Change_name_officer('+id_officer+');');
+        document.querySelector('#old_name_officer').value = name_officer;
+        document.querySelector('#new_name_officer').setAttribute('id','new_name_officer_'+id_officer);
+
+    }
+
+    function CF_Change_name_officer(id_officer){
+        let new_name_officer = document.querySelector('#new_name_officer_'+id_officer).value;
+        // console.log(new_name_officer);
+
+        fetch("{{ url('/') }}/api/CF_Change_name_officer" + "/" +id_officer+ "/" +new_name_officer)
+            .then(response => response.text())
+            .then(result => {
+                // console.log(result);
+
+                let td_name = document.querySelector('#td_' + id_officer);
+                let html = `
+                    <i class="fa-duotone fa-pen-to-square text-warning btn mr-1" data-toggle="modal" data-target="#Change_name_officer" onclick="show_modal_Change_name_officer('`+new_name_officer+`' , '`+id_officer+`');"></i>
+                            `+new_name_officer+`
+                `;
+
+                td_name.innerHTML = html ;
+                document.querySelector('#new_name_officer_'+id_officer).setAttribute('id','new_name_officer');
+                document.querySelector('#btn_close_Change_name_officer').click();
+        });
+
+        
+    }
+</script>
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js'></script>
+
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+
+        <script>
+            let multi_delete_id = ''; // กำหนด multi_delete_id เป็นตัวแปร global หรือนอกฟังก์ชัน
+
+            function multi_delete(params) {
+                const id = params.id.toString();
+                const idArray = multi_delete_id.split(',').map(id => id.trim());
+                const index = idArray.indexOf(id);
+
+                if (params.checked && index === -1) {
+                    if (multi_delete_id !== '') {
+                        multi_delete_id += ',';
+                    }
+                    multi_delete_id += id;
+                } else if (!params.checked && index !== -1) {
+                    idArray.splice(index, 1);
+                    multi_delete_id = idArray.join(',');
                 }
-            }).then(function (response){
-                return response.text();
-            }).then(function(text){
-                // console.log(text);
-                let url_img = "{{ url('storage') }}/" + text;
-                // console.log(url_img);
 
-                document.querySelector('#img_qr_code').setAttribute('src' , url_img);
-                document.querySelector('#img_qr_code_downloada').setAttribute('href' , url_img);
+                console.log(multi_delete_id);
 
-                document.querySelector('#content_qr_code').classList.remove('d-none');
-                document.querySelector('#content_load').classList.add('d-none');
+                if (multi_delete_id !== '') {
+                    let count_select_delete = countIds(multi_delete_id);
+                    document.querySelector('#btn_multi_delete').classList.remove('d-none');
+                    document.querySelector('#count_delete').innerHTML = count_select_delete;
+                } else {
+                    document.querySelector('#btn_multi_delete').classList.add('d-none');
+                    
+                }
+            }
 
-            }).catch(function(error){
-                // console.error(error);
-            });
+            function selectAllCheckboxes() {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"][name="check_delete"]');
+                let allChecked = true;
 
-            
+                checkboxes.forEach((checkbox) => {
+                    if (!checkbox.checked) {
+                        allChecked = false;
+                        return;
+                    }
+                });
+
+                checkboxes.forEach((checkbox) => {
+                    checkbox.checked = !allChecked;
+                    multi_delete(checkbox);
+                });
+            }
+
+            function toggleSelectAll() {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"][name="check_delete"]');
+                let allChecked = true;
+
+                checkboxes.forEach((checkbox) => {
+                    if (!checkbox.checked) {
+                        allChecked = false;
+                        return;
+                    }
+                });
+
+                checkboxes.forEach((checkbox) => {
+                    checkbox.checked = !allChecked;
+                    multi_delete(checkbox);
+                });
+
+                if (!allChecked) {
+                    // ล้าง multi_delete_id เมื่อ checkbox ถูก unchecked ใน toggleSelectAll
+                    multi_delete_id = '';
+                }
+            }
 
 
-        }
+            function countIds(id_delete) {
+                // ใช้ split เพื่อแยกสตริงด้วย comma และ trim เพื่อลบช่องว่างที่อาจจะมี
+                const idsArray = id_delete.split(',').map(id => id.trim());
+                // ใช้ filter และ length เพื่อนับจำนวน id ที่ไม่ใช่ช่องว่าง
+                const numberOfIds = idsArray.filter(id => id !== '').length;
+                return numberOfIds;
+            }
 
-        function CopyToClipboard(containerid) {
-          if (document.selection) {
-            var range = document.body.createTextRange();
-            range.moveToElementText(document.getElementById(containerid));
-            range.select().createTextRange();
-            document.execCommand("copy");
-          } else if (window.getSelection) {
-            var range = document.createRange();
-            range.selectNode(document.getElementById(containerid));
-            window.getSelection().addRange(range);
-            document.execCommand("copy");
-            alert("คัดลอก ข้อความแล้ว");
-            // window.location.replace("{{url('/view_new_user')}}");
-          }
-        }
+            function cofirmMultiDelete(params) {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"][name="check_delete"]:checked');
+                let deleteConfirmationMessage = '';
+                let number = 1;
+                console.log(checkboxes);
+                checkboxes.forEach((checkbox) => {
+                    let name_operating_officerValue = checkbox.getAttribute('name_operating_officer');
+                    deleteConfirmationMessage += `${number}.${name_operating_officerValue},`;
+                    number++;
+                });
 
-    </script>
+                swal.fire({
+                    title: 'ต้องการลบเจ้าหน้าที่ใช่หรือไม่?',
+                    html: "<div class='container-name-officer'>รายชื่อเจ้าหน้าที่:<br>" + deleteConfirmationMessage.replaceAll(',', '<br>') +"</div>",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'ยืนยัน'
+                }).then((result) => {
+                    if (result.value) {
+                        let arr = {
+                            "id_multi_delete": multi_delete_id,
+                            "multi_delete":true,
+                        };
+                        
+                        fetch("{{ url('/') }}/api/multiple_delete_officer", {
+                            method: 'post',
+                            body: JSON.stringify(arr),
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        }).then(function (response) {
+                            return response.json(); // เรียก .json() บน response
+                        }).then(function(data) {
+                            // นับจำนวนคุณสมบัติที่ไม่ใช่ null หรือ undefined
 
-    <script>
-        function show_modal_Change_name_officer(name_officer , id_officer){
-            
-            document.querySelector('#new_name_officer').value = '' ;
-            document.querySelector('#btn_cf_Change_name_officer').setAttribute('onclick','CF_Change_name_officer('+id_officer+');');
-            document.querySelector('#old_name_officer').value = name_officer;
-            document.querySelector('#new_name_officer').setAttribute('id','new_name_officer_'+id_officer);
+                            let deletedIds = data.deleted_ids; // สมมติว่า deleted_ids เป็นอาร์เรย์ของ ids ที่ถูกลบออก
 
-        }
+                            // ค้นหาและลบ elements ที่มี id ตรงกัน
+                            deletedIds.forEach(function(deletedId) {
+                                let elementToDelete = document.querySelector(`[data-id="tr_operating_officer_id_${deletedId}"]`);
+                                if (elementToDelete) {
+                                    elementToDelete.remove();
+                                }
+                            });
 
-        function CF_Change_name_officer(id_officer){
-            let new_name_officer = document.querySelector('#new_name_officer_'+id_officer).value;
-            // console.log(new_name_officer);
+                            Swal.fire({
+                                html: '<h3 class="text-success">ลบเสร็จสิ้น</h3>',
+                                icon: 'success',
+                                timer: 1500,
+                                showConfirmButton: false,
+                            })   
 
-            fetch("{{ url('/') }}/api/CF_Change_name_officer" + "/" +id_officer+ "/" +new_name_officer)
-                .then(response => response.text())
-                .then(result => {
-                    // console.log(result);
+                                multi_delete_id = '';
 
-                    let td_name = document.querySelector('#td_' + id_officer);
-                    let html = `
-                        <i class="fa-duotone fa-pen-to-square text-warning btn mr-1" data-toggle="modal" data-target="#Change_name_officer" onclick="show_modal_Change_name_officer('`+new_name_officer+`' , '`+id_officer+`');"></i>
-                                `+new_name_officer+`
-                    `;
+                            // console.log(data)
 
-                    td_name.innerHTML = html ;
-                    document.querySelector('#new_name_officer_'+id_officer).setAttribute('id','new_name_officer');
-                    document.querySelector('#btn_close_Change_name_officer').click();
-            });
+                        });
+                        // swal.fire({
+                        //     position: 'center',
+                        //     icon: 'success',
+                        //     title: 'ลบเรียบร้อย',
+                        //     showConfirmButton: false,
+                        //     timer: 1500
+                        // })
+                        // document.querySelector('#btn_multi_delete').classList.add('d-none');
 
-            
-        }
-    </script>
+                    }
+                })
+            }
 
+            function delete_operating_unit(data) {
+                let checkbox_select_delete = document.querySelectorAll('input[type="checkbox"][name="check_delete"]');
+
+                checkbox_select_delete.forEach(function(checkbox) {
+                    if (checkbox.id === data.id) {
+                        checkbox.checked = true; // ถ้าตรงกับ id ที่ต้องการจะ checked
+                    } else {
+                        checkbox.checked = false; // ถ้าไม่ตรงกับ id ที่ต้องการจะ unchecked
+                    }
+                });
+                multi_delete_id = data.id;
+                    cofirmMultiDelete();
+            }
+        </script>
 @endsection

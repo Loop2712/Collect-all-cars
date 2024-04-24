@@ -344,6 +344,10 @@
 
             result.forEach(element => {
                     switch ( element.vehicle_type ) {
+                        case "หน่วยเคลื่อนที่เร็ว":
+                            color_benotified = "#7c7c7c";
+                            vehicle_icon = 'motorbike.png';
+                            break;
                         case 'รถ':
                             color_benotified = "#dc3545";
                             vehicle_icon = 'car_img.png';
