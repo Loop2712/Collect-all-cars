@@ -915,6 +915,19 @@
 
                                     // edit_km_car
 
+                                }else if (typecheck === "detail") {
+                                    
+                                    if (result.code_for_officer) {
+                                        console.log(result.code_for_officer);
+                                        document.querySelector('#operating_code').innerHTML = result.code_for_officer;
+                                        document.querySelector('#operating_code_model').innerHTML = result.code_for_officer;
+
+                                    }else{
+                                        console.log(result.operating_code);
+                                        document.querySelector('#operating_code').innerHTML = result.operating_code;
+                                        document.querySelector('#operating_code_model').innerHTML = result.operating_code;
+                                    }
+
                                 }else{
                                     // console.log(result);
 
@@ -1288,6 +1301,8 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
+            <h4 class="text-center mb-4" >เลขปฎิบัติการ : <span id="operating_code_model"></span></h4>
+
                 <div class="row d-flex justify-content-center">
                     <ul class="nav nav-pills d-flex justify-content-center text-center" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
