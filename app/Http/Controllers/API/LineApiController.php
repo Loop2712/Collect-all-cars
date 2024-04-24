@@ -239,7 +239,7 @@ class LineApiController extends Controller
                     break;
                 case "ข่าวสาร" :  
                     $this->Loading_Animation($event);
-                    sleep(1);
+                    sleep(2);
                     $line->replyToUser(null, $event, "vnews");
                     break;
                 // case "vmarket" :  
