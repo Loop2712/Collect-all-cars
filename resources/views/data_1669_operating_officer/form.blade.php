@@ -30,7 +30,7 @@
 
 <div class="notranslate form-group {{ $errors->has('level') ? 'has-error' : ''}}">
     <label for="level" class="control-label">{{ 'ระดับ' }}</label>
-    <select name="level" class="form-control" >
+    <select name="level" class="form-control" required>
         <option value="" selected > - กรุณาเลือกระดับ - </option>    
         <option value="FR">FR</option>                                 
         <option value="BLS">BLS</option>                                 
@@ -41,7 +41,7 @@
 </div>
 <div class="notranslate form-group {{ $errors->has('vehicle_type') ? 'has-error' : ''}}">
     <label for="vehicle_type" class="control-label">{{ 'ยานพาหนะ' }}</label>
-    <select name="vehicle_type"  class="form-control" >
+    <select name="vehicle_type"  class="form-control" required>
         <option value="" selected > - กรุณาเลือกยานพาหนะ - </option>   
         <option value="หน่วยเคลื่อนที่เร็ว">หน่วยเคลื่อนที่เร็ว</option>      
         <option value="รถ">รถ</option>        
