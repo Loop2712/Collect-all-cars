@@ -1140,12 +1140,18 @@
 						$class_vehicle_type = "" ;
 
 						if( !empty($data_form_yellow->vehicle_type) ){
-							if( $data_form_yellow->vehicle_type == 'รถ' ){
+							if( $data_form_yellow->vehicle_type == 'หน่วยเคลื่อนที่เร็ว' ){
+								$check_checked = "checked";
+								$text_vehicle_type = 'หน่วยเคลื่อนที่เร็ว' ;
+								$value_vehicle_type = "หน่วยเคลื่อนที่เร็ว" ;
+								$class_vehicle_type = "fa-solid fa-motorcycle" ;
+							}else if( $data_form_yellow->vehicle_type == 'รถ' ){
 								$check_checked = "checked";
 								$text_vehicle_type = 'รถ' ;
 								$value_vehicle_type = "รถ" ;
 								$class_vehicle_type = "fa-solid fa-truck-medical" ;
-							}else if ( $data_form_yellow->vehicle_type == 'อากาศยาน' ){
+							}
+							else if ( $data_form_yellow->vehicle_type == 'อากาศยาน' ){
 								$check_checked = "checked";
 								$text_vehicle_type = "อากาศยาน" ;
 								$value_vehicle_type = "อากาศยาน" ;
