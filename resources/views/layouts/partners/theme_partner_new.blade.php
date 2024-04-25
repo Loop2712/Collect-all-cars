@@ -484,6 +484,13 @@
     border-radius: 25px !important;
 }
 
+.menu-select-vehicle-officer-motorbike{
+    background-color: #fff!important;
+    color: #00438c !important;
+    border: #00438c 1px solid !important;
+    border-radius: 25px !important;
+}
+
 
 .menu-select-vehicle-officer-aircraft{
     background-color: #fff!important;

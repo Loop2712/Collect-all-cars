@@ -146,14 +146,24 @@ class Dashboard_1669_Controller extends Controller
         $user_operating_officers = Data_1669_operating_officer::where('user_id' , $user_login->id)->first();
 
 
-        $data_vehicle_operating = DB::table('data_1669_operating_officers')
-        ->where('operating_unit_id', $user_operating_officers->operating_unit_id)
-        ->select(
-            'data_1669_operating_officers.vehicle_type as vehicle_type',
-            DB::raw('COUNT(data_1669_operating_officers.vehicle_type) as count_vehicle_type')
-        )
-        ->groupBy('vehicle_type')
-        ->get();
+        // $data_vehicle_operating = DB::table('data_1669_operating_officers')
+        //     ->where('operating_unit_id', $user_operating_officers->operating_unit_id)
+        //     ->select(
+        //         'data_1669_operating_officers.vehicle_type as vehicle_type',
+        //         DB::raw('COUNT(data_1669_operating_officers.vehicle_type) as count_vehicle_type')
+        //     )
+        //     ->groupBy('vehicle_type')
+        //     ->get();
+
+        $data_vehicle_operating = DB::table('data_1669_operating_units')
+            ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
+            ->where('data_1669_operating_units.area', $user_login->sub_organization)
+            ->select(
+                'data_1669_operating_officers.vehicle_type as vehicle_type',
+                DB::raw('COUNT(data_1669_operating_officers.vehicle_type) as count_vehicle_type')
+            )
+            ->groupBy('vehicle_type')
+            ->get();
     
         // รวม count_vehicle_type เพื่อให้ได้จำนวนทั้งหมด
         $total_count = $data_vehicle_operating->sum('count_vehicle_type');
@@ -172,8 +182,15 @@ class Dashboard_1669_Controller extends Controller
         $user_operating_officers = Data_1669_operating_officer::where('user_id' , $user_login->id)->first();
 
 
-        $data_level_operating = DB::table('data_1669_operating_officers')
-            ->where('operating_unit_id', $user_operating_officers->operating_unit_id)
+        // $data_level_operating = DB::table('data_1669_operating_officers')
+        //     ->where('operating_unit_id', $user_operating_officers->operating_unit_id)
+        //     ->select('data_1669_operating_officers.level as level', DB::raw('COUNT(data_1669_operating_officers.level) as count_level'))
+        //     ->groupBy('level')
+        //     ->get();
+
+        $data_level_operating = DB::table('data_1669_operating_units')
+            ->join('data_1669_operating_officers', 'data_1669_operating_units.id', '=', 'data_1669_operating_officers.operating_unit_id')
+            ->where('data_1669_operating_units.area', $user_login->sub_organization)
             ->select('data_1669_operating_officers.level as level', DB::raw('COUNT(data_1669_operating_officers.level) as count_level'))
             ->groupBy('level')
             ->get();

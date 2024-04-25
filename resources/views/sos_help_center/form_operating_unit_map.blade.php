@@ -533,6 +533,12 @@
                                     </a>
                                 </div>
                                 <div class="item" style="width:100%">
+                                    <a class="btn menu-select-vehicle-officer-motorbike" href="javascript:;" 
+                                        onclick="document.querySelector('#input_vehicle_type').value = 'หน่วยเคลื่อนที่เร็ว';select_level();">
+                                    หน่วยเคลื่อนที่เร็ว  
+                                    </a>
+                                </div>
+                                <div class="item" style="width:100%">
                                     <a class="btn menu-select-vehicle-officer-car" href="javascript:;" 
                                         onclick="document.querySelector('#input_vehicle_type').value = 'รถ';select_level();">
                                     รถ  
@@ -1069,6 +1075,7 @@
 
         // VEHICLE TYPE
         document.querySelector('.menu-select-vehicle-officer-all').classList.remove("vehicle-one-officer-active");
+        document.querySelector('.menu-select-vehicle-officer-motorbike').classList.remove("vehicle-one-officer-active");
         document.querySelector('.menu-select-vehicle-officer-car').classList.remove("vehicle-one-officer-active");
         document.querySelector('.menu-select-vehicle-officer-aircraft').classList.remove("vehicle-one-officer-active");
         document.querySelector('.menu-select-vehicle-officer-boat-1').classList.remove("vehicle-one-officer-active");
@@ -1082,6 +1089,9 @@
         switch(vehicle_type) {
             case 'all':
                 text_vehicle_type = "all" ;
+            break;
+            case 'หน่วยเคลื่อนที่เร็ว':
+                text_vehicle_type = "motorbike" ;
             break;
             case 'รถ':
                 text_vehicle_type = "car" ;
