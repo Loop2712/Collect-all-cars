@@ -168,9 +168,44 @@ class Data_1669_operating_unitController extends Controller
      */
     public function destroy($id)
     {
-        Data_1669_operating_unit::destroy($id);
+ 
+        $data_officer = Data_1669_operating_officer::where('operating_unit_id' , $id)->get();
+
+        Data_1669_operating_officer::where('operating_unit_id' , $id)->delete();
+
+        Data_1669_operating_unit::destroy($id);  
 
         return redirect('data_1669_operating_unit')->with('flash_message', 'Data_1669_operating_unit deleted!');
+        
+    }
+    public function mutiple_delete_unit(Request $request)
+    {
+        $requestData = $request->all(); 
+        $ids = $requestData['id_multi_delete'];
+
+        $idsArray = explode(',', $ids);
+
+        $data_officers = Data_1669_operating_officer::whereIn('operating_unit_id', $idsArray)->get();
+        Data_1669_operating_officer::whereIn('operating_unit_id', $idsArray)->delete();
+
+        Data_1669_operating_unit::whereIn('id', $idsArray)->delete();
+
+        return response()->json(['message' => 'Deleted successfully', 'deleted_ids' => $idsArray]);
+            
+    }
+
+    public function multiple_delete_officer(Request $request)
+    {
+        $requestData = $request->all(); 
+        $ids = $requestData['id_multi_delete'];
+
+        $idsArray = explode(',', $ids);
+        
+        Data_1669_operating_officer::whereIn('id', $idsArray)->delete();
+        // dd($idsArray);
+
+        return response()->json(['message' => 'Deleted successfully', 'deleted_ids' => $idsArray]);
+            
     }
 
     function CF_Change_name_officer($id_officer , $new_name_officer){
