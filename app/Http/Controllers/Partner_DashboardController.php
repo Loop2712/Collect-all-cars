@@ -984,7 +984,95 @@ class Partner_DashboardController extends Controller
         return response()->json($data_sos);
 
     }
+    function dashboard_1669_all_case_sos_show(Request $request){
+        // $user_login = Auth::user();
+        $user_login = $request->get('user_sub_organization');
 
+        // dd($user_login);
+        // นับ sos ทั้งหมด
+        
+        $data_sos = DB::table('sos_help_centers as main_sos_help_center')
+        ->where('main_sos_help_center.notify', 'LIKE', "%$user_login%")
+        ->join('sos_1669_form_yellows', 'main_sos_help_center.id', '=', 'sos_1669_form_yellows.sos_help_center_id')
+        ->join('data_1669_officer_commands', 'main_sos_help_center.command_by', '=', 'data_1669_officer_commands.id')
+        ->leftjoin('sos_help_centers as forward_sos_help_center_form', 'main_sos_help_center.forward_operation_from', '=', 'forward_sos_help_center_form.id')
+        ->leftjoin('sos_help_centers as forward_sos_help_center_to', 'main_sos_help_center.forward_operation_to', '=', 'forward_sos_help_center_to.id')
+        ->select(
+            'main_sos_help_center.id', 
+            'main_sos_help_center.operating_code', 
+            'main_sos_help_center.status', 
+            'main_sos_help_center.remark_status', 
+            'main_sos_help_center.created_at', 
+            'main_sos_help_center.lat', 
+            'main_sos_help_center.lng', 
+            'main_sos_help_center.address', 
+            'main_sos_help_center.name_user', 
+            'main_sos_help_center.phone_user', 
+            'main_sos_help_center.organization_helper', 
+            'main_sos_help_center.name_helper', 
+            'main_sos_help_center.remark_photo_sos',
+            'main_sos_help_center.time_command',
+            'main_sos_help_center.time_go_to_help',
+            'main_sos_help_center.time_to_the_scene',
+            'main_sos_help_center.time_leave_the_scene',
+            'main_sos_help_center.time_hospital',
+            'main_sos_help_center.time_to_the_operating_base',
+            'main_sos_help_center.time_sos_success',
+            'main_sos_help_center.score_impression',
+            'main_sos_help_center.score_period',
+            'main_sos_help_center.score_total',
+            'main_sos_help_center.comment_help',
+            'main_sos_help_center.remark_helper',
+            'main_sos_help_center.joint_case',
+            'main_sos_help_center.refuse',
+            'forward_sos_help_center_form.operating_code as forward_operating_form',
+            'forward_sos_help_center_to.operating_code as forward_operating_to',
+            'sos_1669_form_yellows.location_sos', 
+            'sos_1669_form_yellows.be_notified', 
+            'sos_1669_form_yellows.vehicle_type',
+            'sos_1669_form_yellows.operating_suit_type',
+            'sos_1669_form_yellows.symptom',
+            'sos_1669_form_yellows.symptom_other',
+            'sos_1669_form_yellows.idc',
+            'sos_1669_form_yellows.rc',
+            'sos_1669_form_yellows.rc_black_text',
+            'sos_1669_form_yellows.km_create_sos_to_go_to_help',
+            'sos_1669_form_yellows.km_to_the_scene_to_leave_the_scene',
+            'sos_1669_form_yellows.km_hospital',
+            'sos_1669_form_yellows.km_operating_base',
+            'sos_1669_form_yellows.treatment',
+            'sos_1669_form_yellows.sub_treatment',
+            'sos_1669_form_yellows.patient_name_1',
+            'sos_1669_form_yellows.patient_age_1',
+            'sos_1669_form_yellows.patient_hn_1',
+            'sos_1669_form_yellows.patient_vn_1',
+            'sos_1669_form_yellows.delivered_province_1',
+            'sos_1669_form_yellows.delivered_hospital_1',
+            'sos_1669_form_yellows.patient_name_2',
+            'sos_1669_form_yellows.patient_age_2',
+            'sos_1669_form_yellows.patient_hn_2',
+            'sos_1669_form_yellows.patient_vn_2',
+            'sos_1669_form_yellows.delivered_province_2',
+            'sos_1669_form_yellows.delivered_hospital_2',
+            'sos_1669_form_yellows.patient_name_3',
+            'sos_1669_form_yellows.patient_age_3',
+            'sos_1669_form_yellows.patient_hn_3',
+            'sos_1669_form_yellows.patient_vn_3',
+            'sos_1669_form_yellows.delivered_province_3',
+            'sos_1669_form_yellows.delivered_hospital_3',
+            'sos_1669_form_yellows.submission_criteria',
+            'sos_1669_form_yellows.communication_hospital',
+            'sos_1669_form_yellows.registration_category',
+            'sos_1669_form_yellows.registration_number',
+            'sos_1669_form_yellows.registration_province',
+            'sos_1669_form_yellows.owner_registration',
+            'data_1669_officer_commands.name_officer_command'
+        )->get();
+
+        // ddd($data_sos);
+        return response()->json($data_sos);
+
+    }
     function viisos_3_topic(Request $request){
         $user_login = Auth::user();
 
