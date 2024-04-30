@@ -582,7 +582,7 @@
                     multi_delete_id = idArray.join(',');
                 }
 
-                console.log(multi_delete_id);
+                // console.log(multi_delete_id);
 
                 if (multi_delete_id !== '') {
                     let count_select_delete = countIds(multi_delete_id);
@@ -646,7 +646,7 @@
                 const checkboxes = document.querySelectorAll('input[type="checkbox"][name="check_delete"]:checked');
                 let deleteConfirmationMessage = '';
                 let number = 1;
-                console.log(checkboxes);
+                // console.log(checkboxes);
                 checkboxes.forEach((checkbox) => {
                     let name_operating_officerValue = checkbox.getAttribute('name_operating_officer');
                     deleteConfirmationMessage += `${number}.${name_operating_officerValue},`;
