@@ -288,7 +288,7 @@
     });
     // สมาชิกในทีมของทุกทีม
     function get_data_sos() {
-        console.log('start here');
+        // console.log('start here');
         document.title = "ข้อมูลการขอความช่วยเหลือ";
         // Create search inputs in footer
         $("#all_data_sos_1669_table tfoot th").each(function() {
@@ -322,16 +322,16 @@
         var all_data_sos_1669_table = $('#all_data_sos_1669_table').DataTable();
 
         let sub_organization = '{{Auth::user()->sub_organization}}';
-        console.log(sub_organization);
+        // console.log(sub_organization);
         fetch("{{ url('/') }}/api/dashboard_1669_all_case_sos_show?user_sub_organization=" + sub_organization)
             .then(response => response.json())
             .then(result => {
 
-                console.log(result);
+                // console.log(result);
 
                 for (let i = 0; i < result.length; i++) {
 
-                    console.log(result[i].id);
+                    // console.log(result[i].id);
                     let createdAtDate = new Date(result[i].created_at);
                     let created_at = createdAtDate.toLocaleDateString('th-TH', {
                         year: 'numeric',
