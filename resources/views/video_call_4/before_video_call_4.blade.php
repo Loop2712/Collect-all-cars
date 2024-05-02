@@ -417,7 +417,7 @@
                 agoraAppCertificate = '{{ env("AGORA_APP_CERTIFICATE") }}';
                 // ตรวจสอบอีกครั้งหลังจากกำหนดค่าจาก environment variables
                 if (!agoraAppId || !agoraAppCertificate) {
-                    alert("โหลดข้อมูล video_call ล้มเหลว กำลังรีเฟรชหน้าจอ");
+                    // alert("โหลดข้อมูล video_call ล้มเหลว กำลังรีเฟรชหน้าจอ");
                     // Reload the page
                     window.location.reload();
                 }

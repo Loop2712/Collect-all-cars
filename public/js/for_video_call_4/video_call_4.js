@@ -537,19 +537,6 @@ function create_dummy_videoTrack(user,name_remote,type_remote,profile_remote,bg_
 
 }
 
-// function createHtmlInputbar(user_id){
-//     let html = `
-//         <i class="fa-solid fa-ellipsis"></i>
-//         <input type="checkbox" class="dd-input" id="test">
-//         <ul class="dd-menu">
-//             <li>
-//                 <p class="mb-0" style="cursor: default; color: #000000; font-size: 14px !important;">ระดับเสียง</p>
-//                 <input style="z-index: 4;" type="range" id="remoteAudioVolume_`+user_id+`" min="0" max="1000" value="100" class="w-100" onChange="onChangeVolumeRemote(`+user_id+`);">
-//             </li>
-//         </ul>
-//     `;
-//     return html;
-// }
 
 function create_profile_in_sidebar_local_only(user_data , name , type , profile_pic){
     let sidebar_profile =
@@ -587,7 +574,7 @@ function create_profile_in_sidebar_local_only(user_data , name , type , profile_
 }
 
 function create_profile_in_sidebar(user_data , name , type , profile_pic, volume_in_remoteArray){
-    var inputValue_remote = volume_in_remoteArray ?? 100; // เอาข้อมูล volume ที่เคยปรับไว้มาใช้เป็นค่า value ถ้าไม่มี ให้ใช้ค่า default = 100
+    var inputValue_remote = volume_in_remoteArray ?? 70; // เอาข้อมูล volume ที่เคยปรับไว้มาใช้เป็นค่า value ถ้าไม่มี ให้ใช้ค่า default = 70
     let type_mode;
     if (inputValue_remote == 0) {
         type_mode = "mute";
@@ -620,7 +607,7 @@ function create_profile_in_sidebar(user_data , name , type , profile_pic, volume
                         <ul class="dd-menu">
                             <li>
                                 <p class="mb-0" style="cursor: default; color: #000000; font-size: 14px !important;">ระดับเสียง</p>
-                                <input style="z-index: 4;" type="range" id="remoteAudioVolume_`+user_data.uid+`" min="0" max="1000" value="`+inputValue_remote+`" class="w-100" onChange="onChangeVolumeRemote(`+user_data.uid+`, 'handle');">
+                                <input style="z-index: 4;" type="range" id="remoteAudioVolume_`+user_data.uid+`" min="0" max="100" value="`+inputValue_remote+`" class="w-100" onChange="onChangeVolumeRemote(`+user_data.uid+`, 'handle');">
                             </li>
                         </ul>
                     </label>
@@ -715,7 +702,7 @@ function instant_switch_icon(type_user , user_id , type_mode ){
         } else {
             console.log("instant_switch_icon remote else");
             console.log(user_id);
-            document.querySelector('#remoteAudioVolume_'+user_id).value = 100;
+            document.querySelector('#remoteAudioVolume_'+user_id).value = 70;
             type_mode = "unmute";
 
             let value_slider = document.querySelector('#remoteAudioVolume_'+user_id).value;
