@@ -124,6 +124,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 	Route::get('/Manage_uploaded_photos', 'API\PartnersController@Manage_uploaded_photos');
 	Route::get('/Manage_resize_photos', 'API\PartnersController@Manage_resize_photos');
+	Route::get('/add_data_car', 'Middle_price_carController@add_data_car');
 
 	Route::get('/dashboard', 'DashboardController@dashboard');
 	Route::get('/manage_user', 'Manage_userController@manage_user');

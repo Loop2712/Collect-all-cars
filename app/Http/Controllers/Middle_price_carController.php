@@ -236,4 +236,38 @@ class Middle_price_carController extends Controller
 
         return redirect('middle_price_car')->with('flash_message', 'Middle_price_car deleted!');
     }
+
+    function add_data_car(){
+        return view('middle_price_car.add_data_car');
+    }
+
+    function create_data_car(Request $request){
+        $requestData = $request->all();
+        $data_arr = [];
+        $count_add = 0 ;
+        
+        foreach ($requestData as $item) {
+            foreach ($item as $key => $value) {
+
+                // $re_value = strtolower($value);
+                // $re_value = str_replace(' ', '', $re_value);
+                $data_arr[$key] = $value;
+                
+            }
+
+            $check_data = Middle_price_car::where('brand',$data_arr['brand'])
+                ->where('model',$data_arr['model'])
+                ->where('submodel',$data_arr['submodel'])
+                ->where('year',$data_arr['year'])
+                ->first();
+
+
+            if( empty($check_data->id) ){
+                Middle_price_car::create($data_arr);
+                $count_add = $count_add + 1 ;
+            }
+        }
+
+        return $count_add ;
+    }
 }

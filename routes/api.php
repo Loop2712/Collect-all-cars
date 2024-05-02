@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::post('/create_data_car/excel', 'Middle_price_carController@create_data_car');
 Route::post('/lineapi', 'API\LineApiController@store');
 Route::post('/facebookapi', 'API\facebook_messenger_api@facebook');
 Route::get('/sos_helper_Charlie/{id_sos}/{id_user}', 'API\LineApiController@sos_helper_Charlie');
