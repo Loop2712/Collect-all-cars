@@ -219,6 +219,7 @@
             </div>
 
             <span id="count_add" class="d-none"></span>
+            <span id="count_update_year" class="d-none"></span>
         </div>
     </div>
 </div>
@@ -274,12 +275,18 @@
                         // เคลียร์ input
                         clearFileInput('excel');
 
+                        let count_add = data.split('/')[0];
+                        let count_update_year = data.split('/')[1];
+
                         document.querySelector('#div_loader_Excel_add_car').classList.add('d-none');
                         document.querySelector('#text_load').innerHTML = 'กำลังประมวลผล..';
                         document.querySelector('#div_success_Excel').classList.remove('d-none');
 
                         document.querySelector('#count_add').classList.remove('d-none');
-                        document.querySelector('#count_add').innerHTML = 'เพิ่มไปทั้งหมด ' + data + ' รายการ';
+                        document.querySelector('#count_add').innerHTML = 'เพิ่มไปทั้งหมด ' + count_add + ' รายการ';
+
+                        document.querySelector('#count_update_year').classList.remove('d-none');
+                        document.querySelector('#count_update_year').innerHTML = 'Update year ' + count_update_year + ' รายการ';
                         
                         
                     }
@@ -311,6 +318,7 @@
         // console.log('clear_div_succell');
         document.querySelector('#div_success_Excel').classList.add('d-none');
         document.querySelector('#count_add').classList.add('d-none');
+        document.querySelector('#count_update_year').classList.add('d-none');
     }
 
 </script>

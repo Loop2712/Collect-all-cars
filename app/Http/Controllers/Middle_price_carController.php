@@ -245,6 +245,7 @@ class Middle_price_carController extends Controller
         $requestData = $request->all();
         $data_arr = [];
         $count_add = 0 ;
+        $count_update_year = 0 ;
         
         foreach ($requestData as $item) {
             foreach ($item as $key => $value) {
@@ -258,16 +259,26 @@ class Middle_price_carController extends Controller
             $check_data = Middle_price_car::where('brand',$data_arr['brand'])
                 ->where('model',$data_arr['model'])
                 ->where('submodel',$data_arr['submodel'])
-                ->where('year',$data_arr['year'])
                 ->first();
 
 
             if( empty($check_data->id) ){
                 Middle_price_car::create($data_arr);
                 $count_add = $count_add + 1 ;
+            }else{
+                DB::table('middle_price_cars')
+                    ->where([ 
+                            ['id', $check_data->id],
+                        ])
+                    ->update([
+                            'year' => $data_arr['year'],
+                        ]);
+
+                $count_update_year = $count_add + 1 ;
             }
         }
 
+        $data_return = $count_add.'/'.$count_update_year;
         return $count_add ;
     }
 }
