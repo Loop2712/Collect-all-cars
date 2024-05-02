@@ -219,6 +219,7 @@
             </div>
 
             <span id="count_add" class="d-none"></span>
+            <br>
             <span id="count_update_year" class="d-none"></span>
         </div>
     </div>

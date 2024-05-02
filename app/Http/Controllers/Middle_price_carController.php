@@ -274,11 +274,11 @@ class Middle_price_carController extends Controller
                             'year' => $data_arr['year'],
                         ]);
 
-                $count_update_year = $count_add + 1 ;
+                $count_update_year = $count_update_year + 1 ;
             }
         }
 
         $data_return = $count_add.'/'.$count_update_year;
-        return $count_add ;
+        return $data_return ;
     }
 }
