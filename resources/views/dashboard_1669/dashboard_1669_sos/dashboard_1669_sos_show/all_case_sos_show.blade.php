@@ -288,158 +288,158 @@
     });
     // สมาชิกในทีมของทุกทีม
     function get_data_sos() {
-        // console.log('start here');
+
         document.title = "ข้อมูลการขอความช่วยเหลือ";
-        // Create search inputs in footer
-        $("#all_data_sos_1669_table tfoot th").each(function() {
-            var title = $(this).text();
-            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-        });
-        // DataTable initialisation
-        var table = $("#all_data_sos_1669_table").DataTable({
-            dom: '<"dt-buttons"Bf><"clear">lirtp',
-            paging: true,
-            autoWidth: true,
-            lengthChange: false,
-            bDestroy: true,
-            buttons: [{
-                extend: "excelHtml5",
-                text: "Export Excel" // เปลี่ยนข้อความในปุ่มที่นี่
-            }, ],
-            initComplete: function(settings, json) {
-                var footer = $("#all_data_sos_1669_table tfoot tr");
-                $("#all_data_sos_1669_table thead").append(footer);
-            }
-        });
+// Create search inputs in footer
+$("#all_data_sos_1669_table tfoot th").each(function() {
+    var title = $(this).text();
+    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+});
 
-        // Apply the search
-        $("#all_data_sos_1669_table thead").on("keyup", "input", function() {
-            table.column($(this).parent().index())
-                .search(this.value)
-                .draw();
-        });
+// DataTable initialisation
+var table = $("#all_data_sos_1669_table").DataTable({
+    dom: '<"dt-buttons"Bf><"clear">lirtp',
+    paging: true,
+    autoWidth: true,
+    lengthChange: false,
+    bDestroy: true,
+    buttons: [{
+        extend: "excelHtml5",
+        text: "Export Excel" // เปลี่ยนข้อความในปุ่มที่นี่
+    }],
+    initComplete: function(settings, json) {
+        var footer = $("#all_data_sos_1669_table tfoot tr");
+        $("#all_data_sos_1669_table thead").append(footer);
+    }
+});
 
-        var all_data_sos_1669_table = $('#all_data_sos_1669_table').DataTable();
+// Apply the search
+$("#all_data_sos_1669_table thead").on("keyup", "input", function() {
+    table.column($(this).parent().index())
+        .search(this.value)
+        .draw();
+});
 
-        let sub_organization = '{{Auth::user()->sub_organization}}';
-        // console.log(sub_organization);
-        fetch("{{ url('/') }}/api/dashboard_1669_all_case_sos_show?user_sub_organization=" + sub_organization)
-            .then(response => response.json())
-            .then(result => {
+let sub_organization = '{{Auth::user()->sub_organization}}';
+// console.log(sub_organization);
+fetch("{{ url('/') }}/api/dashboard_1669_all_case_sos_show?user_sub_organization=" + sub_organization)
+    .then(response => response.json())
+    .then(result => {
+        // เริ่มต้นการแสดงผลข้อมูลแบบไม่รวมรายการทั้งหมดในตารางและเพิ่มข้อมูลไปทีละรายการ
+        result.forEach(data => {
 
-                // console.log(result);
-
-                for (let i = 0; i < result.length; i++) {
-
-                    // console.log(result[i].id);
-                    let createdAtDate = new Date(result[i].created_at);
-                    let created_at = createdAtDate.toLocaleDateString('th-TH', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                    });
-
-                    const sTimeSOSuccess = new Date(result[i].time_sos_success).getTime();
-                    const sTimeCommand = new Date(result[i].time_command).getTime();
-
-                    const sTimeDifference = Math.abs(sTimeSOSuccess - sTimeCommand) / 1000;
-
-                    if(result[i].time_sos_success)
-                        if (sTimeDifference >= 3600) {
-                            const sHours = Math.floor(sTimeDifference / 3600);
-                            const sRemainingMinutes = Math.floor((sTimeDifference % 3600) / 60);
-                            const sRemainingSeconds = sTimeDifference % 60;
-
-                            sTimeUnit = `${sHours} ชั่วโมง ${sRemainingMinutes} นาที ${sRemainingSeconds} วินาที`;
-                        } else if (sTimeDifference >= 60) {
-                            const sMinutes = Math.floor(sTimeDifference / 60);
-                            const sSeconds = sTimeDifference % 60;
-
-                            sTimeUnit = `${sMinutes} นาที ${sSeconds} วินาที`;
-                        } else {
-                            sTimeUnit = `${sTimeDifference} วินาที`;
-                        }
-                    else{
-                        sTimeUnit =  "--"
-                    }
-
-                    let total_km = result[i].km_create_sos_to_go_to_help + result[i].km_to_the_scene_to_leave_the_scene
-                                + result[i].km_hospital + result[i].km_operating_base;
-
-
-                    table.row.add([
-                        result[i].operating_code ? result[i].operating_code : "--",
-                        result[i].status ? result[i].status : "--",
-                        result[i].remark_status ? result[i].remark_status : "--",
-                        result[i].created_at ? result[i].created_at : "--",
-                        result[i].lat ? result[i].lat : "--",
-                        result[i].lng ? result[i].lng : "--",
-                        result[i].address ? result[i].address : "--",
-                        result[i].location_sos ? result[i].location_sos : "--",
-                        result[i].be_notified ? result[i].be_notified : "--",
-                        result[i].name_user ? result[i].name_user : (result[i].name_officer_command ? result[i].name_officer_command + ' (เจ้าหน้าที่)' : "--"),
-                        result[i].phone_user ? result[i].phone_user.substring(0, 3) + '-' + result[i].phone_user.substring(3, 6) + '-' + result[i].phone_user.substring(6) : "--",
-                        result[i].name_officer_command ? result[i].name_officer_command : "--",
-                        result[i].organization_helper ? result[i].organization_helper : "--",
-                        result[i].name_helper ? result[i].name_helper : "--",
-                        result[i].vehicle_type ? result[i].vehicle_type : "--",
-                        result[i].operating_suit_type ? result[i].operating_suit_type : "--",
-                        result[i].symptom ? result[i].symptom : "--",
-                        result[i].symptom_other ? result[i].symptom_other : "--",
-                        result[i].idc ? result[i].idc : "--",
-                        result[i].rc ? result[i].rc : "--",
-                        result[i].rc_black_text ? result[i].rc_black_text : "--",
-                        result[i].remark_photo_sos ? result[i].remark_photo_sos : "--",
-                        result[i].time_command ? result[i].time_command : "--",
-                        result[i].time_go_to_help ? result[i].time_go_to_help : "--",
-                        result[i].time_to_the_scene ? result[i].time_to_the_scene : "--",
-                        result[i].time_leave_the_scene ? result[i].time_leave_the_scene : "--",
-                        result[i].time_hospital ? result[i].time_hospital : "--",
-                        result[i].time_to_the_operating_base ? result[i].time_to_the_operating_base : "--",
-                        sTimeUnit,
-                        result[i].km_create_sos_to_go_to_help ? result[i].km_create_sos_to_go_to_help : "--",
-                        result[i].km_to_the_scene_to_leave_the_scene ? result[i].km_to_the_scene_to_leave_the_scene : "--",
-                        result[i].km_hospital ? result[i].km_hospital : "--",
-                        result[i].km_operating_base ? result[i].km_operating_base : "--",
-                        total_km ? total_km : "--",
-                        result[i].treatment ? result[i].treatment : "--",
-                        result[i].sub_treatment ? result[i].sub_treatment : "--",
-                        result[i].score_impression ? result[i].score_impression : "--",
-                        result[i].score_period ? result[i].score_period : "--",
-                        result[i].score_total ? result[i].score_total : "--",
-                        result[i].comment_help ? result[i].comment_help : "--",
-                        result[i].remark_helper ? result[i].remark_helper : "--",
-                        result[i].forward_operating_form ? result[i].forward_operating_form : "--",
-                        result[i].forward_operating_to ? result[i].forward_operating_to : "--",
-                        result[i].joint_case ? result[i].joint_case : "--",
-                        result[i].patient_name_1 ? result[i].patient_name_1 : "--",
-                        result[i].patient_age_1 ? result[i].patient_age_1 : "--",
-                        result[i].patient_hn_1 ? result[i].patient_hn_1 : "--",
-                        result[i].patient_vn_1 ? result[i].patient_vn_1 : "--",
-                        result[i].delivered_province_1 ? result[i].delivered_province_1 : "--",
-                        result[i].delivered_hospital_1 ? result[i].delivered_hospital_1 : "--",
-                        result[i].patient_name_2 ? result[i].patient_name_2 : "--",
-                        result[i].patient_age_2 ? result[i].patient_age_2 : "--",
-                        result[i].patient_hn_2 ? result[i].patient_hn_2 : "--",
-                        result[i].patient_vn_2 ? result[i].patient_vn_2 : "--",
-                        result[i].delivered_province_2 ? result[i].delivered_province_2 : "--",
-                        result[i].delivered_hospital_2 ? result[i].delivered_hospital_2 : "--",
-                        result[i].patient_name_3 ? result[i].patient_name_3 : "--",
-                        result[i].patient_age_3 ? result[i].patient_age_3 : "--",
-                        result[i].patient_hn_3 ? result[i].patient_hn_3 : "--",
-                        result[i].patient_vn_3 ? result[i].patient_vn_3 : "--",
-                        result[i].delivered_province_3 ? result[i].delivered_province_3 : "--",
-                        result[i].delivered_hospital_3 ? result[i].delivered_hospital_3 : "--",
-                        result[i].submission_criteria ? result[i].submission_criteria : "--",
-                        result[i].communication_hospital ? result[i].communication_hospital : "--",
-                        result[i].registration_category ? result[i].registration_category : "--",
-                        result[i].registration_number ? result[i].registration_number : "--",
-                        result[i].registration_province ? result[i].registration_province : "--",
-                        result[i].owner_registration ? result[i].owner_registration : "--",
-                        result[i].refuse ? result[i].refuse : "--",
-                    ]).draw(false);
-                };
+            let createdAtDate = new Date(data.created_at);
+            let created_at = createdAtDate.toLocaleDateString('th-TH', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
             });
+
+            const sTimeSOSuccess = new Date(data.time_sos_success).getTime();
+            const sTimeCommand = new Date(data.time_command).getTime();
+
+            const sTimeDifference = Math.abs(sTimeSOSuccess - sTimeCommand) / 1000;
+
+            if(data.time_sos_success)
+                if (sTimeDifference >= 3600) {
+                    const sHours = Math.floor(sTimeDifference / 3600);
+                    const sRemainingMinutes = Math.floor((sTimeDifference % 3600) / 60);
+                    const sRemainingSeconds = sTimeDifference % 60;
+
+                    sTimeUnit = `${sHours} ชั่วโมง ${sRemainingMinutes} นาที ${sRemainingSeconds} วินาที`;
+                } else if (sTimeDifference >= 60) {
+                    const sMinutes = Math.floor(sTimeDifference / 60);
+                    const sSeconds = sTimeDifference % 60;
+
+                    sTimeUnit = `${sMinutes} นาที ${sSeconds} วินาที`;
+                } else {
+                    sTimeUnit = `${sTimeDifference} วินาที`;
+                }
+            else{
+                sTimeUnit =  "--"
+            }
+
+            let total_km = data.km_create_sos_to_go_to_help + data.km_to_the_scene_to_leave_the_scene + data.km_hospital + data.km_operating_base;
+
+
+            let row = [];
+            row.push(data.operating_code ? data.operating_code : "--");
+            row.push(data.status ? data.status : "--");
+            row.push(data.remark_status ? data.remark_status : "--");
+            row.push(data.created_at ? data.created_at : "--");
+            row.push(data.lat ? data.lat : "--");
+            row.push(data.lng ? data.lng : "--");
+            row.push(data.address ? data.address : "--");
+            row.push(data.location_sos ? data.location_sos : "--");
+            row.push(data.be_notified ? data.be_notified : "--");
+            row.push(data.name_user ?data.name_user : (result[i].name_officer_command ?data.name_officer_command + ' (เจ้าหน้าที่)' : "--"));
+            row.push(data.phone_user ? data.phone_user.substring(0, 3) + '-' + data.phone_user.substring(3, 6) + '-' + data.phone_user.substring(6) : "--");
+            row.push(data.name_officer_command ? data.name_officer_command : "--");
+            row.push(data.organization_helper ? data.organization_helper : "--");
+            row.push(data.name_helper ? data.name_helper : "--");
+            row.push(data.vehicle_type ? data.vehicle_type : "--");
+            row.push(data.operating_suit_type ? data.operating_suit_type : "--");
+            row.push(data.symptom ? data.symptom : "--");
+            row.push(data.symptom_other ? data.symptom_other : "--");
+            row.push(data.idc ? data.idc : "--");
+            row.push(data.rc ? data.rc : "--");
+            row.push(data.rc_black_text ? data.rc_black_text : "--");
+            row.push(data.remark_photo_sos ? data.remark_photo_sos : "--");
+            row.push(data.time_command ? data.time_command : "--");
+            row.push(data.time_go_to_help ? data.time_go_to_help : "--");
+            row.push(data.time_to_the_scene ? data.time_to_the_scene : "--");
+            row.push(data.time_leave_the_scene ? data.time_leave_the_scene : "--");
+            row.push(data.time_hospital ? data.time_hospital : "--");
+            row.push(data.time_to_the_operating_base ? data.time_to_the_operating_base : "--");
+            row.push(sTimeUnit);
+            row.push(data.km_create_sos_to_go_to_help ? data.km_create_sos_to_go_to_help : "--");
+            row.push(data.km_to_the_scene_to_leave_the_scene ? data.km_to_the_scene_to_leave_the_scene : "--");
+            row.push(data.km_hospital ? data.km_hospital : "--");
+            row.push(data.km_operating_base ? data.km_operating_base : "--");
+            row.push(total_km ? total_km : "--");
+            row.push(data.treatment ? data.treatment : "--");
+            row.push(data.sub_treatment ? data.sub_treatment : "--");
+            row.push(data.score_impression ? data.score_impression : "--");
+            row.push(data.score_period ? data.score_period : "--");
+            row.push(data.score_total ? data.score_total : "--");
+            row.push(data.comment_help ? data.comment_help : "--");
+            row.push(data.remark_helper ? data.remark_helper : "--");
+            row.push(data.forward_operating_form ? data.forward_operating_form : "--");
+            row.push(data.forward_operating_to ? data.forward_operating_to : "--");
+            row.push(data.joint_case ? data.joint_case : "--");
+            row.push(data.patient_name_1 ? data.patient_name_1 : "--");
+            row.push(data.patient_age_1 ? data.patient_age_1 : "--");
+            row.push(data.patient_hn_1 ? data.patient_hn_1 : "--");
+            row.push(data.patient_vn_1 ? data.patient_vn_1 : "--");
+            row.push(data.delivered_province_1 ? data.delivered_province_1 : "--");
+            row.push(data.delivered_hospital_1 ? data.delivered_hospital_1 : "--");
+            row.push(data.patient_name_2 ? data.patient_name_2 : "--");
+            row.push(data.patient_age_2 ? data.patient_age_2 : "--");
+            row.push(data.patient_hn_2 ? data.patient_hn_2 : "--");
+            row.push(data.patient_vn_2 ? data.patient_vn_2 : "--");
+            row.push(data.delivered_province_2 ? data.delivered_province_2 : "--");
+            row.push(data.delivered_hospital_2 ? data.delivered_hospital_2 : "--");
+            row.push(data.patient_name_3 ? data.patient_name_3 : "--");
+            row.push(data.patient_age_3 ? data.patient_age_3 : "--");
+            row.push(data.patient_hn_3 ? data.patient_hn_3 : "--");
+            row.push(data.patient_vn_3 ? data.patient_vn_3 : "--");
+            row.push(data.delivered_province_3 ? data.delivered_province_3 : "--");
+            row.push(data.delivered_hospital_3 ? data.delivered_hospital_3 : "--");
+            row.push(data.submission_criteria ? data.submission_criteria : "--");
+            row.push(data.communication_hospital ? data.communication_hospital : "--");
+            row.push(data.registration_category ? data.registration_category : "--");
+            row.push(data.registration_number ? data.registration_number : "--");
+            row.push(data.registration_province ? data.registration_province : "--");
+            row.push(data.owner_registration ? data.owner_registration : "--");
+            row.push(data.refuse ? data.refuse : "--");
+            
+            table.row.add(row).draw(false); // เพิ่มแถวใหม่และแสดงผลบนตารางโดยไม่รีเรียกการวาดตาราง
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+       
 
     }
 </script>
