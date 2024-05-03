@@ -325,9 +325,10 @@ let sub_organization = '{{Auth::user()->sub_organization}}';
 fetch("{{ url('/') }}/api/dashboard_1669_all_case_sos_show?user_sub_organization=" + sub_organization)
     .then(response => response.json())
     .then(result => {
-        // เริ่มต้นการแสดงผลข้อมูลแบบไม่รวมรายการทั้งหมดในตารางและเพิ่มข้อมูลไปทีละรายการ
-        result.forEach(data => {
 
+        console.log(result);
+        setTimeout(() => {
+           result.forEach(data => {
             let createdAtDate = new Date(data.created_at);
             let created_at = createdAtDate.toLocaleDateString('th-TH', {
                 year: 'numeric',
@@ -434,7 +435,11 @@ fetch("{{ url('/') }}/api/dashboard_1669_all_case_sos_show?user_sub_organization
             row.push(data.refuse ? data.refuse : "--");
             
             table.row.add(row).draw(false); // เพิ่มแถวใหม่และแสดงผลบนตารางโดยไม่รีเรียกการวาดตาราง
-        });
+        }); 
+        }, 10000);
+        
+
+
     })
     .catch(error => {
         console.error('Error fetching data:', error);
