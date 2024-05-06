@@ -16,7 +16,7 @@
 		/* margin-top: 0; */
 		margin-bottom: 0;
 
-         /* overscroll-behavior: none; ปิด การขยับเมื่อเกินขอบของ ios */
+        overscroll-behavior: none;/* ปิด การขยับเมื่อเกินขอบของ ios */
 	}
 
 	.data-sos {
@@ -3118,12 +3118,12 @@
 
                             localVolume = localStorage.getItem('local_sos_1669_rangeValue') ?? 100;
 
-                            type_input = `<input style="z-index: 4;" type="range" id="localAudioVolume"
+                            type_input = `<input style="z-index: 7;" type="range" id="localAudioVolume"
                                             min="0" max="1000" value="`+localVolume+`" class="w-100" >`;
                             icon_microphone_in_sb = `icon_mic_local_in_sidebar`;
                         } else {
                             name_profile = `<span class="h3 font-weight-bold mx-auto">`+element.name+`</span>`;
-                            type_input = `<input style="z-index: 4;" type="range" id="remoteAudioVolume_`+element.id+`"
+                            type_input = `<input style="z-index: 7;" type="range" id="remoteAudioVolume_`+element.id+`"
                                             min="0" max="100" value="`+inputValue_remote+`" class="w-100" onChange="onChangeVolumeRemote(`+element.id+`, 'handle');">`;
                             icon_microphone_in_sb = `icon_mic_remote_in_sidebar_`+element.id+``;
                         }
