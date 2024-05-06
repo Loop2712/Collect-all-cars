@@ -16,7 +16,7 @@
 		/* margin-top: 0; */
 		margin-bottom: 0;
 
-        overscroll-behavior: none; /* ปิด การขยับเมื่อเกินขอบของ ios */
+         /* overscroll-behavior: none; ปิด การขยับเมื่อเกินขอบของ ios */
 	}
 
 	.data-sos {
