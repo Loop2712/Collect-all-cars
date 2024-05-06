@@ -1126,13 +1126,13 @@
 						</style>
 						<div class="mb-5">
 							<textarea style="position: relative;"class="form-control" id="output-container" name="symptom_other" rows="15" placeholder="อธิบายถึง อาการ เหตุการณ์หรือรายละเอียดอื่นๆ"></textarea>
-							<p style="color:#db2d2e;float:right;margin-bottom: 10px;font-size: 20px;">*กดที่ไมค์เพื่อแปลงคำพูดเป็นตัวอักษร</p>
+							<p class="d-none" style="color:#db2d2e;float:right;margin-bottom: 10px;font-size: 20px;">*กดที่ไมค์เพื่อแปลงคำพูดเป็นตัวอักษร</p>
 							
-							<button class="circle-btn" id="micBtn">
+							<button class="circle-btn d-none" id="micBtn">
 								<i class="fas fa-microphone microphone-icon"></i>
 								<div class="tooltip-speech-to-text"></div>
 							</button>
-							<select name="" id="language-select" style="color: #007bff;font-weight: bolder;width: 100px !important;padding-left: 15px;font-size: 25px;height: 60px;border: #007bff 3px solid; border-radius: 50px;position: absolute; width: 180px;bottom: 70px;right: 20px;">
+							<select name="" id="language-select" class="d-none" style="color: #007bff;font-weight: bolder;width: 100px !important;padding-left: 15px;font-size: 25px;height: 60px;border: #007bff 3px solid; border-radius: 50px;position: absolute; width: 180px;bottom: 70px;right: 20px;">
 								<option value="th-TH">TH</option>
 								<option value="en-US">ENG</option>
 							</select>
