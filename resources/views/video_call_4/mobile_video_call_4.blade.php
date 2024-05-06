@@ -746,7 +746,7 @@
         align-items: center;
     }
 
-    .profile-info p {
+    .profile-info span {
         margin: 0;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -755,7 +755,7 @@
 
     /*============ ตัวปรับเสียง สำหรับมือถือ ============== */
 
-    .wrapper_range_volume {
+    /* .wrapper_range_volume {
         background-color: #05051a;
         position: relative;
         width: 100%;
@@ -816,7 +816,7 @@
             width: 0;
             box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
         }
-    }
+    } */
 
 </style>
 <!-- ใช้ในการเปลี่ยนสีสถานะ ของหน้านี้ -->
@@ -1892,6 +1892,10 @@
 
                 if(member_in_room.length >= 2){
                     if(check_start_timer_video_call == false){
+                        start_timer_video_call();
+                    }else{
+                        clearInterval(loop_timer_video_call);
+                        document.getElementById("time_of_room").innerHTML = "";
                         start_timer_video_call();
                     }
 
@@ -3090,7 +3094,7 @@
                     user_data.forEach(element => {
                         // console.log("element user_data");
                         // console.log(element);
-                        let inputValue_remote = array_remoteVolumeAudio[element.id] ?? 70; // เอาข้อมูล volume ที่เคยปรับไว้มาใช้เป็นค่า value ถ้าไม่มี ให้ใช้ค่า default = 70
+
 
                         let create_profile_remote = document.createElement("div");
                             create_profile_remote.id = "profile_"+element.id;
@@ -3112,7 +3116,7 @@
 
                         let type_input;
                         let localVolume;
-
+                        let inputValue_remote;
                         if (element.id == me_id) {
                             name_profile = `<span class="h3 font-weight-bold text-info mx-auto">`+element.name+`</span>`;
 
@@ -3122,6 +3126,11 @@
                                             min="0" max="1000" value="`+localVolume+`" class="w-100" >`;
                             icon_microphone_in_sb = `icon_mic_local_in_sidebar`;
                         } else {
+
+                            inputValue_remote = array_remoteVolumeAudio[element.id] ?? 70; // เอาข้อมูล volume ที่เคยปรับไว้มาใช้เป็นค่า value ถ้าไม่มี ให้ใช้ค่า default = 70
+                            console.log("inputValue_remote");
+                            console.log(inputValue_remote);
+
                             name_profile = `<span class="h3 font-weight-bold mx-auto">`+element.name+`</span>`;
                             type_input = `<input style="z-index: 7;" type="range" id="remoteAudioVolume_`+element.id+`"
                                             min="0" max="100" value="`+inputValue_remote+`" class="w-100" onChange="onChangeVolumeRemote(`+element.id+`, 'handle');">`;

@@ -1854,6 +1854,10 @@
                 if(member_in_room.length >= 2){
                     if(check_start_timer_video_call == false){
                         start_timer_video_call();
+                    }else{
+                        clearInterval(loop_timer_video_call);
+                        document.getElementById("time_of_room").innerHTML = "";
+                        start_timer_video_call();
                     }
 
                     // if (check_user_in_video_call == false) {
