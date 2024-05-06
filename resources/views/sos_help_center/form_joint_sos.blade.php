@@ -3,7 +3,33 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<style>
+    .data-officer-new{
+        overflow: auto;
+        height: 47vh;
+        transition: all .15s ease-in-out;
+    }
 
+    
+    
+    .data-officer-new::-webkit-scrollbar {
+        width: 5px;
+        right:5px;
+        position:absolute;
+    }
+
+    .data-officer-new::-webkit-scrollbar-thumb {
+        background:#7c7c7c;
+        border-radius:10px;
+    }
+
+    .data-officer-new::-webkit-scrollbar-thumb {
+        visibility: hidden;
+    }
+    .data-officer-new:hover::-webkit-scrollbar-thumb {
+        visibility: visible;
+    }
+</style>
 <!-- //////////////////// Modal อุบัติเหตุร่วม //////////////////// -->
 <div class="modal fade" id="Modal-Mass-casualty-incident" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
@@ -126,9 +152,114 @@
                             <input class="d-none" type="text" name="joint_sos_input_vehicle_type" id="joint_sos_input_vehicle_type" value="{{ isset($data_form_yellow->vehicle_type) ? $data_form_yellow->vehicle_type : 'all'}}">
 
                             <input class="d-none" type="text" id="list_joint_sos_officer">
-
-                            <div class="data-officer p-3 mb-3 ps ps--active-y" id="joint_sos_card_data_operating">
+            
+                            <div class="data-officer-new p-3 mb-3" id="joint_sos_card_data_operating">
                                 <!-- ข้อมูลหน่วยปฏิบัติการในพื้นที่ -->
+                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
+                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
+                                            <div class="d-flex align-items-center">
+                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
+                                            </div>
+                                            <div class="ms-auto">
+                                                <div class="d-flex align-items-center p-2 cursor-pointer">
+                                                    <div class="level FR d-flex align-items-center m-2">
+                                                        <center> FR </center>
+                                                    </div>
+                                                    <div style="margin-left: 10px;">
+                                                        <h6 class="mb-1 font-14">กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ (เรือ ป.1)</h6>
+                                                        <p class="mb-0 font-14">เจ้าหน้าที่ : TEERASAK3</p>
+                                                        <p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ 2.07 กม. </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
+                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
+                                            <div class="d-flex align-items-center">
+                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
+                                            </div>
+                                            <div class="ms-auto">
+                                                <div class="d-flex align-items-center p-2 cursor-pointer">
+                                                    <div class="level FR d-flex align-items-center m-2">
+                                                        <center> FR </center>
+                                                    </div>
+                                                    <div style="margin-left: 10px;">
+                                                        <h6 class="mb-1 font-14">กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ (เรือ ป.1)</h6>
+                                                        <p class="mb-0 font-14">เจ้าหน้าที่ : TEERASAK3</p>
+                                                        <p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ 2.07 กม. </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
+                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
+                                            <div class="d-flex align-items-center">
+                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
+                                            </div>
+                                            <div class="ms-auto">
+                                                <div class="d-flex align-items-center p-2 cursor-pointer">
+                                                    <div class="level FR d-flex align-items-center m-2">
+                                                        <center> FR </center>
+                                                    </div>
+                                                    <div style="margin-left: 10px;">
+                                                        <h6 class="mb-1 font-14">กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ (เรือ ป.1)</h6>
+                                                        <p class="mb-0 font-14">เจ้าหน้าที่ : TEERASAK3</p>
+                                                        <p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ 2.07 กม. </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
+                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
+                                            <div class="d-flex align-items-center">
+                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
+                                            </div>
+                                            <div class="ms-auto">
+                                                <div class="d-flex align-items-center p-2 cursor-pointer">
+                                                    <div class="level FR d-flex align-items-center m-2">
+                                                        <center> FR </center>
+                                                    </div>
+                                                    <div style="margin-left: 10px;">
+                                                        <h6 class="mb-1 font-14">กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ (เรือ ป.1)</h6>
+                                                        <p class="mb-0 font-14">เจ้าหน้าที่ : TEERASAK3</p>
+                                                        <p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ 2.07 กม. </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="div_operating_id_1" onclick="joint_sos_view_data_marker(1,'กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ',2.07,'FR',14.187535,101.164581);">
+                                    <div class="data-officer-item d-flex align-items-center border-top border-bottom p-2 cursor-pointer">
+                                        <div class="d-md-flex align-items-center email-message px-3 py-1">
+                                            <div class="d-flex align-items-center">
+                                                <input class="form-check-input" id="test" type="checkbox" value=""> 
+                                            </div>
+                                            <div class="ms-auto">
+                                                <div class="d-flex align-items-center p-2 cursor-pointer">
+                                                    <div class="level FR d-flex align-items-center m-2">
+                                                        <center> FR </center>
+                                                    </div>
+                                                    <div style="margin-left: 10px;">
+                                                        <h6 class="mb-1 font-14">กู้ภัยมืดแบบมืดเลยมืดมาก มืดจริงๆนะ ไม่ได้โม้ มืดตืดตื๋อ (เรือ ป.1)</h6>
+                                                        <p class="mb-0 font-14">เจ้าหน้าที่ : TEERASAK3</p>
+                                                        <p class="mb-0 font-13 text-secondary">ระยะห่าง(รัศมี) ≈ 2.07 กม. </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- <div class="data-officer p-3 mb-3 ps ps--active-y">
@@ -566,7 +697,7 @@
         <div class="modal-content" style="height:95vh !important">
         <button type="button" class="btnCloseModalOfficer btn" data-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
 
-            <div class="modal-body" style="height:95vh !important;overflow:auto;">
+            <div class="modal-body">
                 <div class="row">
                     <div class="col-12" id="wait_for_loadMap">
                         <div class="card card">

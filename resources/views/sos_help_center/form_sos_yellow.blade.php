@@ -1037,9 +1037,191 @@
 							<h5 class="mb-0 text-primary">อาการ/เหตุการณ์/รายละเอียดอื่นๆ</h5>
 						</div>
 						<hr>
-						<textarea class="form-control" name="symptom_other" rows="15" placeholder="อธิบายถึง อาการ เหตุการณ์หรือรายละเอียดอื่นๆ">{{ isset($data_form_yellow->symptom_other) ? $data_form_yellow->symptom_other : ''}}</textarea>
-					</div>
+						<!-- <button id="toggle-btn">เริ่มการแปลง</button> -->
+						
+						<style>
+						.circle-btn {
+							width: 60px;
+							height: 60px;
+							background-color: #fff;
+							border: #007bff 4px solid;
+							border-radius: 50%;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							color: white;
+							font-size: 24px;
+							cursor: pointer;
+							box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+							transition: background-color 0.3s ease;
+							position: absolute;
+							bottom: 70px;	
+							right: 130px;
+						}
+						.circle-btn-active{
+							background-color: #007bff !important;
+						}
+						.circle-btn-active .microphone-icon{
+							color: #fff !important;
+						}
+						.microphone-icon {
+							font-size: 28px;
+							margin-top: 4px;
+							color: #007bff;
+						}
 
+						.listening {
+							animation: pulse 1s infinite;
+						}
+
+						@keyframes pulse {
+							0% {
+							transform: scale(0.95);
+							box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+							}
+
+							70% {
+							transform: scale(1);
+							box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+							}
+
+							100% {
+							transform: scale(0.95);
+							box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+							}
+						}
+
+						.tooltip-speech-to-text {
+							position: absolute;
+							top: -30px;
+							left: -100%;
+							transform: translateX(-50%);
+							background-color: #000;
+							color: #fff;
+							padding: 6px 10px;
+							border-radius: 5px;
+							opacity: 1;
+							font-size: 14px;
+							transition: all 0.3s ease;
+							visibility: hidden;
+							width:120px;
+						}
+						.tooltip-speech-to-text:after {
+							content: '';
+							position: absolute;
+							right: 0px;
+							bottom: -5px;
+							width: 0;
+							height: 0;
+							border-left: 20px solid transparent;
+							border-right: 0px solid transparent;
+							border-top:10px solid #000;
+							clear: both;
+						}
+						.tooltip-speech-to-text-active {
+						opacity: 1;
+						visibility: visible;
+						top: -50px;
+						}
+						</style>
+						<div class="mb-5">
+							<textarea style="position: relative;"class="form-control" id="output-container" name="symptom_other" rows="15" placeholder="อธิบายถึง อาการ เหตุการณ์หรือรายละเอียดอื่นๆ"></textarea>
+							<p style="color:#db2d2e;float:right;margin-bottom: 10px;font-size: 20px;">*กดที่ไมค์เพื่อแปลงคำพูดเป็นตัวอักษร</p>
+							
+							<button class="circle-btn" id="micBtn">
+								<i class="fas fa-microphone microphone-icon"></i>
+								<div class="tooltip-speech-to-text"></div>
+							</button>
+							<select name="" id="language-select" style="color: #007bff;font-weight: bolder;width: 100px !important;padding-left: 15px;font-size: 25px;height: 60px;border: #007bff 3px solid; border-radius: 50px;position: absolute; width: 180px;bottom: 70px;right: 20px;">
+								<option value="th-TH">TH</option>
+								<option value="en-US">ENG</option>
+							</select>
+						</div>
+
+						<script>
+							const micBtn = document.getElementById('micBtn');
+							const outputContainer = document.getElementById('output-container');
+							let recognizing = false;
+							let recognition;
+
+							// Check if the browser supports Web Speech API
+							if ('webkitSpeechRecognition' in window) {
+								recognition = new webkitSpeechRecognition();
+
+								// Set Thai as default language
+								recognition.lang = 'th-TH';
+
+								// Set continuous listening
+								recognition.continuous = true;
+
+								// When speech is recognized
+								recognition.onresult = function(event) {
+									const transcript = event.results[event.results.length - 1][0].transcript;
+									if (outputContainer.value !== '') {
+										outputContainer.value += ' ' + transcript;
+									} else {
+										outputContainer.value = transcript;
+									}
+									
+									// Adjust pulse animation based on speech length
+									const volume = event.results[event.results.length - 1][0].volume;
+									micBtn.style.animationDuration = (1 / volume) + 's';
+									micBtn.classList.add('listening');
+									document.querySelector('.tooltip-speech-to-text').innerHTML = 'กำลังฟัง...';
+
+								};
+
+								// When an error occurs
+								recognition.onerror = function(event) {
+									outputContainer.value += 'เกิดข้อผิดพลาดในการรับเสียง: ' + event.error;
+								};
+
+								// When the start/stop button is clicked
+								micBtn.addEventListener('click', function() {
+									if (!recognizing) {
+										recognition.start();
+										micBtn.classList.add('listening');
+										recognizing = true;
+										console.log('Listening...');
+										document.querySelector('.tooltip-speech-to-text').classList.add('tooltip-speech-to-text-active');
+										document.querySelector('.tooltip-speech-to-text').innerHTML = 'กำลังรอการพูด...';
+										document.querySelector('#micBtn').classList.add('circle-btn-active');
+									} else {
+										recognition.stop();
+										micBtn.classList.remove('listening');
+										recognizing = false;
+										console.log('Stopped listening');
+										document.querySelector('.tooltip-speech-to-text').classList.remove('tooltip-speech-to-text-active');
+										document.querySelector('.tooltip-speech-to-text').innerHTML = 'หยุดการรับเสียง';
+										document.querySelector('#micBtn').classList.remove('circle-btn-active');
+									}
+								});
+
+								// Change recognition language when selecting a different language
+								document.getElementById('language-select').addEventListener('change', async function() {
+							// Change recognition language
+							recognition.lang = this.value;
+
+							// Stop recognition if it's currently active
+							if (recognizing) {
+								recognition.stop();
+								// Wait for recognition to stop
+								await new Promise(resolve => {
+									recognition.onend = resolve;
+								});
+							}
+
+							// Start recognition again with the new language
+							recognition.start();
+						});
+
+							} else {
+								outputContainer.value = 'เบราว์เซอร์ของคุณไม่รองรับการแปลงคำพูดเป็นตัวอักษร';
+							}
+						</script>
+
+					
+					</div>
 					<!---------------------------------- ข้อ 4  ---------------------------------->
 					<div id="step-4" class="tab-pane" role="tabpanel" aria-labelledby="step-4">
 						<div class="card-title d-flex align-items-center">
