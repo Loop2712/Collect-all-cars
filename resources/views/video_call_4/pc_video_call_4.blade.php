@@ -1817,41 +1817,11 @@
                                         // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
                                         document.querySelector('#mic_remote_' + dummy_remote.uid).innerHTML = '<i class="fa-solid fa-microphone"></i>';
 
-                                        // agoraEngine.on("volume-indicator", volumes => {
-                                        //     volumes.forEach((volume, index) => {
-                                        //         console.log("test_indicator");
-                                        //         console.log(test_indicator);
-                                        //         if (dummy_remote['uid'] == volume.uid && volume.level > 50) {
-                                        //             console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
-                                        //             document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.remove('d-none');
-                                        //         } else if (dummy_remote['uid'] == volume.uid && volume.level <= 50) {
-                                        //             console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
-                                        //             document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.add('d-none');
-                                        //         }
-                                        //     });
-                                        // })
                                         status_remote_volume[dummy_remote.uid] = "yes";
                                         if (check_start_volume_indicator[dummy_remote.uid] == "no") {
                                             volume_indicator_remote(dummy_remote.uid);
                                         }
 
-                                        // สร้าง function callback ที่จะใช้ในการประกาศตัวแปรเพื่อทำการ unsubscribe
-                                        // function onVolumeIndicatorCallback_dummy(volume) {
-                                        //     volume.forEach((volume, index) => {
-                                        //         console.log("volume in published");
-                                        //         if (dummy_remote['uid'] == volume.uid && volume.level > 50) {
-                                        //             console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
-                                        //             document.querySelector('#statusMicrophoneOutput_remote_'+ dummy_remote['uid']).classList.remove('d-none');
-                                        //         } else if (dummy_remote['uid'] == volume.uid && volume.level <= 50) {
-                                        //             console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
-                                        //             document.querySelector('#statusMicrophoneOutput_remote_'+ dummy_remote['uid']).classList.add('d-none');
-                                        //         }
-                                        //     });
-                                        // }
-
-                                        // // Subscribe การเรียก callback function เมื่อเกิดเหตุการณ์ "volume-indicator"
-                                        // agoraEngine.off("volume-indicator", onVolumeIndicatorCallback_dummy);
-                                        // agoraEngine.on("volume-indicator", onVolumeIndicatorCallback_dummy);
                                     }
 
                                     let type_of_microphone;
@@ -3803,49 +3773,6 @@
                 });
             })
     }
-
-
-    // let volumeIndicatorHandler_Remote = volumes => {
-    //     volumes.forEach((volume) => {
-
-    //         let localAudioTrackCheck = channelParameters.localAudioTrack;
-    //         if (volume.level >= 50) {
-    //             //แสดงชื่ออุปกรณ์ที่ใช้และระดับเสียง
-
-    //             if (user_id == volume.uid && volume.level > 50) {
-    //                 console.log('Enabled Device: ' + localAudioTrackCheck['_deviceName']);
-    //                 console.log(`UID ${volume.uid} Level ${volume.level}`);
-
-    //                 // แสดงปุ่มเสียงพูด"
-    //                 if (!isIconVisible) {
-    //                     document.querySelector('#statusMicrophoneOutput_local').classList.remove('d-none');
-    //                     isIconVisible = true;
-    //                 }
-    //             }
-
-    //         } else {
-
-    //             if (user_id == volume.uid && volume.level <= 50) {
-    //                 console.log('Enabled Device: ' + localAudioTrackCheck['_deviceName']);
-    //                 console.log(`UID ${volume.uid} Level ${volume.level}`);
-
-    //                 // ซ่อนปุ่มเสียงพูด"
-    //                 if (isIconVisible) {
-    //                     document.querySelector('#statusMicrophoneOutput_local').classList.add('d-none');
-    //                     isIconVisible = false;
-    //                 }
-
-    //             }
-
-    //         }
-    //     });
-    // };
-
-    // function SoundTest_Remote() {
-    //     // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
-    //     agoraEngine.off("volume-indicator", volumeIndicatorHandler_Remote);
-    //     agoraEngine.on("volume-indicator", volumeIndicatorHandler_Remote);
-    // }
 
     function start_user_in_video_call(){
 

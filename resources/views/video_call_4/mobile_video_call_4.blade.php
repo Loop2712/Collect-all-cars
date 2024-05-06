@@ -1699,18 +1699,10 @@
 
                 type_of_microphone_remote_icon_in_setting = "open"; //เปลี่ยนให้ icon ไมค์ เป็น เปิด เพื่อใช้เปลี่ยนไอคอนใน setting menu
 
-                //ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
-                agoraEngine.on("volume-indicator", volumes => {
-                    volumes.forEach((volume, index) => {
-                        if (user.uid == volume.uid && volume.level >= 50) {
-                            console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
-                            document.querySelector('#statusMicrophoneOutput_remote_'+ user.uid).classList.remove('d-none');
-                        } else if (user.uid == volume.uid && volume.level < 50) {
-                            console.log(`${index} UID ${volume.uid} Level ${volume.level}`);
-                            document.querySelector('#statusMicrophoneOutput_remote_'+ user.uid).classList.add('d-none');
-                        }
-                    });
-                })
+                status_remote_volume[user.uid] = "yes";
+                if (check_start_volume_indicator[user.uid] == "no") {
+                    volume_indicator_remote(user.uid);
+                }
             }
 
         });
@@ -1785,6 +1777,7 @@
                 // ตรวจจับเสียงพูดแล้ว สร้าง animation บนขอบ div
                 console.log('unpublished AudioTrack:');
                 // console.log(channelParameters.localAudioTrack);
+                status_remote_volume[user.uid] = "no";
 
                 type_of_microphone_remote_icon_in_setting = "close"; //เปลี่ยนให้ icon ไมค์ เป็น ปิด เพื่อใช้เปลี่ยนไอคอนใน setting menu
 
@@ -1809,6 +1802,8 @@
 
             console.log("agoraEngine มีคนเข้าห้องมา");
             console.log(agoraEngine);
+
+            check_start_volume_indicator[evt.uid] = "no";
 
             // เสียงแจ้งเตือน เวลาคนเข้า
             let audio_ringtone_join = new Audio("{{ asset('sound/join_room_1.mp3') }}");
@@ -1859,23 +1854,17 @@
 
                                     //เช็คว่าไมค์ของเขาเปิดหรือไม่
                                     if(dummy_remote['hasAudio'] == false){ //ถ้า remote คนนี้ ไม่ได้เปิดไมไว้ --> ไปสร้าง div_dummy
+                                        status_remote_volume[dummy_remote.uid] = "no";
                                         // เปลี่ยน ไอคอนไมโครโฟนเป็น ปิด
                                         document.querySelector('#mic_remote_' + dummy_remote.uid).innerHTML = '<i class="fa-duotone fa-microphone-slash" style="--fa-primary-color: #ff0000; --fa-secondary-color: #ffffff; --fa-secondary-opacity: 1;"></i>';
                                     }else{
                                         // เปลี่ยน ไอคอนไมโครโฟนเป็น เปิด
                                         document.querySelector('#mic_remote_' + dummy_remote.uid).innerHTML = '<i class="fa-solid fa-microphone"></i>';
 
-                                        agoraEngine.on("volume-indicator", volumes => {
-                                            volumes.forEach((volume, index) => {
-                                                if (dummy_remote.uid == volume.uid && volume.level > 50) {
-                                                    console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
-                                                    document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.remove('d-none');
-                                                } else if (dummy_remote.uid == volume.uid && volume.level < 50) {
-                                                    console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
-                                                    document.querySelector('#statusMicrophoneOutput_remote_'+dummy_remote.uid).classList.add('d-none');
-                                                }
-                                            });
-                                        })
+                                        status_remote_volume[dummy_remote.uid] = "yes";
+                                        if (check_start_volume_indicator[dummy_remote.uid] == "no") {
+                                            volume_indicator_remote(dummy_remote.uid);
+                                        }
                                     }
 
                                     if (dummy_remote['hasAudio'] == false) {
@@ -4536,87 +4525,32 @@
         agoraEngine.on("volume-indicator", volumeIndicatorHandler);
     }
 
-    // function Stop_check_user_in_video_call() {
-    //     console.log("เข้ามาหยุด Stop_check_user_in_video_call");
-    //     clearInterval(loop_check_div_user);
-    //     check_user_in_video_call = false;
-    // }
 
-    // function start_user_in_video_call(){
-    //     console.log("start_user_in_video_call");
-    //     check_user_in_video_call = true;
+    var check_start_volume_indicator = [];
+    var status_remote_volume = [];
+    function volume_indicator_remote(remote_id){
+        console.log("ทำแล้วน้าาา volume_indicator_remote");
+        check_start_volume_indicator[remote_id] = "yes";
 
-    //     loop_check_div_user = setInterval(() => {
-
-    //         fetch("{{ url('/') }}/api/check_user_in_room_4" + "?sos_id=" + sos_id + "&type=" + type_video_call)
-    //         .then(response => response.json())
-    //         .then(result => {
-    //             let customDivAll = document.querySelectorAll(".custom-div");
-
-    //             let status_delete = "delete";
-
-    //             customDivAll.forEach(element => {
-
-    //                 let id = element.id;
-    //                 let status_delete = "delete";
-
-    //                 if (id.startsWith("videoDiv_")) {
-    //                     // แยก UID จาก id โดยตัด "videoDiv_" ออก
-    //                     let uid = id.replace("videoDiv_", "");
-
-    //                     // result['data'].forEach(data_user => {
-    //                     //     // ตรวจสอบว่า UID นี้อยู่ใน remoteUsers หรือไม่
-    //                     //     if (uid == data_user.id.toString()) {
-    //                     //         // ถ้าไม่มีให้ลบ element ออก
-    //                     //         if (uid !== '{{ Auth::user()->id }}') {
-    //                     //             // element.remove();
-    //                     //             status_delete = "not_delete";
-    //                     //         }
-
-    //                     //     }
-    //                     // });
-
-    //                     const promises = result['data'].map(data_user => {
-    //                         return new Promise((resolve, reject) => {
-    //                             // ตรวจสอบว่า UID นี้อยู่ใน remoteUsers หรือไม่
-    //                             if (uid == data_user.id.toString()) {
-    //                                 // ถ้าไม่มีให้ลบ element ออก
-    //                                 status_delete = "not_delete";
-    //                             }
-    //                             // เมื่อเสร็จสิ้นให้เรียก resolve
-    //                             resolve();
-    //                         });
-    //                     });
-
-    //                     Promise.all(promises)
-    //                         .then(() => {
-    //                             if (status_delete == "delete") {
-    //                                 element.remove();
-    //                             }
-    //                         })
-    //                         .catch(error => {
-    //                             // จัดการกับข้อผิดพลาด (ถ้ามี)
-    //                             console.error("catch error in promise :"+error);
-    //                         });
-
-    //                 }
-    //                 else{
-    //                     element.remove();
-    //                 }
-
-
-
-    //             });
-
-    //         })
-    //         .catch(error => {
-    //             check_user_in_video_call = false;
-    //             console.log("check_user_in_video_call error : "+error);
-    //         });
-
-    //     }, 15000);
-
-    // }
+        agoraEngine.on("volume-indicator", volumes => {
+                volumes.forEach((volume, index) => {
+                    console.log("เข้า foreach");
+                    console.log(volume.uid);
+                    if (remote_id == volume.uid && status_remote_volume[remote_id] == "yes") {
+                        if (volume.level > 50) {
+                            console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
+                            document.querySelector('#statusMicrophoneOutput_remote_'+remote_id).classList.remove('d-none');
+                        } else if (volume.level <= 50) {
+                            console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
+                            document.querySelector('#statusMicrophoneOutput_remote_'+remote_id).classList.add('d-none');
+                        }
+                    }else if(remote_id == volume.uid && status_remote_volume[remote_id] == "no") {
+                        console.log("else ล่างสุด");
+                        document.querySelector('#statusMicrophoneOutput_remote_'+remote_id).classList.add('d-none');
+                    }
+                });
+            })
+    }
 
     function start_user_in_video_call(){
 
@@ -4642,18 +4576,6 @@
                         if (id.startsWith("videoDiv_")) {
                             // แยก UID จาก id โดยตัด "videoDiv_" ออก
                             let uid = id.replace("videoDiv_", "");
-
-                            // result['data'].forEach(data_user => {
-                            //     // ตรวจสอบว่า UID นี้อยู่ใน remoteUsers หรือไม่
-                            //     if (uid == data_user.id.toString()) {
-                            //         // ถ้าไม่มีให้ลบ element ออก
-                            //         if (uid !== '{{ Auth::user()->id }}') {
-                            //             // element.remove();
-                            //             status_delete = "not_delete";
-                            //         }
-
-                            //     }
-                            // });
 
                             const promises = result['data'].map(data_user => {
                                 return new Promise((resolve, reject) => {
