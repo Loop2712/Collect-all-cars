@@ -755,7 +755,7 @@
 
     /*============ ตัวปรับเสียง สำหรับมือถือ ============== */
 
-     .wrapper_range_volume {
+    /* .wrapper_range_volume {
         background-color: #05051a;
         position: relative;
         width: 100%;
@@ -817,7 +817,24 @@
         border: none;
         width: 0;
         box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
+    } */
+
+    .wrapper_range_volume {
+        /* background-color: #05051a; */
+        position: relative;
+        width: 100%;
+        height: 3rem;
+        border-radius: 10px;
     }
+
+    .wrapper_range_volume input[type="range"]::-webkit-slider-thumb {
+        width: 20px; /* ปรับขนาดตามที่คุณต้องการ */
+        height: 20px; /* ปรับขนาดตามที่คุณต้องการ */
+        background-color: #ffffff; /* สีของตัวหมุน */
+        border-radius: 50%; /* ทำให้มันเป็นวงกลม */
+        cursor: pointer; /* เปลี่ยนเป็นตัวชี้มือ */
+    }
+
 
 </style>
 <!-- ใช้ในการเปลี่ยนสีสถานะ ของหน้านี้ -->
@@ -3070,6 +3087,14 @@
 
     // }
 
+    function setRemoteVolume() {
+        // ดึงค่าที่ป้อนลงไปใน input
+        let newVolume = document.getElementById("customVolumeInput").value;
+        // ดึง ID ของอิลิเมนต์ที่เกี่ยวข้อง
+        // ตั้งค่าค่าของ remoteAudioVolume_ + ไอดี ใหม่
+        document.getElementById("localAudioVolume").value = newVolume;
+    }
+
     function close_menu(){
         inMenuDiv.style.opacity = "0";
         inMenuDiv.style.maxHeight = "0";
@@ -3154,12 +3179,19 @@
                                     <div class="col-9">
                                         <div class="wrapper_range_volume">
                                             `+type_input+`
+                                            <div class="wrapper_range_volume">
+                                                <input class="w-100" type="number" id="customVolumeInput" value="`+localVolume+`" min="0" max="100" oninput="setRemoteVolume()">
+                                            </div>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
                             `;
+
+
+
+
 
                             create_profile_remote.innerHTML = detailHTML;
 
@@ -3194,7 +3226,7 @@
 
                                 // เพิ่ม event listener สำหรับ local audio volume slider
                                 document.getElementById("localAudioVolume").addEventListener("change", function (evt) {
-
+                                    document.querySelector('#customVolumeInput').value = evt.target.value;
                                     check_and_switch_icon_local(evt.target.value);
                                     // Set the local audio volume.
                                     channelParameters.localAudioTrack.setVolume(parseInt(evt.target.value));
