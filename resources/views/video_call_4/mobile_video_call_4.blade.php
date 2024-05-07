@@ -764,7 +764,7 @@
 
     }
 
-    /* .wrapper_range_volume::before{
+    .wrapper_range_volume::before{
         content: "-";
         position: absolute;
         top: 50%;
@@ -788,7 +788,7 @@
 
     .wrapper_range_volume::after {
         right: 1rem;
-    } */
+    }
 
     /* .wrapper_range_volume input[type="range"] {
         background-color: rgba(255, 255, 255, .2);
