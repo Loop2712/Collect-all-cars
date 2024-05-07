@@ -3152,7 +3152,7 @@
                                         <i class="fa-solid fa-microphone" style="display: inline-block; z-index: 6; font-size: 44px;" ></i>
                                     </div>
                                     <div class="col-9">
-                                        <div class="wrapper_range_volume">
+                                        <div >
                                             `+type_input+`
                                         </div>
                                     </div>
