@@ -3133,7 +3133,7 @@
 
                             name_profile = `<span class="h3 font-weight-bold mx-auto">`+element.name+`</span>`;
                             type_input = `<input style="z-index: 7;" type="range" id="remoteAudioVolume_`+element.id+`"
-                                            min="0" max="100" step="any" value="`+inputValue_remote+`" class="w-100" onChange="onChangeVolumeRemote(`+element.id+`, 'handle');">`;
+                                            min="0" max="100"  value="`+inputValue_remote+`"  onChange="onChangeVolumeRemote(`+element.id+`, 'handle');">`;
                             icon_microphone_in_sb = `icon_mic_remote_in_sidebar_`+element.id+``;
                         }
 
