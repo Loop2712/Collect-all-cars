@@ -797,7 +797,7 @@
         width: 100%;
         height: 5rem;
         border-radius: 0.5rem;
-        overflow: visible;
+        overflow: hidden;
         cursor: row-resize;
 
         &[step]{
@@ -805,18 +805,6 @@
             background-image: repeating-linear-gradient(to right, rgba(255, 255, 255, .2), rgba(255, 255, 255, .2) calc(12.5% - 1px), #05051a 12.5%);
         }
 
-        /* &::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 0;
-            box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
-
-        }
-
-        &::-moz-range-thumb {
-            border: none;
-            width: 0;
-            box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
-        } */
     }
 
     .wrapper_range_volume input[type="range"]::-webkit-slider-thumb {
