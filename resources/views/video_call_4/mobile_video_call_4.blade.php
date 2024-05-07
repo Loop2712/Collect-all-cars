@@ -790,11 +790,11 @@
         right: 1rem;
     }
 
-    /* .wrapper_range_volume input[type="range"] {
+    .wrapper_range_volume input[type="range"] {
         background-color: rgba(255, 255, 255, .2);
         position: relative;
         width: 100%;
-        height: 3rem;
+        height: 100%;
         border-radius: 0.5rem;
         overflow: hidden;
         cursor: row-resize;
@@ -817,7 +817,7 @@
             width: 0;
             box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
         }
-    } */
+    }
 
 </style>
 <!-- ใช้ในการเปลี่ยนสีสถานะ ของหน้านี้ -->
