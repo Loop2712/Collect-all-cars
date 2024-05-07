@@ -3168,11 +3168,11 @@
                             // console.log(inputValue_remote);
 
                             name_profile = `<span class="h3 font-weight-bold mx-auto">`+element.name+`</span>`;
-                            type_input = `<input style="z-index: 7;" type="range" id="remoteAudioVolume_`+element.id+`"
+                            type_input = `<input class="w-100" style="z-index: 7;" type="range" id="remoteAudioVolume_`+element.id+`"
                                             min="0" max="100"  value="`+inputValue_remote+`"  onChange="onChangeVolumeRemote(`+element.id+`, 'handle');">`;
                             type_input_value = ` <div class="wrapper_range_volume">
-                                                <input class="w-100" type="number" id="customVolumeInput_`+element.id+`" value="`+inputValue_remote+`" min="0" max="100" oninput="setRemoteVolume_remote(`+element.id+`)">
-                                            </div>`;
+                                                    <input class="w-100" type="number" id="customVolumeInput_`+element.id+`" value="`+inputValue_remote+`" min="0" max="100" oninput="setRemoteVolume_remote(`+element.id+`)">
+                                                </div>`;
                             icon_microphone_in_sb = `icon_mic_remote_in_sidebar_`+element.id+``;
                         }
 
@@ -3283,6 +3283,7 @@
             if (div_id == uid_remote && agoraEngine['remoteUsers'][index]['audioTrack']) {
                 // console.log("ไอดีตรงกัน");
                 agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(value_slider));
+                alert("setRemote_Volume : "+value_slider);
             }
 
             //เช็คว่าสถานะ remote เปิดหรือปิดไมค์ แล้วส่งไปยังฟังก์ชันเปลี่ยน ไอคอนตามสถานะ
