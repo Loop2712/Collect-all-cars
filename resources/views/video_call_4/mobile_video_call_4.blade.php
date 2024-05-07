@@ -800,7 +800,7 @@
         overflow: hidden;
         cursor: row-resize;
 
-        /* &[step]{
+        &[step]{
             background-color: transparent;
             background-image: repeating-linear-gradient(to right, rgba(255, 255, 255, .2), rgba(255, 255, 255, .2) calc(12.5% - 1px), #05051a 12.5%);
         }
@@ -816,7 +816,7 @@
             border: none;
             width: 0;
             box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
-        } */
+        }
     }
 
 </style>
