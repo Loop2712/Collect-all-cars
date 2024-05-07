@@ -800,12 +800,12 @@
         overflow: visible;
         cursor: row-resize;
 
-        /* &[step]{
+        &[step]{
             background-color: transparent;
             background-image: repeating-linear-gradient(to right, rgba(255, 255, 255, .2), rgba(255, 255, 255, .2) calc(12.5% - 1px), #05051a 12.5%);
         }
 
-        &::-webkit-slider-thumb {
+        /* &::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 0;
             box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
@@ -821,17 +821,14 @@
 
     .wrapper_range_volume input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: 1rem; /* Set thumb width */
-        height: 1rem; /* Set thumb height */
-        background-color: #fff; /* Thumb color */
-        border-radius: 50%; /* Make it round */
+        width: 0;
+        box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
     }
 
-    .wrapper_range_volume input[type="range"]::-webkit-slider-runnable-track {
-        -webkit-appearance: none;
-        background-color: rgba(255, 255, 255, .2); /* Track color */
-        height: 0.5rem; /* Track height */
-        border-radius: 0.25rem; /* Make it rounded */
+    .wrapper_range_volume input[type="range"]::-moz-range-thumb {
+        border: none;
+        width: 0;
+        box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
     }
 
 </style>
