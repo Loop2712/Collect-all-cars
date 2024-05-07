@@ -3095,6 +3095,13 @@
         document.getElementById("localAudioVolume").value = newVolume;
     }
 
+    function setRemoteVolume_remote(user_id){
+        // ดึงค่าที่ป้อนลงไปใน input
+        let newVolume = document.getElementById("customVolumeInput_"+user_id).value;
+
+        document.getElementById("remoteAudioVolume_"+user_id).value = newVolume;
+    }
+
     function close_menu(){
         inMenuDiv.style.opacity = "0";
         inMenuDiv.style.maxHeight = "0";
@@ -3140,6 +3147,7 @@
                         let icon_microphone_in_sb;
 
                         let type_input;
+                        let type_input_value;
                         let localVolume;
                         let inputValue_remote;
                         if (element.id == me_id) {
@@ -3149,6 +3157,9 @@
 
                             type_input = `<input style="z-index: 7;" type="range" id="localAudioVolume"
                                             min="0" max="1000" value="`+localVolume+`" class="w-100" >`;
+                            type_input_value = ` <div class="wrapper_range_volume">
+                                                <input class="w-100" type="number" id="customVolumeInput" value="`+localVolume+`" min="0" max="100" oninput="setRemoteVolume()">
+                                            </div>`;
                             icon_microphone_in_sb = `icon_mic_local_in_sidebar`;
                         } else {
 
@@ -3159,7 +3170,9 @@
                             name_profile = `<span class="h3 font-weight-bold mx-auto">`+element.name+`</span>`;
                             type_input = `<input style="z-index: 7;" type="range" id="remoteAudioVolume_`+element.id+`"
                                             min="0" max="100"  value="`+inputValue_remote+`"  onChange="onChangeVolumeRemote(`+element.id+`, 'handle');">`;
-
+                            type_input_value = ` <div class="wrapper_range_volume">
+                                                <input class="w-100" type="number" id="customVolumeInput_`+element.id+`" value="`+inputValue_remote+`" min="0" max="100" oninput="setRemoteVolume_remote(`+element.id+`)">
+                                            </div>`;
                             icon_microphone_in_sb = `icon_mic_remote_in_sidebar_`+element.id+``;
                         }
 
@@ -3179,9 +3192,8 @@
                                     <div class="col-9">
                                         <div class="wrapper_range_volume">
                                             `+type_input+`
-                                            <div class="wrapper_range_volume">
-                                                <input class="w-100" type="number" id="customVolumeInput" value="`+localVolume+`" min="0" max="100" oninput="setRemoteVolume()">
-                                            </div>
+                                            `+type_input_value+`
+
                                         </div>
                                     </div>
 
@@ -3255,6 +3267,8 @@
         } else {
             value_slider = slider;
         }
+
+        document.querySelector('#customVolumeInput_'+div_id).value = value_slider;
 
         array_remoteVolumeAudio[div_id] = value_slider;
         // console.log("agoraEngine onChangeVolumeRemote");
