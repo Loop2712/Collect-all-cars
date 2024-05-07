@@ -798,7 +798,7 @@
         height: 3rem;
         border-radius: 0.5rem;
         overflow: hidden;
-        /* cursor: row-resize; */
+        cursor: row-resize;
 
         /* &[step]{
             background-color: transparent;
