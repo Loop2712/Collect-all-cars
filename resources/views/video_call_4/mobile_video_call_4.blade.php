@@ -806,7 +806,7 @@
         }
 
         &::-webkit-slider-thumb {
-            -webkit-appearance: none;
+            /* -webkit-appearance: none; */
             width: 0;
             box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
 
