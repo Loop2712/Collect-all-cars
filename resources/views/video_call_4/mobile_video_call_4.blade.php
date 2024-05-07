@@ -755,7 +755,7 @@
 
     /*============ ตัวปรับเสียง สำหรับมือถือ ============== */
 
-    /* .wrapper_range_volume {
+     .wrapper_range_volume {
         background-color: #05051a;
         position: relative;
         width: 100%;
@@ -806,17 +806,29 @@
         }
 
         &::-webkit-slider-thumb {
-            -webkit-appearance: none;
+            /* -webkit-appearance: none;
             width: 0;
-            box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
+            box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2); */
+            -webkit-appearance: none;
+            width: 1rem; /* ตั้งค่าความกว้างของ thumb */
+            height: 1rem; /* ตั้งค่าความสูงของ thumb */
+            background-color: #fff; /* สีของ thumb */
+            border-radius: 50%; /* ตั้งค่ารูปร่างของ thumb เป็นวงกลม */
+            box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.5); /* เพิ่มเงาให้กับ thumb */
         }
 
         &::-moz-range-thumb {
-            border: none;
+            /* border: none;
             width: 0;
-            box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2);
+            box-shadow: 20rem 0 0 20rem rgba(255, 255, 255, 0.2); */
+            -moz-appearance: none;
+            width: 1rem; /* ตั้งค่าความกว้างของ thumb */
+            height: 1rem; /* ตั้งค่าความสูงของ thumb */
+            background-color: #fff; /* สีของ thumb */
+            border-radius: 50%; /* ตั้งค่ารูปร่างของ thumb เป็นวงกลม */
+            box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.5); /* เพิ่มเงาให้กับ thumb */
         }
-    } */
+    }
 
 </style>
 <!-- ใช้ในการเปลี่ยนสีสถานะ ของหน้านี้ -->
@@ -3095,7 +3107,6 @@
                         // console.log("element user_data");
                         // console.log(element);
 
-
                         let create_profile_remote = document.createElement("div");
                             create_profile_remote.id = "profile_"+element.id;
                             create_profile_remote.classList.add('row');
@@ -3128,8 +3139,8 @@
                         } else {
 
                             inputValue_remote = array_remoteVolumeAudio[element.id] ?? 70; // เอาข้อมูล volume ที่เคยปรับไว้มาใช้เป็นค่า value ถ้าไม่มี ให้ใช้ค่า default = 70
-                            console.log("inputValue_remote");
-                            console.log(inputValue_remote);
+                            // console.log("inputValue_remote");
+                            // console.log(inputValue_remote);
 
                             name_profile = `<span class="h3 font-weight-bold mx-auto">`+element.name+`</span>`;
                             type_input = `<input style="z-index: 7;" type="range" id="remoteAudioVolume_`+element.id+`"
