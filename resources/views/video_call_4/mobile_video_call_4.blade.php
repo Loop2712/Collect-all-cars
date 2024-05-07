@@ -791,6 +791,7 @@
     }
 
     .wrapper_range_volume input[type="range"] {
+        -webkit-appearance: none;
         background-color: rgba(255, 255, 255, .2);
         position: relative;
         width: 100%;
