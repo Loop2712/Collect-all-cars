@@ -795,7 +795,7 @@
         background-color: rgba(255, 255, 255, .2);
         position: relative;
         width: 100%;
-        height: 3rem;
+        height: 5rem;
         border-radius: 0.5rem;
         overflow: hidden;
         cursor: row-resize;
