@@ -791,14 +791,14 @@
     }
 
     .wrapper_range_volume input[type="range"] {
-        -webkit-appearance: none;
+        /* -webkit-appearance: none; */
         background-color: rgba(255, 255, 255, .2);
         position: relative;
         width: 100%;
         height: 3rem;
         border-radius: 0.5rem;
         overflow: hidden;
-        cursor: row-resize;
+        /* cursor: row-resize; */
 
         /* &[step]{
             background-color: transparent;
