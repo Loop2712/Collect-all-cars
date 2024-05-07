@@ -759,7 +759,7 @@
         background-color: #05051a;
         position: relative;
         width: 100%;
-        height: 3rem;
+        height: 5rem;
         border-radius: 10px;
 
     }
