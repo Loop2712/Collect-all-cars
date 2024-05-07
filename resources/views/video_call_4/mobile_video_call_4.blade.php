@@ -801,10 +801,10 @@
         cursor: row-resize;
         touch-action: manipulation;
 
-        /* &[step]{
+        &[step]{
             background-color: transparent;
-            background-image: repeating-linear-gradient(to right, rgba(255, 255, 255, .2), rgba(255, 255, 255, .2) calc(12.5% - 1px), #05051a 12.5%);
-        } */
+            background-image: repeating-linear-gradient(to right, rgba(255, 255, 255, .2), rgba(255, 255, 255, .2) calc(12.5% - 1px), #000456 12.5%);
+        }
 
         &::-webkit-slider-thumb {
             -webkit-appearance: none;
