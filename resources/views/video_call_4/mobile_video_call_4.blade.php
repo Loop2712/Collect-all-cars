@@ -1407,6 +1407,7 @@
 
     var type_user_sos;
 
+
     document.addEventListener('DOMContentLoaded', (event) => {
 
         var appId = sessionStorage.getItem('a');
@@ -2200,14 +2201,13 @@
                                                     myStop_timer_video_call();
                                                 }
 
-                                                // if (check_user_in_video_call == true) {
-                                                //     Stop_check_user_in_video_call(); // หยุดทำฟังก์ชันเช็คคนที่ออกจากห้องไปแล้ว
-                                                // }
+
                                             }
                                         }, 800);
 
                                         start_user_in_video_call(); // ทำฟังก์ชันเช็คคนที่ออกจากห้องไปแล้ว
 
+                                        sessionStorage.setItem('status_video_call', 'actived'); // set ว่ามีการเข้าใช้วิดีโอคอลแล้ว ใช้สำหรับตัวแจ้งเตือนในหน้าอื่นๆ
                                 })
                                 .catch(error => {
                                     console.log("บันทึกข้อมูล join_and_update ล้มเหลว :" + error);
@@ -3283,6 +3283,9 @@
             if (div_id == uid_remote && agoraEngine['remoteUsers'][index]['audioTrack']) {
                 // console.log("ไอดีตรงกัน");
                 agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(value_slider));
+                console.log("UID : "+uid_remote);
+                console.log("div_id : "+div_id);
+                console.log(agoraEngine['remoteUsers'][index]['audioTrack']);
                 alert("setRemote_Volume : "+value_slider);
             }
 
@@ -3316,67 +3319,7 @@
 	}
 
 
-	function createAndAttachCustomDiv() {
-		let randomColor = getRandomColor();
-		let newDiv = document.createElement("div");
-		newDiv.className = "custom-div";
-		newDiv.style.backgroundColor = randomColor;
 
-		// เพิ่ม div ด้านใน
-		let statusInputOutputDiv = document.createElement("div");
-		statusInputOutputDiv.className = "status-input-output";
-
-		let micDiv = document.createElement("div");
-		micDiv.className = "mic";
-		micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
-
-		let cameraDiv = document.createElement("div");
-		cameraDiv.className = "camera";
-		cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
-
-		statusInputOutputDiv.appendChild(micDiv);
-		statusInputOutputDiv.appendChild(cameraDiv);
-
-		let infomationUserDiv = document.createElement("div");
-		infomationUserDiv.className = "infomation-user";
-
-		let nameUserVideoCallDiv = document.createElement("div");
-		nameUserVideoCallDiv.className = "name-user-video-call";
-		nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>lucky</b></h5>';
-
-		let roleUserVideoCallDiv = document.createElement("div");
-		roleUserVideoCallDiv.className = "role-user-video-call";
-		roleUserVideoCallDiv.innerHTML = '<small class="d-block">ศูนย์สั่งการ</small>';
-
-		infomationUserDiv.appendChild(nameUserVideoCallDiv);
-		infomationUserDiv.appendChild(roleUserVideoCallDiv);
-
-		// เพิ่ม div ด้านในลงใน div หลัก
-		newDiv.appendChild(statusInputOutputDiv);
-		newDiv.appendChild(infomationUserDiv);
-
-		// เพิ่ม event listener สำหรับการคลิก
-		newDiv.addEventListener("click", function() {
-			handleClick(newDiv);
-		});
-
-		let userVideoCallBar = document.querySelector(".user-video-call-bar");
-		let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
-
-		if (customDivsInUserVideoCallBar.length > 0) {
-			userVideoCallBar.appendChild(newDiv);
-
-            let infomationUser = newDiv.querySelector(".infomation-user");
-                    if (infomationUser) {
-                        // เพิ่มคลาส "d-none" เข้าไปใน div ที่ไม่ใช่ clickedDiv
-                        infomationUser.classList.add("d-none");
-                    }
-		} else {
-			document.getElementById("container_user_video_call").appendChild(newDiv);
-		}
-
-		checkchild();
-	}
 
 
 	// ย้าย div ไปยัง .user-video-call-bar หากไม่อยู่ในนั้นและสลับ div
@@ -4591,8 +4534,8 @@
 
         agoraEngine.on("volume-indicator", volumes => {
                 volumes.forEach((volume, index) => {
-                    console.log("เข้า foreach");
-                    console.log(volume.uid);
+                    // console.log("เข้า foreach");
+                    // console.log(volume.uid);
                     if (remote_id == volume.uid && status_remote_volume[remote_id] == "yes") {
                         if (volume.level > 50) {
                             console.log(`Dummy_UID ${volume.uid} Level ${volume.level}`);
@@ -4805,6 +4748,68 @@
         }
     }
 
+    function createAndAttachCustomDiv() {
+		let randomColor = getRandomColor();
+		let newDiv = document.createElement("div");
+		newDiv.className = "custom-div";
+		newDiv.style.backgroundColor = randomColor;
+
+		// เพิ่ม div ด้านใน
+		let statusInputOutputDiv = document.createElement("div");
+		statusInputOutputDiv.className = "status-input-output";
+
+		let micDiv = document.createElement("div");
+		micDiv.className = "mic";
+		micDiv.innerHTML = '<i class="fa-duotone fa-microphone"></i>';
+
+		let cameraDiv = document.createElement("div");
+		cameraDiv.className = "camera";
+		cameraDiv.innerHTML = '<i class="fa-solid fa-video"></i>';
+
+		statusInputOutputDiv.appendChild(micDiv);
+		statusInputOutputDiv.appendChild(cameraDiv);
+
+		let infomationUserDiv = document.createElement("div");
+		infomationUserDiv.className = "infomation-user";
+
+		let nameUserVideoCallDiv = document.createElement("div");
+		nameUserVideoCallDiv.className = "name-user-video-call";
+		nameUserVideoCallDiv.innerHTML = '<h5 class="m-0 text-white float-end"><b>lucky</b></h5>';
+
+		let roleUserVideoCallDiv = document.createElement("div");
+		roleUserVideoCallDiv.className = "role-user-video-call";
+		roleUserVideoCallDiv.innerHTML = '<small class="d-block">ศูนย์สั่งการ</small>';
+
+		infomationUserDiv.appendChild(nameUserVideoCallDiv);
+		infomationUserDiv.appendChild(roleUserVideoCallDiv);
+
+		// เพิ่ม div ด้านในลงใน div หลัก
+		newDiv.appendChild(statusInputOutputDiv);
+		newDiv.appendChild(infomationUserDiv);
+
+		// เพิ่ม event listener สำหรับการคลิก
+		newDiv.addEventListener("click", function() {
+			handleClick(newDiv);
+		});
+
+		let userVideoCallBar = document.querySelector(".user-video-call-bar");
+		let customDivsInUserVideoCallBar = userVideoCallBar.querySelectorAll(".custom-div");
+
+		if (customDivsInUserVideoCallBar.length > 0) {
+			userVideoCallBar.appendChild(newDiv);
+
+            let infomationUser = newDiv.querySelector(".infomation-user");
+                    if (infomationUser) {
+                        // เพิ่มคลาส "d-none" เข้าไปใน div ที่ไม่ใช่ clickedDiv
+                        infomationUser.classList.add("d-none");
+                    }
+		} else {
+			document.getElementById("container_user_video_call").appendChild(newDiv);
+		}
+
+		checkchild();
+	}
+
 </script>
 
 <script>
@@ -4824,6 +4829,8 @@
        }
    });
 </script>
+
+
 
 
 

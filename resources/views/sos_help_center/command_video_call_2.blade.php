@@ -1509,17 +1509,6 @@
 
                 // ลดเสียงทุกคน
 
-                // let remoteAudioTracksArray = [];
-                // // set ระดับเสียงของ remote // ทำตอนมี remote อยู่ใน video call เท่านั้น
-                // let remoteVolumeFromStorage = localStorage.getItem('remote_rangeValue');
-                // if (remoteVolumeFromStorage !== null) {
-                //     // ตั้งค่าเสียง remote audio
-                //     remoteAudioTracksArray.forEach(remoteAudioTrack => {
-                //         remoteAudioTrack.setVolume(parseInt(evt.target.value));
-                //         console.log("Volume of remote audio for user " + remoteAudioTrack.getUserId() + ": " + evt.target.value);
-                //     });
-                // }
-
                 channelParameters.remoteAudioTrack.setVolume(parseInt(array_remoteVolumeAudio[user.uid]));
 
                 if(user.hasAudio == false){

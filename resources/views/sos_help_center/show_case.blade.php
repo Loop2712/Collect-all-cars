@@ -74,7 +74,7 @@
 		color: #fff;
 		border-radius: 25px;
 	}
-	
+
 	.img-profile{
 		border-radius: 50%;
 		width: 46px;
@@ -831,9 +831,9 @@ input:focus {
                     @endif
                 </div>
             </div>
-           
+
         </div>
-        
+
         <div class="menubar show-menubar">
             <button class="btn w-25 btn_menu" id="btn_menu_1" onclick="show_data_menu(1);"><i class="fa-solid fa-file-pen"></i></button>
             <button class="btn w-25 btn_menu" id="btn_menu_2" onclick="show_data_menu(2);"><i class="fa-solid fa-messages-question"></i></button>
@@ -1127,7 +1127,7 @@ input:focus {
 
             <div class="d-flex justify-content-around">
 
-                    <a id="btn_call" class="btn_call mx-2" href="{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $data_sos->id }}" target="_blank">
+                    <a id="btn_call" class="btn_call mx-2" href="{{ url('/video_call_4/before_video_call_4') }}?type=sos_1669&sos_id={{ $data_sos->id }}" >
                         <i class="fa-regular fa-phone m-0"></i>
                     </a>
                     <a id="btn_mute" class="btn_mute mx-2 d-none" onclick="mute_ringtone_operation();">
@@ -2606,7 +2606,7 @@ input:focus {
 			    }else{
 			    	check_btn_update_status = check_btn_update_status ;
 			    }
-			}) 
+			})
 
 		// console.log(check_btn_update_status);
 
@@ -2828,45 +2828,69 @@ input:focus {
                     first_operation_meeting  = false;
                 }
 
-                if (result == "do") {  // มี not_command อยู่ในห้องสนทนา
-                    if (first_operation_meeting == false) {
-                        // console.log("เล่น เสียงแจ้งเตือน result == do --> if");
-                        check_status_room = "yes";
-                        status_pause_ringtone = true; // true = กดปุ่มปิดเสียงได้
+                let status_video_call = sessionStorage.getItem('status_video_call'); // status_video_call คือตัวเช็คว่าเคยเข้าไปใน videocall แล้วหรือยัง
+                if (!status_video_call) {
 
-                        let btn_hide_or_show = document.getElementById('btn_hide_or_show_Div_right');
-                        let btn_mute = document.querySelector('#btn_mute');
-                        let icon_right = document.querySelector('#icon_hide_or_show_Div_right');
+                    if (result == "do") {  // มี not_command อยู่ในห้องสนทนา
+                        if (first_operation_meeting == false) {
+                            // console.log("เล่น เสียงแจ้งเตือน result == do --> if");
+                            check_status_room = "yes";
+                            status_pause_ringtone = true; // true = กดปุ่มปิดเสียงได้
 
-                        let btn_call = document.querySelector('#btn_call');
-                            btn_call.setAttribute('class','btn_call_pulse');
+                            let btn_hide_or_show = document.getElementById('btn_hide_or_show_Div_right');
+                            let btn_mute = document.querySelector('#btn_mute');
+                            let icon_right = document.querySelector('#icon_hide_or_show_Div_right');
 
-                        if(status_show_div_right == "show"){
+                            let btn_call = document.querySelector('#btn_call');
+                                btn_call.setAttribute('class','btn_call_pulse');
 
-                            icon_right.setAttribute('class','fa-solid fa-chevrons-right');
+                            if(status_show_div_right == "show"){
 
-                            btn_mute.classList.remove('d-none');
-                        }else{
-                            if(user_click_div == "no"){ // ถ้าผู้ใช้ยังไม่เคยกดซ่อนแท็บ ให้ เด้งแท็บโทรออกมา
-                                // console.log("user_click_div no");
-                                btn_hide_or_show.click();
+                                icon_right.setAttribute('class','fa-solid fa-chevrons-right');
 
                                 btn_mute.classList.remove('d-none');
-
-                                user_click_div = "yes";
                             }else{
-                                // console.log("user_click_div yes");
-                                icon_right.setAttribute('class','fa-solid fa-phone fa-shake text-success');
+                                if(user_click_div == "no"){ // ถ้าผู้ใช้ยังไม่เคยกดซ่อนแท็บ ให้ เด้งแท็บโทรออกมา
+                                    // console.log("user_click_div no");
+                                    btn_hide_or_show.click();
 
-                                btn_mute.classList.remove('d-none');
+                                    btn_mute.classList.remove('d-none');
+
+                                    user_click_div = "yes";
+                                }else{
+                                    // console.log("user_click_div yes");
+                                    icon_right.setAttribute('class','fa-solid fa-phone fa-shake text-success');
+
+                                    btn_mute.classList.remove('d-none');
+                                }
                             }
+
+                            if(ringtone_first_play_check == 0){
+                                play_ringtone_operation();
+                            }
+                        } else {
+                            // console.log("เล่น เสียงแจ้งเตือน result == do --> else");
+                            check_status_room = "no";
+                            let btn_hide_or_show = document.getElementById('btn_hide_or_show_Div_right');
+                            let btn_mute = document.querySelector('#btn_mute');
+                            let icon_right = document.querySelector('#icon_hide_or_show_Div_right');
+
+                            let btn_call = document.querySelector('#btn_call');
+                                btn_call.setAttribute('class','btn_call');
+
+                            if(status_show_div_right == "show"){
+                                icon_right.setAttribute('class','fa-solid fa-chevrons-right');
+                                btn_mute.classList.add('d-none'); //ซ่อนปุ่ม mute เสียง
+                            }else{
+                                icon_right.setAttribute('class','fa-solid fa-phone');
+                                btn_mute.classList.add('d-none');//ซ่อนปุ่ม mute เสียง
+                            }
+
+                            stop_ringtone_operation();
                         }
 
-                        if(ringtone_first_play_check == 0){
-                            play_ringtone_operation();
-                        }
-                    } else {
-                        // console.log("เล่น เสียงแจ้งเตือน result == do --> else");
+                    }else{
+                        // console.log("เล่น เสียงแจ้งเตือน result != do ");
                         check_status_room = "no";
                         let btn_hide_or_show = document.getElementById('btn_hide_or_show_Div_right');
                         let btn_mute = document.querySelector('#btn_mute');
@@ -2886,7 +2910,7 @@ input:focus {
                         stop_ringtone_operation();
                     }
 
-                }else{
+                } else {
                     // console.log("เล่น เสียงแจ้งเตือน result != do ");
                     check_status_room = "no";
                     let btn_hide_or_show = document.getElementById('btn_hide_or_show_Div_right');
