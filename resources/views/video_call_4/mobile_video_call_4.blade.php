@@ -1839,6 +1839,7 @@
                     for(let c_uid = 0; c_uid < agoraEngine['remoteUsers']['length']; c_uid++){
 
                         const dummy_remote = agoraEngine['remoteUsers'][c_uid];
+                        console.log("dummy_remote");
                         console.log(dummy_remote);
 
                         if(dummy_remote['hasVideo'] == false){ //ถ้า remote คนนี้ ไม่ได้เปิดกล้องไว้ --> ไปสร้าง div_dummy
@@ -1884,6 +1885,14 @@
                                         if (check_start_volume_indicator[dummy_remote.uid] == "no") {
                                             volume_indicator_remote(dummy_remote.uid);
                                         }
+
+                                        let userVolume;
+                                        if (array_remoteVolumeAudio[user.uid]) {
+                                            userVolume = parseInt(array_remoteVolumeAudio[user.uid]);
+                                        }else{
+                                            userVolume = 70; // หรือค่าที่ต้องการ
+                                        }
+                                        agoraEngine['remoteUsers'][c_uid]['audioTrack'].setVolume(userVolume);
                                     }
 
                                     if (dummy_remote['hasAudio'] == false) {
@@ -3154,7 +3163,7 @@
                             name_profile = `<span class="h3 font-weight-bold text-info mx-auto">`+element.name+`</span>`;
 
                             localVolume = localStorage.getItem('local_sos_1669_rangeValue') ?? 100;
-                            localVolume = 100;
+
                             console.log("localVolume");
                             console.log(localVolume);
                             type_input = `<input style="z-index: 7;" type="range" id="localAudioVolume"
@@ -3174,9 +3183,9 @@
                             name_profile = `<span class="h3 font-weight-bold mx-auto">`+element.name+`</span>`;
                             type_input = `<input class="w-100" style="z-index: 7;" type="range" id="remoteAudioVolume_`+element.id+`"
                                             min="0" max="100"  value="`+inputValue_remote+`"  onChange="onChangeVolumeRemote(`+element.id+`, 'handle');">`;
-                            type_input_value = ` <div class="wrapper_range_volume">
-                                                    <input class="w-100" type="number" id="customVolumeInput_`+element.id+`" value="`+inputValue_remote+`" min="0" max="100" oninput="setRemoteVolume_remote(`+element.id+`)">
-                                                </div>`;
+                            type_input_value =  `<input class="w-100" type="number" id="customVolumeInput_`+element.id+`" value="`+inputValue_remote+`"
+                                                    min="0" max="100" oninput="setRemoteVolume_remote(`+element.id+`)">`;
+
                             icon_microphone_in_sb = `icon_mic_remote_in_sidebar_`+element.id+``;
                         }
 
@@ -3272,7 +3281,7 @@
             value_slider = slider;
         }
 
-        document.querySelector('#customVolumeInput_'+div_id).value = value_slider;
+        document.querySelector('#customVolumeInput_'+div_id).value = value_slider; // ตัวทดลอง
 
         array_remoteVolumeAudio[div_id] = value_slider;
         // console.log("agoraEngine onChangeVolumeRemote");
