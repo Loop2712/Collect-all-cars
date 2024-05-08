@@ -3154,7 +3154,9 @@
                             name_profile = `<span class="h3 font-weight-bold text-info mx-auto">`+element.name+`</span>`;
 
                             localVolume = localStorage.getItem('local_sos_1669_rangeValue') ?? 100;
-
+                            localVolume = 100;
+                            console.log("localVolume");
+                            console.log(localVolume);
                             type_input = `<input style="z-index: 7;" type="range" id="localAudioVolume"
                                             min="0" max="1000" value="`+localVolume+`" class="w-100" >`;
                             type_input_value = ` <div class="wrapper_range_volume">
@@ -3164,8 +3166,10 @@
                         } else {
 
                             inputValue_remote = array_remoteVolumeAudio[element.id] ?? 70; // เอาข้อมูล volume ที่เคยปรับไว้มาใช้เป็นค่า value ถ้าไม่มี ให้ใช้ค่า default = 70
-                            // console.log("inputValue_remote");
-                            // console.log(inputValue_remote);
+                            inputValue_remote.toString();
+
+                            console.log("inputValue_remote");
+                            console.log(inputValue_remote);
 
                             name_profile = `<span class="h3 font-weight-bold mx-auto">`+element.name+`</span>`;
                             type_input = `<input class="w-100" style="z-index: 7;" type="range" id="remoteAudioVolume_`+element.id+`"
