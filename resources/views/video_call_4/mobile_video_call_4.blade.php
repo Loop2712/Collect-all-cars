@@ -2044,9 +2044,9 @@
                             if(useMicrophone){
                                 channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                     {
-                                        AEC: true, // การยกเลิกเสียงสะท้อน
-                                        ANS: true, // การลดเสียงรบกวนอัตโนมัติ
-                                        encoderConfig: "high_quality", // ระดับคุณภาพเสียง
+                                        // AEC: true, // การยกเลิกเสียงสะท้อน
+                                        // ANS: true, // การลดเสียงรบกวนอัตโนมัติ
+                                        // encoderConfig: "high_quality", // ระดับคุณภาพเสียง
                                         microphoneId: useMicrophone
                                     }
                                 );
@@ -2062,9 +2062,9 @@
                                     // ใช้ไมโครโฟนที่ถูกเลือก
                                     channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                         {
-                                            AEC: true, // การยกเลิกเสียงสะท้อน
-                                            ANS: true, // การลดเสียงรบกวนอัตโนมัติ
-                                            encoderConfig: "high_quality", // ระดับคุณภาพเสียง
+                                            // AEC: true, // การยกเลิกเสียงสะท้อน
+                                            // ANS: true, // การลดเสียงรบกวนอัตโนมัติ
+                                            // encoderConfig: "high_quality", // ระดับคุณภาพเสียง
                                             microphoneId: selectedMicrophone
                                         }
                                     );
@@ -2092,9 +2092,9 @@
                                     // ใช้ไมโครโฟนที่ถูกเลือก
                                     channelParameters.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack(
                                         {
-                                            AEC: true, // การยกเลิกเสียงสะท้อน
-                                            ANS: true, // การลดเสียงรบกวนอัตโนมัติ
-                                            encoderConfig: "high_quality", // ระดับคุณภาพเสียง
+                                            // AEC: true, // การยกเลิกเสียงสะท้อน
+                                            // ANS: true, // การลดเสียงรบกวนอัตโนมัติ
+                                            // encoderConfig: "high_quality", // ระดับคุณภาพเสียง
                                             microphoneId: selectedMicrophone
                                         }
                                     );
@@ -2476,9 +2476,9 @@
 
             // สร้าง local audio track ใหม่โดยใช้อุปกรณ์ที่คุณต้องการ
             AgoraRTC.createMicrophoneAudioTrack({
-                AEC: true, // การยกเลิกเสียงสะท้อน
-                ANS: true, // การลดเสียงรบกวนอัตโนมัติ
-                encoderConfig: "high_quality", // ระดับคุณภาพเสียง
+                // AEC: true, // การยกเลิกเสียงสะท้อน
+                // ANS: true, // การลดเสียงรบกวนอัตโนมัติ
+                // encoderConfig: "high_quality", // ระดับคุณภาพเสียง
                 microphoneId: selectedAudioDeviceId
             })
             .then(newAudioTrack => {
@@ -3312,8 +3312,7 @@
                 // console.log("ไอดีตรงกัน");
                 agoraEngine['remoteUsers'][index]['audioTrack'].setVolume(parseInt(value_slider));
                 // agoraEngine['remoteUsers'][index]['audioTrack'].play();
-                agoraEngine['remoteUsers'][index]['audioTrack'].setEnabled(true);
-
+                // agoraEngine['remoteUsers'][index]['audioTrack'].setEnabled(true);
                 console.log("UID : "+uid_remote);
                 console.log("div_id : "+div_id);
                 console.log(agoraEngine['remoteUsers'][index]['audioTrack']);
